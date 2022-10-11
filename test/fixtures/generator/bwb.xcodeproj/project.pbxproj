@@ -1180,7 +1180,7 @@
 				CCD52FD22F080CD6DA9BD957 /* com_github_tuist_xcodeproj */,
 			);
 			name = "Bazel External Repositories";
-			path = "bazel-output-base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out/_rules_xcodeproj/build_output_base/external";
+			path = "bazel-output-base/execroot/_rules_xcodeproj/build_output_base/external";
 			sourceTree = "<group>";
 		};
 		98EB7C1365B0DAEC16FDE8B9 /* applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000 */ = {
@@ -1379,7 +1379,7 @@
 				98EB7C1365B0DAEC16FDE8B9 /* applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000 */,
 			);
 			name = "Bazel Generated Files";
-			path = "bazel-output-base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out/_rules_xcodeproj/build_output_base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out";
+			path = "bazel-output-base/execroot/_rules_xcodeproj/build_output_base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out";
 			sourceTree = "<group>";
 		};
 		CA7DD8A114179E4211EC51BF /* Project */ = {
@@ -2634,11 +2634,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				BAZEL_EXEC_ROOT = "$(PROJECT_DIR)/bazel-output-base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out/_rules_xcodeproj/build_output_base/execroot/com_github_buildbuddy_io_rules_xcodeproj";
-				BAZEL_EXTERNAL = "$(PROJECT_DIR)/bazel-output-base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out/_rules_xcodeproj/build_output_base/external";
+				BAZEL_EXEC_ROOT = "$(PROJECT_DIR)/bazel-output-base/execroot/_rules_xcodeproj/build_output_base/execroot/com_github_buildbuddy_io_rules_xcodeproj";
+				BAZEL_EXTERNAL = "$(PROJECT_DIR)/bazel-output-base/execroot/_rules_xcodeproj/build_output_base/external";
 				BAZEL_INTEGRATION_DIR = "$(INTERNAL_DIR)/bazel";
 				BAZEL_LLDB_INIT = "$(OBJROOT)/bazel.lldbinit";
-				BAZEL_OUT = "$(PROJECT_DIR)/bazel-output-base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out/_rules_xcodeproj/build_output_base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out";
+				BAZEL_OUT = "$(PROJECT_DIR)/bazel-output-base/execroot/_rules_xcodeproj/build_output_base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out";
 				BAZEL_PATH = bazel;
 				BAZEL_WORKSPACE_ROOT = "$(SRCROOT)";
 				BUILD_WORKSPACE_DIRECTORY = "$(SRCROOT)";
