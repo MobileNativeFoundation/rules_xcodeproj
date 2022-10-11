@@ -157,8 +157,8 @@ plutil -replace IDEWorkspaceSharedSettings_AutocreateContextsIfNeeded -bool fals
 if [[ -f "$dest/rules_xcodeproj/generated.xcfilelist" ]]; then
   cd "$BUILD_WORKSPACE_DIRECTORY"
 
-  output_path=$("$bazel_path" info output_path)
-  readonly nested_output_base="$output_path/_rules_xcodeproj/build_output_base"
+  output_base=$("$bazel_path" info output_base)
+  readonly nested_output_base="$output_base/execroot/_rules_xcodeproj/build_output_base"
 
   # Determine bazel-out
   bazelrcs=(
