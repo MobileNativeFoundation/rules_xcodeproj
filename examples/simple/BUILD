@@ -20,7 +20,7 @@ swift_binary(
 
 xcodeproj(
     name = "xcodeproj",
-    build_mode = "bazel",
+    build_mode = "xcode",
     post_build = POST_BUILD,
     pre_build = PRE_BUILD,
     project_name = "Simple",
