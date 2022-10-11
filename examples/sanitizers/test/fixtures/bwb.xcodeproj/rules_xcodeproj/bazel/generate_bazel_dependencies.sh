@@ -79,8 +79,11 @@ else
   while IFS= read -r -d '' label; do
     labels+=("$label")
   done < <(printf "%s\0" "${raw_labels[@]}" | sort -uz)
+  readonly labels
 fi
+
 output_groups_flag="--output_groups=$(IFS=, ; echo "${output_groups[*]}")"
+readonly output_groups_flag
 
 # Set `bazel_cmd` for calling `bazel`
 
@@ -94,33 +97,7 @@ fi
 if [[ -s "$BAZEL_INTEGRATION_DIR/xcodeproj_extra_flags.bazelrc" ]]; then
   bazelrcs+=("--bazelrc=$BAZEL_INTEGRATION_DIR/xcodeproj_extra_flags.bazelrc")
 fi
-
-bazel_cmd=(
-  env -i
-  DEVELOPER_DIR="$DEVELOPER_DIR"
-  HOME="$HOME"
-  PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-  TERM="$TERM"
-  USER="$USER"
-  "$BAZEL_PATH"
-
-  # Restart bazel server if `DEVELOPER_DIR` changes to clear `developerDirCache`
-  "--host_jvm_args=-Xdock:name=$DEVELOPER_DIR"
-
-  "${bazelrcs[@]}"
-)
-pre_config_flags=(
-  # Be explicit about our desired Xcode version
-  "--xcode_version=$XCODE_PRODUCT_BUILD_VERSION"
-
-  # Work around https://github.com/bazelbuild/bazel/issues/8902
-  # `USE_CLANG_CL` is only used on Windows, we set it here to cause Bazel to
-  # re-evaluate the cc_toolchain for a different Xcode version
-  "--repo_env=DEVELOPER_DIR=$DEVELOPER_DIR"
-  "--repo_env=USE_CLANG_CL=$XCODE_PRODUCT_BUILD_VERSION"
-)
-
-# Determine Bazel output_path
+readonly bazelrcs
 
 # In `runner.template.sh` the generator has the build output base set inside
 # of the outer bazel's output path (`bazel-out/`). So here we need to make
@@ -138,21 +115,51 @@ if [ "$ACTION" == "indexbuild" ]; then
 else
   readonly output_base="$build_output_base"
 fi
-bazel_cmd+=(--output_base "$output_base")
+
+readonly bazel_cmd=(
+  env -i
+  DEVELOPER_DIR="$DEVELOPER_DIR"
+  HOME="$HOME"
+  PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+  TERM="$TERM"
+  USER="$USER"
+  "$BAZEL_PATH"
+
+  # Restart bazel server if `DEVELOPER_DIR` changes to clear `developerDirCache`
+  "--host_jvm_args=-Xdock:name=$DEVELOPER_DIR"
+
+  "${bazelrcs[@]}"
+
+  --output_base "$output_base"
+)
+
+readonly base_pre_config_flags=(
+  # Be explicit about our desired Xcode version
+  "--xcode_version=$XCODE_PRODUCT_BUILD_VERSION"
+
+  # Work around https://github.com/bazelbuild/bazel/issues/8902
+  # `USE_CLANG_CL` is only used on Windows, we set it here to cause Bazel to
+  # re-evaluate the cc_toolchain for a different Xcode version
+  "--repo_env=DEVELOPER_DIR=$DEVELOPER_DIR"
+  "--repo_env=USE_CLANG_CL=$XCODE_PRODUCT_BUILD_VERSION"
+)
+
+# Determine Bazel output_path
 
 if [[ "${COLOR_DIAGNOSTICS:-NO}" == "YES" ]]; then
-  color=yes
+  readonly info_color=yes
 else
-  color=no
+  readonly info_color=no
 fi
 
 output_path=$("${bazel_cmd[@]}" \
   info \
-  "${pre_config_flags[@]}" \
+  "${base_pre_config_flags[@]}" \
   --config="${BAZEL_CONFIG}_info" \
-  --color="$color" \
+  --color="$info_color" \
   output_path)
-execution_root="${output_path%/*}"
+readonly output_path
+readonly execution_root="${output_path%/*}"
 
 # Create `bazel.lldbinit``
 
@@ -166,23 +173,24 @@ fi
 
 # Create VFS overlays
 
+# `bazel_out_prefix` is used in `create_xcode_overlay.sh`
 if [[ "${BAZEL_OUT:0:1}" == '/' ]]; then
-  bazel_out_prefix=
+  readonly bazel_out_prefix=
 else
-  bazel_out_prefix="$SRCROOT/"
+  readonly bazel_out_prefix="$SRCROOT/"
 fi
-absolute_bazel_out="${bazel_out_prefix}$BAZEL_OUT"
 
 if [[ "$RULES_XCODEPROJ_BUILD_MODE" == "xcode" ]]; then
   source "$INTERNAL_DIR/create_xcode_overlay.sh"
 fi
 
+readonly absolute_bazel_out="${bazel_out_prefix}$BAZEL_OUT"
 if [[ "$output_path" != "$absolute_bazel_out" ]]; then
   # Use current path for bazel-out
   # This fixes Index Build to use its version of generated files
-  roots="{\"external-contents\": \"$output_path\",\"name\": \"$absolute_bazel_out\",\"type\": \"directory-remap\"}"
+  readonly roots="{\"external-contents\": \"$output_path\",\"name\": \"$absolute_bazel_out\",\"type\": \"directory-remap\"}"
 else
-  roots=""
+  readonly roots=
 fi
 
 cat > "$OBJROOT/bazel-out-overlay.yaml" <<EOF
@@ -202,28 +210,30 @@ fi
 
 apply_sanitizers=1
 if [ "$ACTION" == "indexbuild" ]; then
-  config="${BAZEL_CONFIG}_indexbuild"
+  readonly config="${BAZEL_CONFIG}_indexbuild"
 
   # Index Build doesn't need sanitizers
   apply_sanitizers=0
 elif [ "${ENABLE_PREVIEWS:-}" == "YES" ]; then
-  config="${BAZEL_CONFIG}_swiftuipreviews"
+  readonly config="${BAZEL_CONFIG}_swiftuipreviews"
 else
-  config="_${BAZEL_CONFIG}_build"
+  readonly config="_${BAZEL_CONFIG}_build"
 fi
 
 # Runtime Sanitizers
+build_pre_config_flags=()
 if [[ $apply_sanitizers -eq 1 ]]; then
   if [ "${ENABLE_ADDRESS_SANITIZER:-}" == "YES" ]; then
-    pre_config_flags+=(--features=asan)
+    build_pre_config_flags+=(--features=asan)
   fi
   if [ "${ENABLE_THREAD_SANITIZER:-}" == "YES" ]; then
-    pre_config_flags+=(--features=tsan)
+    build_pre_config_flags+=(--features=tsan)
   fi
   if [ "${ENABLE_UNDEFINED_BEHAVIOR_SANITIZER:-}" == "YES" ]; then
-    pre_config_flags+=(--features=ubsan)
+    build_pre_config_flags+=(--features=ubsan)
   fi
 fi
+readonly build_pre_config_flags
 
 # Ensure that our top-level cache buster `override_repository` is valid
 mkdir -p /tmp/rules_xcodeproj
@@ -231,7 +241,7 @@ touch /tmp/rules_xcodeproj/WORKSPACE
 echo 'exports_files(["top_level_cache_buster"])' > /tmp/rules_xcodeproj/BUILD
 date +%s > "/tmp/rules_xcodeproj/top_level_cache_buster"
 
-build_marker="$OBJROOT/bazel_build_start"
+readonly build_marker="$OBJROOT/bazel_build_start"
 touch "$build_marker"
 
 # TODO: Include labels in some sort of BES metadata
@@ -240,7 +250,8 @@ touch "$build_marker"
 "$BAZEL_INTEGRATION_DIR/process_bazel_build_log.py" \
   "${bazel_cmd[@]}" \
   build \
-  "${pre_config_flags[@]}" \
+  "${base_pre_config_flags[@]}" \
+  ${build_pre_config_flags:+"${build_pre_config_flags[@]}"} \
   --config="$config" \
   --color=yes \
   ${toolchain:+--define=SWIFT_CUSTOM_TOOLCHAIN="$toolchain"} \
@@ -273,13 +284,14 @@ for output_group in "${output_groups[@]}"; do
     exit 1
   fi
 done
+readonly indexstores_filelists
 
 # Async actions
 #
 # For these commands to run in the background, both stdout and stderr need to be
 # redirected, otherwise Xcode will block the run script.
 
-log_dir="$OBJROOT/rules_xcodeproj_logs"
+readonly log_dir="$OBJROOT/rules_xcodeproj_logs"
 mkdir -p "$log_dir"
 
 # Report errors from previous async actions
