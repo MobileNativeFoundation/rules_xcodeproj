@@ -65,6 +65,7 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
         srcs = []
 
     alternate_icons = None
+    env = None
     app_icons = None
     bundle_id = None
     codesignopts = None
@@ -111,6 +112,7 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
         }
         if _is_test_target(target):
             xcode_targets["test_host"] = [target_type.compile]
+            env = "env"
         if "alternate_icons" in attrs:
             alternate_icons = "alternate_icons"
         if "app_clips" in attrs:
@@ -190,6 +192,7 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
             codesignopts = codesignopts,
             deps = deps,
             entitlements = entitlements,
+            env = env,
             exported_symbols_lists = exported_symbols_lists,
             hdrs = hdrs,
             infoplists = infoplists,

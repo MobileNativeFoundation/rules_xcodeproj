@@ -272,6 +272,28 @@
             "_": "applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32/bin/watchOSAppExtension/Test/UnitTests/rules_xcodeproj/watchOSAppExtensionUnitTests.__internal__.__test_bundle/Info.plist",
             "t": "g"
         },
+        "iOSApp/Source/Utils/BUILD",
+        "iOSApp/Test/TestingUtils/BUILD",
+        "iOSApp/Test/TestingUtils/Greeting.swift.stencil",
+        "iOSApp/Test/TestingUtils/Answer.swift.stencil",
+        "iOSApp/Test/TestingUtils/merge.sh",
+        "iOSApp/Test/SwiftUnitTests/BUILD",
+        {
+            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/external/FXPageControl/FXPageControl.swift.modulemap",
+            "t": "g"
+        },
+        {
+            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/iOSApp/Source/Utils/Utils.swift.modulemap",
+            "t": "g"
+        },
+        {
+            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/iOSApp/Test/TestingUtils/TestingUtils.swift.modulemap",
+            "t": "g"
+        },
+        {
+            "_": "applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/iOSApp/Test/SwiftUnitTests/rules_xcodeproj/iOSAppSwiftUnitTests.__internal__.__test_bundle/Info.plist",
+            "t": "g"
+        },
         "CommandLine/CommandLineToolLib/BUILD",
         "CommandLine/swift_c_module/BUILD",
         {
@@ -12282,5 +12304,23 @@
                 ]
             }
         }
+    ],
+    "test_envs": [
+        "//CommandLine/Tests:CommandLineToolTests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-ST-c0ef0a258197",
+        {},
+        "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56",
+        {
+            "IOSAPPSWIFTUNITTESTS": "CUSTOM_ENV_VALUE"
+        },
+        "//macOSApp/Test/UITests:macOSAppUITests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-ST-e4309a660cc1",
+        {},
+        "//tvOSApp/Test/UITests:tvOSAppUITests.__internal__.__test_bundle applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2",
+        {},
+        "//tvOSApp/Test/UnitTests:tvOSAppUnitTests.__internal__.__test_bundle applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2",
+        {},
+        "//watchOSApp/Test/UITests:watchOSAppUITests.__internal__.__test_bundle applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32",
+        {},
+        "//watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests.__internal__.__test_bundle applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32",
+        {}
     ]
 }

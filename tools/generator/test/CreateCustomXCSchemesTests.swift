@@ -1,4 +1,5 @@
 import XCTest
+import XcodeProj
 
 @testable import generator
 
@@ -8,7 +9,8 @@ extension CreateCustomXCSchemesTests {
             schemes: [],
             buildMode: .bazel,
             targetResolver: targetResolver,
-            runnerLabel: runnerLabel
+            runnerLabel: runnerLabel,
+            testEnvs: [:]
         )
         XCTAssertEqual(actual, [])
     }
@@ -18,10 +20,32 @@ extension CreateCustomXCSchemesTests {
             schemes: [schemeA, schemeB],
             buildMode: .bazel,
             targetResolver: targetResolver,
-            runnerLabel: runnerLabel
+            runnerLabel: runnerLabel,
+            testEnvs: [:]
         )
         XCTAssertEqual(actual.count, 2)
         XCTAssertEqual(actual.map(\.name), [schemeA.name, schemeB.name])
+    }
+
+    func test_createCustomXCSchemes_withCustomSchemes_testEnvOverrides() throws {
+        let actual = try Generator.createCustomXCSchemes(
+            schemes: [schemeC],
+            buildMode: .bazel,
+            targetResolver: targetResolver,
+            runnerLabel: runnerLabel,
+            testEnvs: ["B 2": [
+                "B_2_SCHEME_VAR": "INITIAL",
+                "OTHER_ENV_VAR": "INITIAL"
+            ]]
+        )
+        XCTAssertEqual(actual.count, 1)
+        XCTAssertEqual(actual.map(\.name), [schemeC.name])
+        let environmentVariables: [XCScheme.EnvironmentVariable] = try XCTUnwrap(actual.first?.testAction?.environmentVariables)
+        let testActionEnvironmentVariables: [String: String] = environmentVariables.reduce(into: [String: String]()) { partialResult, element in
+            partialResult[element.variable] = element.value
+        }
+        XCTAssertEqual(testActionEnvironmentVariables["B_2_SCHEME_VAR"], "OVERRIDE")
+        XCTAssertEqual(testActionEnvironmentVariables["OTHER_ENV_VAR"], "INITIAL")
     }
 }
 
@@ -54,5 +78,13 @@ class CreateCustomXCSchemesTests: XCTestCase {
     lazy var schemeB = try! XcodeScheme(
         name: "Scheme B",
         launchAction: .init(target: targetResolver.targets["A 2"]!.label)
+    )
+
+    lazy var schemeC = try! XcodeScheme(
+        name: "Scheme C",
+        testAction: .init(
+            targets: [targetResolver.targets["B 2"]!.label],
+            env: ["B_2_SCHEME_VAR": "OVERRIDE"]
+        )
     )
 }

@@ -33,6 +33,7 @@ attributes.
 An attribute name (or `None`) to collect `File`s from for the
 `entitlements`-like attribute.
 """,
+        "env": "env",
         "exported_symbols_lists": """\
 A sequence of attribute names to collect `File`s from for the
 `exported_symbols_lists`-like attributes.
@@ -150,6 +151,11 @@ target, it can still have a non-`None` value for this field.
         "transitive_dependencies": """\
 A `depset` of target ids (see the `target` `struct`) that this target
 transitively depends on.
+""",
+        "test_envs": """\
+A `depset` of `struct`s with `label` and `test_env` fields. The `label` field is the
+target label of the target that have its `test_env` field represents the `env` values
+for the target (if applicable).
 """,
         "xcode_required_targets": """\
 A `depset` of values returned from `xcode_targets.make` for targets that need to

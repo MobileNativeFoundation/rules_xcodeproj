@@ -53,7 +53,7 @@ extension XCSchemeInfo.TestActionInfo {
         guard let original = testActionInfo else {
             return nil
         }
-        
+
         var expandVariablesBasedOn: XCSchemeInfo.TargetInfo? = nil
         if let originalExpandVariablesBasedOn = original.expandVariablesBasedOn {
             expandVariablesBasedOn = XCSchemeInfo.TargetInfo(
@@ -84,7 +84,8 @@ extension XCSchemeInfo.TestActionInfo {
     init?(
         testAction: XcodeScheme.TestAction?,
         targetResolver: TargetResolver,
-        targetIDsByLabel: [BazelLabel: TargetID]
+        targetIDsByLabel: [BazelLabel: TargetID],
+        testEnvs: [TargetID: [String: String]]
     ) throws {
         guard let testAction = testAction else {
           return nil
@@ -93,7 +94,19 @@ extension XCSchemeInfo.TestActionInfo {
             testAction.targets.sortedLocalizedStandard().first.orThrow("""
 Expected at least one target in `TestAction.targets`
 """)
-        
+
+        var testActionEnv: [String: String] = testAction.env
+        let testActionTargetIds: [TargetID] = testAction.targets.compactMap { label in
+            targetIDsByLabel[label]
+        }
+        for testActionTargetId in testActionTargetIds {
+            if let env: [String: String] = testEnvs[testActionTargetId] {
+                testActionEnv.merge(env) { lhs, rhs in
+                    lhs
+                }
+            }
+        }
+
         try self.init(
             buildConfigurationName: testAction.buildConfigurationName,
             targetInfos: try testAction.targets.map { label in
@@ -108,7 +121,7 @@ Expected at least one target in `TestAction.targets`
             diagnostics: XCSchemeInfo.DiagnosticsInfo(
                 diagnostics: testAction.diagnostics
             ),
-            env: testAction.env,
+            env: testActionEnv,
             expandVariablesBasedOn: try targetResolver.targetInfo(
                 targetID: try targetIDsByLabel.value(
                     for: expandVariablesBasedOn,
