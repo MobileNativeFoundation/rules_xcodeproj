@@ -219,5 +219,6 @@ def xcodeproj_fixture(
                 ],
                 allow_empty = True,
             ),
+            tags = ["manual"],
             visibility = ["//test:__subpackages__"],
         )
