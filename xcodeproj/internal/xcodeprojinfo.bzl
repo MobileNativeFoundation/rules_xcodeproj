@@ -158,8 +158,8 @@ def _skip_target(*, ctx, target, deps, deps_attrs, transitive_infos, automatic_t
     forwards them on, not collecting any information for the current target.
 
     Args:
-        target: The `Target` to skip.
         ctx: The aspect context.
+        target: The `Target` to skip.
         deps: `Target`s collected from `ctx.attr.deps`.
         deps_attrs: A sequence of attribute names to collect `Target`s from for
             `deps`-like attributes.
