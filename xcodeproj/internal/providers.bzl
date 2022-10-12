@@ -153,8 +153,8 @@ A `depset` of target ids (see the `target` `struct`) that this target
 transitively depends on.
 """,
         "test_envs": """\
-A `depset` of `struct`s with `label` and `test_env` fields. The `label` field is the
-target label of the target that have its `test_env` field represents the `env` values
+A `depset` of `struct`s with `id` and `test_env` fields. The `id` field is the
+target id of the target that has its `test_env` field represent the `env` values
 for the target (if applicable).
 """,
         "xcode_required_targets": """\
