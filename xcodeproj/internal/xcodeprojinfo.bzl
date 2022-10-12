@@ -296,7 +296,7 @@ def _create_envs_depset(*, ctx, target, id, automatic_target_info):
     # Some keys are not applicable in schemes, we will filter them out here
     _IGNORED_BAZEL_ENV_VARIABLES = [
         "XCODE_VERSION_OVERRIDE",
-        "XCODE_VERSION"
+        "XCODE_VERSION",
     ]
     run_env = {
         key: value
