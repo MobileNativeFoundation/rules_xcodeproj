@@ -186,6 +186,7 @@ def xcodeproj_fixture(
         native.alias(
             name = fixture_spec_name(fixture_name),
             actual = spec_name,
+            tags = ["manual"],
             visibility = ["//test:__subpackages__"],
         )
 
@@ -199,6 +200,7 @@ def xcodeproj_fixture(
             post_build = post_build,
             pre_build = pre_build,
             project_name = suffix,
+            tags = ["manual"],
             top_level_targets = top_level_targets,
             scheme_autogeneration_mode = scheme_autogeneration_mode,
             schemes = schemes,
@@ -217,5 +219,6 @@ def xcodeproj_fixture(
                 ],
                 allow_empty = True,
             ),
+            tags = ["manual"],
             visibility = ["//test:__subpackages__"],
         )
