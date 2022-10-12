@@ -172,7 +172,12 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
                 xcodeGeneratedTransform:  { filePath in
                     useBazelOut = false
                     return filePath.parent()
-                }
+                },
+                // Since we use `$(FRAMEWORK_SEARCH_PATHS)` in
+                // `PREVIEWS_LD_RUNPATH_SEARCH_PATHS__YES`, we need to fully
+                // qualify the paths
+                forceFullBuildSettingPath: buildMode == .xcode &&
+                    target.product.type.isFramework
             )
             frameworkSearchPaths[searchFilePath, default: [:]][useBazelOut] =
                 path
