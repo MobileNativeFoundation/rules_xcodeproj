@@ -179,7 +179,7 @@ if [[ "${ENABLE_ADDRESS_SANITIZER:-}" == "YES" || \
 then
     # TODO: Support custom toolchains once clang.sh supports them
     cd "$INTERNAL_DIR" || exit 1
-    ln -sf "$DEVELOPER_DIR/Toolchains/XcodeDefault.xctoolchain/usr/lib" lib
+    ln -sfF "$DEVELOPER_DIR/Toolchains/XcodeDefault.xctoolchain/usr/lib" lib
 fi
 """#,
             title: "Symlink Toolchain /usr/lib directory",
