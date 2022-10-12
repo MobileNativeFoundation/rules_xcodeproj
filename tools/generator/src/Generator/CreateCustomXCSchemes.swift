@@ -8,14 +8,14 @@ extension Generator {
         buildMode: BuildMode,
         targetResolver: TargetResolver,
         runnerLabel: BazelLabel,
-        testEnvs: [TargetID: [String: String]]
+        envs: [TargetID: [String: String]]
     ) throws -> [XCScheme] {
         return try schemes.map { scheme in
             let schemeInfo = try XCSchemeInfo(
                 scheme: scheme,
                 targetResolver: targetResolver,
                 runnerLabel: runnerLabel,
-                testEnvs: testEnvs
+                envs: envs
             )
             return try XCScheme(buildMode: buildMode, schemeInfo: schemeInfo)
         }

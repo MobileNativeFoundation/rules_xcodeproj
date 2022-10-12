@@ -48,6 +48,9 @@ def _is_test_bundle(target, deps):
     if deps == None:
         return False
 
+    if hasattr(native, "RunEnvironmentInfo"):
+        return RunEnvironmentInfo in target
+
     return (
         _is_test_bundle_with_provider(target, deps, IosXcTestBundleInfo) or
         _is_test_bundle_with_provider(target, deps, MacosXcTestBundleInfo) or

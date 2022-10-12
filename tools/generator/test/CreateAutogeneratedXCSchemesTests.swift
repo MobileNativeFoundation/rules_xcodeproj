@@ -410,7 +410,7 @@ the archive action buildConfiguration did not match for \(scheme.name)
                 pbxTargets: [:]
             ),
             customSchemeNames: [],
-            testEnvs: [:]
+            envs: [:]
         )
         let expected = [XCScheme]()
         XCTAssertEqual(schemes, expected)
@@ -422,7 +422,7 @@ the archive action buildConfiguration did not match for \(scheme.name)
             buildMode: .xcode,
             targetResolver: targetResolver,
             customSchemeNames: [],
-            testEnvs: [:]
+            envs: [:]
         )
         // -1 since we don't create a scheme for WatchKit Extensions
         XCTAssertEqual(schemes.count, pbxTargetsDict.count - 1)
@@ -621,7 +621,7 @@ Xcode.IDEFoundation.Launcher.PosixSpawn
             buildMode: .bazel,
             targetResolver: targetResolver,
             customSchemeNames: [],
-            testEnvs: [:]
+            envs: [:]
         )
         try assertBazelSchemes(schemes: schemes)
     }
@@ -632,7 +632,7 @@ Xcode.IDEFoundation.Launcher.PosixSpawn
             buildMode: .bazel,
             targetResolver: targetResolver,
             customSchemeNames: [],
-            testEnvs: ["B 2": ["B_2_TESTENV_VAR": "TRUE"]]
+            envs: ["B 2": ["B_2_TESTENV_VAR": "TRUE"]]
         )
         try assertBazelSchemes(schemes: schemes)
     }
@@ -643,7 +643,7 @@ Xcode.IDEFoundation.Launcher.PosixSpawn
             buildMode: .bazel,
             targetResolver: targetResolver,
             customSchemeNames: ["Custom Scheme"],
-            testEnvs: [:]
+            envs: [:]
         )
         XCTAssertEqual(schemes, [])
     }
@@ -654,7 +654,7 @@ Xcode.IDEFoundation.Launcher.PosixSpawn
             buildMode: .bazel,
             targetResolver: targetResolver,
             customSchemeNames: [],
-            testEnvs: [:]
+            envs: [:]
         )
         try assertBazelSchemes(schemes: schemes)
     }
@@ -668,7 +668,7 @@ Xcode.IDEFoundation.Launcher.PosixSpawn
             buildMode: .bazel,
             targetResolver: targetResolver,
             customSchemeNames: [customSchemeName],
-            testEnvs: [:]
+            envs: [:]
         )
         let schemeNames = schemes.map(\.name)
         XCTAssertFalse(schemeNames.contains(customSchemeName))
@@ -680,7 +680,7 @@ Xcode.IDEFoundation.Launcher.PosixSpawn
             buildMode: .bazel,
             targetResolver: targetResolver,
             customSchemeNames: [],
-            testEnvs: [:]
+            envs: [:]
         )
         XCTAssertEqual(schemes, [])
     }

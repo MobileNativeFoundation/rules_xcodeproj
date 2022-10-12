@@ -479,7 +479,7 @@ def _write_json_spec(
         targets,
         target_dtos,
         target_merges,
-        test_envs,
+        envs,
         has_unfocused_targets,
         replacement_labels,
         inputs,
@@ -539,7 +539,7 @@ def _write_json_spec(
 "target_hosts":{target_hosts},\
 "target_merges":{target_merges},\
 "targets":{targets},\
-"test_envs": {test_envs}\
+"envs": {envs}\
 }}
 """.format(
         bazel_config = config,
@@ -576,8 +576,8 @@ def _write_json_spec(
             flattened_key_values.to_list(target_merges),
         ),
         targets = json.encode(flattened_key_values.to_list(target_dtos)),
-        test_envs = json.encode(
-            flattened_key_values.to_list(test_envs),
+        envs = json.encode(
+            flattened_key_values.to_list(envs),
         ),
     )
 
@@ -881,10 +881,10 @@ def _xcodeproj_impl(ctx):
             transitive = [info.replacement_labels for info in infos],
         ).to_list()
     }
-    test_envs = {
+    envs = {
         s.id: s.env
         for s in depset(
-            transitive = [info.test_envs for info in infos],
+            transitive = [info.envs for info in infos],
         ).to_list()
         if s.env
     }
@@ -936,7 +936,7 @@ def _xcodeproj_impl(ctx):
         targets = targets,
         target_dtos = target_dtos,
         target_merges = target_merges,
-        test_envs = test_envs,
+        envs = envs,
         has_unfocused_targets = has_unfocused_targets,
         replacement_labels = replacement_labels,
         inputs = inputs,

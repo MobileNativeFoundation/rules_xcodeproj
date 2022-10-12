@@ -10,7 +10,7 @@ struct Project: Equatable, Decodable {
     let replacementLabels: [TargetID: BazelLabel]
     let targetMerges: [TargetID: Set<TargetID>]
     let targetHosts: [TargetID: [TargetID]]
-    let testEnvs: [TargetID: [String: String]]
+    let envs: [TargetID: [String: String]]
     let extraFiles: Set<FilePath>
     let schemeAutogenerationMode: SchemeAutogenerationMode
     let customXcodeSchemes: [XcodeScheme]

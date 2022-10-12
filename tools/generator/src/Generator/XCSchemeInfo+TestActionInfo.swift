@@ -85,7 +85,7 @@ extension XCSchemeInfo.TestActionInfo {
         testAction: XcodeScheme.TestAction?,
         targetResolver: TargetResolver,
         targetIDsByLabel: [BazelLabel: TargetID],
-        testEnvs: [TargetID: [String: String]]
+        envs: [TargetID: [String: String]]
     ) throws {
         guard let testAction = testAction else {
           return nil
@@ -95,14 +95,14 @@ extension XCSchemeInfo.TestActionInfo {
 Expected at least one target in `TestAction.targets`
 """)
 
-        var testActionEnv: [String: String] = testAction.env
+        var env: [String: String] = testAction.env
         let testActionTargetIds: [TargetID] = testAction.targets.compactMap { label in
             targetIDsByLabel[label]
         }
         for testActionTargetId in testActionTargetIds {
-            if let env: [String: String] = testEnvs[testActionTargetId] {
-                testActionEnv.merge(env) { lhs, rhs in
-                    lhs
+            if let testActionTargetEnv: [String: String] = envs[testActionTargetId] {
+                env.merge(testActionTargetEnv) { current, _ in
+                    current
                 }
             }
         }

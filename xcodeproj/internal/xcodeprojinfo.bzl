@@ -67,7 +67,7 @@ def _target_info_fields(
         rule_kind,
         search_paths,
         target_type,
-        test_envs,
+        envs,
         transitive_dependencies,
         xcode_target,
         xcode_targets,
@@ -97,7 +97,7 @@ def _target_info_fields(
         rule_kind: Maps to the `XcodeProjInfo.rule_kind` field.
         search_paths: Maps to the `XcodeProjInfo.search_paths` field.
         target_type: Maps to the `XcodeProjInfo.target_type` field.
-        test_envs: Maps to the `XcodeProjInfo.test_envs` field.
+        envs: Maps to the `XcodeProjInfo.envs` field.
         transitive_dependencies: Maps to the
             `XcodeProjInfo.transitive_dependencies` field.
         xcode_target: Maps to the `XcodeProjInfo.xcode_target` field.
@@ -123,7 +123,7 @@ def _target_info_fields(
         *   `rule_kind`
         *   `search_paths`
         *   `target_type`
-        *   `test_envs`
+        *   `envs`
         *   `transitive_dependencies`
         *   `xcode_target`
         *   `xcode_targets`
@@ -144,7 +144,7 @@ def _target_info_fields(
         "rule_kind": rule_kind,
         "search_paths": search_paths,
         "target_type": target_type,
-        "test_envs": test_envs,
+        "envs": envs,
         "transitive_dependencies": transitive_dependencies,
         "xcode_target": xcode_target,
         "xcode_targets": xcode_targets,
@@ -152,13 +152,13 @@ def _target_info_fields(
     }
 
 def _skip_target(
-    *,
-    ctx,
-    target,
-    deps,
-    deps_attrs, 
-    transitive_infos, 
-    automatic_target_info):
+        *,
+        ctx,
+        target,
+        deps,
+        deps_attrs,
+        transitive_infos,
+        automatic_target_info):
     """Passes through existing target info fields, not collecting new ones.
 
     Merges `XcodeProjInfo`s for the dependencies of the current target, and
@@ -258,9 +258,9 @@ def _skip_target(
         rule_kind = None,
         search_paths = search_paths,
         target_type = target_type.compile,
-        test_envs = depset(
+        envs = depset(
             [
-                _create_test_envs_depset(
+                _create_envs_depset(
                     ctx = ctx,
                     target = target,
                     id = info.xcode_target.id,
@@ -272,7 +272,7 @@ def _skip_target(
                     info.xcode_target)
             ],
             transitive = [
-                info.test_envs
+                info.envs
                 for _, info in transitive_infos
             ],
         ),
@@ -289,15 +289,19 @@ def _skip_target(
         ),
     )
 
-def _create_test_envs_depset(*, ctx, target, id, automatic_target_info):
+def _create_envs_depset(*, ctx, target, id, automatic_target_info):
     raw_run_env = target[RunEnvironmentInfo].environment if RunEnvironmentInfo in target else {}
     test_env = getattr(ctx.rule.attr, automatic_target_info.env, {})
 
     # Some keys are not applicable in schemes, we will filter them out here
+    _IGNORED_BAZEL_ENV_VARIABLES = [
+        "XCODE_VERSION_OVERRIDE",
+        "XCODE_VERSION"
+    ]
     run_env = {
         key: value
         for key, value in raw_run_env.items()
-        if key not in _IGNORED_BAZEL_ENV_VARIABLES ("XCODE_VERSION_OVERRIDE", "XCODE_VERSION")
+        if key not in _IGNORED_BAZEL_ENV_VARIABLES
     }
 
     return struct(id = id, env = struct(**dicts.add(run_env, test_env)))
@@ -423,9 +427,9 @@ def _create_xcodeprojinfo(
         rule_kind = ctx.rule.kind,
         search_paths = processed_target.search_paths,
         target_type = processed_target.automatic_target_info.target_type,
-        test_envs = depset(
+        envs = depset(
             transitive = [
-                info.test_envs
+                info.envs
                 for _, info in transitive_infos
             ],
         ),
@@ -476,7 +480,6 @@ def create_xcodeprojinfo(*, ctx, target, transitive_infos):
 
     if _should_skip_target(ctx = ctx, target = target):
         info_fields = _skip_target(
-            automatic_target_info = automatic_target_info,
             ctx = ctx,
             target = target,
             deps = [
@@ -486,6 +489,7 @@ def create_xcodeprojinfo(*, ctx, target, transitive_infos):
             ],
             deps_attrs = automatic_target_info.deps,
             transitive_infos = transitive_infos,
+            automatic_target_info = automatic_target_info,
         )
     else:
         info_fields = _create_xcodeprojinfo(

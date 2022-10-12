@@ -33,7 +33,10 @@ attributes.
 An attribute name (or `None`) to collect `File`s from for the
 `entitlements`-like attribute.
 """,
-        "env": "env",
+        "env": """\
+A `dict` representing the environment variables that this target should execute or
+test with.
+""",
         "exported_symbols_lists": """\
 A sequence of attribute names to collect `File`s from for the
 `exported_symbols_lists`-like attributes.
@@ -152,9 +155,9 @@ target, it can still have a non-`None` value for this field.
 A `depset` of target ids (see the `target` `struct`) that this target
 transitively depends on.
 """,
-        "test_envs": """\
-A `depset` of `struct`s with `id` and `test_env` fields. The `id` field is the
-target id of the target that has its `test_env` field represent the `env` values
+        "envs": """\
+A `depset` of `struct`s with `id` and `env` fields. The `id` field is the
+target id of the target and `env` values
 for the target (if applicable).
 """,
         "xcode_required_targets": """\

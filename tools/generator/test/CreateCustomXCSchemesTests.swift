@@ -10,7 +10,7 @@ extension CreateCustomXCSchemesTests {
             buildMode: .bazel,
             targetResolver: targetResolver,
             runnerLabel: runnerLabel,
-            testEnvs: [:]
+            envs: [:]
         )
         XCTAssertEqual(actual, [])
     }
@@ -21,7 +21,7 @@ extension CreateCustomXCSchemesTests {
             buildMode: .bazel,
             targetResolver: targetResolver,
             runnerLabel: runnerLabel,
-            testEnvs: [:]
+            envs: [:]
         )
         XCTAssertEqual(actual.count, 2)
         XCTAssertEqual(actual.map(\.name), [schemeA.name, schemeB.name])
@@ -33,7 +33,7 @@ extension CreateCustomXCSchemesTests {
             buildMode: .bazel,
             targetResolver: targetResolver,
             runnerLabel: runnerLabel,
-            testEnvs: ["B 2": [
+            envs: ["B 2": [
                 "B_2_SCHEME_VAR": "INITIAL",
                 "OTHER_ENV_VAR": "INITIAL"
             ]]
