@@ -882,10 +882,11 @@ def _xcodeproj_impl(ctx):
         ).to_list()
     }
     test_envs = {
-        r.id: r.env
-        for r in depset(
+        s.id: s.env
+        for s in depset(
             transitive = [info.test_envs for info in infos],
         ).to_list()
+        if s.env
     }
 
     (
