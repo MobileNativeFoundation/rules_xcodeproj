@@ -138,6 +138,7 @@ touch "$build_marker"
   ${toolchain:+--define=SWIFT_CUSTOM_TOOLCHAIN="$toolchain"} \
   "$output_groups_flag" \
   "$GENERATOR_LABEL" \
+  ${build_pre_config_flags:-} \
   2>&1
 
 # Check filelists
