@@ -285,8 +285,8 @@ def _skip_target(
     )
 
 def _create_test_envs_depset(*, automatic_target_info, ctx, id, target):
-    test_env = getattr(ctx.rule.attr, automatic_target_info.env, {})
     raw_run_env = target[RunEnvironmentInfo].environment if RunEnvironmentInfo in target else {}
+    test_env = getattr(ctx.rule.attr, automatic_target_info.env, {})
 
     # Some keys are not applicable in schemes, we will filter them out here
     run_env = {
