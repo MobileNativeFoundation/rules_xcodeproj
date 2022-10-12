@@ -295,7 +295,7 @@ def _create_test_envs_depset(*, automatic_target_info, ctx, id, target):
         if key not in _IGNORED_BAZEL_ENV_VARIABLES ("XCODE_VERSION_OVERRIDE", "XCODE_VERSION")
     }
 
-    return struct(id = id, env = struct(**dicts.add(test_env, run_env)))
+    return struct(id = id, env = struct(**dicts.add(run_env, test_env)))
 
 def _create_xcodeprojinfo(
         *,
