@@ -290,7 +290,9 @@ def _skip_target(
     )
 
 def _create_envs_depset(*, ctx, target, id, automatic_target_info):
-    raw_run_env = target[RunEnvironmentInfo].environment if RunEnvironmentInfo in target else {}
+    raw_run_env = {}
+    if hasattr(native, "RunEnvironmentInfo"):
+        raw_run_env = target[RunEnvironmentInfo].environment if RunEnvironmentInfo in target else {}
     test_env = getattr(ctx.rule.attr, automatic_target_info.env, {})
 
     # Some keys are not applicable in schemes, we will filter them out here
