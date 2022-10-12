@@ -62,7 +62,7 @@ fi
 developer_dir=$(xcode-select -p)
 xcode_build_version=$(/usr/bin/xcodebuild -version | tail -1 | cut -d " " -f3)
 pre_config_flags=(
-  # Set `DEVELOPER_DIR` in case a bazel wrapper filtered it
+  # Set `DEVELOPER_DIR` in case a bazel wrapper filters it
   "--repo_env=DEVELOPER_DIR=$developer_dir"
 
   # Work around https://github.com/bazelbuild/bazel/issues/8902

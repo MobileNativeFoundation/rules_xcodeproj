@@ -74,10 +74,12 @@ readonly base_pre_config_flags=(
   # Be explicit about our desired Xcode version
   "--xcode_version=$XCODE_PRODUCT_BUILD_VERSION"
 
+  # Set `DEVELOPER_DIR` in case a bazel wrapper filters it
+  "--repo_env=DEVELOPER_DIR=$developer_dir"
+
   # Work around https://github.com/bazelbuild/bazel/issues/8902
   # `USE_CLANG_CL` is only used on Windows, we set it here to cause Bazel to
   # re-evaluate the cc_toolchain for a different Xcode version
-  "--repo_env=DEVELOPER_DIR=$DEVELOPER_DIR"
   "--repo_env=USE_CLANG_CL=$XCODE_PRODUCT_BUILD_VERSION"
 )
 
