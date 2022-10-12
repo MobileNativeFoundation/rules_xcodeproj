@@ -260,7 +260,12 @@ def _skip_target(
         target_type = target_type.compile,
         test_envs = depset(
             [
-                _create_test_envs_depset(automatic_target_info = automatic_target_info, ctx = ctx, id = info.xcode_target.id, target = target)
+                _create_test_envs_depset(
+                    ctx = ctx,
+                    target = target,
+                    id = info.xcode_target.id,
+                    automatic_target_info = automatic_target_info,
+                )
                 for attr, info in transitive_infos
                 if (target and
                     attr in deps_attrs and
