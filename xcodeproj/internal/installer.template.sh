@@ -182,7 +182,7 @@ if [[ -f "$dest/rules_xcodeproj/generated.xcfilelist" ]]; then
     info \
     "--repo_env=DEVELOPER_DIR=$developer_dir" \
     "--repo_env=USE_CLANG_CL=$xcode_build_version" \
-    --config=rules_xcodeproj_info \
+    "--config=%config%_info" \
     output_path)
 
   # Create directory structure in bazel-out

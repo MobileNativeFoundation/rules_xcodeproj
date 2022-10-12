@@ -739,6 +739,7 @@ def _write_installer(
         *,
         ctx,
         name = None,
+        config,
         install_path,
         spec_file,
         swiftc_stub,
@@ -752,6 +753,7 @@ def _write_installer(
         output = installer,
         is_executable = True,
         substitutions = {
+            "%config%": config,
             "%output_path%": install_path,
             "%source_path%": xcodeproj.short_path,
             "%spec_path%": spec_file.short_path,
@@ -842,6 +844,7 @@ _device_transition = transition(
 
 def _xcodeproj_impl(ctx):
     build_mode = ctx.attr.build_mode
+    config = ctx.attr.config
     project_name = ctx.attr.project_name
     swiftc_stub = ctx.executable._swiftc_stub
     infos = [
@@ -916,7 +919,7 @@ def _xcodeproj_impl(ctx):
     spec_file = _write_json_spec(
         ctx = ctx,
         project_name = project_name,
-        config = ctx.attr.config,
+        config = config,
         configuration = configuration,
         targets = targets,
         target_dtos = target_dtos,
@@ -948,6 +951,7 @@ def _xcodeproj_impl(ctx):
     )
     installer = _write_installer(
         ctx = ctx,
+        config = config,
         install_path = install_path,
         spec_file = spec_file,
         swiftc_stub = swiftc_stub,
