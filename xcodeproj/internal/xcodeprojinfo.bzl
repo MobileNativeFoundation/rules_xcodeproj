@@ -289,11 +289,11 @@ def _create_test_envs_depset(*, automatic_target_info, ctx, id, target):
     raw_run_env = target[RunEnvironmentInfo].environment if RunEnvironmentInfo in target else {}
 
     # Some keys are not applicable in schemes, we will filter them out here
-    run_env = {}
-    denylist_run_env_keys = ["XCODE_VERSION_OVERRIDE", "XCODE_VERSION"]
-    for key, value in raw_run_env.items():
-        if key not in denylist_run_env_keys:
-            run_env[key] = value
+    run_env = {
+        key: value
+        for key, value in raw_run_env.items()
+        if key not in _IGNORED_BAZEL_ENV_VARIABLES ("XCODE_VERSION_OVERRIDE", "XCODE_VERSION")
+    }
 
     return struct(id = id, env = struct(**dicts.add(test_env, run_env)))
 
