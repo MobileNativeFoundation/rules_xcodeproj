@@ -61,6 +61,7 @@ else
     # framework schemes, so let's copy them to `$BUILD_DIR`
     if [[ "${ENABLE_PREVIEWS:-}" == "YES" && \
           -n "${PREVIEW_FRAMEWORK_PATHS:-}" ]]; then
+      cd "$PROJECT_DIR"
       # shellcheck disable=SC2046
       rsync \
         --copy-links \
