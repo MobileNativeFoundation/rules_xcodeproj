@@ -151,7 +151,14 @@ def _target_info_fields(
         "xcode_required_targets": xcode_required_targets,
     }
 
-def _skip_target(*, ctx, target, deps, deps_attrs, transitive_infos, automatic_target_info):
+def _skip_target(
+    *,
+    ctx,
+    target,
+    deps,
+    deps_attrs, 
+    transitive_infos, 
+    automatic_target_info):
     """Passes through existing target info fields, not collecting new ones.
 
     Merges `XcodeProjInfo`s for the dependencies of the current target, and
