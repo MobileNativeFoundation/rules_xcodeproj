@@ -133,12 +133,12 @@ touch "$build_marker"
   "${bazel_cmd[@]}" \
   build \
   "${base_pre_config_flags[@]}" \
+  ${build_pre_config_flags:+"${build_pre_config_flags[@]}"} \
   --config="$config" \
   --color=yes \
   ${toolchain:+--define=SWIFT_CUSTOM_TOOLCHAIN="$toolchain"} \
   "$output_groups_flag" \
   "$GENERATOR_LABEL" \
-  ${build_pre_config_flags:-} \
   2>&1
 
 # Check filelists
