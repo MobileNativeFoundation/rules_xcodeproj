@@ -289,7 +289,7 @@ def _skip_target(
         ),
     )
 
-def _create_test_envs_depset(*, automatic_target_info, ctx, id, target):
+def _create_test_envs_depset(*, ctx, target, id, automatic_target_info):
     raw_run_env = target[RunEnvironmentInfo].environment if RunEnvironmentInfo in target else {}
     test_env = getattr(ctx.rule.attr, automatic_target_info.env, {})
 
