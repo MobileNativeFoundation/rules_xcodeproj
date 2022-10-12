@@ -178,7 +178,7 @@ if [[ "${ENABLE_ADDRESS_SANITIZER:-}" == "YES" || \
       "${ENABLE_UNDEFINED_BEHAVIOR_SANITIZER:-}" == "YES" ]]
 then
     # TODO: Support custom toolchains once clang.sh supports them
-    cd "$INTERNAL_DIRECTORY" || exit 1
+    cd "$INTERNAL_DIR" || exit 1
     ln -sf "$DEVELOPER_DIR/Toolchains/XcodeDefault.xctoolchain/usr/lib" lib
 fi
 """#,
