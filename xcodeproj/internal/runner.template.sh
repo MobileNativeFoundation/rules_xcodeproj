@@ -41,14 +41,9 @@ done
 
 cd "$BUILD_WORKSPACE_DIRECTORY"
 
-# Resolve path to bazel before changing the env variable. This allows bazelisk
-# downloaded bazel to be found. This won't call `tools/bazel` if it exists,
-# which we should find a fix for (e.g. by finding a way to resolve to bazelisk
-# instead of the downloaded bazel).
-bazel_path=$(which "%bazel_path%")
-installer_flags+=(--bazel_path "$bazel_path")
+installer_flags+=(--bazel_path "%bazel_path%")
 
-output_base=$("$bazel_path" info output_base)
+output_base=$("%bazel_path%" info output_base)
 
 readonly nested_output_base_prefix="$output_base/execroot/_rules_xcodeproj"
 readonly nested_output_base="$nested_output_base_prefix/build_output_base"
@@ -67,34 +62,19 @@ fi
 developer_dir=$(xcode-select -p)
 xcode_build_version=$(/usr/bin/xcodebuild -version | tail -1 | cut -d " " -f3)
 pre_config_flags=(
+  # Set `DEVELOPER_DIR` in case a bazel wrapper filtered it
+  "--repo_env=DEVELOPER_DIR=$developer_dir"
+
   # Work around https://github.com/bazelbuild/bazel/issues/8902
   # `USE_CLANG_CL` is only used on Windows, we set it here to cause Bazel to
   # re-evaluate the cc_toolchain for a different Xcode version
-  "--repo_env=DEVELOPER_DIR=$developer_dir"
   "--repo_env=USE_CLANG_CL=$xcode_build_version"
 )
 
-# We do want the `tools/bazel` to run if possible
-unset BAZELISK_SKIP_WRAPPER
-
-passthrough_envs=(
-  DEVELOPER_DIR="$developer_dir"
-  PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-)
-if [[ -n "${HOME:-}" ]]; then
-  passthrough_envs+=(HOME="$HOME")
-fi
-if [[ -n "${TERM:-}" ]]; then
-  passthrough_envs+=(TERM="$TERM")
-fi
-if [[ -n "${USER:-}" ]]; then
-  passthrough_envs+=(USER="$USER")
-fi
-
 readonly bazel_cmd=(
-  env -i
-  "${passthrough_envs[@]}"
-  "$bazel_path"
+  env
+  PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+  "%bazel_path%"
 
   # Restart Bazel server if `DEVELOPER_DIR` changes to clear `developerDirCache`
   "--host_jvm_args=-Xdock:name=$developer_dir"

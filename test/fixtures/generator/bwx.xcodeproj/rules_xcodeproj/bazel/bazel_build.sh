@@ -58,12 +58,8 @@ fi
 readonly bazelrcs
 
 readonly bazel_cmd=(
-  env -i
-  DEVELOPER_DIR="$DEVELOPER_DIR"
-  HOME="$HOME"
+  env
   PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-  TERM="$TERM"
-  USER="$USER"
   "$BAZEL_PATH"
 
   # Restart bazel server if `DEVELOPER_DIR` changes to clear `developerDirCache`
