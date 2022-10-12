@@ -41,9 +41,12 @@ done
 
 cd "$BUILD_WORKSPACE_DIRECTORY"
 
-installer_flags+=(--bazel_path "%bazel_path%")
+# Resolve path to bazel before changing the env variable. This allows bazelisk
+# downloaded bazel to be found.
+bazel_path=$(which "%bazel_path%")
+installer_flags+=(--bazel_path "$bazel_path")
 
-output_base=$("%bazel_path%" info output_base)
+output_base=$("$bazel_path" info output_base)
 
 readonly nested_output_base_prefix="$output_base/execroot/_rules_xcodeproj"
 readonly nested_output_base="$nested_output_base_prefix/build_output_base"
@@ -74,7 +77,7 @@ pre_config_flags=(
 readonly bazel_cmd=(
   env
   PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-  "%bazel_path%"
+  "$bazel_path"
 
   # Restart Bazel server if `DEVELOPER_DIR` changes to clear `developerDirCache`
   "--host_jvm_args=-Xdock:name=$developer_dir"
