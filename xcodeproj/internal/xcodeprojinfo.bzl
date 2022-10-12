@@ -198,12 +198,6 @@ def _skip_target(
         transitive_infos = transitive_infos,
     )
 
-    # Some keys are not applicable in schemes, we will filter them out here
-    _IGNORED_BAZEL_ENV_VARIABLES = [
-        "XCODE_VERSION_OVERRIDE",
-        "XCODE_VERSION",
-    ]
-
     return _target_info_fields(
         compilation_providers = compilation_providers,
         dependencies = dependencies,
@@ -268,8 +262,6 @@ def _skip_target(
             [
                 _create_envs_depset(
                     ctx = ctx,
-                    ignored_bazel_env_variables = _IGNORED_BAZEL_ENV_VARIABLES,
-                    target = target,
                     id = info.xcode_target.id,
                     automatic_target_info = automatic_target_info,
                 )
@@ -296,22 +288,13 @@ def _skip_target(
         ),
     )
 
-def _create_envs_depset(*, ctx, ignored_bazel_env_variables, target, id, automatic_target_info):
-    raw_run_env = {}
-    if hasattr(native, "RunEnvironmentInfo"):
-        raw_run_env = target[RunEnvironmentInfo].environment if RunEnvironmentInfo in target else {}
+def _create_envs_depset(*, ctx, id, automatic_target_info):
     test_env = getattr(ctx.rule.attr, automatic_target_info.env, {})
-
-    run_env = {
-        key: value
-        for key, value in raw_run_env.items()
-        if key not in ignored_bazel_env_variables
-    }
 
     return struct(
         id = id,
         env = struct(
-            **dicts.add(run_env, test_env, ctx.configuration.test_env)
+            **dicts.add(test_env, ctx.configuration.test_env)
         ),
     )
 
