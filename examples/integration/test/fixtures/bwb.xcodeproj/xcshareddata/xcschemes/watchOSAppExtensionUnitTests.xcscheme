@@ -110,6 +110,11 @@
             value = "$(BUILD_WORKSPACE_DIRECTORY)"
             isEnabled = "YES">
          </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "INTEGRATION_TEST_ENV_VAR"
+            value = "TRUE"
+            isEnabled = "YES">
+         </EnvironmentVariable>
       </EnvironmentVariables>
    </TestAction>
    <LaunchAction

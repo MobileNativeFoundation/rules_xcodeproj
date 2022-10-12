@@ -31,7 +31,6 @@
 		1FD5772BC83CF09CD69CEE07 /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06C22113CF4EE8E2C5A1CE7 /* Lib.swift */; };
 		238314968AE513CC7C513B0E /* _CompileStub_.m in Sources */ = {isa = PBXBuildFile; fileRef = CCBA8CDC153D4F6323331CB4 /* _CompileStub_.m */; };
 		23B80B5ED8D614C5207B4287 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 82DA66DC6AF2008C5014F8BC /* main.m */; };
-		2800FF779D621D5F4BF7AEAA /* TestingUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D8D5852C5BB8B4FAC3CE5E /* TestingUtils.swift */; };
 		2BD8C994FC261503FDBF973D /* AppClip.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE656C8C4FA889DFB5488747 /* AppClip.swift */; };
 		2D1AC1BE015A99B7333260C0 /* _CompileStub_.m in Sources */ = {isa = PBXBuildFile; fileRef = CCBA8CDC153D4F6323331CB4 /* _CompileStub_.m */; };
 		2E5871BAF236269797F690C6 /* UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E4DBCE177975A58C59F512 /* UITests.swift */; };
@@ -45,12 +44,9 @@
 		4366E2C8B437AF11D8F7CD99 /* lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AE9C4475E67C932C449B5A /* lib.swift */; };
 		474B2C8A85871EB969C0483F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1662A6A17E5519C4039B7B8A /* ContentView.swift */; };
 		5122095E745E5DD35D3B448D /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E46D65ED0737D8C886176EA /* Lib.swift */; };
-		517AC50D487E3FDF92281B91 /* FXPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 13D4EF25648722E4F5687D82 /* FXPageControl.m */; };
-		64B06179E66EAEBB0D30063A /* SwiftUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6D045C4AFC228F987AE5B6 /* SwiftUnitTests.swift */; };
 		66D407EB540940D9E155C965 /* UI.h in Headers */ = {isa = PBXBuildFile; fileRef = 5AEC1A314C16D1D235674BA9 /* UI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E96D87CDD0FE4191EF21F94 /* UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2B584E08F5C86AEB5A21BB /* UITests.swift */; };
 		779F3C5A05CAB17EA131C4E0 /* WatchOSAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51721296CE394021AC0B300 /* WatchOSAppUITestsLaunchTests.swift */; };
-		80DD1B6C08EE582DB5125936 /* Foo.m in Sources */ = {isa = PBXBuildFile; fileRef = F2C0BFBD4823CFBFF5F35BED /* Foo.m */; };
 		838399B2B7E647A2A9BEC2F7 /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8D433CCCFCD9704B2EA4A6 /* iOSApp.swift */; };
 		86FDE56DE6CBA5A78CC1D6F6 /* private_lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF15FE8BF9E2B56634C8923F /* private_lib.swift */; };
 		895151C2F8405C75C48F8817 /* WatchOSAppExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941DA3BE5A6F5680C0483177 /* WatchOSAppExtensionTests.swift */; };
@@ -211,13 +207,6 @@
 			remoteGlobalIDString = A23C98B4BFB6C775689A2A7D;
 			remoteInfo = UIFramework.tvOS;
 		};
-		5E9AC5B7458CB5F5EC7A5A23 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
-			remoteInfo = BazelDependencies;
-		};
 		633288DFC9F88DAD3353B6A4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0805833D09730531AD081697 /* Project object */;
@@ -331,13 +320,6 @@
 			remoteInfo = "Lib (watchOS)";
 		};
 		849169BEF9E9155A0714BAA6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
-			remoteInfo = BazelDependencies;
-		};
-		8544E89EE652F4A007839BC2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0805833D09730531AD081697 /* Project object */;
 			proxyType = 1;
@@ -498,13 +480,6 @@
 			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
 			remoteInfo = BazelDependencies;
 		};
-		E99D9DDFE49A00CC9E26103A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F175A7E1019A952CA7F66BBC;
-			remoteInfo = TestingUtils;
-		};
 		EE7E8B6AE1E795335A7051CB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0805833D09730531AD081697 /* Project object */;
@@ -526,33 +501,12 @@
 			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
 			remoteInfo = BazelDependencies;
 		};
-		F5E9D31D539D4E97AACBE385 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
-			remoteInfo = BazelDependencies;
-		};
-		F67509260F9A8DCA2F1EA061 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 1765D91CC168F25A5BC51603;
-			remoteInfo = iOSApp;
-		};
 		F690C1C1C0C458108C2CC74A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0805833D09730531AD081697 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
 			remoteInfo = BazelDependencies;
-		};
-		F7EE120661FA905CF001F45D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 703D7AC89C4B9C9E4B61A58F;
-			remoteInfo = FXPageControl;
 		};
 		F84FF39FB7ACA4D7F72EA642 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -568,21 +522,7 @@
 			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
 			remoteInfo = BazelDependencies;
 		};
-		FC13477455BCD3D0B28F94A1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 34820134F30D904FFA06D27A;
-			remoteInfo = Utils;
-		};
 		FCF9E5BF1611C5A1EC3C9302 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
-			remoteInfo = BazelDependencies;
-		};
-		FE47674BD75BF763F743C9E6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0805833D09730531AD081697 /* Project object */;
 			proxyType = 1;
@@ -659,33 +599,27 @@
 		0B83A68C6DA2885BF1E81B5F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0C176D0E29A0CC31B81FC955 /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = "<group>"; };
 		0D25637FC04DC0A8C0DE69DA /* libprivate_swift_lib.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libprivate_swift_lib.a; path = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-c0ef0a258197/bin/CommandLine/CommandLineToolLib/libprivate_swift_lib.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		0DBBB9B6E8F9DB6147CB2C59 /* FXPageControl.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = FXPageControl.swift.modulemap; sourceTree = "<group>"; };
 		0E5A49480D4BE716E6108058 /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = "<group>"; };
 		103E87EABEF3D4E17C7F190E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		12B5318249825C067A9C2FE9 /* libc_lib.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libc_lib.a; path = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-c0ef0a258197/bin/CommandLine/swift_c_module/libc_lib.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		139AE7210A3C797E22B8F1CF /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		13CC8EBE0FD78BC688AEEF55 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		13D4EF25648722E4F5687D82 /* FXPageControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FXPageControl.m; sourceTree = "<group>"; };
-		1430CC22844BB8EA01F9FDEF /* Utils.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = Utils.swift.modulemap; sourceTree = "<group>"; };
 		14504A591086E1D097910447 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		14AE9C4475E67C932C449B5A /* lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lib.swift; sourceTree = "<group>"; };
 		1608AB8699EC5B8CF357283D /* Entitlements.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Entitlements.entitlements; sourceTree = "<group>"; };
 		1662A6A17E5519C4039B7B8A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		1665E620DCE38DC68DB666E6 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		16A603EDF26D07664B16E272 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		172816461869C9C2207F39D0 /* Answers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Answers.h; sourceTree = "<group>"; };
 		17C76CE95EC46B3E4CBAA0A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		17C9FD87E515BDF36DFF574B /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		18A58C15FB152B4C0FAFE5D3 /* private_lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = private_lib.c; sourceTree = "<group>"; };
 		1BE43F0B28610BD509ADB85C /* Library.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = Library.swift.modulemap; sourceTree = "<group>"; };
-		1C4BEB104113F5886543A744 /* TestingUtils.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = TestingUtils.swift.modulemap; sourceTree = "<group>"; };
 		1C5D00A2CB80882AD079838C /* dir */ = {isa = PBXFileReference; lastKnownFileType = folder; path = dir; sourceTree = "<group>"; };
 		1C9E63F29F588DB6B8DCB3D7 /* iOSApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E63BCE612775A619312CD74 /* bucket */ = {isa = PBXFileReference; lastKnownFileType = folder; path = bucket; sourceTree = "<group>"; };
 		1F37138358C3EFE46893B931 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2065F729251F91D8C8280178 /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		219346BDDFBBBF0E7E0D4D47 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
-		21EF52D83E028D6E7683F50B /* FXPageControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FXPageControl.h; sourceTree = "<group>"; };
 		22E21D5535E846215AA27F40 /* bucket */ = {isa = PBXFileReference; lastKnownFileType = folder; path = bucket; sourceTree = "<group>"; };
 		2450E911822C518B74D56084 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		25254C11E64F5D02140DCE13 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -723,11 +657,9 @@
 		4CFFF4A8EE6DB1CCB87322B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		4D974A87F50B5B25C8D6678E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		4F4C53C91A0F035FB6C8D234 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		51360572B8B1A769158A1154 /* libFXPageControl.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libFXPageControl.a; path = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/external/FXPageControl/libFXPageControl.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		521376DB567428D7E85602D1 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		52439AA6381A449F342B9D89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		5285254BF42F9BFBC36251BB /* Lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lib.swift; sourceTree = "<group>"; };
-		5397477159821DF5DC6212EB /* merge.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = merge.sh; sourceTree = "<group>"; };
 		53ADF63334766794C915B06B /* Launch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
 		54208A28FA7A9609EC670169 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		553E9A64F79230DFD4CEF99E /* CommandLineTool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CommandLineTool; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -739,7 +671,6 @@
 		58F4DDFDC252D35C849AEE8B /* macOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = macOSApp.swift; sourceTree = "<group>"; };
 		592E60E83A2F81A0BBF579F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		59AE0ACCD9811C7913A18C42 /* Entitlements.withbundleid.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Entitlements.withbundleid.plist; sourceTree = "<group>"; };
-		59D8D5852C5BB8B4FAC3CE5E /* TestingUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingUtils.swift; sourceTree = "<group>"; };
 		5AEC1A314C16D1D235674BA9 /* UI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UI.h; sourceTree = "<group>"; };
 		5CCC248E0A32096A8843850D /* UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestsLaunchTests.swift; sourceTree = "<group>"; };
 		6024ED4E92C333DF80987C31 /* Info.withbundleid.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.withbundleid.plist; sourceTree = "<group>"; };
@@ -753,7 +684,6 @@
 		65FB7045F147E07F6D73110C /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		663F39AA1405FA1697A5C4B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		665BBAC40634DA7C1F16A883 /* UnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitTests.swift; sourceTree = "<group>"; };
-		6A0DCE38082C6EC00ECDFD96 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		6A161256408081529F37A5FD /* ownership.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = ownership.yaml; sourceTree = "<group>"; };
 		6B0079AC84FB3ADB44250166 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		6BCEE0B48F0A748CFA3034A8 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -763,7 +693,6 @@
 		6DDD8F3175C5BBB94C5BD486 /* GoogleMapsBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMapsBase.framework; sourceTree = "<group>"; };
 		6EA8C66D825B438F709CA33F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		6EDE66EC0B5143134C8CFED8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		7052F3475C42B779CBA7B18C /* libTestingUtils.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libTestingUtils.a; path = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/iOSApp/Test/TestingUtils/libTestingUtils.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		70887915DFA1B44A089A9BA6 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = wrapper.cfbundle; path = GoogleMaps.bundle; sourceTree = "<group>"; };
 		70F0C835593E7E1E5A1FF25F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		7125C2445397D6EADCDA1243 /* UIFramework.iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UIFramework.iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -772,11 +701,9 @@
 		73EAC1B12B6B0F8EEE8A785D /* launch_images_ios.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = launch_images_ios.xcassets; sourceTree = "<group>"; };
 		74DCE7F302ECE33D79467F2A /* Lib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Lib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		76FD9AA440500B021C4A6B1F /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
-		771E2A4C11BFA74AEF3DC59A /* Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		77865E59B54E49E59EB5F721 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7A12168DDE9ABB9F79D29CB0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7A2FFCA432B07F6E3522A752 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		7B48FA69323C619E6C17E9E3 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		7BBD2142890641015CD498E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		7C58B17E4801EB1E4368EF68 /* GoogleMapsBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMapsBase.framework; sourceTree = "<group>"; };
 		7E10577EB3694800532422D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -794,14 +721,12 @@
 		87CF968F2FC67AD1C7FBC76C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8841167FBD0AC97DE9E1BB41 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		88CE19CC8EC34633E7664CD4 /* Info.extension.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.extension.plist; sourceTree = "<group>"; };
-		88FAA62DFDD5E0EACE7A9C23 /* libUtils.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libUtils.a; path = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/iOSApp/Source/Utils/libUtils.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		894BF65166A8AB86300B0AD1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		89E7DA75A3E699089F75DB4D /* watchOSAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = watchOSAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A9CDE8031A665D3E37CB843 /* lib.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = lib.m; sourceTree = "<group>"; };
 		8AA0BB4BD3B5A31630333D25 /* Lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lib.swift; sourceTree = "<group>"; };
 		8AF4B8651407520AF6A10616 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8CDE9EFC1E984625D64B7CC1 /* UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestsLaunchTests.swift; sourceTree = "<group>"; };
-		90861FDAB1BBB1EBEFBD93A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		92E264ECF39640C6D5377765 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		941DA3BE5A6F5680C0483177 /* WatchOSAppExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchOSAppExtensionTests.swift; sourceTree = "<group>"; };
 		954DDF163322C7EFD0185F50 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
@@ -828,7 +753,6 @@
 		AA6494A7F1E530DC804CA391 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		AB76BC19160ACACE99930266 /* Info.withbundleid.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.withbundleid.plist; sourceTree = "<group>"; };
 		AC58141D54899E07F03602DA /* CoreUtilsObjC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CoreUtilsObjC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		AD6B14DD5C54C8B5A718B448 /* iOSAppSwiftUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSAppSwiftUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADD8ABEB8D669290B5896B15 /* liblib_impl.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_impl.a; path = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-c0ef0a258197/bin/CommandLine/CommandLineToolLib/liblib_impl.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE3E33CB1BB544B856CD9A0B /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = "<group>"; };
 		B6B2F95D20E139115588242A /* ExternalFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalFramework.framework; path = CommandLine/external/ExternalFramework.framework; sourceTree = SOURCE_ROOT; };
@@ -842,13 +766,11 @@
 		BA72511E6F01CDD9AAD7E9E0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BBAA3993E14281E64F71E1AD /* Launchd.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Launchd.plist; sourceTree = "<group>"; };
 		BC1B0FE5AD15369B5F70C83E /* Utils.bundle */ = {isa = PBXFileReference; lastKnownFileType = wrapper.cfbundle; path = Utils.bundle; sourceTree = "<group>"; };
-		BD6D045C4AFC228F987AE5B6 /* SwiftUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUnitTests.swift; sourceTree = "<group>"; };
 		BD8C9B34F8537E5581975383 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		BE2FE10C932B435EEDCD90C2 /* watchOSAppExtensionUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = watchOSAppExtensionUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C193D330134C854077C6D798 /* tvOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tvOSApp.swift; sourceTree = "<group>"; };
 		C2FD0FE63F6A33B66F24B8B7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C4EB9128221886AFFBB901DF /* WidgetExtension.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = WidgetExtension.intentdefinition; sourceTree = "<group>"; };
-		C6A1647362411F00CE2BA1FB /* Greeting.swift.stencil */ = {isa = PBXFileReference; path = Greeting.swift.stencil; sourceTree = "<group>"; };
 		C82888DB35D7459AFE5BC2FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C90489AFF66601BC3BFD228F /* ExtensionAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ExtensionAssets.xcassets; sourceTree = "<group>"; };
 		C9DCE9A4BFB159D407421715 /* RealAnswer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RealAnswer.h; sourceTree = "<group>"; };
@@ -861,7 +783,6 @@
 		D38816E093895715F2AB73EA /* WidgetExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetExtension.swift; sourceTree = "<group>"; };
 		D43E352C72A1F29FEE759732 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D47BE3A3626854D52331E108 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		D5B6B407E6437EAED775F9A8 /* Answer.swift.stencil */ = {isa = PBXFileReference; path = Answer.swift.stencil; sourceTree = "<group>"; };
 		D77A9E090ED3E1B20AD98550 /* AltIcon-60@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AltIcon-60@3x.png"; sourceTree = "<group>"; };
 		D8E4DBCE177975A58C59F512 /* UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITests.swift; sourceTree = "<group>"; };
 		DABB4A33D5833635CF3F83E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -888,7 +809,6 @@
 		ED42FB41173268FC652FA13D /* libprivate_lib.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libprivate_lib.a; path = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-c0ef0a258197/bin/CommandLine/CommandLineToolLib/libprivate_lib.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF283BF1F549F3AD147642AC /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		EFB80AEFAE99D98A352DE87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		F2C0BFBD4823CFBFF5F35BED /* Foo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Foo.m; sourceTree = "<group>"; };
 		F2DAF54BF9DB74E0C80EEDC3 /* GoogleMapsCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMapsCore.framework; sourceTree = "<group>"; };
 		F2DB868691890329182F582E /* libLib.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libLib.a; path = "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32/bin/Lib/libLib.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F39BC90A8E4D92EF4CA76D2E /* c_lib.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = c_lib.modulemap; sourceTree = "<group>"; };
@@ -899,7 +819,6 @@
 		F712B795AF3C9985D199B0F5 /* Answers.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Answers.mm; sourceTree = "<group>"; };
 		F76DBD3C00BF747B24B1E251 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		FACBB87774F1A6BE31F3D7B5 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
-		FBC38A5833443AB7B95B65C9 /* Foo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Foo.h; sourceTree = "<group>"; };
 		FD4007E4165A75D8B7C395E2 /* Lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lib.swift; sourceTree = "<group>"; };
 		FD61A1BD0D14998B040F62A1 /* iMessageApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iMessageApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE243FA1A1E7269415F1A897 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -1199,15 +1118,6 @@
 			path = rules_xcodeproj;
 			sourceTree = "<group>";
 		};
-		21A8108B8D3C3DD44A00DA53 /* TestingUtils */ = {
-			isa = PBXGroup;
-			children = (
-				59D8D5852C5BB8B4FAC3CE5E /* TestingUtils.swift */,
-				1C4BEB104113F5886543A744 /* TestingUtils.swift.modulemap */,
-			);
-			path = TestingUtils;
-			sourceTree = "<group>";
-		};
 		21B6251F630EFE76C533F839 /* ios-arm64_i386_x86_64-simulator */ = {
 			isa = PBXGroup;
 			children = (
@@ -1318,7 +1228,6 @@
 			children = (
 				4EE678AFF490205B1B4C519A /* Resources */,
 				B36AEBA15DA46623C26D88B8 /* Source */,
-				EAFAB2E22FBB404FCEFBB748 /* Test */,
 			);
 			path = iOSApp;
 			sourceTree = "<group>";
@@ -1353,14 +1262,6 @@
 				059EB0027D5F88AA25ABC90D /* WidgetExtension */,
 			);
 			path = rules_xcodeproj;
-			sourceTree = "<group>";
-		};
-		30C52DDA9A270865B6DFBAB4 /* Test */ = {
-			isa = PBXGroup;
-			children = (
-				D33C76C89FA5FE8A03E3891D /* SwiftUnitTests */,
-			);
-			path = Test;
 			sourceTree = "<group>";
 		};
 		34C7CCB084659319223AF7C0 /* ExampleNestedResources */ = {
@@ -1476,15 +1377,6 @@
 			path = AppClip;
 			sourceTree = "<group>";
 		};
-		40603B0C6646128578A941DA /* Test */ = {
-			isa = PBXGroup;
-			children = (
-				C852C21C3C52AA4432C0D84C /* SwiftUnitTests */,
-				795737E02B91671DD5BC184C /* TestingUtils */,
-			);
-			path = Test;
-			sourceTree = "<group>";
-		};
 		42D7D071E3890FEA1E650BB3 /* dist */ = {
 			isa = PBXGroup;
 			children = (
@@ -1527,22 +1419,18 @@
 				FD61A1BD0D14998B040F62A1 /* iMessageApp.app */,
 				E7C0B9A9705EE5FA1ADDD413 /* iMessageAppExtension.appex */,
 				1C9E63F29F588DB6B8DCB3D7 /* iOSApp.app */,
-				AD6B14DD5C54C8B5A718B448 /* iOSAppSwiftUnitTests.xctest */,
 				74DCE7F302ECE33D79467F2A /* Lib.framework */,
 				DE0AFAD74AC690F039E8BDA6 /* Lib.framework */,
 				DE94ADE207891DC6DC189E25 /* Lib.framework */,
 				12B5318249825C067A9C2FE9 /* libc_lib.a */,
 				0B3AF212BE9338DD24B765AE /* LibFramework.tvOS.framework */,
 				63A7B290B28DA4B3AE793C81 /* LibFramework.watchOS.framework */,
-				51360572B8B1A769158A1154 /* libFXPageControl.a */,
 				ADD8ABEB8D669290B5896B15 /* liblib_impl.a */,
 				F69D8F8F995104164841D458 /* liblib_swift.a */,
 				A9DA6EB1DA187E16A6A6FFB1 /* libLib.a */,
 				F2DB868691890329182F582E /* libLib.a */,
 				ED42FB41173268FC652FA13D /* libprivate_lib.a */,
 				0D25637FC04DC0A8C0DE69DA /* libprivate_swift_lib.a */,
-				7052F3475C42B779CBA7B18C /* libTestingUtils.a */,
-				88FAA62DFDD5E0EACE7A9C23 /* libUtils.a */,
 				E0A5185F44A85556193CAC2B /* macOSApp.app */,
 				73688A0723A2DC91C4A800D2 /* macOSAppUITests.xctest */,
 				F6189D8570AD94867C792C86 /* tvOSApp.app */,
@@ -1813,7 +1701,6 @@
 			isa = PBXGroup;
 			children = (
 				AADA1DA6F63C2A6287E59719 /* Source */,
-				30C52DDA9A270865B6DFBAB4 /* Test */,
 			);
 			path = iOSApp;
 			sourceTree = "<group>";
@@ -1838,14 +1725,6 @@
 			isa = PBXGroup;
 			children = (
 				C3F3922DDD43BC834F55952C /* UIFramework.watchOS */,
-			);
-			path = rules_xcodeproj;
-			sourceTree = "<group>";
-		};
-		6891744338051B9675E2525F /* rules_xcodeproj */ = {
-			isa = PBXGroup;
-			children = (
-				C5BE30B0B1BA09F55314942F /* iOSAppSwiftUnitTests.__internal__.__test_bundle */,
 			);
 			path = rules_xcodeproj;
 			sourceTree = "<group>";
@@ -1900,7 +1779,6 @@
 				86A6D156B4CCAD0619A4A4D7 /* com_google_google_maps */,
 				E7E297D70FC12FCB1CAB8D8A /* examples_command_line_external */,
 				385F865A5D84DE6502989947 /* examples_ios_app_external */,
-				A16821A5D628DE45179DBD01 /* FXPageControl */,
 			);
 			name = "Bazel External Repositories";
 			path = ../../external;
@@ -2030,17 +1908,6 @@
 				717D1A2F98465200F48BEFF7 /* FrameworkCoreUtilsObjC */,
 			);
 			path = rules_xcodeproj;
-			sourceTree = "<group>";
-		};
-		795737E02B91671DD5BC184C /* TestingUtils */ = {
-			isa = PBXGroup;
-			children = (
-				D5B6B407E6437EAED775F9A8 /* Answer.swift.stencil */,
-				7B48FA69323C619E6C17E9E3 /* BUILD */,
-				C6A1647362411F00CE2BA1FB /* Greeting.swift.stencil */,
-				5397477159821DF5DC6212EB /* merge.sh */,
-			);
-			path = TestingUtils;
 			sourceTree = "<group>";
 		};
 		79F0D63F713C18413EF06F13 /* dynamic */ = {
@@ -2201,14 +2068,6 @@
 			path = com_google_google_maps;
 			sourceTree = "<group>";
 		};
-		870D2BED39FADD0B21B58BFF /* FXPageControl */ = {
-			isa = PBXGroup;
-			children = (
-				0DBBB9B6E8F9DB6147CB2C59 /* FXPageControl.swift.modulemap */,
-			);
-			path = FXPageControl;
-			sourceTree = "<group>";
-		};
 		873B8F6EDE92BF7E6399E279 /* UITests */ = {
 			isa = PBXGroup;
 			children = (
@@ -2300,14 +2159,6 @@
 			path = rules_xcodeproj;
 			sourceTree = "<group>";
 		};
-		91C15B05F31CB5CD1D148E7E /* external */ = {
-			isa = PBXGroup;
-			children = (
-				870D2BED39FADD0B21B58BFF /* FXPageControl */,
-			);
-			path = external;
-			sourceTree = "<group>";
-		};
 		91C9EEBF7D309BDCA454C78D /* UIFramework.watchOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -2322,17 +2173,6 @@
 				54E36A817128CA05FBC5B77C /* rules_xcodeproj */,
 			);
 			path = CommandLineTool;
-			sourceTree = "<group>";
-		};
-		9374D0E35B0C955CD09A8952 /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				6A0DCE38082C6EC00ECDFD96 /* BUILD */,
-				FBC38A5833443AB7B95B65C9 /* Foo.h */,
-				F2C0BFBD4823CFBFF5F35BED /* Foo.m */,
-				771E2A4C11BFA74AEF3DC59A /* Utils.h */,
-			);
-			path = Utils;
 			sourceTree = "<group>";
 		};
 		93EA5BF6D009AE2F3D28E6CC /* examples_command_line_external */ = {
@@ -2439,14 +2279,6 @@
 			path = Test;
 			sourceTree = "<group>";
 		};
-		A16821A5D628DE45179DBD01 /* FXPageControl */ = {
-			isa = PBXGroup;
-			children = (
-				A687DF0F4E2479B6E495B784 /* FXPageControl */,
-			);
-			path = FXPageControl;
-			sourceTree = "<group>";
-		};
 		A3E9FF83D15CBE88A3DB040C /* bin */ = {
 			isa = PBXGroup;
 			children = (
@@ -2473,15 +2305,6 @@
 			path = ExampleResources;
 			sourceTree = "<group>";
 		};
-		A687DF0F4E2479B6E495B784 /* FXPageControl */ = {
-			isa = PBXGroup;
-			children = (
-				21EF52D83E028D6E7683F50B /* FXPageControl.h */,
-				13D4EF25648722E4F5687D82 /* FXPageControl.m */,
-			);
-			path = FXPageControl;
-			sourceTree = "<group>";
-		};
 		A744017D896325321E493CBD /* LibFramework.watchOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -2501,7 +2324,6 @@
 		A791DE37C13B6E74D384A498 /* bin */ = {
 			isa = PBXGroup;
 			children = (
-				91C15B05F31CB5CD1D148E7E /* external */,
 				2B66D65C27596F2AAB03B174 /* iOSApp */,
 				8044D4A00AD12DCAB474010E /* Lib */,
 				D26EA70A4A4D24C85DB98E45 /* WidgetExtension */,
@@ -2603,7 +2425,6 @@
 			isa = PBXGroup;
 			children = (
 				8900E66D61E5BAC9385B7C6D /* CoreUtilsObjC */,
-				F4E91D65912203A69E466337 /* Utils */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -2880,14 +2701,6 @@
 			path = LibFramework.tvOS;
 			sourceTree = "<group>";
 		};
-		C5BE30B0B1BA09F55314942F /* iOSAppSwiftUnitTests.__internal__.__test_bundle */ = {
-			isa = PBXGroup;
-			children = (
-				90861FDAB1BBB1EBEFBD93A9 /* Info.plist */,
-			);
-			path = iOSAppSwiftUnitTests.__internal__.__test_bundle;
-			sourceTree = "<group>";
-		};
 		C5CF87B3BD26643FE1FA9AB6 /* Source */ = {
 			isa = PBXGroup;
 			children = (
@@ -2926,15 +2739,6 @@
 				B0ECB0B27CC85E795C1F5B25 /* rules_xcodeproj */,
 			);
 			path = Tests;
-			sourceTree = "<group>";
-		};
-		C852C21C3C52AA4432C0D84C /* SwiftUnitTests */ = {
-			isa = PBXGroup;
-			children = (
-				1665E620DCE38DC68DB666E6 /* BUILD */,
-				BD6D045C4AFC228F987AE5B6 /* SwiftUnitTests.swift */,
-			);
-			path = SwiftUnitTests;
 			sourceTree = "<group>";
 		};
 		C92C1C55E95ED1560364505F /* watchOS */ = {
@@ -3061,14 +2865,6 @@
 			path = "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56";
 			sourceTree = "<group>";
 		};
-		D33C76C89FA5FE8A03E3891D /* SwiftUnitTests */ = {
-			isa = PBXGroup;
-			children = (
-				6891744338051B9675E2525F /* rules_xcodeproj */,
-			);
-			path = SwiftUnitTests;
-			sourceTree = "<group>";
-		};
 		D48EE1C49BB9AF384D47E6BC /* iOSApp */ = {
 			isa = PBXGroup;
 			children = (
@@ -3168,7 +2964,6 @@
 			children = (
 				B6EA7F0628B2D4BE391BFDA8 /* Resources */,
 				FBCBC81766AB6CFE51CD0605 /* Source */,
-				40603B0C6646128578A941DA /* Test */,
 				5807B7B402C0CCC444649817 /* BUILD */,
 				6A161256408081529F37A5FD /* ownership.yaml */,
 			);
@@ -3239,14 +3034,6 @@
 				52439AA6381A449F342B9D89 /* Info.plist */,
 			);
 			path = tvOSAppUITests.__internal__.__test_bundle;
-			sourceTree = "<group>";
-		};
-		EAFAB2E22FBB404FCEFBB748 /* Test */ = {
-			isa = PBXGroup;
-			children = (
-				21A8108B8D3C3DD44A00DA53 /* TestingUtils */,
-			);
-			path = Test;
 			sourceTree = "<group>";
 		};
 		EBE380B28D829D40DA8AD398 /* applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90 */ = {
@@ -3325,14 +3112,6 @@
 				5EFB1918BAE1426C77D6B4CB /* bin */,
 			);
 			path = "applebin_tvos-tvos_arm64-dbg-ST-70b4e492b765";
-			sourceTree = "<group>";
-		};
-		F4E91D65912203A69E466337 /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				1430CC22844BB8EA01F9FDEF /* Utils.swift.modulemap */,
-			);
-			path = Utils;
 			sourceTree = "<group>";
 		};
 		F5DC460FAEF8C4990BD536B0 /* CryptoSwift.xcframework */ = {
@@ -3436,7 +3215,6 @@
 				E99FE58E6AF4B224D6F21736 /* CoreUtilsObjC */,
 				6C5590E697800258CFCA0DA7 /* nested */,
 				BBC7048F7A581A500E0EAE04 /* PreviewContent */,
-				9374D0E35B0C955CD09A8952 /* Utils */,
 				0B83A68C6DA2885BF1E81B5F /* Assets.xcassets */,
 				FACBB87774F1A6BE31F3D7B5 /* BUILD */,
 				4F4C53C91A0F035FB6C8D234 /* Info.plist */,
@@ -3689,22 +3467,6 @@
 			productReference = FD61A1BD0D14998B040F62A1 /* iMessageApp.app */;
 			productType = "com.apple.product-type.application.messages";
 		};
-		34820134F30D904FFA06D27A /* Utils */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = B7B2838D5E51E99F559A42AC /* Build configuration list for PBXNativeTarget "Utils" */;
-			buildPhases = (
-				8FCBD3348EC5C739AA46D20E /* Sources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				6160161B0AEDB993335C4D34 /* PBXTargetDependency */,
-				0C6F2DCBF5E3DB43C5C6C184 /* PBXTargetDependency */,
-			);
-			name = Utils;
-			productName = Utils;
-			productType = "com.apple.product-type.library.static";
-		};
 		48A1FAB71CA4985ACB147363 /* c_lib */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B212E0047AFD7871A7F996F3 /* Build configuration list for PBXNativeTarget "c_lib" */;
@@ -3814,21 +3576,6 @@
 			productName = Lib;
 			productReference = DE94ADE207891DC6DC189E25 /* Lib.framework */;
 			productType = "com.apple.product-type.framework";
-		};
-		703D7AC89C4B9C9E4B61A58F /* FXPageControl */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A130411CB8C0BE310F03989B /* Build configuration list for PBXNativeTarget "FXPageControl" */;
-			buildPhases = (
-				4531A6689165031C7EE3342A /* Sources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				C3AABA33C4332E23DA9FB495 /* PBXTargetDependency */,
-			);
-			name = FXPageControl;
-			productName = FXPageControl;
-			productType = "com.apple.product-type.library.static";
 		};
 		76D3DE86C1DB5149A9A669ED /* tvOSAppUnitTests */ = {
 			isa = PBXNativeTarget;
@@ -4030,27 +3777,6 @@
 			productReference = 89E7DA75A3E699089F75DB4D /* watchOSAppUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
-		D2B147BDA8E8FC10D91B53BB /* iOSAppSwiftUnitTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 95D60D8205A86F653A4B94A4 /* Build configuration list for PBXNativeTarget "iOSAppSwiftUnitTests" */;
-			buildPhases = (
-				C416D6A024F55E32E6F2131B /* Copy Bazel Outputs */,
-				F343BFA76D64F5F53017DEC2 /* Create linking dependencies */,
-				8C852A596739FBD5C4896574 /* Sources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				8EA6765DA7FB86283AF3A508 /* PBXTargetDependency */,
-				A3FA33D2339398D7EF50574C /* PBXTargetDependency */,
-				E36329920AC6370D10FC6E98 /* PBXTargetDependency */,
-				183914602E3CA63A5CB314D8 /* PBXTargetDependency */,
-			);
-			name = iOSAppSwiftUnitTests;
-			productName = iOSAppSwiftUnitTests;
-			productReference = AD6B14DD5C54C8B5A718B448 /* iOSAppSwiftUnitTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		D72E91668AA84CA0E91BC0E9 /* watchOSAppExtensionUnitTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = FC8A81AA2F847EAD3AE8E98A /* Build configuration list for PBXNativeTarget "watchOSAppExtensionUnitTests" */;
@@ -4121,22 +3847,6 @@
 			);
 			name = private_lib;
 			productName = private_lib;
-			productType = "com.apple.product-type.library.static";
-		};
-		F175A7E1019A952CA7F66BBC /* TestingUtils */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = DE5A272B1E91CD2127D39E3C /* Build configuration list for PBXNativeTarget "TestingUtils" */;
-			buildPhases = (
-				74D44EF0C730EDEC6D46E69E /* Copy Bazel Outputs */,
-				58F5AB439EA84217B9B89516 /* Sources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				96160E1B8AE0CFB0577BE6A9 /* PBXTargetDependency */,
-			);
-			name = TestingUtils;
-			productName = TestingUtils;
 			productType = "com.apple.product-type.library.static";
 		};
 		F619A1189B9E946F6BE02A2F /* UIFramework.watchOS */ = {
@@ -4221,10 +3931,6 @@
 						CreatedOnToolsVersion = 13.2.1;
 						LastSwiftMigration = 9999;
 					};
-					34820134F30D904FFA06D27A = {
-						CreatedOnToolsVersion = 13.2.1;
-						LastSwiftMigration = 9999;
-					};
 					48A1FAB71CA4985ACB147363 = {
 						CreatedOnToolsVersion = 13.2.1;
 						LastSwiftMigration = 9999;
@@ -4247,10 +3953,6 @@
 						LastSwiftMigration = 9999;
 					};
 					656BB6FF8F9415647D9307E7 = {
-						CreatedOnToolsVersion = 13.2.1;
-						LastSwiftMigration = 9999;
-					};
-					703D7AC89C4B9C9E4B61A58F = {
 						CreatedOnToolsVersion = 13.2.1;
 						LastSwiftMigration = 9999;
 					};
@@ -4303,11 +4005,6 @@
 						LastSwiftMigration = 9999;
 						TestTargetID = 632D255CE04E97FB997EBDD7;
 					};
-					D2B147BDA8E8FC10D91B53BB = {
-						CreatedOnToolsVersion = 13.2.1;
-						LastSwiftMigration = 9999;
-						TestTargetID = 1765D91CC168F25A5BC51603;
-					};
 					D72E91668AA84CA0E91BC0E9 = {
 						CreatedOnToolsVersion = 13.2.1;
 						LastSwiftMigration = 9999;
@@ -4322,10 +4019,6 @@
 						LastSwiftMigration = 9999;
 					};
 					EAFF1E96A87B75E6BA080719 = {
-						CreatedOnToolsVersion = 13.2.1;
-						LastSwiftMigration = 9999;
-					};
-					F175A7E1019A952CA7F66BBC = {
 						CreatedOnToolsVersion = 13.2.1;
 						LastSwiftMigration = 9999;
 					};
@@ -4359,12 +4052,10 @@
 				1A40783EF59C680645DD16E1 /* CommandLineTool */,
 				5826810F86C049E80D55353A /* CommandLineToolTests */,
 				7F21C434B520AB441229E270 /* FrameworkCoreUtilsObjC */,
-				703D7AC89C4B9C9E4B61A58F /* FXPageControl */,
 				343F031FB3DF1E87C3568525 /* iMessageApp */,
 				2BECDF067E07C69468ED23A3 /* iMessageAppExtension */,
 				252CA33FB4DD1F73A46CE0A6 /* iOS */,
 				1765D91CC168F25A5BC51603 /* iOSApp */,
-				D2B147BDA8E8FC10D91B53BB /* iOSAppSwiftUnitTests */,
 				9D6BB9A04FEC771667C78F54 /* Lib (iOS, tvOS) */,
 				83D00AD7532094902D925C83 /* Lib (watchOS) */,
 				BC691472A2BC47F8E1D5D637 /* lib_impl */,
@@ -4375,7 +4066,6 @@
 				DBA520153E51B3D6E3103986 /* macOSAppUITests */,
 				EAFF1E96A87B75E6BA080719 /* private_lib */,
 				FB5A7F9FB506F44F296BDD73 /* private_swift_lib */,
-				F175A7E1019A952CA7F66BBC /* TestingUtils */,
 				EACAA4186ECECF71B7BC09C6 /* tvOS */,
 				ACEF2F653E0F6BEA37D2C7B6 /* tvOSApp */,
 				53852A3B10D473B77DE57F4D /* tvOSAppUITests */,
@@ -4383,7 +4073,6 @@
 				4CFF47C3FBF2E6C24127D667 /* UIFramework.iOS */,
 				A23C98B4BFB6C775689A2A7D /* UIFramework.tvOS */,
 				F619A1189B9E946F6BE02A2F /* UIFramework.watchOS */,
-				34820134F30D904FFA06D27A /* Utils */,
 				656BB6FF8F9415647D9307E7 /* watchOS */,
 				632D255CE04E97FB997EBDD7 /* watchOSApp */,
 				2DBD14C7DE92127B94265B10 /* watchOSAppExtension */,
@@ -4802,22 +4491,6 @@
 			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"watchOSAppExtensionUnitTests.xctest\" \\\n  \"\"\n";
 			showEnvVarsInLog = 0;
 		};
-		74D44EF0C730EDEC6D46E69E /* Copy Bazel Outputs */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Bazel Outputs";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"libTestingUtils.a\" \\\n  \"\"\n";
-			showEnvVarsInLog = 0;
-		};
 		776532670FE81C7D6E72D8A4 /* Create linking dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -5163,23 +4836,6 @@
 			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"tvOSApp.app\" \\\n  \"$INTERNAL_DIR/app.exclude.rsynclist\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C416D6A024F55E32E6F2131B /* Copy Bazel Outputs */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
-			);
-			name = "Copy Bazel Outputs";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"iOSAppSwiftUnitTests.xctest\" \\\n  \"\"\n";
-			showEnvVarsInLog = 0;
-		};
 		C7E5D6A63B206760804A009C /* Copy Bazel Outputs */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -5332,23 +4988,6 @@
 			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"Lib.framework\" \\\n  \"\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F343BFA76D64F5F53017DEC2 /* Create linking dependencies */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(LINK_PARAMS_FILE)",
-			);
-			name = "Create linking dependencies";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/link.params",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
-			showEnvVarsInLog = 0;
-		};
 		F977D72EC501105AE382C623 /* Copy Bazel Outputs */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -5428,14 +5067,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4531A6689165031C7EE3342A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				517AC50D487E3FDF92281B91 /* FXPageControl.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		4759015F86C47FF8B0A12DC7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -5470,14 +5101,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		58F5AB439EA84217B9B89516 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2800FF779D621D5F4BF7AEAA /* TestingUtils.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		64B82A91DCAE8470E0DE6BB4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -5509,22 +5132,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				40173E2B67AE917E3083C0CE /* SwiftGreetingsTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8C852A596739FBD5C4896574 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				64B06179E66EAEBB0D30063A /* SwiftUnitTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8FCBD3348EC5C739AA46D20E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				80DD1B6C08EE582DB5125936 /* Foo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5679,12 +5286,6 @@
 			target = 83D00AD7532094902D925C83 /* Lib (watchOS) */;
 			targetProxy = F84FF39FB7ACA4D7F72EA642 /* PBXContainerItemProxy */;
 		};
-		0C6F2DCBF5E3DB43C5C6C184 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = FXPageControl;
-			target = 703D7AC89C4B9C9E4B61A58F /* FXPageControl */;
-			targetProxy = F7EE120661FA905CF001F45D /* PBXContainerItemProxy */;
-		};
 		0E54586AEB47B3853C7BA936 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = BazelDependencies;
@@ -5714,12 +5315,6 @@
 			name = BazelDependencies;
 			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
 			targetProxy = 334E33C35297EDCE3D14FD82 /* PBXContainerItemProxy */;
-		};
-		183914602E3CA63A5CB314D8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Utils;
-			target = 34820134F30D904FFA06D27A /* Utils */;
-			targetProxy = FC13477455BCD3D0B28F94A1 /* PBXContainerItemProxy */;
 		};
 		1BB14BD319203CF277CB7228 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -5853,12 +5448,6 @@
 			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
 			targetProxy = 1AD51B418C8BE1F5FA15FEDC /* PBXContainerItemProxy */;
 		};
-		6160161B0AEDB993335C4D34 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = BazelDependencies;
-			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
-			targetProxy = F5E9D31D539D4E97AACBE385 /* PBXContainerItemProxy */;
-		};
 		65B4FB639CC1855C1533A870 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = UIFramework.iOS;
@@ -5919,12 +5508,6 @@
 			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
 			targetProxy = 6C3C83ECCB88380A8CA2D009 /* PBXContainerItemProxy */;
 		};
-		8EA6765DA7FB86283AF3A508 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = BazelDependencies;
-			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
-			targetProxy = 8544E89EE652F4A007839BC2 /* PBXContainerItemProxy */;
-		};
 		8EC8B07EA1F47A3783A37A98 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = BazelDependencies;
@@ -5936,12 +5519,6 @@
 			name = BazelDependencies;
 			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
 			targetProxy = 936C731BDC2BAF97738C187A /* PBXContainerItemProxy */;
-		};
-		96160E1B8AE0CFB0577BE6A9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = BazelDependencies;
-			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
-			targetProxy = FE47674BD75BF763F743C9E6 /* PBXContainerItemProxy */;
 		};
 		9A57AAE41C4031290E3A0B28 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -5960,12 +5537,6 @@
 			name = UIFramework.watchOS;
 			target = F619A1189B9E946F6BE02A2F /* UIFramework.watchOS */;
 			targetProxy = B4081C15523237B6ACE3045F /* PBXContainerItemProxy */;
-		};
-		A3FA33D2339398D7EF50574C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = iOSApp;
-			target = 1765D91CC168F25A5BC51603 /* iOSApp */;
-			targetProxy = F67509260F9A8DCA2F1EA061 /* PBXContainerItemProxy */;
 		};
 		A44D31FE0D119010E44282B5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -6002,12 +5573,6 @@
 			name = UIFramework.watchOS;
 			target = F619A1189B9E946F6BE02A2F /* UIFramework.watchOS */;
 			targetProxy = D4810C6224009DCAF97E1364 /* PBXContainerItemProxy */;
-		};
-		C3AABA33C4332E23DA9FB495 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = BazelDependencies;
-			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
-			targetProxy = 5E9AC5B7458CB5F5EC7A5A23 /* PBXContainerItemProxy */;
 		};
 		C4897838CF03F1ED17ABBFB5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -6056,12 +5621,6 @@
 			name = BazelDependencies;
 			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
 			targetProxy = 9DBF02CAC6C6AC4B7C3505BA /* PBXContainerItemProxy */;
-		};
-		E36329920AC6370D10FC6E98 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = TestingUtils;
-			target = F175A7E1019A952CA7F66BBC /* TestingUtils */;
-			targetProxy = E99D9DDFE49A00CC9E26103A /* PBXContainerItemProxy */;
 		};
 		E48C708C74446A2D901EB813 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -6387,39 +5946,6 @@
 					"$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00/bin",
 					"$(BAZEL_EXTERNAL)/com_google_google_maps",
 					"$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00/bin/external/com_google_google_maps",
-				);
-			};
-			name = Debug;
-		};
-		1930030923086D364CC3127B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = x86_64;
-				BAZEL_LABEL = "@//iOSApp/Test/TestingUtils:TestingUtils";
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/iOSApp/Test/TestingUtils";
-				BAZEL_TARGET_ID = "//iOSApp/Test/TestingUtils:TestingUtils ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56";
-				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
-				COMPILE_TARGET_NAME = TestingUtils;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_BITCODE = NO;
-				ENABLE_TESTABILITY = YES;
-				ENABLE_TESTING_SEARCH_PATHS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Xcc -DAWESOME -static";
-				PRODUCT_MODULE_NAME = TestingUtils;
-				PRODUCT_NAME = TestingUtils;
-				SDKROOT = iphoneos;
-				SUPPORTED_PLATFORMS = iphonesimulator;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG AWESOME";
-				SWIFT_OBJC_INTERFACE_HEADER_NAME = "SwiftAPI/TestingUtils-Swift.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGET_NAME = TestingUtils;
-				USER_HEADER_SEARCH_PATHS = (
-					"$(SRCROOT)",
-					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin",
 				);
 			};
 			name = Debug;
@@ -7240,74 +6766,6 @@
 			};
 			name = Debug;
 		};
-		5C32CBAD6CF66E55C08B4565 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = x86_64;
-				BAZEL_COMPILE_TARGET_ID = "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56";
-				"BAZEL_COMPILE_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_ID)";
-				BAZEL_LABEL = "@//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTests.xctest";
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/iOSApp/Test/SwiftUnitTests";
-				BAZEL_TARGET_ID = "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56";
-				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
-				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Manual;
-				COMPILE_TARGET_NAME = iOSAppSwiftUnitTests.library;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEPLOYMENT_LOCATION = NO;
-				ENABLE_BITCODE = NO;
-				ENABLE_TESTABILITY = YES;
-				ENABLE_TESTING_SEARCH_PATHS = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator",
-					"$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator",
-					"$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator",
-					"external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator",
-				);
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = AWESOME;
-				HEADER_SEARCH_PATHS = (
-					"$(SRCROOT)/iOSApp/Source/CoreUtilsObjC",
-					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/iOSApp/Source/CoreUtilsObjC",
-				);
-				INFOPLIST_FILE = "bazel-out/applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/iOSApp/Test/SwiftUnitTests/rules_xcodeproj/iOSAppSwiftUnitTests.__internal__.__test_bundle/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTests.link.params";
-				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator/GoogleMapsBase.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator/GoogleMapsCore.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator/GoogleMaps.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/external/FXPageControl/FXPageControl.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/iOSApp/Source/Utils/Utils.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/iOSApp/Test/TestingUtils/TestingUtils.swift.modulemap -Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Xcc -DAWESOME -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Fexternal/com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator -Fexternal/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator -static";
-				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
-				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
-				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/iOSApp/Test/SwiftUnitTests";
-				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example.tests;
-				PRODUCT_MODULE_NAME = iOSAppSwiftUnitTests;
-				PRODUCT_NAME = iOSAppSwiftUnitTests;
-				SDKROOT = iphoneos;
-				SUPPORTED_PLATFORMS = iphonesimulator;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG AWESOME";
-				SWIFT_INCLUDE_PATHS = "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/Lib bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/UI bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/iOSApp/Source bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/iOSApp/Test/TestingUtils";
-				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TARGET_BUILD_DIR = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/iOSApp/Source$(TARGET_BUILD_SUBPATH)";
-				TARGET_NAME = iOSAppSwiftUnitTests;
-				TEST_HOST = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/iOSApp/Source/iOSApp.app/iOSApp_ExecutableName";
-				USER_HEADER_SEARCH_PATHS = (
-					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
-					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/external/com_github_krzyzanowskim_cryptoswift",
-					"$(SRCROOT)",
-					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin",
-					"$(BAZEL_EXTERNAL)/com_google_google_maps",
-					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/external/com_google_google_maps",
-					"$(BAZEL_EXTERNAL)/FXPageControl",
-					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/external/FXPageControl",
-				);
-			};
-			name = Debug;
-		};
 		5D95C37273FAF8FEAFAE2065 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -7796,107 +7254,6 @@
 			};
 			name = Debug;
 		};
-		A56BEE637DA1B6A442624451 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = x86_64;
-				BAZEL_LABEL = "@//iOSApp/Source/Utils:Utils";
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/iOSApp/Source/Utils";
-				BAZEL_TARGET_ID = "//iOSApp/Source/Utils:Utils ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56";
-				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				COMPILE_TARGET_NAME = Utils;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_BITCODE = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"_FORTIFY_SOURCE=1",
-					OS_IOS,
-					"DEBUG=1",
-				);
-				HEADER_SEARCH_PATHS = (
-					"$(SRCROOT)/iOSApp/Source/CoreUtilsObjC",
-					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/iOSApp/Source/CoreUtilsObjC",
-				);
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				OTHER_CFLAGS = (
-					"-ivfsoverlay",
-					"$(OBJROOT)/bazel-out-overlay.yaml",
-					"-fstack-protector",
-					"-Wall",
-					"-Wthread-safety",
-					"-Wself-assign",
-					"-fno-omit-frame-pointer",
-					"-Wshorten-64-to-32",
-					"-Wbool-conversion",
-					"-Wconstant-conversion",
-					"-Wduplicate-method-match",
-					"-Wempty-body",
-					"-Wenum-conversion",
-					"-Wint-conversion",
-					"-Wunreachable-code",
-					"-Wmismatched-return-types",
-					"-Wundeclared-selector",
-					"-Wuninitialized",
-					"-Wunused-function",
-					"-Wunused-variable",
-					"-fno-autolink",
-					"-fexceptions",
-					"-fasm-blocks",
-					"-fobjc-abi-version=2",
-					"-fobjc-legacy-dispatch",
-					"-fstack-protector",
-					"-fstack-protector-all",
-				);
-				OTHER_CPLUSPLUSFLAGS = (
-					"-ivfsoverlay",
-					"$(OBJROOT)/bazel-out-overlay.yaml",
-					"-fstack-protector",
-					"-Wall",
-					"-Wthread-safety",
-					"-Wself-assign",
-					"-fno-omit-frame-pointer",
-					"-Wshorten-64-to-32",
-					"-Wbool-conversion",
-					"-Wconstant-conversion",
-					"-Wduplicate-method-match",
-					"-Wempty-body",
-					"-Wenum-conversion",
-					"-Wint-conversion",
-					"-Wunreachable-code",
-					"-Wmismatched-return-types",
-					"-Wundeclared-selector",
-					"-Wuninitialized",
-					"-Wunused-function",
-					"-Wunused-variable",
-					"-fno-autolink",
-					"-fexceptions",
-					"-fasm-blocks",
-					"-fobjc-abi-version=2",
-					"-fobjc-legacy-dispatch",
-					"-fstack-protector",
-					"-fstack-protector-all",
-				);
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR)";
-				PRODUCT_MODULE_NAME = Utils;
-				PRODUCT_NAME = Utils;
-				SDKROOT = iphoneos;
-				SUPPORTED_PLATFORMS = iphonesimulator;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGET_NAME = Utils;
-				USER_HEADER_SEARCH_PATHS = (
-					"$(SRCROOT)",
-					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin",
-					"$(BAZEL_EXTERNAL)/FXPageControl",
-					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/external/FXPageControl",
-				);
-			};
-			name = Debug;
-		};
 		ACC357DE288648772E706D75 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -8100,103 +7457,6 @@
 					"$(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32/bin",
 				);
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
-			};
-			name = Debug;
-		};
-		BDCA2C4AF2B2E95BBAF75222 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = x86_64;
-				BAZEL_LABEL = "@FXPageControl//:FXPageControl";
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/external/FXPageControl";
-				BAZEL_TARGET_ID = "@FXPageControl//:FXPageControl ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56";
-				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				COMPILE_TARGET_NAME = FXPageControl;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_BITCODE = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"_FORTIFY_SOURCE=1",
-					OS_IOS,
-					"DEBUG=1",
-				);
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				OTHER_CFLAGS = (
-					"-ivfsoverlay",
-					"$(OBJROOT)/bazel-out-overlay.yaml",
-					"-fstack-protector",
-					"-Wall",
-					"-Wthread-safety",
-					"-Wself-assign",
-					"-fno-omit-frame-pointer",
-					"-Wshorten-64-to-32",
-					"-Wbool-conversion",
-					"-Wconstant-conversion",
-					"-Wduplicate-method-match",
-					"-Wempty-body",
-					"-Wenum-conversion",
-					"-Wint-conversion",
-					"-Wunreachable-code",
-					"-Wmismatched-return-types",
-					"-Wundeclared-selector",
-					"-Wuninitialized",
-					"-Wunused-function",
-					"-Wunused-variable",
-					"-fno-autolink",
-					"-fexceptions",
-					"-fasm-blocks",
-					"-fobjc-abi-version=2",
-					"-fobjc-legacy-dispatch",
-					"-fstack-protector",
-					"-fstack-protector-all",
-				);
-				OTHER_CPLUSPLUSFLAGS = (
-					"-ivfsoverlay",
-					"$(OBJROOT)/bazel-out-overlay.yaml",
-					"-fstack-protector",
-					"-Wall",
-					"-Wthread-safety",
-					"-Wself-assign",
-					"-fno-omit-frame-pointer",
-					"-Wshorten-64-to-32",
-					"-Wbool-conversion",
-					"-Wconstant-conversion",
-					"-Wduplicate-method-match",
-					"-Wempty-body",
-					"-Wenum-conversion",
-					"-Wint-conversion",
-					"-Wunreachable-code",
-					"-Wmismatched-return-types",
-					"-Wundeclared-selector",
-					"-Wuninitialized",
-					"-Wunused-function",
-					"-Wunused-variable",
-					"-fno-autolink",
-					"-fexceptions",
-					"-fasm-blocks",
-					"-fobjc-abi-version=2",
-					"-fobjc-legacy-dispatch",
-					"-fstack-protector",
-					"-fstack-protector-all",
-				);
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR)";
-				PRODUCT_MODULE_NAME = FXPageControl;
-				PRODUCT_NAME = FXPageControl;
-				SDKROOT = iphoneos;
-				SUPPORTED_PLATFORMS = iphonesimulator;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGET_NAME = FXPageControl;
-				USER_HEADER_SEARCH_PATHS = (
-					"$(BAZEL_EXTERNAL)/FXPageControl",
-					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/external/FXPageControl",
-					"$(SRCROOT)",
-					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin",
-				);
 			};
 			name = Debug;
 		};
@@ -8906,26 +8166,10 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		95D60D8205A86F653A4B94A4 /* Build configuration list for PBXNativeTarget "iOSAppSwiftUnitTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				5C32CBAD6CF66E55C08B4565 /* Debug */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
 		97899584D8C8DDB9E465F124 /* Build configuration list for PBXNativeTarget "tvOSAppUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CAEFDA2B81F1174EB4ECF3DB /* Debug */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
-		A130411CB8C0BE310F03989B /* Build configuration list for PBXNativeTarget "FXPageControl" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				BDCA2C4AF2B2E95BBAF75222 /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
@@ -8962,14 +8206,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		B7B2838D5E51E99F559A42AC /* Build configuration list for PBXNativeTarget "Utils" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A56BEE637DA1B6A442624451 /* Debug */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
 		BB6B08948EB403DD7CEC76D8 /* Build configuration list for PBXNativeTarget "CommandLineToolTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -8998,14 +8234,6 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				ACC357DE288648772E706D75 /* Debug */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
-		DE5A272B1E91CD2127D39E3C /* Build configuration list for PBXNativeTarget "TestingUtils" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				1930030923086D364CC3127B /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

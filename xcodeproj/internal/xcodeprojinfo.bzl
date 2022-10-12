@@ -304,7 +304,9 @@ def _create_envs_depset(*, ctx, target, id, automatic_target_info):
         if key not in _IGNORED_BAZEL_ENV_VARIABLES
     }
 
-    return struct(id = id, env = struct(**dicts.add(run_env, test_env)))
+    print(ctx.configuration.test_env)
+
+    return struct(id = id, env = struct(**dicts.add(run_env, test_env, ctx.configuration.test_env)))
 
 def _create_xcodeprojinfo(
         *,
