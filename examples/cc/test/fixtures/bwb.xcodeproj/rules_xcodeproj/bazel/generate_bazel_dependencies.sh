@@ -82,25 +82,6 @@ else
   readonly labels
 fi
 
-# Set `output_base`
-
-# In `runner.template.sh` the generator has the build output base set inside
-# of the outer bazel's output path (`bazel-out/`). So here we need to make
-# our output base changes relative to that changed path.
-readonly build_output_base="$BAZEL_OUT/../../.."
-readonly outer_output_base="$build_output_base/../.."
-
-if [ "$ACTION" == "indexbuild" ]; then
-  # We use a different output base for Index Build to prevent normal builds and
-  # indexing waiting on bazel locks from the other. We nest it inside of the
-  # normal output base directory so that it's not cleaned up when running
-  # `bazel clean`, but is when running `bazel clean --expunge`. This matches
-  # Xcode behavior of not cleaning the Index Build outputs by default.
-  readonly output_base="$outer_output_base/rules_xcodeproj/indexbuild_output_base"
-else
-  readonly output_base="$build_output_base"
-fi
-
 # Build
 
 apply_sanitizers=1
