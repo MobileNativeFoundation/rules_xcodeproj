@@ -3,7 +3,7 @@ import XcodeProj
 extension XCSchemeInfo {
     struct PrePostActionInfo: Equatable {
         let name: String
-        let expandVariablesBasedOn: VariableExpansionContextInfo
+        let expandVariablesBasedOn: TargetInfo?
         let script: String
     }
 }
@@ -13,8 +13,7 @@ extension XCSchemeInfo.PrePostActionInfo {
         XCScheme.ExecutionAction(
             scriptText: script,
             title: name,
-            environmentBuildable: expandVariablesBasedOn
-                .targetInfo?.buildableReference
+            environmentBuildable: expandVariablesBasedOn?.buildableReference
         )
     }
 }
@@ -27,11 +26,11 @@ extension XCSchemeInfo.PrePostActionInfo {
         context: String
     ) throws {
         guard let originalTargetLabel =
-            prePostAction.expandVariablesBasedOn?.targetLabel
+            prePostAction.expandVariablesBasedOn
         else {
             self.init(
                 name: prePostAction.name,
-                expandVariablesBasedOn: .none,
+                expandVariablesBasedOn: nil,
                 script: prePostAction.script
             )
             return
@@ -40,8 +39,7 @@ extension XCSchemeInfo.PrePostActionInfo {
             for: originalTargetLabel,
             context: context
         )
-        let expandVariablesBasedOn = XCSchemeInfo.VariableExpansionContextInfo
-            .target(try targetResolver.targetInfo(targetID: targetID))
+        let expandVariablesBasedOn = try targetResolver.targetInfo(targetID: targetID)
         self.init(
             name: prePostAction.name,
             expandVariablesBasedOn: expandVariablesBasedOn,
@@ -55,11 +53,11 @@ extension Sequence where Element == XCSchemeInfo.PrePostActionInfo {
         topLevelTargetInfos: TargetInfos
     ) throws -> [XCSchemeInfo.PrePostActionInfo]
     where TargetInfos.Element == XCSchemeInfo.TargetInfo {
-        try map { action in
+        map { action in
             XCSchemeInfo.PrePostActionInfo(
                 name: action.name,
-                expandVariablesBasedOn: try .init(
-                    resolveHostsFor: action.expandVariablesBasedOn,
+                expandVariablesBasedOn: try? .init(
+                    resolveHostFor: action.expandVariablesBasedOn.orThrow(),
                     topLevelTargetInfos: topLevelTargetInfos
                 ),
                 script: action.script

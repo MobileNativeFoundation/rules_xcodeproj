@@ -170,10 +170,10 @@ extension XcodeScheme {
         if let buildAction = buildAction {
             labels.formUnion(buildAction.targets.map(\.label))
             labels.formUnion(buildAction.preActions.compactMap(
-                \.expandVariablesBasedOn?.targetLabel
+                \.expandVariablesBasedOn
             ))
             labels.formUnion(buildAction.postActions.compactMap(
-                \.expandVariablesBasedOn?.targetLabel
+                \.expandVariablesBasedOn
             ))
         }
         if let testAction = testAction {

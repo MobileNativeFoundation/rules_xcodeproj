@@ -97,7 +97,7 @@ extension XCSchemeInfoPrePostActionInfoTests {
         let name = "Run Script"
         let prePostActionInfo = XCSchemeInfo.PrePostActionInfo(
             name: "Run Script",
-            expandVariablesBasedOn: .target(appTargetInfo),
+            expandVariablesBasedOn: appTargetInfo,
             script: script
         )
 
@@ -147,7 +147,7 @@ extension XCSchemeInfoPrePostActionInfoTests {
         let targetBazelLabel = BazelLabel("@//some/package:A")
         let prePostAction = XcodeScheme.PrePostAction(
             name: "Run Script",
-            expandVariablesBasedOn: .target(targetBazelLabel),
+            expandVariablesBasedOn: targetBazelLabel,
             script: "script text"
         )
 
@@ -166,7 +166,7 @@ extension XCSchemeInfoPrePostActionInfoTests {
         let expectedTargetInfo = unresolvedLibraryTargetInfo
         let expectedActionInfo = XCSchemeInfo.PrePostActionInfo(
             name: "Run Script",
-            expandVariablesBasedOn: .target(expectedTargetInfo),
+            expandVariablesBasedOn: expectedTargetInfo,
             script: "script text"
         )
         XCTAssertEqual(prePostActionInfo, expectedActionInfo)
@@ -177,7 +177,7 @@ extension XCSchemeInfoPrePostActionInfoTests {
         let targetBazelLabel = BazelLabel("//some/randompackage:A")
         let prePostAction = XcodeScheme.PrePostAction(
             name: "Run Script",
-            expandVariablesBasedOn: .target(targetBazelLabel),
+            expandVariablesBasedOn: targetBazelLabel,
             script: "script text"
         )
 
@@ -232,7 +232,7 @@ extension XCSchemeInfoPrePostActionInfoTests {
         let targetBazelLabel = BazelLabel("@//some/package:W")
         let prePostAction = XcodeScheme.PrePostAction(
             name: "Run Script",
-            expandVariablesBasedOn: .target(targetBazelLabel),
+            expandVariablesBasedOn: targetBazelLabel,
             script: "script text"
         )
         let prePostActionInfo = try XCSchemeInfo.PrePostActionInfo(
@@ -267,8 +267,8 @@ extension XCSchemeInfoPrePostActionInfoTests {
             hostInfos: [appHostInfo],
             extensionPointIdentifiers: []
         )
-        let resolvedVariableExpansion = try XCSchemeInfo.VariableExpansionContextInfo(
-            resolveHostsFor: .target(expectedTargetInfo),
+        let resolvedVariableExpansion = XCSchemeInfo.TargetInfo(
+            resolveHostFor: expectedTargetInfo,
             topLevelTargetInfos: topLevelTargetInfos
         )
         let expectedActionInfo = XCSchemeInfo.PrePostActionInfo(
@@ -284,7 +284,7 @@ extension XCSchemeInfoPrePostActionInfoTests {
         let targetBazelLabel = BazelLabel("@//some/package:A")
         let prePostAction = XcodeScheme.PrePostAction(
             name: "Run Script",
-            expandVariablesBasedOn: .target(targetBazelLabel),
+            expandVariablesBasedOn: targetBazelLabel,
             script: "script text"
         )
         let prePostActionInfo = try XCSchemeInfo.PrePostActionInfo(
@@ -305,7 +305,7 @@ extension XCSchemeInfoPrePostActionInfoTests {
         // then
         resolvedPrePostActionInfos.forEach { actionInfo in
             XCTAssertEqual(
-                actionInfo.expandVariablesBasedOn.targetInfo?.hostResolution,
+                actionInfo.expandVariablesBasedOn?.hostResolution,
                 XCSchemeInfo.HostResolution.none
             )
         }

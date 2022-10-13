@@ -488,7 +488,7 @@ class XCSchemeExtensionsTests: XCTestCase {
     )
     lazy var prePostActionInfoWithTargetInfo = XCSchemeInfo.PrePostActionInfo(
         name: "Run Script",
-        expandVariablesBasedOn: .target(libraryTargetInfo),
+        expandVariablesBasedOn: libraryTargetInfo,
         script: "script text"
     )
     // swiftlint:disable:next force_try
