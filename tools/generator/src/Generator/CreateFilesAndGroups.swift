@@ -669,6 +669,7 @@ was set to `\(existingValue)`.
 {"external-contents": "\#(buildDir)","name": "${bazel_out_prefix}\#(bazelOut)","type": "file"}
 """#
                 }
+                .sorted()
                 .joined(separator: ",")
 
             files[.internal(createXcodeOverlayScriptPath)] =
