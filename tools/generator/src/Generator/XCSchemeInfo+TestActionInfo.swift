@@ -101,16 +101,11 @@ Expected at least one target in `TestAction.targets`
         }
         for testActionTargetId in testActionTargetIds {
             if let testActionTargetEnv: [String: String] = envs[testActionTargetId] {
-                for (key, value) in testActionTargetEnv {
-                    if let existingValue: String = env[key] {
-                        let errorMessage: String = """
-                        Detected conflicting environment variables:
-                        testActionEnv: \(key) : \(existingValue)
-                        \(testActionTargetId): \(key) : \(value)
-                        """
-                        throw PreconditionError(message: errorMessage)
+                env.merging(testActionTargetEnv) { currentValue, incomingValue
+                    if currentValue != incomingValue {
+                        throw UsageError("ERROR Found environment variables with conflicting values ('\(currentValue)' and '\(incomingValue)')")
                     }
-                    env[key] = value
+                    currentValue
                 }
             }
         }
@@ -129,7 +124,7 @@ Expected at least one target in `TestAction.targets`
             diagnostics: XCSchemeInfo.DiagnosticsInfo(
                 diagnostics: testAction.diagnostics
             ),
-            env: env,
+            env: testActionEnv,
             expandVariablesBasedOn: try targetResolver.targetInfo(
                 targetID: try targetIDsByLabel.value(
                     for: expandVariablesBasedOn,

@@ -28,7 +28,7 @@ extension CreateCustomXCSchemesTests {
     }
 
     func test_createCustomXCSchemes_withCustomSchemes_testEnvOverrides() throws {
-        let actual = try Generator.createCustomXCSchemes(
+        XCTAssertThrowsError(try Generator.createCustomXCSchemes(
             schemes: [schemeC],
             buildMode: .bazel,
             targetResolver: targetResolver,
@@ -37,15 +37,13 @@ extension CreateCustomXCSchemesTests {
                 "B_2_SCHEME_VAR": "INITIAL",
                 "OTHER_ENV_VAR": "INITIAL"
             ]]
-        )
-        XCTAssertEqual(actual.count, 1)
-        XCTAssertEqual(actual.map(\.name), [schemeC.name])
-        let environmentVariables: [XCScheme.EnvironmentVariable] = try XCTUnwrap(actual.first?.testAction?.environmentVariables)
-        let testActionEnvironmentVariables: [String: String] = environmentVariables.reduce(into: [String: String]()) { partialResult, element in
-            partialResult[element.variable] = element.value
+        )) { error in
+            if case let UsageError(errorMessage) = $0 {
+                XCTAssertEqual(errorMessage, "ERROR Found environment variables with conflicting values ('INITIAL' and 'OVERRIDE')")
+            } else {
+                XCTFail("Invalid error")
+            }
         }
-        XCTAssertEqual(testActionEnvironmentVariables["B_2_SCHEME_VAR"], "OVERRIDE")
-        XCTAssertEqual(testActionEnvironmentVariables["OTHER_ENV_VAR"], "INITIAL")
     }
 }
 
