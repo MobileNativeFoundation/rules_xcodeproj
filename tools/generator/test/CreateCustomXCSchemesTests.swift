@@ -39,7 +39,7 @@ extension CreateCustomXCSchemesTests {
                     "OTHER_ENV_VAR": "INITIAL"
                 ]]
             ),
-            expectedMessage: "'@//some/package:B' defines a value for 'B_2_SCHEME_VAR' ('INITIAL') that doesn't match the existing value of 'OVERRIDE' from another target in the same scheme."
+            expectedMessage: "ERROR: '@//some/package:B' defines a value for 'B_2_SCHEME_VAR' ('INITIAL') that doesn't match the existing value of 'OVERRIDE' from another target in the same scheme."
         )
     }
 }
