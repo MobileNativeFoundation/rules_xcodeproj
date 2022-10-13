@@ -92,8 +92,9 @@ touch /tmp/rules_xcodeproj/WORKSPACE
 echo 'exports_files(["top_level_cache_buster"])' > /tmp/rules_xcodeproj/BUILD
 date +%s > "/tmp/rules_xcodeproj/top_level_cache_buster"
 
+echo
+
 if [[ -z "${build_output_groups:-}" ]]; then
-  echo
   echo 'Generating "%project_name%.xcodeproj"'
 
   "${bazel_cmd[@]}" \
