@@ -6,7 +6,6 @@ ios_unit_test(
     bundle_id = "io.buildbuddy.example.tests",
     env = {
         "IOSAPPSWIFTUNITTESTS": "CUSTOM_ENV_VALUE",
-        "CONFLICTING_ENV_VAR": "IOSAPPSWIFTUNITTESTS_CONFLICT",
     },
     minimum_os_version = "15.0",
     resources = ["//iOSApp/Resources/ExampleResources:exported_resources"],

@@ -55,6 +55,7 @@ def _target_info_fields(
         *,
         compilation_providers,
         dependencies,
+        envs,
         extension_infoplists,
         hosted_targets,
         inputs,
@@ -67,7 +68,6 @@ def _target_info_fields(
         rule_kind,
         search_paths,
         target_type,
-        envs,
         transitive_dependencies,
         xcode_target,
         xcode_targets,
@@ -80,6 +80,7 @@ def _target_info_fields(
         compilation_providers: Maps to the `XcodeProjInfo.compilation_providers`
             field.
         dependencies: Maps to the `XcodeProjInfo.dependencies` field.
+        envs: Maps to the `XcodeProjInfo.envs` field.
         extension_infoplists: Maps to the `XcodeProjInfo.extension_infoplists`
             field.
         hosted_targets: Maps to the `XcodeProjInfo.hosted_targets` field.
@@ -97,7 +98,6 @@ def _target_info_fields(
         rule_kind: Maps to the `XcodeProjInfo.rule_kind` field.
         search_paths: Maps to the `XcodeProjInfo.search_paths` field.
         target_type: Maps to the `XcodeProjInfo.target_type` field.
-        envs: Maps to the `XcodeProjInfo.envs` field.
         transitive_dependencies: Maps to the
             `XcodeProjInfo.transitive_dependencies` field.
         xcode_target: Maps to the `XcodeProjInfo.xcode_target` field.

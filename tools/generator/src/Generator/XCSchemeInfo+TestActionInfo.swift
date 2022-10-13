@@ -107,8 +107,8 @@ Expected at least one target in `TestAction.targets`
             let testActionTargetId: TargetID = tuple.0
             let testActionLabel: BazelLabel = tuple.1
             if let testActionTargetEnv: [String: String] = envs[testActionTargetId] {
-               for (key, newValue) in testActionTargetEnv {
-                    if let existingValue: String = env[key] {
+                for (key, newValue) in testActionTargetEnv {
+                    if let existingValue: String = env[key], existingValue != newValue {
                         let errorMessage: String = """
                         ERROR: '\(testActionLabel)' defines a value for '\(key)' ('\(newValue)') that doesn't match the existing value of '\(existingValue)' from another target in the same scheme.
                         """

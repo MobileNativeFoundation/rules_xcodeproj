@@ -97,6 +97,11 @@ A value returned from `compilation_providers.collect_for_{non_,}top_level`.
 A `depset` of target ids (see the `target` `struct`) that this target directly
 depends on.
 """,
+        "envs": """\
+A `depset` of `struct`s with `id` and `env` fields. The `id` field is the
+target id of the target and `env` values
+for the target (if applicable).
+""",
         "extension_infoplists": """\
 A `depset` of `struct`s with 'id' and 'infoplist' fields. The 'id' field is the
 target id of the application extension target. The 'infoplist' field is a `File`
@@ -154,11 +159,6 @@ target, it can still have a non-`None` value for this field.
         "transitive_dependencies": """\
 A `depset` of target ids (see the `target` `struct`) that this target
 transitively depends on.
-""",
-        "envs": """\
-A `depset` of `struct`s with `id` and `env` fields. The `id` field is the
-target id of the target and `env` values
-for the target (if applicable).
 """,
         "xcode_required_targets": """\
 A `depset` of values returned from `xcode_targets.make` for targets that need to
