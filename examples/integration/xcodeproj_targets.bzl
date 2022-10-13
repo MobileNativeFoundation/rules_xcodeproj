@@ -41,13 +41,13 @@ XCODEPROJ_TARGETS = [
         target_environments = ["device", "simulator"],
     ),
     "//iMessageApp",
+    "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests",
     "//macOSApp/Source:macOSApp",
     "//macOSApp/Test/UITests:macOSAppUITests",
     "//tvOSApp/Test/UITests:tvOSAppUITests",
     "//tvOSApp/Test/UnitTests:tvOSAppUnitTests",
     "//watchOSApp/Test/UITests:watchOSAppUITests",
     "//watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests",
-    "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests",
 ]
 
 IOS_BUNDLE_ID = "io.buildbuddy.example"
