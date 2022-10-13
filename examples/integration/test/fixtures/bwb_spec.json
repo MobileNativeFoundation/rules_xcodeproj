@@ -211,6 +211,32 @@
             "t": "g"
         },
         "iMessageApp/Assets.xcassets",
+        "iOSApp/Source/Utils/BUILD",
+        "iOSApp/Test/TestingUtils/BUILD",
+        "iOSApp/Test/TestingUtils/Greeting.swift.stencil",
+        "iOSApp/Test/TestingUtils/Answer.swift.stencil",
+        "iOSApp/Test/TestingUtils/merge.sh",
+        "iOSApp/Test/SwiftUnitTests/BUILD",
+        {
+            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/external/FXPageControl/FXPageControl.swift.modulemap",
+            "t": "g"
+        },
+        {
+            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/iOSApp/Source/Utils/Utils.swift.modulemap",
+            "t": "g"
+        },
+        {
+            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/iOSApp/Test/TestingUtils/TestingUtils.swift.modulemap",
+            "t": "g"
+        },
+        {
+            "_": "build_bazel_rules_apple/apple/testing/DefaultTestBundle.plist",
+            "t": "e"
+        },
+        {
+            "_": "applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/iOSApp/Test/SwiftUnitTests/rules_xcodeproj/iOSAppSwiftUnitTests.__internal__.__test_bundle/Info.plist",
+            "t": "g"
+        },
         "macOSApp/Source/BUILD",
         "macOSApp/third_party/BUILD",
         "macOSApp/third_party/ExampleFramework.framework",
@@ -222,10 +248,6 @@
         "macOSApp/Source/PreviewContent/Preview Assets.xcassets",
         "macOSApp/Source/Assets.xcassets",
         "macOSApp/Test/UITests/BUILD",
-        {
-            "_": "build_bazel_rules_apple/apple/testing/DefaultTestBundle.plist",
-            "t": "e"
-        },
         {
             "_": "applebin_macos-darwin_x86_64-dbg-ST-e4309a660cc1/bin/macOSApp/Test/UITests/rules_xcodeproj/macOSAppUITests.__internal__.__test_bundle/Info.plist",
             "t": "g"
@@ -248,28 +270,6 @@
         "watchOSAppExtension/Test/UnitTests/BUILD",
         {
             "_": "applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32/bin/watchOSAppExtension/Test/UnitTests/rules_xcodeproj/watchOSAppExtensionUnitTests.__internal__.__test_bundle/Info.plist",
-            "t": "g"
-        },
-        "iOSApp/Source/Utils/BUILD",
-        "iOSApp/Test/TestingUtils/BUILD",
-        "iOSApp/Test/TestingUtils/Greeting.swift.stencil",
-        "iOSApp/Test/TestingUtils/Answer.swift.stencil",
-        "iOSApp/Test/TestingUtils/merge.sh",
-        "iOSApp/Test/SwiftUnitTests/BUILD",
-        {
-            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/external/FXPageControl/FXPageControl.swift.modulemap",
-            "t": "g"
-        },
-        {
-            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/iOSApp/Source/Utils/Utils.swift.modulemap",
-            "t": "g"
-        },
-        {
-            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/iOSApp/Test/TestingUtils/TestingUtils.swift.modulemap",
-            "t": "g"
-        },
-        {
-            "_": "applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/iOSApp/Test/SwiftUnitTests/rules_xcodeproj/iOSAppSwiftUnitTests.__internal__.__test_bundle/Info.plist",
             "t": "g"
         },
         "CommandLine/CommandLineToolLib/BUILD",
