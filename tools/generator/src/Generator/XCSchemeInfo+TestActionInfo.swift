@@ -110,7 +110,7 @@ Expected at least one target in `TestAction.targets`
                for (key, newValue) in testActionTargetEnv {
                     if let existingValue: String = env[key] {
                         let errorMessage: String = """
-                        '\(testActionLabel)' defines a value for '\(key)' ('\(newValue)') that doesn't match the existing value of '\(existingValue)' from another target in the same scheme.
+                        ERROR: '\(testActionLabel)' defines a value for '\(key)' ('\(newValue)') that doesn't match the existing value of '\(existingValue)' from another target in the same scheme.
                         """
                         throw UsageError(message: errorMessage)
                     }
