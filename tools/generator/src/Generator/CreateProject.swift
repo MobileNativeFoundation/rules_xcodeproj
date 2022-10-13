@@ -40,10 +40,12 @@ extension Generator {
 
         var buildSettings = project.buildSettings.asDictionary
         buildSettings.merge([
-            "BAZEL_EXTERNAL": "$(PROJECT_DIR)/external",
+            "BAZEL_EXTERNAL": "$(BAZEL_OUTPUT_BASE)/external",
             "BAZEL_INTEGRATION_DIR": "$(INTERNAL_DIR)/bazel",
             "BAZEL_LLDB_INIT": "$(OBJROOT)/bazel.lldbinit",
             "BAZEL_OUT": "$(PROJECT_DIR)/bazel-out",
+            "_BAZEL_OUTPUT_BASE": "$(PROJECT_DIR)/../..",
+            "BAZEL_OUTPUT_BASE": "$(_BAZEL_OUTPUT_BASE:standardizepath)",
             "BAZEL_WORKSPACE_ROOT": "$(SRCROOT)",
             "BUILD_DIR": """
 $(SYMROOT)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
@@ -79,8 +81,6 @@ $(INDEXING_DEPLOYMENT_LOCATION__NO)
             "INTERNAL_DIR": """
 $(PROJECT_FILE_PATH)/\(directories.internalDirectoryName)
 """,
-            "SRCROOT": "$(_SRCROOT:standardizepath)",
-            "_SRCROOT": srcRoot,
             "SCHEME_TARGET_IDS_FILE": """
 $(OBJROOT)/scheme_target_ids
 """,
@@ -92,6 +92,13 @@ $(OBJROOT)/scheme_target_ids
 $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
 """,
         ], uniquingKeysWith: { _, r in r })
+
+        if directories.bazelOut.isRelative {
+            buildSettings["_SRCROOT"] = srcRoot
+            buildSettings["SRCROOT"] = "$(_SRCROOT:standardizepath)"
+        } else {
+            buildSettings["SRCROOT"] = srcRoot
+        }
 
         if buildMode.usesBazelModeBuildScripts {
             buildSettings.merge([
