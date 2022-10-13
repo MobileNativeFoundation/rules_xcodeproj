@@ -101,8 +101,16 @@ Expected at least one target in `TestAction.targets`
         }
         for testActionTargetId in testActionTargetIds {
             if let testActionTargetEnv: [String: String] = envs[testActionTargetId] {
-                env.merge(testActionTargetEnv) { current, _ in
-                    current
+                for (key, value) in testActionTargetEnv {
+                    if let existingValue: String = env[key] {
+                        let errorMessage: String = """
+                        Detected conflicting environment variables:
+                        testActionEnv: \(key) : \(existingValue)
+                        \(testActionTargetId): \(key) : \(value)
+                        """
+                        throw PreconditionError(message: errorMessage)
+                    }
+                    env[key] = value
                 }
             }
         }

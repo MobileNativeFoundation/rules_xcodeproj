@@ -7,6 +7,10 @@ ios_unit_test(
     test_host = "//iOSApp",
     visibility = ["//visibility:public"],
     deps = [":iOSAppObjCUnitTests.library"],
+    env = {
+        "IOSAPPOBJCUNITTESTS": "CUSTOM_ENV_VALUE",
+        "CONFLICTING_ENV_VAR": "IOSAPPOBJCUNITTESTS_CONFLICT"
+    }
 )
 
 objc_library(

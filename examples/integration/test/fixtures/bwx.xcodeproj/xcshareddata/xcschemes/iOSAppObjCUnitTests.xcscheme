@@ -14,10 +14,10 @@
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "D2B147BDA8E8FC10D91B53BB"
-                     BuildableName = "iOSAppSwiftUnitTests.xctest"
-                     BlueprintName = "iOSAppSwiftUnitTests"
-                     ReferencedContainer = "container:../../../../../../test/fixtures/bwb.xcodeproj">
+                     BlueprintIdentifier = "3CE6AD21A6E119583FB633F7"
+                     BuildableName = "iOSAppObjCUnitTests.xctest"
+                     BlueprintName = "iOSAppObjCUnitTests"
+                     ReferencedContainer = "container:../../../../../../test/fixtures/bwx.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
             </ActionContent>
@@ -25,31 +25,15 @@
          <ExecutionAction
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
-               title = "Set Bazel Build Output Groups for iOSAppSwiftUnitTests"
+               title = "Set Bazel Build Output Groups for iOSAppObjCUnitTests"
                scriptText = "echo &quot;$BAZEL_LABEL,$BAZEL_TARGET_ID&quot; &gt;&gt; &quot;$SCHEME_TARGET_IDS_FILE&quot;&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "D2B147BDA8E8FC10D91B53BB"
-                     BuildableName = "iOSAppSwiftUnitTests.xctest"
-                     BlueprintName = "iOSAppSwiftUnitTests"
-                     ReferencedContainer = "container:../../../../../../test/fixtures/bwb.xcodeproj">
-                  </BuildableReference>
-               </EnvironmentBuildable>
-            </ActionContent>
-         </ExecutionAction>
-         <ExecutionAction
-            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
-            <ActionContent
-               title = "Symlink Toolchain /usr/lib directory"
-               scriptText = "if [[ &quot;${ENABLE_ADDRESS_SANITIZER:-}&quot; == &quot;YES&quot; || \&#10;      &quot;${ENABLE_THREAD_SANITIZER:-}&quot; == &quot;YES&quot; || \&#10;      &quot;${ENABLE_UNDEFINED_BEHAVIOR_SANITIZER:-}&quot; == &quot;YES&quot; ]]&#10;then&#10;    # TODO: Support custom toolchains once clang.sh supports them&#10;    cd &quot;$INTERNAL_DIR&quot; || exit 1&#10;    ln -sfF &quot;$DEVELOPER_DIR/Toolchains/XcodeDefault.xctoolchain/usr/lib&quot; lib&#10;fi">
-               <EnvironmentBuildable>
-                  <BuildableReference
-                     BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "D2B147BDA8E8FC10D91B53BB"
-                     BuildableName = "iOSAppSwiftUnitTests.xctest"
-                     BlueprintName = "iOSAppSwiftUnitTests"
-                     ReferencedContainer = "container:../../../../../../test/fixtures/bwb.xcodeproj">
+                     BlueprintIdentifier = "3CE6AD21A6E119583FB633F7"
+                     BuildableName = "iOSAppObjCUnitTests.xctest"
+                     BlueprintName = "iOSAppObjCUnitTests"
+                     ReferencedContainer = "container:../../../../../../test/fixtures/bwx.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
             </ActionContent>
@@ -64,10 +48,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D2B147BDA8E8FC10D91B53BB"
-               BuildableName = "iOSAppSwiftUnitTests.xctest"
-               BlueprintName = "iOSAppSwiftUnitTests"
-               ReferencedContainer = "container:../../../../../../test/fixtures/bwb.xcodeproj">
+               BlueprintIdentifier = "3CE6AD21A6E119583FB633F7"
+               BuildableName = "iOSAppObjCUnitTests.xctest"
+               BlueprintName = "iOSAppObjCUnitTests"
+               ReferencedContainer = "container:../../../../../../test/fixtures/bwx.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -81,10 +65,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D2B147BDA8E8FC10D91B53BB"
-            BuildableName = "iOSAppSwiftUnitTests.xctest"
-            BlueprintName = "iOSAppSwiftUnitTests"
-            ReferencedContainer = "container:../../../../../../test/fixtures/bwb.xcodeproj">
+            BlueprintIdentifier = "3CE6AD21A6E119583FB633F7"
+            BuildableName = "iOSAppObjCUnitTests.xctest"
+            BlueprintName = "iOSAppObjCUnitTests"
+            ReferencedContainer = "container:../../../../../../test/fixtures/bwx.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <Testables>
@@ -92,27 +76,17 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D2B147BDA8E8FC10D91B53BB"
-               BuildableName = "iOSAppSwiftUnitTests.xctest"
-               BlueprintName = "iOSAppSwiftUnitTests"
-               ReferencedContainer = "container:../../../../../../test/fixtures/bwb.xcodeproj">
+               BlueprintIdentifier = "3CE6AD21A6E119583FB633F7"
+               BuildableName = "iOSAppObjCUnitTests.xctest"
+               BlueprintName = "iOSAppObjCUnitTests"
+               ReferencedContainer = "container:../../../../../../test/fixtures/bwx.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
       <EnvironmentVariables>
          <EnvironmentVariable
-            key = "BUILD_WORKING_DIRECTORY"
-            value = "$(BUILT_PRODUCTS_DIR)"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-         <EnvironmentVariable
-            key = "BUILD_WORKSPACE_DIRECTORY"
-            value = "$(BUILD_WORKSPACE_DIRECTORY)"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-         <EnvironmentVariable
             key = "CONFLICTING_ENV_VAR"
-            value = "IOSAPPSWIFTUNITTESTS_CONFLICT"
+            value = "IOSAPPOBJCUNITTESTS_CONFLICT"
             isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable
@@ -121,7 +95,7 @@
             isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable
-            key = "IOSAPPSWIFTUNITTESTS"
+            key = "IOSAPPOBJCUNITTESTS"
             value = "CUSTOM_ENV_VALUE"
             isEnabled = "YES">
          </EnvironmentVariable>
@@ -141,24 +115,12 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D2B147BDA8E8FC10D91B53BB"
-            BuildableName = "iOSAppSwiftUnitTests.xctest"
-            BlueprintName = "iOSAppSwiftUnitTests"
-            ReferencedContainer = "container:../../../../../../test/fixtures/bwb.xcodeproj">
+            BlueprintIdentifier = "3CE6AD21A6E119583FB633F7"
+            BuildableName = "iOSAppObjCUnitTests.xctest"
+            BlueprintName = "iOSAppObjCUnitTests"
+            ReferencedContainer = "container:../../../../../../test/fixtures/bwx.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
-      <EnvironmentVariables>
-         <EnvironmentVariable
-            key = "BUILD_WORKING_DIRECTORY"
-            value = "$(BUILT_PRODUCTS_DIR)"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-         <EnvironmentVariable
-            key = "BUILD_WORKSPACE_DIRECTORY"
-            value = "$(BUILD_WORKSPACE_DIRECTORY)"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-      </EnvironmentVariables>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Debug"

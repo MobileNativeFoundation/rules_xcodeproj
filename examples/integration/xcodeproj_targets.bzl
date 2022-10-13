@@ -40,6 +40,7 @@ XCODEPROJ_TARGETS = [
         ],
         target_environments = ["device", "simulator"],
     ),
+    "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests",
     "//iMessageApp",
     "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests",
     "//macOSApp/Source:macOSApp",
