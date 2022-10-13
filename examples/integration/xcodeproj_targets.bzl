@@ -47,6 +47,7 @@ XCODEPROJ_TARGETS = [
     "//tvOSApp/Test/UnitTests:tvOSAppUnitTests",
     "//watchOSApp/Test/UITests:watchOSAppUITests",
     "//watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests",
+    "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests"
 ]
 
 IOS_BUNDLE_ID = "io.buildbuddy.example"
