@@ -129,7 +129,7 @@ Expected at least one target in `TestAction.targets`
             diagnostics: XCSchemeInfo.DiagnosticsInfo(
                 diagnostics: testAction.diagnostics
             ),
-            env: testActionEnv,
+            env: env,
             expandVariablesBasedOn: try targetResolver.targetInfo(
                 targetID: try targetIDsByLabel.value(
                     for: expandVariablesBasedOn,
