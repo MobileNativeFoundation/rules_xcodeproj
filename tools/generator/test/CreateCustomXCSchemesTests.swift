@@ -28,22 +28,19 @@ extension CreateCustomXCSchemesTests {
     }
 
     func test_createCustomXCSchemes_withCustomSchemes_testEnvOverrides() throws {
-        XCTAssertThrowsError(try Generator.createCustomXCSchemes(
-            schemes: [schemeC],
-            buildMode: .bazel,
-            targetResolver: targetResolver,
-            runnerLabel: runnerLabel,
-            envs: ["B 2": [
-                "B_2_SCHEME_VAR": "INITIAL",
-                "OTHER_ENV_VAR": "INITIAL"
-            ]]
-        )) { error in
-            if case let UsageError(errorMessage) = $0 {
-                XCTAssertEqual(errorMessage, "ERROR Found environment variables with conflicting values ('INITIAL' and 'OVERRIDE')")
-            } else {
-                XCTFail("Invalid error")
-            }
-        }
+        assertUsageError(
+            try Generator.createCustomXCSchemes(
+                schemes: [schemeC],
+                buildMode: .bazel,
+                targetResolver: targetResolver,
+                runnerLabel: runnerLabel,
+                envs: ["B 2": [
+                    "B_2_SCHEME_VAR": "INITIAL",
+                    "OTHER_ENV_VAR": "INITIAL"
+                ]]
+            ),
+            expectedMessage: "'@//some/package:B' defines a value for 'B_2_SCHEME_VAR' ('INITIAL') that doesn't match the existing value of 'OVERRIDE' from another target in the same scheme."
+        )
     }
 }
 
@@ -85,4 +82,32 @@ class CreateCustomXCSchemesTests: XCTestCase {
             env: ["B_2_SCHEME_VAR": "OVERRIDE"]
         )
     )
+}
+
+extension CreateCustomXCSchemesTests {
+    func assertUsageError<T>(
+        _ closure: @autoclosure () throws -> T,
+        expectedMessage: String,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) {
+        var thrown: Error?
+        XCTAssertThrowsError(try closure(), file: file, line: line) {
+            thrown = $0
+        }
+        guard let usageError = thrown as? UsageError else {
+            XCTFail(
+                "Expected `UsageError`, but was \(String(describing: thrown)).",
+                file: file,
+                line: line
+            )
+            return
+        }
+        XCTAssertEqual(
+            usageError.message,
+            expectedMessage,
+            file: file,
+            line: line
+        )
+    }
 }
