@@ -13,6 +13,44 @@
     },
     "configuration": "darwin_x86_64-dbg-ST-14942f8a2d44",
     "custom_xcode_schemes": [],
+    "envs": [
+        "//CommandLine/Tests:CommandLineToolTests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-ST-c0ef0a258197",
+        {
+            "INTEGRATION_TEST_ENV_VAR": "TRUE"
+        },
+        "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56",
+        {
+            "CONFLICTING_ENV_VAR": "IOSAPPOBJCUNITTESTS_CONFLICT",
+            "INTEGRATION_TEST_ENV_VAR": "TRUE",
+            "IOSAPPOBJCUNITTESTS": "CUSTOM_ENV_VALUE"
+        },
+        "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56",
+        {
+            "CONFLICTING_ENV_VAR": "IOSAPPSWIFTUNITTESTS_CONFLICT",
+            "INTEGRATION_TEST_ENV_VAR": "TRUE",
+            "IOSAPPSWIFTUNITTESTS": "CUSTOM_ENV_VALUE"
+        },
+        "//macOSApp/Test/UITests:macOSAppUITests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-ST-e4309a660cc1",
+        {
+            "INTEGRATION_TEST_ENV_VAR": "TRUE"
+        },
+        "//tvOSApp/Test/UITests:tvOSAppUITests.__internal__.__test_bundle applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2",
+        {
+            "INTEGRATION_TEST_ENV_VAR": "TRUE"
+        },
+        "//tvOSApp/Test/UnitTests:tvOSAppUnitTests.__internal__.__test_bundle applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2",
+        {
+            "INTEGRATION_TEST_ENV_VAR": "TRUE"
+        },
+        "//watchOSApp/Test/UITests:watchOSAppUITests.__internal__.__test_bundle applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32",
+        {
+            "INTEGRATION_TEST_ENV_VAR": "TRUE"
+        },
+        "//watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests.__internal__.__test_bundle applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32",
+        {
+            "INTEGRATION_TEST_ENV_VAR": "TRUE"
+        }
+    ],
     "extra_files": [
         "AppClip/BUILD",
         {
@@ -12814,44 +12852,6 @@
                     }
                 ]
             }
-        }
-    ],
-    "envs": [
-        "//CommandLine/Tests:CommandLineToolTests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-ST-c0ef0a258197",
-        {
-            "INTEGRATION_TEST_ENV_VAR": "TRUE"
-        },
-        "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56",
-        {
-            "CONFLICTING_ENV_VAR": "IOSAPPOBJCUNITTESTS_CONFLICT",
-            "INTEGRATION_TEST_ENV_VAR": "TRUE",
-            "IOSAPPOBJCUNITTESTS": "CUSTOM_ENV_VALUE"
-        },
-        "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56",
-        {
-            "CONFLICTING_ENV_VAR": "IOSAPPSWIFTUNITTESTS_CONFLICT",
-            "INTEGRATION_TEST_ENV_VAR": "TRUE",
-            "IOSAPPSWIFTUNITTESTS": "CUSTOM_ENV_VALUE"
-        },
-        "//macOSApp/Test/UITests:macOSAppUITests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-ST-e4309a660cc1",
-        {
-            "INTEGRATION_TEST_ENV_VAR": "TRUE"
-        },
-        "//tvOSApp/Test/UITests:tvOSAppUITests.__internal__.__test_bundle applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2",
-        {
-            "INTEGRATION_TEST_ENV_VAR": "TRUE"
-        },
-        "//tvOSApp/Test/UnitTests:tvOSAppUnitTests.__internal__.__test_bundle applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2",
-        {
-            "INTEGRATION_TEST_ENV_VAR": "TRUE"
-        },
-        "//watchOSApp/Test/UITests:watchOSAppUITests.__internal__.__test_bundle applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32",
-        {
-            "INTEGRATION_TEST_ENV_VAR": "TRUE"
-        },
-        "//watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests.__internal__.__test_bundle applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32",
-        {
-            "INTEGRATION_TEST_ENV_VAR": "TRUE"
         }
     ]
 }

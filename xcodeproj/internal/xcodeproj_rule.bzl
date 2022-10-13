@@ -526,7 +526,7 @@ def _write_json_spec(
 }},\
 "configuration":"{configuration}",\
 "custom_xcode_schemes":{custom_xcode_schemes},\
-"envs": {envs}\
+"envs": {envs},\
 "extra_files":{extra_files},\
 "force_bazel_dependencies":{force_bazel_dependencies},\
 "generator_label":"{generator_label}",\
@@ -539,7 +539,7 @@ def _write_json_spec(
 "scheme_autogeneration_mode":"{scheme_autogeneration_mode}",\
 "target_hosts":{target_hosts},\
 "target_merges":{target_merges},\
-"targets":{targets},\
+"targets":{targets}\
 }}
 """.format(
         bazel_config = config,

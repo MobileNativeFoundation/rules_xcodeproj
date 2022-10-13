@@ -96,16 +96,25 @@ Expected at least one target in `TestAction.targets`
 """)
 
         var env: [String: String] = testAction.env
-        let testActionTargetIds: [TargetID] = testAction.targets.compactMap { label in
-            targetIDsByLabel[label]
+        let testActionTargetIdsLabels: [(TargetID, BazelLabel)] = testAction.targets.compactMap { label in
+            guard let targetId: TargetID = targetIDsByLabel[label]
+            else {
+                return nil
+            }
+            return (targetId, label)
         }
-        for testActionTargetId in testActionTargetIds {
+        for tuple in testActionTargetIdsLabels {
+            let testActionTargetId: TargetID = tuple.0
+            let testActionLabel: BazelLabel = tuple.1
             if let testActionTargetEnv: [String: String] = envs[testActionTargetId] {
-                env.merging(testActionTargetEnv) { currentValue, incomingValue
-                    if currentValue != incomingValue {
-                        throw UsageError("ERROR Found environment variables with conflicting values ('\(currentValue)' and '\(incomingValue)')")
+               for (key, newValue) in testActionTargetEnv {
+                    if let existingValue: String = env[key] {
+                        let errorMessage: String = """
+                        '\(testActionLabel)' defines a value for '\(key)' ('\(newValue)') that doesn't match the existing value of '\(existingValue)' from another target in the same scheme.
+                        """
+                        throw UsageError(message: errorMessage)
                     }
-                    currentValue
+                    env[key] = newValue
                 }
             }
         }
@@ -124,7 +133,7 @@ Expected at least one target in `TestAction.targets`
             diagnostics: XCSchemeInfo.DiagnosticsInfo(
                 diagnostics: testAction.diagnostics
             ),
-            env: testActionEnv,
+            env: env,
             expandVariablesBasedOn: try targetResolver.targetInfo(
                 targetID: try targetIDsByLabel.value(
                     for: expandVariablesBasedOn,
