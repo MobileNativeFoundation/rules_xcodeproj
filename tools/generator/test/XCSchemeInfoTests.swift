@@ -186,7 +186,7 @@ extension XCSchemeInfoTests {
             testActionInfo: try .init(
                 buildConfigurationName: .defaultBuildConfigurationName,
                 targetInfos: [try targetResolver.targetInfo(targetID: "B 2")],
-                expandVariablesBasedOn: .target(try targetResolver.targetInfo(targetID: "B 2"))
+                expandVariablesBasedOn: try targetResolver.targetInfo(targetID: "B 2")
             ),
             launchActionInfo: try .init(
                 buildConfigurationName: .defaultBuildConfigurationName,

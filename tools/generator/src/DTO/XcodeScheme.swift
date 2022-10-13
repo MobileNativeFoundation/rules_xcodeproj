@@ -123,7 +123,7 @@ disabled, but the target is referenced in the scheme's \(keyPath.actionType) act
 extension XcodeScheme {
     struct PrePostAction: Equatable, Decodable {
         let name: String
-        let expandVariablesBasedOn: VariableExpansionContext?
+        let expandVariablesBasedOn: BazelLabel?
         let script: String
     }
 }
@@ -193,49 +193,6 @@ Found a duplicate label \(label) in provided `XcodeScheme.BuildTarget` values.
     }
 }
 
-// MARK: VariableExpansionContext
-
-extension XcodeScheme {
-    enum VariableExpansionContext: Equatable, Decodable {
-        case none
-        case target(BazelLabel)
-    }
-}
-
-extension XcodeScheme.VariableExpansionContext {
-    var targetLabel: BazelLabel? {
-        guard case let .target(targetLabel) = self else {
-            return nil
-        }
-        return targetLabel
-    }
-}
-
-extension XcodeScheme.VariableExpansionContext: RawRepresentable {
-    init?(rawValue: String) {
-        switch rawValue {
-        case "":
-            return nil
-        case "none":
-            self = .none
-        default:
-            guard let label = try? BazelLabel(rawValue) else {
-                return nil
-            }
-            self = .target(label)
-        }
-    }
-
-    var rawValue: String {
-        switch self {
-        case .none:
-            return "none"
-        case let .target(label):
-            return "\(label)"
-        }
-    }
-}
-
 // MARK: TestAction
 
 extension XcodeScheme {
@@ -245,7 +202,7 @@ extension XcodeScheme {
         let args: [String]
         let diagnostics: Diagnostics
         let env: [String: String]
-        let expandVariablesBasedOn: VariableExpansionContext?
+        let expandVariablesBasedOn: BazelLabel?
 
         init<Targets: Sequence>(
             targets: Targets,
@@ -253,7 +210,7 @@ extension XcodeScheme {
             args: [String] = [],
             diagnostics: Diagnostics = .init(),
             env: [String: String] = [:],
-            expandVariablesBasedOn: VariableExpansionContext? = nil
+            expandVariablesBasedOn: BazelLabel? = nil
         ) throws where Targets.Element == BazelLabel {
             self.targets = Set(targets)
             self.buildConfigurationName = buildConfigurationName
@@ -300,7 +257,7 @@ extension XcodeScheme.TestAction: Decodable {
             .decodeIfPresent([String: String].self, forKey: .env) ?? [:]
         expandVariablesBasedOn = try container
             .decodeIfPresent(
-                XcodeScheme.VariableExpansionContext.self,
+                BazelLabel.self,
                 forKey: .expandVariablesBasedOn
             )
     }

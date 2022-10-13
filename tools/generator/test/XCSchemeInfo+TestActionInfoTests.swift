@@ -103,7 +103,7 @@ extension XCSchemeInfoTestActionInfoTests {
         let expected = try XCSchemeInfo.TestActionInfo(
             buildConfigurationName: .defaultBuildConfigurationName,
             targetInfos: [testTargetInfo],
-            expandVariablesBasedOn: .target(testTargetInfo)
+            expandVariablesBasedOn: testTargetInfo
         )
         XCTAssertEqual(actual, expected)
     }

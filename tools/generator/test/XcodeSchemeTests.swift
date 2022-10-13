@@ -32,41 +32,6 @@ No `XcodeScheme.BuildTarget` values were provided to `XcodeScheme.BuildAction`.
     }
 }
 
-// MARK: `XcodeScheme.VariableExpansionContext` Tests
-
-extension XcodeSchemeTests {
-    func test_VariableExpansionContext_rawValue_noneString() throws {
-        let context = XcodeScheme.VariableExpansionContext(rawValue: "none")
-        XCTAssertEqual(context, XcodeScheme.VariableExpansionContext.none)
-    }
-
-    func test_VariableExpansionContext_rawValue_emptyString() throws {
-        let context = XcodeScheme.VariableExpansionContext(rawValue: "")
-        XCTAssertNil(context)
-    }
-
-    func test_VariableExpansionContext_rawValue_labelString() throws {
-        let labelString = "@//path/to/target:target"
-        let context = XcodeScheme.VariableExpansionContext(
-            rawValue: labelString
-        )
-        XCTAssertEqual(context, XcodeScheme.VariableExpansionContext.target(
-            try BazelLabel(labelString)
-        ))
-    }
-
-    func test_VariableExpansionContext_target() {
-        let targetLabel = BazelLabel("//path/to/target:target")
-        let context = XcodeScheme.VariableExpansionContext.target(targetLabel)
-        XCTAssertEqual(context.targetLabel, targetLabel)
-    }
-    
-    func test_VariableExpansionContext_noTarget() {
-        let context = XcodeScheme.VariableExpansionContext.none
-        XCTAssertNil(context.targetLabel)
-    }
-}
-
 // MARK: `TestAction.init` Tests
 
 extension XcodeSchemeTests {

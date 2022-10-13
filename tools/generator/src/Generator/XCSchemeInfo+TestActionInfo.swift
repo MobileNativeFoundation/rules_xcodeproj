@@ -7,7 +7,7 @@ extension XCSchemeInfo {
         let args: [String]
         let diagnostics: DiagnosticsInfo
         let env: [String: String]
-        let expandVariablesBasedOn: VariableExpansionContextInfo
+        let expandVariablesBasedOn: TargetInfo?
 
         /// The primary initializer.
         init<TargetInfos: Sequence>(
@@ -16,8 +16,7 @@ extension XCSchemeInfo {
             args: [String] = [],
             diagnostics: DiagnosticsInfo = .init(diagnostics: .init()),
             env: [String: String] = [:],
-            expandVariablesBasedOn: XCSchemeInfo.VariableExpansionContextInfo =
-                .none
+            expandVariablesBasedOn: TargetInfo? = nil
         ) throws where TargetInfos.Element == XCSchemeInfo.TargetInfo {
             self.buildConfigurationName = buildConfigurationName
             self.targetInfos = Set(targetInfos)
@@ -52,8 +51,17 @@ extension XCSchemeInfo.TestActionInfo {
         topLevelTargetInfos: TargetInfos
     ) throws where TargetInfos.Element == XCSchemeInfo.TargetInfo {
         guard let original = testActionInfo else {
-          return nil
+            return nil
         }
+        
+        var expandVariablesBasedOn: XCSchemeInfo.TargetInfo? = nil
+        if let originalExpandVariablesBasedOn = original.expandVariablesBasedOn {
+            expandVariablesBasedOn = XCSchemeInfo.TargetInfo(
+                resolveHostFor: originalExpandVariablesBasedOn,
+                topLevelTargetInfos: topLevelTargetInfos
+            )
+        }
+
         try self.init(
             buildConfigurationName: original.buildConfigurationName,
             targetInfos: original.targetInfos.map {
@@ -65,10 +73,7 @@ extension XCSchemeInfo.TestActionInfo {
             args: original.args,
             diagnostics: original.diagnostics,
             env: original.env,
-            expandVariablesBasedOn: .init(
-                resolveHostsFor: original.expandVariablesBasedOn,
-                topLevelTargetInfos: topLevelTargetInfos
-            )
+            expandVariablesBasedOn: expandVariablesBasedOn
         )
     }
 }
@@ -85,12 +90,10 @@ extension XCSchemeInfo.TestActionInfo {
           return nil
         }
         let expandVariablesBasedOn = try testAction.expandVariablesBasedOn ??
-            .target(
-                testAction.targets.sortedLocalizedStandard().first.orThrow("""
+            testAction.targets.sortedLocalizedStandard().first.orThrow("""
 Expected at least one target in `TestAction.targets`
 """)
-            )
-
+        
         try self.init(
             buildConfigurationName: testAction.buildConfigurationName,
             targetInfos: try testAction.targets.map { label in
@@ -106,10 +109,11 @@ Expected at least one target in `TestAction.targets`
                 diagnostics: testAction.diagnostics
             ),
             env: testAction.env,
-            expandVariablesBasedOn: try .init(
-                context: expandVariablesBasedOn,
-                targetResolver: targetResolver,
-                targetIDsByLabel: targetIDsByLabel
+            expandVariablesBasedOn: try targetResolver.targetInfo(
+                targetID: try targetIDsByLabel.value(
+                    for: expandVariablesBasedOn,
+                    context: "creating a `VariableExpansionContextInfo`"
+                )
             )
         )
     }
