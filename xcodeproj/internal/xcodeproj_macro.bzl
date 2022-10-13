@@ -124,8 +124,22 @@ def xcodeproj(
             `target_environment`, even if they aren't iOS targets.
         post_build: The text of a script that will be run after the build. For
             example: `./post-build.sh`, `"$SRCROOT/post-build.sh"`.
+
+            The script will be run in Bazel's execution root, so you probably
+            want to change to the `$SRCROOT` directory in the script.
+
+            Currently this script will be run as part of Index Build. If you
+            don't want that (which is probably the case), you should add a check
+            to ensure `$ACTION == build`.
         pre_build: The text of a script that will be run before the build. For
             example: `./pre-build.sh`, `"$SRCROOT/pre-build.sh"`.
+
+            The script will be run in Bazel's execution root, so you probably
+            want to change to the `$SRCROOT` directory in the script.
+
+            Currently this script will be run as part of Index Build. If you
+            don't want that (which is probably the case), you should add a check
+            to ensure `$ACTION == build`.
         project_name: Optional. The name to use for the `.xcodeproj` file. If
             not specified, the value of the `name` argument is used.
         scheme_autogeneration_mode: Optional. Specifies how Xcode schemes are
