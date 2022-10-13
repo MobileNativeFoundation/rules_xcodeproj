@@ -33,9 +33,11 @@ final class CreateProjectTests: XCTestCase {
         let debugConfiguration = XCBuildConfiguration(
             name: "Debug",
             buildSettings: project.buildSettings.asDictionary.merging([
-                "BAZEL_EXTERNAL": "$(PROJECT_DIR)/external",
+                "BAZEL_EXTERNAL": "$(BAZEL_OUTPUT_BASE)/external",
                 "BAZEL_LLDB_INIT": "$(OBJROOT)/bazel.lldbinit",
                 "BAZEL_OUT": "$(PROJECT_DIR)/bazel-out",
+                "_BAZEL_OUTPUT_BASE": "$(PROJECT_DIR)/../..",
+                "BAZEL_OUTPUT_BASE": "$(_BAZEL_OUTPUT_BASE:standardizepath)",
                 "BAZEL_WORKSPACE_ROOT": "$(SRCROOT)",
                 "BAZEL_INTEGRATION_DIR": "$(INTERNAL_DIR)/bazel",
                 "BUILD_WORKSPACE_DIRECTORY": "$(SRCROOT)",
@@ -72,8 +74,7 @@ $(INDEXING_DEPLOYMENT_LOCATION__NO)
                 "SCHEME_TARGET_IDS_FILE": """
 $(OBJROOT)/scheme_target_ids
 """,
-                "_SRCROOT": directories.workspace.string,
-                "SRCROOT": "$(_SRCROOT:standardizepath)",
+                "SRCROOT": directories.workspace.string,
                 "SUPPORTS_MACCATALYST": false,
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "TARGET_TEMP_DIR": """
@@ -149,9 +150,11 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
         let debugConfiguration = XCBuildConfiguration(
             name: "Debug",
             buildSettings: project.buildSettings.asDictionary.merging([
-                "BAZEL_EXTERNAL": "$(PROJECT_DIR)/external",
+                "BAZEL_EXTERNAL": "$(BAZEL_OUTPUT_BASE)/external",
                 "BAZEL_LLDB_INIT": "$(OBJROOT)/bazel.lldbinit",
                 "BAZEL_OUT": "$(PROJECT_DIR)/bazel-out",
+                "_BAZEL_OUTPUT_BASE": "$(PROJECT_DIR)/../..",
+                "BAZEL_OUTPUT_BASE": "$(_BAZEL_OUTPUT_BASE:standardizepath)",
                 "BAZEL_WORKSPACE_ROOT": "$(SRCROOT)",
                 "BUILD_DIR": """
 $(SYMROOT)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
@@ -194,8 +197,7 @@ $(INDEXING_DEPLOYMENT_LOCATION__NO)
                 "SCHEME_TARGET_IDS_FILE": """
 $(OBJROOT)/scheme_target_ids
 """,
-                "_SRCROOT": directories.workspace.string,
-                "SRCROOT": "$(_SRCROOT:standardizepath)",
+                "SRCROOT": directories.workspace.string,
                 "SUPPORTS_MACCATALYST": false,
                 "SWIFT_EXEC": "$(BAZEL_INTEGRATION_DIR)/swiftc",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
