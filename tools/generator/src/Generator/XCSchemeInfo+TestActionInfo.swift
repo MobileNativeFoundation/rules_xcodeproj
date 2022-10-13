@@ -51,8 +51,17 @@ extension XCSchemeInfo.TestActionInfo {
         topLevelTargetInfos: TargetInfos
     ) throws where TargetInfos.Element == XCSchemeInfo.TargetInfo {
         guard let original = testActionInfo else {
-          return nil
+            return nil
         }
+        
+        var expandVariablesBasedOn: XCSchemeInfo.TargetInfo? = nil
+        if let originalExpandVariablesBasedOn = original.expandVariablesBasedOn {
+            expandVariablesBasedOn = XCSchemeInfo.TargetInfo(
+                resolveHostFor: originalExpandVariablesBasedOn,
+                topLevelTargetInfos: topLevelTargetInfos
+            )
+        }
+
         try self.init(
             buildConfigurationName: original.buildConfigurationName,
             targetInfos: original.targetInfos.map {
@@ -64,10 +73,7 @@ extension XCSchemeInfo.TestActionInfo {
             args: original.args,
             diagnostics: original.diagnostics,
             env: original.env,
-            expandVariablesBasedOn: try? .init(
-                resolveHostFor: original.expandVariablesBasedOn.orThrow(),
-                topLevelTargetInfos: topLevelTargetInfos
-            )
+            expandVariablesBasedOn: expandVariablesBasedOn
         )
     }
 }

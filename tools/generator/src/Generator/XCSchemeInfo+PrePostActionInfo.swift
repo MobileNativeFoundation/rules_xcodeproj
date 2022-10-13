@@ -54,10 +54,14 @@ extension Sequence where Element == XCSchemeInfo.PrePostActionInfo {
     ) throws -> [XCSchemeInfo.PrePostActionInfo]
     where TargetInfos.Element == XCSchemeInfo.TargetInfo {
         map { action in
-            XCSchemeInfo.PrePostActionInfo(
+            guard let resolveHostFor = action.expandVariablesBasedOn else {
+                return action
+            }
+            
+            return XCSchemeInfo.PrePostActionInfo(
                 name: action.name,
-                expandVariablesBasedOn: try? .init(
-                    resolveHostFor: action.expandVariablesBasedOn.orThrow(),
+                expandVariablesBasedOn: .init(
+                    resolveHostFor: resolveHostFor,
                     topLevelTargetInfos: topLevelTargetInfos
                 ),
                 script: action.script
