@@ -1,6 +1,7 @@
 load(
     "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:defs.bzl",
     "xcodeproj",
+    "xcode_schemes"
 )
 load(
     ":xcodeproj_targets.bzl",
@@ -23,4 +24,17 @@ xcodeproj(
     tags = ["manual"],
     top_level_targets = XCODEPROJ_TARGETS,
     unfocused_targets = UNFOCUSED_TARGETS,
+    schemes = [
+        xcode_schemes.scheme(
+            name = "iOSAppUnitTests_Scheme",
+            test_action = xcode_schemes.test_action(
+                targets = [
+                    "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests",
+                ],
+                env = {
+                    "IOSAPPSWIFTUNITTESTS_CUSTOMSCHEME": "TRUE"
+                }
+            ),
+        ),
+    ]
 )
