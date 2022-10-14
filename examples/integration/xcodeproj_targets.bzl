@@ -4,6 +4,7 @@ load(
     "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:defs.bzl",
     "top_level_target",
     "top_level_targets",
+    "xcode_schemes"
 )
 
 CONFIG = "rules_xcodeproj_integration"
@@ -57,3 +58,19 @@ TEAMID = "V82V4GQZXM"
 APP_CLIP_BUNDLE_ID = "{}.app-clip".format(IOS_BUNDLE_ID)
 TVOS_BUNDLE_ID = IOS_BUNDLE_ID
 WATCHOS_BUNDLE_ID = "{}.watch".format(IOS_BUNDLE_ID)
+
+def get_xcode_schemes():
+    return [
+        xcode_schemes.scheme(
+            name = "iOSAppUnitTests_Scheme",
+            test_action = xcode_schemes.test_action(
+                env = {
+                    "IOSAPPSWIFTUNITTESTS_CUSTOMSCHEMEVAR": "TRUE",
+                },
+                targets = [
+                    "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests",
+                    "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests"
+                ],
+            ),
+        ),
+    ]

@@ -22,7 +22,7 @@
                 "build_configuration_name": "Debug",
                 "diagnostics": null,
                 "env": {
-                    "IOSAPPSWIFTUNITTESTS_CUSTOMSCHEME": "TRUE"
+                    "IOSAPPSWIFTUNITTESTS_CUSTOMSCHEMEVAR": "TRUE"
                 },
                 "expand_variables_based_on": null,
                 "targets": [
@@ -40,12 +40,12 @@
         "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56",
         {
             "INTEGRATION_TEST_ENV_VAR": "TRUE",
-            "IOSAPPOBJCUNITTESTS": "CUSTOM_ENV_VALUE"
+            "IOS_APP_UNIT_TESTS": "CUSTOM_ENV_VALUE"
         },
         "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56",
         {
             "INTEGRATION_TEST_ENV_VAR": "TRUE",
-            "IOSAPPSWIFTUNITTESTS": "CUSTOM_ENV_VALUE"
+            "IOS_APP_UNIT_TESTS": "CUSTOM_ENV_VALUE"
         },
         "//macOSApp/Test/UITests:macOSAppUITests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-ST-e4309a660cc1",
         {

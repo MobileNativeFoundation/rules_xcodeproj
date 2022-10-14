@@ -156,17 +156,12 @@
             isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable
-            key = "IOSAPPOBJCUNITTESTS"
+            key = "IOS_APP_UNIT_TESTS"
             value = "CUSTOM_ENV_VALUE"
             isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable
-            key = "IOSAPPSWIFTUNITTESTS"
-            value = "CUSTOM_ENV_VALUE"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-         <EnvironmentVariable
-            key = "IOSAPPSWIFTUNITTESTS_CUSTOMSCHEME"
+            key = "IOSAPPSWIFTUNITTESTS_CUSTOMSCHEMEVAR"
             value = "TRUE"
             isEnabled = "YES">
          </EnvironmentVariable>

@@ -4,7 +4,7 @@ ios_unit_test(
     name = "iOSAppObjCUnitTests",
     bundle_id = "io.buildbuddy.example.objctests",
     env = {
-        "IOSAPPOBJCUNITTESTS": "CUSTOM_ENV_VALUE",
+        "IOS_APP_UNIT_TESTS": "CUSTOM_ENV_VALUE",
     },
     minimum_os_version = "15.0",
     test_host = "//iOSApp",
