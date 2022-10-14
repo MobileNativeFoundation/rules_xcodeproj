@@ -4,7 +4,7 @@ load(
     "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:defs.bzl",
     "top_level_target",
     "top_level_targets",
-    "xcode_schemes"
+    "xcode_schemes",
 )
 
 CONFIG = "rules_xcodeproj_integration"
@@ -69,7 +69,7 @@ def get_xcode_schemes():
                 },
                 targets = [
                     "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests",
-                    "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests"
+                    "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests",
                 ],
             ),
         ),

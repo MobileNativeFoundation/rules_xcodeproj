@@ -15,7 +15,7 @@ load(
     "EXTRA_FILES",
     "UNFOCUSED_TARGETS",
     "XCODEPROJ_TARGETS",
-    "get_xcode_schemes"
+    "get_xcode_schemes",
 )
 
 xcodeproj_fixture(
