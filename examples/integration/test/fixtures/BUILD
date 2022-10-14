@@ -9,10 +9,10 @@ load(
     "ASSOCIATED_EXTRA_FILES",
     "CONFIG",
     "EXTRA_FILES",
-    "get_xcode_schemes",
     "SCHEME_AUTOGENERATION_MODE",
     "UNFOCUSED_TARGETS",
     "XCODEPROJ_TARGETS",
+    "get_xcode_schemes",
 )
 
 xcodeproj_fixture(
