@@ -2200,7 +2200,7 @@ touch "$SCRIPT_OUTPUT_FILE_1"
                 "BAZEL_TARGET_ID": "A 2",
                 "BAZEL_TARGET_ID[sdk=macosx*]": "$(BAZEL_TARGET_ID)",
                 "CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION": "YES",
-                "CODE_SIGN_ENTITLEMENTS": "app.entitlements",
+                "CODE_SIGN_ENTITLEMENTS": "$(SRCROOT)/app.entitlements",
                 "COMPILE_TARGET_NAME": targets["A 2"]!.name,
                 "DEPLOYMENT_LOCATION": "NO",
                 "EXECUTABLE_NAME": "A_ExecutableName",
@@ -2355,7 +2355,7 @@ $(INTERNAL_DIR)/targets/a1b2c/B 3/B3.link.params
                 "BAZEL_TARGET_ID[sdk=macosx*]": "$(BAZEL_TARGET_ID)",
                 "COMPILE_TARGET_NAME": targets["C 1"]!.name,
                 "EXECUTABLE_EXTENSION": "lo",
-                "GCC_PREFIX_HEADER": "a/b/c.pch",
+                "GCC_PREFIX_HEADER": "$(SRCROOT)/a/b/c.pch",
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_CFLAGS": [
@@ -2536,14 +2536,14 @@ $(MACOSX_FILES)
 """,
                 "IPHONEOS_DEPLOYMENT_TARGET": "11.0",
                 "IPHONEOS_FILES": """
-"T/T 1/Ta.c" "T/T 1/Ta.png" "T/T 1/Ta.swift"
+"$(SRCROOT)/T/T 1/Ta.c" "$(SRCROOT)/T/T 1/Ta.png" "$(SRCROOT)/T/T 1/Ta.swift"
 """,
                 "IPHONESIMULATOR_FILES": """
-"T/T 2/Ta.c" "T/T 2/Ta.png" "T/T 2/Ta.swift"
+"$(SRCROOT)/T/T 2/Ta.c" "$(SRCROOT)/T/T 2/Ta.png" "$(SRCROOT)/T/T 2/Ta.swift"
 """,
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "MACOSX_FILES": """
-"T/T 3/Ta.c" "T/T 3/Ta.png" "T/T 3/Ta.swift"
+"$(SRCROOT)/T/T 3/Ta.c" "$(SRCROOT)/T/T 3/Ta.png" "$(SRCROOT)/T/T 3/Ta.swift"
 """,
                 "OTHER_SWIFT_FLAGS": #"""
 -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml

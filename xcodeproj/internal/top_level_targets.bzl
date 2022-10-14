@@ -270,8 +270,6 @@ def process_top_level_target(
         app_icon_info.default_icon_path if app_icon_info else None,
         ctx = ctx,
     )
-    if infoplist:
-        additional_files.append(infoplist)
 
     infoplists_attrs = automatic_target_info.infoplists
     if (infoplists_attrs and bundle_info and

@@ -414,6 +414,9 @@ extension Generator {
         // Collect all files
         var allInputPaths = extraFiles
         for target in targets.values {
+            if let infoPlist = target.infoPlist {
+                allInputPaths.insert(infoPlist)
+            }
             allInputPaths.formUnion(target.inputs.all)
             // We use .nonGenerated instead of .all because generated files will
             // be collected via product outputs, or `extraFiles`
