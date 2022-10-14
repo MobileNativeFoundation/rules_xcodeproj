@@ -69,6 +69,8 @@ $(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py
                     .resolve(
                         indexImport,
                         useBazelOut: true,
+                        // This is consumed in `bazel_build.sh`, so we need the
+                        // full path to be able to correctly reference it
                         forceFullBuildSettingPath: true
                     ).string,
                 "RESOLVED_EXTERNAL_REPOSITORIES": resolvedExternalRepositories

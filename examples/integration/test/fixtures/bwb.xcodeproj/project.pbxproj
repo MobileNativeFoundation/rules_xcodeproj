@@ -6342,8 +6342,8 @@
 					"bazel-out/applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90/bin/Lib/frameworks",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "bazel-out/applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32/bin/UI/rules_xcodeproj/UIFramework.watchOS/Info.plist";
-				"INFOPLIST_FILE[sdk=watchos*]" = "bazel-out/applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90/bin/UI/rules_xcodeproj/UIFramework.watchOS/Info.plist";
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32/bin/UI/rules_xcodeproj/UIFramework.watchOS/Info.plist";
+				"INFOPLIST_FILE[sdk=watchos*]" = "$(BAZEL_OUT)/applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90/bin/UI/rules_xcodeproj/UIFramework.watchOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -6416,8 +6416,8 @@
 				FRAMEWORK_SEARCH_PATHS = "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator";
 				"FRAMEWORK_SEARCH_PATHS[sdk=iphoneos*]" = "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7";
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "bazel-out/applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/Lib/dist/dynamic/rules_xcodeproj/iOS/Info.plist";
-				"INFOPLIST_FILE[sdk=iphoneos*]" = "bazel-out/applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00/bin/Lib/dist/dynamic/rules_xcodeproj/iOS/Info.plist";
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/Lib/dist/dynamic/rules_xcodeproj/iOS/Info.plist";
+				"INFOPLIST_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00/bin/Lib/dist/dynamic/rules_xcodeproj/iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -6481,7 +6481,7 @@
 				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "//iOSApp/Source:iOSApp applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
-				CODE_SIGN_ENTITLEMENTS = "iOSApp/Source/ios app.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "$(SRCROOT)/iOSApp/Source/ios app.entitlements";
 				CODE_SIGN_STYLE = Manual;
 				"CODE_SIGN_STYLE[sdk=iphoneos*]" = Automatic;
 				COMPILE_TARGET_NAME = iOSApp.library;
@@ -6518,8 +6518,8 @@
 					"$(SRCROOT)/iOSApp/Source/CoreUtilsObjC",
 					"$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00/bin/iOSApp/Source/CoreUtilsObjC",
 				);
-				INFOPLIST_FILE = "bazel-out/applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/iOSApp/Source/rules_xcodeproj/iOSApp/Info.plist";
-				"INFOPLIST_FILE[sdk=iphoneos*]" = "bazel-out/applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00/bin/iOSApp/Source/rules_xcodeproj/iOSApp/Info.plist";
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/iOSApp/Source/rules_xcodeproj/iOSApp/Info.plist";
+				"INFOPLIST_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00/bin/iOSApp/Source/rules_xcodeproj/iOSApp/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -6632,8 +6632,8 @@
 					"bazel-out/applebin_tvos-tvos_arm64-dbg-ST-70b4e492b765/bin/Lib/frameworks",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "bazel-out/applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2/bin/UI/rules_xcodeproj/UIFramework.tvOS/Info.plist";
-				"INFOPLIST_FILE[sdk=appletvos*]" = "bazel-out/applebin_tvos-tvos_arm64-dbg-ST-70b4e492b765/bin/UI/rules_xcodeproj/UIFramework.tvOS/Info.plist";
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2/bin/UI/rules_xcodeproj/UIFramework.tvOS/Info.plist";
+				"INFOPLIST_FILE[sdk=appletvos*]" = "$(BAZEL_OUT)/applebin_tvos-tvos_arm64-dbg-ST-70b4e492b765/bin/UI/rules_xcodeproj/UIFramework.tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -6719,7 +6719,7 @@
 					"$(SRCROOT)/CommandLine/CommandLineToolLib/private",
 					"$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-c0ef0a258197/bin/CommandLine/CommandLineToolLib/private",
 				);
-				INFOPLIST_FILE = "bazel-out/applebin_macos-darwin_x86_64-dbg-ST-c0ef0a258197/bin/CommandLine/CommandLineTool/rules_xcodeproj/CommandLineTool/Info.plist";
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-ST-c0ef0a258197/bin/CommandLine/CommandLineTool/rules_xcodeproj/CommandLineTool/Info.plist";
 				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/applebin_macos-darwin_x86_64-dbg-ST-c0ef0a258197/CommandLine/CommandLineTool/CommandLineTool.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (
@@ -6838,8 +6838,8 @@
 					"$(BAZEL_OUT)/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90/bin",
 				);
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
-				WATCHOS_FILES = "bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90/bin/Lib/Lib.swift";
-				WATCHSIMULATOR_FILES = "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32/bin/Lib/Lib.swift";
+				WATCHOS_FILES = "$(BAZEL_OUT)/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90/bin/Lib/Lib.swift";
+				WATCHSIMULATOR_FILES = "$(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32/bin/Lib/Lib.swift";
 			};
 			name = Debug;
 		};
@@ -6868,7 +6868,7 @@
 					"bazel-out/applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32/bin/Lib/frameworks",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "bazel-out/applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32/bin/watchOSAppExtension/Test/UnitTests/rules_xcodeproj/watchOSAppExtensionUnitTests.__internal__.__test_bundle/Info.plist";
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32/bin/watchOSAppExtension/Test/UnitTests/rules_xcodeproj/watchOSAppExtensionUnitTests.__internal__.__test_bundle/Info.plist";
 				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32/watchOSAppExtension/Test/UnitTests/watchOSAppExtensionUnitTests.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator -static";
@@ -6918,8 +6918,8 @@
 				FRAMEWORK_SEARCH_PATHS = "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator";
 				"FRAMEWORK_SEARCH_PATHS[sdk=appletvos*]" = "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64";
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "bazel-out/applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2/bin/Lib/dist/dynamic/rules_xcodeproj/tvOS/Info.plist";
-				"INFOPLIST_FILE[sdk=appletvos*]" = "bazel-out/applebin_tvos-tvos_arm64-dbg-ST-70b4e492b765/bin/Lib/dist/dynamic/rules_xcodeproj/tvOS/Info.plist";
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2/bin/Lib/dist/dynamic/rules_xcodeproj/tvOS/Info.plist";
+				"INFOPLIST_FILE[sdk=appletvos*]" = "$(BAZEL_OUT)/applebin_tvos-tvos_arm64-dbg-ST-70b4e492b765/bin/Lib/dist/dynamic/rules_xcodeproj/tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -7003,8 +7003,8 @@
 					"bazel-out/applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90/bin/Lib/frameworks",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "bazel-out/applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32/bin/watchOSAppExtension/rules_xcodeproj/watchOSAppExtension/Info.plist";
-				"INFOPLIST_FILE[sdk=watchos*]" = "bazel-out/applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90/bin/watchOSAppExtension/rules_xcodeproj/watchOSAppExtension/Info.plist";
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32/bin/watchOSAppExtension/rules_xcodeproj/watchOSAppExtension/Info.plist";
+				"INFOPLIST_FILE[sdk=watchos*]" = "$(BAZEL_OUT)/applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90/bin/watchOSAppExtension/rules_xcodeproj/watchOSAppExtension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -7069,7 +7069,7 @@
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				FRAMEWORK_SEARCH_PATHS = "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator";
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "bazel-out/applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2/bin/tvOSApp/Test/UnitTests/rules_xcodeproj/tvOSAppUnitTests.__internal__.__test_bundle/Info.plist";
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2/bin/tvOSApp/Test/UnitTests/rules_xcodeproj/tvOSAppUnitTests.__internal__.__test_bundle/Info.plist";
 				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2/tvOSApp/Test/UnitTests/tvOSAppUnitTests.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator -static";
@@ -7152,8 +7152,8 @@
 				FRAMEWORK_SEARCH_PATHS = "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator";
 				"FRAMEWORK_SEARCH_PATHS[sdk=appletvos*]" = "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64";
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "bazel-out/applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2/bin/Lib/rules_xcodeproj/LibFramework.tvOS/Info.plist";
-				"INFOPLIST_FILE[sdk=appletvos*]" = "bazel-out/applebin_tvos-tvos_arm64-dbg-ST-70b4e492b765/bin/Lib/rules_xcodeproj/LibFramework.tvOS/Info.plist";
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2/bin/Lib/rules_xcodeproj/LibFramework.tvOS/Info.plist";
+				"INFOPLIST_FILE[sdk=appletvos*]" = "$(BAZEL_OUT)/applebin_tvos-tvos_arm64-dbg-ST-70b4e492b765/bin/Lib/rules_xcodeproj/LibFramework.tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -7233,8 +7233,8 @@
 					"bazel-out/applebin_tvos-tvos_arm64-dbg-ST-70b4e492b765/bin/Lib/frameworks",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "bazel-out/applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2/bin/tvOSApp/Source/rules_xcodeproj/tvOSApp/Info.plist";
-				"INFOPLIST_FILE[sdk=appletvos*]" = "bazel-out/applebin_tvos-tvos_arm64-dbg-ST-70b4e492b765/bin/tvOSApp/Source/rules_xcodeproj/tvOSApp/Info.plist";
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2/bin/tvOSApp/Source/rules_xcodeproj/tvOSApp/Info.plist";
+				"INFOPLIST_FILE[sdk=appletvos*]" = "$(BAZEL_OUT)/applebin_tvos-tvos_arm64-dbg-ST-70b4e492b765/bin/tvOSApp/Source/rules_xcodeproj/tvOSApp/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -7308,8 +7308,8 @@
 					"bazel-out/applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00/bin/Lib/frameworks",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "bazel-out/applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/UI/rules_xcodeproj/UIFramework.iOS/Info.plist";
-				"INFOPLIST_FILE[sdk=iphoneos*]" = "bazel-out/applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00/bin/UI/rules_xcodeproj/UIFramework.iOS/Info.plist";
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/UI/rules_xcodeproj/UIFramework.iOS/Info.plist";
+				"INFOPLIST_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00/bin/UI/rules_xcodeproj/UIFramework.iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -7448,7 +7448,7 @@
 					"$(SRCROOT)/iOSApp/Source/CoreUtilsObjC",
 					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/iOSApp/Source/CoreUtilsObjC",
 				);
-				INFOPLIST_FILE = "bazel-out/applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/iOSApp/Test/SwiftUnitTests/rules_xcodeproj/iOSAppSwiftUnitTests.__internal__.__test_bundle/Info.plist";
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/iOSApp/Test/SwiftUnitTests/rules_xcodeproj/iOSAppSwiftUnitTests.__internal__.__test_bundle/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTests.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
@@ -7593,8 +7593,8 @@
 				FRAMEWORK_SEARCH_PATHS = "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator";
 				"FRAMEWORK_SEARCH_PATHS[sdk=watchos*]" = "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k";
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "bazel-out/applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32/bin/Lib/dist/dynamic/rules_xcodeproj/watchOS/Info.plist";
-				"INFOPLIST_FILE[sdk=watchos*]" = "bazel-out/applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90/bin/Lib/dist/dynamic/rules_xcodeproj/watchOS/Info.plist";
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32/bin/Lib/dist/dynamic/rules_xcodeproj/watchOS/Info.plist";
+				"INFOPLIST_FILE[sdk=watchos*]" = "$(BAZEL_OUT)/applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90/bin/Lib/dist/dynamic/rules_xcodeproj/watchOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -7677,7 +7677,7 @@
 					"$(SRCROOT)/iOSApp/Source/CoreUtilsObjC",
 					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/iOSApp/Source/CoreUtilsObjC",
 				);
-				INFOPLIST_FILE = "bazel-out/applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/iOSApp/Test/ObjCUnitTests/rules_xcodeproj/iOSAppObjCUnitTests.__internal__.__test_bundle/Info.plist";
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/iOSApp/Test/ObjCUnitTests/rules_xcodeproj/iOSAppObjCUnitTests.__internal__.__test_bundle/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests.link.params";
 				OTHER_CFLAGS = (
@@ -7784,8 +7784,8 @@
 				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "//AppClip:AppClip applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
-				CODE_SIGN_ENTITLEMENTS = "bazel-out/applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/AppClip/Entitlements.withbundleid.plist";
-				"CODE_SIGN_ENTITLEMENTS[sdk=iphoneos*]" = "bazel-out/applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00/bin/AppClip/Entitlements.withbundleid.plist";
+				CODE_SIGN_ENTITLEMENTS = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/AppClip/Entitlements.withbundleid.plist";
+				"CODE_SIGN_ENTITLEMENTS[sdk=iphoneos*]" = "$(BAZEL_OUT)/applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00/bin/AppClip/Entitlements.withbundleid.plist";
 				CODE_SIGN_STYLE = Manual;
 				"CODE_SIGN_STYLE[sdk=iphoneos*]" = Automatic;
 				COMPILE_TARGET_NAME = AppClip.library;
@@ -7801,11 +7801,11 @@
 				INCLUDED_SOURCE_FILE_NAMES = "";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=iphoneos*]" = "$(IPHONEOS_FILES)";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=iphonesimulator*]" = "$(IPHONESIMULATOR_FILES)";
-				INFOPLIST_FILE = "bazel-out/applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/AppClip/rules_xcodeproj/AppClip/Info.plist";
-				"INFOPLIST_FILE[sdk=iphoneos*]" = "bazel-out/applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00/bin/AppClip/rules_xcodeproj/AppClip/Info.plist";
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/AppClip/rules_xcodeproj/AppClip/Info.plist";
+				"INFOPLIST_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00/bin/AppClip/rules_xcodeproj/AppClip/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				IPHONEOS_FILES = "bazel-out/applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00/bin/AppClip/Entitlements.withbundleid.plist";
-				IPHONESIMULATOR_FILES = "bazel-out/applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/AppClip/Entitlements.withbundleid.plist";
+				IPHONEOS_FILES = "$(BAZEL_OUT)/applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00/bin/AppClip/Entitlements.withbundleid.plist";
+				IPHONESIMULATOR_FILES = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/AppClip/Entitlements.withbundleid.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -7851,8 +7851,8 @@
 		8DDF249A875A0AF7B6AB3D85 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APPLETVOS_FILES = "bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-70b4e492b765/bin/Lib/Lib.swift";
-				APPLETVSIMULATOR_FILES = "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2/bin/Lib/Lib.swift";
+				APPLETVOS_FILES = "$(BAZEL_OUT)/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-70b4e492b765/bin/Lib/Lib.swift";
+				APPLETVSIMULATOR_FILES = "$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2/bin/Lib/Lib.swift";
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				ARCHS = x86_64;
 				"ARCHS[sdk=appletvos*]" = arm64;
@@ -7883,8 +7883,8 @@
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=iphoneos*]" = "$(IPHONEOS_FILES)";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=iphonesimulator*]" = "$(IPHONESIMULATOR_FILES)";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				IPHONEOS_FILES = "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00/bin/Lib/Lib.swift";
-				IPHONESIMULATOR_FILES = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/Lib/Lib.swift";
+				IPHONEOS_FILES = "$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00/bin/Lib/Lib.swift";
+				IPHONESIMULATOR_FILES = "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/Lib/Lib.swift";
 				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -static";
 				"OTHER_SWIFT_FLAGS[sdk=appletvos*]" = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework/Modules/module.modulemap -Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64 -static";
 				"OTHER_SWIFT_FLAGS[sdk=appletvsimulator*]" = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator -static";
@@ -7949,8 +7949,8 @@
 				FRAMEWORK_SEARCH_PATHS = "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator";
 				"FRAMEWORK_SEARCH_PATHS[sdk=watchos*]" = "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k";
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "bazel-out/applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32/bin/Lib/rules_xcodeproj/LibFramework.watchOS/Info.plist";
-				"INFOPLIST_FILE[sdk=watchos*]" = "bazel-out/applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90/bin/Lib/rules_xcodeproj/LibFramework.watchOS/Info.plist";
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32/bin/Lib/rules_xcodeproj/LibFramework.watchOS/Info.plist";
+				"INFOPLIST_FILE[sdk=watchos*]" = "$(BAZEL_OUT)/applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90/bin/Lib/rules_xcodeproj/LibFramework.watchOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -8015,7 +8015,7 @@
 				ENABLE_TESTABILITY = YES;
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "bazel-out/applebin_macos-darwin_x86_64-dbg-ST-e4309a660cc1/bin/macOSApp/Test/UITests/rules_xcodeproj/macOSAppUITests.__internal__.__test_bundle/Info.plist";
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-ST-e4309a660cc1/bin/macOSApp/Test/UITests/rules_xcodeproj/macOSAppUITests.__internal__.__test_bundle/Info.plist";
 				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/applebin_macos-darwin_x86_64-dbg-ST-e4309a660cc1/macOSApp/Test/UITests/macOSAppUITests.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
@@ -8065,7 +8065,7 @@
 				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator";
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "bazel-out/applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/iMessageApp/rules_xcodeproj/iMessageAppExtension/Info.plist";
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/iMessageApp/rules_xcodeproj/iMessageAppExtension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -8218,7 +8218,7 @@
 				DEPLOYMENT_LOCATION = NO;
 				ENABLE_BITCODE = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "bazel-out/applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/iMessageApp/rules_xcodeproj/iMessageApp/Info.plist";
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/iMessageApp/rules_xcodeproj/iMessageApp/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",
@@ -8380,7 +8380,7 @@
 				ENABLE_TESTABILITY = YES;
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "bazel-out/applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32/bin/watchOSApp/Test/UITests/rules_xcodeproj/watchOSAppUITests.__internal__.__test_bundle/Info.plist";
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32/bin/watchOSApp/Test/UITests/rules_xcodeproj/watchOSAppUITests.__internal__.__test_bundle/Info.plist";
 				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32/watchOSApp/Test/UITests/watchOSAppUITests.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static";
@@ -8540,11 +8540,11 @@
 				INCLUDED_SOURCE_FILE_NAMES = "";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=iphoneos*]" = "$(IPHONEOS_FILES)";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=iphonesimulator*]" = "$(IPHONESIMULATOR_FILES)";
-				INFOPLIST_FILE = "bazel-out/applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/WidgetExtension/rules_xcodeproj/WidgetExtension/Info.plist";
-				"INFOPLIST_FILE[sdk=iphoneos*]" = "bazel-out/applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00/bin/WidgetExtension/rules_xcodeproj/WidgetExtension/Info.plist";
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/WidgetExtension/rules_xcodeproj/WidgetExtension/Info.plist";
+				"INFOPLIST_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00/bin/WidgetExtension/rules_xcodeproj/WidgetExtension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				IPHONEOS_FILES = "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00/bin/WidgetExtension/Intents.swift";
-				IPHONESIMULATOR_FILES = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/WidgetExtension/Intents.swift";
+				IPHONEOS_FILES = "$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00/bin/WidgetExtension/Intents.swift";
+				IPHONESIMULATOR_FILES = "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/WidgetExtension/Intents.swift";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -8609,7 +8609,7 @@
 				ENABLE_TESTABILITY = YES;
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "bazel-out/applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2/bin/tvOSApp/Test/UITests/rules_xcodeproj/tvOSAppUITests.__internal__.__test_bundle/Info.plist";
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2/bin/tvOSApp/Test/UITests/rules_xcodeproj/tvOSAppUITests.__internal__.__test_bundle/Info.plist";
 				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2/tvOSApp/Test/UITests/tvOSAppUITests.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static";
@@ -8661,7 +8661,7 @@
 					"SECRET_3=\\\"Hello\\\"",
 					"SECRET_2=\\\"World!\\\"",
 				);
-				INFOPLIST_FILE = "bazel-out/applebin_macos-darwin_x86_64-dbg-ST-c0ef0a258197/bin/CommandLine/Tests/rules_xcodeproj/CommandLineToolTests.__internal__.__test_bundle/Info.plist";
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-ST-c0ef0a258197/bin/CommandLine/Tests/rules_xcodeproj/CommandLineToolTests.__internal__.__test_bundle/Info.plist";
 				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/applebin_macos-darwin_x86_64-dbg-ST-c0ef0a258197/CommandLine/Tests/CommandLineToolTests.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
@@ -8771,7 +8771,7 @@
 				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = macOSApp/third_party;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "bazel-out/applebin_macos-darwin_x86_64-dbg-ST-e4309a660cc1/bin/macOSApp/Source/rules_xcodeproj/macOSApp/Info.plist";
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-ST-e4309a660cc1/bin/macOSApp/Source/rules_xcodeproj/macOSApp/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -8827,8 +8827,8 @@
 				DEVELOPMENT_TEAM = V82V4GQZXM;
 				ENABLE_BITCODE = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "bazel-out/applebin_watchos-watchos_x86_64-dbg-ST-3df60cf154e9/bin/watchOSApp/rules_xcodeproj/watchOSApp/Info.plist";
-				"INFOPLIST_FILE[sdk=watchos*]" = "bazel-out/applebin_watchos-watchos_arm64_32-dbg-ST-56a8163e2aa7/bin/watchOSApp/rules_xcodeproj/watchOSApp/Info.plist";
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-dbg-ST-3df60cf154e9/bin/watchOSApp/rules_xcodeproj/watchOSApp/Info.plist";
+				"INFOPLIST_FILE[sdk=watchos*]" = "$(BAZEL_OUT)/applebin_watchos-watchos_arm64_32-dbg-ST-56a8163e2aa7/bin/watchOSApp/rules_xcodeproj/watchOSApp/Info.plist";
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
@@ -8882,7 +8882,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_BITCODE = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREFIX_HEADER = iOSApp/Source/CoreUtilsObjC/CoreUtils/CoreUtils.pch;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/iOSApp/Source/CoreUtilsObjC/CoreUtils/CoreUtils.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_FORTIFY_SOURCE=1",
 					OS_IOS,
@@ -8896,8 +8896,8 @@
 					"$(SRCROOT)/iOSApp/Source/CoreUtilsObjC",
 					"$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00/bin/iOSApp/Source/CoreUtilsObjC",
 				);
-				INFOPLIST_FILE = "bazel-out/applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/iOSApp/Source/CoreUtilsObjC/rules_xcodeproj/FrameworkCoreUtilsObjC/Info.plist";
-				"INFOPLIST_FILE[sdk=iphoneos*]" = "bazel-out/applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00/bin/iOSApp/Source/CoreUtilsObjC/rules_xcodeproj/FrameworkCoreUtilsObjC/Info.plist";
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin/iOSApp/Source/CoreUtilsObjC/rules_xcodeproj/FrameworkCoreUtilsObjC/Info.plist";
+				"INFOPLIST_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00/bin/iOSApp/Source/CoreUtilsObjC/rules_xcodeproj/FrameworkCoreUtilsObjC/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

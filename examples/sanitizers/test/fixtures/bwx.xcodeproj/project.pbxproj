@@ -555,7 +555,7 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "bazel-out/applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/AddressSanitizerApp/rules_xcodeproj/AddressSanitizerApp/Info.plist";
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/AddressSanitizerApp/rules_xcodeproj/AddressSanitizerApp/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -611,7 +611,7 @@
 					OS_IOS,
 					"DEBUG=1",
 				);
-				INFOPLIST_FILE = "bazel-out/applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/UndefinedBehaviorSanitizerApp/rules_xcodeproj/UndefinedBehaviorSanitizerApp/Info.plist";
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/UndefinedBehaviorSanitizerApp/rules_xcodeproj/UndefinedBehaviorSanitizerApp/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -760,7 +760,7 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_TESTABILITY = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "bazel-out/applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/ThreadSanitizerApp/rules_xcodeproj/ThreadSanitizerApp/Info.plist";
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/ThreadSanitizerApp/rules_xcodeproj/ThreadSanitizerApp/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
