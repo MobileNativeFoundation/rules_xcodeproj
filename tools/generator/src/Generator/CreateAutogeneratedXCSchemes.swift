@@ -36,16 +36,13 @@ extension Generator {
 
                 let shouldCreateTestAction = pbxTarget.isTestable
                 let shouldCreateLaunchAction = pbxTarget.isLaunchable
-                var env: [String: String] = [:]
-                if shouldCreateTestAction {
-                    env = try envs.first(where: { testEnv in
+                let env = try envs.first(where: { testEnv in
                         let testEnvTargetInfo: XCSchemeInfo.TargetInfo = try targetResolver.targetInfo(targetID: testEnv.key)
                         if testEnvTargetInfo == targetInfo {
                             return true
                         }
                         return false
                     })?.value ?? [:]
-                }
 
                 let schemeInfo = try XCSchemeInfo(
                     buildActionInfo: .init(targets: [
@@ -60,7 +57,8 @@ extension Generator {
                     launchActionInfo: shouldCreateLaunchAction ?
                         .init(
                             buildConfigurationName: buildConfigurationName,
-                            targetInfo: targetInfo
+                            targetInfo: targetInfo,
+                            env: env
                         ) : nil,
                     profileActionInfo: shouldCreateLaunchAction ?
                         .init(

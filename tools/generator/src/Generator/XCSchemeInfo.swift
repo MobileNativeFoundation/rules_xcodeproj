@@ -143,7 +143,8 @@ extension XCSchemeInfo {
             launchActionInfo: .init(
                 launchAction: schemeWithDefaults.launchAction,
                 targetResolver: targetResolver,
-                targetIDsByLabel: targetIDsByLabel
+                targetIDsByLabel: targetIDsByLabel,
+                envs: envs
             ),
             profileActionInfo: .init(
                 profileAction: schemeWithDefaults.profileAction,

@@ -289,12 +289,12 @@ def _skip_target(
     )
 
 def _create_envs_depset(*, ctx, id, automatic_target_info):
-    test_env = getattr(ctx.rule.attr, automatic_target_info.env, {})
+    env = getattr(ctx.rule.attr, automatic_target_info.env, {})
 
     return struct(
         id = id,
         env = struct(
-            **dicts.add(test_env, ctx.configuration.test_env)
+            **dicts.add(env, ctx.configuration.test_env, ctx.configuration.default_shell_env)
         ),
     )
 

@@ -131,11 +131,30 @@ extension XCSchemeInfo.LaunchActionInfo {
     init?(
         launchAction: XcodeScheme.LaunchAction?,
         targetResolver: TargetResolver,
-        targetIDsByLabel: [BazelLabel: TargetID]
+        targetIDsByLabel: [BazelLabel: TargetID],
+        envs: [TargetID: [String: String]]
     ) throws {
         guard let launchAction = launchAction else {
           return nil
         }
+
+        var env: [String: String] = launchAction.env
+
+        if let launchActionTargetId: TargetID = targetIDsByLabel[launchAction.target] {
+            let launchActionLabel: BazelLabel = launchAction.target
+            if let launchActionTargetEnv: [String: String] = envs[launchActionTargetId] {
+                for (key, newValue) in launchActionTargetEnv {
+                    if let existingValue: String = env[key], existingValue != newValue {
+                        let errorMessage: String = """
+                        ERROR: '\(launchActionLabel)' defines a value for '\(key)' ('\(newValue)') that doesn't match the existing value of '\(existingValue)' from another target in the same scheme.
+                        """
+                        throw UsageError(message: errorMessage)
+                    }
+                    env[key] = newValue
+                }
+            }
+        }
+
         try self.init(
             buildConfigurationName: launchAction.buildConfigurationName,
             targetInfo: try targetResolver.targetInfo(
@@ -148,7 +167,7 @@ extension XCSchemeInfo.LaunchActionInfo {
             diagnostics: XCSchemeInfo.DiagnosticsInfo(
                 diagnostics: launchAction.diagnostics
             ),
-            env: launchAction.env,
+            env: env,
             workingDirectory: launchAction.workingDirectory
         )
     }

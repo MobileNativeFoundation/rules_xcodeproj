@@ -111,6 +111,11 @@
             isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable
+            key = "INTEGRATION_ACTION_ENV_VAR"
+            value = "TRUE"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
             key = "INTEGRATION_TEST_ENV_VAR"
             value = "TRUE"
             isEnabled = "YES">
@@ -146,6 +151,16 @@
          <EnvironmentVariable
             key = "BUILD_WORKSPACE_DIRECTORY"
             value = "$(BUILD_WORKSPACE_DIRECTORY)"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "INTEGRATION_ACTION_ENV_VAR"
+            value = "TRUE"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "INTEGRATION_TEST_ENV_VAR"
+            value = "TRUE"
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>
