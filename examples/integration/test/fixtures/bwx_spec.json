@@ -78,10 +78,6 @@
         "iOSApp/BUILD",
         "AppClip/Entitlements.entitlements",
         "AppClip/Info.plist",
-        {
-            "_": "applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/AppClip/rules_xcodeproj/AppClip/Info.plist",
-            "t": "g"
-        },
         "iOSApp/Resources/ExampleNestedResources/BUILD",
         "iOSApp/Resources/ExampleNestedResources/Info.plist",
         "iOSApp/Resources/ExampleResources/BUILD",
@@ -108,46 +104,18 @@
         "WidgetExtension/BUILD",
         "WidgetExtension/WidgetExtension.intentdefinition",
         "WidgetExtension/Info.plist",
-        {
-            "_": "applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/WidgetExtension/rules_xcodeproj/WidgetExtension/Info.plist",
-            "t": "g"
-        },
         "iOSApp/Source/CoreUtilsObjC/Info.plist",
-        {
-            "_": "applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/iOSApp/Source/CoreUtilsObjC/rules_xcodeproj/FrameworkCoreUtilsObjC/Info.plist",
-            "t": "g"
-        },
         "Lib/Info.plist",
-        {
-            "_": "applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/Lib/rules_xcodeproj/LibFramework.iOS/Info.plist",
-            "t": "g"
-        },
         "UI/Info.plist",
-        {
-            "_": "applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/UI/rules_xcodeproj/UIFramework.iOS/Info.plist",
-            "t": "g"
-        },
         "watchOSApp/BUILD",
         {
             "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework",
             "t": "e"
         },
         "watchOSAppExtension/BUILD",
-        {
-            "_": "applebin_watchos-watchos_x86_64-dbg-ST-38a9c27fdda0/bin/Lib/rules_xcodeproj/LibFramework.watchOS/Info.plist",
-            "t": "g"
-        },
-        {
-            "_": "applebin_watchos-watchos_x86_64-dbg-ST-38a9c27fdda0/bin/UI/rules_xcodeproj/UIFramework.watchOS/Info.plist",
-            "t": "g"
-        },
         "watchOSAppExtension/Info.plist",
         {
             "_": "applebin_watchos-watchos_x86_64-dbg-ST-38a9c27fdda0/bin/watchOSAppExtension/Info.withbundleid.plist",
-            "t": "g"
-        },
-        {
-            "_": "applebin_watchos-watchos_x86_64-dbg-ST-38a9c27fdda0/bin/watchOSAppExtension/rules_xcodeproj/watchOSAppExtension/Info.plist",
             "t": "g"
         },
         "watchOSApp/Info.plist",
@@ -155,17 +123,9 @@
             "_": "applebin_watchos-watchos_x86_64-dbg-ST-2f849b1d5a93/bin/watchOSApp/Info.withbundleid.plist",
             "t": "g"
         },
-        {
-            "_": "applebin_watchos-watchos_x86_64-dbg-ST-2f849b1d5a93/bin/watchOSApp/rules_xcodeproj/watchOSApp/Info.plist",
-            "t": "g"
-        },
         "iOSApp/Source/Info.plist",
         "iOSApp/Source/AltIcons/AltIcon-60.alticon/AltIcon-60@2x.png",
         "iOSApp/Source/AltIcons/AltIcon-60.alticon/AltIcon-60@3x.png",
-        {
-            "_": "applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/iOSApp/Source/rules_xcodeproj/iOSApp/Info.plist",
-            "t": "g"
-        },
         {
             "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/iOSApp/Resources/ExampleResources/bucket/deps.txt",
             "i": false,
@@ -173,36 +133,12 @@
         },
         "Lib/dist/dynamic/BUILD",
         {
-            "_": "applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/Lib/dist/dynamic/rules_xcodeproj/iOS/Info.plist",
-            "t": "g"
-        },
-        {
             "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework",
             "t": "e"
         },
-        {
-            "_": "applebin_tvos-tvos_x86_64-dbg-ST-bb5377ca9332/bin/Lib/dist/dynamic/rules_xcodeproj/tvOS/Info.plist",
-            "t": "g"
-        },
-        {
-            "_": "applebin_watchos-watchos_x86_64-dbg-ST-38a9c27fdda0/bin/Lib/dist/dynamic/rules_xcodeproj/watchOS/Info.plist",
-            "t": "g"
-        },
         "tvOSApp/Resources/BUILD",
         "tvOSApp/Source/BUILD",
-        {
-            "_": "applebin_tvos-tvos_x86_64-dbg-ST-bb5377ca9332/bin/Lib/rules_xcodeproj/LibFramework.tvOS/Info.plist",
-            "t": "g"
-        },
-        {
-            "_": "applebin_tvos-tvos_x86_64-dbg-ST-bb5377ca9332/bin/UI/rules_xcodeproj/UIFramework.tvOS/Info.plist",
-            "t": "g"
-        },
         "tvOSApp/Source/Info.plist",
-        {
-            "_": "applebin_tvos-tvos_x86_64-dbg-ST-bb5377ca9332/bin/tvOSApp/Source/rules_xcodeproj/tvOSApp/Info.plist",
-            "t": "g"
-        },
         "iOSApp/Resources/OnlyStructuredResources/BUILD",
         "iOSApp/Resources/OnlyStructuredResources/Info.plist",
         "iOSApp/Source/Utils/BUILD",
@@ -215,21 +151,9 @@
             "_": "build_bazel_rules_apple/apple/testing/DefaultTestBundle.plist",
             "t": "e"
         },
-        {
-            "_": "applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/iOSApp/Test/ObjCUnitTests/rules_xcodeproj/iOSAppObjCUnitTests.__internal__.__test_bundle/Info.plist",
-            "t": "g"
-        },
         "iMessageApp/BUILD",
         "iMessageApp/Info.extension.plist",
-        {
-            "_": "applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/iMessageApp/rules_xcodeproj/iMessageAppExtension/Info.plist",
-            "t": "g"
-        },
         "iMessageApp/Info.plist",
-        {
-            "_": "applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/iMessageApp/rules_xcodeproj/iMessageApp/Info.plist",
-            "t": "g"
-        },
         "iOSApp/Test/SwiftUnitTests/BUILD",
         {
             "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/external/FXPageControl/FXPageControl.swift.modulemap",
@@ -243,43 +167,15 @@
             "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/iOSApp/Test/TestingUtils/TestingUtils.swift.modulemap",
             "t": "g"
         },
-        {
-            "_": "applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/iOSApp/Test/SwiftUnitTests/rules_xcodeproj/iOSAppSwiftUnitTests.__internal__.__test_bundle/Info.plist",
-            "t": "g"
-        },
         "macOSApp/Source/BUILD",
         "macOSApp/third_party/BUILD",
         "macOSApp/third_party/ExampleFramework.framework",
         "macOSApp/Source/Info.plist",
-        {
-            "_": "applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/macOSApp/Source/rules_xcodeproj/macOSApp/Info.plist",
-            "t": "g"
-        },
         "macOSApp/Test/UITests/BUILD",
-        {
-            "_": "applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/macOSApp/Test/UITests/rules_xcodeproj/macOSAppUITests.__internal__.__test_bundle/Info.plist",
-            "t": "g"
-        },
         "tvOSApp/Test/UITests/BUILD",
-        {
-            "_": "applebin_tvos-tvos_x86_64-dbg-ST-bb5377ca9332/bin/tvOSApp/Test/UITests/rules_xcodeproj/tvOSAppUITests.__internal__.__test_bundle/Info.plist",
-            "t": "g"
-        },
         "tvOSApp/Test/UnitTests/BUILD",
-        {
-            "_": "applebin_tvos-tvos_x86_64-dbg-ST-bb5377ca9332/bin/tvOSApp/Test/UnitTests/rules_xcodeproj/tvOSAppUnitTests.__internal__.__test_bundle/Info.plist",
-            "t": "g"
-        },
         "watchOSApp/Test/UITests/BUILD",
-        {
-            "_": "applebin_watchos-watchos_x86_64-dbg-ST-38a9c27fdda0/bin/watchOSApp/Test/UITests/rules_xcodeproj/watchOSAppUITests.__internal__.__test_bundle/Info.plist",
-            "t": "g"
-        },
         "watchOSAppExtension/Test/UnitTests/BUILD",
-        {
-            "_": "applebin_watchos-watchos_x86_64-dbg-ST-38a9c27fdda0/bin/watchOSAppExtension/Test/UnitTests/rules_xcodeproj/watchOSAppExtensionUnitTests.__internal__.__test_bundle/Info.plist",
-            "t": "g"
-        },
         "CommandLine/CommandLineToolLib/BUILD",
         "CommandLine/swift_c_module/BUILD",
         {
@@ -308,10 +204,6 @@
         "CommandLine/CommandLineTool/Info.plist",
         "CommandLine/CommandLineTool/Launchd.plist",
         {
-            "_": "applebin_macos-darwin_x86_64-dbg-ST-7ab8ee5d0803/bin/CommandLine/CommandLineTool/rules_xcodeproj/CommandLineTool/Info.plist",
-            "t": "g"
-        },
-        {
             "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-7ab8ee5d0803/bin/CommandLine/CommandLineTool/CommandLineTool.merged_infoplist-intermediates/Info.plist",
             "t": "g"
         },
@@ -325,16 +217,8 @@
             "t": "g"
         },
         {
-            "_": "applebin_macos-darwin_x86_64-dbg-ST-7ab8ee5d0803/bin/CommandLine/Tests/rules_xcodeproj/CommandLineToolTests.__internal__.__test_bundle/Info.plist",
-            "t": "g"
-        },
-        {
             "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework",
             "t": "e"
-        },
-        {
-            "_": "applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/AppClip/rules_xcodeproj/AppClip/Info.plist",
-            "t": "g"
         },
         {
             "_": "com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64/GoogleMapsBase.framework",
@@ -353,51 +237,15 @@
             "t": "e"
         },
         {
-            "_": "applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/WidgetExtension/rules_xcodeproj/WidgetExtension/Info.plist",
-            "t": "g"
-        },
-        {
-            "_": "applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/iOSApp/Source/CoreUtilsObjC/rules_xcodeproj/FrameworkCoreUtilsObjC/Info.plist",
-            "t": "g"
-        },
-        {
-            "_": "applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/Lib/rules_xcodeproj/LibFramework.iOS/Info.plist",
-            "t": "g"
-        },
-        {
-            "_": "applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/UI/rules_xcodeproj/UIFramework.iOS/Info.plist",
-            "t": "g"
-        },
-        {
             "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework",
             "t": "e"
-        },
-        {
-            "_": "applebin_watchos-watchos_arm64_32-dbg-ST-899e4c5ca1ae/bin/Lib/rules_xcodeproj/LibFramework.watchOS/Info.plist",
-            "t": "g"
-        },
-        {
-            "_": "applebin_watchos-watchos_arm64_32-dbg-ST-899e4c5ca1ae/bin/UI/rules_xcodeproj/UIFramework.watchOS/Info.plist",
-            "t": "g"
         },
         {
             "_": "applebin_watchos-watchos_arm64_32-dbg-ST-899e4c5ca1ae/bin/watchOSAppExtension/Info.withbundleid.plist",
             "t": "g"
         },
         {
-            "_": "applebin_watchos-watchos_arm64_32-dbg-ST-899e4c5ca1ae/bin/watchOSAppExtension/rules_xcodeproj/watchOSAppExtension/Info.plist",
-            "t": "g"
-        },
-        {
             "_": "applebin_watchos-watchos_arm64_32-dbg-ST-8e65bd00489d/bin/watchOSApp/Info.withbundleid.plist",
-            "t": "g"
-        },
-        {
-            "_": "applebin_watchos-watchos_arm64_32-dbg-ST-8e65bd00489d/bin/watchOSApp/rules_xcodeproj/watchOSApp/Info.plist",
-            "t": "g"
-        },
-        {
-            "_": "applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/iOSApp/Source/rules_xcodeproj/iOSApp/Info.plist",
             "t": "g"
         },
         {
@@ -406,32 +254,8 @@
             "t": "g"
         },
         {
-            "_": "applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/Lib/dist/dynamic/rules_xcodeproj/iOS/Info.plist",
-            "t": "g"
-        },
-        {
             "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework",
             "t": "e"
-        },
-        {
-            "_": "applebin_tvos-tvos_arm64-dbg-ST-252684668b52/bin/Lib/dist/dynamic/rules_xcodeproj/tvOS/Info.plist",
-            "t": "g"
-        },
-        {
-            "_": "applebin_watchos-watchos_arm64_32-dbg-ST-899e4c5ca1ae/bin/Lib/dist/dynamic/rules_xcodeproj/watchOS/Info.plist",
-            "t": "g"
-        },
-        {
-            "_": "applebin_tvos-tvos_arm64-dbg-ST-252684668b52/bin/Lib/rules_xcodeproj/LibFramework.tvOS/Info.plist",
-            "t": "g"
-        },
-        {
-            "_": "applebin_tvos-tvos_arm64-dbg-ST-252684668b52/bin/UI/rules_xcodeproj/UIFramework.tvOS/Info.plist",
-            "t": "g"
-        },
-        {
-            "_": "applebin_tvos-tvos_arm64-dbg-ST-252684668b52/bin/tvOSApp/Source/rules_xcodeproj/tvOSApp/Info.plist",
-            "t": "g"
         },
         "Lib/README.md",
         "iOSApp/ownership.yaml",
