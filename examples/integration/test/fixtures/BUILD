@@ -18,6 +18,7 @@ xcodeproj_fixture(
     associated_extra_files = ASSOCIATED_EXTRA_FILES,
     config = CONFIG,
     extra_files = EXTRA_FILES,
+    scheme_autogeneration_mode = "all",
     schemes = get_xcode_schemes(),
     top_level_targets = XCODEPROJ_TARGETS,
     unfocused_targets = UNFOCUSED_TARGETS,

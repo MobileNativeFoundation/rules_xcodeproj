@@ -21,6 +21,7 @@ xcodeproj(
     config = CONFIG,
     extra_files = EXTRA_FILES,
     project_name = "Integration",
+    scheme_autogeneration_mode = "all",
     schemes = get_xcode_schemes(),
     tags = ["manual"],
     top_level_targets = XCODEPROJ_TARGETS,
