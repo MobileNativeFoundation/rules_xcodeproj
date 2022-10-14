@@ -90,6 +90,12 @@ container:\(workspace + directories.workspaceOutput)
     ) throws -> Path {
         switch filePath.type {
         case .project:
+            guard filePath.path.normalize() != "." else {
+                // We need to use Bazel's execution root for ".", since includes
+                // can reference things like "external/" and "bazel-out"
+                return "$(PROJECT_DIR)"
+            }
+
             let projectDir: Path
             switch mode {
             case .buildSetting:

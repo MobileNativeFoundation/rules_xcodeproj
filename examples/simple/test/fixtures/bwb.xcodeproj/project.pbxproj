@@ -300,7 +300,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = SwiftBin;
 				USER_HEADER_SEARCH_PATHS = (
-					"$(SRCROOT)",
+					"$(PROJECT_DIR)",
 					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-a9822d5480e1/bin",
 				);
 			};
