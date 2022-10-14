@@ -6,7 +6,7 @@ load(
 )
 load(
     "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:defs.bzl",
-    "xcode_schemes"
+    "xcode_schemes",
 )
 load(
     "//:xcodeproj_targets.bzl",
@@ -21,22 +21,22 @@ xcodeproj_fixture(
     associated_extra_files = ASSOCIATED_EXTRA_FILES,
     config = CONFIG,
     extra_files = EXTRA_FILES,
-    top_level_targets = XCODEPROJ_TARGETS,
-    unfocused_targets = UNFOCUSED_TARGETS,
     schemes = [
         xcode_schemes.scheme(
             name = "iOSAppUnitTests_Scheme",
             test_action = xcode_schemes.test_action(
+                env = {
+                    "IOSAPPSWIFTUNITTESTS_CUSTOMSCHEME": "TRUE",
+                },
                 targets = [
                     "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests",
                     "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests",
                 ],
-                env = {
-                    "IOSAPPSWIFTUNITTESTS_CUSTOMSCHEME": "TRUE"
-                }
             ),
         ),
-    ]
+    ],
+    top_level_targets = XCODEPROJ_TARGETS,
+    unfocused_targets = UNFOCUSED_TARGETS,
 )
 
 _FIXTURES = [
