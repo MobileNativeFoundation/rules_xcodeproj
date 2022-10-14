@@ -181,8 +181,7 @@ if [[ "${ENABLE_ADDRESS_SANITIZER:-}" == "YES" || \
 then
     # TODO: Support custom toolchains once clang.sh supports them
     cd "$INTERNAL_DIR" || exit 1
-    rm -f lib
-    ln -s "$DEVELOPER_DIR/Toolchains/XcodeDefault.xctoolchain/usr/lib" lib
+    ln -shfF "$DEVELOPER_DIR/Toolchains/XcodeDefault.xctoolchain/usr/lib" lib
 fi
 """#,
             title: "Prepare BazelDependencies",
