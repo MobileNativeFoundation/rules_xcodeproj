@@ -228,7 +228,7 @@ targets.
         if sets.contains(unfocused_labels, label_str):
             sets.remove(unfocused_labels, label_str)
 
-        infoplist = xcode_target.infoplist
+        infoplist = xcode_target.outputs.transitive_infoplists
         if infoplist:
             infoplists.setdefault(label, []).append(infoplist)
 
@@ -345,14 +345,13 @@ targets.
         )
         target_infoplists = infoplists.get(label)
         if target_infoplists:
-            infoplists_depset = depset(target_infoplists)
-            additional_linking_files.append(infoplists_depset)
+            additional_linking_files.extend(target_infoplists)
             products_output_group_name = (
                 xcode_target.outputs.products_output_group_name
             )
             if products_output_group_name:
                 additional_outputs[products_output_group_name] = (
-                    [infoplists_depset]
+                    target_infoplists
                 )
 
         linking_output_group_name = (

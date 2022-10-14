@@ -39,9 +39,6 @@ def _create(
     direct_compiles = []
     indexstore = None
 
-    if infoplist:
-        direct_products.append(infoplist)
-
     if direct_outputs:
         swift = direct_outputs.swift
         if swift:
@@ -80,6 +77,18 @@ def _create(
         [indexstore] if indexstore else None,
         transitive = [
             info.outputs._transitive_indexestores
+            for attr, info in transitive_infos
+            if (not automatic_target_info or
+                info.target_type in automatic_target_info.xcode_targets.get(
+                    attr,
+                    [None],
+                ))
+        ],
+    )
+    transitive_infoplists = depset(
+        [infoplist] if infoplist else None,
+        transitive = [
+            info.outputs.transitive_infoplists
             for attr, info in transitive_infos
             if (not automatic_target_info or
                 info.target_type in automatic_target_info.xcode_targets.get(
@@ -146,6 +155,7 @@ def _create(
         _transitive_products = transitive_products,
         _transitive_swift = transitive_swift,
         products_output_group_name = products_output_group_name,
+        transitive_infoplists = transitive_infoplists,
     )
 
 def _get_outputs(*, id, product, swift_info):
