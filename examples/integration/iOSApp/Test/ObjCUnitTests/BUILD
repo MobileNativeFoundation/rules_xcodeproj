@@ -3,6 +3,9 @@ load("@build_bazel_rules_apple//apple:ios.bzl", "ios_unit_test")
 ios_unit_test(
     name = "iOSAppObjCUnitTests",
     bundle_id = "io.buildbuddy.example.objctests",
+    env = {
+        "IOS_APP_UNIT_TESTS": "CUSTOM_ENV_VALUE",
+    },
     minimum_os_version = "15.0",
     test_host = "//iOSApp",
     visibility = ["//visibility:public"],

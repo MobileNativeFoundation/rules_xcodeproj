@@ -53,7 +53,7 @@ extension XCSchemeInfo.TestActionInfo {
         guard let original = testActionInfo else {
             return nil
         }
-        
+
         var expandVariablesBasedOn: XCSchemeInfo.TargetInfo? = nil
         if let originalExpandVariablesBasedOn = original.expandVariablesBasedOn {
             expandVariablesBasedOn = XCSchemeInfo.TargetInfo(
@@ -84,7 +84,8 @@ extension XCSchemeInfo.TestActionInfo {
     init?(
         testAction: XcodeScheme.TestAction?,
         targetResolver: TargetResolver,
-        targetIDsByLabel: [BazelLabel: TargetID]
+        targetIDsByLabel: [BazelLabel: TargetID],
+        envs: [TargetID: [String: String]]
     ) throws {
         guard let testAction = testAction else {
           return nil
@@ -93,7 +94,31 @@ extension XCSchemeInfo.TestActionInfo {
             testAction.targets.sortedLocalizedStandard().first.orThrow("""
 Expected at least one target in `TestAction.targets`
 """)
-        
+
+        var env: [String: String] = testAction.env
+        let testActionTargetIdsLabels: [(TargetID, BazelLabel)] = testAction.targets.compactMap { label in
+            guard let targetId: TargetID = targetIDsByLabel[label]
+            else {
+                return nil
+            }
+            return (targetId, label)
+        }
+        for tuple in testActionTargetIdsLabels {
+            let testActionTargetId: TargetID = tuple.0
+            let testActionLabel: BazelLabel = tuple.1
+            if let testActionTargetEnv: [String: String] = envs[testActionTargetId] {
+                for (key, newValue) in testActionTargetEnv {
+                    if let existingValue: String = env[key], existingValue != newValue {
+                        let errorMessage: String = """
+                        ERROR: '\(testActionLabel)' defines a value for '\(key)' ('\(newValue)') that doesn't match the existing value of '\(existingValue)' from another target in the same scheme.
+                        """
+                        throw UsageError(message: errorMessage)
+                    }
+                    env[key] = newValue
+                }
+            }
+        }
+
         try self.init(
             buildConfigurationName: testAction.buildConfigurationName,
             targetInfos: try testAction.targets.map { label in
@@ -108,7 +133,7 @@ Expected at least one target in `TestAction.targets`
             diagnostics: XCSchemeInfo.DiagnosticsInfo(
                 diagnostics: testAction.diagnostics
             ),
-            env: testAction.env,
+            env: env,
             expandVariablesBasedOn: try targetResolver.targetInfo(
                 targetID: try targetIDsByLabel.value(
                     for: expandVariablesBasedOn,

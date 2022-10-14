@@ -85,7 +85,8 @@ extension XCSchemeInfoTestActionInfoTests {
         let actual = try XCSchemeInfo.TestActionInfo(
             testAction: nil,
             targetResolver: targetResolver,
-            targetIDsByLabel: [:]
+            targetIDsByLabel: [:],
+            envs: [:]
         )
         XCTAssertNil(actual)
     }
@@ -97,7 +98,8 @@ extension XCSchemeInfoTestActionInfoTests {
             targetIDsByLabel: try xcodeScheme.resolveTargetIDs(
                 targetResolver: targetResolver,
                 runnerLabel: runnerLabel
-            )
+            ),
+            envs: [:]
         ).orThrow("Expected a `TestActionInfo`")
         let testTargetInfo = try targetResolver.targetInfo(targetID: "B 2")
         let expected = try XCSchemeInfo.TestActionInfo(

@@ -472,13 +472,14 @@ actual targets: {}
 
 def _write_json_spec(
         *,
-        ctx,
-        project_name,
         config,
         configuration,
-        targets,
+        ctx,
+        envs,
+        project_name,
         target_dtos,
         target_merges,
+        targets,
         has_unfocused_targets,
         replacement_labels,
         inputs,
@@ -525,6 +526,7 @@ def _write_json_spec(
 }},\
 "configuration":"{configuration}",\
 "custom_xcode_schemes":{custom_xcode_schemes},\
+"envs": {envs},\
 "extra_files":{extra_files},\
 "force_bazel_dependencies":{force_bazel_dependencies},\
 "generator_label":"{generator_label}",\
@@ -574,6 +576,9 @@ def _write_json_spec(
             flattened_key_values.to_list(target_merges),
         ),
         targets = json.encode(flattened_key_values.to_list(target_dtos)),
+        envs = json.encode(
+            flattened_key_values.to_list(envs),
+        ),
     )
 
     output = ctx.actions.declare_file("{}_spec.json".format(ctx.attr.name))
@@ -876,6 +881,13 @@ def _xcodeproj_impl(ctx):
             transitive = [info.replacement_labels for info in infos],
         ).to_list()
     }
+    envs = {
+        s.id: s.env
+        for s in depset(
+            transitive = [info.envs for info in infos],
+        ).to_list()
+        if s.env
+    }
 
     (
         targets,
@@ -921,6 +933,7 @@ def _xcodeproj_impl(ctx):
         project_name = project_name,
         config = config,
         configuration = configuration,
+        envs = envs,
         targets = targets,
         target_dtos = target_dtos,
         target_merges = target_merges,

@@ -14,9 +14,9 @@
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "467E28CECC74A90D0BF1F0D5"
-                     BuildableName = "watchOSAppUITests.xctest"
-                     BlueprintName = "watchOSAppUITests"
+                     BlueprintIdentifier = "3CE6AD21A6E119583FB633F7"
+                     BuildableName = "iOSAppObjCUnitTests.xctest"
+                     BlueprintName = "iOSAppObjCUnitTests"
                      ReferencedContainer = "container:../../../../../../test/fixtures/bwx.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
@@ -25,14 +25,14 @@
          <ExecutionAction
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
-               title = "Set Bazel Build Output Groups for watchOSAppUITests"
+               title = "Set Bazel Build Output Groups for iOSAppObjCUnitTests"
                scriptText = "echo &quot;$BAZEL_LABEL,$BAZEL_TARGET_ID&quot; &gt;&gt; &quot;$SCHEME_TARGET_IDS_FILE&quot;&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "467E28CECC74A90D0BF1F0D5"
-                     BuildableName = "watchOSAppUITests.xctest"
-                     BlueprintName = "watchOSAppUITests"
+                     BlueprintIdentifier = "3CE6AD21A6E119583FB633F7"
+                     BuildableName = "iOSAppObjCUnitTests.xctest"
+                     BlueprintName = "iOSAppObjCUnitTests"
                      ReferencedContainer = "container:../../../../../../test/fixtures/bwx.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
@@ -48,9 +48,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "467E28CECC74A90D0BF1F0D5"
-               BuildableName = "watchOSAppUITests.xctest"
-               BlueprintName = "watchOSAppUITests"
+               BlueprintIdentifier = "3CE6AD21A6E119583FB633F7"
+               BuildableName = "iOSAppObjCUnitTests.xctest"
+               BlueprintName = "iOSAppObjCUnitTests"
                ReferencedContainer = "container:../../../../../../test/fixtures/bwx.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -65,9 +65,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "467E28CECC74A90D0BF1F0D5"
-            BuildableName = "watchOSAppUITests.xctest"
-            BlueprintName = "watchOSAppUITests"
+            BlueprintIdentifier = "3CE6AD21A6E119583FB633F7"
+            BuildableName = "iOSAppObjCUnitTests.xctest"
+            BlueprintName = "iOSAppObjCUnitTests"
             ReferencedContainer = "container:../../../../../../test/fixtures/bwx.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -76,9 +76,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "467E28CECC74A90D0BF1F0D5"
-               BuildableName = "watchOSAppUITests.xctest"
-               BlueprintName = "watchOSAppUITests"
+               BlueprintIdentifier = "3CE6AD21A6E119583FB633F7"
+               BuildableName = "iOSAppObjCUnitTests.xctest"
+               BlueprintName = "iOSAppObjCUnitTests"
                ReferencedContainer = "container:../../../../../../test/fixtures/bwx.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -87,6 +87,11 @@
          <EnvironmentVariable
             key = "INTEGRATION_TEST_ENV_VAR"
             value = "TRUE"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "IOS_APP_UNIT_TESTS"
+            value = "CUSTOM_ENV_VALUE"
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>
@@ -105,9 +110,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "467E28CECC74A90D0BF1F0D5"
-            BuildableName = "watchOSAppUITests.xctest"
-            BlueprintName = "watchOSAppUITests"
+            BlueprintIdentifier = "3CE6AD21A6E119583FB633F7"
+            BuildableName = "iOSAppObjCUnitTests.xctest"
+            BlueprintName = "iOSAppObjCUnitTests"
             ReferencedContainer = "container:../../../../../../test/fixtures/bwx.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

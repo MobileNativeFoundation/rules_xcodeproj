@@ -158,7 +158,8 @@ extension XCSchemeInfoTests {
         let actual = try XCSchemeInfo(
             scheme: try xcodeScheme.withDefaults,
             targetResolver: targetResolver,
-            runnerLabel: runnerLabel
+            runnerLabel: runnerLabel,
+            envs: [:]
         )
         let expected = try XCSchemeInfo(
             name: schemeName,

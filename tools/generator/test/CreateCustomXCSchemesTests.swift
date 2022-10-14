@@ -1,4 +1,5 @@
 import XCTest
+import XcodeProj
 
 @testable import generator
 
@@ -8,7 +9,8 @@ extension CreateCustomXCSchemesTests {
             schemes: [],
             buildMode: .bazel,
             targetResolver: targetResolver,
-            runnerLabel: runnerLabel
+            runnerLabel: runnerLabel,
+            envs: [:]
         )
         XCTAssertEqual(actual, [])
     }
@@ -18,10 +20,27 @@ extension CreateCustomXCSchemesTests {
             schemes: [schemeA, schemeB],
             buildMode: .bazel,
             targetResolver: targetResolver,
-            runnerLabel: runnerLabel
+            runnerLabel: runnerLabel,
+            envs: [:]
         )
         XCTAssertEqual(actual.count, 2)
         XCTAssertEqual(actual.map(\.name), [schemeA.name, schemeB.name])
+    }
+
+    func test_createCustomXCSchemes_withCustomSchemes_testEnvOverrides() throws {
+        assertUsageError(
+            try Generator.createCustomXCSchemes(
+                schemes: [schemeC],
+                buildMode: .bazel,
+                targetResolver: targetResolver,
+                runnerLabel: runnerLabel,
+                envs: ["B 2": [
+                    "B_2_SCHEME_VAR": "INITIAL",
+                    "OTHER_ENV_VAR": "INITIAL"
+                ]]
+            ),
+            expectedMessage: "ERROR: '@//some/package:B' defines a value for 'B_2_SCHEME_VAR' ('INITIAL') that doesn't match the existing value of 'OVERRIDE' from another target in the same scheme."
+        )
     }
 }
 
@@ -55,4 +74,40 @@ class CreateCustomXCSchemesTests: XCTestCase {
         name: "Scheme B",
         launchAction: .init(target: targetResolver.targets["A 2"]!.label)
     )
+
+    lazy var schemeC = try! XcodeScheme(
+        name: "Scheme C",
+        testAction: .init(
+            targets: [targetResolver.targets["B 2"]!.label],
+            env: ["B_2_SCHEME_VAR": "OVERRIDE"]
+        )
+    )
+}
+
+extension CreateCustomXCSchemesTests {
+    func assertUsageError<T>(
+        _ closure: @autoclosure () throws -> T,
+        expectedMessage: String,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) {
+        var thrown: Error?
+        XCTAssertThrowsError(try closure(), file: file, line: line) {
+            thrown = $0
+        }
+        guard let usageError = thrown as? UsageError else {
+            XCTFail(
+                "Expected `UsageError`, but was \(String(describing: thrown)).",
+                file: file,
+                line: line
+            )
+            return
+        }
+        XCTAssertEqual(
+            usageError.message,
+            expectedMessage,
+            file: file,
+            line: line
+        )
+    }
 }

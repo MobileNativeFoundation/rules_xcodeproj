@@ -10,5 +10,7 @@ build:rules_xcodeproj --@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:ext
 
 build:rules_xcodeproj_integration --define=foo=bar
 
+build --test_env=INTEGRATION_TEST_ENV_VAR=TRUE
+
 # Use a user.bazelrc if it exists
 try-import %workspace%/user.bazelrc

@@ -1,5 +1,6 @@
 """Functions for creating `XcodeProjInfo` providers."""
 
+load("@bazel_skylib//lib:dicts.bzl", "dicts")
 load(
     "@build_bazel_rules_apple//apple:providers.bzl",
     "AppleBinaryInfo",
@@ -54,6 +55,7 @@ def _target_info_fields(
         *,
         compilation_providers,
         dependencies,
+        envs,
         extension_infoplists,
         hosted_targets,
         inputs,
@@ -78,6 +80,7 @@ def _target_info_fields(
         compilation_providers: Maps to the `XcodeProjInfo.compilation_providers`
             field.
         dependencies: Maps to the `XcodeProjInfo.dependencies` field.
+        envs: Maps to the `XcodeProjInfo.envs` field.
         extension_infoplists: Maps to the `XcodeProjInfo.extension_infoplists`
             field.
         hosted_targets: Maps to the `XcodeProjInfo.hosted_targets` field.
@@ -120,6 +123,7 @@ def _target_info_fields(
         *   `rule_kind`
         *   `search_paths`
         *   `target_type`
+        *   `envs`
         *   `transitive_dependencies`
         *   `xcode_target`
         *   `xcode_targets`
@@ -140,25 +144,36 @@ def _target_info_fields(
         "rule_kind": rule_kind,
         "search_paths": search_paths,
         "target_type": target_type,
+        "envs": envs,
         "transitive_dependencies": transitive_dependencies,
         "xcode_target": xcode_target,
         "xcode_targets": xcode_targets,
         "xcode_required_targets": xcode_required_targets,
     }
 
-def _skip_target(*, target, deps, deps_attrs, transitive_infos):
+def _skip_target(
+        *,
+        ctx,
+        target,
+        deps,
+        deps_attrs,
+        transitive_infos,
+        automatic_target_info):
     """Passes through existing target info fields, not collecting new ones.
 
     Merges `XcodeProjInfo`s for the dependencies of the current target, and
     forwards them on, not collecting any information for the current target.
 
     Args:
+        ctx: The aspect context.
         target: The `Target` to skip.
         deps: `Target`s collected from `ctx.attr.deps`.
         deps_attrs: A sequence of attribute names to collect `Target`s from for
             `deps`-like attributes.
         transitive_infos: A `list` of `depset`s of `XcodeProjInfo`s from the
             transitive dependencies of the target.
+        automatic_target_info: The `XcodeProjAutomaticTargetProcessingInfo` for
+            `target`.
 
     Returns:
         The return value of `_target_info_fields`, with values merged from
@@ -243,6 +258,23 @@ def _skip_target(*, target, deps, deps_attrs, transitive_infos):
         rule_kind = None,
         search_paths = search_paths,
         target_type = target_type.compile,
+        envs = depset(
+            [
+                _create_envs_depset(
+                    ctx = ctx,
+                    id = info.xcode_target.id,
+                    automatic_target_info = automatic_target_info,
+                )
+                for attr, info in transitive_infos
+                if (target and
+                    attr in deps_attrs and
+                    info.xcode_target)
+            ],
+            transitive = [
+                info.envs
+                for _, info in transitive_infos
+            ],
+        ),
         transitive_dependencies = transitive_dependencies,
         xcode_target = None,
         xcode_targets = depset(
@@ -253,6 +285,16 @@ def _skip_target(*, target, deps, deps_attrs, transitive_infos):
                 info.xcode_required_targets
                 for _, info in transitive_infos
             ],
+        ),
+    )
+
+def _create_envs_depset(*, ctx, id, automatic_target_info):
+    test_env = getattr(ctx.rule.attr, automatic_target_info.env, {})
+
+    return struct(
+        id = id,
+        env = struct(
+            **dicts.add(test_env, ctx.configuration.test_env)
         ),
     )
 
@@ -377,6 +419,12 @@ def _create_xcodeprojinfo(
         rule_kind = ctx.rule.kind,
         search_paths = processed_target.search_paths,
         target_type = processed_target.automatic_target_info.target_type,
+        envs = depset(
+            transitive = [
+                info.envs
+                for _, info in transitive_infos
+            ],
+        ),
         transitive_dependencies = processed_target.transitive_dependencies,
         xcode_target = processed_target.xcode_target,
         xcode_targets = depset(
@@ -424,6 +472,7 @@ def create_xcodeprojinfo(*, ctx, target, transitive_infos):
 
     if _should_skip_target(ctx = ctx, target = target):
         info_fields = _skip_target(
+            ctx = ctx,
             target = target,
             deps = [
                 dep
@@ -432,6 +481,7 @@ def create_xcodeprojinfo(*, ctx, target, transitive_infos):
             ],
             deps_attrs = automatic_target_info.deps,
             transitive_infos = transitive_infos,
+            automatic_target_info = automatic_target_info,
         )
     else:
         info_fields = _create_xcodeprojinfo(

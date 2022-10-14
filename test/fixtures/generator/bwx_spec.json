@@ -116,6 +116,10 @@
             "test_action": null
         }
     ],
+    "envs": [
+        "//tools/generator/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889",
+        {}
+    ],
     "extra_files": [
         "tools/generator/BUILD",
         "tools/generator/test/BUILD",

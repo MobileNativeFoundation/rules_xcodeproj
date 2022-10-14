@@ -33,6 +33,10 @@ attributes.
 An attribute name (or `None`) to collect `File`s from for the
 `entitlements`-like attribute.
 """,
+        "env": """\
+A `dict` representing the environment variables that this target should execute or
+test with.
+""",
         "exported_symbols_lists": """\
 A sequence of attribute names to collect `File`s from for the
 `exported_symbols_lists`-like attributes.
@@ -92,6 +96,11 @@ A value returned from `compilation_providers.collect_for_{non_,}top_level`.
         "dependencies": """\
 A `depset` of target ids (see the `target` `struct`) that this target directly
 depends on.
+""",
+        "envs": """\
+A `depset` of `struct`s with `id` and `env` fields. The `id` field is the
+target id of the target and `env` values
+for the target (if applicable).
 """,
         "extension_infoplists": """\
 A `depset` of `struct`s with 'id' and 'infoplist' fields. The 'id' field is the
