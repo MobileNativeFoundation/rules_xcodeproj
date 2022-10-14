@@ -10,11 +10,18 @@ build --remote_default_exec_properties=cache_bust=macOS_12.0/3
 # In-repo output_base makes fixtures relative
 startup --output_base=bazel-output-base
 
+# Ensure we work with BwtB
 build --nobuild_runfile_links
 build --experimental_inmemory_jdeps_files
 build --experimental_inmemory_dotd_files
 build --remote_download_outputs=minimal
 test --remote_download_outputs=toplevel
+
+# Work around https://github.com/bazelbuild/bazel/issues/11920
+run --remote_download_outputs=all
+
+# rules_xcodeproj needs toplevel to download needed outputs
+build:rules_xcodeproj --remote_download_outputs=toplevel
 
 # Build with --config=cache to use BuildBuddy Remote Cache
 build:cache --bes_backend=grpcs://remote.buildbuddy.io
