@@ -75,25 +75,13 @@
     "extra_files": [
         "AddressSanitizerApp/BUILD",
         "AddressSanitizerApp/Info.plist",
-        {
-            "_": "applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/AddressSanitizerApp/rules_xcodeproj/AddressSanitizerApp/Info.plist",
-            "t": "g"
-        },
         "ThreadSanitizerApp/BUILD",
         "ThreadSanitizerApp/Info.plist",
-        {
-            "_": "applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/ThreadSanitizerApp/rules_xcodeproj/ThreadSanitizerApp/Info.plist",
-            "t": "g"
-        },
         "UndefinedBehaviorSanitizerApp/BUILD",
         "UndefinedBehaviorSanitizerApp/Info.plist",
-        {
-            "_": "applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/UndefinedBehaviorSanitizerApp/rules_xcodeproj/UndefinedBehaviorSanitizerApp/Info.plist",
-            "t": "g"
-        },
         "test/fixtures/BUILD"
     ],
-    "force_bazel_dependencies": true,
+    "force_bazel_dependencies": false,
     "generator_label": "//test/fixtures:xcodeproj_bwx.generator",
     "index_import": {
         "t": "g",
