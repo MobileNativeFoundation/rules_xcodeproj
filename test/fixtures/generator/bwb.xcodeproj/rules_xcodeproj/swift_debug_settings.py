@@ -14,7 +14,7 @@ _BUNDLE_EXTENSIONS = [
 
 _SETTINGS = {
   "x86_64-apple-macosx12.0.0 generator" : {
-    "clang" : "-iquote \"$(SRCROOT)\" -iquote \"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin\" -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all -iquote \"$(SRCROOT)\" -iquote \"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin\" -O0 -fstack-protector -fstack-protector-all -iquote \"$(SRCROOT)\" -iquote \"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin\" -O0 -fstack-protector -fstack-protector-all -iquote \"$(SRCROOT)\" -iquote \"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin\" -O0 -fstack-protector -fstack-protector-all -iquote \"$(SRCROOT)\" -iquote \"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin\" -O0 -fstack-protector -fstack-protector-all",
+    "clang" : "-iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin\" -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all -iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin\" -O0 -fstack-protector -fstack-protector-all -iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin\" -O0 -fstack-protector -fstack-protector-all -iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin\" -O0 -fstack-protector -fstack-protector-all -iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin\" -O0 -fstack-protector -fstack-protector-all",
     "frameworks" : [
 
     ],
@@ -26,7 +26,7 @@ _SETTINGS = {
     ]
   },
   "x86_64-apple-macosx12.0.0 swiftc" : {
-    "clang" : "-iquote \"$(SRCROOT)\" -iquote \"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin\" -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all",
+    "clang" : "-iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin\" -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all",
     "frameworks" : [
 
     ],
@@ -35,7 +35,7 @@ _SETTINGS = {
     ]
   },
   "x86_64-apple-macosx12.0.0 tests.xctest/Contents/MacOS/tests" : {
-    "clang" : "-iquote \"$(SRCROOT)\" -iquote \"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin\" -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all -iquote \"$(SRCROOT)\" -iquote \"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin\" -O0 -fstack-protector -fstack-protector-all -iquote \"$(SRCROOT)\" -iquote \"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin\" -O0 -fstack-protector -fstack-protector-all -iquote \"$(SRCROOT)\" -iquote \"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin\" -O0 -fstack-protector -fstack-protector-all -iquote \"$(SRCROOT)\" -iquote \"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin\" -O0 -fstack-protector -fstack-protector-all -iquote \"$(SRCROOT)\" -iquote \"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin\" -O0 -fstack-protector -fstack-protector-all -iquote \"$(SRCROOT)\" -iquote \"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin\" -O0 -fstack-protector -fstack-protector-all -iquote \"$(SRCROOT)\" -iquote \"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin\" -O0 -fstack-protector -fstack-protector-all",
+    "clang" : "-iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin\" -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all -iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin\" -O0 -fstack-protector -fstack-protector-all -iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin\" -O0 -fstack-protector -fstack-protector-all -iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin\" -O0 -fstack-protector -fstack-protector-all -iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin\" -O0 -fstack-protector -fstack-protector-all -iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin\" -O0 -fstack-protector -fstack-protector-all -iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin\" -O0 -fstack-protector -fstack-protector-all -iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin\" -O0 -fstack-protector -fstack-protector-all",
     "frameworks" : [
       "$(PLATFORM_DIR)/Developer/Library/Frameworks",
       "$(SDKROOT)/Developer/Library/Frameworks"

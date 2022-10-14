@@ -546,7 +546,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = lib_impl;
 				USER_HEADER_SEARCH_PATHS = (
-					"$(SRCROOT)",
+					"$(PROJECT_DIR)",
 					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-3688109ddba2/bin",
 				);
 			};
@@ -615,7 +615,7 @@
 				);
 				TARGET_NAME = lib_impl;
 				USER_HEADER_SEARCH_PATHS = (
-					"$(SRCROOT)",
+					"$(PROJECT_DIR)",
 					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-3688109ddba2/bin",
 				);
 			};
@@ -754,7 +754,7 @@
 				);
 				TARGET_NAME = tool;
 				USER_HEADER_SEARCH_PATHS = (
-					"$(SRCROOT)",
+					"$(PROJECT_DIR)",
 					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-3688109ddba2/bin",
 					"$(BAZEL_EXTERNAL)/examples_cc_external",
 					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-3688109ddba2/bin/external/examples_cc_external",
@@ -830,7 +830,7 @@
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXTERNAL)/examples_cc_external",
 					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-3688109ddba2/bin/external/examples_cc_external",
-					"$(SRCROOT)",
+					"$(PROJECT_DIR)",
 					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-3688109ddba2/bin",
 				);
 			};
