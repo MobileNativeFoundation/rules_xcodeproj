@@ -5,10 +5,6 @@ load(
     "xcodeproj_fixture",
 )
 load(
-    "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:defs.bzl",
-    "xcode_schemes",
-)
-load(
     "//:xcodeproj_targets.bzl",
     "ASSOCIATED_EXTRA_FILES",
     "CONFIG",
