@@ -48,6 +48,12 @@ Product for target "\(key)" not found in `products`
                     outputs: outputs,
                     filePathResolver: filePathResolver
                 ),
+                try createCompilingDependenciesScript(
+                    in: pbxProj,
+                    hasClangSearchPaths: target.hasClangSearchPaths,
+                    files: files,
+                    filePathResolver: filePathResolver
+                ),
                 try createLinkingDependenciesScript(
                     in: pbxProj,
                     hasCompileStub: compileSources?.hasCompileStub == true,
@@ -163,6 +169,34 @@ Product for target "\(key)" not found in `products`
             shellScript: copyCommand,
             showEnvVarsInLog: false,
             alwaysOutOfDate: true
+        )
+        pbxProj.add(object: script)
+
+        return script
+    }
+
+    private static func createCompilingDependenciesScript(
+        in pbxProj: PBXProj,
+        hasClangSearchPaths: Bool,
+        files: [FilePath: File],
+        filePathResolver: FilePathResolver
+    ) throws -> PBXShellScriptBuildPhase? {
+        guard files.keys.contains(.internal(createXcodeOverlayScriptPath)),
+              hasClangSearchPaths
+        else {
+            return  nil
+        }
+
+        let script = PBXShellScriptBuildPhase(
+            name: "Create compiling dependencies",
+            inputPaths: [
+                try filePathResolver
+                    .resolve(.internal(createXcodeOverlayScriptPath))
+                    .string
+            ],
+            outputPaths: ["$(DERIVED_FILE_DIR)/xcode-overlay.yaml"],
+            shellScript: "\"$SCRIPT_INPUT_FILE_0\"\n",
+            showEnvVarsInLog: false
         )
         pbxProj.add(object: script)
 

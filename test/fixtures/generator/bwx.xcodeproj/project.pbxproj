@@ -1598,6 +1598,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 098ECC207AD7CA38CAB13ADA /* Build configuration list for PBXNativeTarget "generator" */;
 			buildPhases = (
+				0526F613A0521424B1525042 /* Create compiling dependencies */,
 				2873C638E3CBD8B23D24AC62 /* Create linking dependencies */,
 				A20A184C7539826C418740CC /* Sources */,
 			);
@@ -1791,6 +1792,23 @@
 /* End PBXProject section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0526F613A0521424B1525042 /* Create compiling dependencies */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(INTERNAL_DIR)/create_xcode_overlay.sh",
+			);
+			name = "Create compiling dependencies";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$SCRIPT_INPUT_FILE_0\"\n";
+			showEnvVarsInLog = 0;
+		};
 		2873C638E3CBD8B23D24AC62 /* Create linking dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2467,13 +2485,13 @@
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",
-					"$(OBJROOT)/xcode-overlay.yaml",
+					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 				);
 				OTHER_CPLUSPLUSFLAGS = (
 					"-ivfsoverlay",
-					"$(OBJROOT)/xcode-overlay.yaml",
+					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 				);

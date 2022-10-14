@@ -87,8 +87,9 @@ rsync \
   "$src/" "$dest/"
 
 # Make scripts runnable
+shopt -s nullglob
+chmod u+x "$dest/rules_xcodeproj/"*.{py,sh}
 if [[ -d "$dest/rules_xcodeproj/bazel" ]]; then
-  shopt -s nullglob
   chmod u+x "$dest/rules_xcodeproj/bazel/"*.{py,sh}
 fi
 

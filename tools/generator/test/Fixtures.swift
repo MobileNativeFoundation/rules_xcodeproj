@@ -1147,10 +1147,15 @@ bazel-out/a/c.lo
                 .nonReferencedContent(#"""
 #!/bin/bash
 
+if [[ "${BAZEL_OUT:0:1}" == '/' ]]; then
+  readonly bazel_out_prefix=
+else
+  readonly bazel_out_prefix="$SRCROOT/"
+fi
+
 # Look up Swift generated headers in `$BUILD_DIR` first, then fall through to
 # `$BAZEL_OUT`
-# `${bazel_out_prefix}` comes from sourcing script
-cat > "$OBJROOT/xcode-overlay.yaml" <<EOF
+cat > "$DERIVED_FILE_DIR/xcode-overlay.yaml" <<EOF
 {"case-sensitive": "false", "fallthrough": true, "roots": [],"version": 0}
 EOF
 
@@ -1613,6 +1618,17 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
             )
         }
 
+        func createCreateCompilingDependenciesShellScript(
+        ) -> PBXShellScriptBuildPhase {
+            return PBXShellScriptBuildPhase(
+                name: "Create compiling dependencies",
+                inputPaths: ["$(INTERNAL_DIR)/create_xcode_overlay.sh"],
+                outputPaths: ["$(DERIVED_FILE_DIR)/xcode-overlay.yaml"],
+                shellScript: "\"$SCRIPT_INPUT_FILE_0\"\n",
+                showEnvVarsInLog: false
+            )
+        }
+
         func createCreateLinkingDependenciesShellScript(
             hasCompileStub: Bool = false
         ) -> PBXShellScriptBuildPhase {
@@ -1766,6 +1782,7 @@ touch "$SCRIPT_OUTPUT_FILE_1"
                 ),
             ],
             "E1": [
+                createCreateCompilingDependenciesShellScript(),
                 PBXSourcesBuildPhase(
                     files: buildFiles([PBXBuildFile(
                         file: elements[.external("a_repo/a.swift")]!
@@ -1782,6 +1799,7 @@ touch "$SCRIPT_OUTPUT_FILE_1"
                 createGeneratedHeaderShellScript(),
             ],
             "I": [
+                createCreateCompilingDependenciesShellScript(),
                 PBXSourcesBuildPhase(
                     files: buildFiles([PBXBuildFile(
                         file: elements[.internal("_CompileStub_.m")]!
@@ -2409,7 +2427,7 @@ $(INTERNAL_DIR)/targets/a1b2c/C 2/d.link.params
                 "COMPILE_TARGET_NAME": targets["E1"]!.name,
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "OTHER_SWIFT_FLAGS": #"""
--Xcc -ivfsoverlay -Xcc $(OBJROOT)/xcode-overlay.yaml \#
+-Xcc -ivfsoverlay -Xcc $(DERIVED_FILE_DIR)/xcode-overlay.yaml \#
 -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml \#
 -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml \#
 -Xcc -fmodule-map-file=$(SRCROOT)/a/module.modulemap
@@ -2459,13 +2477,13 @@ $(BAZEL_OUT)/some/framework/parent/dir
                 ],
                 "OTHER_CFLAGS": [
                     "-ivfsoverlay",
-                    "$(OBJROOT)/xcode-overlay.yaml",
+                    "$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
                     "-ivfsoverlay",
                     "$(OBJROOT)/bazel-out-overlay.yaml",
                 ],
                 "OTHER_CPLUSPLUSFLAGS": [
                     "-ivfsoverlay",
-                    "$(OBJROOT)/xcode-overlay.yaml",
+                    "$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
                     "-ivfsoverlay",
                     "$(OBJROOT)/bazel-out-overlay.yaml",
                 ],

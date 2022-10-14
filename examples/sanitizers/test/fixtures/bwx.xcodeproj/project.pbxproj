@@ -296,6 +296,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AE2878E2E4ABE4FF493E4CAB /* Build configuration list for PBXNativeTarget "UndefinedBehaviorSanitizerApp" */;
 			buildPhases = (
+				21A313E72B5A0C575F895D3B /* Create compiling dependencies */,
 				7168C7D4EC7D70376E5EC92C /* Create linking dependencies */,
 				C22B74A872F1DC7043F6918A /* Sources */,
 			);
@@ -375,6 +376,23 @@
 /* End PBXProject section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		21A313E72B5A0C575F895D3B /* Create compiling dependencies */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(INTERNAL_DIR)/create_xcode_overlay.sh",
+			);
+			name = "Create compiling dependencies";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$SCRIPT_INPUT_FILE_0\"\n";
+			showEnvVarsInLog = 0;
+		};
 		2FB8CA190C5FD287F83F39E3 /* Create swift_debug_settings.py */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -620,7 +638,7 @@
 				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/UndefinedBehaviorSanitizerApp/UndefinedBehaviorSanitizerApp.link.params";
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",
-					"$(OBJROOT)/xcode-overlay.yaml",
+					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 					"-fstack-protector",
@@ -651,7 +669,7 @@
 				);
 				OTHER_CPLUSPLUSFLAGS = (
 					"-ivfsoverlay",
-					"$(OBJROOT)/xcode-overlay.yaml",
+					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 					"-fstack-protector",
