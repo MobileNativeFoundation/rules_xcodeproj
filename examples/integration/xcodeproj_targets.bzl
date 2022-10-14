@@ -59,6 +59,8 @@ APP_CLIP_BUNDLE_ID = "{}.app-clip".format(IOS_BUNDLE_ID)
 TVOS_BUNDLE_ID = IOS_BUNDLE_ID
 WATCHOS_BUNDLE_ID = "{}.watch".format(IOS_BUNDLE_ID)
 
+SCHEME_AUTOGENERATION_MODE = "all"
+
 def get_xcode_schemes():
     return [
         xcode_schemes.scheme(
