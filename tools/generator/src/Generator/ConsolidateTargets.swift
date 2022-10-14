@@ -266,6 +266,7 @@ struct ConsolidatedTarget: Equatable {
     let isSwift: Bool
     let inputs: ConsolidatedTargetInputs
     let linkerInputs: ConsolidatedTargetLinkerInputs
+    let hasClangSearchPaths: Bool
     let hasLinkerFlags: Bool
     let resourceBundleDependencies: Set<TargetID>
     let watchApplication: TargetID?
@@ -344,6 +345,11 @@ extension ConsolidatedTarget {
         inputs = Self.consolidateInputs(targets: sortedTargets)
         linkerInputs = Self.consolidateLinkerInputs(targets: sortedTargets)
         hasLinkerFlags = aTarget.hasLinkerFlags
+
+        hasClangSearchPaths = sortedTargets.contains { target in
+            return !target.modulemaps.isEmpty
+                || (!target.isSwift && target.searchPaths.hasIncludes)
+        }
 
         var baselineFiles: Set<FilePath> = aTarget
             .allExcludableFiles(xcodeGeneratedFiles: xcodeGeneratedFiles)

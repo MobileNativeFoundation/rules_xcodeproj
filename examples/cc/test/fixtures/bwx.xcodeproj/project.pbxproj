@@ -230,6 +230,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1991A681A5CB88561D37B886 /* Build configuration list for PBXNativeTarget "@//lib2:lib_impl" */;
 			buildPhases = (
+				E881916100D775EF5F50A2C6 /* Create compiling dependencies */,
 				328F1BE6C5C0895CC11A5EDB /* Sources */,
 			);
 			buildRules = (
@@ -245,6 +246,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FA7CA526EED1582756E3E941 /* Build configuration list for PBXNativeTarget "@examples_cc_external//:lib_impl" */;
 			buildPhases = (
+				15530B82A3C1B00C682AF998 /* Create compiling dependencies */,
 				FFD93E746954CFC6BF3AD963 /* Sources */,
 			);
 			buildRules = (
@@ -260,6 +262,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4193581FD52824B6B27A38B9 /* Build configuration list for PBXNativeTarget "@//lib:lib_impl" */;
 			buildPhases = (
+				69580EBA0FAED5BDB37827D6 /* Create compiling dependencies */,
 				94D26C14F8860427A9AD2471 /* Sources */,
 			);
 			buildRules = (
@@ -275,6 +278,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 85DAE5AD4B16C63749019BBB /* Build configuration list for PBXNativeTarget "tool" */;
 			buildPhases = (
+				26930AFFB7188AF135605E52 /* Create compiling dependencies */,
 				DF9F91D4DC559C08850160A4 /* Create linking dependencies */,
 				5070903440E6C33AE9B061E6 /* Sources */,
 			);
@@ -345,6 +349,40 @@
 /* End PBXProject section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		15530B82A3C1B00C682AF998 /* Create compiling dependencies */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(INTERNAL_DIR)/create_xcode_overlay.sh",
+			);
+			name = "Create compiling dependencies";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$SCRIPT_INPUT_FILE_0\"\n";
+			showEnvVarsInLog = 0;
+		};
+		26930AFFB7188AF135605E52 /* Create compiling dependencies */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(INTERNAL_DIR)/create_xcode_overlay.sh",
+			);
+			name = "Create compiling dependencies";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$SCRIPT_INPUT_FILE_0\"\n";
+			showEnvVarsInLog = 0;
+		};
 		2FB8CA190C5FD287F83F39E3 /* Create swift_debug_settings.py */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -360,6 +398,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "perl -pe 's/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
+			showEnvVarsInLog = 0;
+		};
+		69580EBA0FAED5BDB37827D6 /* Create compiling dependencies */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(INTERNAL_DIR)/create_xcode_overlay.sh",
+			);
+			name = "Create compiling dependencies";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$SCRIPT_INPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
 		790733B6E675C2785F8020AC /* Fetch External Repositories */ = {
@@ -396,6 +451,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E881916100D775EF5F50A2C6 /* Create compiling dependencies */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(INTERNAL_DIR)/create_xcode_overlay.sh",
+			);
+			name = "Create compiling dependencies";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$SCRIPT_INPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -510,7 +582,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",
-					"$(OBJROOT)/xcode-overlay.yaml",
+					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 					"-fstack-protector",
@@ -525,7 +597,7 @@
 				);
 				OTHER_CPLUSPLUSFLAGS = (
 					"-ivfsoverlay",
-					"$(OBJROOT)/xcode-overlay.yaml",
+					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 					"-fstack-protector",
@@ -575,7 +647,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",
-					"$(OBJROOT)/xcode-overlay.yaml",
+					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 					"-fstack-protector",
@@ -590,7 +662,7 @@
 				);
 				OTHER_CPLUSPLUSFLAGS = (
 					"-ivfsoverlay",
-					"$(OBJROOT)/xcode-overlay.yaml",
+					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 					"-fstack-protector",
@@ -713,7 +785,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",
-					"$(OBJROOT)/xcode-overlay.yaml",
+					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 					"-fstack-protector",
@@ -728,7 +800,7 @@
 				);
 				OTHER_CPLUSPLUSFLAGS = (
 					"-ivfsoverlay",
-					"$(OBJROOT)/xcode-overlay.yaml",
+					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 					"-fstack-protector",
@@ -792,7 +864,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",
-					"$(OBJROOT)/xcode-overlay.yaml",
+					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 					"-fstack-protector",
@@ -807,7 +879,7 @@
 				);
 				OTHER_CPLUSPLUSFLAGS = (
 					"-ivfsoverlay",
-					"$(OBJROOT)/xcode-overlay.yaml",
+					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 					"-fstack-protector",

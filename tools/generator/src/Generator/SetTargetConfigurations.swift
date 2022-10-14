@@ -543,7 +543,7 @@ $(CONFIGURATION_BUILD_DIR)
                     try buildSettings.prepend(
                         onKey: "OTHER_SWIFT_FLAGS",
                         #"""
--Xcc -ivfsoverlay -Xcc $(OBJROOT)/xcode-overlay.yaml \#
+-Xcc -ivfsoverlay -Xcc $(DERIVED_FILE_DIR)/xcode-overlay.yaml \#
 -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml
 """#
                     )
@@ -554,12 +554,12 @@ $(CONFIGURATION_BUILD_DIR)
                 {
                     try buildSettings.prepend(
                         onKey: "OTHER_CFLAGS",
-                        ["-ivfsoverlay", "$(OBJROOT)/xcode-overlay.yaml"]
+                        ["-ivfsoverlay", "$(DERIVED_FILE_DIR)/xcode-overlay.yaml"]
                     )
 
                     try buildSettings.prepend(
                         onKey: "OTHER_CPLUSPLUSFLAGS",
-                        ["-ivfsoverlay", "$(OBJROOT)/xcode-overlay.yaml"]
+                        ["-ivfsoverlay", "$(DERIVED_FILE_DIR)/xcode-overlay.yaml"]
                     )
                 }
             case .bazel:

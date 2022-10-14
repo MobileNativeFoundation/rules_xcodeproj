@@ -18,6 +18,13 @@ struct SearchPaths: Equatable {
 }
 
 extension SearchPaths {
+    var hasIncludes: Bool {
+        return !frameworkIncludes.isEmpty
+            || !quoteIncludes.isEmpty
+            || !includes.isEmpty
+            || !systemIncludes.isEmpty
+    }
+
     mutating func merge(_ other: SearchPaths) {
         quoteIncludes = other.quoteIncludes
         includes = other.includes

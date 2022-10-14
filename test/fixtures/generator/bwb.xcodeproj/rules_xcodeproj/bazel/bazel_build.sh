@@ -101,15 +101,10 @@ readonly output_path
 
 # Create VFS overlays
 
-# `bazel_out_prefix` is used in `create_xcode_overlay.sh`
 if [[ "${BAZEL_OUT:0:1}" == '/' ]]; then
   readonly bazel_out_prefix=
 else
   readonly bazel_out_prefix="$SRCROOT/"
-fi
-
-if [[ "$RULES_XCODEPROJ_BUILD_MODE" == "xcode" ]]; then
-  source "$INTERNAL_DIR/create_xcode_overlay.sh"
 fi
 
 readonly absolute_bazel_out="${bazel_out_prefix}$BAZEL_OUT"
