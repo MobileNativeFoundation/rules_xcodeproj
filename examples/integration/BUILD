@@ -7,9 +7,10 @@ load(
     "ASSOCIATED_EXTRA_FILES",
     "CONFIG",
     "EXTRA_FILES",
+    "get_xcode_schemes",
+    "SCHEME_AUTOGENERATION_MODE",
     "UNFOCUSED_TARGETS",
     "XCODEPROJ_TARGETS",
-    "get_xcode_schemes",
 )
 
 exports_files(["README.md"])
@@ -21,7 +22,7 @@ xcodeproj(
     config = CONFIG,
     extra_files = EXTRA_FILES,
     project_name = "Integration",
-    scheme_autogeneration_mode = "all",
+    scheme_autogeneration_mode = SCHEME_AUTOGENERATION_MODE,
     schemes = get_xcode_schemes(),
     tags = ["manual"],
     top_level_targets = XCODEPROJ_TARGETS,

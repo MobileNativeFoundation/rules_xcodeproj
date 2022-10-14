@@ -9,16 +9,17 @@ load(
     "ASSOCIATED_EXTRA_FILES",
     "CONFIG",
     "EXTRA_FILES",
+    "get_xcode_schemes",
+    "SCHEME_AUTOGENERATION_MODE",
     "UNFOCUSED_TARGETS",
     "XCODEPROJ_TARGETS",
-    "get_xcode_schemes",
 )
 
 xcodeproj_fixture(
     associated_extra_files = ASSOCIATED_EXTRA_FILES,
     config = CONFIG,
     extra_files = EXTRA_FILES,
-    scheme_autogeneration_mode = "all",
+    scheme_autogeneration_mode = SCHEME_AUTOGENERATION_MODE,
     schemes = get_xcode_schemes(),
     top_level_targets = XCODEPROJ_TARGETS,
     unfocused_targets = UNFOCUSED_TARGETS,
