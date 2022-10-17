@@ -15,6 +15,9 @@ build:rules_xcodeproj --experimental_action_cache_store_output_metadata
 # Xcode builds shouldn't mess with the workspace's symlinks
 build:rules_xcodeproj --experimental_convenience_symlinks=ignore
 
+# Ensure all our intermediate files are downloaded with BwtB
+build:rules_xcodeproj --experimental_remote_download_regex=.*\\.indexstore/.*|.*\\.swiftdoc$|.*\\.swiftmodule$|.*\\.swiftsourceinfo$
+
 # Not using `--define=apple.experimental.tree_artifact_outputs=1` is slow (we
 # have to unzip an archive on each build). If this doesn't work for your
 # project, you can set `--define=apple.experimental.tree_artifact_outputs=0`
@@ -47,11 +50,6 @@ build:rules_xcodeproj --features=swift.cacheable_swiftmodules
 # space.
 build:rules_xcodeproj --features=swift.index_while_building
 build:rules_xcodeproj --features=swift.use_global_index_store
-
-# We use `--override_repository` instead of adjusting the
-# `top_level_cache_buster` file in the repository itself, to ensure that it
-# continues to work with `--noexperimental_check_external_repository_files`
-common:rules_xcodeproj --override_repository=rules_xcodeproj_top_level_cache_buster=/tmp/rules_xcodeproj
 
 # `--show_result=0` prevents filelist outputs from displaying in the logs
 build:rules_xcodeproj --show_result=0

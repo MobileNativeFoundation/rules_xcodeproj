@@ -131,12 +131,6 @@ fi
 
 # Build
 
-# Ensure that our top-level cache buster `override_repository` is valid
-mkdir -p /tmp/rules_xcodeproj
-touch /tmp/rules_xcodeproj/WORKSPACE
-echo 'exports_files(["top_level_cache_buster"])' > /tmp/rules_xcodeproj/BUILD
-date +%s > "/tmp/rules_xcodeproj/top_level_cache_buster"
-
 readonly build_marker="$OBJROOT/bazel_build_start"
 touch "$build_marker"
 
@@ -152,31 +146,28 @@ touch "$build_marker"
   "$GENERATOR_LABEL" \
   2>&1
 
-# Check filelists
+# Collect indexstore filelists
 
 indexstores_filelists=()
 for output_group in "${output_groups[@]}"; do
+  if ! [[ "$output_group" =~ ^(xi|bi) ]]; then
+    continue
+  fi
+
   filelist="$GENERATOR_TARGET_NAME-${output_group//\//_}"
   filelist="${filelist/#/$output_path/$GENERATOR_PACKAGE_BIN_DIR/}"
   filelist="${filelist/%/.filelist}"
 
-  if [[ "$output_group" =~ ^(xi|bi) ]]; then
-    indexstores_filelists+=("$filelist")
-  fi
-
-  if [[ "$filelist" -ot "$build_marker" ]]; then
-    echo "error: Bazel didn't generate the correct files (it should have" \
-"generated outputs for output group \"$output_group\", but the timestamp for" \
-"\"$filelist\" was from before the build). Please regenerate the project to" \
-"fix this." >&2
-    echo "error: If your bazel version is less than 5.2, you may need to" \
-"\`bazel clean\` and/or \`bazel shutdown\` to work around a bug in project" \
-"generation." >&2
-    echo "error: If you are still getting this error after all of that," \
-"please file a bug report here:" \
+  if [[ ! -f "$filelist" ]]; then
+    echo "error: Bazel didn't create the indexstore filelist (\"$filelist\")." \
+"Please regenerate the project to fix this." >&2
+    echo "error: If you are still getting this error after regenerating your" \
+"project, please file a bug report here:" \
 "https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md" \
       >&2
     exit 1
   fi
+
+  indexstores_filelists+=("$filelist")
 done
 readonly indexstores_filelists
