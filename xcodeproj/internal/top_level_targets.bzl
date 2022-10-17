@@ -234,15 +234,12 @@ def process_top_level_target(
     ]
     extensions = [info.xcode_target.id for info in extension_target_infos]
 
-    hosted_target_infos = extension_target_infos
-    if watch_app_target_info:
-        hosted_target_infos.append(watch_app_target_info)
     hosted_targets = [
         struct(
             host = id,
             hosted = info.xcode_target.id,
         )
-        for info in hosted_target_infos
+        for info in extension_target_infos
     ]
 
     additional_files = []
