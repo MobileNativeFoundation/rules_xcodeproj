@@ -144,6 +144,7 @@ touch "$build_marker"
   ${toolchain:+--define=SWIFT_CUSTOM_TOOLCHAIN="$toolchain"} \
   "$output_groups_flag" \
   "$GENERATOR_LABEL" \
+  ${labels:+"--build_metadata=PATTERN=${labels[*]}"} \
   2>&1
 
 # Collect indexstore filelists
