@@ -10,6 +10,8 @@ def _write(*, ctx, rule_name, name, files):
     args.add_all(files, expand_directories = False)
 
     output = ctx.actions.declare_file("{}-{}.filelist".format(rule_name, name))
+    output_args = ctx.actions.args()
+    output_args.add(output)
 
     ctx.actions.run_shell(
         command = """
@@ -21,7 +23,7 @@ fi
 """,
         arguments = [
             args,
-            output.path,
+            output_args,
         ],
         mnemonic = "XcodeProjFilelist",
         progress_message = "Generating %{output}",
