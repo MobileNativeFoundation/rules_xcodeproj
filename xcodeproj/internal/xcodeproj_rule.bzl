@@ -970,22 +970,17 @@ def _xcodeproj_impl(ctx):
         xcodeproj = xcodeproj,
     )
 
-    additional_output_map_inputs = [
-        ctx.file._top_level_cache_buster,
-        ctx.executable._index_import,
-    ]
-
     input_files_output_groups = input_files.to_output_groups_fields(
         ctx = ctx,
         inputs = inputs,
         additional_generated = additional_generated,
-        additional_output_map_inputs = additional_output_map_inputs,
+        index_import = ctx.executable._index_import,
     )
     output_files_output_groups = output_files.to_output_groups_fields(
         ctx = ctx,
         outputs = outputs,
         additional_outputs = additional_outputs,
-        additional_output_map_inputs = additional_output_map_inputs,
+        index_import = ctx.executable._index_import,
     )
 
     if build_mode == "xcode":
@@ -1266,19 +1261,6 @@ transitive dependencies of the targets specified in the
             cfg = "exec",
             default = Label("//tools/swiftc_stub:universal_swiftc_stub"),
             executable = True,
-        ),
-        "_top_level_cache_buster": attr.label(
-            doc = """\
-We control an input file to force downloading of top-level outputs, without
-having them be declared as the exact top level outputs. This makes the BEP a lot
-smaller and the UI output cleaner.
-
-See `//xcodeproj/internal:output_files.bzl` for more details.
-""",
-            allow_single_file = True,
-            default = Label(
-                "@rules_xcodeproj_top_level_cache_buster//:top_level_cache_buster",
-            ),
         ),
         "_xccurrentversions_parser": attr.label(
             cfg = "exec",

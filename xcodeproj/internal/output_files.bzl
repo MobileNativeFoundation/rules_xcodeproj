@@ -1,7 +1,7 @@
 """Module containing functions dealing with target output files."""
 
+load(":filelists.bzl", "filelists")
 load(":files.bzl", "file_path", "file_path_to_dto")
-load(":output_group_map.bzl", "output_group_map")
 
 # Utility
 
@@ -35,33 +35,40 @@ def _create(
         An opaque `struct` representing the internal data structure of the
         `output_files` module.
     """
+    compiled = None
     direct_products = []
-    direct_compiles = []
     indexstore = None
 
     if direct_outputs:
+        is_framework = direct_outputs.is_framework
         swift = direct_outputs.swift
         if swift:
-            compiles, indexstore = swift_to_outputs(swift)
-            direct_compiles.extend(compiles)
+            compiled, indexstore = swift_to_outputs(swift)
 
         if direct_outputs.product:
             direct_products.append(direct_outputs.product)
     else:
+        is_framework = False
         swift = None
 
-    transitive_compiles = depset(
-        direct_compiles if direct_compiles else None,
-        transitive = [
-            info.outputs._transitive_compiles
+    if compiled:
+        # We only need the single swiftmodule in order to download everything
+        # from the remote cache (because of
+        # `--experimental_remote_download_regex`). Reducing the number of items
+        # in an output group keeps the BEP small.
+        closest_compiled = depset(compiled[0:1])
+    else:
+        closest_compiled = depset(transitive = [
+            info.outputs._closest_compiled
             for attr, info in transitive_infos
-            if (not automatic_target_info or
-                info.target_type in automatic_target_info.xcode_targets.get(
-                    attr,
-                    [None],
-                ))
-        ],
-    )
+            if (not info.outputs._is_framework and
+                (not automatic_target_info or
+                 info.target_type in automatic_target_info.xcode_targets.get(
+                     attr,
+                     [None],
+                 )))
+        ])
+
     transitive_generated_srcs = depset(
         transitive = [
             info.inputs.generated
@@ -97,6 +104,10 @@ def _create(
                 ))
         ],
     )
+
+    # TODO: Once BwB mode no longer has target dependencies, remove transitive
+    # products. Until then we need them, to allow `Copy Bazel Outputs` to be
+    # able to copy the products of transitive dependencies.
     transitive_products = depset(
         direct_products if direct_products else None,
         transitive = [
@@ -109,26 +120,26 @@ def _create(
                 ))
         ],
     )
-    transitive_swift = depset(
-        [swift] if swift else None,
-        transitive = [
-            info.outputs._transitive_swift
-            for attr, info in transitive_infos
-            if (not automatic_target_info or
-                info.target_type in automatic_target_info.xcode_targets.get(
-                    attr,
-                    [None],
-                ))
-        ],
-    )
 
     if should_produce_output_groups and direct_outputs:
         products_output_group_name = "bp {}".format(direct_outputs.id)
         direct_group_list = [
-            ("bc {}".format(direct_outputs.id), transitive_compiles),
-            ("bg {}".format(direct_outputs.id), transitive_generated_srcs),
-            ("bi {}".format(direct_outputs.id), transitive_indexestores),
-            (products_output_group_name, transitive_products),
+            (
+                "bc {}".format(direct_outputs.id),
+                False,
+                closest_compiled,
+            ),
+            (
+                "bg {}".format(direct_outputs.id),
+                False,
+                transitive_generated_srcs,
+            ),
+            (
+                "bi {}".format(direct_outputs.id),
+                True,
+                transitive_indexestores,
+            ),
+            (products_output_group_name, False, transitive_products),
         ]
     else:
         products_output_group_name = None
@@ -149,11 +160,11 @@ def _create(
 
     return struct(
         _direct_outputs = direct_outputs if should_produce_dto else None,
+        _closest_compiled = closest_compiled,
+        _is_framework = is_framework,
         _output_group_list = output_group_list,
-        _transitive_compiles = transitive_compiles,
         _transitive_indexestores = transitive_indexestores,
         _transitive_products = transitive_products,
-        _transitive_swift = transitive_swift,
         products_output_group_name = products_output_group_name,
         transitive_infoplists = transitive_infoplists,
     )
@@ -190,8 +201,14 @@ def _get_outputs(*, id, product, swift_info):
             if swift:
                 break
 
+    if product and product.type.startswith("com.apple.product-type.framework"):
+        is_framework = True
+    else:
+        is_framework = False
+
     return struct(
         id = id,
+        is_framework = is_framework,
         product = product.file if product else None,
         product_file_path = product.actual_file_path if product else None,
         swift = swift,
@@ -297,21 +314,41 @@ def _to_dto(outputs):
     return dto
 
 def _process_output_group_files(
-        files,
         *,
+        ctx,
+        files,
+        is_indexstores,
         output_group_name,
-        additional_outputs):
-    outputs_depsets = additional_outputs.get(output_group_name)
-    if outputs_depsets:
-        return depset(transitive = [files] + outputs_depsets)
-    return files
+        additional_outputs,
+        index_import):
+    # `list` copy is needed for some reason to prevent depset from changing
+    # underneath us. Without this it's nondeterministic which files are in it.
+    outputs_depsets = list(additional_outputs.get(output_group_name, []))
+
+    if is_indexstores:
+        filelist = filelists.write(
+            ctx = ctx,
+            rule_name = ctx.attr.name,
+            name = output_group_name.replace("/", "_"),
+            files = files,
+        )
+        direct = [filelist, index_import]
+
+        # We don't want to declare indexstore files as outputs, because they
+        # expand to individual files and blow up the BEP
+        transitive = outputs_depsets
+    else:
+        direct = None
+        transitive = outputs_depsets + [files]
+
+    return depset(direct, transitive = transitive)
 
 def _to_output_groups_fields(
         *,
         ctx,
         outputs,
         additional_outputs = {},
-        additional_output_map_inputs):
+        index_import):
     """Generates a dictionary to be splatted into `OutputGroupInfo`.
 
     Args:
@@ -320,40 +357,25 @@ def _to_output_groups_fields(
         additional_outputs: A `dict` that maps the output group name of
             targets to a `list` of `depset`s of `File`s that should be merged
             into the output group map for that output group name.
-        additional_output_map_inputs: A `list` of `File`s that are used as
-            additional inputs to the output map generation. Minimally contains a
-            `File` that changes with each build, to ensure that the files
-            references by the output map are always downloaded from the remote
-            cache, even when using `--remote_download_toplevel`.
+        index_import: A `File` for `index-import`.
 
     Returns:
         A `dict` where the keys are output group names and the values are
         `depset` of `File`s.
     """
-    all_files = {
+    output_groups = {
         name: _process_output_group_files(
+            ctx = ctx,
             files = files,
+            is_indexstores = is_indexstores,
             output_group_name = name,
             additional_outputs = additional_outputs,
+            index_import = index_import,
         )
-        for name, files in outputs._output_group_list.to_list()
+        for name, is_indexstores, files in outputs._output_group_list.to_list()
     }
 
-    output_groups = {
-        name: depset([output_group_map.write_map(
-            ctx = ctx,
-            name = name.replace("/", "_"),
-            files = files,
-            additional_inputs = additional_output_map_inputs,
-        )])
-        for name, files in all_files.items()
-    }
-    output_groups["all_b"] = depset([output_group_map.write_map(
-        ctx = ctx,
-        name = "all_b",
-        files = depset(transitive = all_files.values()),
-        additional_inputs = additional_output_map_inputs,
-    )])
+    output_groups["all_b"] = depset(transitive = output_groups.values())
 
     return output_groups
 
@@ -405,15 +427,16 @@ def swift_to_outputs(swift):
 
     module = swift.module
 
-    compiles = [module.swiftdoc, module.swiftmodule]
+    # `swiftmodule` is listed first, as it's used as the "source" of the others
+    compiled = [module.swiftmodule, module.swiftdoc]
     if module.swiftsourceinfo:
-        compiles.append(module.swiftsourceinfo)
+        compiled.append(module.swiftsourceinfo)
     if module.swiftinterface:
-        compiles.append(module.swiftinterface)
+        compiled.append(module.swiftinterface)
     if swift.generated_header:
-        compiles.append(swift.generated_header)
+        compiled.append(swift.generated_header)
 
-    return (compiles, getattr(module, "indexstore", None))
+    return (compiled, getattr(module, "indexstore", None))
 
 output_files = struct(
     collect = _collect,

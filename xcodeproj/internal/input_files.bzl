@@ -9,6 +9,7 @@ load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo")
 load("@bazel_skylib//lib:sets.bzl", "sets")
 load(":collections.bzl", "set_if_true")
 load(":compilation_providers.bzl", comp_providers = "compilation_providers")
+load(":filelists.bzl", "filelists")
 load(
     ":files.bzl",
     "file_path",
@@ -18,7 +19,6 @@ load(
 )
 load(":linker_input_files.bzl", "linker_input_files")
 load(":output_files.bzl", "parse_swift_info_module", "swift_to_outputs")
-load(":output_group_map.bzl", "output_group_map")
 load(":providers.bzl", "XcodeProjInfo")
 load(":resources.bzl", "collect_resources")
 load(":target_properties.bzl", "should_include_non_xcode_outputs")
@@ -446,7 +446,13 @@ def _collect(
             compiled, indexstore = swift_to_outputs(
                 parse_swift_info_module(module),
             )
-            unfocused_generated_compiling.extend(compiled)
+
+            if compiled:
+                # We only need the single swiftmodule in order to download
+                # everything from the remote cache (because of
+                # `--experimental_remote_download_regex`). Reducing the number
+                # of items in an output group keeps the BEP small.
+                unfocused_generated_compiling.append(compiled[0])
             if indexstore:
                 unfocused_generated_indexstores.append(indexstore)
 
@@ -496,9 +502,9 @@ def _collect(
         indexstores_output_group_name = "xi {}".format(id)
         linking_output_group_name = "xl {}".format(id)
         direct_group_list = [
-            (compiling_output_group_name, generated_depset),
-            (indexstores_output_group_name, indexstores_depset),
-            (linking_output_group_name, depset()),
+            (compiling_output_group_name, False, generated_depset),
+            (indexstores_output_group_name, True, indexstores_depset),
+            (linking_output_group_name, False, depset()),
         ]
     else:
         compiling_output_group_name = None
@@ -824,21 +830,41 @@ def _to_dto(inputs):
     return ret
 
 def _process_output_group_files(
-        files,
         *,
+        ctx,
+        files,
+        is_indexstores,
         output_group_name,
-        additional_generated):
-    generated_depsets = additional_generated.get(output_group_name)
-    if generated_depsets:
-        return depset(transitive = [files] + generated_depsets)
-    return files
+        additional_generated,
+        index_import):
+    # `list` copy is needed for some reason to prevent depset from changing
+    # underneath us. Without this it's nondeterministic which files are in it.
+    generated_depsets = list(additional_generated.get(output_group_name, []))
+
+    if is_indexstores:
+        filelist = filelists.write(
+            ctx = ctx,
+            rule_name = ctx.attr.name,
+            name = output_group_name.replace("/", "_"),
+            files = files,
+        )
+        direct = [filelist, index_import]
+
+        # We don't want to declare indexstore files as outputs, because they
+        # expand to individual files and blow up the BEP
+        transitive = generated_depsets
+    else:
+        direct = None
+        transitive = generated_depsets + [files]
+
+    return depset(direct, transitive = transitive)
 
 def _to_output_groups_fields(
         *,
         ctx,
         inputs,
         additional_generated = {},
-        additional_output_map_inputs):
+        index_import):
     """Generates a dictionary to be splatted into `OutputGroupInfo`.
 
     Args:
@@ -847,70 +873,45 @@ def _to_output_groups_fields(
         additional_generated: A `dict` that maps the output group name of
             targets to a `list` of `depset`s of `File`s that should be merged
             into the output group map for that output group name.
-        additional_output_map_inputs: A `list` of `File`s that are used as
-            additional inputs to the output map generation. Minimally contains a
-            `File` that changes with each build, to ensure that the files
-            references by the output map are always downloaded from the remote
-            cache, even when using `--remote_download_toplevel`.
+        index_import: A `File` for `index-import`.
 
     Returns:
         A `dict` where the keys are output group names and the values are
         `depset` of `File`s.
     """
-    all_files = {
+    output_groups = {
         name: _process_output_group_files(
+            ctx = ctx,
             files = files,
+            is_indexstores = is_indexstores,
             output_group_name = name,
             additional_generated = additional_generated,
+            index_import = index_import,
         )
-        for name, files in inputs._output_group_list.to_list()
+        for name, is_indexstores, files in inputs._output_group_list.to_list()
     }
 
-    output_groups = {
-        name: depset([output_group_map.write_map(
-            ctx = ctx,
-            name = name.replace("/", "_"),
-            files = files,
-            additional_inputs = additional_output_map_inputs,
-        )])
-        for name, files in all_files.items()
-    }
-    output_groups["all_xc"] = depset([output_group_map.write_map(
-        ctx = ctx,
-        name = "all_xc",
-        files = depset(
-            transitive = [
-                files
-                for name, files in all_files.items()
-                if name.startswith("xc")
-            ],
-        ),
-        additional_inputs = additional_output_map_inputs,
-    )])
-    output_groups["all_xi"] = depset([output_group_map.write_map(
-        ctx = ctx,
-        name = "all_xi",
-        files = depset(
-            transitive = [
-                files
-                for name, files in all_files.items()
-                if name.startswith("xi")
-            ],
-        ),
-        additional_inputs = additional_output_map_inputs,
-    )])
-    output_groups["all_xl"] = depset([output_group_map.write_map(
-        ctx = ctx,
-        name = "all_xl",
-        files = depset(
-            transitive = [
-                files
-                for name, files in all_files.items()
-                if name.startswith("xl")
-            ],
-        ),
-        additional_inputs = additional_output_map_inputs,
-    )])
+    output_groups["all_xc"] = depset(
+        transitive = [
+            files
+            for name, files in output_groups.items()
+            if name.startswith("xc ")
+        ],
+    )
+    output_groups["all_xi"] = depset(
+        transitive = [
+            files
+            for name, files in output_groups.items()
+            if name.startswith("xi ")
+        ],
+    )
+    output_groups["all_xl"] = depset(
+        transitive = [
+            files
+            for name, files in output_groups.items()
+            if name.startswith("xl ")
+        ],
+    )
 
     return output_groups
 

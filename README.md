@@ -53,7 +53,7 @@ rules.
 
 - macOS 12.0-12.6
 - Xcode 13.0-14.0
-- Bazel 5.2.0-5.3.1
+- Bazel 5.3.0-5.3.1
 - rules_swift 1.0.0-1.2.0
 - rules_apple 1.0.1-1.1.2
 

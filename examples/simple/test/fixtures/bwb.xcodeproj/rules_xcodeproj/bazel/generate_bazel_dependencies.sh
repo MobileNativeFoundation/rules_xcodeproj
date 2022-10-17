@@ -6,6 +6,8 @@ cd "$SRCROOT"
 
 # Calculate Bazel `--output_groups`
 
+readonly swift_outputs_regex='.*\.swiftdoc$|.*\.swiftmodule$|.*\.swiftsourceinfo$'
+
 # In Xcode 14 the "Index" directory was renamed to "Index.noindex".
 # `$INDEX_DATA_STORE_DIR` is set to `$OBJROOT/INDEX_DIR/DataStore`, so we can
 # use it to determine the name of the directory regardless of Xcode version.
@@ -26,6 +28,9 @@ if [ "$ACTION" == "indexbuild" ]; then
     # Compiled outputs (i.e. swiftmodules), and generated inputs
     readonly output_group_prefixes="bc,bg"
   fi
+
+  # We don't need to download the indexstore data during Index Build
+  readonly remote_download_regex="$swift_outputs_regex"
 else
   if [[ "$RULES_XCODEPROJ_BUILD_MODE" == "xcode" ]]; then
     # Inputs for compiling, inputs for linking, and index store data
@@ -35,6 +40,9 @@ else
     # inputs, and index store data
     readonly output_group_prefixes="bc,bp,bg,bi"
   fi
+
+  readonly indexstores_regex='.*\.indexstore/.*'
+  readonly remote_download_regex="$indexstores_regex|$swift_outputs_regex"
 fi
 
 # We need to read from `$output_groups_file` as soon as possible, as concurrent
@@ -84,6 +92,10 @@ fi
 
 # Build
 
+build_pre_config_flags=(
+  "--experimental_remote_download_regex=$remote_download_regex"
+)
+
 apply_sanitizers=1
 if [ "$ACTION" == "indexbuild" ]; then
   readonly config="${BAZEL_CONFIG}_indexbuild"
@@ -97,7 +109,6 @@ else
 fi
 
 # Runtime Sanitizers
-build_pre_config_flags=()
 if [[ $apply_sanitizers -eq 1 ]]; then
   if [ "${ENABLE_ADDRESS_SANITIZER:-}" == "YES" ]; then
     build_pre_config_flags+=(--features=asan)
