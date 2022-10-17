@@ -447,11 +447,12 @@ def _collect(
                 parse_swift_info_module(module),
             )
 
-            # We only need the single swiftmodule in order to download
-            # everything from the remote cache (because of
-            # `--experimental_remote_download_regex`). Reducing the number of
-            # items in an output group keeps the BEP small.
-            unfocused_generated_compiling.append(compiled[0])
+            if compiled:
+                # We only need the single swiftmodule in order to download
+                # everything from the remote cache (because of
+                # `--experimental_remote_download_regex`). Reducing the number
+                # of items in an output group keeps the BEP small.
+                unfocused_generated_compiling.append(compiled[0])
             if indexstore:
                 unfocused_generated_indexstores.append(indexstore)
 
