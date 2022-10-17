@@ -36,6 +36,7 @@ final class SetTargetDependenciesTests: XCTestCase {
         // Act
 
         try Generator.setTargetDependencies(
+            buildMode: .xcode,
             disambiguatedTargets: disambiguatedTargets,
             pbxTargets: pbxTargets
         )

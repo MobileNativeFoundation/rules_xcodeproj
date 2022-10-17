@@ -162,6 +162,7 @@ final class GeneratorTests: XCTestCase {
         let disambiguatedTargets = DisambiguatedTargets(
             keys: [
                 "Y": "Y",
+                "Z": "Z",
                 "I 1": "I 1",
                 "I 2": "I 2",
                 "WKE": "WKE",
@@ -170,6 +171,10 @@ final class GeneratorTests: XCTestCase {
                 "Y": .init(
                     name: "Y (3456a)",
                     target: consolidatedTargets.targets["Y"]!
+                ),
+                "Z": .init(
+                    name: "Z (3456a)",
+                    target: consolidatedTargets.targets["Z"]!
                 ),
                 "I 1": .init(
                     name: "I1 (3456a)",
@@ -203,6 +208,7 @@ final class GeneratorTests: XCTestCase {
         let bazelDependenciesTarget = PBXAggregateTarget(name: "BD")
         let pbxTargets: [ConsolidatedTarget.Key: PBXTarget] = [
             "Y": PBXNativeTarget(name: "Y (3456a)"),
+            "Z": PBXNativeTarget(name: "Z (3456a)"),
             "I 1": PBXNativeTarget(name: "I1 (3456a)"),
             "I 2": PBXNativeTarget(name: "I2 (3456a)"),
             "WKE": PBXNativeTarget(name: "WKE (3456a)"),
@@ -640,22 +646,26 @@ final class GeneratorTests: XCTestCase {
         // MARK: setTargetDependencies()
 
         struct SetTargetDependenciesCalled: Equatable {
+            let buildMode: BuildMode
             let disambiguatedTargets: DisambiguatedTargets
             let pbxTargets: [ConsolidatedTarget.Key: PBXTarget]
         }
 
         var setTargetDependenciesCalled: [SetTargetDependenciesCalled] = []
         func setTargetDependencies(
+            buildMode: BuildMode,
             disambiguatedTargets: DisambiguatedTargets,
             pbxTargets: [ConsolidatedTarget.Key: PBXTarget]
         ) {
             setTargetDependenciesCalled.append(SetTargetDependenciesCalled(
+                buildMode: buildMode,
                 disambiguatedTargets: disambiguatedTargets,
                 pbxTargets: pbxTargets
             ))
         }
 
         let expectedSetTargetDependenciesCalled = [SetTargetDependenciesCalled(
+            buildMode: buildMode,
             disambiguatedTargets: disambiguatedTargets,
             pbxTargets: pbxTargets
         )]

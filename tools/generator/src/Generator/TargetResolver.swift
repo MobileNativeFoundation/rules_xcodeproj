@@ -25,16 +25,32 @@ struct TargetResolver: Equatable {
         self.consolidatedTargetKeys = consolidatedTargetKeys
         self.pbxTargets = pbxTargets
 
-        let hostKeys: [ConsolidatedTarget.Key: Set<ConsolidatedTarget.Key>] = Dictionary(
+        let hostKeys: [
+            ConsolidatedTarget.Key: Set<ConsolidatedTarget.Key>
+        ] = Dictionary(
             try targetHosts.map { targetID, hostIDs in
                 let key = try consolidatedTargetKeys.value(for: targetID)
                 let hostKeys = try hostIDs
                     .map { try consolidatedTargetKeys.value(for: $0) }
-                    .reduce(into: Set()) { hostKeys, hostKey in hostKeys.insert(hostKey) }
+                    .reduce(into: Set()) { keys, key in keys.insert(key) }
                 return (key, hostKeys)
             },
             uniquingKeysWith: { $0.union($1) }
         )
+
+        let additionalKeys: [
+            ConsolidatedTarget.Key: Set<ConsolidatedTarget.Key>
+        ] = Dictionary(
+            try targets.map { targetID, target in
+                let key = try consolidatedTargetKeys.value(for: targetID)
+                let additionalKeys = try target.additionalSchemeTargets
+                    .map { try consolidatedTargetKeys.value(for: $0) }
+                    .reduce(into: Set()) { keys, key in keys.insert(key) }
+                return (key, additionalKeys)
+            },
+            uniquingKeysWith: { $0.union($1) }
+        )
+
         let platformsByKey = try consolidatedTargetKeys.collectPlatformsByKey(targets: targets)
         var keyedExtensionPointIdentifiers: [
             ConsolidatedTarget.Key: Set<ExtensionPointIdentifier>
@@ -58,7 +74,8 @@ struct TargetResolver: Equatable {
                     pbxTarget: pbxTarget,
                     referencedContainer: referencedContainer
                 ),
-                hostKeys: hostKeys[key, default: []]
+                hostKeys: hostKeys[key, default: []],
+                additionalKeys: additionalKeys[key, default: []]
             )
         }
         pbxTargetInfos = .init(uniqueKeysWithValues: pbxTargetInfoList.map { ($0.key, $0) })
@@ -80,12 +97,16 @@ extension TargetResolver {
     private func targetInfo(pbxTargetInfo: PBXTargetInfo) throws -> XCSchemeInfo.TargetInfo {
         return .init(
             pbxTargetInfo: pbxTargetInfo,
-            hostInfos: try pbxTargetInfo.hostKeys.enumerated().map { hostIndex, hostKey in
-                .init(
-                    pbxTargetInfo: try pbxTargetInfos.value(for: hostKey),
-                    index: hostIndex
-                )
-            }
+            hostInfos: try pbxTargetInfo.hostKeys
+                .enumerated()
+                .map { hostIndex, hostKey in
+                    .init(
+                        pbxTargetInfo: try pbxTargetInfos.value(for: hostKey),
+                        index: hostIndex
+                    )
+                },
+            additionalBuildableReferences: try pbxTargetInfo.additionalKeys
+                .map { try pbxTargetInfos.value(for: $0).buildableReference }
         )
     }
 
@@ -113,5 +134,6 @@ extension TargetResolver {
         let extensionPointIdentifiers: Set<ExtensionPointIdentifier>
         let buildableReference: XCScheme.BuildableReference
         let hostKeys: Set<ConsolidatedTarget.Key>
+        let additionalKeys: Set<ConsolidatedTarget.Key>
     }
 }

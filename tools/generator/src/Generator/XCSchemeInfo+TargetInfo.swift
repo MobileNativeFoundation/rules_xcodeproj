@@ -20,6 +20,7 @@ extension XCSchemeInfo {
         let extensionPointIdentifiers: Set<ExtensionPointIdentifier>
         let disambiguateHost: Bool
         let hostResolution: HostResolution
+        let additionalBuildableReferences: [XCScheme.BuildableReference]
 
         private init<HIs: Sequence, EPIs: Sequence, Platforms: Sequence>(
             pbxTarget: PBXTarget,
@@ -27,7 +28,8 @@ extension XCSchemeInfo {
             buildableReference: XCScheme.BuildableReference,
             hostInfos: HIs,
             extensionPointIdentifiers: EPIs,
-            hostResolution: HostResolution = .unresolved
+            hostResolution: HostResolution = .unresolved,
+            additionalBuildableReferences: [XCScheme.BuildableReference] = []
         ) where HIs.Element == XCSchemeInfo.HostInfo,
             EPIs.Element == ExtensionPointIdentifier,
             Platforms.Element == Platform
@@ -39,6 +41,7 @@ extension XCSchemeInfo {
             self.extensionPointIdentifiers = Set(extensionPointIdentifiers)
             disambiguateHost = self.hostInfos.count > 1
             self.hostResolution = hostResolution
+            self.additionalBuildableReferences = additionalBuildableReferences
         }
     }
 }
@@ -49,7 +52,8 @@ extension XCSchemeInfo.TargetInfo {
         platforms: Platforms,
         referencedContainer: String,
         hostInfos: HIs,
-        extensionPointIdentifiers: EPIs
+        extensionPointIdentifiers: EPIs,
+        additionalBuildableReferences: [XCScheme.BuildableReference] = []
     ) where HIs.Element == XCSchemeInfo.HostInfo,
         EPIs.Element == ExtensionPointIdentifier,
         Platforms.Element == Platform
@@ -62,7 +66,8 @@ extension XCSchemeInfo.TargetInfo {
                 referencedContainer: referencedContainer
             ),
             hostInfos: hostInfos,
-            extensionPointIdentifiers: extensionPointIdentifiers
+            extensionPointIdentifiers: extensionPointIdentifiers,
+            additionalBuildableReferences: additionalBuildableReferences
         )
     }
 }
@@ -70,14 +75,16 @@ extension XCSchemeInfo.TargetInfo {
 extension XCSchemeInfo.TargetInfo {
     init<HIs: Sequence>(
         pbxTargetInfo: TargetResolver.PBXTargetInfo,
-        hostInfos: HIs
+        hostInfos: HIs,
+        additionalBuildableReferences: [XCScheme.BuildableReference] = []
     ) where HIs.Element == XCSchemeInfo.HostInfo {
         self.init(
             pbxTarget: pbxTargetInfo.pbxTarget,
             platforms: pbxTargetInfo.platforms,
             buildableReference: pbxTargetInfo.buildableReference,
             hostInfos: hostInfos,
-            extensionPointIdentifiers: pbxTargetInfo.extensionPointIdentifiers
+            extensionPointIdentifiers: pbxTargetInfo.extensionPointIdentifiers,
+            additionalBuildableReferences: additionalBuildableReferences
         )
     }
 }
@@ -94,7 +101,10 @@ extension XCSchemeInfo.TargetInfo {
             buildableReference: original.buildableReference,
             hostInfos: original.hostInfos,
             extensionPointIdentifiers: original.extensionPointIdentifiers,
-            hostResolution: original.hostInfos.resolve(topLevelTargetInfos: topLevelTargetInfos)
+            hostResolution: original.hostInfos
+                .resolve(topLevelTargetInfos: topLevelTargetInfos),
+            additionalBuildableReferences: original
+                .additionalBuildableReferences
         )
     }
 }
@@ -121,14 +131,16 @@ Cannot access `selectedHostInfo` until host resolution has occurred.
 // MARK: `buildableReferences`
 
 extension XCSchemeInfo.TargetInfo {
-    /// Returns the target buildable reference along with the selected host's buildable reference,
-    /// if applicable.
+    /// Returns the target buildable reference along with any additionally
+    /// required buildable references (e.g. the selected host, or SwiftUI
+    /// Preview dependencies).
     var buildableReferences: [XCScheme.BuildableReference] {
         var results = [buildableReference]
         // Only include the selected host, not all of the hosts.
         if case let .selected(selectedHostInfo) = hostResolution {
             results.append(selectedHostInfo.buildableReference)
         }
+        results.append(contentsOf: additionalBuildableReferences)
         return results
     }
 }

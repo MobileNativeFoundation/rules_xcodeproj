@@ -32,6 +32,10 @@ def _collect(*, ctx):
         _platform = platform,
     )
 
+def _is_same_type(lhs, rhs):
+    """Returns whether two platforms are the same platform type."""
+    return lhs._platform.platform_type == rhs._platform.platform_type
+
 def _to_dto(platform):
     """Generates a target DTO value for a platform.
 
@@ -52,5 +56,6 @@ def _to_dto(platform):
 
 platform_info = struct(
     collect = _collect,
+    is_same_type = _is_same_type,
     to_dto = _to_dto,
 )
