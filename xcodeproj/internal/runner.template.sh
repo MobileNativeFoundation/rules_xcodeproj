@@ -26,11 +26,24 @@ installer_flags=(
   --extra_flags_bazelrc "$extra_flags_bazelrc"
 )
 
+download=1
 while (("$#")); do
   case "$1" in
     "--build_output_groups")
       build_output_groups="$2"
       shift 2
+      ;;
+    "--download")
+      # WARNING: You'll need to `bazel clean` if flipping this flag, since Bazel
+      # doesn't re-download when `--experimental_remote_download_regex` changes.
+      download=1
+      shift
+      ;;
+    "--nodownload")
+      # WARNING: You'll need to `bazel clean` if flipping this flag, since Bazel
+      # doesn't re-download when `--experimental_remote_download_regex` changes.
+      download=0
+      shift
       ;;
     *)
       installer_flags+=("$1")
@@ -100,6 +113,16 @@ if [[ -z "${build_output_groups:-}" ]]; then
     -- "${installer_flags[@]}"
 else
   echo "Building \"%generator_label% --output_groups=$build_output_groups\""
+
+  # TODO: Support different build actions (e.g. Index Build, SwiftUI Previews,
+  # ASAN, etc.)
+  if [[ $download -eq 1 ]]; then
+    readonly swift_outputs_regex='.*\.swiftdoc$|.*\.swiftmodule$|.*\.swiftsourceinfo$'
+    readonly indexstores_regex='.*\.indexstore/.*'
+    pre_config_flags+=(
+      "--experimental_remote_download_regex=$indexstores_regex|$swift_outputs_regex"
+    )
+  fi
 
   "${bazel_cmd[@]}" \
     build \

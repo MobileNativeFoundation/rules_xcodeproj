@@ -15,9 +15,6 @@ build:rules_xcodeproj --experimental_action_cache_store_output_metadata
 # Xcode builds shouldn't mess with the workspace's symlinks
 build:rules_xcodeproj --experimental_convenience_symlinks=ignore
 
-# Ensure all our intermediate files are downloaded with BwtB
-build:rules_xcodeproj --experimental_remote_download_regex=.*\\.indexstore/.*|.*\\.swiftdoc$|.*\\.swiftmodule$|.*\\.swiftsourceinfo$
-
 # Not using `--define=apple.experimental.tree_artifact_outputs=1` is slow (we
 # have to unzip an archive on each build). If this doesn't work for your
 # project, you can set `--define=apple.experimental.tree_artifact_outputs=0`
