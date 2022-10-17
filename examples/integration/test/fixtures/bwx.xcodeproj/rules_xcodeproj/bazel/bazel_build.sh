@@ -160,9 +160,8 @@ for output_group in "${output_groups[@]}"; do
 
   if [[ ! -f "$filelist" ]]; then
     echo "error: Bazel didn't create the indexstore filelist (\"$filelist\")." \
-"Please regenerate the project to fix this." >&2
-    echo "error: If you are still getting this error after regenerating your" \
-"project, please file a bug report here:" \
+"Please regenerate the project to fix this. If you are still getting this" \
+"error after regenerating your project, please file a bug report here:" \
 "https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md" \
       >&2
     exit 1
