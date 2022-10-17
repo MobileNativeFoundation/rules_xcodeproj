@@ -1059,6 +1059,7 @@ $(BAZEL_OUT)/v/a.txt
 /*.app/Frameworks/XCTAutomationSupport.framework
 /*.app/Frameworks/XCTest.framework
 /*.app/Frameworks/XCTestCore.framework
+/*.app/Frameworks/XCTestSupport.framework
 /*.app/Frameworks/XCUIAutomation.framework
 /*.app/Frameworks/XCUnit.framework
 /*.app/PlugIns
