@@ -5261,6 +5261,9 @@
         },
         "//UI:UIFramework.tvOS applebin_tvos-tvos_arm64-dbg-ST-70b4e492b765",
         {
+            "additional_scheme_targets": [
+                "//Lib:LibFramework.tvOS applebin_tvos-tvos_arm64-dbg-ST-70b4e492b765"
+            ],
             "build_settings": {
                 "APPLICATION_EXTENSION_API_ONLY": true,
                 "CODE_SIGN_STYLE": "Manual",
@@ -5455,6 +5458,9 @@
         },
         "//UI:UIFramework.tvOS applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2",
         {
+            "additional_scheme_targets": [
+                "//Lib:LibFramework.tvOS applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2"
+            ],
             "build_settings": {
                 "APPLICATION_EXTENSION_API_ONLY": true,
                 "CODE_SIGN_STYLE": "Manual",
@@ -5649,6 +5655,9 @@
         },
         "//UI:UIFramework.watchOS applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90",
         {
+            "additional_scheme_targets": [
+                "//Lib:LibFramework.watchOS applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90"
+            ],
             "build_settings": {
                 "APPLICATION_EXTENSION_API_ONLY": true,
                 "CODE_SIGN_STYLE": "Manual",
@@ -5843,6 +5852,9 @@
         },
         "//UI:UIFramework.watchOS applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32",
         {
+            "additional_scheme_targets": [
+                "//Lib:LibFramework.watchOS applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32"
+            ],
             "build_settings": {
                 "APPLICATION_EXTENSION_API_ONLY": true,
                 "CODE_SIGN_STYLE": "Manual",
@@ -7504,6 +7516,11 @@
         },
         "//iOSApp/Source:iOSApp applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00",
         {
+            "additional_scheme_targets": [
+                "//WidgetExtension:WidgetExtension applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00",
+                "//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00",
+                "//UI:UIFramework.iOS applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00"
+            ],
             "app_clips": [
                 "//AppClip:AppClip applebin_ios-ios_arm64-dbg-ST-b625d7c0bd00"
             ],
@@ -7866,6 +7883,11 @@
         },
         "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56",
         {
+            "additional_scheme_targets": [
+                "//WidgetExtension:WidgetExtension applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56",
+                "//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56",
+                "//UI:UIFramework.iOS applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56"
+            ],
             "app_clips": [
                 "//AppClip:AppClip applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56"
             ],
@@ -8513,6 +8535,12 @@
         },
         "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56",
         {
+            "additional_scheme_targets": [
+                "//WidgetExtension:WidgetExtension applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56",
+                "//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56",
+                "//UI:UIFramework.iOS applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56",
+                "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56"
+            ],
             "build_settings": {
                 "CODE_SIGN_STYLE": "Manual",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -9028,6 +9056,12 @@
         },
         "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56",
         {
+            "additional_scheme_targets": [
+                "//WidgetExtension:WidgetExtension applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56",
+                "//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56",
+                "//UI:UIFramework.iOS applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56",
+                "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56"
+            ],
             "build_settings": {
                 "CODE_SIGN_STYLE": "Manual",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -9905,6 +9939,9 @@
         },
         "//macOSApp/Test/UITests:macOSAppUITests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-ST-e4309a660cc1",
         {
+            "additional_scheme_targets": [
+                "//macOSApp/Source:macOSApp applebin_macos-darwin_x86_64-dbg-ST-e4309a660cc1"
+            ],
             "build_settings": {
                 "CODE_SIGN_STYLE": "Manual",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -10076,6 +10113,10 @@
         },
         "//tvOSApp/Source:tvOSApp applebin_tvos-tvos_arm64-dbg-ST-70b4e492b765",
         {
+            "additional_scheme_targets": [
+                "//Lib:LibFramework.tvOS applebin_tvos-tvos_arm64-dbg-ST-70b4e492b765",
+                "//UI:UIFramework.tvOS applebin_tvos-tvos_arm64-dbg-ST-70b4e492b765"
+            ],
             "build_settings": {
                 "CODE_SIGN_STYLE": "Automatic",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -10309,6 +10350,10 @@
         },
         "//tvOSApp/Source:tvOSApp applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2",
         {
+            "additional_scheme_targets": [
+                "//Lib:LibFramework.tvOS applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2",
+                "//UI:UIFramework.tvOS applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2"
+            ],
             "build_settings": {
                 "CODE_SIGN_STYLE": "Manual",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -10739,6 +10784,11 @@
         },
         "//tvOSApp/Test/UITests:tvOSAppUITests.__internal__.__test_bundle applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2",
         {
+            "additional_scheme_targets": [
+                "//Lib:LibFramework.tvOS applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2",
+                "//UI:UIFramework.tvOS applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2",
+                "//tvOSApp/Source:tvOSApp applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2"
+            ],
             "build_settings": {
                 "CODE_SIGN_STYLE": "Manual",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -10912,6 +10962,11 @@
         },
         "//tvOSApp/Test/UnitTests:tvOSAppUnitTests.__internal__.__test_bundle applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2",
         {
+            "additional_scheme_targets": [
+                "//Lib:LibFramework.tvOS applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2",
+                "//UI:UIFramework.tvOS applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2",
+                "//tvOSApp/Source:tvOSApp applebin_tvos-tvos_x86_64-dbg-ST-b6268cc80bf2"
+            ],
             "build_settings": {
                 "CODE_SIGN_STYLE": "Manual",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -11273,6 +11328,10 @@
         },
         "//watchOSApp/Test/UITests:watchOSAppUITests.__internal__.__test_bundle applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32",
         {
+            "additional_scheme_targets": [
+                "//Lib:LibFramework.watchOS applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32",
+                "//UI:UIFramework.watchOS applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32"
+            ],
             "build_settings": {
                 "CODE_SIGN_STYLE": "Manual",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -11446,6 +11505,10 @@
         },
         "//watchOSApp:watchOSApp applebin_watchos-watchos_arm64_32-dbg-ST-56a8163e2aa7",
         {
+            "additional_scheme_targets": [
+                "//Lib:LibFramework.watchOS applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90",
+                "//UI:UIFramework.watchOS applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90"
+            ],
             "build_settings": {
                 "ASSETCATALOG_COMPILER_APPICON_NAME": "AppIcon",
                 "CODE_SIGN_STYLE": "Automatic",
@@ -11508,6 +11571,10 @@
         },
         "//watchOSApp:watchOSApp applebin_watchos-watchos_x86_64-dbg-ST-3df60cf154e9",
         {
+            "additional_scheme_targets": [
+                "//Lib:LibFramework.watchOS applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32",
+                "//UI:UIFramework.watchOS applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32"
+            ],
             "build_settings": {
                 "ASSETCATALOG_COMPILER_APPICON_NAME": "AppIcon",
                 "CODE_SIGN_STYLE": "Manual",
@@ -11569,6 +11636,10 @@
         },
         "//watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests.__internal__.__test_bundle applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32",
         {
+            "additional_scheme_targets": [
+                "//Lib:LibFramework.watchOS applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32",
+                "//UI:UIFramework.watchOS applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32"
+            ],
             "build_settings": {
                 "CODE_SIGN_STYLE": "Manual",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -11905,6 +11976,10 @@
         },
         "//watchOSAppExtension:watchOSAppExtension applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90",
         {
+            "additional_scheme_targets": [
+                "//Lib:LibFramework.watchOS applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90",
+                "//UI:UIFramework.watchOS applebin_watchos-watchos_arm64_32-dbg-ST-3f6925aafe90"
+            ],
             "build_settings": {
                 "APPLICATION_EXTENSION_API_ONLY": true,
                 "CODE_SIGN_STYLE": "Automatic",
@@ -12139,6 +12214,10 @@
         },
         "//watchOSAppExtension:watchOSAppExtension applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32",
         {
+            "additional_scheme_targets": [
+                "//Lib:LibFramework.watchOS applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32",
+                "//UI:UIFramework.watchOS applebin_watchos-watchos_x86_64-dbg-ST-25d904fdfd32"
+            ],
             "build_settings": {
                 "APPLICATION_EXTENSION_API_ONLY": true,
                 "CODE_SIGN_STYLE": "Manual",

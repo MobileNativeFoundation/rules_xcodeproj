@@ -27,6 +27,7 @@ struct Target: Equatable {
     var outputs: Outputs
     let lldbContext: LLDBContext?
     let isUnfocusedDependency: Bool
+    let additionalSchemeTargets: Set<TargetID>
 }
 
 struct CompileTarget: Equatable {
@@ -69,6 +70,7 @@ extension Target: Decodable {
         case outputs
         case lldbContext
         case isUnfocusedDependency
+        case additionalSchemeTargets
     }
 
     init(from decoder: Decoder) throws {
@@ -117,6 +119,8 @@ extension Target: Decodable {
             .decodeIfPresent(LLDBContext.self, forKey: .lldbContext)
         isUnfocusedDependency = try container
             .decodeIfPresent(Bool.self, forKey: .isUnfocusedDependency) ?? false
+        additionalSchemeTargets = try container
+            .decodeTargetIDs(.additionalSchemeTargets)
     }
 }
 

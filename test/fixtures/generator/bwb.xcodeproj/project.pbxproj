@@ -326,41 +326,6 @@
 			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
 			remoteInfo = BazelDependencies;
 		};
-		201DCF3149264E9D8AB4CA97 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 4A2EC1B2D6969F717CB890DE;
-			remoteInfo = PathKit;
-		};
-		20EC77CE7C6AAE2A1679866F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F12050E30563A81EEBB2EA9B;
-			remoteInfo = generator.library;
-		};
-		2C860512D9D794C14E15BE5B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A09CE18EBBDAC65CD0C6B7D1;
-			remoteInfo = XcodeProj;
-		};
-		34739E478519DAF595040254 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 9DF90F35406923EA23C68CFC;
-			remoteInfo = XCTestDynamicOverlay;
-		};
-		44D67FDCCFE036B1BE7F2490 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 302F4C6E9EE3F09D4809EF0A;
-			remoteInfo = CustomDump;
-		};
 		5DC7EE59040383A84FE9D924 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0805833D09730531AD081697 /* Project object */;
@@ -409,27 +374,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
 			remoteInfo = BazelDependencies;
-		};
-		CD181E6AF3DFD2EF12094EE5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 4A2EC1B2D6969F717CB890DE;
-			remoteInfo = PathKit;
-		};
-		CE545ADAA24F8CEBE7071545 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F12050E30563A81EEBB2EA9B;
-			remoteInfo = generator.library;
-		};
-		D5437FAEB47AEF0B67E5BB23 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 023B2C041CD79AF5B2FDAFE1;
-			remoteInfo = OrderedCollections;
 		};
 		EDEE3873CD6E83B2191E0B52 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1608,7 +1552,6 @@
 			);
 			dependencies = (
 				8BD8BF72DDF6DD3B9C03753E /* PBXTargetDependency */,
-				94E1DFA69955CA57806ABE25 /* PBXTargetDependency */,
 			);
 			name = CustomDump;
 			productName = CustomDump;
@@ -1642,7 +1585,6 @@
 			);
 			dependencies = (
 				F95C6EAD9F7184C6730E9F61 /* PBXTargetDependency */,
-				C0C4842B0D633EDDA463F849 /* PBXTargetDependency */,
 			);
 			name = generator;
 			productName = generator;
@@ -1661,8 +1603,6 @@
 			);
 			dependencies = (
 				02991226505D2F59EC54038D /* PBXTargetDependency */,
-				272FB95BF351D18E24AF12EE /* PBXTargetDependency */,
-				3880438A5A38C4F764B735E5 /* PBXTargetDependency */,
 			);
 			name = tests;
 			productName = tests;
@@ -1696,7 +1636,6 @@
 			);
 			dependencies = (
 				49193367A3BB0A1F434F8451 /* PBXTargetDependency */,
-				2A18DCEDD62C0092B4434B53 /* PBXTargetDependency */,
 			);
 			name = XcodeProj;
 			productName = XcodeProj;
@@ -1713,9 +1652,6 @@
 			);
 			dependencies = (
 				3EA0C83A14495EFAB70B41B5 /* PBXTargetDependency */,
-				C30AA64369888C8FA44AC46B /* PBXTargetDependency */,
-				3C87B52A50F5CA5CA4F4127C /* PBXTargetDependency */,
-				89785168DF6A2CA38BEB0A0C /* PBXTargetDependency */,
 			);
 			name = generator.library;
 			productName = generator.library;
@@ -2409,30 +2345,6 @@
 			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
 			targetProxy = 6BA13D7167A2D734540FB39B /* PBXContainerItemProxy */;
 		};
-		272FB95BF351D18E24AF12EE /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = CustomDump;
-			target = 302F4C6E9EE3F09D4809EF0A /* CustomDump */;
-			targetProxy = 44D67FDCCFE036B1BE7F2490 /* PBXContainerItemProxy */;
-		};
-		2A18DCEDD62C0092B4434B53 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = PathKit;
-			target = 4A2EC1B2D6969F717CB890DE /* PathKit */;
-			targetProxy = CD181E6AF3DFD2EF12094EE5 /* PBXContainerItemProxy */;
-		};
-		3880438A5A38C4F764B735E5 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = generator.library;
-			target = F12050E30563A81EEBB2EA9B /* generator.library */;
-			targetProxy = 20EC77CE7C6AAE2A1679866F /* PBXContainerItemProxy */;
-		};
-		3C87B52A50F5CA5CA4F4127C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = PathKit;
-			target = 4A2EC1B2D6969F717CB890DE /* PathKit */;
-			targetProxy = 201DCF3149264E9D8AB4CA97 /* PBXContainerItemProxy */;
-		};
 		3EA0C83A14495EFAB70B41B5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = BazelDependencies;
@@ -2451,35 +2363,11 @@
 			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
 			targetProxy = EDEE3873CD6E83B2191E0B52 /* PBXContainerItemProxy */;
 		};
-		89785168DF6A2CA38BEB0A0C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = XcodeProj;
-			target = A09CE18EBBDAC65CD0C6B7D1 /* XcodeProj */;
-			targetProxy = 2C860512D9D794C14E15BE5B /* PBXContainerItemProxy */;
-		};
 		8BD8BF72DDF6DD3B9C03753E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = BazelDependencies;
 			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
 			targetProxy = CB31E5DA752D8750D1B12D6D /* PBXContainerItemProxy */;
-		};
-		94E1DFA69955CA57806ABE25 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = XCTestDynamicOverlay;
-			target = 9DF90F35406923EA23C68CFC /* XCTestDynamicOverlay */;
-			targetProxy = 34739E478519DAF595040254 /* PBXContainerItemProxy */;
-		};
-		C0C4842B0D633EDDA463F849 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = generator.library;
-			target = F12050E30563A81EEBB2EA9B /* generator.library */;
-			targetProxy = CE545ADAA24F8CEBE7071545 /* PBXContainerItemProxy */;
-		};
-		C30AA64369888C8FA44AC46B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = OrderedCollections;
-			target = 023B2C041CD79AF5B2FDAFE1 /* OrderedCollections */;
-			targetProxy = D5437FAEB47AEF0B67E5BB23 /* PBXContainerItemProxy */;
 		};
 		E018DF11F7B6F56C49542FBE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

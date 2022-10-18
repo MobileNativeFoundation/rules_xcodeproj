@@ -145,6 +145,7 @@ class Generator {
             filePathResolver
         )
         try environment.setTargetDependencies(
+            buildMode,
             disambiguatedTargets,
             pbxTargets
         )

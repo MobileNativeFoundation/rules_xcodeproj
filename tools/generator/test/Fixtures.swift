@@ -1063,8 +1063,7 @@ $(BAZEL_OUT)/v/a.txt
 /*.app/Frameworks/XCTestSupport.framework
 /*.app/Frameworks/XCUIAutomation.framework
 /*.app/Frameworks/XCUnit.framework
-/*.app/PlugIns
-/*.app/Watch
+/*.app/PlugIns/*.xctest
 
 """)
         }

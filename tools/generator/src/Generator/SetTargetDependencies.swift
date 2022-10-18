@@ -7,6 +7,7 @@ extension Generator {
     /// This is separate from `addTargets()` to ensure that all
     /// `PBXNativeTarget`s have been created first.
     static func setTargetDependencies(
+        buildMode: BuildMode,
         disambiguatedTargets: DisambiguatedTargets,
         pbxTargets: [ConsolidatedTarget.Key: PBXTarget]
     ) throws {
@@ -20,16 +21,23 @@ Target \(key) not found in `pbxTargets`
             try disambiguatedTarget.target
                 .dependencies(key: key, keys: disambiguatedTargets.keys)
                 // Find the `PBXNativeTarget`s for the dependencies
-                .map { dependencyKey -> PBXNativeTarget in
+                .compactMap { dependencyKey -> PBXNativeTarget? in
                     guard
-                        let nativeDependency = pbxTargets
-                            .nativeTarget(dependencyKey)
+                        let dependency = pbxTargets.nativeTarget(dependencyKey)
                     else {
                         throw PreconditionError(message: """
 Target \(key)'s dependency on \(dependencyKey) not found in `pbxTargets`
 """)
                     }
-                    return nativeDependency
+
+                    guard disambiguatedTarget.target.shouldIncludeDependency(
+                        dependency,
+                        buildMode: buildMode
+                    ) else {
+                        return nil
+                    }
+
+                    return dependency
                 }
                 // Sort them by name
                 .sorted { lhs, rhs in
@@ -40,5 +48,19 @@ Target \(key)'s dependency on \(dependencyKey) not found in `pbxTargets`
                 // Add the dependencies to the `PBXNativeTarget`
                 .forEach { _ = try pbxTarget.addDependency(target: $0) }
         }
+    }
+}
+
+extension ConsolidatedTarget {
+    func shouldIncludeDependency(
+        _ dependency: PBXNativeTarget,
+        buildMode: BuildMode
+    ) -> Bool {
+        guard buildMode == .bazel else {
+            return true
+        }
+
+        // Test hosts need to be copied
+        return product.type.isTestBundle && dependency.isLaunchable
     }
 }

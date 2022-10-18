@@ -11,6 +11,7 @@ load(":xcodeproj_runner.bzl", "xcodeproj_runner")
 def xcodeproj(
         *,
         name,
+        adjust_schemes_for_swiftui_previews = True,
         archived_bundles_allowed = None,
         associated_extra_files = {},
         bazel_path = "bazel",
@@ -56,6 +57,12 @@ def xcodeproj(
 
     Args:
         name: A unique name for this target.
+        adjust_schemes_for_swiftui_previews: Optional. Whether to adjust schemes
+            in BwB mode to explicitly include transitive dependencies that are
+            able to run SwiftUI Previews. For example, this changes a scheme
+            for an single application target to also include any app clip, app
+            extension, framework, or watchOS app dependencies. Defaults to
+            `True`.
         archived_bundles_allowed: This argument is deprecated and is now a
             no-op. It will be removed in a future release. Adjust the setting of
             `--define=apple.experimental.tree_artifact_outputs` on
@@ -288,6 +295,9 @@ in your `.bazelrc` or `xcodeproj.bazelrc` file.""")
 
     xcodeproj_rule(
         name = generator_name,
+        adjust_schemes_for_swiftui_previews = (
+            adjust_schemes_for_swiftui_previews
+        ),
         build_mode = build_mode,
         bazel_path = bazel_path,
         config = config,

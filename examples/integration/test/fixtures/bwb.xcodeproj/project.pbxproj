@@ -63,10 +63,7 @@
 		AD402D42A1504127385F83AD /* WatchOSAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A82E03CF653910592A13A4 /* WatchOSAppUITests.swift */; };
 		AEAE804CCEB547E4FCFD388B /* Answers.h in Headers */ = {isa = PBXBuildFile; fileRef = 172816461869C9C2207F39D0 /* Answers.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B0EA48257F9543DB88E785C2 /* c_lib.c in Sources */ = {isa = PBXBuildFile; fileRef = 4A30B075482489527E85F63F /* c_lib.c */; };
-		B49B6ACDB9A3D22C6E78597A /* AppClip.app in Embed App Clips */ = {isa = PBXBuildFile; fileRef = 9BCB24675D3F7E99EE912E13 /* AppClip.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		BE671CF650447DC4B7643A6A /* iMessageAppExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E7C0B9A9705EE5FA1ADDD413 /* iMessageAppExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C469B22343D2FCA51B31FC88 /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5285254BF42F9BFBC36251BB /* Lib.swift */; };
-		D4D9F122E0D6F929DB54223A /* watchOSApp.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 6597A349240C4EB52F5428CD /* watchOSApp.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		DF065BFA9457681E6760C26F /* Intents.swift in Sources */ = {isa = PBXBuildFile; fileRef = B821F12707C5466BBD5647CB /* Intents.swift */; };
 		E784CD24BAB5D2E726AB08F4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EDFFF443214115A00D1FC7 /* ContentView.swift */; };
 		ED015216AC0249A4D3FAEBA0 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2065F729251F91D8C8280178 /* MessagesViewController.swift */; };
@@ -74,8 +71,6 @@
 		F53C996C352123BE8528BDEC /* Answers.mm in Sources */ = {isa = PBXBuildFile; fileRef = F712B795AF3C9985D199B0F5 /* Answers.mm */; };
 		F7BDE4F06BF2CA0123179FDD /* tvOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C193D330134C854077C6D798 /* tvOSApp.swift */; };
 		FB2768BA6F13BA791F0A5477 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CC8EBE0FD78BC688AEEF55 /* ContentView.swift */; };
-		FB2ECA7DEB2CBACF77E136D3 /* WidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9A5DAD87D97A975158B9C4E8 /* WidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		FC046D5CB687C67D9BED2A03 /* watchOSAppExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = A76F35CDBF5F1C471359044B /* watchOSAppExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,40 +81,12 @@
 			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
 			remoteInfo = BazelDependencies;
 		};
-		03D2449DD581B8F08C1F72EA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 83D00AD7532094902D925C83;
-			remoteInfo = "Lib (watchOS)";
-		};
-		06878CB50987AA39C99D042E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 9D6BB9A04FEC771667C78F54;
-			remoteInfo = "Lib (iOS, tvOS)";
-		};
-		0D08B1B3E78FD0DCDACFB09C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = BC691472A2BC47F8E1D5D637;
-			remoteInfo = lib_impl;
-		};
 		1AD51B418C8BE1F5FA15FEDC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0805833D09730531AD081697 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
 			remoteInfo = BazelDependencies;
-		};
-		1D198B1E2F8019820CF2F485 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 9D6BB9A04FEC771667C78F54;
-			remoteInfo = "Lib (iOS, tvOS)";
 		};
 		29E6580AC82007E687BCF85E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -135,13 +102,6 @@
 			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
 			remoteInfo = BazelDependencies;
 		};
-		304087C479476CADA96A7ECD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 48A1FAB71CA4985ACB147363;
-			remoteInfo = c_lib;
-		};
 		334E33C35297EDCE3D14FD82 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0805833D09730531AD081697 /* Project object */;
@@ -149,26 +109,12 @@
 			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
 			remoteInfo = BazelDependencies;
 		};
-		3774B935F0A287F4930A9E64 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 9D6BB9A04FEC771667C78F54;
-			remoteInfo = "Lib (iOS, tvOS)";
-		};
 		386300736627B427D77693DB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0805833D09730531AD081697 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
 			remoteInfo = BazelDependencies;
-		};
-		3E24942D9FDE54F366427071 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 9D6BB9A04FEC771667C78F54;
-			remoteInfo = "Lib (iOS, tvOS)";
 		};
 		3F2526905F32AB84EFE7FBFE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -191,20 +137,6 @@
 			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
 			remoteInfo = BazelDependencies;
 		};
-		46F7F05A46D2F01822293374 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F175A7E1019A952CA7F66BBC;
-			remoteInfo = TestingUtils;
-		};
-		4EF3B4A10A461B3E6A77C05C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 1EF2B99D58C7884FED2A0769;
-			remoteInfo = LibFramework.watchOS;
-		};
 		53B0D201209D5FC678C09FF3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0805833D09730531AD081697 /* Project object */;
@@ -212,26 +144,12 @@
 			remoteGlobalIDString = ACEF2F653E0F6BEA37D2C7B6;
 			remoteInfo = tvOSApp;
 		};
-		5E12675241EDD081A1E758F3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A23C98B4BFB6C775689A2A7D;
-			remoteInfo = UIFramework.tvOS;
-		};
 		5E9AC5B7458CB5F5EC7A5A23 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0805833D09730531AD081697 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
 			remoteInfo = BazelDependencies;
-		};
-		633288DFC9F88DAD3353B6A4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 9D6BB9A04FEC771667C78F54;
-			remoteInfo = "Lib (iOS, tvOS)";
 		};
 		64291FDA9C4F8EFE675DD30F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -247,13 +165,6 @@
 			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
 			remoteInfo = BazelDependencies;
 		};
-		6732571D84F10BC15215D4CB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8E3B6C47A6106921076BC573;
-			remoteInfo = lib_swift;
-		};
 		6756964F404121473C696BA8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0805833D09730531AD081697 /* Project object */;
@@ -268,27 +179,6 @@
 			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
 			remoteInfo = BazelDependencies;
 		};
-		6CC46DA66F240AEB5769E85E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 34820134F30D904FFA06D27A;
-			remoteInfo = Utils;
-		};
-		6DAAD4B2366FFB70CA5EDDAA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 13A68B4984727F4B3DAE6AFB;
-			remoteInfo = AppClip;
-		};
-		6E3A6E4764783B821B9308B2 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C03F5C0CA2104493AE9E52C9;
-			remoteInfo = LibFramework.tvOS;
-		};
 		70875BE59399E24155D8BE76 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0805833D09730531AD081697 /* Project object */;
@@ -296,26 +186,12 @@
 			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
 			remoteInfo = BazelDependencies;
 		};
-		7257BF65ACBCED05BD50E030 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 06E3C912B8DE52D274641347;
-			remoteInfo = WidgetExtension;
-		};
 		7699AD76B28DC4F10D3E2421 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0805833D09730531AD081697 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = AE02B41E521B2C6360C30D20;
 			remoteInfo = macOSApp;
-		};
-		7A48F6CB7139DCFC3AA220E4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 4CFF47C3FBF2E6C24127D667;
-			remoteInfo = UIFramework.iOS;
 		};
 		7C51ED21B510A4CB1E96379C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -345,13 +221,6 @@
 			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
 			remoteInfo = BazelDependencies;
 		};
-		8355128CEF0F8DBFB3FAA87B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 83D00AD7532094902D925C83;
-			remoteInfo = "Lib (watchOS)";
-		};
 		849169BEF9E9155A0714BAA6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0805833D09730531AD081697 /* Project object */;
@@ -365,13 +234,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
 			remoteInfo = BazelDependencies;
-		};
-		89C81292F43E0E5EFBC65615 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 632D255CE04E97FB997EBDD7;
-			remoteInfo = watchOSApp;
 		};
 		8B8EB48B9E8241F59FEC2E8A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -408,20 +270,6 @@
 			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
 			remoteInfo = BazelDependencies;
 		};
-		A35687B467B740DC9895BDED /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = FB5A7F9FB506F44F296BDD73;
-			remoteInfo = private_swift_lib;
-		};
-		A40CAEC89666382F3511FF88 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 2BECDF067E07C69468ED23A3;
-			remoteInfo = iMessageAppExtension;
-		};
 		A410336A22247FD2FB0A2E97 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0805833D09730531AD081697 /* Project object */;
@@ -436,54 +284,12 @@
 			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
 			remoteInfo = BazelDependencies;
 		};
-		AA6578044ACBF105A34F2D2F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8E3B6C47A6106921076BC573;
-			remoteInfo = lib_swift;
-		};
 		ACEB1374228556C1C9CBC69E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0805833D09730531AD081697 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
 			remoteInfo = BazelDependencies;
-		};
-		B20F5380C5E1CAB4C423AD35 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 9D6BB9A04FEC771667C78F54;
-			remoteInfo = "Lib (iOS, tvOS)";
-		};
-		B4081C15523237B6ACE3045F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F619A1189B9E946F6BE02A2F;
-			remoteInfo = UIFramework.watchOS;
-		};
-		B72B5A378909AA34EF448E32 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = EAFF1E96A87B75E6BA080719;
-			remoteInfo = private_lib;
-		};
-		C3D9DF21D191A5F4370A9544 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 2DBD14C7DE92127B94265B10;
-			remoteInfo = watchOSAppExtension;
-		};
-		C87EF466F1120C8A34342BFC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 9D6BB9A04FEC771667C78F54;
-			remoteInfo = "Lib (iOS, tvOS)";
 		};
 		CED913C91B38F307EEA90999 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -492,40 +298,12 @@
 			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
 			remoteInfo = BazelDependencies;
 		};
-		D4810C6224009DCAF97E1364 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F619A1189B9E946F6BE02A2F;
-			remoteInfo = UIFramework.watchOS;
-		};
-		D566CC579BE1D015BB282D22 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7F21C434B520AB441229E270;
-			remoteInfo = FrameworkCoreUtilsObjC;
-		};
-		DA46F23FB8F3761A85CB449E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 9D6BB9A04FEC771667C78F54;
-			remoteInfo = "Lib (iOS, tvOS)";
-		};
 		E5C53509D0C0B3208C581E08 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0805833D09730531AD081697 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
 			remoteInfo = BazelDependencies;
-		};
-		E99D9DDFE49A00CC9E26103A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F175A7E1019A952CA7F66BBC;
-			remoteInfo = TestingUtils;
 		};
 		EDB689943C5B0D9E407314A1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -576,33 +354,12 @@
 			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
 			remoteInfo = BazelDependencies;
 		};
-		F7EE120661FA905CF001F45D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 703D7AC89C4B9C9E4B61A58F;
-			remoteInfo = FXPageControl;
-		};
-		F84FF39FB7ACA4D7F72EA642 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 83D00AD7532094902D925C83;
-			remoteInfo = "Lib (watchOS)";
-		};
 		F94A99D9F85BA293DBC10F54 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0805833D09730531AD081697 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
 			remoteInfo = BazelDependencies;
-		};
-		FC13477455BCD3D0B28F94A1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 34820134F30D904FFA06D27A;
-			remoteInfo = Utils;
 		};
 		FCF9E5BF1611C5A1EC3C9302 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -619,64 +376,6 @@
 			remoteInfo = BazelDependencies;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		35F0792A0228A41446B47AF3 /* Embed App Clips */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "$(CONTENTS_FOLDER_PATH)/AppClips";
-			dstSubfolderSpec = 16;
-			files = (
-				B49B6ACDB9A3D22C6E78597A /* AppClip.app in Embed App Clips */,
-			);
-			name = "Embed App Clips";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		73209A42106E6D9F8C2F204A /* Embed App Extensions */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 13;
-			files = (
-				BE671CF650447DC4B7643A6A /* iMessageAppExtension.appex in Embed App Extensions */,
-			);
-			name = "Embed App Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7C574200BE46B3AB33851AA4 /* Embed Watch Content */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
-			dstSubfolderSpec = 16;
-			files = (
-				D4D9F122E0D6F929DB54223A /* watchOSApp.app in Embed Watch Content */,
-			);
-			name = "Embed Watch Content";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B863A176A237329225DDC850 /* Embed App Extensions */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 13;
-			files = (
-				FB2ECA7DEB2CBACF77E136D3 /* WidgetExtension.appex in Embed App Extensions */,
-			);
-			name = "Embed App Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D6600EEE440B5DA4ECED5B88 /* Embed App Extensions */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 13;
-			files = (
-				FC046D5CB687C67D9BED2A03 /* watchOSAppExtension.appex in Embed App Extensions */,
-			);
-			name = "Embed App Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		05A82E03CF653910592A13A4 /* WatchOSAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchOSAppUITests.swift; sourceTree = "<group>"; };
@@ -3607,7 +3306,6 @@
 			);
 			dependencies = (
 				8744C84690612B8497832054 /* PBXTargetDependency */,
-				4B8DF95C733D0CC9A1830771 /* PBXTargetDependency */,
 			);
 			name = WidgetExtension;
 			productName = WidgetExtension;
@@ -3626,7 +3324,6 @@
 			);
 			dependencies = (
 				042CE1381B4CE19CAE198BC1 /* PBXTargetDependency */,
-				564A00E06C86E0B2FFCFE8FC /* PBXTargetDependency */,
 			);
 			name = AppClip;
 			productName = AppClip;
@@ -3640,19 +3337,11 @@
 				9F6AC3E78F25E23948AED368 /* Copy Bazel Outputs */,
 				98A71FDC2C7B65B80CB267C4 /* Create linking dependencies */,
 				B0BD8F7B441AB01986AB1F93 /* Sources */,
-				7C574200BE46B3AB33851AA4 /* Embed Watch Content */,
-				B863A176A237329225DDC850 /* Embed App Extensions */,
-				35F0792A0228A41446B47AF3 /* Embed App Clips */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				588C37BAE74BD661E5366E96 /* PBXTargetDependency */,
-				BCCE3E1D985584550E4BB4DA /* PBXTargetDependency */,
-				BB052108C6C6C36E9DDAFF7E /* PBXTargetDependency */,
-				65B4FB639CC1855C1533A870 /* PBXTargetDependency */,
-				5437B75F248043889B16F23E /* PBXTargetDependency */,
-				9C0C27802B5E0218C39B72F4 /* PBXTargetDependency */,
 			);
 			name = iOSApp;
 			productName = iOSApp;
@@ -3671,7 +3360,6 @@
 			);
 			dependencies = (
 				A44D31FE0D119010E44282B5 /* PBXTargetDependency */,
-				FFCC12FFC28C595DF9958A6A /* PBXTargetDependency */,
 			);
 			name = CommandLineTool;
 			productName = CommandLineTool;
@@ -3690,7 +3378,6 @@
 			);
 			dependencies = (
 				895042EDCC96B46AB2E119D2 /* PBXTargetDependency */,
-				87FABE46A62D948F77D823BB /* PBXTargetDependency */,
 			);
 			name = LibFramework.watchOS;
 			productName = LibFramework.watchOS;
@@ -3709,7 +3396,6 @@
 			);
 			dependencies = (
 				DFED98D401063B1474FD4B03 /* PBXTargetDependency */,
-				49B2533771622005CAC78051 /* PBXTargetDependency */,
 			);
 			name = iOS;
 			productName = Lib;
@@ -3728,7 +3414,6 @@
 			);
 			dependencies = (
 				5FBF95324D58B98BB7A85AF5 /* PBXTargetDependency */,
-				7E75D67BFDB3E5AA6B6772E5 /* PBXTargetDependency */,
 			);
 			name = iMessageAppExtension;
 			productName = iMessageAppExtension;
@@ -3747,7 +3432,6 @@
 			);
 			dependencies = (
 				D5B6D9348B4FF1077A2E0334 /* PBXTargetDependency */,
-				9ECB797CF83F584D80B7C1F7 /* PBXTargetDependency */,
 			);
 			name = watchOSAppExtension;
 			productName = watchOSAppExtension;
@@ -3759,13 +3443,11 @@
 			buildConfigurationList = D879581B52FB0834A869F005 /* Build configuration list for PBXNativeTarget "iMessageApp" */;
 			buildPhases = (
 				C7E5D6A63B206760804A009C /* Copy Bazel Outputs */,
-				73209A42106E6D9F8C2F204A /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				D67DF0B8A7647D3BE4D7B3F2 /* PBXTargetDependency */,
-				5E127A1536A5DCD7FA716179 /* PBXTargetDependency */,
 			);
 			name = iMessageApp;
 			productName = iMessageApp;
@@ -3782,7 +3464,6 @@
 			);
 			dependencies = (
 				6160161B0AEDB993335C4D34 /* PBXTargetDependency */,
-				0C6F2DCBF5E3DB43C5C6C184 /* PBXTargetDependency */,
 			);
 			name = Utils;
 			productName = Utils;
@@ -3801,8 +3482,6 @@
 			dependencies = (
 				B7E9DB92193A8D7F82B0C0CB /* PBXTargetDependency */,
 				780FBF246337B208F1876734 /* PBXTargetDependency */,
-				21B6628646BD492BF5FF41C8 /* PBXTargetDependency */,
-				08774E4B495E2E4BFCA4AB12 /* PBXTargetDependency */,
 			);
 			name = iOSAppObjCUnitTests;
 			productName = iOSAppObjCUnitTests;
@@ -3837,7 +3516,6 @@
 			);
 			dependencies = (
 				13CF19A557C5048EBF49ABB3 /* PBXTargetDependency */,
-				0EC6F46C6CF960B181957A0F /* PBXTargetDependency */,
 			);
 			name = UIFramework.iOS;
 			productName = UIFramework.iOS;
@@ -3875,7 +3553,6 @@
 			);
 			dependencies = (
 				4EB7433C65C85B60771F7494 /* PBXTargetDependency */,
-				1BE95D0238EE1A9491E6ABB6 /* PBXTargetDependency */,
 			);
 			name = CommandLineToolTests;
 			productName = CommandLineToolTests;
@@ -3887,13 +3564,11 @@
 			buildConfigurationList = 8A037957A7D43A07EB471C2A /* Build configuration list for PBXNativeTarget "watchOSApp" */;
 			buildPhases = (
 				DF8E9D9CD1E839DFDDC57F9F /* Copy Bazel Outputs */,
-				D6600EEE440B5DA4ECED5B88 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				C4897838CF03F1ED17ABBFB5 /* PBXTargetDependency */,
-				51342E1978F3847359D08B29 /* PBXTargetDependency */,
 			);
 			name = watchOSApp;
 			productName = watchOSApp;
@@ -3912,7 +3587,6 @@
 			);
 			dependencies = (
 				141DA52B2ACB146F5114E93A /* PBXTargetDependency */,
-				06A29E6E28F5B92C8BF67440 /* PBXTargetDependency */,
 			);
 			name = watchOS;
 			productName = Lib;
@@ -3999,10 +3673,6 @@
 			);
 			dependencies = (
 				1BB14BD319203CF277CB7228 /* PBXTargetDependency */,
-				F73F9CB6F9B1D10D5E1A6DB4 /* PBXTargetDependency */,
-				2BC4078E4942848FB045F836 /* PBXTargetDependency */,
-				48E90D683A23B2E53782AC0A /* PBXTargetDependency */,
-				F319DF35373AB194E8608BB1 /* PBXTargetDependency */,
 			);
 			name = lib_swift;
 			productName = lib_swift;
@@ -4036,8 +3706,6 @@
 			);
 			dependencies = (
 				DB571D368646BD594FBC1A29 /* PBXTargetDependency */,
-				6F7D201160B325B83B56C3F0 /* PBXTargetDependency */,
-				3F895115CDC1F65272567F57 /* PBXTargetDependency */,
 			);
 			name = UIFramework.tvOS;
 			productName = UIFramework.tvOS;
@@ -4056,7 +3724,6 @@
 			);
 			dependencies = (
 				0E54586AEB47B3853C7BA936 /* PBXTargetDependency */,
-				047474D9D308C0730CABABC9 /* PBXTargetDependency */,
 			);
 			name = tvOSApp;
 			productName = tvOSApp;
@@ -4108,7 +3775,6 @@
 			);
 			dependencies = (
 				127DF1FA609C87377C876CE1 /* PBXTargetDependency */,
-				8403836D57A53C88F0DD2C3E /* PBXTargetDependency */,
 			);
 			name = LibFramework.tvOS;
 			productName = LibFramework.tvOS;
@@ -4147,8 +3813,6 @@
 			dependencies = (
 				8EA6765DA7FB86283AF3A508 /* PBXTargetDependency */,
 				A3FA33D2339398D7EF50574C /* PBXTargetDependency */,
-				E36329920AC6370D10FC6E98 /* PBXTargetDependency */,
-				183914602E3CA63A5CB314D8 /* PBXTargetDependency */,
 			);
 			name = iOSAppSwiftUnitTests;
 			productName = iOSAppSwiftUnitTests;
@@ -4167,7 +3831,6 @@
 			);
 			dependencies = (
 				92344A87083B6565903B692B /* PBXTargetDependency */,
-				C285268C89D0B45387A23922 /* PBXTargetDependency */,
 			);
 			name = watchOSAppExtensionUnitTests;
 			productName = watchOSAppExtensionUnitTests;
@@ -4205,7 +3868,6 @@
 			);
 			dependencies = (
 				B040424B8F138957D0E22A3D /* PBXTargetDependency */,
-				3FACA36BD93C51EFE917FFD9 /* PBXTargetDependency */,
 			);
 			name = tvOS;
 			productName = Lib;
@@ -4255,8 +3917,6 @@
 			);
 			dependencies = (
 				42955B98D55F02972C1C0908 /* PBXTargetDependency */,
-				E48C708C74446A2D901EB813 /* PBXTargetDependency */,
-				78242F154CC2B22A31B356C2 /* PBXTargetDependency */,
 			);
 			name = UIFramework.watchOS;
 			productName = UIFramework.watchOS;
@@ -5813,47 +5473,17 @@
 			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
 			targetProxy = ACEB1374228556C1C9CBC69E /* PBXContainerItemProxy */;
 		};
-		047474D9D308C0730CABABC9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = UIFramework.tvOS;
-			target = A23C98B4BFB6C775689A2A7D /* UIFramework.tvOS */;
-			targetProxy = 5E12675241EDD081A1E758F3 /* PBXContainerItemProxy */;
-		};
 		0576A3A5933E955D30A2375D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = macOSApp;
 			target = AE02B41E521B2C6360C30D20 /* macOSApp */;
 			targetProxy = 7699AD76B28DC4F10D3E2421 /* PBXContainerItemProxy */;
 		};
-		06A29E6E28F5B92C8BF67440 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Lib (watchOS)";
-			target = 83D00AD7532094902D925C83 /* Lib (watchOS) */;
-			targetProxy = F84FF39FB7ACA4D7F72EA642 /* PBXContainerItemProxy */;
-		};
-		08774E4B495E2E4BFCA4AB12 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Utils;
-			target = 34820134F30D904FFA06D27A /* Utils */;
-			targetProxy = 6CC46DA66F240AEB5769E85E /* PBXContainerItemProxy */;
-		};
-		0C6F2DCBF5E3DB43C5C6C184 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = FXPageControl;
-			target = 703D7AC89C4B9C9E4B61A58F /* FXPageControl */;
-			targetProxy = F7EE120661FA905CF001F45D /* PBXContainerItemProxy */;
-		};
 		0E54586AEB47B3853C7BA936 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = BazelDependencies;
 			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
 			targetProxy = 64291FDA9C4F8EFE675DD30F /* PBXContainerItemProxy */;
-		};
-		0EC6F46C6CF960B181957A0F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Lib (iOS, tvOS)";
-			target = 9D6BB9A04FEC771667C78F54 /* Lib (iOS, tvOS) */;
-			targetProxy = 06878CB50987AA39C99D042E /* PBXContainerItemProxy */;
 		};
 		127DF1FA609C87377C876CE1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -5873,41 +5503,17 @@
 			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
 			targetProxy = 334E33C35297EDCE3D14FD82 /* PBXContainerItemProxy */;
 		};
-		183914602E3CA63A5CB314D8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Utils;
-			target = 34820134F30D904FFA06D27A /* Utils */;
-			targetProxy = FC13477455BCD3D0B28F94A1 /* PBXContainerItemProxy */;
-		};
 		1BB14BD319203CF277CB7228 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = BazelDependencies;
 			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
 			targetProxy = 70875BE59399E24155D8BE76 /* PBXContainerItemProxy */;
 		};
-		1BE95D0238EE1A9491E6ABB6 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = lib_swift;
-			target = 8E3B6C47A6106921076BC573 /* lib_swift */;
-			targetProxy = AA6578044ACBF105A34F2D2F /* PBXContainerItemProxy */;
-		};
 		216ACAA73877561C3F7572A9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = tvOSApp;
 			target = ACEF2F653E0F6BEA37D2C7B6 /* tvOSApp */;
 			targetProxy = EE7E8B6AE1E795335A7051CB /* PBXContainerItemProxy */;
-		};
-		21B6628646BD492BF5FF41C8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = TestingUtils;
-			target = F175A7E1019A952CA7F66BBC /* TestingUtils */;
-			targetProxy = 46F7F05A46D2F01822293374 /* PBXContainerItemProxy */;
-		};
-		2BC4078E4942848FB045F836 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = lib_impl;
-			target = BC691472A2BC47F8E1D5D637 /* lib_impl */;
-			targetProxy = 0D08B1B3E78FD0DCDACFB09C /* PBXContainerItemProxy */;
 		};
 		2C535CFF97E30B92E04CA24E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -5927,41 +5533,11 @@
 			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
 			targetProxy = 849169BEF9E9155A0714BAA6 /* PBXContainerItemProxy */;
 		};
-		3F895115CDC1F65272567F57 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = LibFramework.tvOS;
-			target = C03F5C0CA2104493AE9E52C9 /* LibFramework.tvOS */;
-			targetProxy = 6E3A6E4764783B821B9308B2 /* PBXContainerItemProxy */;
-		};
-		3FACA36BD93C51EFE917FFD9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Lib (iOS, tvOS)";
-			target = 9D6BB9A04FEC771667C78F54 /* Lib (iOS, tvOS) */;
-			targetProxy = 633288DFC9F88DAD3353B6A4 /* PBXContainerItemProxy */;
-		};
 		42955B98D55F02972C1C0908 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = BazelDependencies;
 			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
 			targetProxy = 29E6580AC82007E687BCF85E /* PBXContainerItemProxy */;
-		};
-		48E90D683A23B2E53782AC0A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = private_lib;
-			target = EAFF1E96A87B75E6BA080719 /* private_lib */;
-			targetProxy = B72B5A378909AA34EF448E32 /* PBXContainerItemProxy */;
-		};
-		49B2533771622005CAC78051 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Lib (iOS, tvOS)";
-			target = 9D6BB9A04FEC771667C78F54 /* Lib (iOS, tvOS) */;
-			targetProxy = 1D198B1E2F8019820CF2F485 /* PBXContainerItemProxy */;
-		};
-		4B8DF95C733D0CC9A1830771 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Lib (iOS, tvOS)";
-			target = 9D6BB9A04FEC771667C78F54 /* Lib (iOS, tvOS) */;
-			targetProxy = DA46F23FB8F3761A85CB449E /* PBXContainerItemProxy */;
 		};
 		4D5BDBE2087421AB8DBA35E9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -5975,24 +5551,6 @@
 			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
 			targetProxy = E5C53509D0C0B3208C581E08 /* PBXContainerItemProxy */;
 		};
-		51342E1978F3847359D08B29 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = watchOSAppExtension;
-			target = 2DBD14C7DE92127B94265B10 /* watchOSAppExtension */;
-			targetProxy = C3D9DF21D191A5F4370A9544 /* PBXContainerItemProxy */;
-		};
-		5437B75F248043889B16F23E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = watchOSApp;
-			target = 632D255CE04E97FB997EBDD7 /* watchOSApp */;
-			targetProxy = 89C81292F43E0E5EFBC65615 /* PBXContainerItemProxy */;
-		};
-		564A00E06C86E0B2FFCFE8FC /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Lib (iOS, tvOS)";
-			target = 9D6BB9A04FEC771667C78F54 /* Lib (iOS, tvOS) */;
-			targetProxy = B20F5380C5E1CAB4C423AD35 /* PBXContainerItemProxy */;
-		};
 		588C37BAE74BD661E5366E96 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = BazelDependencies;
@@ -6004,12 +5562,6 @@
 			name = BazelDependencies;
 			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
 			targetProxy = 386300736627B427D77693DB /* PBXContainerItemProxy */;
-		};
-		5E127A1536A5DCD7FA716179 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = iMessageAppExtension;
-			target = 2BECDF067E07C69468ED23A3 /* iMessageAppExtension */;
-			targetProxy = A40CAEC89666382F3511FF88 /* PBXContainerItemProxy */;
 		};
 		5FBF95324D58B98BB7A85AF5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -6023,41 +5575,11 @@
 			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
 			targetProxy = F5E9D31D539D4E97AACBE385 /* PBXContainerItemProxy */;
 		};
-		65B4FB639CC1855C1533A870 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = UIFramework.iOS;
-			target = 4CFF47C3FBF2E6C24127D667 /* UIFramework.iOS */;
-			targetProxy = 7A48F6CB7139DCFC3AA220E4 /* PBXContainerItemProxy */;
-		};
-		6F7D201160B325B83B56C3F0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Lib (iOS, tvOS)";
-			target = 9D6BB9A04FEC771667C78F54 /* Lib (iOS, tvOS) */;
-			targetProxy = 3E24942D9FDE54F366427071 /* PBXContainerItemProxy */;
-		};
 		780FBF246337B208F1876734 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = iOSApp;
 			target = 1765D91CC168F25A5BC51603 /* iOSApp */;
 			targetProxy = EDB689943C5B0D9E407314A1 /* PBXContainerItemProxy */;
-		};
-		78242F154CC2B22A31B356C2 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = LibFramework.watchOS;
-			target = 1EF2B99D58C7884FED2A0769 /* LibFramework.watchOS */;
-			targetProxy = 4EF3B4A10A461B3E6A77C05C /* PBXContainerItemProxy */;
-		};
-		7E75D67BFDB3E5AA6B6772E5 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Lib (iOS, tvOS)";
-			target = 9D6BB9A04FEC771667C78F54 /* Lib (iOS, tvOS) */;
-			targetProxy = 3774B935F0A287F4930A9E64 /* PBXContainerItemProxy */;
-		};
-		8403836D57A53C88F0DD2C3E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Lib (iOS, tvOS)";
-			target = 9D6BB9A04FEC771667C78F54 /* Lib (iOS, tvOS) */;
-			targetProxy = C87EF466F1120C8A34342BFC /* PBXContainerItemProxy */;
 		};
 		86FFAA921A7F01C5E85BC317 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -6070,12 +5592,6 @@
 			name = BazelDependencies;
 			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
 			targetProxy = 7C51ED21B510A4CB1E96379C /* PBXContainerItemProxy */;
-		};
-		87FABE46A62D948F77D823BB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Lib (watchOS)";
-			target = 83D00AD7532094902D925C83 /* Lib (watchOS) */;
-			targetProxy = 8355128CEF0F8DBFB3FAA87B /* PBXContainerItemProxy */;
 		};
 		895042EDCC96B46AB2E119D2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -6119,18 +5635,6 @@
 			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
 			targetProxy = FCF9E5BF1611C5A1EC3C9302 /* PBXContainerItemProxy */;
 		};
-		9C0C27802B5E0218C39B72F4 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = WidgetExtension;
-			target = 06E3C912B8DE52D274641347 /* WidgetExtension */;
-			targetProxy = 7257BF65ACBCED05BD50E030 /* PBXContainerItemProxy */;
-		};
-		9ECB797CF83F584D80B7C1F7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = UIFramework.watchOS;
-			target = F619A1189B9E946F6BE02A2F /* UIFramework.watchOS */;
-			targetProxy = B4081C15523237B6ACE3045F /* PBXContainerItemProxy */;
-		};
 		A3FA33D2339398D7EF50574C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = iOSApp;
@@ -6160,24 +5664,6 @@
 			name = BazelDependencies;
 			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
 			targetProxy = 7CAC09D3BA11390562D06807 /* PBXContainerItemProxy */;
-		};
-		BB052108C6C6C36E9DDAFF7E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = FrameworkCoreUtilsObjC;
-			target = 7F21C434B520AB441229E270 /* FrameworkCoreUtilsObjC */;
-			targetProxy = D566CC579BE1D015BB282D22 /* PBXContainerItemProxy */;
-		};
-		BCCE3E1D985584550E4BB4DA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = AppClip;
-			target = 13A68B4984727F4B3DAE6AFB /* AppClip */;
-			targetProxy = 6DAAD4B2366FFB70CA5EDDAA /* PBXContainerItemProxy */;
-		};
-		C285268C89D0B45387A23922 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = UIFramework.watchOS;
-			target = F619A1189B9E946F6BE02A2F /* UIFramework.watchOS */;
-			targetProxy = D4810C6224009DCAF97E1364 /* PBXContainerItemProxy */;
 		};
 		C3AABA33C4332E23DA9FB495 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -6233,41 +5719,11 @@
 			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
 			targetProxy = 9DBF02CAC6C6AC4B7C3505BA /* PBXContainerItemProxy */;
 		};
-		E36329920AC6370D10FC6E98 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = TestingUtils;
-			target = F175A7E1019A952CA7F66BBC /* TestingUtils */;
-			targetProxy = E99D9DDFE49A00CC9E26103A /* PBXContainerItemProxy */;
-		};
-		E48C708C74446A2D901EB813 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Lib (watchOS)";
-			target = 83D00AD7532094902D925C83 /* Lib (watchOS) */;
-			targetProxy = 03D2449DD581B8F08C1F72EA /* PBXContainerItemProxy */;
-		};
 		F050D422C8291B8A659E5E29 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = BazelDependencies;
 			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
 			targetProxy = 649BA57445D83E8FD317B912 /* PBXContainerItemProxy */;
-		};
-		F319DF35373AB194E8608BB1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = private_swift_lib;
-			target = FB5A7F9FB506F44F296BDD73 /* private_swift_lib */;
-			targetProxy = A35687B467B740DC9895BDED /* PBXContainerItemProxy */;
-		};
-		F73F9CB6F9B1D10D5E1A6DB4 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = c_lib;
-			target = 48A1FAB71CA4985ACB147363 /* c_lib */;
-			targetProxy = 304087C479476CADA96A7ECD /* PBXContainerItemProxy */;
-		};
-		FFCC12FFC28C595DF9958A6A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = lib_swift;
-			target = 8E3B6C47A6106921076BC573 /* lib_swift */;
-			targetProxy = 6732571D84F10BC15215D4CB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

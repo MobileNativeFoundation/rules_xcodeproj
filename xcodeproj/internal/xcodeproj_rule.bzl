@@ -11,12 +11,21 @@ load(":flattened_key_values.bzl", "flattened_key_values")
 load(":input_files.bzl", "input_files")
 load(":linker_input_files.bzl", "linker_input_files")
 load(":output_files.bzl", "output_files")
+load(":platform.bzl", "platform_info")
 load(":providers.bzl", "XcodeProjInfo")
 load(":resource_target.bzl", "process_resource_bundles")
 load(":xcode_targets.bzl", "xcode_targets")
 load(":xcodeproj_aspect.bzl", "xcodeproj_aspect")
 
 # Utility
+
+_SWIFTUI_PREVIEW_PRODUCT_TYPES = [
+    "com.apple.product-type.application",
+    "com.apple.product-type.app-extension",
+    "com.apple.product-type.bundle",
+    "com.apple.product-type.framework",
+    "com.apple.product-type.tool",
+]
 
 # TODO: Non-test_host applications should be terminal as well
 _TERMINAL_PRODUCT_TYPES = {
@@ -66,6 +75,23 @@ def _calculate_unfocused_dependencies(
             transitive = transitive_dependencies,
         ).to_list()
     }
+
+def _calculate_swiftui_preview_targets(*, xcode_target, targets):
+    return [
+        id
+        for id in xcode_target.transitive_dependencies.to_list()
+        if _is_same_platform_swiftui_preview_target(
+            platform = xcode_target.platform,
+            xcode_target = targets.get(id),
+        )
+    ]
+
+def _is_same_platform_swiftui_preview_target(*, platform, xcode_target):
+    if not xcode_target:
+        return False
+    if not platform_info.is_same_type(platform, xcode_target.platform):
+        return False
+    return xcode_target.product.type in _SWIFTUI_PREVIEW_PRODUCT_TYPES
 
 def _process_dep(dep):
     info = dep[XcodeProjInfo]
@@ -140,7 +166,8 @@ def _process_targets(
         replacement_labels,
         inputs,
         infos,
-        owned_extra_files):
+        owned_extra_files,
+        include_swiftui_previews_scheme_targets):
     # TODO: Do this at the `top_level_targets` level, to allow marking as
     # required for BwX
     resource_bundle_xcode_targets = process_resource_bundles(
@@ -382,9 +409,18 @@ actual targets: {}
                 for f in file.files.to_list():
                     focused_targets_extra_files.append((label, [file_path(f)]))
 
+        if include_swiftui_previews_scheme_targets:
+            additional_scheme_target_ids = _calculate_swiftui_preview_targets(
+                xcode_target = xcode_target,
+                targets = focused_targets,
+            )
+        else:
+            additional_scheme_target_ids = None
+
         targets[xcode_target.id] = xcode_target
         target_dtos[xcode_target.id] = xcode_targets.to_dto(
             xcode_target = xcode_target,
+            additional_scheme_target_ids = additional_scheme_target_ids,
             include_lldb_context = (
                 has_unfocused_targets or
                 has_automatic_unfocused_targets or
@@ -905,6 +941,10 @@ def _xcodeproj_impl(ctx):
         inputs = inputs,
         infos = infos,
         owned_extra_files = ctx.attr.owned_extra_files,
+        include_swiftui_previews_scheme_targets = (
+            build_mode == "bazel" and
+            ctx.attr.adjust_schemes_for_swiftui_previews
+        ),
     )
 
     extra_files = _process_extra_files(
@@ -1016,6 +1056,16 @@ def _xcodeproj_impl(ctx):
 
 def make_xcodeproj_rule(*, xcodeproj_transition = None):
     attrs = {
+        "adjust_schemes_for_swiftui_previews": attr.bool(
+            default = False,
+            doc = """\
+Whether to adjust schemes in BwB mode to explicitly include transitive
+dependencies that are able to run SwiftUI Previews. For example, this changes a
+scheme for an single application target to also include any app clip, app
+extension, framework, or watchOS app dependencies.
+""",
+            mandatory = True,
+        ),
         "bazel_path": attr.string(
             doc = """\
 The path to the `bazel` binary or wrapper script. If the path is relative it

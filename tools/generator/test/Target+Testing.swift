@@ -29,7 +29,8 @@ extension Target {
         dependencies: Set<TargetID> = [],
         outputs: Outputs = .init(),
         lldbContext: LLDBContext? = nil,
-        isUnfocusedDependency: Bool = false
+        isUnfocusedDependency: Bool = false,
+        additionalSchemeTargets: Set<TargetID> = []
     ) -> Self {
         return Target(
             name: product.name,
@@ -55,7 +56,8 @@ extension Target {
             dependencies: dependencies,
             outputs: outputs,
             lldbContext: lldbContext,
-            isUnfocusedDependency: isUnfocusedDependency
+            isUnfocusedDependency: isUnfocusedDependency,
+            additionalSchemeTargets: additionalSchemeTargets
         )
     }
 }

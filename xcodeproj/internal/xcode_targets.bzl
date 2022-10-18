@@ -88,7 +88,6 @@ def _make(
         _name = name,
         _configuration = configuration,
         _package_bin_dir = package_bin_dir,
-        _platform = platform,
         _is_testonly = is_testonly,
         _test_host = test_host,
         _build_settings = struct(**build_settings),
@@ -102,6 +101,7 @@ def _make(
         _lldb_context = lldb_context,
         id = id,
         label = label,
+        platform = platform,
         product = product,
         linker_inputs = linker_inputs,
         inputs = inputs,
@@ -115,6 +115,7 @@ def _make(
 def _to_dto(
         xcode_target,
         *,
+        additional_scheme_target_ids,
         include_lldb_context,
         is_unfocused_dependency = False,
         unfocused_targets = {}):
@@ -125,7 +126,7 @@ def _to_dto(
         "label": str(xcode_target.label),
         "configuration": xcode_target._configuration,
         "package_bin_dir": xcode_target._package_bin_dir,
-        "platform": platform_info.to_dto(xcode_target._platform),
+        "platform": platform_info.to_dto(xcode_target.platform),
         "product": product_to_dto(xcode_target.product),
     }
 
@@ -215,6 +216,12 @@ def _to_dto(
         ],
     )
     set_if_true(dto, "outputs", output_files.to_dto(xcode_target.outputs))
+
+    set_if_true(
+        dto,
+        "additional_scheme_targets",
+        additional_scheme_target_ids,
+    )
 
     return dto
 

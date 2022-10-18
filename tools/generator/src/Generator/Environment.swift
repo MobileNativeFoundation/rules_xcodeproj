@@ -100,6 +100,7 @@ struct Environment {
     ) throws -> Void
 
     let setTargetDependencies: (
+        _ buildMode: BuildMode,
         _ disambiguatedTargets: DisambiguatedTargets,
         _ pbxTargets: [ConsolidatedTarget.Key: PBXTarget]
     ) throws -> Void

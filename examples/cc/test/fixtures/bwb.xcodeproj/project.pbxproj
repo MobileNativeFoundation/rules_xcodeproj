@@ -36,13 +36,6 @@
 			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
 			remoteInfo = BazelDependencies;
 		};
-		2D50AC8D57F94038C0E530C9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 0CEAA3455274D4DE9B4B82BF;
-			remoteInfo = "@examples_cc_external//:lib_impl";
-		};
 		41A85DCF88F765027016DA3F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0805833D09730531AD081697 /* Project object */;
@@ -63,20 +56,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
 			remoteInfo = BazelDependencies;
-		};
-		8AEF3D20012797DE8D00DC2A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5B96F6D9D67FE0B0221407C1;
-			remoteInfo = "@//lib2:lib_impl";
-		};
-		9557E02729B04E773AE3B59B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 4F1627B7F69F8B8097C47C79;
-			remoteInfo = "@//lib:lib_impl";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -253,9 +232,6 @@
 			);
 			dependencies = (
 				7176C357250A109C7B9B42E1 /* PBXTargetDependency */,
-				11D5EC37A0BCE6BF6015ECA8 /* PBXTargetDependency */,
-				4F5306ADE88BA1E845CBB036 /* PBXTargetDependency */,
-				09E3E376134BB6CCC0CBAD31 /* PBXTargetDependency */,
 			);
 			name = tool;
 			productName = tool;
@@ -453,18 +429,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		09E3E376134BB6CCC0CBAD31 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "@examples_cc_external//:lib_impl";
-			target = 0CEAA3455274D4DE9B4B82BF /* @examples_cc_external//:lib_impl */;
-			targetProxy = 2D50AC8D57F94038C0E530C9 /* PBXContainerItemProxy */;
-		};
-		11D5EC37A0BCE6BF6015ECA8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "@//lib:lib_impl";
-			target = 4F1627B7F69F8B8097C47C79 /* @//lib:lib_impl */;
-			targetProxy = 9557E02729B04E773AE3B59B /* PBXContainerItemProxy */;
-		};
 		166CF664F831AB12BD9AFE9D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = BazelDependencies;
@@ -482,12 +446,6 @@
 			name = BazelDependencies;
 			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
 			targetProxy = 222EDD9A43AD7060E37D98C1 /* PBXContainerItemProxy */;
-		};
-		4F5306ADE88BA1E845CBB036 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "@//lib2:lib_impl";
-			target = 5B96F6D9D67FE0B0221407C1 /* @//lib2:lib_impl */;
-			targetProxy = 8AEF3D20012797DE8D00DC2A /* PBXContainerItemProxy */;
 		};
 		7176C357250A109C7B9B42E1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

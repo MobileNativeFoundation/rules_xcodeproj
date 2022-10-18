@@ -45,9 +45,10 @@ load(
 ## xcodeproj
 
 <pre>
-xcodeproj(<a href="#xcodeproj-name">name</a>, <a href="#xcodeproj-archived_bundles_allowed">archived_bundles_allowed</a>, <a href="#xcodeproj-associated_extra_files">associated_extra_files</a>, <a href="#xcodeproj-bazel_path">bazel_path</a>, <a href="#xcodeproj-build_mode">build_mode</a>, <a href="#xcodeproj-config">config</a>,
-          <a href="#xcodeproj-extra_files">extra_files</a>, <a href="#xcodeproj-focused_targets">focused_targets</a>, <a href="#xcodeproj-ios_device_cpus">ios_device_cpus</a>, <a href="#xcodeproj-ios_simulator_cpus">ios_simulator_cpus</a>, <a href="#xcodeproj-post_build">post_build</a>, <a href="#xcodeproj-pre_build">pre_build</a>,
-          <a href="#xcodeproj-project_name">project_name</a>, <a href="#xcodeproj-scheme_autogeneration_mode">scheme_autogeneration_mode</a>, <a href="#xcodeproj-schemes">schemes</a>, <a href="#xcodeproj-top_level_targets">top_level_targets</a>, <a href="#xcodeproj-tvos_device_cpus">tvos_device_cpus</a>,
+xcodeproj(<a href="#xcodeproj-name">name</a>, <a href="#xcodeproj-adjust_schemes_for_swiftui_previews">adjust_schemes_for_swiftui_previews</a>, <a href="#xcodeproj-archived_bundles_allowed">archived_bundles_allowed</a>,
+          <a href="#xcodeproj-associated_extra_files">associated_extra_files</a>, <a href="#xcodeproj-bazel_path">bazel_path</a>, <a href="#xcodeproj-build_mode">build_mode</a>, <a href="#xcodeproj-config">config</a>, <a href="#xcodeproj-extra_files">extra_files</a>, <a href="#xcodeproj-focused_targets">focused_targets</a>,
+          <a href="#xcodeproj-ios_device_cpus">ios_device_cpus</a>, <a href="#xcodeproj-ios_simulator_cpus">ios_simulator_cpus</a>, <a href="#xcodeproj-post_build">post_build</a>, <a href="#xcodeproj-pre_build">pre_build</a>, <a href="#xcodeproj-project_name">project_name</a>,
+          <a href="#xcodeproj-scheme_autogeneration_mode">scheme_autogeneration_mode</a>, <a href="#xcodeproj-schemes">schemes</a>, <a href="#xcodeproj-top_level_targets">top_level_targets</a>, <a href="#xcodeproj-tvos_device_cpus">tvos_device_cpus</a>,
           <a href="#xcodeproj-tvos_simulator_cpus">tvos_simulator_cpus</a>, <a href="#xcodeproj-unfocused_targets">unfocused_targets</a>, <a href="#xcodeproj-watchos_device_cpus">watchos_device_cpus</a>, <a href="#xcodeproj-watchos_simulator_cpus">watchos_simulator_cpus</a>, <a href="#xcodeproj-kwargs">kwargs</a>)
 </pre>
 
@@ -80,6 +81,7 @@ xcodeproj(
 | Name  | Description | Default Value |
 | :------------- | :------------- | :------------- |
 | <a id="xcodeproj-name"></a>name |  A unique name for this target.   |  none |
+| <a id="xcodeproj-adjust_schemes_for_swiftui_previews"></a>adjust_schemes_for_swiftui_previews |  Optional. Whether to adjust schemes in BwB mode to explicitly include transitive dependencies that are able to run SwiftUI Previews. For example, this changes a scheme for an single application target to also include any app clip, app extension, framework, or watchOS app dependencies. Defaults to <code>True</code>.   |  <code>True</code> |
 | <a id="xcodeproj-archived_bundles_allowed"></a>archived_bundles_allowed |  This argument is deprecated and is now a no-op. It will be removed in a future release. Adjust the setting of <code>--define=apple.experimental.tree_artifact_outputs</code> on <code>build:rules_xcodeproj</code> in your <code>.bazelrc</code> or <code>xcodeproj.bazelrc</code> file.   |  <code>None</code> |
 | <a id="xcodeproj-associated_extra_files"></a>associated_extra_files |  Optional. A <code>dict</code> of files to be added to the project. The key is a <code>string</code> value representing the label of the target the files should be associated with, and the value is a <code>list</code> of <code>File</code>s. These files won't be added to the project if the target is unfocused.   |  <code>{}</code> |
 | <a id="xcodeproj-bazel_path"></a>bazel_path |  Optional. The path the <code>bazel</code> binary or wrapper script. If the path is relative it will be resolved using the <code>PATH</code> environment variable (which is set to <code>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</code> in Xcode). If you want to specify a path to a workspace-relative binary, you must prepend the path with <code>./</code> (e.g. <code>"./bazelw"</code>).   |  <code>"bazel"</code> |
