@@ -81,7 +81,8 @@ enum Fixtures {
                 swift: .init(
                     module: .generated("x/y.swiftmodule"),
                     doc: .generated("x/y.swiftdoc"),
-                    sourceInfo: .generated("x/y.swiftsourceinfo")
+                    sourceInfo: .generated("x/y.swiftsourceinfo"),
+                    generatedHeader: .generated("x/y-Swift.h")
                 )
             )
         ),
@@ -1157,7 +1158,7 @@ fi
 # Look up Swift generated headers in `$BUILD_DIR` first, then fall through to
 # `$BAZEL_OUT`
 cat > "$DERIVED_FILE_DIR/xcode-overlay.yaml" <<EOF
-{"case-sensitive": "false", "fallthrough": true, "roots": [],"version": 0}
+{"case-sensitive": "false", "fallthrough": true, "roots": [{"external-contents": "$BUILD_DIR/bazel-out/x/y-Swift.h","name": "${bazel_out_prefix}$BAZEL_OUT/x/y-Swift.h","type": "file"}],"version": 0}
 EOF
 
 """#)
@@ -1277,6 +1278,7 @@ class StopHook:
                 .generated("z/A.a"): .generated("z/A.a"),
                 .generated("x/A.swiftmodule"): .generated("z/A.swiftmodule"),
                 .generated("x/y.swiftmodule"): .generated("z/y.swiftmodule"),
+                .generated("x/y-Swift.h"): .generated("z/y-Swift.h"),
                 .generated("z/A.app"): .generated("z/A.app"),
                 .generated("z/AC.app"): .generated("z/AC.app"),
                 .generated("a/b.framework"): .generated("a/b.framework"),

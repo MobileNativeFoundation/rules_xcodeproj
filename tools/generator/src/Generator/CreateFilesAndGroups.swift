@@ -546,7 +546,33 @@ extension Generator {
         // `filePathResolver`
 
         var xcodeGeneratedFiles: [FilePath: FilePath] = [:]
+        func setXcodeGeneratedFile(
+            _ filePath: FilePath,
+            to newFilePath: FilePath
+        ) throws {
+            if let existingValue = xcodeGeneratedFiles[filePath] {
+                throw PreconditionError(message: """
+Tried to set `xcodeGeneratedFiles[\(filePath)]` to `\(newFilePath)`, but it \
+already was set to `\(existingValue)`.
+""")
+            }
+            xcodeGeneratedFiles[filePath] = newFilePath
+        }
+
         var bazelRemappedFiles: [FilePath: FilePath] = [:]
+        func setBazelRemappedFile(
+            _ filePath: FilePath,
+            to newFilePath: FilePath
+        ) throws {
+            if let existingValue = bazelRemappedFiles[filePath] {
+                throw PreconditionError(message: """
+Tried to set `bazelRemappedFiles[\(filePath)]` to `\(newFilePath)`, but it \
+already was set to `\(existingValue)`.
+""")
+            }
+            bazelRemappedFiles[filePath] = newFilePath
+        }
+
         switch buildMode {
         case .xcode:
             for (_, target) in targets {
@@ -556,23 +582,27 @@ extension Generator {
 
                 xcodeGeneratedFiles[target.product.path] = target.product.path
                 for filePath in target.product.additionalPaths {
-                    xcodeGeneratedFiles[filePath] = target.product.path
+                    try setXcodeGeneratedFile(filePath, to: target.product.path)
                 }
-                if let filePath = target.outputs.swift?.module {
-                    let value = target.xcodeSwiftModuleFilePath(filePath)
-                    if let existingValue = xcodeGeneratedFiles[filePath] {
-                        throw PreconditionError(message: """
-Tried to set `xcodeGeneratedFiles[\(filePath)]` to `\(value)`, but it already \
-was set to `\(existingValue)`.
-""")
+                if let swift = target.outputs.swift {
+                    try setXcodeGeneratedFile(
+                        swift.module,
+                        to: target.xcodeSwiftModuleFilePath(swift.module)
+                    )
+                    if let generatedHeader = swift.generatedHeader {
+                        try setXcodeGeneratedFile(
+                            generatedHeader,
+                            to: target.xcodeSwiftGeneratedHeaderFilePath(
+                                generatedHeader
+                            )
+                        )
                     }
-                    xcodeGeneratedFiles[filePath] = value
                 }
             }
         case .bazel:
             for (_, target) in targets {
                 for filePath in target.product.additionalPaths {
-                    bazelRemappedFiles[filePath] = target.product.path
+                    try setBazelRemappedFile(filePath, to: target.product.path)
                 }
             }
         }
@@ -987,6 +1017,26 @@ private extension Target {
 \(platform.targetTriple) \(product.path.path.lastComponent)
 """
         return lldbSettingsKey(baseKey: baseKey)
+    }
+
+    func xcodeSwiftGeneratedHeaderFilePath(_ filePath: FilePath) -> FilePath {
+        // Needs to be adjusted when target merging changes the configuration
+        #if DEBUG
+        guard filePath.path.components[1] == "bin" else {
+            // Handle weird test fixtures
+            let components = product.path.path.components[0..<1] +
+                filePath.path.components[1...]
+            var filePath = filePath
+            filePath.path = Path(components: components)
+            return filePath
+        }
+        #endif
+
+        let components = product.path.path.components[0..<2] +
+            filePath.path.components[2...]
+        var filePath = filePath
+        filePath.path = Path(components: components)
+        return filePath
     }
 
     func xcodeSwiftModuleFilePath(_ filePath: FilePath) -> FilePath {
