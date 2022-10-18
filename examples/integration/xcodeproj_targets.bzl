@@ -50,6 +50,8 @@ XCODEPROJ_TARGETS = [
     "//tvOSApp/Test/UnitTests:tvOSAppUnitTests",
     "//watchOSApp/Test/UITests:watchOSAppUITests",
     "//watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests",
+    "//SwiftUIIssues/SomeModule:SomeModuleFramework.iOS",
+    "//SwiftUIIssues/SomeModule:SomeModuleTests"
 ]
 
 IOS_BUNDLE_ID = "io.buildbuddy.example"
@@ -59,7 +61,7 @@ APP_CLIP_BUNDLE_ID = "{}.app-clip".format(IOS_BUNDLE_ID)
 TVOS_BUNDLE_ID = IOS_BUNDLE_ID
 WATCHOS_BUNDLE_ID = "{}.watch".format(IOS_BUNDLE_ID)
 
-SCHEME_AUTOGENERATION_MODE = "all"
+SCHEME_AUTOGENERATION_MODE = "auto"
 
 def get_xcode_schemes():
     return [
@@ -75,4 +77,17 @@ def get_xcode_schemes():
                 ],
             ),
         ),
+        xcode_schemes.scheme(
+            name = "SomeModule_Scheme",
+            build_action = xcode_schemes.build_action(
+                targets = [
+                    "//SwiftUIIssues/SomeModule:SomeModuleFramework.iOS"
+                ]
+            ),
+            test_action = xcode_schemes.test_action(
+                targets = [
+                    "//SwiftUIIssues/SomeModule:SomeModuleTests"
+                ]
+            )
+        )
     ]
