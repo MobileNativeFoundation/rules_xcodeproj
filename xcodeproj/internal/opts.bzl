@@ -27,8 +27,6 @@ _CC_SKIP_OPTS = {
 _SWIFTC_SKIP_OPTS = {
     # TODO: Handle this better. We probably don't need to skip it at all (though probably `-Xcc -Fsomething` should still be skipped)
     "-Xcc": 2,
-    # TODO: Make sure we should skip _all_ of these
-    "-Xfrontend": 2,
     "-Xwrapped-swift": 1,
     "-debug-prefix-map": 2,
     "-emit-module-path": 2,
@@ -47,6 +45,18 @@ _SWIFTC_SKIP_OPTS = {
     "-parse-as-library": 1,
     "-sdk": 2,
     "-target": 2,
+    "-vfsoverlay": 2,
+}
+
+_SWIFTC_SKIP_COMPOUND_OPTS = {
+    "-Xfrontend": {
+        "-color-diagnostics": 1,
+        "-emit-symbol-graph": 1,
+        "-no-clang-module-breadcrumbs": 1,
+        "-no-serialize-debugging-options": 1,
+        "-serialize-debugging-options": 1,
+        "-vfsoverlay": 3,
+    }
 }
 
 # Maps Swift compliation mode compiler flags to the corresponding Xcode values
@@ -176,13 +186,22 @@ def _get_unprocessed_compiler_opts(*, ctx, target):
         user_swiftcopts,
     )
 
-def _process_base_compiler_opts(*, opts, skip_opts, extra_processing = None):
+def _process_base_compiler_opts(
+        *,
+        opts,
+        skip_opts,
+        compound_skip_opts = {},
+        extra_processing = None):
     """Process compiler options, skipping options that should be skipped.
 
     Args:
         opts: A `list` of compiler options.
         skip_opts: A `dict` of options to skip. The values are the number of
             arguments to skip.
+        compound_skip_opts: A `dict` of options that we might skip if further
+            options match. The values are `dict`s of options to skip, where the
+            keys and values are handled the same as `skip_opts`, except 1 is
+            added to whatever is returned for the skip number.
         extra_processing: An optional function that provides further processing
             of an option. Returns `True` if the option was handled, otherwise
             `False`.
@@ -193,7 +212,7 @@ def _process_base_compiler_opts(*, opts, skip_opts, extra_processing = None):
     unhandled_opts = []
     skip_next = 0
     previous_opt = None
-    for opt in opts:
+    for idx, opt in enumerate(opts):
         if skip_next:
             skip_next -= 1
             continue
@@ -201,11 +220,29 @@ def _process_base_compiler_opts(*, opts, skip_opts, extra_processing = None):
             # Theses options are already handled by Xcode
             continue
         root_opt = opt.split("=")[0]
+
+        # TODO: This is limited to swiftc, but there isn't a better place to
+        # put it right now. Hopefully moving to `.params` parsing will help.
+        if root_opt.startswith("-vfsoverlay") and opts[idx - 1] == "-Xfrontend":
+            unhandled_opts.pop()
+            continue
+
         skip_next = skip_opts.get(root_opt, 0)
         if skip_next:
             skip_next -= 1
             continue
-        handled = extra_processing and extra_processing(opt, previous_opt)
+
+        compound_skip_next = compound_skip_opts.get(root_opt)
+        if compound_skip_next:
+            skip_next = compound_skip_next.get(opts[idx + 1], 0)
+            if skip_next:
+                # No need to decrement 1, since we need to skip the first opt
+                continue
+
+        handled = (
+            extra_processing and
+            extra_processing(opt, previous_opt)
+        )
         previous_opt = opt
         if handled:
             continue
@@ -647,6 +684,7 @@ under {}""".format(opt, package_bin_dir))
     unhandled_opts = _process_base_compiler_opts(
         opts = opts,
         skip_opts = _SWIFTC_SKIP_OPTS,
+        compound_skip_opts = _SWIFTC_SKIP_COMPOUND_OPTS,
         extra_processing = process,
     )
 
