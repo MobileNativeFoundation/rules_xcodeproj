@@ -439,6 +439,13 @@
 			remoteGlobalIDString = 195FCD65F4EB377830E3E996;
 			remoteInfo = lib_swift;
 		};
+		69917F7A7264716F8B632D9A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A2CE5EDCDDA5334B00B16BC9;
+			remoteInfo = FrameworkCoreUtilsObjC;
+		};
 		69FACF3FCAE1B6A644FAE204 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
@@ -4122,6 +4129,7 @@
 			);
 			dependencies = (
 				3B0633AD84662AEF21C1A5ED /* PBXTargetDependency */,
+				9EFC694384A729960E31728C /* PBXTargetDependency */,
 				539C45D3668C1AB4BFC1C0A2 /* PBXTargetDependency */,
 			);
 			name = Utils;
@@ -6797,6 +6805,12 @@
 			name = BazelDependencies;
 			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
 			targetProxy = E48A8DA13DF6AC2778110F7F /* PBXContainerItemProxy */;
+		};
+		9EFC694384A729960E31728C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FrameworkCoreUtilsObjC;
+			target = A2CE5EDCDDA5334B00B16BC9 /* FrameworkCoreUtilsObjC */;
+			targetProxy = 69917F7A7264716F8B632D9A /* PBXContainerItemProxy */;
 		};
 		A201CF74F0ACB882F47060CB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

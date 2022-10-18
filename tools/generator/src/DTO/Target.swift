@@ -27,7 +27,7 @@ struct Target: Equatable {
     var outputs: Outputs
     let lldbContext: LLDBContext?
     let isUnfocusedDependency: Bool
-    let additionalSchemeTargets: Set<TargetID>
+    var additionalSchemeTargets: Set<TargetID>
 }
 
 struct CompileTarget: Equatable {

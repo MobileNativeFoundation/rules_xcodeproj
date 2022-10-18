@@ -300,16 +300,19 @@ final class GeneratorTests: XCTestCase {
         // MARK: processTargetMerges()
 
         struct ProcessTargetMergesCalled: Equatable {
+            let buildMode: BuildMode
             let targets: [TargetID: Target]
             let targetMerges: [TargetID: Set<TargetID>]
         }
 
         var processTargetMergesCalled: [ProcessTargetMergesCalled] = []
         func processTargetMerges(
+            buildMode: BuildMode,
             targets: inout [TargetID: Target],
             targetMerges: [TargetID: Set<TargetID>]
         ) throws {
             processTargetMergesCalled.append(.init(
+                buildMode: buildMode,
                 targets: targets,
                 targetMerges: targetMerges
             ))
@@ -317,6 +320,7 @@ final class GeneratorTests: XCTestCase {
         }
 
         let expectedProcessTargetMergesCalled = [ProcessTargetMergesCalled(
+            buildMode: buildMode,
             targets: replacedLabelsTargets,
             targetMerges: project.targetMerges
         )]
