@@ -30,6 +30,7 @@ extension Generator {
 
             try Generator(logger: logger).generate(
                 buildMode: arguments.buildMode,
+                forFixtures: arguments.forFixtures,
                 project: project,
                 xccurrentversions: xccurrentversions,
                 extensionPointIdentifiers: extensionPointIdentifiers,
@@ -52,15 +53,16 @@ extension Generator {
         let workspaceOutputPath: Path
         let projectRootDirectory: Path
         let buildMode: BuildMode
+        let forFixtures: Bool
     }
 
     static func parseArguments(_ arguments: [String]) throws -> Arguments {
-        guard arguments.count == 9 else {
+        guard arguments.count == 10 else {
             throw UsageError(message: """
 Usage: \(arguments[0]) <path/to/project.json> <path/to/root_dirs> \
 <path/to/xccurrentversions.json> <path/to/extensionPointIdentifiers.json> \
 <path/to/bazel/integration/dir> <path/to/output/project.xcodeproj> \
-<workspace/relative/output/path> (xcode|bazel)
+<workspace/relative/output/path> (xcode|bazel) <1 is for fixtures, otherwise 0>
 """)
         }
 
@@ -91,7 +93,8 @@ ERROR: build_mode wasn't one of the supported values: xcode, bazel
             outputPath: Path(arguments[6]),
             workspaceOutputPath: Path(workspaceOutput),
             projectRootDirectory: Path(projectRoot),
-            buildMode: buildMode
+            buildMode: buildMode,
+            forFixtures: arguments[9] == "1"
         )
     }
 

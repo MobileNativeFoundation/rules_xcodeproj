@@ -253,6 +253,7 @@ final class GeneratorTests: XCTestCase {
         var createProjectCalled: [CreateProjectCalled] = []
         func createProject(
             buildMode: BuildMode,
+            _forFixtures: Bool,
             project: Project,
             directories: FilePathResolver.Directories
         ) -> PBXProj {
@@ -848,6 +849,7 @@ final class GeneratorTests: XCTestCase {
 
         try generator.generate(
             buildMode: buildMode,
+            forFixtures: false,
             project: project,
             xccurrentversions: xccurrentversions,
             extensionPointIdentifiers: extensionPointIdentifiers,

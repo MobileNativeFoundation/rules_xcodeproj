@@ -8,6 +8,7 @@ import XcodeProj
 struct Environment {
     let createProject: (
         _ buildMode: BuildMode,
+        _ forFixtures: Bool,
         _ project: Project,
         _ directories: FilePathResolver.Directories
     ) -> PBXProj

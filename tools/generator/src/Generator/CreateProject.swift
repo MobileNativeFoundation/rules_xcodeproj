@@ -8,6 +8,7 @@ extension Generator {
     /// `rootObject`.
     static func createProject(
         buildMode: BuildMode,
+        forFixtures: Bool,
         project: Project,
         directories: FilePathResolver.Directories
     ) -> PBXProj {
