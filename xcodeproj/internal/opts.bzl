@@ -580,13 +580,19 @@ def _process_swiftopts(
         build_settings = build_settings,
     )
 
-    swift_search_paths, user_has_debug_info = _process_user_swiftcopts(
-        user_swiftcopts,
-    )
+    (
+        additional_swiftcopts,
+        swift_search_paths,
+        user_has_debug_info,
+    ) = _process_user_swiftcopts(user_swiftcopts)
 
     has_debug_info = raw_has_debug_info or user_has_debug_info
 
-    return swiftcopts, swift_search_paths, has_debug_info
+    return (
+        swiftcopts + additional_swiftcopts,
+        swift_search_paths,
+        has_debug_info,
+    )
 
 def _process_full_swiftcopts(
         opts,
@@ -726,6 +732,7 @@ def _process_user_swiftcopts(opts):
         *   A `bool` indicting if the target has debug info enabled.
     """
 
+    additional_opts = []
     quote_includes = []
     includes = []
     system_includes = []
@@ -743,7 +750,11 @@ def _process_user_swiftcopts(opts):
             includes.append(opt[2:])
             return True
 
-        if opt == "-Xcc" or previous_opt == "-Xcc":
+        if previous_opt == "-Xcc":
+            additional_opts.extend(["-Xcc", opt])
+            return True
+
+        if opt == "-Xcc":
             return True
         if opt == "-g":
             # We use a `dict` instead of setting a single value because
@@ -767,7 +778,7 @@ def _process_user_swiftcopts(opts):
         system_includes = uniq(system_includes),
     )
 
-    return search_paths, has_debug_info
+    return additional_opts, search_paths, has_debug_info
 
 def swift_pcm_copts(*, compilation_mode, objc_fragment, cc_info):
     base_pcm_flags = _swift_command_line_objc_copts(
