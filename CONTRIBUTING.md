@@ -39,9 +39,11 @@ build --override_repository=com_github_buildbuddy_io_rules_xcodeproj=/Users/user
 It's important to add it to the `.bazelrc` instead of passing it as a
 flag to ensure all invocations will use the same configuration.
 
+## Test fixtures
+
 While developing, you might need to regenerate the test fixtures.
 You can do so with `./test/update_all_fixtures.sh`.
 
-All `bwb.xcodeproj` projects in the test fixtures aren't buildable, because we
-use a fake `swiftc` stub binary for the testing purpose. If you need to verify
+All of the test fixture projects aren't buildable, because we use empty files in
+place of things that are the same in every project. If you need to verify
 anything in those projects, regenerate them locally.
