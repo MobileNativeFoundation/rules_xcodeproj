@@ -33,6 +33,7 @@ final class CreateProjectTests: XCTestCase {
         let debugConfiguration = XCBuildConfiguration(
             name: "Debug",
             buildSettings: project.buildSettings.asDictionary.merging([
+                "BAZEL_CONFIG": project.bazelConfig,
                 "BAZEL_EXTERNAL": "$(BAZEL_OUTPUT_BASE)/external",
                 "BAZEL_LLDB_INIT": "$(OBJROOT)/bazel.lldbinit",
                 "BAZEL_OUT": "$(PROJECT_DIR)/bazel-out",
@@ -55,6 +56,11 @@ $(INDEXING_DEPLOYMENT_LOCATION__$(INDEX_ENABLE_BUILD_ARENA)),
 """,
                 "DSTROOT": "$(PROJECT_TEMP_DIR)",
                 "ENABLE_DEFAULT_SEARCH_PATHS": "NO",
+                "GENERATOR_LABEL": project.generatorLabel,
+                "GENERATOR_PACKAGE_BIN_DIR": """
+\(project.configuration)/bin/\(project.generatorLabel.package)
+""",
+                "GENERATOR_TARGET_NAME": project.generatorLabel.name,
                 "LINKS_DIR": "$(INTERNAL_DIR)/links",
                 "INDEX_FORCE_SCRIPT_EXECUTION": true,
                 "INDEXING_BUILT_PRODUCTS_DIR__": """
@@ -71,6 +77,7 @@ $(INDEXING_DEPLOYMENT_LOCATION__NO)
                 "INDEXING_DEPLOYMENT_LOCATION__YES": false,
                 "INSTALL_PATH": "$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)/bin",
                 "INTERNAL_DIR": "$(PROJECT_FILE_PATH)/r_xcp",
+                "RULES_XCODEPROJ_BUILD_MODE": "xcode",
                 "SCHEME_TARGET_IDS_FILE": """
 $(OBJROOT)/scheme_target_ids
 """,
@@ -150,6 +157,7 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
         let debugConfiguration = XCBuildConfiguration(
             name: "Debug",
             buildSettings: project.buildSettings.asDictionary.merging([
+                "BAZEL_CONFIG": "rules_xcodeproj_fixtures",
                 "BAZEL_EXTERNAL": "$(BAZEL_OUTPUT_BASE)/external",
                 "BAZEL_LLDB_INIT": "$(OBJROOT)/bazel.lldbinit",
                 "BAZEL_OUT": "$(PROJECT_DIR)/bazel-out",
@@ -175,6 +183,11 @@ $(INDEXING_DEPLOYMENT_LOCATION__$(INDEX_ENABLE_BUILD_ARENA)),
 """,
                 "DSTROOT": "$(PROJECT_TEMP_DIR)",
                 "ENABLE_DEFAULT_SEARCH_PATHS": "NO",
+                "GENERATOR_LABEL": project.generatorLabel,
+                "GENERATOR_PACKAGE_BIN_DIR": """
+\(project.configuration)/bin/\(project.generatorLabel.package)
+""",
+                "GENERATOR_TARGET_NAME": project.generatorLabel.name,
                 "LD": "$(BAZEL_INTEGRATION_DIR)/ld.sh",
                 "LDPLUSPLUS": "$(BAZEL_INTEGRATION_DIR)/ld.sh",
                 "LIBTOOL": "$(BAZEL_INTEGRATION_DIR)/libtool.sh",
@@ -194,6 +207,7 @@ $(INDEXING_DEPLOYMENT_LOCATION__NO)
                 "INDEXING_DEPLOYMENT_LOCATION__YES": false,
                 "INSTALL_PATH": "$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)/bin",
                 "INTERNAL_DIR": "$(PROJECT_FILE_PATH)/r_xcp",
+                "RULES_XCODEPROJ_BUILD_MODE": "bazel",
                 "SCHEME_TARGET_IDS_FILE": """
 $(OBJROOT)/scheme_target_ids
 """,

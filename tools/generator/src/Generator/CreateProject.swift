@@ -40,6 +40,7 @@ extension Generator {
 
         var buildSettings = project.buildSettings.asDictionary
         buildSettings.merge([
+            "BAZEL_CONFIG": project.bazelConfig,
             "BAZEL_EXTERNAL": "$(BAZEL_OUTPUT_BASE)/external",
             "BAZEL_INTEGRATION_DIR": "$(INTERNAL_DIR)/bazel",
             "BAZEL_LLDB_INIT": "$(OBJROOT)/bazel.lldbinit",
@@ -63,6 +64,11 @@ $(INDEXING_DEPLOYMENT_LOCATION__$(INDEX_ENABLE_BUILD_ARENA)),
 """,
             "DSTROOT": "$(PROJECT_TEMP_DIR)",
             "ENABLE_DEFAULT_SEARCH_PATHS": "NO",
+            "GENERATOR_LABEL": project.generatorLabel,
+            "GENERATOR_PACKAGE_BIN_DIR": """
+\(project.configuration)/bin/\(project.generatorLabel.package)
+""",
+            "GENERATOR_TARGET_NAME": project.generatorLabel.name,
             "LINKS_DIR": "$(INTERNAL_DIR)/links",
             "INDEX_FORCE_SCRIPT_EXECUTION": true,
             "INDEXING_BUILT_PRODUCTS_DIR__": """
@@ -81,7 +87,7 @@ $(INDEXING_DEPLOYMENT_LOCATION__NO)
             "INTERNAL_DIR": """
 $(PROJECT_FILE_PATH)/\(directories.internalDirectoryName)
 """,
-            "SCHEME_TARGET_IDS_FILE": """
+            "RULES_XCODEPROJ_BUILD_MODE": buildMode.rawValue,            "SCHEME_TARGET_IDS_FILE": """
 $(OBJROOT)/scheme_target_ids
 """,
             // Bazel currently doesn't support Catalyst
