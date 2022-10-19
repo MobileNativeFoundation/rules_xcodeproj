@@ -41,6 +41,7 @@ class Generator {
     /// Generates an Xcode project for a given `Project`.
     func generate(
         buildMode: BuildMode,
+        forFixtures: Bool,
         project: Project,
         xccurrentversions: [XCCurrentVersion],
         extensionPointIdentifiers: [TargetID: ExtensionPointIdentifier],
@@ -49,6 +50,7 @@ class Generator {
     ) throws {
         let pbxProj = environment.createProject(
             buildMode,
+            forFixtures,
             project,
             directories
         )

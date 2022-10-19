@@ -131,6 +131,7 @@ def validate_fixtures(**kwargs):
     )
 
 _fixture_xcodeproj = make_xcodeproj_rule(
+    is_fixture = True,
     xcodeproj_transition = _fixtures_transition,
 )
 

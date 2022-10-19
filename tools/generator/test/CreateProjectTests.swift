@@ -117,6 +117,7 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
 
         let createdPBXProj = Generator.createProject(
             buildMode: .xcode,
+            forFixtures: false,
             project: project,
             directories: directories
         )
@@ -248,6 +249,7 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
 
         let createdPBXProj = Generator.createProject(
             buildMode: .bazel,
+            forFixtures: false,
             project: project,
             directories: directories
         )

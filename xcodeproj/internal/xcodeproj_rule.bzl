@@ -733,7 +733,8 @@ def _write_xcodeproj(
         bazel_integration_files,
         xccurrentversions_file,
         extensionpointidentifiers_file,
-        build_mode):
+        build_mode,
+        is_fixture):
     xcodeproj = ctx.actions.declare_directory(
         "{}.xcodeproj".format(ctx.attr.name),
     )
@@ -752,6 +753,7 @@ def _write_xcodeproj(
     args.add(xcodeproj.path)
     args.add(install_path)
     args.add(build_mode)
+    args.add("1" if is_fixture else "0")
 
     ctx.actions.run(
         executable = ctx.attr._generator[DefaultInfo].files_to_run,
@@ -1000,6 +1002,7 @@ def _xcodeproj_impl(ctx):
         extensionpointidentifiers_file = extensionpointidentifiers_file,
         bazel_integration_files = bazel_integration_files,
         build_mode = ctx.attr.build_mode,
+        is_fixture = ctx.attr._is_fixture,
     )
     installer = _write_installer(
         ctx = ctx,
@@ -1054,7 +1057,7 @@ def _xcodeproj_impl(ctx):
         ),
     ]
 
-def make_xcodeproj_rule(*, xcodeproj_transition = None):
+def make_xcodeproj_rule(*, is_fixture = False, xcodeproj_transition = None):
     attrs = {
         "adjust_schemes_for_swiftui_previews": attr.bool(
             default = False,
@@ -1307,6 +1310,7 @@ transitive dependencies of the targets specified in the
             allow_single_file = True,
             default = Label("//xcodeproj/internal:installer.template.sh"),
         ),
+        "_is_fixture": attr.bool(default = is_fixture),
         "_swiftc_stub": attr.label(
             cfg = "exec",
             default = Label("//tools/swiftc_stub:universal_swiftc_stub"),
