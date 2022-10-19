@@ -14,29 +14,24 @@ extension Generator {
     ) -> PBXProj {
         let pbxProj = PBXProj()
 
+        let nonRelativeProjectDir = directories.bazelOut.parent()
+
         let projectDir: Path
         let srcRoot: String
-        let mainGroup: PBXGroup
-        if directories.bazelOut.isRelative {
-            let relativeExecutionRoot = directories.bazelOut.parent()
-            projectDir = directories.projectRoot + relativeExecutionRoot
-            let srcRootPath = (0 ..< relativeExecutionRoot.components.count)
+        if forFixtures {
+            projectDir = directories.projectRoot + nonRelativeProjectDir
+            srcRoot = (0 ..< nonRelativeProjectDir.components.count)
                 .map { _ in ".." }
                 .joined(separator: "/")
-            mainGroup = PBXGroup(
-                sourceTree: .group,
-                path: srcRootPath
-            )
-            srcRoot = "$(PROJECT_DIR)/\(srcRootPath)"
         } else {
-            projectDir = directories.bazelOut.parent()
+            projectDir = nonRelativeProjectDir
             srcRoot = directories.workspace.string
-            mainGroup = PBXGroup(
-                sourceTree: .absolute,
-                path: srcRoot
-            )
         }
 
+        let mainGroup = PBXGroup(
+            sourceTree: forFixtures ? .group : .absolute,
+            path: srcRoot
+        )
         pbxProj.add(object: mainGroup)
 
         var buildSettings = project.buildSettings.asDictionary
@@ -90,6 +85,7 @@ $(PROJECT_FILE_PATH)/\(directories.internalDirectoryName)
             "RULES_XCODEPROJ_BUILD_MODE": buildMode.rawValue,            "SCHEME_TARGET_IDS_FILE": """
 $(OBJROOT)/scheme_target_ids
 """,
+            "SRCROOT": srcRoot,
             // Bazel currently doesn't support Catalyst
             "SUPPORTS_MACCATALYST": false,
             // Needed as the default otherwise `ENABLE_PREIVEWS` isn't set
@@ -98,13 +94,6 @@ $(OBJROOT)/scheme_target_ids
 $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
 """,
         ], uniquingKeysWith: { _, r in r })
-
-        if directories.bazelOut.isRelative {
-            buildSettings["_SRCROOT"] = srcRoot
-            buildSettings["SRCROOT"] = "$(_SRCROOT:standardizepath)"
-        } else {
-            buildSettings["SRCROOT"] = srcRoot
-        }
 
         if buildMode.usesBazelModeBuildScripts {
             buildSettings.merge([

@@ -364,7 +364,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				RULES_XCODEPROJ_BUILD_MODE = bazel;
 				SCHEME_TARGET_IDS_FILE = "$(OBJROOT)/scheme_target_ids";
-				SRCROOT = "$(_SRCROOT:standardizepath)";
+				SRCROOT = ../../../../../..;
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EXEC = "$(BAZEL_INTEGRATION_DIR)/swiftc";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -373,7 +373,6 @@
 				USE_HEADERMAP = NO;
 				VALIDATE_WORKSPACE = NO;
 				_BAZEL_OUTPUT_BASE = "$(PROJECT_DIR)/../..";
-				_SRCROOT = "$(PROJECT_DIR)/../../../../../..";
 			};
 			name = Debug;
 		};
