@@ -340,8 +340,14 @@ def process_compiler_opts_test_suite(name):
             "ios",
             "-Xcc",
             "-weird",
+            "-Xcc",
+            "-user-flag",
             "-Xwrapped-swift",
             "-passthrough",
+        ],
+        user_swiftcopts = [
+            "-Xcc",
+            "-user-flag",
         ],
         expected_build_settings = {
             "OTHER_CFLAGS": [
@@ -366,7 +372,9 @@ def process_compiler_opts_test_suite(name):
 -passthrough \
 -passthrough \
 -keep-me=something.swift \
--passthrough\
+-passthrough \
+-Xcc \
+-user-flag\
 """,
         },
     )
