@@ -751,7 +751,7 @@ def _process_user_swiftcopts(opts):
             return True
 
         if previous_opt == "-Xcc":
-            additional_opts.extend(["-Xcc", opt])
+            additional_opts.extend(["-Xcc", _process_user_copt(opt)])
             return True
 
         if opt == "-Xcc":
@@ -779,6 +779,22 @@ def _process_user_swiftcopts(opts):
     )
 
     return additional_opts, search_paths, has_debug_info
+
+def _process_user_copt(copt):
+    components = copt.split("=", 1)
+    if len(components) > 1:
+        return "{}={}".format(
+            components[0],
+            _process_user_copt_possible_path(components[1]),
+        )
+    return _process_user_copt_possible_path(copt)
+
+def _process_user_copt_possible_path(copt):
+    if copt.startswith("bazel-out/"):
+        return "$(BAZEL_OUT)/{}".format(copt[10:])
+    if copt.startswith("external/"):
+        return "$(BAZEL_EXTERNAL)/{}".format(copt[9:])
+    return copt
 
 def swift_pcm_copts(*, compilation_mode, objc_fragment, cc_info):
     base_pcm_flags = _swift_command_line_objc_copts(
