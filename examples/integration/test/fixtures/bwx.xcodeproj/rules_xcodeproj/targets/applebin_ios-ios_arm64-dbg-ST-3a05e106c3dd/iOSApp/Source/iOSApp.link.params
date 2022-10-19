@@ -22,6 +22,7 @@ LibFramework.iOS
 -lc++
 -lz
 -Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/iOSApp/Source/iOSApp.swiftmodule/arm64-apple-ios.swiftmodule
+-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.swiftmodule/arm64-apple-ios.swiftmodule
 --ld-path=external/rules_apple_linker_lld/ld64.lld
 -Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/UI/UIFramework.iOS.framework/Modules/UI.swiftmodule/arm64-apple-ios.swiftmodule
 -Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/Lib/Lib.swiftmodule/arm64-apple-ios.swiftmodule
@@ -36,3 +37,5 @@ LibFramework.iOS
 Foundation
 -framework
 UIKit
+$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/libMixedAnswer.a
+$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/libMixedAnswerLib_Swift.a

@@ -1,6 +1,7 @@
 import CoreUtils
 import UI
 import SwiftUI
+import MixedAnswer
 
 @main
 struct iOSApp: App { // swiftlint:disable:this type_name
@@ -15,6 +16,7 @@ struct iOSApp: App { // swiftlint:disable:this type_name
 extension View {
     func print(_ value: Any) -> Self {
         Swift.print(value)
+        Swift.print(MixedAnswerSwift.swiftMixedAnswer())
         return self
     }
 }
