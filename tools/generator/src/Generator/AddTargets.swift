@@ -40,7 +40,7 @@ Product for target "\(key)" not found in `products`
             )
 
             let buildPhases = [
-                try createCopyBazelOutputsScript(
+                try createBazelDependenciesScript(
                     in: pbxProj,
                     buildMode: buildMode,
                     productType: productType,
@@ -136,7 +136,7 @@ Product for target "\(key)" not found in `products`
         return pbxTargets
     }
 
-    private static func createCopyBazelOutputsScript(
+    private static func createBazelDependenciesScript(
         in pbxProj: PBXProj,
         buildMode: BuildMode,
         productType: PBXProductType,
@@ -144,16 +144,45 @@ Product for target "\(key)" not found in `products`
         outputs: ConsolidatedTargetOutputs,
         filePathResolver: FilePathResolver
     ) throws -> PBXShellScriptBuildPhase? {
-        guard
-            buildMode.usesBazelModeBuildScripts,
-            let copyCommand = try outputs.scriptCopyCommand(
-                productType: productType,
-                productBasename: productBasename,
-                filePathResolver: filePathResolver
-            )
-        else {
+        guard buildMode.usesBazelModeBuildScripts else {
             return nil
         }
+
+        let copyOutputs: String
+        if outputs.hasProductOutput {
+            let excludeList: String
+            if productType.isApplication {
+                excludeList = try filePathResolver.resolve(
+                    .internal(Generator.appRsyncExcludeFileListPath),
+                    mode: .script
+                )
+                .string
+            } else {
+                excludeList = ""
+            }
+
+            copyOutputs = #"""
+else
+  "$BAZEL_INTEGRATION_DIR/copy_outputs.sh" \
+    "\#(Generator.bazelForcedSwiftCompilePath)" \
+    "\#(productBasename)" \
+    "\#(excludeList)"
+"""#
+        } else {
+            copyOutputs = ""
+        }
+
+        let shellScript = #"""
+set -euo pipefail
+
+if [[ "$ACTION" == "indexbuild" ]]; then
+  cd "$SRCROOT"
+
+  "$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh"
+\#(copyOutputs)
+fi
+
+"""#
 
         let inputPaths: [String]
         if productType.isBundle {
@@ -163,10 +192,12 @@ Product for target "\(key)" not found in `products`
         }
 
         let script = PBXShellScriptBuildPhase(
-            name: "Copy Bazel Outputs",
+            name: """
+Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)
+""",
             inputPaths: inputPaths,
             outputPaths: outputs.outputPaths,
-            shellScript: copyCommand,
+            shellScript: shellScript,
             showEnvVarsInLog: false,
             alwaysOutOfDate: true
         )
@@ -747,36 +778,5 @@ private extension ConsolidatedTargetOutputs {
 //        }
 
         return []
-    }
-
-    func scriptCopyCommand(
-        productType: PBXProductType,
-        productBasename: String,
-        filePathResolver: FilePathResolver
-    ) throws -> String? {
-        guard hasOutputs else {
-            return nil
-        }
-
-        let excludeList: String
-        if productType.isApplication {
-            excludeList = try filePathResolver.resolve(
-                .internal(Generator.appRsyncExcludeFileListPath),
-                mode: .script
-            )
-            .string
-        } else {
-            excludeList = ""
-        }
-
-        return #"""
-set -euo pipefail
-
-"$BAZEL_INTEGRATION_DIR/copy_outputs.sh" \
-  "\#(Generator.bazelForcedSwiftCompilePath)" \
-  "\#(productBasename)" \
-  "\#(excludeList)"
-
-"""#
     }
 }

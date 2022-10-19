@@ -1511,7 +1511,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DF2FE5363352BCC115DD4145 /* Build configuration list for PBXNativeTarget "OrderedCollections" */;
 			buildPhases = (
-				90B04C8AB5A07A2ECF257268 /* Copy Bazel Outputs */,
+				9D13ED579740FDF25EA5A3E9 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
 				D463D3FD3995A74AFC639D34 /* Sources */,
 			);
 			buildRules = (
@@ -1527,7 +1527,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AC0536A4C7A1B96FDA8E9898 /* Build configuration list for PBXNativeTarget "swiftc" */;
 			buildPhases = (
-				3AE71DFCC6866ED2B9F05CD1 /* Copy Bazel Outputs */,
+				1325E7FCD2DBC02BBE324390 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
 				9335DA9C69E988484C66D986 /* Create linking dependencies */,
 				5750FD43A546D41B2C47CBF8 /* Sources */,
 			);
@@ -1545,7 +1545,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3D2103FB87F295A76D072C9F /* Build configuration list for PBXNativeTarget "CustomDump" */;
 			buildPhases = (
-				8AD6171C2CD18BEE615F0279 /* Copy Bazel Outputs */,
+				D81DC8A9A2FB65BB892DB772 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
 				ECA0F39C31AA33C5A27E2A13 /* Sources */,
 			);
 			buildRules = (
@@ -1561,7 +1561,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CACF77A1FAAA2F54E5824DC5 /* Build configuration list for PBXNativeTarget "PathKit" */;
 			buildPhases = (
-				552BD18EE10BBA93EBBDB88E /* Copy Bazel Outputs */,
+				A288F3D7421298DD42400C1F /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
 				CEFFF3DAD94295451F05F496 /* Sources */,
 			);
 			buildRules = (
@@ -1577,7 +1577,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9C3B0DA5FF54217998FA354A /* Build configuration list for PBXNativeTarget "generator" */;
 			buildPhases = (
-				EC63BA6387175B095C7C2F0B /* Copy Bazel Outputs */,
+				9C22E45981259945CBCFBC42 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
 				8F85B1482AB82E3C5B71ADB3 /* Create linking dependencies */,
 				42A070DBC30FFCFC46CB6D1F /* Sources */,
 			);
@@ -1595,7 +1595,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2AE3F241DE7B5C62A4FBFD3F /* Build configuration list for PBXNativeTarget "tests" */;
 			buildPhases = (
-				3C2F7597AADF65DD2B4DA5CC /* Copy Bazel Outputs */,
+				E7EE4017A96AB14B369E11DC /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
 				9C04E03F3B44A0E00C9DE6DD /* Create linking dependencies */,
 				90B131D058F213F9EE1D4E2A /* Sources */,
 			);
@@ -1613,7 +1613,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6151A35A4285123290BF712B /* Build configuration list for PBXNativeTarget "XCTestDynamicOverlay" */;
 			buildPhases = (
-				3B581A2D7C1575EF22D8ECDA /* Copy Bazel Outputs */,
+				C2CD583681B376F77A80B112 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
 				3902E6234DBCF661FBA29FE8 /* Sources */,
 			);
 			buildRules = (
@@ -1629,7 +1629,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 961CB57C52E0929989B5B13A /* Build configuration list for PBXNativeTarget "XcodeProj" */;
 			buildPhases = (
-				F5738A25C92C3E659EB1C474 /* Copy Bazel Outputs */,
+				8F559B3ABC2BCE58495A9E05 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
 				831BF4DD9F4124A081FB32B3 /* Sources */,
 			);
 			buildRules = (
@@ -1645,7 +1645,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 537F24897CAC8E48070BBA94 /* Build configuration list for PBXNativeTarget "generator.library" */;
 			buildPhases = (
-				BF93DFB380D1CC637B96A769 /* Copy Bazel Outputs */,
+				622278549628858EEDF1E23D /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
 				CD48CA78C6E062C9AC7C30B5 /* Sources */,
 			);
 			buildRules = (
@@ -1736,6 +1736,22 @@
 /* End PBXProject section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1325E7FCD2DBC02BBE324390 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\nelse\n  \"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n    \"_BazelForcedCompile_.swift\" \\\n    \"swiftc\" \\\n    \"\"\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		20BEB4AE7798C11A8A904F5E /* Create swift_debug_settings.py */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1753,7 +1769,7 @@
 			shellScript = "perl -pe 's/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
-		3AE71DFCC6866ED2B9F05CD1 /* Copy Bazel Outputs */ = {
+		622278549628858EEDF1E23D /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -1761,15 +1777,15 @@
 			);
 			inputPaths = (
 			);
-			name = "Copy Bazel Outputs";
+			name = "Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"swiftc\" \\\n  \"\"\n";
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\n\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		3B581A2D7C1575EF22D8ECDA /* Copy Bazel Outputs */ = {
+		8F559B3ABC2BCE58495A9E05 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -1777,61 +1793,12 @@
 			);
 			inputPaths = (
 			);
-			name = "Copy Bazel Outputs";
+			name = "Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"libXCTestDynamicOverlay.a\" \\\n  \"\"\n";
-			showEnvVarsInLog = 0;
-		};
-		3C2F7597AADF65DD2B4DA5CC /* Copy Bazel Outputs */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
-			);
-			name = "Copy Bazel Outputs";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"tests.xctest\" \\\n  \"\"\n";
-			showEnvVarsInLog = 0;
-		};
-		552BD18EE10BBA93EBBDB88E /* Copy Bazel Outputs */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Bazel Outputs";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"libPathKit.a\" \\\n  \"\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8AD6171C2CD18BEE615F0279 /* Copy Bazel Outputs */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Bazel Outputs";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"libCustomDump.a\" \\\n  \"\"\n";
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\n\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		8F85B1482AB82E3C5B71ADB3 /* Create linking dependencies */ = {
@@ -1850,22 +1817,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\ntouch \"$SCRIPT_OUTPUT_FILE_1\"\n";
-			showEnvVarsInLog = 0;
-		};
-		90B04C8AB5A07A2ECF257268 /* Copy Bazel Outputs */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Bazel Outputs";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"libOrderedCollections.a\" \\\n  \"\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9335DA9C69E988484C66D986 /* Create linking dependencies */ = {
@@ -1922,7 +1873,7 @@
 			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
-		BF93DFB380D1CC637B96A769 /* Copy Bazel Outputs */ = {
+		9C22E45981259945CBCFBC42 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -1930,15 +1881,15 @@
 			);
 			inputPaths = (
 			);
-			name = "Copy Bazel Outputs";
+			name = "Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"libgenerator.library.a\" \\\n  \"\"\n";
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\nelse\n  \"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n    \"_BazelForcedCompile_.swift\" \\\n    \"generator\" \\\n    \"\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		EC63BA6387175B095C7C2F0B /* Copy Bazel Outputs */ = {
+		9D13ED579740FDF25EA5A3E9 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -1946,15 +1897,15 @@
 			);
 			inputPaths = (
 			);
-			name = "Copy Bazel Outputs";
+			name = "Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"generator\" \\\n  \"\"\n";
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\n\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		F5738A25C92C3E659EB1C474 /* Copy Bazel Outputs */ = {
+		A288F3D7421298DD42400C1F /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -1962,12 +1913,61 @@
 			);
 			inputPaths = (
 			);
-			name = "Copy Bazel Outputs";
+			name = "Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"libXcodeProj.a\" \\\n  \"\"\n";
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\n\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C2CD583681B376F77A80B112 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\n\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D81DC8A9A2FB65BB892DB772 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\n\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E7EE4017A96AB14B369E11DC /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = "Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\nelse\n  \"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n    \"_BazelForcedCompile_.swift\" \\\n    \"tests.xctest\" \\\n    \"\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -2424,16 +2424,12 @@
 		5AFD85147E5F7EEA259481C2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BAZEL_CONFIG = rules_xcodeproj;
 				BAZEL_PACKAGE_BIN_DIR = rules_xcodeproj;
 				CALCULATE_OUTPUT_GROUPS_SCRIPT = "$(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py";
-				GENERATOR_LABEL = "@//test/fixtures/generator:xcodeproj_bwb.generator";
-				GENERATOR_PACKAGE_BIN_DIR = "darwin_x86_64-dbg-ST-14942f8a2d44/bin/test/fixtures/generator";
-				GENERATOR_TARGET_NAME = xcodeproj_bwb.generator;
 				INDEX_DATA_STORE_DIR = "$(INDEX_DATA_STORE_DIR)";
+				INDEX_DISABLE_SCRIPT_EXECUTION = YES;
 				INDEX_IMPORT = "$(BAZEL_OUT)/darwin_x86_64-opt-exec-2B5CBBC6-ST-8b5ad9965560/bin/external/rules_xcodeproj_index_import/index-import";
 				RESOLVED_EXTERNAL_REPOSITORIES = "";
-				RULES_XCODEPROJ_BUILD_MODE = bazel;
 				SUPPORTED_PLATFORMS = macosx;
 				SUPPORTS_MACCATALYST = YES;
 				TARGET_NAME = BazelDependencies;
@@ -2515,6 +2511,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				BAZEL_CONFIG = rules_xcodeproj;
 				BAZEL_EXTERNAL = "$(BAZEL_OUTPUT_BASE)/external";
 				BAZEL_INTEGRATION_DIR = "$(INTERNAL_DIR)/bazel";
 				BAZEL_LLDB_INIT = "$(OBJROOT)/bazel.lldbinit";
@@ -2535,6 +2532,9 @@
 				DEPLOYMENT_LOCATION = "$(INDEXING_DEPLOYMENT_LOCATION__$(INDEX_ENABLE_BUILD_ARENA)),";
 				DSTROOT = "$(PROJECT_TEMP_DIR)";
 				ENABLE_DEFAULT_SEARCH_PATHS = NO;
+				GENERATOR_LABEL = "@//test/fixtures/generator:xcodeproj_bwb.generator";
+				GENERATOR_PACKAGE_BIN_DIR = "darwin_x86_64-dbg-ST-14942f8a2d44/bin/test/fixtures/generator";
+				GENERATOR_TARGET_NAME = xcodeproj_bwb.generator;
 				INDEXING_BUILT_PRODUCTS_DIR__ = "$(INDEXING_BUILT_PRODUCTS_DIR__NO)";
 				INDEXING_BUILT_PRODUCTS_DIR__NO = "$(BUILD_DIR)";
 				INDEXING_BUILT_PRODUCTS_DIR__YES = "$(CONFIGURATION_BUILD_DIR)";
@@ -2549,6 +2549,7 @@
 				LIBTOOL = "$(BAZEL_INTEGRATION_DIR)/libtool.sh";
 				LINKS_DIR = "$(INTERNAL_DIR)/links";
 				ONLY_ACTIVE_ARCH = YES;
+				RULES_XCODEPROJ_BUILD_MODE = bazel;
 				SCHEME_TARGET_IDS_FILE = "$(OBJROOT)/scheme_target_ids";
 				SRCROOT = "$(_SRCROOT:standardizepath)";
 				SUPPORTS_MACCATALYST = NO;

@@ -8,25 +8,16 @@ cd "$SRCROOT"
 
 readonly swift_outputs_regex='.*\.swiftdoc$|.*\.swiftmodule$|.*\.swiftsourceinfo$'
 
-# In Xcode 14 the "Index" directory was renamed to "Index.noindex".
-# `$INDEX_DATA_STORE_DIR` is set to `$OBJROOT/INDEX_DIR/DataStore`, so we can
-# use it to determine the name of the directory regardless of Xcode version.
-readonly index_dir="${INDEX_DATA_STORE_DIR%/*}"
-readonly index_dir_name="${index_dir##*/}"
-
-# Xcode doesn't adjust `$OBJROOT` in scheme action scripts when building for
-# previews. So we need to look in the non-preview build directory for this file.
-readonly non_preview_objroot="${OBJROOT/\/Intermediates.noindex\/Previews\/*//Intermediates.noindex}"
-readonly base_objroot="${non_preview_objroot/\/$index_dir_name\/Build\/Intermediates.noindex//Build/Intermediates.noindex}"
-readonly scheme_target_ids_file="$non_preview_objroot/scheme_target_ids"
-
 if [ "$ACTION" == "indexbuild" ]; then
   if [[ "$RULES_XCODEPROJ_BUILD_MODE" == "xcode" ]]; then
     # Inputs for compiling
-    readonly output_group_prefixes="xc"
+    readonly output_groups=("all_xc")
   else
-    # Compiled outputs (i.e. swiftmodules), and generated inputs
-    readonly output_group_prefixes="bc,bg"
+    echo "error: \`BazelDependencies\` should not run during Index Build." \
+"Please file a bug report here:" \
+"https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md" \
+        >&2
+    exit 1
   fi
 
   # We don't need to download the indexstore data during Index Build
@@ -43,51 +34,50 @@ else
 
   readonly indexstores_regex='.*\.indexstore/.*'
   readonly remote_download_regex="$indexstores_regex|$swift_outputs_regex"
-fi
 
-# We need to read from `$output_groups_file` as soon as possible, as concurrent
-# writes to it can happen during indexing, which breaks the off-by-one-by-design
-# nature of it
-IFS=$'\n' read -r -d '' -a labels_and_output_groups < \
-  <( "$CALCULATE_OUTPUT_GROUPS_SCRIPT" \
-       "$ACTION" \
-       "$non_preview_objroot" \
-       "$base_objroot" \
-       "$scheme_target_ids_file" \
-       $output_group_prefixes \
-       && printf '\0' )
+  # In Xcode 14 the "Index" directory was renamed to "Index.noindex".
+  # `$INDEX_DATA_STORE_DIR` is set to `$OBJROOT/INDEX_DIR/DataStore`, so we can
+  # use it to determine the name of the directory regardless of Xcode version.
+  readonly index_dir="${INDEX_DATA_STORE_DIR%/*}"
+  readonly index_dir_name="${index_dir##*/}"
 
-raw_labels=()
-output_groups=()
-for (( i=0; i<${#labels_and_output_groups[@]}; i+=2 )); do
-  raw_labels+=("${labels_and_output_groups[i]}")
-  output_groups+=("${labels_and_output_groups[i+1]}")
-done
+  # Xcode doesn't adjust `$OBJROOT` in scheme action scripts when building for
+  # previews. So we need to look in the non-preview build directory for this file.
+  readonly non_preview_objroot="${OBJROOT/\/Intermediates.noindex\/Previews\/*//Intermediates.noindex}"
+  readonly base_objroot="${non_preview_objroot/\/$index_dir_name\/Build\/Intermediates.noindex//Build/Intermediates.noindex}"
+  readonly scheme_target_ids_file="$non_preview_objroot/scheme_target_ids"
 
-if [ -z "${output_groups:-}" ]; then
-  if [ "$ACTION" == "indexbuild" ]; then
-    if [[ "$RULES_XCODEPROJ_BUILD_MODE" == "xcode" ]]; then
-      output_groups=("all_xc")
-    else
-      echo "error: Can't yet determine Index Build output group." \
-"Next build should succeed. If not, please file a bug report here:" \
-"https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md" \
-        >&2
-      exit 1
-    fi
-  else
+  # We need to read from `$output_groups_file` as soon as possible, as concurrent
+  # writes to it can happen during indexing, which breaks the off-by-one-by-design
+  # nature of it
+  IFS=$'\n' read -r -d '' -a labels_and_output_groups < \
+    <( "$CALCULATE_OUTPUT_GROUPS_SCRIPT" \
+        "$ACTION" \
+        "$non_preview_objroot" \
+        "$base_objroot" \
+        "$scheme_target_ids_file" \
+        $output_group_prefixes \
+        && printf '\0' )
+
+  raw_labels=()
+  output_groups=()
+  for (( i=0; i<${#labels_and_output_groups[@]}; i+=2 )); do
+    raw_labels+=("${labels_and_output_groups[i]}")
+    output_groups+=("${labels_and_output_groups[i+1]}")
+  done
+
+  if [ -z "${output_groups:-}" ]; then
     echo "error: BazelDependencies invoked without any output groups set." \
 "Please file a bug report here:" \
 "https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md" \
       >&2
     exit 1
+  else
+    labels=()
+    while IFS= read -r -d '' label; do
+      labels+=("$label")
+    done < <(printf "%s\0" "${raw_labels[@]}" | sort -uz)
   fi
-else
-  labels=()
-  while IFS= read -r -d '' label; do
-    labels+=("$label")
-  done < <(printf "%s\0" "${raw_labels[@]}" | sort -uz)
-  readonly labels
 fi
 
 # Build

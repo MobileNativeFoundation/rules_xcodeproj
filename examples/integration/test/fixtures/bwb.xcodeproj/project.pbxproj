@@ -3398,7 +3398,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 22D078ED36B85E0A40CC6AF8 /* Build configuration list for PBXNativeTarget "WidgetExtension" */;
 			buildPhases = (
-				87D2EB6131DC54924D3FA46F /* Copy Bazel Outputs */,
+				D34E8CD766A682E06A8B3255 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
 				E1A1A11A75DFBF854FAFA10E /* Create linking dependencies */,
 				49E604CF100EF12B62E4F2B0 /* Sources */,
 			);
@@ -3416,7 +3416,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 90F3B40579D75847186F27C6 /* Build configuration list for PBXNativeTarget "AppClip" */;
 			buildPhases = (
-				B5F59F69B53E4CD6B729C3DE /* Copy Bazel Outputs */,
+				2317434B319530382DDA6F75 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
 				4A50E185DA5DF9C9FA565E9A /* Create linking dependencies */,
 				F90AB663AB242C7317551B94 /* Sources */,
 			);
@@ -3434,7 +3434,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E8A489D2F21C3EBA9BFFC31B /* Build configuration list for PBXNativeTarget "iOSApp" */;
 			buildPhases = (
-				9F6AC3E78F25E23948AED368 /* Copy Bazel Outputs */,
+				52216C7436755FD3B0BAF449 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
 				98A71FDC2C7B65B80CB267C4 /* Create linking dependencies */,
 				B0BD8F7B441AB01986AB1F93 /* Sources */,
 			);
@@ -3452,7 +3452,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A8F09F14F4463A8E11725B7D /* Build configuration list for PBXNativeTarget "CommandLineTool" */;
 			buildPhases = (
-				BF56D416F70A066FD9011FA8 /* Copy Bazel Outputs */,
+				34D49B146DF45C087D29F2A9 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
 				DE5C59A752329AE16229AE59 /* Create linking dependencies */,
 				315271AE75D672025F1A9942 /* Sources */,
 			);
@@ -3470,7 +3470,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5F3448EBD9BB4632B1F3F94F /* Build configuration list for PBXNativeTarget "LibFramework.watchOS" */;
 			buildPhases = (
-				BE96411EF2D0F60011323B62 /* Copy Bazel Outputs */,
+				49C47E4B4230B80A3F36104B /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
 				2533E74989DE3F2DF9D5B29C /* Create linking dependencies */,
 				E853CB3892B4EC7E097E1BFE /* Sources */,
 			);
@@ -3488,7 +3488,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 56C18FA55A61A93705739D11 /* Build configuration list for PBXNativeTarget "iOS" */;
 			buildPhases = (
-				8FF75512F68D70FE3FFCE362 /* Copy Bazel Outputs */,
+				7CBAC7861737F0A3E398797D /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
 				AF6FC712901312B294B4DFE2 /* Create linking dependencies */,
 				207FF11CBA150656B8BB8E61 /* Sources */,
 			);
@@ -3506,7 +3506,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 75EB161EFF626458F41F0CA7 /* Build configuration list for PBXNativeTarget "iMessageAppExtension" */;
 			buildPhases = (
-				56BD3A38019D94C340B5A25C /* Copy Bazel Outputs */,
+				5E4E690149F6A430C4AA8ECC /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
 				68138666CD6CDC373430A762 /* Create linking dependencies */,
 				E14B9C7D8D225FBE66CC100E /* Sources */,
 			);
@@ -3524,7 +3524,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 543335B1028B94071588C31E /* Build configuration list for PBXNativeTarget "watchOSAppExtension" */;
 			buildPhases = (
-				656CED3E4E2349D88BAA2EF6 /* Copy Bazel Outputs */,
+				7C735614F41BF32BB26DB13D /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
 				868BBA44BDD2BE4A39BFEDEC /* Create linking dependencies */,
 				B09B81014BDBFBE263449393 /* Sources */,
 			);
@@ -3542,7 +3542,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D879581B52FB0834A869F005 /* Build configuration list for PBXNativeTarget "iMessageApp" */;
 			buildPhases = (
-				C7E5D6A63B206760804A009C /* Copy Bazel Outputs */,
+				61E4B8977A105A0D9F9451FB /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
 			);
 			buildRules = (
 			);
@@ -3558,6 +3558,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B7B2838D5E51E99F559A42AC /* Build configuration list for PBXNativeTarget "Utils" */;
 			buildPhases = (
+				23DF636F80AA17FFEEDE6C04 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
 				8FCBD3348EC5C739AA46D20E /* Sources */,
 			);
 			buildRules = (
@@ -3573,7 +3574,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 87E0D1E918B094F507DEAC40 /* Build configuration list for PBXNativeTarget "iOSAppObjCUnitTests" */;
 			buildPhases = (
-				19D3F93ECB6E18745710C66E /* Copy Bazel Outputs */,
+				2DA4A668BC34497BFBB74520 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
 				6FA22A1FEED7DCB96147569B /* Create linking dependencies */,
 				7100FB0210568CEE273028F6 /* Sources */,
 			);
@@ -3592,6 +3593,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B212E0047AFD7871A7F996F3 /* Build configuration list for PBXNativeTarget "c_lib" */;
 			buildPhases = (
+				DBAF939D94B3B02A3523BF38 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
 				AB6758329C04D61AA8B0D7B0 /* Sources */,
 			);
 			buildRules = (
@@ -3607,7 +3609,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 526BE58292396530979DB968 /* Build configuration list for PBXNativeTarget "UIFramework.iOS" */;
 			buildPhases = (
-				94FA12CDEE7442E6E1A02DF9 /* Copy Bazel Outputs */,
+				9C72B493BBB21FF221EBC79C /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
 				E4B27AD8C0AABDA4773F3608 /* Create linking dependencies */,
 				DBC93B6C433893E616E4EA29 /* Headers */,
 				64B82A91DCAE8470E0DE6BB4 /* Sources */,
@@ -3626,7 +3628,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 97899584D8C8DDB9E465F124 /* Build configuration list for PBXNativeTarget "tvOSAppUITests" */;
 			buildPhases = (
-				1B771FA00F3E6B0CB6A9F992 /* Copy Bazel Outputs */,
+				58114E1546420DA03F4C88E9 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
 				9FDE065FCA9AAC5A0A44A11F /* Create linking dependencies */,
 				A3ABE31C07348FDEF2A3137C /* Sources */,
 			);
@@ -3645,7 +3647,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BB6B08948EB403DD7CEC76D8 /* Build configuration list for PBXNativeTarget "CommandLineToolTests" */;
 			buildPhases = (
-				E4DFB42E1E6C49238D7B8878 /* Copy Bazel Outputs */,
+				A9E0757B45FBA0F456E9FA8B /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
 				172D472463796AAA86DE3F16 /* Create linking dependencies */,
 				8386C3E1D1885B4412A44CE2 /* Sources */,
 			);
@@ -3663,7 +3665,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8A037957A7D43A07EB471C2A /* Build configuration list for PBXNativeTarget "watchOSApp" */;
 			buildPhases = (
-				DF8E9D9CD1E839DFDDC57F9F /* Copy Bazel Outputs */,
+				92A2FF97F0A9101D20C8BB5F /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
 			);
 			buildRules = (
 			);
@@ -3679,7 +3681,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4E7EF44C093AE79EB56488A9 /* Build configuration list for PBXNativeTarget "watchOS" */;
 			buildPhases = (
-				4D81743C59318044EB1FA87C /* Copy Bazel Outputs */,
+				334905038DB2491D0D44293F /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
 				92131FE80957E6A5FDA70CCD /* Create linking dependencies */,
 				F36B921A49582A50EA7A6644 /* Sources */,
 			);
@@ -3697,6 +3699,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A130411CB8C0BE310F03989B /* Build configuration list for PBXNativeTarget "FXPageControl" */;
 			buildPhases = (
+				9CA6AE20FA50014A670CED68 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
 				4531A6689165031C7EE3342A /* Sources */,
 			);
 			buildRules = (
@@ -3712,7 +3715,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8D0A215926F86AD18BB722CD /* Build configuration list for PBXNativeTarget "tvOSAppUnitTests" */;
 			buildPhases = (
-				283DCDF5399761BAD0DB8923 /* Copy Bazel Outputs */,
+				09C143FF6A03DE086736A305 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
 				8E99904A6B322FD8DC0AE06D /* Create linking dependencies */,
 				D891ADC38CB5CD0B471E2DC5 /* Sources */,
 			);
@@ -3731,7 +3734,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 544698785313BA61A731283E /* Build configuration list for PBXNativeTarget "FrameworkCoreUtilsObjC" */;
 			buildPhases = (
-				F977D72EC501105AE382C623 /* Copy Bazel Outputs */,
+				4390F8C998416087AEE16506 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
 				776532670FE81C7D6E72D8A4 /* Create linking dependencies */,
 				2B1C42DFD533D32922F67984 /* Headers */,
 				44BB90B556883CB3BE4876BD /* Sources */,
@@ -3750,7 +3753,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EFD92156A876B6D6FFBB6CA8 /* Build configuration list for PBXNativeTarget "Lib (watchOS)" */;
 			buildPhases = (
-				1688E39CDF556E908D89600C /* Copy Bazel Outputs */,
+				B8DAD4D5E102EF1BEB0D4D68 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
 				D9176A0A70D09FD506167F09 /* Sources */,
 			);
 			buildRules = (
@@ -3766,7 +3769,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 426DF0C057EB275136F4B9DC /* Build configuration list for PBXNativeTarget "lib_swift" */;
 			buildPhases = (
-				CF5964970607E7A9795E2A66 /* Copy Bazel Outputs */,
+				5EF8690F7EC619444A602724 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
 				18F25BCCAD587CF0E7BE2E95 /* Sources */,
 			);
 			buildRules = (
@@ -3782,7 +3785,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3BFE395FEB493780D77AE664 /* Build configuration list for PBXNativeTarget "Lib (iOS, tvOS)" */;
 			buildPhases = (
-				68B35B01A8AD784A09E66060 /* Copy Bazel Outputs */,
+				B600DAAF2B1597296B962508 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
 				376387525A0E44A3FF8EFBE1 /* Sources */,
 			);
 			buildRules = (
@@ -3798,6 +3801,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 38223AD7275A0E42BFFFE7E0 /* Build configuration list for PBXNativeTarget "MixedAnswer" */;
 			buildPhases = (
+				F0A3D48F6B8D2DA79C2C0141 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
 				C9017B8645E18B4C9E26795C /* Sources */,
 			);
 			buildRules = (
@@ -3813,7 +3817,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C986B7E84520EFD0454FA9C4 /* Build configuration list for PBXNativeTarget "UIFramework.tvOS" */;
 			buildPhases = (
-				1DC3EC3B8C42B6B47B583001 /* Copy Bazel Outputs */,
+				11A10D0B6D772419B6B0D52C /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
 				1F6D54F7BA652B6361D1E235 /* Create linking dependencies */,
 				50849A426DC10CD2A4C3DE6E /* Sources */,
 			);
@@ -3831,7 +3835,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A15233C41919C9274111E7C0 /* Build configuration list for PBXNativeTarget "tvOSApp" */;
 			buildPhases = (
-				C3B530109FE5F98A1693F0A1 /* Copy Bazel Outputs */,
+				3D79593E438CA9F143195AB4 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
 				EC6016F1A034F70C0846B131 /* Create linking dependencies */,
 				F7BFBB107A12DCC806E6F7F2 /* Sources */,
 			);
@@ -3849,7 +3853,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 87D9009B2B4262A0AB6BD640 /* Build configuration list for PBXNativeTarget "macOSApp" */;
 			buildPhases = (
-				1305E71B397AAD0342B70DA2 /* Copy Bazel Outputs */,
+				E12CBCFD8F0F30DD901E05E0 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
 				1AD5775B0403CB13FDE5DBD3 /* Create linking dependencies */,
 				D4F44477F89180BAF6091C50 /* Sources */,
 			);
@@ -3867,7 +3871,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4B01695F69D3879AFAE19DCF /* Build configuration list for PBXNativeTarget "MixedAnswerLib_Swift" */;
 			buildPhases = (
-				BEE9675418B7C0679870B007 /* Copy Bazel Outputs */,
+				85D2DCFA5F937383290C1EC9 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
 				F4DF2EAABD93BD648A0AECA1 /* Sources */,
 			);
 			buildRules = (
@@ -3883,6 +3887,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 05724F70616E95211CBAC61C /* Build configuration list for PBXNativeTarget "lib_impl" */;
 			buildPhases = (
+				CFC30FB6EC3494D59339815C /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
 				EB382A674406F86F441C20BE /* Sources */,
 			);
 			buildRules = (
@@ -3898,7 +3903,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7F8E2A0098A7975FCB21C148 /* Build configuration list for PBXNativeTarget "LibFramework.tvOS" */;
 			buildPhases = (
-				1977851DBA85D8EF479B3422 /* Copy Bazel Outputs */,
+				B1EE23AE380C463E6B79A50F /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
 				67CE6321146319C48DFEBA53 /* Create linking dependencies */,
 				A0357F54171B89382479F0C1 /* Sources */,
 			);
@@ -3916,7 +3921,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F3AA4A2F83FB2192FC9A66F2 /* Build configuration list for PBXNativeTarget "watchOSAppUITests" */;
 			buildPhases = (
-				9EC7DF73E6DD86C7F36AD07E /* Copy Bazel Outputs */,
+				C0395C7D0ADC398827F8EC81 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
 				B440756585E1B5533B61172E /* Create linking dependencies */,
 				7B9872096BDAC4771EFE0835 /* Sources */,
 			);
@@ -3935,7 +3940,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 95D60D8205A86F653A4B94A4 /* Build configuration list for PBXNativeTarget "iOSAppSwiftUnitTests" */;
 			buildPhases = (
-				C416D6A024F55E32E6F2131B /* Copy Bazel Outputs */,
+				EED180ABC8FC41F3EBE4FF10 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
 				F343BFA76D64F5F53017DEC2 /* Create linking dependencies */,
 				8C852A596739FBD5C4896574 /* Sources */,
 			);
@@ -3954,7 +3959,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FC8A81AA2F847EAD3AE8E98A /* Build configuration list for PBXNativeTarget "watchOSAppExtensionUnitTests" */;
 			buildPhases = (
-				6F779F048E8A5225FE34F009 /* Copy Bazel Outputs */,
+				52BA81EFCC17544891D54E30 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
 				4C341ABC34320ACDF155DD4F /* Create linking dependencies */,
 				4759015F86C47FF8B0A12DC7 /* Sources */,
 			);
@@ -3972,7 +3977,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 18EF7843D6E94C377EDEE92D /* Build configuration list for PBXNativeTarget "macOSAppUITests" */;
 			buildPhases = (
-				0656B49A53F93D698072C775 /* Copy Bazel Outputs */,
+				E60CE38BEC4B291617217E1D /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
 				4B6FABDE2D99154A7BCA0EAC /* Create linking dependencies */,
 				64C52A16C95418B1B8C91D75 /* Sources */,
 			);
@@ -3991,7 +3996,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00121B99D93E11CCDD1C735A /* Build configuration list for PBXNativeTarget "tvOS" */;
 			buildPhases = (
-				F0DE27AA66F086201A0514BE /* Copy Bazel Outputs */,
+				D3DE4900FAABD06BC3999D56 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
 				B6FFBC29F9E5E50474CECF23 /* Create linking dependencies */,
 				B361CFE3EB34A7AF27DC8457 /* Sources */,
 			);
@@ -4009,6 +4014,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AD3F4F785C55BC22954599FC /* Build configuration list for PBXNativeTarget "private_lib" */;
 			buildPhases = (
+				07198BCAEA8A97C7B6E5CFE3 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
 				1E2D7C470F483A38983F1250 /* Sources */,
 			);
 			buildRules = (
@@ -4024,7 +4030,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DE5A272B1E91CD2127D39E3C /* Build configuration list for PBXNativeTarget "TestingUtils" */;
 			buildPhases = (
-				74D44EF0C730EDEC6D46E69E /* Copy Bazel Outputs */,
+				89BD2A7F02E35AFCE497AD07 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
 				58F5AB439EA84217B9B89516 /* Sources */,
 			);
 			buildRules = (
@@ -4040,7 +4046,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0ED6DA45037A4C0B6BCA57E0 /* Build configuration list for PBXNativeTarget "UIFramework.watchOS" */;
 			buildPhases = (
-				1CF75E7C2DDD3868F69478EB /* Copy Bazel Outputs */,
+				8649A480C47F4CD224DFFC05 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
 				BD0667782FD004D83EAA3729 /* Create linking dependencies */,
 				32EE54D10301C697767DE414 /* Sources */,
 			);
@@ -4058,7 +4064,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C52C33AC1575AF1A3BA03A91 /* Build configuration list for PBXNativeTarget "private_swift_lib" */;
 			buildPhases = (
-				299C08C28223D3237360513C /* Copy Bazel Outputs */,
+				F9DC0F3136D77FCA8D35C15B /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
 				481A5BE8481DD1BD3CF39B15 /* Sources */,
 			);
 			buildRules = (
@@ -4306,7 +4312,23 @@
 /* End PBXProject section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0656B49A53F93D698072C775 /* Copy Bazel Outputs */ = {
+		07198BCAEA8A97C7B6E5CFE3 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\n\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		09C143FF6A03DE086736A305 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -4315,15 +4337,15 @@
 			inputPaths = (
 				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
 			);
-			name = "Copy Bazel Outputs";
+			name = "Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"macOSAppUITests.xctest\" \\\n  \"\"\n";
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\nelse\n  \"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n    \"_BazelForcedCompile_.swift\" \\\n    \"tvOSAppUnitTests.xctest\" \\\n    \"\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		1305E71B397AAD0342B70DA2 /* Copy Bazel Outputs */ = {
+		11A10D0B6D772419B6B0D52C /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -4332,28 +4354,12 @@
 			inputPaths = (
 				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
 			);
-			name = "Copy Bazel Outputs";
+			name = "Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"macOSApp.app\" \\\n  \"$INTERNAL_DIR/app.exclude.rsynclist\"\n";
-			showEnvVarsInLog = 0;
-		};
-		1688E39CDF556E908D89600C /* Copy Bazel Outputs */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Bazel Outputs";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"libLib.a\" \\\n  \"\"\n";
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\nelse\n  \"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n    \"_BazelForcedCompile_.swift\" \\\n    \"UIFramework.tvOS.framework\" \\\n    \"\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		172D472463796AAA86DE3F16 /* Create linking dependencies */ = {
@@ -4373,40 +4379,6 @@
 			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
-		1977851DBA85D8EF479B3422 /* Copy Bazel Outputs */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
-			);
-			name = "Copy Bazel Outputs";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"LibFramework.tvOS.framework\" \\\n  \"\"\n";
-			showEnvVarsInLog = 0;
-		};
-		19D3F93ECB6E18745710C66E /* Copy Bazel Outputs */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
-			);
-			name = "Copy Bazel Outputs";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"iOSAppObjCUnitTests.xctest\" \\\n  \"\"\n";
-			showEnvVarsInLog = 0;
-		};
 		1AD5775B0403CB13FDE5DBD3 /* Create linking dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -4422,57 +4394,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
-			showEnvVarsInLog = 0;
-		};
-		1B771FA00F3E6B0CB6A9F992 /* Copy Bazel Outputs */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
-			);
-			name = "Copy Bazel Outputs";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"tvOSAppUITests.xctest\" \\\n  \"\"\n";
-			showEnvVarsInLog = 0;
-		};
-		1CF75E7C2DDD3868F69478EB /* Copy Bazel Outputs */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
-			);
-			name = "Copy Bazel Outputs";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"UIFramework.watchOS.framework\" \\\n  \"\"\n";
-			showEnvVarsInLog = 0;
-		};
-		1DC3EC3B8C42B6B47B583001 /* Copy Bazel Outputs */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
-			);
-			name = "Copy Bazel Outputs";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"UIFramework.tvOS.framework\" \\\n  \"\"\n";
 			showEnvVarsInLog = 0;
 		};
 		1F6D54F7BA652B6361D1E235 /* Create linking dependencies */ = {
@@ -4509,6 +4430,39 @@
 			shellScript = "perl -pe 's/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
+		2317434B319530382DDA6F75 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = "Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\nelse\n  \"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n    \"_BazelForcedCompile_.swift\" \\\n    \"AppClip.app\" \\\n    \"$INTERNAL_DIR/app.exclude.rsynclist\"\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		23DF636F80AA17FFEEDE6C04 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\n\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		2533E74989DE3F2DF9D5B29C /* Create linking dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -4527,7 +4481,7 @@
 			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\ntouch \"$SCRIPT_OUTPUT_FILE_1\"\n";
 			showEnvVarsInLog = 0;
 		};
-		283DCDF5399761BAD0DB8923 /* Copy Bazel Outputs */ = {
+		2DA4A668BC34497BFBB74520 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -4536,15 +4490,32 @@
 			inputPaths = (
 				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
 			);
-			name = "Copy Bazel Outputs";
+			name = "Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"tvOSAppUnitTests.xctest\" \\\n  \"\"\n";
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\nelse\n  \"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n    \"_BazelForcedCompile_.swift\" \\\n    \"iOSAppObjCUnitTests.xctest\" \\\n    \"\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		299C08C28223D3237360513C /* Copy Bazel Outputs */ = {
+		334905038DB2491D0D44293F /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = "Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\nelse\n  \"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n    \"_BazelForcedCompile_.swift\" \\\n    \"Lib.framework\" \\\n    \"\"\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		34D49B146DF45C087D29F2A9 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -4552,12 +4523,63 @@
 			);
 			inputPaths = (
 			);
-			name = "Copy Bazel Outputs";
+			name = "Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"libprivate_swift_lib.a\" \\\n  \"\"\n";
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\nelse\n  \"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n    \"_BazelForcedCompile_.swift\" \\\n    \"CommandLineTool\" \\\n    \"\"\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		3D79593E438CA9F143195AB4 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = "Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\nelse\n  \"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n    \"_BazelForcedCompile_.swift\" \\\n    \"tvOSApp.app\" \\\n    \"$INTERNAL_DIR/app.exclude.rsynclist\"\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		4390F8C998416087AEE16506 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = "Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\nelse\n  \"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n    \"_BazelForcedCompile_.swift\" \\\n    \"CoreUtilsObjC.framework\" \\\n    \"\"\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		49C47E4B4230B80A3F36104B /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = "Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\nelse\n  \"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n    \"_BazelForcedCompile_.swift\" \\\n    \"LibFramework.watchOS.framework\" \\\n    \"\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		4A50E185DA5DF9C9FA565E9A /* Create linking dependencies */ = {
@@ -4611,7 +4633,7 @@
 			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
-		4D81743C59318044EB1FA87C /* Copy Bazel Outputs */ = {
+		52216C7436755FD3B0BAF449 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -4620,15 +4642,15 @@
 			inputPaths = (
 				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
 			);
-			name = "Copy Bazel Outputs";
+			name = "Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"Lib.framework\" \\\n  \"\"\n";
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\nelse\n  \"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n    \"_BazelForcedCompile_.swift\" \\\n    \"iOSApp.app\" \\\n    \"$INTERNAL_DIR/app.exclude.rsynclist\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		56BD3A38019D94C340B5A25C /* Copy Bazel Outputs */ = {
+		52BA81EFCC17544891D54E30 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -4637,15 +4659,15 @@
 			inputPaths = (
 				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
 			);
-			name = "Copy Bazel Outputs";
+			name = "Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"iMessageAppExtension.appex\" \\\n  \"\"\n";
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\nelse\n  \"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n    \"_BazelForcedCompile_.swift\" \\\n    \"watchOSAppExtensionUnitTests.xctest\" \\\n    \"\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		656CED3E4E2349D88BAA2EF6 /* Copy Bazel Outputs */ = {
+		58114E1546420DA03F4C88E9 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -4654,12 +4676,62 @@
 			inputPaths = (
 				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
 			);
-			name = "Copy Bazel Outputs";
+			name = "Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"watchOSAppExtension.appex\" \\\n  \"\"\n";
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\nelse\n  \"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n    \"_BazelForcedCompile_.swift\" \\\n    \"tvOSAppUITests.xctest\" \\\n    \"\"\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		5E4E690149F6A430C4AA8ECC /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = "Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\nelse\n  \"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n    \"_BazelForcedCompile_.swift\" \\\n    \"iMessageAppExtension.appex\" \\\n    \"\"\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		5EF8690F7EC619444A602724 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\n\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		61E4B8977A105A0D9F9451FB /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = "Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\nelse\n  \"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n    \"_BazelForcedCompile_.swift\" \\\n    \"iMessageApp.app\" \\\n    \"$INTERNAL_DIR/app.exclude.rsynclist\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		67CE6321146319C48DFEBA53 /* Create linking dependencies */ = {
@@ -4697,39 +4769,6 @@
 			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
-		68B35B01A8AD784A09E66060 /* Copy Bazel Outputs */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Bazel Outputs";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"libLib.a\" \\\n  \"\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6F779F048E8A5225FE34F009 /* Copy Bazel Outputs */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
-			);
-			name = "Copy Bazel Outputs";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"watchOSAppExtensionUnitTests.xctest\" \\\n  \"\"\n";
-			showEnvVarsInLog = 0;
-		};
 		6FA22A1FEED7DCB96147569B /* Create linking dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -4745,22 +4784,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
-			showEnvVarsInLog = 0;
-		};
-		74D44EF0C730EDEC6D46E69E /* Copy Bazel Outputs */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Bazel Outputs";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"libTestingUtils.a\" \\\n  \"\"\n";
 			showEnvVarsInLog = 0;
 		};
 		776532670FE81C7D6E72D8A4 /* Create linking dependencies */ = {
@@ -4780,6 +4803,73 @@
 			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
+		7C735614F41BF32BB26DB13D /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = "Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\nelse\n  \"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n    \"_BazelForcedCompile_.swift\" \\\n    \"watchOSAppExtension.appex\" \\\n    \"\"\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		7CBAC7861737F0A3E398797D /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = "Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\nelse\n  \"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n    \"_BazelForcedCompile_.swift\" \\\n    \"Lib.framework\" \\\n    \"\"\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		85D2DCFA5F937383290C1EC9 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\n\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		8649A480C47F4CD224DFFC05 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = "Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\nelse\n  \"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n    \"_BazelForcedCompile_.swift\" \\\n    \"UIFramework.watchOS.framework\" \\\n    \"\"\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		868BBA44BDD2BE4A39BFEDEC /* Create linking dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -4797,21 +4887,20 @@
 			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
-		87D2EB6131DC54924D3FA46F /* Copy Bazel Outputs */ = {
+		89BD2A7F02E35AFCE497AD07 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
 			);
-			name = "Copy Bazel Outputs";
+			name = "Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"WidgetExtension.appex\" \\\n  \"\"\n";
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\n\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		8E99904A6B322FD8DC0AE06D /* Create linking dependencies */ = {
@@ -4829,23 +4918,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8FF75512F68D70FE3FFCE362 /* Copy Bazel Outputs */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
-			);
-			name = "Copy Bazel Outputs";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"Lib.framework\" \\\n  \"\"\n";
 			showEnvVarsInLog = 0;
 		};
 		92131FE80957E6A5FDA70CCD /* Create linking dependencies */ = {
@@ -4866,7 +4938,7 @@
 			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\ntouch \"$SCRIPT_OUTPUT_FILE_1\"\n";
 			showEnvVarsInLog = 0;
 		};
-		94FA12CDEE7442E6E1A02DF9 /* Copy Bazel Outputs */ = {
+		92A2FF97F0A9101D20C8BB5F /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -4875,12 +4947,12 @@
 			inputPaths = (
 				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
 			);
-			name = "Copy Bazel Outputs";
+			name = "Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"UIFramework.iOS.framework\" \\\n  \"\"\n";
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\nelse\n  \"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n    \"_BazelForcedCompile_.swift\" \\\n    \"watchOSApp.app\" \\\n    \"$INTERNAL_DIR/app.exclude.rsynclist\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		98A71FDC2C7B65B80CB267C4 /* Create linking dependencies */ = {
@@ -4920,7 +4992,7 @@
 			shellScript = "\"$BAZEL_INTEGRATION_DIR/generate_bazel_dependencies.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9EC7DF73E6DD86C7F36AD07E /* Copy Bazel Outputs */ = {
+		9C72B493BBB21FF221EBC79C /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -4929,29 +5001,28 @@
 			inputPaths = (
 				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
 			);
-			name = "Copy Bazel Outputs";
+			name = "Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"watchOSAppUITests.xctest\" \\\n  \"\"\n";
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\nelse\n  \"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n    \"_BazelForcedCompile_.swift\" \\\n    \"UIFramework.iOS.framework\" \\\n    \"\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		9F6AC3E78F25E23948AED368 /* Copy Bazel Outputs */ = {
+		9CA6AE20FA50014A670CED68 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
 			);
-			name = "Copy Bazel Outputs";
+			name = "Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"iOSApp.app\" \\\n  \"$INTERNAL_DIR/app.exclude.rsynclist\"\n";
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\n\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		9FDE065FCA9AAC5A0A44A11F /* Create linking dependencies */ = {
@@ -4969,6 +5040,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A9E0757B45FBA0F456E9FA8B /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = "Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\nelse\n  \"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n    \"_BazelForcedCompile_.swift\" \\\n    \"CommandLineToolTests.xctest\" \\\n    \"\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		AF6FC712901312B294B4DFE2 /* Create linking dependencies */ = {
@@ -4989,6 +5077,23 @@
 			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\ntouch \"$SCRIPT_OUTPUT_FILE_1\"\n";
 			showEnvVarsInLog = 0;
 		};
+		B1EE23AE380C463E6B79A50F /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = "Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\nelse\n  \"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n    \"_BazelForcedCompile_.swift\" \\\n    \"LibFramework.tvOS.framework\" \\\n    \"\"\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		B440756585E1B5533B61172E /* Create linking dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -5006,21 +5111,20 @@
 			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B5F59F69B53E4CD6B729C3DE /* Copy Bazel Outputs */ = {
+		B600DAAF2B1597296B962508 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
 			);
-			name = "Copy Bazel Outputs";
+			name = "Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"AppClip.app\" \\\n  \"$INTERNAL_DIR/app.exclude.rsynclist\"\n";
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\n\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		B6FFBC29F9E5E50474CECF23 /* Create linking dependencies */ = {
@@ -5041,6 +5145,22 @@
 			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\ntouch \"$SCRIPT_OUTPUT_FILE_1\"\n";
 			showEnvVarsInLog = 0;
 		};
+		B8DAD4D5E102EF1BEB0D4D68 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\n\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		BD0667782FD004D83EAA3729 /* Create linking dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -5058,7 +5178,7 @@
 			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
-		BE96411EF2D0F60011323B62 /* Copy Bazel Outputs */ = {
+		C0395C7D0ADC398827F8EC81 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -5067,15 +5187,15 @@
 			inputPaths = (
 				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
 			);
-			name = "Copy Bazel Outputs";
+			name = "Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"LibFramework.watchOS.framework\" \\\n  \"\"\n";
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\nelse\n  \"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n    \"_BazelForcedCompile_.swift\" \\\n    \"watchOSAppUITests.xctest\" \\\n    \"\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		BEE9675418B7C0679870B007 /* Copy Bazel Outputs */ = {
+		CFC30FB6EC3494D59339815C /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -5083,31 +5203,15 @@
 			);
 			inputPaths = (
 			);
-			name = "Copy Bazel Outputs";
+			name = "Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"libMixedAnswerLib_Swift.a\" \\\n  \"\"\n";
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\n\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		BF56D416F70A066FD9011FA8 /* Copy Bazel Outputs */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Bazel Outputs";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"CommandLineTool\" \\\n  \"\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C3B530109FE5F98A1693F0A1 /* Copy Bazel Outputs */ = {
+		D34E8CD766A682E06A8B3255 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -5116,15 +5220,15 @@
 			inputPaths = (
 				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
 			);
-			name = "Copy Bazel Outputs";
+			name = "Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"tvOSApp.app\" \\\n  \"$INTERNAL_DIR/app.exclude.rsynclist\"\n";
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\nelse\n  \"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n    \"_BazelForcedCompile_.swift\" \\\n    \"WidgetExtension.appex\" \\\n    \"\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		C416D6A024F55E32E6F2131B /* Copy Bazel Outputs */ = {
+		D3DE4900FAABD06BC3999D56 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -5133,32 +5237,15 @@
 			inputPaths = (
 				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
 			);
-			name = "Copy Bazel Outputs";
+			name = "Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"iOSAppSwiftUnitTests.xctest\" \\\n  \"\"\n";
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\nelse\n  \"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n    \"_BazelForcedCompile_.swift\" \\\n    \"Lib.framework\" \\\n    \"\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		C7E5D6A63B206760804A009C /* Copy Bazel Outputs */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
-			);
-			name = "Copy Bazel Outputs";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"iMessageApp.app\" \\\n  \"$INTERNAL_DIR/app.exclude.rsynclist\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CF5964970607E7A9795E2A66 /* Copy Bazel Outputs */ = {
+		DBAF939D94B3B02A3523BF38 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -5166,12 +5253,12 @@
 			);
 			inputPaths = (
 			);
-			name = "Copy Bazel Outputs";
+			name = "Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"liblib_swift.a\" \\\n  \"\"\n";
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\n\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		DE5C59A752329AE16229AE59 /* Create linking dependencies */ = {
@@ -5191,7 +5278,7 @@
 			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
-		DF8E9D9CD1E839DFDDC57F9F /* Copy Bazel Outputs */ = {
+		E12CBCFD8F0F30DD901E05E0 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -5200,12 +5287,12 @@
 			inputPaths = (
 				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
 			);
-			name = "Copy Bazel Outputs";
+			name = "Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"watchOSApp.app\" \\\n  \"$INTERNAL_DIR/app.exclude.rsynclist\"\n";
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\nelse\n  \"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n    \"_BazelForcedCompile_.swift\" \\\n    \"macOSApp.app\" \\\n    \"$INTERNAL_DIR/app.exclude.rsynclist\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		E1A1A11A75DFBF854FAFA10E /* Create linking dependencies */ = {
@@ -5242,7 +5329,7 @@
 			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E4DFB42E1E6C49238D7B8878 /* Copy Bazel Outputs */ = {
+		E60CE38BEC4B291617217E1D /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -5251,12 +5338,12 @@
 			inputPaths = (
 				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
 			);
-			name = "Copy Bazel Outputs";
+			name = "Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"CommandLineToolTests.xctest\" \\\n  \"\"\n";
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\nelse\n  \"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n    \"_BazelForcedCompile_.swift\" \\\n    \"macOSAppUITests.xctest\" \\\n    \"\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		EC6016F1A034F70C0846B131 /* Create linking dependencies */ = {
@@ -5276,7 +5363,7 @@
 			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F0DE27AA66F086201A0514BE /* Copy Bazel Outputs */ = {
+		EED180ABC8FC41F3EBE4FF10 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -5285,12 +5372,28 @@
 			inputPaths = (
 				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
 			);
-			name = "Copy Bazel Outputs";
+			name = "Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"Lib.framework\" \\\n  \"\"\n";
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\nelse\n  \"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n    \"_BazelForcedCompile_.swift\" \\\n    \"iOSAppSwiftUnitTests.xctest\" \\\n    \"\"\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F0A3D48F6B8D2DA79C2C0141 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\n\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		F343BFA76D64F5F53017DEC2 /* Create linking dependencies */ = {
@@ -5310,21 +5413,20 @@
 			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F977D72EC501105AE382C623 /* Copy Bazel Outputs */ = {
+		F9DC0F3136D77FCA8D35C15B /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
 			);
-			name = "Copy Bazel Outputs";
+			name = "Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\n\"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n  \"_BazelForcedCompile_.swift\" \\\n  \"CoreUtilsObjC.framework\" \\\n  \"\"\n";
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\n\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -7041,16 +7143,12 @@
 		5AFD85147E5F7EEA259481C2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BAZEL_CONFIG = rules_xcodeproj_integration;
 				BAZEL_PACKAGE_BIN_DIR = rules_xcodeproj;
 				CALCULATE_OUTPUT_GROUPS_SCRIPT = "$(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py";
-				GENERATOR_LABEL = "@//test/fixtures:xcodeproj_bwb.generator";
-				GENERATOR_PACKAGE_BIN_DIR = "darwin_x86_64-dbg-ST-14942f8a2d44/bin/test/fixtures";
-				GENERATOR_TARGET_NAME = xcodeproj_bwb.generator;
 				INDEX_DATA_STORE_DIR = "$(INDEX_DATA_STORE_DIR)";
+				INDEX_DISABLE_SCRIPT_EXECUTION = YES;
 				INDEX_IMPORT = "$(BAZEL_OUT)/darwin_x86_64-opt-exec-2B5CBBC6-ST-8b5ad9965560/bin/external/rules_xcodeproj_index_import/index-import";
 				RESOLVED_EXTERNAL_REPOSITORIES = "\"examples_command_line_external/ImportableLibrary\" \"$(SRCROOT)/CommandLine/external/ImportableLibrary\" \"examples_ios_app_external\" \"$(SRCROOT)/iOSApp/external\"";
-				RULES_XCODEPROJ_BUILD_MODE = bazel;
 				SUPPORTED_PLATFORMS = macosx;
 				SUPPORTS_MACCATALYST = YES;
 				TARGET_NAME = BazelDependencies;
@@ -7891,6 +7989,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				BAZEL_CONFIG = rules_xcodeproj_integration;
 				BAZEL_EXTERNAL = "$(BAZEL_OUTPUT_BASE)/external";
 				BAZEL_INTEGRATION_DIR = "$(INTERNAL_DIR)/bazel";
 				BAZEL_LLDB_INIT = "$(OBJROOT)/bazel.lldbinit";
@@ -7911,6 +8010,9 @@
 				DEPLOYMENT_LOCATION = "$(INDEXING_DEPLOYMENT_LOCATION__$(INDEX_ENABLE_BUILD_ARENA)),";
 				DSTROOT = "$(PROJECT_TEMP_DIR)";
 				ENABLE_DEFAULT_SEARCH_PATHS = NO;
+				GENERATOR_LABEL = "@//test/fixtures:xcodeproj_bwb.generator";
+				GENERATOR_PACKAGE_BIN_DIR = "darwin_x86_64-dbg-ST-14942f8a2d44/bin/test/fixtures";
+				GENERATOR_TARGET_NAME = xcodeproj_bwb.generator;
 				INDEXING_BUILT_PRODUCTS_DIR__ = "$(INDEXING_BUILT_PRODUCTS_DIR__NO)";
 				INDEXING_BUILT_PRODUCTS_DIR__NO = "$(BUILD_DIR)";
 				INDEXING_BUILT_PRODUCTS_DIR__YES = "$(CONFIGURATION_BUILD_DIR)";
@@ -7925,6 +8027,7 @@
 				LIBTOOL = "$(BAZEL_INTEGRATION_DIR)/libtool.sh";
 				LINKS_DIR = "$(INTERNAL_DIR)/links";
 				ONLY_ACTIVE_ARCH = YES;
+				RULES_XCODEPROJ_BUILD_MODE = bazel;
 				SCHEME_TARGET_IDS_FILE = "$(OBJROOT)/scheme_target_ids";
 				SRCROOT = "$(_SRCROOT:standardizepath)";
 				SUPPORTS_MACCATALYST = NO;

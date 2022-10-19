@@ -51,43 +51,42 @@ extension Generator {
                     .forEach { platforms.insert($0.platform) }
             }
 
-        let debugConfiguration = XCBuildConfiguration(
-            name: "Debug",
-            buildSettings: [
-                "BAZEL_CONFIG": bazelConfig,
-                "BAZEL_PACKAGE_BIN_DIR": "rules_xcodeproj",
-                "CALCULATE_OUTPUT_GROUPS_SCRIPT": """
+        var buildSettings: BuildSettings = [
+            "BAZEL_PACKAGE_BIN_DIR": "rules_xcodeproj",
+            "CALCULATE_OUTPUT_GROUPS_SCRIPT": """
 $(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py
 """,
-                "GENERATOR_LABEL": generatorLabel,
-                "GENERATOR_PACKAGE_BIN_DIR": """
-\(generatorConfiguration)/bin/\(generatorLabel.package)
-""",
-                "GENERATOR_TARGET_NAME": generatorLabel.name,
-                "INDEX_DATA_STORE_DIR": "$(INDEX_DATA_STORE_DIR)",
-                "INDEX_IMPORT": try filePathResolver
-                    .resolve(
-                        indexImport,
-                        useBazelOut: true,
-                        // This is consumed in `bazel_build.sh`, so we need the
-                        // full path to be able to correctly reference it
-                        forceFullBuildSettingPath: true
-                    ).string,
-                "RESOLVED_EXTERNAL_REPOSITORIES": resolvedExternalRepositories
-                    // Sorted by length to ensure that subdirectories are listed first
-                    .sorted { $0.0.string.count > $1.0.string.count }
-                    .map { #""\#($0)" "\#($1)""# }
-                    .joined(separator: " "),
-                "RULES_XCODEPROJ_BUILD_MODE": buildMode.rawValue,
-                // We have to support only a single platform to prevent issues
-                // with duplicated outputs during Index Build, but it also
-                // has to be a platform that one of the targets uses, otherwise
-                // it's not invoked at all. Index Build is so weird...
-                "SUPPORTED_PLATFORMS": projectPlatforms.sorted()
-                    .first!.variant.rawValue,
-                "SUPPORTS_MACCATALYST": true,
-                "TARGET_NAME": "BazelDependencies",
-            ]
+            "INDEX_DATA_STORE_DIR": "$(INDEX_DATA_STORE_DIR)",
+            "INDEX_IMPORT": try filePathResolver
+                .resolve(
+                    indexImport,
+                    useBazelOut: true,
+                    // This is consumed in `bazel_build.sh`, so we need the full
+                    // path to be able to correctly reference it
+                    forceFullBuildSettingPath: true
+                ).string,
+            "RESOLVED_EXTERNAL_REPOSITORIES": resolvedExternalRepositories
+                // Sorted by length to ensure that subdirectories are listed first
+                .sorted { $0.0.string.count > $1.0.string.count }
+                .map { #""\#($0)" "\#($1)""# }
+                .joined(separator: " "),
+            // We have to support only a single platform to prevent issues
+            // with duplicated outputs during Index Build, but it also
+            // has to be a platform that one of the targets uses, otherwise
+            // it's not invoked at all. Index Build is so weird...
+            "SUPPORTED_PLATFORMS": projectPlatforms.sorted()
+                .first!.variant.rawValue,
+            "SUPPORTS_MACCATALYST": true,
+            "TARGET_NAME": "BazelDependencies",
+        ]
+
+        if buildMode.usesBazelModeBuildScripts {
+            buildSettings["INDEX_DISABLE_SCRIPT_EXECUTION"] = true
+        }
+
+        let debugConfiguration = XCBuildConfiguration(
+            name: "Debug",
+            buildSettings: buildSettings
         )
         pbxProj.add(object: debugConfiguration)
         let configurationList = XCConfigurationList(
