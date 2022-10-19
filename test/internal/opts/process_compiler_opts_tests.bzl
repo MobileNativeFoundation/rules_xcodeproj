@@ -306,9 +306,13 @@ def process_compiler_opts_test_suite(name):
             "path",
             "-passthrough",
             "-Xfrontend",
-            "-hidden",
+            "-color-diagnostics",
+            "-Xfrontend",
+            "-import-underlying-module",
             "-emit-object",
             "-enable-batch-mode",
+            "-vfsoverlay",
+            "Some/Path.yaml",
             "-passthrough",
             "-gline-tables-only",
             "-sdk",
@@ -324,8 +328,14 @@ def process_compiler_opts_test_suite(name):
             "-parse-as-library",
             "-passthrough",
             "-parse-as-library",
+            "-Xfrontend",
+            "-vfsoverlay",
+            "-Xfrontend",
+            "/Some/Path.yaml",
             "-keep-me=something.swift",
             "reject-me.swift",
+            "-Xfrontend",
+            "-vfsoverlay/Some/Path.yaml",
             "-target",
             "ios",
             "-Xcc",
@@ -349,6 +359,8 @@ def process_compiler_opts_test_suite(name):
 -Xcc -DCOPTS_FOR_CURRENT \
 -passthrough \
 -passthrough \
+-Xfrontend \
+-import-underlying-module \
 -passthrough \
 -passthrough \
 -passthrough \
