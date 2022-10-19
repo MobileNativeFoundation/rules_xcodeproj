@@ -56,7 +56,7 @@ _SWIFTC_SKIP_COMPOUND_OPTS = {
         "-no-serialize-debugging-options": 1,
         "-serialize-debugging-options": 1,
         "-vfsoverlay": 3,
-    }
+    },
 }
 
 # Maps Swift compliation mode compiler flags to the corresponding Xcode values
