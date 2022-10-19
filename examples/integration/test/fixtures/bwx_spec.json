@@ -84,6 +84,16 @@
         "iOSApp/Resources/ExampleResources/Info.plist",
         "iOSApp/Source/BUILD",
         "UI/BUILD",
+        "iOSApp/Source/CoreUtilsMixed/MixedAnswer/BUILD",
+        "iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.h",
+        {
+            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.h",
+            "t": "g"
+        },
+        {
+            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer-Swift.h",
+            "t": "g"
+        },
         "iOSApp/Source/CoreUtilsObjC/BUILD",
         {
             "_": "com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator/GoogleMapsBase.framework",
@@ -92,6 +102,18 @@
         {
             "_": "com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator/GoogleMaps.framework",
             "t": "e"
+        },
+        {
+            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap.swift.modulemap",
+            "t": "g"
+        },
+        {
+            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_modulemap.swift.modulemap",
+            "t": "g"
+        },
+        {
+            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.swift.modulemap",
+            "t": "g"
         },
         {
             "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap",
@@ -126,6 +148,10 @@
         "iOSApp/Source/Info.plist",
         "iOSApp/Source/AltIcons/AltIcon-60.alticon/AltIcon-60@2x.png",
         "iOSApp/Source/AltIcons/AltIcon-60.alticon/AltIcon-60@3x.png",
+        {
+            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap-module.modulemap",
+            "t": "g"
+        },
         {
             "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/iOSApp/Resources/ExampleResources/bucket/deps.txt",
             "i": false,
@@ -221,12 +247,32 @@
             "t": "e"
         },
         {
+            "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.h",
+            "t": "g"
+        },
+        {
+            "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer-Swift.h",
+            "t": "g"
+        },
+        {
             "_": "com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64/GoogleMapsBase.framework",
             "t": "e"
         },
         {
             "_": "com_google_google_maps/GoogleMaps.xcframework/ios-arm64/GoogleMaps.framework",
             "t": "e"
+        },
+        {
+            "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap.swift.modulemap",
+            "t": "g"
+        },
+        {
+            "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_modulemap.swift.modulemap",
+            "t": "g"
+        },
+        {
+            "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.swift.modulemap",
+            "t": "g"
         },
         {
             "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap",
@@ -246,6 +292,10 @@
         },
         {
             "_": "applebin_watchos-watchos_arm64_32-dbg-ST-8e65bd00489d/bin/watchOSApp/Info.withbundleid.plist",
+            "t": "g"
+        },
+        {
+            "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap-module.modulemap",
             "t": "g"
         },
         {
@@ -5946,6 +5996,376 @@
                 "type": "com.apple.product-type.bundle"
             }
         },
+        "//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswer ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd",
+        {
+            "build_settings": {
+                "CLANG_CXX_LANGUAGE_STANDARD": "gnu++0x",
+                "CLANG_CXX_LIBRARY": "libc++",
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
+                "GCC_OPTIMIZATION_LEVEL": "0",
+                "GCC_PREPROCESSOR_DEFINITIONS": [
+                    "_FORTIFY_SOURCE=1",
+                    "OS_IOS",
+                    "DEBUG=1"
+                ],
+                "OTHER_CFLAGS": [
+                    "-fstack-protector",
+                    "-Wall",
+                    "-Wthread-safety",
+                    "-Wself-assign",
+                    "-fno-omit-frame-pointer",
+                    "-Wshorten-64-to-32",
+                    "-Wbool-conversion",
+                    "-Wconstant-conversion",
+                    "-Wduplicate-method-match",
+                    "-Wempty-body",
+                    "-Wenum-conversion",
+                    "-Wint-conversion",
+                    "-Wunreachable-code",
+                    "-Wmismatched-return-types",
+                    "-Wundeclared-selector",
+                    "-Wuninitialized",
+                    "-Wunused-function",
+                    "-Wunused-variable",
+                    "-fno-autolink",
+                    "-fstack-protector",
+                    "-fstack-protector-all"
+                ],
+                "OTHER_CPLUSPLUSFLAGS": [
+                    "-fstack-protector",
+                    "-Wall",
+                    "-Wthread-safety",
+                    "-Wself-assign",
+                    "-fno-omit-frame-pointer",
+                    "-Wshorten-64-to-32",
+                    "-Wbool-conversion",
+                    "-Wconstant-conversion",
+                    "-Wduplicate-method-match",
+                    "-Wempty-body",
+                    "-Wenum-conversion",
+                    "-Wint-conversion",
+                    "-Wunreachable-code",
+                    "-Wmismatched-return-types",
+                    "-Wundeclared-selector",
+                    "-Wuninitialized",
+                    "-Wunused-function",
+                    "-Wunused-variable",
+                    "-fno-autolink",
+                    "-fstack-protector",
+                    "-fstack-protector-all"
+                ],
+                "PRODUCT_MODULE_NAME": "MixedAnswer",
+                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+                "SWIFT_VERSION": "5.0"
+            },
+            "configuration": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd",
+            "dependencies": [
+                "//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswerLib_Swift ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd"
+            ],
+            "inputs": {
+                "srcs": [
+                    "iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.m",
+                    "iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.h"
+                ]
+            },
+            "is_swift": false,
+            "label": "//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswer",
+            "name": "MixedAnswer",
+            "package_bin_dir": "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer",
+            "platform": {
+                "arch": "arm64",
+                "minimum_os_version": "15.0",
+                "os": "ios",
+                "variant": "iphoneos"
+            },
+            "product": {
+                "additional_paths": [],
+                "executable_name": null,
+                "is_resource_bundle": false,
+                "name": "MixedAnswer",
+                "path": {
+                    "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/libMixedAnswer.a",
+                    "t": "g"
+                },
+                "type": "com.apple.product-type.library.static"
+            },
+            "search_paths": {
+                "includes": [
+                    {
+                        "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/iOSApp/CoreUtilsMixed",
+                        "t": "g"
+                    }
+                ],
+                "quote_includes": [
+                    ".",
+                    {
+                        "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin",
+                        "t": "g"
+                    }
+                ]
+            }
+        },
+        "//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswer ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353",
+        {
+            "build_settings": {
+                "CLANG_CXX_LANGUAGE_STANDARD": "gnu++0x",
+                "CLANG_CXX_LIBRARY": "libc++",
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
+                "GCC_OPTIMIZATION_LEVEL": "0",
+                "GCC_PREPROCESSOR_DEFINITIONS": [
+                    "_FORTIFY_SOURCE=1",
+                    "OS_IOS",
+                    "DEBUG=1"
+                ],
+                "OTHER_CFLAGS": [
+                    "-fstack-protector",
+                    "-Wall",
+                    "-Wthread-safety",
+                    "-Wself-assign",
+                    "-fno-omit-frame-pointer",
+                    "-Wshorten-64-to-32",
+                    "-Wbool-conversion",
+                    "-Wconstant-conversion",
+                    "-Wduplicate-method-match",
+                    "-Wempty-body",
+                    "-Wenum-conversion",
+                    "-Wint-conversion",
+                    "-Wunreachable-code",
+                    "-Wmismatched-return-types",
+                    "-Wundeclared-selector",
+                    "-Wuninitialized",
+                    "-Wunused-function",
+                    "-Wunused-variable",
+                    "-fno-autolink",
+                    "-fexceptions",
+                    "-fasm-blocks",
+                    "-fobjc-abi-version=2",
+                    "-fobjc-legacy-dispatch",
+                    "-fstack-protector",
+                    "-fstack-protector-all"
+                ],
+                "OTHER_CPLUSPLUSFLAGS": [
+                    "-fstack-protector",
+                    "-Wall",
+                    "-Wthread-safety",
+                    "-Wself-assign",
+                    "-fno-omit-frame-pointer",
+                    "-Wshorten-64-to-32",
+                    "-Wbool-conversion",
+                    "-Wconstant-conversion",
+                    "-Wduplicate-method-match",
+                    "-Wempty-body",
+                    "-Wenum-conversion",
+                    "-Wint-conversion",
+                    "-Wunreachable-code",
+                    "-Wmismatched-return-types",
+                    "-Wundeclared-selector",
+                    "-Wuninitialized",
+                    "-Wunused-function",
+                    "-Wunused-variable",
+                    "-fno-autolink",
+                    "-fexceptions",
+                    "-fasm-blocks",
+                    "-fobjc-abi-version=2",
+                    "-fobjc-legacy-dispatch",
+                    "-fstack-protector",
+                    "-fstack-protector-all"
+                ],
+                "PRODUCT_MODULE_NAME": "MixedAnswer",
+                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+                "SWIFT_VERSION": "5.0"
+            },
+            "configuration": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353",
+            "dependencies": [
+                "//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswerLib_Swift ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353"
+            ],
+            "inputs": {
+                "srcs": [
+                    "iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.m",
+                    "iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.h"
+                ]
+            },
+            "is_swift": false,
+            "label": "//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswer",
+            "name": "MixedAnswer",
+            "package_bin_dir": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer",
+            "platform": {
+                "arch": "x86_64",
+                "minimum_os_version": "15.0",
+                "os": "ios",
+                "variant": "iphonesimulator"
+            },
+            "product": {
+                "additional_paths": [],
+                "executable_name": null,
+                "is_resource_bundle": false,
+                "name": "MixedAnswer",
+                "path": {
+                    "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/libMixedAnswer.a",
+                    "t": "g"
+                },
+                "type": "com.apple.product-type.library.static"
+            },
+            "search_paths": {
+                "includes": [
+                    {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/iOSApp/CoreUtilsMixed",
+                        "t": "g"
+                    }
+                ],
+                "quote_includes": [
+                    ".",
+                    {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin",
+                        "t": "g"
+                    }
+                ]
+            }
+        },
+        "//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswerLib_Swift ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd",
+        {
+            "build_settings": {
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
+                "ENABLE_TESTABILITY": true,
+                "GCC_OPTIMIZATION_LEVEL": "0",
+                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Xfrontend -import-underlying-module -static -Xcc -fmodule-map-file=bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap-module.modulemap",
+                "PRODUCT_MODULE_NAME": "MixedAnswer",
+                "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
+                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "MixedAnswer-Swift.h",
+                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+                "SWIFT_VERSION": "5.0"
+            },
+            "configuration": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd",
+            "inputs": {
+                "srcs": [
+                    "iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.swift"
+                ]
+            },
+            "label": "//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswerLib_Swift",
+            "name": "MixedAnswerLib_Swift",
+            "outputs": {
+                "s": {
+                    "d": {
+                        "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.swiftdoc",
+                        "t": "g"
+                    },
+                    "h": {
+                        "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer-Swift.h",
+                        "t": "g"
+                    },
+                    "m": {
+                        "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.swiftmodule",
+                        "t": "g"
+                    },
+                    "s": {
+                        "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.swiftsourceinfo",
+                        "t": "g"
+                    }
+                }
+            },
+            "package_bin_dir": "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer",
+            "platform": {
+                "arch": "arm64",
+                "minimum_os_version": "15.0",
+                "os": "ios",
+                "variant": "iphoneos"
+            },
+            "product": {
+                "additional_paths": [],
+                "executable_name": null,
+                "is_resource_bundle": false,
+                "name": "MixedAnswerLib_Swift",
+                "path": {
+                    "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/libMixedAnswerLib_Swift.a",
+                    "t": "g"
+                },
+                "type": "com.apple.product-type.library.static"
+            },
+            "search_paths": {
+                "quote_includes": [
+                    ".",
+                    {
+                        "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin",
+                        "t": "g"
+                    }
+                ]
+            }
+        },
+        "//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswerLib_Swift ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353",
+        {
+            "build_settings": {
+                "DEBUG_INFORMATION_FORMAT": "dwarf",
+                "ENABLE_BITCODE": false,
+                "ENABLE_TESTABILITY": true,
+                "GCC_OPTIMIZATION_LEVEL": "0",
+                "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Xfrontend -import-underlying-module -static -Xcc -fmodule-map-file=bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap-module.modulemap",
+                "PRODUCT_MODULE_NAME": "MixedAnswer",
+                "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
+                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "MixedAnswer-Swift.h",
+                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+                "SWIFT_VERSION": "5.0"
+            },
+            "configuration": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353",
+            "inputs": {
+                "srcs": [
+                    "iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.swift"
+                ]
+            },
+            "label": "//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswerLib_Swift",
+            "name": "MixedAnswerLib_Swift",
+            "outputs": {
+                "s": {
+                    "d": {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.swiftdoc",
+                        "t": "g"
+                    },
+                    "h": {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer-Swift.h",
+                        "t": "g"
+                    },
+                    "m": {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.swiftmodule",
+                        "t": "g"
+                    },
+                    "s": {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.swiftsourceinfo",
+                        "t": "g"
+                    }
+                }
+            },
+            "package_bin_dir": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer",
+            "platform": {
+                "arch": "x86_64",
+                "minimum_os_version": "15.0",
+                "os": "ios",
+                "variant": "iphonesimulator"
+            },
+            "product": {
+                "additional_paths": [],
+                "executable_name": null,
+                "is_resource_bundle": false,
+                "name": "MixedAnswerLib_Swift",
+                "path": {
+                    "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/libMixedAnswerLib_Swift.a",
+                    "t": "g"
+                },
+                "type": "com.apple.product-type.library.static"
+            },
+            "search_paths": {
+                "quote_includes": [
+                    ".",
+                    {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin",
+                        "t": "g"
+                    }
+                ]
+            }
+        },
         "//iOSApp/Source/CoreUtilsObjC:CoreUtilsObjC ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd",
         {
             "build_settings": {
@@ -6609,6 +7029,7 @@
                     "-lc++",
                     "-lz",
                     "-Wl,-add_ast_path,bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/iOSApp/Source/iOSApp.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.swiftmodule",
                     "--ld-path=external/rules_apple_linker_lld/ld64.lld",
                     "-Wl,-add_ast_path,bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/UI/UI.swiftmodule",
                     "-Wl,-add_ast_path,bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/Lib/Lib.swiftmodule",
@@ -6641,6 +7062,14 @@
                 "static_libraries": [
                     {
                         "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/iOSApp/Source/libiOSApp.library.a",
+                        "t": "g"
+                    },
+                    {
+                        "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/libMixedAnswer.a",
+                        "t": "g"
+                    },
+                    {
+                        "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/libMixedAnswerLib_Swift.a",
                         "t": "g"
                     }
                 ]
@@ -6848,6 +7277,7 @@
                     "-lc++",
                     "-lz",
                     "-Wl,-add_ast_path,bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/iOSApp/Source/iOSApp.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.swiftmodule",
                     "--ld-path=external/rules_apple_linker_lld/ld64.lld",
                     "-Wl,-add_ast_path,bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/UI/UI.swiftmodule",
                     "-Wl,-add_ast_path,bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/Lib/Lib.swiftmodule",
@@ -6880,6 +7310,14 @@
                 "static_libraries": [
                     {
                         "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/iOSApp/Source/libiOSApp.library.a",
+                        "t": "g"
+                    },
+                    {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/libMixedAnswer.a",
+                        "t": "g"
+                    },
+                    {
+                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/libMixedAnswerLib_Swift.a",
                         "t": "g"
                     }
                 ]
@@ -6998,6 +7436,7 @@
             "configuration": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd",
             "dependencies": [
                 "//UI:UI ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd",
+                "//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswer ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd",
                 "//iOSApp/Source/CoreUtilsObjC:CoreUtilsObjC ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd"
             ],
             "inputs": {
@@ -7010,6 +7449,18 @@
                 {
                     "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap",
                     "t": "e"
+                },
+                {
+                    "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap.swift.modulemap",
+                    "t": "g"
+                },
+                {
+                    "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_modulemap.swift.modulemap",
+                    "t": "g"
+                },
+                {
+                    "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.swift.modulemap",
+                    "t": "g"
                 },
                 {
                     "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap",
@@ -7121,6 +7572,10 @@
                 {
                     "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/UI/UI.swiftmodule",
                     "t": "g"
+                },
+                {
+                    "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-3a05e106c3dd/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.swiftmodule",
+                    "t": "g"
                 }
             ]
         },
@@ -7141,6 +7596,7 @@
             "configuration": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353",
             "dependencies": [
                 "//UI:UI ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353",
+                "//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswer ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353",
                 "//iOSApp/Source/CoreUtilsObjC:CoreUtilsObjC ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353"
             ],
             "inputs": {
@@ -7153,6 +7609,18 @@
                 {
                     "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap",
                     "t": "e"
+                },
+                {
+                    "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap.swift.modulemap",
+                    "t": "g"
+                },
+                {
+                    "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_modulemap.swift.modulemap",
+                    "t": "g"
+                },
+                {
+                    "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.swift.modulemap",
+                    "t": "g"
                 },
                 {
                     "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap",
@@ -7264,6 +7732,10 @@
                 {
                     "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/UI/UI.swiftmodule",
                     "t": "g"
+                },
+                {
+                    "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.swiftmodule",
+                    "t": "g"
                 }
             ]
         },
@@ -7333,6 +7805,7 @@
                     "-L$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib",
                     "-Wl,-add_ast_path,bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/iOSApp/Test/TestingUtils/TestingUtils.swiftmodule",
                     "-Wl,-add_ast_path,bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/iOSApp/Source/iOSApp.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.swiftmodule",
                     "--ld-path=external/rules_apple_linker_lld/ld64.lld",
                     "-Wl,-add_ast_path,bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/UI/UI.swiftmodule",
                     "-Wl,-add_ast_path,bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/Lib/Lib.swiftmodule",
@@ -7697,6 +8170,7 @@
                     "-L$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib",
                     "-Wl,-add_ast_path,bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/iOSApp/Test/TestingUtils/TestingUtils.swiftmodule",
                     "-Wl,-add_ast_path,bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/iOSApp/Source/iOSApp.swiftmodule",
+                    "-Wl,-add_ast_path,bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.swiftmodule",
                     "--ld-path=external/rules_apple_linker_lld/ld64.lld",
                     "-Wl,-add_ast_path,bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/UI/UI.swiftmodule",
                     "-Wl,-add_ast_path,bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/Lib/Lib.swiftmodule",
@@ -7857,6 +8331,18 @@
                     "t": "e"
                 },
                 {
+                    "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap.swift.modulemap",
+                    "t": "g"
+                },
+                {
+                    "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_modulemap.swift.modulemap",
+                    "t": "g"
+                },
+                {
+                    "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.swift.modulemap",
+                    "t": "g"
+                },
+                {
                     "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap",
                     "t": "g"
                 },
@@ -7985,6 +8471,10 @@
                 },
                 {
                     "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/UI/UI.swiftmodule",
+                    "t": "g"
+                },
+                {
+                    "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.swiftmodule",
                     "t": "g"
                 },
                 {
