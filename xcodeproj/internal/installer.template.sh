@@ -82,7 +82,6 @@ rsync \
   --chmod=u+w,F-x \
   --exclude=project.xcworkspace \
   --exclude=xcuserdata \
-  --exclude=rules_xcodeproj/links \
   --delete \
   "$src/" "$dest/"
 
@@ -90,7 +89,13 @@ rsync \
 shopt -s nullglob
 chmod u+x "$dest/rules_xcodeproj/"*.{py,sh}
 if [[ -d "$dest/rules_xcodeproj/bazel" ]]; then
-  chmod u+x "$dest/rules_xcodeproj/bazel/"*.{py,sh}
+  if [[ $for_fixture -eq 1 ]]; then
+    # Create empty static files for fixtures
+    find "$dest/rules_xcodeproj/bazel" -type f | \
+      while read file; do :>$file; done
+  else
+    chmod u+x "$dest/rules_xcodeproj/bazel/"*.{py,sh}
+  fi
 fi
 
 # Copy over xcodeproj.bazelrc
@@ -104,6 +109,7 @@ if [[ $for_fixture -eq 1 ]]; then
   touch "$swiftc_stub_dest"
 else
   cp -c "$swiftc_stub" "$swiftc_stub_dest"
+  chmod +w "$swiftc_stub_dest"
 fi
 
 # Copy over xcodeproj_extra_flags.bazelrc if it exists
