@@ -576,7 +576,7 @@
 				);
 				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/AddressSanitizerApp/AddressSanitizerApp.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static";
+				OTHER_SWIFT_FLAGS = "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static";
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/AddressSanitizerApp/AddressSanitizerApp_archive-root/Payload";
@@ -634,8 +634,6 @@
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",
 					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
-					"-ivfsoverlay",
-					"$(OBJROOT)/bazel-out-overlay.yaml",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -665,8 +663,6 @@
 				OTHER_CPLUSPLUSFLAGS = (
 					"-ivfsoverlay",
 					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
-					"-ivfsoverlay",
-					"$(OBJROOT)/bazel-out-overlay.yaml",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -742,10 +738,14 @@
 				INDEXING_DEPLOYMENT_LOCATION__ = "$(INDEXING_DEPLOYMENT_LOCATION__NO)";
 				INDEXING_DEPLOYMENT_LOCATION__NO = YES;
 				INDEXING_DEPLOYMENT_LOCATION__YES = NO;
+				INDEXING_PROJECT_DIR__ = "$(INDEXING_PROJECT_DIR__NO)";
+				INDEXING_PROJECT_DIR__NO = "$(SRCROOT)/bazel-output-base/execroot/_rules_xcodeproj/build_output_base/execroot/__main__";
+				INDEXING_PROJECT_DIR__YES = "$(SRCROOT)/bazel-output-base/rules_xcodeproj/indexbuild_output_base/execroot/__main__";
 				INDEX_FORCE_SCRIPT_EXECUTION = YES;
 				INSTALL_PATH = "$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)/bin";
 				INTERNAL_DIR = "$(PROJECT_FILE_PATH)/rules_xcodeproj";
 				ONLY_ACTIVE_ARCH = YES;
+				PROJECT_DIR = "$(INDEXING_PROJECT_DIR__$(INDEX_ENABLE_BUILD_ARENA))";
 				RULES_XCODEPROJ_BUILD_MODE = xcode;
 				SCHEME_TARGET_IDS_FILE = "$(OBJROOT)/scheme_target_ids";
 				SRCROOT = ../../../../../..;
@@ -784,7 +784,7 @@
 				);
 				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/ThreadSanitizerApp/ThreadSanitizerApp.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static";
+				OTHER_SWIFT_FLAGS = "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static";
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/ThreadSanitizerApp/ThreadSanitizerApp_archive-root/Payload";

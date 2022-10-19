@@ -17,14 +17,18 @@ extension Generator {
         let nonRelativeProjectDir = directories.bazelOut.parent()
 
         let projectDir: Path
+        if nonRelativeProjectDir.isRelative {
+            projectDir = directories.projectRoot + nonRelativeProjectDir
+        } else {
+            projectDir = nonRelativeProjectDir
+        }
+
         let srcRoot: String
         if forFixtures {
-            projectDir = directories.projectRoot + nonRelativeProjectDir
             srcRoot = (0 ..< nonRelativeProjectDir.components.count)
                 .map { _ in ".." }
                 .joined(separator: "/")
         } else {
-            projectDir = nonRelativeProjectDir
             srcRoot = directories.workspace.string
         }
 
@@ -33,6 +37,25 @@ extension Generator {
             path: srcRoot
         )
         pbxProj.add(object: mainGroup)
+
+        // bazel-output-base/execroot/_rules_xcodeproj/build_output_base/execroot/com_github_buildbuddy_io_rules_xcodeproj ->
+        // bazel-output-base/rules_xcodeproj/indexbuild_output_base/execroot/com_github_buildbuddy_io_rules_xcodeproj
+        let projectDirComponents = nonRelativeProjectDir.components
+        let indexingProjectDirComponents =
+            projectDirComponents[...(projectDirComponents.count - 6)] +
+            ["rules_xcodeproj", "indexbuild_output_base"] +
+            projectDirComponents[(projectDirComponents.count - 2)...]
+        let indexingProjectDir = Path(components: indexingProjectDirComponents)
+
+        let projectDirBuildSetting: String
+        let indexingProjectDirBuildSetting: String
+        if directories.bazelOut.isRelative {
+            projectDirBuildSetting = "$(SRCROOT)/\(nonRelativeProjectDir)"
+            indexingProjectDirBuildSetting = "$(SRCROOT)/\(indexingProjectDir)"
+        } else {
+            projectDirBuildSetting = projectDir.string
+            indexingProjectDirBuildSetting = indexingProjectDir.string
+        }
 
         var buildSettings = project.buildSettings.asDictionary
         buildSettings.merge([
@@ -78,11 +101,24 @@ $(INDEXING_DEPLOYMENT_LOCATION__NO)
 """,
             "INDEXING_DEPLOYMENT_LOCATION__NO": true,
             "INDEXING_DEPLOYMENT_LOCATION__YES": false,
+            "INDEXING_PROJECT_DIR__": "$(INDEXING_PROJECT_DIR__NO)",
+            "INDEXING_PROJECT_DIR__NO": projectDirBuildSetting,
+            "INDEXING_PROJECT_DIR__YES": indexingProjectDirBuildSetting,
             "INSTALL_PATH": "$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)/bin",
             "INTERNAL_DIR": """
 $(PROJECT_FILE_PATH)/\(directories.internalDirectoryName)
 """,
-            "RULES_XCODEPROJ_BUILD_MODE": buildMode.rawValue,            "SCHEME_TARGET_IDS_FILE": """
+            // We use a different output base for Index Build to prevent normal
+            // builds and indexing waiting on bazel locks from the other. We
+            // nest it inside of the normal output base directory so that it's
+            // not cleaned up when running `bazel clean`, but is when running
+            // `bazel clean --expunge`. This matches Xcode behavior of not
+            // cleaning the Index Build outputs by default.
+            "PROJECT_DIR": """
+$(INDEXING_PROJECT_DIR__$(INDEX_ENABLE_BUILD_ARENA))
+""",
+            "RULES_XCODEPROJ_BUILD_MODE": buildMode.rawValue,
+            "SCHEME_TARGET_IDS_FILE": """
 $(OBJROOT)/scheme_target_ids
 """,
             "SRCROOT": srcRoot,

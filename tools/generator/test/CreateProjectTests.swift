@@ -15,8 +15,8 @@ final class CreateProjectTests: XCTestCase {
         let directories = FilePathResolver.Directories(
             workspace: "/Users/TimApple/app",
             projectRoot: projectRootDirectory,
-            external: "/some/bazel13/external",
-            bazelOut: "/some/bazel13/bazel-out",
+            external: "/tmp/bazel-output-base/execroot/_rules_xcodeproj/build_output_base/external",
+            bazelOut: "/tmp/bazel-output-base/execroot/_rules_xcodeproj/build_output_base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out",
             internalDirectoryName: "r_xcp",
             bazelIntegration: "stubs",
             workspaceOutput: "X.xcodeproj"
@@ -74,8 +74,18 @@ $(INDEXING_DEPLOYMENT_LOCATION__NO)
 """,
                 "INDEXING_DEPLOYMENT_LOCATION__NO": true,
                 "INDEXING_DEPLOYMENT_LOCATION__YES": false,
+                "INDEXING_PROJECT_DIR__": "$(INDEXING_PROJECT_DIR__NO)",
+                "INDEXING_PROJECT_DIR__NO": """
+/tmp/bazel-output-base/execroot/_rules_xcodeproj/build_output_base/execroot/com_github_buildbuddy_io_rules_xcodeproj
+""",
+                "INDEXING_PROJECT_DIR__YES": """
+/tmp/bazel-output-base/rules_xcodeproj/indexbuild_output_base/execroot/com_github_buildbuddy_io_rules_xcodeproj
+""",
                 "INSTALL_PATH": "$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)/bin",
                 "INTERNAL_DIR": "$(PROJECT_FILE_PATH)/r_xcp",
+                "PROJECT_DIR": """
+$(INDEXING_PROJECT_DIR__$(INDEX_ENABLE_BUILD_ARENA))
+""",
                 "RULES_XCODEPROJ_BUILD_MODE": "xcode",
                 "SCHEME_TARGET_IDS_FILE": """
 $(OBJROOT)/scheme_target_ids
@@ -139,8 +149,8 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
         let directories = FilePathResolver.Directories(
             workspace: "/Users/TimApple/app",
             projectRoot: projectRootDirectory,
-            external: "/some/bazel16/external",
-            bazelOut: "/some/bazel16/bazel-out",
+            external: "/tmp/bazel-output-base/execroot/_rules_xcodeproj/build_output_base/external",
+            bazelOut: "/tmp/bazel-output-base/execroot/_rules_xcodeproj/build_output_base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out",
             internalDirectoryName: "r_xcp",
             bazelIntegration: "stubs",
             workspaceOutput: "X.xcodeproj"
@@ -204,8 +214,18 @@ $(INDEXING_DEPLOYMENT_LOCATION__NO)
 """,
                 "INDEXING_DEPLOYMENT_LOCATION__NO": true,
                 "INDEXING_DEPLOYMENT_LOCATION__YES": false,
+                "INDEXING_PROJECT_DIR__": "$(INDEXING_PROJECT_DIR__NO)",
+                "INDEXING_PROJECT_DIR__NO": """
+/tmp/bazel-output-base/execroot/_rules_xcodeproj/build_output_base/execroot/com_github_buildbuddy_io_rules_xcodeproj
+""",
+                "INDEXING_PROJECT_DIR__YES": """
+/tmp/bazel-output-base/rules_xcodeproj/indexbuild_output_base/execroot/com_github_buildbuddy_io_rules_xcodeproj
+""",
                 "INSTALL_PATH": "$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)/bin",
                 "INTERNAL_DIR": "$(PROJECT_FILE_PATH)/r_xcp",
+                "PROJECT_DIR": """
+$(INDEXING_PROJECT_DIR__$(INDEX_ENABLE_BUILD_ARENA))
+""",
                 "RULES_XCODEPROJ_BUILD_MODE": "bazel",
                 "SCHEME_TARGET_IDS_FILE": """
 $(OBJROOT)/scheme_target_ids
