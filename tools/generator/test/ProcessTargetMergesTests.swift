@@ -16,6 +16,7 @@ final class TargetMergingTests: XCTestCase {
         // Act
 
         try Generator.processTargetMerges(
+            buildMode: .xcode,
             targets: &targets,
             targetMerges: targetMerges
         )
@@ -91,9 +92,10 @@ final class TargetMergingTests: XCTestCase {
             ),
             resourceBundleDependencies: targets["B 2"]!
                 .resourceBundleDependencies,
-            // Inherited "B 1"'s dependencies and removed "A 1"
-            dependencies: ["A 2"],
-            outputs: targets["B 2"]!.outputs.merging(targets["B 1"]!.outputs)
+            // Inherited "B 1"'s dependencies and changed "A 1" to "B 2"
+            dependencies: ["A 2", "B 3"],
+            outputs: targets["B 2"]!.outputs.merging(targets["B 1"]!.outputs),
+            additionalSchemeTargets: ["B 3"]
         )
         expectedTargets["B 3"] = Target.mock(
             compileTarget: .init(id: "B 1", name: targets["B 1"]!.name),
@@ -116,13 +118,15 @@ final class TargetMergingTests: XCTestCase {
             resourceBundleDependencies: targets["B 3"]!
                 .resourceBundleDependencies,
             // Inherited "B 1"'s "A 1" dependency and changed it to "A 2"
-            dependencies: ["A 2"],
-            outputs: targets["B 3"]!.outputs.merging(targets["B 1"]!.outputs)
+            dependencies: ["A 2", "B 2"],
+            outputs: targets["B 3"]!.outputs.merging(targets["B 1"]!.outputs),
+            additionalSchemeTargets: ["B 2"]
         )
 
         // Act
 
         try Generator.processTargetMerges(
+            buildMode: .xcode,
             targets: &targets,
             targetMerges: targetMerges
         )

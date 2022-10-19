@@ -23,6 +23,7 @@ extension Generator {
     ///     that should be merged to the target ids of the target they should
     ///     be merged into.
     static func processTargetMerges(
+        buildMode: BuildMode,
         targets: inout [TargetID: Target],
         targetMerges: [TargetID: Set<TargetID>]
     ) throws {
@@ -97,8 +98,27 @@ exist
         for (id, target) in targets {
             // Dependencies
             for dependency in target.dependencies {
-                if targetMerges[dependency] != nil {
+                if let newDependencies = targetMerges[dependency] {
                     targets[id]!.dependencies.remove(dependency)
+
+                    // TODO: We only support one destination right now, but if
+                    // that ever changes we need to fix this logic
+                    for dependency in newDependencies {
+                        guard dependency != id else {
+                            continue
+                        }
+                        let (inserted, _) = targets[id]!.dependencies
+                            .insert(dependency)
+
+                        if buildMode == .xcode && inserted {
+                            // TODO: When we move target merging into Starlark,
+                            // we need to merge output groups as well, which is
+                            // what this is currently working around (e.g.
+                            // making sure framework Info.plists are generated).
+                            targets[id]!.additionalSchemeTargets
+                                .insert(dependency)
+                        }
+                    }
                 }
             }
         }

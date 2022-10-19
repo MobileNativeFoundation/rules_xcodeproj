@@ -64,7 +64,11 @@ class Generator {
             &targets,
             project.replacementLabels
         )
-        try environment.processTargetMerges(&targets, project.targetMerges)
+        try environment.processTargetMerges(
+            buildMode,
+            &targets,
+            project.targetMerges
+        )
 
         let isUnfocusedDependencyTargetIDs = Set(
             targets.filter(\.value.isUnfocusedDependency).keys

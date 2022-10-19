@@ -18,6 +18,7 @@ struct Environment {
     ) throws -> Void
 
     let processTargetMerges: (
+        _ buildMode: BuildMode,
         _ targets: inout [TargetID: Target],
         _ targetMerges: [TargetID: Set<TargetID>]
     ) throws -> Void
