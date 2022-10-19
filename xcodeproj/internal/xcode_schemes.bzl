@@ -75,6 +75,7 @@ def focus_schemes(schemes, focused_targets):
                     targets = test_targets,
                     build_configuration_name = build_configuration_name,
                     args = test_action.args,
+                    diagnostics = test_action.diagnostics,
                     env = test_action.env,
                 )
             else:
@@ -168,6 +169,7 @@ def unfocus_schemes(schemes, unfocused_targets):
                     targets = test_targets,
                     build_configuration_name = build_configuration_name,
                     args = test_action.args,
+                    diagnostics = test_action.diagnostics,
                     env = test_action.env,
                 )
             else:
