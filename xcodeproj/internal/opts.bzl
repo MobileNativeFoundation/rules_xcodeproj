@@ -781,10 +781,13 @@ def _process_user_swiftcopts(opts):
     return additional_opts, search_paths, has_debug_info
 
 def _process_user_copt(copt):
-    flag, value = copt.split("=", 1)
-    if value:
-        return "{}={}".format(flag, _process_user_copt_possible_path(value))
-    return _process_user_copt_possible_path(flag)
+    components = copt.split("=", 1)
+    if len(components) > 1:
+        return "{}={}".format(
+            components[0],
+            _process_user_copt_possible_path(components[1]),
+        )
+    return _process_user_copt_possible_path(copt)
 
 def _process_user_copt_possible_path(copt):
     if copt.startswith("bazel-out/"):

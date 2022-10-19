@@ -341,13 +341,13 @@ def process_compiler_opts_test_suite(name):
             "-Xcc",
             "-weird",
             "-Xcc",
-            "-user-flag",
+            "-a=bazel-out/hi",
             "-Xwrapped-swift",
             "-passthrough",
         ],
         user_swiftcopts = [
             "-Xcc",
-            "-user-flag",
+            "-a=bazel-out/hi",
         ],
         expected_build_settings = {
             "OTHER_CFLAGS": [
@@ -374,7 +374,7 @@ def process_compiler_opts_test_suite(name):
 -keep-me=something.swift \
 -passthrough \
 -Xcc \
--user-flag\
+-a=$(BAZEL_OUT)/hi\
 """,
         },
     )
