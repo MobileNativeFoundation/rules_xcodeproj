@@ -71,7 +71,13 @@
             "test_action": {
                 "args": [],
                 "build_configuration_name": "Debug",
-                "diagnostics": null,
+                "diagnostics": {
+                    "sanitizers": {
+                        "address": true,
+                        "thread": false,
+                        "undefined_behavior": false
+                    }
+                },
                 "env": {
                     "CUSTOM_ENV_VAR": "goodbye"
                 },
