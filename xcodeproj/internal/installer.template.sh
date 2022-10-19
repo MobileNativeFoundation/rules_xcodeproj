@@ -164,33 +164,11 @@ plutil -replace IDEWorkspaceSharedSettings_AutocreateContextsIfNeeded -bool fals
 if [[ -f "$dest/rules_xcodeproj/generated.xcfilelist" ]]; then
   cd "$BUILD_WORKSPACE_DIRECTORY"
 
-  output_base=$("$bazel_path" info output_base)
+  execution_root=$("$bazel_path" info execution_root)
+  readonly workspace_name="${execution_root##*/}"
+  readonly output_base="${execution_root%/*/*}"
   readonly nested_output_base="$output_base/execroot/_rules_xcodeproj/build_output_base"
-
-  # Determine bazel-out
-  bazelrcs=(
-    --noworkspace_rc
-    "--bazelrc=$dest/rules_xcodeproj/bazel/xcodeproj.bazelrc"
-  )
-  if [[ -s ".bazelrc" ]]; then
-    bazelrcs+=("--bazelrc=.bazelrc")
-  fi
-
-  developer_dir=$(xcode-select -p)
-  xcode_build_version=$(/usr/bin/xcodebuild -version | tail -1 | cut -d " " -f3)
-
-  # Re-export `DEVELOPER_DIR` in case a wrapper has wiped it away
-  export DEVELOPER_DIR="$developer_dir"
-
-  bazel_out=$("$bazel_path" \
-    "--host_jvm_args=-Xdock:name=$developer_dir" \
-    "${bazelrcs[@]}" \
-    --output_base "$nested_output_base" \
-    info \
-    "--repo_env=DEVELOPER_DIR=$developer_dir" \
-    "--repo_env=USE_CLANG_CL=$xcode_build_version" \
-    "--config=%config%_info" \
-    output_path)
+  readonly bazel_out="$nested_output_base/execroot/$workspace_name/bazel-out"
 
   # Create directory structure in bazel-out
   cd "$bazel_out"
