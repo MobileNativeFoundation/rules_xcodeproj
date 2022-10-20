@@ -397,7 +397,7 @@ def make_xcode_schemes(bazel_labels):
             diagnostics = None,
             env = None,
             expand_variables_based_on = None,
-            pre_actions = [], 
+            pre_actions = [],
             post_actions = []):
         """Constructs a test action for an Xcode scheme.
 
