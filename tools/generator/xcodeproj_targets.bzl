@@ -64,13 +64,14 @@ def get_xcode_schemes():
                 _APP_TARGET,
                 args = [
                     "/tmp/spec.json",
-                    "bazel-output-base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out/darwin_arm64-dbg/bin/tools/generator/xcodeproj.generator_root_dirs",
-                    "bazel-output-base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out/darwin_arm64-dbg/bin/tools/generator/xcodeproj.generator_xccurrentversions",
-                    "bazel-output-base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out/darwin_arm64-dbg/bin/tools/generator/xcodeproj.generator_extensionpointidentifiers",
+                    "bazel-output-base/execroot/_rules_xcodeproj/build_output_base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out/darwin_arm64-dbg/bin/tools/generator/xcodeproj.generator_root_dirs",
+                    "bazel-output-base/execroot/_rules_xcodeproj/build_output_base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out/darwin_arm64-dbg/bin/tools/generator/xcodeproj.generator_xccurrentversions",
+                    "bazel-output-base/execroot/_rules_xcodeproj/build_output_base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out/darwin_arm64-dbg/bin/tools/generator/xcodeproj.generator_extensionpointidentifiers",
                     "xcodeproj/internal/bazel_integration_files",
                     "/tmp/out.xcodeproj",
                     "/tmp/out.final.xcodeproj",
                     "bazel",
+                    "0",
                 ],
                 # This is not necessary for the generator. It is here to help
                 # verify that custom environment variables are passed along.
