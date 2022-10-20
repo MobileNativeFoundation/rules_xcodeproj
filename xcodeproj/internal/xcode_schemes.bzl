@@ -77,6 +77,28 @@ def focus_schemes(schemes, focused_targets):
                     args = test_action.args,
                     diagnostics = test_action.diagnostics,
                     env = test_action.env,
+                    pre_actions = [
+                        pre_action
+                        for pre_action in test_action.pre_actions
+                        if (
+                            not pre_action.expand_variables_based_on or
+                            sets.contains(
+                                focused_targets,
+                                pre_action.expand_variables_based_on,
+                            )
+                        )
+                    ],
+                    post_actions = [
+                        post_action
+                        for post_action in test_action.post_actions
+                        if (
+                            not post_action.expand_variables_based_on or
+                            sets.contains(
+                                focused_targets,
+                                post_action.expand_variables_based_on,
+                            )
+                        )
+                    ],
                 )
             else:
                 test_action = None
@@ -171,6 +193,28 @@ def unfocus_schemes(schemes, unfocused_targets):
                     args = test_action.args,
                     diagnostics = test_action.diagnostics,
                     env = test_action.env,
+                    pre_actions = [
+                        pre_action
+                        for pre_action in test_action.pre_actions
+                        if (
+                            not pre_action.expand_variables_based_on or
+                            not sets.contains(
+                                unfocused_targets,
+                                pre_action.expand_variables_based_on,
+                            )
+                        )
+                    ],
+                    post_actions = [
+                        post_action
+                        for post_action in test_action.post_actions
+                        if (
+                            not post_action.expand_variables_based_on or
+                            not sets.contains(
+                                unfocused_targets,
+                                post_action.expand_variables_based_on,
+                            )
+                        )
+                    ],
                 )
             else:
                 test_action = None
@@ -237,20 +281,6 @@ def make_xcode_schemes(bazel_labels):
             A `struct` representing a build action.
         """
 
-        def _pre_post_actions(actions):
-            return [
-                _pre_post_action(
-                    script = action.script,
-                    expand_variables_based_on = (
-                        bazel_labels.normalize(
-                            action.expand_variables_based_on,
-                        ) if action.expand_variables_based_on else None
-                    ),
-                    name = action.name,
-                )
-                for action in actions
-            ]
-
         return xcode_schemes_internal.build_action(
             targets = [
                 _build_target(target) if type(target) == "string" else target
@@ -259,6 +289,20 @@ def make_xcode_schemes(bazel_labels):
             pre_actions = _pre_post_actions(pre_actions),
             post_actions = _pre_post_actions(post_actions),
         )
+
+    def _pre_post_actions(actions):
+        return [
+            _pre_post_action(
+                script = action.script,
+                expand_variables_based_on = (
+                    bazel_labels.normalize(
+                        action.expand_variables_based_on,
+                    ) if action.expand_variables_based_on else None
+                ),
+                name = action.name,
+            )
+            for action in actions
+        ]
 
     def _build_target(label, build_for = None):
         """Constructs a build target for an Xcode scheme's build action.
@@ -352,7 +396,9 @@ def make_xcode_schemes(bazel_labels):
             args = None,
             diagnostics = None,
             env = None,
-            expand_variables_based_on = None):
+            expand_variables_based_on = None,
+            pre_actions = [], 
+            post_actions = []):
         """Constructs a test action for an Xcode scheme.
 
         Args:
@@ -367,6 +413,10 @@ def make_xcode_schemes(bazel_labels):
                 target labels. If no value is provided, one of the test targets
                 will be selected. If no expansion context is desired, use the
                 `string` value `none`.
+            pre_actions: A `sequence` of `struct` values as created by
+                `xcode_schemes.pre_action`.
+            post_actions: A `sequence` of `struct` values as created by
+                `xcode_schemes.post_action`.
 
         Returns:
             A `struct` representing a test action.
@@ -391,6 +441,8 @@ def make_xcode_schemes(bazel_labels):
             diagnostics = diagnostics,
             env = env,
             expand_variables_based_on = expand_variables_based_on,
+            pre_actions = _pre_post_actions(pre_actions),
+            post_actions = _pre_post_actions(post_actions),
         )
 
     return struct(
