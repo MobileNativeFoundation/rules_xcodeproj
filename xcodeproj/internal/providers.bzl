@@ -9,6 +9,7 @@ If you need more control over how a target or its dependencies are processed,
 return a `XcodeProjInfo` provider instance instead.
 """,
     fields = {
+        "all_attrs": "",
         "alternate_icons": """\
 An attribute name (or `None`) to collect the application alternate icons.
 """,

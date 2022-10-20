@@ -6,7 +6,12 @@ load(
     ":default_automatic_target_processing_aspect.bzl",
     "default_automatic_target_processing_aspect",
 )
-load(":providers.bzl", "XcodeProjInfo", "XcodeProjProvisioningProfileInfo")
+load(
+    ":providers.bzl",
+    "XcodeProjAutomaticTargetProcessingInfo",
+    "XcodeProjInfo",
+    "XcodeProjProvisioningProfileInfo",
+)
 load(":provisioning_profiles.bzl", "provisioning_profiles")
 load(":xcodeprojinfo.bzl", "create_xcodeprojinfo")
 
@@ -20,9 +25,13 @@ def _should_ignore_attr(attr):
         attr in ("to_json", "to_proto")
     )
 
-def _transitive_infos(*, ctx):
+def _transitive_infos(*, ctx, automatic_target_info):
     transitive_infos = []
-    for attr in dir(ctx.rule.attr):
+    # TODO: Have `XcodeProjAutomaticTargetProcessingInfo` tell us which
+    # attributes to look at. About 7% of an example pprof trace is spent on
+    # `_should_ignore_attr` and the type checks below. If we had a list of
+    # attributes with the types (list or not) we could eliminate that overhead.
+    for attr in automatic_target_info.all_attrs:
         if _should_ignore_attr(attr):
             continue
 
@@ -48,7 +57,12 @@ def _xcodeproj_aspect_impl(target, ctx):
             create_xcodeprojinfo(
                 ctx = ctx,
                 target = target,
-                transitive_infos = _transitive_infos(ctx = ctx),
+                transitive_infos = _transitive_infos(
+                    ctx = ctx,
+                    automatic_target_info = (
+                        target[XcodeProjAutomaticTargetProcessingInfo]
+                    ),
+                ),
             ),
         )
 
