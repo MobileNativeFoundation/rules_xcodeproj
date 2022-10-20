@@ -157,7 +157,10 @@ objc_library(
     copts = [
         "-Wno-incompatible-pointer-types",
         "-Wno-incompatible-pointer-types-discards-qualifiers",
+        "-Wno-shorten-64-to-32",
+        "-Wno-unreachable-code",
         "-Wno-unused-function",
+        "-Wno-unused-variable",
     ],
     includes = ["Sources/JJLISO8601DateFormatter/include"],
     hdrs = glob(["Sources/JJLISO8601DateFormatter/include/*"]),
@@ -185,6 +188,7 @@ objc_library(
         "-Wno-reorder-ctor",
         "-Wno-return-type-c-linkage",
         "-Wno-shorten-64-to-32",
+        "-Wno-unused-variable",
     ],
     srcs = glob(["Sources/ZippyJSONCFamily/**/*"]),
     includes = ["Sources/ZippyJSONCFamily/include"],
