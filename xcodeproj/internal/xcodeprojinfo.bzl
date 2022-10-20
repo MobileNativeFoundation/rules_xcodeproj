@@ -43,7 +43,7 @@ def _should_skip_target(*, ctx, target):
     Returns:
         `True` if `target` should be skipped for target generation.
     """
-    if AppleBinaryInfo in target and "deps" not in dir(ctx.rule.attr):
+    if AppleBinaryInfo in target and not hasattr(ctx.rule.attr, "deps"):
         return True
 
     return targets.is_test_bundle(
