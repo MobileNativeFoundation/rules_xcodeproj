@@ -250,7 +250,7 @@ def _collect_input_files(
             continue
         _handle_file(getattr(ctx.rule.file, attr), attr = attr)
 
-    for attr in dir(ctx.rule.attr):
+    for attr in automatic_target_info.all_attrs:
         if _should_ignore_input_attr(attr):
             continue
         dep = getattr(ctx.rule.attr, attr, None)
