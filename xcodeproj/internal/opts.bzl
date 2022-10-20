@@ -902,6 +902,7 @@ def _process_compiler_opts(
         *   `quotes_includes`: A `list` of quote include paths parsed.
         *   `includes`: A `list` of include paths parsed.
     """
+
     # Xcode's default for `ENABLE_STRICT_OBJC_MSGSEND` doesn't match its new
     # project default, so we need to set it explicitly
     build_settings["ENABLE_STRICT_OBJC_MSGSEND"] = True
