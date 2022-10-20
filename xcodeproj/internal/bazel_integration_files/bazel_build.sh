@@ -24,25 +24,6 @@
 output_groups_flag="--output_groups=$(IFS=, ; echo "${output_groups[*]}")"
 readonly output_groups_flag
 
-# Set `output_base`
-
-# In `runner.template.sh` the generator has the build output base set inside
-# of the outer bazel's output path (`bazel-out/`). So here we need to make
-# our output base changes relative to that changed path.
-readonly build_output_base="$BAZEL_OUTPUT_BASE"
-
-if [ "$ACTION" == "indexbuild" ]; then
-  # We use a different output base for Index Build to prevent normal builds and
-  # indexing waiting on bazel locks from the other. We nest it inside of the
-  # normal output base directory so that it's not cleaned up when running
-  # `bazel clean`, but is when running `bazel clean --expunge`. This matches
-  # Xcode behavior of not cleaning the Index Build outputs by default.
-  readonly outer_output_base="$build_output_base/../.."
-  readonly output_base="$outer_output_base/rules_xcodeproj/indexbuild_output_base"
-else
-  readonly output_base="$build_output_base"
-fi
-
 # Set `bazel_cmd` for calling `bazel`
 
 bazelrcs=(
@@ -67,7 +48,7 @@ readonly bazel_cmd=(
 
   "${bazelrcs[@]}"
 
-  --output_base "$output_base"
+  --output_base "$BAZEL_OUTPUT_BASE"
 )
 
 readonly base_pre_config_flags=(
@@ -98,27 +79,6 @@ output_path=$("${bazel_cmd[@]}" \
   --color="$info_color" \
   output_path)
 readonly output_path
-
-# Create VFS overlays
-
-if [[ "${BAZEL_OUT:0:1}" == '/' ]]; then
-  readonly bazel_out_prefix=
-else
-  readonly bazel_out_prefix="$SRCROOT/"
-fi
-
-readonly absolute_bazel_out="${bazel_out_prefix}$BAZEL_OUT"
-if [[ "$output_path" != "$absolute_bazel_out" ]]; then
-  # Use current path for bazel-out
-  # This fixes Index Build to use its version of generated files
-  readonly roots="{\"external-contents\": \"$output_path\",\"name\": \"$absolute_bazel_out\",\"type\": \"directory-remap\"}"
-else
-  readonly roots=""
-fi
-
-cat > "$OBJROOT/bazel-out-overlay.yaml" <<EOF
-{"case-sensitive": "false", "fallthrough": true, "roots": [$roots],"version": 0}
-EOF
 
 # Custom Swift toolchains
 

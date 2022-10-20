@@ -583,8 +583,6 @@
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",
 					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
-					"-ivfsoverlay",
-					"$(OBJROOT)/bazel-out-overlay.yaml",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -598,8 +596,6 @@
 				OTHER_CPLUSPLUSFLAGS = (
 					"-ivfsoverlay",
 					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
-					"-ivfsoverlay",
-					"$(OBJROOT)/bazel-out-overlay.yaml",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -648,8 +644,6 @@
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",
 					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
-					"-ivfsoverlay",
-					"$(OBJROOT)/bazel-out-overlay.yaml",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -663,8 +657,6 @@
 				OTHER_CPLUSPLUSFLAGS = (
 					"-ivfsoverlay",
 					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
-					"-ivfsoverlay",
-					"$(OBJROOT)/bazel-out-overlay.yaml",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -738,10 +730,14 @@
 				INDEXING_DEPLOYMENT_LOCATION__ = "$(INDEXING_DEPLOYMENT_LOCATION__NO)";
 				INDEXING_DEPLOYMENT_LOCATION__NO = YES;
 				INDEXING_DEPLOYMENT_LOCATION__YES = NO;
+				INDEXING_PROJECT_DIR__ = "$(INDEXING_PROJECT_DIR__NO)";
+				INDEXING_PROJECT_DIR__NO = "$(SRCROOT)/bazel-output-base/execroot/_rules_xcodeproj/build_output_base/execroot/__main__";
+				INDEXING_PROJECT_DIR__YES = "$(SRCROOT)/bazel-output-base/rules_xcodeproj/indexbuild_output_base/execroot/__main__";
 				INDEX_FORCE_SCRIPT_EXECUTION = YES;
 				INSTALL_PATH = "$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)/bin";
 				INTERNAL_DIR = "$(PROJECT_FILE_PATH)/rules_xcodeproj";
 				ONLY_ACTIVE_ARCH = YES;
+				PROJECT_DIR = "$(INDEXING_PROJECT_DIR__$(INDEX_ENABLE_BUILD_ARENA))";
 				RULES_XCODEPROJ_BUILD_MODE = xcode;
 				SCHEME_TARGET_IDS_FILE = "$(OBJROOT)/scheme_target_ids";
 				SRCROOT = ../../../../../..;
@@ -784,8 +780,6 @@
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",
 					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
-					"-ivfsoverlay",
-					"$(OBJROOT)/bazel-out-overlay.yaml",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -799,8 +793,6 @@
 				OTHER_CPLUSPLUSFLAGS = (
 					"-ivfsoverlay",
 					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
-					"-ivfsoverlay",
-					"$(OBJROOT)/bazel-out-overlay.yaml",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -863,8 +855,6 @@
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",
 					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
-					"-ivfsoverlay",
-					"$(OBJROOT)/bazel-out-overlay.yaml",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -878,8 +868,6 @@
 				OTHER_CPLUSPLUSFLAGS = (
 					"-ivfsoverlay",
 					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
-					"-ivfsoverlay",
-					"$(OBJROOT)/bazel-out-overlay.yaml",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
