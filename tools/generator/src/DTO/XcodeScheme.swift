@@ -203,6 +203,8 @@ extension XcodeScheme {
         let diagnostics: Diagnostics
         let env: [String: String]
         let expandVariablesBasedOn: BazelLabel?
+        let preActions: [PrePostAction]
+        let postActions: [PrePostAction]
 
         init<Targets: Sequence>(
             targets: Targets,
@@ -210,7 +212,9 @@ extension XcodeScheme {
             args: [String] = [],
             diagnostics: Diagnostics = .init(),
             env: [String: String] = [:],
-            expandVariablesBasedOn: BazelLabel? = nil
+            expandVariablesBasedOn: BazelLabel? = nil,
+            preActions: [PrePostAction] = [],
+            postActions: [PrePostAction] = []
         ) throws where Targets.Element == BazelLabel {
             self.targets = Set(targets)
             self.buildConfigurationName = buildConfigurationName
@@ -218,6 +222,8 @@ extension XcodeScheme {
             self.diagnostics = diagnostics
             self.env = env
             self.expandVariablesBasedOn = expandVariablesBasedOn
+            self.preActions = preActions
+            self.postActions = postActions
 
             guard !self.targets.isEmpty else {
                 throw PreconditionError(message: """
@@ -236,6 +242,8 @@ extension XcodeScheme.TestAction: Decodable {
         case diagnostics
         case env
         case expandVariablesBasedOn
+        case preActions
+        case postActions
     }
 
     init(from decoder: Decoder) throws {
@@ -260,6 +268,16 @@ extension XcodeScheme.TestAction: Decodable {
                 BazelLabel.self,
                 forKey: .expandVariablesBasedOn
             )
+        preActions = try container
+            .decodeIfPresent(
+                [XcodeScheme.PrePostAction].self,
+                forKey: .preActions
+            ) ?? []
+        postActions = try container
+            .decodeIfPresent(
+                [XcodeScheme.PrePostAction].self,
+                forKey: .postActions
+            ) ?? []
     }
 }
 

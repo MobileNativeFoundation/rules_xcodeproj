@@ -25,6 +25,14 @@
                     "IOSAPPSWIFTUNITTESTS_CUSTOMSCHEMEVAR": "TRUE"
                 },
                 "expand_variables_based_on": null,
+                "post_actions": [
+                    {
+                        "expand_variables_based_on": "@//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests",
+                        "name": "Run After Tests",
+                        "script": "echo \"Hi\""
+                    }
+                ],
+                "pre_actions": [],
                 "targets": [
                     "@//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests",
                     "@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests"

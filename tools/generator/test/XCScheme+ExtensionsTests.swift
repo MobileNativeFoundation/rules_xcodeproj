@@ -115,7 +115,9 @@ extension XCSchemeExtensionsTests {
         let testActionInfo = try XCSchemeInfo.TestActionInfo(
             resolveHostsFor: .init(
                 buildConfigurationName: buildConfigurationName,
-                targetInfos: [unitTestTargetInfo, uiTestTargetInfo]
+                targetInfos: [unitTestTargetInfo, uiTestTargetInfo],
+                preActions: [.init(name: "Custom Pre Script", expandVariablesBasedOn: nil, script: "exit 0")],
+                postActions: [.init(name: "Custom Post Script", expandVariablesBasedOn: libraryTargetInfo, script: "exit 1")]
             ),
             topLevelTargetInfos: []
         ).orThrow()
@@ -126,6 +128,12 @@ extension XCSchemeExtensionsTests {
             testables: [
                 .init(skipped: false, buildableReference: unitTestTargetInfo.buildableReference),
                 .init(skipped: false, buildableReference: uiTestTargetInfo.buildableReference),
+            ],
+            preActions: [
+                .init(scriptText: "exit 0", title: "Custom Pre Script", environmentBuildable: nil)
+            ],
+            postActions: [
+                .init(scriptText: "exit 1", title: "Custom Post Script", environmentBuildable: libraryTargetInfo.buildableReference)
             ],
             shouldUseLaunchSchemeArgsEnv: true,
             customLLDBInitFile: XCSchemeConstants.customLLDBInitFile

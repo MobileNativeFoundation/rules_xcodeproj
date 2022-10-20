@@ -73,6 +73,13 @@ def get_xcode_schemes():
                     "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests",
                     "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests",
                 ],
+                post_actions = [
+                    xcode_schemes.pre_post_action(
+                        name = "Run After Tests",
+                        script = "echo \"Hi\"",
+                        expand_variables_based_on = "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests",
+                    ),
+                ],
             ),
         ),
     ]

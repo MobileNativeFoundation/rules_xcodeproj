@@ -178,6 +178,12 @@ extension XcodeScheme {
         }
         if let testAction = testAction {
             labels.formUnion(testAction.targets)
+            labels.formUnion(testAction.preActions.compactMap(
+                \.expandVariablesBasedOn
+            ))
+            labels.formUnion(testAction.postActions.compactMap(
+                \.expandVariablesBasedOn
+            ))
         }
         if let launchAction = launchAction {
             labels.update(with: launchAction.target)

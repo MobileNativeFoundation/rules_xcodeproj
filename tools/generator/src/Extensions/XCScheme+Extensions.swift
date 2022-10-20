@@ -220,6 +220,8 @@ extension XCScheme.TestAction {
                 .filter(\.pbxTarget.isTestable)
                 .sortedLocalizedStandard(\.pbxTarget.name)
                 .map { .init(skipped: false, buildableReference: $0.buildableReference) },
+            preActions: testActionInfo.preActions.map(\.executionAction),
+            postActions: testActionInfo.postActions.map(\.executionAction),
             shouldUseLaunchSchemeArgsEnv: shouldUseLaunchSchemeArgsEnv,
             enableAddressSanitizer: testActionInfo.diagnostics.sanitizers
                 .address,

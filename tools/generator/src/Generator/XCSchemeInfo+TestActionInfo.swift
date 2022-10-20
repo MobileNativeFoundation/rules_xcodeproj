@@ -8,6 +8,8 @@ extension XCSchemeInfo {
         let diagnostics: DiagnosticsInfo
         let env: [String: String]
         let expandVariablesBasedOn: TargetInfo?
+        let preActions: [PrePostActionInfo]
+        let postActions: [PrePostActionInfo]
 
         /// The primary initializer.
         init<TargetInfos: Sequence>(
@@ -16,7 +18,9 @@ extension XCSchemeInfo {
             args: [String] = [],
             diagnostics: DiagnosticsInfo = .init(diagnostics: .init()),
             env: [String: String] = [:],
-            expandVariablesBasedOn: TargetInfo? = nil
+            expandVariablesBasedOn: TargetInfo? = nil,
+            preActions: [PrePostActionInfo] = [],
+            postActions: [PrePostActionInfo] = []
         ) throws where TargetInfos.Element == XCSchemeInfo.TargetInfo {
             self.buildConfigurationName = buildConfigurationName
             self.targetInfos = Set(targetInfos)
@@ -24,6 +28,8 @@ extension XCSchemeInfo {
             self.diagnostics = diagnostics
             self.env = env
             self.expandVariablesBasedOn = expandVariablesBasedOn
+            self.preActions = preActions
+            self.postActions = postActions
 
             guard !self.targetInfos.isEmpty else {
                 throw PreconditionError(message: """
@@ -73,7 +79,11 @@ extension XCSchemeInfo.TestActionInfo {
             args: original.args,
             diagnostics: original.diagnostics,
             env: original.env,
-            expandVariablesBasedOn: expandVariablesBasedOn
+            expandVariablesBasedOn: expandVariablesBasedOn,
+            preActions: try original.preActions
+                .resolveHosts(topLevelTargetInfos: topLevelTargetInfos),
+            postActions: try original.postActions
+                .resolveHosts(topLevelTargetInfos: topLevelTargetInfos)
         )
     }
 }
@@ -139,6 +149,16 @@ Expected at least one target in `TestAction.targets`
                     for: expandVariablesBasedOn,
                     context: "creating a `VariableExpansionContextInfo`"
                 )
+            ),
+            preActions: testAction.preActions.prePostActionInfos(
+                targetResolver: targetResolver,
+                targetIDsByLabel: targetIDsByLabel,
+                context: "creating a pre-action `PrePostActionInfo`"
+            ),
+            postActions: testAction.postActions.prePostActionInfos(
+                targetResolver: targetResolver,
+                targetIDsByLabel: targetIDsByLabel,
+                context: "creating a post-action `PrePostActionInfo`"
             )
         )
     }
