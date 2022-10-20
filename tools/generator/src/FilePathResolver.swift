@@ -1,13 +1,24 @@
 import PathKit
 
-struct FilePathResolver: Equatable {
+// TODO: Make thread safe if we ever go concurrent
+var memoizedPaths: [MemoizationKey: Path] = [:]
+
+struct MemoizationKey: Equatable, Hashable {
+    let resolver: FilePathResolver
+    let transformedFilePath: FilePath
+    let useBazelOut: Bool?
+    let forceFullBuildSettingPath: Bool
+    let mode: FilePathResolver.Mode
+}
+
+struct FilePathResolver: Equatable, Hashable {
     enum Mode {
         case buildSetting
         case script
         case srcRoot
     }
 
-    struct Directories: Equatable {
+    struct Directories: Equatable, Hashable {
         let workspace: Path
         let workspaceComponents: [String]
         let workspaceOutput: Path
@@ -88,12 +99,31 @@ container:\(workspace + directories.workspaceOutput)
         forceFullBuildSettingPath: Bool = false,
         mode: Mode = .buildSetting
     ) throws -> Path {
+        func memoizationKey(_ transformedFilePath: FilePath) -> MemoizationKey {
+            return .init(
+                resolver: self,
+                transformedFilePath: transformedFilePath,
+                useBazelOut: useBazelOut,
+                forceFullBuildSettingPath: forceFullBuildSettingPath,
+                mode: mode
+            )
+        }
+
+        let key: MemoizationKey
+        let path: Path
         switch filePath.type {
         case .project:
             guard filePath.path.normalize() != "." else {
                 // We need to use Bazel's execution root for ".", since includes
                 // can reference things like "external/" and "bazel-out"
                 return "$(PROJECT_DIR)"
+            }
+
+            let transformedFilePath = transform(filePath)
+
+            key = memoizationKey(transformedFilePath)
+            if let memoized = memoizedPaths[key] {
+                return memoized
             }
 
             let projectDir: Path
@@ -105,8 +135,15 @@ container:\(workspace + directories.workspaceOutput)
             case .srcRoot:
                 projectDir = ""
             }
-            return projectDir + transform(filePath).path
+            path = projectDir + transformedFilePath.path
         case .external:
+            let transformedFilePath = transform(filePath)
+
+            key = memoizationKey(transformedFilePath)
+            if let memoized = memoizedPaths[key] {
+                return memoized
+            }
+
             let externalDir: Path
             switch mode {
             case .buildSetting:
@@ -117,7 +154,7 @@ container:\(workspace + directories.workspaceOutput)
             case .srcRoot:
                 externalDir = directories.external
             }
-            return externalDir + transform(filePath).path
+            path = externalDir + transformedFilePath.path
         case .generated:
             let actuallyUseBazelOut: Bool
             let generatedFilePath: FilePath
@@ -137,6 +174,11 @@ container:\(workspace + directories.workspaceOutput)
                 generatedFilePath = transform(filePath)
             }
 
+            key = memoizationKey(generatedFilePath)
+            if let memoized = memoizedPaths[key] {
+                return memoized
+            }
+
             if actuallyUseBazelOut {
                 let bazelOutDir: Path
                 switch mode {
@@ -148,7 +190,7 @@ container:\(workspace + directories.workspaceOutput)
                 case .srcRoot:
                     bazelOutDir = directories.bazelOut
                 }
-                return bazelOutDir + generatedFilePath.path
+                path = bazelOutDir + generatedFilePath.path
             } else {
                 let buildDir: Path
                 switch mode {
@@ -161,9 +203,16 @@ container:\(workspace + directories.workspaceOutput)
 `useBuildDir = true` and `mode` == `.srcRoot`
 """)
                 }
-                return buildDir + "bazel-out" + generatedFilePath.path
+                path = buildDir + "bazel-out" + generatedFilePath.path
             }
         case .internal:
+            let transformedFilePath = transform(filePath)
+
+            key = memoizationKey(transformedFilePath)
+            if let memoized = memoizedPaths[key] {
+                return memoized
+            }
+
             let internalDir: Path
             switch mode {
             case .buildSetting:
@@ -173,7 +222,10 @@ container:\(workspace + directories.workspaceOutput)
             case .srcRoot:
                 internalDir = directories.internal
             }
-            return internalDir + transform(filePath).path
+            path = internalDir + transformedFilePath.path
         }
+
+        memoizedPaths[key] = path
+        return path
     }
 }
