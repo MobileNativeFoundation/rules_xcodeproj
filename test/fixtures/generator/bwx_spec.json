@@ -1926,7 +1926,10 @@
                     "-fno-autolink",
                     "-Wno-incompatible-pointer-types",
                     "-Wno-incompatible-pointer-types-discards-qualifiers",
+                    "-Wno-shorten-64-to-32",
+                    "-Wno-unreachable-code",
                     "-Wno-unused-function",
+                    "-Wno-unused-variable",
                     "-fstack-protector",
                     "-fstack-protector-all"
                 ],
@@ -1952,7 +1955,10 @@
                     "-fno-autolink",
                     "-Wno-incompatible-pointer-types",
                     "-Wno-incompatible-pointer-types-discards-qualifiers",
+                    "-Wno-shorten-64-to-32",
+                    "-Wno-unreachable-code",
                     "-Wno-unused-function",
+                    "-Wno-unused-variable",
                     "-fstack-protector",
                     "-fstack-protector-all"
                 ],
@@ -2199,6 +2205,7 @@
                     "-Wno-reorder-ctor",
                     "-Wno-return-type-c-linkage",
                     "-Wno-shorten-64-to-32",
+                    "-Wno-unused-variable",
                     "-fstack-protector",
                     "-fstack-protector-all"
                 ],
@@ -2226,6 +2233,7 @@
                     "-Wno-reorder-ctor",
                     "-Wno-return-type-c-linkage",
                     "-Wno-shorten-64-to-32",
+                    "-Wno-unused-variable",
                     "-fstack-protector",
                     "-fstack-protector-all"
                 ],
