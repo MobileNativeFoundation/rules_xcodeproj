@@ -10,7 +10,7 @@ _PLATFORM_NAME = {
     apple_common.platform.watchos_simulator: "watchsimulator",
 }
 
-def _collect(*, ctx):
+def _collect_platform(*, ctx):
     """Collects information about a target's platform.
 
     Args:
@@ -36,7 +36,7 @@ def _is_same_type(lhs, rhs):
     """Returns whether two platforms are the same platform type."""
     return lhs._platform.platform_type == rhs._platform.platform_type
 
-def _to_dto(platform):
+def _platform_to_dto(platform):
     """Generates a target DTO value for a platform.
 
     Args:
@@ -55,7 +55,7 @@ def _to_dto(platform):
     return dto
 
 platform_info = struct(
-    collect = _collect,
+    collect = _collect_platform,
     is_same_type = _is_same_type,
-    to_dto = _to_dto,
+    to_dto = _platform_to_dto,
 )

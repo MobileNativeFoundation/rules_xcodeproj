@@ -9,7 +9,7 @@ load(
 )
 load(":opts.bzl", "swift_pcm_copts")
 
-def _collect(
+def _collect_lldb_context(
         *,
         compilation_mode = None,
         objc_fragment = None,
@@ -89,7 +89,7 @@ def _collect(
         ),
     )
 
-def _to_dto(lldb_context):
+def _lldb_context_to_dto(lldb_context):
     if not lldb_context:
         return {}
 
@@ -183,6 +183,6 @@ def _to_dto(lldb_context):
     return dto
 
 lldb_contexts = struct(
-    collect = _collect,
-    to_dto = _to_dto,
+    collect = _collect_lldb_context,
+    to_dto = _lldb_context_to_dto,
 )

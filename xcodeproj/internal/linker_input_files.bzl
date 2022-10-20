@@ -35,7 +35,7 @@ _SKIP_INPUT_EXTENSIONS = {
     "xctest": None,
 }
 
-def _collect(
+def _collect_linker_inputs(
         *,
         target,
         compilation_providers,
@@ -87,8 +87,8 @@ def _collect(
         _top_level_values = top_level_values,
     )
 
-def _merge(*, compilation_providers):
-    return _collect(
+def _merge_linker_inputs(*, compilation_providers):
+    return _collect_linker_inputs(
         target = None,
         compilation_providers = compilation_providers,
     )
@@ -382,7 +382,7 @@ def _process_linkopt(linkopt):
 
     return linkopt
 
-def _to_dto(linker_inputs):
+def _linker_inputs_to_dto(linker_inputs):
     """Generates a target DTO for linker inputs.
 
     Args:
@@ -468,12 +468,12 @@ def _get_primary_static_library(linker_inputs):
     return linker_inputs._primary_static_library
 
 linker_input_files = struct(
-    collect = _collect,
-    merge = _merge,
+    collect = _collect_linker_inputs,
+    merge = _merge_linker_inputs,
     get_library_static_libraries = _get_library_static_libraries,
     get_primary_static_library = _get_primary_static_library,
     get_top_level_static_libraries = _get_top_level_static_libraries,
     get_transitive_static_libraries = _get_transitive_static_libraries,
-    to_dto = _to_dto,
+    to_dto = _linker_inputs_to_dto,
     to_input_files = _to_input_files,
 )

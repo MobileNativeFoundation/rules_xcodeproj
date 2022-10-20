@@ -1,6 +1,6 @@
 """Module for propagating compilation providers."""
 
-def _collect(*, cc_info, objc, swift_info, is_xcode_target):
+def _collect_compilation_providers(*, cc_info, objc, swift_info, is_xcode_target):
     """Collects compilation providers for a non top-level target.
 
     Args:
@@ -26,7 +26,7 @@ def _collect(*, cc_info, objc, swift_info, is_xcode_target):
         _transitive_compilation_providers = (),
     )
 
-def _merge(
+def _merge_compilation_providers(
         *,
         apple_dynamic_framework_info = None,
         cc_info = None,
@@ -137,7 +137,7 @@ def _get_xcode_library_targets(*, compilation_providers):
     ]
 
 compilation_providers = struct(
-    collect = _collect,
+    collect = _collect_compilation_providers,
     get_xcode_library_targets = _get_xcode_library_targets,
-    merge = _merge,
+    merge = _merge_compilation_providers,
 )

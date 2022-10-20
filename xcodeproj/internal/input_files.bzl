@@ -57,7 +57,7 @@ def _collect_transitive_uncategorized(info):
         return depset()
     return info.inputs.uncategorized
 
-def _should_ignore_attr(attr):
+def _should_ignore_input_attr(attr):
     return (
         # We don't want to include implicit dependencies
         attr.startswith("_") or
@@ -99,7 +99,7 @@ def _process_cc_info_headers(headers, *, output_files, pch, generated):
 
 # API
 
-def _collect(
+def _collect_input_files(
         *,
         ctx,
         target,
@@ -240,18 +240,18 @@ def _collect(
         transitive_extra_files.append(dep[XcodeProjInfo].inputs.uncategorized)
 
     for attr in dir(ctx.rule.files):
-        if _should_ignore_attr(attr):
+        if _should_ignore_input_attr(attr):
             continue
         for file in getattr(ctx.rule.files, attr):
             _handle_file(file, attr = attr)
 
     for attr in dir(ctx.rule.file):
-        if _should_ignore_attr(attr):
+        if _should_ignore_input_attr(attr):
             continue
         _handle_file(getattr(ctx.rule.file, attr), attr = attr)
 
     for attr in dir(ctx.rule.attr):
-        if _should_ignore_attr(attr):
+        if _should_ignore_input_attr(attr):
             continue
         dep = getattr(ctx.rule.attr, attr, None)
         if type(dep) == "Target":
@@ -669,7 +669,7 @@ def _from_resource_bundle(bundle):
         linking_output_group_name = None,
     )
 
-def _merge(*, transitive_infos, extra_generated = None):
+def _merge_input_files(*, transitive_infos, extra_generated = None):
     """Creates merged inputs.
 
     Args:
@@ -782,7 +782,7 @@ def _merge(*, transitive_infos, extra_generated = None):
         linking_output_group_name = None,
     )
 
-def _to_dto(inputs):
+def _input_files_to_dto(inputs):
     """Generates a target DTO value for inputs.
 
     Args:
@@ -916,9 +916,9 @@ def _to_output_groups_fields(
     return output_groups
 
 input_files = struct(
-    collect = _collect,
+    collect = _collect_input_files,
     from_resource_bundle = _from_resource_bundle,
-    merge = _merge,
-    to_dto = _to_dto,
+    merge = _merge_input_files,
+    to_dto = _input_files_to_dto,
     to_output_groups_fields = _to_output_groups_fields,
 )
