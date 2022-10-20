@@ -296,11 +296,13 @@ def merge_opts_search_paths(search_paths):
         system_includes = uniq(system_includes),
     )
 
-def _process_conlyopts(opts):
+def _process_conlyopts(opts, *, build_settings):
     """Processes C compiler options.
 
     Args:
         opts: A `list` of C compiler options.
+        build_settings: A mutable `dict` that will be updated with build
+            settings that are parsed from `opts`.
 
     Returns:
         A `tuple` containing four elements:
@@ -349,7 +351,14 @@ def _process_conlyopts(opts):
             includes.append(opt[2:])
             return True
         if opt.startswith("-D"):
-            defines.append(opt[2:])
+            value = opt[2:]
+            if value.startswith("OBJC_OLD_DISPATCH_PROTOTYPES"):
+                if value.endswith("=1"):
+                    build_settings["ENABLE_STRICT_OBJC_MSGSEND"] = False
+                elif value.endswith("=1"):
+                    build_settings["ENABLE_STRICT_OBJC_MSGSEND"] = True
+                return True
+            defines.append(value)
             return True
         return False
 
@@ -433,7 +442,12 @@ def _process_cxxopts(opts, *, build_settings):
             includes.append(opt[2:])
             return True
         if opt.startswith("-D"):
-            defines.append(opt[2:])
+            value = opt[2:]
+            if value.startswith("OBJC_OLD_DISPATCH_PROTOTYPES"):
+                if value.endswith("=1"):
+                    build_settings["ENABLE_STRICT_OBJC_MSGSEND"] = False
+                return True
+            defines.append(value)
             return True
         return False
 
@@ -479,17 +493,14 @@ def _process_copts(*, conlyopts, cxxopts, build_settings):
         conly_optimizations,
         conly_search_paths,
         c_has_debug_info,
-    ) = _process_conlyopts(conlyopts)
+    ) = _process_conlyopts(conlyopts, build_settings = build_settings)
     (
         cxxopts,
         cxx_defines,
         cxx_optimizations,
         cxx_search_paths,
         cxx_has_debug_info,
-    ) = _process_cxxopts(
-        cxxopts,
-        build_settings = build_settings,
-    )
+    ) = _process_cxxopts(cxxopts, build_settings = build_settings)
 
     # Calculate GCC_OPTIMIZATION_LEVEL, preserving C/C++ specific settings
     if conly_optimizations:
@@ -891,6 +902,10 @@ def _process_compiler_opts(
         *   `quotes_includes`: A `list` of quote include paths parsed.
         *   `includes`: A `list` of include paths parsed.
     """
+    # Xcode's default for `ENABLE_STRICT_OBJC_MSGSEND` doesn't match its new
+    # project default, so we need to set it explicitly
+    build_settings["ENABLE_STRICT_OBJC_MSGSEND"] = True
+
     has_copts = conlyopts or cxxopts
 
     (

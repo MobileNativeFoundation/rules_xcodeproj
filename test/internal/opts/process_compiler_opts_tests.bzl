@@ -33,6 +33,7 @@ def _process_compiler_opts_test_impl(ctx):
 
     expected_build_settings = {
         "DEBUG_INFORMATION_FORMAT": "",
+        "ENABLE_STRICT_OBJC_MSGSEND": "True",
         "GCC_OPTIMIZATION_LEVEL": "0",
         "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
         "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
@@ -208,8 +209,8 @@ def process_compiler_opts_test_suite(name):
         ],
         user_swiftcopts = [],
         expected_build_settings = {
-            "ENABLE_TESTABILITY": "True",
             "APPLICATION_EXTENSION_API_ONLY": "True",
+            "ENABLE_TESTABILITY": "True",
             "OTHER_SWIFT_FLAGS": "-Xcc -DCOPTS_FOR_CURRENT weird -unhandled",
             "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
         },
@@ -519,6 +520,17 @@ def process_compiler_opts_test_suite(name):
             "DEBUG_INFORMATION_FORMAT": "",
             "OTHER_CFLAGS": ["-g"],
             "OTHER_SWIFT_FLAGS": "-g -Xcc -DCOPTS_FOR_CURRENT",
+        },
+    )
+
+    ## ENABLE_STRICT_OBJC_MSGSEND
+
+    _add_test(
+        name = "{}_enable_strict_objc_msgsend".format(name),
+        conlyopts = ["-DOBJC_OLD_DISPATCH_PROTOTYPES=1"],
+        expected_build_settings = {
+            "DEBUG_INFORMATION_FORMAT": "",
+            "ENABLE_STRICT_OBJC_MSGSEND": "False",
         },
     )
 
