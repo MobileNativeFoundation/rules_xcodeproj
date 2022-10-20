@@ -185,15 +185,15 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "bazel-output-base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out/darwin_arm64-dbg/bin/tools/generator/xcodeproj.generator_root_dirs"
+            argument = "bazel-output-base/execroot/_rules_xcodeproj/build_output_base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out/darwin_arm64-dbg/bin/tools/generator/xcodeproj.generator_root_dirs"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "bazel-output-base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out/darwin_arm64-dbg/bin/tools/generator/xcodeproj.generator_xccurrentversions"
+            argument = "bazel-output-base/execroot/_rules_xcodeproj/build_output_base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out/darwin_arm64-dbg/bin/tools/generator/xcodeproj.generator_xccurrentversions"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "bazel-output-base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out/darwin_arm64-dbg/bin/tools/generator/xcodeproj.generator_extensionpointidentifiers"
+            argument = "bazel-output-base/execroot/_rules_xcodeproj/build_output_base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out/darwin_arm64-dbg/bin/tools/generator/xcodeproj.generator_extensionpointidentifiers"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
@@ -210,6 +210,10 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "bazel"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "0"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
