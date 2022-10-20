@@ -83,6 +83,8 @@
                     "CUSTOM_ENV_VAR": "goodbye"
                 },
                 "expand_variables_based_on": null,
+                "post_actions": [],
+                "pre_actions": [],
                 "targets": [
                     "@//tools/generator/test:tests"
                 ]
