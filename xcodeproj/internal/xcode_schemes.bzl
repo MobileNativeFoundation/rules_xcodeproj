@@ -413,10 +413,10 @@ def make_xcode_schemes(bazel_labels):
                 target labels. If no value is provided, one of the test targets
                 will be selected. If no expansion context is desired, use the
                 `string` value `none`.
-            pre_actions: A `sequence` of `struct` values as created by
-                `xcode_schemes.pre_action`.
-            post_actions: A `sequence` of `struct` values as created by
-                `xcode_schemes.post_action`.
+            pre_actions: Optional. A `sequence` of `struct` values as created by
+                `xcode_schemes.pre_post_action`.
+            post_actions: Optional. A `sequence` of `struct` values as created by
+                `xcode_schemes.pre_post_action`.
 
         Returns:
             A `struct` representing a test action.
