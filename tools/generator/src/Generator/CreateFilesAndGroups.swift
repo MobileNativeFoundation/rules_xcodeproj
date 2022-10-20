@@ -666,7 +666,7 @@ already was set to `\(existingValue)`.
             }
 
             files[.internal(path)] = .nonReferencedContent(
-                Set(paths.map { "\($0)\n" }).sortedLocalizedStandard().joined()
+                Set(paths.map { "\($0)\n" }).sorted().joined()
             )
         }
 
