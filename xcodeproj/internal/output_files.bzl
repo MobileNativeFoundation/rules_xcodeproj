@@ -232,7 +232,7 @@ def _swift_to_dto(swift):
 
 # API
 
-def _collect(
+def _collect_output_files(
         *,
         id,
         swift_info,
@@ -277,7 +277,7 @@ def _collect(
         transitive_infos = transitive_infos,
     )
 
-def _merge(*, automatic_target_info, transitive_infos):
+def _merge_output_files(*, automatic_target_info, transitive_infos):
     """Creates merged outputs.
 
     Args:
@@ -298,7 +298,7 @@ def _merge(*, automatic_target_info, transitive_infos):
         should_produce_output_groups = False,
     )
 
-def _to_dto(outputs):
+def _outputs_files_to_dto(outputs):
     direct_outputs = outputs._direct_outputs
     if not direct_outputs:
         return {}
@@ -439,8 +439,8 @@ def swift_to_outputs(swift):
     return (compiled, getattr(module, "indexstore", None))
 
 output_files = struct(
-    collect = _collect,
-    merge = _merge,
-    to_dto = _to_dto,
+    collect = _collect_output_files,
+    merge = _merge_output_files,
+    to_dto = _outputs_files_to_dto,
     to_output_groups_fields = _to_output_groups_fields,
 )

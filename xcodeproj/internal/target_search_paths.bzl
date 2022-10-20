@@ -7,7 +7,7 @@ load(
     "parsed_file_path",
 )
 
-def _make(*, compilation_providers, bin_dir_path, opts_search_paths = None):
+def _make_search_paths(*, compilation_providers, bin_dir_path, opts_search_paths = None):
     """Creates the internal data structure of the `target_search_paths` module.
 
     Args:
@@ -27,7 +27,7 @@ def _make(*, compilation_providers, bin_dir_path, opts_search_paths = None):
         _opts_search_paths = opts_search_paths,
     )
 
-def _to_dto(search_paths):
+def _search_paths_to_dto(search_paths):
     if not search_paths:
         return {}
 
@@ -109,6 +109,6 @@ def _to_dto(search_paths):
     return dto
 
 target_search_paths = struct(
-    make = _make,
-    to_dto = _to_dto,
+    make = _make_search_paths,
+    to_dto = _search_paths_to_dto,
 )

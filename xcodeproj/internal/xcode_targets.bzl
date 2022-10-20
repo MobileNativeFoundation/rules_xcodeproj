@@ -10,7 +10,7 @@ load(":platform.bzl", "platform_info")
 load(":product.bzl", "product_to_dto")
 load(":target_search_paths.bzl", "target_search_paths")
 
-def _make(
+def _make_xcode_target(
         *,
         id,
         name,
@@ -112,7 +112,7 @@ def _make(
         xcode_required_targets = xcode_required_targets,
     )
 
-def _to_dto(
+def _xcode_target_to_dto(
         xcode_target,
         *,
         additional_scheme_target_ids,
@@ -226,6 +226,6 @@ def _to_dto(
     return dto
 
 xcode_targets = struct(
-    make = _make,
-    to_dto = _to_dto,
+    make = _make_xcode_target,
+    to_dto = _xcode_target_to_dto,
 )
