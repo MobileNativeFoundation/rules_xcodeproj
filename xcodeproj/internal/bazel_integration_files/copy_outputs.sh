@@ -58,20 +58,12 @@ else
       "$TARGET_BUILD_DIR"
 
     # SwiftUI Previews has a hard time finding frameworks (`@rpath`) when using
-    # framework schemes, so let's copy them to `$BUILD_DIR`
+    # framework schemes, so let's symlink them into `$BUILD_DIR`
     if [[ "${ENABLE_PREVIEWS:-}" == "YES" && \
           -n "${PREVIEW_FRAMEWORK_PATHS:-}" ]]; then
-      cd "$PROJECT_DIR"
-      # shellcheck disable=SC2046
-      rsync \
-        --copy-links \
-        --recursive \
-        --times \
-        --delete \
-        --chmod=u+w \
-        --out-format="%n%L" \
-        $(xargs -n1 <<< "$PREVIEW_FRAMEWORK_PATHS") \
-        "$BUILD_DIR"
+      cd "$BUILD_DIR"
+      xargs -n1 sh -c 'ln -shfF "$1" $(basename "$1")' _ \
+        <<< "$PREVIEW_FRAMEWORK_PATHS"
     fi
   fi
 fi
