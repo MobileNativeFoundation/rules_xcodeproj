@@ -171,6 +171,7 @@
 		759EC3140B562C4F1CF80A6D /* XCScheme+RemoteRunnable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64421D34BB46C4DB684D3542 /* XCScheme+RemoteRunnable.swift */; };
 		76955D7A34D32D75222C95E7 /* PBXProductTypeExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F32421D23AB119255DF499F /* PBXProductTypeExtensionsTests.swift */; };
 		771D200CD9982EF6F17D5336 /* Decoders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2150E2B621B1E6BDD2DB22D9 /* Decoders.swift */; };
+		778D35F7FF1CE675086CB65E /* JSONSerialization.mm in Sources */ = {isa = PBXBuildFile; fileRef = C2948436893FCF8E267DD1FD /* JSONSerialization.mm */; };
 		77A7D990B9133ADEBFE5A74D /* PBXTargetDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC84B20DF6D9F545AAEDDD7 /* PBXTargetDependency.swift */; };
 		78236DDF83BF9B7D2040C39A /* ReferenceGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B934C44B5C19A2B3652A78 /* ReferenceGenerator.swift */; };
 		786C6409ADB6C269AA6FCFF7 /* AddTargets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987B910977D961AAB3C5D94B /* AddTargets.swift */; };
@@ -197,6 +198,7 @@
 		859CB887237A0D7EF07601AA /* PBXGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = C919EDF3E7319A3FC871D3CC /* PBXGroup.swift */; };
 		87E7C7EB4BB221FB21F97511 /* XcodeScheme+ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815199DF5AEB552C0DE52A1C /* XcodeScheme+ExtensionsTests.swift */; };
 		8DBD4CEB4216A2798E8DD7E9 /* PathKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A13C1D757A189869E54C96D /* PathKit.swift */; };
+		8F533010DE1FA311F4D9124C /* JJLInternal.c in Sources */ = {isa = PBXBuildFile; fileRef = 7BD91E89D36D5E2A4B7AE7BA /* JJLInternal.c */; };
 		909B163E7F316E0AD2BAF190 /* AddTargetsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A380B181B850C758A239F2B /* AddTargetsTests.swift */; };
 		90AD5B3FFFAEED8B00416BA6 /* Dictionary+ExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DAE086FDCCF57A7D73EB5C /* Dictionary+ExtensionTests.swift */; };
 		9105FEF8A9ED439D6618FAF5 /* PBXProductType+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478376AB1C9B98B0BE6EC512 /* PBXProductType+Extensions.swift */; };
@@ -211,6 +213,7 @@
 		96A843FD42A503783B9E3FE5 /* XCSchemeInfo+ProfileActionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DD65D75BD286CA06723F44 /* XCSchemeInfo+ProfileActionInfo.swift */; };
 		97F5D5FCFDC2DA41225A2CF9 /* DisambiguateTargetsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16975C229CE19A6D0E5743CB /* DisambiguateTargetsTests.swift */; };
 		98774821E53B752D0B1B8F25 /* XcodeScheme+BuildFor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9372D0D4B273F6A55606D125 /* XcodeScheme+BuildFor.swift */; };
+		9ADACC15CDEAE1AD356E848E /* ZippyJSONDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24A8A5FF2AB3218DD499666 /* ZippyJSONDecoder.swift */; };
 		9AEFA6105898FD2A90435AD8 /* XCScheme+LocationScenarioReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8567866BC19F216697D47F /* XCScheme+LocationScenarioReference.swift */; };
 		9C37FECA0F9B6B1CC329A2DC /* Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2F67ECDF50D04616C15F30 /* Generator.swift */; };
 		A0F4F3118C1B02199782F3E0 /* CreateProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536CB6F24ED1920789DC7AA3 /* CreateProjectTests.swift */; };
@@ -261,6 +264,7 @@
 		CC340AAC49466DD23AEF953B /* OrderedSet+ReserveCapacity.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF098BF63A824B519418BA03 /* OrderedSet+ReserveCapacity.swift */; };
 		CFF667FA514CDAB2B9946136 /* PBXProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330B71AE91A563D023547FB2 /* PBXProject.swift */; };
 		D197A11CE4C58086EA3E4D6C /* XCSchemeInfo+BuildActionInfoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C969DD70389C6A3CA861902D /* XCSchemeInfo+BuildActionInfoTests.swift */; };
+		D1ACA5C44C9959B7CB740F8B /* localtime.c in Sources */ = {isa = PBXBuildFile; fileRef = 2B41289D87EA28BFBE6B16BF /* localtime.c */; };
 		D1F22D676F2C50A74EFE66FE /* XCScheme+BuildAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648EF1CB5EDF0A167ED7A82F /* XCScheme+BuildAction.swift */; };
 		D2F59A3BF33A4312FDCC81EC /* RandomAccessCollection+Offsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B401EBD58388F9750D22CD3 /* RandomAccessCollection+Offsets.swift */; };
 		D31011C4ABDB456534D335E6 /* ConsolidatedTargetExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AF78ADE2D2294E3632DDB8 /* ConsolidatedTargetExtensionsTests.swift */; };
@@ -281,6 +285,7 @@
 		DF09B8C24CCDAD68813F90B0 /* _UnsafeBitset.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C70CD7FA3ED38CB8FCA925 /* _UnsafeBitset.swift */; };
 		DFA7CCB773F22787CA03DBF3 /* Platform+ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B4EFB709E0F4A7FA727BCA /* Platform+ExtensionsTests.swift */; };
 		DFD3542A131FD8325984488B /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C1E515A3E0961F24A0160D /* Platform.swift */; };
+		E07D44BA1AD4A3C6A0A65ACA /* JJLISO8601DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = F10EEA8A8171E76A6C7DEE27 /* JJLISO8601DateFormatter.m */; };
 		E1EC576C5CEB9B48F690E03F /* XCBuildConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8660D8612A543DC4829542DD /* XCBuildConfiguration.swift */; };
 		E2E815C94C9CBDFBF43D41ED /* Writable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2122BAA6B70157376356BE30 /* Writable.swift */; };
 		E30B92A0E6B7D77A45D2A93B /* OrderedSet+SubSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA3C0021CB85E33AAF6A481 /* OrderedSet+SubSequence.swift */; };
@@ -326,12 +331,26 @@
 			remoteGlobalIDString = 3A4021D8F5FC68CD4FB8B6F1;
 			remoteInfo = generator.library;
 		};
+		0A7568AE2EF794BA59485EF2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
+			remoteInfo = BazelDependencies;
+		};
 		0A9F970284B8C75F7D11F42B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
 			remoteInfo = BazelDependencies;
+		};
+		1008B9E5030C693C0565EDB4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F2630E05B3B42A46D6BA3081;
+			remoteInfo = ZippyJSON;
 		};
 		10F8F2838624AF67BC893D33 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -354,6 +373,13 @@
 			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
 			remoteInfo = BazelDependencies;
 		};
+		39533C0921C775777191C0F2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
+			remoteInfo = BazelDependencies;
+		};
 		3A1A9FA674016F6D082BD8E2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
@@ -367,6 +393,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
 			remoteInfo = BazelDependencies;
+		};
+		40E5D22378C223AF3CC071DF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AB0F242FADED420D521EF7FC;
+			remoteInfo = ZippyJSONCFamily;
+		};
+		45F253887288F54D95092CBD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5AB2F7853AEEE585A40777EB;
+			remoteInfo = JJLISO8601DateFormatter;
 		};
 		57526E39DC1C23E02C838E67 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -388,6 +428,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = B0128CCFCF9E56DA6D808193;
 			remoteInfo = OrderedCollections;
+		};
+		8B6D1AEE07DAD97F0D80BFDE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
+			remoteInfo = BazelDependencies;
 		};
 		94E23707CC9C8CEEF247C4DB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -446,6 +493,7 @@
 		02850735C45816E6463B2743 /* UserNotificationsUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationsUI.swift; sourceTree = "<group>"; };
 		031B58E6DA7069CF9AEB926B /* XCSchemeInfo+OtherActionInfos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCSchemeInfo+OtherActionInfos.swift"; sourceTree = "<group>"; };
 		03679CD4B39CD2B436657321 /* XcodeScheme+BuildForTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XcodeScheme+BuildForTests.swift"; sourceTree = "<group>"; };
+		04218A7A6425270C760DA765 /* JJLInternal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJLInternal.h; sourceTree = "<group>"; };
 		047B288E5B54A073FB39BF36 /* _HashTable+Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "_HashTable+Constants.swift"; sourceTree = "<group>"; };
 		050B148917BF5A049D76BED7 /* Target+LinkerFlags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Target+LinkerFlags.swift"; sourceTree = "<group>"; };
 		05ECD7D3699EB99EFFE06E06 /* CoreImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreImage.swift; sourceTree = "<group>"; };
@@ -490,8 +538,10 @@
 		252F36086AEE00628237755A /* CommentedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentedString.swift; sourceTree = "<group>"; };
 		25959D5CD74647CF5F2D7AFF /* OrderedSet+Partial SetAlgebra+Basics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedSet+Partial SetAlgebra+Basics.swift"; sourceTree = "<group>"; };
 		269B8FF0682ED2598C8A2542 /* XCSchemeInfoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCSchemeInfoTests.swift; sourceTree = "<group>"; };
+		27BB0A098261222A6D6A9A70 /* private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = private.h; sourceTree = "<group>"; };
 		288ADBD0FFCD5A20C2AD693C /* OrderedSet+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedSet+Codable.swift"; sourceTree = "<group>"; };
 		2AA81039F6F1690FBD48BC0E /* _Hashtable+Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "_Hashtable+Header.swift"; sourceTree = "<group>"; };
+		2B41289D87EA28BFBE6B16BF /* localtime.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = localtime.c; sourceTree = "<group>"; };
 		2C63F66C627E6EB75F989DA1 /* PBXObjectReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBXObjectReference.swift; sourceTree = "<group>"; };
 		2D1F5745C56002269A2D5CEF /* CreateXCSharedDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateXCSharedDataTests.swift; sourceTree = "<group>"; };
 		2DD4DC367A780586805779D6 /* PBXTarget+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PBXTarget+Extensions.swift"; sourceTree = "<group>"; };
@@ -520,6 +570,7 @@
 		4184ABCA72B3C9EF04FDAF7E /* Equality.generated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Equality.generated.swift; sourceTree = "<group>"; };
 		42883580B9FD2E01875FC4C7 /* ExtensionPointIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionPointIdentifier.swift; sourceTree = "<group>"; };
 		4399C9A0F378D4CB0D8A1B4C /* CoreLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreLocation.swift; sourceTree = "<group>"; };
+		4529AB7923C7D19A44DEC673 /* libZippyJSON.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libZippyJSON.a; path = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_zippyjson/libZippyJSON.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		455528312117C43783C29A56 /* OrderedSet+Invariants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedSet+Invariants.swift"; sourceTree = "<group>"; };
 		45FEF4CE3316DDC6E71CC098 /* XCSchemeInfo+LaunchActionInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCSchemeInfo+LaunchActionInfo.swift"; sourceTree = "<group>"; };
 		46DAE086FDCCF57A7D73EB5C /* Dictionary+ExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+ExtensionTests.swift"; sourceTree = "<group>"; };
@@ -554,17 +605,21 @@
 		651FDBB6811F1E1323DD265A /* Optional+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+Extensions.swift"; sourceTree = "<group>"; };
 		6606F7F6AFA98ED6958E990B /* Target.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Target.swift; sourceTree = "<group>"; };
 		662A28F3DD5C8EF594C7D817 /* SetTargetConfigurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTargetConfigurations.swift; sourceTree = "<group>"; };
+		674EBA9A4CCBA18FDDEE877A /* JJLISO8601DateFormatter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJLISO8601DateFormatter.h; sourceTree = "<group>"; };
 		6771C8928A1CB05FF20162C2 /* XCSchemeInfo+DiagnosticsInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCSchemeInfo+DiagnosticsInfo.swift"; sourceTree = "<group>"; };
 		684DC3FBB46190A2355FE1CD /* XCScheme+ExecutionAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCScheme+ExecutionAction.swift"; sourceTree = "<group>"; };
 		68F99B8D79B7623279358904 /* FilePathResolverTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePathResolverTests.swift; sourceTree = "<group>"; };
 		6904F64EEC0C10570BBE5360 /* Speech.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Speech.swift; sourceTree = "<group>"; };
 		6B458EF8A1203339652D8DBB /* XCBreakpointList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCBreakpointList.swift; sourceTree = "<group>"; };
+		6BC76AA5350E2DE298BDB210 /* JSONSerialization.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSONSerialization.h; sourceTree = "<group>"; };
+		6BF54CB7A688C30346592B2D /* ZippyJSONCFamily.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = ZippyJSONCFamily.swift.modulemap; sourceTree = "<group>"; };
 		6C0E16A191335A481376D110 /* XCScheme+BuildableReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCScheme+BuildableReference.swift"; sourceTree = "<group>"; };
 		6C61414A46FB98ABB287352E /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		6CAE2314AB527E21A33FCC04 /* DisambiguateTargets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisambiguateTargets.swift; sourceTree = "<group>"; };
 		6DB37EEDBB8AFF9FBC7056EC /* PBXRezBuildPhase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBXRezBuildPhase.swift; sourceTree = "<group>"; };
 		6F01C8E9776FABC59B92EB44 /* SemanticVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemanticVersion.swift; sourceTree = "<group>"; };
 		7036E9B487C988B86B4BA791 /* OrderedSet+CustomDebugStringConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedSet+CustomDebugStringConvertible.swift"; sourceTree = "<group>"; };
+		70EAB3B676219FD53B18B87D /* tzfile__.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tzfile__.h; sourceTree = "<group>"; };
 		71A391FD98A68C29F3F18EE0 /* CreateFilesAndGroupsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFilesAndGroupsTests.swift; sourceTree = "<group>"; };
 		723BBC4DA2EF5AD0DA8382B4 /* CreateProducts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProducts.swift; sourceTree = "<group>"; };
 		7243B82555CF9B66C550201F /* PBXHeadersBuildPhase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBXHeadersBuildPhase.swift; sourceTree = "<group>"; };
@@ -583,6 +638,7 @@
 		7B547C3332E355E290CE1A7B /* XCWorkspaceDataElementLocationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCWorkspaceDataElementLocationType.swift; sourceTree = "<group>"; };
 		7BC7C88B57E0472CEFC9C54F /* CreateAutogeneratedXCSchemes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAutogeneratedXCSchemes.swift; sourceTree = "<group>"; };
 		7BD56BC592C3DF33F0CC885A /* Outputs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Outputs.swift; sourceTree = "<group>"; };
+		7BD91E89D36D5E2A4B7AE7BA /* JJLInternal.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = JJLInternal.c; sourceTree = "<group>"; };
 		7CA3CA3BDD8A25F0C2ABD48F /* BuildPhase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildPhase.swift; sourceTree = "<group>"; };
 		7CB7B974EF60F3F0C600E5FB /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		8087CA40BDC85C38F3E2F707 /* BazelLabel+TestExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BazelLabel+TestExtensions.swift"; sourceTree = "<group>"; };
@@ -594,6 +650,7 @@
 		840F19248C9E66EDF52555BC /* GeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratorTests.swift; sourceTree = "<group>"; };
 		85F9B25F44F2F794CB333110 /* ConsolidateTargetsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsolidateTargetsTest.swift; sourceTree = "<group>"; };
 		8660D8612A543DC4829542DD /* XCBuildConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCBuildConfiguration.swift; sourceTree = "<group>"; };
+		86FF23D38D7FCC6865754B7A /* JJLISO8601DateFormatter.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = JJLISO8601DateFormatter.swift.modulemap; sourceTree = "<group>"; };
 		8868512DAA0471CE8389011D /* libCustomDump.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libCustomDump.a; path = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_pointfreeco_swift_custom_dump/libCustomDump.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8896D9A2E867F5EE38C54C55 /* PopulateMainGroupTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopulateMainGroupTests.swift; sourceTree = "<group>"; };
 		89145CF1209DF60A50D0DC82 /* XCScheme+ProfileAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCScheme+ProfileAction.swift"; sourceTree = "<group>"; };
@@ -611,6 +668,7 @@
 		8E355C66AB094F9353A0ECE1 /* _CompileStub_.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = _CompileStub_.m; sourceTree = DERIVED_FILE_DIR; };
 		8E7C25422A85404C7C19FD35 /* Mirror.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mirror.swift; sourceTree = "<group>"; };
 		9015F3C2B113F0968C9BFD17 /* PBXObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBXObject.swift; sourceTree = "<group>"; };
+		90420ADB2894375FF005C930 /* Umbrella.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Umbrella.h; sourceTree = "<group>"; };
 		9084725DF0D9CE4BD6CE89D8 /* XCScheme+PathRunnable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCScheme+PathRunnable.swift"; sourceTree = "<group>"; };
 		9372D0D4B273F6A55606D125 /* XcodeScheme+BuildFor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XcodeScheme+BuildFor.swift"; sourceTree = "<group>"; };
 		946C414DB2B7A436DCC8F55F /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
@@ -655,6 +713,7 @@
 		AFDCD27E7C8A187F14175FC2 /* XcodeSchemeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XcodeSchemeTests.swift; sourceTree = "<group>"; };
 		B0EFED095D1FFBC908220C45 /* CreateFilesAndGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFilesAndGroups.swift; sourceTree = "<group>"; };
 		B178EA8B28439F5CCE1D1791 /* Sourcery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sourcery.swift; sourceTree = "<group>"; };
+		B24A8A5FF2AB3218DD499666 /* ZippyJSONDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZippyJSONDecoder.swift; sourceTree = "<group>"; };
 		B24CD6D9E5DB2F776F141B8A /* _HashTable+Bucket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "_HashTable+Bucket.swift"; sourceTree = "<group>"; };
 		B2503983F1F72E0DFE3CAC47 /* XcodeProj+CustomDump.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XcodeProj+CustomDump.swift"; sourceTree = "<group>"; };
 		B2ABBCB2DD96599FE95D656C /* NSRecursiveLock+Sync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSRecursiveLock+Sync.swift"; sourceTree = "<group>"; };
@@ -675,6 +734,7 @@
 		C06E8620B3F47239A8D19671 /* XCSchemeInfo+PrePostActionInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCSchemeInfo+PrePostActionInfo.swift"; sourceTree = "<group>"; };
 		C08363E787058BF7C193AF17 /* XCSchemeInfo+PrePostActionInfoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCSchemeInfo+PrePostActionInfoTests.swift"; sourceTree = "<group>"; };
 		C1250214961CBF65BF5DA8D2 /* TargetIDTargetDictionary+ExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TargetIDTargetDictionary+ExtensionsTests.swift"; sourceTree = "<group>"; };
+		C2948436893FCF8E267DD1FD /* JSONSerialization.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = JSONSerialization.mm; sourceTree = "<group>"; };
 		C390EA44424171E25672EA63 /* BuildMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildMode.swift; sourceTree = "<group>"; };
 		C3DD65D75BD286CA06723F44 /* XCSchemeInfo+ProfileActionInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCSchemeInfo+ProfileActionInfo.swift"; sourceTree = "<group>"; };
 		C3FE6914BE023A8AD3B75BA8 /* BuildSettingsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildSettingsProvider.swift; sourceTree = "<group>"; };
@@ -697,6 +757,7 @@
 		CF2E1C991799342E5F5077E7 /* XCSchemeInfo+TestActionInfoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCSchemeInfo+TestActionInfoTests.swift"; sourceTree = "<group>"; };
 		CF628F65943A2DDA94FF573F /* XCTFail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTFail.swift; sourceTree = "<group>"; };
 		D35BCFE448C6C18C29072567 /* XCSchemeInfo+ProfileActionInfoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCSchemeInfo+ProfileActionInfoTests.swift"; sourceTree = "<group>"; };
+		D3ED94799BCD565987949361 /* simdjson.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = simdjson.h; sourceTree = "<group>"; };
 		D40A755F3F82ABD58E1851C4 /* PBXTargets+ExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PBXTargets+ExtensionsTests.swift"; sourceTree = "<group>"; };
 		D4AC73B2B612B18B03749756 /* WriteXcodeProj.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteXcodeProj.swift; sourceTree = "<group>"; };
 		D4C1E515A3E0961F24A0160D /* Platform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Platform.swift; sourceTree = "<group>"; };
@@ -719,6 +780,7 @@
 		DDF48700D9FAAABF0CE6BCE8 /* OrderedDictionary+Values.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedDictionary+Values.swift"; sourceTree = "<group>"; };
 		DE4B99DD4BFE7A4C68A0CD7A /* OrderedSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderedSet.swift; sourceTree = "<group>"; };
 		DF4FAD16086BD9BF10C29471 /* Path+Extras.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Path+Extras.swift"; sourceTree = "<group>"; };
+		E0D6C8E798BCF44788892656 /* libZippyJSONCFamily.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libZippyJSONCFamily.a; path = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_zippyjsoncfamily/libZippyJSONCFamily.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1F57963BB78CE0F9C7457FE /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		E32EBD72ADC5B1E0150C2B1E /* PathExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathExtensionsTests.swift; sourceTree = "<group>"; };
 		E50ED7F19DFF4C68598B8FA8 /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
@@ -735,6 +797,7 @@
 		EF098BF63A824B519418BA03 /* OrderedSet+ReserveCapacity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedSet+ReserveCapacity.swift"; sourceTree = "<group>"; };
 		EF662B5961ADD887F0EBB373 /* SetTargetDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTargetDependencies.swift; sourceTree = "<group>"; };
 		EFB716107F39EB4CDB95D282 /* XCSchemeInfo+HostInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCSchemeInfo+HostInfo.swift"; sourceTree = "<group>"; };
+		F10EEA8A8171E76A6C7DEE27 /* JJLISO8601DateFormatter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJLISO8601DateFormatter.m; sourceTree = "<group>"; };
 		F1B4EFB709E0F4A7FA727BCA /* Platform+ExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Platform+ExtensionsTests.swift"; sourceTree = "<group>"; };
 		F3E38D6267F4C07B46582668 /* PBXTarget+ExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PBXTarget+ExtensionsTests.swift"; sourceTree = "<group>"; };
 		F4772FE810D4A1678DEC39E2 /* SwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI.swift; sourceTree = "<group>"; };
@@ -742,6 +805,7 @@
 		F5A9D234C089A10C034A6BCA /* Array+Extras.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extras.swift"; sourceTree = "<group>"; };
 		F622A89CAAD98499C14CCDEE /* XCScheme+TestableReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCScheme+TestableReference.swift"; sourceTree = "<group>"; };
 		F83F12C054BD28771FCD73FB /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
+		F9795E530FEB4082A30D1075 /* libJJLISO8601DateFormatter.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libJJLISO8601DateFormatter.a; path = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_jjliso8601dateformatter/libJJLISO8601DateFormatter.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA210553EC1239606EB3B4E6 /* XCScheme+Runnable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCScheme+Runnable.swift"; sourceTree = "<group>"; };
 		FB0DAE2AB3DF12474E52AB80 /* Target+Testing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Target+Testing.swift"; sourceTree = "<group>"; };
 		FB6538A342474B9EDA993A9C /* PBXSourceTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBXSourceTree.swift; sourceTree = "<group>"; };
@@ -777,6 +841,14 @@
 			path = src;
 			sourceTree = "<group>";
 		};
+		0F0512D9C8A03D7082D47D13 /* macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889 */ = {
+			isa = PBXGroup;
+			children = (
+				668F5FF7BFAD09B3101C5655 /* bin */,
+			);
+			path = "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889";
+			sourceTree = "<group>";
+		};
 		10FFD37EC5A905A987762469 /* swiftc_stub */ = {
 			isa = PBXGroup;
 			children = (
@@ -795,6 +867,14 @@
 			path = test/fixtures/generator/bwx.xcodeproj/rules_xcodeproj;
 			sourceTree = "<group>";
 		};
+		1688199306EAB407B0F2B954 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				674EBA9A4CCBA18FDDEE877A /* JJLISO8601DateFormatter.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
 		21859D8FDC6FA36517042D7D /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -802,6 +882,14 @@
 				1B401EBD58388F9750D22CD3 /* RandomAccessCollection+Offsets.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		23DAADF1D32DDF1809543709 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				C1F25DB181AA43453CBBDC45 /* ZippyJSON */,
+			);
+			path = Sources;
 			sourceTree = "<group>";
 		};
 		2C627599F2CF729E0B090B3C /* Sourcery */ = {
@@ -826,6 +914,18 @@
 				EBFB9ED510757AB21DF886A4 /* XCConfig.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		309CC6872D00A00F4EC49756 /* JJLISO8601DateFormatter */ = {
+			isa = PBXGroup;
+			children = (
+				1688199306EAB407B0F2B954 /* include */,
+				BAA73DDF4035B7296F3BAF65 /* Vendor */,
+				7BD91E89D36D5E2A4B7AE7BA /* JJLInternal.c */,
+				04218A7A6425270C760DA765 /* JJLInternal.h */,
+				F10EEA8A8171E76A6C7DEE27 /* JJLISO8601DateFormatter.m */,
+			);
+			path = JJLISO8601DateFormatter;
 			sourceTree = "<group>";
 		};
 		388DA26EE1C38E4FEC5209C7 /* test */ = {
@@ -865,6 +965,14 @@
 				B8945B6BCEE8594BF1036151 /* tests.__internal__.__test_bundle */,
 			);
 			path = rules_xcodeproj;
+			sourceTree = "<group>";
+		};
+		3FC8C6DE7D340D53657366D0 /* com_github_michaeleisel_jjliso8601dateformatter */ = {
+			isa = PBXGroup;
+			children = (
+				86FF23D38D7FCC6865754B7A /* JJLISO8601DateFormatter.swift.modulemap */,
+			);
+			path = com_github_michaeleisel_jjliso8601dateformatter;
 			sourceTree = "<group>";
 		};
 		444DE908B0DB9361623894DE /* Generator */ = {
@@ -933,6 +1041,15 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		4D731DF74786C29232992DD4 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				6BC76AA5350E2DE298BDB210 /* JSONSerialization.h */,
+				90420ADB2894375FF005C930 /* Umbrella.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
 		526191212943F0AB376241BF /* BuildPhase */ = {
 			isa = PBXGroup;
 			children = (
@@ -949,6 +1066,14 @@
 				B867872396868FF110D95923 /* PBXSourcesBuildPhase.swift */,
 			);
 			path = BuildPhase;
+			sourceTree = "<group>";
+		};
+		533C8F7C032E4CE4BFD9B898 /* com_github_michaeleisel_jjliso8601dateformatter */ = {
+			isa = PBXGroup;
+			children = (
+				D0861F8699F9D7788415A98B /* Sources */,
+			);
+			path = com_github_michaeleisel_jjliso8601dateformatter;
 			sourceTree = "<group>";
 		};
 		53C002BE3E52EB49EB763C1C /* Extensions */ = {
@@ -974,10 +1099,13 @@
 				021B92BD07A3B9B2A40BF303 /* generator */,
 				8868512DAA0471CE8389011D /* libCustomDump.a */,
 				B6B608FD8D0B8C0A9F33176C /* libgenerator.library.a */,
+				F9795E530FEB4082A30D1075 /* libJJLISO8601DateFormatter.a */,
 				AE8D0DB6F5BF067C5A2335E9 /* libOrderedCollections.a */,
 				0271FC5DE866BB6D4F05A37F /* libPathKit.a */,
 				342A59BB64F89FE783D1CA9D /* libXcodeProj.a */,
 				B7D6A2D73C29829FBB3D8223 /* libXCTestDynamicOverlay.a */,
+				4529AB7923C7D19A44DEC673 /* libZippyJSON.a */,
+				E0D6C8E798BCF44788892656 /* libZippyJSONCFamily.a */,
 				4EC5567B5BB7B0A7EA22B647 /* swiftc */,
 				47A45C723F8DA7A7D83E8C8E /* tests.xctest */,
 			);
@@ -996,6 +1124,7 @@
 			isa = PBXGroup;
 			children = (
 				BE08B0631824F7E9A50D3E9F /* applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889 */,
+				0F0512D9C8A03D7082D47D13 /* macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889 */,
 			);
 			name = "Bazel Generated Files";
 			path = "bazel-out";
@@ -1049,6 +1178,14 @@
 				CDD2194B595E4168B290CAAD /* XCSharedData.swift */,
 			);
 			path = Project;
+			sourceTree = "<group>";
+		};
+		668F5FF7BFAD09B3101C5655 /* bin */ = {
+			isa = PBXGroup;
+			children = (
+				FBD4A69AE5C29294379DD1DC /* external */,
+			);
+			path = bin;
 			sourceTree = "<group>";
 		};
 		6C5EAE2F477F54E662784C27 /* Conformances */ = {
@@ -1112,6 +1249,14 @@
 				A5962EDBFD266014E7759CAF /* XcodeScheme.swift */,
 			);
 			path = DTO;
+			sourceTree = "<group>";
+		};
+		78527D9E81ADFD5E16C7B044 /* com_github_michaeleisel_zippyjsoncfamily */ = {
+			isa = PBXGroup;
+			children = (
+				B14798A97F01024CAC2A57FD /* Sources */,
+			);
+			path = com_github_michaeleisel_zippyjsoncfamily;
 			sourceTree = "<group>";
 		};
 		7B155262AD30F2F3B29BE1FF /* testing */ = {
@@ -1203,6 +1348,9 @@
 				C4BDCE78352C46EB516B9C07 /* build_bazel_rules_apple */,
 				FF25B12C1E845E1FB49A3786 /* com_github_apple_swift_collections */,
 				8B0219260FAF10F1292D2FD5 /* com_github_kylef_pathkit */,
+				533C8F7C032E4CE4BFD9B898 /* com_github_michaeleisel_jjliso8601dateformatter */,
+				A593EFBE44515B3749ABB2C5 /* com_github_michaeleisel_zippyjson */,
+				78527D9E81ADFD5E16C7B044 /* com_github_michaeleisel_zippyjsoncfamily */,
 				58B4B976BEE11017A4CD2FBA /* com_github_pointfreeco_swift_custom_dump */,
 				C76245C8BAD29A1B5CF03238 /* com_github_pointfreeco_xctest_dynamic_overlay */,
 				C1E3804D4503AFAD45B4E1F7 /* com_github_tuist_xcodeproj */,
@@ -1261,6 +1409,24 @@
 			path = Sources;
 			sourceTree = "<group>";
 		};
+		A509BB3840EE8A0458506B37 /* tzdb */ = {
+			isa = PBXGroup;
+			children = (
+				2B41289D87EA28BFBE6B16BF /* localtime.c */,
+				27BB0A098261222A6D6A9A70 /* private.h */,
+				70EAB3B676219FD53B18B87D /* tzfile__.h */,
+			);
+			path = tzdb;
+			sourceTree = "<group>";
+		};
+		A593EFBE44515B3749ABB2C5 /* com_github_michaeleisel_zippyjson */ = {
+			isa = PBXGroup;
+			children = (
+				23DAADF1D32DDF1809543709 /* Sources */,
+			);
+			path = com_github_michaeleisel_zippyjson;
+			sourceTree = "<group>";
+		};
 		AAC5FFC203657E8FDE368A2D /* Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -1297,6 +1463,14 @@
 				A939F28C1E720F9CF259B14E /* PBXProjEncoder.swift */,
 			);
 			path = Project;
+			sourceTree = "<group>";
+		};
+		B14798A97F01024CAC2A57FD /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				CBD6E5E011FDEC9C720F40F8 /* ZippyJSONCFamily */,
+			);
+			path = Sources;
 			sourceTree = "<group>";
 		};
 		B65E4FBDD6362485EAA450DB /* XcodeProj */ = {
@@ -1359,6 +1533,14 @@
 			path = CustomDump;
 			sourceTree = "<group>";
 		};
+		BAA73DDF4035B7296F3BAF65 /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				A509BB3840EE8A0458506B37 /* tzdb */,
+			);
+			path = Vendor;
+			sourceTree = "<group>";
+		};
 		BB088CEFB9E8E204E9B9145C /* Workspace */ = {
 			isa = PBXGroup;
 			children = (
@@ -1386,6 +1568,14 @@
 				C669FED722B3B0CB3490BFE7 /* Sources */,
 			);
 			path = com_github_tuist_xcodeproj;
+			sourceTree = "<group>";
+		};
+		C1F25DB181AA43453CBBDC45 /* ZippyJSON */ = {
+			isa = PBXGroup;
+			children = (
+				B24A8A5FF2AB3218DD499666 /* ZippyJSONDecoder.swift */,
+			);
+			path = ZippyJSON;
 			sourceTree = "<group>";
 		};
 		C4BDCE78352C46EB516B9C07 /* build_bazel_rules_apple */ = {
@@ -1477,12 +1667,30 @@
 			path = com_github_pointfreeco_xctest_dynamic_overlay;
 			sourceTree = "<group>";
 		};
+		CBD6E5E011FDEC9C720F40F8 /* ZippyJSONCFamily */ = {
+			isa = PBXGroup;
+			children = (
+				4D731DF74786C29232992DD4 /* include */,
+				C2948436893FCF8E267DD1FD /* JSONSerialization.mm */,
+				D3ED94799BCD565987949361 /* simdjson.h */,
+			);
+			path = ZippyJSONCFamily;
+			sourceTree = "<group>";
+		};
 		CEDCBDCFED9BCCEE62971527 /* generator */ = {
 			isa = PBXGroup;
 			children = (
 				484B53AA640E7E28BAA87403 /* test */,
 			);
 			path = generator;
+			sourceTree = "<group>";
+		};
+		D0861F8699F9D7788415A98B /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				309CC6872D00A00F4EC49756 /* JJLISO8601DateFormatter */,
+			);
+			path = Sources;
 			sourceTree = "<group>";
 		};
 		D694DC6D0E20F54B967661A5 /* Extensions */ = {
@@ -1523,6 +1731,14 @@
 			path = Sources;
 			sourceTree = "<group>";
 		};
+		E69012BA00A2D3221A74DEF3 /* com_github_michaeleisel_zippyjsoncfamily */ = {
+			isa = PBXGroup;
+			children = (
+				6BF54CB7A688C30346592B2D /* ZippyJSONCFamily.swift.modulemap */,
+			);
+			path = com_github_michaeleisel_zippyjsoncfamily;
+			sourceTree = "<group>";
+		};
 		E6D79E16F2D084C389AEF3B6 /* bin */ = {
 			isa = PBXGroup;
 			children = (
@@ -1550,6 +1766,15 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FBD4A69AE5C29294379DD1DC /* external */ = {
+			isa = PBXGroup;
+			children = (
+				3FC8C6DE7D340D53657366D0 /* com_github_michaeleisel_jjliso8601dateformatter */,
+				E69012BA00A2D3221A74DEF3 /* com_github_michaeleisel_zippyjsoncfamily */,
+			);
+			path = external;
 			sourceTree = "<group>";
 		};
 		FF25B12C1E845E1FB49A3786 /* com_github_apple_swift_collections */ = {
@@ -1617,6 +1842,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 62952E9776009945A06895DC /* Build configuration list for PBXNativeTarget "generator.library" */;
 			buildPhases = (
+				5F81BAA456316FB3E34ACA65 /* Create compiling dependencies */,
 				C08A51E29CE836F70F08A673 /* Sources */,
 			);
 			buildRules = (
@@ -1626,9 +1852,26 @@
 				2EA330A1F5FEA84E4DDB6B6F /* PBXTargetDependency */,
 				708CE6F5066B3FED83964946 /* PBXTargetDependency */,
 				4AA89D33E273962408747D43 /* PBXTargetDependency */,
+				056DA398D248EEBB7B0C0D1C /* PBXTargetDependency */,
 			);
 			name = generator.library;
 			productName = generator.library;
+			productType = "com.apple.product-type.library.static";
+		};
+		5AB2F7853AEEE585A40777EB /* JJLISO8601DateFormatter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F403C9F509A80585E1E09BDC /* Build configuration list for PBXNativeTarget "JJLISO8601DateFormatter" */;
+			buildPhases = (
+				00C39D247C21E354CA493E9F /* Create compiling dependencies */,
+				E20EFA6926617D934CDF221A /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				42D4641B98C9F9FEE9137E3F /* PBXTargetDependency */,
+			);
+			name = JJLISO8601DateFormatter;
+			productName = JJLISO8601DateFormatter;
 			productType = "com.apple.product-type.library.static";
 		};
 		A4BAFFA66EE5607F05D752C1 /* swiftc */ = {
@@ -1647,6 +1890,22 @@
 			productName = swiftc;
 			productReference = 4EC5567B5BB7B0A7EA22B647 /* swiftc */;
 			productType = "com.apple.product-type.tool";
+		};
+		AB0F242FADED420D521EF7FC /* ZippyJSONCFamily */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AE5FC0A7E1205F34F11CFA8F /* Build configuration list for PBXNativeTarget "ZippyJSONCFamily" */;
+			buildPhases = (
+				B3AB25EDFB6E631C35C27D22 /* Create compiling dependencies */,
+				B5B59C6E185292AC7C97ACB0 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5A27B45A921149E6003136CA /* PBXTargetDependency */,
+			);
+			name = ZippyJSONCFamily;
+			productName = ZippyJSONCFamily;
+			productType = "com.apple.product-type.library.static";
 		};
 		B0128CCFCF9E56DA6D808193 /* OrderedCollections */ = {
 			isa = PBXNativeTarget;
@@ -1694,10 +1953,29 @@
 			productName = CustomDump;
 			productType = "com.apple.product-type.library.static";
 		};
+		F2630E05B3B42A46D6BA3081 /* ZippyJSON */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 86462AD426119D196956EB97 /* Build configuration list for PBXNativeTarget "ZippyJSON" */;
+			buildPhases = (
+				D6C01FA1AB3DE094A796FCED /* Create compiling dependencies */,
+				2345CF792BB42CDA3121C848 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8F15BF6FE96C2AF3F314D459 /* PBXTargetDependency */,
+				56D59EEA0B4A41DF2C92C35C /* PBXTargetDependency */,
+				AF5A181E9C5ECE1491695849 /* PBXTargetDependency */,
+			);
+			name = ZippyJSON;
+			productName = ZippyJSON;
+			productType = "com.apple.product-type.library.static";
+		};
 		F5FCEC7426929BDA7F9F1875 /* tests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C7565EB0FDBA3197145536CA /* Build configuration list for PBXNativeTarget "tests" */;
 			buildPhases = (
+				B91C9BC8FE976DED57B4C419 /* Create compiling dependencies */,
 				70EEEFD103E781D8A11D78F7 /* Create linking dependencies */,
 				71CF0D539853CEF8920D6197 /* Sources */,
 			);
@@ -1739,7 +2017,15 @@
 						CreatedOnToolsVersion = 13.2.1;
 						LastSwiftMigration = 9999;
 					};
+					5AB2F7853AEEE585A40777EB = {
+						CreatedOnToolsVersion = 13.2.1;
+						LastSwiftMigration = 9999;
+					};
 					A4BAFFA66EE5607F05D752C1 = {
+						CreatedOnToolsVersion = 13.2.1;
+						LastSwiftMigration = 9999;
+					};
+					AB0F242FADED420D521EF7FC = {
 						CreatedOnToolsVersion = 13.2.1;
 						LastSwiftMigration = 9999;
 					};
@@ -1752,6 +2038,10 @@
 						LastSwiftMigration = 9999;
 					};
 					CFD3DFAB502EFF52937E5E51 = {
+						CreatedOnToolsVersion = 13.2.1;
+						LastSwiftMigration = 9999;
+					};
+					F2630E05B3B42A46D6BA3081 = {
 						CreatedOnToolsVersion = 13.2.1;
 						LastSwiftMigration = 9999;
 					};
@@ -1781,17 +2071,37 @@
 				CFD3DFAB502EFF52937E5E51 /* CustomDump */,
 				2FED647E7A6091DF616D345B /* generator */,
 				3A4021D8F5FC68CD4FB8B6F1 /* generator.library */,
+				5AB2F7853AEEE585A40777EB /* JJLISO8601DateFormatter */,
 				B0128CCFCF9E56DA6D808193 /* OrderedCollections */,
 				299DA591171C10F8AF73F244 /* PathKit */,
 				A4BAFFA66EE5607F05D752C1 /* swiftc */,
 				F5FCEC7426929BDA7F9F1875 /* tests */,
 				19FA71657765A036575B20D8 /* XcodeProj */,
 				CE60FB500B781C8126957C5A /* XCTestDynamicOverlay */,
+				F2630E05B3B42A46D6BA3081 /* ZippyJSON */,
+				AB0F242FADED420D521EF7FC /* ZippyJSONCFamily */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		00C39D247C21E354CA493E9F /* Create compiling dependencies */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(INTERNAL_DIR)/create_xcode_overlay.sh",
+			);
+			name = "Create compiling dependencies";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$SCRIPT_INPUT_FILE_0\"\n";
+			showEnvVarsInLog = 0;
+		};
 		0526F613A0521424B1525042 /* Create compiling dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1842,6 +2152,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "perl -pe 's/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5F81BAA456316FB3E34ACA65 /* Create compiling dependencies */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(INTERNAL_DIR)/create_xcode_overlay.sh",
+			);
+			name = "Create compiling dependencies";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$SCRIPT_INPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
 		70EEEFD103E781D8A11D78F7 /* Create linking dependencies */ = {
@@ -1898,9 +2225,68 @@
 			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
+		B3AB25EDFB6E631C35C27D22 /* Create compiling dependencies */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(INTERNAL_DIR)/create_xcode_overlay.sh",
+			);
+			name = "Create compiling dependencies";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$SCRIPT_INPUT_FILE_0\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B91C9BC8FE976DED57B4C419 /* Create compiling dependencies */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(INTERNAL_DIR)/create_xcode_overlay.sh",
+			);
+			name = "Create compiling dependencies";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$SCRIPT_INPUT_FILE_0\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D6C01FA1AB3DE094A796FCED /* Create compiling dependencies */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(INTERNAL_DIR)/create_xcode_overlay.sh",
+			);
+			name = "Create compiling dependencies";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$SCRIPT_INPUT_FILE_0\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		2345CF792BB42CDA3121C848 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9ADACC15CDEAE1AD356E848E /* ZippyJSONDecoder.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		628EED8BA8790A385FB5BBFF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2030,6 +2416,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B5B59C6E185292AC7C97ACB0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				778D35F7FF1CE675086CB65E /* JSONSerialization.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C08A51E29CE836F70F08A673 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2113,6 +2507,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DBD4CEB4216A2798E8DD7E9 /* PathKit.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E20EFA6926617D934CDF221A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E07D44BA1AD4A3C6A0A65ACA /* JJLISO8601DateFormatter.m in Sources */,
+				8F533010DE1FA311F4D9124C /* JJLInternal.c in Sources */,
+				D1ACA5C44C9959B7CB740F8B /* localtime.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2261,6 +2665,12 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		056DA398D248EEBB7B0C0D1C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ZippyJSON;
+			target = F2630E05B3B42A46D6BA3081 /* ZippyJSON */;
+			targetProxy = 1008B9E5030C693C0565EDB4 /* PBXContainerItemProxy */;
+		};
 		10375D5CCD79A0DFFB549B39 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = BazelDependencies;
@@ -2272,6 +2682,12 @@
 			name = OrderedCollections;
 			target = B0128CCFCF9E56DA6D808193 /* OrderedCollections */;
 			targetProxy = 6DD99DE39777A6190BA3601A /* PBXContainerItemProxy */;
+		};
+		42D4641B98C9F9FEE9137E3F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BazelDependencies;
+			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
+			targetProxy = 8B6D1AEE07DAD97F0D80BFDE /* PBXContainerItemProxy */;
 		};
 		4460D0461ECFE2C5DB3906C8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2291,6 +2707,18 @@
 			target = CFD3DFAB502EFF52937E5E51 /* CustomDump */;
 			targetProxy = CFBF834907E2F47679529098 /* PBXContainerItemProxy */;
 		};
+		56D59EEA0B4A41DF2C92C35C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = JJLISO8601DateFormatter;
+			target = 5AB2F7853AEEE585A40777EB /* JJLISO8601DateFormatter */;
+			targetProxy = 45F253887288F54D95092CBD /* PBXContainerItemProxy */;
+		};
+		5A27B45A921149E6003136CA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BazelDependencies;
+			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
+			targetProxy = 39533C0921C775777191C0F2 /* PBXContainerItemProxy */;
+		};
 		5F445F20107721899DF3B81D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = generator.library;
@@ -2309,11 +2737,23 @@
 			target = 299DA591171C10F8AF73F244 /* PathKit */;
 			targetProxy = 5F803C1AC4A2B51D785ED2A9 /* PBXContainerItemProxy */;
 		};
+		8F15BF6FE96C2AF3F314D459 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BazelDependencies;
+			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
+			targetProxy = 0A7568AE2EF794BA59485EF2 /* PBXContainerItemProxy */;
+		};
 		9180B355ABFEE76581F29E80 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = BazelDependencies;
 			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
 			targetProxy = DB651C00CC6C7BD07F2AAF7E /* PBXContainerItemProxy */;
+		};
+		AF5A181E9C5ECE1491695849 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ZippyJSONCFamily;
+			target = AB0F242FADED420D521EF7FC /* ZippyJSONCFamily */;
+			targetProxy = 40E5D22378C223AF3CC071DF /* PBXContainerItemProxy */;
 		};
 		B12061704177081637FBB0E6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2449,19 +2889,130 @@
 				ENABLE_TESTABILITY = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(BAZEL_EXTERNAL)/com_github_michaeleisel_jjliso8601dateformatter/Sources/JJLISO8601DateFormatter/include",
+					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_jjliso8601dateformatter/Sources/JJLISO8601DateFormatter/include",
+					"$(BAZEL_EXTERNAL)/com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/include",
+					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/include",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				OTHER_SWIFT_FLAGS = "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static";
+				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(DERIVED_FILE_DIR)/xcode-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_jjliso8601dateformatter/JJLISO8601DateFormatter.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_zippyjsoncfamily/ZippyJSONCFamily.swift.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static";
 				PRODUCT_MODULE_NAME = generator;
 				PRODUCT_NAME = generator.library;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_INCLUDE_PATHS = "$(BUILD_DIR)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_apple_swift_collections $(BUILD_DIR)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_kylef_pathkit bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_tadija_aexml $(BUILD_DIR)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_tuist_xcodeproj";
+				SWIFT_INCLUDE_PATHS = "$(BUILD_DIR)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_apple_swift_collections $(BUILD_DIR)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_kylef_pathkit $(BUILD_DIR)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_zippyjson bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_tadija_aexml $(BUILD_DIR)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_tuist_xcodeproj";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = generator.library;
 				USER_HEADER_SEARCH_PATHS = (
+					"$(BAZEL_EXTERNAL)/com_github_michaeleisel_jjliso8601dateformatter",
+					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_jjliso8601dateformatter",
+					"$(BAZEL_EXTERNAL)/com_github_michaeleisel_zippyjsoncfamily",
+					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_zippyjsoncfamily",
+					"$(PROJECT_DIR)",
+					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin",
+				);
+			};
+			name = Debug;
+		};
+		40E9C90FB99F2073B2BBFDA6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = x86_64;
+				BAZEL_LABEL = "@com_github_michaeleisel_zippyjsoncfamily//:ZippyJSONCFamily";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_zippyjsoncfamily";
+				BAZEL_TARGET_ID = "@com_github_michaeleisel_zippyjsoncfamily//:ZippyJSONCFamily macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889";
+				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				COMPILE_TARGET_NAME = ZippyJSONCFamily;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"_FORTIFY_SOURCE=1",
+					OS_MACOSX,
+					"DEBUG=1",
+				);
+				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(BAZEL_EXTERNAL)/com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/include",
+					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/include",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				OTHER_CFLAGS = (
+					"-ivfsoverlay",
+					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
+					"-fstack-protector",
+					"-Wall",
+					"-Wthread-safety",
+					"-Wself-assign",
+					"-fno-omit-frame-pointer",
+					"-Wshorten-64-to-32",
+					"-Wbool-conversion",
+					"-Wconstant-conversion",
+					"-Wduplicate-method-match",
+					"-Wempty-body",
+					"-Wenum-conversion",
+					"-Wint-conversion",
+					"-Wunreachable-code",
+					"-Wmismatched-return-types",
+					"-Wundeclared-selector",
+					"-Wuninitialized",
+					"-Wunused-function",
+					"-Wunused-variable",
+					"-fno-autolink",
+					"-std=c++17",
+					"-Wno-unused-function",
+					"-Wno-reorder-ctor",
+					"-Wno-return-type-c-linkage",
+					"-Wno-shorten-64-to-32",
+					"-fstack-protector",
+					"-fstack-protector-all",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"-ivfsoverlay",
+					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
+					"-fstack-protector",
+					"-Wall",
+					"-Wthread-safety",
+					"-Wself-assign",
+					"-fno-omit-frame-pointer",
+					"-Wshorten-64-to-32",
+					"-Wbool-conversion",
+					"-Wconstant-conversion",
+					"-Wduplicate-method-match",
+					"-Wempty-body",
+					"-Wenum-conversion",
+					"-Wint-conversion",
+					"-Wunreachable-code",
+					"-Wmismatched-return-types",
+					"-Wundeclared-selector",
+					"-Wuninitialized",
+					"-Wunused-function",
+					"-Wunused-variable",
+					"-fno-autolink",
+					"-Wno-unused-function",
+					"-Wno-reorder-ctor",
+					"-Wno-return-type-c-linkage",
+					"-Wno-shorten-64-to-32",
+					"-fstack-protector",
+					"-fstack-protector-all",
+				);
+				PRODUCT_NAME = ZippyJSONCFamily;
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGET_NAME = ZippyJSONCFamily;
+				USER_HEADER_SEARCH_PATHS = (
+					"$(BAZEL_EXTERNAL)/com_github_michaeleisel_zippyjsoncfamily",
+					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_zippyjsoncfamily",
 					"$(PROJECT_DIR)",
 					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin",
 				);
@@ -2485,6 +3036,12 @@
 				EXECUTABLE_EXTENSION = "";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(BAZEL_EXTERNAL)/com_github_michaeleisel_jjliso8601dateformatter/Sources/JJLISO8601DateFormatter/include",
+					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_jjliso8601dateformatter/Sources/JJLISO8601DateFormatter/include",
+					"$(BAZEL_EXTERNAL)/com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/include",
+					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/include",
+				);
 				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/tools/generator/generator.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_CFLAGS = (
@@ -2504,6 +3061,10 @@
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = generator;
 				USER_HEADER_SEARCH_PATHS = (
+					"$(BAZEL_EXTERNAL)/com_github_michaeleisel_jjliso8601dateformatter",
+					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_jjliso8601dateformatter",
+					"$(BAZEL_EXTERNAL)/com_github_michaeleisel_zippyjsoncfamily",
+					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_zippyjsoncfamily",
 					"$(PROJECT_DIR)",
 					"$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin",
 				);
@@ -2551,6 +3112,104 @@
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = XCTestDynamicOverlay;
 				USER_HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)",
+					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin",
+				);
+			};
+			name = Debug;
+		};
+		88C9309560F30BA1D50AD672 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = x86_64;
+				BAZEL_LABEL = "@com_github_michaeleisel_jjliso8601dateformatter//:JJLISO8601DateFormatter";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_jjliso8601dateformatter";
+				BAZEL_TARGET_ID = "@com_github_michaeleisel_jjliso8601dateformatter//:JJLISO8601DateFormatter macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889";
+				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				COMPILE_TARGET_NAME = JJLISO8601DateFormatter;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"_FORTIFY_SOURCE=1",
+					OS_MACOSX,
+					"DEBUG=1",
+				);
+				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(BAZEL_EXTERNAL)/com_github_michaeleisel_jjliso8601dateformatter/Sources/JJLISO8601DateFormatter/include",
+					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_jjliso8601dateformatter/Sources/JJLISO8601DateFormatter/include",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				OTHER_CFLAGS = (
+					"-ivfsoverlay",
+					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
+					"-fstack-protector",
+					"-Wall",
+					"-Wthread-safety",
+					"-Wself-assign",
+					"-fno-omit-frame-pointer",
+					"-Wshorten-64-to-32",
+					"-Wbool-conversion",
+					"-Wconstant-conversion",
+					"-Wduplicate-method-match",
+					"-Wempty-body",
+					"-Wenum-conversion",
+					"-Wint-conversion",
+					"-Wunreachable-code",
+					"-Wmismatched-return-types",
+					"-Wundeclared-selector",
+					"-Wuninitialized",
+					"-Wunused-function",
+					"-Wunused-variable",
+					"-fno-autolink",
+					"-Wno-incompatible-pointer-types",
+					"-Wno-incompatible-pointer-types-discards-qualifiers",
+					"-Wno-unused-function",
+					"-fstack-protector",
+					"-fstack-protector-all",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"-ivfsoverlay",
+					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
+					"-fstack-protector",
+					"-Wall",
+					"-Wthread-safety",
+					"-Wself-assign",
+					"-fno-omit-frame-pointer",
+					"-Wshorten-64-to-32",
+					"-Wbool-conversion",
+					"-Wconstant-conversion",
+					"-Wduplicate-method-match",
+					"-Wempty-body",
+					"-Wenum-conversion",
+					"-Wint-conversion",
+					"-Wunreachable-code",
+					"-Wmismatched-return-types",
+					"-Wundeclared-selector",
+					"-Wuninitialized",
+					"-Wunused-function",
+					"-Wunused-variable",
+					"-fno-autolink",
+					"-Wno-incompatible-pointer-types",
+					"-Wno-incompatible-pointer-types-discards-qualifiers",
+					"-Wno-unused-function",
+					"-fstack-protector",
+					"-fstack-protector-all",
+				);
+				PRODUCT_NAME = JJLISO8601DateFormatter;
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGET_NAME = JJLISO8601DateFormatter;
+				USER_HEADER_SEARCH_PATHS = (
+					"$(BAZEL_EXTERNAL)/com_github_michaeleisel_jjliso8601dateformatter",
+					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_jjliso8601dateformatter",
 					"$(PROJECT_DIR)",
 					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin",
 				);
@@ -2617,11 +3276,17 @@
 				ENABLE_TESTABILITY = YES;
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				HEADER_SEARCH_PATHS = (
+					"$(BAZEL_EXTERNAL)/com_github_michaeleisel_jjliso8601dateformatter/Sources/JJLISO8601DateFormatter/include",
+					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_jjliso8601dateformatter/Sources/JJLISO8601DateFormatter/include",
+					"$(BAZEL_EXTERNAL)/com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/include",
+					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/include",
+				);
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/tools/generator/test/rules_xcodeproj/tests.__internal__.__test_bundle/Info.plist";
 				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/tools/generator/test/tests.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static";
+				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(DERIVED_FILE_DIR)/xcode-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_jjliso8601dateformatter/JJLISO8601DateFormatter.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_zippyjsoncfamily/ZippyJSONCFamily.swift.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static";
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "$(BUILD_DIR)/bazel-out/applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/tools/generator/test/tests.__internal__.__test_bundle_archive-root";
@@ -2631,12 +3296,16 @@
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_INCLUDE_PATHS = "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) $(BUILD_DIR)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_apple_swift_collections $(BUILD_DIR)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_kylef_pathkit bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_tadija_aexml $(BUILD_DIR)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_tuist_xcodeproj $(BUILD_DIR)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/tools/generator $(BUILD_DIR)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_pointfreeco_xctest_dynamic_overlay $(BUILD_DIR)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_pointfreeco_swift_custom_dump";
+				SWIFT_INCLUDE_PATHS = "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) $(BUILD_DIR)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_apple_swift_collections $(BUILD_DIR)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_kylef_pathkit $(BUILD_DIR)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_zippyjson bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_tadija_aexml $(BUILD_DIR)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_tuist_xcodeproj $(BUILD_DIR)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/tools/generator $(BUILD_DIR)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_pointfreeco_xctest_dynamic_overlay $(BUILD_DIR)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_pointfreeco_swift_custom_dump";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = tests;
 				USER_HEADER_SEARCH_PATHS = (
+					"$(BAZEL_EXTERNAL)/com_github_michaeleisel_jjliso8601dateformatter",
+					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_jjliso8601dateformatter",
+					"$(BAZEL_EXTERNAL)/com_github_michaeleisel_zippyjsoncfamily",
+					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_zippyjsoncfamily",
 					"$(PROJECT_DIR)",
 					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin",
 				);
@@ -2760,6 +3429,49 @@
 			};
 			name = Debug;
 		};
+		EEFB5F9285BB02D37F870761 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = x86_64;
+				BAZEL_LABEL = "@com_github_michaeleisel_zippyjson//:ZippyJSON";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_zippyjson";
+				BAZEL_TARGET_ID = "@com_github_michaeleisel_zippyjson//:ZippyJSON macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889";
+				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
+				COMPILE_TARGET_NAME = ZippyJSON;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(BAZEL_EXTERNAL)/com_github_michaeleisel_jjliso8601dateformatter/Sources/JJLISO8601DateFormatter/include",
+					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_jjliso8601dateformatter/Sources/JJLISO8601DateFormatter/include",
+					"$(BAZEL_EXTERNAL)/com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/include",
+					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/include",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(DERIVED_FILE_DIR)/xcode-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_jjliso8601dateformatter/JJLISO8601DateFormatter.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_zippyjsoncfamily/ZippyJSONCFamily.swift.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static";
+				PRODUCT_MODULE_NAME = ZippyJSON;
+				PRODUCT_NAME = ZippyJSON;
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGET_NAME = ZippyJSON;
+				USER_HEADER_SEARCH_PATHS = (
+					"$(BAZEL_EXTERNAL)/com_github_michaeleisel_jjliso8601dateformatter",
+					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_jjliso8601dateformatter",
+					"$(BAZEL_EXTERNAL)/com_github_michaeleisel_zippyjsoncfamily",
+					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_zippyjsoncfamily",
+					"$(PROJECT_DIR)",
+					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin",
+				);
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -2803,6 +3515,14 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
+		86462AD426119D196956EB97 /* Build configuration list for PBXNativeTarget "ZippyJSON" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EEFB5F9285BB02D37F870761 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
 		8C14447CB8BDD86ECF450932 /* Build configuration list for PBXProject "bwx" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -2815,6 +3535,14 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				67F44AB65FA7A2E38A56F5FB /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		AE5FC0A7E1205F34F11CFA8F /* Build configuration list for PBXNativeTarget "ZippyJSONCFamily" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				40E9C90FB99F2073B2BBFDA6 /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
@@ -2847,6 +3575,14 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				73D2023D57A9AFF02A3DA735 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		F403C9F509A80585E1E09BDC /* Build configuration list for PBXNativeTarget "JJLISO8601DateFormatter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				88C9309560F30BA1D50AD672 /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

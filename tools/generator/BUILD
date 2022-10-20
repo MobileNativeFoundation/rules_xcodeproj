@@ -25,6 +25,7 @@ swift_library(
     deps = [
         "@com_github_apple_swift_collections//:OrderedCollections",
         "@com_github_kylef_pathkit//:PathKit",
+        "@com_github_michaeleisel_zippyjson//:ZippyJSON",
         "@com_github_tuist_xcodeproj//:XcodeProj",
     ],
 )

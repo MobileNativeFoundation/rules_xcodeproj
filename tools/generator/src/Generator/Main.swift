@@ -1,5 +1,6 @@
 import Darwin
 import Foundation
+import ZippyJSON
 import PathKit
 
 @main
@@ -99,7 +100,7 @@ ERROR: build_mode wasn't one of the supported values: xcode, bazel
     }
 
     static func readProject(path: Path) throws -> Project {
-        let decoder = JSONDecoder()
+        let decoder = ZippyJSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
 
         do {
@@ -137,7 +138,7 @@ directory.
     }
 
     static func readXCCurrentVersions(path: Path) throws -> [XCCurrentVersion] {
-        let decoder = JSONDecoder()
+        let decoder = ZippyJSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
 
         do {
@@ -154,7 +155,7 @@ directory.
     static func readExtensionPointIdentifiers(
         path: Path
     ) throws -> [TargetID: ExtensionPointIdentifier] {
-        let decoder = JSONDecoder()
+        let decoder = ZippyJSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
 
         do {

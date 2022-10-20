@@ -1,0 +1,10 @@
+--- Sources/JJLISO8601DateFormatter/Vendor/tzdb/tzfile__.h
++++ Sources/JJLISO8601DateFormatter/Vendor/tzdb/tzfile__.h
+@@ -2,6 +2,7 @@
+
+ #define TZFILE_H
+
++#include <sys/types.h>
+ #include <time.h>
+
+ /*
