@@ -273,13 +273,11 @@ extension XcodeScheme.TestAction: Decodable {
                 [XcodeScheme.PrePostAction].self,
                 forKey: .preActions
             ) ?? []
-        print(preActions)
         postActions = try container
             .decodeIfPresent(
                 [XcodeScheme.PrePostAction].self,
                 forKey: .postActions
             ) ?? []
-        print(postActions)
     }
 }
 

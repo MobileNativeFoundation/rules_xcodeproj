@@ -164,6 +164,8 @@ def _test_action_test(ctx):
         diagnostics = None,
         env = {},
         expand_variables_based_on = None,
+        pre_actions = [],
+        post_actions = [],
     )
     asserts.equals(env, expected, actual, "no custom values")
 
@@ -179,6 +181,8 @@ def _test_action_test(ctx):
         diagnostics = None,
         env = custom_env,
         expand_variables_based_on = None,
+        pre_actions = [],
+        post_actions = [],
     )
     asserts.equals(env, expected, actual, "with custom values")
 
@@ -195,6 +199,8 @@ def _test_action_test(ctx):
         diagnostics = None,
         env = {},
         expand_variables_based_on = "none",
+        pre_actions = [],
+        post_actions = [],
     )
     asserts.equals(
         env,
@@ -216,6 +222,8 @@ def _test_action_test(ctx):
         diagnostics = None,
         env = {},
         expand_variables_based_on = bazel_labels.normalize(targets[0]),
+        pre_actions = [],
+        post_actions = [],
     )
     asserts.equals(
         env,
