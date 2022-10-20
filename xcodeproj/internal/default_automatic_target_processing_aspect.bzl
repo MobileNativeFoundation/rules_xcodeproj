@@ -185,6 +185,7 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
 
     return [
         XcodeProjAutomaticTargetProcessingInfo(
+            all_attrs = attrs,
             alternate_icons = alternate_icons,
             app_icons = app_icons,
             bazel_build_mode_error = bazel_build_mode_error,
