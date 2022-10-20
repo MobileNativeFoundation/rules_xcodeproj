@@ -295,7 +295,8 @@ A `struct` representing a launch action.
 ## xcode_schemes.test_action
 
 <pre>
-xcode_schemes.test_action(<a href="#xcode_schemes.test_action-targets">targets</a>, <a href="#xcode_schemes.test_action-args">args</a>, <a href="#xcode_schemes.test_action-diagnostics">diagnostics</a>, <a href="#xcode_schemes.test_action-env">env</a>, <a href="#xcode_schemes.test_action-expand_variables_based_on">expand_variables_based_on</a>)
+xcode_schemes.test_action(<a href="#xcode_schemes.test_action-targets">targets</a>, <a href="#xcode_schemes.test_action-args">args</a>, <a href="#xcode_schemes.test_action-diagnostics">diagnostics</a>, <a href="#xcode_schemes.test_action-env">env</a>, <a href="#xcode_schemes.test_action-expand_variables_based_on">expand_variables_based_on</a>, <a href="#xcode_schemes.test_action-pre_actions">pre_actions</a>,
+                          <a href="#xcode_schemes.test_action-post_actions">post_actions</a>)
 </pre>
 
 Constructs a test action for an Xcode scheme.
@@ -310,6 +311,8 @@ Constructs a test action for an Xcode scheme.
 | <a id="xcode_schemes.test_action-diagnostics"></a>diagnostics |  Optional. A value returned by <code>xcode_schemes.diagnostics</code>.   |  <code>None</code> |
 | <a id="xcode_schemes.test_action-env"></a>env |  Optional. A <code>dict</code> of <code>string</code> values that will be set as environment variables when the target is executed.   |  <code>None</code> |
 | <a id="xcode_schemes.test_action-expand_variables_based_on"></a>expand_variables_based_on |  Optional. One of the specified test target labels. If no value is provided, one of the test targets will be selected. If no expansion context is desired, use the <code>string</code> value <code>none</code>.   |  <code>None</code> |
+| <a id="xcode_schemes.test_action-pre_actions"></a>pre_actions |  A <code>sequence</code> of <code>struct</code> values as created by <code>xcode_schemes.pre_action</code>.   |  <code>[]</code> |
+| <a id="xcode_schemes.test_action-post_actions"></a>post_actions |  A <code>sequence</code> of <code>struct</code> values as created by <code>xcode_schemes.post_action</code>.   |  <code>[]</code> |
 
 **RETURNS**
 
