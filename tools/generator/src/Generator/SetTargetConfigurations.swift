@@ -511,7 +511,8 @@ $(CONFIGURATION_BUILD_DIR)
                 to: target.linkerInputs.dynamicFrameworks.map { filePath in
                     let filePath = bazelRemappedFiles[filePath] ?? filePath
                     return #"""
-"\#(try filePathResolver.resolve(filePath, useBazelOut: true))"
+"\#(try filePathResolver
+    .resolve(filePath, useBazelOut: true, forceFullBuildSettingPath: true))"
 """#
                 }
             )
