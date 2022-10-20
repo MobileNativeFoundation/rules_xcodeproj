@@ -121,7 +121,7 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
                             )
                             .string.quoted
                     }
-                    .sortedLocalizedStandard()
+                    .sorted()
                     .joined(separator: " ")
                 targetBuildSettings.set(
                     "INCLUDED_SOURCE_FILE_NAMES",
