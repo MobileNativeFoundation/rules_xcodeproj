@@ -27,6 +27,7 @@ def _should_ignore_attr(attr):
 
 def _transitive_infos(*, ctx, automatic_target_info):
     transitive_infos = []
+
     # TODO: Have `XcodeProjAutomaticTargetProcessingInfo` tell us which
     # attributes to look at. About 7% of an example pprof trace is spent on
     # `_should_ignore_attr` and the type checks below. If we had a list of
