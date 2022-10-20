@@ -147,6 +147,79 @@ swift_library(
         ignore_version_differences = ignore_version_differences,
     )
 
+    _maybe(
+        http_archive,
+        name = "com_github_michaeleisel_jjliso8601dateformatter",
+        build_file_content = """\
+objc_library(
+    name = "JJLISO8601DateFormatter",
+    srcs = glob(["Sources/JJLISO8601DateFormatter/**/*"]),
+    copts = [
+        "-Wno-incompatible-pointer-types",
+        "-Wno-incompatible-pointer-types-discards-qualifiers",
+        "-Wno-unused-function",
+    ],
+    includes = ["Sources/JJLISO8601DateFormatter/include"],
+    hdrs = glob(["Sources/JJLISO8601DateFormatter/include/*"]),
+    visibility = ["//visibility:public"],
+)
+""",
+        patches = [
+            "@com_github_buildbuddy_io_rules_xcodeproj//third_party/com_github_michaeleisel_jjliso8601dateformatter:missing_include.patch",
+        ],
+        sha256 = "cfd5fad808d321b6ba3389be7af39955e99736960e68e54ffd3927676664dc35",
+        strip_prefix = "JJLISO8601DateFormatter-0.1.3",
+        url = "https://github.com/michaeleisel/JJLISO8601DateFormatter/archive/refs/tags/0.1.3.tar.gz",
+        ignore_version_differences = ignore_version_differences,
+    )
+
+    _maybe(
+        http_archive,
+        name = "com_github_michaeleisel_zippyjsoncfamily",
+        build_file_content = """\
+objc_library(
+    name = "ZippyJSONCFamily",
+    copts = [
+        "-std=c++17",
+        "-Wno-unused-function",
+        "-Wno-reorder-ctor",
+        "-Wno-return-type-c-linkage",
+        "-Wno-shorten-64-to-32",
+    ],
+    srcs = glob(["Sources/ZippyJSONCFamily/**/*"]),
+    includes = ["Sources/ZippyJSONCFamily/include"],
+    hdrs = glob(["Sources/ZippyJSONCFamily/include/*"]),
+    visibility = ["//visibility:public"],
+)
+""",
+        sha256 = "d729f2e30dbb738843ffa812d4f1a649b68f9266eea70a41c95b850306b4a8f7",
+        strip_prefix = "ZippyJSONCFamily-1.2.5",
+        url = "https://github.com/michaeleisel/ZippyJSONCFamily/archive/refs/tags/1.2.5.tar.gz",
+        ignore_version_differences = ignore_version_differences,
+    )
+
+    _maybe(
+        http_archive,
+        name = "com_github_michaeleisel_zippyjson",
+        build_file_content = """\
+load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
+
+swift_library(
+    name = "ZippyJSON",
+    srcs = glob(["Sources/ZippyJSON/**/*.swift"]),
+    deps = [
+        "@com_github_michaeleisel_jjliso8601dateformatter//:JJLISO8601DateFormatter",
+        "@com_github_michaeleisel_zippyjsoncfamily//:ZippyJSONCFamily",
+    ],
+    visibility = ["//visibility:public"],
+)
+""",
+        sha256 = "773169ecc97c18551ffbcc319d44ef06e40415a8d71b19b6a6b2e3100a312ad0",
+        strip_prefix = "ZippyJSON-1.2.5",
+        url = "https://github.com/michaeleisel/ZippyJSON/archive/refs/tags/1.2.5.tar.gz",
+        ignore_version_differences = ignore_version_differences,
+    )
+
     if use_dev_patches:
         xcodeproj_patches = [
             # Custom for our tests
