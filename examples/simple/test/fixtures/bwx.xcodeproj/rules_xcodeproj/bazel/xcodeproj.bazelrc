@@ -57,15 +57,6 @@ build:rules_xcodeproj --show_result=0
 
 build:rules_xcodeproj_generator --config=rules_xcodeproj
 
-### `--config=rules_xcodeproj_info`
-#
-# Used when querying `bazel info`.
-
-info:rules_xcodeproj_info --config=rules_xcodeproj
-
-# Filter out extra noise
-info:rules_xcodeproj_info --ui_event_filters=-INFO,-WARNING
-
 ### `--config=rules_xcodeproj_indexbuild`
 #
 # Used when doing an Index Build.
