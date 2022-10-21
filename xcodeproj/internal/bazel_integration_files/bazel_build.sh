@@ -64,22 +64,6 @@ readonly base_pre_config_flags=(
   "--repo_env=USE_CLANG_CL=$XCODE_PRODUCT_BUILD_VERSION"
 )
 
-# Determine Bazel output_path
-
-if [[ "${COLOR_DIAGNOSTICS:-NO}" == "YES" ]]; then
-  readonly info_color=yes
-else
-  readonly info_color=no
-fi
-
-output_path=$("${bazel_cmd[@]}" \
-  info \
-  "${base_pre_config_flags[@]}" \
-  --config="${BAZEL_CONFIG}_info" \
-  --color="$info_color" \
-  output_path)
-readonly output_path
-
 # Custom Swift toolchains
 
 if [[ -n "${TOOLCHAINS-}" ]]; then
@@ -116,7 +100,7 @@ for output_group in "${output_groups[@]}"; do
   fi
 
   filelist="$GENERATOR_TARGET_NAME-${output_group//\//_}"
-  filelist="${filelist/#/$output_path/$GENERATOR_PACKAGE_BIN_DIR/}"
+  filelist="${filelist/#/$BAZEL_OUT/$GENERATOR_PACKAGE_BIN_DIR/}"
   filelist="${filelist/%/.filelist}"
 
   if [[ ! -f "$filelist" ]]; then
