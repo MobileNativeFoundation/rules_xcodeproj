@@ -1,0 +1,17 @@
+-ObjC
+-framework
+CryptoSwift
+-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin/Lib/Lib.swiftmodule/arm64_32-apple-watchos.swiftmodule
+-ObjC
+-L/usr/lib/swift
+-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos
+-Wl,-rpath,/usr/lib/swift
+-lc++
+-headerpad_max_install_names
+-no-canonical-prefixes
+-framework
+Foundation
+-framework
+UIKit
+-force_load
+$(BUILD_DIR)/bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin/Lib/libLib.a
