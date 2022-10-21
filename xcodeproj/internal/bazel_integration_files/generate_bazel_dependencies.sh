@@ -112,17 +112,15 @@ if [[ $apply_sanitizers -eq 1 ]]; then
 fi
 readonly build_pre_config_flags
 
-# `bazel_build.sh` sets `output_path` and `indexstores_filelists`
+# `bazel_build.sh` sets `indexstores_filelists`
 source "$BAZEL_INTEGRATION_DIR/bazel_build.sh"
 
 # Create `bazel.lldbinit``
 
-readonly execution_root="${output_path%/*}"
-
 if [[ "$ACTION" != "indexbuild" && "${ENABLE_PREVIEWS:-}" != "YES" ]]; then
   # shellcheck disable=SC2046
   "$BAZEL_INTEGRATION_DIR/create_lldbinit.sh" \
-    "$execution_root" \
+    "$PROJECT_DIR" \
     $(xargs -n1 <<< "${RESOLVED_EXTERNAL_REPOSITORIES:-}") \
     > "$BAZEL_LLDB_INIT"
 fi
@@ -151,7 +149,7 @@ done
 # Import indexes
 if [ -n "${indexstores_filelists:-}" ]; then
   "$BAZEL_INTEGRATION_DIR/import_indexstores.sh" \
-    "$execution_root" \
+    "$PROJECT_DIR" \
     "${indexstores_filelists[@]}" \
     >"$log_dir/import_indexstores.async.log" 2>&1 &
 fi
