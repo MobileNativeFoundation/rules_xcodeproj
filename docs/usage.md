@@ -6,6 +6,9 @@
   - [Project-level configs](#project-level-configs)
   - [Extra config flags](#extra-config-flags)
   - [`.bazelrc` files](#bazelrc-files)
+- [Command-line API](#command-line-api)
+  - [Commands](#commands)
+  - [Options](#options)
 
 # Bazel configs
 
@@ -94,10 +97,17 @@ project-level configs if they are used.
 
 At the end of the project `xcodeproj.bazelrc` file is a conditional import of a
 workspace level `xcodeproj.bazelrc` file. Since startup flags (e.g.
-`--output_base`) can't be applied to configs, they can instead be set in this
+`--host_jvm_args`) can't be applied to configs, they can instead be set in this
 file, and they will only apply to rules_xcodeproj `bazel` invocations. If you
 have to generate all or part of your rules_xcodeproj configs, this is a
 convenient file to use for that.
+
+> **Note**
+>
+> `--output_base` is set by rules_xcodeproj in order to nest the output base
+> inside of the primary output base (see the
+> [command-line API section](#command-line-api) for more details). Thus, setting
+> `startup --output_base` in `xcodeproj.bazelrc` will have no effect.
 
 ### Workspace `.bazelrc`
 
@@ -112,3 +122,202 @@ flags were used during project generation, then those adjustments are made in
 a project `xcodeproj_extra_flags.bazelrc` file, which is loaded after the
 workspace `.bazelrc` file. This ensures that they override any flags set
 earlier, mimicking the behavior of command-line set flags taking precedence.
+
+# Command-line API
+
+rules_xcodeproj builds targets in its own
+[output base](https://docs.bazel.build/versions/main/guide.html#choosing-the-output-base).
+It does this to ensure that the
+[analysis cache](https://sluongng.hashnode.dev/bazel-caching-explained-pt-2-bazel-in-memory-cache#heading-in-memory-caching)
+isn't affected by other Bazel commands, including project generation itself.
+In addition, rules_xcodeproj sets one of the project's
+[Bazel configs](#bazel-configs). Because of this, normal Bazel commands, such
+as `bazel build` or `bazel clean`, won't be the same as what is performed in
+Xcode.
+
+To enable you to perform Bazel commands in the same "environment" that
+rules_xcodeproj itself uses, we provide a command-line API. Assuming your
+`xcodeproj` target is defined at `//:xcodeproj`, this is how you can call this
+API:
+
+```
+bazel run //:xcodeproj -- [option ...] command [command_flag ...]
+```
+
+For example, this will call `bazel info output_base` in the rules_xcodeproj
+environment:
+
+```
+bazel run //:xcodeproj -- info output_path
+```
+
+This will build all targets in the project the same way as SwiftUI Previews
+does:
+
+```
+bazel run //:xcodeproj -- --config=swiftuipreviews --generator_output_groups=all_targets build
+```
+
+## Commands
+
+The API supports all the
+[commands](https://bazel.build/reference/command-line-reference#commands)
+`bazel` supports. It does not support providing
+[startup options](https://bazel.build/reference/command-line-reference#startup-options),
+though you can specify those in the
+[`xcodeproj.bazelrc`](#workspace-xcodeprojbazelrc) file.
+
+Below are notes about various commands.
+
+### `build`
+
+To build targets the same way as rules_xcodeproj requires more than just using
+this API, because the `xcodeproj` rule applies a
+[configuration transition](https://bazel.build/extending/config#user-defined-transitions)
+to targets. That means that building targets by specifying their labels will
+build potentially different versions of those targets, and minimally versions
+that have different cache keys.
+
+rules_xcodeproj uses
+[output groups](https://bazel.build/extending/rules#requesting_output_files)
+to "address" these correctly configured targets. It uses a set of private
+output groups, but it also exposes the some [public ones](#output-groups).
+
+To build these output groups with this API you would have to craft an call like
+this (**note:** this is not the recommended way to do this, and might break in
+the future, continue reading after the example for the recommended way):
+
+```
+bazel run //:xcodeproj -- build --remote_download_minimal --output_groups=all_targets //:xcodeproj.generator
+```
+
+This requires knowing the internal name of the generator target (`//:xcodeproj.generator` in this example), and it also doesn't apply some flags that Xcode
+`bazel build` command applies (e.g. `--experimental_remote_download_regex`).
+Instead, it's recommended that you use the
+[`--generator_output_groups` option](#--generator_output_groups):
+
+```
+bazel run //:xcodeproj -- --generator_output_groups=all_targets build --remote_download_minimal
+```
+
+> **Note**
+>
+> You can't have a naked label as part of your command (e.g.
+> `aquery '//some:target'`). This is because bazel will think you are trying to
+> pass that label to the outside `bazel run`. Since you probably want to use
+> [`--generator_output_groups`](#--generator_output_groups) anyway, this
+> shouldn't be a problem. If you need to pass labels though, you can use the
+> [`--target_pattern_file` flag](https://bazel.build/reference/command-line-reference#flag--target_pattern_file).
+
+### `clean`
+
+When you run `bazel clean` normally (i.e. not using this API), it won't affect
+the rules_xcodeproj output base the way you expect. `bazel clean --expunge`
+will though, as it will blow away both environments. To clean the
+rules_xcodeproj output base use the API instead:
+
+```
+bazel run //:xcodeproj -- clean
+```
+
+### `query`/`cquery`/`aquery`
+
+Depending on how you have your [rules_xcodeproj Bazel configs](#bazel-configs)
+set up, you might be able to run `bazel query` without using the API. I
+recommend using the API instead though, to prevent fetching external
+dependencies in the primary output base. The other queries, `cquery` and
+`aquery`, should always be performed through the API, to ensure the targets
+are properly configured:
+
+```
+bazel run //:xcodeproj -- aquery 'set(//some:target)'
+```
+
+> **Note**
+>
+> You can't have a naked label as part of your command (e.g.
+> `aquery '//some:target'`). This is because bazel will think you are trying to
+> pass that label to the outside `bazel run`. That is why `set()` was used
+> above.
+
+## Options
+
+You can specify some options before the Bazel command:
+
+### `-v`/`--verbose`
+
+Prints the command that was executed.
+
+Without `-v`:
+
+```
+$ bazel run --config=cache //:xcodeproj -- clean
+INFO: Invocation ID: e4be5bb9-1823-4ca9-a3fd-6066f936460a
+INFO: Analyzed target //:xcodeproj (0 packages loaded, 0 targets configured).
+INFO: Found 1 target...
+Target //:xcodeproj up-to-date:
+  /Users/brentley/Developer/rules_xcodeproj/bazel-output-base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out/darwin_arm64-fastbuild/bin/xcodeproj-runner.sh
+INFO: Elapsed time: 0.285s, Critical Path: 0.00s
+INFO: 1 process: 1 internal.
+INFO: Running command line: /Users/brentley/Developer/rules_xcodeproj/bazel-output-base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out/darwin_arm64-fastbuild/bin/xcodeproj-runner.sh -v clean
+INFO: Build completed successfully, 1 total action
+
+INFO: Invocation ID: 84c53471-73a4-4267-9289-0ad076ee94fb
+INFO: Starting clean.
+```
+
+With `-v`:
+
+```
+$ bazel run --config=cache //:xcodeproj -- -v clean
+INFO: Invocation ID: e4be5bb9-1823-4ca9-a3fd-6066f936460a
+INFO: Analyzed target //:xcodeproj (0 packages loaded, 0 targets configured).
+INFO: Found 1 target...
+Target //:xcodeproj up-to-date:
+  /Users/brentley/Developer/rules_xcodeproj/bazel-output-base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out/darwin_arm64-fastbuild/bin/xcodeproj-runner.sh
+INFO: Elapsed time: 0.285s, Critical Path: 0.00s
+INFO: 1 process: 1 internal.
+INFO: Running command line: /Users/brentley/Developer/rules_xcodeproj/bazel-output-base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out/darwin_arm64-fastbuild/bin/xcodeproj-runner.sh -v clean
+INFO: Build completed successfully, 1 total action
+
+Running Bazel command:
++ env PATH=/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin /Users/brentley/Library/Caches/bazelisk/downloads/bazelbuild/bazel-5.3.0-darwin-arm64/bin/bazel --host_jvm_args=-Xdock:name=/Applications/Xcode-14.0.1.app/Contents/Developer --noworkspace_rc --bazelrc=/Users/brentley/Developer/rules_xcodeproj/bazel-output-base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out/darwin_arm64-fastbuild/bin/xcodeproj-runner.sh.runfiles/com_github_buildbuddy_io_rules_xcodeproj/xcodeproj.bazelrc --bazelrc=.bazelrc --bazelrc=/Users/brentley/Developer/rules_xcodeproj/bazel-output-base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out/darwin_arm64-fastbuild/bin/xcodeproj-runner.sh.runfiles/com_github_buildbuddy_io_rules_xcodeproj/xcodeproj-extra-flags.bazelrc --output_base /Users/brentley/Developer/rules_xcodeproj/bazel-output-base/execroot/_rules_xcodeproj/build_output_base clean --repo_env=DEVELOPER_DIR=/Applications/Xcode-14.0.1.app/Contents/Developer --repo_env=USE_CLANG_CL=14A400 --config=_rules_xcodeproj_build
+INFO: Invocation ID: 84c53471-73a4-4267-9289-0ad076ee94fb
+INFO: Starting clean.
+```
+
+### `--config`
+
+Changes the [Bazel config](#bazel-configs) that is used. Valid values are:
+
+- `build`: [`rules_xcodeproj`](#rules_xcodeproj) or the project-level
+  equivalent. This is the default if `--config` isn't specified.
+- `indexbuild`: [`rules_xcodeproj_indexbuild`](#rules_xcodeproj_indexbuild) or
+  the project-level equivalent.
+- `swiftuipreviews`: [`rules_xcodeproj_swiftuipreviews`](#rules_xcodeproj_swiftuipreviews)
+  or the project-level equivalent.
+
+For example, this will build all targets in the project the same way as
+SwiftUI Previews does:
+
+```
+bazel run //:xcodeproj -- --config=swiftuipreviews --generator_output_groups=all_targets build
+```
+
+### `--generator_output_groups`
+
+If the Bazel command is `build`, then this builds the specified generator
+outputs groups, potentially adding additional flags to match the behavior of
+Xcode's `bazel build` (e.g. `--experimental_remote_download_regex`).
+
+<a id="output-groups"></a>
+These are the available output groups to use:
+
+- `all_targets`: This will build every target specified by `top_level_targets`.
+  This is useful to build in "cache warming" jobs.
+
+For example, this will build all targets the same way that Xcode does:
+
+```
+bazel run //:xcodeproj -- --generator_output_groups=all_targets build
+```
