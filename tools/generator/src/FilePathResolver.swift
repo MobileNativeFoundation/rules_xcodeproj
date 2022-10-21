@@ -5,6 +5,7 @@ var memoizedPaths: [MemoizationKey: Path] = [:]
 
 struct MemoizationKey: Equatable, Hashable {
     let resolver: FilePathResolver
+    let filePath: FilePath
     let transformedFilePath: FilePath
     let useBazelOut: Bool?
     let forceFullBuildSettingPath: Bool
@@ -102,6 +103,7 @@ container:\(workspace + directories.workspaceOutput)
         func memoizationKey(_ transformedFilePath: FilePath) -> MemoizationKey {
             return .init(
                 resolver: self,
+                filePath: filePath,
                 transformedFilePath: transformedFilePath,
                 useBazelOut: useBazelOut,
                 forceFullBuildSettingPath: forceFullBuildSettingPath,
