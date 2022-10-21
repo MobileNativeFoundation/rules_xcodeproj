@@ -18,7 +18,7 @@ fail() {
 
 # Process Args
 
-for_fixture=0
+readonly for_fixture=%is_fixture%
 
 while (("$#")); do
   case "${1}" in
@@ -41,10 +41,6 @@ while (("$#")); do
     "--extra_flags_bazelrc")
       extra_flags_bazelrc="${2}"
       shift 2
-      ;;
-    "--for_fixture")
-      for_fixture=1
-      shift
       ;;
     *)
       fail "Unrecognized argument: ${1}"

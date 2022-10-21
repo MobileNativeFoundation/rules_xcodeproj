@@ -783,6 +783,7 @@ def _write_installer(
         name = None,
         config,
         install_path,
+        is_fixture,
         spec_file,
         swiftc_stub,
         xcodeproj):
@@ -796,6 +797,7 @@ def _write_installer(
         is_executable = True,
         substitutions = {
             "%config%": config,
+            "%is_fixture%": "1" if is_fixture else "0",
             "%output_path%": install_path,
             "%source_path%": xcodeproj.short_path,
             "%spec_path%": spec_file.short_path,
@@ -887,6 +889,7 @@ _device_transition = transition(
 def _xcodeproj_impl(ctx):
     build_mode = ctx.attr.build_mode
     config = ctx.attr.config
+    is_fixture = ctx.attr._is_fixture
     project_name = ctx.attr.project_name
     swiftc_stub = ctx.executable._swiftc_stub
     infos = [
@@ -1001,13 +1004,14 @@ def _xcodeproj_impl(ctx):
         xccurrentversions_file = xccurrentversions_file,
         extensionpointidentifiers_file = extensionpointidentifiers_file,
         bazel_integration_files = bazel_integration_files,
-        build_mode = ctx.attr.build_mode,
-        is_fixture = ctx.attr._is_fixture,
+        build_mode = build_mode,
+        is_fixture = is_fixture,
     )
     installer = _write_installer(
         ctx = ctx,
         config = config,
         install_path = install_path,
+        is_fixture = is_fixture,
         spec_file = spec_file,
         swiftc_stub = swiftc_stub,
         xcodeproj = xcodeproj,

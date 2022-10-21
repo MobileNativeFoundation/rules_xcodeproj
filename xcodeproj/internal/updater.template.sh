@@ -16,7 +16,7 @@ for i in "${!runners[@]}"; do
   spec_dest="$dir/${name}_spec.json"
   xcodeproj_dest="$dir/$name.xcodeproj"
 
-  "$runner" --for_fixture
+  "$runner"
 
   updated_specs+=("$spec_dest")
   updated_xcodeprojs+=("$xcodeproj_dest")
