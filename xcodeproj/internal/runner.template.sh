@@ -59,8 +59,10 @@ cd "$BUILD_WORKSPACE_DIRECTORY"
 bazel_path=$(which "%bazel_path%")
 installer_flags+=(--bazel_path "$bazel_path")
 
-output_base=$("$bazel_path" info output_base)
+execution_root=$("$bazel_path" info execution_root)
+installer_flags+=(--execution_root "$execution_root")
 
+readonly output_base="${execution_root%/*/*}"
 readonly nested_output_base_prefix="$output_base/execroot/_rules_xcodeproj"
 readonly nested_output_base="$nested_output_base_prefix/build_output_base"
 
