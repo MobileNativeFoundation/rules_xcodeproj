@@ -1064,6 +1064,9 @@ $(BAZEL_OUT)/v/a.txt
 /*.app/Frameworks/XCUIAutomation.framework
 /*.app/Frameworks/XCUnit.framework
 /*.app/PlugIns/*.xctest
+/*.xctest/Contents/Frameworks/libclang_rt.asan*.dylib
+/*.xctest/Contents/Frameworks/libclang_rt.tsan*.dylib
+/*.xctest/Contents/Frameworks/libclang_rt.ubsan*.dylib
 
 """)
         }

@@ -640,7 +640,7 @@ already was set to `\(existingValue)`.
         }
 
         if buildMode.usesBazelModeBuildScripts,
-            targets.contains(where: { $1.product.type.isApplication })
+            targets.contains(where: { $1.product.type.isApplication || $1.product.type.isTestBundle })
         {
             files[.internal(appRsyncExcludeFileListPath)] =
                 .nonReferencedContent(#"""
@@ -656,6 +656,9 @@ already was set to `\(existingValue)`.
 /*.app/Frameworks/XCUIAutomation.framework
 /*.app/Frameworks/XCUnit.framework
 /*.app/PlugIns/*.xctest
+/*.xctest/Contents/Frameworks/libclang_rt.asan*.dylib
+/*.xctest/Contents/Frameworks/libclang_rt.tsan*.dylib
+/*.xctest/Contents/Frameworks/libclang_rt.ubsan*.dylib
 
 """#)
         }
