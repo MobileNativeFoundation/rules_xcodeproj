@@ -99,6 +99,7 @@ def _write_runner(
         extra_generator_flags,
         generator_label,
         project_name,
+        runner_label,
         template):
     output = actions.declare_file("{}-runner.sh".format(name))
 
@@ -114,6 +115,7 @@ def _write_runner(
             "%extra_generator_flags%": extra_generator_flags,
             "%generator_label%": generator_label,
             "%project_name%": project_name,
+            "%runner_label%": runner_label,
         },
     )
 
@@ -148,6 +150,7 @@ def _xcodeproj_runner_impl(ctx):
         ),
         generator_label = ctx.attr.xcodeproj_target,
         project_name = project_name,
+        runner_label = str(ctx.label),
         template = ctx.file._runner_template,
     )
 

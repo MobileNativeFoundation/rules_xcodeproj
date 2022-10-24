@@ -26,31 +26,44 @@ installer_flags=(
   --extra_flags_bazelrc "$extra_flags_bazelrc"
 )
 
-download=1
+config="build"
+original_arg_count=$#
+verbose=0
 while (("$#")); do
   case "$1" in
-    "--build_output_groups")
-      build_output_groups="$2"
-      shift 2
+    --build_output_groups)
+      fail "ERROR: $1 is no longer supported, use" \
+      "\`%bazel_path% run %runner_label% -- --generator_output_groups='$2' build\` instead"
       ;;
-    "--download")
-      # WARNING: You'll need to `bazel clean` if flipping this flag, since Bazel
-      # doesn't re-download when `--experimental_remote_download_regex` changes.
-      download=1
-      shift
+    --generator_output_groups=*)
+      generator_output_groups="${1#*=}"
+      shift 1
       ;;
-    "--nodownload")
-      # WARNING: You'll need to `bazel clean` if flipping this flag, since Bazel
-      # doesn't re-download when `--experimental_remote_download_regex` changes.
-      download=0
-      shift
+    --config=*)
+      config="${1#*=}"
+      shift 1
+      ;;
+    -v|--verbose)
+      verbose=1
+      shift 1
+      ;;
+    -*)
+      fail "ERROR: Unrecognized pre-command argument: '$1'" \
+        "Note: startup options aren't supported"
       ;;
     *)
-      installer_flags+=("$1")
-      shift
+      break
       ;;
   esac
 done
+
+if [[ $original_arg_count -gt 0 ]]; then
+  if [[ $# -eq 0 ]]; then
+    fail "ERROR: A bazel command must be provided (e.g. build, clean, etc.)"
+  elif [[ $# -gt 1 ]]; then
+    fail "ERROR: The bazel command must be a string instead of individual arguments"
+  fi
+fi
 
 cd "$BUILD_WORKSPACE_DIRECTORY"
 
@@ -101,10 +114,10 @@ readonly bazel_cmd=(
   --output_base "$nested_output_base"
 )
 
-echo
+echo >&2
 
-if [[ -z "${build_output_groups:-}" ]]; then
-  echo 'Generating "%project_name%.xcodeproj"'
+if [[ $original_arg_count -eq 0 ]]; then
+  echo 'Generating "%project_name%.xcodeproj"' >&2
 
   "${bazel_cmd[@]}" \
     run \
@@ -114,22 +127,47 @@ if [[ -z "${build_output_groups:-}" ]]; then
     "%generator_label%" \
     -- "${installer_flags[@]}"
 else
-  echo "Building \"%generator_label% --output_groups=$build_output_groups\""
+  if [[ $config == "build" ]]; then
+    bazel_config="_%config%_build"
+  else
+    bazel_config="%config%_$config"
+  fi
 
-  # TODO: Support different build actions (e.g. Index Build, SwiftUI Previews,
-  # ASAN, etc.)
-  if [[ $download -eq 1 ]]; then
+  while IFS='' read -r arg; do cmd_args+=("$arg"); done < <(xargs -n1 <<< "$1")
+  cmd="${cmd_args[0]}"
+
+  post_config_flags=("${cmd_args[@]:1}")
+  if [[ $cmd == "build" && -n "${generator_output_groups:-}" ]]; then
+    # `--experimental_remote_download_regex`
     readonly swift_outputs_regex='.*\.swiftdoc$|.*\.swiftmodule$|.*\.swiftsourceinfo$'
-    readonly indexstores_regex='.*\.indexstore/.*'
+
+    if [[ "$config" == "indexbuild" ]]; then
+      readonly remote_download_regex="$swift_outputs_regex"
+    else
+      readonly indexstores_regex='.*\.indexstore/.*'
+      readonly remote_download_regex="$indexstores_regex|$swift_outputs_regex"
+    fi
+
     pre_config_flags+=(
-      "--experimental_remote_download_regex=$indexstores_regex|$swift_outputs_regex"
+      "--experimental_remote_download_regex=$remote_download_regex"
+    )
+
+    # `--output_groups`
+    post_config_flags+=(
+      --show_result=0
+      --output_groups="$generator_output_groups"
+      "%generator_label%"
     )
   fi
 
+  if [[ $verbose -eq 1 ]]; then
+    echo "Running Bazel command:" >&2
+    set -x
+  fi
+
   "${bazel_cmd[@]}" \
-    build \
+    "$cmd" \
     "${pre_config_flags[@]}" \
-    "--config=_%config%_build" \
-    --output_groups="$build_output_groups" \
-    "%generator_label%"
+    "--config=$bazel_config" \
+    ${post_config_flags:+"${post_config_flags[@]}"}
 fi
