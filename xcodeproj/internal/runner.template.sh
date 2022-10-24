@@ -76,8 +76,7 @@ execution_root=$("$bazel_path" info execution_root)
 installer_flags+=(--execution_root "$execution_root")
 
 readonly output_base="${execution_root%/*/*}"
-readonly nested_output_base_prefix="$output_base/execroot/_rules_xcodeproj"
-readonly nested_output_base="$nested_output_base_prefix/build_output_base"
+readonly nested_output_base="$output_base/rules_xcodeproj/build_output_base"
 
 bazelrcs=(
   --noworkspace_rc

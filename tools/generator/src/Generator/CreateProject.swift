@@ -38,12 +38,12 @@ extension Generator {
         )
         pbxProj.add(object: mainGroup)
 
-        // bazel-output-base/execroot/_rules_xcodeproj/build_output_base/execroot/com_github_buildbuddy_io_rules_xcodeproj ->
+        // bazel-output-base/rules_xcodeproj/build_output_base/execroot/com_github_buildbuddy_io_rules_xcodeproj ->
         // bazel-output-base/rules_xcodeproj/indexbuild_output_base/execroot/com_github_buildbuddy_io_rules_xcodeproj
         let projectDirComponents = nonRelativeProjectDir.components
         let indexingProjectDirComponents =
-            projectDirComponents[...(projectDirComponents.count - 6)] +
-            ["rules_xcodeproj", "indexbuild_output_base"] +
+            projectDirComponents[...(projectDirComponents.count - 4)] +
+            ["indexbuild_output_base"] +
             projectDirComponents[(projectDirComponents.count - 2)...]
         let indexingProjectDir = Path(components: indexingProjectDirComponents)
 
