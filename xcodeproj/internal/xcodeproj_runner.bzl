@@ -24,8 +24,6 @@ build:{config}_generator --config=rules_xcodeproj_generator
 build:{config}_generator --config={config}
 build:{config}_indexbuild --config=rules_xcodeproj_indexbuild
 build:{config}_indexbuild --config={config}
-info:{config}_info --config=rules_xcodeproj_info
-info:{config}_info --config={config}
 build:{config}_swiftuipreviews --config=rules_xcodeproj_swiftuipreviews
 build:{config}_swiftuipreviews --config={config}
 build:{config}_asan --config=rules_xcodeproj_asan
@@ -101,6 +99,7 @@ def _write_runner(
         extra_generator_flags,
         generator_label,
         project_name,
+        runner_label,
         template):
     output = actions.declare_file("{}-runner.sh".format(name))
 
@@ -116,6 +115,7 @@ def _write_runner(
             "%extra_generator_flags%": extra_generator_flags,
             "%generator_label%": generator_label,
             "%project_name%": project_name,
+            "%runner_label%": runner_label,
         },
     )
 
@@ -150,6 +150,7 @@ def _xcodeproj_runner_impl(ctx):
         ),
         generator_label = ctx.attr.xcodeproj_target,
         project_name = project_name,
+        runner_label = str(ctx.label),
         template = ctx.file._runner_template,
     )
 

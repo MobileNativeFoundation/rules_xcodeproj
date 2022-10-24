@@ -62,23 +62,10 @@ readonly base_pre_config_flags=(
   # `USE_CLANG_CL` is only used on Windows, we set it here to cause Bazel to
   # re-evaluate the cc_toolchain for a different Xcode version
   "--repo_env=USE_CLANG_CL=$XCODE_PRODUCT_BUILD_VERSION"
+
+  # Prevent filelist outputs from displaying in the logs
+  --show_result=0
 )
-
-# Determine Bazel output_path
-
-if [[ "${COLOR_DIAGNOSTICS:-NO}" == "YES" ]]; then
-  readonly info_color=yes
-else
-  readonly info_color=no
-fi
-
-output_path=$("${bazel_cmd[@]}" \
-  info \
-  "${base_pre_config_flags[@]}" \
-  --config="${BAZEL_CONFIG}_info" \
-  --color="$info_color" \
-  output_path)
-readonly output_path
 
 # Custom Swift toolchains
 
@@ -116,7 +103,7 @@ for output_group in "${output_groups[@]}"; do
   fi
 
   filelist="$GENERATOR_TARGET_NAME-${output_group//\//_}"
-  filelist="${filelist/#/$output_path/$GENERATOR_PACKAGE_BIN_DIR/}"
+  filelist="${filelist/#/$BAZEL_OUT/$GENERATOR_PACKAGE_BIN_DIR/}"
   filelist="${filelist/%/.filelist}"
 
   if [[ ! -f "$filelist" ]]; then

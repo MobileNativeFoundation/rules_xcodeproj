@@ -113,6 +113,8 @@ mkdir -p "$INDEX_DATA_STORE_DIR"
     @"$filelist" \
     "$INDEX_DATA_STORE_DIR"
 
+rm "$filelist"
+
 # Unit files are created fresh, but record files are copied from `bazel-out/`,
 # which are read-only. We need to adjust their permissions.
 # TODO: Do this in `index-import`

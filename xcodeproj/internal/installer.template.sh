@@ -18,7 +18,7 @@ fail() {
 
 # Process Args
 
-for_fixture=0
+readonly for_fixture=%is_fixture%
 
 while (("$#")); do
   case "${1}" in
@@ -34,13 +34,13 @@ while (("$#")); do
       dest="${2}"
       shift 2
       ;;
+    "--execution_root")
+      execution_root="${2}"
+      shift 2
+      ;;
     "--extra_flags_bazelrc")
       extra_flags_bazelrc="${2}"
       shift 2
-      ;;
-    "--for_fixture")
-      for_fixture=1
-      shift
       ;;
     *)
       fail "Unrecognized argument: ${1}"
@@ -50,6 +50,9 @@ done
 
 if [[ -z "${bazel_path:-}" ]]; then
   fail "Missing required argument: --bazel_path"
+fi
+if [[ -z "${execution_root:-}" ]]; then
+  fail "Missing required argument: --execution_root"
 fi
 
 # Resolve the inputs
@@ -164,7 +167,6 @@ plutil -replace IDEWorkspaceSharedSettings_AutocreateContextsIfNeeded -bool fals
 if [[ -f "$dest/rules_xcodeproj/generated.xcfilelist" ]]; then
   cd "$BUILD_WORKSPACE_DIRECTORY"
 
-  execution_root=$("$bazel_path" info execution_root)
   readonly workspace_name="${execution_root##*/}"
   readonly output_base="${execution_root%/*/*}"
   readonly nested_output_base="$output_base/execroot/_rules_xcodeproj/build_output_base"
