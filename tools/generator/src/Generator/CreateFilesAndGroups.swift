@@ -50,6 +50,20 @@ extension Generator {
         "xib",
     ]
 
+    private static let xcodeInjectedFrameworks = [
+        "libclang_rt.asan*.dylib",
+        "libclang_rt.tsan*.dylib",
+        "libclang_rt.ubsan*.dylib",
+        "libXCTestBundleInject.dylib",
+        "libXCTestSwiftSupport.dylib",
+        "XCTAutomationSupport.framework",
+        "XCTest.framework",
+        "XCTestCore.framework",
+        "XCTestSupport.framework",
+        "XCUIAutomation.framework",
+        "XCUnit.framework",
+    ]
+
     enum ElementFilePath: Equatable, Hashable {
         case file(FilePath)
         case group(FilePath)
@@ -640,22 +654,22 @@ already was set to `\(existingValue)`.
         }
 
         if buildMode.usesBazelModeBuildScripts,
-            targets.contains(where: { $1.product.type.isApplication })
+            targets.contains(where: { $1.product.type.isLaunchable })
         {
+            let frameworks = ["app", "appex", "xctest"]
+                .flatMap { ext in
+                    ["Contents/Frameworks", "Frameworks"].flatMap { folder in
+                        xcodeInjectedFrameworks.map { framework in
+                            return "/*.\(ext)/\(folder)/\(framework)"
+                        }
+                    }
+                }
+                .joined(separator: "\n")
             files[.internal(appRsyncExcludeFileListPath)] =
                 .nonReferencedContent(#"""
-/*.app/Frameworks/libclang_rt.asan*.dylib
-/*.app/Frameworks/libclang_rt.tsan*.dylib
-/*.app/Frameworks/libclang_rt.ubsan*.dylib
-/*.app/Frameworks/libXCTestBundleInject.dylib
-/*.app/Frameworks/libXCTestSwiftSupport.dylib
-/*.app/Frameworks/XCTAutomationSupport.framework
-/*.app/Frameworks/XCTest.framework
-/*.app/Frameworks/XCTestCore.framework
-/*.app/Frameworks/XCTestSupport.framework
-/*.app/Frameworks/XCUIAutomation.framework
-/*.app/Frameworks/XCUnit.framework
+\#(frameworks)
 /*.app/PlugIns/*.xctest
+/*.appex/PlugIns/*.xctest
 
 """#)
         }
