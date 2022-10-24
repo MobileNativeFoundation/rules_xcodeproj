@@ -57,8 +57,12 @@ while (("$#")); do
   esac
 done
 
-if [[ $original_arg_count -gt 0 && $# -eq 0 ]]; then
-  fail "ERROR: A bazel command must be provided (e.g. build, clean, etc.)"
+if [[ $original_arg_count -gt 0 ]]; then
+  if [[ $# -eq 0 ]]; then
+    fail "ERROR: A bazel command must be provided (e.g. build, clean, etc.)"
+  elif [[ $# -gt 1 ]]; then
+    fail "ERROR: The bazel command must be a string instead of individual arguments"
+  fi
 fi
 
 cd "$BUILD_WORKSPACE_DIRECTORY"
@@ -129,10 +133,10 @@ else
     bazel_config="%config%_$config"
   fi
 
-  cmd="$1"
-  shift
+  while IFS='' read -r arg; do cmd_args+=("$arg"); done < <(xargs -n1 <<< "$1")
+  cmd="${cmd_args[0]}"
 
-  post_config_flags=("$@")
+  post_config_flags=("${cmd_args[@]:1}")
   if [[ $cmd == "build" && -n "${generator_output_groups:-}" ]]; then
     # `--experimental_remote_download_regex`
     readonly swift_outputs_regex='.*\.swiftdoc$|.*\.swiftmodule$|.*\.swiftsourceinfo$'

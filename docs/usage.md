@@ -141,14 +141,14 @@ rules_xcodeproj itself uses, we provide a command-line API. Assuming your
 API:
 
 ```
-bazel run //:xcodeproj -- [option ...] command [command_flag ...]
+bazel run //:xcodeproj -- [option ...] command_string
 ```
 
-For example, this will call `bazel info output_base` in the rules_xcodeproj
+For example, this will call `bazel info output_path` in the rules_xcodeproj
 environment:
 
 ```
-bazel run //:xcodeproj -- info output_path
+bazel run //:xcodeproj -- 'info output_path'
 ```
 
 This will build all targets in the project the same way as SwiftUI Previews
@@ -181,14 +181,14 @@ that have different cache keys.
 rules_xcodeproj uses
 [output groups](https://bazel.build/extending/rules#requesting_output_files)
 to "address" these correctly configured targets. It uses a set of private
-output groups, but it also exposes the some [public ones](#output-groups).
+output groups, but it also exposes some [public ones](#output-groups).
 
-To build these output groups with this API you would have to craft an call like
+To build these output groups with this API you would have to craft a call like
 this (**note:** this is not the recommended way to do this, and might break in
 the future, continue reading after the example for the recommended way):
 
 ```
-bazel run //:xcodeproj -- build --remote_download_minimal --output_groups=all_targets //:xcodeproj.generator
+bazel run //:xcodeproj -- 'build --remote_download_minimal --output_groups=all_targets //:xcodeproj.generator'
 ```
 
 This requires knowing the internal name of the generator target (`//:xcodeproj.generator` in this example), and it also doesn't apply some flags that Xcode
@@ -199,15 +199,6 @@ Instead, it's recommended that you use the
 ```
 bazel run //:xcodeproj -- --generator_output_groups=all_targets build --remote_download_minimal
 ```
-
-> **Note**
->
-> You can't have a naked label as part of your command (e.g.
-> `aquery '//some:target'`). This is because bazel will think you are trying to
-> pass that label to the outside `bazel run`. Since you probably want to use
-> [`--generator_output_groups`](#--generator_output_groups) anyway, this
-> shouldn't be a problem. If you need to pass labels though, you can use the
-> [`--target_pattern_file` flag](https://bazel.build/reference/command-line-reference#flag--target_pattern_file).
 
 ### `clean`
 
@@ -230,15 +221,8 @@ dependencies in the primary output base. The other queries, `cquery` and
 are properly configured:
 
 ```
-bazel run //:xcodeproj -- aquery 'set(//some:target)'
+bazel run //:xcodeproj -- 'aquery "set(//some:target)"'
 ```
-
-> **Note**
->
-> You can't have a naked label as part of your command (e.g.
-> `aquery '//some:target'`). This is because bazel will think you are trying to
-> pass that label to the outside `bazel run`. That is why `set()` was used
-> above.
 
 ## Options
 
