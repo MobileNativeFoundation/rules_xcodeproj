@@ -640,7 +640,7 @@ already was set to `\(existingValue)`.
         }
 
         if buildMode.usesBazelModeBuildScripts,
-            targets.contains(where: { $1.product.type.isApplication || $1.product.type.isTestBundle })
+            targets.contains(where: { $1.product.type.isLaunchable })
         {
             files[.internal(appRsyncExcludeFileListPath)] =
                 .nonReferencedContent(#"""

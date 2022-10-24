@@ -151,7 +151,7 @@ Product for target "\(key)" not found in `products`
         let copyOutputs: String
         if outputs.hasProductOutput {
             let excludeList: String
-            if productType.isApplication || productType.isTestBundle {
+            if productType.isLaunchable {
                 excludeList = try filePathResolver.resolve(
                     .internal(Generator.appRsyncExcludeFileListPath),
                     mode: .script
