@@ -832,12 +832,13 @@ EOF
 
 import lldb
 
+# Order matters, it needs to be from the most nested to the least
 _BUNDLE_EXTENSIONS = [
-    ".app",
-    ".appex",
-    ".bundle",
     ".framework",
     ".xctest",
+    ".appex",
+    ".bundle",
+    ".app",
 ]
 
 _SETTINGS = \#(lldbSettingsMapJSON)
