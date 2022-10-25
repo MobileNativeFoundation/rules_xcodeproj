@@ -18,7 +18,6 @@ final class CreateProjectTests: XCTestCase {
             external: "/tmp/bazel-output-base/rules_xcodeproj/build_output_base/external",
             bazelOut: "/tmp/bazel-output-base/rules_xcodeproj/build_output_base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out",
             internalDirectoryName: "r_xcp",
-            bazelIntegration: "stubs",
             workspaceOutput: "X.xcodeproj"
         )
 
@@ -152,7 +151,6 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
             external: "/tmp/bazel-output-base/rules_xcodeproj/build_output_base/external",
             bazelOut: "/tmp/bazel-output-base/rules_xcodeproj/build_output_base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out",
             internalDirectoryName: "r_xcp",
-            bazelIntegration: "stubs",
             workspaceOutput: "X.xcodeproj"
         )
 

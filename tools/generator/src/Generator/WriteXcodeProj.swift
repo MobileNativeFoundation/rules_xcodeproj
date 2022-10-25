@@ -25,10 +25,6 @@ extension Generator {
             try path.parent().mkpath()
             try path.write(content)
         }
-
-        let dest = internalOutputPath + "bazel"
-        try internalOutputPath.mkpath()
-        try directories.bazelIntegration.copy(dest)
     }
 }
 

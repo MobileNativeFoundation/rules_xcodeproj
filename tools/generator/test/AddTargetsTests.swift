@@ -22,7 +22,6 @@ final class AddTargetsTests: XCTestCase {
         let externalDirectory: Path = "/some/bazel11/external"
         let bazelOutDirectory: Path = "/some/bazel11/bazel-out"
         let internalDirectoryName = "rules_xcp"
-        let bazelIntegrationDirectory: Path = "stubs"
         let workspaceOutputPath: Path = "Project.xcodeproj"
 
         let directories = FilePathResolver.Directories(
@@ -31,7 +30,6 @@ final class AddTargetsTests: XCTestCase {
             external: externalDirectory,
             bazelOut: bazelOutDirectory,
             internalDirectoryName: internalDirectoryName,
-            bazelIntegration: bazelIntegrationDirectory,
             workspaceOutput: workspaceOutputPath
         )
         let filePathResolver = FilePathResolver(

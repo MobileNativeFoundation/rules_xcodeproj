@@ -53,7 +53,6 @@ final class GeneratorTests: XCTestCase {
         let bazelOutDirectory: Path = "/some/bazel/bazel-out"
         let internalDirectoryName = "rules_xcodeproj"
         let workspaceOutputPath: Path = "P.xcodeproj"
-        let bazelIntegrationDirectory: Path = "stubs"
         let outputPath: Path = "P.xcodeproj"
 
         let directories = FilePathResolver.Directories(
@@ -62,7 +61,6 @@ final class GeneratorTests: XCTestCase {
             external: externalDirectory,
             bazelOut: bazelOutDirectory,
             internalDirectoryName: internalDirectoryName,
-            bazelIntegration: bazelIntegrationDirectory,
             workspaceOutput: workspaceOutputPath
         )
 

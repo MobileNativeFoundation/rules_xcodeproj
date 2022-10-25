@@ -26,7 +26,6 @@ struct FilePathResolver: Equatable, Hashable {
 
         let internalDirectoryName: String
         let `internal`: Path
-        let bazelIntegration: Path
 
         let projectRoot: Path
         let external: Path
@@ -39,7 +38,6 @@ struct FilePathResolver: Equatable, Hashable {
             external: Path,
             bazelOut: Path,
             internalDirectoryName: String,
-            bazelIntegration: Path,
             workspaceOutput: Path
         ) {
             self.workspace = workspace
@@ -48,7 +46,6 @@ struct FilePathResolver: Equatable, Hashable {
 
             self.internalDirectoryName = internalDirectoryName
             `internal` = workspaceOutput + internalDirectoryName
-            self.bazelIntegration = bazelIntegration
 
             self.projectRoot = projectRoot
             self.external = external

@@ -731,7 +731,6 @@ def _write_xcodeproj(
         project_name,
         spec_file,
         root_dirs_file,
-        bazel_integration_files,
         xccurrentversions_file,
         extensionpointidentifiers_file,
         build_mode,
@@ -750,7 +749,6 @@ def _write_xcodeproj(
     args.add(root_dirs_file.path)
     args.add(xccurrentversions_file.path)
     args.add(extensionpointidentifiers_file.path)
-    args.add(bazel_integration_files[0].dirname)
     args.add(xcodeproj.path)
     args.add(install_path)
     args.add(build_mode)
@@ -765,7 +763,7 @@ def _write_xcodeproj(
             root_dirs_file,
             xccurrentversions_file,
             extensionpointidentifiers_file,
-        ] + bazel_integration_files,
+        ],
         outputs = [xcodeproj],
         tools = [ctx.attr._index_import[DefaultInfo].files_to_run],
         execution_requirements = {
@@ -1005,7 +1003,6 @@ def _xcodeproj_impl(ctx):
         root_dirs_file = root_dirs_file,
         xccurrentversions_file = xccurrentversions_file,
         extensionpointidentifiers_file = extensionpointidentifiers_file,
-        bazel_integration_files = bazel_integration_files,
         build_mode = build_mode,
         is_fixture = is_fixture,
     )
