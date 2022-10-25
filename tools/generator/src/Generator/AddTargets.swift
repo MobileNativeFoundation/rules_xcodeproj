@@ -152,11 +152,7 @@ Product for target "\(key)" not found in `products`
         if outputs.hasProductOutput {
             let excludeList: String
             if productType.isLaunchable {
-                excludeList = try filePathResolver.resolve(
-                    .internal(Generator.appRsyncExcludeFileListPath),
-                    mode: .script
-                )
-                .string
+                excludeList = "$BAZEL_INTEGRATION_DIR/exclude.rsynclist"
             } else {
                 excludeList = ""
             }

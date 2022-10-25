@@ -16,7 +16,10 @@ filegroup(
 
 filegroup(
     name = "bazel_integration_files",
-    srcs = [":swiftc"] + glob(
+    srcs = [
+        ":swiftc",
+        ":rsync_excludes",
+    ] + glob(
         ["**/*"],
         exclude = _BASE_FILES + [
             "BUILD",
@@ -24,6 +27,46 @@ filegroup(
     ),
     # This is made public for internal use only
     visibility = ["//visibility:public"],
+)
+
+genrule(
+    name = "rsync_excludes",
+    outs = ["exclude.rsynclist"],
+    cmd = """\
+extensions=(
+  app
+  appex
+  xctest
+)
+folders=(
+  'Contents/Frameworks'
+  'Frameworks'
+)
+frameworks=(
+  'libclang_rt.asan*.dylib'
+  'libclang_rt.tsan*.dylib'
+  'libclang_rt.ubsan*.dylib'
+  'libXCTestBundleInject.dylib'
+  'libXCTestSwiftSupport.dylib'
+  'XCTAutomationSupport.framework'
+  'XCTest.framework'
+  'XCTestCore.framework'
+  'XCTestSupport.framework'
+  'XCUIAutomation.framework'
+  'XCUnit.framework'
+)
+
+for extension in "$${extensions[@]}"; do
+  for folder in "$${folders[@]}"; do
+    for framework in "$${frameworks[@]}"; do
+      echo "/*.$$extension/$$folder/$$framework" >> $@
+    done
+  done
+done
+echo '/*.app/PlugIns/*.xctest' >> $@
+echo '/*.appex/PlugIns/*.xctest' >> $@
+""",
+    tags = ["manual"],
 )
 
 genrule(
