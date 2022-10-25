@@ -32,10 +32,9 @@ genrule(
     outs = ["swiftc"],
     # Make the swiftc_stub have the right name
     cmd = "cp -c $< $@",
+    message = "Renaming swiftc stub",
     tags = [
         "manual",
-        "no-cache",
-        "no-remote",
         "no-sandbox",
     ],
 )
