@@ -16,13 +16,28 @@ filegroup(
 
 filegroup(
     name = "bazel_integration_files",
-    srcs = glob(
+    srcs = [":swiftc"] + glob(
         ["**/*"],
         exclude = _BASE_FILES + [
             "BUILD",
         ],
     ),
     # This is made public for internal use only
+    visibility = ["//visibility:public"],
+)
+
+genrule(
+    name = "swiftc_stub",
+    srcs = ["//tools/swiftc_stub:universal_swiftc_stub"],
+    outs = ["swiftc"],
+    # Make the swiftc_stub have the right name
+    cmd = "cp -c $< $@",
+    tags = [
+        "manual",
+        "no-cache",
+        "no-remote",
+        "no-sandbox",
+    ],
     visibility = ["//visibility:public"],
 )
 

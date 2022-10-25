@@ -3,6 +3,7 @@
 load("@bazel_skylib//lib:dicts.bzl", "dicts")
 load("@bazel_skylib//lib:paths.bzl", "paths")
 load("@bazel_skylib//lib:sets.bzl", "sets")
+load("@bazel_skylib//lib:shell.bzl", "shell")
 load(":bazel_labels.bzl", "bazel_labels")
 load(":collections.bzl", "set_if_true", "uniq")
 load(":configuration.bzl", "get_configuration")
@@ -781,11 +782,11 @@ def _write_installer(
         *,
         ctx,
         name = None,
+        bazel_integration_files,
         config,
         install_path,
         is_fixture,
         spec_file,
-        swiftc_stub,
         xcodeproj):
     installer = ctx.actions.declare_file(
         "{}-installer.sh".format(name or ctx.attr.name),
@@ -796,12 +797,14 @@ def _write_installer(
         output = installer,
         is_executable = True,
         substitutions = {
+            "%bazel_integration_files%": shell.array_literal(
+                [f.short_path for f in bazel_integration_files],
+            ),
             "%config%": config,
             "%is_fixture%": "1" if is_fixture else "0",
             "%output_path%": install_path,
             "%source_path%": xcodeproj.short_path,
             "%spec_path%": spec_file.short_path,
-            "%swiftc_stub%": swiftc_stub.short_path,
         },
     )
 
@@ -891,7 +894,6 @@ def _xcodeproj_impl(ctx):
     config = ctx.attr.config
     is_fixture = ctx.attr._is_fixture
     project_name = ctx.attr.project_name
-    swiftc_stub = ctx.executable._swiftc_stub
     infos = [
         _process_dep(dep)
         for dep in (
@@ -1009,11 +1011,11 @@ def _xcodeproj_impl(ctx):
     )
     installer = _write_installer(
         ctx = ctx,
+        bazel_integration_files = bazel_integration_files,
         config = config,
         install_path = install_path,
         is_fixture = is_fixture,
         spec_file = spec_file,
-        swiftc_stub = swiftc_stub,
         xcodeproj = xcodeproj,
     )
 
@@ -1047,7 +1049,7 @@ def _xcodeproj_impl(ctx):
                 transitive = [inputs.important_generated],
             ),
             runfiles = ctx.runfiles(
-                files = [spec_file, swiftc_stub, xcodeproj],
+                files = [spec_file, xcodeproj] + bazel_integration_files,
             ),
         ),
         OutputGroupInfo(
@@ -1286,12 +1288,14 @@ transitive dependencies of the targets specified in the
             ),
         ),
         "_base_integration_files": attr.label(
+            cfg = "exec",
             allow_files = True,
             default = Label(
                 "//xcodeproj/internal/bazel_integration_files:base_integration_files",
             ),
         ),
         "_bazel_integration_files": attr.label(
+            cfg = "exec",
             allow_files = True,
             default = Label("//xcodeproj/internal/bazel_integration_files"),
         ),
@@ -1315,11 +1319,6 @@ transitive dependencies of the targets specified in the
             default = Label("//xcodeproj/internal:installer.template.sh"),
         ),
         "_is_fixture": attr.bool(default = is_fixture),
-        "_swiftc_stub": attr.label(
-            cfg = "exec",
-            default = Label("//tools/swiftc_stub:universal_swiftc_stub"),
-            executable = True,
-        ),
         "_xccurrentversions_parser": attr.label(
             cfg = "exec",
             default = Label("//tools/xccurrentversions_parser"),
