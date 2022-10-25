@@ -38,7 +38,6 @@ genrule(
         "no-remote",
         "no-sandbox",
     ],
-    visibility = ["//visibility:public"],
 )
 
 # Release
