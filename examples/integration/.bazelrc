@@ -10,6 +10,9 @@ build:rules_xcodeproj --@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:ext
 
 build:rules_xcodeproj_integration --define=foo=bar
 
+# Required for sharing cache between Intel and Apple silicon
+build:rules_xcodeproj --@build_bazel_rules_swift//swift:universal_tools
+
 build --test_env=INTEGRATION_TEST_ENV_VAR=TRUE
 
 # Use a user.bazelrc if it exists

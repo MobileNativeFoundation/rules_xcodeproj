@@ -61,6 +61,10 @@ load("@rules_apple_linker//:deps.bzl", "rules_apple_linker_deps")
 
 rules_apple_linker_deps()
 
+# Used for testing shared cache between Intel and Apple silicon
+
+register_execution_platforms("@build_bazel_apple_support//platforms:macos_x86_64")
+
 # External repos for examples
 
 local_repository(
