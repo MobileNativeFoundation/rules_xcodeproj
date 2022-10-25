@@ -27,7 +27,6 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         let externalDirectory: Path = "/some/bazel12/external"
         let bazelOutDirectory: Path = "/some/bazel12/bazel-out"
         let internalDirectoryName = "rules_xcp"
-        let bazelIntegrationDirectory: Path = "bazel"
         let workspaceOutputPath: Path = "Project.xcodeproj"
 
         let directories = FilePathResolver.Directories(
@@ -36,7 +35,6 @@ final class CreateFilesAndGroupsTests: XCTestCase {
             external: externalDirectory,
             bazelOut: bazelOutDirectory,
             internalDirectoryName: internalDirectoryName,
-            bazelIntegration: bazelIntegrationDirectory,
             workspaceOutput: workspaceOutputPath
         )
 
@@ -109,7 +107,6 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         let externalDirectory: Path = "/some/bazel15/external"
         let bazelOutDirectory: Path = "/some/bazel15/bazel-out"
         let internalDirectoryName = "rules_xcp"
-        let bazelIntegrationDirectory: Path = "bazel"
         let workspaceOutputPath: Path = "Project.xcodeproj"
 
         let directories = FilePathResolver.Directories(
@@ -118,7 +115,6 @@ final class CreateFilesAndGroupsTests: XCTestCase {
             external: externalDirectory,
             bazelOut: bazelOutDirectory,
             internalDirectoryName: internalDirectoryName,
-            bazelIntegration: bazelIntegrationDirectory,
             workspaceOutput: workspaceOutputPath
         )
 
@@ -225,7 +221,6 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         let externalDirectory: Path = "/some/bazel15/external"
         let bazelOutDirectory: Path = "/some/bazel15/bazel-out"
         let internalDirectoryName = "rules_xcp"
-        let bazelIntegrationDirectory: Path = "bazel"
         let workspaceOutputPath: Path = "Project.xcodeproj"
 
         let directories = FilePathResolver.Directories(
@@ -234,7 +229,6 @@ final class CreateFilesAndGroupsTests: XCTestCase {
             external: externalDirectory,
             bazelOut: bazelOutDirectory,
             internalDirectoryName: internalDirectoryName,
-            bazelIntegration: bazelIntegrationDirectory,
             workspaceOutput: workspaceOutputPath
         )
 

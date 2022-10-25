@@ -57,7 +57,6 @@ fi
 
 # Resolve the inputs
 readonly src="$PWD/%source_path%"
-readonly swiftc_stub="$PWD/%swiftc_stub%"
 
 # Resolve the destination
 [[ -z "${dest:-}" ]] \
@@ -84,45 +83,37 @@ rsync \
   --copy-links \
   --chmod=u+w,F-x \
   --exclude=project.xcworkspace \
+  --exclude=rules_xcodeproj/bazel \
   --exclude=xcuserdata \
   --delete \
   "$src/" "$dest/"
 
-# Make scripts runnable
-shopt -s nullglob
-chmod u+x "$dest/rules_xcodeproj/"*.{py,sh}
-if [[ -d "$dest/rules_xcodeproj/bazel" ]]; then
-  if [[ $for_fixture -eq 1 ]]; then
-    # Create empty static files for fixtures
-    find "$dest/rules_xcodeproj/bazel" -type f | \
-      while read file; do :>$file; done
-  else
-    chmod u+x "$dest/rules_xcodeproj/bazel/"*.{py,sh}
-  fi
-fi
+# Copy over the bazel integration files
+mkdir -p "$dest/rules_xcodeproj/bazel"
 
-# Copy over xcodeproj.bazelrc
-cp "$bazelrc" "$dest/rules_xcodeproj/bazel/xcodeproj.bazelrc"
-chmod u+w "$dest/rules_xcodeproj/bazel/xcodeproj.bazelrc"
-
-# Copy over swiftc stub executable
-readonly swiftc_stub_dest="$dest/rules_xcodeproj/bazel/swiftc"
+readonly bazel_integration_files=%bazel_integration_files%
 if [[ $for_fixture -eq 1 ]]; then
-  # TODO: Create a relative symlink
-  touch "$swiftc_stub_dest"
+  # Create empty static files for fixtures
+  for file in "${bazel_integration_files[@]}"; do
+    :>"$dest/rules_xcodeproj/bazel/${file##*/}"
+  done
 else
-  cp -c "$swiftc_stub" "$swiftc_stub_dest"
-  chmod +w "$swiftc_stub_dest"
+  cp -c "${bazel_integration_files[@]}" "$dest/rules_xcodeproj/bazel"
 fi
 
-# Copy over xcodeproj_extra_flags.bazelrc if it exists
-# We can't include this file as an input to the generator, because it would
-# require setting ` --@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:extra_*_flags`
-# flags, which thrashes the analysis cache
+cp "$bazelrc" "$dest/rules_xcodeproj/bazel/xcodeproj.bazelrc"
 if [[ -s "${extra_flags_bazelrc:-}" ]]; then
   cp "$extra_flags_bazelrc" "$dest/rules_xcodeproj/bazel/xcodeproj_extra_flags.bazelrc"
-  chmod u+w "$dest/rules_xcodeproj/bazel/xcodeproj_extra_flags.bazelrc"
 fi
+
+chmod u+w "$dest/rules_xcodeproj/bazel/"*
+
+# Keep only scripts as runnable
+shopt -s nullglob
+chmod u+x "$dest/rules_xcodeproj/"*.{py,sh}
+find "$dest/rules_xcodeproj/bazel" \
+  -type f ! \( -name "swiftc" -o -name "*.sh" -o -name "*.py" \) \
+  -print0 | xargs -0 chmod -x
 
 # Copy over project.xcworkspace/contents.xcworkspacedata if needed
 if [[ ! -f "$dest/project.xcworkspace/contents.xcworkspacedata" ]] || \

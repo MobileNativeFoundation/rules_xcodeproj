@@ -25,7 +25,6 @@ extension Generator {
                 external: rootDirs.externalDirectory,
                 bazelOut: rootDirs.bazelOutDirectory,
                 internalDirectoryName: "rules_xcodeproj",
-                bazelIntegration: arguments.bazelIntegrationDirectory,
                 workspaceOutput: arguments.workspaceOutputPath
             )
 
@@ -49,7 +48,6 @@ extension Generator {
         let rootDirsPath: Path
         let xccurrentversionsPath: Path
         let extensionPointIdentifiersPath: Path
-        let bazelIntegrationDirectory: Path
         let outputPath: Path
         let workspaceOutputPath: Path
         let projectRootDirectory: Path
@@ -58,16 +56,16 @@ extension Generator {
     }
 
     static func parseArguments(_ arguments: [String]) throws -> Arguments {
-        guard arguments.count == 10 else {
+        guard arguments.count == 9 else {
             throw UsageError(message: """
 Usage: \(arguments[0]) <path/to/project.json> <path/to/root_dirs> \
 <path/to/xccurrentversions.json> <path/to/extensionPointIdentifiers.json> \
-<path/to/bazel/integration/dir> <path/to/output/project.xcodeproj> \
-<workspace/relative/output/path> (xcode|bazel) <1 is for fixtures, otherwise 0>
+<path/to/output/project.xcodeproj> <workspace/relative/output/path> \
+(xcode|bazel) <1 is for fixtures, otherwise 0>
 """)
         }
 
-        let workspaceOutput = arguments[7]
+        let workspaceOutput = arguments[6]
         let workspaceOutputComponents = workspaceOutput.split(separator: "/")
 
         // Generate a relative path to the project root
@@ -78,7 +76,7 @@ Usage: \(arguments[0]) <path/to/project.json> <path/to/root_dirs> \
             .joined(separator: "/")
 
         guard
-            let buildMode = BuildMode(rawValue: arguments[8])
+            let buildMode = BuildMode(rawValue: arguments[7])
         else {
             throw UsageError(message: """
 ERROR: build_mode wasn't one of the supported values: xcode, bazel
@@ -90,12 +88,11 @@ ERROR: build_mode wasn't one of the supported values: xcode, bazel
             rootDirsPath: Path(arguments[2]),
             xccurrentversionsPath: Path(arguments[3]),
             extensionPointIdentifiersPath: Path(arguments[4]),
-            bazelIntegrationDirectory: Path(arguments[5]),
-            outputPath: Path(arguments[6]),
+            outputPath: Path(arguments[5]),
             workspaceOutputPath: Path(workspaceOutput),
             projectRootDirectory: Path(projectRoot),
             buildMode: buildMode,
-            forFixtures: arguments[9] == "1"
+            forFixtures: arguments[8] == "1"
         )
     }
 

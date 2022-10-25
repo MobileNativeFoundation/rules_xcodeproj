@@ -9,7 +9,6 @@ class FilePathResolverTests: XCTestCase {
     let externalDirectory: Path = "/some/bazel2/external"
     let bazelOutDirectory: Path = "/some/bazel2/bazel-out"
     let internalDirectoryName = "internal_name"
-    let bazelIntegrationDirectory: Path = "stubs"
     let workspaceOutputPath: Path = "path/to/Foo.xcodeproj"
 
     lazy var directories = FilePathResolver.Directories(
@@ -18,7 +17,6 @@ class FilePathResolverTests: XCTestCase {
         external: externalDirectory,
         bazelOut: bazelOutDirectory,
         internalDirectoryName: internalDirectoryName,
-        bazelIntegration: bazelIntegrationDirectory,
         workspaceOutput: workspaceOutputPath
     )
 

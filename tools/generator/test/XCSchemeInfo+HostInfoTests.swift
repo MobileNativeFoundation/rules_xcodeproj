@@ -87,7 +87,6 @@ class XCSchemeInfoHostInfoTests: XCTestCase {
         external: "bazel-output-base/execroot/_rules_xcodeproj/build_output_base/external",
         bazelOut: "bazel-output-base/execroot/_rules_xcodeproj/build_output_base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out",
         internalDirectoryName: "rules_xcodeproj",
-        bazelIntegration: "bazel",
         workspaceOutput: "examples/foo/Foo.xcodeproj"
     )
     lazy var filePathResolver = FilePathResolver(
