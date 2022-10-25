@@ -10,7 +10,7 @@ readonly build_bazel_out="$execution_root/bazel-out"
 readonly build_external="$output_base/external"
 
 readonly workspace_name="${execution_root##*/}"
-readonly index_execution_root="${output_base%/*/*/*/*/*}/rules_xcodeproj/indexbuild_output_base/execroot/$workspace_name"
+readonly index_execution_root="${output_base%/*}/indexbuild_output_base/execroot/$workspace_name"
 
 readonly index_bazel_out="$index_execution_root/bazel-out"
 readonly index_external="$index_execution_root/external"

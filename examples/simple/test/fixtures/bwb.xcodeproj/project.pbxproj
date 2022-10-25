@@ -24,7 +24,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		BB83B4569332F43B81B85972 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C959399E69C31CD88F29F824 /* main.swift */; };
+		154ED5C9EE06171C2415C935 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CF88E1D17C254C2E861118 /* main.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,54 +38,54 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		26E52E2622232C7F5DBD0EBA /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
-		C1C71E66CA5AA7847B054C84 /* SwiftBin */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SwiftBin; sourceTree = BUILT_PRODUCTS_DIR; };
-		C959399E69C31CD88F29F824 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		EFD283E5A8CF811D11606719 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
+		77CF88E1D17C254C2E861118 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		7CA095AD5A4908347B36F417 /* SwiftBin */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SwiftBin; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5E1162F154B6C08BEADED8D /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
+		D20093170A54E92A741D748D /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
-		1B090DEBA40C567745F9B83B /* test */ = {
+		52A16C34EE13D5AB2FCD03E6 /* fixtures */ = {
 			isa = PBXGroup;
 			children = (
-				B0C16C061816AA8C36F15831 /* fixtures */,
-			);
-			path = test;
-			sourceTree = "<group>";
-		};
-		446BDAB1907BD1177767CFA0 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				C1C71E66CA5AA7847B054C84 /* SwiftBin */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		6BC6B4D257714FF558826529 /* ../../../../../.. */ = {
-			isa = PBXGroup;
-			children = (
-				1B090DEBA40C567745F9B83B /* test */,
-				EFD283E5A8CF811D11606719 /* BUILD */,
-				C959399E69C31CD88F29F824 /* main.swift */,
-				446BDAB1907BD1177767CFA0 /* Products */,
-				D29ED204A9CCE50C1A0DA760 /* Frameworks */,
-			);
-			path = ../../../../../..;
-			sourceTree = "<group>";
-		};
-		B0C16C061816AA8C36F15831 /* fixtures */ = {
-			isa = PBXGroup;
-			children = (
-				26E52E2622232C7F5DBD0EBA /* BUILD */,
+				D20093170A54E92A741D748D /* BUILD */,
 			);
 			path = fixtures;
 			sourceTree = "<group>";
 		};
-		D29ED204A9CCE50C1A0DA760 /* Frameworks */ = {
+		891FF4EFB55BD0CCB8B61ED5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7CA095AD5A4908347B36F417 /* SwiftBin */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9FFDBC24588A91736E9C5DBD /* ../../../../.. */ = {
+			isa = PBXGroup;
+			children = (
+				F1024C07D3F609275C658D3F /* test */,
+				A5E1162F154B6C08BEADED8D /* BUILD */,
+				77CF88E1D17C254C2E861118 /* main.swift */,
+				891FF4EFB55BD0CCB8B61ED5 /* Products */,
+				E41C6FEE91F3B36078EC9630 /* Frameworks */,
+			);
+			path = ../../../../..;
+			sourceTree = "<group>";
+		};
+		E41C6FEE91F3B36078EC9630 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F1024C07D3F609275C658D3F /* test */ = {
+			isa = PBXGroup;
+			children = (
+				52A16C34EE13D5AB2FCD03E6 /* fixtures */,
+			);
+			path = test;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -106,7 +106,7 @@
 			);
 			name = SwiftBin;
 			productName = SwiftBin;
-			productReference = C1C71E66CA5AA7847B054C84 /* SwiftBin */;
+			productReference = 7CA095AD5A4908347B36F417 /* SwiftBin */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -136,9 +136,9 @@
 				en,
 				Base,
 			);
-			mainGroup = 6BC6B4D257714FF558826529 /* ../../../../../.. */;
-			productRefGroup = 446BDAB1907BD1177767CFA0 /* Products */;
-			projectDirPath = "../../bazel-output-base/execroot/_rules_xcodeproj/build_output_base/execroot/__main__";
+			mainGroup = 9FFDBC24588A91736E9C5DBD /* ../../../../.. */;
+			productRefGroup = 891FF4EFB55BD0CCB8B61ED5 /* Products */;
+			projectDirPath = "../../bazel-output-base/rules_xcodeproj/build_output_base/execroot/__main__";
 			projectRoot = "";
 			targets = (
 				7E7D155EBCA520F35DEA3571 /* BazelDependencies */,
@@ -243,7 +243,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\nelse\n  \"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n    \"_BazelForcedCompile_.swift\" \\\n    \"SwiftBin\" \\\n    \"\"\nfi\n";
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\nelse\n  \"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n    \"_BazelForcedCompile_.swift\" \\\n    \"SwiftBin\" \\\n    \"$INTERNAL_DIR/app.exclude.rsynclist\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -253,7 +253,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BB83B4569332F43B81B85972 /* main.swift in Sources */,
+				154ED5C9EE06171C2415C935 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,7 +357,7 @@
 				INDEXING_DEPLOYMENT_LOCATION__NO = YES;
 				INDEXING_DEPLOYMENT_LOCATION__YES = NO;
 				INDEXING_PROJECT_DIR__ = "$(INDEXING_PROJECT_DIR__NO)";
-				INDEXING_PROJECT_DIR__NO = "$(SRCROOT)/bazel-output-base/execroot/_rules_xcodeproj/build_output_base/execroot/__main__";
+				INDEXING_PROJECT_DIR__NO = "$(SRCROOT)/bazel-output-base/rules_xcodeproj/build_output_base/execroot/__main__";
 				INDEXING_PROJECT_DIR__YES = "$(SRCROOT)/bazel-output-base/rules_xcodeproj/indexbuild_output_base/execroot/__main__";
 				INDEX_FORCE_SCRIPT_EXECUTION = YES;
 				INSTALL_PATH = "$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)/bin";
@@ -369,7 +369,7 @@
 				PROJECT_DIR = "$(INDEXING_PROJECT_DIR__$(INDEX_ENABLE_BUILD_ARENA))";
 				RULES_XCODEPROJ_BUILD_MODE = bazel;
 				SCHEME_TARGET_IDS_FILE = "$(OBJROOT)/scheme_target_ids";
-				SRCROOT = ../../../../../..;
+				SRCROOT = ../../../../..;
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EXEC = "$(BAZEL_INTEGRATION_DIR)/swiftc";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
