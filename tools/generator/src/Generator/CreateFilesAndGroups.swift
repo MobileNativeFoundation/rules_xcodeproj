@@ -82,6 +82,7 @@ extension Generator {
     static func createFilesAndGroups(
         in pbxProj: PBXProj,
         buildMode: BuildMode,
+        forFixtures: Bool,
         forceBazelDependencies: Bool,
         targets: [TargetID: Target],
         extraFiles: Set<FilePath>,
@@ -118,7 +119,7 @@ extension Generator {
                 let workspaceDirectoryComponents = directories
                     .workspaceComponents
                 let symlinkComponents = symlinkDest.components
-                if symlinkComponents.starts(
+                if forFixtures && symlinkComponents.starts(
                     with: directories.workspaceComponents
                 ) {
                     let relativeComponents = symlinkComponents.suffix(
