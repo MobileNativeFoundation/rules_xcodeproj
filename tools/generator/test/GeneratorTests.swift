@@ -489,7 +489,6 @@ final class GeneratorTests: XCTestCase {
             let forceBazelDependencies: Bool
             let indexImport: FilePath
             let files: [FilePath: File]
-            let filePathResolver: FilePathResolver
             let bazelConfig: String
             let generatorLabel: BazelLabel
             let generatorConfiguration: String
@@ -521,7 +520,6 @@ final class GeneratorTests: XCTestCase {
                 forceBazelDependencies: forceBazelDependencies,
                 indexImport: indexImport,
                 files: files,
-                filePathResolver: filePathResolver,
                 bazelConfig: bazelConfig,
                 generatorLabel: generatorLabel,
                 generatorConfiguration: generatorConfiguration,
@@ -539,7 +537,6 @@ final class GeneratorTests: XCTestCase {
                 forceBazelDependencies: project.forceBazelDependencies,
                 indexImport: project.indexImport,
                 files: files,
-                filePathResolver: filePathResolver,
                 bazelConfig: project.bazelConfig,
                 generatorLabel: project.generatorLabel,
                 generatorConfiguration: project.configuration,
@@ -557,7 +554,6 @@ final class GeneratorTests: XCTestCase {
             let buildMode: BuildMode
             let products: Products
             let files: [FilePath: File]
-            let filePathResolver: FilePathResolver
             let bazelDependenciesTarget: PBXAggregateTarget?
         }
 
@@ -577,7 +573,6 @@ final class GeneratorTests: XCTestCase {
                 buildMode: buildMode,
                 products: products,
                 files: files,
-                filePathResolver: filePathResolver,
                 bazelDependenciesTarget: bazelDependenciesTarget
             ))
             return pbxTargets
@@ -589,7 +584,6 @@ final class GeneratorTests: XCTestCase {
             buildMode: buildMode,
             products: products,
             files: files,
-            filePathResolver: filePathResolver,
             bazelDependenciesTarget: bazelDependenciesTarget
         )]
 
@@ -604,7 +598,6 @@ final class GeneratorTests: XCTestCase {
             let hostIDs: [TargetID: [TargetID]]
             let hasBazelDependencies: Bool
             let bazelRemappedFiles: [FilePath: FilePath]
-            let filePathResolver: FilePathResolver
         }
 
         var setTargetConfigurationsCalled: [SetTargetConfigurationsCalled] = []
@@ -627,8 +620,7 @@ final class GeneratorTests: XCTestCase {
                 pbxTargets: pbxTargets,
                 hostIDs: hostIDs,
                 hasBazelDependencies: hasBazelDependencies,
-                bazelRemappedFiles: bazelRemappedFiles,
-                filePathResolver: filePathResolver
+                bazelRemappedFiles: bazelRemappedFiles
             ))
         }
 
@@ -641,8 +633,7 @@ final class GeneratorTests: XCTestCase {
                 pbxTargets: pbxTargets,
                 hostIDs: project.targetHosts,
                 hasBazelDependencies: true,
-                bazelRemappedFiles: bazelRemappedFiles,
-                filePathResolver: filePathResolver
+                bazelRemappedFiles: bazelRemappedFiles
             ),
         ]
 
