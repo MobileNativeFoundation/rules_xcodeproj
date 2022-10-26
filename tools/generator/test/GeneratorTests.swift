@@ -340,6 +340,7 @@ final class GeneratorTests: XCTestCase {
         func createFilesAndGroups(
             in pbxProj: PBXProj,
             buildMode: BuildMode,
+            _forFixtures: Bool,
             forceBazelDependencies: Bool,
             targets: [TargetID: Target],
             extraFiles: Set<FilePath>,
