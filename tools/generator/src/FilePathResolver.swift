@@ -1,24 +1,13 @@
 import PathKit
 
-// TODO: Make thread safe if we ever go concurrent
-var memoizedPaths: [MemoizationKey: Path] = [:]
-
-struct MemoizationKey: Equatable, Hashable {
-    let filePath: FilePath
-    let transformedFilePath: FilePath
-    let useBazelOut: Bool?
-    let forceFullBuildSettingPath: Bool
-    let mode: FilePathResolver.Mode
-}
-
-struct FilePathResolver: Equatable, Hashable {
+final class FilePathResolver {
     enum Mode {
         case buildSetting
         case script
         case srcRoot
     }
 
-    struct Directories: Equatable, Hashable {
+    struct Directories: Equatable {
         let workspace: Path
         let workspaceComponents: [String]
         let workspaceOutput: Path
@@ -57,6 +46,17 @@ struct FilePathResolver: Equatable, Hashable {
             }
         }
     }
+
+    struct MemoizationKey: Equatable, Hashable {
+        let filePath: FilePath
+        let transformedFilePath: FilePath
+        let useBazelOut: Bool?
+        let forceFullBuildSettingPath: Bool
+        let mode: FilePathResolver.Mode
+    }
+
+    // TODO: Make thread safe if we ever go concurrent
+    private var memoizedPaths: [MemoizationKey: Path] = [:]
 
     private let directories: Directories
 
