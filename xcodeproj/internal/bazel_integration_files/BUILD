@@ -32,11 +32,11 @@ filegroup(
 genrule(
     name = "rsync_excludes",
     outs = [
-      "app.exclude.rsynclist",
-      "watchos2_app.exclude.rsynclist",
-      "framework.exclude.rsynclist",
-      "appex.exclude.rsynclist",
-      "xctest.exclude.rsynclist",
+        "app.exclude.rsynclist",
+        "watchos2_app.exclude.rsynclist",
+        "framework.exclude.rsynclist",
+        "appex.exclude.rsynclist",
+        "xctest.exclude.rsynclist",
     ],
     cmd = """\
 readonly an_output="$(execpath app.exclude.rsynclist)"
