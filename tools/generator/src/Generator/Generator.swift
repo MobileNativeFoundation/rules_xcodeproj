@@ -10,7 +10,6 @@ class Generator {
     static let defaultEnvironment = Environment(
         createProject: Generator.createProject,
         processReplacementLabels: Generator.processReplacementLabels,
-        processTargetMerges: Generator.processTargetMerges,
         consolidateTargets: Generator.consolidateTargets,
         createFilesAndGroups: Generator.createFilesAndGroups,
         createProducts: Generator.createProducts,
@@ -65,11 +64,6 @@ class Generator {
         try environment.processReplacementLabels(
             &targets,
             project.replacementLabels
-        )
-        try environment.processTargetMerges(
-            buildMode,
-            &targets,
-            project.targetMerges
         )
 
         let isUnfocusedDependencyTargetIDs = Set(

@@ -18,12 +18,6 @@ struct Environment {
         _ replacementLabels: [TargetID: BazelLabel]
     ) throws -> Void
 
-    let processTargetMerges: (
-        _ buildMode: BuildMode,
-        _ targets: inout [TargetID: Target],
-        _ targetMerges: [TargetID: Set<TargetID>]
-    ) throws -> Void
-
     let consolidateTargets: (
         _ targets: [TargetID: Target],
         _ xcodeGeneratedFiles: [FilePath: FilePath],

@@ -296,34 +296,6 @@ final class GeneratorTests: XCTestCase {
             )
         ]
 
-        // MARK: processTargetMerges()
-
-        struct ProcessTargetMergesCalled: Equatable {
-            let buildMode: BuildMode
-            let targets: [TargetID: Target]
-            let targetMerges: [TargetID: Set<TargetID>]
-        }
-
-        var processTargetMergesCalled: [ProcessTargetMergesCalled] = []
-        func processTargetMerges(
-            buildMode: BuildMode,
-            targets: inout [TargetID: Target],
-            targetMerges: [TargetID: Set<TargetID>]
-        ) throws {
-            processTargetMergesCalled.append(.init(
-                buildMode: buildMode,
-                targets: targets,
-                targetMerges: targetMerges
-            ))
-            targets = mergedTargets
-        }
-
-        let expectedProcessTargetMergesCalled = [ProcessTargetMergesCalled(
-            buildMode: buildMode,
-            targets: replacedLabelsTargets,
-            targetMerges: project.targetMerges
-        )]
-
         // MARK: createFilesAndGroups()
 
         struct CreateFilesAndGroupsCalled: Equatable {
@@ -814,7 +786,6 @@ final class GeneratorTests: XCTestCase {
         let environment = Environment(
             createProject: createProject,
             processReplacementLabels: processReplacementLabels,
-            processTargetMerges: processTargetMerges,
             consolidateTargets: consolidateTargets,
             createFilesAndGroups: createFilesAndGroups,
             createProducts: createProducts,
@@ -858,10 +829,6 @@ final class GeneratorTests: XCTestCase {
         XCTAssertNoDifference(
             processReplacementLabelsCalled,
             expectedProcessReplacementLabelsCalled
-        )
-        XCTAssertNoDifference(
-            processTargetMergesCalled,
-            expectedProcessTargetMergesCalled
         )
         XCTAssertNoDifference(
             consolidateTargetsCalled,
