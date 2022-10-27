@@ -19,7 +19,6 @@ enum Fixtures {
         ],
         targets: targets,
         replacementLabels: [:],
-        targetMerges: [:],
         targetHosts: [
             "W": ["I"],
             "WDKE": ["I"],
