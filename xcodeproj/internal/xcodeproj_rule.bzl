@@ -77,10 +77,14 @@ def _calculate_unfocused_dependencies(
         ).to_list()
     }
 
-def _calculate_swiftui_preview_targets(*, xcode_target, targets):
+def _calculate_swiftui_preview_targets(
+        *,
+        xcode_target,
+        transitive_dependencies,
+        targets):
     return [
         id
-        for id in xcode_target.transitive_dependencies.to_list()
+        for id in transitive_dependencies
         if _is_same_platform_swiftui_preview_target(
             platform = xcode_target.platform,
             xcode_target = targets.get(id),
@@ -319,10 +323,15 @@ targets.
     additional_generated = {}
     additional_outputs = {}
     for xcode_target in focused_targets.values():
+        transitive_dependencies = {
+            id: None
+            for id in xcode_target.transitive_dependencies.to_list()
+        }
+
         additional_compiling_files = []
         additional_indexstores_files = []
         additional_linking_files = []
-        for dependency in xcode_target.transitive_dependencies.to_list():
+        for dependency in transitive_dependencies:
             unfocused_dependency = unfocused_dependencies.get(dependency)
             if not unfocused_dependency:
                 continue
@@ -413,6 +422,7 @@ actual targets: {}
         if include_swiftui_previews_scheme_targets:
             additional_scheme_target_ids = _calculate_swiftui_preview_targets(
                 xcode_target = xcode_target,
+                transitive_dependencies = transitive_dependencies,
                 targets = focused_targets,
             )
         else:
