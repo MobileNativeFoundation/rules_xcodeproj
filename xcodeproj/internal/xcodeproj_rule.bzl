@@ -317,6 +317,11 @@ targets.
 
     has_automatic_unfocused_targets = sets.length(unfocused_libraries) > 0
     has_unfocused_targets = bool(unfocused_targets)
+    include_lldb_context = (
+        has_unfocused_targets or
+        has_automatic_unfocused_targets or
+        build_mode != "xcode"
+    )
 
     target_dtos = {}
     additional_generated = {}
@@ -430,11 +435,7 @@ actual targets: {}
         target_dtos[xcode_target.id] = xcode_targets.to_dto(
             xcode_target = xcode_target,
             additional_scheme_target_ids = additional_scheme_target_ids,
-            include_lldb_context = (
-                has_unfocused_targets or
-                has_automatic_unfocused_targets or
-                build_mode != "xcode"
-            ),
+            include_lldb_context = include_lldb_context,
             is_unfocused_dependency = xcode_target.id in unfocused_dependencies,
             unfocused_targets = unfocused_targets,
         )
