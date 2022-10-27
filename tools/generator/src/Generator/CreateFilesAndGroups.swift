@@ -38,7 +38,6 @@ extension Generator {
     static let bazelForcedSwiftCompilePath: Path = "_BazelForcedCompile_.swift"
     static let compileStubPath: Path = "_CompileStub_.m"
     static let externalFileListPath: Path = "external.xcfilelist"
-    static let appRsyncExcludeFileListPath: Path = "app.exclude.rsynclist"
     static let generatedFileListPath: Path = "generated.xcfilelist"
     static let createXcodeOverlayScriptPath: Path = "create_xcode_overlay.sh"
     static let lldbSwiftSettingsModulePath: Path = "swift_debug_settings.py"
@@ -48,20 +47,6 @@ extension Generator {
         "storyboard",
         "strings",
         "xib",
-    ]
-
-    private static let xcodeInjectedFrameworks = [
-        "libclang_rt.asan*.dylib",
-        "libclang_rt.tsan*.dylib",
-        "libclang_rt.ubsan*.dylib",
-        "libXCTestBundleInject.dylib",
-        "libXCTestSwiftSupport.dylib",
-        "XCTAutomationSupport.framework",
-        "XCTest.framework",
-        "XCTestCore.framework",
-        "XCTestSupport.framework",
-        "XCUIAutomation.framework",
-        "XCUnit.framework",
     ]
 
     enum ElementFilePath: Equatable, Hashable {
@@ -652,27 +637,6 @@ already was set to `\(existingValue)`.
                     useBazelOut: true,
                     forceFullBuildSettingPath: true
                 )
-        }
-
-        if buildMode.usesBazelModeBuildScripts,
-            targets.contains(where: { $1.product.type.isLaunchable })
-        {
-            let frameworks = ["app", "appex", "xctest"]
-                .flatMap { ext in
-                    ["Contents/Frameworks", "Frameworks"].flatMap { folder in
-                        xcodeInjectedFrameworks.map { framework in
-                            return "/*.\(ext)/\(folder)/\(framework)"
-                        }
-                    }
-                }
-                .joined(separator: "\n")
-            files[.internal(appRsyncExcludeFileListPath)] =
-                .nonReferencedContent(#"""
-\#(frameworks)
-/*.app/PlugIns/*.xctest
-/*.appex/PlugIns/*.xctest
-
-"""#)
         }
 
         func addXCFileList(_ path: Path, paths: [Path]) {
