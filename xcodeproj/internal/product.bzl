@@ -3,8 +3,6 @@
 load(
     ":files.bzl",
     "file_path",
-    "file_path_to_dto",
-    "normalized_file_path",
 )
 load(":linker_input_files.bzl", "linker_input_files")
 
@@ -136,19 +134,3 @@ def process_product(
         type = product_type,
         is_resource_bundle = is_resource_bundle,
     )
-
-# TODO: Make this into a module
-def product_to_dto(product):
-    return {
-        "additional_paths": [
-            file_path_to_dto(normalized_file_path(file))
-            for file in product.linker_files.to_list()
-        ],
-        "executable_name": product.executable_name,
-        "is_resource_bundle": product.is_resource_bundle,
-        "name": product.name,
-        "path": (
-            file_path_to_dto(product.file_path) if product.file_path else None
-        ),
-        "type": product.type,
-    }

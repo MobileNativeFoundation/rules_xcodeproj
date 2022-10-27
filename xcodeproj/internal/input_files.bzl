@@ -7,13 +7,11 @@ load(
 )
 load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo")
 load("@bazel_skylib//lib:sets.bzl", "sets")
-load(":collections.bzl", "set_if_true")
 load(":compilation_providers.bzl", comp_providers = "compilation_providers")
 load(":filelists.bzl", "filelists")
 load(
     ":files.bzl",
     "file_path",
-    "file_path_to_dto",
     "normalized_file_path",
     "parsed_file_path",
 )
@@ -782,53 +780,6 @@ def _merge_input_files(*, transitive_infos, extra_generated = None):
         linking_output_group_name = None,
     )
 
-def _input_files_to_dto(inputs):
-    """Generates a target DTO value for inputs.
-
-    Args:
-        inputs: A value returned from `input_files.collect`.
-
-    Returns:
-        A `dict` containing the following elements:
-
-        *   `srcs`: A `list` of `FilePath`s for `srcs`.
-        *   `non_arc_srcs`: A `list` of `FilePath`s for `non_arc_srcs`.
-        *   `hdrs`: A `list` of `FilePath`s for `hdrs`.
-        *   `pch`: An optional `FilePath` for `pch`.
-        *   `resources`: A `list` of `FilePath`s for `resources`.
-        *   `entitlements`: An optional `FilePath` for `entitlements`.
-        *   `exported_symbols_lists`: A `list` of `FilePath`s for `exported_symbols_lists`.
-    """
-    ret = {}
-
-    def _process_attr(attr):
-        value = getattr(inputs, attr)
-        if value:
-            ret[attr] = [
-                file_path_to_dto(file_path(file))
-                for file in value.to_list()
-            ]
-
-    _process_attr("srcs")
-    _process_attr("non_arc_srcs")
-    _process_attr("hdrs")
-    _process_attr("exported_symbols_lists")
-
-    if inputs.pch:
-        ret["pch"] = file_path_to_dto(file_path(inputs.pch))
-
-    if inputs.entitlements:
-        ret["entitlements"] = file_path_to_dto(file_path(inputs.entitlements))
-
-    if inputs.resources:
-        set_if_true(
-            ret,
-            "resources",
-            [file_path_to_dto(fp) for fp in inputs.resources.to_list()],
-        )
-
-    return ret
-
 def _process_output_group_files(
         *,
         ctx,
@@ -919,6 +870,5 @@ input_files = struct(
     collect = _collect_input_files,
     from_resource_bundle = _from_resource_bundle,
     merge = _merge_input_files,
-    to_dto = _input_files_to_dto,
     to_output_groups_fields = _to_output_groups_fields,
 )

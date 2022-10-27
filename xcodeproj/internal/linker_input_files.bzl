@@ -1,8 +1,7 @@
 """Module containing functions dealing with target linker input files."""
 
 load("@bazel_skylib//lib:sets.bzl", "sets")
-load(":collections.bzl", "flatten", "set_if_true", "uniq")
-load(":files.bzl", "file_path", "file_path_to_dto")
+load(":collections.bzl", "flatten", "uniq")
 
 # linker flags that we don't want to propagate to Xcode.
 # The values are the number of flags to skip, 1 being the flag itself, 2 being
@@ -260,21 +259,6 @@ def _process_additional_inputs(files):
         if not file.is_source and file.extension not in _SKIP_INPUT_EXTENSIONS
     ]
 
-def _get_top_level_static_libraries(linker_inputs):
-    """Returns the static libraries needed to link the target.
-
-    Args:
-        linker_inputs: A value returned from `linker_input_files.collect`.
-
-    Returns:
-        A `list` of `File`s that need to be linked for the target.
-    """
-    top_level_values = linker_inputs._top_level_values
-    if not top_level_values:
-        fail("Xcode target requires `ObjcProvider` or `CcInfo`")
-    return (top_level_values.static_libraries +
-            top_level_values.force_load_libraries)
-
 def _collect_libraries(
         *,
         compilation_providers,
@@ -382,69 +366,6 @@ def _process_linkopt(linkopt):
 
     return linkopt
 
-def _linker_inputs_to_dto(linker_inputs):
-    """Generates a target DTO for linker inputs.
-
-    Args:
-        linker_inputs: A value returned from `linker_input_files.collect`.
-
-    Returns:
-        A `dict` containing the following elements:
-
-        *   `dynamic_frameworks`: A `list` of `FilePath`s for
-            `dynamic_frameworks`.
-        *   `static_frameworks`: A `list` of `FilePath`s for
-            `static_frameworks`.
-        *   `static_libraries`: A `list` of `FilePath`s for `static_libraries`.
-        *   `linkopts`: A `list` of `string`s for linkopts.
-    """
-    top_level_values = (
-        linker_inputs._top_level_values if linker_inputs else None
-    )
-    if not top_level_values:
-        return {}
-
-    ret = {}
-    set_if_true(
-        ret,
-        "dynamic_frameworks",
-        [
-            file_path_to_dto(file_path(file, path = file.dirname))
-            for file in top_level_values.dynamic_frameworks
-        ],
-    )
-    set_if_true(
-        ret,
-        "force_load",
-        [
-            file_path_to_dto(file_path(file))
-            for file in top_level_values.force_load_libraries
-        ],
-    )
-    set_if_true(
-        ret,
-        "linkopts",
-        top_level_values.linkopts,
-    )
-    set_if_true(
-        ret,
-        "static_libraries",
-        [
-            file_path_to_dto(file_path(file))
-            for file in top_level_values.static_libraries
-        ],
-    )
-    set_if_true(
-        ret,
-        "static_frameworks",
-        [
-            file_path_to_dto(file_path(file, path = file.dirname))
-            for file in top_level_values.static_frameworks
-        ],
-    )
-
-    return ret
-
 def _to_input_files(linker_inputs):
     top_level_values = linker_inputs._top_level_values
     if not top_level_values:
@@ -472,8 +393,6 @@ linker_input_files = struct(
     merge = _merge_linker_inputs,
     get_library_static_libraries = _get_library_static_libraries,
     get_primary_static_library = _get_primary_static_library,
-    get_top_level_static_libraries = _get_top_level_static_libraries,
     get_transitive_static_libraries = _get_transitive_static_libraries,
-    to_dto = _linker_inputs_to_dto,
     to_input_files = _to_input_files,
 )
