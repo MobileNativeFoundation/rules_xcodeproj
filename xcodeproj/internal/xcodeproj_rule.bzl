@@ -318,7 +318,6 @@ targets.
     has_automatic_unfocused_targets = sets.length(unfocused_libraries) > 0
     has_unfocused_targets = bool(unfocused_targets)
 
-    targets = {}
     target_dtos = {}
     additional_generated = {}
     additional_outputs = {}
@@ -428,7 +427,6 @@ actual targets: {}
         else:
             additional_scheme_target_ids = None
 
-        targets[xcode_target.id] = xcode_target
         target_dtos[xcode_target.id] = xcode_targets.to_dto(
             xcode_target = xcode_target,
             additional_scheme_target_ids = additional_scheme_target_ids,
@@ -444,13 +442,13 @@ actual targets: {}
     # Filter `target_merge_dests` after processing focused targets
     if has_unfocused_targets:
         for dest, src_ids in target_merge_dests.items():
-            if dest not in targets:
+            if dest not in focused_targets:
                 target_merge_dests.pop(dest)
                 continue
             new_srcs_ids = [
                 id
                 for id in src_ids
-                if id in targets
+                if id in focused_targets
             ]
             if not new_srcs_ids:
                 target_merge_dests.pop(dest)
@@ -464,14 +462,14 @@ actual targets: {}
             # We can only merge targets with a single library dependency
             continue
         src = src_ids[0]
-        src_target = targets[src]
+        src_target = focused_targets[src]
         target_merges.setdefault(src, []).append(dest)
         target_merge_srcs_by_label.setdefault(src_target.label, []).append(src)
 
     non_mergable_targets = sets.make()
     non_terminal_dests = {}
     for src, dests in target_merges.items():
-        src_target = targets[src]
+        src_target = focused_targets[src]
 
         if not src_target.is_swift:
             # Only swiftmodule search paths are an issue for target merging.
@@ -479,7 +477,7 @@ actual targets: {}
             continue
 
         for dest in dests:
-            dest_target = targets[dest]
+            dest_target = focused_targets[dest]
 
             if dest_target.product.type not in _TERMINAL_PRODUCT_TYPES:
                 non_terminal_dests.setdefault(src, []).append(dest)
@@ -495,7 +493,7 @@ actual targets: {}
                 sets.insert(non_mergable_targets, file_path(library))
 
     for src in target_merges.keys():
-        src_target = targets[src]
+        src_target = focused_targets[src]
         if (len(non_terminal_dests.get(src, [])) > 1 or
             sets.contains(non_mergable_targets, src_target.product.file_path)):
             # Prevent any version of `src` from merging, to prevent odd
@@ -504,7 +502,7 @@ actual targets: {}
                 target_merges.pop(id, None)
 
     return (
-        targets,
+        focused_targets,
         target_dtos,
         target_merges,
         additional_generated,
