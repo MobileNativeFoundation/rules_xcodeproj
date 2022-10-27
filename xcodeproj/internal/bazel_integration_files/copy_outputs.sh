@@ -46,12 +46,21 @@ else
       cd "${BAZEL_OUTPUTS_PRODUCT%/*}"
     fi
 
+    # TODO: Create an exclude list for each wrapper type
+    if [[ -n "$exclude_list" ]]; then
+      readonly exclude_flags=(--exclude-from="$exclude_list")
+    else
+      readonly exclude_flags=(
+        --exclude='/*.framework/Modules/***'
+      )
+    fi
+
     rsync \
       --copy-links \
       --recursive \
       --times \
       --delete \
-      ${exclude_list:+--exclude-from="$exclude_list"} \
+      "${exclude_flags[@]}" \
       --chmod=u+w \
       --out-format="%n%L" \
       "$product_basename" \
