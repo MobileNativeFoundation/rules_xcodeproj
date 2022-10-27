@@ -150,19 +150,12 @@ Product for target "\(key)" not found in `products`
 
         let copyOutputs: String
         if outputs.hasProductOutput {
-            let excludeList: String
-            if productType.isLaunchable {
-                excludeList = "$BAZEL_INTEGRATION_DIR/exclude.rsynclist"
-            } else {
-                excludeList = ""
-            }
-
             copyOutputs = #"""
 else
   "$BAZEL_INTEGRATION_DIR/copy_outputs.sh" \
     "\#(Generator.bazelForcedSwiftCompilePath)" \
     "\#(productBasename)" \
-    "\#(excludeList)"
+    "\#(productType.rsyncExcludeFile)"
 """#
         } else {
             copyOutputs = ""
@@ -774,5 +767,33 @@ private extension ConsolidatedTargetOutputs {
 //        }
 
         return []
+    }
+}
+
+private extension PBXProductType {
+    var rsyncExcludeFile: String {
+        switch self {
+        case .application,
+            .messagesApplication,
+            .onDemandInstallCapableApplication,
+            .watch2AppContainer:
+            return "$BAZEL_INTEGRATION_DIR/app.exclude.rsynclist"
+        case .framework:
+            return "$BAZEL_INTEGRATION_DIR/framework.exclude.rsynclist"
+        case .unitTestBundle,
+            .uiTestBundle:
+            return "$BAZEL_INTEGRATION_DIR/xctest.exclude.rsynclist"
+        case .appExtension,
+            .extensionKitExtension,
+            .intentsServiceExtension,
+            .messagesExtension,
+            .tvExtension,
+            .watch2Extension:
+            return "$BAZEL_INTEGRATION_DIR/appex.exclude.rsynclist"
+        case .watch2App:
+            return "$BAZEL_INTEGRATION_DIR/watchos2_app.exclude.rsynclist"
+        default:
+            return ""
+        }
     }
 }
