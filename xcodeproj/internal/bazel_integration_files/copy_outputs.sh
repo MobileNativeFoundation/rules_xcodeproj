@@ -52,6 +52,7 @@ else
     else
       readonly exclude_flags=(
         --exclude='/*.framework/Modules/***'
+        --exclude='/*.framework/SwiftUIPreviewsFrameworks/***'
       )
     fi
 
@@ -67,10 +68,15 @@ else
       "$TARGET_BUILD_DIR"
 
     # SwiftUI Previews has a hard time finding frameworks (`@rpath`) when using
-    # framework schemes, so let's symlink them into `$BUILD_DIR`
+    # framework schemes, so let's symlink them into
+    # `$TARGET_BUILD_DIR` (since we modify `@rpath` to always include
+    # `@loader_path/SwiftUIPreviewsFrameworks`)
     if [[ "${ENABLE_PREVIEWS:-}" == "YES" && \
           -n "${PREVIEW_FRAMEWORK_PATHS:-}" ]]; then
-      cd "$BUILD_DIR"
+      mkdir -p "$TARGET_BUILD_DIR/$WRAPPER_NAME/SwiftUIPreviewsFrameworks"
+      cd "$TARGET_BUILD_DIR/$WRAPPER_NAME/SwiftUIPreviewsFrameworks"
+
+      # shellcheck disable=SC2016
       xargs -n1 sh -c 'ln -shfF "$1" $(basename "$1")' _ \
         <<< "$PREVIEW_FRAMEWORK_PATHS"
     fi
