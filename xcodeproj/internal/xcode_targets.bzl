@@ -1,14 +1,15 @@
 """Module containing functions dealing with the `Target` DTO."""
 
 load(":collections.bzl", "set_if_true")
-load(":files.bzl", "file_path", "file_path_to_dto")
-load(":input_files.bzl", "input_files")
-load(":linker_input_files.bzl", "linker_input_files")
+load(
+    ":files.bzl",
+    "file_path",
+    "file_path_to_dto",
+    "normalized_file_path",
+    "parsed_file_path",
+)
 load(":lldb_contexts.bzl", "lldb_contexts")
-load(":output_files.bzl", "output_files")
 load(":platform.bzl", "platform_info")
-load(":product.bzl", "product_to_dto")
-load(":target_search_paths.bzl", "target_search_paths")
 
 def _make_xcode_target(
         *,
@@ -103,19 +104,69 @@ def _make_xcode_target(
         label = label,
         platform = platform,
         product = product,
-        linker_inputs = linker_inputs,
-        inputs = inputs,
+        linker_inputs = _to_xcode_target_linker_inputs(linker_inputs),
+        inputs = _to_xcode_target_inputs(inputs),
         is_swift = is_swift,
-        outputs = outputs,
+        outputs = _to_xcode_target_outputs(outputs),
         infoplist = infoplist,
         transitive_dependencies = transitive_dependencies,
         xcode_required_targets = xcode_required_targets,
     )
 
+def _to_xcode_target_inputs(inputs):
+    return struct(
+        srcs = inputs.srcs,
+        non_arc_srcs = inputs.non_arc_srcs,
+        hdrs = inputs.hdrs,
+        exported_symbols_lists = inputs.exported_symbols_lists,
+        pch = inputs.pch,
+        entitlements = inputs.entitlements,
+        resources = inputs.resources,
+        resource_bundle_dependencies = inputs.resource_bundle_dependencies,
+        generated = inputs.generated,
+        indexstores = inputs.indexstores,
+        unfocused_generated_compiling = inputs.unfocused_generated_compiling,
+        unfocused_generated_indexstores = (
+            inputs.unfocused_generated_indexstores
+        ),
+        unfocused_generated_linking = inputs.unfocused_generated_linking,
+        compiling_output_group_name = inputs.compiling_output_group_name,
+        indexstores_output_group_name = inputs.indexstores_output_group_name,
+        linking_output_group_name = inputs.linking_output_group_name,
+    )
+
+def _to_xcode_target_linker_inputs(linker_inputs):
+    if not linker_inputs:
+        return None
+
+    top_level_values = linker_inputs._top_level_values
+    if not top_level_values:
+        return None
+
+    return struct(
+        dynamic_frameworks = top_level_values.dynamic_frameworks,
+        force_load_libraries = top_level_values.force_load_libraries,
+        linkopts = top_level_values.linkopts,
+        static_libraries = top_level_values.static_libraries,
+        static_frameworks = top_level_values.static_frameworks,
+    )
+
+def _to_xcode_target_outputs(outputs):
+    direct_outputs = outputs.direct_outputs
+
+    return struct(
+        product_file_path = (
+            direct_outputs.product_file_path if direct_outputs else None
+        ),
+        products_output_group_name = outputs.products_output_group_name,
+        swift = direct_outputs.swift if direct_outputs else None,
+        transitive_infoplists = outputs.transitive_infoplists,
+    )
+
 def _xcode_target_to_dto(
         xcode_target,
         *,
-        additional_scheme_target_ids,
+        additional_scheme_target_ids = None,
         include_lldb_context,
         is_unfocused_dependency = False,
         unfocused_targets = {}):
@@ -127,7 +178,7 @@ def _xcode_target_to_dto(
         "configuration": xcode_target._configuration,
         "package_bin_dir": xcode_target._package_bin_dir,
         "platform": platform_info.to_dto(xcode_target.platform),
-        "product": product_to_dto(xcode_target.product),
+        "product": _product_to_dto(xcode_target.product),
     }
 
     if xcode_target._is_testonly:
@@ -156,7 +207,7 @@ def _xcode_target_to_dto(
     set_if_true(
         dto,
         "search_paths",
-        target_search_paths.to_dto(xcode_target._search_paths),
+        _search_paths_to_dto(xcode_target._search_paths),
     )
     set_if_true(
         dto,
@@ -177,11 +228,11 @@ def _xcode_target_to_dto(
             if id not in unfocused_targets
         ],
     )
-    set_if_true(dto, "inputs", input_files.to_dto(inputs))
+    set_if_true(dto, "inputs", _inputs_to_dto(inputs))
     set_if_true(
         dto,
         "linker_inputs",
-        linker_input_files.to_dto(xcode_target.linker_inputs),
+        _linker_inputs_to_dto(xcode_target.linker_inputs),
     )
     set_if_true(
         dto,
@@ -215,7 +266,7 @@ def _xcode_target_to_dto(
             if id not in unfocused_targets
         ],
     )
-    set_if_true(dto, "outputs", output_files.to_dto(xcode_target.outputs))
+    set_if_true(dto, "outputs", _outputs_to_dto(xcode_target.outputs))
 
     set_if_true(
         dto,
@@ -225,7 +276,256 @@ def _xcode_target_to_dto(
 
     return dto
 
+def _inputs_to_dto(inputs):
+    """Generates a target DTO value for inputs.
+
+    Args:
+        inputs: A value returned from `input_files.to_xcode_target_inputs`.
+
+    Returns:
+        A `dict` containing the following elements:
+
+        *   `srcs`: A `list` of `FilePath`s for `srcs`.
+        *   `non_arc_srcs`: A `list` of `FilePath`s for `non_arc_srcs`.
+        *   `hdrs`: A `list` of `FilePath`s for `hdrs`.
+        *   `pch`: An optional `FilePath` for `pch`.
+        *   `resources`: A `list` of `FilePath`s for `resources`.
+        *   `entitlements`: An optional `FilePath` for `entitlements`.
+        *   `exported_symbols_lists`: A `list` of `FilePath`s for
+            `exported_symbols_lists`.
+    """
+    ret = {}
+
+    def _process_attr(attr):
+        value = getattr(inputs, attr)
+        if value:
+            ret[attr] = [
+                file_path_to_dto(file_path(file))
+                for file in value.to_list()
+            ]
+
+    _process_attr("srcs")
+    _process_attr("non_arc_srcs")
+    _process_attr("hdrs")
+    _process_attr("exported_symbols_lists")
+
+    if inputs.pch:
+        ret["pch"] = file_path_to_dto(file_path(inputs.pch))
+
+    if inputs.entitlements:
+        ret["entitlements"] = file_path_to_dto(file_path(inputs.entitlements))
+
+    if inputs.resources:
+        set_if_true(
+            ret,
+            "resources",
+            [file_path_to_dto(fp) for fp in inputs.resources.to_list()],
+        )
+
+    return ret
+
+def _linker_inputs_to_dto(linker_inputs):
+    """Generates a target DTO for linker inputs.
+
+    Args:
+        linker_inputs: A value returned from `_to_xcode_target_linker_inputs`.
+
+    Returns:
+        A `dict` containing the following elements:
+
+        *   `dynamic_frameworks`: A `list` of `FilePath`s for
+            `dynamic_frameworks`.
+        *   `static_frameworks`: A `list` of `FilePath`s for
+            `static_frameworks`.
+        *   `static_libraries`: A `list` of `FilePath`s for `static_libraries`.
+        *   `linkopts`: A `list` of `string`s for linkopts.
+    """
+    if not linker_inputs:
+        return {}
+
+    ret = {}
+    set_if_true(
+        ret,
+        "dynamic_frameworks",
+        [
+            file_path_to_dto(file_path(file, path = file.dirname))
+            for file in linker_inputs.dynamic_frameworks
+        ],
+    )
+    set_if_true(
+        ret,
+        "force_load",
+        [
+            file_path_to_dto(file_path(file))
+            for file in linker_inputs.force_load_libraries
+        ],
+    )
+    set_if_true(
+        ret,
+        "linkopts",
+        linker_inputs.linkopts,
+    )
+    set_if_true(
+        ret,
+        "static_libraries",
+        [
+            file_path_to_dto(file_path(file))
+            for file in linker_inputs.static_libraries
+        ],
+    )
+    set_if_true(
+        ret,
+        "static_frameworks",
+        [
+            file_path_to_dto(file_path(file, path = file.dirname))
+            for file in linker_inputs.static_frameworks
+        ],
+    )
+
+    return ret
+
+def _outputs_to_dto(outputs):
+    dto = {}
+
+    if outputs.product_file_path:
+        dto["p"] = file_path_to_dto(outputs.product_file_path)
+
+    if outputs.swift:
+        dto["s"] = _swift_to_dto(outputs.swift)
+
+    return dto
+
+def _product_to_dto(product):
+    additional_paths = [
+        file_path_to_dto(normalized_file_path(file))
+        for file in product.linker_files.to_list()
+    ]
+
+    return {
+        "additional_paths": additional_paths,
+        "executable_name": product.executable_name,
+        "is_resource_bundle": product.is_resource_bundle,
+        "name": product.name,
+        "path": file_path_to_dto(product.file_path),
+        "type": product.type,
+    }
+
+def _search_paths_to_dto(search_paths):
+    compile_search_paths = search_paths
+    if search_paths:
+        compilation_providers = search_paths._compilation_providers
+    else:
+        compilation_providers = None
+
+    if compilation_providers:
+        cc_info = compilation_providers._cc_info
+        objc = compilation_providers._objc
+    else:
+        cc_info = None
+        objc = None
+
+    dto = {}
+    if cc_info:
+        compilation_context = cc_info.compilation_context
+        opts_search_paths = compile_search_paths._opts_search_paths
+
+        if opts_search_paths:
+            opts_includes = list(opts_search_paths.includes)
+            opts_quote_includes = list(opts_search_paths.quote_includes)
+            opts_system_includes = list(opts_search_paths.system_includes)
+        else:
+            opts_includes = []
+            opts_quote_includes = []
+            opts_system_includes = []
+
+        quote_includes = depset(
+            [".", compile_search_paths._bin_dir_path] + opts_quote_includes,
+            transitive = [compilation_context.quote_includes],
+        )
+
+        set_if_true(
+            dto,
+            "quote_includes",
+            [
+                file_path_to_dto(parsed_file_path(path))
+                for path in quote_includes.to_list()
+            ],
+        )
+        set_if_true(
+            dto,
+            "includes",
+            [
+                file_path_to_dto(parsed_file_path(path))
+                for path in (compilation_context.includes.to_list() +
+                             opts_includes)
+            ],
+        )
+        set_if_true(
+            dto,
+            "system_includes",
+            [
+                file_path_to_dto(parsed_file_path(path))
+                for path in (compilation_context.system_includes.to_list() +
+                             opts_system_includes)
+            ],
+        )
+
+    if objc:
+        framework_paths = depset(
+            transitive = [
+                objc.static_framework_paths,
+                objc.dynamic_framework_paths,
+            ],
+        )
+
+        framework_file_paths = [
+            parsed_file_path(path)
+            for path in framework_paths.to_list()
+        ]
+
+        set_if_true(
+            dto,
+            "framework_includes",
+            [
+                file_path_to_dto(fp)
+                for fp in framework_file_paths
+            ],
+        )
+
+    return dto
+
+def _swift_to_dto(swift):
+    module = swift.module
+    dto = {
+        "m": file_path_to_dto(file_path(module.swiftmodule)),
+        "s": file_path_to_dto(file_path(module.swiftsourceinfo)),
+        "d": file_path_to_dto(file_path(module.swiftdoc)),
+    }
+
+    if module.swiftinterface:
+        dto["i"] = file_path_to_dto(file_path(module.swiftinterface))
+
+    if swift.generated_header:
+        dto["h"] = file_path_to_dto(file_path(swift.generated_header))
+
+    return dto
+
+def _get_top_level_static_libraries(xcode_target):
+    """Returns the static libraries needed to link the target.
+
+    Args:
+        xcode_target: A value returned from `xcode_targets.make`.
+
+    Returns:
+        A `list` of `File`s that need to be linked for the target.
+    """
+    linker_inputs = xcode_target.linker_inputs
+    if not linker_inputs:
+        fail("Xcode target requires `ObjcProvider` or `CcInfo`")
+    return linker_inputs.static_libraries + linker_inputs.force_load_libraries
+
 xcode_targets = struct(
+    get_top_level_static_libraries = _get_top_level_static_libraries,
     make = _make_xcode_target,
     to_dto = _xcode_target_to_dto,
 )

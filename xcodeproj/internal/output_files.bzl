@@ -1,7 +1,6 @@
 """Module containing functions dealing with target output files."""
 
 load(":filelists.bzl", "filelists")
-load(":files.bzl", "file_path", "file_path_to_dto")
 
 # Utility
 
@@ -159,12 +158,12 @@ def _create(
     )
 
     return struct(
-        _direct_outputs = direct_outputs if should_produce_dto else None,
         _closest_compiled = closest_compiled,
         _is_framework = is_framework,
         _output_group_list = output_group_list,
         _transitive_indexestores = transitive_indexestores,
         _transitive_products = transitive_products,
+        direct_outputs = direct_outputs if should_produce_dto else None,
         products_output_group_name = products_output_group_name,
         transitive_infoplists = transitive_infoplists,
     )
@@ -213,22 +212,6 @@ def _get_outputs(*, id, product, swift_info):
         product_file_path = product.actual_file_path if product else None,
         swift = swift,
     )
-
-def _swift_to_dto(swift):
-    module = swift.module
-    dto = {
-        "m": file_path_to_dto(file_path(module.swiftmodule)),
-        "s": file_path_to_dto(file_path(module.swiftsourceinfo)),
-        "d": file_path_to_dto(file_path(module.swiftdoc)),
-    }
-
-    if module.swiftinterface:
-        dto["i"] = file_path_to_dto(file_path(module.swiftinterface))
-
-    if swift.generated_header:
-        dto["h"] = file_path_to_dto(file_path(swift.generated_header))
-
-    return dto
 
 # API
 
@@ -297,21 +280,6 @@ def _merge_output_files(*, automatic_target_info, transitive_infos):
         should_produce_dto = False,
         should_produce_output_groups = False,
     )
-
-def _outputs_files_to_dto(outputs):
-    direct_outputs = outputs._direct_outputs
-    if not direct_outputs:
-        return {}
-
-    dto = {}
-
-    if direct_outputs.product:
-        dto["p"] = file_path_to_dto(direct_outputs.product_file_path)
-
-    if direct_outputs.swift:
-        dto["s"] = _swift_to_dto(direct_outputs.swift)
-
-    return dto
 
 def _process_output_group_files(
         *,
@@ -441,6 +409,5 @@ def swift_to_outputs(swift):
 output_files = struct(
     collect = _collect_output_files,
     merge = _merge_output_files,
-    to_dto = _outputs_files_to_dto,
     to_output_groups_fields = _to_output_groups_fields,
 )

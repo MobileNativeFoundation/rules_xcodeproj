@@ -10,7 +10,6 @@ load(":configuration.bzl", "get_configuration")
 load(":files.bzl", "file_path", "file_path_to_dto", "parsed_file_path")
 load(":flattened_key_values.bzl", "flattened_key_values")
 load(":input_files.bzl", "input_files")
-load(":linker_input_files.bzl", "linker_input_files")
 load(":output_files.bzl", "output_files")
 load(":platform.bzl", "platform_info")
 load(":providers.bzl", "XcodeProjInfo")
@@ -483,8 +482,8 @@ actual targets: {}
             if dest_target.product.type not in _TERMINAL_PRODUCT_TYPES:
                 non_terminal_dests.setdefault(src, []).append(dest)
 
-            for library in linker_input_files.get_top_level_static_libraries(
-                dest_target.linker_inputs,
+            for library in xcode_targets.get_top_level_static_libraries(
+                dest_target,
             ):
                 if library.owner == src_target.label:
                     continue
