@@ -73,6 +73,10 @@ build:rules_xcodeproj_indexbuild --bes_backend= --bes_results_url=
 
 build:rules_xcodeproj_swiftuipreviews --config=rules_xcodeproj
 
+# Allow frameworks to find framework dependencies when running a preview
+# See `$PROJECT_FILE_PATH/rules_xcodeproj/bazel/copy_outputs.sh` for more info
+build:rules_xcodeproj_swiftuipreviews --linkopt="-Wl,-rpath,@loader_path/SwiftUIPreviewsFrameworks"
+
 # `swiftc` flags needed for SwiftUI Previews
 build:rules_xcodeproj_swiftuipreviews --swiftcopt=-Xfrontend --swiftcopt=-enable-implicit-dynamic
 build:rules_xcodeproj_swiftuipreviews --swiftcopt=-Xfrontend --swiftcopt=-enable-private-imports
