@@ -50,7 +50,8 @@ else
       --copy-links \
       --recursive \
       --times \
-      --delete \${exclude_list:+--exclude-from="$exclude_list"} \
+      --delete \
+      ${exclude_list:+--exclude-from="$exclude_list"} \
       --chmod=u+w \
       --out-format="%n%L" \
       "$product_basename" \
