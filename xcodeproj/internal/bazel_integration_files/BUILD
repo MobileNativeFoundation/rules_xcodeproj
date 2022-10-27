@@ -76,6 +76,10 @@ for extension in "$${extensions[@]}"; do
   done
 done
 
+# watchOS 2 apps have their application extension embedded
+echo '/*.app/PlugIns/***' >> "watchos2_app.exclude.rsynclist"
+echo '/*.app/_WatchKitStub/***' >> "watchos2_app.exclude.rsynclist"
+
 # Tests embedded in test hosts
 echo '/*.app/PlugIns/*.xctest' >> "app.exclude.rsynclist"
 echo '/*.app/PlugIns/*.xctest' >> "watchos2_app.exclude.rsynclist"
