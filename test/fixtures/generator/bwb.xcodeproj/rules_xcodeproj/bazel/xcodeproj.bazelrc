@@ -48,15 +48,15 @@ build:rules_xcodeproj --features=swift.cacheable_swiftmodules
 build:rules_xcodeproj --features=swift.index_while_building
 build:rules_xcodeproj --features=swift.use_global_index_store
 
+# `--show_result=0` prevents showing the spec.json and intermediate `.xcodeproj`
+# in the logs when generating, and all of the many outputs when building
+build:rules_xcodeproj --show_result=0
+
 ### `--config=rules_xcodeproj_generator`
 #
 # Used when generating a project.
 
 build:rules_xcodeproj_generator --config=rules_xcodeproj
-
-# `--show_result=0` prevents showing the spec.json and intermediate `.xcodeproj`
-# in the logs
-build:rules_xcodeproj_generator --show_result=0
 
 ### `--config=rules_xcodeproj_indexbuild`
 #
