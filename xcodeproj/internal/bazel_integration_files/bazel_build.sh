@@ -62,9 +62,6 @@ readonly base_pre_config_flags=(
   # `USE_CLANG_CL` is only used on Windows, we set it here to cause Bazel to
   # re-evaluate the cc_toolchain for a different Xcode version
   "--repo_env=USE_CLANG_CL=$XCODE_PRODUCT_BUILD_VERSION"
-
-  # Prevent filelist outputs from displaying in the logs
-  --show_result=0
 )
 
 # Custom Swift toolchains

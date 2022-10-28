@@ -152,11 +152,13 @@ else
     )
 
     # `--output_groups`
-    post_config_flags+=(
-      --show_result=0
+    post_config_flags=(
       --output_groups="$generator_output_groups"
+      "${cmd_args[@]:1}"
       "%generator_label%"
     )
+  else
+    post_config_flags=("${cmd_args[@]:1}")
   fi
 
   if [[ $verbose -eq 1 ]]; then
