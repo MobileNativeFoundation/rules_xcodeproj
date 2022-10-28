@@ -164,6 +164,7 @@ objc_library(
     name = "FXPageControl",
     module_name = "FXPageControl",
     hdrs = ["FXPageControl/FXPageControl.h"],
+    sdk_frameworks = ["CoreGraphics"],
     srcs = ["FXPageControl/FXPageControl.m"],
     visibility = [
         "//visibility:public",
