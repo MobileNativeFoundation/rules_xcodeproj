@@ -26,16 +26,3 @@ struct Product: Equatable, Decodable {
         self.executableName = executableName
     }
 }
-
-extension Product {
-    mutating func merge(_ other: Product) {
-        additionalPaths.append(other.path)
-        additionalPaths.append(contentsOf: other.additionalPaths)
-    }
-
-    func merging(_ other: Product) -> Product {
-        var product = self
-        product.merge(other)
-        return product
-    }
-}

@@ -322,14 +322,17 @@ targets.
         build_mode != "xcode"
     )
 
-    target_dtos = {}
     additional_generated = {}
     additional_outputs = {}
+    target_transitive_dependencies = {}
     for xcode_target in focused_targets.values():
         transitive_dependencies = {
             id: None
             for id in xcode_target.transitive_dependencies.to_list()
         }
+        target_transitive_dependencies[xcode_target.id] = (
+            transitive_dependencies
+        )
 
         additional_compiling_files = []
         additional_indexstores_files = []
@@ -422,23 +425,6 @@ actual targets: {}
                 for f in file.files.to_list():
                     focused_targets_extra_files.append((label, [file_path(f)]))
 
-        if include_swiftui_previews_scheme_targets:
-            additional_scheme_target_ids = _calculate_swiftui_preview_targets(
-                xcode_target = xcode_target,
-                transitive_dependencies = transitive_dependencies,
-                targets = focused_targets,
-            )
-        else:
-            additional_scheme_target_ids = None
-
-        target_dtos[xcode_target.id] = xcode_targets.to_dto(
-            xcode_target = xcode_target,
-            additional_scheme_target_ids = additional_scheme_target_ids,
-            include_lldb_context = include_lldb_context,
-            is_unfocused_dependency = xcode_target.id in unfocused_dependencies,
-            unfocused_targets = unfocused_targets,
-        )
-
     # Filter `target_merge_dests` after processing focused targets
     if has_unfocused_targets:
         for dest, src_ids in target_merge_dests.items():
@@ -501,10 +487,107 @@ actual targets: {}
             for id in target_merge_srcs_by_label[src_target.label]:
                 target_merges.pop(id, None)
 
+    for src, dests in target_merges.items():
+        src_target = focused_targets.pop(src)
+
+        for dest in dests:
+            focused_targets[dest] = xcode_targets.merge(
+                src = src_target,
+                dest = focused_targets[dest],
+            )
+
+    target_dtos = {}
+    for xcode_target in focused_targets.values():
+        transitive_dependencies = (
+            target_transitive_dependencies[xcode_target.id]
+        )
+
+        if include_swiftui_previews_scheme_targets:
+            additional_scheme_target_ids = _calculate_swiftui_preview_targets(
+                xcode_target = xcode_target,
+                transitive_dependencies = transitive_dependencies,
+                targets = focused_targets,
+            )
+        else:
+            additional_scheme_target_ids = None
+
+        dto, replaced_dependencies = xcode_targets.to_dto(
+            xcode_target = xcode_target,
+            additional_scheme_target_ids = additional_scheme_target_ids,
+            include_lldb_context = include_lldb_context,
+            is_unfocused_dependency = xcode_target.id in unfocused_dependencies,
+            unfocused_targets = unfocused_targets,
+            target_merges = target_merges,
+        )
+        target_dtos[xcode_target.id] = dto
+
+        for id in replaced_dependencies:
+            if id in transitive_dependencies:
+                continue
+
+            # The replaced dependency is not a transitive dependency, so we
+            # need to add its merge in its output groups
+
+            compiling_output_group_name = (
+                xcode_target.inputs.compiling_output_group_name
+            )
+            indexstores_output_group_name = (
+                xcode_target.inputs.indexstores_output_group_name
+            )
+            linking_output_group_name = (
+                xcode_target.inputs.linking_output_group_name
+            )
+
+            dep_target = focused_targets[id]
+            dep_compiling_output_group_name = (
+                dep_target.inputs.compiling_output_group_name
+            )
+            dep_indexstores_output_group_name = (
+                dep_target.inputs.indexstores_output_group_name
+            )
+            dep_linking_output_group_name = (
+                dep_target.inputs.linking_output_group_name
+            )
+
+            if compiling_output_group_name and dep_compiling_output_group_name:
+                additional_compiling_files = additional_generated.get(
+                    dep_compiling_output_group_name,
+                    [],
+                )
+                additional_compiling_files.append(dep_target.inputs.generated)
+                set_if_true(
+                    additional_generated,
+                    compiling_output_group_name,
+                    additional_compiling_files,
+                )
+            if (indexstores_output_group_name and
+                dep_indexstores_output_group_name):
+                additional_indexstores_files = additional_generated.get(
+                    dep_indexstores_output_group_name,
+                    [],
+                )
+                additional_indexstores_files.append(
+                    dep_target.inputs.indexstores,
+                )
+                set_if_true(
+                    additional_generated,
+                    indexstores_output_group_name,
+                    additional_indexstores_files,
+                )
+            if linking_output_group_name and dep_linking_output_group_name:
+                additional_linking_files = additional_generated.get(
+                    dep_linking_output_group_name,
+                    [],
+                )
+                set_if_true(
+                    additional_generated,
+                    linking_output_group_name,
+                    additional_linking_files,
+                )
+
     return (
         focused_targets,
         target_dtos,
-        target_merges,
         additional_generated,
         additional_outputs,
         has_unfocused_targets,
@@ -522,7 +605,6 @@ def _write_json_spec(
         envs,
         project_name,
         target_dtos,
-        target_merges,
         targets,
         has_unfocused_targets,
         replacement_labels,
@@ -582,7 +664,6 @@ def _write_json_spec(
 "runner_label":"{runner_label}",\
 "scheme_autogeneration_mode":"{scheme_autogeneration_mode}",\
 "target_hosts":{target_hosts},\
-"target_merges":{target_merges},\
 "targets":{targets}\
 }}
 """.format(
@@ -616,9 +697,6 @@ def _write_json_spec(
         runner_label = ctx.attr.runner_label,
         scheme_autogeneration_mode = ctx.attr.scheme_autogeneration_mode,
         target_hosts = json.encode(flattened_key_values.to_list(target_hosts)),
-        target_merges = json.encode(
-            flattened_key_values.to_list(target_merges),
-        ),
         targets = json.encode(flattened_key_values.to_list(target_dtos)),
         envs = json.encode(
             flattened_key_values.to_list(envs),
@@ -940,7 +1018,6 @@ def _xcodeproj_impl(ctx):
     (
         targets,
         target_dtos,
-        target_merges,
         additional_generated,
         additional_outputs,
         has_unfocused_targets,
@@ -988,7 +1065,6 @@ def _xcodeproj_impl(ctx):
         envs = envs,
         targets = targets,
         target_dtos = target_dtos,
-        target_merges = target_merges,
         has_unfocused_targets = has_unfocused_targets,
         replacement_labels = replacement_labels,
         inputs = inputs,

@@ -18,6 +18,7 @@ bzl_library(
         ":bazel_tools",
         "@bazel_skylib//lib:paths",
         "@bazel_skylib//lib:sets",
+        "@bazel_skylib//lib:structs",
         "@bazel_skylib//lib:versions",
         "@bazel_skylib//rules:common_settings",
         "@build_bazel_rules_apple//apple",

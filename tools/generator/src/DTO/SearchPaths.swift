@@ -24,18 +24,6 @@ extension SearchPaths {
             || !includes.isEmpty
             || !systemIncludes.isEmpty
     }
-
-    mutating func merge(_ other: SearchPaths) {
-        quoteIncludes = other.quoteIncludes
-        includes = other.includes
-        systemIncludes = other.systemIncludes
-    }
-
-    func merging(_ other: SearchPaths) -> SearchPaths {
-        var searchPaths = self
-        searchPaths.merge(other)
-        return searchPaths
-    }
 }
 
 // MARK: - Decodable

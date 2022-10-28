@@ -4,7 +4,7 @@ struct Target: Equatable {
     var name: String
     var label: BazelLabel
     let configuration: String
-    var compileTarget: CompileTarget? = nil
+    var compileTarget: CompileTarget?
     let packageBinDir: Path
     var platform: Platform
     var product: Product
@@ -30,7 +30,7 @@ struct Target: Equatable {
     var additionalSchemeTargets: Set<TargetID>
 }
 
-struct CompileTarget: Equatable {
+struct CompileTarget: Equatable, Decodable {
     let id: TargetID
     let name: String
 }
@@ -48,6 +48,7 @@ extension Target: Decodable {
         case name
         case label
         case configuration
+        case compileTarget
         case packageBinDir
         case platform
         case product
@@ -79,6 +80,8 @@ extension Target: Decodable {
         name = try container.decode(String.self, forKey: .name)
         label = try container.decode(BazelLabel.self, forKey: .label)
         configuration = try container.decode(String.self, forKey: .configuration)
+        compileTarget = try container
+            .decodeIfPresent(CompileTarget.self, forKey: .compileTarget)
         packageBinDir = try container.decode(Path.self, forKey: .packageBinDir)
         platform = try container.decode(Platform.self, forKey: .platform)
         product = try container.decode(Product.self, forKey: .product)

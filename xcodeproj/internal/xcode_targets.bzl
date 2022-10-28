@@ -1,5 +1,7 @@
 """Module containing functions dealing with the `Target` DTO."""
 
+load("@bazel_skylib//lib:dicts.bzl", "dicts")
+load("@bazel_skylib//lib:structs.bzl", "structs")
 load(":collections.bzl", "set_if_true")
 load(
     ":files.bzl",
@@ -17,6 +19,7 @@ def _make_xcode_target(
         name,
         label,
         configuration,
+        compile_target = None,
         package_bin_dir,
         platform,
         product,
@@ -49,6 +52,7 @@ def _make_xcode_target(
             disambiguate them.
         label: The `Label` of the `Target`.
         configuration: The configuration of the `Target`.
+        compile_target: The `xcode_target` that was merged into this target.
         package_bin_dir: The package directory for the `Target` within
             `ctx.bin_dir`.
         platform: The value returned from `process_platform`.
@@ -88,6 +92,7 @@ def _make_xcode_target(
     return struct(
         _name = name,
         _configuration = configuration,
+        _compile_target = compile_target,
         _package_bin_dir = package_bin_dir,
         _is_testonly = is_testonly,
         _test_host = test_host,
@@ -104,10 +109,16 @@ def _make_xcode_target(
         label = label,
         platform = platform,
         product = product,
-        linker_inputs = _to_xcode_target_linker_inputs(linker_inputs),
-        inputs = _to_xcode_target_inputs(inputs),
+        linker_inputs = (
+            _to_xcode_target_linker_inputs(linker_inputs) if not compile_target else linker_inputs
+        ),
+        inputs = (
+            _to_xcode_target_inputs(inputs) if not compile_target else inputs
+        ),
         is_swift = is_swift,
-        outputs = _to_xcode_target_outputs(outputs),
+        outputs = (
+            _to_xcode_target_outputs(outputs) if not compile_target else outputs
+        ),
         infoplist = infoplist,
         transitive_dependencies = transitive_dependencies,
         xcode_required_targets = xcode_required_targets,
@@ -163,13 +174,101 @@ def _to_xcode_target_outputs(outputs):
         transitive_infoplists = outputs.transitive_infoplists,
     )
 
+def _merge_xcode_target(*, src, dest):
+    """Creates a new `xcode_target` by merging the values of `src` into `dest`.
+
+    Args:
+        src: The `xcode_target` to merge into `dest`.
+        dest: The `xcode_target` being merged into.
+
+    Returns:
+        A value as returned by `xcode_targets.make`.
+    """
+
+    # We remove `APPLICATION_EXTENSION_API_ONLY` from `build_settings`, as only
+    # the value from the top-level target is valid
+    build_settings = dict(structs.to_dict(src._build_settings))
+    build_settings.pop("APPLICATION_EXTENSION_API_ONLY", None)
+    build_settings = dicts.add(
+        structs.to_dict(dest._build_settings),
+        build_settings,
+    )
+
+    return _make_xcode_target(
+        id = dest.id,
+        name = dest._name,
+        label = dest.label,
+        configuration = dest._configuration,
+        compile_target = src,
+        package_bin_dir = dest._package_bin_dir,
+        platform = src.platform,
+        product = dest.product,
+        is_testonly = dest._is_testonly,
+        is_swift = src.is_swift,
+        test_host = dest._test_host,
+        build_settings = build_settings,
+        search_paths = dest._search_paths,
+        modulemaps = src._modulemaps,
+        swiftmodules = src._swiftmodules,
+        inputs = _merge_xcode_target_inputs(
+            src = src.inputs,
+            dest = dest.inputs,
+        ),
+        linker_inputs = dest.linker_inputs,
+        infoplist = dest.infoplist,
+        watch_application = dest._watch_application,
+        extensions = dest._extensions,
+        app_clips = dest._app_clips,
+        dependencies = depset(
+            transitive = [dest._dependencies, src._dependencies],
+        ),
+        transitive_dependencies = dest.transitive_dependencies,
+        outputs = _merge_xcode_target_outputs(
+            src = src.outputs,
+            dest = dest.outputs,
+        ),
+        lldb_context = dest._lldb_context,
+        xcode_required_targets = dest.xcode_required_targets,
+    )
+
+def _merge_xcode_target_inputs(*, src, dest):
+    return struct(
+        srcs = src.srcs,
+        non_arc_srcs = src.non_arc_srcs,
+        hdrs = dest.hdrs,
+        exported_symbols_lists = dest.exported_symbols_lists,
+        pch = src.pch,
+        entitlements = dest.entitlements,
+        resources = dest.resources,
+        resource_bundle_dependencies = dest.resource_bundle_dependencies,
+        generated = dest.generated,
+        indexstores = dest.indexstores,
+        unfocused_generated_compiling = dest.unfocused_generated_compiling,
+        unfocused_generated_indexstores = (
+            dest.unfocused_generated_indexstores
+        ),
+        unfocused_generated_linking = dest.unfocused_generated_linking,
+        compiling_output_group_name = dest.compiling_output_group_name,
+        indexstores_output_group_name = dest.indexstores_output_group_name,
+        linking_output_group_name = dest.linking_output_group_name,
+    )
+
+def _merge_xcode_target_outputs(*, src, dest):
+    return struct(
+        swift = src.swift,
+        product_file_path = dest.product_file_path,
+        products_output_group_name = dest.products_output_group_name,
+        transitive_infoplists = dest.transitive_infoplists,
+    )
+
 def _xcode_target_to_dto(
         xcode_target,
         *,
         additional_scheme_target_ids = None,
         include_lldb_context,
         is_unfocused_dependency = False,
-        unfocused_targets = {}):
+        unfocused_targets = {},
+        target_merges = {}):
     inputs = xcode_target.inputs
 
     dto = {
@@ -178,8 +277,17 @@ def _xcode_target_to_dto(
         "configuration": xcode_target._configuration,
         "package_bin_dir": xcode_target._package_bin_dir,
         "platform": platform_info.to_dto(xcode_target.platform),
-        "product": _product_to_dto(xcode_target.product),
+        "product": _product_to_dto(
+            product = xcode_target.product,
+            compile_target = xcode_target._compile_target,
+        ),
     }
+
+    if xcode_target._compile_target:
+        dto["compile_target"] = {
+            "id": xcode_target._compile_target.id,
+            "name": xcode_target._compile_target._name,
+        }
 
     if xcode_target._is_testonly:
         dto["is_testonly"] = True
@@ -207,7 +315,10 @@ def _xcode_target_to_dto(
     set_if_true(
         dto,
         "search_paths",
-        _search_paths_to_dto(xcode_target._search_paths),
+        _search_paths_to_dto(
+            search_paths = xcode_target._search_paths,
+            compile_target = xcode_target._compile_target,
+        ),
     )
     set_if_true(
         dto,
@@ -232,7 +343,10 @@ def _xcode_target_to_dto(
     set_if_true(
         dto,
         "linker_inputs",
-        _linker_inputs_to_dto(xcode_target.linker_inputs),
+        _linker_inputs_to_dto(
+            linker_inputs = xcode_target.linker_inputs,
+            compile_target = xcode_target._compile_target,
+        ),
     )
     set_if_true(
         dto,
@@ -257,15 +371,6 @@ def _xcode_target_to_dto(
             if id not in unfocused_targets
         ],
     )
-    set_if_true(
-        dto,
-        "dependencies",
-        [
-            id
-            for id in xcode_target._dependencies.to_list()
-            if id not in unfocused_targets
-        ],
-    )
     set_if_true(dto, "outputs", _outputs_to_dto(xcode_target.outputs))
 
     set_if_true(
@@ -274,7 +379,31 @@ def _xcode_target_to_dto(
         additional_scheme_target_ids,
     )
 
-    return dto
+    replaced_dependencies = []
+
+    def _handle_dependency(id):
+        merged_dependency = target_merges.get(id, None)
+        if merged_dependency:
+            dependency = merged_dependency[0]
+            replaced_dependencies.append(dependency)
+        else:
+            dependency = id
+        return dependency
+
+    set_if_true(
+        dto,
+        "dependencies",
+        [
+            _handle_dependency(id)
+            for id in xcode_target._dependencies.to_list()
+            if (id not in unfocused_targets and
+                # TODO: Move dependency filtering here (out of the generator)
+                # In BwX mode there can only be one merge destination
+                target_merges.get(id, [id])[0] != xcode_target.id)
+        ],
+    )
+
+    return dto, replaced_dependencies
 
 def _inputs_to_dto(inputs):
     """Generates a target DTO value for inputs.
@@ -324,11 +453,12 @@ def _inputs_to_dto(inputs):
 
     return ret
 
-def _linker_inputs_to_dto(linker_inputs):
+def _linker_inputs_to_dto(linker_inputs, *, compile_target):
     """Generates a target DTO for linker inputs.
 
     Args:
         linker_inputs: A value returned from `_to_xcode_target_linker_inputs`.
+        compile_target: The `xcode_target` merged into this target, or `None`.
 
     Returns:
         A `dict` containing the following elements:
@@ -342,6 +472,11 @@ def _linker_inputs_to_dto(linker_inputs):
     """
     if not linker_inputs:
         return {}
+
+    if compile_target:
+        avoid_library = compile_target.product.file
+    else:
+        avoid_library = None
 
     ret = {}
     set_if_true(
@@ -358,6 +493,7 @@ def _linker_inputs_to_dto(linker_inputs):
         [
             file_path_to_dto(file_path(file))
             for file in linker_inputs.force_load_libraries
+            if file != avoid_library
         ],
     )
     set_if_true(
@@ -371,6 +507,7 @@ def _linker_inputs_to_dto(linker_inputs):
         [
             file_path_to_dto(file_path(file))
             for file in linker_inputs.static_libraries
+            if file != avoid_library
         ],
     )
     set_if_true(
@@ -395,11 +532,18 @@ def _outputs_to_dto(outputs):
 
     return dto
 
-def _product_to_dto(product):
+def _product_to_dto(product, *, compile_target):
     additional_paths = [
         file_path_to_dto(normalized_file_path(file))
         for file in product.linker_files.to_list()
     ]
+    if compile_target:
+        other_product = compile_target.product
+        additional_paths.append(file_path_to_dto(other_product.file_path))
+        additional_paths.extend([
+            file_path_to_dto(normalized_file_path(file))
+            for file in other_product.linker_files.to_list()
+        ])
 
     return {
         "additional_paths": additional_paths,
@@ -410,7 +554,7 @@ def _product_to_dto(product):
         "type": product.type,
     }
 
-def _search_paths_to_dto(search_paths):
+def _search_paths_to_dto(search_paths, *, compile_target):
     compile_search_paths = search_paths
     if search_paths:
         compilation_providers = search_paths._compilation_providers
@@ -423,6 +567,16 @@ def _search_paths_to_dto(search_paths):
     else:
         cc_info = None
         objc = None
+
+    if compile_target:
+        compile_search_paths = compile_target._search_paths
+        merged_compilation_providers = (
+            compile_target._search_paths._compilation_providers
+        )
+        if merged_compilation_providers:
+            cc_info = merged_compilation_providers._cc_info
+        else:
+            cc_info = None
 
     dto = {}
     if cc_info:
@@ -527,5 +681,6 @@ def _get_top_level_static_libraries(xcode_target):
 xcode_targets = struct(
     get_top_level_static_libraries = _get_top_level_static_libraries,
     make = _make_xcode_target,
+    merge = _merge_xcode_target,
     to_dto = _xcode_target_to_dto,
 )

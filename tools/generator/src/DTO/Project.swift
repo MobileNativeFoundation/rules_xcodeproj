@@ -8,7 +8,6 @@ struct Project: Equatable, Decodable {
     let buildSettings: [String: BuildSetting]
     var targets: [TargetID: Target]
     let replacementLabels: [TargetID: BazelLabel]
-    let targetMerges: [TargetID: Set<TargetID>]
     let targetHosts: [TargetID: [TargetID]]
     let envs: [TargetID: [String: String]]
     let extraFiles: Set<FilePath>

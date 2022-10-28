@@ -27,21 +27,6 @@ struct Inputs: Equatable {
 }
 
 extension Inputs {
-    mutating func merge(_ other: Inputs) {
-        srcs = other.srcs
-        nonArcSrcs = other.nonArcSrcs
-        pch = other.pch
-        resources.formUnion(other.resources)
-    }
-
-    func merging(_ other: Inputs) -> Inputs {
-        var inputs = self
-        inputs.merge(other)
-        return inputs
-    }
-}
-
-extension Inputs {
     var all: Set<FilePath> {
         return Set(srcs)
             .union(Set(nonArcSrcs))

@@ -5,7 +5,7 @@ build --experimental_convenience_symlinks=ignore
 build --experimental_action_cache_store_output_metadata
 
 build --remote_default_exec_properties=OSFamily=darwin
-build --remote_default_exec_properties=cache_bust=macOS_12.0/3
+build --remote_default_exec_properties=cache_bust=macOS_12.0/4
 
 # In-repo output_base makes fixtures relative
 startup --output_base=bazel-output-base
