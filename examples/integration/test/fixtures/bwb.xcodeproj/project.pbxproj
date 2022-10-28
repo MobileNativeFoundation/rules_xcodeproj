@@ -6831,7 +6831,11 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_TESTING_SEARCH_PATHS = YES;
-				FRAMEWORK_SEARCH_PATHS = "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator";
+				FRAMEWORK_SEARCH_PATHS = (
+					"external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator",
+					"bazel-out/applebin_tvos-tvos_x86_64-dbg-ST-e5d0d9c9816d/bin/UI/frameworks",
+					"bazel-out/applebin_tvos-tvos_x86_64-dbg-ST-e5d0d9c9816d/bin/Lib/frameworks",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-dbg-ST-e5d0d9c9816d/bin/tvOSApp/Test/UnitTests/rules_xcodeproj/tvOSAppUnitTests.__internal__.__test_bundle/Info.plist";
 				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/applebin_tvos-tvos_x86_64-dbg-ST-e5d0d9c9816d/tvOSApp/Test/UnitTests/tvOSAppUnitTests.link.params";
@@ -7199,6 +7203,9 @@
 					"$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator",
 					"$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator",
 					"external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator",
+					"bazel-out/applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin/iOSApp/Source/CoreUtilsObjC/frameworks",
+					"bazel-out/applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin/UI/frameworks",
+					"bazel-out/applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin/Lib/frameworks",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = AWESOME;
@@ -7414,6 +7421,9 @@
 					"$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator",
 					"$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator",
 					"external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator",
+					"bazel-out/applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin/iOSApp/Source/CoreUtilsObjC/frameworks",
+					"bazel-out/applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin/UI/frameworks",
+					"bazel-out/applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin/Lib/frameworks",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
