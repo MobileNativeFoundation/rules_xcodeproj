@@ -25,10 +25,12 @@
 		03093E4CE69E9234691443D0 /* LibFramework.watchOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 90FC1B8C28EBA9669CB888E0 /* LibFramework.watchOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0943EFDCCE15D053ACADFAEE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9D60E36DADDFDD39E81F7F4 /* Preview Assets.xcassets */; };
 		0F2A01EE12EB64A0D34CE084 /* ExampleFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0E61A4D2267ABDA80881881E /* ExampleFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0FB9257F29B5174C12CA4769 /* UIFramework.iOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D5BBE2ECC921BED8A450ADA7 /* UIFramework.iOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0FF9D4A8602D2544D978E425 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 760F6E68BCA2F8BFE08A3488 /* Assets.xcassets */; };
 		1086EEDE6F79A6219D045DAD /* _CompileStub_.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD403D59FD279723BD9B059 /* _CompileStub_.m */; };
 		1422B6CB70DF04075ED1840D /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0BFC82E23A0F0BB9D548D4 /* MessagesViewController.swift */; };
 		165C09AD57F00537B44DB24C /* Utils.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4A76FF6AB0958AAB140741FB /* Utils.bundle */; };
+		184D98C3D76374B2F6DF2D72 /* LibFramework.iOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1EBCB856193A610747419205 /* LibFramework.iOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1E2088B2E7D5E1A042744FAF /* MixedAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74F0CE27C1BE62BAD492BC2 /* MixedAnswer.swift */; };
 		22BECAD1425B83336D9973AD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 65689CDD728D49E33DAAAFCB /* main.m */; };
 		23624A528204335D2F28FDD7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AEC214E4750445CF57C1429A /* Assets.xcassets */; };
@@ -43,6 +45,7 @@
 		31FB3493B0CBCAB455AFA25D /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6A49AEE1769DFD7A488B23CB /* GoogleMaps.bundle */; };
 		33C9107F190D8AE3E20C39F2 /* WatchOSAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B005556CA96365E4CD9D39 /* WatchOSAppUITestsLaunchTests.swift */; };
 		369BE4C45C89E24BF5B89491 /* WidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = ACCBAFFBB5927FE7677AD3A7 /* WidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		379ABDCAB2000606A34286D7 /* CoreUtilsObjC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DB1707851007E63305C749E4 /* CoreUtilsObjC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		38F12306199D69FD72436245 /* CryptoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 557A12C749D0A23CF53C12B1 /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3D06AD45B262752009D91D24 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754CEA6FEB88C4D8BEAEEDFC /* ContentView.swift */; };
 		3DB5B62545E1286F7EE7FF88 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9BB6C73E3E87E48E1F2BA124 /* Localizable.strings */; };
@@ -58,12 +61,15 @@
 		5611B7D7DC675A90F3B5EC70 /* Utils.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4A76FF6AB0958AAB140741FB /* Utils.bundle */; };
 		5748C8D48BA08EF8C2F33D56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB7044ABA509755C2214F8C0 /* Assets.xcassets */; };
 		57EED96B528606A8CFEB0E68 /* _CompileStub_.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD403D59FD279723BD9B059 /* _CompileStub_.m */; };
+		5842FE679CC4B14887D01058 /* LibFramework.tvOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F7B18D45E415DC9708319FCC /* LibFramework.tvOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5FD6470DB8CC16471082F3B8 /* LibFramework.watchOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 90FC1B8C28EBA9669CB888E0 /* LibFramework.watchOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		601DB89F17A2C44AE12A9568 /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287845DB347C55799A465CCB /* iOSApp.swift */; };
 		629D119D9C3B718A3D8EDFF3 /* unprocessed.json in Resources */ = {isa = PBXBuildFile; fileRef = 6BCA12DCF9A0AC70B5DCBC92 /* unprocessed.json */; };
 		63D45DB646A4C1D2D62C7FF8 /* CryptoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 31EBAA302BF21712CB52AF4A /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		63D49B7301A86103885E7CCF /* CryptoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 377BB3CE77D26BF4FC27696B /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		64B7F1959F949668483B260D /* UIFramework.iOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D5BBE2ECC921BED8A450ADA7 /* UIFramework.iOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6B002EC26AA40F4B4705B73F /* _CompileStub_.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD403D59FD279723BD9B059 /* _CompileStub_.m */; };
+		6DA1C52EF70B0509B870CEBC /* CoreUtilsObjC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DB1707851007E63305C749E4 /* CoreUtilsObjC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6DDCC122A273E799CEACA7D8 /* Intents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D704141599D22E20D35CE2A /* Intents.swift */; };
 		6DFABA720515679A57B21E9A /* tvOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A8819411CDBE6FBDD4DC5D /* tvOSApp.swift */; };
 		6F76C21A32D2CDD9C895EE43 /* CryptoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7B83FA3D9C641551A4E408D2 /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -104,6 +110,7 @@
 		A8508DD18B5CCC7037BEE8FD /* SwiftGreetingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7132631C56C8635B793BD17 /* SwiftGreetingsTests.swift */; };
 		AABDC6CDB778AC1BF4E89182 /* CryptoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5B5FB663B384C49F7E9D6E76 /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AB9F33EB0A4509FDD49957CD /* CryptoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7B83FA3D9C641551A4E408D2 /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		ABD9E6B69B7BB047995655C9 /* LibFramework.iOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1EBCB856193A610747419205 /* LibFramework.iOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		ADF725E5002FDFC347088A1E /* watchOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D897B29D0000EA5C72EEA672 /* watchOSApp.swift */; };
 		B113FDC76331C2B59078B69C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7FD86A86C4F55369ABD1CD50 /* Localizable.strings */; };
 		B1676EF10B4D9DFE44F13308 /* UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C746F329964A16E18B55B4F2 /* UITestsLaunchTests.swift */; };
@@ -140,6 +147,7 @@
 		F2654AC7861464A75EF63853 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70B71C416F5E59817DF61E83 /* Assets.xcassets */; };
 		F29948A3211F56C86CEC9D44 /* c_lib.c in Sources */ = {isa = PBXBuildFile; fileRef = 4F21B55C0FF592EB8A6B490E /* c_lib.c */; };
 		F4E046CF24E6E4CA9486AEA3 /* Answers.h in Headers */ = {isa = PBXBuildFile; fileRef = 296C9CFBA4D8FD11763EE764 /* Answers.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F75625602CA2330C13D16FC1 /* UIFramework.tvOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7E16D0C3B1A292BBEE1E86A9 /* UIFramework.tvOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F9A1CDD0C7F69D98D0FD6E1F /* _CompileStub_.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD403D59FD279723BD9B059 /* _CompileStub_.m */; };
 		FCAE3377AF6DDF6D1ACFBC78 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9B9689D76A550CCCEB0600 /* ContentView.swift */; };
 		FE529D1AAD764E573E7F205F /* CryptoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8E55FC029DC30135EE7BE77F /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -812,6 +820,9 @@
 			dstSubfolderSpec = 10;
 			files = (
 				316DAC9ECEFCC5852ED2CC15 /* CryptoSwift.framework in Embed Frameworks */,
+				6DA1C52EF70B0509B870CEBC /* CoreUtilsObjC.framework in Embed Frameworks */,
+				0FB9257F29B5174C12CA4769 /* UIFramework.iOS.framework in Embed Frameworks */,
+				184D98C3D76374B2F6DF2D72 /* LibFramework.iOS.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -823,6 +834,9 @@
 			dstSubfolderSpec = 10;
 			files = (
 				E0D73FF1F00791FC2DF06E7E /* CryptoSwift.framework in Embed Frameworks */,
+				379ABDCAB2000606A34286D7 /* CoreUtilsObjC.framework in Embed Frameworks */,
+				64B7F1959F949668483B260D /* UIFramework.iOS.framework in Embed Frameworks */,
+				ABD9E6B69B7BB047995655C9 /* LibFramework.iOS.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -888,6 +902,8 @@
 			dstSubfolderSpec = 10;
 			files = (
 				63D49B7301A86103885E7CCF /* CryptoSwift.framework in Embed Frameworks */,
+				F75625602CA2330C13D16FC1 /* UIFramework.tvOS.framework in Embed Frameworks */,
+				5842FE679CC4B14887D01058 /* LibFramework.tvOS.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -9052,6 +9068,9 @@
 					"$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator",
 					"$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator",
 					"external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator",
+					"$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/CoreUtilsObjC",
+					"$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/UI",
+					"$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -9894,6 +9913,9 @@
 					"$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator",
 					"$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator",
 					"external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator",
+					"$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/CoreUtilsObjC",
+					"$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/UI",
+					"$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = AWESOME;
@@ -10251,7 +10273,11 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_TESTING_SEARCH_PATHS = YES;
-				FRAMEWORK_SEARCH_PATHS = "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator";
+				FRAMEWORK_SEARCH_PATHS = (
+					"external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator",
+					"$(BUILD_DIR)/bazel-out/applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/UI",
+					"$(BUILD_DIR)/bazel-out/applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/Lib",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/tvOSApp/Test/UnitTests/rules_xcodeproj/tvOSAppUnitTests.__internal__.__test_bundle/Info.plist";
 				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/tvOSApp/Test/UnitTests/tvOSAppUnitTests.link.params";
