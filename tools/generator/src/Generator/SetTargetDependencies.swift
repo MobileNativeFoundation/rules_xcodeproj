@@ -61,6 +61,9 @@ extension ConsolidatedTarget {
         }
 
         // Test hosts need to be copied
-        return product.type.isTestBundle && dependency.isLaunchable
+        // watchOS 2 App Extensions need to be embedded
+        return (product.type.isTestBundle && dependency.isLaunchable)
+            || (product.type == .watch2App &&
+                dependency.productType?.isAppExtension == true)
     }
 }

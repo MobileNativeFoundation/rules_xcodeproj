@@ -64,6 +64,7 @@
 		CB2C9A31F9BF9BC36AC89F79 /* Answers.h in Headers */ = {isa = PBXBuildFile; fileRef = 9FB807E65788589E5F03DF37 /* Answers.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D0BB2670F90CF218A2FE518B /* WatchOSAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A4069AA00E60D0D648E673 /* WatchOSAppUITests.swift */; };
 		D870FF78A16015EC55F80CD4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3C67424F456D9FF51EEBDA /* ContentView.swift */; };
+		E48D3BC4D5BA7C22214BB9BF /* watchOSAppExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 0982B680A74E8BD8A971CC76 /* watchOSAppExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		E4D37243E160FD1EA0C3965A /* FXPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = CCB9EDDAC48EA2A043A5D901 /* FXPageControl.m */; };
 		E9EDC8C43E023AD8F43A4263 /* macOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67496CA997EE1999978DD2D4 /* macOSApp.swift */; };
 		ED655B35633C9B26824521B6 /* _CompileStub_.m in Sources */ = {isa = PBXBuildFile; fileRef = E84DBAC32A7C151ED97289BA /* _CompileStub_.m */; };
@@ -300,6 +301,13 @@
 			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
 			remoteInfo = BazelDependencies;
 		};
+		C3D9DF21D191A5F4370A9544 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0805833D09730531AD081697 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2DBD14C7DE92127B94265B10;
+			remoteInfo = watchOSAppExtension;
+		};
 		CED913C91B38F307EEA90999 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0805833D09730531AD081697 /* Project object */;
@@ -392,6 +400,20 @@
 			remoteInfo = BazelDependencies;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D6600EEE440B5DA4ECED5B88 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				E48D3BC4D5BA7C22214BB9BF /* watchOSAppExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		01506E1C822A25B4F703986A /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
@@ -3666,11 +3688,13 @@
 			buildConfigurationList = 8A037957A7D43A07EB471C2A /* Build configuration list for PBXNativeTarget "watchOSApp" */;
 			buildPhases = (
 				92A2FF97F0A9101D20C8BB5F /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
+				D6600EEE440B5DA4ECED5B88 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				C4897838CF03F1ED17ABBFB5 /* PBXTargetDependency */,
+				51342E1978F3847359D08B29 /* PBXTargetDependency */,
 			);
 			name = watchOSApp;
 			productName = watchOSApp;
@@ -5825,6 +5849,12 @@
 			name = BazelDependencies;
 			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
 			targetProxy = E5C53509D0C0B3208C581E08 /* PBXContainerItemProxy */;
+		};
+		51342E1978F3847359D08B29 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = watchOSAppExtension;
+			target = 2DBD14C7DE92127B94265B10 /* watchOSAppExtension */;
+			targetProxy = C3D9DF21D191A5F4370A9544 /* PBXContainerItemProxy */;
 		};
 		588C37BAE74BD661E5366E96 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
