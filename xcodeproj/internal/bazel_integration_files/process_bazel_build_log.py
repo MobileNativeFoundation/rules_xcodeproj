@@ -12,6 +12,10 @@ def _main(command: List[str]) -> None:
     if not srcroot:
         sys.exit("SRCROOT environment variable must be set")
 
+    execution_root = os.getenv("PROJECT_DIR")
+    if not execution_root:
+        sys.exit("PROJECT_DIR environment variable must be set")
+
     bazel_out_directory = os.getenv("BAZEL_OUT")
     if not bazel_out_directory:
         sys.exit("BAZEL_OUT environment variable must be set")
@@ -30,18 +34,27 @@ def _main(command: List[str]) -> None:
 
     strip_color = re.compile(r"\x1b\[[0-9;]{1,}[A-Za-z]")
     relative_diagnostic = re.compile(
-        r"^(?P<path>[^/].+?):\d+(:\d+)?: (error|warning):"
+        r"^.+?:\d+(:\d+)?: (error|warning):"
     )
 
     def _replacement(match: re.Match) -> str:
-        path = match.group("path")
-        if path.startswith("bazel-out/"):
+        message = match.group(0)
+        if message.startswith(execution_root):
+            # VFS overlays can make paths absolute, so make them relative again
+            message = message[(len(execution_root) + 1):]
+
+        if message.startswith("/"):
+            # If still an absolute path, don't add a prefix
+            return message
+
+        if message.startswith("bazel-out/"):
             prefix = bazel_out_prefix
-        elif path.startswith("external/"):
+        elif message.startswith("external/"):
             prefix = external_prefix
         else:
             prefix = srcroot
-        return f"{prefix}/{match.group(0)}"
+
+        return f"{prefix}/{message}"
 
     process = subprocess.Popen(
         command, bufsize=1, stderr=subprocess.PIPE, universal_newlines=True
