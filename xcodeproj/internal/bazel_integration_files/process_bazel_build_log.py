@@ -34,11 +34,15 @@ def _main(command: List[str]) -> None:
 
     strip_color = re.compile(r"\x1b\[[0-9;]{1,}[A-Za-z]")
     relative_diagnostic = re.compile(
-        r"^.+?:\d+(:\d+)?: (error|warning):"
+        r"^.+?:\d+(:\d+)?: (error|warning): ."
     )
 
     def _replacement(match: re.Match) -> str:
         message = match.group(0)
+
+        # Uppercase the first letter of the (actual) message
+        message = message[:-1] + message[-1].upper()
+
         if message.startswith(execution_root):
             # VFS overlays can make paths absolute, so make them relative again
             message = message[(len(execution_root) + 1):]
