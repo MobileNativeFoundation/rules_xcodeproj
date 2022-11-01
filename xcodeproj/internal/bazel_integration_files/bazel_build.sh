@@ -37,9 +37,17 @@ if [ "$ACTION" == "indexbuild" ]; then
   # normal output base directory so that it's not cleaned up when running
   # `bazel clean`, but is when running `bazel clean --expunge`. This matches
   # Xcode behavior of not cleaning the Index Build outputs by default.
-  readonly output_base="$build_output_base/../rules_xcodeproj/indexbuild_output_base"
+  readonly output_base="${build_output_base%/*}/indexbuild_output_base"
+  readonly workspace_name="${PROJECT_DIR##*/}"
+  readonly output_path="$output_base/execroot/$workspace_name/bazel-out"
+
+  # Use current path for "bazel-out/" and "external/"
+  # This fixes Index Build to use its version of generated and external files
+  readonly vfs_overlay_roots="{\"external-contents\": \"$output_path\",\"name\": \"$BAZEL_OUT\",\"type\": \"directory-remap\"},{\"external-contents\": \"$output_base/external\",\"name\": \"$BAZEL_EXTERNAL\",\"type\": \"directory-remap\"}"
 else
   readonly output_base="$build_output_base"
+  readonly output_path="$BAZEL_OUT"
+  readonly vfs_overlay_roots=""
 fi
 
 # Set `bazel_cmd` for calling `bazel`
@@ -82,23 +90,10 @@ readonly base_pre_config_flags=(
   "--repo_env=USE_CLANG_CL=$XCODE_PRODUCT_BUILD_VERSION"
 )
 
-# Determine Bazel output_path
-
-readonly workspace_name="${PROJECT_DIR##*/}"
-readonly output_path="$output_base/execroot/$workspace_name/bazel-out"
-
-# Create VFS overlays
-
-if [[ "$output_path" != "$BAZEL_OUT" ]]; then
-  # Use current path for "bazel-out/" and "external/"
-  # This fixes Index Build to use its version of generated and external files
-  readonly roots="{\"external-contents\": \"$output_path\",\"name\": \"$BAZEL_OUT\",\"type\": \"directory-remap\"},{\"external-contents\": \"$output_base/external\",\"name\": \"$BAZEL_EXTERNAL\",\"type\": \"directory-remap\"}"
-else
-  readonly roots=""
-fi
+# Create VFS overlay
 
 cat > "$OBJROOT/bazel-out-overlay.yaml" <<EOF
-{"case-sensitive": "false", "fallthrough": true, "roots": [$roots],"version": 0}
+{"case-sensitive": "false", "fallthrough": true, "roots": [$vfs_overlay_roots],"version": 0}
 EOF
 
 # Custom Swift toolchains
