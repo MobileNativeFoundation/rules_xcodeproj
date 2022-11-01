@@ -172,9 +172,6 @@ if [[ -f "$dest/rules_xcodeproj/generated.xcfilelist" ]]; then
   do
     mkdir -p "$dir"
   done
-
-  # Create Index Build's `$PROJECT_DIR`
-  mkdir -p "$output_base/rules_xcodeproj/indexbuild_output_base/execroot/$workspace_name"
 fi
 
 echo 'Updated project at "%output_path%"'

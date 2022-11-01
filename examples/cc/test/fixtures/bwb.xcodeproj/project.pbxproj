@@ -534,6 +534,8 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_CFLAGS = (
+					"-ivfsoverlay",
+					"$(OBJROOT)/bazel-out-overlay.yaml",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -545,6 +547,8 @@
 					"-Wno-builtin-macro-redefined",
 				);
 				OTHER_CPLUSPLUSFLAGS = (
+					"-ivfsoverlay",
+					"$(OBJROOT)/bazel-out-overlay.yaml",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -609,6 +613,8 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_CFLAGS = (
+					"-ivfsoverlay",
+					"$(OBJROOT)/bazel-out-overlay.yaml",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -620,6 +626,8 @@
 					"-Wno-builtin-macro-redefined",
 				);
 				OTHER_CPLUSPLUSFLAGS = (
+					"-ivfsoverlay",
+					"$(OBJROOT)/bazel-out-overlay.yaml",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -678,6 +686,8 @@
 				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/darwin_x86_64-dbg-ST-a9822d5480e1/tool/tool.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_CFLAGS = (
+					"-ivfsoverlay",
+					"$(OBJROOT)/bazel-out-overlay.yaml",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -689,6 +699,8 @@
 					"-Wno-builtin-macro-redefined",
 				);
 				OTHER_CPLUSPLUSFLAGS = (
+					"-ivfsoverlay",
+					"$(OBJROOT)/bazel-out-overlay.yaml",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -757,9 +769,6 @@
 				INDEXING_DEPLOYMENT_LOCATION__ = "$(INDEXING_DEPLOYMENT_LOCATION__NO)";
 				INDEXING_DEPLOYMENT_LOCATION__NO = YES;
 				INDEXING_DEPLOYMENT_LOCATION__YES = NO;
-				INDEXING_PROJECT_DIR__ = "$(INDEXING_PROJECT_DIR__NO)";
-				INDEXING_PROJECT_DIR__NO = "$(SRCROOT)/bazel-output-base/rules_xcodeproj/build_output_base/execroot/__main__";
-				INDEXING_PROJECT_DIR__YES = "$(SRCROOT)/bazel-output-base/rules_xcodeproj/indexbuild_output_base/execroot/__main__";
 				INDEX_FORCE_SCRIPT_EXECUTION = YES;
 				INSTALL_PATH = "$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)/bin";
 				INTERNAL_DIR = "$(PROJECT_FILE_PATH)/rules_xcodeproj";
@@ -767,7 +776,6 @@
 				LDPLUSPLUS = "$(BAZEL_INTEGRATION_DIR)/ld.sh";
 				LIBTOOL = "$(BAZEL_INTEGRATION_DIR)/libtool.sh";
 				ONLY_ACTIVE_ARCH = YES;
-				PROJECT_DIR = "$(INDEXING_PROJECT_DIR__$(INDEX_ENABLE_BUILD_ARENA))";
 				RULES_XCODEPROJ_BUILD_MODE = bazel;
 				SCHEME_TARGET_IDS_FILE = "$(OBJROOT)/scheme_target_ids";
 				SRCROOT = ../../../../..;
@@ -810,6 +818,8 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_CFLAGS = (
+					"-ivfsoverlay",
+					"$(OBJROOT)/bazel-out-overlay.yaml",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -821,6 +831,8 @@
 					"-Wno-builtin-macro-redefined",
 				);
 				OTHER_CPLUSPLUSFLAGS = (
+					"-ivfsoverlay",
+					"$(OBJROOT)/bazel-out-overlay.yaml",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
