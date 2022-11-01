@@ -520,28 +520,58 @@ $(CONFIGURATION_BUILD_DIR)
         
         // Set VFS overlays
 
-        if hasBazelDependencies && !buildMode.usesBazelModeBuildScripts {
-            if !target.modulemaps.isEmpty {
+        if hasBazelDependencies {
+            if target.isSwift {
                 try buildSettings.prepend(
                     onKey: "OTHER_SWIFT_FLAGS",
-                    #"""
--Xcc -ivfsoverlay -Xcc $(DERIVED_FILE_DIR)/xcode-overlay.yaml
-"""#
+                    "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml"
                 )
-            }
-
-            if !target.isSwift && (hasFrameworkIncludes || hasIncludes ||
-                hasQuoteIncludes || hasSystemIncludes)
-            {
+            } else {
                 try buildSettings.prepend(
                     onKey: "OTHER_CFLAGS",
-                    ["-ivfsoverlay", "$(DERIVED_FILE_DIR)/xcode-overlay.yaml"]
+                    ["-ivfsoverlay", "$(OBJROOT)/bazel-out-overlay.yaml"]
                 )
 
                 try buildSettings.prepend(
                     onKey: "OTHER_CPLUSPLUSFLAGS",
-                    ["-ivfsoverlay", "$(DERIVED_FILE_DIR)/xcode-overlay.yaml"]
+                    ["-ivfsoverlay", "$(OBJROOT)/bazel-out-overlay.yaml"]
                 )
+            }
+
+            switch buildMode {
+            case .xcode:
+                if !target.modulemaps.isEmpty {
+                    try buildSettings.prepend(
+                        onKey: "OTHER_SWIFT_FLAGS",
+                        #"""
+-Xcc -ivfsoverlay -Xcc $(DERIVED_FILE_DIR)/xcode-overlay.yaml \#
+-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml
+"""#
+                    )
+                }
+
+                if !target.isSwift && (hasFrameworkIncludes || hasIncludes ||
+                    hasQuoteIncludes || hasSystemIncludes)
+                {
+                    try buildSettings.prepend(
+                        onKey: "OTHER_CFLAGS",
+                        ["-ivfsoverlay", "$(DERIVED_FILE_DIR)/xcode-overlay.yaml"]
+                    )
+
+                    try buildSettings.prepend(
+                        onKey: "OTHER_CPLUSPLUSFLAGS",
+                        ["-ivfsoverlay", "$(DERIVED_FILE_DIR)/xcode-overlay.yaml"]
+                    )
+                }
+            case .bazel:
+                if !target.modulemaps.isEmpty {
+                    try buildSettings.prepend(
+                        onKey: "OTHER_SWIFT_FLAGS",
+                        #"""
+-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml
+"""#
+                    )
+                }
             }
         }
 

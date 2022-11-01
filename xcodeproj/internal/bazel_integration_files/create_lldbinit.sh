@@ -7,7 +7,7 @@ shift
 
 readonly output_base="${execution_root%/*/*}"
 readonly build_bazel_out="$execution_root/bazel-out"
-readonly build_external="$output_base/external"
+readonly build_external="$execution_root/external"
 
 readonly workspace_name="${execution_root##*/}"
 readonly index_execution_root="${output_base%/*}/indexbuild_output_base/execroot/$workspace_name"
@@ -37,21 +37,12 @@ mkdir -p "$index_external"
 # navigator, or indexing (e.g. Jump to Definition), it will use the paths
 # specified below.
 
-if [[ "${BAZEL_OUT:0:1}" == '/' ]]; then
-    absolute_bazel_out="$BAZEL_OUT"
-else
-    absolute_bazel_out="$SRCROOT/$BAZEL_OUT"
-fi
-
 # `bazel-out` when set from Project navigator
-echo "settings set target.source-map ./bazel-out/ \"$absolute_bazel_out\""
+echo "settings set target.source-map ./bazel-out/ \"$BAZEL_OUT\""
 # `bazel-out` when set from indexing opened file
 echo "settings append target.source-map ./bazel-out/ \"$index_bazel_out\""
-
-if [[ "$absolute_bazel_out" != "$build_bazel_out" ]]; then
-  # `bazel-out` when set from swiftsourcefile
-  echo "settings append target.source-map ./bazel-out/ \"$build_bazel_out\""
-fi
+# `bazel-out` when set from swiftsourcefile
+echo "settings append target.source-map ./bazel-out/ \"$build_bazel_out\""
 
 # `external` for local repositories when set from Project navigator
 while [[ $# -gt 0 ]]; do
@@ -61,21 +52,12 @@ while [[ $# -gt 0 ]]; do
   echo "settings append target.source-map \"./external/$dir_name\" \"$path\""
 done
 
-if [[ "${BAZEL_EXTERNAL:0:1}" == '/' ]]; then
-    absolute_external="$BAZEL_EXTERNAL"
-else
-    absolute_external="$SRCROOT/$BAZEL_EXTERNAL"
-fi
-
 # `external` when set from Project navigator
-echo "settings append target.source-map ./external/ \"$absolute_external\""
+echo "settings append target.source-map ./external/ \"$BAZEL_EXTERNAL\""
 # `external` when set from indexing opened file
 echo "settings append target.source-map ./external/ \"$index_external\""
-
-if [[ "$absolute_external" != "$build_external" ]]; then
-  # `external` when set from swiftsourcefile
-  echo "settings append target.source-map ./external/ \"$build_external\""
-fi
+# `external` when set from swiftsourcefile
+echo "settings append target.source-map ./external/ \"$build_external\""
 
 # Project files
 echo "settings append target.source-map ./ \"$SRCROOT\""

@@ -24,6 +24,24 @@
 output_groups_flag="--output_groups=$(IFS=, ; echo "${output_groups[*]}")"
 readonly output_groups_flag
 
+# Set `output_base`
+
+# In `runner.template.sh` the generator has the build output base set inside
+# of the outer bazel's output path (`bazel-out/`). So here we need to make
+# our output base changes relative to that changed path.
+readonly build_output_base="$BAZEL_OUTPUT_BASE"
+
+if [ "$ACTION" == "indexbuild" ]; then
+  # We use a different output base for Index Build to prevent normal builds and
+  # indexing waiting on bazel locks from the other. We nest it inside of the
+  # normal output base directory so that it's not cleaned up when running
+  # `bazel clean`, but is when running `bazel clean --expunge`. This matches
+  # Xcode behavior of not cleaning the Index Build outputs by default.
+  readonly output_base="$build_output_base/../rules_xcodeproj/indexbuild_output_base"
+else
+  readonly output_base="$build_output_base"
+fi
+
 # Set `bazel_cmd` for calling `bazel`
 
 bazelrcs=(
@@ -48,7 +66,7 @@ readonly bazel_cmd=(
 
   "${bazelrcs[@]}"
 
-  --output_base "$BAZEL_OUTPUT_BASE"
+  --output_base "$output_base"
 )
 
 readonly base_pre_config_flags=(
@@ -63,6 +81,25 @@ readonly base_pre_config_flags=(
   # re-evaluate the cc_toolchain for a different Xcode version
   "--repo_env=USE_CLANG_CL=$XCODE_PRODUCT_BUILD_VERSION"
 )
+
+# Determine Bazel output_path
+
+readonly workspace_name="${PROJECT_DIR##*/}"
+readonly output_path="$output_base/execroot/$workspace_name/bazel-out"
+
+# Create VFS overlays
+
+if [[ "$output_path" != "$BAZEL_OUT" ]]; then
+  # Use current path for bazel-out
+  # This fixes Index Build to use its version of generated files
+  readonly roots="{\"external-contents\": \"$output_path\",\"name\": \"$BAZEL_OUT\",\"type\": \"directory-remap\"}"
+else
+  readonly roots=""
+fi
+
+cat > "$OBJROOT/bazel-out-overlay.yaml" <<EOF
+{"case-sensitive": "false", "fallthrough": true, "roots": [$roots],"version": 0}
+EOF
 
 # Custom Swift toolchains
 
@@ -100,7 +137,7 @@ for output_group in "${output_groups[@]}"; do
   fi
 
   filelist="$GENERATOR_TARGET_NAME-${output_group//\//_}"
-  filelist="${filelist/#/$BAZEL_OUT/$GENERATOR_PACKAGE_BIN_DIR/}"
+  filelist="${filelist/#/$output_path/$GENERATOR_PACKAGE_BIN_DIR/}"
   filelist="${filelist/%/.filelist}"
 
   if [[ ! -f "$filelist" ]]; then
