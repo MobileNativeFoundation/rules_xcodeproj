@@ -90,9 +90,9 @@ readonly output_path="$output_base/execroot/$workspace_name/bazel-out"
 # Create VFS overlays
 
 if [[ "$output_path" != "$BAZEL_OUT" ]]; then
-  # Use current path for bazel-out
-  # This fixes Index Build to use its version of generated files
-  readonly roots="{\"external-contents\": \"$output_path\",\"name\": \"$BAZEL_OUT\",\"type\": \"directory-remap\"}"
+  # Use current path for "bazel-out/" and "external/"
+  # This fixes Index Build to use its version of generated and external files
+  readonly roots="{\"external-contents\": \"$output_path\",\"name\": \"$BAZEL_OUT\",\"type\": \"directory-remap\"},{\"external-contents\": \"$output_base/external\",\"name\": \"$BAZEL_EXTERNAL\",\"type\": \"directory-remap\"}"
 else
   readonly roots=""
 fi
