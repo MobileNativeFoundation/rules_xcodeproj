@@ -255,7 +255,8 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
             try buildSettings.prepend(
                 onKey: "OTHER_SWIFT_FLAGS",
                 """
--Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR)
+-Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) \
+-working-directory=$(BAZEL_EXECUTION_ROOT)
 """
             )
         }

@@ -15,7 +15,7 @@ _BUNDLE_EXTENSIONS = [
 
 _SETTINGS = {
   "x86_64-apple-ios15.0.0-simulator AddressSanitizerApp.app/AddressSanitizerApp" : {
-    "clang" : "-iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin\" -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all",
+    "clang" : "-iquote \"$(BAZEL_EXECUTION_ROOT)\" -iquote \"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin\" -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all",
     "frameworks" : [
 
     ],
@@ -24,7 +24,7 @@ _SETTINGS = {
     ]
   },
   "x86_64-apple-ios15.0.0-simulator ThreadSanitizerApp.app/ThreadSanitizerApp" : {
-    "clang" : "-iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin\" -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all",
+    "clang" : "-iquote \"$(BAZEL_EXECUTION_ROOT)\" -iquote \"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-9fcfb6a7af56/bin\" -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all",
     "frameworks" : [
 
     ],

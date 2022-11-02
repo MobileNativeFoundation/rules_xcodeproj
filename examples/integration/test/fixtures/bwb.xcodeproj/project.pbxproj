@@ -5013,7 +5013,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"$BAZEL_INTEGRATION_DIR/generate_bazel_dependencies.sh\"\n";
+			shellScript = "if [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  # Ensure dependent `$PROJECT_DIR` exists\n  mkdir -p \"$BAZEL_EXECUTION_ROOT\"\n  exit 0\nfi\n\n\"$BAZEL_INTEGRATION_DIR/generate_bazel_dependencies.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9C72B493BBB21FF221EBC79C /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
@@ -6126,8 +6126,8 @@
 				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/applebin_watchos-watchos_x86_64-dbg-ST-c782804c2730/UI/UIFramework.watchOS.link.params";
 				"LINK_PARAMS_FILE[sdk=watchos*]" = "$(INTERNAL_DIR)/targets/applebin_watchos-watchos_arm64_32-dbg-ST-6c9a1ce26af7/UI/UIFramework.watchOS.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator -static";
-				"OTHER_SWIFT_FLAGS[sdk=watchos*]" = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework/Modules/module.modulemap -Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k -static";
+				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator -static";
+				"OTHER_SWIFT_FLAGS[sdk=watchos*]" = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework/Modules/module.modulemap -Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k -static";
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-c782804c2730/bin/UI";
@@ -6155,13 +6155,13 @@
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
 					"$(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-c782804c2730/bin/external/com_github_krzyzanowskim_cryptoswift",
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-c782804c2730/bin",
 				);
 				"USER_HEADER_SEARCH_PATHS[sdk=watchos*]" = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
 					"$(BAZEL_OUT)/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-6c9a1ce26af7/bin/external/com_github_krzyzanowskim_cryptoswift",
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-6c9a1ce26af7/bin",
 				);
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
@@ -6210,7 +6210,7 @@
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 				);
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR)";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT)";
 				PREVIEW_FRAMEWORK_PATHS = "\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework\"";
 				"PREVIEW_FRAMEWORK_PATHS[sdk=iphoneos*]" = "\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework\"";
 				PRODUCT_BUNDLE_IDENTIFIER = io.budilebuddy.LibFramework;
@@ -6226,13 +6226,13 @@
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
 					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin/external/com_github_krzyzanowskim_cryptoswift",
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin",
 				);
 				"USER_HEADER_SEARCH_PATHS[sdk=iphoneos*]" = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
 					"$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-6c4ee7fb25a2/bin/external/com_github_krzyzanowskim_cryptoswift",
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/applebin_ios-ios_arm64-dbg-ST-6c4ee7fb25a2/bin",
 				);
 			};
@@ -6304,8 +6304,8 @@
 				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/iOSApp/Source/iOSApp.link.params";
 				"LINK_PARAMS_FILE[sdk=iphoneos*]" = "$(INTERNAL_DIR)/targets/applebin_ios-ios_arm64-dbg-ST-6c4ee7fb25a2/iOSApp/Source/iOSApp.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator/GoogleMapsBase.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator/GoogleMapsCore.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator/GoogleMaps.framework/Modules/module.modulemap -Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Fexternal/com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator -Fexternal/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator -static";
-				"OTHER_SWIFT_FLAGS[sdk=iphoneos*]" = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-6c4ee7fb25a2/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-6c4ee7fb25a2/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-6c4ee7fb25a2/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-6c4ee7fb25a2/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64/GoogleMapsBase.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64/GoogleMapsCore.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMaps.xcframework/ios-arm64/GoogleMaps.framework/Modules/module.modulemap -Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -Fexternal/com_google_google_maps/GoogleMaps.xcframework/ios-arm64 -Fexternal/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64 -static";
+				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator/GoogleMapsBase.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator/GoogleMapsCore.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator/GoogleMaps.framework/Modules/module.modulemap -Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Fexternal/com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator -Fexternal/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator -static";
+				"OTHER_SWIFT_FLAGS[sdk=iphoneos*]" = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-6c4ee7fb25a2/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-6c4ee7fb25a2/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-6c4ee7fb25a2/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-6c4ee7fb25a2/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64/GoogleMapsBase.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64/GoogleMapsCore.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMaps.xcframework/ios-arm64/GoogleMaps.framework/Modules/module.modulemap -Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -Fexternal/com_google_google_maps/GoogleMaps.xcframework/ios-arm64 -Fexternal/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64 -static";
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin/iOSApp/Source";
@@ -6327,7 +6327,7 @@
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
 					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin/external/com_github_krzyzanowskim_cryptoswift",
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin",
 					"$(BAZEL_EXTERNAL)/com_google_google_maps",
 					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin/external/com_google_google_maps",
@@ -6335,7 +6335,7 @@
 				"USER_HEADER_SEARCH_PATHS[sdk=iphoneos*]" = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
 					"$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-6c4ee7fb25a2/bin/external/com_github_krzyzanowskim_cryptoswift",
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-6c4ee7fb25a2/bin",
 					"$(BAZEL_EXTERNAL)/com_google_google_maps",
 					"$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-6c4ee7fb25a2/bin/external/com_google_google_maps",
@@ -6359,7 +6359,7 @@
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Xcc -DAWESOME -static";
+				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Xcc -DAWESOME -static";
 				PRODUCT_MODULE_NAME = TestingUtils;
 				PRODUCT_NAME = TestingUtils;
 				SDKROOT = iphoneos;
@@ -6371,7 +6371,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = TestingUtils;
 				USER_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin",
 				);
 			};
@@ -6420,8 +6420,8 @@
 				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/applebin_tvos-tvos_x86_64-dbg-ST-e5d0d9c9816d/UI/UIFramework.tvOS.link.params";
 				"LINK_PARAMS_FILE[sdk=appletvos*]" = "$(INTERNAL_DIR)/targets/applebin_tvos-tvos_arm64-dbg-ST-c7d4eb25a313/UI/UIFramework.tvOS.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator -static";
-				"OTHER_SWIFT_FLAGS[sdk=appletvos*]" = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework/Modules/module.modulemap -Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64 -static";
+				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator -static";
+				"OTHER_SWIFT_FLAGS[sdk=appletvos*]" = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework/Modules/module.modulemap -Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64 -static";
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-e5d0d9c9816d/bin/UI";
@@ -6450,13 +6450,13 @@
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
 					"$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-e5d0d9c9816d/bin/external/com_github_krzyzanowskim_cryptoswift",
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-e5d0d9c9816d/bin",
 				);
 				"USER_HEADER_SEARCH_PATHS[sdk=appletvos*]" = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
 					"$(BAZEL_OUT)/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-c7d4eb25a313/bin/external/com_github_krzyzanowskim_cryptoswift",
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-c7d4eb25a313/bin",
 				);
 			};
@@ -6553,7 +6553,7 @@
 					"-fstack-protector-all",
 				);
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR)";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT)";
 				PRODUCT_NAME = CommandLineTool;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
@@ -6562,7 +6562,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = CommandLineTool;
 				USER_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-c216c90aee98/bin",
 					"$(BAZEL_EXTERNAL)/examples_command_line_external",
 					"$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-c216c90aee98/bin/external/examples_command_line_external",
@@ -6594,8 +6594,8 @@
 				INCLUDED_SOURCE_FILE_NAMES = "";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=watchos*]" = "$(WATCHOS_FILES)";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=watchsimulator*]" = "$(WATCHSIMULATOR_FILES)";
-				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator -static";
-				"OTHER_SWIFT_FLAGS[sdk=watchos*]" = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework/Modules/module.modulemap -Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k -static";
+				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator -static";
+				"OTHER_SWIFT_FLAGS[sdk=watchos*]" = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework/Modules/module.modulemap -Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k -static";
 				PRODUCT_MODULE_NAME = Lib;
 				PRODUCT_NAME = Lib;
 				SDKROOT = watchos;
@@ -6608,13 +6608,13 @@
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
 					"$(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-c782804c2730/bin/external/com_github_krzyzanowskim_cryptoswift",
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-c782804c2730/bin",
 				);
 				"USER_HEADER_SEARCH_PATHS[sdk=watchos*]" = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
 					"$(BAZEL_OUT)/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-6c9a1ce26af7/bin/external/com_github_krzyzanowskim_cryptoswift",
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-6c9a1ce26af7/bin",
 				);
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
@@ -6652,7 +6652,7 @@
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-dbg-ST-c782804c2730/bin/watchOSAppExtension/Test/UnitTests/rules_xcodeproj/watchOSAppExtensionUnitTests.__internal__.__test_bundle/Info.plist";
 				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/applebin_watchos-watchos_x86_64-dbg-ST-c782804c2730/watchOSAppExtension/Test/UnitTests/watchOSAppExtensionUnitTests.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator -static";
+				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator -static";
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-c782804c2730/bin/watchOSAppExtension/Test/UnitTests";
@@ -6670,7 +6670,7 @@
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
 					"$(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-c782804c2730/bin/external/com_github_krzyzanowskim_cryptoswift",
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-c782804c2730/bin",
 				);
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
@@ -6718,7 +6718,7 @@
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 				);
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR)";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT)";
 				PREVIEW_FRAMEWORK_PATHS = "\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework\"";
 				"PREVIEW_FRAMEWORK_PATHS[sdk=appletvos*]" = "\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework\"";
 				PRODUCT_BUNDLE_IDENTIFIER = io.budilebuddy.LibFramework;
@@ -6733,13 +6733,13 @@
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
 					"$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-e5d0d9c9816d/bin/external/com_github_krzyzanowskim_cryptoswift",
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-dbg-ST-e5d0d9c9816d/bin",
 				);
 				"USER_HEADER_SEARCH_PATHS[sdk=appletvos*]" = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
 					"$(BAZEL_OUT)/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-c7d4eb25a313/bin/external/com_github_krzyzanowskim_cryptoswift",
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/applebin_tvos-tvos_arm64-dbg-ST-c7d4eb25a313/bin",
 				);
 			};
@@ -6796,8 +6796,8 @@
 				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/applebin_watchos-watchos_x86_64-dbg-ST-c782804c2730/watchOSAppExtension/watchOSAppExtension.link.params";
 				"LINK_PARAMS_FILE[sdk=watchos*]" = "$(INTERNAL_DIR)/targets/applebin_watchos-watchos_arm64_32-dbg-ST-6c9a1ce26af7/watchOSAppExtension/watchOSAppExtension.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator -static";
-				"OTHER_SWIFT_FLAGS[sdk=watchos*]" = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework/Modules/module.modulemap -Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k -static";
+				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator -static";
+				"OTHER_SWIFT_FLAGS[sdk=watchos*]" = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework/Modules/module.modulemap -Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k -static";
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-c782804c2730/bin/watchOSAppExtension";
@@ -6817,13 +6817,13 @@
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
 					"$(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-c782804c2730/bin/external/com_github_krzyzanowskim_cryptoswift",
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-c782804c2730/bin",
 				);
 				"USER_HEADER_SEARCH_PATHS[sdk=watchos*]" = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
 					"$(BAZEL_OUT)/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-6c9a1ce26af7/bin/external/com_github_krzyzanowskim_cryptoswift",
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-6c9a1ce26af7/bin",
 				);
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
@@ -6860,7 +6860,7 @@
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-dbg-ST-e5d0d9c9816d/bin/tvOSApp/Test/UnitTests/rules_xcodeproj/tvOSAppUnitTests.__internal__.__test_bundle/Info.plist";
 				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/applebin_tvos-tvos_x86_64-dbg-ST-e5d0d9c9816d/tvOSApp/Test/UnitTests/tvOSAppUnitTests.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator -static";
+				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator -static";
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-e5d0d9c9816d/bin/tvOSApp/Test/UnitTests";
@@ -6881,7 +6881,7 @@
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
 					"$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-e5d0d9c9816d/bin/external/com_github_krzyzanowskim_cryptoswift",
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-e5d0d9c9816d/bin",
 				);
 			};
@@ -6902,7 +6902,7 @@
 				ENABLE_TESTABILITY = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static";
+				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static";
 				PRODUCT_MODULE_NAME = _SwiftLib;
 				PRODUCT_NAME = private_swift_lib;
 				SDKROOT = macosx;
@@ -6913,7 +6913,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = private_swift_lib;
 				USER_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-c216c90aee98/bin",
 				);
 			};
@@ -6960,7 +6960,7 @@
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 				);
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR)";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT)";
 				PREVIEW_FRAMEWORK_PATHS = "\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework\"";
 				"PREVIEW_FRAMEWORK_PATHS[sdk=appletvos*]" = "\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework\"";
 				PRODUCT_BUNDLE_IDENTIFIER = io.budilebuddy.LibFramework;
@@ -6975,13 +6975,13 @@
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
 					"$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-e5d0d9c9816d/bin/external/com_github_krzyzanowskim_cryptoswift",
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-dbg-ST-e5d0d9c9816d/bin",
 				);
 				"USER_HEADER_SEARCH_PATHS[sdk=appletvos*]" = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
 					"$(BAZEL_OUT)/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-c7d4eb25a313/bin/external/com_github_krzyzanowskim_cryptoswift",
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/applebin_tvos-tvos_arm64-dbg-ST-c7d4eb25a313/bin",
 				);
 			};
@@ -7033,8 +7033,8 @@
 				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/applebin_tvos-tvos_x86_64-dbg-ST-e5d0d9c9816d/tvOSApp/Source/tvOSApp.link.params";
 				"LINK_PARAMS_FILE[sdk=appletvos*]" = "$(INTERNAL_DIR)/targets/applebin_tvos-tvos_arm64-dbg-ST-c7d4eb25a313/tvOSApp/Source/tvOSApp.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator -static";
-				"OTHER_SWIFT_FLAGS[sdk=appletvos*]" = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework/Modules/module.modulemap -Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64 -static";
+				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator -static";
+				"OTHER_SWIFT_FLAGS[sdk=appletvos*]" = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework/Modules/module.modulemap -Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64 -static";
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-e5d0d9c9816d/bin/tvOSApp/Source";
@@ -7055,13 +7055,13 @@
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
 					"$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-e5d0d9c9816d/bin/external/com_github_krzyzanowskim_cryptoswift",
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-e5d0d9c9816d/bin",
 				);
 				"USER_HEADER_SEARCH_PATHS[sdk=appletvos*]" = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
 					"$(BAZEL_OUT)/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-c7d4eb25a313/bin/external/com_github_krzyzanowskim_cryptoswift",
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-c7d4eb25a313/bin",
 				);
 			};
@@ -7111,8 +7111,8 @@
 				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/UI/UIFramework.iOS.link.params";
 				"LINK_PARAMS_FILE[sdk=iphoneos*]" = "$(INTERNAL_DIR)/targets/applebin_ios-ios_arm64-dbg-ST-6c4ee7fb25a2/UI/UIFramework.iOS.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -static";
-				"OTHER_SWIFT_FLAGS[sdk=iphoneos*]" = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap -Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -static";
+				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -static";
+				"OTHER_SWIFT_FLAGS[sdk=iphoneos*]" = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap -Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -static";
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin/UI";
@@ -7142,13 +7142,13 @@
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
 					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin/external/com_github_krzyzanowskim_cryptoswift",
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin",
 				);
 				"USER_HEADER_SEARCH_PATHS[sdk=iphoneos*]" = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
 					"$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-6c4ee7fb25a2/bin/external/com_github_krzyzanowskim_cryptoswift",
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-6c4ee7fb25a2/bin",
 				);
 			};
@@ -7170,7 +7170,7 @@
 				FRAMEWORK_SEARCH_PATHS = "$(BAZEL_EXTERNAL)/examples_command_line_external";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-c216c90aee98/bin/CommandLine/CommandLineToolLib/lib_impl.swift.modulemap -Xcc -fmodule-map-file=$(SRCROOT)/CommandLine/swift_c_module/c_lib.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/examples_command_line_external/ExternalFramework.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-c216c90aee98/bin/external/examples_command_line_external/Library.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-c216c90aee98/bin/CommandLine/CommandLineToolLib/private_lib.swift.modulemap -Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Xcc -DSECRET_3=\\\"Hello\\\" -Xcc -DSECRET_2=\\\"World!\\\" -Fexternal/examples_command_line_external -static";
+				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-c216c90aee98/bin/CommandLine/CommandLineToolLib/lib_impl.swift.modulemap -Xcc -fmodule-map-file=$(SRCROOT)/CommandLine/swift_c_module/c_lib.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/examples_command_line_external/ExternalFramework.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-c216c90aee98/bin/external/examples_command_line_external/Library.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-c216c90aee98/bin/CommandLine/CommandLineToolLib/private_lib.swift.modulemap -Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Xcc -DSECRET_3=\\\"Hello\\\" -Xcc -DSECRET_2=\\\"World!\\\" -Fexternal/examples_command_line_external -static";
 				PRODUCT_MODULE_NAME = LibSwift;
 				PRODUCT_NAME = lib_swift;
 				SDKROOT = macosx;
@@ -7182,7 +7182,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = lib_swift;
 				USER_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-c216c90aee98/bin",
 					"$(BAZEL_EXTERNAL)/examples_command_line_external",
 					"$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-c216c90aee98/bin/external/examples_command_line_external",
@@ -7196,8 +7196,8 @@
 				BAZEL_PACKAGE_BIN_DIR = rules_xcodeproj;
 				CALCULATE_OUTPUT_GROUPS_SCRIPT = "$(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py";
 				INDEX_DATA_STORE_DIR = "$(INDEX_DATA_STORE_DIR)";
-				INDEX_DISABLE_SCRIPT_EXECUTION = YES;
 				INDEX_IMPORT = "$(BAZEL_OUT)/darwin_x86_64-opt-exec-BDE7E609-ST-87fb5cb17941/bin/external/rules_xcodeproj_index_import/index-import";
+				PROJECT_DIR = "$(SRCROOT)";
 				RESOLVED_EXTERNAL_REPOSITORIES = "\"examples_command_line_external/ImportableLibrary\" \"$(SRCROOT)/CommandLine/external/ImportableLibrary\" \"examples_ios_app_external\" \"$(SRCROOT)/iOSApp/external\"";
 				SUPPORTED_PLATFORMS = macosx;
 				SUPPORTS_MACCATALYST = YES;
@@ -7245,7 +7245,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTests.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator/GoogleMapsBase.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator/GoogleMapsCore.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator/GoogleMaps.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin/external/FXPageControl/FXPageControl.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin/iOSApp/Source/Utils/Utils.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin/iOSApp/Test/TestingUtils/TestingUtils.swift.modulemap -Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Xcc -DAWESOME -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Fexternal/com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator -Fexternal/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator -static";
+				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator/GoogleMapsBase.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator/GoogleMapsCore.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator/GoogleMaps.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin/external/FXPageControl/FXPageControl.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin/iOSApp/Source/Utils/Utils.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin/iOSApp/Test/TestingUtils/TestingUtils.swift.modulemap -Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Xcc -DAWESOME -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Fexternal/com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator -Fexternal/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator -static";
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin/iOSApp/Test/SwiftUnitTests";
@@ -7267,7 +7267,7 @@
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
 					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin/external/com_github_krzyzanowskim_cryptoswift",
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin",
 					"$(BAZEL_EXTERNAL)/com_google_google_maps",
 					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin/external/com_google_google_maps",
@@ -7350,7 +7350,7 @@
 					"-fstack-protector",
 					"-fstack-protector-all",
 				);
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR)";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT)";
 				PRODUCT_NAME = lib_impl;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
@@ -7359,7 +7359,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = lib_impl;
 				USER_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-c216c90aee98/bin",
 				);
 			};
@@ -7406,7 +7406,7 @@
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 				);
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR)";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT)";
 				PREVIEW_FRAMEWORK_PATHS = "\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework\"";
 				"PREVIEW_FRAMEWORK_PATHS[sdk=watchos*]" = "\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework\"";
 				PRODUCT_BUNDLE_IDENTIFIER = io.budilebuddy.LibFramework;
@@ -7420,13 +7420,13 @@
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
 					"$(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-c782804c2730/bin/external/com_github_krzyzanowskim_cryptoswift",
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-dbg-ST-c782804c2730/bin",
 				);
 				"USER_HEADER_SEARCH_PATHS[sdk=watchos*]" = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
 					"$(BAZEL_OUT)/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-6c9a1ce26af7/bin/external/com_github_krzyzanowskim_cryptoswift",
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/applebin_watchos-watchos_arm64_32-dbg-ST-6c9a1ce26af7/bin",
 				);
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
@@ -7538,7 +7538,7 @@
 					"-fstack-protector-all",
 				);
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR)";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT)";
 				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example.objctests;
 				PRODUCT_MODULE_NAME = iOSAppObjCUnitTests;
 				PRODUCT_NAME = iOSAppObjCUnitTests;
@@ -7553,7 +7553,7 @@
 				TARGET_NAME = iOSAppObjCUnitTests;
 				TEST_HOST = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin/iOSApp/Source/iOSApp.app/iOSApp_ExecutableName";
 				USER_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin",
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
 					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin/external/com_github_krzyzanowskim_cryptoswift",
@@ -7613,8 +7613,8 @@
 				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/AppClip/AppClip.link.params";
 				"LINK_PARAMS_FILE[sdk=iphoneos*]" = "$(INTERNAL_DIR)/targets/applebin_ios-ios_arm64-dbg-ST-6c4ee7fb25a2/AppClip/AppClip.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -static";
-				"OTHER_SWIFT_FLAGS[sdk=iphoneos*]" = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap -Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -static";
+				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -static";
+				"OTHER_SWIFT_FLAGS[sdk=iphoneos*]" = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap -Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -static";
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin/AppClip";
@@ -7636,13 +7636,13 @@
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
 					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin/external/com_github_krzyzanowskim_cryptoswift",
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin",
 				);
 				"USER_HEADER_SEARCH_PATHS[sdk=iphoneos*]" = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
 					"$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-6c4ee7fb25a2/bin/external/com_github_krzyzanowskim_cryptoswift",
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-6c4ee7fb25a2/bin",
 				);
 			};
@@ -7686,10 +7686,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				IPHONEOS_FILES = "$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-6c4ee7fb25a2/bin/Lib/Lib.swift";
 				IPHONESIMULATOR_FILES = "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin/Lib/Lib.swift";
-				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -static";
-				"OTHER_SWIFT_FLAGS[sdk=appletvos*]" = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework/Modules/module.modulemap -Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64 -static";
-				"OTHER_SWIFT_FLAGS[sdk=appletvsimulator*]" = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator -static";
-				"OTHER_SWIFT_FLAGS[sdk=iphoneos*]" = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap -Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -static";
+				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -static";
+				"OTHER_SWIFT_FLAGS[sdk=appletvos*]" = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework/Modules/module.modulemap -Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64 -static";
+				"OTHER_SWIFT_FLAGS[sdk=appletvsimulator*]" = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator -static";
+				"OTHER_SWIFT_FLAGS[sdk=iphoneos*]" = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap -Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -static";
 				PRODUCT_MODULE_NAME = Lib;
 				PRODUCT_NAME = Lib;
 				SDKROOT = iphoneos;
@@ -7704,25 +7704,25 @@
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
 					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin/external/com_github_krzyzanowskim_cryptoswift",
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin",
 				);
 				"USER_HEADER_SEARCH_PATHS[sdk=appletvos*]" = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
 					"$(BAZEL_OUT)/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-c7d4eb25a313/bin/external/com_github_krzyzanowskim_cryptoswift",
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-c7d4eb25a313/bin",
 				);
 				"USER_HEADER_SEARCH_PATHS[sdk=appletvsimulator*]" = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
 					"$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-e5d0d9c9816d/bin/external/com_github_krzyzanowskim_cryptoswift",
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-e5d0d9c9816d/bin",
 				);
 				"USER_HEADER_SEARCH_PATHS[sdk=iphoneos*]" = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
 					"$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-6c4ee7fb25a2/bin/external/com_github_krzyzanowskim_cryptoswift",
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-6c4ee7fb25a2/bin",
 				);
 			};
@@ -7769,7 +7769,7 @@
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 				);
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR)";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT)";
 				PREVIEW_FRAMEWORK_PATHS = "\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework\"";
 				"PREVIEW_FRAMEWORK_PATHS[sdk=watchos*]" = "\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework\"";
 				PRODUCT_BUNDLE_IDENTIFIER = io.budilebuddy.LibFramework;
@@ -7783,13 +7783,13 @@
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
 					"$(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-c782804c2730/bin/external/com_github_krzyzanowskim_cryptoswift",
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-dbg-ST-c782804c2730/bin",
 				);
 				"USER_HEADER_SEARCH_PATHS[sdk=watchos*]" = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
 					"$(BAZEL_OUT)/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-6c9a1ce26af7/bin/external/com_github_krzyzanowskim_cryptoswift",
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/applebin_watchos-watchos_arm64_32-dbg-ST-6c9a1ce26af7/bin",
 				);
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
@@ -7822,7 +7822,7 @@
 				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/applebin_macos-darwin_x86_64-dbg-ST-2284f37167fc/macOSApp/Test/UITests/macOSAppUITests.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static";
+				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static";
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-2284f37167fc/bin/macOSApp/Test/UITests";
@@ -7839,7 +7839,7 @@
 				TARGET_NAME = macOSAppUITests;
 				TEST_TARGET_NAME = macOSApp;
 				USER_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-2284f37167fc/bin",
 				);
 			};
@@ -7878,7 +7878,7 @@
 				);
 				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/iMessageApp/iMessageAppExtension.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -static";
+				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -static";
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin/iMessageApp";
@@ -7898,7 +7898,7 @@
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
 					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin/external/com_github_krzyzanowskim_cryptoswift",
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin",
 				);
 			};
@@ -7987,7 +7987,7 @@
 					"-fstack-protector",
 					"-fstack-protector-all",
 				);
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR)";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT)";
 				PRODUCT_MODULE_NAME = Utils;
 				PRODUCT_NAME = Utils;
 				SDKROOT = iphoneos;
@@ -7998,7 +7998,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = Utils;
 				USER_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin",
 					"$(BAZEL_EXTERNAL)/FXPageControl",
 					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin/external/FXPageControl",
@@ -8034,7 +8034,7 @@
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 				);
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR)";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT)";
 				PRODUCT_BUNDLE_IDENTIFIER = "io.buildbuddy.example.imessage-app";
 				PRODUCT_NAME = iMessageApp;
 				SDKROOT = iphoneos;
@@ -8046,7 +8046,7 @@
 				TARGETED_DEVICE_FAMILY = 1;
 				TARGET_NAME = iMessageApp;
 				USER_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin",
 				);
 			};
@@ -8057,11 +8057,12 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BAZEL_CONFIG = rules_xcodeproj_integration;
+				BAZEL_EXECUTION_ROOT = "$(SRCROOT)/bazel-output-base/rules_xcodeproj/build_output_base/execroot/__main__";
 				BAZEL_EXTERNAL = "$(BAZEL_OUTPUT_BASE)/external";
 				BAZEL_INTEGRATION_DIR = "$(INTERNAL_DIR)/bazel";
 				BAZEL_LLDB_INIT = "$(OBJROOT)/bazel.lldbinit";
-				BAZEL_OUT = "$(PROJECT_DIR)/bazel-out";
-				BAZEL_OUTPUT_BASE = "$(_BAZEL_OUTPUT_BASE:standardizepath)";
+				BAZEL_OUT = "$(BAZEL_EXECUTION_ROOT)/bazel-out";
+				BAZEL_OUTPUT_BASE = "$(SRCROOT)/bazel-output-base/rules_xcodeproj/build_output_base";
 				BAZEL_PATH = bazel;
 				BAZEL_WORKSPACE_ROOT = "$(SRCROOT)";
 				BUILD_DIR = "$(SYMROOT)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
@@ -8103,7 +8104,6 @@
 				TARGET_TEMP_DIR = "$(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)";
 				USE_HEADERMAP = NO;
 				VALIDATE_WORKSPACE = NO;
-				_BAZEL_OUTPUT_BASE = "$(PROJECT_DIR)/../..";
 			};
 			name = Debug;
 		};
@@ -8154,7 +8154,7 @@
 					"-no-canonical-prefixes",
 					"-Wno-builtin-macro-redefined",
 				);
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR)";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT)";
 				PRODUCT_NAME = c_lib;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
@@ -8163,7 +8163,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = c_lib;
 				USER_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-c216c90aee98/bin",
 				);
 			};
@@ -8194,7 +8194,7 @@
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-dbg-ST-c782804c2730/bin/watchOSApp/Test/UITests/rules_xcodeproj/watchOSAppUITests.__internal__.__test_bundle/Info.plist";
 				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/applebin_watchos-watchos_x86_64-dbg-ST-c782804c2730/watchOSApp/Test/UITests/watchOSAppUITests.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static";
+				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static";
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-c782804c2730/bin/watchOSApp/Test/UITests";
@@ -8211,7 +8211,7 @@
 				TARGET_NAME = watchOSAppUITests;
 				TEST_TARGET_NAME = watchOSApp;
 				USER_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-c782804c2730/bin",
 				);
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
@@ -8297,7 +8297,7 @@
 					"-fstack-protector",
 					"-fstack-protector-all",
 				);
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR)";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT)";
 				PRODUCT_MODULE_NAME = FXPageControl;
 				PRODUCT_NAME = FXPageControl;
 				SDKROOT = iphoneos;
@@ -8310,7 +8310,7 @@
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXTERNAL)/FXPageControl",
 					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin/external/FXPageControl",
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin",
 				);
 			};
@@ -8366,8 +8366,8 @@
 				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/WidgetExtension/WidgetExtension.link.params";
 				"LINK_PARAMS_FILE[sdk=iphoneos*]" = "$(INTERNAL_DIR)/targets/applebin_ios-ios_arm64-dbg-ST-6c4ee7fb25a2/WidgetExtension/WidgetExtension.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -static";
-				"OTHER_SWIFT_FLAGS[sdk=iphoneos*]" = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap -Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -static";
+				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -static";
+				"OTHER_SWIFT_FLAGS[sdk=iphoneos*]" = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap -Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -static";
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin/WidgetExtension";
@@ -8389,13 +8389,13 @@
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
 					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin/external/com_github_krzyzanowskim_cryptoswift",
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin",
 				);
 				"USER_HEADER_SEARCH_PATHS[sdk=iphoneos*]" = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
 					"$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-6c4ee7fb25a2/bin/external/com_github_krzyzanowskim_cryptoswift",
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-6c4ee7fb25a2/bin",
 				);
 			};
@@ -8535,7 +8535,7 @@
 					"-fstack-protector",
 					"-fstack-protector-all",
 				);
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR)";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT)";
 				PRODUCT_MODULE_NAME = MixedAnswer;
 				PRODUCT_NAME = MixedAnswer;
 				SDKROOT = iphoneos;
@@ -8546,11 +8546,11 @@
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = MixedAnswer;
 				USER_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin",
 				);
 				"USER_HEADER_SEARCH_PATHS[sdk=iphoneos*]" = (
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-6c4ee7fb25a2/bin",
 				);
 			};
@@ -8581,7 +8581,7 @@
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-dbg-ST-e5d0d9c9816d/bin/tvOSApp/Test/UITests/rules_xcodeproj/tvOSAppUITests.__internal__.__test_bundle/Info.plist";
 				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/applebin_tvos-tvos_x86_64-dbg-ST-e5d0d9c9816d/tvOSApp/Test/UITests/tvOSAppUITests.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static";
+				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static";
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-e5d0d9c9816d/bin/tvOSApp/Test/UITests";
@@ -8599,7 +8599,7 @@
 				TEST_TARGET_NAME = tvOSApp;
 				TVOS_DEPLOYMENT_TARGET = 15.0;
 				USER_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-e5d0d9c9816d/bin",
 				);
 			};
@@ -8635,7 +8635,7 @@
 				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/applebin_macos-darwin_x86_64-dbg-ST-c216c90aee98/CommandLine/Tests/CommandLineToolTests.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-c216c90aee98/bin/CommandLine/CommandLineToolLib/lib_impl.swift.modulemap -Xcc -fmodule-map-file=$(SRCROOT)/CommandLine/swift_c_module/c_lib.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/examples_command_line_external/ExternalFramework.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-c216c90aee98/bin/external/examples_command_line_external/Library.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-c216c90aee98/bin/CommandLine/CommandLineToolLib/lib_swift.swift.modulemap -Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Xcc -DSECRET_3=\\\"Hello\\\" -Xcc -DSECRET_2=\\\"World!\\\" -Fexternal/examples_command_line_external -static";
+				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-c216c90aee98/bin/CommandLine/CommandLineToolLib/lib_impl.swift.modulemap -Xcc -fmodule-map-file=$(SRCROOT)/CommandLine/swift_c_module/c_lib.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/examples_command_line_external/ExternalFramework.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-c216c90aee98/bin/external/examples_command_line_external/Library.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-c216c90aee98/bin/CommandLine/CommandLineToolLib/lib_swift.swift.modulemap -Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Xcc -DSECRET_3=\\\"Hello\\\" -Xcc -DSECRET_2=\\\"World!\\\" -Fexternal/examples_command_line_external -static";
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-c216c90aee98/bin/CommandLine/Tests";
@@ -8651,7 +8651,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = CommandLineToolTests;
 				USER_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-c216c90aee98/bin",
 					"$(BAZEL_EXTERNAL)/examples_command_line_external",
 					"$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-c216c90aee98/bin/external/examples_command_line_external",
@@ -8706,7 +8706,7 @@
 					"-no-canonical-prefixes",
 					"-Wno-builtin-macro-redefined",
 				);
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR)";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT)";
 				PRODUCT_NAME = private_lib;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
@@ -8715,7 +8715,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = private_lib;
 				USER_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-c216c90aee98/bin",
 				);
 			};
@@ -8751,7 +8751,7 @@
 				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/applebin_macos-darwin_x86_64-dbg-ST-2284f37167fc/macOSApp/Source/macOSApp.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(SRCROOT)/macOSApp/third_party/ExampleFramework.framework/Modules/module.modulemap -Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -FmacOSApp/third_party -static";
+				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(SRCROOT)/macOSApp/third_party/ExampleFramework.framework/Modules/module.modulemap -Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -FmacOSApp/third_party -static";
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-2284f37167fc/bin/macOSApp/Source";
@@ -8767,7 +8767,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = macOSApp;
 				USER_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-2284f37167fc/bin",
 				);
 			};
@@ -8807,7 +8807,7 @@
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 				);
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR)";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT)";
 				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example.watch;
 				PRODUCT_NAME = watchOSApp;
 				SDKROOT = watchos;
@@ -8817,11 +8817,11 @@
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = watchOSApp;
 				USER_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-dbg-ST-826cd41ea091/bin",
 				);
 				"USER_HEADER_SEARCH_PATHS[sdk=watchos*]" = (
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/applebin_watchos-watchos_arm64_32-dbg-ST-adbadb9a3cd1/bin",
 				);
 				WATCHOS_DEPLOYMENT_TARGET = 8.0;
@@ -8846,8 +8846,8 @@
 				ENABLE_TESTABILITY = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Xfrontend -import-underlying-module -static -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap-module.modulemap";
-				"OTHER_SWIFT_FLAGS[sdk=iphoneos*]" = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Xfrontend -import-underlying-module -static -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-6c4ee7fb25a2/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap-module.modulemap";
+				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Xfrontend -import-underlying-module -static -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap-module.modulemap";
+				"OTHER_SWIFT_FLAGS[sdk=iphoneos*]" = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Xfrontend -import-underlying-module -static -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-6c4ee7fb25a2/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap-module.modulemap";
 				PRODUCT_MODULE_NAME = MixedAnswer;
 				PRODUCT_NAME = MixedAnswerLib_Swift;
 				SDKROOT = iphoneos;
@@ -8859,11 +8859,11 @@
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = MixedAnswerLib_Swift;
 				USER_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin",
 				);
 				"USER_HEADER_SEARCH_PATHS[sdk=iphoneos*]" = (
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-6c4ee7fb25a2/bin",
 				);
 			};
@@ -9027,7 +9027,7 @@
 					"-fstack-protector-all",
 				);
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR)";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT)";
 				PREVIEW_FRAMEWORK_PATHS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = io.budilebuddy.CoreUtilsObjC;
 				PRODUCT_MODULE_NAME = CoreUtils;
@@ -9041,11 +9041,11 @@
 				TARGETED_DEVICE_FAMILY = 1;
 				TARGET_NAME = FrameworkCoreUtilsObjC;
 				USER_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin",
 				);
 				"USER_HEADER_SEARCH_PATHS[sdk=iphoneos*]" = (
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-6c4ee7fb25a2/bin",
 				);
 			};

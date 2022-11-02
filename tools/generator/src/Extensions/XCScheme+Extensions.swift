@@ -173,8 +173,6 @@ echo "$BAZEL_LABEL,$BAZEL_TARGET_ID" >> "$SCHEME_TARGET_IDS_FILE"
     ) -> XCScheme.ExecutionAction {
         return .init(
             scriptText: #"""
-mkdir -p "$PROJECT_DIR"
-
 if [[ "${ENABLE_ADDRESS_SANITIZER:-}" == "YES" || \
       "${ENABLE_THREAD_SANITIZER:-}" == "YES" || \
       "${ENABLE_UNDEFINED_BEHAVIOR_SANITIZER:-}" == "YES" ]]

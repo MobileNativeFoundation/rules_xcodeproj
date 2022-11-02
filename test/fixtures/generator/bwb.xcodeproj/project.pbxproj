@@ -2146,7 +2146,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"$BAZEL_INTEGRATION_DIR/generate_bazel_dependencies.sh\"\n";
+			shellScript = "if [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  # Ensure dependent `$PROJECT_DIR` exists\n  mkdir -p \"$BAZEL_EXECUTION_ROOT\"\n  exit 0\nfi\n\n\"$BAZEL_INTEGRATION_DIR/generate_bazel_dependencies.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9A9949E599D7AC59F592C0BF /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
@@ -2756,7 +2756,7 @@
 				ENABLE_TESTABILITY = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static";
+				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static";
 				PRODUCT_MODULE_NAME = PathKit;
 				PRODUCT_NAME = PathKit;
 				SDKROOT = macosx;
@@ -2767,7 +2767,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = PathKit;
 				USER_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin",
 				);
 			};
@@ -2779,8 +2779,8 @@
 				BAZEL_PACKAGE_BIN_DIR = rules_xcodeproj;
 				CALCULATE_OUTPUT_GROUPS_SCRIPT = "$(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py";
 				INDEX_DATA_STORE_DIR = "$(INDEX_DATA_STORE_DIR)";
-				INDEX_DISABLE_SCRIPT_EXECUTION = YES;
 				INDEX_IMPORT = "$(BAZEL_OUT)/darwin_x86_64-opt-exec-2B5CBBC6-ST-8b5ad9965560/bin/external/rules_xcodeproj_index_import/index-import";
+				PROJECT_DIR = "$(SRCROOT)";
 				RESOLVED_EXTERNAL_REPOSITORIES = "";
 				SUPPORTED_PLATFORMS = macosx;
 				SUPPORTS_MACCATALYST = YES;
@@ -2811,7 +2811,7 @@
 				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/tools/swiftc_stub/swiftc.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static";
+				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static";
 				PRODUCT_MODULE_NAME = tools_swiftc_stub_swiftc_stub_library;
 				PRODUCT_NAME = swiftc;
 				SDKROOT = macosx;
@@ -2822,7 +2822,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = swiftc;
 				USER_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin",
 				);
 			};
@@ -2843,7 +2843,7 @@
 				ENABLE_TESTABILITY = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static";
+				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static";
 				PRODUCT_MODULE_NAME = XcodeProj;
 				PRODUCT_NAME = XcodeProj;
 				SDKROOT = macosx;
@@ -2855,7 +2855,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = XcodeProj;
 				USER_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin",
 				);
 			};
@@ -2948,7 +2948,7 @@
 					"-fstack-protector",
 					"-fstack-protector-all",
 				);
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR)";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT)";
 				PRODUCT_NAME = JJLISO8601DateFormatter;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
@@ -2959,7 +2959,7 @@
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXTERNAL)/com_github_michaeleisel_jjliso8601dateformatter",
 					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/external/com_github_michaeleisel_jjliso8601dateformatter",
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin",
 				);
 			};
@@ -3051,7 +3051,7 @@
 					"-fstack-protector",
 					"-fstack-protector-all",
 				);
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR)";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT)";
 				PRODUCT_NAME = ZippyJSONCFamily;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
@@ -3062,7 +3062,7 @@
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXTERNAL)/com_github_michaeleisel_zippyjsoncfamily",
 					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/external/com_github_michaeleisel_zippyjsoncfamily",
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin",
 				);
 			};
@@ -3089,7 +3089,7 @@
 					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/external/com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/include",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/external/com_github_michaeleisel_jjliso8601dateformatter/JJLISO8601DateFormatter.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/external/com_github_michaeleisel_zippyjsoncfamily/ZippyJSONCFamily.swift.modulemap -Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static";
+				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/external/com_github_michaeleisel_jjliso8601dateformatter/JJLISO8601DateFormatter.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/external/com_github_michaeleisel_zippyjsoncfamily/ZippyJSONCFamily.swift.modulemap -Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static";
 				PRODUCT_MODULE_NAME = ZippyJSON;
 				PRODUCT_NAME = ZippyJSON;
 				SDKROOT = macosx;
@@ -3104,7 +3104,7 @@
 					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/external/com_github_michaeleisel_jjliso8601dateformatter",
 					"$(BAZEL_EXTERNAL)/com_github_michaeleisel_zippyjsoncfamily",
 					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/external/com_github_michaeleisel_zippyjsoncfamily",
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin",
 				);
 			};
@@ -3115,11 +3115,12 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BAZEL_CONFIG = rules_xcodeproj;
+				BAZEL_EXECUTION_ROOT = "$(SRCROOT)/bazel-output-base/rules_xcodeproj/build_output_base/execroot/com_github_buildbuddy_io_rules_xcodeproj";
 				BAZEL_EXTERNAL = "$(BAZEL_OUTPUT_BASE)/external";
 				BAZEL_INTEGRATION_DIR = "$(INTERNAL_DIR)/bazel";
 				BAZEL_LLDB_INIT = "$(OBJROOT)/bazel.lldbinit";
-				BAZEL_OUT = "$(PROJECT_DIR)/bazel-out";
-				BAZEL_OUTPUT_BASE = "$(_BAZEL_OUTPUT_BASE:standardizepath)";
+				BAZEL_OUT = "$(BAZEL_EXECUTION_ROOT)/bazel-out";
+				BAZEL_OUTPUT_BASE = "$(SRCROOT)/bazel-output-base/rules_xcodeproj/build_output_base";
 				BAZEL_PATH = bazel;
 				BAZEL_WORKSPACE_ROOT = "$(SRCROOT)";
 				BUILD_DIR = "$(SYMROOT)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
@@ -3161,7 +3162,6 @@
 				TARGET_TEMP_DIR = "$(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)";
 				USE_HEADERMAP = NO;
 				VALIDATE_WORKSPACE = NO;
-				_BAZEL_OUTPUT_BASE = "$(PROJECT_DIR)/../..";
 			};
 			name = Debug;
 		};
@@ -3180,7 +3180,7 @@
 				ENABLE_TESTABILITY = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static";
+				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static";
 				PRODUCT_MODULE_NAME = XCTestDynamicOverlay;
 				PRODUCT_NAME = XCTestDynamicOverlay;
 				SDKROOT = macosx;
@@ -3191,7 +3191,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = XCTestDynamicOverlay;
 				USER_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin",
 				);
 			};
@@ -3212,7 +3212,7 @@
 				ENABLE_TESTABILITY = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static";
+				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static";
 				PRODUCT_MODULE_NAME = CustomDump;
 				PRODUCT_NAME = CustomDump;
 				SDKROOT = macosx;
@@ -3224,7 +3224,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = CustomDump;
 				USER_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin",
 				);
 			};
@@ -3261,7 +3261,7 @@
 				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/tools/generator/test/tests.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/external/com_github_michaeleisel_jjliso8601dateformatter/JJLISO8601DateFormatter.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/external/com_github_michaeleisel_zippyjsoncfamily/ZippyJSONCFamily.swift.modulemap -Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static";
+				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/external/com_github_michaeleisel_jjliso8601dateformatter/JJLISO8601DateFormatter.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/external/com_github_michaeleisel_zippyjsoncfamily/ZippyJSONCFamily.swift.modulemap -Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static";
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/tools/generator/test";
@@ -3281,7 +3281,7 @@
 					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/external/com_github_michaeleisel_jjliso8601dateformatter",
 					"$(BAZEL_EXTERNAL)/com_github_michaeleisel_zippyjsoncfamily",
 					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/external/com_github_michaeleisel_zippyjsoncfamily",
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin",
 				);
 			};
@@ -3302,7 +3302,7 @@
 				ENABLE_TESTABILITY = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static";
+				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static";
 				PRODUCT_MODULE_NAME = OrderedCollections;
 				PRODUCT_NAME = OrderedCollections;
 				SDKROOT = macosx;
@@ -3313,7 +3313,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = OrderedCollections;
 				USER_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin",
 				);
 			};
@@ -3353,7 +3353,7 @@
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 				);
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR)";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT)";
 				PRODUCT_NAME = generator;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
@@ -3366,7 +3366,7 @@
 					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/external/com_github_michaeleisel_jjliso8601dateformatter",
 					"$(BAZEL_EXTERNAL)/com_github_michaeleisel_zippyjsoncfamily",
 					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/external/com_github_michaeleisel_zippyjsoncfamily",
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin",
 				);
 			};
@@ -3393,7 +3393,7 @@
 					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/external/com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/include",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/external/com_github_michaeleisel_jjliso8601dateformatter/JJLISO8601DateFormatter.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/external/com_github_michaeleisel_zippyjsoncfamily/ZippyJSONCFamily.swift.modulemap -Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static";
+				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/external/com_github_michaeleisel_jjliso8601dateformatter/JJLISO8601DateFormatter.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/external/com_github_michaeleisel_zippyjsoncfamily/ZippyJSONCFamily.swift.modulemap -Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static";
 				PRODUCT_MODULE_NAME = generator;
 				PRODUCT_NAME = generator.library;
 				SDKROOT = macosx;
@@ -3409,7 +3409,7 @@
 					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/external/com_github_michaeleisel_jjliso8601dateformatter",
 					"$(BAZEL_EXTERNAL)/com_github_michaeleisel_zippyjsoncfamily",
 					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/external/com_github_michaeleisel_zippyjsoncfamily",
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin",
 				);
 			};

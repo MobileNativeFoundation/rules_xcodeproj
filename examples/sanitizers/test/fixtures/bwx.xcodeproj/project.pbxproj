@@ -477,7 +477,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"$BAZEL_INTEGRATION_DIR/generate_bazel_dependencies.sh\"\n";
+			shellScript = "if [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  # Ensure dependent `$PROJECT_DIR` exists\n  mkdir -p \"$BAZEL_EXECUTION_ROOT\"\n  exit 0\nfi\n\n\"$BAZEL_INTEGRATION_DIR/generate_bazel_dependencies.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -543,6 +543,7 @@
 				CALCULATE_OUTPUT_GROUPS_SCRIPT = "$(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py";
 				INDEX_DATA_STORE_DIR = "$(INDEX_DATA_STORE_DIR)";
 				INDEX_IMPORT = "$(BAZEL_OUT)/darwin_x86_64-opt-exec-2B5CBBC6-ST-8b5ad9965560/bin/external/rules_xcodeproj_index_import/index-import";
+				PROJECT_DIR = "$(SRCROOT)";
 				RESOLVED_EXTERNAL_REPOSITORIES = "";
 				SUPPORTED_PLATFORMS = iphonesimulator;
 				SUPPORTS_MACCATALYST = YES;
@@ -595,7 +596,7 @@
 				TARGETED_DEVICE_FAMILY = 1;
 				TARGET_NAME = AddressSanitizerApp;
 				USER_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin",
 				);
 			};
@@ -707,7 +708,7 @@
 				TARGETED_DEVICE_FAMILY = 1;
 				TARGET_NAME = UndefinedBehaviorSanitizerApp;
 				USER_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin",
 				);
 			};
@@ -718,11 +719,12 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BAZEL_CONFIG = rules_xcodeproj;
+				BAZEL_EXECUTION_ROOT = "$(SRCROOT)/bazel-output-base/rules_xcodeproj/build_output_base/execroot/__main__";
 				BAZEL_EXTERNAL = "$(BAZEL_OUTPUT_BASE)/external";
 				BAZEL_INTEGRATION_DIR = "$(INTERNAL_DIR)/bazel";
 				BAZEL_LLDB_INIT = "$(OBJROOT)/bazel.lldbinit";
-				BAZEL_OUT = "$(PROJECT_DIR)/bazel-out";
-				BAZEL_OUTPUT_BASE = "$(_BAZEL_OUTPUT_BASE:standardizepath)";
+				BAZEL_OUT = "$(BAZEL_EXECUTION_ROOT)/bazel-out";
+				BAZEL_OUTPUT_BASE = "$(SRCROOT)/bazel-output-base/rules_xcodeproj/build_output_base";
 				BAZEL_PATH = bazel;
 				BAZEL_WORKSPACE_ROOT = "$(SRCROOT)";
 				BUILD_DIR = "$(SYMROOT)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
@@ -756,7 +758,6 @@
 				TARGET_TEMP_DIR = "$(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)";
 				USE_HEADERMAP = NO;
 				VALIDATE_WORKSPACE = NO;
-				_BAZEL_OUTPUT_BASE = "$(PROJECT_DIR)/../..";
 			};
 			name = Debug;
 		};
@@ -805,7 +806,7 @@
 				TARGETED_DEVICE_FAMILY = 1;
 				TARGET_NAME = ThreadSanitizerApp;
 				USER_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin",
 				);
 			};

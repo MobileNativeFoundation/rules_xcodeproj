@@ -38,15 +38,22 @@ extension Generator {
         )
         pbxProj.add(object: mainGroup)
 
+        let executionRoot: Path
+        if directories.bazelOut.isRelative {
+            executionRoot = "$(SRCROOT)" + nonRelativeProjectDir
+        } else {
+            executionRoot = projectDir
+        }
+
         var buildSettings = project.buildSettings.asDictionary
         buildSettings.merge([
             "BAZEL_CONFIG": project.bazelConfig,
+            "BAZEL_EXECUTION_ROOT": executionRoot.string,
             "BAZEL_EXTERNAL": "$(BAZEL_OUTPUT_BASE)/external",
             "BAZEL_INTEGRATION_DIR": "$(INTERNAL_DIR)/bazel",
             "BAZEL_LLDB_INIT": "$(OBJROOT)/bazel.lldbinit",
-            "BAZEL_OUT": "$(PROJECT_DIR)/bazel-out",
-            "_BAZEL_OUTPUT_BASE": "$(PROJECT_DIR)/../..",
-            "BAZEL_OUTPUT_BASE": "$(_BAZEL_OUTPUT_BASE:standardizepath)",
+            "BAZEL_OUT": "$(BAZEL_EXECUTION_ROOT)/bazel-out",
+            "BAZEL_OUTPUT_BASE": (executionRoot + "../..").normalize().string,
             "BAZEL_WORKSPACE_ROOT": "$(SRCROOT)",
             "BUILD_DIR": """
 $(SYMROOT)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)

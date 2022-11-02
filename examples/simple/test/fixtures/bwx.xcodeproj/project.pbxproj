@@ -178,7 +178,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = SwiftBin;
 				USER_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-3688109ddba2/bin",
 				);
 			};
@@ -189,11 +189,12 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BAZEL_CONFIG = rules_xcodeproj;
+				BAZEL_EXECUTION_ROOT = "$(SRCROOT)/bazel-output-base/rules_xcodeproj/build_output_base/execroot/__main__";
 				BAZEL_EXTERNAL = "$(BAZEL_OUTPUT_BASE)/external";
 				BAZEL_INTEGRATION_DIR = "$(INTERNAL_DIR)/bazel";
 				BAZEL_LLDB_INIT = "$(OBJROOT)/bazel.lldbinit";
-				BAZEL_OUT = "$(PROJECT_DIR)/bazel-out";
-				BAZEL_OUTPUT_BASE = "$(_BAZEL_OUTPUT_BASE:standardizepath)";
+				BAZEL_OUT = "$(BAZEL_EXECUTION_ROOT)/bazel-out";
+				BAZEL_OUTPUT_BASE = "$(SRCROOT)/bazel-output-base/rules_xcodeproj/build_output_base";
 				BAZEL_PATH = bazel;
 				BAZEL_WORKSPACE_ROOT = "$(SRCROOT)";
 				BUILD_DIR = "$(SYMROOT)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
@@ -227,7 +228,6 @@
 				TARGET_TEMP_DIR = "$(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)";
 				USE_HEADERMAP = NO;
 				VALIDATE_WORKSPACE = NO;
-				_BAZEL_OUTPUT_BASE = "$(PROJECT_DIR)/../..";
 			};
 			name = Debug;
 		};

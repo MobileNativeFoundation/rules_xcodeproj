@@ -38,7 +38,7 @@ if [ "$ACTION" == "indexbuild" ]; then
   # `bazel clean`, but is when running `bazel clean --expunge`. This matches
   # Xcode behavior of not cleaning the Index Build outputs by default.
   readonly output_base="${build_output_base%/*}/indexbuild_output_base"
-  readonly workspace_name="${PROJECT_DIR##*/}"
+  readonly workspace_name="${BAZEL_EXECUTION_ROOT##*/}"
   readonly output_path="$output_base/execroot/$workspace_name/bazel-out"
 
   # Use current path for "bazel-out/" and "external/"

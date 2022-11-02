@@ -33,11 +33,15 @@ final class CreateProjectTests: XCTestCase {
             name: "Debug",
             buildSettings: project.buildSettings.asDictionary.merging([
                 "BAZEL_CONFIG": project.bazelConfig,
+                "BAZEL_EXECUTION_ROOT": """
+/tmp/bazel-output-base/rules_xcodeproj/build_output_base/execroot/com_github_buildbuddy_io_rules_xcodeproj
+""",
                 "BAZEL_EXTERNAL": "$(BAZEL_OUTPUT_BASE)/external",
                 "BAZEL_LLDB_INIT": "$(OBJROOT)/bazel.lldbinit",
-                "BAZEL_OUT": "$(PROJECT_DIR)/bazel-out",
-                "_BAZEL_OUTPUT_BASE": "$(PROJECT_DIR)/../..",
-                "BAZEL_OUTPUT_BASE": "$(_BAZEL_OUTPUT_BASE:standardizepath)",
+                "BAZEL_OUT": "$(BAZEL_EXECUTION_ROOT)/bazel-out",
+                "BAZEL_OUTPUT_BASE": """
+/tmp/bazel-output-base/rules_xcodeproj/build_output_base
+""",
                 "BAZEL_WORKSPACE_ROOT": "$(SRCROOT)",
                 "BAZEL_INTEGRATION_DIR": "$(INTERNAL_DIR)/bazel",
                 "BUILD_WORKSPACE_DIRECTORY": "$(SRCROOT)",
@@ -156,11 +160,15 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
             name: "Debug",
             buildSettings: project.buildSettings.asDictionary.merging([
                 "BAZEL_CONFIG": "rules_xcodeproj_fixtures",
+                "BAZEL_EXECUTION_ROOT": """
+/tmp/bazel-output-base/rules_xcodeproj/build_output_base/execroot/com_github_buildbuddy_io_rules_xcodeproj
+""",
                 "BAZEL_EXTERNAL": "$(BAZEL_OUTPUT_BASE)/external",
                 "BAZEL_LLDB_INIT": "$(OBJROOT)/bazel.lldbinit",
-                "BAZEL_OUT": "$(PROJECT_DIR)/bazel-out",
-                "_BAZEL_OUTPUT_BASE": "$(PROJECT_DIR)/../..",
-                "BAZEL_OUTPUT_BASE": "$(_BAZEL_OUTPUT_BASE:standardizepath)",
+                "BAZEL_OUT": "$(BAZEL_EXECUTION_ROOT)/bazel-out",
+                "BAZEL_OUTPUT_BASE": """
+/tmp/bazel-output-base/rules_xcodeproj/build_output_base
+""",
                 "BAZEL_WORKSPACE_ROOT": "$(SRCROOT)",
                 "BUILD_DIR": """
 $(SYMROOT)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)

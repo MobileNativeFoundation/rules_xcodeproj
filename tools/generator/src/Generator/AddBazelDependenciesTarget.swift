@@ -51,7 +51,7 @@ extension Generator {
                     .forEach { platforms.insert($0.platform) }
             }
 
-        var buildSettings: BuildSettings = [
+        let buildSettings: BuildSettings = [
             "BAZEL_PACKAGE_BIN_DIR": "rules_xcodeproj",
             "CALCULATE_OUTPUT_GROUPS_SCRIPT": """
 $(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py
@@ -65,6 +65,7 @@ $(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py
                     // path to be able to correctly reference it
                     forceFullBuildSettingPath: true
                 ).string,
+            "PROJECT_DIR": "$(SRCROOT)",
             "RESOLVED_EXTERNAL_REPOSITORIES": resolvedExternalRepositories
                 // Sorted by length to ensure that subdirectories are listed first
                 .sorted { $0.0.string.count > $1.0.string.count }
@@ -79,10 +80,6 @@ $(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py
             "SUPPORTS_MACCATALYST": true,
             "TARGET_NAME": "BazelDependencies",
         ]
-
-        if buildMode.usesBazelModeBuildScripts {
-            buildSettings["INDEX_DISABLE_SCRIPT_EXECUTION"] = true
-        }
 
         let debugConfiguration = XCBuildConfiguration(
             name: "Debug",
@@ -191,6 +188,12 @@ $(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py
             name: name,
             outputFileListPaths: outputFileListPaths,
             shellScript: """
+if [[ "$ACTION" == "indexbuild" ]]; then
+  # Ensure dependent `$PROJECT_DIR` exists
+  mkdir -p "$BAZEL_EXECUTION_ROOT"
+  exit 0
+fi
+
 "$BAZEL_INTEGRATION_DIR/generate_bazel_dependencies.sh"
 
 """,

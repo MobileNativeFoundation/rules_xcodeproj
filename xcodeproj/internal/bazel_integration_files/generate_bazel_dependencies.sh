@@ -120,7 +120,7 @@ source "$BAZEL_INTEGRATION_DIR/bazel_build.sh"
 if [[ "$ACTION" != "indexbuild" && "${ENABLE_PREVIEWS:-}" != "YES" ]]; then
   # shellcheck disable=SC2046
   "$BAZEL_INTEGRATION_DIR/create_lldbinit.sh" \
-    "$PROJECT_DIR" \
+    "$BAZEL_EXECUTION_ROOT" \
     $(xargs -n1 <<< "${RESOLVED_EXTERNAL_REPOSITORIES:-}") \
     > "$BAZEL_LLDB_INIT"
 fi
@@ -149,7 +149,7 @@ done
 # Import indexes
 if [ -n "${indexstores_filelists:-}" ]; then
   "$BAZEL_INTEGRATION_DIR/import_indexstores.sh" \
-    "$PROJECT_DIR" \
+    "$BAZEL_EXECUTION_ROOT" \
     "${indexstores_filelists[@]}" \
     >"$log_dir/import_indexstores.async.log" 2>&1 &
 fi

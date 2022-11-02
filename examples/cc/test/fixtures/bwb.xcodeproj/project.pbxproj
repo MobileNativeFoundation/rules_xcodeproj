@@ -423,7 +423,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"$BAZEL_INTEGRATION_DIR/generate_bazel_dependencies.sh\"\n";
+			shellScript = "if [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  # Ensure dependent `$PROJECT_DIR` exists\n  mkdir -p \"$BAZEL_EXECUTION_ROOT\"\n  exit 0\nfi\n\n\"$BAZEL_INTEGRATION_DIR/generate_bazel_dependencies.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		CE847B60C10CEA8C3F944D39 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
@@ -559,7 +559,7 @@
 					"-no-canonical-prefixes",
 					"-Wno-builtin-macro-redefined",
 				);
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR)";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT)";
 				PRODUCT_NAME = lib_impl;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
@@ -570,7 +570,7 @@
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXTERNAL)/examples_cc_external",
 					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-a9822d5480e1/bin/external/examples_cc_external",
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-a9822d5480e1/bin",
 				);
 			};
@@ -582,8 +582,8 @@
 				BAZEL_PACKAGE_BIN_DIR = rules_xcodeproj;
 				CALCULATE_OUTPUT_GROUPS_SCRIPT = "$(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py";
 				INDEX_DATA_STORE_DIR = "$(INDEX_DATA_STORE_DIR)";
-				INDEX_DISABLE_SCRIPT_EXECUTION = YES;
 				INDEX_IMPORT = "$(BAZEL_OUT)/darwin_x86_64-opt-exec-2B5CBBC6-ST-8b5ad9965560/bin/external/rules_xcodeproj_index_import/index-import";
+				PROJECT_DIR = "$(SRCROOT)";
 				RESOLVED_EXTERNAL_REPOSITORIES = "\"examples_cc_external\" \"$(SRCROOT)/external\"";
 				SUPPORTED_PLATFORMS = macosx;
 				SUPPORTS_MACCATALYST = YES;
@@ -638,7 +638,7 @@
 					"-no-canonical-prefixes",
 					"-Wno-builtin-macro-redefined",
 				);
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR)";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT)";
 				PRODUCT_NAME = lib_impl;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
@@ -651,7 +651,7 @@
 				);
 				TARGET_NAME = lib_impl;
 				USER_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-a9822d5480e1/bin",
 				);
 			};
@@ -712,7 +712,7 @@
 					"-Wno-builtin-macro-redefined",
 				);
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR)";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT)";
 				PRODUCT_NAME = tool;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
@@ -725,7 +725,7 @@
 				);
 				TARGET_NAME = tool;
 				USER_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-a9822d5480e1/bin",
 					"$(BAZEL_EXTERNAL)/examples_cc_external",
 					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-a9822d5480e1/bin/external/examples_cc_external",
@@ -740,11 +740,12 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BAZEL_CONFIG = rules_xcodeproj;
+				BAZEL_EXECUTION_ROOT = "$(SRCROOT)/bazel-output-base/rules_xcodeproj/build_output_base/execroot/__main__";
 				BAZEL_EXTERNAL = "$(BAZEL_OUTPUT_BASE)/external";
 				BAZEL_INTEGRATION_DIR = "$(INTERNAL_DIR)/bazel";
 				BAZEL_LLDB_INIT = "$(OBJROOT)/bazel.lldbinit";
-				BAZEL_OUT = "$(PROJECT_DIR)/bazel-out";
-				BAZEL_OUTPUT_BASE = "$(_BAZEL_OUTPUT_BASE:standardizepath)";
+				BAZEL_OUT = "$(BAZEL_EXECUTION_ROOT)/bazel-out";
+				BAZEL_OUTPUT_BASE = "$(SRCROOT)/bazel-output-base/rules_xcodeproj/build_output_base";
 				BAZEL_PATH = bazel;
 				BAZEL_WORKSPACE_ROOT = "$(SRCROOT)";
 				BUILD_DIR = "$(SYMROOT)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
@@ -786,7 +787,6 @@
 				TARGET_TEMP_DIR = "$(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)";
 				USE_HEADERMAP = NO;
 				VALIDATE_WORKSPACE = NO;
-				_BAZEL_OUTPUT_BASE = "$(PROJECT_DIR)/../..";
 			};
 			name = Debug;
 		};
@@ -843,7 +843,7 @@
 					"-no-canonical-prefixes",
 					"-Wno-builtin-macro-redefined",
 				);
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR)";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(BAZEL_EXECUTION_ROOT) -working-directory=$(BAZEL_EXECUTION_ROOT)";
 				PRODUCT_NAME = lib_impl;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
@@ -852,7 +852,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = lib_impl;
 				USER_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
+					"$(BAZEL_EXECUTION_ROOT)",
 					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-a9822d5480e1/bin",
 				);
 			};

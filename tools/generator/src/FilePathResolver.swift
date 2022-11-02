@@ -113,7 +113,7 @@ container:\(workspace + directories.workspaceOutput)
             guard filePath.path.normalize() != "." else {
                 // We need to use Bazel's execution root for ".", since includes
                 // can reference things like "external/" and "bazel-out"
-                return "$(PROJECT_DIR)"
+                return "$(BAZEL_EXECUTION_ROOT)"
             }
 
             let transformedFilePath = transform(filePath)

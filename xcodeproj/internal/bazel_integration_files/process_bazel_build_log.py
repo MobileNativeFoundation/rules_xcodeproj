@@ -12,9 +12,9 @@ def _main(command: List[str]) -> None:
     if not srcroot:
         sys.exit("SRCROOT environment variable must be set")
 
-    execution_root = os.getenv("PROJECT_DIR")
+    execution_root = os.getenv("BAZEL_EXECUTION_ROOT")
     if not execution_root:
-        sys.exit("PROJECT_DIR environment variable must be set")
+        sys.exit("BAZEL_EXECUTION_ROOT environment variable must be set")
 
     bazel_out_directory = os.getenv("BAZEL_OUT")
     if not bazel_out_directory:

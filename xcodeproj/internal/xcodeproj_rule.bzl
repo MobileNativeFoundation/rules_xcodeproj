@@ -1205,13 +1205,13 @@ These files won't be added to the project if the target is unfocused.
         "post_build": attr.string(
             doc = """\
 The text of a script that will be run after the build. For example:
-`./post-build.sh`, `"$PROJECT_DIR/post-build.sh"`.
+`./post-build.sh`, `"$SRCROOT/post-build.sh"`.
 """,
         ),
         "pre_build": attr.string(
             doc = """\
 The text of a script that will be run before the build. For example:
-`./pre-build.sh`, `"$PROJECT_DIR/pre-build.sh"`.
+`./pre-build.sh`, `"$SRCROOT/pre-build.sh"`.
 """,
         ),
         "project_name": attr.string(
