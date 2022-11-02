@@ -17,10 +17,13 @@ extension Generator {
         let nonRelativeProjectDir = directories.bazelOut.parent()
 
         let projectDir: Path
+        let executionRoot: Path
         if nonRelativeProjectDir.isRelative {
             projectDir = directories.projectRoot + nonRelativeProjectDir
+            executionRoot = "$(SRCROOT)" + nonRelativeProjectDir
         } else {
             projectDir = nonRelativeProjectDir
+            executionRoot = nonRelativeProjectDir
         }
 
         let srcRoot: String
@@ -37,13 +40,6 @@ extension Generator {
             path: srcRoot
         )
         pbxProj.add(object: mainGroup)
-
-        let executionRoot: Path
-        if directories.bazelOut.isRelative {
-            executionRoot = "$(SRCROOT)" + nonRelativeProjectDir
-        } else {
-            executionRoot = projectDir
-        }
 
         var buildSettings = project.buildSettings.asDictionary
         buildSettings.merge([
