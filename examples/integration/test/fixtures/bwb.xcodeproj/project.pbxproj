@@ -33,6 +33,7 @@
 		3AB0DF85320D85B3D48F195A /* c_lib.c in Sources */ = {isa = PBXBuildFile; fileRef = 3AEDEEABC4913622A9147C75 /* c_lib.c */; };
 		43C779D161AA0465C0DDE95E /* UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A45A0819673348AC1A7EEE /* UITests.swift */; };
 		54CD08F33D9E8D0FEF192DC7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43483C0C029D669DC6D9079A /* ContentView.swift */; };
+		5FB8DE696A4FA2F82D0A6109 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930A52F1C2814B98802A80A4 /* Resources.swift */; };
 		6A7413D8D6BE154EDEB5CF58 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43483C0C029D669DC6D9079A /* ContentView.swift */; };
 		74F02E79EC7DFB194D538FD9 /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483A88DA41F10E614026642A /* Lib.swift */; };
 		763F39BBC63DE170D3DF31F0 /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1644F0CCEBDCE912C7B8911 /* Lib.swift */; };
@@ -64,6 +65,7 @@
 		CB2C9A31F9BF9BC36AC89F79 /* Answers.h in Headers */ = {isa = PBXBuildFile; fileRef = 9FB807E65788589E5F03DF37 /* Answers.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D0BB2670F90CF218A2FE518B /* WatchOSAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A4069AA00E60D0D648E673 /* WatchOSAppUITests.swift */; };
 		D870FF78A16015EC55F80CD4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3C67424F456D9FF51EEBDA /* ContentView.swift */; };
+		DE7D9F82D6B71F86B1620305 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930A52F1C2814B98802A80A4 /* Resources.swift */; };
 		E48D3BC4D5BA7C22214BB9BF /* watchOSAppExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 0982B680A74E8BD8A971CC76 /* watchOSAppExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		E4D37243E160FD1EA0C3965A /* FXPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = CCB9EDDAC48EA2A043A5D901 /* FXPageControl.m */; };
 		E9EDC8C43E023AD8F43A4263 /* macOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67496CA997EE1999978DD2D4 /* macOSApp.swift */; };
@@ -466,6 +468,7 @@
 		25F3BAEB4375EB717A347CDE /* Info.extension.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.extension.plist; sourceTree = "<group>"; };
 		26E5833F2697196812B9D228 /* watchOSApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = watchOSApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28066E99B49BA4240169713B /* MixedAnswer_objc_modulemap.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = MixedAnswer_objc_modulemap.swift.modulemap; sourceTree = "<group>"; };
+		28ED92F6D2E02B9FCD9A49A4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2B40423341C5FE090E518F48 /* WidgetExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetExtension.swift; sourceTree = "<group>"; };
 		2BF0BED51C22CB78CC271636 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		307D407A0B5FB3A6E0073C3D /* Library.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = Library.swift.modulemap; sourceTree = "<group>"; };
@@ -566,6 +569,7 @@
 		90081A8A1EAF7A703FEE3D90 /* CoreUtils.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreUtils.pch; sourceTree = "<group>"; };
 		9089BB0D5CC8008B36E4B995 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		91343FF4F09993732DB8156F /* Info.withbundleid.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.withbundleid.plist; sourceTree = "<group>"; };
+		930A52F1C2814B98802A80A4 /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
 		930D847F31B7CB44D6A14542 /* dir */ = {isa = PBXFileReference; lastKnownFileType = folder; path = dir; sourceTree = "<group>"; };
 		93D1D04313B716DB073ECDBA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		949D4EA42DDC6DD785A8FCC6 /* Utils.bundle */ = {isa = PBXFileReference; lastKnownFileType = wrapper.cfbundle; path = Utils.bundle; sourceTree = "<group>"; };
@@ -775,6 +779,14 @@
 			path = AppClip;
 			sourceTree = "<group>";
 		};
+		04526BD5C9AC74EDEBE55240 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				28ED92F6D2E02B9FCD9A49A4 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		047B6DCAE4DD5F3E77AF2078 /* external */ = {
 			isa = PBXGroup;
 			children = (
@@ -885,9 +897,11 @@
 			isa = PBXGroup;
 			children = (
 				5253CCC0EB95D711133E08AC /* dist */,
+				04526BD5C9AC74EDEBE55240 /* Resources */,
 				81CEB384343DA3EBC4532AA1 /* BUILD */,
 				9089BB0D5CC8008B36E4B995 /* Info.plist */,
 				A43526B3370311547CB489D0 /* README.md */,
+				930A52F1C2814B98802A80A4 /* Resources.swift */,
 			);
 			path = Lib;
 			sourceTree = "<group>";
@@ -5496,6 +5510,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE7D9F82D6B71F86B1620305 /* Resources.swift in Sources */,
 				C3F0B2735D0E1380BCC3488A /* Lib.swift in Sources */,
 				853818CEF37DFF8E3F5F2E05 /* Lib.swift in Sources */,
 				B63026FC4366439687959078 /* Lib.swift in Sources */,
@@ -5697,6 +5712,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5FB8DE696A4FA2F82D0A6109 /* Resources.swift in Sources */,
 				763F39BBC63DE170D3DF31F0 /* Lib.swift in Sources */,
 				7C5A0BDE91D59586ACB02413 /* Lib.swift in Sources */,
 			);
@@ -7115,11 +7131,11 @@
 				"PREVIEWS_SWIFT_INCLUDE_PATH__YES[sdk=iphoneos*]" = "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-6c4ee7fb25a2/bin/UI";
 				PREVIEW_FRAMEWORK_PATHS = (
 					"\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework\"",
-					"\"$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin/Lib/frameworks/LibFramework.iOS.framework\"",
+					"\"$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin/Lib/LibFramework.iOS.framework\"",
 				);
 				"PREVIEW_FRAMEWORK_PATHS[sdk=iphoneos*]" = (
 					"\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework\"",
-					"\"$(BAZEL_OUT)/applebin_ios-ios_arm64-dbg-ST-6c4ee7fb25a2/bin/Lib/frameworks/LibFramework.iOS.framework\"",
+					"\"$(BAZEL_OUT)/applebin_ios-ios_arm64-dbg-ST-6c4ee7fb25a2/bin/Lib/LibFramework.iOS.framework\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.budilebuddy.UIFramework;
 				PRODUCT_MODULE_NAME = UI;

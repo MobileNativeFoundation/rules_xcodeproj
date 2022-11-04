@@ -18,6 +18,9 @@ enum Fixtures {
             "ONLY_ACTIVE_ARCH": .bool(true),
         ],
         targets: targets,
+        linkerProductsMap: [
+            .generated("a/frameworks/b.framework"): .generated("a/b.framework"),
+        ],
         replacementLabels: [:],
         targetHosts: [
             "W": ["I"],
@@ -452,7 +455,6 @@ enum Fixtures {
         files: [FilePath: File],
         elements: [FilePath: PBXFileElement],
         filePathResolver: FilePathResolver,
-        bazelRemappedFiles: [FilePath: FilePath],
         resolvedExternalRepositories: [(Path, Path)]
     ) {
         var elements: [FilePath: PBXFileElement] = [:]
@@ -1248,10 +1250,9 @@ class StopHook:
 
 """#)
 
-        // `xcodeGeneratedfiles`/`bazelRemappedFiles`
+        // `xcodeGeneratedfiles`
 
         let xcodeGeneratedFiles: [FilePath: FilePath]
-        let bazelRemappedFiles: [FilePath: FilePath]
         switch buildMode {
         case .xcode:
             xcodeGeneratedFiles = [
@@ -1279,12 +1280,8 @@ class StopHook:
                 .generated("z/WDK.appex"): .generated("z/WDK.appex"),
                 .generated("z/WK.appex"): .generated("z/WK.appex"),
             ]
-            bazelRemappedFiles = [:]
         case .bazel:
             xcodeGeneratedFiles = [:]
-            bazelRemappedFiles = [
-                .generated("a/frameworks/b.framework"): .generated("a/b.framework"),
-            ]
         }
 
         let filePathResolver = FilePathResolver(
@@ -1292,7 +1289,7 @@ class StopHook:
             xcodeGeneratedFiles: xcodeGeneratedFiles
         )
 
-        return (files, elements, filePathResolver, bazelRemappedFiles, [])
+        return (files, elements, filePathResolver, [])
     }
 
     static func products(
@@ -2083,8 +2080,7 @@ touch "$SCRIPT_OUTPUT_FILE_1"
     ) -> (
         pbxTargets: [ConsolidatedTarget.Key: PBXTarget],
         disambiguatedTargets: DisambiguatedTargets,
-        filePathResolver: FilePathResolver,
-        bazelRemappedFiles: [FilePath: FilePath]
+        filePathResolver: FilePathResolver
     ) {
         let pbxProject = pbxProj.rootObject!
         let mainGroup = pbxProject.mainGroup!
@@ -2093,7 +2089,6 @@ touch "$SCRIPT_OUTPUT_FILE_1"
             files,
             _,
             filePathResolver,
-            bazelRemappedFiles,
             _
         ) = Fixtures.files(
             in: pbxProj,
@@ -2123,8 +2118,7 @@ touch "$SCRIPT_OUTPUT_FILE_1"
         return (
             pbxTargets,
             disambiguatedTargets,
-            filePathResolver,
-            bazelRemappedFiles
+            filePathResolver
         )
     }
 
@@ -2134,7 +2128,7 @@ touch "$SCRIPT_OUTPUT_FILE_1"
         directories: FilePathResolver.Directories,
         consolidatedTargets: ConsolidatedTargets
     ) -> [ConsolidatedTarget.Key: PBXTarget] {
-        let (pbxTargets, _, _, _) = Fixtures.pbxTargets(
+        let (pbxTargets, _, _) = Fixtures.pbxTargets(
             in: pbxProj,
             buildMode: buildMode,
             directories: directories,
@@ -2667,7 +2661,7 @@ $(MACOSX_FILES)
         directories: FilePathResolver.Directories,
         consolidatedTargets: ConsolidatedTargets
     ) -> [ConsolidatedTarget.Key: PBXTarget] {
-        let (pbxTargets, _, _,_ ) = Fixtures.pbxTargets(
+        let (pbxTargets, _, _) = Fixtures.pbxTargets(
             in: pbxProj,
             directories: directories,
             consolidatedTargets: consolidatedTargets

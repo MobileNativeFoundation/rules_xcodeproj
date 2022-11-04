@@ -87,6 +87,7 @@
         "AppClip/Entitlements.entitlements",
         "AppClip/Info.plist",
         "AppClip/PreviewContent/Preview Assets.xcassets",
+        "Lib/Resources/Assets.xcassets",
         "AppClip/Assets.xcassets",
         "iOSApp/Resources/ExampleNestedResources/BUILD",
         "iOSApp/Resources/ExampleNestedResources/Info.plist",
@@ -394,6 +395,168 @@
         "t": "g",
         "_": "darwin_x86_64-opt-exec-BDE7E609-ST-87fb5cb17941/bin/external/rules_xcodeproj_index_import/index-import"
     },
+    "linker_products_map": [
+        {
+            "t": "g",
+            "_": "applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin/iOSApp/Source/CoreUtilsObjC/frameworks/CoreUtilsObjC.framework"
+        },
+        {
+            "t": "g",
+            "_": "applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.framework"
+        },
+        {
+            "t": "g",
+            "_": "applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin/Lib/frameworks/LibFramework.iOS.framework"
+        },
+        {
+            "t": "g",
+            "_": "applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin/Lib/LibFramework.iOS.framework"
+        },
+        {
+            "t": "g",
+            "_": "applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin/UI/frameworks/UIFramework.iOS.framework"
+        },
+        {
+            "t": "g",
+            "_": "applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin/UI/UIFramework.iOS.framework"
+        },
+        {
+            "t": "g",
+            "_": "applebin_watchos-watchos_x86_64-dbg-ST-c782804c2730/bin/Lib/frameworks/LibFramework.watchOS.framework"
+        },
+        {
+            "t": "g",
+            "_": "applebin_watchos-watchos_x86_64-dbg-ST-c782804c2730/bin/Lib/LibFramework.watchOS.framework"
+        },
+        {
+            "t": "g",
+            "_": "applebin_watchos-watchos_x86_64-dbg-ST-c782804c2730/bin/UI/frameworks/UIFramework.watchOS.framework"
+        },
+        {
+            "t": "g",
+            "_": "applebin_watchos-watchos_x86_64-dbg-ST-c782804c2730/bin/UI/UIFramework.watchOS.framework"
+        },
+        {
+            "t": "g",
+            "_": "applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin/Lib/dist/dynamic/frameworks/Lib.framework"
+        },
+        {
+            "t": "g",
+            "_": "applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin/Lib/dist/dynamic/Lib.framework"
+        },
+        {
+            "t": "g",
+            "_": "applebin_tvos-tvos_x86_64-dbg-ST-e5d0d9c9816d/bin/Lib/dist/dynamic/frameworks/Lib.framework"
+        },
+        {
+            "t": "g",
+            "_": "applebin_tvos-tvos_x86_64-dbg-ST-e5d0d9c9816d/bin/Lib/dist/dynamic/Lib.framework"
+        },
+        {
+            "t": "g",
+            "_": "applebin_watchos-watchos_x86_64-dbg-ST-c782804c2730/bin/Lib/dist/dynamic/frameworks/Lib.framework"
+        },
+        {
+            "t": "g",
+            "_": "applebin_watchos-watchos_x86_64-dbg-ST-c782804c2730/bin/Lib/dist/dynamic/Lib.framework"
+        },
+        {
+            "t": "g",
+            "_": "applebin_tvos-tvos_x86_64-dbg-ST-e5d0d9c9816d/bin/Lib/frameworks/LibFramework.tvOS.framework"
+        },
+        {
+            "t": "g",
+            "_": "applebin_tvos-tvos_x86_64-dbg-ST-e5d0d9c9816d/bin/Lib/LibFramework.tvOS.framework"
+        },
+        {
+            "t": "g",
+            "_": "applebin_tvos-tvos_x86_64-dbg-ST-e5d0d9c9816d/bin/UI/frameworks/UIFramework.tvOS.framework"
+        },
+        {
+            "t": "g",
+            "_": "applebin_tvos-tvos_x86_64-dbg-ST-e5d0d9c9816d/bin/UI/UIFramework.tvOS.framework"
+        },
+        {
+            "t": "g",
+            "_": "applebin_ios-ios_arm64-dbg-ST-6c4ee7fb25a2/bin/iOSApp/Source/CoreUtilsObjC/frameworks/CoreUtilsObjC.framework"
+        },
+        {
+            "t": "g",
+            "_": "applebin_ios-ios_arm64-dbg-ST-6c4ee7fb25a2/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.framework"
+        },
+        {
+            "t": "g",
+            "_": "applebin_ios-ios_arm64-dbg-ST-6c4ee7fb25a2/bin/Lib/frameworks/LibFramework.iOS.framework"
+        },
+        {
+            "t": "g",
+            "_": "applebin_ios-ios_arm64-dbg-ST-6c4ee7fb25a2/bin/Lib/LibFramework.iOS.framework"
+        },
+        {
+            "t": "g",
+            "_": "applebin_ios-ios_arm64-dbg-ST-6c4ee7fb25a2/bin/UI/frameworks/UIFramework.iOS.framework"
+        },
+        {
+            "t": "g",
+            "_": "applebin_ios-ios_arm64-dbg-ST-6c4ee7fb25a2/bin/UI/UIFramework.iOS.framework"
+        },
+        {
+            "t": "g",
+            "_": "applebin_watchos-watchos_arm64_32-dbg-ST-6c9a1ce26af7/bin/Lib/frameworks/LibFramework.watchOS.framework"
+        },
+        {
+            "t": "g",
+            "_": "applebin_watchos-watchos_arm64_32-dbg-ST-6c9a1ce26af7/bin/Lib/LibFramework.watchOS.framework"
+        },
+        {
+            "t": "g",
+            "_": "applebin_watchos-watchos_arm64_32-dbg-ST-6c9a1ce26af7/bin/UI/frameworks/UIFramework.watchOS.framework"
+        },
+        {
+            "t": "g",
+            "_": "applebin_watchos-watchos_arm64_32-dbg-ST-6c9a1ce26af7/bin/UI/UIFramework.watchOS.framework"
+        },
+        {
+            "t": "g",
+            "_": "applebin_ios-ios_arm64-dbg-ST-6c4ee7fb25a2/bin/Lib/dist/dynamic/frameworks/Lib.framework"
+        },
+        {
+            "t": "g",
+            "_": "applebin_ios-ios_arm64-dbg-ST-6c4ee7fb25a2/bin/Lib/dist/dynamic/Lib.framework"
+        },
+        {
+            "t": "g",
+            "_": "applebin_tvos-tvos_arm64-dbg-ST-c7d4eb25a313/bin/Lib/dist/dynamic/frameworks/Lib.framework"
+        },
+        {
+            "t": "g",
+            "_": "applebin_tvos-tvos_arm64-dbg-ST-c7d4eb25a313/bin/Lib/dist/dynamic/Lib.framework"
+        },
+        {
+            "t": "g",
+            "_": "applebin_watchos-watchos_arm64_32-dbg-ST-6c9a1ce26af7/bin/Lib/dist/dynamic/frameworks/Lib.framework"
+        },
+        {
+            "t": "g",
+            "_": "applebin_watchos-watchos_arm64_32-dbg-ST-6c9a1ce26af7/bin/Lib/dist/dynamic/Lib.framework"
+        },
+        {
+            "t": "g",
+            "_": "applebin_tvos-tvos_arm64-dbg-ST-c7d4eb25a313/bin/Lib/frameworks/LibFramework.tvOS.framework"
+        },
+        {
+            "t": "g",
+            "_": "applebin_tvos-tvos_arm64-dbg-ST-c7d4eb25a313/bin/Lib/LibFramework.tvOS.framework"
+        },
+        {
+            "t": "g",
+            "_": "applebin_tvos-tvos_arm64-dbg-ST-c7d4eb25a313/bin/UI/frameworks/UIFramework.tvOS.framework"
+        },
+        {
+            "t": "g",
+            "_": "applebin_tvos-tvos_arm64-dbg-ST-c7d4eb25a313/bin/UI/UIFramework.tvOS.framework"
+        }
+    ],
     "name": "bwb",
     "post_build_script": null,
     "pre_build_script": null,
@@ -2866,6 +3029,7 @@
             "configuration": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-6c4ee7fb25a2",
             "inputs": {
                 "srcs": [
+                    "Lib/Resources.swift",
                     {
                         "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-6c4ee7fb25a2/bin/Lib/Lib.swift",
                         "t": "g"
@@ -2957,6 +3121,7 @@
             "configuration": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb",
             "inputs": {
                 "srcs": [
+                    "Lib/Resources.swift",
                     {
                         "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin/Lib/Lib.swift",
                         "t": "g"
@@ -3048,6 +3213,7 @@
             "configuration": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-c7d4eb25a313",
             "inputs": {
                 "srcs": [
+                    "Lib/Resources.swift",
                     {
                         "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-c7d4eb25a313/bin/Lib/Lib.swift",
                         "t": "g"
@@ -3139,6 +3305,7 @@
             "configuration": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-e5d0d9c9816d",
             "inputs": {
                 "srcs": [
+                    "Lib/Resources.swift",
                     {
                         "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-e5d0d9c9816d/bin/Lib/Lib.swift",
                         "t": "g"
@@ -3230,6 +3397,7 @@
             "configuration": "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-6c9a1ce26af7",
             "inputs": {
                 "srcs": [
+                    "Lib/Resources.swift",
                     {
                         "_": "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-6c9a1ce26af7/bin/Lib/Lib.swift",
                         "t": "g"
@@ -3321,6 +3489,7 @@
             "configuration": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-c782804c2730",
             "inputs": {
                 "srcs": [
+                    "Lib/Resources.swift",
                     {
                         "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-c782804c2730/bin/Lib/Lib.swift",
                         "t": "g"

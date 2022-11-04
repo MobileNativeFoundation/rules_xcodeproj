@@ -18,6 +18,7 @@ final class GeneratorTests: XCTestCase {
             configuration: "abc123",
             buildSettings: [:],
             targets: Fixtures.targets,
+            linkerProductsMap: [:],
             replacementLabels: [:],
             targetHosts: [
                 "WKE": ["I 1", "I 2"],
@@ -155,7 +156,6 @@ final class GeneratorTests: XCTestCase {
             files,
             filesAndGroups,
             filePathResolver,
-            bazelRemappedFiles,
             resolvedExternalRepositories
         ) = Fixtures.files(
             in: pbxProj,
@@ -286,7 +286,6 @@ final class GeneratorTests: XCTestCase {
             files: [FilePath: File],
             rootElements: [PBXFileElement],
             filePathResolver: FilePathResolver,
-            bazelRemappedFiles: [FilePath: FilePath],
             resolvedExternalRepositories: [(Path, Path)]
         ) {
             createFilesAndGroupsCalled.append(.init(
@@ -302,7 +301,6 @@ final class GeneratorTests: XCTestCase {
                 files,
                 rootElements,
                 filePathResolver,
-                bazelRemappedFiles,
                 resolvedExternalRepositories
             )
         }
@@ -533,7 +531,7 @@ final class GeneratorTests: XCTestCase {
             let pbxTargets: [ConsolidatedTarget.Key: PBXTarget]
             let hostIDs: [TargetID: [TargetID]]
             let hasBazelDependencies: Bool
-            let bazelRemappedFiles: [FilePath: FilePath]
+            let linkerProductsMap: [FilePath: FilePath]
         }
 
         var setTargetConfigurationsCalled: [SetTargetConfigurationsCalled] = []
@@ -545,7 +543,7 @@ final class GeneratorTests: XCTestCase {
             pbxTargets: [ConsolidatedTarget.Key: PBXTarget],
             hostIDs: [TargetID: [TargetID]],
             hasBazelDependencies: Bool,
-            bazelRemappedFiles: [FilePath: FilePath],
+            linkerProductsMap: [FilePath: FilePath],
             filePathResolver: FilePathResolver
         ) {
             setTargetConfigurationsCalled.append(.init(
@@ -556,7 +554,7 @@ final class GeneratorTests: XCTestCase {
                 pbxTargets: pbxTargets,
                 hostIDs: hostIDs,
                 hasBazelDependencies: hasBazelDependencies,
-                bazelRemappedFiles: bazelRemappedFiles
+                linkerProductsMap: linkerProductsMap
             ))
         }
 
@@ -569,7 +567,7 @@ final class GeneratorTests: XCTestCase {
                 pbxTargets: pbxTargets,
                 hostIDs: project.targetHosts,
                 hasBazelDependencies: true,
-                bazelRemappedFiles: bazelRemappedFiles
+                linkerProductsMap: project.linkerProductsMap
             ),
         ]
 

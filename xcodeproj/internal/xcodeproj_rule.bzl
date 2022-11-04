@@ -7,7 +7,13 @@ load("@bazel_skylib//lib:shell.bzl", "shell")
 load(":bazel_labels.bzl", "bazel_labels")
 load(":collections.bzl", "set_if_true", "uniq")
 load(":configuration.bzl", "get_configuration")
-load(":files.bzl", "file_path", "file_path_to_dto", "parsed_file_path")
+load(
+    ":files.bzl",
+    "file_path",
+    "file_path_to_dto",
+    "normalized_file_path",
+    "parsed_file_path",
+)
 load(":flattened_key_values.bzl", "flattened_key_values")
 load(":input_files.bzl", "input_files")
 load(":output_files.bzl", "output_files")
@@ -214,9 +220,20 @@ targets.
     unfocused_libraries = sets.make(inputs.unfocused_libraries.to_list())
     has_focused_labels = sets.length(focused_labels) > 0
 
+    linker_products_flattened_map = []
     transitive_focused_targets = []
     unfocused_targets = {}
     for xcode_target in unprocessed_targets.values():
+        if build_mode == "bazel":
+            product = xcode_target.product
+            product_file_path_dto = file_path_to_dto(product.file_path)
+            linker_files = product.linker_files.to_list()
+            for file in linker_files:
+                linker_products_flattened_map.append(
+                    file_path_to_dto(normalized_file_path(file)),
+                )
+                linker_products_flattened_map.append(product_file_path_dto)
+
         label = replacement_labels.get(
             xcode_target.id,
             xcode_target.label,
@@ -592,6 +609,7 @@ actual targets: {}
         additional_outputs,
         has_unfocused_targets,
         focused_targets_extra_files,
+        linker_products_flattened_map,
         replacement_labels_by_label,
     )
 
@@ -607,6 +625,7 @@ def _write_json_spec(
         target_dtos,
         targets,
         has_unfocused_targets,
+        linker_products_flattened_map,
         replacement_labels,
         inputs,
         extra_files,
@@ -657,6 +676,7 @@ def _write_json_spec(
 "force_bazel_dependencies":{force_bazel_dependencies},\
 "generator_label":"{generator_label}",\
 "index_import":{index_import},\
+"linker_products_map":{linker_products_map},\
 "name":"{name}",\
 "post_build_script":{post_build_script},\
 "pre_build_script":{pre_build_script},\
@@ -682,6 +702,7 @@ def _write_json_spec(
         index_import = file_path_to_dto(
             file_path(ctx.executable._index_import),
         ),
+        linker_products_map = linker_products_flattened_map,
         name = project_name,
         post_build_script = post_build_script,
         pre_build_script = pre_build_script,
@@ -1022,6 +1043,7 @@ def _xcodeproj_impl(ctx):
         additional_outputs,
         has_unfocused_targets,
         focused_targets_extra_files,
+        linker_products_flattened_map,
         replacement_labels_by_label,
     ) = _process_targets(
         build_mode = build_mode,
@@ -1066,6 +1088,7 @@ def _xcodeproj_impl(ctx):
         targets = targets,
         target_dtos = target_dtos,
         has_unfocused_targets = has_unfocused_targets,
+        linker_products_flattened_map = linker_products_flattened_map,
         replacement_labels = replacement_labels,
         inputs = inputs,
         extra_files = extra_files,

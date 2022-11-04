@@ -12,8 +12,15 @@ exports_files(
 
 swift_library(
     name = "Lib",
-    srcs = [":gen_Lib.swift"],
+    srcs = [
+        "Resources.swift",
+        ":gen_Lib.swift",
+    ],
     copts = ["-application-extension"],
+    data = glob(
+        ["Resources/**"],
+        exclude = ["**/.DS_Store"],
+    ),
     module_name = "Lib",
     tags = ["manual"],
     visibility = ["//visibility:public"],

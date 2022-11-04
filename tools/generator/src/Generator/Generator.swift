@@ -77,7 +77,6 @@ class Generator {
             files,
             rootElements,
             filePathResolver,
-            bazelRemappedFiles,
             resolvedExternalRepositories
         ) = try environment.createFilesAndGroups(
             pbxProj,
@@ -142,7 +141,7 @@ class Generator {
             pbxTargets,
             project.targetHosts,
             bazelDependencies != nil,
-            bazelRemappedFiles,
+            project.linkerProductsMap,
             filePathResolver
         )
         try environment.setTargetDependencies(
