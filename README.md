@@ -55,7 +55,7 @@ rules.
 - [Slack](https://twitter.com/pennig/status/1562558935223386116)
 - [SwiftLint](https://github.com/realm/SwiftLint)
 
-If you are also using rules_xcodeproj fpr your project, feel free to open a PR
+If you are also using rules_xcodeproj for your project, feel free to open a PR
 to include it in the list above.
 
 ## Compatibility
