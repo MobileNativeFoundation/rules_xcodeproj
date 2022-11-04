@@ -29,7 +29,7 @@ objc_library(
     copts = [
         "-I$(BINDIR)/iOSApp/CoreUtilsMixed",
     ],
-    module_name = "MixedAnswer",
+    module_map = ":MixedAnswer_objc_modulemap",
     visibility = ["//iOSApp:__subpackages__"],
     deps = [
         ":MixedAnswerLib_Swift",
