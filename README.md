@@ -49,6 +49,14 @@ planned high level features:
 We've also documented the [high level design](/doc/design/high-level.md) of the
 rules.
 
+## Projects using rules_xcodeproj
+
+- [Envoy Mobile](https://github.com/envoyproxy/envoy-mobile)
+- [SwiftLint](https://github.com/realm/SwiftLint)
+
+If you are also using rules_xcodeproj for your project, feel free to open a PR
+to include it in the list above.
+
 ## Compatibility
 
 - macOS 12.0-13.0
