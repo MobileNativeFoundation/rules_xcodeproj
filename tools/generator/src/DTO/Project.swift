@@ -15,7 +15,7 @@ struct Project: Equatable, Decodable {
     let schemeAutogenerationMode: SchemeAutogenerationMode
     let customXcodeSchemes: [XcodeScheme]
     let forceBazelDependencies: Bool
-    let indexImport: FilePath
+    let indexImport: String
     let preBuildScript: String?
     let postBuildScript: String?
 }

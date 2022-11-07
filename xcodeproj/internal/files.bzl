@@ -57,6 +57,30 @@ def file_path(
         force_group_creation = force_group_creation,
     )
 
+def build_setting_path(file, use_build_dir = False):
+    """Converts a `File` into a string to be used in an Xcode build setting.
+
+    Args:
+        file: A `File`.
+        use_build_dir: Whether to use `$(BUILD_DIR)` instead of `$(BAZEL_OUT)`
+            for generated files.
+
+    Returns:
+        A `string`.
+    """
+    path = file.path
+    if not file.is_source:
+        # Generated
+        if use_build_dir:
+            return "$(BUILD_DIR)/{}".format(path)
+        else:
+            # Removing "bazel-out" prefix
+            return "$(BAZEL_OUT){}".format(path[9:])
+    if file.owner.workspace_name:
+        # External
+        return "$(BAZEL_EXTERNAL){}".format(path[8:])
+    return "$(SRCROOT)/{}".format(path)
+
 def parsed_file_path(path):
     """Coverts a file path string into a `FilePath` Swift DTO value.
 
