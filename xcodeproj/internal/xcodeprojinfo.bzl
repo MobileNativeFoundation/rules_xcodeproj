@@ -1,6 +1,7 @@
 """Functions for creating `XcodeProjInfo` providers."""
 
 load("@bazel_skylib//lib:dicts.bzl", "dicts")
+load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load(
     "@build_bazel_rules_apple//apple:providers.bzl",
     "AppleBinaryInfo",
@@ -29,6 +30,37 @@ load(
 load(":top_level_targets.bzl", "process_top_level_target")
 
 # Creating `XcodeProjInfo`
+
+_INTERNAL_RULE_KINDS = {
+    "apple_cc_toolchain": None,
+    "apple_mac_tools_toolchain": None,
+    "apple_xplat_tools_toolchain": None,
+    "armeabi_cc_toolchain_config": None,
+    "filegroup": None,
+    "cc_toolchain": None,
+    "cc_toolchain_alias": None,
+    "cc_toolchain_suite": None,
+    "macos_test_runner": None,
+    "xcode_swift_toolchain": None,
+}
+
+_TOOLS_REPOS = {
+    "build_bazel_rules_apple": None,
+    "build_bazel_rules_swift": None,
+    "bazel_tools": None,
+    "xctestrunner": None,
+}
+
+# Just a slight optimization to not process things we know don't need to have
+# out provider.
+def _should_create_provider(*, ctx, target):
+    if BuildSettingInfo in target:
+        return False
+    if target.label.workspace_name in _TOOLS_REPOS:
+        return False
+    if ctx.rule.kind in _INTERNAL_RULE_KINDS:
+        return False
+    return True
 
 def _should_skip_target(*, ctx, target):
     """Determines if the given target should be skipped for target generation.
@@ -186,6 +218,7 @@ def _skip_target(
                 dep[XcodeProjInfo].compilation_providers,
             )
             for dep in deps
+            if XcodeProjInfo in deps
         ],
     )
     search_paths = target_search_paths.make(
@@ -318,6 +351,9 @@ def _create_xcodeprojinfo(
         A `dict` of fields to be merged into the `XcodeProjInfo`. See
         `_target_info_fields`.
     """
+    if not _should_create_provider(ctx = ctx, target = target):
+        return None
+
     if (
         automatic_target_info.bazel_build_mode_error and
         should_bundle_resources(ctx = ctx)
@@ -490,6 +526,9 @@ def create_xcodeprojinfo(*, ctx, target, transitive_infos):
             automatic_target_info = automatic_target_info,
             transitive_infos = transitive_infos,
         )
+
+    if not info_fields:
+        return None
 
     return XcodeProjInfo(
         label = target.label,

@@ -54,18 +54,18 @@ def _xcodeproj_aspect_impl(target, ctx):
     if XcodeProjInfo not in target:
         # Only create an `XcodeProjInfo` if the target hasn't already created
         # one
-        providers.append(
-            create_xcodeprojinfo(
+        info = create_xcodeprojinfo(
+            ctx = ctx,
+            target = target,
+            transitive_infos = _transitive_infos(
                 ctx = ctx,
-                target = target,
-                transitive_infos = _transitive_infos(
-                    ctx = ctx,
-                    automatic_target_info = (
-                        target[XcodeProjAutomaticTargetProcessingInfo]
-                    ),
+                automatic_target_info = (
+                    target[XcodeProjAutomaticTargetProcessingInfo]
                 ),
             ),
         )
+        if info:
+            providers.append(info)
 
     if XcodeProjProvisioningProfileInfo not in target:
         # Only create an `XcodeProjProvisioningProfileInfo` if the target hasn't

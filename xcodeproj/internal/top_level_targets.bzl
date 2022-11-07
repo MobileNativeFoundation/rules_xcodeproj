@@ -359,6 +359,7 @@ def process_top_level_target(
         dep[XcodeProjInfo]
         for attr in automatic_target_info.deps
         for dep in getattr(ctx.rule.attr, attr, [])
+        if XcodeProjInfo in dep
     ]
 
     compilation_providers = comp_providers.merge(

@@ -77,12 +77,12 @@
         }
     ],
     "extra_files": [
-        "AppClip/BUILD",
         {
             "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework",
             "t": "e"
         },
         "Lib/BUILD",
+        "AppClip/BUILD",
         "iOSApp/BUILD",
         "AppClip/Entitlements.entitlements",
         "AppClip/Info.plist",
@@ -140,7 +140,6 @@
         "WidgetExtension/Assets.xcassets",
         "iOSApp/Source/CoreUtilsObjC/Info.plist",
         "UI/Info.plist",
-        "watchOSApp/BUILD",
         {
             "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework",
             "t": "e"
@@ -153,6 +152,7 @@
             "t": "g"
         },
         "watchOSAppExtension/Assets.xcassets",
+        "watchOSApp/BUILD",
         "watchOSApp/Info.plist",
         {
             "_": "applebin_watchos-watchos_x86_64-dbg-ST-826cd41ea091/bin/watchOSApp/Info.withbundleid.plist",
@@ -218,8 +218,8 @@
             "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework",
             "t": "e"
         },
-        "tvOSApp/Resources/BUILD",
         "tvOSApp/Source/BUILD",
+        "tvOSApp/Resources/BUILD",
         "tvOSApp/Source/Info.plist",
         "tvOSApp/Resources/PreviewContent/Preview Assets.xcassets",
         "tvOSApp/Resources/Assets.xcassets",
@@ -259,9 +259,9 @@
             "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-56c91ad57eeb/bin/iOSApp/Test/TestingUtils/TestingUtils.swift.modulemap",
             "t": "g"
         },
-        "macOSApp/Source/BUILD",
         "macOSApp/third_party/BUILD",
         "macOSApp/third_party/ExampleFramework.framework",
+        "macOSApp/Source/BUILD",
         "macOSApp/Source/Info.plist",
         "macOSApp/Source/PreviewContent/Preview Assets.xcassets",
         "macOSApp/Source/Assets.xcassets",
