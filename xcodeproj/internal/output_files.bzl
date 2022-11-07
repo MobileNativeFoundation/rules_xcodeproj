@@ -241,7 +241,7 @@ def _collect_output_files(
         bwb_infoplist = None,
         transitive_infos,
         should_produce_dto = True,
-        should_produce_output_groups):
+        should_produce_output_groups = True):
     """Collects the outputs of a target.
 
     Args:

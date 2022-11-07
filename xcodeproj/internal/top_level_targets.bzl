@@ -32,7 +32,6 @@ load(
     "process_modulemaps",
     "process_swiftmodules",
     "should_bundle_resources",
-    "should_include_outputs_output_groups",
 )
 load(":target_search_paths.bzl", "target_search_paths")
 load(":xcode_targets.bzl", "xcode_targets")
@@ -410,9 +409,6 @@ def process_top_level_target(
         bwx_infoplist = bwx_infoplist,
         bwb_infoplist = bwb_infoplist,
         transitive_infos = transitive_infos,
-        should_produce_output_groups = should_include_outputs_output_groups(
-            ctx = ctx,
-        ),
     )
 
     if not inputs.srcs:

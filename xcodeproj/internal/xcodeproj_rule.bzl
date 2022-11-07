@@ -1132,26 +1132,27 @@ def _xcodeproj_impl(ctx):
         xcodeproj = xcodeproj,
     )
 
-    input_files_output_groups = input_files.to_output_groups_fields(
-        ctx = ctx,
-        inputs = inputs,
-        additional_generated = additional_generated,
-        index_import = ctx.executable._index_import,
-    )
-    output_files_output_groups = output_files.to_output_groups_fields(
-        ctx = ctx,
-        outputs = outputs,
-        additional_outputs = additional_outputs,
-        index_import = ctx.executable._index_import,
-    )
-
     if build_mode == "xcode":
+        input_files_output_groups = input_files.to_output_groups_fields(
+            ctx = ctx,
+            inputs = inputs,
+            additional_generated = additional_generated,
+            index_import = ctx.executable._index_import,
+        )
+        output_files_output_groups = {}
         all_targets_files = [
             input_files_output_groups["all_xc"],
             input_files_output_groups["all_xi"],
             input_files_output_groups["all_xl"],
         ]
     else:
+        input_files_output_groups = {}
+        output_files_output_groups = output_files.to_output_groups_fields(
+            ctx = ctx,
+            outputs = outputs,
+            additional_outputs = additional_outputs,
+            index_import = ctx.executable._index_import,
+        )
         all_targets_files = [output_files_output_groups["all_b"]]
 
     return [
