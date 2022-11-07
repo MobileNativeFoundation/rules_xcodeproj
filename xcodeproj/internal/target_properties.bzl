@@ -18,19 +18,6 @@ def should_bundle_resources(ctx):
     """
     return ctx.attr._build_mode[BuildSettingInfo].value != "bazel"
 
-def should_include_outputs(ctx):
-    """Determines whether outputs should be included in the generated project.
-
-    Args:
-        ctx: The aspect context.
-
-    Returns:
-        `True` if outputs should be included, `False` otherwise. This will be
-        `True` if the generator can use the output files (e.g. not Build with
-        Bazel via Proxy).
-    """
-    return ctx.attr._build_mode[BuildSettingInfo].value != "bazel_via_proxy"
-
 def should_include_outputs_output_groups(ctx):
     """Determines whether outputs output groups should be created.
 

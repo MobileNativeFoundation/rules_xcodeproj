@@ -240,7 +240,7 @@ def _collect_output_files(
         bwx_infoplist = None,
         bwb_infoplist = None,
         transitive_infos,
-        should_produce_dto,
+        should_produce_dto = True,
         should_produce_output_groups):
     """Collects the outputs of a target.
 

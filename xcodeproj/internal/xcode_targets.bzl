@@ -270,6 +270,7 @@ def _xcode_target_to_dto(
         build_mode,
         include_lldb_context,
         is_unfocused_dependency = False,
+        should_include_outputs,
         unfocused_targets = {},
         target_merges = {}):
     inputs = xcode_target.inputs
@@ -369,7 +370,9 @@ def _xcode_target_to_dto(
             if id not in unfocused_targets
         ],
     )
-    set_if_true(dto, "outputs", _outputs_to_dto(xcode_target.outputs))
+
+    if should_include_outputs:
+        set_if_true(dto, "outputs", _outputs_to_dto(xcode_target.outputs))
 
     if build_mode == "xcode":
         infoplist = xcode_target.outputs.bwx_infoplist
