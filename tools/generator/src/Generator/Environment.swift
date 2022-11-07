@@ -38,7 +38,6 @@ struct Environment {
         files: [FilePath: File],
         rootElements: [PBXFileElement],
         filePathResolver: FilePathResolver,
-        bazelRemappedFiles: [FilePath: FilePath],
         resolvedExternalRepositories: [(Path, Path)]
     )
 
@@ -92,7 +91,7 @@ struct Environment {
         _ pbxTargets: [ConsolidatedTarget.Key: PBXTarget],
         _ hostIDs: [TargetID: [TargetID]],
         _ hasBazelDependencies: Bool,
-        _ bazelRemappedFiles: [FilePath: FilePath],
+        _ linkerProductsMap: [FilePath: FilePath],
         _ filePathResolver: FilePathResolver
     ) throws -> Void
 

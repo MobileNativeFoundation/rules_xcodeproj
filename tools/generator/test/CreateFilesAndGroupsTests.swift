@@ -60,7 +60,6 @@ final class CreateFilesAndGroupsTests: XCTestCase {
             createdFiles,
             createdRootElements,
             _,
-            _,
             _
         ) = try Generator.createFilesAndGroups(
             in: pbxProj,
@@ -123,7 +122,6 @@ final class CreateFilesAndGroupsTests: XCTestCase {
             expectedFiles,
             expectedElements,
             expectedFilePathResolver,
-            expectedBazelRemappedFiles,
             _
         ) = Fixtures.files(
             in: expectedPBXProj,
@@ -165,7 +163,6 @@ final class CreateFilesAndGroupsTests: XCTestCase {
             createdFiles,
             createdRootElements,
             filePathResolver,
-            bazelRemappedFiles,
             _
         ) = try Generator.createFilesAndGroups(
             in: pbxProj,
@@ -198,10 +195,6 @@ final class CreateFilesAndGroupsTests: XCTestCase {
                 .map(KeyAndValue.init).sorted(),
             expectedFilePathResolver.xcodeGeneratedFiles
                 .map(KeyAndValue.init).sorted()
-        )
-        XCTAssertNoDifference(
-            bazelRemappedFiles.map(KeyAndValue.init).sorted(),
-            expectedBazelRemappedFiles.map(KeyAndValue.init).sorted()
         )
 
         XCTAssertNoDifference(pbxProj, expectedPBXProj)
@@ -238,7 +231,6 @@ final class CreateFilesAndGroupsTests: XCTestCase {
             expectedFiles,
             expectedElements,
             expectedFilePathResolver,
-            expectedBazelRemappedFiles,
             _
         ) = Fixtures.files(
             in: expectedPBXProj,
@@ -280,7 +272,6 @@ final class CreateFilesAndGroupsTests: XCTestCase {
             createdFiles,
             createdRootElements,
             filePathResolver,
-            bazelRemappedFiles,
             _
         ) = try Generator.createFilesAndGroups(
             in: pbxProj,
@@ -313,10 +304,6 @@ final class CreateFilesAndGroupsTests: XCTestCase {
                 .map(KeyAndValue.init).sorted(),
             expectedFilePathResolver.xcodeGeneratedFiles
                 .map(KeyAndValue.init).sorted()
-        )
-        XCTAssertNoDifference(
-            bazelRemappedFiles.map(KeyAndValue.init).sorted(),
-            expectedBazelRemappedFiles.map(KeyAndValue.init).sorted()
         )
 
         XCTAssertNoDifference(pbxProj, expectedPBXProj)

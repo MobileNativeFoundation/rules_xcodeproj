@@ -318,6 +318,7 @@
         "t": "g",
         "_": "darwin_x86_64-opt-exec-BDE7E609-ST-87fb5cb17941/bin/external/rules_xcodeproj_index_import/index-import"
     },
+    "linker_products_map": [],
     "name": "bwx",
     "post_build_script": null,
     "pre_build_script": null,
@@ -403,6 +404,7 @@
                 },
                 "resources": [
                     "AppClip/PreviewContent/Preview Assets.xcassets",
+                    "Lib/Resources/Assets.xcassets",
                     "AppClip/Assets.xcassets"
                 ],
                 "srcs": [
@@ -561,6 +563,7 @@
                 },
                 "resources": [
                     "AppClip/PreviewContent/Preview Assets.xcassets",
+                    "Lib/Resources/Assets.xcassets",
                     "AppClip/Assets.xcassets"
                 ],
                 "srcs": [
@@ -1566,6 +1569,11 @@
                 "_": "applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/Lib/dist/dynamic/rules_xcodeproj/iOS/Info.plist",
                 "t": "g"
             },
+            "inputs": {
+                "resources": [
+                    "Lib/Resources/Assets.xcassets"
+                ]
+            },
             "is_swift": false,
             "label": "//Lib/dist/dynamic:iOS",
             "linker_inputs": {
@@ -1676,6 +1684,11 @@
                 "_": "applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib/dist/dynamic/rules_xcodeproj/iOS/Info.plist",
                 "t": "g"
             },
+            "inputs": {
+                "resources": [
+                    "Lib/Resources/Assets.xcassets"
+                ]
+            },
             "is_swift": false,
             "label": "//Lib/dist/dynamic:iOS",
             "linker_inputs": {
@@ -1784,6 +1797,11 @@
             "info_plist": {
                 "_": "applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin/Lib/dist/dynamic/rules_xcodeproj/tvOS/Info.plist",
                 "t": "g"
+            },
+            "inputs": {
+                "resources": [
+                    "Lib/Resources/Assets.xcassets"
+                ]
             },
             "is_swift": false,
             "label": "//Lib/dist/dynamic:tvOS",
@@ -1894,6 +1912,11 @@
                 "_": "applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/Lib/dist/dynamic/rules_xcodeproj/tvOS/Info.plist",
                 "t": "g"
             },
+            "inputs": {
+                "resources": [
+                    "Lib/Resources/Assets.xcassets"
+                ]
+            },
             "is_swift": false,
             "label": "//Lib/dist/dynamic:tvOS",
             "linker_inputs": {
@@ -2002,6 +2025,11 @@
             "info_plist": {
                 "_": "applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin/Lib/dist/dynamic/rules_xcodeproj/watchOS/Info.plist",
                 "t": "g"
+            },
+            "inputs": {
+                "resources": [
+                    "Lib/Resources/Assets.xcassets"
+                ]
             },
             "is_swift": false,
             "label": "//Lib/dist/dynamic:watchOS",
@@ -2112,6 +2140,11 @@
                 "_": "applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/Lib/dist/dynamic/rules_xcodeproj/watchOS/Info.plist",
                 "t": "g"
             },
+            "inputs": {
+                "resources": [
+                    "Lib/Resources/Assets.xcassets"
+                ]
+            },
             "is_swift": false,
             "label": "//Lib/dist/dynamic:watchOS",
             "linker_inputs": {
@@ -2218,6 +2251,7 @@
             "configuration": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871",
             "inputs": {
                 "srcs": [
+                    "Lib/Resources.swift",
                     {
                         "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/Lib/Lib.swift",
                         "t": "g"
@@ -2309,6 +2343,7 @@
             "configuration": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307",
             "inputs": {
                 "srcs": [
+                    "Lib/Resources.swift",
                     {
                         "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib/Lib.swift",
                         "t": "g"
@@ -2400,6 +2435,7 @@
             "configuration": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-4104480a806c",
             "inputs": {
                 "srcs": [
+                    "Lib/Resources.swift",
                     {
                         "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin/Lib/Lib.swift",
                         "t": "g"
@@ -2491,6 +2527,7 @@
             "configuration": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514",
             "inputs": {
                 "srcs": [
+                    "Lib/Resources.swift",
                     {
                         "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/Lib/Lib.swift",
                         "t": "g"
@@ -2582,6 +2619,7 @@
             "configuration": "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8",
             "inputs": {
                 "srcs": [
+                    "Lib/Resources.swift",
                     {
                         "_": "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin/Lib/Lib.swift",
                         "t": "g"
@@ -2673,6 +2711,7 @@
             "configuration": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673",
             "inputs": {
                 "srcs": [
+                    "Lib/Resources.swift",
                     {
                         "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/Lib/Lib.swift",
                         "t": "g"
@@ -2767,6 +2806,11 @@
             "info_plist": {
                 "_": "applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/Lib/rules_xcodeproj/LibFramework.iOS/Info.plist",
                 "t": "g"
+            },
+            "inputs": {
+                "resources": [
+                    "Lib/Resources/Assets.xcassets"
+                ]
             },
             "is_swift": false,
             "label": "//Lib:LibFramework.iOS",
@@ -2878,6 +2922,11 @@
                 "_": "applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib/rules_xcodeproj/LibFramework.iOS/Info.plist",
                 "t": "g"
             },
+            "inputs": {
+                "resources": [
+                    "Lib/Resources/Assets.xcassets"
+                ]
+            },
             "is_swift": false,
             "label": "//Lib:LibFramework.iOS",
             "linker_inputs": {
@@ -2986,6 +3035,11 @@
             "info_plist": {
                 "_": "applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin/Lib/rules_xcodeproj/LibFramework.tvOS/Info.plist",
                 "t": "g"
+            },
+            "inputs": {
+                "resources": [
+                    "Lib/Resources/Assets.xcassets"
+                ]
             },
             "is_swift": false,
             "label": "//Lib:LibFramework.tvOS",
@@ -3096,6 +3150,11 @@
                 "_": "applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/Lib/rules_xcodeproj/LibFramework.tvOS/Info.plist",
                 "t": "g"
             },
+            "inputs": {
+                "resources": [
+                    "Lib/Resources/Assets.xcassets"
+                ]
+            },
             "is_swift": false,
             "label": "//Lib:LibFramework.tvOS",
             "linker_inputs": {
@@ -3205,6 +3264,11 @@
                 "_": "applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin/Lib/rules_xcodeproj/LibFramework.watchOS/Info.plist",
                 "t": "g"
             },
+            "inputs": {
+                "resources": [
+                    "Lib/Resources/Assets.xcassets"
+                ]
+            },
             "is_swift": false,
             "label": "//Lib:LibFramework.watchOS",
             "linker_inputs": {
@@ -3313,6 +3377,11 @@
             "info_plist": {
                 "_": "applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/Lib/rules_xcodeproj/LibFramework.watchOS/Info.plist",
                 "t": "g"
+            },
+            "inputs": {
+                "resources": [
+                    "Lib/Resources/Assets.xcassets"
+                ]
             },
             "is_swift": false,
             "label": "//Lib:LibFramework.watchOS",
@@ -4385,6 +4454,7 @@
             },
             "inputs": {
                 "resources": [
+                    "Lib/Resources/Assets.xcassets",
                     "WidgetExtension/Assets.xcassets"
                 ],
                 "srcs": [
@@ -4541,6 +4611,7 @@
             },
             "inputs": {
                 "resources": [
+                    "Lib/Resources/Assets.xcassets",
                     "WidgetExtension/Assets.xcassets"
                 ],
                 "srcs": [
@@ -4766,6 +4837,7 @@
             "inputs": {
                 "resources": [
                     "iMessageApp/ExtensionAssets.xcassets",
+                    "Lib/Resources/Assets.xcassets",
                     "iMessageApp/Base.lproj/MainInterface.storyboard"
                 ],
                 "srcs": [

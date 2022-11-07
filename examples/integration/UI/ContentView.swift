@@ -5,8 +5,13 @@ public struct ContentView: View {
     public init() {}
 
     public var body: some View {
-        Text(greeting)
-            .padding()
+        VStack {
+            Image("Logo", bundle: .libResources)
+            Text(greeting)
+            Text(libResourcesString)
+        }
+            .padding(64)
+            .multilineTextAlignment(.center)
     }
 }
 

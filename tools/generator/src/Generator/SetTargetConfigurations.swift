@@ -17,7 +17,7 @@ extension Generator {
         pbxTargets: [ConsolidatedTarget.Key: PBXTarget],
         hostIDs: [TargetID: [TargetID]],
         hasBazelDependencies: Bool,
-        bazelRemappedFiles: [FilePath: FilePath],
+        linkerProductsMap: [FilePath: FilePath],
         filePathResolver: FilePathResolver
     ) throws {
         for (key, disambiguatedTarget) in disambiguatedTargets.targets {
@@ -42,7 +42,7 @@ Target "\(key)" not found in `pbxTargets`
                 targets: targets,
                 hostIDs: hostIDs,
                 hasBazelDependencies: hasBazelDependencies,
-                bazelRemappedFiles: bazelRemappedFiles,
+                linkerProductsMap: linkerProductsMap,
                 filePathResolver: filePathResolver
             )
 
@@ -77,7 +77,7 @@ Target "\(key)" not found in `pbxTargets`
         targets: [TargetID: Target],
         hostIDs: [TargetID: [TargetID]],
         hasBazelDependencies: Bool,
-        bazelRemappedFiles: [FilePath: FilePath],
+        linkerProductsMap: [FilePath: FilePath],
         filePathResolver: FilePathResolver
     ) throws -> [BuildSettingConditional: [String: BuildSetting]] {
         var anyBuildSettings: [String: BuildSetting] = [:]
@@ -93,7 +93,7 @@ Target "\(key)" not found in `pbxTargets`
                 hostIDs: hostIDs[id, default: []],
                 buildMode: buildMode,
                 hasBazelDependencies: hasBazelDependencies,
-                bazelRemappedFiles: bazelRemappedFiles,
+                linkerProductsMap: linkerProductsMap,
                 filePathResolver: filePathResolver
             )
 
@@ -162,7 +162,7 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
         hostIDs: [TargetID],
         buildMode: BuildMode,
         hasBazelDependencies: Bool,
-        bazelRemappedFiles: [FilePath: FilePath],
+        linkerProductsMap: [FilePath: FilePath],
         filePathResolver: FilePathResolver
     ) throws -> [String: BuildSetting] {
         var buildSettings = target.buildSettings
@@ -509,7 +509,7 @@ $(CONFIGURATION_BUILD_DIR)
             try buildSettings.set(
                 "PREVIEW_FRAMEWORK_PATHS",
                 to: target.linkerInputs.dynamicFrameworks.map { filePath in
-                    let filePath = bazelRemappedFiles[filePath] ?? filePath
+                    let filePath = linkerProductsMap[filePath] ?? filePath
                     return #"""
 "\#(try filePathResolver
     .resolve(filePath, useBazelOut: true, forceFullBuildSettingPath: true))"

@@ -78,7 +78,6 @@ extension Generator {
         files: [FilePath: File],
         rootElements: [PBXFileElement],
         filePathResolver: FilePathResolver,
-        bazelRemappedFiles: [FilePath: FilePath],
         resolvedExternalRepositories: [(Path, Path)]
     ) {
         var fileReferences: [FilePath: PBXFileReference] = [:]
@@ -559,20 +558,6 @@ already was set to `\(existingValue)`.
             xcodeGeneratedFiles[filePath] = newFilePath
         }
 
-        var bazelRemappedFiles: [FilePath: FilePath] = [:]
-        func setBazelRemappedFile(
-            _ filePath: FilePath,
-            to newFilePath: FilePath
-        ) throws {
-            if let existingValue = bazelRemappedFiles[filePath] {
-                throw PreconditionError(message: """
-Tried to set `bazelRemappedFiles[\(filePath)]` to `\(newFilePath)`, but it \
-already was set to `\(existingValue)`.
-""")
-            }
-            bazelRemappedFiles[filePath] = newFilePath
-        }
-
         switch buildMode {
         case .xcode:
             for (_, target) in targets {
@@ -599,12 +584,8 @@ already was set to `\(existingValue)`.
                     }
                 }
             }
-        case .bazel:
-            for (_, target) in targets {
-                for filePath in target.product.additionalPaths {
-                    try setBazelRemappedFile(filePath, to: target.product.path)
-                }
-            }
+        default:
+            break;
         }
 
         let filePathResolver = FilePathResolver(
@@ -920,7 +901,6 @@ class StopHook:
             files,
             rootElements,
             filePathResolver,
-            bazelRemappedFiles,
             resolvedExternalRepositories
         )
     }
