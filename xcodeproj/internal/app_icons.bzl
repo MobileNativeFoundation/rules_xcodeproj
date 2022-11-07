@@ -2,6 +2,7 @@
 
 load("@bazel_skylib//lib:paths.bzl", "paths")
 load("@bazel_skylib//lib:sets.bzl", "sets")
+load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 
 def _get_resource_set_name(path, suffix):
     suffix_idx = path.find(suffix)
@@ -26,6 +27,9 @@ def _find_resource_set(app_icon_files):
             return set_name, set_path
 
     return None, None
+
+def _should_find_default_icon_path(ctx):
+    return ctx.attr._build_mode != "xcode"
 
 _IMAGE_EXTS = sets.make([".png", ".jpg", ".jpeg"])
 
@@ -71,7 +75,10 @@ def _get_app_icon_info(ctx, automatic_target_info):
     if not set_name:
         return None
 
-    default_icon_path = _find_default_icon_path(set_path, app_icon_files)
+    if _should_find_default_icon_path(ctx):
+        default_icon_path = _find_default_icon_path(set_path, app_icon_files)
+    else:
+        default_icon_path = None
 
     return _create(
         set_name = set_name,
@@ -86,7 +93,8 @@ def _create(set_name, set_path, default_icon_path):
     Args:
       set_name: The name of the resource set as a `string`.
       set_path: The path of the resource set as a `string`.
-      default_icon_path: The path to the icon file will be set as a `string`.
+      default_icon_path: If a default icon should be identified, the path to
+          the icon file will be set as a `string`.
 
     Returns:
         A `struct` representing application icon information.
