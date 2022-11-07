@@ -32,7 +32,6 @@ def _make_xcode_target(
         swiftmodules,
         inputs,
         linker_inputs = None,
-        infoplist = None,
         watch_application = None,
         extensions = [],
         app_clips = [],
@@ -69,7 +68,6 @@ def _make_xcode_target(
         inputs: The value returned from `input_files.collect`.
         linker_inputs: A value returned from `linker_input_files.collect` or
             `None`.
-        infoplist: A `File` or `None`.
         watch_application: The `id` of the watch application target that should
             be embedded in this target, or `None`.
         extensions: A `list` of `id`s of application extension targets that
@@ -119,7 +117,6 @@ def _make_xcode_target(
         outputs = (
             _to_xcode_target_outputs(outputs) if not compile_target else outputs
         ),
-        infoplist = infoplist,
         transitive_dependencies = transitive_dependencies,
         xcode_required_targets = xcode_required_targets,
     )
@@ -171,7 +168,10 @@ def _to_xcode_target_outputs(outputs):
         ),
         products_output_group_name = outputs.products_output_group_name,
         swift = direct_outputs.swift if direct_outputs else None,
-        transitive_infoplists = outputs.transitive_infoplists,
+        bwx_infoplist = outputs.bwx_infoplist,
+        bwb_infoplist = outputs.bwb_infoplist,
+        transitive_bwx_infoplists = outputs.transitive_bwx_infoplists,
+        transitive_bwb_infoplists = outputs.transitive_bwb_infoplists,
     )
 
 def _merge_xcode_target(*, src, dest):
@@ -215,7 +215,6 @@ def _merge_xcode_target(*, src, dest):
             dest = dest.inputs,
         ),
         linker_inputs = dest.linker_inputs,
-        infoplist = dest.infoplist,
         watch_application = dest._watch_application,
         extensions = dest._extensions,
         app_clips = dest._app_clips,
@@ -258,13 +257,17 @@ def _merge_xcode_target_outputs(*, src, dest):
         swift = src.swift,
         product_file_path = dest.product_file_path,
         products_output_group_name = dest.products_output_group_name,
-        transitive_infoplists = dest.transitive_infoplists,
+        bwx_infoplist = dest.bwx_infoplist,
+        bwb_infoplist = dest.bwb_infoplist,
+        transitive_bwx_infoplists = dest.transitive_bwx_infoplists,
+        transitive_bwb_infoplists = dest.transitive_bwb_infoplists,
     )
 
 def _xcode_target_to_dto(
         xcode_target,
         *,
         additional_scheme_target_ids = None,
+        build_mode,
         include_lldb_context,
         is_unfocused_dependency = False,
         unfocused_targets = {},
@@ -350,11 +353,6 @@ def _xcode_target_to_dto(
     )
     set_if_true(
         dto,
-        "info_plist",
-        file_path_to_dto(file_path(xcode_target.infoplist)),
-    )
-    set_if_true(
-        dto,
         "extensions",
         [
             id
@@ -372,6 +370,16 @@ def _xcode_target_to_dto(
         ],
     )
     set_if_true(dto, "outputs", _outputs_to_dto(xcode_target.outputs))
+
+    if build_mode == "xcode":
+        infoplist = xcode_target.outputs.bwx_infoplist
+    else:
+        infoplist = xcode_target.outputs.bwb_infoplist
+    set_if_true(
+        dto,
+        "info_plist",
+        file_path_to_dto(file_path(infoplist)),
+    )
 
     set_if_true(
         dto,

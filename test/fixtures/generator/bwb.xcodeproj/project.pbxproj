@@ -534,6 +534,7 @@
 		5FF60B4EE41AA39BF8BE4AA3 /* OrderedSet+Partial SetAlgebra+Basics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedSet+Partial SetAlgebra+Basics.swift"; sourceTree = "<group>"; };
 		5FFA9B163A6C337D94C51146 /* XCSchemeInfo+BuildTargetInfoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCSchemeInfo+BuildTargetInfoTests.swift"; sourceTree = "<group>"; };
 		622125ADC16A95172392B8BB /* CreateProducts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProducts.swift; sourceTree = "<group>"; };
+		62383495AC9A180B68FCC959 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		62A27B46C4FC033CAAE7A0B2 /* OrderedDictionary+Deprecations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedDictionary+Deprecations.swift"; sourceTree = "<group>"; };
 		63553911EE4BEB03830D2A7A /* CreateXCSharedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateXCSharedData.swift; sourceTree = "<group>"; };
 		65123348DC3959E1D008FBA5 /* XCScheme+EnvironmentVariable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCScheme+EnvironmentVariable.swift"; sourceTree = "<group>"; };
@@ -719,7 +720,6 @@
 		F454DD7F11FBF23F982A2C9F /* OrderedDictionary+CustomReflectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedDictionary+CustomReflectable.swift"; sourceTree = "<group>"; };
 		F45A31D8C35D47F65B20BB5D /* NSRecursiveLock+Sync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSRecursiveLock+Sync.swift"; sourceTree = "<group>"; };
 		F4B3F8DE870566A864516956 /* XCScheme+ArchiveAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCScheme+ArchiveAction.swift"; sourceTree = "<group>"; };
-		F4D05333A81F8080CAAC4AD0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		F558BB6C4380840D87F54534 /* _HashTable+BucketIterator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "_HashTable+BucketIterator.swift"; sourceTree = "<group>"; };
 		F5D6038BBC48A469A343D2AD /* ZippyJSONCFamily.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = ZippyJSONCFamily.swift.modulemap; sourceTree = "<group>"; };
 		F5D650F25B90824B86103C0B /* OrderedSet+Partial SetAlgebra+Operations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedSet+Partial SetAlgebra+Operations.swift"; sourceTree = "<group>"; };
@@ -902,14 +902,6 @@
 				792B28E0C92611D6568388A3 /* tools */,
 			);
 			path = bin;
-			sourceTree = "<group>";
-		};
-		2D69EEF5D6460AEE74BB82C3 /* rules_xcodeproj */ = {
-			isa = PBXGroup;
-			children = (
-				F8697BF5E72F74497F770E39 /* tests.__internal__.__test_bundle */,
-			);
-			path = rules_xcodeproj;
 			sourceTree = "<group>";
 		};
 		38D12FD81F17842A5E5276F9 /* Bazel Generated Files */ = {
@@ -1138,7 +1130,7 @@
 		7041C7B2657CEF215B82B00C /* test */ = {
 			isa = PBXGroup;
 			children = (
-				2D69EEF5D6460AEE74BB82C3 /* rules_xcodeproj */,
+				9E726D58DB7D081AF5C66147 /* rules_xcodeproj_BwB */,
 			);
 			path = test;
 			sourceTree = "<group>";
@@ -1364,6 +1356,14 @@
 				5FD1FC055B44D4DF3601A0EA /* Sources */,
 			);
 			path = com_github_apple_swift_collections;
+			sourceTree = "<group>";
+		};
+		9E726D58DB7D081AF5C66147 /* rules_xcodeproj_BwB */ = {
+			isa = PBXGroup;
+			children = (
+				FF2038F3D924A094E2CDF279 /* tests.__internal__.__test_bundle */,
+			);
+			path = rules_xcodeproj_BwB;
 			sourceTree = "<group>";
 		};
 		9FFDBC24588A91736E9C5DBD /* ../../../../.. */ = {
@@ -1686,20 +1686,20 @@
 			path = Sources;
 			sourceTree = "<group>";
 		};
-		F8697BF5E72F74497F770E39 /* tests.__internal__.__test_bundle */ = {
-			isa = PBXGroup;
-			children = (
-				F4D05333A81F8080CAAC4AD0 /* Info.plist */,
-			);
-			path = tests.__internal__.__test_bundle;
-			sourceTree = "<group>";
-		};
 		FE6BE51277A3F6B99EB70D7E /* com_github_michaeleisel_zippyjsoncfamily */ = {
 			isa = PBXGroup;
 			children = (
 				F5D6038BBC48A469A343D2AD /* ZippyJSONCFamily.swift.modulemap */,
 			);
 			path = com_github_michaeleisel_zippyjsoncfamily;
+			sourceTree = "<group>";
+		};
+		FF2038F3D924A094E2CDF279 /* tests.__internal__.__test_bundle */ = {
+			isa = PBXGroup;
+			children = (
+				62383495AC9A180B68FCC959 /* Info.plist */,
+			);
+			path = tests.__internal__.__test_bundle;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -3257,7 +3257,7 @@
 					"$(BAZEL_EXTERNAL)/com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/include",
 					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/external/com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/include",
 				);
-				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/tools/generator/test/rules_xcodeproj/tests.__internal__.__test_bundle/Info.plist";
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/bin/tools/generator/test/rules_xcodeproj_BwB/tests.__internal__.__test_bundle/Info.plist";
 				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/applebin_macos-darwin_x86_64-dbg-ST-fd2ea17bd000/tools/generator/test/tests.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
