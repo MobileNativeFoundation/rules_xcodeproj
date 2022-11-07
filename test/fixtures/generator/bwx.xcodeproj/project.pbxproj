@@ -603,7 +603,6 @@
 		67BF1A3733810ABCB895787D /* OrderedSet+Partial SetAlgebra+Predicates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedSet+Partial SetAlgebra+Predicates.swift"; sourceTree = "<group>"; };
 		688FB94F9D44071B1D493D40 /* OrderedSet+CustomDebugStringConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedSet+CustomDebugStringConvertible.swift"; sourceTree = "<group>"; };
 		6973B9742E39C20220D0B417 /* UserNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotifications.swift; sourceTree = "<group>"; };
-		69BAD573015F469B020B07FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		6A21E0CE11162C7684DFF080 /* AnyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyType.swift; sourceTree = "<group>"; };
 		6A38BEA4DA0B08AD582D808E /* CreateProducts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProducts.swift; sourceTree = "<group>"; };
 		6B53959336619023EF22416E /* XCWorkspaceDataElementLocationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCWorkspaceDataElementLocationType.swift; sourceTree = "<group>"; };
@@ -643,6 +642,7 @@
 		81DD0AC0F6E1851A1FE93C1A /* XCSchemeInfo+HostInfoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCSchemeInfo+HostInfoTests.swift"; sourceTree = "<group>"; };
 		82B779C12444EFA24BCB64F7 /* PBXGroup+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PBXGroup+Extensions.swift"; sourceTree = "<group>"; };
 		83CA9477A912C560D9DE85B3 /* PBXSourceTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBXSourceTree.swift; sourceTree = "<group>"; };
+		8434EBD0C1B00B1B0F9349AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		85147C8CD7E56F10606BA0FE /* Umbrella.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Umbrella.h; sourceTree = "<group>"; };
 		854528EA9A693DC32507798D /* ProcessReplacementLabels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessReplacementLabels.swift; sourceTree = "<group>"; };
 		8546B70BAF3E65BE75D5D25A /* _Hashtable+Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "_Hashtable+Header.swift"; sourceTree = "<group>"; };
@@ -1101,7 +1101,7 @@
 		51DB0578A0C69E7E7F5232B2 /* test */ = {
 			isa = PBXGroup;
 			children = (
-				96DF723BB7791B704698F655 /* rules_xcodeproj */,
+				63A86FF9D51BA84A1DE803E3 /* rules_xcodeproj_BwX */,
 			);
 			path = test;
 			sourceTree = "<group>";
@@ -1120,6 +1120,14 @@
 				C3E9EE7D27D0F0FE322357BE /* tzdb */,
 			);
 			path = Vendor;
+			sourceTree = "<group>";
+		};
+		63A86FF9D51BA84A1DE803E3 /* rules_xcodeproj_BwX */ = {
+			isa = PBXGroup;
+			children = (
+				B7FDAB73CDA3169C669F4A9D /* tests.__internal__.__test_bundle */,
+			);
+			path = rules_xcodeproj_BwX;
 			sourceTree = "<group>";
 		};
 		6472CF00DDD19C6FD158BBEA /* include */ = {
@@ -1332,14 +1340,6 @@
 			path = Objects;
 			sourceTree = "<group>";
 		};
-		96DF723BB7791B704698F655 /* rules_xcodeproj */ = {
-			isa = PBXGroup;
-			children = (
-				FA1808DB467FF3EB151CAE78 /* tests.__internal__.__test_bundle */,
-			);
-			path = rules_xcodeproj;
-			sourceTree = "<group>";
-		};
 		97EFC5E88D03182684EBFCE7 /* CustomDump */ = {
 			isa = PBXGroup;
 			children = (
@@ -1465,6 +1465,14 @@
 				E15CC3F70668B7F66F72461C /* UserNotificationsUI.swift */,
 			);
 			path = Conformances;
+			sourceTree = "<group>";
+		};
+		B7FDAB73CDA3169C669F4A9D /* tests.__internal__.__test_bundle */ = {
+			isa = PBXGroup;
+			children = (
+				8434EBD0C1B00B1B0F9349AD /* Info.plist */,
+			);
+			path = tests.__internal__.__test_bundle;
 			sourceTree = "<group>";
 		};
 		C3E9EE7D27D0F0FE322357BE /* tzdb */ = {
@@ -1754,14 +1762,6 @@
 				82358299B85C3616F86365A8 /* bin */,
 			);
 			path = "applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889";
-			sourceTree = "<group>";
-		};
-		FA1808DB467FF3EB151CAE78 /* tests.__internal__.__test_bundle */ = {
-			isa = PBXGroup;
-			children = (
-				69BAD573015F469B020B07FA /* Info.plist */,
-			);
-			path = tests.__internal__.__test_bundle;
 			sourceTree = "<group>";
 		};
 		FB7B5F43EDB8856CB8ECAFF2 /* Utils */ = {
@@ -3294,7 +3294,7 @@
 					"$(BAZEL_EXTERNAL)/com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/include",
 					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/include",
 				);
-				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/tools/generator/test/rules_xcodeproj/tests.__internal__.__test_bundle/Info.plist";
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/tools/generator/test/rules_xcodeproj_BwX/tests.__internal__.__test_bundle/Info.plist";
 				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/tools/generator/test/tests.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
