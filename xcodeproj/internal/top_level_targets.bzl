@@ -249,6 +249,8 @@ def process_top_level_target(
     modulemaps = process_modulemaps(swift_info = swift_info)
     additional_files.extend(list(modulemaps.files))
 
+    app_icon_info = app_icons.get_info(ctx, automatic_target_info)
+
     if automatic_target_info.alternate_icons:
         additional_files.extend(
             getattr(
@@ -258,21 +260,10 @@ def process_top_level_target(
             ),
         )
 
-    app_icon_info = app_icons.get_info(ctx, automatic_target_info)
-    raw_infolist = info_plists.get_file(target)
-    bwx_infoplist = info_plists.adjust_for_xcode(
-        raw_infolist,
+    infoplist = info_plists.adjust_for_xcode(
+        info_plists.get_file(target),
+        app_icon_info.default_icon_path if app_icon_info else None,
         ctx = ctx,
-        mode = "BwX",
-        default_app_icon_path = None,
-    )
-    bwb_infoplist = info_plists.adjust_for_xcode(
-        raw_infolist,
-        ctx = ctx,
-        mode = "BwB",
-        default_app_icon_path = (
-            app_icon_info.default_icon_path if app_icon_info else None
-        ),
     )
 
     infoplists_attrs = automatic_target_info.infoplists
@@ -407,8 +398,7 @@ def process_top_level_target(
         id = id,
         swift_info = swift_info,
         top_level_product = product,
-        bwx_infoplist = bwx_infoplist,
-        bwb_infoplist = bwb_infoplist,
+        infoplist = infoplist,
         transitive_infos = transitive_infos,
     )
 
@@ -531,6 +521,7 @@ def process_top_level_target(
             swiftmodules = swiftmodules,
             inputs = inputs,
             linker_inputs = linker_inputs,
+            infoplist = infoplist,
             watch_application = watch_application,
             extensions = extensions,
             app_clips = app_clips,

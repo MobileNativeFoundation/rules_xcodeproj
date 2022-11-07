@@ -8,8 +8,7 @@ def _create(
         *,
         direct_outputs = None,
         automatic_target_info = None,
-        bwx_infoplist = None,
-        bwb_infoplist = None,
+        infoplist = None,
         transitive_infos,
         should_produce_dto,
         should_produce_output_groups):
@@ -20,8 +19,7 @@ def _create(
             the outputs are being merged.
         automatic_target_info: The `XcodeProjAutomaticTargetProcessingInfo` for
             the target.
-        bwx_infoplist: A `File` or `None`.
-        bwb_infoplist: A `File` or `None`.
+        infoplist: A `File` or `None`.
         transitive_infos: A `list` of `XcodeProjInfo`s for the transitive
             dependencies of the current target.
         should_produce_dto: If `True`, `outputs_files.to_dto` will return
@@ -93,22 +91,10 @@ def _create(
                 ))
         ],
     )
-    transitive_bwx_infoplists = depset(
-        [bwx_infoplist] if bwx_infoplist else None,
+    transitive_infoplists = depset(
+        [infoplist] if infoplist else None,
         transitive = [
-            info.outputs.transitive_bwx_infoplists
-            for attr, info in transitive_infos
-            if (not automatic_target_info or
-                info.target_type in automatic_target_info.xcode_targets.get(
-                    attr,
-                    [None],
-                ))
-        ],
-    )
-    transitive_bwb_infoplists = depset(
-        [bwb_infoplist] if bwb_infoplist else None,
-        transitive = [
-            info.outputs.transitive_bwb_infoplists
+            info.outputs.transitive_infoplists
             for attr, info in transitive_infos
             if (not automatic_target_info or
                 info.target_type in automatic_target_info.xcode_targets.get(
@@ -179,10 +165,7 @@ def _create(
         _transitive_products = transitive_products,
         direct_outputs = direct_outputs if should_produce_dto else None,
         products_output_group_name = products_output_group_name,
-        bwx_infoplist = bwx_infoplist,
-        bwb_infoplist = bwb_infoplist,
-        transitive_bwx_infoplists = transitive_bwx_infoplists,
-        transitive_bwb_infoplists = transitive_bwb_infoplists,
+        transitive_infoplists = transitive_infoplists,
     )
 
 def _get_outputs(*, id, product, swift_info):
@@ -237,8 +220,7 @@ def _collect_output_files(
         id,
         swift_info,
         top_level_product = None,
-        bwx_infoplist = None,
-        bwb_infoplist = None,
+        infoplist = None,
         transitive_infos,
         should_produce_dto = True,
         should_produce_output_groups = True):
@@ -249,8 +231,7 @@ def _collect_output_files(
         swift_info: The `SwiftInfo` provider for the target, or `None`.
         top_level_product: A value returned from `process_product`, or `None` if
             the target isn't a top level target.
-        bwx_infoplist: A `File` or `None`.
-        bwb_infoplist: A `File` or `None`.
+        infoplist: A `File` or `None`.
         transitive_infos: A `list` of `XcodeProjInfo`s for the transitive
             dependencies of the target.
         should_produce_dto: If `True`, `outputs_files.to_dto` will return
@@ -273,8 +254,7 @@ def _collect_output_files(
 
     return _create(
         direct_outputs = outputs,
-        bwx_infoplist = bwx_infoplist,
-        bwb_infoplist = bwb_infoplist,
+        infoplist = infoplist,
         should_produce_dto = should_produce_dto,
         should_produce_output_groups = should_produce_output_groups,
         transitive_infos = transitive_infos,

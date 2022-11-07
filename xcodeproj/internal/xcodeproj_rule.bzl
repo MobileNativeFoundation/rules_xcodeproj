@@ -276,11 +276,7 @@ targets.
         if sets.contains(unfocused_labels, label_str):
             sets.remove(unfocused_labels, label_str)
 
-        if build_mode == "xcode":
-            infoplist = xcode_target.outputs.transitive_bwx_infoplists
-        else:
-            infoplist = xcode_target.outputs.transitive_bwb_infoplists
-
+        infoplist = xcode_target.outputs.transitive_infoplists
         if infoplist:
             infoplists.setdefault(label, []).append(infoplist)
 
@@ -535,7 +531,6 @@ actual targets: {}
         dto, replaced_dependencies = xcode_targets.to_dto(
             xcode_target = xcode_target,
             additional_scheme_target_ids = additional_scheme_target_ids,
-            build_mode = build_mode,
             include_lldb_context = include_lldb_context,
             is_unfocused_dependency = xcode_target.id in unfocused_dependencies,
             should_include_outputs = should_include_outputs(build_mode),
