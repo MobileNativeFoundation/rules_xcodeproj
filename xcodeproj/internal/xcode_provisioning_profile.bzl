@@ -1,23 +1,6 @@
 """Implementation of the `xcode_provisioning_profile` rule."""
 
-load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load(":provisioning_profiles.bzl", "provisioning_profiles")
-
-# Utility
-
-def _requires_team_id(ctx):
-    """Determines whether a team id is needed.
-
-    The team id can come from `ctx.attr.team_id` or
-    `ctx.attr.provisioning_file[AppleProvisioningProfileInfo].team_id`.
-
-    Args:
-        ctx: The aspect context.
-
-    Returns:
-        `True` if a team ide is needed, `False` otherwise.
-    """
-    return ctx.attr._build_mode[BuildSettingInfo].value == "xcode"
 
 # API
 
@@ -30,10 +13,10 @@ def _xcode_provisioning_profile_impl(ctx):
         profile_name = ctx.attr.profile_name,
         team_id = ctx.attr.team_id,
     )
-    if not info.team_id and _requires_team_id(ctx):
+    if not info.team_id:
         fail("""\
 `provisioning_profile[AppleProvisioningProfileInfo].team_id` or `team_id` must \
-be set if `xcodeproj.build_mode = \"xcode\"`.
+be set.
 """)
 
     return [
@@ -124,13 +107,7 @@ The `DEVELOPER_TEAM` Xcode build setting will be set to this value. If this is
 `None` (the default), and `provisioning_profile` returns the
 `AppleProvisioningProfileInfo` provider (as `local_provisioning_profile` does),
 then `AppleProvisioningProfileInfo.team_id` will be used instead.
-
-`DEVELOPER_TEAM` is needed when `xcodeproj.build_mode = "xcode"`.
 """,
-        ),
-        "_build_mode": attr.label(
-            default = Label("//xcodeproj/internal:build_mode"),
-            providers = [BuildSettingInfo],
         ),
     },
 )
