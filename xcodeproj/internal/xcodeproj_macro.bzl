@@ -5,7 +5,7 @@ load(":bazel_labels.bzl", "bazel_labels")
 load(":logging.bzl", "warn")
 load(":top_level_target.bzl", "top_level_target")
 load(":xcode_schemes.bzl", "focus_schemes", "unfocus_schemes")
-load(":xcodeproj_rule.bzl", _xcodeproj = "xcodeproj")
+load(":xcodeproj_rule.bzl", "bwb_xcodeproj", "bwx_xcodeproj")
 load(":xcodeproj_runner.bzl", "xcodeproj_runner")
 
 def xcodeproj(
@@ -283,7 +283,12 @@ in your `.bazelrc` or `xcodeproj.bazelrc` file.""")
 
     generator_name = "{}.generator".format(name)
 
-    xcodeproj_rule = kwargs.pop("xcodeproj_rule", _xcodeproj)
+    xcodeproj_rule = kwargs.pop("xcodeproj_rule", None)
+    if not xcodeproj_rule:
+        if build_mode == "bazel":
+            xcodeproj_rule = bwb_xcodeproj
+        else:
+            xcodeproj_rule = bwx_xcodeproj
 
     tags = kwargs.pop("tags", [])
 

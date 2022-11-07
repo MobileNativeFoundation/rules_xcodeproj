@@ -130,7 +130,13 @@ def validate_fixtures(**kwargs):
         **kwargs
     )
 
-_fixture_xcodeproj = make_xcodeproj_rule(
+_bwx_fixture_xcodeproj = make_xcodeproj_rule(
+    build_mode = "xcode",
+    is_fixture = True,
+    xcodeproj_transition = _fixtures_transition,
+)
+_bwb_fixture_xcodeproj = make_xcodeproj_rule(
+    build_mode = "bazel",
     is_fixture = True,
     xcodeproj_transition = _fixtures_transition,
 )
@@ -191,6 +197,11 @@ def xcodeproj_fixture(
             visibility = ["//test:__subpackages__"],
         )
 
+        if mode == "bazel":
+            xcodeproj_rule = _bwb_fixture_xcodeproj
+        else:
+            xcodeproj_rule = _bwx_fixture_xcodeproj
+
         xcodeproj(
             name = fixture_name,
             associated_extra_files = associated_extra_files,
@@ -206,7 +217,7 @@ def xcodeproj_fixture(
             scheme_autogeneration_mode = scheme_autogeneration_mode,
             schemes = schemes,
             unfocused_targets = unfocused_targets,
-            xcodeproj_rule = _fixture_xcodeproj,
+            xcodeproj_rule = xcodeproj_rule,
             visibility = ["//test:__subpackages__"],
         )
 
