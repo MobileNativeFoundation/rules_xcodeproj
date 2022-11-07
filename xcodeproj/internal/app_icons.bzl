@@ -2,7 +2,6 @@
 
 load("@bazel_skylib//lib:paths.bzl", "paths")
 load("@bazel_skylib//lib:sets.bzl", "sets")
-load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 
 def _get_resource_set_name(path, suffix):
     suffix_idx = path.find(suffix)
