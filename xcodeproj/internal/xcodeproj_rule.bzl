@@ -798,6 +798,41 @@ def _write_extensionpointidentifiers(*, ctx, extension_infoplists):
 
     return output
 
+def _write_create_xcode_overlay_script(*, ctx, targets):
+    output = ctx.actions.declare_file(
+        "{}_bazel_integration_files/create_xcode_overlay.sh".format(
+            ctx.attr.name,
+        ),
+    )
+
+    roots = []
+    for xcode_target in targets.values():
+        swift = xcode_target.outputs.swift
+        if not swift:
+            continue
+        generated_header = swift.generated_header
+        if not generated_header:
+            continue
+
+        path = generated_header.path
+        build_dir = "$BUILD_DIR/{}".format(path)
+        bazel_out = "$BAZEL_OUT{}".format(path[9:])
+
+        roots.append("""\
+{{"external-contents": "{build_dir}","name": "${{bazel_out_prefix}}{bazel_out}","type": "file"}}\
+""".format(bazel_out = bazel_out, build_dir = build_dir))
+
+    ctx.actions.expand_template(
+        template = ctx.file._create_xcode_overlay_script_template,
+        output = output,
+        is_executable = True,
+        substitutions = {
+            "%roots%": ",".join(sorted(roots)),
+        },
+    )
+
+    return output
+
 def _write_root_dirs(*, ctx):
     output = ctx.actions.declare_file("{}_root_dirs".format(ctx.attr.name))
 
@@ -1007,10 +1042,6 @@ def _xcodeproj_impl(ctx):
         transitive_infos = [(None, info) for info in infos],
     )
 
-    bazel_integration_files = list(ctx.files._base_integration_files)
-    if build_mode != "xcode":
-        bazel_integration_files.extend(ctx.files._bazel_integration_files)
-
     inputs = input_files.merge(
         transitive_infos = [(None, info) for info in infos],
     )
@@ -1052,6 +1083,14 @@ def _xcodeproj_impl(ctx):
             ctx.attr.adjust_schemes_for_swiftui_previews
         ),
     )
+
+    bazel_integration_files = list(ctx.files._base_integration_files)
+    if build_mode == "xcode":
+        bazel_integration_files.append(
+            _write_create_xcode_overlay_script(ctx = ctx, targets = targets),
+        )
+    else:
+        bazel_integration_files.extend(ctx.files._bazel_integration_files)
 
     extra_files = _process_extra_files(
         ctx = ctx,
@@ -1410,6 +1449,12 @@ transitive dependencies of the targets specified in the
             cfg = "exec",
             allow_files = True,
             default = Label("//xcodeproj/internal/bazel_integration_files"),
+        ),
+        "_create_xcode_overlay_script_template": attr.label(
+            allow_single_file = True,
+            default = Label(
+                "//xcodeproj/internal:create_xcode_overlay.template.sh",
+            ),
         ),
         "_extensionpointidentifiers_parser": attr.label(
             cfg = "exec",

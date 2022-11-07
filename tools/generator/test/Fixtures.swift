@@ -1123,28 +1123,6 @@ bazel-out/a/c.lo
 """)
         }
 
-        // create_xcode_overlay.sh
-
-        if buildMode == .xcode {
-            files[.internal("create_xcode_overlay.sh")] =
-                .nonReferencedContent(#"""
-#!/bin/bash
-
-if [[ "${BAZEL_OUT:0:1}" == '/' ]]; then
-  readonly bazel_out_prefix=
-else
-  readonly bazel_out_prefix="$SRCROOT/"
-fi
-
-# Look up Swift generated headers in `$BUILD_DIR` first, then fall through to
-# `$BAZEL_OUT`
-cat > "$DERIVED_FILE_DIR/xcode-overlay.yaml" <<EOF
-{"case-sensitive": "false", "fallthrough": true, "roots": [{"external-contents": "$BUILD_DIR/bazel-out/x/y-Swift.h","name": "${bazel_out_prefix}$BAZEL_OUT/x/y-Swift.h","type": "file"}],"version": 0}
-EOF
-
-"""#)
-        }
-
         // swift_debug_settings.py
 
         files[.internal("swift_debug_settings.py")] =
@@ -1602,7 +1580,7 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
         ) -> PBXShellScriptBuildPhase {
             return PBXShellScriptBuildPhase(
                 name: "Create compiling dependencies",
-                inputPaths: ["$(INTERNAL_DIR)/create_xcode_overlay.sh"],
+                inputPaths: ["$(BAZEL_INTEGRATION_DIR)/create_xcode_overlay.sh"],
                 outputPaths: ["$(DERIVED_FILE_DIR)/xcode-overlay.yaml"],
                 shellScript: "\"$SCRIPT_INPUT_FILE_0\"\n",
                 showEnvVarsInLog: false

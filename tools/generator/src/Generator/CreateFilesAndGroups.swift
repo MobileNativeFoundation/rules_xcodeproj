@@ -39,7 +39,6 @@ extension Generator {
     static let compileStubPath: Path = "_CompileStub_.m"
     static let externalFileListPath: Path = "external.xcfilelist"
     static let generatedFileListPath: Path = "generated.xcfilelist"
-    static let createXcodeOverlayScriptPath: Path = "create_xcode_overlay.sh"
     static let lldbSwiftSettingsModulePath: Path = "swift_debug_settings.py"
 
     private static let localizedGroupExtensions: Set<String> = [
@@ -641,48 +640,6 @@ already was set to `\(existingValue)`.
             files: files,
             hasTargets: !targets.isEmpty
         )
-
-        // - `xcode-overlay.yaml`
-
-        if hasBazelDependencies && buildMode == .xcode {
-            let roots = try targets.values
-                .compactMap { $0.outputs.swift?.generatedHeader }
-                .map { filepath -> String in
-                    let bazelOut = try filePathResolver.resolve(
-                        filepath,
-                        useBazelOut: true,
-                        mode: .script
-                    )
-                    let buildDir = try filePathResolver.resolve(
-                        filepath,
-                        useBazelOut: false,
-                        mode: .script
-                    )
-                    return #"""
-{"external-contents": "\#(buildDir)","name": "${bazel_out_prefix}\#(bazelOut)","type": "file"}
-"""#
-                }
-                .sorted()
-                .joined(separator: ",")
-
-            files[.internal(createXcodeOverlayScriptPath)] =
-                .nonReferencedContent(#"""
-#!/bin/bash
-
-if [[ "${BAZEL_OUT:0:1}" == '/' ]]; then
-  readonly bazel_out_prefix=
-else
-  readonly bazel_out_prefix="$SRCROOT/"
-fi
-
-# Look up Swift generated headers in `$BUILD_DIR` first, then fall through to
-# `$BAZEL_OUT`
-cat > "$DERIVED_FILE_DIR/xcode-overlay.yaml" <<EOF
-{"case-sensitive": "false", "fallthrough": true, "roots": [\#(roots)],"version": 0}
-EOF
-
-"""#)
-        }
 
         // - `lldbSwiftSettingsModule`
 
