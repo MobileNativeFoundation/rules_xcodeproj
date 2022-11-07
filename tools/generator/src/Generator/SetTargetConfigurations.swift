@@ -110,9 +110,9 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
                 let key = """
 \(target.platform.variant.rawValue.uppercased())_FILES
 """
-                conditionalFileNames[key] = try uniqueFiles
+                conditionalFileNames[key] = uniqueFiles
                     .map { filePath in
-                        return try filePathResolver
+                        return filePathResolver
                             .resolve(
                                 filePath,
                                 useBazelOut: true,
@@ -171,7 +171,7 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
         for filePath in target.linkerInputs.dynamicFrameworks {
             let searchFilePath = filePath.parent()
             var useBazelOut: Bool = true
-            let path = try filePathResolver.resolve(
+            let path = filePathResolver.resolve(
                 filePath,
                 transform: { _ in searchFilePath },
                 xcodeGeneratedTransform:  { filePath in
@@ -188,8 +188,8 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
                 path
         }
 
-        func handleSearchPath(filePath: FilePath) throws -> String {
-            return try filePathResolver
+        func handleSearchPath(filePath: FilePath) -> String {
+            return filePathResolver
                 .resolve(
                     filePath,
                     useBazelOut: true,
@@ -198,7 +198,7 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
                 .string.quoted
         }
 
-        func handleFrameworkSearchPath(filePath: FilePath) throws -> [String] {
+        func handleFrameworkSearchPath(filePath: FilePath) -> [String] {
             if let searchFilePaths = frameworkSearchPaths[filePath] {
                 var searchPaths: [String] = []
                 if let xcodePath = searchFilePaths[false] {
@@ -209,7 +209,7 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
                 }
                 return searchPaths
             } else {
-                return [try handleSearchPath(filePath: filePath)]
+                return [handleSearchPath(filePath: filePath)]
             }
         }
 
@@ -264,7 +264,7 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
             onKey: "OTHER_SWIFT_FLAGS",
             target.modulemaps
                 .map { filePath -> String in
-                    let modulemap = try filePathResolver
+                    let modulemap = filePathResolver
                         .resolve(
                             filePath,
                             useBazelOut: true,
@@ -277,7 +277,7 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
         )
 
         if target.hasLinkerFlags {
-            let linkParamsFile = try filePathResolver
+            let linkParamsFile = filePathResolver
                 .resolve(try target.linkParamsFilePath())
                 .string
             try buildSettings.prepend(
@@ -373,7 +373,7 @@ $(CONFIGURATION_BUILD_DIR)
         }
 
         if let infoPlist = target.infoPlist {
-            let infoPlistPath = try filePathResolver
+            let infoPlistPath = filePathResolver
                 .resolve(
                     infoPlist,
                     useBazelOut: true,
@@ -388,7 +388,7 @@ $(CONFIGURATION_BUILD_DIR)
         }
 
         if let entitlements = target.inputs.entitlements {
-            let entitlementsPath = try filePathResolver
+            let entitlementsPath = filePathResolver
                 .resolve(
                     entitlements,
                     useBazelOut: true,
@@ -421,7 +421,7 @@ $(CONFIGURATION_BUILD_DIR)
         }
 
         if let pch = target.inputs.pch {
-            let pchPath = try filePathResolver
+            let pchPath = filePathResolver
                 .resolve(
                     pch,
                     useBazelOut: true,
@@ -434,21 +434,21 @@ $(CONFIGURATION_BUILD_DIR)
         }
 
         if target.isSwift {
-            func handleSwiftModule(_ filePath: FilePath) throws -> String {
-                return try filePathResolver
+            func handleSwiftModule(_ filePath: FilePath) -> String {
+                return filePathResolver
                     .resolve(filePath, transform: { $0.parent() })
                     .string.quoted
             }
 
             var includePaths: OrderedSet =
-                .init(try target.swiftmodules.map(handleSwiftModule))
+                .init(target.swiftmodules.map(handleSwiftModule))
 
             if target.product.type.isBundle,
                let swiftmodule = target.outputs.swift?.module
             {
                 // SwiftUI Previews need to find the current target's
                 // swiftmodule
-                let selfInclude = try handleSwiftModule(swiftmodule)
+                let selfInclude = handleSwiftModule(swiftmodule)
                 buildSettings["PREVIEWS_SWIFT_INCLUDE_PATH__"] = ""
                 buildSettings["PREVIEWS_SWIFT_INCLUDE_PATH__NO"] = ""
                 buildSettings.set(
@@ -474,7 +474,7 @@ $(CONFIGURATION_BUILD_DIR)
         {
             buildSettings.set(
                 "BAZEL_OUTPUTS_PRODUCT",
-                to: try filePathResolver.resolve(
+                to: filePathResolver.resolve(
                     productOutput,
                     useBazelOut: true
                 )
@@ -506,12 +506,12 @@ $(CONFIGURATION_BUILD_DIR)
         }
 
         if buildMode != .xcode && target.product.type.isFramework {
-            try buildSettings.set(
+            buildSettings.set(
                 "PREVIEW_FRAMEWORK_PATHS",
                 to: target.linkerInputs.dynamicFrameworks.map { filePath in
                     let filePath = linkerProductsMap[filePath] ?? filePath
                     return #"""
-"\#(try filePathResolver
+"\#(filePathResolver
     .resolve(filePath, useBazelOut: true, forceFullBuildSettingPath: true))"
 """#
                 }
@@ -812,15 +812,15 @@ private extension Inputs {
 }
 
 private extension Outputs.Swift {
-    func paths(filePathResolver: FilePathResolver) throws -> [String] {
-        return try [
+    func paths(filePathResolver: FilePathResolver) -> [String] {
+        return [
             module,
             doc,
             sourceInfo,
             interface,
         ]
             .compactMap { $0 }
-            .map { try filePathResolver.resolve($0, useBazelOut: true).string }
+            .map { filePathResolver.resolve($0, useBazelOut: true).string }
     }
 }
 

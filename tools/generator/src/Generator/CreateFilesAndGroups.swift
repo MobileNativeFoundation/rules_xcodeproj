@@ -600,18 +600,18 @@ already was set to `\(existingValue)`.
             }
             .map { filePath, _ in filePath }
 
-        let externalPaths = try fileListFileFilePaths
+        let externalPaths = fileListFileFilePaths
             .filter { $0.type == .external }
             .map { filePath in
-                return try filePathResolver
+                return filePathResolver
                     .resolve(filePath, forceFullBuildSettingPath: true)
             }
 
         let generatedFilePaths = fileListFileFilePaths
             .filter { $0.type == .generated && !$0.isFolder } + nonIncludedFiles
 
-        let generatedPaths = try generatedFilePaths.map { filePath in
-            return try filePathResolver
+        let generatedPaths = generatedFilePaths.map { filePath in
+            return filePathResolver
                 .resolve(
                     filePath,
                     useBazelOut: true,
@@ -645,7 +645,7 @@ already was set to `\(existingValue)`.
 
         var lldbSettingsMap: [String: LLDBSettings] = [:]
         for target in targets.values {
-            let linkopts = try target
+            let linkopts = target
                 .allLinkerFlags(filePathResolver: filePathResolver)
                 .map { "\($0)\n" }
             if !linkopts.isEmpty {
@@ -671,9 +671,9 @@ already was set to `\(existingValue)`.
                     testingIncludes = []
                 }
 
-                let frameworks = try lldbContext.frameworkSearchPaths
+                let frameworks = lldbContext.frameworkSearchPaths
                     .map { filePath -> String in
-                        return try filePathResolver
+                        return filePathResolver
                             .resolve(
                                 filePath,
                                 useBazelOut: true,
@@ -682,9 +682,9 @@ already was set to `\(existingValue)`.
                             .string
                     }
 
-                let includes = try lldbContext.swiftmodules
+                let includes = lldbContext.swiftmodules
                     .map { filePath -> String in
-                        return try filePathResolver
+                        return filePathResolver
                             .resolve(
                                 filePath,
                                 transform: { $0.parent() },
@@ -696,8 +696,8 @@ already was set to `\(existingValue)`.
 
                 var onceFilePaths: Set<FilePath> = []
                 var onceOtherFlags: Set<String> = []
-                let clangOtherArgs = try lldbContext.clang.map { clang in
-                    return try clang.toClangExtraArgs(
+                let clangOtherArgs = lldbContext.clang.map { clang in
+                    return clang.toClangExtraArgs(
                         buildMode: buildMode,
                         hasBazelDependencies: hasBazelDependencies,
                         filePathResolver: filePathResolver,
@@ -976,9 +976,9 @@ private extension LLDBContext.Clang {
         filePathResolver: FilePathResolver,
         onceFilePaths: inout Set<FilePath>,
         onceOtherFlags: inout Set<String>
-    ) throws -> String {
-        let quoteIncludesArgs: [String] = try quoteIncludes.map { filePath in
-            let path = try filePathResolver
+    ) -> String {
+        let quoteIncludesArgs: [String] = quoteIncludes.map { filePath in
+            let path = filePathResolver
                 .resolve(
                     filePath,
                     useBazelOut: true,
@@ -995,7 +995,7 @@ private extension LLDBContext.Clang {
             }
             onceFilePaths.insert(filePath)
 
-            let path = try filePathResolver
+            let path = filePathResolver
                 .resolve(
                     filePath,
                     useBazelOut: true,
@@ -1005,8 +1005,8 @@ private extension LLDBContext.Clang {
             includesArgs.append(#"-I "\#(path)""#)
         }
 
-        let systemIncludesArgs: [String] = try systemIncludes.map { filePath in
-            let path = try filePathResolver
+        let systemIncludesArgs: [String] = systemIncludes.map { filePath in
+            let path = filePathResolver
                 .resolve(
                     filePath,
                     useBazelOut: true,
@@ -1035,7 +1035,7 @@ private extension LLDBContext.Clang {
             }
             onceFilePaths.insert(filePath)
 
-            let modulemap = try filePathResolver
+            let modulemap = filePathResolver
                 .resolve(
                     filePath,
                     useBazelOut: true,

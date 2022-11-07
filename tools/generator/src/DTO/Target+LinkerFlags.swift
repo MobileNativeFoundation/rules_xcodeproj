@@ -8,8 +8,8 @@ extension Target {
             || !linkerInputs.forceLoad.isEmpty
     }
 
-    func allLinkerFlags(filePathResolver: FilePathResolver) throws -> [String] {
-        var flags = try processLinkopts(
+    func allLinkerFlags(filePathResolver: FilePathResolver) -> [String] {
+        var flags = processLinkopts(
             linkerInputs.linkopts,
             swiftTriple: platform.swiftTriple,
             filePathResolver: filePathResolver
@@ -18,8 +18,8 @@ extension Target {
         func handleFilePath(
             _ filePath: FilePath,
             useFilename: Bool
-        ) throws -> String {
-            let path = try filePathResolver.resolve(filePath)
+        ) -> String {
+            let path = filePathResolver.resolve(filePath)
 
             if useFilename {
                 return path.lastComponentWithoutExtension
@@ -28,28 +28,28 @@ extension Target {
             }
         }
 
-        func handleFilePath(_ filePath: FilePath) throws -> String {
-            return try handleFilePath(filePath, useFilename: false)
+        func handleFilePath(_ filePath: FilePath) -> String {
+            return handleFilePath(filePath, useFilename: false)
         }
 
         flags.append(
-            contentsOf: try linkerInputs.staticLibraries.map(handleFilePath)
+            contentsOf: linkerInputs.staticLibraries.map(handleFilePath)
         )
 
-        flags.append(contentsOf: try linkerInputs.forceLoad
+        flags.append(contentsOf: linkerInputs.forceLoad
             .flatMap { filePath in
                 return [
                     "-force_load",
-                    try handleFilePath(filePath),
+                    handleFilePath(filePath),
                 ]
             }
         )
 
         flags.append(
-            contentsOf: try inputs.exportedSymbolsLists.flatMap { filePath in
+            contentsOf: inputs.exportedSymbolsLists.flatMap { filePath in
                 return [
                     "-exported_symbols_list",
-                    try filePathResolver.resolve(filePath).string.quoted,
+                    filePathResolver.resolve(filePath).string.quoted,
                 ]
             }
         )
@@ -62,10 +62,10 @@ private func processLinkopts(
     _ linkopts: [String],
     swiftTriple: String,
     filePathResolver: FilePathResolver
-) throws -> [String] {
-    return try linkopts
+) -> [String] {
+    return linkopts
         .map { linkopt in
-            return try processLinkopt(
+            return processLinkopt(
                 linkopt,
                 swiftTriple: swiftTriple,
                 filePathResolver: filePathResolver
@@ -77,12 +77,12 @@ private func processLinkopt(
     _ linkopt: String,
     swiftTriple: String,
     filePathResolver: FilePathResolver
-) throws -> String {
-    return try linkopt
+) -> String {
+    return linkopt
         .split(separator: ",")
         .map(String.init)
         .map { opt in
-            return try processLinkoptComponent(
+            return processLinkoptComponent(
                 opt,
                 swiftTriple: swiftTriple,
                 filePathResolver: filePathResolver
@@ -95,7 +95,7 @@ private func processLinkoptComponent(
     _ opt: String,
     swiftTriple: String,
     filePathResolver: FilePathResolver
-) throws -> String {
+) -> String {
     let extracted = extractOptValue(opt)
     var value = extracted.value
 
@@ -113,7 +113,7 @@ private func processLinkoptComponent(
     }
 
     if let filePath = filePath {
-        value = try filePathResolver
+        value = filePathResolver
             .resolve(
                 filePath,
                 xcodeGeneratedTransform: { filePath in
