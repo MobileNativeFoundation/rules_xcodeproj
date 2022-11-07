@@ -18,18 +18,6 @@ def should_bundle_resources(ctx):
     """
     return ctx.attr._build_mode[BuildSettingInfo].value != "bazel"
 
-def should_include_outputs_output_groups(ctx):
-    """Determines whether outputs output groups should be created.
-
-    Args:
-        ctx: The aspect context.
-
-    Returns:
-        `True` if outputs should be included, `False` otherwise. This will be
-        `True` for modes that build primarily with Bazel.
-    """
-    return ctx.attr._build_mode[BuildSettingInfo].value != "xcode"
-
 def should_include_non_xcode_outputs(ctx):
     """Determines whether outputs of non Xcode targets should be included in \
     output groups.
