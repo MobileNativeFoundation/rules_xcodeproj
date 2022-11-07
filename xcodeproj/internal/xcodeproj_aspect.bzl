@@ -1,6 +1,5 @@
 """Implementation of the `xcodeproj_aspect` aspect."""
 
-load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load("@bazel_tools//tools/cpp:toolchain_utils.bzl", "use_cpp_toolchain")
 load(
     ":default_automatic_target_processing_aspect.bzl",
@@ -76,25 +75,23 @@ def _xcodeproj_aspect_impl(target, ctx):
 
     return providers
 
-xcodeproj_aspect = aspect(
-    implementation = _xcodeproj_aspect_impl,
-    attr_aspects = ["*"],
-    attrs = {
-        "_build_mode": attr.label(
-            default = Label("//xcodeproj/internal:build_mode"),
-            providers = [BuildSettingInfo],
-        ),
-        "_cc_toolchain": attr.label(default = Label(
-            "@bazel_tools//tools/cpp:current_cc_toolchain",
-        )),
-        "_xcode_config": attr.label(
-            default = configuration_field(
-                name = "xcode_config_label",
-                fragment = "apple",
+def make_xcodeproj_aspect(*, build_mode):
+    return aspect(
+        implementation = _xcodeproj_aspect_impl,
+        attr_aspects = ["*"],
+        attrs = {
+            "_build_mode": attr.string(default = build_mode),
+            "_cc_toolchain": attr.label(default = Label(
+                "@bazel_tools//tools/cpp:current_cc_toolchain",
+            )),
+            "_xcode_config": attr.label(
+                default = configuration_field(
+                    name = "xcode_config_label",
+                    fragment = "apple",
+                ),
             ),
-        ),
-    },
-    fragments = ["apple", "cpp", "objc"],
-    requires = [default_automatic_target_processing_aspect],
-    toolchains = use_cpp_toolchain(),
-)
+        },
+        fragments = ["apple", "cpp", "objc"],
+        requires = [default_automatic_target_processing_aspect],
+        toolchains = use_cpp_toolchain(),
+    )

@@ -1,6 +1,5 @@
 """Functions for processing target properties"""
 
-load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load(":collections.bzl", "set_if_true", "uniq")
 load(
     ":files.bzl",
@@ -16,7 +15,7 @@ def should_bundle_resources(ctx):
     Returns:
         `True` if resources should be bundled, `False` otherwise.
     """
-    return ctx.attr._build_mode[BuildSettingInfo].value != "bazel"
+    return ctx.attr._build_mode != "bazel"
 
 def should_include_non_xcode_outputs(ctx):
     """Determines whether outputs of non Xcode targets should be included in \
@@ -29,7 +28,7 @@ def should_include_non_xcode_outputs(ctx):
         `True` if the outputs should be included, `False` otherwise. This will
         be `True` for modes that build primarily with Xcode.
     """
-    return ctx.attr._build_mode[BuildSettingInfo].value == "xcode"
+    return ctx.attr._build_mode == "xcode"
 
 def process_dependencies(*, automatic_target_info, transitive_infos):
     """Logic for processing target dependencies.
