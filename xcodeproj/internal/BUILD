@@ -28,13 +28,6 @@ bzl_library(
 
 exports_files(glob(["*.template.*"]))
 
-string_setting(
-    name = "build_mode",
-    build_setting_default = "xcode",
-    # This is made public for internal use only. Do not depend on this setting.
-    visibility = ["//visibility:public"],
-)
-
 # Release
 
 filegroup(

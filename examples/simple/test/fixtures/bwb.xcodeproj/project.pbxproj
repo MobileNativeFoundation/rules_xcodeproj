@@ -274,9 +274,9 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				BAZEL_LABEL = "@//:SwiftBin";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/darwin_x86_64-dbg-ST-a9822d5480e1/bin/rules_xcodeproj/SwiftBin/SwiftBin";
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-a9822d5480e1/bin";
-				BAZEL_TARGET_ID = "//:SwiftBin darwin_x86_64-dbg-ST-a9822d5480e1";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/darwin_x86_64-dbg-ST-3688109ddba2/bin/rules_xcodeproj/SwiftBin/SwiftBin";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-3688109ddba2/bin";
+				BAZEL_TARGET_ID = "//:SwiftBin darwin_x86_64-dbg-ST-3688109ddba2";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				COMPILE_TARGET_NAME = SwiftBin;
@@ -287,7 +287,7 @@
 				ENABLE_TESTABILITY = YES;
 				EXECUTABLE_EXTENSION = "";
 				GCC_OPTIMIZATION_LEVEL = 0;
-				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/darwin_x86_64-dbg-ST-a9822d5480e1/SwiftBin.link.params";
+				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/darwin_x86_64-dbg-ST-3688109ddba2/SwiftBin.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all";
@@ -302,7 +302,7 @@
 				TARGET_NAME = SwiftBin;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",
-					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-a9822d5480e1/bin",
+					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-3688109ddba2/bin",
 				);
 			};
 			name = Debug;
