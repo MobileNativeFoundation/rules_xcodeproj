@@ -1,11 +1,6 @@
 import PathKit
 
 final class FilePathResolver {
-    enum Mode {
-        case buildSetting
-        case script
-    }
-
     struct Directories: Equatable {
         let workspace: Path
         let workspaceComponents: [String]
@@ -51,7 +46,6 @@ final class FilePathResolver {
         let transformedFilePath: FilePath
         let useBazelOut: Bool?
         let forceFullBuildSettingPath: Bool
-        let mode: FilePathResolver.Mode
     }
 
     // TODO: Make thread safe if we ever go concurrent
@@ -92,16 +86,14 @@ container:\(workspace + directories.workspaceOutput)
         transform: (_ filePath: FilePath) -> FilePath = { $0 },
         xcodeGeneratedTransform: ((_ filePath: FilePath) -> FilePath)? = nil,
         useBazelOut: Bool? = nil,
-        forceFullBuildSettingPath: Bool = false,
-        mode: Mode = .buildSetting
+        forceFullBuildSettingPath: Bool = false
     ) throws -> Path {
         func memoizationKey(_ transformedFilePath: FilePath) -> MemoizationKey {
             return .init(
                 filePath: filePath,
                 transformedFilePath: transformedFilePath,
                 useBazelOut: useBazelOut,
-                forceFullBuildSettingPath: forceFullBuildSettingPath,
-                mode: mode
+                forceFullBuildSettingPath: forceFullBuildSettingPath
             )
         }
 
@@ -122,13 +114,7 @@ container:\(workspace + directories.workspaceOutput)
                 return memoized
             }
 
-            let projectDir: Path
-            switch mode {
-            case .buildSetting:
-                projectDir = forceFullBuildSettingPath ? "$(SRCROOT)" : ""
-            case .script:
-                projectDir = "$SRCROOT"
-            }
+            let projectDir: Path = forceFullBuildSettingPath ? "$(SRCROOT)" : ""
             path = projectDir + transformedFilePath.path
         case .external:
             let transformedFilePath = transform(filePath)
@@ -138,14 +124,8 @@ container:\(workspace + directories.workspaceOutput)
                 return memoized
             }
 
-            let externalDir: Path
-            switch mode {
-            case .buildSetting:
-                externalDir = forceFullBuildSettingPath ?
-                    "$(BAZEL_EXTERNAL)" : "external"
-            case .script:
-                externalDir = "$BAZEL_EXTERNAL"
-            }
+            let externalDir: Path = forceFullBuildSettingPath ?
+                "$(BAZEL_EXTERNAL)" : "external"
             path = externalDir + transformedFilePath.path
         case .generated:
             let actuallyUseBazelOut: Bool
@@ -172,24 +152,11 @@ container:\(workspace + directories.workspaceOutput)
             }
 
             if actuallyUseBazelOut {
-                let bazelOutDir: Path
-                switch mode {
-                case .buildSetting:
-                    bazelOutDir = forceFullBuildSettingPath ?
-                        "$(BAZEL_OUT)" : "bazel-out"
-                case .script:
-                    bazelOutDir = "$BAZEL_OUT"
-                }
+                let bazelOutDir: Path = forceFullBuildSettingPath ?
+                    "$(BAZEL_OUT)" : "bazel-out"
                 path = bazelOutDir + generatedFilePath.path
             } else {
-                let buildDir: Path
-                switch mode {
-                case .buildSetting:
-                    buildDir = "$(BUILD_DIR)"
-                case .script:
-                    buildDir = "$BUILD_DIR"
-                }
-                path = buildDir + "bazel-out" + generatedFilePath.path
+                path = "$(BUILD_DIR)/bazel-out" + generatedFilePath.path
             }
         case .internal:
             let transformedFilePath = transform(filePath)
@@ -199,14 +166,7 @@ container:\(workspace + directories.workspaceOutput)
                 return memoized
             }
 
-            let internalDir: Path
-            switch mode {
-            case .buildSetting:
-                internalDir = "$(INTERNAL_DIR)"
-            case .script:
-                internalDir = "$INTERNAL_DIR"
-            }
-            path = internalDir + transformedFilePath.path
+            path = "$(INTERNAL_DIR)" + transformedFilePath.path
         }
 
         memoizedPaths[key] = path
