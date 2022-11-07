@@ -32,7 +32,6 @@ load(
     "process_modulemaps",
     "process_swiftmodules",
     "should_bundle_resources",
-    "should_include_outputs",
     "should_include_outputs_output_groups",
 )
 load(":target_search_paths.bzl", "target_search_paths")
@@ -411,7 +410,6 @@ def process_top_level_target(
         bwx_infoplist = bwx_infoplist,
         bwb_infoplist = bwb_infoplist,
         transitive_infos = transitive_infos,
-        should_produce_dto = should_include_outputs(ctx = ctx),
         should_produce_output_groups = should_include_outputs_output_groups(
             ctx = ctx,
         ),

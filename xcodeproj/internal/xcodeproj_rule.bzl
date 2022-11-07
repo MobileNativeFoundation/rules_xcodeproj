@@ -538,6 +538,7 @@ actual targets: {}
             build_mode = build_mode,
             include_lldb_context = include_lldb_context,
             is_unfocused_dependency = xcode_target.id in unfocused_dependencies,
+            should_include_outputs = should_include_outputs(build_mode),
             unfocused_targets = unfocused_targets,
             target_merges = target_merges,
         )
@@ -617,6 +618,9 @@ actual targets: {}
         linker_products_flattened_map,
         replacement_labels_by_label,
     )
+
+def should_include_outputs(build_mode):
+    return build_mode != "bazel_via_proxy"
 
 # Actions
 

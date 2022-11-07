@@ -23,7 +23,6 @@ load(
     "process_modulemaps",
     "process_swiftmodules",
     "should_bundle_resources",
-    "should_include_outputs",
     "should_include_outputs_output_groups",
 )
 load(":xcode_targets.bzl", "xcode_targets")
@@ -131,7 +130,6 @@ def process_library_target(
         id = id,
         swift_info = swift_info,
         transitive_infos = transitive_infos,
-        should_produce_dto = should_include_outputs(ctx = ctx),
         should_produce_output_groups = should_include_outputs_output_groups(
             ctx = ctx,
         ),
