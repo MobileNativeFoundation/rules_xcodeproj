@@ -1,5 +1,4 @@
 load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
-load("@bazel_skylib//rules:common_settings.bzl", "string_setting")
 
 bzl_library(
     name = "bazel_tools",
@@ -27,13 +26,6 @@ bzl_library(
 )
 
 exports_files(glob(["*.template.*"]))
-
-string_setting(
-    name = "build_mode",
-    build_setting_default = "xcode",
-    # This is made public for internal use only. Do not depend on this setting.
-    visibility = ["//visibility:public"],
-)
 
 # Release
 

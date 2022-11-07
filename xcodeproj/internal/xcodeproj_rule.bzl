@@ -921,19 +921,12 @@ def _write_installer(
 
 # Transition
 
-def _base_target_transition_impl(_settings, attr):
-    return {
-        "//xcodeproj/internal:build_mode": attr.build_mode,
-    }
-
-def _device_transition_impl(settings, attr):
+def _device_transition_impl(_settings, attr):
     outputs = {
         "//command_line_option:ios_multi_cpus": attr.ios_device_cpus,
         "//command_line_option:tvos_cpus": attr.tvos_device_cpus,
         "//command_line_option:watchos_cpus": attr.watchos_device_cpus,
     }
-
-    outputs.update(_base_target_transition_impl(settings, attr))
 
     return outputs
 
@@ -968,8 +961,6 @@ def _simulator_transition_impl(settings, attr):
         "//command_line_option:watchos_cpus": watchos_cpus,
     }
 
-    outputs.update(_base_target_transition_impl(settings, attr))
-
     return outputs
 
 _TRANSITION_ATTR = {
@@ -978,7 +969,6 @@ _TRANSITION_ATTR = {
         "//command_line_option:cpu",
     ],
     "outputs": [
-        "//xcodeproj/internal:build_mode",
         # Simulator and Device support
         "//command_line_option:ios_multi_cpus",
         "//command_line_option:tvos_cpus",
