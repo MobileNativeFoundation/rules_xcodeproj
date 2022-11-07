@@ -921,7 +921,7 @@ def _write_installer(
 
 # Transition
 
-def _device_transition_impl(settings, attr):
+def _device_transition_impl(_settings, attr):
     outputs = {
         "//command_line_option:ios_multi_cpus": attr.ios_device_cpus,
         "//command_line_option:tvos_cpus": attr.tvos_device_cpus,
