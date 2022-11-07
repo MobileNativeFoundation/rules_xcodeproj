@@ -50,6 +50,7 @@ Product for target "\(key)" not found in `products`
                 ),
                 try createCompilingDependenciesScript(
                     in: pbxProj,
+                    buildMode: buildMode,
                     hasClangSearchPaths: target.hasClangSearchPaths,
                     files: files,
                     filePathResolver: filePathResolver
@@ -197,23 +198,18 @@ Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)
 
     private static func createCompilingDependenciesScript(
         in pbxProj: PBXProj,
+        buildMode: BuildMode,
         hasClangSearchPaths: Bool,
         files: [FilePath: File],
         filePathResolver: FilePathResolver
     ) throws -> PBXShellScriptBuildPhase? {
-        guard files.keys.contains(.internal(createXcodeOverlayScriptPath)),
-              hasClangSearchPaths
-        else {
+        guard buildMode == .xcode, hasClangSearchPaths else {
             return  nil
         }
 
         let script = PBXShellScriptBuildPhase(
             name: "Create compiling dependencies",
-            inputPaths: [
-                try filePathResolver
-                    .resolve(.internal(createXcodeOverlayScriptPath))
-                    .string
-            ],
+            inputPaths: ["$(BAZEL_INTEGRATION_DIR)/create_xcode_overlay.sh"],
             outputPaths: ["$(DERIVED_FILE_DIR)/xcode-overlay.yaml"],
             shellScript: "\"$SCRIPT_INPUT_FILE_0\"\n",
             showEnvVarsInLog: false
