@@ -2384,8 +2384,7 @@ $(INTERNAL_DIR)/targets/a1b2c/C 2/d.link.params
                 "OTHER_SWIFT_FLAGS": #"""
 -Xcc -ivfsoverlay -Xcc $(DERIVED_FILE_DIR)/xcode-overlay.yaml \#
 -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml \#
--vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml \#
--Xcc -fmodule-map-file=$(SRCROOT)/a/module.modulemap
+-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml
 """#,
                 "PRODUCT_NAME": "E1",
                 "SDKROOT": "watchos",

@@ -5,6 +5,7 @@ load("@bazel_skylib//lib:structs.bzl", "structs")
 load(":collections.bzl", "set_if_true")
 load(
     ":files.bzl",
+    "build_setting_path",
     "file_path",
     "file_path_to_dto",
     "normalized_file_path",
@@ -261,6 +262,20 @@ def _merge_xcode_target_outputs(*, src, dest):
         transitive_infoplists = dest.transitive_infoplists,
     )
 
+def _set_other_swift_flags(*, build_settings, xcode_target):
+    new_other_swift_flags = [
+        "-Xcc -fmodule-map-file={}".format(build_setting_path(file))
+        for file in xcode_target._modulemaps.files
+    ]
+    other_swift_flags = build_settings.get("OTHER_SWIFT_FLAGS", None)
+    if other_swift_flags:
+        new_other_swift_flags.append(other_swift_flags)
+    set_if_true(
+        build_settings,
+        "OTHER_SWIFT_FLAGS",
+        " ".join(new_other_swift_flags),
+    )
+
 def _xcode_target_to_dto(
         xcode_target,
         *,
@@ -312,7 +327,13 @@ def _xcode_target_to_dto(
             lldb_contexts.to_dto(xcode_target._lldb_context),
         )
 
-    set_if_true(dto, "build_settings", xcode_target._build_settings)
+    build_settings = structs.to_dict(xcode_target._build_settings)
+    _set_other_swift_flags(
+        build_settings = build_settings,
+        xcode_target = xcode_target,
+    )
+    set_if_true(dto, "build_settings", build_settings)
+
     set_if_true(
         dto,
         "search_paths",

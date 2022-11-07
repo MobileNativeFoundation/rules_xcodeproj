@@ -260,22 +260,6 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
             )
         }
 
-        try buildSettings.prepend(
-            onKey: "OTHER_SWIFT_FLAGS",
-            target.modulemaps
-                .map { filePath -> String in
-                    let modulemap = filePathResolver
-                        .resolve(
-                            filePath,
-                            useBazelOut: true,
-                            forceFullBuildSettingPath: true
-                        )
-                        .string.quoted
-                    return "-Xcc -fmodule-map-file=\(modulemap)"
-                }
-                .joined(separator: " ")
-        )
-
         if target.hasLinkerFlags {
             let linkParamsFile = filePathResolver
                 .resolve(try target.linkParamsFilePath())
