@@ -87,7 +87,7 @@ container:\(workspace + directories.workspaceOutput)
         xcodeGeneratedTransform: ((_ filePath: FilePath) -> FilePath)? = nil,
         useBazelOut: Bool? = nil,
         forceFullBuildSettingPath: Bool = false
-    ) throws -> Path {
+    ) -> Path {
         func memoizationKey(_ transformedFilePath: FilePath) -> MemoizationKey {
             return .init(
                 filePath: filePath,

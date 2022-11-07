@@ -88,7 +88,7 @@ $(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py
         )
         pbxProj.add(object: configurationList)
 
-        let bazelBuildScript = try createBazelBuildScript(
+        let bazelBuildScript = createBazelBuildScript(
             in: pbxProj,
             buildMode: buildMode,
             targets: consolidatedTargets.targets.values
@@ -100,7 +100,7 @@ $(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py
         )
 
         let createLLDBSettingsModuleScript =
-            try createCreateLLDBSettingsModuleScript(
+            createCreateLLDBSettingsModuleScript(
                 in: pbxProj,
                 filePathResolver: filePathResolver
             )
@@ -111,7 +111,7 @@ $(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py
         ]
 
         if let preBuildScript = preBuildScript {
-            let script = try createBuildScript(
+            let script = createBuildScript(
                 in: pbxProj,
                 name: "Pre-build",
                 script: preBuildScript
@@ -120,7 +120,7 @@ $(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py
         }
 
         if let postBuildScript = postBuildScript {
-            let script = try createBuildScript(
+            let script = createBuildScript(
                 in: pbxProj,
                 name: "Post-build",
                 script: postBuildScript
@@ -154,18 +154,18 @@ $(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py
         filePathResolver: FilePathResolver,
         generatorLabel: BazelLabel,
         generatorConfiguration: String
-    ) throws -> PBXShellScriptBuildPhase {
+    ) -> PBXShellScriptBuildPhase {
         let hasGeneratedFiles = files.containsGeneratedFiles
 
         var outputFileListPaths: [String] = []
         if files.containsExternalFiles {
-            let externalFilesList = try filePathResolver
+            let externalFilesList = filePathResolver
                 .resolve(.internal(externalFileListPath))
                 .string
             outputFileListPaths.append(externalFilesList)
         }
         if hasGeneratedFiles {
-            let generatedFileList = try filePathResolver
+            let generatedFileList = filePathResolver
                 .resolve(.internal(generatedFileListPath))
                 .string
             outputFileListPaths.append(generatedFileList)
@@ -198,11 +198,11 @@ $(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py
     private static func createCreateLLDBSettingsModuleScript(
         in pbxProj: PBXProj,
         filePathResolver: FilePathResolver
-    ) throws -> PBXShellScriptBuildPhase {
+    ) -> PBXShellScriptBuildPhase {
         let script = PBXShellScriptBuildPhase(
             name: "Create swift_debug_settings.py",
             inputPaths: [
-                try filePathResolver
+                filePathResolver
                     .resolve(.internal(lldbSwiftSettingsModulePath))
                     .string
             ],
@@ -223,7 +223,7 @@ perl -pe 's/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$ENV{$2}/g' \
         in pbxProj: PBXProj,
         name: String,
         script: String
-    ) throws -> PBXShellScriptBuildPhase {
+    ) -> PBXShellScriptBuildPhase {
         let script = PBXShellScriptBuildPhase(
             name: "\(name) Run Script",
             shellScript: "\(script)\n",
