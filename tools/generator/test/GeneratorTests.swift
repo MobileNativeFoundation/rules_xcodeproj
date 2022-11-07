@@ -421,7 +421,7 @@ final class GeneratorTests: XCTestCase {
             let pbxProj: PBXProj
             let buildMode: BuildMode
             let forceBazelDependencies: Bool
-            let indexImport: FilePath
+            let indexImport: String
             let files: [FilePath: File]
             let bazelConfig: String
             let generatorLabel: BazelLabel
@@ -437,7 +437,7 @@ final class GeneratorTests: XCTestCase {
             in pbxProj: PBXProj,
             buildMode: BuildMode,
             forceBazelDependencies: Bool,
-            indexImport: FilePath,
+            indexImport: String,
             files: [FilePath: File],
             filePathResolver: FilePathResolver,
             resolvedExternalRepositories: [(Path, Path)],

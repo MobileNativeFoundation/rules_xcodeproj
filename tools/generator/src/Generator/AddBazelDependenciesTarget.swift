@@ -23,7 +23,7 @@ extension Generator {
         in pbxProj: PBXProj,
         buildMode: BuildMode,
         forceBazelDependencies: Bool,
-        indexImport: FilePath,
+        indexImport: String,
         files: [FilePath: File],
         filePathResolver: FilePathResolver,
         resolvedExternalRepositories: [(Path, Path)],
@@ -57,14 +57,7 @@ extension Generator {
 $(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py
 """,
             "INDEX_DATA_STORE_DIR": "$(INDEX_DATA_STORE_DIR)",
-            "INDEX_IMPORT": try filePathResolver
-                .resolve(
-                    indexImport,
-                    useBazelOut: true,
-                    // This is consumed in `bazel_build.sh`, so we need the full
-                    // path to be able to correctly reference it
-                    forceFullBuildSettingPath: true
-                ).string,
+            "INDEX_IMPORT": indexImport,
             "RESOLVED_EXTERNAL_REPOSITORIES": resolvedExternalRepositories
                 // Sorted by length to ensure that subdirectories are listed first
                 .sorted { $0.0.string.count > $1.0.string.count }

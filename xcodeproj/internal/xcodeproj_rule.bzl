@@ -9,6 +9,7 @@ load(":collections.bzl", "set_if_true", "uniq")
 load(":configuration.bzl", "get_configuration")
 load(
     ":files.bzl",
+    "build_setting_path",
     "file_path",
     "file_path_to_dto",
     "normalized_file_path",
@@ -679,7 +680,7 @@ def _write_json_spec(
 "extra_files":{extra_files},\
 "force_bazel_dependencies":{force_bazel_dependencies},\
 "generator_label":"{generator_label}",\
-"index_import":{index_import},\
+"index_import":"{index_import}",\
 "linker_products_map":{linker_products_map},\
 "name":"{name}",\
 "post_build_script":{post_build_script},\
@@ -703,9 +704,7 @@ def _write_json_spec(
             has_unfocused_targets or inputs.has_generated_files,
         ),
         generator_label = ctx.label,
-        index_import = file_path_to_dto(
-            file_path(ctx.executable._index_import),
-        ),
+        index_import = build_setting_path(ctx.executable._index_import),
         linker_products_map = linker_products_flattened_map,
         name = project_name,
         post_build_script = post_build_script,
