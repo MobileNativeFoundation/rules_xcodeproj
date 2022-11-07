@@ -4,7 +4,6 @@ final class FilePathResolver {
     enum Mode {
         case buildSetting
         case script
-        case srcRoot
     }
 
     struct Directories: Equatable {
@@ -129,8 +128,6 @@ container:\(workspace + directories.workspaceOutput)
                 projectDir = forceFullBuildSettingPath ? "$(SRCROOT)" : ""
             case .script:
                 projectDir = "$SRCROOT"
-            case .srcRoot:
-                projectDir = ""
             }
             path = projectDir + transformedFilePath.path
         case .external:
@@ -148,8 +145,6 @@ container:\(workspace + directories.workspaceOutput)
                     "$(BAZEL_EXTERNAL)" : "external"
             case .script:
                 externalDir = "$BAZEL_EXTERNAL"
-            case .srcRoot:
-                externalDir = directories.external
             }
             path = externalDir + transformedFilePath.path
         case .generated:
@@ -184,8 +179,6 @@ container:\(workspace + directories.workspaceOutput)
                         "$(BAZEL_OUT)" : "bazel-out"
                 case .script:
                     bazelOutDir = "$BAZEL_OUT"
-                case .srcRoot:
-                    bazelOutDir = directories.bazelOut
                 }
                 path = bazelOutDir + generatedFilePath.path
             } else {
@@ -195,10 +188,6 @@ container:\(workspace + directories.workspaceOutput)
                     buildDir = "$(BUILD_DIR)"
                 case .script:
                     buildDir = "$BUILD_DIR"
-                case .srcRoot:
-                    throw PreconditionError(message: """
-`useBuildDir = true` and `mode` == `.srcRoot`
-""")
                 }
                 path = buildDir + "bazel-out" + generatedFilePath.path
             }
@@ -216,8 +205,6 @@ container:\(workspace + directories.workspaceOutput)
                 internalDir = "$(INTERNAL_DIR)"
             case .script:
                 internalDir = "$INTERNAL_DIR"
-            case .srcRoot:
-                internalDir = directories.internal
             }
             path = internalDir + transformedFilePath.path
         }
