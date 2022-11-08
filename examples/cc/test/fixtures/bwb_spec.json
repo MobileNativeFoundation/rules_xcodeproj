@@ -201,6 +201,7 @@
         "//tool:tool darwin_x86_64-dbg-ST-3688109ddba2",
         {
             "build_settings": {
+                "BAZEL_OUTPUTS_PRODUCT": "bazel-out/darwin_x86_64-dbg-ST-3688109ddba2/bin/tool/rules_xcodeproj/tool/tool",
                 "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,

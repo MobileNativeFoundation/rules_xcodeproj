@@ -426,18 +426,6 @@ $(CONFIGURATION_BUILD_DIR)
             }
         }
 
-        if let productOutput = target.outputs.product,
-           buildMode.usesBazelModeBuildScripts
-        {
-            buildSettings.set(
-                "BAZEL_OUTPUTS_PRODUCT",
-                to: filePathResolver.resolve(
-                    productOutput,
-                    useBazelOut: true
-                )
-            )
-        }
-
         if let ldRunpathSearchPaths = target.ldRunpathSearchPaths {
             if buildMode == .xcode && target.product.type.isFramework {
                 buildSettings.set("LD_RUNPATH_SEARCH_PATHS", to: [

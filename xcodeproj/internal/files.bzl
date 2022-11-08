@@ -59,6 +59,7 @@ def file_path(
 
 def build_setting_path(
         file_or_path,
+        absolute_path = True,
         is_path = False,
         quote = True,
         use_build_dir = False):
@@ -66,6 +67,7 @@ def build_setting_path(
 
     Args:
         file_or_path: A `File` or path `string`.
+        absolute_path: Whether to ensure the path resolves to an absolute path.
         is_path: Whether `file_or_path` is a path `string`.
         quote: Whether to quote the path if it contains spaces.
         use_build_dir: Whether to use `$(BUILD_DIR)` instead of `$(BAZEL_OUT)`
@@ -94,12 +96,20 @@ def build_setting_path(
         if use_build_dir:
             build_setting = "$(BUILD_DIR)/{}".format(path)
         else:
-            # Removing "bazel-out" prefix
-            build_setting = "$(BAZEL_OUT){}".format(path[9:])
+            if absolute_path:
+                # Removing "bazel-out" prefix
+                build_setting = "$(BAZEL_OUT){}".format(path[9:])
+            else:
+                build_setting = path
     elif type == "e":
         # External
-        build_setting = "$(BAZEL_EXTERNAL){}".format(path[8:])
+        if absolute_path:
+            # Removing "external" prefix
+            build_setting = "$(BAZEL_EXTERNAL){}".format(path[8:])
+        else:
+            build_setting = path
     else:
+        # Project
         build_setting = "$(SRCROOT)/{}".format(path)
 
     if quote:
