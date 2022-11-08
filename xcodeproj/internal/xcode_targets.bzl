@@ -168,12 +168,22 @@ def _to_xcode_target_linker_inputs(linker_inputs):
 def _to_xcode_target_outputs(outputs):
     direct_outputs = outputs.direct_outputs
 
+    swiftmodule = None
+    swift_generated_header = None
+    if direct_outputs:
+        swift = direct_outputs.swift
+        if swift:
+            swiftmodule = swift.module.swiftmodule
+            if swift.generated_header:
+                swift_generated_header = swift.generated_header
+
     return struct(
         product_file = (
             direct_outputs.product if direct_outputs else None
         ),
         products_output_group_name = outputs.products_output_group_name,
-        swift = direct_outputs.swift if direct_outputs else None,
+        swiftmodule = swiftmodule,
+        swift_generated_header = swift_generated_header,
         transitive_infoplists = outputs.transitive_infoplists,
     )
 
@@ -274,7 +284,8 @@ def _merge_xcode_target_inputs(*, src, dest):
 
 def _merge_xcode_target_outputs(*, src, dest):
     return struct(
-        swift = src.swift,
+        swiftmodule = src.swiftmodule,
+        swift_generated_header = src.swift_generated_header,
         product_file = dest.product_file,
         products_output_group_name = dest.products_output_group_name,
         transitive_infoplists = dest.transitive_infoplists,
@@ -681,8 +692,8 @@ def _outputs_to_dto(outputs):
     if outputs.product_file:
         dto["p"] = True
 
-    if outputs.swift:
-        dto["s"] = _swift_to_dto(outputs.swift)
+    if outputs.swiftmodule:
+        dto["s"] = _swift_to_dto(outputs)
 
     return dto
 
@@ -782,13 +793,13 @@ def _search_paths_intermediate_to_dto(search_paths_intermediate):
     )
     return dto
 
-def _swift_to_dto(swift):
+def _swift_to_dto(outputs):
     dto = {
-        "m": file_path_to_dto(file_path(swift.module.swiftmodule)),
+        "m": file_path_to_dto(file_path(outputs.swiftmodule)),
     }
 
-    if swift.generated_header:
-        dto["h"] = file_path_to_dto(file_path(swift.generated_header))
+    if outputs.swift_generated_header:
+        dto["h"] = file_path_to_dto(file_path(outputs.swift_generated_header))
 
     return dto
 

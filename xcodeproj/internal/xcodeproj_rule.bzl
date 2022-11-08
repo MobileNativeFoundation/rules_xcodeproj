@@ -539,9 +539,8 @@ actual targets: {}
                 xcode_product_path
             )
 
-        swift = xcode_target.outputs.swift
-        if swift:
-            swiftmodule = swift.module.swiftmodule
+        swiftmodule = xcode_target.outputs.swiftmodule
+        if swiftmodule:
             swiftmodule_basename = swiftmodule.basename
             if product.type == "com.apple.product-type.framework":
                 path = product_file.path + "/Modules/" + swiftmodule_basename
@@ -557,22 +556,22 @@ actual targets: {}
                 )
             )
 
-            generated_header = swift.generated_header
-            if generated_header:
-                product_components = product.file.path.split("/", 3)
-                header_components = generated_header.path.split("/")
-                final_components = (product_components[0:2] +
-                                    header_components[2:])
-                path = "/".join(final_components)
+        generated_header = xcode_target.outputs.swift_generated_header
+        if generated_header:
+            product_components = product.file.path.split("/", 3)
+            header_components = generated_header.path.split("/")
+            final_components = (product_components[0:2] +
+                                header_components[2:])
+            path = "/".join(final_components)
 
-                xcode_generated_paths[generated_header.path] = (
-                    build_setting_path(
-                        file = generated_header,
-                        path = path,
-                        use_build_dir = True,
-                        quote = False,
-                    )
+            xcode_generated_paths[generated_header.path] = (
+                build_setting_path(
+                    file = generated_header,
+                    path = path,
+                    use_build_dir = True,
+                    quote = False,
                 )
+            )
 
     target_dtos = {}
     for xcode_target in focused_targets.values():
@@ -868,10 +867,7 @@ def _write_create_xcode_overlay_script(*, ctx, targets):
 
     roots = []
     for xcode_target in targets.values():
-        swift = xcode_target.outputs.swift
-        if not swift:
-            continue
-        generated_header = swift.generated_header
+        generated_header = xcode_target.outputs.swift_generated_header
         if not generated_header:
             continue
 
