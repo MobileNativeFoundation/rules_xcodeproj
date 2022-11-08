@@ -228,13 +228,11 @@ targets.
             product = xcode_target.product
             linker_files = product.linker_files.to_list()
             for file in linker_files:
-                linker_products_map[
-                    build_setting_path(
-                        file = file,
-                        path = file.dirname,
-                        quote = False,
-                    )
-                ] = build_setting_path(file = product.file, quote = False)
+                linker_products_map[build_setting_path(
+                    file = file,
+                    path = file.dirname,
+                    quote = False,
+                )] = build_setting_path(file = product.file, quote = False)
 
         label = replacement_labels.get(
             xcode_target.id,
