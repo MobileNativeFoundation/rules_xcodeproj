@@ -172,7 +172,10 @@ def _lldb_context_to_dto(lldb_context):
             set_if_true(
                 clang_dto,
                 "m",
-                [file_path_to_dto(fp) for fp in clang.modulemaps.file_paths],
+                [
+                    build_setting_path(file, quote = False)
+                    for file in clang.modulemaps.files
+                ],
             )
 
         set_if_true(clang_dto, "o", clang.opts)

@@ -694,7 +694,6 @@ already was set to `\(existingValue)`.
                     }
                     .uniqued()
 
-                var onceFilePaths: Set<FilePath> = []
                 var oncePaths: Set<String> = []
                 var onceOtherFlags: Set<String> = []
                 let clangOtherArgs = lldbContext.clang.map { clang in
@@ -702,7 +701,6 @@ already was set to `\(existingValue)`.
                         buildMode: buildMode,
                         hasBazelDependencies: hasBazelDependencies,
                         filePathResolver: filePathResolver,
-                        onceFilePaths: &onceFilePaths,
                         oncePaths: &oncePaths,
                         onceOtherFlags: &onceOtherFlags
                     )
@@ -976,7 +974,6 @@ private extension LLDBContext.Clang {
         buildMode: BuildMode,
         hasBazelDependencies: Bool,
         filePathResolver: FilePathResolver,
-        onceFilePaths: inout Set<FilePath>,
         oncePaths: inout Set<String>,
         onceOtherFlags: inout Set<String>
     ) -> String {
@@ -1011,20 +1008,13 @@ private extension LLDBContext.Clang {
         }
 
         var modulemapArgs: [String] = []
-        for filePath in modulemaps {
-            guard !onceFilePaths.contains(filePath) else {
+        for path in modulemaps {
+            guard !oncePaths.contains(path) else {
                 continue
             }
-            onceFilePaths.insert(filePath)
+            oncePaths.insert(path)
 
-            let modulemap = filePathResolver
-                .resolve(
-                    filePath,
-                    useBazelOut: true,
-                    forceFullBuildSettingPath: true
-                )
-                .string
-            modulemapArgs.append(#"-fmodule-map-file="\#(modulemap)""#)
+            modulemapArgs.append(#"-fmodule-map-file="\#(path)""#)
         }
 
         var filteredOpts: [String] = []
