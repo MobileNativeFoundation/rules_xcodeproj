@@ -472,7 +472,9 @@ def process_top_level_target(
         bin_dir_path = ctx.bin_dir.path,
         opts_search_paths = opts_search_paths,
     )
-    swiftmodules = process_swiftmodules(swift_info = swift_info)
+    (swiftmodules, swiftmodules_fps) = process_swiftmodules(
+        swift_info = swift_info,
+    )
     lldb_context = lldb_contexts.collect(
         compilation_mode = ctx.var["COMPILATION_MODE"],
         objc_fragment = ctx.fragments.objc,
@@ -518,7 +520,7 @@ def process_top_level_target(
             build_settings = build_settings,
             search_paths = search_paths,
             modulemaps = modulemaps,
-            swiftmodules = swiftmodules,
+            swiftmodules = swiftmodules_fps,
             inputs = inputs,
             linker_inputs = linker_inputs,
             infoplist = infoplist,

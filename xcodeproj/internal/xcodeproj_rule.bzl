@@ -512,6 +512,68 @@ actual targets: {}
                 dest = focused_targets[dest],
             )
 
+    xcode_generated_paths = {}
+    for xcode_target in focused_targets.values():
+        if build_mode != "xcode" or xcode_target.id in unfocused_dependencies:
+            continue
+
+        product = xcode_target.product
+        product_file = product.file
+        if not product_file:
+            continue
+
+        product_file_path = product_file.path
+        xcode_product_path = build_setting_path(
+            file = product_file,
+            path = product_file_path,
+            use_build_dir = True,
+            quote = False,
+        )
+        xcode_generated_paths[product_file_path] = (
+            xcode_product_path
+        )
+        for file in product.additional_product_files:
+            xcode_generated_paths[file.path] = xcode_product_path
+        for file in product.framework_files.to_list():
+            xcode_generated_paths[file.dirname] = (
+                xcode_product_path
+            )
+
+        swift = xcode_target.outputs.swift
+        if swift:
+            swiftmodule = swift.module.swiftmodule
+            swiftmodule_basename = swiftmodule.basename
+            if product.type == "com.apple.product-type.framework":
+                path = product_file.path + "/Modules/" + swiftmodule_basename
+            else:
+                path = product_file.dirname + "/" + swiftmodule_basename
+
+            xcode_generated_paths[swiftmodule.path] = (
+                build_setting_path(
+                    file = swiftmodule,
+                    path = path,
+                    use_build_dir = True,
+                    quote = False,
+                )
+            )
+
+            generated_header = swift.generated_header
+            if generated_header:
+                product_components = product.file.path.split("/", 3)
+                header_components = generated_header.path.split("/")
+                final_components = (product_components[0:2] +
+                                    header_components[2:])
+                path = "/".join(final_components)
+
+                xcode_generated_paths[generated_header.path] = (
+                    build_setting_path(
+                        file = generated_header,
+                        path = path,
+                        use_build_dir = True,
+                        quote = False,
+                    )
+                )
+
     target_dtos = {}
     for xcode_target in focused_targets.values():
         transitive_dependencies = (
@@ -537,6 +599,7 @@ actual targets: {}
             should_include_outputs = should_include_outputs(build_mode),
             unfocused_targets = unfocused_targets,
             target_merges = target_merges,
+            xcode_generated_paths = xcode_generated_paths,
         )
         target_dtos[xcode_target.id] = dto
 

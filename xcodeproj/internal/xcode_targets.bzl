@@ -183,6 +183,7 @@ def _to_xcode_target_product(product):
         type = product.type,
         file = product.file,
         file_path = product.file_path,
+        additional_product_files = tuple(),
         framework_files = product.framework_files,
         _additional_files = product.framework_files,
         _executable_name = product.executable_name,
@@ -288,6 +289,7 @@ def _merge_xcode_target_product(*, src, dest):
         framework_files = depset(
             transitive = [dest.framework_files, src.framework_files],
         ),
+        additional_product_files = tuple([src.file]),
         _additional_files = depset(
             [src.file],
             transitive = [dest._additional_files, src._additional_files],
@@ -394,7 +396,8 @@ def _xcode_target_to_dto(
         linker_products_map,
         should_include_outputs,
         unfocused_targets = {},
-        target_merges = {}):
+        target_merges = {},
+        xcode_generated_paths):
     inputs = xcode_target.inputs
 
     dto = {
@@ -431,7 +434,10 @@ def _xcode_target_to_dto(
         set_if_true(
             dto,
             "lldb_context",
-            lldb_contexts.to_dto(xcode_target._lldb_context),
+            lldb_contexts.to_dto(
+                xcode_target._lldb_context,
+                xcode_generated_paths = xcode_generated_paths,
+            ),
         )
 
     search_paths_intermediate = _search_paths_to_intermediate(
