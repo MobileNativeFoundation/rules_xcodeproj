@@ -5,14 +5,14 @@ struct LLDBContext: Equatable {
         let quoteIncludes: [String]
         let includes: [String]
         let systemIncludes: [String]
-        let modulemaps: [FilePath]
+        let modulemaps: [String]
         let opts: [String]
 
         init(
             quoteIncludes: [String] = [],
             includes: [String] = [],
             systemIncludes: [String] = [],
-            modulemaps: [FilePath] = [],
+            modulemaps: [String] = [],
             opts: [String] = []
         ) {
             self.quoteIncludes = quoteIncludes
@@ -76,18 +76,13 @@ extension LLDBContext.Clang: Decodable {
             .decodeIfPresent([String].self, forKey: .includes) ?? []
         systemIncludes = try container
             .decodeIfPresent([String].self, forKey: .systemIncludes) ?? []
-        modulemaps = try container.decodeFilePaths(.modulemaps)
+        modulemaps = try container
+            .decodeIfPresent([String].self, forKey: .modulemaps) ?? []
         opts = try container.decodeIfPresent([String].self, forKey: .opts) ?? []
     }
 }
 
 private extension KeyedDecodingContainer where K == LLDBContext.CodingKeys {
-    func decodeFilePaths(_ key: K) throws -> [FilePath] {
-        return try decodeIfPresent([FilePath].self, forKey: key) ?? []
-    }
-}
-
-private extension KeyedDecodingContainer where K == LLDBContext.Clang.CodingKeys {
     func decodeFilePaths(_ key: K) throws -> [FilePath] {
         return try decodeIfPresent([FilePath].self, forKey: key) ?? []
     }
