@@ -392,8 +392,9 @@ $(CONFIGURATION_BUILD_DIR)
                     .string.quoted
             }
 
-            var includePaths: OrderedSet =
-                .init(target.swiftmodules.map(handleSwiftModule))
+            var includePaths = target.swiftmodules
+                .map(handleSwiftModule)
+                .uniqued()
 
             if target.product.type.isBundle,
                let swiftmodule = target.outputs.swift?.module
@@ -416,7 +417,7 @@ $(CONFIGURATION_BUILD_DIR)
             if !includePaths.isEmpty {
                 buildSettings.set(
                     "SWIFT_INCLUDE_PATHS",
-                    to: includePaths.elements.uniqued().joined(separator: " ")
+                    to: includePaths.joined(separator: " ")
                 )
             }
         }
