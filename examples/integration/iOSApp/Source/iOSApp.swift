@@ -20,3 +20,9 @@ extension View {
         return self
     }
 }
+
+struct Okay: Dependency {
+    var bool: Bool = true
+}
+
+class SubClass: SuperClass {}

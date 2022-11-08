@@ -14,3 +14,9 @@ public class MixedAnswerSwift: NSObject {
         "swiftToObjcMixedAnswer"
     }
 }
+
+public protocol Dependency {
+    var bool: Bool { get }
+}
+
+open class SuperClass {}
