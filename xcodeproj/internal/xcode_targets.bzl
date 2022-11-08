@@ -109,7 +109,9 @@ def _make_xcode_target(
         id = id,
         label = label,
         platform = platform,
-        product = product,
+        product = (
+            _to_xcode_target_product(product) if not compile_target else product
+        ),
         linker_inputs = (
             _to_xcode_target_linker_inputs(linker_inputs) if not compile_target else linker_inputs
         ),
@@ -175,6 +177,18 @@ def _to_xcode_target_outputs(outputs):
         transitive_infoplists = outputs.transitive_infoplists,
     )
 
+def _to_xcode_target_product(product):
+    return struct(
+        name = product.name,
+        type = product.type,
+        file = product.file,
+        file_path = product.file_path,
+        framework_files = product.framework_files,
+        _additional_files = product.framework_files,
+        _executable_name = product.executable_name,
+        _is_resource_bundle = product.is_resource_bundle,
+    )
+
 def _merge_xcode_target(*, src, dest):
     """Creates a new `xcode_target` by merging the values of `src` into `dest`.
 
@@ -203,7 +217,10 @@ def _merge_xcode_target(*, src, dest):
         compile_target = src,
         package_bin_dir = dest._package_bin_dir,
         platform = src.platform,
-        product = dest.product,
+        product = _merge_xcode_target_product(
+            src = src.product,
+            dest = dest.product,
+        ),
         is_testonly = dest._is_testonly,
         is_swift = src.is_swift,
         test_host = dest._test_host,
@@ -260,6 +277,23 @@ def _merge_xcode_target_outputs(*, src, dest):
         product_file = dest.product_file,
         products_output_group_name = dest.products_output_group_name,
         transitive_infoplists = dest.transitive_infoplists,
+    )
+
+def _merge_xcode_target_product(*, src, dest):
+    return struct(
+        name = dest.name,
+        type = dest.type,
+        file = dest.file,
+        file_path = dest.file_path,
+        framework_files = depset(
+            transitive = [dest.framework_files, src.framework_files],
+        ),
+        _additional_files = depset(
+            [src.file],
+            transitive = [dest._additional_files, src._additional_files],
+        ),
+        _executable_name = dest._executable_name,
+        _is_resource_bundle = dest._is_resource_bundle,
     )
 
 def _prepend_array_build_setting(*, build_settings, key, values):
@@ -369,10 +403,7 @@ def _xcode_target_to_dto(
         "configuration": xcode_target._configuration,
         "package_bin_dir": xcode_target._package_bin_dir,
         "platform": platform_info.to_dto(xcode_target.platform),
-        "product": _product_to_dto(
-            product = xcode_target.product,
-            compile_target = xcode_target._compile_target,
-        ),
+        "product": _product_to_dto(xcode_target.product),
     }
 
     if xcode_target._compile_target:
@@ -649,23 +680,14 @@ def _outputs_to_dto(outputs):
 
     return dto
 
-def _product_to_dto(product, *, compile_target):
-    additional_paths = [
-        file_path_to_dto(normalized_file_path(file))
-        for file in product.linker_files.to_list()
-    ]
-    if compile_target:
-        other_product = compile_target.product
-        additional_paths.append(file_path_to_dto(other_product.file_path))
-        additional_paths.extend([
-            file_path_to_dto(normalized_file_path(file))
-            for file in other_product.linker_files.to_list()
-        ])
-
+def _product_to_dto(product):
     return {
-        "additional_paths": additional_paths,
-        "executable_name": product.executable_name,
-        "is_resource_bundle": product.is_resource_bundle,
+        "additional_paths": [
+            file_path_to_dto(normalized_file_path(file))
+            for file in product._additional_files.to_list()
+        ],
+        "executable_name": product._executable_name,
+        "is_resource_bundle": product._is_resource_bundle,
         "name": product.name,
         "path": file_path_to_dto(product.file_path),
         "type": product.type,
@@ -755,9 +777,8 @@ def _search_paths_intermediate_to_dto(search_paths_intermediate):
     return dto
 
 def _swift_to_dto(swift):
-    module = swift.module
     dto = {
-        "m": file_path_to_dto(file_path(module.swiftmodule)),
+        "m": file_path_to_dto(file_path(swift.module.swiftmodule)),
     }
 
     if swift.generated_header:

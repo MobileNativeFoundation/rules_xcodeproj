@@ -226,8 +226,7 @@ targets.
     for xcode_target in unprocessed_targets.values():
         if build_mode == "bazel":
             product = xcode_target.product
-            linker_files = product.linker_files.to_list()
-            for file in linker_files:
+            for file in product.framework_files.to_list():
                 linker_products_map[build_setting_path(
                     file = file,
                     path = file.dirname,

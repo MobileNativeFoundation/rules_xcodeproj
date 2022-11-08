@@ -118,16 +118,16 @@ def process_product(
         fail("Could not find product for target {}".format(target.label))
 
     if target and apple_common.AppleDynamicFramework in target:
-        linker_files = (
+        framework_files = (
             target[apple_common.AppleDynamicFramework].framework_files
         )
     else:
-        linker_files = depset()
+        framework_files = depset()
 
     return struct(
         executable_name = executable_name,
         name = product_name,
-        linker_files = linker_files,
+        framework_files = framework_files,
         file = file,
         file_path = fp,
         actual_file_path = actual_fp,
