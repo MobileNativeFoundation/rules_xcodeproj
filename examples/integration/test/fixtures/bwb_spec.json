@@ -697,19 +697,10 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+                            "$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/external/com_github_krzyzanowskim_cryptoswift",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin"
                         ]
                     },
                     {
@@ -726,19 +717,10 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+                            "$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/external/com_github_krzyzanowskim_cryptoswift",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin"
                         ]
                     }
                 ],
@@ -917,19 +899,10 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+                            "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/external/com_github_krzyzanowskim_cryptoswift",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin"
                         ]
                     },
                     {
@@ -946,19 +919,10 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+                            "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/external/com_github_krzyzanowskim_cryptoswift",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin"
                         ]
                     }
                 ],
@@ -1239,19 +1203,10 @@
                             "-DSECRET_2=\\\"World!\\\""
                         ],
                         "q": [
-                            ".",
-                            {
-                                "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin",
-                                "t": "g"
-                            },
-                            {
-                                "_": "examples_command_line_external",
-                                "t": "e"
-                            },
-                            {
-                                "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/external/examples_command_line_external",
-                                "t": "g"
-                            }
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin",
+                            "$(BAZEL_EXTERNAL)/examples_command_line_external",
+                            "$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/external/examples_command_line_external"
                         ]
                     },
                     {
@@ -1262,11 +1217,8 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            ".",
-                            {
-                                "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin",
-                                "t": "g"
-                            }
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin"
                         ]
                     }
                 ],
@@ -1816,19 +1768,10 @@
                             "-DSECRET_2=\\\"World!\\\""
                         ],
                         "q": [
-                            ".",
-                            {
-                                "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin",
-                                "t": "g"
-                            },
-                            {
-                                "_": "examples_command_line_external",
-                                "t": "e"
-                            },
-                            {
-                                "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/external/examples_command_line_external",
-                                "t": "g"
-                            }
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin",
+                            "$(BAZEL_EXTERNAL)/examples_command_line_external",
+                            "$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/external/examples_command_line_external"
                         ]
                     },
                     {
@@ -1860,19 +1803,10 @@
                             "-DSECRET_2=\\\"World!\\\""
                         ],
                         "q": [
-                            ".",
-                            {
-                                "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin",
-                                "t": "g"
-                            },
-                            {
-                                "_": "examples_command_line_external",
-                                "t": "e"
-                            },
-                            {
-                                "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/external/examples_command_line_external",
-                                "t": "g"
-                            }
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin",
+                            "$(BAZEL_EXTERNAL)/examples_command_line_external",
+                            "$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/external/examples_command_line_external"
                         ]
                     },
                     {
@@ -1883,11 +1817,8 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            ".",
-                            {
-                                "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin",
-                                "t": "g"
-                            }
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin"
                         ]
                     }
                 ],
@@ -2141,19 +2072,10 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+                            "$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/external/com_github_krzyzanowskim_cryptoswift",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin"
                         ]
                     }
                 ],
@@ -2282,19 +2204,10 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+                            "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/external/com_github_krzyzanowskim_cryptoswift",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin"
                         ]
                     }
                 ],
@@ -2422,19 +2335,10 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+                            "$(BAZEL_OUT)/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin/external/com_github_krzyzanowskim_cryptoswift",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin"
                         ]
                     }
                 ],
@@ -2562,19 +2466,10 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+                            "$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/external/com_github_krzyzanowskim_cryptoswift",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin"
                         ]
                     }
                 ],
@@ -2702,19 +2597,10 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+                            "$(BAZEL_OUT)/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin/external/com_github_krzyzanowskim_cryptoswift",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin"
                         ]
                     }
                 ],
@@ -2842,19 +2728,10 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+                            "$(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/external/com_github_krzyzanowskim_cryptoswift",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin"
                         ]
                     }
                 ],
@@ -3486,19 +3363,10 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+                            "$(BAZEL_OUT)/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin/external/com_github_krzyzanowskim_cryptoswift",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin"
                         ]
                     }
                 ],
@@ -3626,19 +3494,10 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+                            "$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/external/com_github_krzyzanowskim_cryptoswift",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin"
                         ]
                     }
                 ],
@@ -3766,19 +3625,10 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+                            "$(BAZEL_OUT)/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin/external/com_github_krzyzanowskim_cryptoswift",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin"
                         ]
                     }
                 ],
@@ -3906,19 +3756,10 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+                            "$(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/external/com_github_krzyzanowskim_cryptoswift",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin"
                         ]
                     }
                 ],
@@ -4063,19 +3904,10 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+                            "$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/external/com_github_krzyzanowskim_cryptoswift",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin"
                         ]
                     },
                     {
@@ -4092,19 +3924,10 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+                            "$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/external/com_github_krzyzanowskim_cryptoswift",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin"
                         ]
                     }
                 ],
@@ -4289,19 +4112,10 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+                            "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/external/com_github_krzyzanowskim_cryptoswift",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin"
                         ]
                     },
                     {
@@ -4318,19 +4132,10 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+                            "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/external/com_github_krzyzanowskim_cryptoswift",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin"
                         ]
                     }
                 ],
@@ -4515,19 +4320,10 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+                            "$(BAZEL_OUT)/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin/external/com_github_krzyzanowskim_cryptoswift",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin"
                         ]
                     },
                     {
@@ -4544,19 +4340,10 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+                            "$(BAZEL_OUT)/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin/external/com_github_krzyzanowskim_cryptoswift",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin"
                         ]
                     }
                 ],
@@ -4741,19 +4528,10 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+                            "$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/external/com_github_krzyzanowskim_cryptoswift",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin"
                         ]
                     },
                     {
@@ -4770,19 +4548,10 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+                            "$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/external/com_github_krzyzanowskim_cryptoswift",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin"
                         ]
                     }
                 ],
@@ -4967,19 +4736,10 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+                            "$(BAZEL_OUT)/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin/external/com_github_krzyzanowskim_cryptoswift",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin"
                         ]
                     },
                     {
@@ -4996,19 +4756,10 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+                            "$(BAZEL_OUT)/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin/external/com_github_krzyzanowskim_cryptoswift",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin"
                         ]
                     }
                 ],
@@ -5193,19 +4944,10 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+                            "$(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/external/com_github_krzyzanowskim_cryptoswift",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin"
                         ]
                     },
                     {
@@ -5222,19 +4964,10 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+                            "$(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/external/com_github_krzyzanowskim_cryptoswift",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin"
                         ]
                     }
                 ],
@@ -5421,19 +5154,10 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+                            "$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/external/com_github_krzyzanowskim_cryptoswift",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin"
                         ]
                     },
                     {
@@ -5450,19 +5174,10 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+                            "$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/external/com_github_krzyzanowskim_cryptoswift",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin"
                         ]
                     }
                 ],
@@ -5640,19 +5355,10 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+                            "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/external/com_github_krzyzanowskim_cryptoswift",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin"
                         ]
                     },
                     {
@@ -5669,19 +5375,10 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+                            "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/external/com_github_krzyzanowskim_cryptoswift",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin"
                         ]
                     }
                 ],
@@ -5916,19 +5613,10 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+                            "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/external/com_github_krzyzanowskim_cryptoswift",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin"
                         ]
                     },
                     {
@@ -5945,19 +5633,10 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+                            "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/external/com_github_krzyzanowskim_cryptoswift",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin"
                         ]
                     }
                 ],
@@ -6982,11 +6661,8 @@
                 "c": [
                     {
                         "i": [
-                            "iOSApp/Source/CoreUtilsObjC",
-                            {
-                                "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/iOSApp/Source/CoreUtilsObjC",
-                                "t": "g"
-                            }
+                            "$(SRCROOT)/iOSApp/Source/CoreUtilsObjC",
+                            "$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/iOSApp/Source/CoreUtilsObjC"
                         ],
                         "m": [
                             {
@@ -7029,27 +6705,12 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin",
-                                "t": "g"
-                            },
-                            {
-                                "_": "com_google_google_maps",
-                                "t": "e"
-                            },
-                            {
-                                "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/external/com_google_google_maps",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+                            "$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/external/com_github_krzyzanowskim_cryptoswift",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin",
+                            "$(BAZEL_EXTERNAL)/com_google_google_maps",
+                            "$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/external/com_google_google_maps"
                         ]
                     },
                     {
@@ -7066,19 +6727,10 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+                            "$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/external/com_github_krzyzanowskim_cryptoswift",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin"
                         ]
                     },
                     {
@@ -7095,19 +6747,10 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+                            "$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/external/com_github_krzyzanowskim_cryptoswift",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin"
                         ]
                     },
                     {
@@ -7118,11 +6761,8 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            ".",
-                            {
-                                "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin",
-                                "t": "g"
-                            }
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin"
                         ]
                     }
                 ],
@@ -7443,11 +7083,8 @@
                 "c": [
                     {
                         "i": [
-                            "iOSApp/Source/CoreUtilsObjC",
-                            {
-                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/CoreUtilsObjC",
-                                "t": "g"
-                            }
+                            "$(SRCROOT)/iOSApp/Source/CoreUtilsObjC",
+                            "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/CoreUtilsObjC"
                         ],
                         "m": [
                             {
@@ -7490,27 +7127,12 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin",
-                                "t": "g"
-                            },
-                            {
-                                "_": "com_google_google_maps",
-                                "t": "e"
-                            },
-                            {
-                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/external/com_google_google_maps",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+                            "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/external/com_github_krzyzanowskim_cryptoswift",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin",
+                            "$(BAZEL_EXTERNAL)/com_google_google_maps",
+                            "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/external/com_google_google_maps"
                         ]
                     },
                     {
@@ -7527,19 +7149,10 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+                            "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/external/com_github_krzyzanowskim_cryptoswift",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin"
                         ]
                     },
                     {
@@ -7556,19 +7169,10 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+                            "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/external/com_github_krzyzanowskim_cryptoswift",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin"
                         ]
                     },
                     {
@@ -7579,11 +7183,8 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            ".",
-                            {
-                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin",
-                                "t": "g"
-                            }
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin"
                         ]
                     }
                 ],
@@ -7947,11 +7548,8 @@
                 "c": [
                     {
                         "i": [
-                            "iOSApp/Source/CoreUtilsObjC",
-                            {
-                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/CoreUtilsObjC",
-                                "t": "g"
-                            }
+                            "$(SRCROOT)/iOSApp/Source/CoreUtilsObjC",
+                            "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/CoreUtilsObjC"
                         ],
                         "m": [
                             {
@@ -7994,27 +7592,12 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin",
-                                "t": "g"
-                            },
-                            {
-                                "_": "com_google_google_maps",
-                                "t": "e"
-                            },
-                            {
-                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/external/com_google_google_maps",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+                            "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/external/com_github_krzyzanowskim_cryptoswift",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin",
+                            "$(BAZEL_EXTERNAL)/com_google_google_maps",
+                            "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/external/com_google_google_maps"
                         ]
                     },
                     {
@@ -8031,19 +7614,10 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+                            "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/external/com_github_krzyzanowskim_cryptoswift",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin"
                         ]
                     },
                     {
@@ -8060,19 +7634,10 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+                            "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/external/com_github_krzyzanowskim_cryptoswift",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin"
                         ]
                     },
                     {
@@ -8083,11 +7648,8 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            ".",
-                            {
-                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin",
-                                "t": "g"
-                            }
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin"
                         ]
                     },
                     {
@@ -8099,11 +7661,8 @@
                             "-DAWESOME"
                         ],
                         "q": [
-                            ".",
-                            {
-                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin",
-                                "t": "g"
-                            }
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin"
                         ]
                     }
                 ],
@@ -8348,11 +7907,8 @@
                 "c": [
                     {
                         "i": [
-                            "iOSApp/Source/CoreUtilsObjC",
-                            {
-                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/CoreUtilsObjC",
-                                "t": "g"
-                            }
+                            "$(SRCROOT)/iOSApp/Source/CoreUtilsObjC",
+                            "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/CoreUtilsObjC"
                         ],
                         "m": [
                             {
@@ -8408,44 +7964,20 @@
                             "-DAWESOME"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin",
-                                "t": "g"
-                            },
-                            {
-                                "_": "com_google_google_maps",
-                                "t": "e"
-                            },
-                            {
-                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/external/com_google_google_maps",
-                                "t": "g"
-                            },
-                            {
-                                "_": "FXPageControl",
-                                "t": "e"
-                            },
-                            {
-                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/external/FXPageControl",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+                            "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/external/com_github_krzyzanowskim_cryptoswift",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin",
+                            "$(BAZEL_EXTERNAL)/com_google_google_maps",
+                            "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/external/com_google_google_maps",
+                            "$(BAZEL_EXTERNAL)/FXPageControl",
+                            "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/external/FXPageControl"
                         ]
                     },
                     {
                         "i": [
-                            "iOSApp/Source/CoreUtilsObjC",
-                            {
-                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/CoreUtilsObjC",
-                                "t": "g"
-                            }
+                            "$(SRCROOT)/iOSApp/Source/CoreUtilsObjC",
+                            "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/CoreUtilsObjC"
                         ],
                         "m": [
                             {
@@ -8488,27 +8020,12 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin",
-                                "t": "g"
-                            },
-                            {
-                                "_": "com_google_google_maps",
-                                "t": "e"
-                            },
-                            {
-                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/external/com_google_google_maps",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+                            "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/external/com_github_krzyzanowskim_cryptoswift",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin",
+                            "$(BAZEL_EXTERNAL)/com_google_google_maps",
+                            "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/external/com_google_google_maps"
                         ]
                     },
                     {
@@ -8525,19 +8042,10 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+                            "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/external/com_github_krzyzanowskim_cryptoswift",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin"
                         ]
                     },
                     {
@@ -8554,19 +8062,10 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+                            "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/external/com_github_krzyzanowskim_cryptoswift",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin"
                         ]
                     },
                     {
@@ -8577,11 +8076,8 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            ".",
-                            {
-                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin",
-                                "t": "g"
-                            }
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin"
                         ]
                     },
                     {
@@ -8593,11 +8089,8 @@
                             "-DAWESOME"
                         ],
                         "q": [
-                            ".",
-                            {
-                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin",
-                                "t": "g"
-                            }
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin"
                         ]
                     }
                 ],
@@ -8935,11 +8428,8 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            ".",
-                            {
-                                "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-5a457b91a60a/bin",
-                                "t": "g"
-                            }
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-5a457b91a60a/bin"
                         ]
                     }
                 ],
@@ -9073,11 +8563,8 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            ".",
-                            {
-                                "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-5a457b91a60a/bin",
-                                "t": "g"
-                            }
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-5a457b91a60a/bin"
                         ]
                     }
                 ]
@@ -9233,19 +8720,10 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+                            "$(BAZEL_OUT)/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin/external/com_github_krzyzanowskim_cryptoswift",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin"
                         ]
                     },
                     {
@@ -9262,19 +8740,10 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+                            "$(BAZEL_OUT)/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin/external/com_github_krzyzanowskim_cryptoswift",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin"
                         ]
                     },
                     {
@@ -9291,19 +8760,10 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+                            "$(BAZEL_OUT)/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin/external/com_github_krzyzanowskim_cryptoswift",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin"
                         ]
                     }
                 ],
@@ -9503,19 +8963,10 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+                            "$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/external/com_github_krzyzanowskim_cryptoswift",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin"
                         ]
                     },
                     {
@@ -9532,19 +8983,10 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+                            "$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/external/com_github_krzyzanowskim_cryptoswift",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin"
                         ]
                     },
                     {
@@ -9561,19 +9003,10 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+                            "$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/external/com_github_krzyzanowskim_cryptoswift",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin"
                         ]
                     }
                 ],
@@ -9748,11 +9181,8 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            ".",
-                            {
-                                "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin",
-                                "t": "g"
-                            }
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin"
                         ]
                     }
                 ]
@@ -9913,19 +9343,10 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+                            "$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/external/com_github_krzyzanowskim_cryptoswift",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin"
                         ]
                     },
                     {
@@ -9942,19 +9363,10 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+                            "$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/external/com_github_krzyzanowskim_cryptoswift",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin"
                         ]
                     },
                     {
@@ -9971,19 +9383,10 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+                            "$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/external/com_github_krzyzanowskim_cryptoswift",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin"
                         ]
                     },
                     {
@@ -10000,19 +9403,10 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+                            "$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/external/com_github_krzyzanowskim_cryptoswift",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin"
                         ]
                     }
                 ],
@@ -10195,11 +9589,8 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            ".",
-                            {
-                                "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin",
-                                "t": "g"
-                            }
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin"
                         ]
                     }
                 ]
@@ -10487,19 +9878,10 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+                            "$(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/external/com_github_krzyzanowskim_cryptoswift",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin"
                         ]
                     },
                     {
@@ -10516,19 +9898,10 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+                            "$(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/external/com_github_krzyzanowskim_cryptoswift",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin"
                         ]
                     },
                     {
@@ -10545,19 +9918,10 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+                            "$(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/external/com_github_krzyzanowskim_cryptoswift",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin"
                         ]
                     }
                 ],
@@ -10759,19 +10123,10 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+                            "$(BAZEL_OUT)/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin/external/com_github_krzyzanowskim_cryptoswift",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin"
                         ]
                     },
                     {
@@ -10788,19 +10143,10 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+                            "$(BAZEL_OUT)/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin/external/com_github_krzyzanowskim_cryptoswift",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin"
                         ]
                     },
                     {
@@ -10817,19 +10163,10 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+                            "$(BAZEL_OUT)/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin/external/com_github_krzyzanowskim_cryptoswift",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin"
                         ]
                     }
                 ],
@@ -11030,19 +10367,10 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+                            "$(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/external/com_github_krzyzanowskim_cryptoswift",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin"
                         ]
                     },
                     {
@@ -11059,19 +10387,10 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+                            "$(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/external/com_github_krzyzanowskim_cryptoswift",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin"
                         ]
                     },
                     {
@@ -11088,19 +10407,10 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_krzyzanowskim_cryptoswift",
-                                "t": "e"
-                            },
-                            {
-                                "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/external/com_github_krzyzanowskim_cryptoswift",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
+                            "$(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/external/com_github_krzyzanowskim_cryptoswift",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin"
                         ]
                     }
                 ],

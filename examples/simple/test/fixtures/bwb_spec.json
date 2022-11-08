@@ -72,11 +72,8 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            ".",
-                            {
-                                "_": "darwin_x86_64-dbg-ST-3688109ddba2/bin",
-                                "t": "g"
-                            }
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-3688109ddba2/bin"
                         ]
                     }
                 ]

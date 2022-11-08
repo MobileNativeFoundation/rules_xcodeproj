@@ -159,11 +159,8 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            ".",
-                            {
-                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin",
-                                "t": "g"
-                            }
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin"
                         ]
                     }
                 ]
@@ -282,11 +279,8 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            ".",
-                            {
-                                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin",
-                                "t": "g"
-                            }
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin"
                         ]
                     }
                 ]
