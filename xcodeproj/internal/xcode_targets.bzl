@@ -167,6 +167,9 @@ def _to_xcode_target_outputs(outputs):
     direct_outputs = outputs.direct_outputs
 
     return struct(
+        product_file = (
+            direct_outputs.product if direct_outputs else None
+        ),
         product_file_path = (
             direct_outputs.product_file_path if direct_outputs else None
         ),
@@ -257,6 +260,7 @@ def _merge_xcode_target_inputs(*, src, dest):
 def _merge_xcode_target_outputs(*, src, dest):
     return struct(
         swift = src.swift,
+        product_file = dest.product_file,
         product_file_path = dest.product_file_path,
         products_output_group_name = dest.products_output_group_name,
         transitive_infoplists = dest.transitive_infoplists,
@@ -273,6 +277,23 @@ def _prepend_string_build_setting(*, build_settings, key, values):
     if existing:
         values.append(existing)
     set_if_true(build_settings, key, " ".join(values))
+
+def _set_bazel_outputs_product(
+        *,
+        build_mode,
+        build_settings,
+        xcode_target):
+    if build_mode != "bazel":
+        return
+
+    file = xcode_target.outputs.product_file
+    if not file:
+        return
+
+    build_settings["BAZEL_OUTPUTS_PRODUCT"] = build_setting_path(
+        file,
+        absolute_path = False,
+    )
 
 def _set_search_paths(*, build_settings, search_paths_intermediate):
     _prepend_array_build_setting(
@@ -314,6 +335,7 @@ def _xcode_target_to_dto(
         xcode_target,
         *,
         additional_scheme_target_ids = None,
+        build_mode,
         include_lldb_context,
         is_unfocused_dependency = False,
         should_include_outputs,
@@ -367,6 +389,11 @@ def _xcode_target_to_dto(
     )
 
     build_settings = structs.to_dict(xcode_target._build_settings)
+    _set_bazel_outputs_product(
+        build_mode = build_mode,
+        build_settings = build_settings,
+        xcode_target = xcode_target,
+    )
     _set_other_swift_flags(
         build_settings = build_settings,
         xcode_target = xcode_target,

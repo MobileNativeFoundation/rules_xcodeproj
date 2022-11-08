@@ -164,6 +164,7 @@
         "//tools/generator/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889",
         {
             "build_settings": {
+                "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/tools/generator/test/tests.__internal__.__test_bundle.zip",
                 "CODE_SIGN_STYLE": "Manual",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
@@ -610,6 +611,7 @@
         "//tools/generator:generator applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889",
         {
             "build_settings": {
+                "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/tools/generator/rules_xcodeproj/generator/generator",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "ENABLE_STRICT_OBJC_MSGSEND": true,
@@ -1032,6 +1034,7 @@
         "//tools/swiftc_stub:swiftc applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889",
         {
             "build_settings": {
+                "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/tools/swiftc_stub/rules_xcodeproj/swiftc/swiftc",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "ENABLE_STRICT_OBJC_MSGSEND": true,

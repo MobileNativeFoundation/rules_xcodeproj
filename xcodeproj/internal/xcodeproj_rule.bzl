@@ -532,6 +532,7 @@ actual targets: {}
         dto, replaced_dependencies = xcode_targets.to_dto(
             xcode_target = xcode_target,
             additional_scheme_target_ids = additional_scheme_target_ids,
+            build_mode = build_mode,
             include_lldb_context = include_lldb_context,
             is_unfocused_dependency = xcode_target.id in unfocused_dependencies,
             should_include_outputs = should_include_outputs(build_mode),
