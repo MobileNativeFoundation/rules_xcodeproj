@@ -259,24 +259,24 @@ def _collect_input_files(
                 if type(dep) == "Target":
                     _handle_dep(dep, attr = attr)
 
-    product_linker_files = depset(
+    product_framework_files = depset(
         transitive = [
-            info.inputs._product_linker_files
+            info.inputs._product_framework_files
             for attr, info in transitive_infos
             if (info.target_type in
                 automatic_target_info.xcode_targets.get(attr, [None]))
-        ] + ([product.linker_files] if product else []),
+        ] + ([product.framework_files] if product else []),
     )
 
     linker_input_additional_files = linker_input_files.to_input_files(
         linker_inputs,
     )
     if linker_input_additional_files:
-        linker_files = sets.make(product_linker_files.to_list())
+        framework_files = sets.make(product_framework_files.to_list())
         linker_input_additional_files = [
             file
             for file in linker_input_additional_files
-            if not sets.contains(linker_files, file)
+            if not sets.contains(framework_files, file)
         ]
     additional_files = additional_files + linker_input_additional_files
 
@@ -560,7 +560,7 @@ def _collect_input_files(
                     automatic_target_info.xcode_targets.get(attr, [None]))
             ],
         ),
-        _product_linker_files = product_linker_files,
+        _product_framework_files = product_framework_files,
         _resource_bundle_labels = resource_bundle_labels,
         _resource_bundle_uncategorized = resource_bundle_uncategorized,
         srcs = depset(srcs),
@@ -640,7 +640,7 @@ def _from_resource_bundle(bundle):
     return struct(
         _non_target_swift_info_modules = depset(),
         _output_group_list = depset(),
-        _product_linker_files = depset(),
+        _product_framework_files = depset(),
         _resource_bundle_labels = depset(),
         _resource_bundle_uncategorized = depset(),
         srcs = depset(),
@@ -693,9 +693,9 @@ def _merge_input_files(*, transitive_infos, extra_generated = None):
                 for _, info in transitive_infos
             ],
         ),
-        _product_linker_files = depset(
+        _product_framework_files = depset(
             transitive = [
-                info.inputs._product_linker_files
+                info.inputs._product_framework_files
                 for _, info in transitive_infos
             ],
         ),
