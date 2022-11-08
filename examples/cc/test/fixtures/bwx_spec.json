@@ -75,7 +75,15 @@
                 ],
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-                "SWIFT_VERSION": "5.0"
+                "SWIFT_VERSION": "5.0",
+                "SYSTEM_HEADER_SEARCH_PATHS": [
+                    "$(SRCROOT)/lib2/includes",
+                    "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-3688109ddba2/bin/lib2/includes"
+                ],
+                "USER_HEADER_SEARCH_PATHS": [
+                    "$(PROJECT_DIR)",
+                    "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-3688109ddba2/bin"
+                ]
             },
             "configuration": "darwin_x86_64-dbg-ST-3688109ddba2",
             "inputs": {
@@ -106,20 +114,7 @@
                 "type": "com.apple.product-type.library.static"
             },
             "search_paths": {
-                "quote_includes": [
-                    ".",
-                    {
-                        "_": "darwin_x86_64-dbg-ST-3688109ddba2/bin",
-                        "t": "g"
-                    }
-                ],
-                "system_includes": [
-                    "lib2/includes",
-                    {
-                        "_": "darwin_x86_64-dbg-ST-3688109ddba2/bin/lib2/includes",
-                        "t": "g"
-                    }
-                ]
+                "has_includes": true
             }
         },
         "//lib:lib_impl darwin_x86_64-dbg-ST-3688109ddba2",
@@ -136,6 +131,10 @@
                     "__TIMESTAMP__=\"redacted\"",
                     "__TIME__=\"redacted\"",
                     "SECRET_3=\\\"Hello\\\""
+                ],
+                "HEADER_SEARCH_PATHS": [
+                    "$(SRCROOT)/lib/private",
+                    "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-3688109ddba2/bin/lib/private"
                 ],
                 "OTHER_CFLAGS": [
                     "-fstack-protector",
@@ -161,7 +160,11 @@
                 ],
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-                "SWIFT_VERSION": "5.0"
+                "SWIFT_VERSION": "5.0",
+                "USER_HEADER_SEARCH_PATHS": [
+                    "$(PROJECT_DIR)",
+                    "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-3688109ddba2/bin"
+                ]
             },
             "configuration": "darwin_x86_64-dbg-ST-3688109ddba2",
             "inputs": {
@@ -192,20 +195,7 @@
                 "type": "com.apple.product-type.library.static"
             },
             "search_paths": {
-                "includes": [
-                    "lib/private",
-                    {
-                        "_": "darwin_x86_64-dbg-ST-3688109ddba2/bin/lib/private",
-                        "t": "g"
-                    }
-                ],
-                "quote_includes": [
-                    ".",
-                    {
-                        "_": "darwin_x86_64-dbg-ST-3688109ddba2/bin",
-                        "t": "g"
-                    }
-                ]
+                "has_includes": true
             }
         },
         "//tool:tool darwin_x86_64-dbg-ST-3688109ddba2",
@@ -248,7 +238,19 @@
                 ],
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-                "SWIFT_VERSION": "5.0"
+                "SWIFT_VERSION": "5.0",
+                "SYSTEM_HEADER_SEARCH_PATHS": [
+                    "$(SRCROOT)/lib2/includes",
+                    "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-3688109ddba2/bin/lib2/includes"
+                ],
+                "USER_HEADER_SEARCH_PATHS": [
+                    "$(PROJECT_DIR)",
+                    "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-3688109ddba2/bin",
+                    "$(BAZEL_EXTERNAL)/examples_cc_external",
+                    "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-3688109ddba2/bin/external/examples_cc_external",
+                    "$(BAZEL_EXTERNAL)/bazel_tools",
+                    "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-3688109ddba2/bin/external/bazel_tools"
+                ]
             },
             "configuration": "darwin_x86_64-dbg-ST-3688109ddba2",
             "dependencies": [
@@ -313,36 +315,7 @@
                 "type": "com.apple.product-type.tool"
             },
             "search_paths": {
-                "quote_includes": [
-                    ".",
-                    {
-                        "_": "darwin_x86_64-dbg-ST-3688109ddba2/bin",
-                        "t": "g"
-                    },
-                    {
-                        "_": "examples_cc_external",
-                        "t": "e"
-                    },
-                    {
-                        "_": "darwin_x86_64-dbg-ST-3688109ddba2/bin/external/examples_cc_external",
-                        "t": "g"
-                    },
-                    {
-                        "_": "bazel_tools",
-                        "t": "e"
-                    },
-                    {
-                        "_": "darwin_x86_64-dbg-ST-3688109ddba2/bin/external/bazel_tools",
-                        "t": "g"
-                    }
-                ],
-                "system_includes": [
-                    "lib2/includes",
-                    {
-                        "_": "darwin_x86_64-dbg-ST-3688109ddba2/bin/lib2/includes",
-                        "t": "g"
-                    }
-                ]
+                "has_includes": true
             }
         },
         "@examples_cc_external//:lib_impl darwin_x86_64-dbg-ST-3688109ddba2",
@@ -359,6 +332,10 @@
                     "__TIMESTAMP__=\"redacted\"",
                     "__TIME__=\"redacted\"",
                     "EXTERNAL_SECRET_3=\\\"Goodbye\\\""
+                ],
+                "HEADER_SEARCH_PATHS": [
+                    "$(BAZEL_EXTERNAL)/examples_cc_external/private",
+                    "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-3688109ddba2/bin/external/examples_cc_external/private"
                 ],
                 "OTHER_CFLAGS": [
                     "-fstack-protector",
@@ -384,7 +361,13 @@
                 ],
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-                "SWIFT_VERSION": "5.0"
+                "SWIFT_VERSION": "5.0",
+                "USER_HEADER_SEARCH_PATHS": [
+                    "$(BAZEL_EXTERNAL)/examples_cc_external",
+                    "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-3688109ddba2/bin/external/examples_cc_external",
+                    "$(PROJECT_DIR)",
+                    "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-3688109ddba2/bin"
+                ]
             },
             "configuration": "darwin_x86_64-dbg-ST-3688109ddba2",
             "inputs": {
@@ -421,31 +404,7 @@
                 "type": "com.apple.product-type.library.static"
             },
             "search_paths": {
-                "includes": [
-                    {
-                        "_": "examples_cc_external/private",
-                        "t": "e"
-                    },
-                    {
-                        "_": "darwin_x86_64-dbg-ST-3688109ddba2/bin/external/examples_cc_external/private",
-                        "t": "g"
-                    }
-                ],
-                "quote_includes": [
-                    {
-                        "_": "examples_cc_external",
-                        "t": "e"
-                    },
-                    {
-                        "_": "darwin_x86_64-dbg-ST-3688109ddba2/bin/external/examples_cc_external",
-                        "t": "g"
-                    },
-                    ".",
-                    {
-                        "_": "darwin_x86_64-dbg-ST-3688109ddba2/bin",
-                        "t": "g"
-                    }
-                ]
+                "has_includes": true
             }
         }
     ]

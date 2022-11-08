@@ -268,10 +268,8 @@ enum Fixtures {
                 "PRODUCT_MODULE_NAME": .string("_Stubbed_I"),
             ],
             searchPaths: .init(
-                frameworkIncludes: [.generated("some/framework/parent/dir")],
-                quoteIncludes: [.generated("some/quote/includes/parent/dir")],
-                includes: [.generated("some/includes/parent/dir")],
-                systemIncludes: [.generated("some/system/includes/parent/dir")]
+                hasIncludes: true,
+                frameworkIncludes: [.generated("some/framework/parent/dir")]
             ),
             watchApplication: "W",
             appClips: ["AC"],
@@ -2423,7 +2421,6 @@ $(INTERNAL_DIR)/targets/a1b2c/C 2/d.link.params
 $(BAZEL_OUT)/some/framework/parent/dir
 """,
                 "GENERATE_INFOPLIST_FILE": "YES",
-                "HEADER_SEARCH_PATHS": "$(BAZEL_OUT)/some/includes/parent/dir",
                 "IPHONEOS_DEPLOYMENT_TARGET": "12.0",
                 "LD_RUNPATH_SEARCH_PATHS": [
                     "$(inherited)",
@@ -2445,12 +2442,6 @@ $(BAZEL_OUT)/some/framework/parent/dir
                 "SDKROOT": "iphoneos",
                 "SUPPORTED_PLATFORMS": "iphoneos",
                 "SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD": "YES",
-                "SYSTEM_HEADER_SEARCH_PATHS": """
-$(BAZEL_OUT)/some/system/includes/parent/dir
-""",
-                "USER_HEADER_SEARCH_PATHS": """
-$(BAZEL_OUT)/some/quote/includes/parent/dir
-""",
                 "TARGET_NAME": targets["I"]!.name,
             ]) { $1 },
             "R 1": targets["R 1"]!.buildSettings.asDictionary.merging([

@@ -109,7 +109,11 @@
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5.0",
-                "TARGETED_DEVICE_FAMILY": "1"
+                "TARGETED_DEVICE_FAMILY": "1",
+                "USER_HEADER_SEARCH_PATHS": [
+                    "$(PROJECT_DIR)",
+                    "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin"
+                ]
             },
             "compile_target": {
                 "id": "//AddressSanitizerApp:AddressSanitizerApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353",
@@ -209,13 +213,7 @@
                 "type": "com.apple.product-type.application"
             },
             "search_paths": {
-                "quote_includes": [
-                    ".",
-                    {
-                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin",
-                        "t": "g"
-                    }
-                ]
+                "has_includes": true
             }
         },
         "//ThreadSanitizerApp:ThreadSanitizerApp applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353",
@@ -234,7 +232,11 @@
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5.0",
-                "TARGETED_DEVICE_FAMILY": "1"
+                "TARGETED_DEVICE_FAMILY": "1",
+                "USER_HEADER_SEARCH_PATHS": [
+                    "$(PROJECT_DIR)",
+                    "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin"
+                ]
             },
             "compile_target": {
                 "id": "//ThreadSanitizerApp:ThreadSanitizerApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353",
@@ -334,13 +336,7 @@
                 "type": "com.apple.product-type.application"
             },
             "search_paths": {
-                "quote_includes": [
-                    ".",
-                    {
-                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin",
-                        "t": "g"
-                    }
-                ]
+                "has_includes": true
             }
         },
         "//UndefinedBehaviorSanitizerApp:UndefinedBehaviorSanitizerApp applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353",
@@ -416,7 +412,11 @@
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5.0",
-                "TARGETED_DEVICE_FAMILY": "1"
+                "TARGETED_DEVICE_FAMILY": "1",
+                "USER_HEADER_SEARCH_PATHS": [
+                    "$(PROJECT_DIR)",
+                    "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin"
+                ]
             },
             "compile_target": {
                 "id": "//UndefinedBehaviorSanitizerApp:UndefinedBehaviorSanitizerApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353",
@@ -481,13 +481,7 @@
                 "type": "com.apple.product-type.application"
             },
             "search_paths": {
-                "quote_includes": [
-                    ".",
-                    {
-                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin",
-                        "t": "g"
-                    }
-                ]
+                "has_includes": true
             }
         }
     ]

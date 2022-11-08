@@ -222,33 +222,6 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
             )
         }
 
-        let quoteIncludes = target.searchPaths.quoteIncludes
-        let hasQuoteIncludes = !quoteIncludes.isEmpty
-        if hasQuoteIncludes {
-            try buildSettings.prepend(
-                onKey: "USER_HEADER_SEARCH_PATHS",
-                quoteIncludes.map(handleSearchPath)
-            )
-        }
-
-        let includes = target.searchPaths.includes
-        let hasIncludes = !includes.isEmpty
-        if hasIncludes {
-            try buildSettings.prepend(
-                onKey: "HEADER_SEARCH_PATHS",
-                includes.map(handleSearchPath)
-            )
-        }
-
-        let systemIncludes = target.searchPaths.systemIncludes
-        let hasSystemIncludes = !systemIncludes.isEmpty
-        if hasSystemIncludes {
-            try buildSettings.prepend(
-                onKey: "SYSTEM_HEADER_SEARCH_PATHS",
-                systemIncludes.map(handleSearchPath)
-            )
-        }
-
         // Work around stubbed swiftc messing with Indexing setting of
         // `-working-directory` incorrectly
         if buildMode == .bazel {
@@ -534,8 +507,7 @@ $(CONFIGURATION_BUILD_DIR)
                     )
                 }
 
-                if !target.isSwift && (hasFrameworkIncludes || hasIncludes ||
-                    hasQuoteIncludes || hasSystemIncludes)
+                if !target.isSwift && target.searchPaths.hasIncludes
                 {
                     try buildSettings.prepend(
                         onKey: "OTHER_CFLAGS",
