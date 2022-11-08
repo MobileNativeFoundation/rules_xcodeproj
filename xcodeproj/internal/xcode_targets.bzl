@@ -327,6 +327,29 @@ def _set_other_swift_flags(*, build_settings, xcode_target):
         ],
     )
 
+def _set_preview_framework_paths(
+        *,
+        build_mode,
+        build_settings,
+        linker_products_map,
+        xcode_target):
+    if (build_mode == "xcode" or
+        xcode_target.product.type != "com.apple.product-type.framework"):
+        return
+
+    def _map_framework(file):
+        path = build_setting_path(
+            file = file,
+            path = file.dirname,
+            quote = False,
+        )
+        return '"{}"'.format(linker_products_map.get(path, path))
+
+    build_settings["PREVIEW_FRAMEWORK_PATHS"] = [
+        _map_framework(file)
+        for file in xcode_target.linker_inputs.dynamic_frameworks
+    ]
+
 def _xcode_target_to_dto(
         xcode_target,
         *,
@@ -334,6 +357,7 @@ def _xcode_target_to_dto(
         build_mode,
         include_lldb_context,
         is_unfocused_dependency = False,
+        linker_products_map,
         should_include_outputs,
         unfocused_targets = {},
         target_merges = {}):
@@ -392,6 +416,12 @@ def _xcode_target_to_dto(
     )
     _set_other_swift_flags(
         build_settings = build_settings,
+        xcode_target = xcode_target,
+    )
+    _set_preview_framework_paths(
+        build_mode = build_mode,
+        build_settings = build_settings,
+        linker_products_map = linker_products_map,
         xcode_target = xcode_target,
     )
     _set_search_paths(

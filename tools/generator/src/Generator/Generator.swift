@@ -141,7 +141,6 @@ class Generator {
             pbxTargets,
             project.targetHosts,
             bazelDependencies != nil,
-            project.linkerProductsMap,
             filePathResolver
         )
         try environment.setTargetDependencies(

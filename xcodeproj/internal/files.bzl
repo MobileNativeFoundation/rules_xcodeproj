@@ -81,8 +81,9 @@ def build_setting_path(
         fail("One of `file` or `path` must be specified.")
 
     if file:
-        path = file.path
         type = _file_type(file)
+        if not path:
+            path = file.path
     else:
         type = _parsed_path_type(path)
 

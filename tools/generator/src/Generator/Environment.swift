@@ -91,7 +91,6 @@ struct Environment {
         _ pbxTargets: [ConsolidatedTarget.Key: PBXTarget],
         _ hostIDs: [TargetID: [TargetID]],
         _ hasBazelDependencies: Bool,
-        _ linkerProductsMap: [FilePath: FilePath],
         _ filePathResolver: FilePathResolver
     ) throws -> Void
 
