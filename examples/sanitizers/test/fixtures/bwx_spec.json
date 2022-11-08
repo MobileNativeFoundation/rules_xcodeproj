@@ -151,10 +151,7 @@
             },
             "name": "AddressSanitizerApp",
             "outputs": {
-                "p": {
-                    "_": "applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/AddressSanitizerApp/AddressSanitizerApp.ipa",
-                    "t": "g"
-                },
+                "p": true,
                 "s": {
                     "d": {
                         "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/AddressSanitizerApp/AddressSanitizerApp.swiftdoc",
@@ -255,10 +252,7 @@
             },
             "name": "ThreadSanitizerApp",
             "outputs": {
-                "p": {
-                    "_": "applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/ThreadSanitizerApp/ThreadSanitizerApp.ipa",
-                    "t": "g"
-                },
+                "p": true,
                 "s": {
                     "d": {
                         "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/ThreadSanitizerApp/ThreadSanitizerApp.swiftdoc",
@@ -414,10 +408,7 @@
             },
             "name": "UndefinedBehaviorSanitizerApp",
             "outputs": {
-                "p": {
-                    "_": "applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/UndefinedBehaviorSanitizerApp/UndefinedBehaviorSanitizerApp.ipa",
-                    "t": "g"
-                }
+                "p": true
             },
             "package_bin_dir": "bazel-out/applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/UndefinedBehaviorSanitizerApp",
             "platform": {

@@ -170,9 +170,6 @@ def _to_xcode_target_outputs(outputs):
         product_file = (
             direct_outputs.product if direct_outputs else None
         ),
-        product_file_path = (
-            direct_outputs.product_file_path if direct_outputs else None
-        ),
         products_output_group_name = outputs.products_output_group_name,
         swift = direct_outputs.swift if direct_outputs else None,
         transitive_infoplists = outputs.transitive_infoplists,
@@ -261,7 +258,6 @@ def _merge_xcode_target_outputs(*, src, dest):
     return struct(
         swift = src.swift,
         product_file = dest.product_file,
-        product_file_path = dest.product_file_path,
         products_output_group_name = dest.products_output_group_name,
         transitive_infoplists = dest.transitive_infoplists,
     )
@@ -615,8 +611,8 @@ def _linker_inputs_to_dto(linker_inputs, *, compile_target):
 def _outputs_to_dto(outputs):
     dto = {}
 
-    if outputs.product_file_path:
-        dto["p"] = file_path_to_dto(outputs.product_file_path)
+    if outputs.product_file:
+        dto["p"] = True
 
     if outputs.swift:
         dto["s"] = _swift_to_dto(outputs.swift)

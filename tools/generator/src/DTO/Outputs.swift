@@ -21,14 +21,11 @@ struct Outputs: Equatable {
         }
     }
 
-    let product: FilePath?
+    let hasProductOutput: Bool
     var swift: Swift?
 
-    init(
-        product: FilePath? = nil,
-        swift: Swift? = nil
-    ) {
-        self.product = product
+    init(hasProductOutput: Bool = false, swift: Swift? = nil) {
+        self.hasProductOutput = hasProductOutput
         self.swift = swift
     }
 }
@@ -36,10 +33,6 @@ struct Outputs: Equatable {
 extension Outputs {
     var hasOutputs: Bool {
         return hasSwiftOutputs || hasProductOutput
-    }
-
-    var hasProductOutput: Bool {
-        return product != nil
     }
 
     var hasSwiftOutputs: Bool {
@@ -61,14 +54,15 @@ extension Outputs {
 
 extension Outputs: Decodable {
     enum CodingKeys: String, CodingKey {
-        case product = "p"
+        case hasProductOutput = "p"
         case swift = "s"
     }
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        product = try container.decodeIfPresent(FilePath.self, forKey: .product)
+        hasProductOutput = try container
+            .decodeIfPresent(Bool.self, forKey: .hasProductOutput) ?? false
         swift = try container.decodeIfPresent(Swift.self, forKey: .swift)
     }
 }

@@ -528,10 +528,7 @@
             ],
             "name": "tests.__internal__.__test_bundle",
             "outputs": {
-                "p": {
-                    "_": "applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/tools/generator/test/tests.__internal__.__test_bundle.zip",
-                    "t": "g"
-                },
+                "p": true,
                 "s": {
                     "d": {
                         "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/tools/generator/test/tests.swiftdoc",
@@ -822,10 +819,7 @@
             },
             "name": "generator",
             "outputs": {
-                "p": {
-                    "_": "applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/tools/generator/rules_xcodeproj/generator/generator",
-                    "t": "g"
-                }
+                "p": true
             },
             "package_bin_dir": "bazel-out/applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/tools/generator",
             "platform": {
@@ -1095,10 +1089,7 @@
             },
             "name": "swiftc",
             "outputs": {
-                "p": {
-                    "_": "applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/tools/swiftc_stub/rules_xcodeproj/swiftc/swiftc",
-                    "t": "g"
-                },
+                "p": true,
                 "s": {
                     "d": {
                         "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/tools/swiftc_stub/tools_swiftc_stub_swiftc_stub_library.swiftdoc",
