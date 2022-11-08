@@ -740,10 +740,7 @@
             ],
             "name": "AppClip",
             "outputs": {
-                "p": {
-                    "_": "applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/AppClip/AppClip.app",
-                    "t": "g"
-                },
+                "p": true,
                 "s": {
                     "d": {
                         "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/AppClip/AppClip.swiftdoc",
@@ -937,10 +934,7 @@
             ],
             "name": "AppClip",
             "outputs": {
-                "p": {
-                    "_": "applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/AppClip/AppClip.app",
-                    "t": "g"
-                },
+                "p": true,
                 "s": {
                     "d": {
                         "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/AppClip/AppClip.swiftdoc",
@@ -1216,10 +1210,7 @@
             },
             "name": "CommandLineTool",
             "outputs": {
-                "p": {
-                    "_": "applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineTool/rules_xcodeproj/CommandLineTool/CommandLineTool",
-                    "t": "g"
-                }
+                "p": true
             },
             "package_bin_dir": "bazel-out/applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineTool",
             "platform": {
@@ -1816,10 +1807,7 @@
             ],
             "name": "CommandLineToolTests.__internal__.__test_bundle",
             "outputs": {
-                "p": {
-                    "_": "applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/Tests/CommandLineToolTests.xctest",
-                    "t": "g"
-                },
+                "p": true,
                 "s": {
                     "d": {
                         "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/Tests/LibSwiftTestsLib.swiftdoc",
@@ -2042,10 +2030,7 @@
             },
             "name": "iOS",
             "outputs": {
-                "p": {
-                    "_": "applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/Lib/dist/dynamic/Lib.framework",
-                    "t": "g"
-                }
+                "p": true
             },
             "package_bin_dir": "bazel-out/applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/Lib/dist/dynamic",
             "platform": {
@@ -2172,10 +2157,7 @@
             },
             "name": "iOS",
             "outputs": {
-                "p": {
-                    "_": "applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib/dist/dynamic/Lib.framework",
-                    "t": "g"
-                }
+                "p": true
             },
             "package_bin_dir": "bazel-out/applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib/dist/dynamic",
             "platform": {
@@ -2301,10 +2283,7 @@
             },
             "name": "tvOS",
             "outputs": {
-                "p": {
-                    "_": "applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin/Lib/dist/dynamic/Lib.framework",
-                    "t": "g"
-                }
+                "p": true
             },
             "package_bin_dir": "bazel-out/applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin/Lib/dist/dynamic",
             "platform": {
@@ -2430,10 +2409,7 @@
             },
             "name": "tvOS",
             "outputs": {
-                "p": {
-                    "_": "applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/Lib/dist/dynamic/Lib.framework",
-                    "t": "g"
-                }
+                "p": true
             },
             "package_bin_dir": "bazel-out/applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/Lib/dist/dynamic",
             "platform": {
@@ -2559,10 +2535,7 @@
             },
             "name": "watchOS",
             "outputs": {
-                "p": {
-                    "_": "applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin/Lib/dist/dynamic/Lib.framework",
-                    "t": "g"
-                }
+                "p": true
             },
             "package_bin_dir": "bazel-out/applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin/Lib/dist/dynamic",
             "platform": {
@@ -2688,10 +2661,7 @@
             },
             "name": "watchOS",
             "outputs": {
-                "p": {
-                    "_": "applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/Lib/dist/dynamic/Lib.framework",
-                    "t": "g"
-                }
+                "p": true
             },
             "package_bin_dir": "bazel-out/applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/Lib/dist/dynamic",
             "platform": {
@@ -3321,10 +3291,7 @@
             },
             "name": "LibFramework.tvOS",
             "outputs": {
-                "p": {
-                    "_": "applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin/Lib/LibFramework.tvOS.framework",
-                    "t": "g"
-                }
+                "p": true
             },
             "package_bin_dir": "bazel-out/applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin/Lib",
             "platform": {
@@ -3450,10 +3417,7 @@
             },
             "name": "LibFramework.tvOS",
             "outputs": {
-                "p": {
-                    "_": "applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/Lib/LibFramework.tvOS.framework",
-                    "t": "g"
-                }
+                "p": true
             },
             "package_bin_dir": "bazel-out/applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/Lib",
             "platform": {
@@ -3579,10 +3543,7 @@
             },
             "name": "LibFramework.watchOS",
             "outputs": {
-                "p": {
-                    "_": "applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin/Lib/LibFramework.watchOS.framework",
-                    "t": "g"
-                }
+                "p": true
             },
             "package_bin_dir": "bazel-out/applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin/Lib",
             "platform": {
@@ -3708,10 +3669,7 @@
             },
             "name": "LibFramework.watchOS",
             "outputs": {
-                "p": {
-                    "_": "applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/Lib/LibFramework.watchOS.framework",
-                    "t": "g"
-                }
+                "p": true
             },
             "package_bin_dir": "bazel-out/applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/Lib",
             "platform": {
@@ -3883,10 +3841,7 @@
             ],
             "name": "UIFramework.iOS",
             "outputs": {
-                "p": {
-                    "_": "applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/UI/UIFramework.iOS.framework",
-                    "t": "g"
-                },
+                "p": true,
                 "s": {
                     "d": {
                         "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/UI/UI.swiftdoc",
@@ -4086,10 +4041,7 @@
             ],
             "name": "UIFramework.iOS",
             "outputs": {
-                "p": {
-                    "_": "applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/UI/UIFramework.iOS.framework",
-                    "t": "g"
-                },
+                "p": true,
                 "s": {
                     "d": {
                         "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/UI/UI.swiftdoc",
@@ -4289,10 +4241,7 @@
             ],
             "name": "UIFramework.tvOS",
             "outputs": {
-                "p": {
-                    "_": "applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin/UI/UIFramework.tvOS.framework",
-                    "t": "g"
-                },
+                "p": true,
                 "s": {
                     "d": {
                         "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin/UI/UI.swiftdoc",
@@ -4492,10 +4441,7 @@
             ],
             "name": "UIFramework.tvOS",
             "outputs": {
-                "p": {
-                    "_": "applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/UI/UIFramework.tvOS.framework",
-                    "t": "g"
-                },
+                "p": true,
                 "s": {
                     "d": {
                         "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/UI/UI.swiftdoc",
@@ -4695,10 +4641,7 @@
             ],
             "name": "UIFramework.watchOS",
             "outputs": {
-                "p": {
-                    "_": "applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin/UI/UIFramework.watchOS.framework",
-                    "t": "g"
-                },
+                "p": true,
                 "s": {
                     "d": {
                         "_": "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin/UI/UI.swiftdoc",
@@ -4898,10 +4841,7 @@
             ],
             "name": "UIFramework.watchOS",
             "outputs": {
-                "p": {
-                    "_": "applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/UI/UIFramework.watchOS.framework",
-                    "t": "g"
-                },
+                "p": true,
                 "s": {
                     "d": {
                         "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/UI/UI.swiftdoc",
@@ -5103,10 +5043,7 @@
             ],
             "name": "WidgetExtension",
             "outputs": {
-                "p": {
-                    "_": "applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/WidgetExtension/WidgetExtension.appex",
-                    "t": "g"
-                },
+                "p": true,
                 "s": {
                     "d": {
                         "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/WidgetExtension/WidgetExtension.swiftdoc",
@@ -5299,10 +5236,7 @@
             ],
             "name": "WidgetExtension",
             "outputs": {
-                "p": {
-                    "_": "applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/WidgetExtension/WidgetExtension.appex",
-                    "t": "g"
-                },
+                "p": true,
                 "s": {
                     "d": {
                         "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/WidgetExtension/WidgetExtension.swiftdoc",
@@ -5392,10 +5326,7 @@
             "label": "//iMessageApp:iMessageApp",
             "name": "iMessageApp",
             "outputs": {
-                "p": {
-                    "_": "applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iMessageApp/iMessageApp.app",
-                    "t": "g"
-                }
+                "p": true
             },
             "package_bin_dir": "bazel-out/applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iMessageApp",
             "platform": {
@@ -5553,10 +5484,7 @@
             ],
             "name": "iMessageAppExtension",
             "outputs": {
-                "p": {
-                    "_": "applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iMessageApp/iMessageAppExtension.appex",
-                    "t": "g"
-                },
+                "p": true,
                 "s": {
                     "d": {
                         "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iMessageApp/iMessageAppExtension.swiftdoc",
@@ -6083,10 +6011,7 @@
             },
             "name": "FrameworkCoreUtilsObjC",
             "outputs": {
-                "p": {
-                    "_": "applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.framework",
-                    "t": "g"
-                }
+                "p": true
             },
             "package_bin_dir": "bazel-out/applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/iOSApp/Source/CoreUtilsObjC",
             "platform": {
@@ -6241,10 +6166,7 @@
             },
             "name": "FrameworkCoreUtilsObjC",
             "outputs": {
-                "p": {
-                    "_": "applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.framework",
-                    "t": "g"
-                }
+                "p": true
             },
             "package_bin_dir": "bazel-out/applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/CoreUtilsObjC",
             "platform": {
@@ -6700,10 +6622,7 @@
             ],
             "name": "iOSApp",
             "outputs": {
-                "p": {
-                    "_": "applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/iOSApp/Source/iOSApp.app",
-                    "t": "g"
-                },
+                "p": true,
                 "s": {
                     "d": {
                         "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/iOSApp/Source/iOSApp.swiftdoc",
@@ -7093,10 +7012,7 @@
             ],
             "name": "iOSApp",
             "outputs": {
-                "p": {
-                    "_": "applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/iOSApp.app",
-                    "t": "g"
-                },
+                "p": true,
                 "s": {
                     "d": {
                         "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/iOSApp.swiftdoc",
@@ -7508,10 +7424,7 @@
             },
             "name": "iOSAppObjCUnitTests.__internal__.__test_bundle",
             "outputs": {
-                "p": {
-                    "_": "applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests.xctest",
-                    "t": "g"
-                }
+                "p": true
             },
             "package_bin_dir": "bazel-out/applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Test/ObjCUnitTests",
             "platform": {
@@ -7928,10 +7841,7 @@
             ],
             "name": "iOSAppSwiftUnitTests.__internal__.__test_bundle",
             "outputs": {
-                "p": {
-                    "_": "applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTests.xctest",
-                    "t": "g"
-                },
+                "p": true,
                 "s": {
                     "d": {
                         "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTests.swiftdoc",
@@ -8188,10 +8098,7 @@
             ],
             "name": "macOSApp",
             "outputs": {
-                "p": {
-                    "_": "applebin_macos-darwin_x86_64-dbg-ST-5a457b91a60a/bin/macOSApp/Source/macOSApp.app",
-                    "t": "g"
-                },
+                "p": true,
                 "s": {
                     "d": {
                         "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-5a457b91a60a/bin/macOSApp/Source/macOSApp.swiftdoc",
@@ -8318,10 +8225,7 @@
             },
             "name": "macOSAppUITests.__internal__.__test_bundle",
             "outputs": {
-                "p": {
-                    "_": "applebin_macos-darwin_x86_64-dbg-ST-5a457b91a60a/bin/macOSApp/Test/UITests/macOSAppUITests.xctest",
-                    "t": "g"
-                },
+                "p": true,
                 "s": {
                     "d": {
                         "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-5a457b91a60a/bin/macOSApp/Test/UITests/macOSAppUITests.swiftdoc",
@@ -8531,10 +8435,7 @@
             ],
             "name": "tvOSApp",
             "outputs": {
-                "p": {
-                    "_": "applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin/tvOSApp/Source/tvOSApp.app",
-                    "t": "g"
-                },
+                "p": true,
                 "s": {
                     "d": {
                         "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin/tvOSApp/Source/tvOSApp.swiftdoc",
@@ -8766,10 +8667,7 @@
             ],
             "name": "tvOSApp",
             "outputs": {
-                "p": {
-                    "_": "applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/tvOSApp/Source/tvOSApp.app",
-                    "t": "g"
-                },
+                "p": true,
                 "s": {
                     "d": {
                         "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/tvOSApp/Source/tvOSApp.swiftdoc",
@@ -8921,10 +8819,7 @@
             },
             "name": "tvOSAppUITests.__internal__.__test_bundle",
             "outputs": {
-                "p": {
-                    "_": "applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/tvOSApp/Test/UITests/tvOSAppUITests.xctest",
-                    "t": "g"
-                },
+                "p": true,
                 "s": {
                     "d": {
                         "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/tvOSApp/Test/UITests/tvOSAppUITests.swiftdoc",
@@ -9160,10 +9055,7 @@
             ],
             "name": "tvOSAppUnitTests.__internal__.__test_bundle",
             "outputs": {
-                "p": {
-                    "_": "applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/tvOSApp/Test/UnitTests/tvOSAppUnitTests.xctest",
-                    "t": "g"
-                },
+                "p": true,
                 "s": {
                     "d": {
                         "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/tvOSApp/Test/UnitTests/tvOSAppUnitTests.swiftdoc",
@@ -9319,10 +9211,7 @@
             },
             "name": "watchOSAppUITests.__internal__.__test_bundle",
             "outputs": {
-                "p": {
-                    "_": "applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/watchOSApp/Test/UITests/watchOSAppUITests.xctest",
-                    "t": "g"
-                },
+                "p": true,
                 "s": {
                     "d": {
                         "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/watchOSApp/Test/UITests/watchOSAppUITestsLibrary.swiftdoc",
@@ -9405,10 +9294,7 @@
             "label": "//watchOSApp:watchOSApp",
             "name": "watchOSApp",
             "outputs": {
-                "p": {
-                    "_": "applebin_watchos-watchos_arm64_32-dbg-ST-85d7639e6c1c/bin/watchOSApp/watchOSApp.app",
-                    "t": "g"
-                }
+                "p": true
             },
             "package_bin_dir": "bazel-out/applebin_watchos-watchos_arm64_32-dbg-ST-85d7639e6c1c/bin/watchOSApp",
             "platform": {
@@ -9470,10 +9356,7 @@
             "label": "//watchOSApp:watchOSApp",
             "name": "watchOSApp",
             "outputs": {
-                "p": {
-                    "_": "applebin_watchos-watchos_x86_64-dbg-ST-8330f5878aa5/bin/watchOSApp/watchOSApp.app",
-                    "t": "g"
-                }
+                "p": true
             },
             "package_bin_dir": "bazel-out/applebin_watchos-watchos_x86_64-dbg-ST-8330f5878aa5/bin/watchOSApp",
             "platform": {
@@ -9666,10 +9549,7 @@
             ],
             "name": "watchOSAppExtensionUnitTests.__internal__.__test_bundle",
             "outputs": {
-                "p": {
-                    "_": "applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/watchOSAppExtension/Test/UnitTests/watchOSAppExtensionUnitTests.xctest",
-                    "t": "g"
-                },
+                "p": true,
                 "s": {
                     "d": {
                         "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/watchOSAppExtension/Test/UnitTests/watchOSAppExtensionUnitTestsLibrary.swiftdoc",
@@ -9903,10 +9783,7 @@
             ],
             "name": "watchOSAppExtension",
             "outputs": {
-                "p": {
-                    "_": "applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin/watchOSAppExtension/watchOSAppExtension.appex",
-                    "t": "g"
-                },
+                "p": true,
                 "s": {
                     "d": {
                         "_": "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin/watchOSAppExtension/watchOSAppExtension.swiftdoc",
@@ -10139,10 +10016,7 @@
             ],
             "name": "watchOSAppExtension",
             "outputs": {
-                "p": {
-                    "_": "applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/watchOSAppExtension/watchOSAppExtension.appex",
-                    "t": "g"
-                },
+                "p": true,
                 "s": {
                     "d": {
                         "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/watchOSAppExtension/watchOSAppExtension.swiftdoc",

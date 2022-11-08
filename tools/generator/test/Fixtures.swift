@@ -79,7 +79,6 @@ enum Fixtures {
                 ]
             ),
             outputs: .init(
-                product: nil,
                 swift: .init(
                     module: .generated("x/y.swiftmodule"),
                     doc: .generated("x/y.swiftdoc"),
@@ -127,7 +126,6 @@ enum Fixtures {
             resourceBundleDependencies: ["R 1"],
             dependencies: ["C 1", "A 1", "R 1"],
             outputs: .init(
-                product: nil,
                 swift: .init(
                     module: .generated("x/A.swiftmodule"),
                     doc: .generated("x/A.swiftdoc"),
@@ -232,7 +230,6 @@ enum Fixtures {
             swiftmodules: [.generated("x/y.swiftmodule")],
             inputs: .init(srcs: [.external("a_repo/a.swift")]),
             outputs: .init(
-              product: nil,
               swift: .init(
                   module: .generated("x/E.swiftmodule"),
                   doc: .generated("x/E.swiftdoc"),
