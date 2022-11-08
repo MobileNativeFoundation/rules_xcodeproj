@@ -5,8 +5,7 @@ load(
     ":files.bzl",
     "build_setting_path",
     "file_path_to_dto",
-    "is_generated_file_path",
-    "parsed_file_path",
+    "is_generated_path",
 )
 load(":opts.bzl", "swift_pcm_copts")
 
@@ -96,17 +95,13 @@ def _lldb_context_to_dto(lldb_context):
 
     dto = {}
 
-    framework_file_paths = [
-        parsed_file_path(path)
-        for path in lldb_context._framework_search_paths.to_list()
-    ]
     set_if_true(
         dto,
         "f",
         [
-            file_path_to_dto(fp)
-            for fp in framework_file_paths
-            if not is_generated_file_path(fp)
+            build_setting_path(path = path, quote = False)
+            for path in lldb_context._framework_search_paths.to_list()
+            if not is_generated_path(path)
         ],
     )
 

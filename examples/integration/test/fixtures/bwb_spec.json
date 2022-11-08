@@ -558,10 +558,7 @@
                     }
                 ],
                 "f": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7",
-                        "t": "e"
-                    }
+                    "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7"
                 ],
                 "s": [
                     {
@@ -744,10 +741,7 @@
                     }
                 ],
                 "f": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator",
-                        "t": "e"
-                    }
+                    "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator"
                 ],
                 "s": [
                     {
@@ -1018,10 +1012,7 @@
                     }
                 ],
                 "f": [
-                    {
-                        "_": "examples_command_line_external",
-                        "t": "e"
-                    }
+                    "$(BAZEL_EXTERNAL)/examples_command_line_external"
                 ],
                 "s": [
                     {
@@ -1576,10 +1567,7 @@
                     }
                 ],
                 "f": [
-                    {
-                        "_": "examples_command_line_external",
-                        "t": "e"
-                    }
+                    "$(BAZEL_EXTERNAL)/examples_command_line_external"
                 ],
                 "s": [
                     {
@@ -1823,10 +1811,7 @@
                     }
                 ],
                 "f": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7",
-                        "t": "e"
-                    }
+                    "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7"
                 ]
             },
             "name": "iOS",
@@ -1953,10 +1938,7 @@
                     }
                 ],
                 "f": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator",
-                        "t": "e"
-                    }
+                    "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator"
                 ]
             },
             "name": "iOS",
@@ -2082,10 +2064,7 @@
                     }
                 ],
                 "f": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64",
-                        "t": "e"
-                    }
+                    "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64"
                 ]
             },
             "name": "tvOS",
@@ -2211,10 +2190,7 @@
                     }
                 ],
                 "f": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator",
-                        "t": "e"
-                    }
+                    "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator"
                 ]
             },
             "name": "tvOS",
@@ -2340,10 +2316,7 @@
                     }
                 ],
                 "f": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k",
-                        "t": "e"
-                    }
+                    "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k"
                 ]
             },
             "name": "watchOS",
@@ -2469,10 +2442,7 @@
                     }
                 ],
                 "f": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator",
-                        "t": "e"
-                    }
+                    "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator"
                 ]
             },
             "name": "watchOS",
@@ -3054,10 +3024,7 @@
                     }
                 ],
                 "f": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64",
-                        "t": "e"
-                    }
+                    "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64"
                 ]
             },
             "name": "LibFramework.tvOS",
@@ -3183,10 +3150,7 @@
                     }
                 ],
                 "f": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator",
-                        "t": "e"
-                    }
+                    "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator"
                 ]
             },
             "name": "LibFramework.tvOS",
@@ -3312,10 +3276,7 @@
                     }
                 ],
                 "f": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k",
-                        "t": "e"
-                    }
+                    "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k"
                 ]
             },
             "name": "LibFramework.watchOS",
@@ -3441,10 +3402,7 @@
                     }
                 ],
                 "f": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator",
-                        "t": "e"
-                    }
+                    "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator"
                 ]
             },
             "name": "LibFramework.watchOS",
@@ -3605,10 +3563,7 @@
                     }
                 ],
                 "f": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7",
-                        "t": "e"
-                    }
+                    "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7"
                 ],
                 "s": [
                     {
@@ -3801,10 +3756,7 @@
                     }
                 ],
                 "f": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator",
-                        "t": "e"
-                    }
+                    "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator"
                 ],
                 "s": [
                     {
@@ -3997,10 +3949,7 @@
                     }
                 ],
                 "f": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64",
-                        "t": "e"
-                    }
+                    "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64"
                 ],
                 "s": [
                     {
@@ -4193,10 +4142,7 @@
                     }
                 ],
                 "f": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator",
-                        "t": "e"
-                    }
+                    "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator"
                 ],
                 "s": [
                     {
@@ -4389,10 +4335,7 @@
                     }
                 ],
                 "f": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k",
-                        "t": "e"
-                    }
+                    "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k"
                 ],
                 "s": [
                     {
@@ -4585,10 +4528,7 @@
                     }
                 ],
                 "f": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator",
-                        "t": "e"
-                    }
+                    "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator"
                 ],
                 "s": [
                     {
@@ -4779,10 +4719,7 @@
                     }
                 ],
                 "f": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7",
-                        "t": "e"
-                    }
+                    "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7"
                 ],
                 "s": [
                     {
@@ -4964,10 +4901,7 @@
                     }
                 ],
                 "f": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator",
-                        "t": "e"
-                    }
+                    "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator"
                 ],
                 "s": [
                     {
@@ -5204,10 +5138,7 @@
                     }
                 ],
                 "f": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator",
-                        "t": "e"
-                    }
+                    "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator"
                 ],
                 "s": [
                     {
@@ -6272,22 +6203,10 @@
                     }
                 ],
                 "f": [
-                    {
-                        "_": "com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64",
-                        "t": "e"
-                    },
-                    {
-                        "_": "com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64",
-                        "t": "e"
-                    },
-                    {
-                        "_": "com_google_google_maps/GoogleMaps.xcframework/ios-arm64",
-                        "t": "e"
-                    },
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7",
-                        "t": "e"
-                    }
+                    "$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64",
+                    "$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64",
+                    "$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMaps.xcframework/ios-arm64",
+                    "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7"
                 ],
                 "s": [
                     {
@@ -6654,22 +6573,10 @@
                     }
                 ],
                 "f": [
-                    {
-                        "_": "com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator",
-                        "t": "e"
-                    },
-                    {
-                        "_": "com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator",
-                        "t": "e"
-                    },
-                    {
-                        "_": "com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator",
-                        "t": "e"
-                    },
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator",
-                        "t": "e"
-                    }
+                    "$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator",
+                    "$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator",
+                    "$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator",
+                    "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator"
                 ],
                 "s": [
                     {
@@ -7092,22 +6999,10 @@
                     }
                 ],
                 "f": [
-                    {
-                        "_": "com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator",
-                        "t": "e"
-                    },
-                    {
-                        "_": "com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator",
-                        "t": "e"
-                    },
-                    {
-                        "_": "com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator",
-                        "t": "e"
-                    },
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator",
-                        "t": "e"
-                    }
+                    "$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator",
+                    "$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator",
+                    "$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator",
+                    "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator"
                 ],
                 "s": [
                     {
@@ -7455,22 +7350,10 @@
                     }
                 ],
                 "f": [
-                    {
-                        "_": "com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator",
-                        "t": "e"
-                    },
-                    {
-                        "_": "com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator",
-                        "t": "e"
-                    },
-                    {
-                        "_": "com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator",
-                        "t": "e"
-                    },
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator",
-                        "t": "e"
-                    }
+                    "$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator",
+                    "$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator",
+                    "$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator",
+                    "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator"
                 ],
                 "s": [
                     {
@@ -7776,7 +7659,7 @@
                     }
                 ],
                 "f": [
-                    "macOSApp/third_party"
+                    "$(SRCROOT)/macOSApp/third_party"
                 ]
             },
             "modulemaps": [
@@ -8081,10 +7964,7 @@
                     }
                 ],
                 "f": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64",
-                        "t": "e"
-                    }
+                    "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64"
                 ],
                 "s": [
                     {
@@ -8305,10 +8185,7 @@
                     }
                 ],
                 "f": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator",
-                        "t": "e"
-                    }
+                    "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator"
                 ],
                 "s": [
                     {
@@ -8673,10 +8550,7 @@
                     }
                 ],
                 "f": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator",
-                        "t": "e"
-                    }
+                    "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator"
                 ],
                 "s": [
                     {
@@ -9155,10 +9029,7 @@
                     }
                 ],
                 "f": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator",
-                        "t": "e"
-                    }
+                    "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator"
                 ],
                 "s": [
                     {
@@ -9381,10 +9252,7 @@
                     }
                 ],
                 "f": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k",
-                        "t": "e"
-                    }
+                    "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k"
                 ],
                 "s": [
                     {
@@ -9606,10 +9474,7 @@
                     }
                 ],
                 "f": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator",
-                        "t": "e"
-                    }
+                    "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator"
                 ],
                 "s": [
                     {

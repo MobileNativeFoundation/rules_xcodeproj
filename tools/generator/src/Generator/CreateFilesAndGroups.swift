@@ -672,15 +672,6 @@ already was set to `\(existingValue)`.
                 }
 
                 let frameworks = lldbContext.frameworkSearchPaths
-                    .map { filePath -> String in
-                        return filePathResolver
-                            .resolve(
-                                filePath,
-                                useBazelOut: true,
-                                forceFullBuildSettingPath: true
-                            )
-                            .string
-                    }
 
                 let includes = lldbContext.swiftmodules
                     .map { filePath -> String in

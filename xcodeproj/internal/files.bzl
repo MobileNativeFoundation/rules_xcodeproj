@@ -128,9 +128,9 @@ def _file_type(file):
     return None
 
 def _parsed_path_type(path):
-    if path.startswith("bazel-out/"):
+    if is_generated_path(path):
         return "g"
-    if path.startswith("external/"):
+    if is_external_path(path):
         return "e"
     return None
 
@@ -146,9 +146,9 @@ def parsed_file_path(path):
 
     # These checks are less than ideal, but since it's a string we can't tell if
     # they meant something else
-    if path.startswith("bazel-out/"):
+    if is_generated_path(path):
         return generated_file_path(path)
-    elif path.startswith("external/"):
+    elif is_external_path(path):
         return external_file_path(path)
     else:
         return project_file_path(path)
@@ -230,6 +230,12 @@ def generated_file_path(
         include_in_navigator = include_in_navigator,
         force_group_creation = force_group_creation,
     )
+
+def is_external_path(path):
+    return path.startswith("external/")
+
+def is_generated_path(path):
+    return path.startswith("bazel-out/")
 
 def is_generated_file_path(fp):
     return fp.type == "g"
