@@ -51,7 +51,6 @@ final class SetTargetConfigurationsTests: XCTestCase {
             pbxTargets: pbxTargets,
             hostIDs: Fixtures.project.targetHosts,
             hasBazelDependencies: true,
-            linkerProductsMap: Fixtures.project.linkerProductsMap,
             filePathResolver: filePathResolver
         )
 
@@ -181,7 +180,6 @@ final class SetTargetConfigurationsTests: XCTestCase {
             pbxTargets: pbxTargets,
             hostIDs: [:],
             hasBazelDependencies: false,
-            linkerProductsMap: [:],
             filePathResolver: Self.filePathResolverFixture
         )
 
@@ -321,7 +319,6 @@ final class SetTargetConfigurationsTests: XCTestCase {
             pbxTargets: pbxTargets,
             hostIDs: [:],
             hasBazelDependencies: false,
-            linkerProductsMap: [:],
             filePathResolver: Self.filePathResolverFixture
         )
 
@@ -415,7 +412,6 @@ final class SetTargetConfigurationsTests: XCTestCase {
             pbxTargets: pbxTargets,
             hostIDs: [:],
             hasBazelDependencies: false,
-            linkerProductsMap: [:],
             filePathResolver: Self.filePathResolverFixture
         )
 
@@ -458,7 +454,6 @@ final class SetTargetConfigurationsTests: XCTestCase {
             pbxTargets: pbxTargets,
             hostIDs: [:],
             hasBazelDependencies: false,
-            linkerProductsMap: [:],
             filePathResolver: Self.filePathResolverFixture
         )
 
@@ -512,7 +507,6 @@ final class SetTargetConfigurationsTests: XCTestCase {
             pbxTargets: pbxTargets,
             hostIDs: [:],
             hasBazelDependencies: false,
-            linkerProductsMap: [:],
             filePathResolver: Self.filePathResolverFixture
         )
 
@@ -567,7 +561,6 @@ final class SetTargetConfigurationsTests: XCTestCase {
             pbxTargets: pbxTargets,
             hostIDs: [:],
             hasBazelDependencies: false,
-            linkerProductsMap: [:],
             filePathResolver: Self.filePathResolverFixture
         )
 
@@ -693,7 +686,6 @@ final class SetTargetConfigurationsTests: XCTestCase {
             pbxTargets: pbxTargets,
             hostIDs: [:],
             hasBazelDependencies: false,
-            linkerProductsMap: [:],
             filePathResolver: Self.filePathResolverFixture
         )
 

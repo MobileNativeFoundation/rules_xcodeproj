@@ -18,9 +18,6 @@ enum Fixtures {
             "ONLY_ACTIVE_ARCH": .bool(true),
         ],
         targets: targets,
-        linkerProductsMap: [
-            .generated("a/frameworks/b.framework"): .generated("a/b.framework"),
-        ],
         replacementLabels: [:],
         targetHosts: [
             "W": ["I"],

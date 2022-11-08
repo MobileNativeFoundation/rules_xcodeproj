@@ -7,7 +7,6 @@ struct Project: Equatable, Decodable {
     let configuration: String
     let buildSettings: [String: BuildSetting]
     var targets: [TargetID: Target]
-    let linkerProductsMap: [FilePath: FilePath]
     let replacementLabels: [TargetID: BazelLabel]
     let targetHosts: [TargetID: [TargetID]]
     let envs: [TargetID: [String: String]]

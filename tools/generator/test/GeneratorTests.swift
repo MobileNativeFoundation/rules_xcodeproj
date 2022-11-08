@@ -18,7 +18,6 @@ final class GeneratorTests: XCTestCase {
             configuration: "abc123",
             buildSettings: [:],
             targets: Fixtures.targets,
-            linkerProductsMap: [:],
             replacementLabels: [:],
             targetHosts: [
                 "WKE": ["I 1", "I 2"],
@@ -531,7 +530,6 @@ final class GeneratorTests: XCTestCase {
             let pbxTargets: [ConsolidatedTarget.Key: PBXTarget]
             let hostIDs: [TargetID: [TargetID]]
             let hasBazelDependencies: Bool
-            let linkerProductsMap: [FilePath: FilePath]
         }
 
         var setTargetConfigurationsCalled: [SetTargetConfigurationsCalled] = []
@@ -543,7 +541,6 @@ final class GeneratorTests: XCTestCase {
             pbxTargets: [ConsolidatedTarget.Key: PBXTarget],
             hostIDs: [TargetID: [TargetID]],
             hasBazelDependencies: Bool,
-            linkerProductsMap: [FilePath: FilePath],
             filePathResolver: FilePathResolver
         ) {
             setTargetConfigurationsCalled.append(.init(
@@ -553,8 +550,7 @@ final class GeneratorTests: XCTestCase {
                 buildMode: buildMode,
                 pbxTargets: pbxTargets,
                 hostIDs: hostIDs,
-                hasBazelDependencies: hasBazelDependencies,
-                linkerProductsMap: linkerProductsMap
+                hasBazelDependencies: hasBazelDependencies
             ))
         }
 
@@ -566,8 +562,7 @@ final class GeneratorTests: XCTestCase {
                 buildMode: buildMode,
                 pbxTargets: pbxTargets,
                 hostIDs: project.targetHosts,
-                hasBazelDependencies: true,
-                linkerProductsMap: project.linkerProductsMap
+                hasBazelDependencies: true
             ),
         ]
 
