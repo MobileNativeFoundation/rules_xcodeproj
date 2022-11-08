@@ -144,7 +144,7 @@ def _lldb_context_to_dto(lldb_context):
             clang_dto,
             "q",
             [
-                build_setting_path(path, is_path = True, quote = False)
+                build_setting_path(path = path, quote = False)
                 for path in quote_includes.to_list()
             ],
         )
@@ -152,7 +152,7 @@ def _lldb_context_to_dto(lldb_context):
             clang_dto,
             "i",
             [
-                build_setting_path(path, is_path = True, quote = False)
+                build_setting_path(path = path, quote = False)
                 for path in (compilation_context.includes.to_list() +
                              opts_includes)
             ],
@@ -161,7 +161,7 @@ def _lldb_context_to_dto(lldb_context):
             clang_dto,
             "s",
             [
-                build_setting_path(path, is_path = True, quote = False)
+                build_setting_path(path = path, quote = False)
                 for path in (compilation_context.system_includes.to_list() +
                              opts_system_includes)
             ],
@@ -173,7 +173,7 @@ def _lldb_context_to_dto(lldb_context):
                 clang_dto,
                 "m",
                 [
-                    build_setting_path(file, quote = False)
+                    build_setting_path(file = file, quote = False)
                     for file in clang.modulemaps.files
                 ],
             )

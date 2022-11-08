@@ -706,7 +706,7 @@ def _write_json_spec(
         ),
         generator_label = ctx.label,
         index_import = build_setting_path(
-            ctx.executable._index_import,
+            file = ctx.executable._index_import,
             quote = False,
         ),
         linker_products_map = linker_products_flattened_map,

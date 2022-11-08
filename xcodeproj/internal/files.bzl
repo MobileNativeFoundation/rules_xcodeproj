@@ -58,17 +58,18 @@ def file_path(
     )
 
 def build_setting_path(
-        file_or_path,
+        *,
+        file = None,
+        path = None,
         absolute_path = True,
-        is_path = False,
         quote = True,
         use_build_dir = False):
     """Converts a `File` into a `string` to be used in an Xcode build setting.
 
     Args:
-        file_or_path: A `File` or path `string`.
+        file: A `File`. One of `file` or `path` must be specified.
+        path: A path `string. One of `file` or `path` must be specified.
         absolute_path: Whether to ensure the path resolves to an absolute path.
-        is_path: Whether `file_or_path` is a path `string`.
         quote: Whether to quote the path if it contains spaces.
         use_build_dir: Whether to use `$(BUILD_DIR)` instead of `$(BAZEL_OUT)`
             for generated files.
@@ -76,12 +77,14 @@ def build_setting_path(
     Returns:
         A `string`.
     """
-    if is_path:
-        path = file_or_path
-        type = _parsed_path_type(path)
+    if not file and not path:
+        fail("One of `file` or `path` must be specified.")
+
+    if file:
+        path = file.path
+        type = _file_type(file)
     else:
-        path = file_or_path.path
-        type = _file_type(file_or_path)
+        type = _parsed_path_type(path)
 
     if path == ".":
         # We need to use Bazel's execution root for ".", since includes can

@@ -287,7 +287,7 @@ def _set_bazel_outputs_product(
         return
 
     build_settings["BAZEL_OUTPUTS_PRODUCT"] = build_setting_path(
-        file,
+        file = file,
         absolute_path = False,
     )
 
@@ -296,7 +296,7 @@ def _set_search_paths(*, build_settings, search_paths_intermediate):
         build_settings = build_settings,
         key = "USER_HEADER_SEARCH_PATHS",
         values = [
-            build_setting_path(path, is_path = True)
+            build_setting_path(path = path)
             for path in search_paths_intermediate.quote_includes
         ],
     )
@@ -304,7 +304,7 @@ def _set_search_paths(*, build_settings, search_paths_intermediate):
         build_settings = build_settings,
         key = "HEADER_SEARCH_PATHS",
         values = [
-            build_setting_path(path, is_path = True)
+            build_setting_path(path = path)
             for path in search_paths_intermediate.includes
         ],
     )
@@ -312,7 +312,7 @@ def _set_search_paths(*, build_settings, search_paths_intermediate):
         build_settings = build_settings,
         key = "SYSTEM_HEADER_SEARCH_PATHS",
         values = [
-            build_setting_path(path, is_path = True)
+            build_setting_path(path = path)
             for path in search_paths_intermediate.system_includes
         ],
     )
@@ -322,7 +322,7 @@ def _set_other_swift_flags(*, build_settings, xcode_target):
         build_settings = build_settings,
         key = "OTHER_SWIFT_FLAGS",
         values = [
-            "-Xcc -fmodule-map-file={}".format(build_setting_path(file))
+            "-Xcc -fmodule-map-file={}".format(build_setting_path(file = file))
             for file in xcode_target._modulemaps.files
         ],
     )
