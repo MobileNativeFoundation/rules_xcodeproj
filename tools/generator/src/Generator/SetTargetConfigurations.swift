@@ -755,19 +755,6 @@ private extension Inputs {
     }
 }
 
-private extension Outputs.Swift {
-    func paths(filePathResolver: FilePathResolver) -> [String] {
-        return [
-            module,
-            doc,
-            sourceInfo,
-            interface,
-        ]
-            .compactMap { $0 }
-            .map { filePathResolver.resolve($0, useBazelOut: true).string }
-    }
-}
-
 private extension String {
     func removingPrefix(_ prefix: String) -> String {
         guard hasPrefix(prefix) else {
