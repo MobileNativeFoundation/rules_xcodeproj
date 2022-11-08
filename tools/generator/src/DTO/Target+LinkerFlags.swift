@@ -49,7 +49,10 @@ extension Target {
             contentsOf: inputs.exportedSymbolsLists.flatMap { filePath in
                 return [
                     "-exported_symbols_list",
-                    filePathResolver.resolve(filePath).string.quoted,
+                    filePathResolver.resolve(
+                        filePath,
+                        useBazelOut: true
+                    ).string.quoted,
                 ]
             }
         )
