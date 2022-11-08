@@ -9,7 +9,6 @@ load(":product.bzl", "process_product")
 load(
     ":target_properties.bzl",
     "process_modulemaps",
-    "process_swiftmodules",
 )
 load(":xcode_targets.bzl", "xcode_targets")
 
@@ -61,7 +60,7 @@ def _process_resource_bundle(bundle, *, information):
         is_swift = False,
         build_settings = build_settings,
         modulemaps = process_modulemaps(swift_info = None),
-        swiftmodules = process_swiftmodules(swift_info = None),
+        swiftmodules = [],
         inputs = input_files.from_resource_bundle(bundle),
         dependencies = bundle.dependencies,
         transitive_dependencies = bundle.dependencies,

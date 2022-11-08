@@ -89,7 +89,7 @@ rules_xcodeproj requires {} to have `{}` set.
         compilation_providers = compilation_providers,
         bin_dir_path = ctx.bin_dir.path,
     )
-    swiftmodules = process_swiftmodules(swift_info = swift_info)
+    (swiftmodules, _) = process_swiftmodules(swift_info = swift_info)
 
     dependencies, transitive_dependencies = process_dependencies(
         automatic_target_info = automatic_target_info,

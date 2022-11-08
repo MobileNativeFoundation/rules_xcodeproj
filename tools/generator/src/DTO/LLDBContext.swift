@@ -24,12 +24,12 @@ struct LLDBContext: Equatable {
     }
 
     let frameworkSearchPaths: [String]
-    let swiftmodules: [FilePath]
+    let swiftmodules: [String]
     let clang: [Clang]
 
     init(
         frameworkSearchPaths: [String] = [],
-        swiftmodules: [FilePath] = [],
+        swiftmodules: [String] = [],
         clang: [Clang] = []
     ) {
         self.frameworkSearchPaths = frameworkSearchPaths
@@ -52,7 +52,8 @@ extension LLDBContext: Decodable {
 
         frameworkSearchPaths = try container
             .decodeIfPresent([String].self, forKey: .frameworkSearchPaths) ?? []
-        swiftmodules = try container.decodeFilePaths(.swiftmodules)
+        swiftmodules = try container
+            .decodeIfPresent([String].self, forKey: .swiftmodules) ?? []
         clang = try container
             .decodeIfPresent([Clang].self, forKey: .clang) ?? []
     }
@@ -79,11 +80,5 @@ extension LLDBContext.Clang: Decodable {
         modulemaps = try container
             .decodeIfPresent([String].self, forKey: .modulemaps) ?? []
         opts = try container.decodeIfPresent([String].self, forKey: .opts) ?? []
-    }
-}
-
-private extension KeyedDecodingContainer where K == LLDBContext.CodingKeys {
-    func decodeFilePaths(_ key: K) throws -> [FilePath] {
-        return try decodeIfPresent([FilePath].self, forKey: key) ?? []
     }
 }

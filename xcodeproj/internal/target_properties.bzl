@@ -188,15 +188,19 @@ def process_swiftmodules(*, swift_info):
         A `list` of `file_path`s of dependent swiftmodules.
     """
     if not swift_info:
-        return []
+        return ([], [])
 
-    swiftmodules = []
+    files = []
+    file_paths = []
     for module in swift_info.direct_modules:
         compilation_context = module.compilation_context
         if not compilation_context:
             continue
 
-        for swiftmodule in compilation_context.swiftmodules:
-            swiftmodules.append(file_path(swiftmodule))
+        files.extend(compilation_context.swiftmodules)
+        file_paths.extend([
+            file_path(file)
+            for file in compilation_context.swiftmodules
+        ])
 
-    return swiftmodules
+    return (files, file_paths)

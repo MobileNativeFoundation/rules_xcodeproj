@@ -1,10 +1,10 @@
 """Module containing functions dealing with the `LLDBContext` DTO."""
 
-load(":collections.bzl", "set_if_true")
+load("@bazel_skylib//lib:paths.bzl", "paths")
+load(":collections.bzl", "set_if_true", "uniq")
 load(
     ":files.bzl",
     "build_setting_path",
-    "file_path_to_dto",
     "is_generated_path",
 )
 load(":opts.bzl", "swift_pcm_copts")
@@ -89,7 +89,7 @@ def _collect_lldb_context(
         ),
     )
 
-def _lldb_context_to_dto(lldb_context):
+def _lldb_context_to_dto(lldb_context, *, xcode_generated_paths):
     if not lldb_context:
         return {}
 
@@ -105,10 +105,24 @@ def _lldb_context_to_dto(lldb_context):
         ],
     )
 
+    def _handle_swiftmodule_path(file):
+        path = file.path
+        bs_path = xcode_generated_paths.get(path)
+        if not bs_path:
+            bs_path = build_setting_path(
+                file = file,
+                path = path,
+                quote = False,
+            )
+        return paths.dirname(bs_path)
+
     set_if_true(
         dto,
         "s",
-        [file_path_to_dto(fp) for fp in lldb_context._swiftmodules.to_list()],
+        uniq([
+            _handle_swiftmodule_path(file)
+            for file in lldb_context._swiftmodules.to_list()
+        ]),
     )
 
     clang_dtos = []
