@@ -81,8 +81,6 @@ enum Fixtures {
             outputs: .init(
                 swift: .init(
                     module: .generated("x/y.swiftmodule"),
-                    doc: .generated("x/y.swiftdoc"),
-                    sourceInfo: .generated("x/y.swiftsourceinfo"),
                     generatedHeader: .generated("x/y-Swift.h")
                 )
             )
@@ -127,9 +125,7 @@ enum Fixtures {
             dependencies: ["C 1", "A 1", "R 1"],
             outputs: .init(
                 swift: .init(
-                    module: .generated("x/A.swiftmodule"),
-                    doc: .generated("x/A.swiftdoc"),
-                    sourceInfo: .generated("x/A.swiftsourceinfo")
+                    module: .generated("x/A.swiftmodule")
                 )
             )
         ),
@@ -231,9 +227,7 @@ enum Fixtures {
             inputs: .init(srcs: [.external("a_repo/a.swift")]),
             outputs: .init(
               swift: .init(
-                  module: .generated("x/E.swiftmodule"),
-                  doc: .generated("x/E.swiftdoc"),
-                  sourceInfo: .generated("x/E.swiftsourceinfo")
+                  module: .generated("x/E.swiftmodule")
               )
             )
         ),

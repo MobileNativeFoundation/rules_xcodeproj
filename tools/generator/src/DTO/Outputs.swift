@@ -1,28 +1,19 @@
 struct Outputs: Equatable {
     struct Swift: Equatable {
         let module: FilePath
-        let doc: FilePath
-        let sourceInfo: FilePath?
-        let interface: FilePath?
         let generatedHeader: FilePath?
 
         init(
             module: FilePath,
-            doc: FilePath,
-            sourceInfo: FilePath? = nil,
-            interface: FilePath? = nil,
             generatedHeader: FilePath? = nil
         ) {
             self.module = module
-            self.doc = doc
-            self.sourceInfo = sourceInfo
-            self.interface = interface
             self.generatedHeader = generatedHeader
         }
     }
 
-    let hasProductOutput: Bool
     var swift: Swift?
+    let hasProductOutput: Bool
 
     init(hasProductOutput: Bool = false, swift: Swift? = nil) {
         self.hasProductOutput = hasProductOutput
@@ -70,9 +61,6 @@ extension Outputs: Decodable {
 extension Outputs.Swift: Decodable {
     enum CodingKeys: String, CodingKey {
         case module = "m"
-        case doc = "d"
-        case sourceinfo = "s"
-        case interface = "i"
         case generatedHeader = "h"
     }
 
@@ -80,15 +68,6 @@ extension Outputs.Swift: Decodable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
         module = try container.decode(FilePath.self, forKey: .module)
-        doc = try container.decode(FilePath.self, forKey: .doc)
-        sourceInfo = try container.decodeIfPresent(
-            FilePath.self,
-            forKey: .sourceinfo
-        )
-        interface = try container.decodeIfPresent(
-            FilePath.self,
-            forKey: .interface
-        )
         generatedHeader = try container.decodeIfPresent(
             FilePath.self,
             forKey: .generatedHeader

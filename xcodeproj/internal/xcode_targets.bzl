@@ -728,12 +728,7 @@ def _swift_to_dto(swift):
     module = swift.module
     dto = {
         "m": file_path_to_dto(file_path(module.swiftmodule)),
-        "s": file_path_to_dto(file_path(module.swiftsourceinfo)),
-        "d": file_path_to_dto(file_path(module.swiftdoc)),
     }
-
-    if module.swiftinterface:
-        dto["i"] = file_path_to_dto(file_path(module.swiftinterface))
 
     if swift.generated_header:
         dto["h"] = file_path_to_dto(file_path(swift.generated_header))
