@@ -262,18 +262,52 @@ def _merge_xcode_target_outputs(*, src, dest):
         transitive_infoplists = dest.transitive_infoplists,
     )
 
+def _prepend_array_build_setting(*, build_settings, key, values):
+    existing = build_settings.get(key, None)
+    if existing:
+        values.extend(existing)
+    set_if_true(build_settings, key, values)
+
+def _prepend_string_build_setting(*, build_settings, key, values):
+    existing = build_settings.get(key, None)
+    if existing:
+        values.append(existing)
+    set_if_true(build_settings, key, " ".join(values))
+
+def _set_search_paths(*, build_settings, search_paths_intermediate):
+    _prepend_array_build_setting(
+        build_settings = build_settings,
+        key = "USER_HEADER_SEARCH_PATHS",
+        values = [
+            build_setting_path(path, is_path = True)
+            for path in search_paths_intermediate.quote_includes
+        ],
+    )
+    _prepend_array_build_setting(
+        build_settings = build_settings,
+        key = "HEADER_SEARCH_PATHS",
+        values = [
+            build_setting_path(path, is_path = True)
+            for path in search_paths_intermediate.includes
+        ],
+    )
+    _prepend_array_build_setting(
+        build_settings = build_settings,
+        key = "SYSTEM_HEADER_SEARCH_PATHS",
+        values = [
+            build_setting_path(path, is_path = True)
+            for path in search_paths_intermediate.system_includes
+        ],
+    )
+
 def _set_other_swift_flags(*, build_settings, xcode_target):
-    new_other_swift_flags = [
-        "-Xcc -fmodule-map-file={}".format(build_setting_path(file))
-        for file in xcode_target._modulemaps.files
-    ]
-    other_swift_flags = build_settings.get("OTHER_SWIFT_FLAGS", None)
-    if other_swift_flags:
-        new_other_swift_flags.append(other_swift_flags)
-    set_if_true(
-        build_settings,
-        "OTHER_SWIFT_FLAGS",
-        " ".join(new_other_swift_flags),
+    _prepend_string_build_setting(
+        build_settings = build_settings,
+        key = "OTHER_SWIFT_FLAGS",
+        values = [
+            "-Xcc -fmodule-map-file={}".format(build_setting_path(file))
+            for file in xcode_target._modulemaps.files
+        ],
     )
 
 def _xcode_target_to_dto(
@@ -327,20 +361,26 @@ def _xcode_target_to_dto(
             lldb_contexts.to_dto(xcode_target._lldb_context),
         )
 
+    search_paths_intermediate = _search_paths_to_intermediate(
+        search_paths = xcode_target._search_paths,
+        compile_target = xcode_target._compile_target,
+    )
+
     build_settings = structs.to_dict(xcode_target._build_settings)
     _set_other_swift_flags(
         build_settings = build_settings,
         xcode_target = xcode_target,
+    )
+    _set_search_paths(
+        build_settings = build_settings,
+        search_paths_intermediate = search_paths_intermediate,
     )
     set_if_true(dto, "build_settings", build_settings)
 
     set_if_true(
         dto,
         "search_paths",
-        _search_paths_to_dto(
-            search_paths = xcode_target._search_paths,
-            compile_target = xcode_target._compile_target,
-        ),
+        _search_paths_intermediate_to_dto(search_paths_intermediate),
     )
     set_if_true(
         dto,
@@ -578,7 +618,7 @@ def _product_to_dto(product, *, compile_target):
         "type": product.type,
     }
 
-def _search_paths_to_dto(search_paths, *, compile_target):
+def _search_paths_to_intermediate(search_paths, *, compile_target):
     compile_search_paths = search_paths
     if search_paths:
         compilation_providers = search_paths._compilation_providers
@@ -602,7 +642,6 @@ def _search_paths_to_dto(search_paths, *, compile_target):
         else:
             cc_info = None
 
-    dto = {}
     if cc_info:
         compilation_context = cc_info.compilation_context
         opts_search_paths = compile_search_paths._opts_search_paths
@@ -619,57 +658,47 @@ def _search_paths_to_dto(search_paths, *, compile_target):
         quote_includes = depset(
             [".", compile_search_paths._bin_dir_path] + opts_quote_includes,
             transitive = [compilation_context.quote_includes],
-        )
-
-        set_if_true(
-            dto,
-            "quote_includes",
-            [
-                file_path_to_dto(parsed_file_path(path))
-                for path in quote_includes.to_list()
-            ],
-        )
-        set_if_true(
-            dto,
-            "includes",
-            [
-                file_path_to_dto(parsed_file_path(path))
-                for path in (compilation_context.includes.to_list() +
-                             opts_includes)
-            ],
-        )
-        set_if_true(
-            dto,
-            "system_includes",
-            [
-                file_path_to_dto(parsed_file_path(path))
-                for path in (compilation_context.system_includes.to_list() +
-                             opts_system_includes)
-            ],
-        )
+        ).to_list()
+        includes = compilation_context.includes.to_list() + opts_includes
+        system_includes = (compilation_context.system_includes.to_list() +
+                           opts_system_includes)
+    else:
+        quote_includes = []
+        includes = []
+        system_includes = []
 
     if objc:
-        framework_paths = depset(
+        framework_includes = depset(
             transitive = [
                 objc.static_framework_paths,
                 objc.dynamic_framework_paths,
             ],
-        )
+        ).to_list()
+    else:
+        framework_includes = []
 
-        framework_file_paths = [
-            parsed_file_path(path)
-            for path in framework_paths.to_list()
-        ]
+    return struct(
+        quote_includes = quote_includes,
+        includes = includes,
+        system_includes = system_includes,
+        framework_includes = framework_includes,
+    )
 
-        set_if_true(
-            dto,
-            "framework_includes",
-            [
-                file_path_to_dto(fp)
-                for fp in framework_file_paths
-            ],
-        )
-
+def _search_paths_intermediate_to_dto(search_paths_intermediate):
+    dto = {
+        "has_includes": bool(search_paths_intermediate.quote_includes or
+                             search_paths_intermediate.includes or
+                             search_paths_intermediate.system_includes or
+                             search_paths_intermediate.framework_includes),
+    }
+    set_if_true(
+        dto,
+        "framework_includes",
+        [
+            file_path_to_dto(parsed_file_path(path))
+            for path in search_paths_intermediate.framework_includes
+        ],
+    )
     return dto
 
 def _swift_to_dto(swift):

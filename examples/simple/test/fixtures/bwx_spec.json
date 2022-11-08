@@ -43,7 +43,11 @@
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG HI",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-                "SWIFT_VERSION": "5.0"
+                "SWIFT_VERSION": "5.0",
+                "USER_HEADER_SEARCH_PATHS": [
+                    "$(PROJECT_DIR)",
+                    "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-3688109ddba2/bin"
+                ]
             },
             "configuration": "darwin_x86_64-dbg-ST-3688109ddba2",
             "inputs": {
@@ -84,13 +88,7 @@
                 "type": "com.apple.product-type.tool"
             },
             "search_paths": {
-                "quote_includes": [
-                    ".",
-                    {
-                        "_": "darwin_x86_64-dbg-ST-3688109ddba2/bin",
-                        "t": "g"
-                    }
-                ]
+                "has_includes": true
             }
         }
     ]

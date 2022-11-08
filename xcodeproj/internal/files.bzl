@@ -57,11 +57,16 @@ def file_path(
         force_group_creation = force_group_creation,
     )
 
-def build_setting_path(file, quote = True, use_build_dir = False):
-    """Converts a `File` into a string to be used in an Xcode build setting.
+def build_setting_path(
+        file_or_path,
+        is_path = False,
+        quote = True,
+        use_build_dir = False):
+    """Converts a `File` into a `string` to be used in an Xcode build setting.
 
     Args:
-        file: A `File`.
+        file_or_path: A `File` or path `string`.
+        is_path: Whether `file_or_path` is a path `string`.
         quote: Whether to quote the path if it contains spaces.
         use_build_dir: Whether to use `$(BUILD_DIR)` instead of `$(BAZEL_OUT)`
             for generated files.
@@ -69,18 +74,29 @@ def build_setting_path(file, quote = True, use_build_dir = False):
     Returns:
         A `string`.
     """
-    path = file.path
+    if is_path:
+        path = file_or_path
+        type = _parsed_path_type(path)
+    else:
+        path = file_or_path.path
+        type = _file_type(file_or_path)
+
+    if path == ".":
+        # We need to use Bazel's execution root for ".", since includes can
+        # reference things like "external/" and "bazel-out"
+        return "$(PROJECT_DIR)"
+
     if quote:
         quote = path.find(" ") != -1
 
-    if not file.is_source:
+    if type == "g":
         # Generated
         if use_build_dir:
             build_setting = "$(BUILD_DIR)/{}".format(path)
         else:
             # Removing "bazel-out" prefix
             build_setting = "$(BAZEL_OUT){}".format(path[9:])
-    elif file.owner.workspace_name:
+    elif type == "e":
         # External
         build_setting = "$(BAZEL_EXTERNAL){}".format(path[8:])
     else:
@@ -90,6 +106,20 @@ def build_setting_path(file, quote = True, use_build_dir = False):
         build_setting = '"{}"'.format(build_setting)
 
     return build_setting
+
+def _file_type(file):
+    if not file.is_source:
+        return "g"
+    if file.owner.workspace_name:
+        return "e"
+    return None
+
+def _parsed_path_type(path):
+    if path.startswith("bazel-out/"):
+        return "g"
+    if path.startswith("external/"):
+        return "e"
+    return None
 
 def parsed_file_path(path):
     """Coverts a file path string into a `FilePath` Swift DTO value.
