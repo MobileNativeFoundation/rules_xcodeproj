@@ -95,12 +95,11 @@ def build_setting_path(
         # Generated
         if use_build_dir:
             build_setting = "$(BUILD_DIR)/{}".format(path)
+        elif absolute_path:
+            # Removing "bazel-out" prefix
+            build_setting = "$(BAZEL_OUT){}".format(path[9:])
         else:
-            if absolute_path:
-                # Removing "bazel-out" prefix
-                build_setting = "$(BAZEL_OUT){}".format(path[9:])
-            else:
-                build_setting = path
+            build_setting = path
     elif type == "e":
         # External
         if absolute_path:
