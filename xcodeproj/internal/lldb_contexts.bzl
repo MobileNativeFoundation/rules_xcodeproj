@@ -3,6 +3,7 @@
 load(":collections.bzl", "set_if_true")
 load(
     ":files.bzl",
+    "build_setting_path",
     "file_path_to_dto",
     "is_generated_file_path",
     "parsed_file_path",
@@ -143,7 +144,7 @@ def _lldb_context_to_dto(lldb_context):
             clang_dto,
             "q",
             [
-                file_path_to_dto(parsed_file_path(path))
+                build_setting_path(path, is_path = True, quote = False)
                 for path in quote_includes.to_list()
             ],
         )
@@ -151,7 +152,7 @@ def _lldb_context_to_dto(lldb_context):
             clang_dto,
             "i",
             [
-                file_path_to_dto(parsed_file_path(path))
+                build_setting_path(path, is_path = True, quote = False)
                 for path in (compilation_context.includes.to_list() +
                              opts_includes)
             ],
@@ -160,7 +161,7 @@ def _lldb_context_to_dto(lldb_context):
             clang_dto,
             "s",
             [
-                file_path_to_dto(parsed_file_path(path))
+                build_setting_path(path, is_path = True, quote = False)
                 for path in (compilation_context.system_includes.to_list() +
                              opts_system_includes)
             ],

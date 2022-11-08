@@ -331,22 +331,10 @@
                 "c": [
                     {
                         "i": [
-                            {
-                                "_": "com_github_michaeleisel_jjliso8601dateformatter/Sources/JJLISO8601DateFormatter/include",
-                                "t": "e"
-                            },
-                            {
-                                "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_jjliso8601dateformatter/Sources/JJLISO8601DateFormatter/include",
-                                "t": "g"
-                            },
-                            {
-                                "_": "com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/include",
-                                "t": "e"
-                            },
-                            {
-                                "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/include",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_michaeleisel_jjliso8601dateformatter/Sources/JJLISO8601DateFormatter/include",
+                            "$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_jjliso8601dateformatter/Sources/JJLISO8601DateFormatter/include",
+                            "$(BAZEL_EXTERNAL)/com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/include",
+                            "$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/include"
                         ],
                         "m": [
                             {
@@ -365,47 +353,20 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_michaeleisel_jjliso8601dateformatter",
-                                "t": "e"
-                            },
-                            {
-                                "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_jjliso8601dateformatter",
-                                "t": "g"
-                            },
-                            {
-                                "_": "com_github_michaeleisel_zippyjsoncfamily",
-                                "t": "e"
-                            },
-                            {
-                                "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_zippyjsoncfamily",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_michaeleisel_jjliso8601dateformatter",
+                            "$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_jjliso8601dateformatter",
+                            "$(BAZEL_EXTERNAL)/com_github_michaeleisel_zippyjsoncfamily",
+                            "$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_zippyjsoncfamily",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin"
                         ]
                     },
                     {
                         "i": [
-                            {
-                                "_": "com_github_michaeleisel_jjliso8601dateformatter/Sources/JJLISO8601DateFormatter/include",
-                                "t": "e"
-                            },
-                            {
-                                "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_jjliso8601dateformatter/Sources/JJLISO8601DateFormatter/include",
-                                "t": "g"
-                            },
-                            {
-                                "_": "com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/include",
-                                "t": "e"
-                            },
-                            {
-                                "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/include",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_michaeleisel_jjliso8601dateformatter/Sources/JJLISO8601DateFormatter/include",
+                            "$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_jjliso8601dateformatter/Sources/JJLISO8601DateFormatter/include",
+                            "$(BAZEL_EXTERNAL)/com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/include",
+                            "$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/include"
                         ],
                         "m": [
                             {
@@ -424,27 +385,12 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_michaeleisel_jjliso8601dateformatter",
-                                "t": "e"
-                            },
-                            {
-                                "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_jjliso8601dateformatter",
-                                "t": "g"
-                            },
-                            {
-                                "_": "com_github_michaeleisel_zippyjsoncfamily",
-                                "t": "e"
-                            },
-                            {
-                                "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_zippyjsoncfamily",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_michaeleisel_jjliso8601dateformatter",
+                            "$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_jjliso8601dateformatter",
+                            "$(BAZEL_EXTERNAL)/com_github_michaeleisel_zippyjsoncfamily",
+                            "$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_zippyjsoncfamily",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin"
                         ]
                     },
                     {
@@ -455,31 +401,16 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            ".",
-                            {
-                                "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin",
-                                "t": "g"
-                            }
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin"
                         ]
                     },
                     {
                         "i": [
-                            {
-                                "_": "com_github_michaeleisel_jjliso8601dateformatter/Sources/JJLISO8601DateFormatter/include",
-                                "t": "e"
-                            },
-                            {
-                                "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_jjliso8601dateformatter/Sources/JJLISO8601DateFormatter/include",
-                                "t": "g"
-                            },
-                            {
-                                "_": "com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/include",
-                                "t": "e"
-                            },
-                            {
-                                "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/include",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_michaeleisel_jjliso8601dateformatter/Sources/JJLISO8601DateFormatter/include",
+                            "$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_jjliso8601dateformatter/Sources/JJLISO8601DateFormatter/include",
+                            "$(BAZEL_EXTERNAL)/com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/include",
+                            "$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/include"
                         ],
                         "m": [
                             {
@@ -498,27 +429,12 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_michaeleisel_jjliso8601dateformatter",
-                                "t": "e"
-                            },
-                            {
-                                "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_jjliso8601dateformatter",
-                                "t": "g"
-                            },
-                            {
-                                "_": "com_github_michaeleisel_zippyjsoncfamily",
-                                "t": "e"
-                            },
-                            {
-                                "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_zippyjsoncfamily",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_michaeleisel_jjliso8601dateformatter",
+                            "$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_jjliso8601dateformatter",
+                            "$(BAZEL_EXTERNAL)/com_github_michaeleisel_zippyjsoncfamily",
+                            "$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_zippyjsoncfamily",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin"
                         ]
                     },
                     {
@@ -529,11 +445,8 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            ".",
-                            {
-                                "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin",
-                                "t": "g"
-                            }
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin"
                         ]
                     },
                     {
@@ -544,11 +457,8 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            ".",
-                            {
-                                "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin",
-                                "t": "g"
-                            }
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin"
                         ]
                     },
                     {
@@ -559,11 +469,8 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            ".",
-                            {
-                                "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin",
-                                "t": "g"
-                            }
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin"
                         ]
                     },
                     {
@@ -574,11 +481,8 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            ".",
-                            {
-                                "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin",
-                                "t": "g"
-                            }
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin"
                         ]
                     },
                     {
@@ -589,11 +493,8 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            ".",
-                            {
-                                "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin",
-                                "t": "g"
-                            }
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin"
                         ]
                     }
                 ],
@@ -813,22 +714,10 @@
                 "c": [
                     {
                         "i": [
-                            {
-                                "_": "com_github_michaeleisel_jjliso8601dateformatter/Sources/JJLISO8601DateFormatter/include",
-                                "t": "e"
-                            },
-                            {
-                                "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_jjliso8601dateformatter/Sources/JJLISO8601DateFormatter/include",
-                                "t": "g"
-                            },
-                            {
-                                "_": "com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/include",
-                                "t": "e"
-                            },
-                            {
-                                "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/include",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_michaeleisel_jjliso8601dateformatter/Sources/JJLISO8601DateFormatter/include",
+                            "$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_jjliso8601dateformatter/Sources/JJLISO8601DateFormatter/include",
+                            "$(BAZEL_EXTERNAL)/com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/include",
+                            "$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/include"
                         ],
                         "m": [
                             {
@@ -847,27 +736,12 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_michaeleisel_jjliso8601dateformatter",
-                                "t": "e"
-                            },
-                            {
-                                "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_jjliso8601dateformatter",
-                                "t": "g"
-                            },
-                            {
-                                "_": "com_github_michaeleisel_zippyjsoncfamily",
-                                "t": "e"
-                            },
-                            {
-                                "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_zippyjsoncfamily",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_michaeleisel_jjliso8601dateformatter",
+                            "$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_jjliso8601dateformatter",
+                            "$(BAZEL_EXTERNAL)/com_github_michaeleisel_zippyjsoncfamily",
+                            "$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_zippyjsoncfamily",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin"
                         ]
                     },
                     {
@@ -878,31 +752,16 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            ".",
-                            {
-                                "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin",
-                                "t": "g"
-                            }
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin"
                         ]
                     },
                     {
                         "i": [
-                            {
-                                "_": "com_github_michaeleisel_jjliso8601dateformatter/Sources/JJLISO8601DateFormatter/include",
-                                "t": "e"
-                            },
-                            {
-                                "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_jjliso8601dateformatter/Sources/JJLISO8601DateFormatter/include",
-                                "t": "g"
-                            },
-                            {
-                                "_": "com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/include",
-                                "t": "e"
-                            },
-                            {
-                                "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/include",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_michaeleisel_jjliso8601dateformatter/Sources/JJLISO8601DateFormatter/include",
+                            "$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_jjliso8601dateformatter/Sources/JJLISO8601DateFormatter/include",
+                            "$(BAZEL_EXTERNAL)/com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/include",
+                            "$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/include"
                         ],
                         "m": [
                             {
@@ -921,27 +780,12 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            {
-                                "_": "com_github_michaeleisel_jjliso8601dateformatter",
-                                "t": "e"
-                            },
-                            {
-                                "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_jjliso8601dateformatter",
-                                "t": "g"
-                            },
-                            {
-                                "_": "com_github_michaeleisel_zippyjsoncfamily",
-                                "t": "e"
-                            },
-                            {
-                                "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_zippyjsoncfamily",
-                                "t": "g"
-                            },
-                            ".",
-                            {
-                                "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin",
-                                "t": "g"
-                            }
+                            "$(BAZEL_EXTERNAL)/com_github_michaeleisel_jjliso8601dateformatter",
+                            "$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_jjliso8601dateformatter",
+                            "$(BAZEL_EXTERNAL)/com_github_michaeleisel_zippyjsoncfamily",
+                            "$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_zippyjsoncfamily",
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin"
                         ]
                     },
                     {
@@ -952,11 +796,8 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            ".",
-                            {
-                                "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin",
-                                "t": "g"
-                            }
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin"
                         ]
                     },
                     {
@@ -967,11 +808,8 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            ".",
-                            {
-                                "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin",
-                                "t": "g"
-                            }
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin"
                         ]
                     },
                     {
@@ -982,11 +820,8 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            ".",
-                            {
-                                "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin",
-                                "t": "g"
-                            }
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin"
                         ]
                     }
                 ],
@@ -1279,11 +1114,8 @@
                             "-fstack-protector-all"
                         ],
                         "q": [
-                            ".",
-                            {
-                                "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin",
-                                "t": "g"
-                            }
+                            "$(PROJECT_DIR)",
+                            "$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin"
                         ]
                     }
                 ]

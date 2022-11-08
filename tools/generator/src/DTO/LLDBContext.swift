@@ -2,16 +2,16 @@ import PathKit
 
 struct LLDBContext: Equatable {
     struct Clang: Equatable {
-        let quoteIncludes: [FilePath]
-        let includes: [FilePath]
-        let systemIncludes: [FilePath]
+        let quoteIncludes: [String]
+        let includes: [String]
+        let systemIncludes: [String]
         let modulemaps: [FilePath]
         let opts: [String]
 
         init(
-            quoteIncludes: [FilePath] = [],
-            includes: [FilePath] = [],
-            systemIncludes: [FilePath] = [],
+            quoteIncludes: [String] = [],
+            includes: [String] = [],
+            systemIncludes: [String] = [],
             modulemaps: [FilePath] = [],
             opts: [String] = []
         ) {
@@ -70,9 +70,12 @@ extension LLDBContext.Clang: Decodable {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        quoteIncludes = try container.decodeFilePaths(.quoteIncludes)
-        includes = try container.decodeFilePaths(.includes)
-        systemIncludes = try container.decodeFilePaths(.systemIncludes)
+        quoteIncludes = try container
+            .decodeIfPresent([String].self, forKey: .quoteIncludes) ?? []
+        includes = try container
+            .decodeIfPresent([String].self, forKey: .includes) ?? []
+        systemIncludes = try container
+            .decodeIfPresent([String].self, forKey: .systemIncludes) ?? []
         modulemaps = try container.decodeFilePaths(.modulemaps)
         opts = try container.decodeIfPresent([String].self, forKey: .opts) ?? []
     }
