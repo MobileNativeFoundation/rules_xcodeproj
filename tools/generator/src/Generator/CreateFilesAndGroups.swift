@@ -602,24 +602,15 @@ already was set to `\(existingValue)`.
 
         let externalPaths = fileListFileFilePaths
             .filter { $0.type == .external }
-            .map { filePath in
-                return filePathResolver
-                    .resolve(filePath, forceFullBuildSettingPath: true)
-            }
+            .map { filePathResolver.resolve($0) }
 
         let generatedFilePaths = fileListFileFilePaths
             .filter { $0.type == .generated && !$0.isFolder } + nonIncludedFiles
 
-        let generatedPaths = generatedFilePaths.map { filePath in
-            return filePathResolver
-                .resolve(
-                    filePath,
-                    useBazelOut: true,
-                    forceFullBuildSettingPath: true
-                )
-        }
+        let generatedPaths = generatedFilePaths
+            .map { filePathResolver.resolve($0) }
 
-        func addXCFileList(_ path: Path, paths: [Path]) {
+        func addXCFileList(_ path: Path, paths: [String]) {
             guard !paths.isEmpty else {
                 return
             }
