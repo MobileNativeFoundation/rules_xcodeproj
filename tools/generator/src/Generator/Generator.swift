@@ -115,7 +115,6 @@ class Generator {
             project.forceBazelDependencies,
             project.indexImport,
             files,
-            filePathResolver,
             resolvedExternalRepositories,
             project.bazelConfig,
             project.generatorLabel,
@@ -130,7 +129,6 @@ class Generator {
             buildMode,
             products,
             files,
-            filePathResolver,
             bazelDependencies
         )
         try environment.setTargetConfigurations(
@@ -140,8 +138,7 @@ class Generator {
             buildMode,
             pbxTargets,
             project.targetHosts,
-            bazelDependencies != nil,
-            filePathResolver
+            bazelDependencies != nil
         )
         try environment.setTargetDependencies(
             buildMode,

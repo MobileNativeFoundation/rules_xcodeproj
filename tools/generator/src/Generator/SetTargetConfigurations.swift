@@ -16,8 +16,7 @@ extension Generator {
         buildMode: BuildMode,
         pbxTargets: [ConsolidatedTarget.Key: PBXTarget],
         hostIDs: [TargetID: [TargetID]],
-        hasBazelDependencies: Bool,
-        filePathResolver: FilePathResolver
+        hasBazelDependencies: Bool
     ) throws {
         for (key, disambiguatedTarget) in disambiguatedTargets.targets {
             guard let pbxTarget = pbxTargets[key] else {
@@ -40,8 +39,7 @@ Target "\(key)" not found in `pbxTargets`
                 buildMode: buildMode,
                 targets: targets,
                 hostIDs: hostIDs,
-                hasBazelDependencies: hasBazelDependencies,
-                filePathResolver: filePathResolver
+                hasBazelDependencies: hasBazelDependencies
             )
 
             try handleTestHost(
@@ -74,8 +72,7 @@ Target "\(key)" not found in `pbxTargets`
         buildMode: BuildMode,
         targets: [TargetID: Target],
         hostIDs: [TargetID: [TargetID]],
-        hasBazelDependencies: Bool,
-        filePathResolver: FilePathResolver
+        hasBazelDependencies: Bool
     ) throws -> [BuildSettingConditional: [String: BuildSetting]] {
         var anyBuildSettings: [String: BuildSetting] = [:]
         var buildSettings: [BuildSettingConditional: [String: BuildSetting]] =
@@ -89,8 +86,7 @@ Target "\(key)" not found in `pbxTargets`
                 targets: targets,
                 hostIDs: hostIDs[id, default: []],
                 buildMode: buildMode,
-                hasBazelDependencies: hasBazelDependencies,
-                filePathResolver: filePathResolver
+                hasBazelDependencies: hasBazelDependencies
             )
 
             // Calculate "INCLUDED_SOURCE_FILE_NAMES"
@@ -107,7 +103,7 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
 \(target.platform.variant.rawValue.uppercased())_FILES
 """
                 conditionalFileNames[key] = uniqueFiles
-                    .map { filePathResolver.resolve($0).quoted }
+                    .map { FilePathResolver.resolve($0).quoted }
                     .sorted()
                     .joined(separator: " ")
                 targetBuildSettings.set(
@@ -148,8 +144,7 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
         targets: [TargetID: Target],
         hostIDs: [TargetID],
         buildMode: BuildMode,
-        hasBazelDependencies: Bool,
-        filePathResolver: FilePathResolver
+        hasBazelDependencies: Bool
     ) throws -> [String: BuildSetting] {
         var buildSettings = target.buildSettings
 
@@ -171,9 +166,9 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
             )
             buildSettings.set(
                 "LINK_PARAMS_FILE",
-                to: """
-$(INTERNAL_DIR)/\(try target.linkParamsFilePath().path)
-"""
+                to: FilePathResolver.resolveInternal(
+                    try target.linkParamsFilePath().path
+                )
             )
         }
 
@@ -265,7 +260,7 @@ $(CONFIGURATION_BUILD_DIR)
         if let infoPlist = target.infoPlist {
             buildSettings.set(
                 "INFOPLIST_FILE",
-                to: filePathResolver.resolve(infoPlist)
+                to: FilePathResolver.resolve(infoPlist)
             )
         } else if buildMode.allowsGeneratedInfoPlists {
             buildSettings["GENERATE_INFOPLIST_FILE"] = true
@@ -274,7 +269,7 @@ $(CONFIGURATION_BUILD_DIR)
         if let entitlements = target.inputs.entitlements {
             buildSettings.set(
                 "CODE_SIGN_ENTITLEMENTS",
-                to: filePathResolver.resolve(entitlements)
+                to: FilePathResolver.resolve(entitlements)
             )
 
             if !buildMode.usesBazelModeBuildScripts {
@@ -298,7 +293,7 @@ $(CONFIGURATION_BUILD_DIR)
         if let pch = target.inputs.pch {
             buildSettings.set(
                 "GCC_PREFIX_HEADER",
-                to: filePathResolver.resolve(pch)
+                to: FilePathResolver.resolve(pch)
             )
         }
 

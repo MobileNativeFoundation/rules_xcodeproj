@@ -29,7 +29,7 @@ final class SetTargetConfigurationsTests: XCTestCase {
         let (
             pbxTargets,
             disambiguatedTargets,
-            filePathResolver
+            _
         ) = Fixtures.pbxTargets(
             in: pbxProj,
             directories: Self.directories,
@@ -50,8 +50,7 @@ final class SetTargetConfigurationsTests: XCTestCase {
             buildMode: .xcode,
             pbxTargets: pbxTargets,
             hostIDs: Fixtures.project.targetHosts,
-            hasBazelDependencies: true,
-            filePathResolver: filePathResolver
+            hasBazelDependencies: true
         )
 
         try pbxProj.fixReferences()
@@ -179,8 +178,7 @@ final class SetTargetConfigurationsTests: XCTestCase {
             buildMode: .xcode,
             pbxTargets: pbxTargets,
             hostIDs: [:],
-            hasBazelDependencies: false,
-            filePathResolver: Self.filePathResolverFixture
+            hasBazelDependencies: false
         )
 
         let ldRunpathSearchPaths: [ConsolidatedTarget.Key: [String: [String]]] =
@@ -318,8 +316,7 @@ final class SetTargetConfigurationsTests: XCTestCase {
             buildMode: .bazel,
             pbxTargets: pbxTargets,
             hostIDs: [:],
-            hasBazelDependencies: false,
-            filePathResolver: Self.filePathResolverFixture
+            hasBazelDependencies: false
         )
 
         let ldRunpathSearchPaths: [ConsolidatedTarget.Key: [String: [String]]] =
@@ -411,8 +408,7 @@ final class SetTargetConfigurationsTests: XCTestCase {
             buildMode: .xcode,
             pbxTargets: pbxTargets,
             hostIDs: [:],
-            hasBazelDependencies: false,
-            filePathResolver: Self.filePathResolverFixture
+            hasBazelDependencies: false
         )
 
         let previewsLdRunpathSearchPaths: [
@@ -453,8 +449,7 @@ final class SetTargetConfigurationsTests: XCTestCase {
             buildMode: .bazel,
             pbxTargets: pbxTargets,
             hostIDs: [:],
-            hasBazelDependencies: false,
-            filePathResolver: Self.filePathResolverFixture
+            hasBazelDependencies: false
         )
 
         let previewsLdRunpathSearchPaths: [
@@ -506,8 +501,7 @@ final class SetTargetConfigurationsTests: XCTestCase {
             buildMode: .xcode,
             pbxTargets: pbxTargets,
             hostIDs: [:],
-            hasBazelDependencies: false,
-            filePathResolver: Self.filePathResolverFixture
+            hasBazelDependencies: false
         )
 
         let sdkRoots: [ConsolidatedTarget.Key: [String: String]] =
@@ -560,8 +554,7 @@ final class SetTargetConfigurationsTests: XCTestCase {
             buildMode: .xcode,
             pbxTargets: pbxTargets,
             hostIDs: [:],
-            hasBazelDependencies: false,
-            filePathResolver: Self.filePathResolverFixture
+            hasBazelDependencies: false
         )
 
         let supportedPlatforms: [ConsolidatedTarget.Key: [String: String]] =
@@ -685,8 +678,7 @@ final class SetTargetConfigurationsTests: XCTestCase {
             buildMode: .xcode,
             pbxTargets: pbxTargets,
             hostIDs: [:],
-            hasBazelDependencies: false,
-            filePathResolver: Self.filePathResolverFixture
+            hasBazelDependencies: false
         )
 
         var buildSettings: [ConsolidatedTarget.Key: [String: String]] = [:]

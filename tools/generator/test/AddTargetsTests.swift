@@ -32,9 +32,6 @@ final class AddTargetsTests: XCTestCase {
             internalDirectoryName: internalDirectoryName,
             workspaceOutput: workspaceOutputPath
         )
-        let filePathResolver = FilePathResolver(
-            directories: directories
-        )
 
         let (files, _, _, _) = Fixtures.files(
             in: pbxProj,
@@ -85,7 +82,6 @@ final class AddTargetsTests: XCTestCase {
             buildMode: .xcode,
             products: products,
             files: files,
-            filePathResolver: filePathResolver,
             bazelDependenciesTarget: bazelDependenciesTarget
         )
 

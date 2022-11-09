@@ -8,7 +8,6 @@ extension Generator {
         buildMode: BuildMode,
         products: Products,
         files: [FilePath: File],
-        filePathResolver: FilePathResolver,
         bazelDependenciesTarget: PBXAggregateTarget?
     ) throws -> [ConsolidatedTarget.Key: PBXTarget] {
         let pbxProject = pbxProj.rootObject!
@@ -45,15 +44,13 @@ Product for target "\(key)" not found in `products`
                     buildMode: buildMode,
                     productType: productType,
                     productBasename: target.product.basename,
-                    outputs: outputs,
-                    filePathResolver: filePathResolver
+                    outputs: outputs
                 ),
                 try createCompilingDependenciesScript(
                     in: pbxProj,
                     buildMode: buildMode,
                     hasClangSearchPaths: target.hasClangSearchPaths,
-                    files: files,
-                    filePathResolver: filePathResolver
+                    files: files
                 ),
                 try createLinkingDependenciesScript(
                     in: pbxProj,
@@ -142,8 +139,7 @@ Product for target "\(key)" not found in `products`
         buildMode: BuildMode,
         productType: PBXProductType,
         productBasename: String,
-        outputs: ConsolidatedTargetOutputs,
-        filePathResolver: FilePathResolver
+        outputs: ConsolidatedTargetOutputs
     ) throws -> PBXShellScriptBuildPhase? {
         guard buildMode.usesBazelModeBuildScripts else {
             return nil
@@ -200,8 +196,7 @@ Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)
         in pbxProj: PBXProj,
         buildMode: BuildMode,
         hasClangSearchPaths: Bool,
-        files: [FilePath: File],
-        filePathResolver: FilePathResolver
+        files: [FilePath: File]
     ) throws -> PBXShellScriptBuildPhase? {
         guard buildMode == .xcode, hasClangSearchPaths else {
             return  nil
