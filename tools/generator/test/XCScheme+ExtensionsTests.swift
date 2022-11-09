@@ -10,10 +10,10 @@ extension XCSchemeExtensionsTests {
     func test_BuildableReference_init() throws {
         let buildableReference = XCScheme.BuildableReference(
             pbxTarget: libraryPBXTarget,
-            referencedContainer: filePathResolver.containerReference
+            referencedContainer: directories.containerReference
         )
         let expected = XCScheme.BuildableReference(
-            referencedContainer: filePathResolver.containerReference,
+            referencedContainer: directories.containerReference,
             blueprint: libraryPBXTarget,
             buildableName: libraryPBXTarget.buildableName,
             blueprintName: libraryPBXTarget.name
@@ -421,16 +421,13 @@ extension XCSchemeExtensionsTests {
 // MARK: - Test Data
 
 class XCSchemeExtensionsTests: XCTestCase {
-    let directories = FilePathResolver.Directories(
+    let directories = Directories(
         workspace: "/Users/TimApple/app",
         projectRoot: "/Users/TimApple",
         external: "bazel-output-base/execroot/_rules_xcodeproj/build_output_base/external",
         bazelOut: "bazel-output-base/execroot/_rules_xcodeproj/build_output_base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out",
         internalDirectoryName: "rules_xcodeproj",
         workspaceOutput: "examples/foo/Foo.xcodeproj"
-    )
-    lazy var filePathResolver = FilePathResolver(
-        directories: directories
     )
 
     lazy var pbxTargetsDict: [ConsolidatedTarget.Key: PBXTarget] =
@@ -456,35 +453,35 @@ class XCSchemeExtensionsTests: XCTestCase {
     lazy var libraryTargetInfo = XCSchemeInfo.TargetInfo(
         pbxTarget: libraryPBXTarget,
         platforms: [libraryPlatform],
-        referencedContainer: filePathResolver.containerReference,
+        referencedContainer: directories.containerReference,
         hostInfos: [],
         extensionPointIdentifiers: []
     )
     lazy var anotherLibraryTargetInfo = XCSchemeInfo.TargetInfo(
         pbxTarget: anotherLibraryPBXTarget,
         platforms: [anotherLibraryPlatform],
-        referencedContainer: filePathResolver.containerReference,
+        referencedContainer: directories.containerReference,
         hostInfos: [],
         extensionPointIdentifiers: []
     )
     lazy var appTargetInfo = XCSchemeInfo.TargetInfo(
         pbxTarget: appPBXTarget,
         platforms: [appPlatform],
-        referencedContainer: filePathResolver.containerReference,
+        referencedContainer: directories.containerReference,
         hostInfos: [],
         extensionPointIdentifiers: []
     )
     lazy var unitTestTargetInfo = XCSchemeInfo.TargetInfo(
         pbxTarget: unitTestPBXTarget,
         platforms: [unitTestPlatform],
-        referencedContainer: filePathResolver.containerReference,
+        referencedContainer: directories.containerReference,
         hostInfos: [],
         extensionPointIdentifiers: []
     )
     lazy var uiTestTargetInfo = XCSchemeInfo.TargetInfo(
         pbxTarget: uiTestPBXTarget,
         platforms: [uiTestPlatform],
-        referencedContainer: filePathResolver.containerReference,
+        referencedContainer: directories.containerReference,
         hostInfos: [],
         extensionPointIdentifiers: []
     )

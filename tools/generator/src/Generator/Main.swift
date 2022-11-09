@@ -19,7 +19,7 @@ extension Generator {
             let extensionPointIdentifiers = try readExtensionPointIdentifiers(
                 path: arguments.extensionPointIdentifiersPath
             )
-            let directories = FilePathResolver.Directories(
+            let directories = Directories(
                 workspace: rootDirs.workspaceDirectory,
                 projectRoot: arguments.projectRootDirectory,
                 external: rootDirs.externalDirectory,

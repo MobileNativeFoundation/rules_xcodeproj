@@ -29,7 +29,7 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         let internalDirectoryName = "rules_xcp"
         let workspaceOutputPath: Path = "Project.xcodeproj"
 
-        let directories = FilePathResolver.Directories(
+        let directories = Directories(
             workspace: workspaceDirectory,
             projectRoot: projectRootDirectory,
             external: externalDirectory,
@@ -109,7 +109,7 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         let internalDirectoryName = "rules_xcp"
         let workspaceOutputPath: Path = "Project.xcodeproj"
 
-        let directories = FilePathResolver.Directories(
+        let directories = Directories(
             workspace: workspaceDirectory,
             projectRoot: projectRootDirectory,
             external: externalDirectory,
@@ -121,7 +121,7 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         let (
             expectedFiles,
             expectedElements,
-            expectedFilePathResolver,
+            expectedXcodeGeneratedFiles,
             _
         ) = Fixtures.files(
             in: expectedPBXProj,
@@ -162,7 +162,7 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         let (
             createdFiles,
             createdRootElements,
-            filePathResolver,
+            xcodeGeneratedFiles,
             _
         ) = try Generator.createFilesAndGroups(
             in: pbxProj,
@@ -191,10 +191,8 @@ final class CreateFilesAndGroupsTests: XCTestCase {
             expectedFiles.map(KeyAndValue.init).sorted()
         )
         XCTAssertNoDifference(
-            filePathResolver.xcodeGeneratedFiles
-                .map(KeyAndValue.init).sorted(),
-            expectedFilePathResolver.xcodeGeneratedFiles
-                .map(KeyAndValue.init).sorted()
+            xcodeGeneratedFiles.map(KeyAndValue.init).sorted(),
+            expectedXcodeGeneratedFiles.map(KeyAndValue.init).sorted()
         )
 
         XCTAssertNoDifference(pbxProj, expectedPBXProj)
@@ -218,7 +216,7 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         let internalDirectoryName = "rules_xcp"
         let workspaceOutputPath: Path = "Project.xcodeproj"
 
-        let directories = FilePathResolver.Directories(
+        let directories = Directories(
             workspace: workspaceDirectory,
             projectRoot: projectRootDirectory,
             external: externalDirectory,
@@ -230,7 +228,7 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         let (
             expectedFiles,
             expectedElements,
-            expectedFilePathResolver,
+            expectedXcodeGeneratedFiles,
             _
         ) = Fixtures.files(
             in: expectedPBXProj,
@@ -271,7 +269,7 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         let (
             createdFiles,
             createdRootElements,
-            filePathResolver,
+            xcodeGeneratedFiles,
             _
         ) = try Generator.createFilesAndGroups(
             in: pbxProj,
@@ -300,10 +298,8 @@ final class CreateFilesAndGroupsTests: XCTestCase {
             expectedFiles.map(KeyAndValue.init).sorted()
         )
         XCTAssertNoDifference(
-            filePathResolver.xcodeGeneratedFiles
-                .map(KeyAndValue.init).sorted(),
-            expectedFilePathResolver.xcodeGeneratedFiles
-                .map(KeyAndValue.init).sorted()
+            xcodeGeneratedFiles.map(KeyAndValue.init).sorted(),
+            expectedXcodeGeneratedFiles.map(KeyAndValue.init).sorted()
         )
 
         XCTAssertNoDifference(pbxProj, expectedPBXProj)

@@ -10,7 +10,7 @@ extension Generator {
         buildMode: BuildMode,
         forFixtures: Bool,
         project: Project,
-        directories: FilePathResolver.Directories
+        directories: Directories
     ) -> PBXProj {
         let pbxProj = PBXProj()
 

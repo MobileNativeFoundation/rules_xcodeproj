@@ -10,7 +10,7 @@ final class SetTargetDependenciesTests: XCTestCase {
         let pbxProj = Fixtures.pbxProj()
         let expectedPBXProj = Fixtures.pbxProj()
 
-        let directories = FilePathResolver.Directories(
+        let directories = Directories(
             workspace: "/Users/TimApple/app",
             projectRoot: "/Users/TimApple",
             external: "bazel-output-base/execroot/_rules_xcodeproj/build_output_base/external",

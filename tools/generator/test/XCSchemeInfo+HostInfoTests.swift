@@ -10,7 +10,7 @@ extension XCSchemeInfoHostInfoTests {
             pbxTarget: try targetResolver.pbxTargetInfos.value(for: "I").pbxTarget,
             // This is purposely not sorted.
             platforms: [iOSDevicePlatform, iOSSimulatorPlatform],
-            referencedContainer: filePathResolver.containerReference,
+            referencedContainer: directories.containerReference,
             index: 0
         )
         XCTAssertEqual(hostInfo.platforms, [iOSSimulatorPlatform, iOSDevicePlatform])
@@ -81,7 +81,7 @@ class XCSchemeInfoHostInfoTests: XCTestCase {
     let iOSDevicePlatform = Platform.device(os: .iOS)
     let iOSSimulatorPlatform = Platform.simulator(os: .iOS)
 
-    let directories = FilePathResolver.Directories(
+    let directories = Directories(
         workspace: "/Users/TimApple/app",
         projectRoot: "/Users/TimApple",
         external: "bazel-output-base/execroot/_rules_xcodeproj/build_output_base/external",
@@ -89,13 +89,10 @@ class XCSchemeInfoHostInfoTests: XCTestCase {
         internalDirectoryName: "rules_xcodeproj",
         workspaceOutput: "examples/foo/Foo.xcodeproj"
     )
-    lazy var filePathResolver = FilePathResolver(
-        directories: directories
-    )
 
     lazy var targetResolver = Fixtures.targetResolver(
         directories: directories,
-        referencedContainer: filePathResolver.containerReference
+        referencedContainer: directories.containerReference
     )
 
     lazy var macOSAppPBXTargetInfo = targetResolver.pbxTargetInfos["A 2"]!

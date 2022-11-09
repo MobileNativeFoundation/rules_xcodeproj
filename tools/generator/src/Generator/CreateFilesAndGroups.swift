@@ -59,12 +59,12 @@ extension Generator {
         targets: [TargetID: Target],
         extraFiles: Set<FilePath>,
         xccurrentversions: [XCCurrentVersion],
-        directories: FilePathResolver.Directories,
+        directories: Directories,
         logger: Logger
     ) throws -> (
         files: [FilePath: File],
         rootElements: [PBXFileElement],
-        filePathResolver: FilePathResolver,
+        xcodeGeneratedFiles: [FilePath: FilePath],
         resolvedExternalRepositories: [(Path, Path)]
     ) {
         var fileReferences: [FilePath: PBXFileReference] = [:]
@@ -529,7 +529,7 @@ extension Generator {
             }
         }
 
-        // `filePathResolver`
+        // `xcodeGeneratedFiles`
 
         var xcodeGeneratedFiles: [FilePath: FilePath] = [:]
         func setXcodeGeneratedFile(
@@ -574,11 +574,6 @@ already was set to `\(existingValue)`.
         default:
             break;
         }
-
-        let filePathResolver = FilePathResolver(
-            directories: directories,
-            xcodeGeneratedFiles: xcodeGeneratedFiles
-        )
 
         // Write xcfilelists
 
@@ -813,7 +808,7 @@ class StopHook:
         return (
             files,
             rootElements,
-            filePathResolver,
+            xcodeGeneratedFiles,
             resolvedExternalRepositories
         )
     }

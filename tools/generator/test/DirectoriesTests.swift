@@ -3,7 +3,7 @@ import XCTest
 
 @testable import generator
 
-class FilePathResolverTests: XCTestCase {
+class DirectoriesTests: XCTestCase {
     let workspaceDirectory: Path = "/Users/TimApple/project"
     let projectRootDirectory: Path = "/Users/TimApple"
     let externalDirectory: Path = "/some/bazel2/external"
@@ -11,7 +11,7 @@ class FilePathResolverTests: XCTestCase {
     let internalDirectoryName = "internal_name"
     let workspaceOutputPath: Path = "path/to/Foo.xcodeproj"
 
-    lazy var directories = FilePathResolver.Directories(
+    lazy var directories = Directories(
         workspace: workspaceDirectory,
         projectRoot: projectRootDirectory,
         external: externalDirectory,
@@ -20,13 +20,9 @@ class FilePathResolverTests: XCTestCase {
         workspaceOutput: workspaceOutputPath
     )
 
-    lazy var resolver = FilePathResolver(
-        directories: directories
-    )
-
     func test_containerReference() throws {
         XCTAssertEqual(
-            resolver.containerReference,
+            directories.containerReference,
             "container:\(workspaceDirectory + workspaceOutputPath)"
         )
     }

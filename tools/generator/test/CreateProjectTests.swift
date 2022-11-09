@@ -12,7 +12,7 @@ final class CreateProjectTests: XCTestCase {
         let project = Fixtures.project
         let projectRootDirectory: Path = "/Users/TimApple"
 
-        let directories = FilePathResolver.Directories(
+        let directories = Directories(
             workspace: "/Users/TimApple/app",
             projectRoot: projectRootDirectory,
             external: "/tmp/bazel-output-base/rules_xcodeproj/build_output_base/external",
@@ -135,7 +135,7 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
         let project = Fixtures.project
         let projectRootDirectory: Path = "/Users/TimApple"
 
-        let directories = FilePathResolver.Directories(
+        let directories = Directories(
             workspace: "/Users/TimApple/app",
             projectRoot: projectRootDirectory,
             external: "/tmp/bazel-output-base/rules_xcodeproj/build_output_base/external",
