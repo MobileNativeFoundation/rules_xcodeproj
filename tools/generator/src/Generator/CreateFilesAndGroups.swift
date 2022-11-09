@@ -48,18 +48,6 @@ extension Generator {
         "xib",
     ]
 
-    enum ElementFilePath: Equatable, Hashable {
-        case file(FilePath)
-        case group(FilePath)
-
-        var filePath: FilePath {
-            switch self {
-            case let .file(filePath): return filePath
-            case let .group(filePath): return filePath
-            }
-        }
-    }
-
     // Most of the logic here is a modified version of
     // https://github.com/tuist/tuist/blob/a76be1d1df2ec912cbf5c4ba91a167fb1dfd0098/Sources/TuistGenerator/Generator/ProjectFileElements.swift
     // swiftlint:disable:next cyclomatic_complexity
