@@ -133,7 +133,6 @@ def _to_xcode_target_inputs(inputs):
         srcs = inputs.srcs,
         non_arc_srcs = inputs.non_arc_srcs,
         hdrs = inputs.hdrs,
-        exported_symbols_lists = inputs.exported_symbols_lists,
         pch = inputs.pch,
         entitlements = inputs.entitlements,
         resources = inputs.resources,
@@ -266,7 +265,6 @@ def _merge_xcode_target_inputs(*, src, dest):
         srcs = src.srcs,
         non_arc_srcs = src.non_arc_srcs,
         hdrs = dest.hdrs,
-        exported_symbols_lists = dest.exported_symbols_lists,
         pch = src.pch,
         entitlements = dest.entitlements,
         resources = dest.resources,
@@ -725,8 +723,6 @@ def _inputs_to_dto(inputs):
         *   `pch`: An optional `FilePath` for `pch`.
         *   `resources`: A `list` of `FilePath`s for `resources`.
         *   `entitlements`: An optional `FilePath` for `entitlements`.
-        *   `exported_symbols_lists`: A `list` of `FilePath`s for
-            `exported_symbols_lists`.
     """
     ret = {}
 
@@ -741,7 +737,6 @@ def _inputs_to_dto(inputs):
     _process_attr("srcs")
     _process_attr("non_arc_srcs")
     _process_attr("hdrs")
-    _process_attr("exported_symbols_lists")
 
     if inputs.pch:
         ret["pch"] = file_path_to_dto(file_path(inputs.pch))

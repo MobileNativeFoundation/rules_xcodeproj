@@ -16,6 +16,7 @@ SwiftUI
 -Wl,-dead_strip
 -lc++
 -headerpad_max_install_names
+-Wl,-exported_symbols_list,CommandLine/CommandLineTool/export_symbol_list.exp
 -no-canonical-prefixes
 -framework
 Foundation
@@ -27,5 +28,3 @@ bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/
 external/examples_command_line_external/ImportableLibrary/libImportableLibrary.a
 -force_load
 external/examples_command_line_external/ExternalFramework.framework/ExternalFramework
--exported_symbols_list
-CommandLine/CommandLineTool/export_symbol_list.exp

@@ -336,8 +336,6 @@ def _process_linkopt(linkopt):
         return None
     if linkopt == "-Wl,-objc_abi_version,2":
         return None
-    if linkopt.startswith("-Wl,-exported_symbols_list,"):
-        return None
     if linkopt.startswith("-Wl,-sectcreate,__TEXT,__entitlements,"):
         return None
     if linkopt.startswith("-Wl,-sectcreate,__TEXT,__info_plist,"):

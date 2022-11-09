@@ -344,7 +344,7 @@ extension ConsolidatedTarget {
             .map { $1 }
         inputs = Self.consolidateInputs(targets: sortedTargets)
         linkerInputs = Self.consolidateLinkerInputs(targets: sortedTargets)
-        hasLinkerFlags = aTarget.hasLinkerFlags
+        hasLinkerFlags = !aTarget.linkerInputs.linkopts.isEmpty
 
         hasClangSearchPaths = sortedTargets.contains { target in
             return !target.modulemaps.isEmpty
