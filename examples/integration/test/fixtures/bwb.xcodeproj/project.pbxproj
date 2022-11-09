@@ -8752,7 +8752,7 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/macOSApp/third_party";
+				FRAMEWORK_SEARCH_PATHS = macOSApp/third_party;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-ST-5a457b91a60a/bin/macOSApp/Source/rules_xcodeproj/macOSApp/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (

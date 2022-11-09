@@ -7172,7 +7172,7 @@
                 "ENABLE_STRICT_OBJC_MSGSEND": true,
                 "ENABLE_TESTABILITY": true,
                 "FRAMEWORK_SEARCH_PATHS": [
-                    "$(SRCROOT)/macOSApp/third_party"
+                    "macOSApp/third_party"
                 ],
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -fmodule-map-file=$(SRCROOT)/macOSApp/third_party/ExampleFramework.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -FmacOSApp/third_party -static",
