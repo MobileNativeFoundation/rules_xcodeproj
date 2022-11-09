@@ -590,13 +590,13 @@ already was set to `\(existingValue)`.
 
         let externalPaths = fileListFileFilePaths
             .filter { $0.type == .external }
-            .map { filePathResolver.resolve($0) }
+            .map { FilePathResolver.resolveExternal($0.path) }
 
         let generatedFilePaths = fileListFileFilePaths
             .filter { $0.type == .generated && !$0.isFolder } + nonIncludedFiles
 
         let generatedPaths = generatedFilePaths
-            .map { filePathResolver.resolve($0) }
+            .map { FilePathResolver.resolveGenerated($0.path) }
 
         func addXCFileList(_ path: Path, paths: [String]) {
             guard !paths.isEmpty else {
@@ -657,7 +657,6 @@ already was set to `\(existingValue)`.
                     return clang.toClangExtraArgs(
                         buildMode: buildMode,
                         hasBazelDependencies: hasBazelDependencies,
-                        filePathResolver: filePathResolver,
                         oncePaths: &oncePaths,
                         onceOtherFlags: &onceOtherFlags
                     )
@@ -930,7 +929,6 @@ private extension LLDBContext.Clang {
     func toClangExtraArgs(
         buildMode: BuildMode,
         hasBazelDependencies: Bool,
-        filePathResolver: FilePathResolver,
         oncePaths: inout Set<String>,
         onceOtherFlags: inout Set<String>
     ) -> String {

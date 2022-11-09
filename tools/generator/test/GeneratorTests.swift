@@ -438,7 +438,6 @@ final class GeneratorTests: XCTestCase {
             forceBazelDependencies: Bool,
             indexImport: String,
             files: [FilePath: File],
-            filePathResolver: FilePathResolver,
             resolvedExternalRepositories: [(Path, Path)],
             bazelConfig: String,
             generatorLabel: BazelLabel,
@@ -497,7 +496,6 @@ final class GeneratorTests: XCTestCase {
             buildMode: BuildMode,
             products: Products,
             files: [FilePath: File],
-            filePathResolver: FilePathResolver,
             bazelDependenciesTarget: PBXAggregateTarget?
         ) throws -> [ConsolidatedTarget.Key: PBXTarget] {
             addTargetsCalled.append(.init(
@@ -540,8 +538,7 @@ final class GeneratorTests: XCTestCase {
             buildMode: BuildMode,
             pbxTargets: [ConsolidatedTarget.Key: PBXTarget],
             hostIDs: [TargetID: [TargetID]],
-            hasBazelDependencies: Bool,
-            filePathResolver: FilePathResolver
+            hasBazelDependencies: Bool
         ) {
             setTargetConfigurationsCalled.append(.init(
                 pbxProj: pbxProj,

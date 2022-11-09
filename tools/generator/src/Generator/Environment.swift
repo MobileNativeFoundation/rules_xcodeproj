@@ -63,7 +63,6 @@ struct Environment {
         _ forceBazelDependencies: Bool,
         _ indexImport: String,
         _ files: [FilePath: File],
-        _ filePathResolver: FilePathResolver,
         _ resolvedExternalRepositories: [(Path, Path)],
         _ bazelConfig: String,
         _ generatorLabel: BazelLabel,
@@ -79,7 +78,6 @@ struct Environment {
         _ buildMode: BuildMode,
         _ products: Products,
         _ files: [FilePath: File],
-        _ filePathResolver: FilePathResolver,
         _ bazelDependenciesTarget: PBXAggregateTarget?
     ) throws -> [ConsolidatedTarget.Key: PBXTarget]
 
@@ -90,8 +88,7 @@ struct Environment {
         _ buildMode: BuildMode,
         _ pbxTargets: [ConsolidatedTarget.Key: PBXTarget],
         _ hostIDs: [TargetID: [TargetID]],
-        _ hasBazelDependencies: Bool,
-        _ filePathResolver: FilePathResolver
+        _ hasBazelDependencies: Bool
     ) throws -> Void
 
     let setTargetDependencies: (

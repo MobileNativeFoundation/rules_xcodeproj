@@ -41,9 +41,6 @@ final class FilePathResolver {
         }
     }
 
-    // TODO: Make thread safe if we ever go concurrent
-    private var memoizedPaths: [FilePath: String] = [:]
-
     private let directories: Directories
 
     /// In XcodeProj, a `referencedContainer` in a `XCScheme.BuildableReference`
@@ -74,11 +71,7 @@ container:\(workspace + directories.workspaceOutput)
 """
     }
 
-    func resolve(_ filePath: FilePath) -> String {
-        if let memoized = memoizedPaths[filePath] {
-            return memoized
-        }
-
+    static func resolve(_ filePath: FilePath) -> String {
         let path: String
         switch filePath.type {
         case .project:
@@ -90,14 +83,25 @@ container:\(workspace + directories.workspaceOutput)
 
             path = "$(SRCROOT)/\(filePath.path)"
         case .external:
-            path = "$(BAZEL_EXTERNAL)/\(filePath.path)"
+            path = Self.resolveExternal(filePath.path)
         case .generated:
-            path = "$(BAZEL_OUT)/\(filePath.path)"
+            path = Self.resolveGenerated(filePath.path)
         case .internal:
-            path = "$(INTERNAL_DIR)/\(filePath.path)"
+            path = Self.resolveInternal(filePath.path)
         }
 
-        memoizedPaths[filePath] = path
         return path
+    }
+
+    static func resolveExternal(_ path: Path) -> String {
+        return "$(BAZEL_EXTERNAL)/\(path)"
+    }
+
+    static func resolveGenerated(_ path: Path) -> String {
+        return "$(BAZEL_OUT)/\(path)"
+    }
+
+    static func resolveInternal(_ path: Path) -> String {
+        return "$(INTERNAL_DIR)/\(path)"
     }
 }
