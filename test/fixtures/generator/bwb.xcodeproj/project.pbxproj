@@ -256,7 +256,6 @@
 		CD1A84DD6CE77DB8815E9C7F /* _HashTable+BucketIterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F558BB6C4380840D87F54534 /* _HashTable+BucketIterator.swift */; };
 		CE4940AA213768EF34A86EFA /* OrderedDictionary+Hashable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3550D3F2C2092F487BF147 /* OrderedDictionary+Hashable.swift */; };
 		CE958423D08B4A9B5E71D1F3 /* XCSchemeInfo+TestActionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D67650F4D862DE4A540F3E4 /* XCSchemeInfo+TestActionInfo.swift */; };
-		D2A2C2628DC1EEFB06515D04 /* Target+LinkerFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EFE726643CB7F48D0409620 /* Target+LinkerFlags.swift */; };
 		D2C8CF2A534D1DCC858BD212 /* ConsolidateTargets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDD067431DF8CA59E606EC9 /* ConsolidateTargets.swift */; };
 		D2CCEEDBDF16B021EF46BA38 /* XCSchemeInfo+ProfileActionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980978C8B7B8892A00D59EBF /* XCSchemeInfo+ProfileActionInfo.swift */; };
 		D30A34DEB48628BA8047F7FD /* XCScheme+AnalyzeAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D39F2E9D0D5C195F8CC97F0 /* XCScheme+AnalyzeAction.swift */; };
@@ -422,7 +421,6 @@
 		0D39F2E9D0D5C195F8CC97F0 /* XCScheme+AnalyzeAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCScheme+AnalyzeAction.swift"; sourceTree = "<group>"; };
 		0D67650F4D862DE4A540F3E4 /* XCSchemeInfo+TestActionInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCSchemeInfo+TestActionInfo.swift"; sourceTree = "<group>"; };
 		0EBAD4F9B14CE3A55275BA5F /* XCBuildConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCBuildConfiguration.swift; sourceTree = "<group>"; };
-		0EFE726643CB7F48D0409620 /* Target+LinkerFlags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Target+LinkerFlags.swift"; sourceTree = "<group>"; };
 		0F4336885822E8CDC294B591 /* PlistValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlistValue.swift; sourceTree = "<group>"; };
 		0FC55361D18E60CE97A6A9EF /* JJLInternal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJLInternal.h; sourceTree = "<group>"; };
 		0FFE5378C48F4FD877BF3F5D /* libCustomDump.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libCustomDump.a; path = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_pointfreeco_swift_custom_dump/libCustomDump.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1447,7 +1445,6 @@
 				996B2A115E843C1C37CE8EE1 /* SchemeAutogenerationMode.swift */,
 				283A0C0CE12E0534401A440E /* SearchPaths.swift */,
 				266248A2DAFFD16396D472E0 /* Target.swift */,
-				0EFE726643CB7F48D0409620 /* Target+LinkerFlags.swift */,
 				B0AE0EAD35BA44D6C32BEA54 /* TargetID.swift */,
 				A68A9610D685E01B9069236C /* XCCurrentVersion.swift */,
 				3F8064E49018780A1DAC9343 /* XcodeScheme.swift */,
@@ -2490,7 +2487,6 @@
 				43A951F93BA99D4090B2A981 /* Project.swift in Sources */,
 				2728B928BE37F9C0D56CEE67 /* SchemeAutogenerationMode.swift in Sources */,
 				74B5E81D6CB5124EB8A348E9 /* SearchPaths.swift in Sources */,
-				D2A2C2628DC1EEFB06515D04 /* Target+LinkerFlags.swift in Sources */,
 				B9E420AD2DFF9FD6B495D3D9 /* Target.swift in Sources */,
 				C818527BED638076CCF62959 /* TargetID.swift in Sources */,
 				AA4559B83D44A12D78553D41 /* XCCurrentVersion.swift in Sources */,

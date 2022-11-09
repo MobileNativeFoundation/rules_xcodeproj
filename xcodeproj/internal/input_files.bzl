@@ -159,8 +159,6 @@ def _collect_input_files(
             project generation, to ensure they are created before Xcode is
             opened. Entitlements are an example of this, as Xcode won't even
             start a build if they are missing.
-        *   `exported_symbols_lists`: A `depset` of `FilePath`s for
-            `exported_symbols_lists`.
         *   `extra_files`: A `depset` of `FilePath`s that should be included in
             the project, but aren't necessarily inputs to the target. This also
             includes some categorized files of transitive dependencies
@@ -173,7 +171,6 @@ def _collect_input_files(
     output_files = target.files.to_list()
 
     entitlements = []
-    exported_symbols_lists = []
     extra_files = []
     generated = []
     hdrs = []
@@ -213,7 +210,7 @@ def _collect_input_files(
             # of assigning to the existing variable
             entitlements.append(file)
         elif attr in automatic_target_info.exported_symbols_lists:
-            exported_symbols_lists.append(file)
+            extra_files.append(file_path(file))
         else:
             categorized = False
 
@@ -581,7 +578,6 @@ def _collect_input_files(
             resource_bundle_dependencies,
         ),
         entitlements = entitlements[0] if entitlements else None,
-        exported_symbols_lists = depset(exported_symbols_lists),
         xccurrentversions = depset(
             xccurrentversions,
             transitive = [
@@ -651,7 +647,6 @@ def _from_resource_bundle(bundle):
         resource_bundles = depset(),
         resource_bundle_dependencies = bundle.dependencies,
         entitlements = None,
-        exported_symbols_lists = depset(),
         xccurrentversions = depset(),
         generated = depset(),
         important_generated = depset(),
@@ -723,7 +718,6 @@ def _merge_input_files(*, transitive_infos, extra_generated = None):
             ],
         ),
         entitlements = None,
-        exported_symbols_lists = depset(),
         xccurrentversions = depset(
             transitive = [
                 info.inputs.xccurrentversions

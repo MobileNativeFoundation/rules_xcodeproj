@@ -173,7 +173,7 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
             )
         }
 
-        if target.hasLinkerFlags {
+        if !target.linkerInputs.linkopts.isEmpty {
             let linkParamsFile = filePathResolver
                 .resolve(try target.linkParamsFilePath())
                 .string

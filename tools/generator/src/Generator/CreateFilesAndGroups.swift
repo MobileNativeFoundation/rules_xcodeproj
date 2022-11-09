@@ -645,9 +645,7 @@ already was set to `\(existingValue)`.
 
         var lldbSettingsMap: [String: LLDBSettings] = [:]
         for target in targets.values {
-            let linkopts = target
-                .allLinkerFlags(filePathResolver: filePathResolver)
-                .map { "\($0)\n" }
+            let linkopts = target.linkerInputs.linkopts.map { "\($0)\n" }
             if !linkopts.isEmpty {
                 files[try target.linkParamsFilePath()] =
                     .nonReferencedContent(linkopts.joined())
