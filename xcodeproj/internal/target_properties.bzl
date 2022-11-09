@@ -185,22 +185,17 @@ def process_swiftmodules(*, swift_info):
         swift_info: The `SwiftInfo` provider for the target.
 
     Returns:
-        A `list` of `file_path`s of dependent swiftmodules.
+        A `list` of `File`s of dependent swiftmodules.
     """
     if not swift_info:
-        return ([], [])
+        return []
 
     files = []
-    file_paths = []
     for module in swift_info.direct_modules:
         compilation_context = module.compilation_context
         if not compilation_context:
             continue
 
         files.extend(compilation_context.swiftmodules)
-        file_paths.extend([
-            file_path(file)
-            for file in compilation_context.swiftmodules
-        ])
 
-    return (files, file_paths)
+    return files

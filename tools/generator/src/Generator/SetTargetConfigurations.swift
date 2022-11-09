@@ -386,40 +386,40 @@ $(CONFIGURATION_BUILD_DIR)
         }
 
         if target.isSwift {
-            func handleSwiftModule(_ filePath: FilePath) -> String {
-                return filePathResolver
-                    .resolve(filePath, transform: { $0.parent() })
-                    .string.quoted
-            }
-
-            var includePaths = target.swiftmodules
-                .map(handleSwiftModule)
-                .uniqued()
-
-            if target.product.type.isBundle,
-               let swiftmodule = target.outputs.swift?.module
-            {
-                // SwiftUI Previews need to find the current target's
-                // swiftmodule
-                let selfInclude = handleSwiftModule(swiftmodule)
-                buildSettings["PREVIEWS_SWIFT_INCLUDE_PATH__"] = ""
-                buildSettings["PREVIEWS_SWIFT_INCLUDE_PATH__NO"] = ""
-                buildSettings.set(
-                    "PREVIEWS_SWIFT_INCLUDE_PATH__YES",
-                    to: selfInclude
-                )
-                includePaths.insert(
-                    "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS))",
-                    at: 0
-                )
-            }
-
-            if !includePaths.isEmpty {
-                buildSettings.set(
-                    "SWIFT_INCLUDE_PATHS",
-                    to: includePaths.joined(separator: " ")
-                )
-            }
+//            func handleSwiftModule(_ filePath: FilePath) -> String {
+//                return filePathResolver
+//                    .resolve(filePath, transform: { $0.parent() })
+//                    .string.quoted
+//            }
+//
+//            var includePaths = target.swiftmodules
+//                .map(handleSwiftModule)
+//                .uniqued()
+//
+//            if target.product.type.isBundle,
+//               let swiftmodule = target.outputs.swift?.module
+//            {
+//                // SwiftUI Previews need to find the current target's
+//                // swiftmodule
+//                let selfInclude = handleSwiftModule(swiftmodule)
+//                buildSettings["PREVIEWS_SWIFT_INCLUDE_PATH__"] = ""
+//                buildSettings["PREVIEWS_SWIFT_INCLUDE_PATH__NO"] = ""
+//                buildSettings.set(
+//                    "PREVIEWS_SWIFT_INCLUDE_PATH__YES",
+//                    to: selfInclude
+//                )
+//                includePaths.insert(
+//                    "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS))",
+//                    at: 0
+//                )
+//            }
+//
+//            if !includePaths.isEmpty {
+//                buildSettings.set(
+//                    "SWIFT_INCLUDE_PATHS",
+//                    to: includePaths.joined(separator: " ")
+//                )
+//            }
         }
 
         if let ldRunpathSearchPaths = target.ldRunpathSearchPaths {

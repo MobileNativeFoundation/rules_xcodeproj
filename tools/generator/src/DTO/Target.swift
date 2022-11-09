@@ -14,7 +14,6 @@ struct Target: Equatable {
     var buildSettings: [String: BuildSetting]
     var searchPaths: SearchPaths
     var modulemaps: [FilePath]
-    var swiftmodules: [FilePath]
     var inputs: Inputs
     var linkerInputs: LinkerInputs
     var infoPlist: FilePath?
@@ -58,7 +57,6 @@ extension Target: Decodable {
         case buildSettings
         case searchPaths
         case modulemaps
-        case swiftmodules
         case inputs
         case linkerInputs
         case infoPlist
@@ -99,7 +97,6 @@ extension Target: Decodable {
         searchPaths = try container
             .decodeIfPresent(SearchPaths.self, forKey: .searchPaths) ?? .init()
         modulemaps = try container.decodeFilePaths(.modulemaps)
-        swiftmodules = try container.decodeFilePaths(.swiftmodules)
         inputs = try container
             .decodeIfPresent(Inputs.self, forKey: .inputs) ?? .init()
         linkerInputs = try container

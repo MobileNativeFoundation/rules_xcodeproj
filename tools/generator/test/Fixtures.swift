@@ -97,7 +97,6 @@ enum Fixtures {
                 "T": .string("43"),
                 "Z": .string("0"),
             ],
-            swiftmodules: [.generated("x/y.swiftmodule")],
             inputs: .init(
                 resources: [
                     "es.lproj/Localized.strings",
@@ -220,7 +219,6 @@ enum Fixtures {
             ),
             isSwift: true,
             modulemaps: ["a/module.modulemap"],
-            swiftmodules: [.generated("x/y.swiftmodule")],
             inputs: .init(srcs: [.external("a_repo/a.swift")]),
             outputs: .init(
               swift: .init(
@@ -2176,13 +2174,7 @@ $(INTERNAL_DIR)/targets/a1b2c/A 2/A.link.params
                 "OTHER_SWIFT_FLAGS": #"""
 -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml
 """#,
-                "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
-                "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
-                "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "$(BUILD_DIR)/bazel-out/z",
                 "PRODUCT_NAME": "A",
-                "SWIFT_INCLUDE_PATHS": """
-$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) $(BUILD_DIR)/bazel-out/z
-""",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SDKROOT": "macosx",
                 "SUPPORTED_PLATFORMS": "macosx",
@@ -2375,7 +2367,6 @@ $(INTERNAL_DIR)/targets/a1b2c/C 2/d.link.params
                 "PRODUCT_NAME": "E1",
                 "SDKROOT": "watchos",
                 "SUPPORTED_PLATFORMS": "watchos",
-                "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/z",
                 "TARGET_NAME": targets["E1"]!.name,
                 "WATCHOS_DEPLOYMENT_TARGET": "9.1",
             ]) { $1 },
