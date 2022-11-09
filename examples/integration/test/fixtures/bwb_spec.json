@@ -449,6 +449,9 @@
                 "ENABLE_BITCODE": false,
                 "ENABLE_STRICT_OBJC_MSGSEND": true,
                 "ENABLE_TESTABILITY": true,
+                "FRAMEWORK_SEARCH_PATHS": [
+                    "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7"
+                ],
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -static",
                 "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
@@ -608,12 +611,6 @@
                 "type": "com.apple.product-type.application.on-demand-install-capable"
             },
             "search_paths": {
-                "framework_includes": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7",
-                        "t": "e"
-                    }
-                ],
                 "has_includes": true
             }
         },
@@ -627,6 +624,9 @@
                 "ENABLE_BITCODE": false,
                 "ENABLE_STRICT_OBJC_MSGSEND": true,
                 "ENABLE_TESTABILITY": true,
+                "FRAMEWORK_SEARCH_PATHS": [
+                    "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator"
+                ],
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -static",
                 "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
@@ -786,12 +786,6 @@
                 "type": "com.apple.product-type.application.on-demand-install-capable"
             },
             "search_paths": {
-                "framework_includes": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator",
-                        "t": "e"
-                    }
-                ],
                 "has_includes": true
             }
         },
@@ -805,6 +799,9 @@
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "ENABLE_STRICT_OBJC_MSGSEND": true,
+                "FRAMEWORK_SEARCH_PATHS": [
+                    "external/examples_command_line_external"
+                ],
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "GCC_PREPROCESSOR_DEFINITIONS": [
                     "_FORTIFY_SOURCE=1",
@@ -1036,12 +1033,6 @@
                 "type": "com.apple.product-type.tool"
             },
             "search_paths": {
-                "framework_includes": [
-                    {
-                        "_": "examples_command_line_external",
-                        "t": "e"
-                    }
-                ],
                 "has_includes": true
             }
         },
@@ -1154,6 +1145,9 @@
                 "ENABLE_BITCODE": false,
                 "ENABLE_STRICT_OBJC_MSGSEND": true,
                 "ENABLE_TESTABILITY": true,
+                "FRAMEWORK_SEARCH_PATHS": [
+                    "external/examples_command_line_external"
+                ],
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineToolLib/lib_impl.swift.modulemap -Xcc -fmodule-map-file=$(SRCROOT)/CommandLine/swift_c_module/c_lib.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/examples_command_line_external/ExternalFramework.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/external/examples_command_line_external/Library.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineToolLib/private_lib.swift.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Xcc -DSECRET_3=\\\"Hello\\\" -Xcc -DSECRET_2=\\\"World!\\\" -Fexternal/examples_command_line_external -static",
                 "PRODUCT_MODULE_NAME": "LibSwift",
@@ -1233,12 +1227,6 @@
                 "type": "com.apple.product-type.library.static"
             },
             "search_paths": {
-                "framework_includes": [
-                    {
-                        "_": "examples_command_line_external",
-                        "t": "e"
-                    }
-                ],
                 "has_includes": true
             }
         },
@@ -1384,6 +1372,9 @@
                 "ENABLE_BITCODE": false,
                 "ENABLE_STRICT_OBJC_MSGSEND": true,
                 "ENABLE_TESTABILITY": true,
+                "FRAMEWORK_SEARCH_PATHS": [
+                    "external/examples_command_line_external"
+                ],
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "GCC_PREPROCESSOR_DEFINITIONS": [
                     "SECRET_3=\\\"Hello\\\"",
@@ -1612,12 +1603,6 @@
                 "type": "com.apple.product-type.bundle.unit-test"
             },
             "search_paths": {
-                "framework_includes": [
-                    {
-                        "_": "examples_command_line_external",
-                        "t": "e"
-                    }
-                ],
                 "has_includes": true
             }
         },
@@ -1706,6 +1691,9 @@
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "ENABLE_STRICT_OBJC_MSGSEND": true,
+                "FRAMEWORK_SEARCH_PATHS": [
+                    "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7"
+                ],
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "PREVIEW_FRAMEWORK_PATHS": [
                     "\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework\""
@@ -1815,12 +1803,6 @@
                 "type": "com.apple.product-type.framework"
             },
             "search_paths": {
-                "framework_includes": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7",
-                        "t": "e"
-                    }
-                ],
                 "has_includes": true
             }
         },
@@ -1833,6 +1815,9 @@
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "ENABLE_STRICT_OBJC_MSGSEND": true,
+                "FRAMEWORK_SEARCH_PATHS": [
+                    "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator"
+                ],
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "PREVIEW_FRAMEWORK_PATHS": [
                     "\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework\""
@@ -1942,12 +1927,6 @@
                 "type": "com.apple.product-type.framework"
             },
             "search_paths": {
-                "framework_includes": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator",
-                        "t": "e"
-                    }
-                ],
                 "has_includes": true
             }
         },
@@ -1960,6 +1939,9 @@
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "ENABLE_STRICT_OBJC_MSGSEND": true,
+                "FRAMEWORK_SEARCH_PATHS": [
+                    "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64"
+                ],
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "PREVIEW_FRAMEWORK_PATHS": [
                     "\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework\""
@@ -2068,12 +2050,6 @@
                 "type": "com.apple.product-type.framework"
             },
             "search_paths": {
-                "framework_includes": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64",
-                        "t": "e"
-                    }
-                ],
                 "has_includes": true
             }
         },
@@ -2086,6 +2062,9 @@
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "ENABLE_STRICT_OBJC_MSGSEND": true,
+                "FRAMEWORK_SEARCH_PATHS": [
+                    "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator"
+                ],
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "PREVIEW_FRAMEWORK_PATHS": [
                     "\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework\""
@@ -2194,12 +2173,6 @@
                 "type": "com.apple.product-type.framework"
             },
             "search_paths": {
-                "framework_includes": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator",
-                        "t": "e"
-                    }
-                ],
                 "has_includes": true
             }
         },
@@ -2212,6 +2185,9 @@
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "ENABLE_STRICT_OBJC_MSGSEND": true,
+                "FRAMEWORK_SEARCH_PATHS": [
+                    "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k"
+                ],
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "PREVIEW_FRAMEWORK_PATHS": [
                     "\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework\""
@@ -2320,12 +2296,6 @@
                 "type": "com.apple.product-type.framework"
             },
             "search_paths": {
-                "framework_includes": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k",
-                        "t": "e"
-                    }
-                ],
                 "has_includes": true
             }
         },
@@ -2338,6 +2308,9 @@
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "ENABLE_STRICT_OBJC_MSGSEND": true,
+                "FRAMEWORK_SEARCH_PATHS": [
+                    "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator"
+                ],
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "PREVIEW_FRAMEWORK_PATHS": [
                     "\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework\""
@@ -2446,12 +2419,6 @@
                 "type": "com.apple.product-type.framework"
             },
             "search_paths": {
-                "framework_includes": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator",
-                        "t": "e"
-                    }
-                ],
                 "has_includes": true
             }
         },
@@ -2463,6 +2430,9 @@
                 "ENABLE_BITCODE": false,
                 "ENABLE_STRICT_OBJC_MSGSEND": true,
                 "ENABLE_TESTABILITY": true,
+                "FRAMEWORK_SEARCH_PATHS": [
+                    "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7"
+                ],
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -static",
                 "PRODUCT_MODULE_NAME": "Lib",
@@ -2522,12 +2492,6 @@
                 "type": "com.apple.product-type.library.static"
             },
             "search_paths": {
-                "framework_includes": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7",
-                        "t": "e"
-                    }
-                ],
                 "has_includes": true
             }
         },
@@ -2539,6 +2503,9 @@
                 "ENABLE_BITCODE": false,
                 "ENABLE_STRICT_OBJC_MSGSEND": true,
                 "ENABLE_TESTABILITY": true,
+                "FRAMEWORK_SEARCH_PATHS": [
+                    "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator"
+                ],
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -static",
                 "PRODUCT_MODULE_NAME": "Lib",
@@ -2598,12 +2565,6 @@
                 "type": "com.apple.product-type.library.static"
             },
             "search_paths": {
-                "framework_includes": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator",
-                        "t": "e"
-                    }
-                ],
                 "has_includes": true
             }
         },
@@ -2615,6 +2576,9 @@
                 "ENABLE_BITCODE": false,
                 "ENABLE_STRICT_OBJC_MSGSEND": true,
                 "ENABLE_TESTABILITY": true,
+                "FRAMEWORK_SEARCH_PATHS": [
+                    "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64"
+                ],
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64 -static",
                 "PRODUCT_MODULE_NAME": "Lib",
@@ -2674,12 +2638,6 @@
                 "type": "com.apple.product-type.library.static"
             },
             "search_paths": {
-                "framework_includes": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64",
-                        "t": "e"
-                    }
-                ],
                 "has_includes": true
             }
         },
@@ -2691,6 +2649,9 @@
                 "ENABLE_BITCODE": false,
                 "ENABLE_STRICT_OBJC_MSGSEND": true,
                 "ENABLE_TESTABILITY": true,
+                "FRAMEWORK_SEARCH_PATHS": [
+                    "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator"
+                ],
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator -static",
                 "PRODUCT_MODULE_NAME": "Lib",
@@ -2750,12 +2711,6 @@
                 "type": "com.apple.product-type.library.static"
             },
             "search_paths": {
-                "framework_includes": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator",
-                        "t": "e"
-                    }
-                ],
                 "has_includes": true
             }
         },
@@ -2767,6 +2722,9 @@
                 "ENABLE_BITCODE": false,
                 "ENABLE_STRICT_OBJC_MSGSEND": true,
                 "ENABLE_TESTABILITY": true,
+                "FRAMEWORK_SEARCH_PATHS": [
+                    "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k"
+                ],
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k -static",
                 "PRODUCT_MODULE_NAME": "Lib",
@@ -2826,12 +2784,6 @@
                 "type": "com.apple.product-type.library.static"
             },
             "search_paths": {
-                "framework_includes": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k",
-                        "t": "e"
-                    }
-                ],
                 "has_includes": true
             }
         },
@@ -2843,6 +2795,9 @@
                 "ENABLE_BITCODE": false,
                 "ENABLE_STRICT_OBJC_MSGSEND": true,
                 "ENABLE_TESTABILITY": true,
+                "FRAMEWORK_SEARCH_PATHS": [
+                    "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator"
+                ],
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator -static",
                 "PRODUCT_MODULE_NAME": "Lib",
@@ -2902,12 +2857,6 @@
                 "type": "com.apple.product-type.library.static"
             },
             "search_paths": {
-                "framework_includes": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator",
-                        "t": "e"
-                    }
-                ],
                 "has_includes": true
             }
         },
@@ -2920,6 +2869,9 @@
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "ENABLE_STRICT_OBJC_MSGSEND": true,
+                "FRAMEWORK_SEARCH_PATHS": [
+                    "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64"
+                ],
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "PREVIEW_FRAMEWORK_PATHS": [
                     "\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework\""
@@ -3028,12 +2980,6 @@
                 "type": "com.apple.product-type.framework"
             },
             "search_paths": {
-                "framework_includes": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64",
-                        "t": "e"
-                    }
-                ],
                 "has_includes": true
             }
         },
@@ -3046,6 +2992,9 @@
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "ENABLE_STRICT_OBJC_MSGSEND": true,
+                "FRAMEWORK_SEARCH_PATHS": [
+                    "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator"
+                ],
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "PREVIEW_FRAMEWORK_PATHS": [
                     "\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework\""
@@ -3154,12 +3103,6 @@
                 "type": "com.apple.product-type.framework"
             },
             "search_paths": {
-                "framework_includes": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator",
-                        "t": "e"
-                    }
-                ],
                 "has_includes": true
             }
         },
@@ -3172,6 +3115,9 @@
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "ENABLE_STRICT_OBJC_MSGSEND": true,
+                "FRAMEWORK_SEARCH_PATHS": [
+                    "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k"
+                ],
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "PREVIEW_FRAMEWORK_PATHS": [
                     "\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework\""
@@ -3280,12 +3226,6 @@
                 "type": "com.apple.product-type.framework"
             },
             "search_paths": {
-                "framework_includes": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k",
-                        "t": "e"
-                    }
-                ],
                 "has_includes": true
             }
         },
@@ -3298,6 +3238,9 @@
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "ENABLE_STRICT_OBJC_MSGSEND": true,
+                "FRAMEWORK_SEARCH_PATHS": [
+                    "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator"
+                ],
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "PREVIEW_FRAMEWORK_PATHS": [
                     "\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework\""
@@ -3406,12 +3349,6 @@
                 "type": "com.apple.product-type.framework"
             },
             "search_paths": {
-                "framework_includes": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator",
-                        "t": "e"
-                    }
-                ],
                 "has_includes": true
             }
         },
@@ -3425,6 +3362,10 @@
                 "ENABLE_BITCODE": false,
                 "ENABLE_STRICT_OBJC_MSGSEND": true,
                 "ENABLE_TESTABILITY": true,
+                "FRAMEWORK_SEARCH_PATHS": [
+                    "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7",
+                    "bazel-out/applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/Lib/frameworks"
+                ],
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -static",
                 "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
@@ -3590,16 +3531,6 @@
                 "type": "com.apple.product-type.framework"
             },
             "search_paths": {
-                "framework_includes": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7",
-                        "t": "e"
-                    },
-                    {
-                        "_": "applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/Lib/frameworks",
-                        "t": "g"
-                    }
-                ],
                 "has_includes": true
             }
         },
@@ -3613,6 +3544,10 @@
                 "ENABLE_BITCODE": false,
                 "ENABLE_STRICT_OBJC_MSGSEND": true,
                 "ENABLE_TESTABILITY": true,
+                "FRAMEWORK_SEARCH_PATHS": [
+                    "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator",
+                    "bazel-out/applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib/frameworks"
+                ],
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -static",
                 "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
@@ -3778,16 +3713,6 @@
                 "type": "com.apple.product-type.framework"
             },
             "search_paths": {
-                "framework_includes": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator",
-                        "t": "e"
-                    },
-                    {
-                        "_": "applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib/frameworks",
-                        "t": "g"
-                    }
-                ],
                 "has_includes": true
             }
         },
@@ -3804,6 +3729,10 @@
                 "ENABLE_BITCODE": false,
                 "ENABLE_STRICT_OBJC_MSGSEND": true,
                 "ENABLE_TESTABILITY": true,
+                "FRAMEWORK_SEARCH_PATHS": [
+                    "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64",
+                    "bazel-out/applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin/Lib/frameworks"
+                ],
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64 -static",
                 "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
@@ -3966,16 +3895,6 @@
                 "type": "com.apple.product-type.framework"
             },
             "search_paths": {
-                "framework_includes": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64",
-                        "t": "e"
-                    },
-                    {
-                        "_": "applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin/Lib/frameworks",
-                        "t": "g"
-                    }
-                ],
                 "has_includes": true
             }
         },
@@ -3992,6 +3911,10 @@
                 "ENABLE_BITCODE": false,
                 "ENABLE_STRICT_OBJC_MSGSEND": true,
                 "ENABLE_TESTABILITY": true,
+                "FRAMEWORK_SEARCH_PATHS": [
+                    "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator",
+                    "bazel-out/applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/Lib/frameworks"
+                ],
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator -static",
                 "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
@@ -4154,16 +4077,6 @@
                 "type": "com.apple.product-type.framework"
             },
             "search_paths": {
-                "framework_includes": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator",
-                        "t": "e"
-                    },
-                    {
-                        "_": "applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/Lib/frameworks",
-                        "t": "g"
-                    }
-                ],
                 "has_includes": true
             }
         },
@@ -4180,6 +4093,10 @@
                 "ENABLE_BITCODE": false,
                 "ENABLE_STRICT_OBJC_MSGSEND": true,
                 "ENABLE_TESTABILITY": true,
+                "FRAMEWORK_SEARCH_PATHS": [
+                    "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k",
+                    "bazel-out/applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin/Lib/frameworks"
+                ],
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k -static",
                 "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
@@ -4342,16 +4259,6 @@
                 "type": "com.apple.product-type.framework"
             },
             "search_paths": {
-                "framework_includes": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k",
-                        "t": "e"
-                    },
-                    {
-                        "_": "applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin/Lib/frameworks",
-                        "t": "g"
-                    }
-                ],
                 "has_includes": true
             }
         },
@@ -4368,6 +4275,10 @@
                 "ENABLE_BITCODE": false,
                 "ENABLE_STRICT_OBJC_MSGSEND": true,
                 "ENABLE_TESTABILITY": true,
+                "FRAMEWORK_SEARCH_PATHS": [
+                    "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator",
+                    "bazel-out/applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/Lib/frameworks"
+                ],
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator -static",
                 "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
@@ -4530,16 +4441,6 @@
                 "type": "com.apple.product-type.framework"
             },
             "search_paths": {
-                "framework_includes": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator",
-                        "t": "e"
-                    },
-                    {
-                        "_": "applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/Lib/frameworks",
-                        "t": "g"
-                    }
-                ],
                 "has_includes": true
             }
         },
@@ -4554,6 +4455,9 @@
                 "ENABLE_BITCODE": false,
                 "ENABLE_STRICT_OBJC_MSGSEND": true,
                 "ENABLE_TESTABILITY": true,
+                "FRAMEWORK_SEARCH_PATHS": [
+                    "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7"
+                ],
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -static",
                 "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
@@ -4712,12 +4616,6 @@
                 "type": "com.apple.product-type.app-extension"
             },
             "search_paths": {
-                "framework_includes": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7",
-                        "t": "e"
-                    }
-                ],
                 "has_includes": true
             }
         },
@@ -4731,6 +4629,9 @@
                 "ENABLE_BITCODE": false,
                 "ENABLE_STRICT_OBJC_MSGSEND": true,
                 "ENABLE_TESTABILITY": true,
+                "FRAMEWORK_SEARCH_PATHS": [
+                    "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator"
+                ],
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -static",
                 "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
@@ -4889,12 +4790,6 @@
                 "type": "com.apple.product-type.app-extension"
             },
             "search_paths": {
-                "framework_includes": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator",
-                        "t": "e"
-                    }
-                ],
                 "has_includes": true
             }
         },
@@ -4967,6 +4862,9 @@
                 "ENABLE_BITCODE": false,
                 "ENABLE_STRICT_OBJC_MSGSEND": true,
                 "ENABLE_TESTABILITY": true,
+                "FRAMEWORK_SEARCH_PATHS": [
+                    "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator"
+                ],
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -static",
                 "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
@@ -5121,12 +5019,6 @@
                 "type": "com.apple.product-type.app-extension.messages"
             },
             "search_paths": {
-                "framework_includes": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator",
-                        "t": "e"
-                    }
-                ],
                 "has_includes": true
             }
         },
@@ -5915,6 +5807,15 @@
                 "ENABLE_BITCODE": false,
                 "ENABLE_STRICT_OBJC_MSGSEND": true,
                 "ENABLE_TESTABILITY": true,
+                "FRAMEWORK_SEARCH_PATHS": [
+                    "external/com_google_google_maps/GoogleMaps.xcframework/ios-arm64",
+                    "external/com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64",
+                    "external/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64",
+                    "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7",
+                    "bazel-out/applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/iOSApp/Source/CoreUtilsObjC/frameworks",
+                    "bazel-out/applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/UI/frameworks",
+                    "bazel-out/applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/Lib/frameworks"
+                ],
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "HEADER_SEARCH_PATHS": [
                     "$(SRCROOT)/iOSApp/Source/CoreUtilsObjC",
@@ -6214,36 +6115,6 @@
                 "type": "com.apple.product-type.application"
             },
             "search_paths": {
-                "framework_includes": [
-                    {
-                        "_": "com_google_google_maps/GoogleMaps.xcframework/ios-arm64",
-                        "t": "e"
-                    },
-                    {
-                        "_": "com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64",
-                        "t": "e"
-                    },
-                    {
-                        "_": "com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64",
-                        "t": "e"
-                    },
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7",
-                        "t": "e"
-                    },
-                    {
-                        "_": "applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/iOSApp/Source/CoreUtilsObjC/frameworks",
-                        "t": "g"
-                    },
-                    {
-                        "_": "applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/UI/frameworks",
-                        "t": "g"
-                    },
-                    {
-                        "_": "applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/Lib/frameworks",
-                        "t": "g"
-                    }
-                ],
                 "has_includes": true
             },
             "watch_application": "//watchOSApp:watchOSApp applebin_watchos-watchos_arm64_32-dbg-ST-85d7639e6c1c"
@@ -6266,6 +6137,15 @@
                 "ENABLE_BITCODE": false,
                 "ENABLE_STRICT_OBJC_MSGSEND": true,
                 "ENABLE_TESTABILITY": true,
+                "FRAMEWORK_SEARCH_PATHS": [
+                    "external/com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator",
+                    "external/com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator",
+                    "external/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator",
+                    "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator",
+                    "bazel-out/applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/CoreUtilsObjC/frameworks",
+                    "bazel-out/applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/UI/frameworks",
+                    "bazel-out/applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib/frameworks"
+                ],
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "HEADER_SEARCH_PATHS": [
                     "$(SRCROOT)/iOSApp/Source/CoreUtilsObjC",
@@ -6565,36 +6445,6 @@
                 "type": "com.apple.product-type.application"
             },
             "search_paths": {
-                "framework_includes": [
-                    {
-                        "_": "com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator",
-                        "t": "e"
-                    },
-                    {
-                        "_": "com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator",
-                        "t": "e"
-                    },
-                    {
-                        "_": "com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator",
-                        "t": "e"
-                    },
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator",
-                        "t": "e"
-                    },
-                    {
-                        "_": "applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/CoreUtilsObjC/frameworks",
-                        "t": "g"
-                    },
-                    {
-                        "_": "applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/UI/frameworks",
-                        "t": "g"
-                    },
-                    {
-                        "_": "applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib/frameworks",
-                        "t": "g"
-                    }
-                ],
                 "has_includes": true
             },
             "watch_application": "//watchOSApp:watchOSApp applebin_watchos-watchos_x86_64-dbg-ST-8330f5878aa5"
@@ -6616,6 +6466,15 @@
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "ENABLE_BITCODE": false,
                 "ENABLE_STRICT_OBJC_MSGSEND": true,
+                "FRAMEWORK_SEARCH_PATHS": [
+                    "external/com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator",
+                    "external/com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator",
+                    "external/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator",
+                    "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator",
+                    "bazel-out/applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/CoreUtilsObjC/frameworks",
+                    "bazel-out/applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/UI/frameworks",
+                    "bazel-out/applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib/frameworks"
+                ],
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "GCC_PREPROCESSOR_DEFINITIONS": [
                     "_FORTIFY_SOURCE=1",
@@ -6928,36 +6787,6 @@
                 "type": "com.apple.product-type.bundle.unit-test"
             },
             "search_paths": {
-                "framework_includes": [
-                    {
-                        "_": "com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator",
-                        "t": "e"
-                    },
-                    {
-                        "_": "com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator",
-                        "t": "e"
-                    },
-                    {
-                        "_": "com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator",
-                        "t": "e"
-                    },
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator",
-                        "t": "e"
-                    },
-                    {
-                        "_": "applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/CoreUtilsObjC/frameworks",
-                        "t": "g"
-                    },
-                    {
-                        "_": "applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/UI/frameworks",
-                        "t": "g"
-                    },
-                    {
-                        "_": "applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib/frameworks",
-                        "t": "g"
-                    }
-                ],
                 "has_includes": true
             },
             "test_host": "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307"
@@ -6977,6 +6806,15 @@
                 "ENABLE_BITCODE": false,
                 "ENABLE_STRICT_OBJC_MSGSEND": true,
                 "ENABLE_TESTABILITY": true,
+                "FRAMEWORK_SEARCH_PATHS": [
+                    "external/com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator",
+                    "external/com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator",
+                    "external/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator",
+                    "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator",
+                    "bazel-out/applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/CoreUtilsObjC/frameworks",
+                    "bazel-out/applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/UI/frameworks",
+                    "bazel-out/applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib/frameworks"
+                ],
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "GCC_PREPROCESSOR_DEFINITIONS": [
                     "AWESOME"
@@ -7328,36 +7166,6 @@
                 "type": "com.apple.product-type.bundle.unit-test"
             },
             "search_paths": {
-                "framework_includes": [
-                    {
-                        "_": "com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator",
-                        "t": "e"
-                    },
-                    {
-                        "_": "com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator",
-                        "t": "e"
-                    },
-                    {
-                        "_": "com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator",
-                        "t": "e"
-                    },
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator",
-                        "t": "e"
-                    },
-                    {
-                        "_": "applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/CoreUtilsObjC/frameworks",
-                        "t": "g"
-                    },
-                    {
-                        "_": "applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/UI/frameworks",
-                        "t": "g"
-                    },
-                    {
-                        "_": "applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib/frameworks",
-                        "t": "g"
-                    }
-                ],
                 "has_includes": true
             },
             "test_host": "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307"
@@ -7437,6 +7245,9 @@
                 "ENABLE_BITCODE": false,
                 "ENABLE_STRICT_OBJC_MSGSEND": true,
                 "ENABLE_TESTABILITY": true,
+                "FRAMEWORK_SEARCH_PATHS": [
+                    "$(SRCROOT)/macOSApp/third_party"
+                ],
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -fmodule-map-file=$(SRCROOT)/macOSApp/third_party/ExampleFramework.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -FmacOSApp/third_party -static",
                 "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
@@ -7551,9 +7362,6 @@
                 "type": "com.apple.product-type.application"
             },
             "search_paths": {
-                "framework_includes": [
-                    "macOSApp/third_party"
-                ],
                 "has_includes": true
             }
         },
@@ -7692,6 +7500,11 @@
                 "ENABLE_BITCODE": false,
                 "ENABLE_STRICT_OBJC_MSGSEND": true,
                 "ENABLE_TESTABILITY": true,
+                "FRAMEWORK_SEARCH_PATHS": [
+                    "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64",
+                    "bazel-out/applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin/UI/frameworks",
+                    "bazel-out/applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin/Lib/frameworks"
+                ],
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64 -static",
                 "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
@@ -7871,20 +7684,6 @@
                 "type": "com.apple.product-type.application"
             },
             "search_paths": {
-                "framework_includes": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64",
-                        "t": "e"
-                    },
-                    {
-                        "_": "applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin/UI/frameworks",
-                        "t": "g"
-                    },
-                    {
-                        "_": "applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin/Lib/frameworks",
-                        "t": "g"
-                    }
-                ],
                 "has_includes": true
             }
         },
@@ -7901,6 +7700,11 @@
                 "ENABLE_BITCODE": false,
                 "ENABLE_STRICT_OBJC_MSGSEND": true,
                 "ENABLE_TESTABILITY": true,
+                "FRAMEWORK_SEARCH_PATHS": [
+                    "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator",
+                    "bazel-out/applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/UI/frameworks",
+                    "bazel-out/applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/Lib/frameworks"
+                ],
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator -static",
                 "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
@@ -8080,20 +7884,6 @@
                 "type": "com.apple.product-type.application"
             },
             "search_paths": {
-                "framework_includes": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator",
-                        "t": "e"
-                    },
-                    {
-                        "_": "applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/UI/frameworks",
-                        "t": "g"
-                    },
-                    {
-                        "_": "applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/Lib/frameworks",
-                        "t": "g"
-                    }
-                ],
                 "has_includes": true
             }
         },
@@ -8236,6 +8026,11 @@
                 "ENABLE_BITCODE": false,
                 "ENABLE_STRICT_OBJC_MSGSEND": true,
                 "ENABLE_TESTABILITY": true,
+                "FRAMEWORK_SEARCH_PATHS": [
+                    "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator",
+                    "bazel-out/applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/UI/frameworks",
+                    "bazel-out/applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/Lib/frameworks"
+                ],
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator -static",
                 "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
@@ -8438,20 +8233,6 @@
                 "type": "com.apple.product-type.bundle.unit-test"
             },
             "search_paths": {
-                "framework_includes": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator",
-                        "t": "e"
-                    },
-                    {
-                        "_": "applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/UI/frameworks",
-                        "t": "g"
-                    },
-                    {
-                        "_": "applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/Lib/frameworks",
-                        "t": "g"
-                    }
-                ],
                 "has_includes": true
             },
             "test_host": "//tvOSApp/Source:tvOSApp applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514"
@@ -8718,6 +8499,11 @@
                 "ENABLE_BITCODE": false,
                 "ENABLE_STRICT_OBJC_MSGSEND": true,
                 "ENABLE_TESTABILITY": true,
+                "FRAMEWORK_SEARCH_PATHS": [
+                    "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator",
+                    "bazel-out/applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/UI/frameworks",
+                    "bazel-out/applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/Lib/frameworks"
+                ],
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator -static",
                 "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
@@ -8901,20 +8687,6 @@
                 "type": "com.apple.product-type.bundle.unit-test"
             },
             "search_paths": {
-                "framework_includes": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator",
-                        "t": "e"
-                    },
-                    {
-                        "_": "applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/UI/frameworks",
-                        "t": "g"
-                    },
-                    {
-                        "_": "applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/Lib/frameworks",
-                        "t": "g"
-                    }
-                ],
                 "has_includes": true
             }
         },
@@ -8933,6 +8705,11 @@
                 "ENABLE_BITCODE": false,
                 "ENABLE_STRICT_OBJC_MSGSEND": true,
                 "ENABLE_TESTABILITY": true,
+                "FRAMEWORK_SEARCH_PATHS": [
+                    "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k",
+                    "bazel-out/applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin/UI/frameworks",
+                    "bazel-out/applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin/Lib/frameworks"
+                ],
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k -static",
                 "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
@@ -9112,20 +8889,6 @@
                 "type": "com.apple.product-type.watchkit2-extension"
             },
             "search_paths": {
-                "framework_includes": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k",
-                        "t": "e"
-                    },
-                    {
-                        "_": "applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin/UI/frameworks",
-                        "t": "g"
-                    },
-                    {
-                        "_": "applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin/Lib/frameworks",
-                        "t": "g"
-                    }
-                ],
                 "has_includes": true
             }
         },
@@ -9143,6 +8906,11 @@
                 "ENABLE_BITCODE": false,
                 "ENABLE_STRICT_OBJC_MSGSEND": true,
                 "ENABLE_TESTABILITY": true,
+                "FRAMEWORK_SEARCH_PATHS": [
+                    "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator",
+                    "bazel-out/applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/UI/frameworks",
+                    "bazel-out/applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/Lib/frameworks"
+                ],
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator -static",
                 "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
@@ -9322,20 +9090,6 @@
                 "type": "com.apple.product-type.watchkit2-extension"
             },
             "search_paths": {
-                "framework_includes": [
-                    {
-                        "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator",
-                        "t": "e"
-                    },
-                    {
-                        "_": "applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/UI/frameworks",
-                        "t": "g"
-                    },
-                    {
-                        "_": "applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/Lib/frameworks",
-                        "t": "g"
-                    }
-                ],
                 "has_includes": true
             }
         },
