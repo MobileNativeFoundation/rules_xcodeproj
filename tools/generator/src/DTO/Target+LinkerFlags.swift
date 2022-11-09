@@ -3,7 +3,6 @@ import PathKit
 extension Target {
     var hasLinkerFlags: Bool {
         return !linkerInputs.linkopts.isEmpty
-            || !linkerInputs.staticLibraries.isEmpty
             || !inputs.exportedSymbolsLists.isEmpty
             || !linkerInputs.forceLoad.isEmpty
     }
@@ -14,10 +13,6 @@ extension Target {
         func handleFilePath(_ filePath: FilePath) -> String {
             return filePathResolver.resolve(filePath).string.quoted
         }
-
-        flags.append(
-            contentsOf: linkerInputs.staticLibraries.map(handleFilePath)
-        )
 
         flags.append(contentsOf: linkerInputs.forceLoad
             .flatMap { filePath in

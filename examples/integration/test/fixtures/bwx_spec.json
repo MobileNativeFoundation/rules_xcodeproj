@@ -241,6 +241,10 @@
             "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineTool/CommandLineTool.merged_launchdplists-intermediates/Launchd.plist",
             "t": "g"
         },
+        {
+            "_": "examples_command_line_external/ImportableLibrary/libImportableLibrary.a",
+            "t": "e"
+        },
         "CommandLine/Tests/BUILD",
         {
             "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineToolLib/lib_swift.swift.modulemap",
@@ -767,37 +771,17 @@
                     "-headerpad_max_install_names",
                     "-no-canonical-prefixes",
                     "-framework",
-                    "Foundation"
+                    "Foundation",
+                    "$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineToolLib/liblib_swift.a",
+                    "$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/swift_c_module/libc_lib.a",
+                    "$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineToolLib/libprivate_lib.a",
+                    "$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineToolLib/liblib_impl.a",
+                    "$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineToolLib/libprivate_swift_lib.a",
+                    "external/examples_command_line_external/ImportableLibrary/libImportableLibrary.a"
                 ],
                 "static_frameworks": [
                     {
                         "_": "examples_command_line_external/ExternalFramework.framework",
-                        "t": "e"
-                    }
-                ],
-                "static_libraries": [
-                    {
-                        "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineToolLib/liblib_swift.a",
-                        "t": "g"
-                    },
-                    {
-                        "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/swift_c_module/libc_lib.a",
-                        "t": "g"
-                    },
-                    {
-                        "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineToolLib/libprivate_lib.a",
-                        "t": "g"
-                    },
-                    {
-                        "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineToolLib/liblib_impl.a",
-                        "t": "g"
-                    },
-                    {
-                        "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineToolLib/libprivate_swift_lib.a",
-                        "t": "g"
-                    },
-                    {
-                        "_": "examples_command_line_external/ImportableLibrary/libImportableLibrary.a",
                         "t": "e"
                     }
                 ]
@@ -1243,37 +1227,17 @@
                     "XCTest",
                     "-no-canonical-prefixes",
                     "-framework",
-                    "Foundation"
+                    "Foundation",
+                    "$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineToolLib/liblib_swift.a",
+                    "$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/swift_c_module/libc_lib.a",
+                    "$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineToolLib/libprivate_lib.a",
+                    "$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineToolLib/liblib_impl.a",
+                    "$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineToolLib/libprivate_swift_lib.a",
+                    "external/examples_command_line_external/ImportableLibrary/libImportableLibrary.a"
                 ],
                 "static_frameworks": [
                     {
                         "_": "examples_command_line_external/ExternalFramework.framework",
-                        "t": "e"
-                    }
-                ],
-                "static_libraries": [
-                    {
-                        "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineToolLib/liblib_swift.a",
-                        "t": "g"
-                    },
-                    {
-                        "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/swift_c_module/libc_lib.a",
-                        "t": "g"
-                    },
-                    {
-                        "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineToolLib/libprivate_lib.a",
-                        "t": "g"
-                    },
-                    {
-                        "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineToolLib/liblib_impl.a",
-                        "t": "g"
-                    },
-                    {
-                        "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineToolLib/libprivate_swift_lib.a",
-                        "t": "g"
-                    },
-                    {
-                        "_": "examples_command_line_external/ImportableLibrary/libImportableLibrary.a",
                         "t": "e"
                     }
                 ]
@@ -5465,7 +5429,9 @@
                     "-framework",
                     "Foundation",
                     "-framework",
-                    "UIKit"
+                    "UIKit",
+                    "$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/libMixedAnswer.a",
+                    "$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/libMixedAnswerLib_Swift.a"
                 ],
                 "static_frameworks": [
                     {
@@ -5479,16 +5445,6 @@
                     {
                         "_": "com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64/GoogleMapsBase.framework",
                         "t": "e"
-                    }
-                ],
-                "static_libraries": [
-                    {
-                        "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/libMixedAnswer.a",
-                        "t": "g"
-                    },
-                    {
-                        "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/libMixedAnswerLib_Swift.a",
-                        "t": "g"
                     }
                 ]
             },
@@ -5726,7 +5682,9 @@
                     "-framework",
                     "Foundation",
                     "-framework",
-                    "UIKit"
+                    "UIKit",
+                    "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/libMixedAnswer.a",
+                    "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/libMixedAnswerLib_Swift.a"
                 ],
                 "static_frameworks": [
                     {
@@ -5740,16 +5698,6 @@
                     {
                         "_": "com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator/GoogleMapsBase.framework",
                         "t": "e"
-                    }
-                ],
-                "static_libraries": [
-                    {
-                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/libMixedAnswer.a",
-                        "t": "g"
-                    },
-                    {
-                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/libMixedAnswerLib_Swift.a",
-                        "t": "g"
                     }
                 ]
             },
@@ -6019,21 +5967,10 @@
                     "-framework",
                     "Foundation",
                     "-framework",
-                    "UIKit"
-                ],
-                "static_libraries": [
-                    {
-                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/Utils/libUtils.a",
-                        "t": "g"
-                    },
-                    {
-                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/external/FXPageControl/libFXPageControl.a",
-                        "t": "g"
-                    },
-                    {
-                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Test/TestingUtils/libTestingUtils.a",
-                        "t": "g"
-                    }
+                    "UIKit",
+                    "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/Utils/libUtils.a",
+                    "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/external/FXPageControl/libFXPageControl.a",
+                    "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Test/TestingUtils/libTestingUtils.a"
                 ]
             },
             "name": "iOSAppObjCUnitTests.__internal__.__test_bundle",
@@ -6209,21 +6146,10 @@
                     "-framework",
                     "Foundation",
                     "-framework",
-                    "UIKit"
-                ],
-                "static_libraries": [
-                    {
-                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/Utils/libUtils.a",
-                        "t": "g"
-                    },
-                    {
-                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/external/FXPageControl/libFXPageControl.a",
-                        "t": "g"
-                    },
-                    {
-                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Test/TestingUtils/libTestingUtils.a",
-                        "t": "g"
-                    }
+                    "UIKit",
+                    "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/Utils/libUtils.a",
+                    "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/external/FXPageControl/libFXPageControl.a",
+                    "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Test/TestingUtils/libTestingUtils.a"
                 ]
             },
             "modulemaps": [

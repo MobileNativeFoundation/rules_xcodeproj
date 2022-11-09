@@ -376,7 +376,7 @@ def _to_input_files(linker_inputs):
         top_level_values.additional_input_files +
         top_level_values.dynamic_frameworks +
         top_level_values.static_frameworks,
-    )
+    ) + [f for f in top_level_values.static_libraries if f.is_source]
 
 def _get_primary_static_library(linker_inputs):
     """Returns the "primary" static library for this target.
