@@ -98,8 +98,8 @@ native_binary(
     visibility = ["//visibility:public"],
 )
 """,
-        sha256 = "176ec3bf1e7ea4a0f5e320fc2fc666f4c736fb51d21a99a8ef134e19ed51ef5f",
-        url = "https://github.com/MobileNativeFoundation/index-import/releases/download/5.5.3.1/index-import.tar.gz",
+        sha256 = "802f33638b996abe76285d1e0246e661919c0c3222877681e66c519f78145511",
+        url = "https://github.com/MobileNativeFoundation/index-import/releases/download/5.7/index-import.tar.gz",
         ignore_version_differences = ignore_version_differences,
     )
 
