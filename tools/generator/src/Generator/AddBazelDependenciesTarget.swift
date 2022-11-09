@@ -159,15 +159,11 @@ $(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py
 
         var outputFileListPaths: [String] = []
         if files.containsExternalFiles {
-            let externalFilesList = filePathResolver
-                .resolve(.internal(externalFileListPath))
-                .string
+            let externalFilesList = "$(INTERNAL_DIR)/\(externalFileListPath)"
             outputFileListPaths.append(externalFilesList)
         }
         if hasGeneratedFiles {
-            let generatedFileList = filePathResolver
-                .resolve(.internal(generatedFileListPath))
-                .string
+            let generatedFileList = "$(INTERNAL_DIR)/\(generatedFileListPath)"
             outputFileListPaths.append(generatedFileList)
         }
 
@@ -201,11 +197,7 @@ $(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py
     ) -> PBXShellScriptBuildPhase {
         let script = PBXShellScriptBuildPhase(
             name: "Create swift_debug_settings.py",
-            inputPaths: [
-                filePathResolver
-                    .resolve(.internal(lldbSwiftSettingsModulePath))
-                    .string
-            ],
+            inputPaths: ["$(INTERNAL_DIR)/\(lldbSwiftSettingsModulePath)"],
             outputPaths: ["$(OBJROOT)/swift_debug_settings.py"],
             shellScript: #"""
 perl -pe 's/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$ENV{$2}/g' \

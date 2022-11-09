@@ -174,14 +174,16 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
         }
 
         if !target.linkerInputs.linkopts.isEmpty {
-            let linkParamsFile = filePathResolver
-                .resolve(try target.linkParamsFilePath())
-                .string
             try buildSettings.prepend(
                 onKey: "OTHER_LDFLAGS",
                 ["@$(DERIVED_FILE_DIR)/link.params"]
             )
-            buildSettings.set("LINK_PARAMS_FILE", to: linkParamsFile)
+            buildSettings.set(
+                "LINK_PARAMS_FILE",
+                to: """
+$(INTERNAL_DIR)/\(try target.linkParamsFilePath().path)
+"""
+            )
         }
 
         buildSettings.set("ARCHS", to: target.platform.arch)
