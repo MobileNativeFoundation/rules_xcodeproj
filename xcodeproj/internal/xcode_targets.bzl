@@ -783,15 +783,6 @@ def _linker_inputs_to_dto(
     )
     set_if_true(
         ret,
-        "force_load",
-        [
-            file_path_to_dto(file_path(file))
-            for file in linker_inputs.force_load_libraries
-            if file != avoid_library
-        ],
-    )
-    set_if_true(
-        ret,
         "static_frameworks",
         [
             file_path_to_dto(file_path(file, path = file.dirname))
@@ -831,6 +822,14 @@ def _linker_inputs_to_dto(
         for file in linker_inputs.static_libraries
         if file != avoid_library
     ])
+
+    for file in linker_inputs.force_load_libraries:
+        if file == avoid_library:
+            continue
+        path = file.path
+        path = xcode_generated_paths.get(path, path)
+        linkopts.append("-force_load")
+        linkopts.append(quote_if_needed(path))
 
     set_if_true(ret, "linkopts", linkopts)
 
