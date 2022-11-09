@@ -230,8 +230,7 @@ targets.
                 linker_products_map[build_setting_path(
                     file = file,
                     path = file.dirname,
-                    quote = False,
-                )] = build_setting_path(file = product.file, quote = False)
+                )] = build_setting_path(file = product.file)
 
         label = replacement_labels.get(
             xcode_target.id,
@@ -527,7 +526,6 @@ actual targets: {}
             file = product_file,
             path = product_file_path,
             use_build_dir = True,
-            quote = False,
         )
         xcode_generated_paths[product_file_path] = (
             xcode_product_path
@@ -552,7 +550,6 @@ actual targets: {}
                     file = swiftmodule,
                     path = path,
                     use_build_dir = True,
-                    quote = False,
                 )
             )
 
@@ -569,7 +566,6 @@ actual targets: {}
                     file = generated_header,
                     path = path,
                     use_build_dir = True,
-                    quote = False,
                 )
             )
 
@@ -765,7 +761,6 @@ def _write_json_spec(
         generator_label = ctx.label,
         index_import = build_setting_path(
             file = ctx.executable._index_import,
-            quote = False,
         ),
         name = project_name,
         post_build_script = post_build_script,
