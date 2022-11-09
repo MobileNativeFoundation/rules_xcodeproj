@@ -275,17 +275,9 @@
                     "-lc++",
                     "-headerpad_max_install_names",
                     "-no-canonical-prefixes",
-                    "-lc++"
-                ],
-                "static_libraries": [
-                    {
-                        "_": "darwin_x86_64-dbg-ST-3688109ddba2/bin/lib2/liblib_impl.a",
-                        "t": "g"
-                    },
-                    {
-                        "_": "darwin_x86_64-dbg-ST-3688109ddba2/bin/external/examples_cc_external/liblib_impl.a",
-                        "t": "g"
-                    }
+                    "-lc++",
+                    "$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-3688109ddba2/bin/lib2/liblib_impl.a",
+                    "$(BUILD_DIR)/bazel-out/darwin_x86_64-dbg-ST-3688109ddba2/bin/external/examples_cc_external/liblib_impl.a"
                 ]
             },
             "name": "tool",

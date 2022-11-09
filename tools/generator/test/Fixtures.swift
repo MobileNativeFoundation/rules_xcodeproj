@@ -31,6 +31,7 @@ enum Fixtures {
             "a/a.h",
             "a/c.h",
             "a/d/a.h",
+            "a/imported.a",
             "a/module.modulemap",
             .generated("v/a.txt", includeInNavigator: false),
         ],
@@ -110,12 +111,13 @@ enum Fixtures {
             ),
             linkerInputs: .init(
                 dynamicFrameworks: ["a/Fram.framework"],
-                staticLibraries: [
-                    .generated("z/A.a"),
-                    .project("a/imported.a"),
-                ],
                 forceLoad: [.generated("a/c.lo")],
-                linkopts: ["-framework", "Fram"]
+                linkopts: [
+                    "-framework",
+                    "Fram",
+                    "$(BUILD_DIR)/bazel-out/z/A.a",
+                    "a/imported.a",
+                ]
             ),
             resourceBundleDependencies: ["R 1"],
             dependencies: ["C 1", "A 1", "R 1"],
@@ -1075,7 +1077,7 @@ $(BUILD_DIR)/bazel-out/a/c.lo
                 .nonReferencedContent("""
 -framework
 Fram
-bazel-out/z/A.a
+$(BUILD_DIR)/bazel-out/z/A.a
 a/imported.a
 -force_load
 bazel-out/a/c.lo

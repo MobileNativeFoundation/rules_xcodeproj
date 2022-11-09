@@ -802,15 +802,6 @@ def _linker_inputs_to_dto(
     )
     set_if_true(
         ret,
-        "static_libraries",
-        [
-            file_path_to_dto(file_path(file))
-            for file in linker_inputs.static_libraries
-            if file != avoid_library
-        ],
-    )
-    set_if_true(
-        ret,
         "static_frameworks",
         [
             file_path_to_dto(file_path(file, path = file.dirname))
@@ -843,7 +834,13 @@ def _linker_inputs_to_dto(
 
         linkopts = [_process_linkopt(opt) for opt in linker_inputs.linkopts]
     else:
-        linkopts = linker_inputs.linkopts
+        linkopts = list(linker_inputs.linkopts)
+
+    linkopts.extend([
+        quote_if_needed(xcode_generated_paths.get(file.path, file.path))
+        for file in linker_inputs.static_libraries
+        if file != avoid_library
+    ])
 
     set_if_true(ret, "linkopts", linkopts)
 
