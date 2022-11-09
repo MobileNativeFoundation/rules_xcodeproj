@@ -334,10 +334,7 @@ def _set_bazel_outputs_product(
     if not file:
         return
 
-    build_settings["BAZEL_OUTPUTS_PRODUCT"] = build_setting_path(
-        file = file,
-        absolute_path = False,
-    )
+    build_settings["BAZEL_OUTPUTS_PRODUCT"] = file.path
 
 def _set_search_paths(
         *,
@@ -392,7 +389,6 @@ def _set_search_paths(
                 bs_path = build_setting_path(
                     file = file,
                     path = search_path,
-                    absolute_path = True,
                 )
             else:
                 bs_path = search_path
@@ -404,12 +400,10 @@ def _set_search_paths(
     for path in search_paths_intermediate.framework_includes:
         search_paths = framework_build_setting_paths.get(path)
         if not search_paths:
-            framework_search_paths.append(
-                build_setting_path(
-                    path = path,
-                    absolute_path = build_mode == "xcode",
-                ),
-            )
+            if build_mode == "xcode":
+                framework_search_paths.append(build_setting_path(path = path))
+            else:
+                framework_search_paths.append(path)
             continue
 
         xcode_path = search_paths.get(True)
@@ -491,11 +485,7 @@ def _set_swift_include_paths(
         path = file.path
         bs_path = xcode_generated_paths.get(path)
         if not bs_path:
-            bs_path = build_setting_path(
-                file = file,
-                path = path,
-                absolute_path = False,
-            )
+            bs_path = path
         include_path = paths.dirname(bs_path)
 
         if include_path.find(" ") != -1:
