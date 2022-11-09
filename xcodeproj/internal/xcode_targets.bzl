@@ -10,7 +10,6 @@ load(
     "file_path",
     "file_path_to_dto",
     "normalized_file_path",
-    "parsed_file_path",
 )
 load(":lldb_contexts.bzl", "lldb_contexts")
 load(":platform.bzl", "platform_info")
@@ -339,7 +338,13 @@ def _set_bazel_outputs_product(
         absolute_path = False,
     )
 
-def _set_search_paths(*, build_settings, search_paths_intermediate):
+def _set_search_paths(
+        *,
+        build_mode,
+        build_settings,
+        search_paths_intermediate,
+        xcode_generated_paths,
+        xcode_target):
     _prepend_array_build_setting(
         build_settings = build_settings,
         key = "USER_HEADER_SEARCH_PATHS",
@@ -363,6 +368,61 @@ def _set_search_paths(*, build_settings, search_paths_intermediate):
             build_setting_path(path = path)
             for path in search_paths_intermediate.system_includes
         ],
+    )
+
+    if xcode_target.linker_inputs:
+        frameworks = xcode_target.linker_inputs.dynamic_frameworks
+    else:
+        frameworks = []
+
+    framework_build_setting_paths = {}
+    for file in frameworks:
+        search_path = file.dirname
+        xcode_generated_path = xcode_generated_paths.get(file)
+        if xcode_generated_path:
+            framework_build_setting_paths.setdefault(search_path, {})[True] = (
+                paths.dirname(xcode_generated_path)
+            )
+        else:
+            if build_mode == "xcode":
+                # Since we use `$(FRAMEWORK_SEARCH_PATHS)` in
+                # `PREVIEWS_LD_RUNPATH_SEARCH_PATHS__YES`, we need to fully
+                #  qualify the paths
+                bs_path = build_setting_path(
+                    file = file,
+                    path = search_path,
+                    absolute_path = True,
+                )
+            else:
+                bs_path = search_path
+            framework_build_setting_paths.setdefault(search_path, {})[False] = (
+                bs_path
+            )
+
+    framework_search_paths = []
+    for path in search_paths_intermediate.framework_includes:
+        search_paths = framework_build_setting_paths.get(path)
+        if not search_paths:
+            framework_search_paths.append(
+                build_setting_path(
+                    path = path,
+                    absolute_path = build_mode == "xcode",
+                ),
+            )
+            continue
+
+        xcode_path = search_paths.get(True)
+        if xcode_path:
+            framework_search_paths.append(xcode_path)
+
+        bazel_path = search_paths.get(False)
+        if bazel_path:
+            framework_search_paths.append(bazel_path)
+
+    set_if_true(
+        build_settings,
+        "FRAMEWORK_SEARCH_PATHS",
+        framework_search_paths,
     )
 
 def _set_other_swift_flags(*, build_settings, xcode_target):
@@ -518,32 +578,17 @@ def _xcode_target_to_dto(
         compile_target = xcode_target._compile_target,
     )
 
-    build_settings = structs.to_dict(xcode_target._build_settings)
-    _set_bazel_outputs_product(
-        build_mode = build_mode,
-        build_settings = build_settings,
-        xcode_target = xcode_target,
+    set_if_true(
+        dto,
+        "build_settings",
+        _build_settings_to_dto(
+            build_mode = build_mode,
+            linker_products_map = linker_products_map,
+            search_paths_intermediate = search_paths_intermediate,
+            xcode_generated_paths = xcode_generated_paths,
+            xcode_target = xcode_target,
+        ),
     )
-    _set_other_swift_flags(
-        build_settings = build_settings,
-        xcode_target = xcode_target,
-    )
-    _set_preview_framework_paths(
-        build_mode = build_mode,
-        build_settings = build_settings,
-        linker_products_map = linker_products_map,
-        xcode_target = xcode_target,
-    )
-    _set_search_paths(
-        build_settings = build_settings,
-        search_paths_intermediate = search_paths_intermediate,
-    )
-    _set_swift_include_paths(
-        build_settings = build_settings,
-        xcode_generated_paths = xcode_generated_paths,
-        xcode_target = xcode_target,
-    )
-    set_if_true(dto, "build_settings", build_settings)
 
     set_if_true(
         dto,
@@ -631,6 +676,43 @@ def _xcode_target_to_dto(
     )
 
     return dto, replaced_dependencies
+
+def _build_settings_to_dto(
+        *,
+        build_mode,
+        linker_products_map,
+        search_paths_intermediate,
+        xcode_generated_paths,
+        xcode_target):
+    build_settings = structs.to_dict(xcode_target._build_settings)
+    _set_bazel_outputs_product(
+        build_mode = build_mode,
+        build_settings = build_settings,
+        xcode_target = xcode_target,
+    )
+    _set_other_swift_flags(
+        build_settings = build_settings,
+        xcode_target = xcode_target,
+    )
+    _set_preview_framework_paths(
+        build_mode = build_mode,
+        build_settings = build_settings,
+        linker_products_map = linker_products_map,
+        xcode_target = xcode_target,
+    )
+    _set_search_paths(
+        build_mode = build_mode,
+        build_settings = build_settings,
+        search_paths_intermediate = search_paths_intermediate,
+        xcode_generated_paths = xcode_generated_paths,
+        xcode_target = xcode_target,
+    )
+    _set_swift_include_paths(
+        build_settings = build_settings,
+        xcode_generated_paths = xcode_generated_paths,
+        xcode_target = xcode_target,
+    )
+    return build_settings
 
 def _inputs_to_dto(inputs):
     """Generates a target DTO value for inputs.
@@ -845,14 +927,6 @@ def _search_paths_intermediate_to_dto(search_paths_intermediate):
                              search_paths_intermediate.system_includes or
                              search_paths_intermediate.framework_includes),
     }
-    set_if_true(
-        dto,
-        "framework_includes",
-        [
-            file_path_to_dto(parsed_file_path(path))
-            for path in search_paths_intermediate.framework_includes
-        ],
-    )
     return dto
 
 def _swift_to_dto(outputs):

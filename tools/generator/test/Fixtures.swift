@@ -254,8 +254,7 @@ enum Fixtures {
                 "PRODUCT_MODULE_NAME": .string("_Stubbed_I"),
             ],
             searchPaths: .init(
-                hasIncludes: true,
-                frameworkIncludes: [.generated("some/framework/parent/dir")]
+                hasIncludes: true
             ),
             watchApplication: "W",
             appClips: ["AC"],
@@ -2396,9 +2395,6 @@ $(INTERNAL_DIR)/targets/a1b2c/C 2/d.link.params
                 "BAZEL_TARGET_ID[sdk=iphoneos*]": "$(BAZEL_TARGET_ID)",
                 "COMPILE_TARGET_NAME": targets["I"]!.name,
                 "DEPLOYMENT_LOCATION": "NO",
-                "FRAMEWORK_SEARCH_PATHS": """
-$(BAZEL_OUT)/some/framework/parent/dir
-""",
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "IPHONEOS_DEPLOYMENT_TARGET": "12.0",
                 "LD_RUNPATH_SEARCH_PATHS": [

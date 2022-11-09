@@ -162,61 +162,6 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
     ) throws -> [String: BuildSetting] {
         var buildSettings = target.buildSettings
 
-        var frameworkSearchPaths: [FilePath: [Bool: Path]] = [:]
-        for filePath in target.linkerInputs.dynamicFrameworks {
-            let searchFilePath = filePath.parent()
-            var useBazelOut: Bool = true
-            let path = filePathResolver.resolve(
-                filePath,
-                transform: { _ in searchFilePath },
-                xcodeGeneratedTransform:  { filePath in
-                    useBazelOut = false
-                    return filePath.parent()
-                },
-                // Since we use `$(FRAMEWORK_SEARCH_PATHS)` in
-                // `PREVIEWS_LD_RUNPATH_SEARCH_PATHS__YES`, we need to fully
-                // qualify the paths
-                forceFullBuildSettingPath: buildMode == .xcode &&
-                    target.product.type.isFramework
-            )
-            frameworkSearchPaths[searchFilePath, default: [:]][useBazelOut] =
-                path
-        }
-
-        func handleSearchPath(filePath: FilePath) -> String {
-            return filePathResolver
-                .resolve(
-                    filePath,
-                    useBazelOut: true,
-                    forceFullBuildSettingPath: true
-                )
-                .string.quoted
-        }
-
-        func handleFrameworkSearchPath(filePath: FilePath) -> [String] {
-            if let searchFilePaths = frameworkSearchPaths[filePath] {
-                var searchPaths: [String] = []
-                if let xcodePath = searchFilePaths[false] {
-                    searchPaths.append(xcodePath.string.quoted)
-                }
-                if let bazelPath = searchFilePaths[true] {
-                    searchPaths.append(bazelPath.string.quoted)
-                }
-                return searchPaths
-            } else {
-                return [handleSearchPath(filePath: filePath)]
-            }
-        }
-
-        let frameworkIncludes = target.searchPaths.frameworkIncludes
-        let hasFrameworkIncludes = !frameworkIncludes.isEmpty
-        if hasFrameworkIncludes {
-            try buildSettings.prepend(
-                onKey: "FRAMEWORK_SEARCH_PATHS",
-                frameworkIncludes.flatMap(handleFrameworkSearchPath).uniqued()
-            )
-        }
-
         // Work around stubbed swiftc messing with Indexing setting of
         // `-working-directory` incorrectly
         if buildMode == .bazel {
