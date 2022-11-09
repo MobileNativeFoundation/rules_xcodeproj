@@ -1,6 +1,8 @@
 -ObjC
 -framework
 CryptoSwift
+-force_load
+bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/Lib/libLib.a
 -Wl,-add_ast_path,bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/Lib/Lib.swiftmodule
 -ObjC
 -L/usr/lib/swift
@@ -13,5 +15,3 @@ CryptoSwift
 Foundation
 -framework
 UIKit
--force_load
-bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/Lib/libLib.a

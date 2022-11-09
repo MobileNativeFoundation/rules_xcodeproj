@@ -5,6 +5,8 @@ Foundation
 ExternalFramework
 -weak_framework
 SwiftUI
+-force_load
+external/examples_command_line_external/ExternalFramework.framework/ExternalFramework
 -L$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/usr/lib
 -Wl,-add_ast_path,bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/Tests/LibSwiftTestsLib.swiftmodule
 -Wl,-add_ast_path,bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineToolLib/LibSwift.swiftmodule
@@ -21,11 +23,3 @@ XCTest
 -no-canonical-prefixes
 -framework
 Foundation
-bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineToolLib/liblib_swift.a
-bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/swift_c_module/libc_lib.a
-bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineToolLib/libprivate_lib.a
-bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineToolLib/liblib_impl.a
-bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineToolLib/libprivate_swift_lib.a
-external/examples_command_line_external/ImportableLibrary/libImportableLibrary.a
--force_load
-external/examples_command_line_external/ExternalFramework.framework/ExternalFramework
