@@ -10,6 +10,7 @@ load(
     "file_path",
     "file_path_to_dto",
     "normalized_file_path",
+    "quote_if_needed",
 )
 load(":lldb_contexts.bzl", "lldb_contexts")
 load(":platform.bzl", "platform_info")
@@ -349,7 +350,7 @@ def _set_search_paths(
         build_settings = build_settings,
         key = "USER_HEADER_SEARCH_PATHS",
         values = [
-            build_setting_path(path = path)
+            quote_if_needed(build_setting_path(path = path))
             for path in search_paths_intermediate.quote_includes
         ],
     )
@@ -357,7 +358,7 @@ def _set_search_paths(
         build_settings = build_settings,
         key = "HEADER_SEARCH_PATHS",
         values = [
-            build_setting_path(path = path)
+            quote_if_needed(build_setting_path(path = path))
             for path in search_paths_intermediate.includes
         ],
     )
@@ -365,7 +366,7 @@ def _set_search_paths(
         build_settings = build_settings,
         key = "SYSTEM_HEADER_SEARCH_PATHS",
         values = [
-            build_setting_path(path = path)
+            quote_if_needed(build_setting_path(path = path))
             for path in search_paths_intermediate.system_includes
         ],
     )
@@ -422,7 +423,10 @@ def _set_search_paths(
     set_if_true(
         build_settings,
         "FRAMEWORK_SEARCH_PATHS",
-        framework_search_paths,
+        [
+            quote_if_needed(path)
+            for path in framework_search_paths
+        ],
     )
 
 def _set_other_swift_flags(*, build_settings, xcode_target):
@@ -430,7 +434,9 @@ def _set_other_swift_flags(*, build_settings, xcode_target):
         build_settings = build_settings,
         key = "OTHER_SWIFT_FLAGS",
         values = [
-            "-Xcc -fmodule-map-file={}".format(build_setting_path(file = file))
+            "-Xcc -fmodule-map-file={}".format(
+                quote_if_needed(build_setting_path(file = file)),
+            )
             for file in xcode_target._modulemaps.files
         ],
     )
@@ -449,7 +455,6 @@ def _set_preview_framework_paths(
         path = build_setting_path(
             file = file,
             path = file.dirname,
-            quote = False,
         )
         return '"{}"'.format(linker_products_map.get(path, path))
 
@@ -490,7 +495,6 @@ def _set_swift_include_paths(
                 file = file,
                 path = path,
                 absolute_path = False,
-                quote = False,
             )
         include_path = paths.dirname(bs_path)
 

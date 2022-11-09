@@ -99,7 +99,7 @@ def _lldb_context_to_dto(lldb_context, *, xcode_generated_paths):
         dto,
         "f",
         [
-            build_setting_path(path = path, quote = False)
+            build_setting_path(path = path)
             for path in lldb_context._framework_search_paths.to_list()
             if not is_generated_path(path)
         ],
@@ -112,7 +112,6 @@ def _lldb_context_to_dto(lldb_context, *, xcode_generated_paths):
             bs_path = build_setting_path(
                 file = file,
                 path = path,
-                quote = False,
             )
         return paths.dirname(bs_path)
 
@@ -153,7 +152,7 @@ def _lldb_context_to_dto(lldb_context, *, xcode_generated_paths):
             clang_dto,
             "q",
             [
-                build_setting_path(path = path, quote = False)
+                build_setting_path(path = path)
                 for path in quote_includes.to_list()
             ],
         )
@@ -161,7 +160,7 @@ def _lldb_context_to_dto(lldb_context, *, xcode_generated_paths):
             clang_dto,
             "i",
             [
-                build_setting_path(path = path, quote = False)
+                build_setting_path(path = path)
                 for path in (compilation_context.includes.to_list() +
                              opts_includes)
             ],
@@ -170,7 +169,7 @@ def _lldb_context_to_dto(lldb_context, *, xcode_generated_paths):
             clang_dto,
             "s",
             [
-                build_setting_path(path = path, quote = False)
+                build_setting_path(path = path)
                 for path in (compilation_context.system_includes.to_list() +
                              opts_system_includes)
             ],
@@ -182,7 +181,7 @@ def _lldb_context_to_dto(lldb_context, *, xcode_generated_paths):
                 clang_dto,
                 "m",
                 [
-                    build_setting_path(file = file, quote = False)
+                    build_setting_path(file = file)
                     for file in clang.modulemaps.files
                 ],
             )
