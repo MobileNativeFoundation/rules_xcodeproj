@@ -10,7 +10,6 @@ load(
     "file_path",
     "file_path_to_dto",
     "normalized_file_path",
-    "parsed_file_path",
 )
 load(":lldb_contexts.bzl", "lldb_contexts")
 load(":platform.bzl", "platform_info")
@@ -587,7 +586,7 @@ def _xcode_target_to_dto(
             linker_products_map = linker_products_map,
             search_paths_intermediate = search_paths_intermediate,
             xcode_generated_paths = xcode_generated_paths,
-            xcode_target = xcode_target
+            xcode_target = xcode_target,
         ),
     )
 
