@@ -433,12 +433,6 @@
                         "t": "e"
                     }
                 ],
-                "force_load": [
-                    {
-                        "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/Lib/libLib.a",
-                        "t": "g"
-                    }
-                ],
                 "linkopts": [
                     "-ObjC",
                     "-framework",
@@ -455,7 +449,9 @@
                     "-framework",
                     "Foundation",
                     "-framework",
-                    "UIKit"
+                    "UIKit",
+                    "-force_load",
+                    "$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/Lib/libLib.a"
                 ]
             },
             "modulemaps": [
@@ -568,12 +564,6 @@
                         "t": "e"
                     }
                 ],
-                "force_load": [
-                    {
-                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib/libLib.a",
-                        "t": "g"
-                    }
-                ],
                 "linkopts": [
                     "-ObjC",
                     "-framework",
@@ -590,7 +580,9 @@
                     "-framework",
                     "Foundation",
                     "-framework",
-                    "UIKit"
+                    "UIKit",
+                    "-force_load",
+                    "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib/libLib.a"
                 ]
             },
             "modulemaps": [
@@ -744,12 +736,6 @@
             "is_swift": false,
             "label": "//CommandLine/CommandLineTool:CommandLineTool",
             "linker_inputs": {
-                "force_load": [
-                    {
-                        "_": "examples_command_line_external/ExternalFramework.framework/ExternalFramework",
-                        "t": "e"
-                    }
-                ],
                 "linkopts": [
                     "-ObjC",
                     "-framework",
@@ -777,7 +763,9 @@
                     "$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineToolLib/libprivate_lib.a",
                     "$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineToolLib/liblib_impl.a",
                     "$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineToolLib/libprivate_swift_lib.a",
-                    "external/examples_command_line_external/ImportableLibrary/libImportableLibrary.a"
+                    "external/examples_command_line_external/ImportableLibrary/libImportableLibrary.a",
+                    "-force_load",
+                    "external/examples_command_line_external/ExternalFramework.framework/ExternalFramework"
                 ],
                 "static_frameworks": [
                     {
@@ -1198,12 +1186,6 @@
             "is_testonly": true,
             "label": "//CommandLine/Tests:CommandLineToolTests.__internal__.__test_bundle",
             "linker_inputs": {
-                "force_load": [
-                    {
-                        "_": "examples_command_line_external/ExternalFramework.framework/ExternalFramework",
-                        "t": "e"
-                    }
-                ],
                 "linkopts": [
                     "-ObjC",
                     "-framework",
@@ -1233,7 +1215,9 @@
                     "$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineToolLib/libprivate_lib.a",
                     "$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineToolLib/liblib_impl.a",
                     "$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineToolLib/libprivate_swift_lib.a",
-                    "external/examples_command_line_external/ImportableLibrary/libImportableLibrary.a"
+                    "external/examples_command_line_external/ImportableLibrary/libImportableLibrary.a",
+                    "-force_load",
+                    "external/examples_command_line_external/ExternalFramework.framework/ExternalFramework"
                 ],
                 "static_frameworks": [
                     {
@@ -1420,12 +1404,6 @@
                         "t": "e"
                     }
                 ],
-                "force_load": [
-                    {
-                        "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/Lib/libLib.a",
-                        "t": "g"
-                    }
-                ],
                 "linkopts": [
                     "-ObjC",
                     "-framework",
@@ -1441,7 +1419,9 @@
                     "-framework",
                     "Foundation",
                     "-framework",
-                    "UIKit"
+                    "UIKit",
+                    "-force_load",
+                    "$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/Lib/libLib.a"
                 ]
             },
             "name": "iOS",
@@ -1521,12 +1501,6 @@
                         "t": "e"
                     }
                 ],
-                "force_load": [
-                    {
-                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib/libLib.a",
-                        "t": "g"
-                    }
-                ],
                 "linkopts": [
                     "-ObjC",
                     "-framework",
@@ -1542,7 +1516,9 @@
                     "-framework",
                     "Foundation",
                     "-framework",
-                    "UIKit"
+                    "UIKit",
+                    "-force_load",
+                    "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib/libLib.a"
                 ]
             },
             "name": "iOS",
@@ -1621,12 +1597,6 @@
                         "t": "e"
                     }
                 ],
-                "force_load": [
-                    {
-                        "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin/Lib/libLib.a",
-                        "t": "g"
-                    }
-                ],
                 "linkopts": [
                     "-ObjC",
                     "-framework",
@@ -1642,7 +1612,9 @@
                     "-framework",
                     "Foundation",
                     "-framework",
-                    "UIKit"
+                    "UIKit",
+                    "-force_load",
+                    "$(BUILD_DIR)/bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin/Lib/libLib.a"
                 ]
             },
             "name": "tvOS",
@@ -1721,12 +1693,6 @@
                         "t": "e"
                     }
                 ],
-                "force_load": [
-                    {
-                        "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/Lib/libLib.a",
-                        "t": "g"
-                    }
-                ],
                 "linkopts": [
                     "-ObjC",
                     "-framework",
@@ -1742,7 +1708,9 @@
                     "-framework",
                     "Foundation",
                     "-framework",
-                    "UIKit"
+                    "UIKit",
+                    "-force_load",
+                    "$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/Lib/libLib.a"
                 ]
             },
             "name": "tvOS",
@@ -1821,12 +1789,6 @@
                         "t": "e"
                     }
                 ],
-                "force_load": [
-                    {
-                        "_": "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin/Lib/libLib.a",
-                        "t": "g"
-                    }
-                ],
                 "linkopts": [
                     "-ObjC",
                     "-framework",
@@ -1842,7 +1804,9 @@
                     "-framework",
                     "Foundation",
                     "-framework",
-                    "UIKit"
+                    "UIKit",
+                    "-force_load",
+                    "$(BUILD_DIR)/bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin/Lib/libLib.a"
                 ]
             },
             "name": "watchOS",
@@ -1921,12 +1885,6 @@
                         "t": "e"
                     }
                 ],
-                "force_load": [
-                    {
-                        "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/Lib/libLib.a",
-                        "t": "g"
-                    }
-                ],
                 "linkopts": [
                     "-ObjC",
                     "-framework",
@@ -1942,7 +1900,9 @@
                     "-framework",
                     "Foundation",
                     "-framework",
-                    "UIKit"
+                    "UIKit",
+                    "-force_load",
+                    "$(BUILD_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/Lib/libLib.a"
                 ]
             },
             "name": "watchOS",
@@ -2460,12 +2420,6 @@
                         "t": "e"
                     }
                 ],
-                "force_load": [
-                    {
-                        "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/Lib/libLib.a",
-                        "t": "g"
-                    }
-                ],
                 "linkopts": [
                     "-ObjC",
                     "-framework",
@@ -2481,7 +2435,9 @@
                     "-framework",
                     "Foundation",
                     "-framework",
-                    "UIKit"
+                    "UIKit",
+                    "-force_load",
+                    "$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/Lib/libLib.a"
                 ]
             },
             "name": "LibFramework.iOS",
@@ -2561,12 +2517,6 @@
                         "t": "e"
                     }
                 ],
-                "force_load": [
-                    {
-                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib/libLib.a",
-                        "t": "g"
-                    }
-                ],
                 "linkopts": [
                     "-ObjC",
                     "-framework",
@@ -2582,7 +2532,9 @@
                     "-framework",
                     "Foundation",
                     "-framework",
-                    "UIKit"
+                    "UIKit",
+                    "-force_load",
+                    "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib/libLib.a"
                 ]
             },
             "name": "LibFramework.iOS",
@@ -2661,12 +2613,6 @@
                         "t": "e"
                     }
                 ],
-                "force_load": [
-                    {
-                        "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin/Lib/libLib.a",
-                        "t": "g"
-                    }
-                ],
                 "linkopts": [
                     "-ObjC",
                     "-framework",
@@ -2682,7 +2628,9 @@
                     "-framework",
                     "Foundation",
                     "-framework",
-                    "UIKit"
+                    "UIKit",
+                    "-force_load",
+                    "$(BUILD_DIR)/bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin/Lib/libLib.a"
                 ]
             },
             "name": "LibFramework.tvOS",
@@ -2761,12 +2709,6 @@
                         "t": "e"
                     }
                 ],
-                "force_load": [
-                    {
-                        "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/Lib/libLib.a",
-                        "t": "g"
-                    }
-                ],
                 "linkopts": [
                     "-ObjC",
                     "-framework",
@@ -2782,7 +2724,9 @@
                     "-framework",
                     "Foundation",
                     "-framework",
-                    "UIKit"
+                    "UIKit",
+                    "-force_load",
+                    "$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/Lib/libLib.a"
                 ]
             },
             "name": "LibFramework.tvOS",
@@ -2861,12 +2805,6 @@
                         "t": "e"
                     }
                 ],
-                "force_load": [
-                    {
-                        "_": "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin/Lib/libLib.a",
-                        "t": "g"
-                    }
-                ],
                 "linkopts": [
                     "-ObjC",
                     "-framework",
@@ -2882,7 +2820,9 @@
                     "-framework",
                     "Foundation",
                     "-framework",
-                    "UIKit"
+                    "UIKit",
+                    "-force_load",
+                    "$(BUILD_DIR)/bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin/Lib/libLib.a"
                 ]
             },
             "name": "LibFramework.watchOS",
@@ -2961,12 +2901,6 @@
                         "t": "e"
                     }
                 ],
-                "force_load": [
-                    {
-                        "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/Lib/libLib.a",
-                        "t": "g"
-                    }
-                ],
                 "linkopts": [
                     "-ObjC",
                     "-framework",
@@ -2982,7 +2916,9 @@
                     "-framework",
                     "Foundation",
                     "-framework",
-                    "UIKit"
+                    "UIKit",
+                    "-force_load",
+                    "$(BUILD_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/Lib/libLib.a"
                 ]
             },
             "name": "LibFramework.watchOS",
@@ -3870,12 +3806,6 @@
                         "t": "e"
                     }
                 ],
-                "force_load": [
-                    {
-                        "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/Lib/libLib.a",
-                        "t": "g"
-                    }
-                ],
                 "linkopts": [
                     "-ObjC",
                     "-framework",
@@ -3892,7 +3822,9 @@
                     "-framework",
                     "Foundation",
                     "-framework",
-                    "UIKit"
+                    "UIKit",
+                    "-force_load",
+                    "$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/Lib/libLib.a"
                 ]
             },
             "modulemaps": [
@@ -4003,12 +3935,6 @@
                         "t": "e"
                     }
                 ],
-                "force_load": [
-                    {
-                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib/libLib.a",
-                        "t": "g"
-                    }
-                ],
                 "linkopts": [
                     "-ObjC",
                     "-framework",
@@ -4025,7 +3951,9 @@
                     "-framework",
                     "Foundation",
                     "-framework",
-                    "UIKit"
+                    "UIKit",
+                    "-force_load",
+                    "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib/libLib.a"
                 ]
             },
             "modulemaps": [
@@ -4196,12 +4124,6 @@
                         "t": "e"
                     }
                 ],
-                "force_load": [
-                    {
-                        "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib/libLib.a",
-                        "t": "g"
-                    }
-                ],
                 "linkopts": [
                     "-ObjC",
                     "-framework",
@@ -4218,7 +4140,9 @@
                     "-framework",
                     "Foundation",
                     "-framework",
-                    "UIKit"
+                    "UIKit",
+                    "-force_load",
+                    "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib/libLib.a"
                 ]
             },
             "modulemaps": [

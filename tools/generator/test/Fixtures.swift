@@ -111,12 +111,13 @@ enum Fixtures {
             ),
             linkerInputs: .init(
                 dynamicFrameworks: ["a/Fram.framework"],
-                forceLoad: [.generated("a/c.lo")],
                 linkopts: [
                     "-framework",
                     "Fram",
                     "$(BUILD_DIR)/bazel-out/z/A.a",
                     "a/imported.a",
+                    "-force_load",
+                    "$(BUILD_DIR)/bazel-out/a/c.lo",
                 ]
             ),
             resourceBundleDependencies: ["R 1"],
@@ -200,8 +201,9 @@ enum Fixtures {
             ),
             inputs: .init(srcs: ["a/b/d.m"]),
             linkerInputs: .init(
-                forceLoad: [
-                    .generated("a/c.lo"),
+                linkopts: [
+                    "-force_load",
+                    "$(BUILD_DIR)/bazel-out/a/c.lo",
                 ]
             ),
             dependencies: ["C 1"]
@@ -1080,7 +1082,7 @@ Fram
 $(BUILD_DIR)/bazel-out/z/A.a
 a/imported.a
 -force_load
-bazel-out/a/c.lo
+$(BUILD_DIR)/bazel-out/a/c.lo
 
 """)
 
@@ -1103,7 +1105,7 @@ StaticFram
             files[.internal("targets/a1b2c/C 2/d.link.params")] =
                 .nonReferencedContent("""
 -force_load
-bazel-out/a/c.lo
+$(BUILD_DIR)/bazel-out/a/c.lo
 
 """)
         }
