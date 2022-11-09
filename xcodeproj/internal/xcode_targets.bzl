@@ -1,8 +1,9 @@
 """Module containing functions dealing with the `Target` DTO."""
 
 load("@bazel_skylib//lib:dicts.bzl", "dicts")
+load("@bazel_skylib//lib:paths.bzl", "paths")
 load("@bazel_skylib//lib:structs.bzl", "structs")
-load(":collections.bzl", "set_if_true")
+load(":collections.bzl", "set_if_true", "uniq")
 load(
     ":files.bzl",
     "build_setting_path",
@@ -397,6 +398,67 @@ def _set_preview_framework_paths(
         for file in xcode_target.linker_inputs.dynamic_frameworks
     ]
 
+_PREVIEWS_ENABLED_PRODUCT_TYPES = {
+    "com.apple.product-type.application": None,
+    "com.apple.product-type.application.on-demand-install-capable": None,
+    "com.apple.product-type.app-extension": None,
+    "com.apple.product-type.app-extension.messages": None,
+    "com.apple.product-type.extensionkit-extension": None,
+    "com.apple.product-type.framework": None,
+    "com.apple.product-type.bundle.ui-testing": None,
+    "com.apple.product-type.bundle.unit-test": None,
+    "com.apple.product-type.tv-app-extension": None,
+    "com.apple.product-type.application.watchapp": None,
+    "com.apple.product-type.application.watchapp2": None,
+    "com.apple.product-type.watchkit-extension": None,
+    "com.apple.product-type.watchkit2-extension": None,
+}
+
+def _set_swift_include_paths(
+        *,
+        build_settings,
+        xcode_generated_paths,
+        xcode_target):
+    if not xcode_target.is_swift:
+        return
+
+    def _handle_swiftmodule_path(file):
+        path = file.path
+        bs_path = xcode_generated_paths.get(path)
+        if not bs_path:
+            bs_path = build_setting_path(
+                file = file,
+                path = path,
+                absolute_path = False,
+                quote = False,
+            )
+        include_path = paths.dirname(bs_path)
+
+        if include_path.find(" ") != -1:
+            include_path = '"{}"'.format(include_path)
+
+        return include_path
+
+    includes = uniq([
+        _handle_swiftmodule_path(file)
+        for file in xcode_target._swiftmodules
+    ])
+
+    swiftmodule = xcode_target.outputs.swiftmodule
+    if (swiftmodule and
+        xcode_target.product.type in _PREVIEWS_ENABLED_PRODUCT_TYPES):
+        build_settings["PREVIEWS_SWIFT_INCLUDE_PATH__"] = ""
+        build_settings["PREVIEWS_SWIFT_INCLUDE_PATH__NO"] = ""
+        build_settings["PREVIEWS_SWIFT_INCLUDE_PATH__YES"] = (
+            _handle_swiftmodule_path(swiftmodule)
+        )
+        includes.insert(
+            0,
+            "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS))",
+        )
+
+    set_if_true(build_settings, "SWIFT_INCLUDE_PATHS", " ".join(includes))
+
 def _xcode_target_to_dto(
         xcode_target,
         *,
@@ -476,6 +538,11 @@ def _xcode_target_to_dto(
         build_settings = build_settings,
         search_paths_intermediate = search_paths_intermediate,
     )
+    _set_swift_include_paths(
+        build_settings = build_settings,
+        xcode_generated_paths = xcode_generated_paths,
+        xcode_target = xcode_target,
+    )
     set_if_true(dto, "build_settings", build_settings)
 
     set_if_true(
@@ -487,11 +554,6 @@ def _xcode_target_to_dto(
         dto,
         "modulemaps",
         [file_path_to_dto(fp) for fp in xcode_target._modulemaps.file_paths],
-    )
-    set_if_true(
-        dto,
-        "swiftmodules",
-        [file_path_to_dto(fp) for fp in xcode_target._swiftmodules],
     )
     set_if_true(
         dto,

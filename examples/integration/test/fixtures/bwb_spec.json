@@ -451,9 +451,13 @@
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -static",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/AppClip",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.app-clip",
                 "PRODUCT_MODULE_NAME": "AppClip",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
+                "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/Lib",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5.0",
@@ -611,13 +615,7 @@
                     }
                 ],
                 "has_includes": true
-            },
-            "swiftmodules": [
-                {
-                    "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/Lib/Lib.swiftmodule",
-                    "t": "g"
-                }
-            ]
+            }
         },
         "//AppClip:AppClip applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307",
         {
@@ -631,9 +629,13 @@
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -static",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/AppClip",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.app-clip",
                 "PRODUCT_MODULE_NAME": "AppClip",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
+                "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5.0",
@@ -791,13 +793,7 @@
                     }
                 ],
                 "has_includes": true
-            },
-            "swiftmodules": [
-                {
-                    "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib/Lib.swiftmodule",
-                    "t": "g"
-                }
-            ]
+            }
         },
         "//CommandLine/CommandLineTool:CommandLineTool applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473",
         {
@@ -1162,6 +1158,7 @@
                 "OTHER_SWIFT_FLAGS": "-Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineToolLib/lib_impl.swift.modulemap -Xcc -fmodule-map-file=$(SRCROOT)/CommandLine/swift_c_module/c_lib.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/examples_command_line_external/ExternalFramework.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/external/examples_command_line_external/Library.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineToolLib/private_lib.swift.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Xcc -DSECRET_3=\\\"Hello\\\" -Xcc -DSECRET_2=\\\"World!\\\" -Fexternal/examples_command_line_external -static",
                 "PRODUCT_MODULE_NAME": "LibSwift",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
+                "SWIFT_INCLUDE_PATHS": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineToolLib",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "private/LibSwift-Swift.h",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5.0",
@@ -1243,13 +1240,7 @@
                     }
                 ],
                 "has_includes": true
-            },
-            "swiftmodules": [
-                {
-                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineToolLib/_SwiftLib.swiftmodule",
-                    "t": "g"
-                }
-            ]
+            }
         },
         "//CommandLine/CommandLineToolLib:private_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473",
         {
@@ -1399,9 +1390,13 @@
                     "SECRET_2=\\\"World!\\\""
                 ],
                 "OTHER_SWIFT_FLAGS": "-Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineToolLib/lib_impl.swift.modulemap -Xcc -fmodule-map-file=$(SRCROOT)/CommandLine/swift_c_module/c_lib.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/examples_command_line_external/ExternalFramework.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/external/examples_command_line_external/Library.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineToolLib/lib_swift.swift.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Xcc -DSECRET_3=\\\"Hello\\\" -Xcc -DSECRET_2=\\\"World!\\\" -Fexternal/examples_command_line_external -static",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/Tests",
                 "PRODUCT_BUNDLE_IDENTIFIER": "com.bazelbuild.rulesapple.Tests",
                 "PRODUCT_MODULE_NAME": "LibSwiftTestsLib",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
+                "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineToolLib",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5.0",
@@ -1624,13 +1619,7 @@
                     }
                 ],
                 "has_includes": true
-            },
-            "swiftmodules": [
-                {
-                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineToolLib/LibSwift.swiftmodule",
-                    "t": "g"
-                }
-            ]
+            }
         },
         "//CommandLine/swift_c_module:c_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473",
         {
@@ -3438,6 +3427,9 @@
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -static",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/UI",
                 "PREVIEW_FRAMEWORK_PATHS": [
                     "\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework\"",
                     "\"$(BAZEL_OUT)/applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/Lib/LibFramework.iOS.framework\""
@@ -3445,6 +3437,7 @@
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.budilebuddy.UIFramework",
                 "PRODUCT_MODULE_NAME": "UI",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
+                "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/Lib",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5.0",
@@ -3608,13 +3601,7 @@
                     }
                 ],
                 "has_includes": true
-            },
-            "swiftmodules": [
-                {
-                    "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/Lib/Lib.swiftmodule",
-                    "t": "g"
-                }
-            ]
+            }
         },
         "//UI:UIFramework.iOS applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307",
         {
@@ -3628,6 +3615,9 @@
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -static",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/UI",
                 "PREVIEW_FRAMEWORK_PATHS": [
                     "\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework\"",
                     "\"$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib/LibFramework.iOS.framework\""
@@ -3635,6 +3625,7 @@
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.budilebuddy.UIFramework",
                 "PRODUCT_MODULE_NAME": "UI",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
+                "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5.0",
@@ -3798,13 +3789,7 @@
                     }
                 ],
                 "has_includes": true
-            },
-            "swiftmodules": [
-                {
-                    "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib/Lib.swiftmodule",
-                    "t": "g"
-                }
-            ]
+            }
         },
         "//UI:UIFramework.tvOS applebin_tvos-tvos_arm64-dbg-ST-4104480a806c",
         {
@@ -3821,6 +3806,9 @@
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64 -static",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin/UI",
                 "PREVIEW_FRAMEWORK_PATHS": [
                     "\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework\"",
                     "\"$(BAZEL_OUT)/applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin/Lib/LibFramework.tvOS.framework\""
@@ -3828,6 +3816,7 @@
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.budilebuddy.UIFramework",
                 "PRODUCT_MODULE_NAME": "UI",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
+                "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin/Lib",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5.0",
@@ -3988,13 +3977,7 @@
                     }
                 ],
                 "has_includes": true
-            },
-            "swiftmodules": [
-                {
-                    "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin/Lib/Lib.swiftmodule",
-                    "t": "g"
-                }
-            ]
+            }
         },
         "//UI:UIFramework.tvOS applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514",
         {
@@ -4011,6 +3994,9 @@
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator -static",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/UI",
                 "PREVIEW_FRAMEWORK_PATHS": [
                     "\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework\"",
                     "\"$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/Lib/LibFramework.tvOS.framework\""
@@ -4018,6 +4004,7 @@
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.budilebuddy.UIFramework",
                 "PRODUCT_MODULE_NAME": "UI",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
+                "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/Lib",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5.0",
@@ -4178,13 +4165,7 @@
                     }
                 ],
                 "has_includes": true
-            },
-            "swiftmodules": [
-                {
-                    "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/Lib/Lib.swiftmodule",
-                    "t": "g"
-                }
-            ]
+            }
         },
         "//UI:UIFramework.watchOS applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8",
         {
@@ -4201,6 +4182,9 @@
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k -static",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin/UI",
                 "PREVIEW_FRAMEWORK_PATHS": [
                     "\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework\"",
                     "\"$(BAZEL_OUT)/applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin/Lib/LibFramework.watchOS.framework\""
@@ -4208,6 +4192,7 @@
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.budilebuddy.UIFramework",
                 "PRODUCT_MODULE_NAME": "UI",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
+                "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin/Lib",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5.0",
@@ -4368,13 +4353,7 @@
                     }
                 ],
                 "has_includes": true
-            },
-            "swiftmodules": [
-                {
-                    "_": "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin/Lib/Lib.swiftmodule",
-                    "t": "g"
-                }
-            ]
+            }
         },
         "//UI:UIFramework.watchOS applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673",
         {
@@ -4391,6 +4370,9 @@
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator -static",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/UI",
                 "PREVIEW_FRAMEWORK_PATHS": [
                     "\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework\"",
                     "\"$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/Lib/LibFramework.watchOS.framework\""
@@ -4398,6 +4380,7 @@
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.budilebuddy.UIFramework",
                 "PRODUCT_MODULE_NAME": "UI",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
+                "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/Lib",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5.0",
@@ -4558,13 +4541,7 @@
                     }
                 ],
                 "has_includes": true
-            },
-            "swiftmodules": [
-                {
-                    "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/Lib/Lib.swiftmodule",
-                    "t": "g"
-                }
-            ]
+            }
         },
         "//WidgetExtension:WidgetExtension applebin_ios-ios_arm64-dbg-ST-a79bc2d21871",
         {
@@ -4579,9 +4556,13 @@
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -static",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/WidgetExtension",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.widget-extension",
                 "PRODUCT_MODULE_NAME": "WidgetExtension",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
+                "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/Lib",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5.0",
@@ -4738,13 +4719,7 @@
                     }
                 ],
                 "has_includes": true
-            },
-            "swiftmodules": [
-                {
-                    "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/Lib/Lib.swiftmodule",
-                    "t": "g"
-                }
-            ]
+            }
         },
         "//WidgetExtension:WidgetExtension applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307",
         {
@@ -4758,9 +4733,13 @@
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -static",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/WidgetExtension",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.widget-extension",
                 "PRODUCT_MODULE_NAME": "WidgetExtension",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
+                "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5.0",
@@ -4917,13 +4896,7 @@
                     }
                 ],
                 "has_includes": true
-            },
-            "swiftmodules": [
-                {
-                    "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib/Lib.swiftmodule",
-                    "t": "g"
-                }
-            ]
+            }
         },
         "//iMessageApp:iMessageApp applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307",
         {
@@ -4996,9 +4969,13 @@
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -static",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iMessageApp",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.imessage-app.extension",
                 "PRODUCT_MODULE_NAME": "iMessageAppExtension",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
+                "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5.0",
@@ -5151,13 +5128,7 @@
                     }
                 ],
                 "has_includes": true
-            },
-            "swiftmodules": [
-                {
-                    "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib/Lib.swiftmodule",
-                    "t": "g"
-                }
-            ]
+            }
         },
         "//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswer ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871",
         {
@@ -5950,9 +5921,13 @@
                     "$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/iOSApp/Source/CoreUtilsObjC"
                 ],
                 "OTHER_SWIFT_FLAGS": "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap-module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64/GoogleMapsBase.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64/GoogleMapsCore.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMaps.xcframework/ios-arm64/GoogleMaps.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -Fexternal/com_google_google_maps/GoogleMaps.xcframework/ios-arm64 -Fexternal/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64 -static",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/iOSApp/Source",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example",
                 "PRODUCT_MODULE_NAME": "iOSApp",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
+                "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/Lib bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/UI bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5.0",
@@ -6271,20 +6246,6 @@
                 ],
                 "has_includes": true
             },
-            "swiftmodules": [
-                {
-                    "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/Lib/Lib.swiftmodule",
-                    "t": "g"
-                },
-                {
-                    "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/UI/UI.swiftmodule",
-                    "t": "g"
-                },
-                {
-                    "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.swiftmodule",
-                    "t": "g"
-                }
-            ],
             "watch_application": "//watchOSApp:watchOSApp applebin_watchos-watchos_arm64_32-dbg-ST-85d7639e6c1c"
         },
         "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307",
@@ -6311,9 +6272,13 @@
                     "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/CoreUtilsObjC"
                 ],
                 "OTHER_SWIFT_FLAGS": "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap-module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator/GoogleMapsBase.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator/GoogleMapsCore.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator/GoogleMaps.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Fexternal/com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator -Fexternal/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator -static",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example",
                 "PRODUCT_MODULE_NAME": "iOSApp",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
+                "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/UI bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5.0",
@@ -6632,20 +6597,6 @@
                 ],
                 "has_includes": true
             },
-            "swiftmodules": [
-                {
-                    "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib/Lib.swiftmodule",
-                    "t": "g"
-                },
-                {
-                    "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/UI/UI.swiftmodule",
-                    "t": "g"
-                },
-                {
-                    "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.swiftmodule",
-                    "t": "g"
-                }
-            ],
             "watch_application": "//watchOSApp:watchOSApp applebin_watchos-watchos_x86_64-dbg-ST-8330f5878aa5"
         },
         "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307",
@@ -7035,9 +6986,13 @@
                     "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/CoreUtilsObjC"
                 ],
                 "OTHER_SWIFT_FLAGS": "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap-module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator/GoogleMapsBase.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator/GoogleMapsCore.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator/GoogleMaps.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/external/FXPageControl/FXPageControl.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/Utils/Utils.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Test/TestingUtils/TestingUtils.swift.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Xcc -DAWESOME -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Fexternal/com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator -Fexternal/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator -static",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Test/SwiftUnitTests",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.tests",
                 "PRODUCT_MODULE_NAME": "iOSAppSwiftUnitTests",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG AWESOME",
+                "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/UI bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Test/TestingUtils",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5.0",
@@ -7405,28 +7360,6 @@
                 ],
                 "has_includes": true
             },
-            "swiftmodules": [
-                {
-                    "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib/Lib.swiftmodule",
-                    "t": "g"
-                },
-                {
-                    "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/UI/UI.swiftmodule",
-                    "t": "g"
-                },
-                {
-                    "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.swiftmodule",
-                    "t": "g"
-                },
-                {
-                    "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/iOSApp.swiftmodule",
-                    "t": "g"
-                },
-                {
-                    "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Test/TestingUtils/TestingUtils.swiftmodule",
-                    "t": "g"
-                }
-            ],
             "test_host": "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307"
         },
         "//iOSApp/Test/TestingUtils:TestingUtils ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307",
@@ -7506,9 +7439,13 @@
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -fmodule-map-file=$(SRCROOT)/macOSApp/third_party/ExampleFramework.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -FmacOSApp/third_party -static",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-5a457b91a60a/bin/macOSApp/Source",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.macOSApp",
                 "PRODUCT_MODULE_NAME": "macOSApp",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
+                "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS))",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5.0",
@@ -7634,9 +7571,13 @@
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-5a457b91a60a/bin/macOSApp/Test/UITests",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.macosapp.uitests",
                 "PRODUCT_MODULE_NAME": "macOSAppUITests",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
+                "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS))",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5.0",
@@ -7753,9 +7694,13 @@
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64 -static",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin/tvOSApp/Source",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example",
                 "PRODUCT_MODULE_NAME": "tvOSApp",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
+                "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin/Lib bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin/UI",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5.0",
@@ -7941,17 +7886,7 @@
                     }
                 ],
                 "has_includes": true
-            },
-            "swiftmodules": [
-                {
-                    "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin/Lib/Lib.swiftmodule",
-                    "t": "g"
-                },
-                {
-                    "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin/UI/UI.swiftmodule",
-                    "t": "g"
-                }
-            ]
+            }
         },
         "//tvOSApp/Source:tvOSApp applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514",
         {
@@ -7968,9 +7903,13 @@
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator -static",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/tvOSApp/Source",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example",
                 "PRODUCT_MODULE_NAME": "tvOSApp",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
+                "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/Lib bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/UI",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5.0",
@@ -8156,17 +8095,7 @@
                     }
                 ],
                 "has_includes": true
-            },
-            "swiftmodules": [
-                {
-                    "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/Lib/Lib.swiftmodule",
-                    "t": "g"
-                },
-                {
-                    "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/UI/UI.swiftmodule",
-                    "t": "g"
-                }
-            ]
+            }
         },
         "//tvOSApp/Test/UITests:tvOSAppUITests.__internal__.__test_bundle applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514",
         {
@@ -8184,9 +8113,13 @@
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/tvOSApp/Test/UITests",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.uitests",
                 "PRODUCT_MODULE_NAME": "tvOSAppUITests",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
+                "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS))",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5.0",
@@ -8305,9 +8238,13 @@
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator -static",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/tvOSApp/Test/UnitTests",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.tests",
                 "PRODUCT_MODULE_NAME": "tvOSAppUnitTests",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
+                "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/Lib bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/UI bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/tvOSApp/Source",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5.0",
@@ -8517,20 +8454,6 @@
                 ],
                 "has_includes": true
             },
-            "swiftmodules": [
-                {
-                    "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/Lib/Lib.swiftmodule",
-                    "t": "g"
-                },
-                {
-                    "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/UI/UI.swiftmodule",
-                    "t": "g"
-                },
-                {
-                    "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/tvOSApp/Source/tvOSApp.swiftmodule",
-                    "t": "g"
-                }
-            ],
             "test_host": "//tvOSApp/Source:tvOSApp applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514"
         },
         "//watchOSApp/Test/UITests:watchOSAppUITests.__internal__.__test_bundle applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673",
@@ -8548,9 +8471,13 @@
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/watchOSApp/Test/UITests",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.watchTests",
                 "PRODUCT_MODULE_NAME": "watchOSAppUITestsLibrary",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
+                "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS))",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5.0",
@@ -8793,9 +8720,13 @@
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator -static",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/watchOSAppExtension/Test/UnitTests",
                 "PRODUCT_BUNDLE_IDENTIFIER": "com.bazelbuild.rulesapple.Tests",
                 "PRODUCT_MODULE_NAME": "watchOSAppExtensionUnitTestsLibrary",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
+                "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/Lib bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/UI",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5.0",
@@ -8985,17 +8916,7 @@
                     }
                 ],
                 "has_includes": true
-            },
-            "swiftmodules": [
-                {
-                    "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/Lib/Lib.swiftmodule",
-                    "t": "g"
-                },
-                {
-                    "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/UI/UI.swiftmodule",
-                    "t": "g"
-                }
-            ]
+            }
         },
         "//watchOSAppExtension:watchOSAppExtension applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8",
         {
@@ -9014,9 +8935,13 @@
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k -static",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin/watchOSAppExtension",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.watch.extension",
                 "PRODUCT_MODULE_NAME": "watchOSAppExtension",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
+                "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin/Lib bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin/UI",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5.0",
@@ -9202,17 +9127,7 @@
                     }
                 ],
                 "has_includes": true
-            },
-            "swiftmodules": [
-                {
-                    "_": "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin/Lib/Lib.swiftmodule",
-                    "t": "g"
-                },
-                {
-                    "_": "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin/UI/UI.swiftmodule",
-                    "t": "g"
-                }
-            ]
+            }
         },
         "//watchOSAppExtension:watchOSAppExtension applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673",
         {
@@ -9230,9 +9145,13 @@
                 "ENABLE_TESTABILITY": true,
                 "GCC_OPTIMIZATION_LEVEL": "0",
                 "OTHER_SWIFT_FLAGS": "-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator -static",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
+                "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/watchOSAppExtension",
                 "PRODUCT_BUNDLE_IDENTIFIER": "io.buildbuddy.example.watch.extension",
                 "PRODUCT_MODULE_NAME": "watchOSAppExtension",
                 "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
+                "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/Lib bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/UI",
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
                 "SWIFT_VERSION": "5.0",
@@ -9418,17 +9337,7 @@
                     }
                 ],
                 "has_includes": true
-            },
-            "swiftmodules": [
-                {
-                    "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/Lib/Lib.swiftmodule",
-                    "t": "g"
-                },
-                {
-                    "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/UI/UI.swiftmodule",
-                    "t": "g"
-                }
-            ]
+            }
         },
         "@FXPageControl//:FXPageControl ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307",
         {
