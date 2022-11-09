@@ -1,5 +1,5 @@
 -ObjC
--Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/AddressSanitizerApp/AddressSanitizerApp_archive-root/Payload/AddressSanitizerApp.swiftmodule/x86_64-apple-ios-simulator.swiftmodule
+-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-ST-7aac51e4b353/bin/AddressSanitizerApp/AddressSanitizerApp.swiftmodule/x86_64-apple-ios-simulator.swiftmodule
 -ObjC
 -L/usr/lib/swift
 -L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator

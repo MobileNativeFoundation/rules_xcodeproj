@@ -620,6 +620,8 @@ def _xcode_target_to_dto(
         _linker_inputs_to_dto(
             linker_inputs = xcode_target.linker_inputs,
             compile_target = xcode_target._compile_target,
+            platform = xcode_target.platform,
+            xcode_generated_paths = xcode_generated_paths,
         ),
     )
     set_if_true(
@@ -766,23 +768,12 @@ def _inputs_to_dto(inputs):
 
     return ret
 
-def _linker_inputs_to_dto(linker_inputs, *, compile_target):
-    """Generates a target DTO for linker inputs.
-
-    Args:
-        linker_inputs: A value returned from `_to_xcode_target_linker_inputs`.
-        compile_target: The `xcode_target` merged into this target, or `None`.
-
-    Returns:
-        A `dict` containing the following elements:
-
-        *   `dynamic_frameworks`: A `list` of `FilePath`s for
-            `dynamic_frameworks`.
-        *   `static_frameworks`: A `list` of `FilePath`s for
-            `static_frameworks`.
-        *   `static_libraries`: A `list` of `FilePath`s for `static_libraries`.
-        *   `linkopts`: A `list` of `string`s for linkopts.
-    """
+def _linker_inputs_to_dto(
+        linker_inputs,
+        *,
+        compile_target,
+        platform,
+        xcode_generated_paths):
     if not linker_inputs:
         return {}
 
@@ -811,11 +802,6 @@ def _linker_inputs_to_dto(linker_inputs, *, compile_target):
     )
     set_if_true(
         ret,
-        "linkopts",
-        linker_inputs.linkopts,
-    )
-    set_if_true(
-        ret,
         "static_libraries",
         [
             file_path_to_dto(file_path(file))
@@ -831,6 +817,35 @@ def _linker_inputs_to_dto(linker_inputs, *, compile_target):
             for file in linker_inputs.static_frameworks
         ],
     )
+
+    if xcode_generated_paths:
+        swift_triple = platform_info.to_swift_triple(platform)
+
+        def _process_linkopt_value(value):
+            xcode_path = xcode_generated_paths.get(value)
+            if not xcode_path:
+                return value
+            if paths.split_extension(xcode_path)[1] != ".swiftmodule":
+                return xcode_path
+            return "{}/{}.swiftmodule".format(xcode_path, swift_triple)
+
+        def _process_linkopt_component(component):
+            prefix, sep, suffix = component.partition("=")
+            if not sep:
+                return _process_linkopt_value(component)
+            return "{}={}".format(prefix, _process_linkopt_value(suffix))
+
+        def _process_linkopt(linkopt):
+            return ",".join([
+                _process_linkopt_component(component)
+                for component in linkopt.split(",")
+            ])
+
+        linkopts = [_process_linkopt(opt) for opt in linker_inputs.linkopts]
+    else:
+        linkopts = linker_inputs.linkopts
+
+    set_if_true(ret, "linkopts", linkopts)
 
     return ret
 
