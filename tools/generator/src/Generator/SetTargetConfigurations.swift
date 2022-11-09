@@ -107,16 +107,7 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
 \(target.platform.variant.rawValue.uppercased())_FILES
 """
                 conditionalFileNames[key] = uniqueFiles
-                    .map { filePath in
-                        return filePathResolver
-                            .resolve(
-                                filePath,
-                                useBazelOut: true,
-                                // These need to match `PBXBuildFile`s
-                                forceFullBuildSettingPath: true
-                            )
-                            .string.quoted
-                    }
+                    .map { filePathResolver.resolve($0).quoted }
                     .sorted()
                     .joined(separator: " ")
                 targetBuildSettings.set(
@@ -272,33 +263,18 @@ $(CONFIGURATION_BUILD_DIR)
         }
 
         if let infoPlist = target.infoPlist {
-            let infoPlistPath = filePathResolver
-                .resolve(
-                    infoPlist,
-                    useBazelOut: true,
-                    // Xcode creates an implicit `PBXBuildFile` for this, so
-                    // we need to use the full path to match what's in the
-                    // Project navigator
-                    forceFullBuildSettingPath: true
-                ).string
-            buildSettings.set("INFOPLIST_FILE", to: infoPlistPath)
+            buildSettings.set(
+                "INFOPLIST_FILE",
+                to: filePathResolver.resolve(infoPlist)
+            )
         } else if buildMode.allowsGeneratedInfoPlists {
             buildSettings["GENERATE_INFOPLIST_FILE"] = true
         }
 
         if let entitlements = target.inputs.entitlements {
-            let entitlementsPath = filePathResolver
-                .resolve(
-                    entitlements,
-                    useBazelOut: true,
-                    // Xcode creates an implicit `PBXBuildFile` for this, so
-                    // we need to use the full path to match what's in the
-                    // Project navigator
-                    forceFullBuildSettingPath: true
-                ).string
             buildSettings.set(
                 "CODE_SIGN_ENTITLEMENTS",
-                to: entitlementsPath
+                to: filePathResolver.resolve(entitlements)
             )
 
             if !buildMode.usesBazelModeBuildScripts {
@@ -320,16 +296,10 @@ $(CONFIGURATION_BUILD_DIR)
         }
 
         if let pch = target.inputs.pch {
-            let pchPath = filePathResolver
-                .resolve(
-                    pch,
-                    useBazelOut: true,
-                    // Xcode creates an implicit `PBXBuildFile` for this, so
-                    // we need to use the full path to match what's in the
-                    // Project navigator
-                    forceFullBuildSettingPath: true
-                ).string
-            buildSettings.set("GCC_PREFIX_HEADER", to: pchPath)
+            buildSettings.set(
+                "GCC_PREFIX_HEADER",
+                to: filePathResolver.resolve(pch)
+            )
         }
 
         if let ldRunpathSearchPaths = target.ldRunpathSearchPaths {
