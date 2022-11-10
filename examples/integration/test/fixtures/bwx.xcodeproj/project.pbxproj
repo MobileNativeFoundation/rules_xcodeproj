@@ -1235,6 +1235,7 @@
 		C74F0CE27C1BE62BAD492BC2 /* MixedAnswer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixedAnswer.swift; sourceTree = "<group>"; };
 		C76EC49BB9C08D1023E0EEE7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C7AFD4E7FE44440D1A951A7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		C809B802C65A75A451099BEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C88E284E00547B4205F5A95B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CA95EEF3FAE24FBB77E2EF38 /* Launchd.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Launchd.plist; sourceTree = "<group>"; };
 		CB4A0FB26B6A160C6B667828 /* Nested */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Nested; sourceTree = "<group>"; };
@@ -1273,6 +1274,7 @@
 		E135F778E8931913A777DAC5 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		E1F8E96E36D76FC0FE607DFD /* libprivate_swift_lib.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libprivate_swift_lib.a; path = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineToolLib/libprivate_swift_lib.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E23B060049E59E0D8A5A8798 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		E2A6BB353986B18FEDC56F0A /* Launchd.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Launchd.plist; sourceTree = "<group>"; };
 		E543039CE72D7A78BE725EDA /* MixedAnswer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MixedAnswer.h; sourceTree = "<group>"; };
 		E6380838CC4C3E99F5C4215B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		E7B005556CA96365E4CD9D39 /* WatchOSAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchOSAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -2026,6 +2028,14 @@
 			path = bin;
 			sourceTree = "<group>";
 		};
+		3BF70867B1F7BAD947179081 /* CommandLineTool.merged_launchdplists-intermediates */ = {
+			isa = PBXGroup;
+			children = (
+				E2A6BB353986B18FEDC56F0A /* Launchd.plist */,
+			);
+			path = "CommandLineTool.merged_launchdplists-intermediates";
+			sourceTree = "<group>";
+		};
 		3D438CFF608DBEE795552CFD /* Lib */ = {
 			isa = PBXGroup;
 			children = (
@@ -2184,6 +2194,7 @@
 		52BF33991D0E63683C87BAEB /* CommandLine */ = {
 			isa = PBXGroup;
 			children = (
+				7A70932BEC64E72DEF0986E7 /* CommandLineTool */,
 				0D60346C1008212F5C4D68A4 /* CommandLineToolLib */,
 			);
 			path = CommandLine;
@@ -2620,6 +2631,15 @@
 				3B9C136F7B8D373BAA87EE5B /* UI */,
 			);
 			path = bin;
+			sourceTree = "<group>";
+		};
+		7A70932BEC64E72DEF0986E7 /* CommandLineTool */ = {
+			isa = PBXGroup;
+			children = (
+				B04BB5365AF466FC68462E69 /* CommandLineTool.merged_infoplist-intermediates */,
+				3BF70867B1F7BAD947179081 /* CommandLineTool.merged_launchdplists-intermediates */,
+			);
+			path = CommandLineTool;
 			sourceTree = "<group>";
 		};
 		7AB69A39C84E09E3EC4587C2 /* Source */ = {
@@ -3155,6 +3175,14 @@
 				6A49AEE1769DFD7A488B23CB /* GoogleMaps.bundle */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		B04BB5365AF466FC68462E69 /* CommandLineTool.merged_infoplist-intermediates */ = {
+			isa = PBXGroup;
+			children = (
+				C809B802C65A75A451099BEB /* Info.plist */,
+			);
+			path = "CommandLineTool.merged_infoplist-intermediates";
 			sourceTree = "<group>";
 		};
 		B1B351D10165A225FD5F8BCF /* Resources */ = {
