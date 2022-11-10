@@ -943,7 +943,9 @@ def _get_top_level_static_libraries(xcode_target):
     """
     linker_inputs = xcode_target.linker_inputs
     if not linker_inputs:
-        fail("Xcode target requires `ObjcProvider` or `CcInfo`")
+        fail("""\
+Target '{}' requires `ObjcProvider` or `CcInfo`\
+""".format(xcode_target.label))
     return linker_inputs.static_libraries + linker_inputs.force_load_libraries
 
 xcode_targets = struct(
