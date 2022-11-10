@@ -18,6 +18,9 @@ _LD_SKIP_OPTS = {
     "-o": 2,
     "-static": 1,
     "-target": 2,
+
+    # TODO: Remove this filter once we move path logic out of the generator
+    "-force_load": 2,
 }
 
 _SKIP_INPUT_EXTENSIONS = {
@@ -350,6 +353,8 @@ def _process_linkopt(linkopt):
     if linkopt.startswith("-Wl,-install_name,"):
         return None
     if linkopt.startswith("@"):
+        return None
+    if linkopt.endswith(".a") or linkopt.endswith(".lo"):
         return None
 
     # Use Xcode set `DEVELOPER_DIR`

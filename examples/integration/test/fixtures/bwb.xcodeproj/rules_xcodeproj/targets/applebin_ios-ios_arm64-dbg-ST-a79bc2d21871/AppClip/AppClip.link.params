@@ -1,8 +1,6 @@
 -ObjC
 -framework
 CryptoSwift
--force_load
-bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/Lib/libLib.a
 -Wl,-add_ast_path,bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/AppClip/AppClip.swiftmodule
 -Wl,-add_ast_path,bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/Lib/Lib.swiftmodule
 -ObjC
@@ -16,3 +14,5 @@ bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/Lib/l
 Foundation
 -framework
 UIKit
+-force_load
+bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/Lib/libLib.a

@@ -1,8 +1,6 @@
 -ObjC
 -framework
 CryptoSwift
--force_load
-bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib/libLib.a
 -Wl,-add_ast_path,bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iMessageApp/iMessageAppExtension.swiftmodule
 -Wl,-add_ast_path,bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib/Lib.swiftmodule
 -ObjC
@@ -16,3 +14,5 @@ bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib
 Foundation
 -framework
 UIKit
+-force_load
+bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib/libLib.a
