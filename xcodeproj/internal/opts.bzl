@@ -39,6 +39,7 @@ _SWIFTC_SKIP_OPTS = {
     "-gline-tables-only": 1,
     "-index-ignore-system-modules": 1,
     "-index-store-path": 2,
+    "-module-cache-path": 2,
     "-module-name": 2,
     "-num-threads": 2,
     "-output-file-map": 2,
