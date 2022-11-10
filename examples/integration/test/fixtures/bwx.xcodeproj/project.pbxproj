@@ -8212,8 +8212,8 @@
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator",
-					"$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/UI/frameworks",
-					"$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/Lib/frameworks",
+					"$(BUILD_DIR)/bazel-out/applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/UI",
+					"$(BUILD_DIR)/bazel-out/applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/Lib",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/watchOSAppExtension/Test/UnitTests/rules_xcodeproj/watchOSAppExtensionUnitTests.__internal__.__test_bundle/Info.plist";
@@ -8452,11 +8452,11 @@
 				EXCLUDED_SOURCE_FILE_NAMES = "$(APPLETVOS_FILES) $(APPLETVSIMULATOR_FILES)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator",
-					"$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/Lib/frameworks",
+					"$(BUILD_DIR)/bazel-out/applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/Lib",
 				);
 				"FRAMEWORK_SEARCH_PATHS[sdk=appletvos*]" = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64",
-					"$(BAZEL_OUT)/applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin/Lib/frameworks",
+					"$(BUILD_DIR)/bazel-out/applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin/Lib",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INCLUDED_SOURCE_FILE_NAMES = "";
@@ -8597,18 +8597,18 @@
 					"$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator",
 					"$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator",
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator",
-					"$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/CoreUtilsObjC/frameworks",
-					"$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/UI/frameworks",
-					"$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib/frameworks",
+					"$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/CoreUtilsObjC",
+					"$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/UI",
+					"$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib",
 				);
 				"FRAMEWORK_SEARCH_PATHS[sdk=iphoneos*]" = (
 					"$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMaps.xcframework/ios-arm64",
 					"$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64",
 					"$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64",
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7",
-					"$(BAZEL_OUT)/applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/iOSApp/Source/CoreUtilsObjC/frameworks",
-					"$(BAZEL_OUT)/applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/UI/frameworks",
-					"$(BAZEL_OUT)/applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/Lib/frameworks",
+					"$(BUILD_DIR)/bazel-out/applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/iOSApp/Source/CoreUtilsObjC",
+					"$(BUILD_DIR)/bazel-out/applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/UI",
+					"$(BUILD_DIR)/bazel-out/applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/Lib",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				HEADER_SEARCH_PATHS = (
@@ -9014,13 +9014,13 @@
 				EXCLUDED_SOURCE_FILE_NAMES = "$(APPLETVOS_FILES) $(APPLETVSIMULATOR_FILES)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator",
-					"$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/UI/frameworks",
-					"$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/Lib/frameworks",
+					"$(BUILD_DIR)/bazel-out/applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/UI",
+					"$(BUILD_DIR)/bazel-out/applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/Lib",
 				);
 				"FRAMEWORK_SEARCH_PATHS[sdk=appletvos*]" = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64",
-					"$(BAZEL_OUT)/applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin/UI/frameworks",
-					"$(BAZEL_OUT)/applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin/Lib/frameworks",
+					"$(BUILD_DIR)/bazel-out/applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin/UI",
+					"$(BUILD_DIR)/bazel-out/applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin/Lib",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INCLUDED_SOURCE_FILE_NAMES = "";
@@ -9225,9 +9225,9 @@
 					"$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator",
 					"$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator",
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator",
-					"$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/CoreUtilsObjC/frameworks",
-					"$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/UI/frameworks",
-					"$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib/frameworks",
+					"$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/CoreUtilsObjC",
+					"$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/UI",
+					"$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -9357,11 +9357,11 @@
 				EXCLUDED_SOURCE_FILE_NAMES = "$(WATCHOS_FILES) $(WATCHSIMULATOR_FILES)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator",
-					"$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/Lib/frameworks",
+					"$(BUILD_DIR)/bazel-out/applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/Lib",
 				);
 				"FRAMEWORK_SEARCH_PATHS[sdk=watchos*]" = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k",
-					"$(BAZEL_OUT)/applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin/Lib/frameworks",
+					"$(BUILD_DIR)/bazel-out/applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin/Lib",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INCLUDED_SOURCE_FILE_NAMES = "";
@@ -9999,13 +9999,13 @@
 				EXCLUDED_SOURCE_FILE_NAMES = "$(WATCHOS_FILES) $(WATCHSIMULATOR_FILES)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator",
-					"$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/UI/frameworks",
-					"$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/Lib/frameworks",
+					"$(BUILD_DIR)/bazel-out/applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/UI",
+					"$(BUILD_DIR)/bazel-out/applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/Lib",
 				);
 				"FRAMEWORK_SEARCH_PATHS[sdk=watchos*]" = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k",
-					"$(BAZEL_OUT)/applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin/UI/frameworks",
-					"$(BAZEL_OUT)/applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin/Lib/frameworks",
+					"$(BUILD_DIR)/bazel-out/applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin/UI",
+					"$(BUILD_DIR)/bazel-out/applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin/Lib",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INCLUDED_SOURCE_FILE_NAMES = "";
@@ -10082,9 +10082,9 @@
 					"$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator",
 					"$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator",
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator",
-					"$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/CoreUtilsObjC/frameworks",
-					"$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/UI/frameworks",
-					"$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib/frameworks",
+					"$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/CoreUtilsObjC",
+					"$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/UI",
+					"$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = AWESOME;
@@ -10448,8 +10448,8 @@
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator",
-					"$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/UI/frameworks",
-					"$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/Lib/frameworks",
+					"$(BUILD_DIR)/bazel-out/applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/UI",
+					"$(BUILD_DIR)/bazel-out/applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/Lib",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/tvOSApp/Test/UnitTests/rules_xcodeproj/tvOSAppUnitTests.__internal__.__test_bundle/Info.plist";
@@ -10549,11 +10549,11 @@
 				EXCLUDED_SOURCE_FILE_NAMES = "$(IPHONEOS_FILES) $(IPHONESIMULATOR_FILES)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator",
-					"$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib/frameworks",
+					"$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib",
 				);
 				"FRAMEWORK_SEARCH_PATHS[sdk=iphoneos*]" = (
 					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7",
-					"$(BAZEL_OUT)/applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/Lib/frameworks",
+					"$(BUILD_DIR)/bazel-out/applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/Lib",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INCLUDED_SOURCE_FILE_NAMES = "";
