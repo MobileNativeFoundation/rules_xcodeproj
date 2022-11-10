@@ -776,14 +776,6 @@ def _linker_inputs_to_dto(
             for file in linker_inputs.dynamic_frameworks
         ],
     )
-    set_if_true(
-        ret,
-        "static_frameworks",
-        [
-            file_path_to_dto(file_path(file, path = file.dirname))
-            for file in linker_inputs.static_frameworks
-        ],
-    )
 
     avoid_library_path = avoid_library.path if avoid_library else None
     swift_triple = platform_info.to_swift_triple(platform)

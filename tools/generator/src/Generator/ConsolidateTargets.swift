@@ -402,9 +402,6 @@ extension ConsolidatedTarget {
         targets: [Target]
     ) -> ConsolidatedTargetLinkerInputs {
         return ConsolidatedTargetLinkerInputs(
-            staticFrameworks: consolidateFiles(
-                targets.map(\.linkerInputs.staticFrameworks)
-            ),
             dynamicFrameworks: consolidateFiles(
                 targets.map(\.linkerInputs.dynamicFrameworks)
             )
@@ -483,7 +480,6 @@ struct ConsolidatedTargetInputs: Equatable {
 }
 
 struct ConsolidatedTargetLinkerInputs: Equatable {
-    let staticFrameworks: [FilePath]
     let dynamicFrameworks: [FilePath]
 }
 

@@ -730,10 +730,6 @@ private extension ConsolidatedTarget {
 }
 
 private extension ConsolidatedTargetLinkerInputs {
-    var frameworks: [FilePath] {
-        return staticFrameworks + dynamicFrameworks
-    }
-
     var embeddable: [FilePath] {
         return dynamicFrameworks
     }
