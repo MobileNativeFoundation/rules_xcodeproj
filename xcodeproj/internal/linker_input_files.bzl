@@ -23,18 +23,6 @@ _LD_SKIP_OPTS = {
     "-force_load": 2,
 }
 
-_SKIP_INPUT_EXTENSIONS = {
-    "a": None,
-    "app": None,
-    "appex": None,
-    "dylib": None,
-    "bundle": None,
-    "framework": None,
-    "lo": None,
-    "swiftmodule": None,
-    "xctest": None,
-}
-
 def _collect_linker_inputs(
         *,
         target,
@@ -190,10 +178,6 @@ def _extract_top_level_values(
             for file in objc_libraries
             if not sets.contains(avoid_static_libraries, file)
         ]
-
-        additional_input_files = _process_additional_inputs(
-            objc.link_inputs.to_list(),
-        )
     elif compilation_providers._cc_info:
         if avoid_compilation_providers:
             avoid_cc_info = avoid_compilation_providers._cc_info
@@ -215,11 +199,7 @@ def _extract_top_level_values(
 
         force_load_libraries = []
         static_libraries = []
-        additional_input_files = []
         for input in cc_linker_inputs:
-            additional_input_files.extend(_process_additional_inputs(
-                input.additional_inputs,
-            ))
             for library in input.libraries:
                 if sets.contains(avoid_libraries, library):
                     continue
@@ -245,20 +225,12 @@ def _extract_top_level_values(
         linkopts = []
 
     return struct(
-        additional_input_files = tuple(additional_input_files),
         dynamic_frameworks = tuple(dynamic_frameworks),
         force_load_libraries = tuple(force_load_libraries),
         linkopts = tuple(linkopts),
         static_frameworks = tuple(static_frameworks),
         static_libraries = tuple(static_libraries),
     )
-
-def _process_additional_inputs(files):
-    return [
-        file
-        for file in files
-        if not file.is_source and file.extension not in _SKIP_INPUT_EXTENSIONS
-    ]
 
 def _collect_libraries(
         *,
@@ -371,7 +343,6 @@ def _to_input_files(linker_inputs):
         return []
 
     return list(
-        top_level_values.additional_input_files +
         top_level_values.dynamic_frameworks +
         top_level_values.static_frameworks,
     ) + [
