@@ -1,5 +1,6 @@
 build --incompatible_disallow_empty_glob
 build --experimental_convenience_symlinks=ignore
+build --features=swift.use_global_module_cache
 
 # Work around https://github.com/bazelbuild/bazel/issues/13912
 build --experimental_action_cache_store_output_metadata
