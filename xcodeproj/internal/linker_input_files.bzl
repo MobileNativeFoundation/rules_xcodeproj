@@ -23,18 +23,6 @@ _LD_SKIP_OPTS = {
     "-force_load": 2,
 }
 
-_SKIP_INPUT_EXTENSIONS = {
-    "a": None,
-    "app": None,
-    "appex": None,
-    "dylib": None,
-    "bundle": None,
-    "framework": None,
-    "lo": None,
-    "swiftmodule": None,
-    "xctest": None,
-}
-
 def _collect_linker_inputs(
         *,
         target,
