@@ -1,8 +1,6 @@
 -ObjC
 -framework
 CryptoSwift
--force_load
-$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/Lib/libLib.a
 -Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/WidgetExtension/WidgetExtension.swiftmodule/arm64-apple-ios.swiftmodule
 -Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/Lib/Lib.swiftmodule/arm64-apple-ios.swiftmodule
 -ObjC
@@ -16,3 +14,5 @@ $(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21
 Foundation
 -framework
 UIKit
+-force_load
+$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/Lib/libLib.a

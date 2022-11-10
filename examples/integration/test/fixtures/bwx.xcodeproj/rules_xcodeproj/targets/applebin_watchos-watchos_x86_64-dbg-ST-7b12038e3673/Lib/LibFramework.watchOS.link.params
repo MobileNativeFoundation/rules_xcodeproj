@@ -1,8 +1,6 @@
 -ObjC
 -framework
 CryptoSwift
--force_load
-$(BUILD_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/Lib/libLib.a
 -Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/Lib/Lib.swiftmodule/x86_64-apple-watchos-simulator.swiftmodule
 -ObjC
 -L/usr/lib/swift
@@ -15,3 +13,5 @@ $(BUILD_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg
 Foundation
 -framework
 UIKit
+-force_load
+$(BUILD_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/Lib/libLib.a

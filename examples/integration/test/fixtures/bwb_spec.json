@@ -511,8 +511,6 @@
                     "-ObjC",
                     "-framework",
                     "CryptoSwift",
-                    "-force_load",
-                    "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/Lib/libLib.a",
                     "-Wl,-add_ast_path,bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/AppClip/AppClip.swiftmodule",
                     "-Wl,-add_ast_path,bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/Lib/Lib.swiftmodule",
                     "-ObjC",
@@ -525,7 +523,9 @@
                     "-framework",
                     "Foundation",
                     "-framework",
-                    "UIKit"
+                    "UIKit",
+                    "-force_load",
+                    "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/Lib/libLib.a"
                 ]
             },
             "lldb_context": {
@@ -682,8 +682,6 @@
                     "-ObjC",
                     "-framework",
                     "CryptoSwift",
-                    "-force_load",
-                    "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib/libLib.a",
                     "-Wl,-add_ast_path,bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/AppClip/AppClip.swiftmodule",
                     "-Wl,-add_ast_path,bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib/Lib.swiftmodule",
                     "-ObjC",
@@ -696,7 +694,9 @@
                     "-framework",
                     "Foundation",
                     "-framework",
-                    "UIKit"
+                    "UIKit",
+                    "-force_load",
+                    "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib/libLib.a"
                 ]
             },
             "lldb_context": {
@@ -900,8 +900,6 @@
                     "ExternalFramework",
                     "-weak_framework",
                     "SwiftUI",
-                    "-force_load",
-                    "external/examples_command_line_external/ExternalFramework.framework/ExternalFramework",
                     "-Wl,-add_ast_path,bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineToolLib/LibSwift.swiftmodule",
                     "-Wl,-add_ast_path,bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineToolLib/_SwiftLib.swiftmodule",
                     "-Wl,-add_ast_path,external/examples_command_line_external/ExternalFramework.framework/Modules/ExternalFramework.swiftmodule/x86_64.swiftmodule",
@@ -916,7 +914,15 @@
                     "-Wl,-exported_symbols_list,CommandLine/CommandLineTool/export_symbol_list.exp",
                     "-no-canonical-prefixes",
                     "-framework",
-                    "Foundation"
+                    "Foundation",
+                    "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineToolLib/liblib_swift.a",
+                    "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/swift_c_module/libc_lib.a",
+                    "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineToolLib/libprivate_lib.a",
+                    "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineToolLib/liblib_impl.a",
+                    "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineToolLib/libprivate_swift_lib.a",
+                    "external/examples_command_line_external/ImportableLibrary/libImportableLibrary.a",
+                    "-force_load",
+                    "external/examples_command_line_external/ExternalFramework.framework/ExternalFramework"
                 ]
             },
             "lldb_context": {
@@ -1385,8 +1391,6 @@
                     "ExternalFramework",
                     "-weak_framework",
                     "SwiftUI",
-                    "-force_load",
-                    "external/examples_command_line_external/ExternalFramework.framework/ExternalFramework",
                     "-L$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/usr/lib",
                     "-Wl,-add_ast_path,bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/Tests/LibSwiftTestsLib.swiftmodule",
                     "-Wl,-add_ast_path,bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineToolLib/LibSwift.swiftmodule",
@@ -1402,7 +1406,15 @@
                     "XCTest",
                     "-no-canonical-prefixes",
                     "-framework",
-                    "Foundation"
+                    "Foundation",
+                    "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineToolLib/liblib_swift.a",
+                    "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/swift_c_module/libc_lib.a",
+                    "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineToolLib/libprivate_lib.a",
+                    "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineToolLib/liblib_impl.a",
+                    "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineToolLib/libprivate_swift_lib.a",
+                    "external/examples_command_line_external/ImportableLibrary/libImportableLibrary.a",
+                    "-force_load",
+                    "external/examples_command_line_external/ExternalFramework.framework/ExternalFramework"
                 ]
             },
             "lldb_context": {
@@ -1654,8 +1666,6 @@
                     "-ObjC",
                     "-framework",
                     "CryptoSwift",
-                    "-force_load",
-                    "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/Lib/libLib.a",
                     "-Wl,-add_ast_path,bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/Lib/Lib.swiftmodule",
                     "-ObjC",
                     "-L/usr/lib/swift",
@@ -1667,7 +1677,9 @@
                     "-framework",
                     "Foundation",
                     "-framework",
-                    "UIKit"
+                    "UIKit",
+                    "-force_load",
+                    "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/Lib/libLib.a"
                 ]
             },
             "lldb_context": {
@@ -1774,8 +1786,6 @@
                     "-ObjC",
                     "-framework",
                     "CryptoSwift",
-                    "-force_load",
-                    "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib/libLib.a",
                     "-Wl,-add_ast_path,bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib/Lib.swiftmodule",
                     "-ObjC",
                     "-L/usr/lib/swift",
@@ -1787,7 +1797,9 @@
                     "-framework",
                     "Foundation",
                     "-framework",
-                    "UIKit"
+                    "UIKit",
+                    "-force_load",
+                    "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib/libLib.a"
                 ]
             },
             "lldb_context": {
@@ -1893,8 +1905,6 @@
                     "-ObjC",
                     "-framework",
                     "CryptoSwift",
-                    "-force_load",
-                    "bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin/Lib/libLib.a",
                     "-Wl,-add_ast_path,bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin/Lib/Lib.swiftmodule",
                     "-ObjC",
                     "-L/usr/lib/swift",
@@ -1906,7 +1916,9 @@
                     "-framework",
                     "Foundation",
                     "-framework",
-                    "UIKit"
+                    "UIKit",
+                    "-force_load",
+                    "bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin/Lib/libLib.a"
                 ]
             },
             "lldb_context": {
@@ -2012,8 +2024,6 @@
                     "-ObjC",
                     "-framework",
                     "CryptoSwift",
-                    "-force_load",
-                    "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/Lib/libLib.a",
                     "-Wl,-add_ast_path,bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/Lib/Lib.swiftmodule",
                     "-ObjC",
                     "-L/usr/lib/swift",
@@ -2025,7 +2035,9 @@
                     "-framework",
                     "Foundation",
                     "-framework",
-                    "UIKit"
+                    "UIKit",
+                    "-force_load",
+                    "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/Lib/libLib.a"
                 ]
             },
             "lldb_context": {
@@ -2131,8 +2143,6 @@
                     "-ObjC",
                     "-framework",
                     "CryptoSwift",
-                    "-force_load",
-                    "bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin/Lib/libLib.a",
                     "-Wl,-add_ast_path,bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin/Lib/Lib.swiftmodule",
                     "-ObjC",
                     "-L/usr/lib/swift",
@@ -2144,7 +2154,9 @@
                     "-framework",
                     "Foundation",
                     "-framework",
-                    "UIKit"
+                    "UIKit",
+                    "-force_load",
+                    "bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin/Lib/libLib.a"
                 ]
             },
             "lldb_context": {
@@ -2250,8 +2262,6 @@
                     "-ObjC",
                     "-framework",
                     "CryptoSwift",
-                    "-force_load",
-                    "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/Lib/libLib.a",
                     "-Wl,-add_ast_path,bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/Lib/Lib.swiftmodule",
                     "-ObjC",
                     "-L/usr/lib/swift",
@@ -2263,7 +2273,9 @@
                     "-framework",
                     "Foundation",
                     "-framework",
-                    "UIKit"
+                    "UIKit",
+                    "-force_load",
+                    "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/Lib/libLib.a"
                 ]
             },
             "lldb_context": {
@@ -2807,8 +2819,6 @@
                     "-ObjC",
                     "-framework",
                     "CryptoSwift",
-                    "-force_load",
-                    "bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin/Lib/libLib.a",
                     "-Wl,-add_ast_path,bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin/Lib/Lib.swiftmodule",
                     "-ObjC",
                     "-L/usr/lib/swift",
@@ -2820,7 +2830,9 @@
                     "-framework",
                     "Foundation",
                     "-framework",
-                    "UIKit"
+                    "UIKit",
+                    "-force_load",
+                    "bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin/Lib/libLib.a"
                 ]
             },
             "lldb_context": {
@@ -2926,8 +2938,6 @@
                     "-ObjC",
                     "-framework",
                     "CryptoSwift",
-                    "-force_load",
-                    "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/Lib/libLib.a",
                     "-Wl,-add_ast_path,bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/Lib/Lib.swiftmodule",
                     "-ObjC",
                     "-L/usr/lib/swift",
@@ -2939,7 +2949,9 @@
                     "-framework",
                     "Foundation",
                     "-framework",
-                    "UIKit"
+                    "UIKit",
+                    "-force_load",
+                    "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514/bin/Lib/libLib.a"
                 ]
             },
             "lldb_context": {
@@ -3045,8 +3057,6 @@
                     "-ObjC",
                     "-framework",
                     "CryptoSwift",
-                    "-force_load",
-                    "bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin/Lib/libLib.a",
                     "-Wl,-add_ast_path,bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin/Lib/Lib.swiftmodule",
                     "-ObjC",
                     "-L/usr/lib/swift",
@@ -3058,7 +3068,9 @@
                     "-framework",
                     "Foundation",
                     "-framework",
-                    "UIKit"
+                    "UIKit",
+                    "-force_load",
+                    "bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin/Lib/libLib.a"
                 ]
             },
             "lldb_context": {
@@ -3164,8 +3176,6 @@
                     "-ObjC",
                     "-framework",
                     "CryptoSwift",
-                    "-force_load",
-                    "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/Lib/libLib.a",
                     "-Wl,-add_ast_path,bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/Lib/Lib.swiftmodule",
                     "-ObjC",
                     "-L/usr/lib/swift",
@@ -3177,7 +3187,9 @@
                     "-framework",
                     "Foundation",
                     "-framework",
-                    "UIKit"
+                    "UIKit",
+                    "-force_load",
+                    "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/Lib/libLib.a"
                 ]
             },
             "lldb_context": {
@@ -4394,8 +4406,6 @@
                     "-ObjC",
                     "-framework",
                     "CryptoSwift",
-                    "-force_load",
-                    "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/Lib/libLib.a",
                     "-Wl,-add_ast_path,bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/WidgetExtension/WidgetExtension.swiftmodule",
                     "-Wl,-add_ast_path,bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/Lib/Lib.swiftmodule",
                     "-ObjC",
@@ -4408,7 +4418,9 @@
                     "-framework",
                     "Foundation",
                     "-framework",
-                    "UIKit"
+                    "UIKit",
+                    "-force_load",
+                    "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/Lib/libLib.a"
                 ]
             },
             "lldb_context": {
@@ -4564,8 +4576,6 @@
                     "-ObjC",
                     "-framework",
                     "CryptoSwift",
-                    "-force_load",
-                    "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib/libLib.a",
                     "-Wl,-add_ast_path,bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/WidgetExtension/WidgetExtension.swiftmodule",
                     "-Wl,-add_ast_path,bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib/Lib.swiftmodule",
                     "-ObjC",
@@ -4578,7 +4588,9 @@
                     "-framework",
                     "Foundation",
                     "-framework",
-                    "UIKit"
+                    "UIKit",
+                    "-force_load",
+                    "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib/libLib.a"
                 ]
             },
             "lldb_context": {
@@ -4789,8 +4801,6 @@
                     "-ObjC",
                     "-framework",
                     "CryptoSwift",
-                    "-force_load",
-                    "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib/libLib.a",
                     "-Wl,-add_ast_path,bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iMessageApp/iMessageAppExtension.swiftmodule",
                     "-Wl,-add_ast_path,bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib/Lib.swiftmodule",
                     "-ObjC",
@@ -4803,7 +4813,9 @@
                     "-framework",
                     "Foundation",
                     "-framework",
-                    "UIKit"
+                    "UIKit",
+                    "-force_load",
+                    "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib/libLib.a"
                 ]
             },
             "lldb_context": {
@@ -5800,7 +5812,9 @@
                     "-framework",
                     "Foundation",
                     "-framework",
-                    "UIKit"
+                    "UIKit",
+                    "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/libMixedAnswer.a",
+                    "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/libMixedAnswerLib_Swift.a"
                 ]
             },
             "lldb_context": {
@@ -6106,7 +6120,9 @@
                     "-framework",
                     "Foundation",
                     "-framework",
-                    "UIKit"
+                    "UIKit",
+                    "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/libMixedAnswer.a",
+                    "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/libMixedAnswerLib_Swift.a"
                 ]
             },
             "lldb_context": {
@@ -6461,7 +6477,10 @@
                     "-framework",
                     "Foundation",
                     "-framework",
-                    "UIKit"
+                    "UIKit",
+                    "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/Utils/libUtils.a",
+                    "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/external/FXPageControl/libFXPageControl.a",
+                    "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Test/TestingUtils/libTestingUtils.a"
                 ]
             },
             "lldb_context": {
@@ -6736,7 +6755,10 @@
                     "-framework",
                     "Foundation",
                     "-framework",
-                    "UIKit"
+                    "UIKit",
+                    "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/Utils/libUtils.a",
+                    "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/external/FXPageControl/libFXPageControl.a",
+                    "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Test/TestingUtils/libTestingUtils.a"
                 ]
             },
             "lldb_context": {

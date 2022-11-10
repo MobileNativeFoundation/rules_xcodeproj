@@ -1,8 +1,6 @@
 -ObjC
 -framework
 CryptoSwift
--force_load
-$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib/libLib.a
 -Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib/Lib.swiftmodule/x86_64-apple-ios-simulator.swiftmodule
 -ObjC
 -L/usr/lib/swift
@@ -15,3 +13,5 @@ $(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c9
 Foundation
 -framework
 UIKit
+-force_load
+$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/Lib/libLib.a
