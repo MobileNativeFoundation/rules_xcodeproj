@@ -373,8 +373,8 @@ def _set_search_paths(
 
     framework_build_setting_paths = {}
     for file in frameworks:
-        search_path = file.dirname
-        xcode_generated_path = xcode_generated_paths.get(file)
+        search_path = paths.dirname(file.dirname)
+        xcode_generated_path = xcode_generated_paths.get(file.path)
         if xcode_generated_path:
             framework_build_setting_paths.setdefault(search_path, {})[True] = (
                 paths.dirname(xcode_generated_path)
@@ -398,6 +398,7 @@ def _set_search_paths(
     for path in search_paths_intermediate.framework_includes:
         search_paths = framework_build_setting_paths.get(path)
         if not search_paths:
+            # Imported frameworks
             if build_mode == "xcode":
                 framework_search_paths.append(build_setting_path(path = path))
             else:
