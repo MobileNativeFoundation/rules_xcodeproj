@@ -404,9 +404,6 @@ extension Generator {
                 allInputPaths.insert(infoPlist)
             }
             allInputPaths.formUnion(target.inputs.all)
-            // We use .nonGenerated instead of .all because generated files will
-            // be collected via product outputs, or `extraFiles`
-            allInputPaths.formUnion(target.linkerInputs.nonGenerated)
             allInputPaths.formUnion(
                 target.outputs.forcedBazelCompileFiles(buildMode: buildMode)
             )
