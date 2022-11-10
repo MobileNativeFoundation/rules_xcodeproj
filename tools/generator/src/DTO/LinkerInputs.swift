@@ -13,12 +13,6 @@ struct LinkerInputs: Equatable {
     }
 }
 
-extension LinkerInputs {
-    var nonGenerated: Set<FilePath> {
-        return Set(dynamicFrameworks.filter { $0.type != .generated })
-    }
-}
-
 // MARK: - Decodable
 
 extension LinkerInputs: Decodable {

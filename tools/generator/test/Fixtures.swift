@@ -31,6 +31,7 @@ enum Fixtures {
             "a/a.h",
             "a/c.h",
             "a/d/a.h",
+            "a/Fram.framework",
             "a/imported.a",
             "a/module.modulemap",
             "a/StaticFram.framework",
