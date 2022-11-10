@@ -268,13 +268,12 @@
             "linker_inputs": {
                 "linkopts": [
                     "-lc++",
-                    "-headerpad_max_install_names",
-                    "-no-canonical-prefixes",
-                    "-lc++",
+                    "-Wl,-force_load,bazel-out/darwin_x86_64-dbg-ST-3688109ddba2/bin/lib/liblib_impl.lo",
                     "bazel-out/darwin_x86_64-dbg-ST-3688109ddba2/bin/lib2/liblib_impl.a",
                     "bazel-out/darwin_x86_64-dbg-ST-3688109ddba2/bin/external/examples_cc_external/liblib_impl.a",
-                    "-force_load",
-                    "bazel-out/darwin_x86_64-dbg-ST-3688109ddba2/bin/lib/liblib_impl.lo"
+                    "-headerpad_max_install_names",
+                    "-no-canonical-prefixes",
+                    "-lc++"
                 ]
             },
             "name": "tool",

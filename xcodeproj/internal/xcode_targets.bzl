@@ -785,46 +785,48 @@ def _linker_inputs_to_dto(
         ],
     )
 
-    if xcode_generated_paths:
-        swift_triple = platform_info.to_swift_triple(platform)
+    avoid_library_path = avoid_library.path if avoid_library else None
+    swift_triple = platform_info.to_swift_triple(platform)
 
-        def _process_linkopt_value(value):
-            xcode_path = xcode_generated_paths.get(value)
-            if not xcode_path:
-                return value
-            if paths.split_extension(xcode_path)[1] != ".swiftmodule":
-                return xcode_path
-            return "{}/{}.swiftmodule".format(xcode_path, swift_triple)
+    def _process_linkopt_value(value):
+        if value == avoid_library_path:
+            return None
 
-        def _process_linkopt_component(component):
-            prefix, sep, suffix = component.partition("=")
-            if not sep:
-                return _process_linkopt_value(component)
-            return "{}={}".format(prefix, _process_linkopt_value(suffix))
+        xcode_path = xcode_generated_paths.get(value)
+        if not xcode_path:
+            return value
+        if paths.split_extension(xcode_path)[1] != ".swiftmodule":
+            return xcode_path
+        return "{}/{}.swiftmodule".format(xcode_path, swift_triple)
 
-        def _process_linkopt(linkopt):
-            return ",".join([
-                _process_linkopt_component(component)
-                for component in linkopt.split(",")
-            ])
+    def _process_linkopt_component(component):
+        prefix, sep, suffix = component.partition("=")
+        if not sep:
+            return _process_linkopt_value(component)
+        value = _process_linkopt_value(suffix)
+        if not value:
+            return None
+        return "{}={}".format(prefix, value)
 
-        linkopts = [_process_linkopt(opt) for opt in linker_inputs.linkopts]
-    else:
-        linkopts = list(linker_inputs.linkopts)
+    def _process_linkopt(linkopt):
+        components = []
+        for component in linkopt.split(","):
+            component = _process_linkopt_component(component)
+            if not component:
+                return None
+            components.append(component)
+        return ",".join(components)
 
-    linkopts.extend([
-        quote_if_needed(xcode_generated_paths.get(file.path, file.path))
-        for file in linker_inputs.static_libraries
-        if file != avoid_library
-    ])
-
-    for file in linker_inputs.force_load_libraries:
-        if file == avoid_library:
+    linkopts = []
+    for opt in linker_inputs.linkopts:
+        opt = _process_linkopt(opt)
+        if not opt:
+            if linkopts and linkopts[-1] == "-force_load":
+                # We only skip linkopts for libraries, so we need to check if
+                # the previous linkopt was "-force_load" and remove it
+                linkopts.pop()
             continue
-        path = file.path
-        path = xcode_generated_paths.get(path, path)
-        linkopts.append("-force_load")
-        linkopts.append(quote_if_needed(path))
+        linkopts.append(opt)
 
     set_if_true(ret, "linkopts", linkopts)
 
