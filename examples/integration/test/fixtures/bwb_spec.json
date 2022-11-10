@@ -917,12 +917,6 @@
                     "-no-canonical-prefixes",
                     "-framework",
                     "Foundation"
-                ],
-                "static_frameworks": [
-                    {
-                        "_": "examples_command_line_external/ExternalFramework.framework",
-                        "t": "e"
-                    }
                 ]
             },
             "lldb_context": {
@@ -1409,12 +1403,6 @@
                     "-no-canonical-prefixes",
                     "-framework",
                     "Foundation"
-                ],
-                "static_frameworks": [
-                    {
-                        "_": "examples_command_line_external/ExternalFramework.framework",
-                        "t": "e"
-                    }
                 ]
             },
             "lldb_context": {
@@ -5813,20 +5801,6 @@
                     "Foundation",
                     "-framework",
                     "UIKit"
-                ],
-                "static_frameworks": [
-                    {
-                        "_": "com_google_google_maps/GoogleMaps.xcframework/ios-arm64/GoogleMaps.framework",
-                        "t": "e"
-                    },
-                    {
-                        "_": "com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64/GoogleMapsCore.framework",
-                        "t": "e"
-                    },
-                    {
-                        "_": "com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64/GoogleMapsBase.framework",
-                        "t": "e"
-                    }
                 ]
             },
             "lldb_context": {
@@ -6133,20 +6107,6 @@
                     "Foundation",
                     "-framework",
                     "UIKit"
-                ],
-                "static_frameworks": [
-                    {
-                        "_": "com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator/GoogleMaps.framework",
-                        "t": "e"
-                    },
-                    {
-                        "_": "com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator/GoogleMapsCore.framework",
-                        "t": "e"
-                    },
-                    {
-                        "_": "com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator/GoogleMapsBase.framework",
-                        "t": "e"
-                    }
                 ]
             },
             "lldb_context": {

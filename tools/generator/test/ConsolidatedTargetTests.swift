@@ -15,7 +15,6 @@ final class ConsolidatedTargetTests: XCTestCase {
                 resources: ["bbb"]
             ),
             linkerInputs: .init(
-                staticFrameworks: ["z", "00", "x"],
                 dynamicFrameworks: ["yy"]
             )
         ),
@@ -29,7 +28,6 @@ final class ConsolidatedTargetTests: XCTestCase {
                 resources: ["aaa", "bbb"]
             ),
             linkerInputs: .init(
-                staticFrameworks: ["z", "11", "x"],
                 dynamicFrameworks: ["xx", "yy"]
             )
         ),
@@ -43,7 +41,6 @@ final class ConsolidatedTargetTests: XCTestCase {
                 resources: ["ccc", "bbb"]
             ),
             linkerInputs: .init(
-                staticFrameworks: ["z", "22", "x"],
                 dynamicFrameworks: ["yy", "zz"]
             )
         ),
@@ -77,8 +74,6 @@ final class ConsolidatedTargetTests: XCTestCase {
 
         let targets = Self.targets
         let expectedLinkerInputs = ConsolidatedTargetLinkerInputs(
-            // Conditionals in middle
-            staticFrameworks: ["z", "11", "00", "22", "x"],
             // Conditionals on the outsides
             dynamicFrameworks: ["xx", "yy", "zz"]
         )

@@ -1,16 +1,13 @@
 import OrderedCollections
 
 struct LinkerInputs: Equatable {
-    let staticFrameworks: [FilePath]
     let dynamicFrameworks: [FilePath]
     let linkopts: [String]
 
     init(
-        staticFrameworks: [FilePath] = [],
         dynamicFrameworks: [FilePath] = [],
         linkopts: [String] = []
     ) {
-        self.staticFrameworks = staticFrameworks
         self.dynamicFrameworks = dynamicFrameworks
         self.linkopts = linkopts
     }
@@ -18,8 +15,7 @@ struct LinkerInputs: Equatable {
 
 extension LinkerInputs {
     var nonGenerated: Set<FilePath> {
-        return Set(staticFrameworks.filter { $0.type != .generated })
-            .union(Set(dynamicFrameworks.filter { $0.type != .generated }))
+        return Set(dynamicFrameworks.filter { $0.type != .generated })
     }
 }
 
@@ -27,7 +23,6 @@ extension LinkerInputs {
 
 extension LinkerInputs: Decodable {
     enum CodingKeys: String, CodingKey {
-        case staticFrameworks
         case dynamicFrameworks
         case linkopts
     }
@@ -35,7 +30,6 @@ extension LinkerInputs: Decodable {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        staticFrameworks = try container.decodeFilePaths(.staticFrameworks)
         dynamicFrameworks = try container.decodeFilePaths(.dynamicFrameworks)
         linkopts = try container
             .decodeIfPresent([String].self, forKey: .linkopts) ?? []

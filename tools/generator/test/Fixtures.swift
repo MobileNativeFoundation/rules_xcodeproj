@@ -33,6 +33,7 @@ enum Fixtures {
             "a/d/a.h",
             "a/imported.a",
             "a/module.modulemap",
+            "a/StaticFram.framework",
             .generated("v/a.txt", includeInNavigator: false),
         ],
         schemeAutogenerationMode: .auto,
@@ -159,7 +160,6 @@ enum Fixtures {
             ),
             testHost: "A 2",
             linkerInputs: .init(
-                staticFrameworks: ["a/StaticFram.framework"],
                 dynamicFrameworks: [.generated("a/frameworks/b.framework")],
                 linkopts: ["-framework", "StaticFram", "-framework", "b"]
             ),
@@ -174,7 +174,6 @@ enum Fixtures {
             ),
             testHost: "A 2",
             linkerInputs: .init(
-                staticFrameworks: ["a/StaticFram.framework"],
                 linkopts: ["-framework", "StaticFram"]
             ),
             dependencies: ["A 2", "B 1"]
