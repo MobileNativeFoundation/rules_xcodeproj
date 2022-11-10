@@ -362,7 +362,7 @@ Expected `PreconditionError`, but was \(String(describing: thrown)).
 class XcodeSchemeTests: XCTestCase {
     let schemeName = "Foo"
 
-    let directories = FilePathResolver.Directories(
+    let directories = Directories(
         workspace: "/Users/TimApple/app",
         projectRoot: "/Users/TimApple",
         external: "bazel-output-base/execroot/_rules_xcodeproj/build_output_base/external",
@@ -370,13 +370,10 @@ class XcodeSchemeTests: XCTestCase {
         internalDirectoryName: "rules_xcodeproj",
         workspaceOutput: "examples/foo/Foo.xcodeproj"
     )
-    lazy var filePathResolver = FilePathResolver(
-        directories: directories
-    )
 
     lazy var targetResolver = Fixtures.targetResolver(
         directories: directories,
-        referencedContainer: filePathResolver.containerReference
+        referencedContainer: directories.containerReference
     )
 
     lazy var macOSAppLabel = targetResolver.targets["A 2"]!.label

@@ -10,7 +10,7 @@ extension XCSchemeInfoTargetInfoTests {
         XCTAssertEqual(libraryTargetInfo.pbxTarget, libraryPBXTarget)
         XCTAssertEqual(libraryTargetInfo.buildableReference, .init(
             pbxTarget: libraryPBXTarget,
-            referencedContainer: filePathResolver.containerReference
+            referencedContainer: directories.containerReference
         ))
         XCTAssertEqual(
             libraryTargetInfoWithHosts.hostInfos,
@@ -27,7 +27,7 @@ extension XCSchemeInfoTargetInfoTests {
         let targetInfo = XCSchemeInfo.TargetInfo(
             pbxTarget: libraryPBXTarget,
             platforms: [libraryPlatform],
-            referencedContainer: filePathResolver.containerReference,
+            referencedContainer: directories.containerReference,
             hostInfos: [],
             extensionPointIdentifiers: []
         )
@@ -44,7 +44,7 @@ extension XCSchemeInfoTargetInfoTests {
         let targetInfo = XCSchemeInfo.TargetInfo(
             pbxTarget: libraryPBXTarget,
             platforms: [libraryPlatform],
-            referencedContainer: filePathResolver.containerReference,
+            referencedContainer: directories.containerReference,
             hostInfos: [appHostInfo, anotherAppHostInfo],
             extensionPointIdentifiers: []
         )
@@ -66,7 +66,7 @@ extension XCSchemeInfoTargetInfoTests {
             .init(
                 pbxTarget: anotherAppPBXTarget,
                 platforms: [anotherAppPlatform],
-                referencedContainer: filePathResolver.containerReference,
+                referencedContainer: directories.containerReference,
                 hostInfos: [],
                 extensionPointIdentifiers: []
             ),
@@ -74,7 +74,7 @@ extension XCSchemeInfoTargetInfoTests {
         let targetInfo = XCSchemeInfo.TargetInfo(
             pbxTarget: libraryPBXTarget,
             platforms: [libraryPlatform],
-            referencedContainer: filePathResolver.containerReference,
+            referencedContainer: directories.containerReference,
             hostInfos: [appHostInfo, anotherAppHostInfo],
             extensionPointIdentifiers: []
         )
@@ -170,7 +170,7 @@ extension XCSchemeInfoTargetInfoTests {
         let targetInfo = XCSchemeInfo.TargetInfo(
             pbxTarget: pbxTarget,
             platforms: [.device(os: .iOS)],
-            referencedContainer: filePathResolver.containerReference,
+            referencedContainer: directories.containerReference,
             hostInfos: [],
             extensionPointIdentifiers: []
         )
@@ -238,16 +238,13 @@ extension XCSchemeInfoTargetInfoTests {
 // MARK: - Test Data
 
 class XCSchemeInfoTargetInfoTests: XCTestCase {
-    let directories = FilePathResolver.Directories(
+    let directories = Directories(
         workspace: "/Users/TimApple/app",
         projectRoot: "/Users/TimApple",
         external: "bazel-output-base/execroot/_rules_xcodeproj/build_output_base/external",
         bazelOut: "bazel-output-base/execroot/_rules_xcodeproj/build_output_base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out",
         internalDirectoryName: "rules_xcodeproj",
         workspaceOutput: "examples/foo/Foo.xcodeproj"
-    )
-    lazy var filePathResolver = FilePathResolver(
-        directories: directories
     )
 
     lazy var pbxTargetsDict: [ConsolidatedTarget.Key: PBXTarget] =
@@ -275,13 +272,13 @@ class XCSchemeInfoTargetInfoTests: XCTestCase {
     lazy var appHostInfo = XCSchemeInfo.HostInfo(
         pbxTarget: appPBXTarget,
         platforms: [appPlatform],
-        referencedContainer: filePathResolver.containerReference,
+        referencedContainer: directories.containerReference,
         index: 0
     )
     lazy var anotherAppHostInfo = XCSchemeInfo.HostInfo(
         pbxTarget: anotherAppPBXTarget,
         platforms: [anotherAppPlatform],
-        referencedContainer: filePathResolver.containerReference,
+        referencedContainer: directories.containerReference,
         index: 1
     )
 
@@ -289,7 +286,7 @@ class XCSchemeInfoTargetInfoTests: XCTestCase {
         resolveHostFor: .init(
             pbxTarget: appPBXTarget,
             platforms: [appPlatform],
-            referencedContainer: filePathResolver.containerReference,
+            referencedContainer: directories.containerReference,
             hostInfos: [],
             extensionPointIdentifiers: []
         ),
@@ -298,21 +295,21 @@ class XCSchemeInfoTargetInfoTests: XCTestCase {
     lazy var widgetKitExtTargetInfo = XCSchemeInfo.TargetInfo(
         pbxTarget: widgetKitExtPBXTarget,
         platforms: [widgetKitExtPlatform],
-        referencedContainer: filePathResolver.containerReference,
+        referencedContainer: directories.containerReference,
         hostInfos: [],
         extensionPointIdentifiers: [Fixtures.extensionPointIdentifiers["WDKE"]!]
     )
     lazy var unresolvedLibraryTargetInfo = XCSchemeInfo.TargetInfo(
         pbxTarget: libraryPBXTarget,
         platforms: [libraryPlatform],
-        referencedContainer: filePathResolver.containerReference,
+        referencedContainer: directories.containerReference,
         hostInfos: [],
         extensionPointIdentifiers: []
     )
     lazy var unresolvedLibraryTargetInfoWithHosts = XCSchemeInfo.TargetInfo(
         pbxTarget: libraryPBXTarget,
         platforms: [libraryPlatform],
-        referencedContainer: filePathResolver.containerReference,
+        referencedContainer: directories.containerReference,
         // Puprposefully specified appHostInfo twice
         hostInfos: [appHostInfo, anotherAppHostInfo, appHostInfo],
         extensionPointIdentifiers: []
@@ -329,7 +326,7 @@ class XCSchemeInfoTargetInfoTests: XCTestCase {
         resolveHostFor: .init(
             pbxTarget: unitTestPBXTarget,
             platforms: [unitTestPlatform],
-            referencedContainer: filePathResolver.containerReference,
+            referencedContainer: directories.containerReference,
             hostInfos: [appHostInfo],
             extensionPointIdentifiers: []
         ),
@@ -339,7 +336,7 @@ class XCSchemeInfoTargetInfoTests: XCTestCase {
         resolveHostFor: .init(
             pbxTarget: unitTestPBXTarget,
             platforms: [unitTestPlatform],
-            referencedContainer: filePathResolver.containerReference,
+            referencedContainer: directories.containerReference,
             hostInfos: [],
             extensionPointIdentifiers: []
         ),
@@ -349,7 +346,7 @@ class XCSchemeInfoTargetInfoTests: XCTestCase {
         resolveHostFor: .init(
             pbxTarget: watchAppPBXTarget,
             platforms: [watchAppPlatform],
-            referencedContainer: filePathResolver.containerReference,
+            referencedContainer: directories.containerReference,
             hostInfos: [appHostInfo],
             extensionPointIdentifiers: []
         ),

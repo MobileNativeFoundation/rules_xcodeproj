@@ -210,7 +210,7 @@ class XCSchemeInfoTests: XCTestCase {
 
     let runnerLabel = BazelLabel("//foo")
 
-    let directories = FilePathResolver.Directories(
+    let directories = Directories(
         workspace: "/Users/TimApple/app",
         projectRoot: "/Users/TimApple",
         external: "bazel-output-base/execroot/_rules_xcodeproj/build_output_base/external",
@@ -218,13 +218,10 @@ class XCSchemeInfoTests: XCTestCase {
         internalDirectoryName: "rules_xcodeproj",
         workspaceOutput: "examples/foo/Foo.xcodeproj"
     )
-    lazy var filePathResolver = FilePathResolver(
-        directories: directories
-    )
 
     lazy var targetResolver = Fixtures.targetResolver(
         directories: directories,
-        referencedContainer: filePathResolver.containerReference
+        referencedContainer: directories.containerReference
     )
 
     lazy var pbxTargetsDict = targetResolver.pbxTargets
@@ -242,35 +239,35 @@ class XCSchemeInfoTests: XCTestCase {
     lazy var appHostInfo = XCSchemeInfo.HostInfo(
         pbxTarget: appPBXTarget,
         platforms: [appPlatform],
-        referencedContainer: filePathResolver.containerReference,
+        referencedContainer: directories.containerReference,
         index: 0
     )
 
     lazy var libraryTargetInfo = XCSchemeInfo.TargetInfo(
         pbxTarget: libraryPBXTarget,
         platforms: [libraryPlatform],
-        referencedContainer: filePathResolver.containerReference,
+        referencedContainer: directories.containerReference,
         hostInfos: [],
         extensionPointIdentifiers: []
     )
     lazy var appTargetInfo = XCSchemeInfo.TargetInfo(
         pbxTarget: appPBXTarget,
         platforms: [appPlatform],
-        referencedContainer: filePathResolver.containerReference,
+        referencedContainer: directories.containerReference,
         hostInfos: [],
         extensionPointIdentifiers: []
     )
     lazy var unitTestTargetInfo = XCSchemeInfo.TargetInfo(
         pbxTarget: unitTestPBXTarget,
         platforms: [unitTestPlatform],
-        referencedContainer: filePathResolver.containerReference,
+        referencedContainer: directories.containerReference,
         hostInfos: [appHostInfo],
         extensionPointIdentifiers: []
     )
     lazy var widgetKitExtTargetInfo = XCSchemeInfo.TargetInfo(
         pbxTarget: widgetKitExtPBXTarget,
         platforms: [widgetKitExtPlatform],
-        referencedContainer: filePathResolver.containerReference,
+        referencedContainer: directories.containerReference,
         hostInfos: [],
         extensionPointIdentifiers: [Fixtures.extensionPointIdentifiers["WDKE"]!]
     )

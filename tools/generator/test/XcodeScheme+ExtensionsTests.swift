@@ -501,7 +501,7 @@ class XcodeSchemeExtensionsTests: XCTestCase {
             .init(name: "watchOSApp", productType: .watch2App),
     ]
 
-    let directories = FilePathResolver.Directories(
+    let directories = Directories(
         workspace: "/Users/TimApple/app",
         projectRoot: "/Users/TimApple",
         external: "bazel-output-base/execroot/_rules_xcodeproj/build_output_base/external",
@@ -509,13 +509,10 @@ class XcodeSchemeExtensionsTests: XCTestCase {
         internalDirectoryName: "rules_xcodeproj",
         workspaceOutput: "examples/foo/Foo.xcodeproj"
     )
-    lazy var filePathResolver = FilePathResolver(
-        directories: directories
-    )
 
     // swiftlint:disable:next force_try
     lazy var targetResolver = try! TargetResolver(
-        referencedContainer: filePathResolver.containerReference,
+        referencedContainer: directories.containerReference,
         targets: targets,
         targetHosts: [:],
         extensionPointIdentifiers: [:],

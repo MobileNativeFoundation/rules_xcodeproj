@@ -54,7 +54,7 @@ final class GeneratorTests: XCTestCase {
         let workspaceOutputPath: Path = "P.xcodeproj"
         let outputPath: Path = "P.xcodeproj"
 
-        let directories = FilePathResolver.Directories(
+        let directories = Directories(
             workspace: workspaceDirectory,
             projectRoot: projectRootDirectory,
             external: externalDirectory,
@@ -154,7 +154,7 @@ final class GeneratorTests: XCTestCase {
         let (
             files,
             filesAndGroups,
-            filePathResolver,
+            xcodeGeneratedFiles,
             resolvedExternalRepositories
         ) = Fixtures.files(
             in: pbxProj,
@@ -174,7 +174,7 @@ final class GeneratorTests: XCTestCase {
             "WKE": PBXNativeTarget(name: "WKE (3456a)"),
         ]
         let targetResolver = try TargetResolver(
-            referencedContainer: filePathResolver.containerReference,
+            referencedContainer: directories.containerReference,
             targets: replacedLabelsTargets,
             targetHosts: project.targetHosts,
             extensionPointIdentifiers: extensionPointIdentifiers,
@@ -207,7 +207,7 @@ final class GeneratorTests: XCTestCase {
         struct CreateProjectCalled: Equatable {
             let buildMode: BuildMode
             let project: Project
-            let directories: FilePathResolver.Directories
+            let directories: Directories
         }
 
         var createProjectCalled: [CreateProjectCalled] = []
@@ -215,7 +215,7 @@ final class GeneratorTests: XCTestCase {
             buildMode: BuildMode,
             _forFixtures: Bool,
             project: Project,
-            directories: FilePathResolver.Directories
+            directories: Directories
         ) -> PBXProj {
             createProjectCalled.append(.init(
                 buildMode: buildMode,
@@ -267,7 +267,7 @@ final class GeneratorTests: XCTestCase {
             let targets: [TargetID: Target]
             let extraFiles: Set<FilePath>
             let xccurrentversions: [XCCurrentVersion]
-            let directories: FilePathResolver.Directories
+            let directories: Directories
         }
 
         var createFilesAndGroupsCalled: [CreateFilesAndGroupsCalled] = []
@@ -279,12 +279,12 @@ final class GeneratorTests: XCTestCase {
             targets: [TargetID: Target],
             extraFiles: Set<FilePath>,
             xccurrentversions: [XCCurrentVersion],
-            directories: FilePathResolver.Directories,
+            directories: Directories,
             logger _: Logger
         ) -> (
             files: [FilePath: File],
             rootElements: [PBXFileElement],
-            filePathResolver: FilePathResolver,
+            xcodeGeneratedFiles: [FilePath: FilePath],
             resolvedExternalRepositories: [(Path, Path)]
         ) {
             createFilesAndGroupsCalled.append(.init(
@@ -299,7 +299,7 @@ final class GeneratorTests: XCTestCase {
             return (
                 files,
                 rootElements,
-                filePathResolver,
+                xcodeGeneratedFiles,
                 resolvedExternalRepositories
             )
         }
@@ -336,7 +336,7 @@ final class GeneratorTests: XCTestCase {
 
         let expectedConsolidateTargetsCalled = [ConsolidateTargetsCalled(
             targets: replacedLabelsTargets,
-            xcodeGeneratedFiles: filePathResolver.xcodeGeneratedFiles
+            xcodeGeneratedFiles: xcodeGeneratedFiles
         )]
 
         // MARK: createProducts()
@@ -706,7 +706,7 @@ final class GeneratorTests: XCTestCase {
 
         struct WriteXcodeProjCalled: Equatable {
             let xcodeProj: XcodeProj
-            let directories: FilePathResolver.Directories
+            let directories: Directories
             let files: [FilePath: File]
             let outputPath: Path
         }
@@ -714,7 +714,7 @@ final class GeneratorTests: XCTestCase {
         var writeXcodeProjCalled: [WriteXcodeProjCalled] = []
         func writeXcodeProj(
             xcodeProj: XcodeProj,
-            directories: FilePathResolver.Directories,
+            directories: Directories,
             files: [FilePath: File],
             to outputPath: Path
         ) {

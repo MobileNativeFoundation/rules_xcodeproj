@@ -436,12 +436,12 @@ enum Fixtures {
     static func files(
         in pbxProj: PBXProj,
         buildMode: BuildMode,
-        directories: FilePathResolver.Directories,
+        directories: Directories,
         parentGroup group: PBXGroup? = nil
     ) -> (
         files: [FilePath: File],
         elements: [FilePath: PBXFileElement],
-        filePathResolver: FilePathResolver,
+        xcodeGeneratedFiles: [FilePath: FilePath],
         resolvedExternalRepositories: [(Path, Path)]
     ) {
         var elements: [FilePath: PBXFileElement] = [:]
@@ -1249,12 +1249,7 @@ class StopHook:
             xcodeGeneratedFiles = [:]
         }
 
-        let filePathResolver = FilePathResolver(
-            directories: directories,
-            xcodeGeneratedFiles: xcodeGeneratedFiles
-        )
-
-        return (files, elements, filePathResolver, [])
+        return (files, elements, xcodeGeneratedFiles, [])
     }
 
     static func products(
@@ -2040,12 +2035,12 @@ touch "$SCRIPT_OUTPUT_FILE_1"
     static func pbxTargets(
         in pbxProj: PBXProj,
         buildMode: BuildMode = .xcode,
-        directories: FilePathResolver.Directories,
+        directories: Directories,
         consolidatedTargets: ConsolidatedTargets
     ) -> (
         pbxTargets: [ConsolidatedTarget.Key: PBXTarget],
         disambiguatedTargets: DisambiguatedTargets,
-        filePathResolver: FilePathResolver
+        xcodeGeneratedFiles: [FilePath: FilePath]
     ) {
         let pbxProject = pbxProj.rootObject!
         let mainGroup = pbxProject.mainGroup!
@@ -2053,7 +2048,7 @@ touch "$SCRIPT_OUTPUT_FILE_1"
         let (
             files,
             _,
-            filePathResolver,
+            xcodeGeneratedFiles,
             _
         ) = Fixtures.files(
             in: pbxProj,
@@ -2083,14 +2078,14 @@ touch "$SCRIPT_OUTPUT_FILE_1"
         return (
             pbxTargets,
             disambiguatedTargets,
-            filePathResolver
+            xcodeGeneratedFiles
         )
     }
 
     static func pbxTargetsWithConfigurations(
         in pbxProj: PBXProj,
         buildMode: BuildMode = .xcode,
-        directories: FilePathResolver.Directories,
+        directories: Directories,
         consolidatedTargets: ConsolidatedTargets
     ) -> [ConsolidatedTarget.Key: PBXTarget] {
         let (pbxTargets, _, _) = Fixtures.pbxTargets(
@@ -2605,7 +2600,7 @@ $(MACOSX_FILES)
 
     static func pbxTargetsWithDependencies(
         in pbxProj: PBXProj,
-        directories: FilePathResolver.Directories,
+        directories: Directories,
         consolidatedTargets: ConsolidatedTargets
     ) -> [ConsolidatedTarget.Key: PBXTarget] {
         let (pbxTargets, _, _) = Fixtures.pbxTargets(
@@ -2650,7 +2645,7 @@ $(MACOSX_FILES)
     }
 
     static func targetResolver(
-        directories: FilePathResolver.Directories,
+        directories: Directories,
         referencedContainer: String
     ) -> TargetResolver {
         // swiftlint:disable:next force_try

@@ -44,7 +44,7 @@ class Generator {
         project: Project,
         xccurrentversions: [XCCurrentVersion],
         extensionPointIdentifiers: [TargetID: ExtensionPointIdentifier],
-        directories: FilePathResolver.Directories,
+        directories: Directories,
         outputPath: Path
     ) throws {
         let pbxProj = environment.createProject(
@@ -76,7 +76,7 @@ class Generator {
         let (
             files,
             rootElements,
-            filePathResolver,
+            xcodeGeneratedFiles,
             resolvedExternalRepositories
         ) = try environment.createFilesAndGroups(
             pbxProj,
@@ -92,7 +92,7 @@ class Generator {
 
         let consolidatedTargets = try environment.consolidateTargets(
             targets,
-            filePathResolver.xcodeGeneratedFiles,
+            xcodeGeneratedFiles,
             logger
         )
         let (products, productsGroup) = environment.createProducts(
@@ -147,7 +147,7 @@ class Generator {
         )
 
         let targetResolver = try TargetResolver(
-            referencedContainer: filePathResolver.containerReference,
+            referencedContainer: directories.containerReference,
             targets: targets,
             targetHosts: project.targetHosts,
             extensionPointIdentifiers: extensionPointIdentifiers,

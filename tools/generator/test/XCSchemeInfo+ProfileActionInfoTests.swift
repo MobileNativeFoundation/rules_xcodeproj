@@ -88,7 +88,7 @@ class XCSchemeInfoProfileActionInfoTests: XCTestCase {
 
     let runnerLabel = BazelLabel("//foo")
 
-    let directories = FilePathResolver.Directories(
+    let directories = Directories(
         workspace: "/Users/TimApple/app",
         projectRoot: "/Users/TimApple",
         external: "bazel-output-base/execroot/_rules_xcodeproj/build_output_base/external",
@@ -96,13 +96,10 @@ class XCSchemeInfoProfileActionInfoTests: XCTestCase {
         internalDirectoryName: "rules_xcodeproj",
         workspaceOutput: "examples/foo/Foo.xcodeproj"
     )
-    lazy var filePathResolver = FilePathResolver(
-        directories: directories
-    )
 
     lazy var targetResolver = Fixtures.targetResolver(
         directories: directories,
-        referencedContainer: filePathResolver.containerReference
+        referencedContainer: directories.containerReference
     )
 
     lazy var pbxTargetsDict = targetResolver.pbxTargets
@@ -114,7 +111,7 @@ class XCSchemeInfoProfileActionInfoTests: XCTestCase {
     lazy var appTargetInfo = XCSchemeInfo.TargetInfo(
         pbxTarget: appTarget,
         platforms: [appPlatform],
-        referencedContainer: filePathResolver.containerReference,
+        referencedContainer: directories.containerReference,
         hostInfos: [],
         extensionPointIdentifiers: []
     )

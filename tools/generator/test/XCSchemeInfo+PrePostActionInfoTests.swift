@@ -18,16 +18,13 @@ final class XCSchemeInfoPrePostActionInfoTests: XCTestCase {
         launchAction: .init(target: targetResolver.targets["A 2"]!.label)
     )
     
-    let directories = FilePathResolver.Directories(
+    let directories = Directories(
         workspace: "/Users/TimApple/app",
         projectRoot: "/Users/TimApple",
         external: "bazel-output-base/execroot/_rules_xcodeproj/build_output_base/external",
         bazelOut: "bazel-output-base/execroot/_rules_xcodeproj/build_output_base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out",
         internalDirectoryName: "rules_xcodeproj",
         workspaceOutput: "examples/foo/Foo.xcodeproj"
-    )
-    lazy var filePathResolver = FilePathResolver(
-        directories: directories
     )
     
     lazy var appTargetInfo = XCSchemeInfo.TargetInfo(
@@ -46,14 +43,14 @@ final class XCSchemeInfoPrePostActionInfoTests: XCTestCase {
     lazy var unresolvedLibraryTargetInfo = XCSchemeInfo.TargetInfo(
         pbxTarget: libraryPBXTarget,
         platforms: [libraryPlatform],
-        referencedContainer: filePathResolver.containerReference,
+        referencedContainer: directories.containerReference,
         hostInfos: [],
         extensionPointIdentifiers: []
     )
 
     lazy var targetResolver = Fixtures.targetResolver(
         directories: directories,
-        referencedContainer: filePathResolver.containerReference
+        referencedContainer: directories.containerReference
     )
 
     lazy var anotherAppPBXTarget = pbxTargetsDict["I"]!
@@ -63,7 +60,7 @@ final class XCSchemeInfoPrePostActionInfoTests: XCTestCase {
     lazy var appHostInfo = XCSchemeInfo.HostInfo(
         pbxTarget: anotherAppPBXTarget,
         platforms: [anotherAppPlatform],
-        referencedContainer: filePathResolver.containerReference,
+        referencedContainer: directories.containerReference,
         index: 0
     )
 }
@@ -247,7 +244,7 @@ extension XCSchemeInfoPrePostActionInfoTests {
             .init(
                 pbxTarget: anotherAppPBXTarget,
                 platforms: [anotherAppPlatform],
-                referencedContainer: filePathResolver.containerReference,
+                referencedContainer: directories.containerReference,
                 hostInfos: [appHostInfo],
                 extensionPointIdentifiers: []
             ),
@@ -262,7 +259,7 @@ extension XCSchemeInfoPrePostActionInfoTests {
         let expectedTargetInfo = XCSchemeInfo.TargetInfo(
             pbxTarget: pbxTargetsDict["W"]!,
             platforms: [Fixtures.targets["W"]!.platform],
-            referencedContainer: filePathResolver.containerReference,
+            referencedContainer: directories.containerReference,
             hostInfos: [appHostInfo],
             extensionPointIdentifiers: []
         )

@@ -24,7 +24,7 @@ final class AddTargetsTests: XCTestCase {
         let internalDirectoryName = "rules_xcp"
         let workspaceOutputPath: Path = "Project.xcodeproj"
 
-        let directories = FilePathResolver.Directories(
+        let directories = Directories(
             workspace: workspaceDirectory,
             projectRoot: projectRootDirectory,
             external: externalDirectory,
