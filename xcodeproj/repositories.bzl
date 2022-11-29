@@ -72,11 +72,14 @@ def xcodeproj_rules_dependencies(
         ignore_version_differences = ignore_version_differences,
     )
 
+    # TODO: Change to 1.3.1+ once released. This is basically 1.3.0, with a dev
+    # only fix as part of it. https://github.com/buildbuddy-io/rules_xcodeproj/pull/1454.
     _maybe(
         http_archive,
         name = "build_bazel_rules_swift",
-        sha256 = "51efdaf85e04e51174de76ef563f255451d5a5cd24c61ad902feeadafc7046d9",
-        url = "https://github.com/bazelbuild/rules_swift/releases/download/1.2.0/rules_swift.1.2.0.tar.gz",
+        sha256 = "602ce3e8389e5da4fb9ca6da32fe81430ee5a2b11c89208cc52bdf471bdaa64e",
+        strip_prefix = "rules_swift-e0009f99e767c8ca962c22a849849f0c3c7d814c",
+        url = "https://github.com/bazelbuild/rules_swift/archive/e0009f99e767c8ca962c22a849849f0c3c7d814c.tar.gz",
         ignore_version_differences = ignore_version_differences,
     )
 
