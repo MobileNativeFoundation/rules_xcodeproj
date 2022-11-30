@@ -131,6 +131,7 @@ def _create(
             name = "bi",
             files = transitive_indexestores,
         )
+
         # We don't want to declare indexstore files as outputs, because they
         # expand to individual files and blow up the BEP
         indexstores_files = depset([indexstores_filelist])
