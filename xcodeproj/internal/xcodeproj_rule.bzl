@@ -1090,6 +1090,7 @@ def _xcodeproj_impl(ctx):
     configuration = get_configuration(ctx = ctx)
 
     outputs = output_files.merge(
+        ctx = ctx,
         automatic_target_info = None,
         transitive_infos = [(None, info) for info in infos],
     )

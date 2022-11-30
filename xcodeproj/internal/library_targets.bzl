@@ -126,6 +126,7 @@ def process_library_target(
         transitive_infos = transitive_infos,
     )
     outputs = output_files.collect(
+        ctx = ctx,
         id = id,
         swift_info = swift_info,
         transitive_infos = transitive_infos,

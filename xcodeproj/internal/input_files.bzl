@@ -496,9 +496,20 @@ def _collect_input_files(
         compiling_output_group_name = "xc {}".format(id)
         indexstores_output_group_name = "xi {}".format(id)
         linking_output_group_name = "xl {}".format(id)
+
+        indexstores_filelist = filelists.write(
+            ctx = ctx,
+            rule_name = ctx.rule.attr.name,
+            name = "xi",
+            files = indexstores_depset,
+        )
+        # We don't want to declare indexstore files as outputs, because they
+        # expand to individual files and blow up the BEP
+        indexstores_files = depset([indexstores_filelist])
+
         direct_group_list = [
             (compiling_output_group_name, False, generated_depset),
-            (indexstores_output_group_name, True, indexstores_depset),
+            (indexstores_output_group_name, True, indexstores_files),
             (linking_output_group_name, False, depset()),
         ]
     else:
@@ -776,7 +787,6 @@ def _merge_input_files(*, transitive_infos, extra_generated = None):
 
 def _process_output_group_files(
         *,
-        ctx,
         files,
         is_indexstores,
         output_group_name,
@@ -787,22 +797,11 @@ def _process_output_group_files(
     generated_depsets = list(additional_generated.get(output_group_name, []))
 
     if is_indexstores:
-        filelist = filelists.write(
-            ctx = ctx,
-            rule_name = ctx.attr.name,
-            name = output_group_name.replace("/", "_"),
-            files = files,
-        )
-        direct = [filelist, index_import]
-
-        # We don't want to declare indexstore files as outputs, because they
-        # expand to individual files and blow up the BEP
-        transitive = generated_depsets
+        direct = [index_import]
     else:
         direct = None
-        transitive = generated_depsets + [files]
 
-    return depset(direct, transitive = transitive)
+    return depset(direct, transitive = generated_depsets + [files])
 
 def _to_output_groups_fields(
         *,
@@ -826,7 +825,6 @@ def _to_output_groups_fields(
     """
     output_groups = {
         name: _process_output_group_files(
-            ctx = ctx,
             files = files,
             is_indexstores = is_indexstores,
             output_group_name = name,

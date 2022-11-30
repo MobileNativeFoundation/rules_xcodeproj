@@ -260,6 +260,7 @@ def _skip_target(
             ],
         ),
         outputs = output_files.merge(
+            ctx = ctx,
             automatic_target_info = None,
             transitive_infos = transitive_infos,
         ),

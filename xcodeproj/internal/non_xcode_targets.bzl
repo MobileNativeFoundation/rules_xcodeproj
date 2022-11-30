@@ -129,6 +129,7 @@ rules_xcodeproj requires {} to have `{}` set.
             ],
         ),
         outputs = output_files.merge(
+            ctx = ctx,
             automatic_target_info = automatic_target_info,
             transitive_infos = transitive_infos,
         ),

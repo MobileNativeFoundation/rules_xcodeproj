@@ -395,6 +395,7 @@ def process_top_level_target(
         avoid_deps = avoid_deps,
     )
     outputs = output_files.collect(
+        ctx = ctx,
         id = id,
         swift_info = swift_info,
         top_level_product = product,
