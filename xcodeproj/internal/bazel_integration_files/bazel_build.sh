@@ -6,8 +6,6 @@
 # - BAZEL_PATH
 # - DEVELOPER_DIR
 # - GENERATOR_LABEL
-# - GENERATOR_TARGET_NAME
-# - GENERATOR_PACKAGE_BIN_DIR
 # - HOME
 # - INTERNAL_DIR
 # - OBJROOT
@@ -125,15 +123,28 @@ touch "$build_marker"
 
 # Collect indexstore filelists
 
+readonly outputgroup_regex='([^\ ]+) @?(.*)//(.*):(.*) ([^\ ]+)$'
+
 indexstores_filelists=()
 for output_group in "${output_groups[@]}"; do
-  if ! [[ "$output_group" =~ ^(xi|bi) ]]; then
-    continue
-  fi
+  if [[ $output_group =~ $outputgroup_regex ]]; then
+    output_type="${BASH_REMATCH[1]}"
 
-  filelist="$GENERATOR_TARGET_NAME-${output_group//\//_}"
-  filelist="${filelist/#/$output_path/$GENERATOR_PACKAGE_BIN_DIR/}"
-  filelist="${filelist/%/.filelist}"
+    if [[ "$output_type" != 'xi' && "$output_type" != 'bi' ]]; then
+      continue
+    fi
+
+    repo="${BASH_REMATCH[2]}"
+    package="${BASH_REMATCH[3]}"
+    target="${BASH_REMATCH[4]}"
+    configuration="${BASH_REMATCH[5]}"
+    filelist="$output_path/$configuration/bin/${repo:+"external/$repo/"}$package/$target-${output_type}.filelist"
+  else
+    echo "error: output group doesn't match regex. Please file a bug report" \
+"here: https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md" \
+      >&2
+    exit 1
+  fi
 
   if [[ ! -f "$filelist" ]]; then
     echo "error: Bazel didn't create the indexstore filelist (\"$filelist\")." \

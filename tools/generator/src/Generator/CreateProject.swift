@@ -65,10 +65,6 @@ $(INDEXING_DEPLOYMENT_LOCATION__$(INDEX_ENABLE_BUILD_ARENA)),
             "DSTROOT": "$(PROJECT_TEMP_DIR)",
             "ENABLE_DEFAULT_SEARCH_PATHS": "NO",
             "GENERATOR_LABEL": project.generatorLabel,
-            "GENERATOR_PACKAGE_BIN_DIR": """
-\(project.configuration)/bin/\(project.generatorLabel.package)
-""",
-            "GENERATOR_TARGET_NAME": project.generatorLabel.name,
             "INDEX_FORCE_SCRIPT_EXECUTION": true,
             "INDEXING_BUILT_PRODUCTS_DIR__": """
 $(INDEXING_BUILT_PRODUCTS_DIR__NO)

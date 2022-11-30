@@ -6,6 +6,7 @@ load(":filelists.bzl", "filelists")
 
 def _create(
         *,
+        ctx,
         direct_outputs = None,
         automatic_target_info = None,
         infoplist = None,
@@ -15,6 +16,7 @@ def _create(
     """Creates the internal data structure of the `output_files` module.
 
     Args:
+        ctx: The aspect context.
         direct_outputs: A value returned from `_get_outputs`, or `None` if
             the outputs are being merged.
         automatic_target_info: The `XcodeProjAutomaticTargetProcessingInfo` for
@@ -122,6 +124,18 @@ def _create(
 
     if should_produce_output_groups and direct_outputs:
         products_output_group_name = "bp {}".format(direct_outputs.id)
+
+        indexstores_filelist = filelists.write(
+            ctx = ctx,
+            rule_name = ctx.rule.attr.name,
+            name = "bi",
+            files = transitive_indexestores,
+        )
+
+        # We don't want to declare indexstore files as outputs, because they
+        # expand to individual files and blow up the BEP
+        indexstores_files = depset([indexstores_filelist])
+
         direct_group_list = [
             (
                 "bc {}".format(direct_outputs.id),
@@ -136,7 +150,7 @@ def _create(
             (
                 "bi {}".format(direct_outputs.id),
                 True,
-                transitive_indexestores,
+                indexstores_files,
             ),
             (products_output_group_name, False, transitive_products),
         ]
@@ -217,6 +231,7 @@ def _get_outputs(*, id, product, swift_info):
 
 def _collect_output_files(
         *,
+        ctx,
         id,
         swift_info,
         top_level_product = None,
@@ -227,6 +242,7 @@ def _collect_output_files(
     """Collects the outputs of a target.
 
     Args:
+        ctx: The aspect context.
         id: A unique identifier for the target.
         swift_info: The `SwiftInfo` provider for the target, or `None`.
         top_level_product: A value returned from `process_product`, or `None` if
@@ -253,6 +269,7 @@ def _collect_output_files(
     )
 
     return _create(
+        ctx = ctx,
         direct_outputs = outputs,
         infoplist = infoplist,
         should_produce_dto = should_produce_dto,
@@ -260,10 +277,11 @@ def _collect_output_files(
         transitive_infos = transitive_infos,
     )
 
-def _merge_output_files(*, automatic_target_info, transitive_infos):
+def _merge_output_files(*, ctx, automatic_target_info, transitive_infos):
     """Creates merged outputs.
 
     Args:
+        ctx: The aspect context.
         automatic_target_info: The `XcodeProjAutomaticTargetProcessingInfo` for
             the target.
         transitive_infos: A `list` of `XcodeProjInfo`s for the transitive
@@ -275,6 +293,7 @@ def _merge_output_files(*, automatic_target_info, transitive_infos):
         `transitive_infos` (e.g. `generated` and `extra_files`).
     """
     return _create(
+        ctx = ctx,
         transitive_infos = transitive_infos,
         automatic_target_info = automatic_target_info,
         should_produce_dto = False,
@@ -283,7 +302,6 @@ def _merge_output_files(*, automatic_target_info, transitive_infos):
 
 def _process_output_group_files(
         *,
-        ctx,
         files,
         is_indexstores,
         output_group_name,
@@ -294,33 +312,20 @@ def _process_output_group_files(
     outputs_depsets = list(additional_outputs.get(output_group_name, []))
 
     if is_indexstores:
-        filelist = filelists.write(
-            ctx = ctx,
-            rule_name = ctx.attr.name,
-            name = output_group_name.replace("/", "_"),
-            files = files,
-        )
-        direct = [filelist, index_import]
-
-        # We don't want to declare indexstore files as outputs, because they
-        # expand to individual files and blow up the BEP
-        transitive = outputs_depsets
+        direct = [index_import]
     else:
         direct = None
-        transitive = outputs_depsets + [files]
 
-    return depset(direct, transitive = transitive)
+    return depset(direct, transitive = outputs_depsets + [files])
 
 def _to_output_groups_fields(
         *,
-        ctx,
         outputs,
         additional_outputs = {},
         index_import):
     """Generates a dictionary to be splatted into `OutputGroupInfo`.
 
     Args:
-        ctx: The rule context.
         outputs: A value returned from `output_files.collect()`.
         additional_outputs: A `dict` that maps the output group name of
             targets to a `list` of `depset`s of `File`s that should be merged
@@ -333,7 +338,6 @@ def _to_output_groups_fields(
     """
     output_groups = {
         name: _process_output_group_files(
-            ctx = ctx,
             files = files,
             is_indexstores = is_indexstores,
             output_group_name = name,
