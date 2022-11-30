@@ -1209,7 +1209,6 @@ def _xcodeproj_impl(ctx):
 
     if build_mode == "xcode":
         input_files_output_groups = input_files.to_output_groups_fields(
-            ctx = ctx,
             inputs = inputs,
             additional_generated = additional_generated,
             index_import = ctx.executable._index_import,
@@ -1223,7 +1222,6 @@ def _xcodeproj_impl(ctx):
     else:
         input_files_output_groups = {}
         output_files_output_groups = output_files.to_output_groups_fields(
-            ctx = ctx,
             outputs = outputs,
             additional_outputs = additional_outputs,
             index_import = ctx.executable._index_import,

@@ -806,14 +806,12 @@ def _process_output_group_files(
 
 def _to_output_groups_fields(
         *,
-        ctx,
         inputs,
         additional_generated = {},
         index_import):
     """Generates a dictionary to be splatted into `OutputGroupInfo`.
 
     Args:
-        ctx: The rule context.
         inputs: A value returned from `input_files.collect`.
         additional_generated: A `dict` that maps the output group name of
             targets to a `list` of `depset`s of `File`s that should be merged
