@@ -61,6 +61,7 @@ struct Environment {
         _ pbxProj: PBXProj,
         _ buildMode: BuildMode,
         _ forceBazelDependencies: Bool,
+        _ minimumXcodeVersion: SemanticVersion,
         _ indexImport: String,
         _ files: [FilePath: File],
         _ resolvedExternalRepositories: [(Path, Path)],
@@ -86,6 +87,7 @@ struct Environment {
         _ disambiguatedTargets: DisambiguatedTargets,
         _ targets: [TargetID: Target],
         _ buildMode: BuildMode,
+        _ minimumXcodeVersion: SemanticVersion,
         _ pbxTargets: [ConsolidatedTarget.Key: PBXTarget],
         _ hostIDs: [TargetID: [TargetID]],
         _ hasBazelDependencies: Bool

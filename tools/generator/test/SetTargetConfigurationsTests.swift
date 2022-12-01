@@ -45,6 +45,7 @@ final class SetTargetConfigurationsTests: XCTestCase {
             for: disambiguatedTargets,
             targets: Fixtures.targets,
             buildMode: .xcode,
+            minimumXcodeVersion: "13.4.1",
             pbxTargets: pbxTargets,
             hostIDs: Fixtures.project.targetHosts,
             hasBazelDependencies: true
@@ -173,6 +174,7 @@ final class SetTargetConfigurationsTests: XCTestCase {
             for: disambiguatedTargets,
             targets: [:],
             buildMode: .xcode,
+            minimumXcodeVersion: "13.4.1",
             pbxTargets: pbxTargets,
             hostIDs: [:],
             hasBazelDependencies: false
@@ -311,6 +313,7 @@ final class SetTargetConfigurationsTests: XCTestCase {
             for: disambiguatedTargets,
             targets: [:],
             buildMode: .bazel,
+            minimumXcodeVersion: "13.4.1",
             pbxTargets: pbxTargets,
             hostIDs: [:],
             hasBazelDependencies: false
@@ -403,6 +406,7 @@ final class SetTargetConfigurationsTests: XCTestCase {
             for: disambiguatedTargets,
             targets: [:],
             buildMode: .xcode,
+            minimumXcodeVersion: "13.4.1",
             pbxTargets: pbxTargets,
             hostIDs: [:],
             hasBazelDependencies: false
@@ -444,6 +448,7 @@ final class SetTargetConfigurationsTests: XCTestCase {
             for: disambiguatedTargets,
             targets: [:],
             buildMode: .bazel,
+            minimumXcodeVersion: "13.4.1",
             pbxTargets: pbxTargets,
             hostIDs: [:],
             hasBazelDependencies: false
@@ -496,6 +501,7 @@ final class SetTargetConfigurationsTests: XCTestCase {
             for: disambiguatedTargets,
             targets: [:],
             buildMode: .xcode,
+            minimumXcodeVersion: "13.4.1",
             pbxTargets: pbxTargets,
             hostIDs: [:],
             hasBazelDependencies: false
@@ -549,6 +555,7 @@ final class SetTargetConfigurationsTests: XCTestCase {
             for: disambiguatedTargets,
             targets: [:],
             buildMode: .xcode,
+            minimumXcodeVersion: "13.4.1",
             pbxTargets: pbxTargets,
             hostIDs: [:],
             hasBazelDependencies: false
@@ -673,6 +680,7 @@ final class SetTargetConfigurationsTests: XCTestCase {
             for: disambiguatedTargets,
             targets: [:],
             buildMode: .xcode,
+            minimumXcodeVersion: "13.4.1",
             pbxTargets: pbxTargets,
             hostIDs: [:],
             hasBazelDependencies: false

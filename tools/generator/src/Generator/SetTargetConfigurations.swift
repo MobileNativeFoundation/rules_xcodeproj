@@ -14,6 +14,7 @@ extension Generator {
         for disambiguatedTargets: DisambiguatedTargets,
         targets: [TargetID: Target],
         buildMode: BuildMode,
+        minimumXcodeVersion: SemanticVersion,
         pbxTargets: [ConsolidatedTarget.Key: PBXTarget],
         hostIDs: [TargetID: [TargetID]],
         hasBazelDependencies: Bool
@@ -28,8 +29,7 @@ Target "\(key)" not found in `pbxTargets`
             let target = disambiguatedTarget.target
 
             var attributes: [String: Any] = [
-                // TODO: Generate this value
-                "CreatedOnToolsVersion": "13.2.1",
+                "CreatedOnToolsVersion": minimumXcodeVersion.full,
                 // TODO: Only include properties that make sense for the target
                 "LastSwiftMigration": 9999,
             ]

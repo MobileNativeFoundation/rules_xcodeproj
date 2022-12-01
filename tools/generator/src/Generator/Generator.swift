@@ -113,6 +113,7 @@ class Generator {
             pbxProj,
             buildMode,
             project.forceBazelDependencies,
+            project.minimumXcodeVersion,
             project.indexImport,
             files,
             resolvedExternalRepositories,
@@ -136,6 +137,7 @@ class Generator {
             disambiguatedTargets,
             targets,
             buildMode,
+            project.minimumXcodeVersion,
             pbxTargets,
             project.targetHosts,
             bazelDependencies != nil
