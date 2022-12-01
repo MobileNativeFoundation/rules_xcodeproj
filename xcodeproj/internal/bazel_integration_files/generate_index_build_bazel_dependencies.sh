@@ -12,11 +12,11 @@ readonly output_groups=(
   "bg $BAZEL_TARGET_ID"
 )
 
-readonly swift_outputs_regex='.*\.swiftdoc$|.*\.swiftmodule$|.*\.swiftsourceinfo$'
+readonly base_outputs_regex='.*\.a$|.*\.swiftdoc$|.*\.swiftmodule$|.*\.swiftsourceinfo$'
 
 # We don't need to download the indexstore data during Index Build
 readonly build_pre_config_flags=(
-  "--experimental_remote_download_regex=$swift_outputs_regex"
+  "--experimental_remote_download_regex=$base_outputs_regex"
 )
 
 source "$BAZEL_INTEGRATION_DIR/bazel_build.sh"

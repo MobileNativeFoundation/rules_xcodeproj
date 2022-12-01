@@ -138,13 +138,13 @@ else
   post_config_flags=("${cmd_args[@]:1}")
   if [[ $cmd == "build" && -n "${generator_output_groups:-}" ]]; then
     # `--experimental_remote_download_regex`
-    readonly swift_outputs_regex='.*\.swiftdoc$|.*\.swiftmodule$|.*\.swiftsourceinfo$'
+    readonly base_outputs_regex='.*\.a$|.*\.swiftdoc$|.*\.swiftmodule$|.*\.swiftsourceinfo$'
 
     if [[ "$config" == "indexbuild" ]]; then
-      readonly remote_download_regex="$swift_outputs_regex"
+      readonly remote_download_regex="$base_outputs_regex"
     else
       readonly indexstores_regex='.*\.indexstore/.*'
-      readonly remote_download_regex="$indexstores_regex|$swift_outputs_regex"
+      readonly remote_download_regex="$indexstores_regex|$base_outputs_regex"
     fi
 
     pre_config_flags+=(
