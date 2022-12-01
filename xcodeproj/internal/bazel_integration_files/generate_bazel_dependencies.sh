@@ -6,7 +6,7 @@ cd "$SRCROOT"
 
 # Calculate Bazel `--output_groups`
 
-readonly swift_outputs_regex='.*\.swiftdoc$|.*\.swiftmodule$|.*\.swiftsourceinfo$'
+readonly base_outputs_regex='.*\.a|.*\.swiftdoc$|.*\.swiftmodule$|.*\.swiftsourceinfo$'
 
 if [ "$ACTION" == "indexbuild" ]; then
   if [[ "$RULES_XCODEPROJ_BUILD_MODE" == "xcode" ]]; then
@@ -21,7 +21,7 @@ if [ "$ACTION" == "indexbuild" ]; then
   fi
 
   # We don't need to download the indexstore data during Index Build
-  readonly remote_download_regex="$swift_outputs_regex"
+  readonly remote_download_regex="$base_outputs_regex"
 else
   if [[ "$RULES_XCODEPROJ_BUILD_MODE" == "xcode" ]]; then
     # Inputs for compiling, inputs for linking, and index store data
@@ -33,7 +33,7 @@ else
   fi
 
   readonly indexstores_regex='.*\.indexstore/.*'
-  readonly remote_download_regex="$indexstores_regex|$swift_outputs_regex"
+  readonly remote_download_regex="$indexstores_regex|$base_outputs_regex"
 
   # In Xcode 14 the "Index" directory was renamed to "Index.noindex".
   # `$INDEX_DATA_STORE_DIR` is set to `$OBJROOT/INDEX_DIR/DataStore`, so we can
