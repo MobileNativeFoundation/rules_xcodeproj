@@ -12,6 +12,7 @@ enum Fixtures {
         generatorLabel: "@//:xcodeproj.generator",
         runnerLabel: "@//:xcodeproj",
         configuration: "z3y2z",
+        minimumXcodeVersion: "14.0.1",
         buildSettings: [
             "ALWAYS_SEARCH_USER_PATHS": .bool(false),
             "COPY_PHASE_STRIP": .bool(false),

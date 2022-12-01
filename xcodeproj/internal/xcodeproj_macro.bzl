@@ -21,6 +21,7 @@ def xcodeproj(
         focused_targets = [],
         ios_device_cpus = "arm64",
         ios_simulator_cpus = None,
+        minimum_xcode_version = None,
         post_build = None,
         pre_build = None,
         project_name = None,
@@ -129,6 +130,12 @@ def xcodeproj(
             hash of all transitive dependencies of the targets specified in the
             `top_level_targets` argument with the `"simulator"`
             `target_environment`, even if they aren't iOS targets.
+        minimum_xcode_version: Optional. The minimum Xcode version that the
+            generated project supports. Newer Xcode versions can support newer
+            features, so setting this to the highest value you can will enable
+            the most features. The value is the dot separated version number
+            (e.g. "13.4.1", "14", "14.1"). Defaults to whichever version of
+            Xcode that Bazel uses during project generation.
         post_build: The text of a script that will be run after the build. For
             example: `./post-build.sh`, `"$SRCROOT/post-build.sh"`.
 
@@ -309,6 +316,7 @@ in your `.bazelrc` or `xcodeproj.bazelrc` file.""")
         focused_targets = focused_targets,
         ios_device_cpus = ios_device_cpus,
         ios_simulator_cpus = ios_simulator_cpus,
+        minimum_xcode_version = minimum_xcode_version,
         owned_extra_files = owned_extra_files,
         post_build = post_build,
         pre_build = pre_build,

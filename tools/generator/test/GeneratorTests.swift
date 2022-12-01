@@ -16,6 +16,7 @@ final class GeneratorTests: XCTestCase {
             generatorLabel: "@//a/P:xcodeproj.gen",
             runnerLabel: "@//a/P:xcodeproj",
             configuration: "abc123",
+            minimumXcodeVersion: "13.2.0",
             buildSettings: [:],
             targets: Fixtures.targets,
             replacementLabels: [:],
