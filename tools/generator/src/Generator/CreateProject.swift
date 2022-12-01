@@ -130,8 +130,9 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
         let pbxProject = PBXProject(
             name: project.name,
             buildConfigurationList: buildConfigurationList,
-            // TODO: Calculate `compatibilityVersion`
-            compatibilityVersion: "Xcode 13.0",
+            compatibilityVersion: """
+Xcode \(min(project.minimumXcodeVersion.major, 14)).0
+""",
             mainGroup: mainGroup,
             // TODO: Make developmentRegion configurable?
             developmentRegion: "en",

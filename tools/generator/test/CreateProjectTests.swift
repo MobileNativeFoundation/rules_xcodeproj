@@ -99,7 +99,7 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
         let expectedPBXProject = PBXProject(
             name: "Bazel",
             buildConfigurationList: expectedBuildConfigurationList,
-            compatibilityVersion: "Xcode 13.0",
+            compatibilityVersion: "Xcode 14.0",
             mainGroup: expectedMainGroup,
             developmentRegion: "en",
             projectDirPath: directories.bazelOut.parent().string,
@@ -226,7 +226,7 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
         let expectedPBXProject = PBXProject(
             name: "Bazel",
             buildConfigurationList: expectedBuildConfigurationList,
-            compatibilityVersion: "Xcode 13.0",
+            compatibilityVersion: "Xcode 14.0",
             mainGroup: expectedMainGroup,
             developmentRegion: "en",
             projectDirPath: directories.bazelOut.parent().string,
