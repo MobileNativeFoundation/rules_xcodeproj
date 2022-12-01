@@ -12,7 +12,7 @@ readonly output_groups=(
   "bg $BAZEL_TARGET_ID"
 )
 
-readonly base_outputs_regex='.*\.a|.*\.swiftdoc$|.*\.swiftmodule$|.*\.swiftsourceinfo$'
+readonly base_outputs_regex='.*\.a$|.*\.swiftdoc$|.*\.swiftmodule$|.*\.swiftsourceinfo$'
 
 # We don't need to download the indexstore data during Index Build
 readonly build_pre_config_flags=(

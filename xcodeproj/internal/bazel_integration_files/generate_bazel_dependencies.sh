@@ -6,7 +6,7 @@ cd "$SRCROOT"
 
 # Calculate Bazel `--output_groups`
 
-readonly base_outputs_regex='.*\.a|.*\.swiftdoc$|.*\.swiftmodule$|.*\.swiftsourceinfo$'
+readonly base_outputs_regex='.*\.a$|.*\.swiftdoc$|.*\.swiftmodule$|.*\.swiftsourceinfo$'
 
 if [ "$ACTION" == "indexbuild" ]; then
   if [[ "$RULES_XCODEPROJ_BUILD_MODE" == "xcode" ]]; then
