@@ -118,7 +118,7 @@ https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md""",
 
     if not labels_and_target_ids:
         print(
-            f"""\
+            """\
 warning: Couldn't determine labels and target ids from PIFCache
 
 warning: Using scheme labels and target ids as a fallback. Please file a bug \
