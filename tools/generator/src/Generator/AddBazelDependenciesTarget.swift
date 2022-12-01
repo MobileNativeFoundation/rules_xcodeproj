@@ -23,6 +23,7 @@ extension Generator {
         in pbxProj: PBXProj,
         buildMode: BuildMode,
         forceBazelDependencies: Bool,
+        minimumXcodeVersion: SemanticVersion,
         indexImport: String,
         files: [FilePath: File],
         resolvedExternalRepositories: [(Path, Path)],
@@ -133,8 +134,7 @@ $(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py
         pbxProject.targets.append(pbxTarget)
 
         let attributes: [String: Any] = [
-            // TODO: Generate this value
-            "CreatedOnToolsVersion": "13.2.1",
+            "CreatedOnToolsVersion": minimumXcodeVersion.full,
         ]
         pbxProject.setTargetAttributes(attributes, target: pbxTarget)
 

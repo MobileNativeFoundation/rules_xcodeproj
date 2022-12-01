@@ -1517,7 +1517,7 @@ appletvos
         pbxProject.targets.append(target)
 
         let attributes: [String: Any] = [
-            "CreatedOnToolsVersion": "13.2.1",
+            "CreatedOnToolsVersion": "13.4.1",
         ]
         pbxProject.setTargetAttributes(
             attributes,
@@ -2097,7 +2097,7 @@ touch "$SCRIPT_OUTPUT_FILE_1"
         )
 
         let baseAttributes: [String: Any] = [
-            "CreatedOnToolsVersion": "13.2.1",
+            "CreatedOnToolsVersion": "13.4.1",
             "LastSwiftMigration": 9999,
         ]
 

@@ -421,6 +421,7 @@ final class GeneratorTests: XCTestCase {
             let pbxProj: PBXProj
             let buildMode: BuildMode
             let forceBazelDependencies: Bool
+            let minimumXcodeVersion: SemanticVersion
             let indexImport: String
             let files: [FilePath: File]
             let bazelConfig: String
@@ -437,6 +438,7 @@ final class GeneratorTests: XCTestCase {
             in pbxProj: PBXProj,
             buildMode: BuildMode,
             forceBazelDependencies: Bool,
+            minimumXcodeVersion: SemanticVersion,
             indexImport: String,
             files: [FilePath: File],
             resolvedExternalRepositories: [(Path, Path)],
@@ -451,6 +453,7 @@ final class GeneratorTests: XCTestCase {
                 pbxProj: pbxProj,
                 buildMode: buildMode,
                 forceBazelDependencies: forceBazelDependencies,
+                minimumXcodeVersion: minimumXcodeVersion,
                 indexImport: indexImport,
                 files: files,
                 bazelConfig: bazelConfig,
@@ -468,6 +471,7 @@ final class GeneratorTests: XCTestCase {
                 pbxProj: pbxProj,
                 buildMode: buildMode,
                 forceBazelDependencies: project.forceBazelDependencies,
+                minimumXcodeVersion: project.minimumXcodeVersion,
                 indexImport: project.indexImport,
                 files: files,
                 bazelConfig: project.bazelConfig,
@@ -526,6 +530,7 @@ final class GeneratorTests: XCTestCase {
             let disambiguatedTargets: DisambiguatedTargets
             let targets: [TargetID: Target]
             let buildMode: BuildMode
+            let minimumXcodeVersion: SemanticVersion
             let pbxTargets: [ConsolidatedTarget.Key: PBXTarget]
             let hostIDs: [TargetID: [TargetID]]
             let hasBazelDependencies: Bool
@@ -537,6 +542,7 @@ final class GeneratorTests: XCTestCase {
             for disambiguatedTargets: DisambiguatedTargets,
             targets: [TargetID: Target],
             buildMode: BuildMode,
+            minimumXcodeVersion: SemanticVersion,
             pbxTargets: [ConsolidatedTarget.Key: PBXTarget],
             hostIDs: [TargetID: [TargetID]],
             hasBazelDependencies: Bool
@@ -546,6 +552,7 @@ final class GeneratorTests: XCTestCase {
                 disambiguatedTargets: disambiguatedTargets,
                 targets: targets,
                 buildMode: buildMode,
+                minimumXcodeVersion: minimumXcodeVersion,
                 pbxTargets: pbxTargets,
                 hostIDs: hostIDs,
                 hasBazelDependencies: hasBazelDependencies
@@ -558,6 +565,7 @@ final class GeneratorTests: XCTestCase {
                 disambiguatedTargets: disambiguatedTargets,
                 targets: replacedLabelsTargets,
                 buildMode: buildMode,
+                minimumXcodeVersion: project.minimumXcodeVersion,
                 pbxTargets: pbxTargets,
                 hostIDs: project.targetHosts,
                 hasBazelDependencies: true
