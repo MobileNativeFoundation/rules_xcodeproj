@@ -96,6 +96,10 @@ def _calculate_swiftui_preview_targets(
         )
     ]
 
+def _get_minimum_xcode_version(*, ctx):
+    xcode_config = ctx.attr._xcode_config[apple_common.XcodeVersionConfig]
+    return ".".join(str(xcode_config.xcode_version()).split(".")[0:3])
+
 def _is_same_platform_swiftui_preview_target(*, platform, xcode_target):
     if not xcode_target:
         return False
@@ -690,7 +694,8 @@ def _write_json_spec(
         replacement_labels,
         inputs,
         extra_files,
-        infos):
+        infos,
+        minimum_xcode_version):
     # `target_hosts`
     hosted_targets = depset(
         transitive = [info.hosted_targets for info in infos],
@@ -737,6 +742,7 @@ def _write_json_spec(
 "force_bazel_dependencies":{force_bazel_dependencies},\
 "generator_label":"{generator_label}",\
 "index_import":"{index_import}",\
+"minimum_xcode_version":"{minimum_xcode_version}",\
 "name":"{name}",\
 "post_build_script":{post_build_script},\
 "pre_build_script":{pre_build_script},\
@@ -762,6 +768,7 @@ def _write_json_spec(
         index_import = build_setting_path(
             file = ctx.executable._index_import,
         ),
+        minimum_xcode_version = minimum_xcode_version,
         name = project_name,
         post_build_script = post_build_script,
         pre_build_script = pre_build_script,
@@ -1088,6 +1095,8 @@ def _xcodeproj_impl(ctx):
         )
     ]
     configuration = get_configuration(ctx = ctx)
+    minimum_xcode_version = (ctx.attr.minimum_xcode_version or
+                             _get_minimum_xcode_version(ctx = ctx))
 
     outputs = output_files.merge(
         ctx = ctx,
@@ -1177,6 +1186,7 @@ def _xcodeproj_impl(ctx):
         inputs = inputs,
         extra_files = extra_files,
         infos = infos,
+        minimum_xcode_version = minimum_xcode_version,
     )
     root_dirs_file = _write_root_dirs(ctx = ctx)
     xccurrentversions_file = _write_xccurrentversions(
@@ -1312,6 +1322,15 @@ labels must match transitive dependencies of the targets specified in the
 `top_level_targets` attribute.
 """,
             default = [],
+        ),
+        "minimum_xcode_version": attr.string(
+            doc = """\
+The minimum Xcode version that the generated project supports. Newer Xcode
+versions can support newer features, so setting this to the highest value you
+can will enable the most features. The value is the dot separated version
+number (e.g. "13.4.1", "14", "14.1"). Defaults to whichever version of Xcode
+that Bazel uses during project generation.
+        """,
         ),
         "owned_extra_files": attr.label_keyed_string_dict(
             allow_files = True,
@@ -1529,6 +1548,12 @@ transitive dependencies of the targets specified in the
             cfg = "exec",
             default = Label("//tools/xccurrentversions_parser"),
             executable = True,
+        ),
+        "_xcode_config": attr.label(
+            default = configuration_field(
+                name = "xcode_config_label",
+                fragment = "apple",
+            ),
         ),
     }
 

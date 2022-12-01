@@ -397,6 +397,7 @@
     "force_bazel_dependencies": true,
     "generator_label": "//test/fixtures:xcodeproj_bwb.generator",
     "index_import": "$(BAZEL_OUT)/darwin_x86_64-opt-exec-BDE7E609-ST-87fb5cb17941/bin/external/rules_xcodeproj_index_import/index-import",
+    "minimum_xcode_version": "13.0",
     "name": "bwb",
     "post_build_script": null,
     "pre_build_script": null,

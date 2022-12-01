@@ -4,6 +4,8 @@ load(":providers.bzl", "XcodeProjRunnerOutputInfo")
 load(":xcodeproj_macro.bzl", "xcodeproj")
 load(":xcodeproj_rule.bzl", "make_xcodeproj_rule")
 
+_MINIMUM_XCODE_VERSION = "13.0"
+
 # Transition
 
 def _fixtures_transition_impl(_settings, _attr):
@@ -209,6 +211,7 @@ def xcodeproj_fixture(
             config = config,
             extra_files = extra_files,
             focused_targets = focused_targets,
+            minimum_xcode_version = _MINIMUM_XCODE_VERSION,
             post_build = post_build,
             pre_build = pre_build,
             project_name = suffix,

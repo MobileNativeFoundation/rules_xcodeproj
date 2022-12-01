@@ -5,6 +5,7 @@ struct Project: Equatable, Decodable {
     let generatorLabel: BazelLabel
     let runnerLabel: BazelLabel
     let configuration: String
+    let minimumXcodeVersion: SemanticVersion
     let buildSettings: [String: BuildSetting]
     var targets: [TargetID: Target]
     let replacementLabels: [TargetID: BazelLabel]
