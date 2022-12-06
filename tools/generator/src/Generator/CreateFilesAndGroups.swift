@@ -728,6 +728,9 @@ class StopHook:
     def handle_stop(self, exe_ctx, _stream):
         "Method that is called when the user stops in lldb."
         module = exe_ctx.frame.module
+        if not module:
+            return
+
         module_name = module.file.__get_fullpath__()
         target_triple = module.GetTriple()
         executable_path = _get_relative_executable_path(module_name)
