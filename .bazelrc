@@ -3,3 +3,7 @@ import %workspace%/shared.bazelrc
 
 # Use a user.bazelrc if it exists
 try-import %workspace%/user.bazelrc
+
+
+# Use optimized build for repro
+build:repro_rules_xcodeproj -c opt
