@@ -72,13 +72,11 @@ def xcodeproj_rules_dependencies(
         ignore_version_differences = ignore_version_differences,
     )
 
-    # TODO: Change to 1.3.1+ once released.
     _maybe(
         http_archive,
         name = "build_bazel_rules_swift",
-        sha256 = "75840ff8b761f381541915adcfdabdaa18ccc92a3a5dffb0d12d4d6d1b4f9081",
-        strip_prefix = "rules_swift-7d8769a9d5024200da8a34999e5934b23f441e90",
-        url = "https://github.com/bazelbuild/rules_swift/archive/7d8769a9d5024200da8a34999e5934b23f441e90.tar.gz",
+        sha256 = "c244e9f804a48c27fe490150c762d8b0c868b23ef93dc4e3f93d8117ca216d92",
+        url = "https://github.com/bazelbuild/rules_swift/releases/download/1.4.0/rules_swift.1.4.0.tar.gz",
         ignore_version_differences = ignore_version_differences,
     )
 
