@@ -15,6 +15,7 @@ struct iOSApp: App { // swiftlint:disable:this type_name
 
 extension View {
     func print(_ value: Any) -> Self {
+        Swift.print("1 - Change this string to trigger incremental builds.")
         Swift.print(value)
         Swift.print(MixedAnswerSwift.swiftMixedAnswer())
         return self

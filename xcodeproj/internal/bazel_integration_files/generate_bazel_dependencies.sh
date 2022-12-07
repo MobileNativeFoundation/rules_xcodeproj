@@ -130,26 +130,9 @@ fi
 # For these commands to run in the background, both stdout and stderr need to be
 # redirected, otherwise Xcode will block the run script.
 
-readonly log_dir="$OBJROOT/rules_xcodeproj_logs"
-mkdir -p "$log_dir"
-
-# Report errors from previous async actions
-shopt -s nullglob
-for log in "$log_dir"/*.async.log; do
-  if [[ -s "$log" ]]; then
-    command=$(basename "${log%.async.log}")
-    echo "warning: Previous run of \"$command\" had output:" >&2
-    sed "s|^|warning: |" "$log" >&2
-    echo "warning: If you believe this is a bug, please file a report here:" \
-"https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md" \
-      >&2
-  fi
-done
-
 # Import indexes
 if [ -n "${indexstores_filelists:-}" ]; then
   "$BAZEL_INTEGRATION_DIR/import_indexstores.sh" \
     "$PROJECT_DIR" \
-    "${indexstores_filelists[@]}" \
-    >"$log_dir/import_indexstores.async.log" 2>&1 &
+    "${indexstores_filelists[@]}"
 fi
