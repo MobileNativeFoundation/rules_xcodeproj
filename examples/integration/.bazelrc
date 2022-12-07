@@ -3,6 +3,8 @@ import %workspace%/../../shared.bazelrc
 
 # Exercise the extra flags feature
 
+build --disk_cache=~/.test-bazel-disk-cache/
+
 build:rules_xcodeproj --@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:extra_common_flags='--verbose_failures'
 build:rules_xcodeproj --@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:extra_generator_flags='--noverbose_failures'
 build:rules_xcodeproj --@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:extra_indexbuild_flags='--noverbose_failures'
