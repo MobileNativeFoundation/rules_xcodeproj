@@ -111,6 +111,8 @@ fi
 cp "$bazelrc" "$dest/rules_xcodeproj/bazel/xcodeproj.bazelrc"
 if [[ -s "${extra_flags_bazelrc:-}" ]]; then
   cp "$extra_flags_bazelrc" "$dest/rules_xcodeproj/bazel/xcodeproj_extra_flags.bazelrc"
+else
+  rm -f "$dest/rules_xcodeproj/bazel/xcodeproj_extra_flags.bazelrc"
 fi
 
 chmod u+w "$dest/rules_xcodeproj/bazel/"*
