@@ -46,7 +46,7 @@ planned high level features:
 - [ ] [Distribution rules](https://github.com/buildbuddy-io/rules_xcodeproj/milestone/18)
 - [ ] [Multiple Xcode configurations](https://github.com/buildbuddy-io/rules_xcodeproj/milestone/17)
 
-We've also documented the [high level design](/doc/design/high-level.md) of the
+We've also documented the [high level design](/docs/design/high-level.md) of the
 rules.
 
 ## Projects using rules_xcodeproj
