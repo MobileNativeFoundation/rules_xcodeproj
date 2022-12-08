@@ -681,7 +681,7 @@ def should_include_outputs(build_mode):
 
 # Actions
 
-def _write_json_spec(
+def _write_spec(
         *,
         config,
         configuration,
@@ -721,7 +721,7 @@ def _write_json_spec(
     )
 
     # TODO: Strip fat frameworks instead of setting `VALIDATE_WORKSPACE`
-    spec_json = """\
+    project_spec_json = """\
 {{\
 "bazel_config":"{bazel_config}",\
 "bazel_workspace_name":"{bazel_workspace_name}",\
@@ -790,10 +790,12 @@ def _write_json_spec(
         ),
     )
 
-    output = ctx.actions.declare_file("{}_spec.json".format(ctx.attr.name))
-    ctx.actions.write(output, spec_json)
+    project_spec_output = ctx.actions.declare_file(
+        "{}-project_spec.json".format(ctx.attr.name),
+    )
+    ctx.actions.write(project_spec_output, project_spec_json)
 
-    return output
+    return [project_spec_output]
 
 def _write_xccurrentversions(*, ctx, xccurrentversion_files):
     containers_file = ctx.actions.declare_file(
@@ -934,7 +936,7 @@ def _write_xcodeproj(
         *,
         ctx,
         project_name,
-        spec_file,
+        spec_files,
         root_dirs_file,
         xccurrentversions_file,
         extensionpointidentifiers_file,
@@ -950,7 +952,6 @@ def _write_xcodeproj(
     )
 
     args = ctx.actions.args()
-    args.add(spec_file.path)
     args.add(root_dirs_file.path)
     args.add(xccurrentversions_file.path)
     args.add(extensionpointidentifiers_file.path)
@@ -958,13 +959,13 @@ def _write_xcodeproj(
     args.add(install_path)
     args.add(build_mode)
     args.add("1" if is_fixture else "0")
+    args.add_all(spec_files)
 
     ctx.actions.run(
         executable = ctx.attr._generator[DefaultInfo].files_to_run,
         mnemonic = "GenerateXcodeProj",
         arguments = [args],
-        inputs = [
-            spec_file,
+        inputs = spec_files + [
             root_dirs_file,
             xccurrentversions_file,
             extensionpointidentifiers_file,
@@ -989,7 +990,7 @@ def _write_installer(
         config,
         install_path,
         is_fixture,
-        spec_file,
+        spec_files,
         xcodeproj):
     installer = ctx.actions.declare_file(
         "{}-installer.sh".format(name or ctx.attr.name),
@@ -1007,7 +1008,9 @@ def _write_installer(
             "%is_fixture%": "1" if is_fixture else "0",
             "%output_path%": install_path,
             "%source_path%": xcodeproj.short_path,
-            "%spec_path%": spec_file.short_path,
+            "%spec_paths%": shell.array_literal(
+                [f.short_path for f in spec_files],
+            ),
         },
     )
 
@@ -1173,7 +1176,7 @@ def _xcodeproj_impl(ctx):
         if s.id in targets
     ]
 
-    spec_file = _write_json_spec(
+    spec_files = _write_spec(
         ctx = ctx,
         project_name = project_name,
         config = config,
@@ -1200,7 +1203,7 @@ def _xcodeproj_impl(ctx):
     xcodeproj, install_path = _write_xcodeproj(
         ctx = ctx,
         project_name = project_name,
-        spec_file = spec_file,
+        spec_files = spec_files,
         root_dirs_file = root_dirs_file,
         xccurrentversions_file = xccurrentversions_file,
         extensionpointidentifiers_file = extensionpointidentifiers_file,
@@ -1213,7 +1216,7 @@ def _xcodeproj_impl(ctx):
         config = config,
         install_path = install_path,
         is_fixture = is_fixture,
-        spec_file = spec_file,
+        spec_files = spec_files,
         xcodeproj = xcodeproj,
     )
 
@@ -1242,11 +1245,11 @@ def _xcodeproj_impl(ctx):
         DefaultInfo(
             executable = installer,
             files = depset(
-                [spec_file, xcodeproj],
+                spec_files + [xcodeproj],
                 transitive = [inputs.important_generated],
             ),
             runfiles = ctx.runfiles(
-                files = [spec_file, xcodeproj] + bazel_integration_files,
+                files = spec_files + [xcodeproj] + bazel_integration_files,
             ),
         ),
         OutputGroupInfo(
