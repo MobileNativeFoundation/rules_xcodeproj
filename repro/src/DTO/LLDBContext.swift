@@ -2,17 +2,17 @@ import PathKit
 
 struct LLDBContext: Equatable {
     struct Clang: Equatable {
-        let quoteIncludes: [FilePath]
-        let includes: [FilePath]
-        let systemIncludes: [FilePath]
-        let modulemaps: [FilePath]
+        let quoteIncludes: [String]
+        let includes: [String]
+        let systemIncludes: [String]
+        let modulemaps: [String]
         let opts: [String]
 
         init(
-            quoteIncludes: [FilePath] = [],
-            includes: [FilePath] = [],
-            systemIncludes: [FilePath] = [],
-            modulemaps: [FilePath] = [],
+            quoteIncludes: [String] = [],
+            includes: [String] = [],
+            systemIncludes: [String] = [],
+            modulemaps: [String] = [],
             opts: [String] = []
         ) {
             self.quoteIncludes = quoteIncludes
@@ -23,13 +23,13 @@ struct LLDBContext: Equatable {
         }
     }
 
-    let frameworkSearchPaths: [FilePath]
-    let swiftmodules: [FilePath]
+    let frameworkSearchPaths: [String]
+    let swiftmodules: [String]
     let clang: [Clang]
 
     init(
-        frameworkSearchPaths: [FilePath] = [],
-        swiftmodules: [FilePath] = [],
+        frameworkSearchPaths: [String] = [],
+        swiftmodules: [String] = [],
         clang: [Clang] = []
     ) {
         self.frameworkSearchPaths = frameworkSearchPaths
@@ -51,8 +51,9 @@ extension LLDBContext: Decodable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
         frameworkSearchPaths = try container
-            .decodeFilePaths(.frameworkSearchPaths)
-        swiftmodules = try container.decodeFilePaths(.swiftmodules)
+            .decodeIfPresent([String].self, forKey: .frameworkSearchPaths) ?? []
+        swiftmodules = try container
+            .decodeIfPresent([String].self, forKey: .swiftmodules) ?? []
         clang = try container
             .decodeIfPresent([Clang].self, forKey: .clang) ?? []
     }
@@ -70,22 +71,14 @@ extension LLDBContext.Clang: Decodable {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        quoteIncludes = try container.decodeFilePaths(.quoteIncludes)
-        includes = try container.decodeFilePaths(.includes)
-        systemIncludes = try container.decodeFilePaths(.systemIncludes)
-        modulemaps = try container.decodeFilePaths(.modulemaps)
+        quoteIncludes = try container
+            .decodeIfPresent([String].self, forKey: .quoteIncludes) ?? []
+        includes = try container
+            .decodeIfPresent([String].self, forKey: .includes) ?? []
+        systemIncludes = try container
+            .decodeIfPresent([String].self, forKey: .systemIncludes) ?? []
+        modulemaps = try container
+            .decodeIfPresent([String].self, forKey: .modulemaps) ?? []
         opts = try container.decodeIfPresent([String].self, forKey: .opts) ?? []
-    }
-}
-
-private extension KeyedDecodingContainer where K == LLDBContext.CodingKeys {
-    func decodeFilePaths(_ key: K) throws -> [FilePath] {
-        return try decodeIfPresent([FilePath].self, forKey: key) ?? []
-    }
-}
-
-private extension KeyedDecodingContainer where K == LLDBContext.Clang.CodingKeys {
-    func decodeFilePaths(_ key: K) throws -> [FilePath] {
-        return try decodeIfPresent([FilePath].self, forKey: key) ?? []
     }
 }

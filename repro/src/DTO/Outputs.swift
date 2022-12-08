@@ -1,34 +1,22 @@
 struct Outputs: Equatable {
     struct Swift: Equatable {
         let module: FilePath
-        let doc: FilePath
-        let sourceInfo: FilePath?
-        let interface: FilePath?
         let generatedHeader: FilePath?
 
         init(
             module: FilePath,
-            doc: FilePath,
-            sourceInfo: FilePath? = nil,
-            interface: FilePath? = nil,
             generatedHeader: FilePath? = nil
         ) {
             self.module = module
-            self.doc = doc
-            self.sourceInfo = sourceInfo
-            self.interface = interface
             self.generatedHeader = generatedHeader
         }
     }
 
-    let product: FilePath?
     var swift: Swift?
+    let hasProductOutput: Bool
 
-    init(
-        product: FilePath? = nil,
-        swift: Swift? = nil
-    ) {
-        self.product = product
+    init(hasProductOutput: Bool = false, swift: Swift? = nil) {
+        self.hasProductOutput = hasProductOutput
         self.swift = swift
     }
 }
@@ -36,10 +24,6 @@ struct Outputs: Equatable {
 extension Outputs {
     var hasOutputs: Bool {
         return hasSwiftOutputs || hasProductOutput
-    }
-
-    var hasProductOutput: Bool {
-        return product != nil
     }
 
     var hasSwiftOutputs: Bool {
@@ -61,14 +45,15 @@ extension Outputs {
 
 extension Outputs: Decodable {
     enum CodingKeys: String, CodingKey {
-        case product = "p"
+        case hasProductOutput = "p"
         case swift = "s"
     }
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        product = try container.decodeIfPresent(FilePath.self, forKey: .product)
+        hasProductOutput = try container
+            .decodeIfPresent(Bool.self, forKey: .hasProductOutput) ?? false
         swift = try container.decodeIfPresent(Swift.self, forKey: .swift)
     }
 }
@@ -76,9 +61,6 @@ extension Outputs: Decodable {
 extension Outputs.Swift: Decodable {
     enum CodingKeys: String, CodingKey {
         case module = "m"
-        case doc = "d"
-        case sourceinfo = "s"
-        case interface = "i"
         case generatedHeader = "h"
     }
 
@@ -86,15 +68,6 @@ extension Outputs.Swift: Decodable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
         module = try container.decode(FilePath.self, forKey: .module)
-        doc = try container.decode(FilePath.self, forKey: .doc)
-        sourceInfo = try container.decodeIfPresent(
-            FilePath.self,
-            forKey: .sourceinfo
-        )
-        interface = try container.decodeIfPresent(
-            FilePath.self,
-            forKey: .interface
-        )
         generatedHeader = try container.decodeIfPresent(
             FilePath.self,
             forKey: .generatedHeader

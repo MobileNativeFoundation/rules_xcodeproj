@@ -1,40 +1,8 @@
 struct SearchPaths: Equatable {
-    let frameworkIncludes: [FilePath]
-    var quoteIncludes: [FilePath]
-    var includes: [FilePath]
-    var systemIncludes: [FilePath]
+    let hasIncludes: Bool
 
-    init(
-        frameworkIncludes: [FilePath] = [],
-        quoteIncludes: [FilePath] = [],
-        includes: [FilePath] = [],
-        systemIncludes: [FilePath] = []
-    ) {
-        self.frameworkIncludes = frameworkIncludes
-        self.quoteIncludes = quoteIncludes
-        self.includes = includes
-        self.systemIncludes = systemIncludes
-    }
-}
-
-extension SearchPaths {
-    var hasIncludes: Bool {
-        return !frameworkIncludes.isEmpty
-            || !quoteIncludes.isEmpty
-            || !includes.isEmpty
-            || !systemIncludes.isEmpty
-    }
-
-    mutating func merge(_ other: SearchPaths) {
-        quoteIncludes = other.quoteIncludes
-        includes = other.includes
-        systemIncludes = other.systemIncludes
-    }
-
-    func merging(_ other: SearchPaths) -> SearchPaths {
-        var searchPaths = self
-        searchPaths.merge(other)
-        return searchPaths
+    init(hasIncludes: Bool = false) {
+        self.hasIncludes = hasIncludes
     }
 }
 
@@ -42,24 +10,12 @@ extension SearchPaths {
 
 extension SearchPaths: Decodable {
     enum CodingKeys: String, CodingKey {
-        case frameworkIncludes
-        case quoteIncludes
-        case includes
-        case systemIncludes
+        case hasIncludes
     }
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        frameworkIncludes = try container.decodeFilePaths(.frameworkIncludes)
-        quoteIncludes = try container.decodeFilePaths(.quoteIncludes)
-        includes = try container.decodeFilePaths(.includes)
-        systemIncludes = try container.decodeFilePaths(.systemIncludes)
-    }
-}
-
-private extension KeyedDecodingContainer where K == SearchPaths.CodingKeys {
-    func decodeFilePaths(_ key: K) throws -> [FilePath] {
-        return try decodeIfPresent([FilePath].self, forKey: key) ?? []
+        hasIncludes = try container.decode(Bool.self, forKey: .hasIncludes)
     }
 }

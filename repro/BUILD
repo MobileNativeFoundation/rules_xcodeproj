@@ -64,13 +64,17 @@ xcodeproj(
             launch_action = xcode_schemes.launch_action(
                 ":repro",
                 args = [
-                    "/tmp/spec.json",
+                    "/tmp/project.json",
+                    "/tmp/targets.json",
                 ],
                 working_directory = "$(BUILD_WORKSPACE_DIRECTORY)",
             ),
             test_action = xcode_schemes.test_action(
                 [":repro_tests"],
-                env = {"SPEC_PATH": "/tmp/spec.json"},
+                env = {
+                    "PROJECT_SPEC_PATH": "/tmp/project.json",
+                    "TARGETS_SPEC_PATH": "/tmp/project.json",
+                },
             ),
         ),
     ],
