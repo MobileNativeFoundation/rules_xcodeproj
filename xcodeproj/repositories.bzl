@@ -196,9 +196,9 @@ objc_library(
     visibility = ["//visibility:public"],
 )
 """,
-        sha256 = "d729f2e30dbb738843ffa812d4f1a649b68f9266eea70a41c95b850306b4a8f7",
-        strip_prefix = "ZippyJSONCFamily-1.2.5",
-        url = "https://github.com/michaeleisel/ZippyJSONCFamily/archive/refs/tags/1.2.5.tar.gz",
+        sha256 = "b215927ada8403e1b056d39450c6a7b59122eca4b0c7fc5beb5f0b5fea2acd72",
+        strip_prefix = "ZippyJSONCFamily-1.2.9",
+        url = "https://github.com/michaeleisel/ZippyJSONCFamily/archive/refs/tags/1.2.9.tar.gz",
         ignore_version_differences = ignore_version_differences,
     )
 
@@ -218,9 +218,9 @@ swift_library(
     visibility = ["//visibility:public"],
 )
 """,
-        sha256 = "773169ecc97c18551ffbcc319d44ef06e40415a8d71b19b6a6b2e3100a312ad0",
-        strip_prefix = "ZippyJSON-1.2.5",
-        url = "https://github.com/michaeleisel/ZippyJSON/archive/refs/tags/1.2.5.tar.gz",
+        sha256 = "4b256843c9c3686c527e76dde54f8d76b6201c1fd903c07dc2211ab1b250bd04",
+        strip_prefix = "ZippyJSON-1.2.10",
+        url = "https://github.com/michaeleisel/ZippyJSON/archive/refs/tags/1.2.10.tar.gz",
         ignore_version_differences = ignore_version_differences,
     )
 
