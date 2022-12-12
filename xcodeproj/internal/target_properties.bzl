@@ -1,10 +1,6 @@
 """Functions for processing target properties"""
 
 load(":collections.bzl", "set_if_true", "uniq")
-load(
-    ":files.bzl",
-    "file_path",
-)
 
 def should_bundle_resources(ctx):
     """Determines whether resources should be bundled in the generated project.
@@ -92,7 +88,6 @@ def process_modulemaps(*, swift_info):
         for module_map in compilation_context.module_maps:
             if type(module_map) == "File":
                 modulemap_files.append(module_map)
-
 
     # Different modules might be defined in the same modulemap file, so we need
     # to deduplicate them.
