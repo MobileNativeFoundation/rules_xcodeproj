@@ -542,7 +542,6 @@
 		3022A38A772394F16EF7432D /* XCScheme+ArchiveAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCScheme+ArchiveAction.swift"; sourceTree = "<group>"; };
 		33080E9D2CEBDB9DFE8DDC19 /* ConsolidatedTargetExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsolidatedTargetExtensionsTests.swift; sourceTree = "<group>"; };
 		330E5362342A8142E660CFA0 /* AddTargets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTargets.swift; sourceTree = "<group>"; };
-		337BDD45BFAB2E647A1DB6D5 /* JJLISO8601DateFormatter.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = JJLISO8601DateFormatter.swift.modulemap; sourceTree = "<group>"; };
 		34B813E13CE46E2FC2BD8BF1 /* XcodeScheme+BuildForTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XcodeScheme+BuildForTests.swift"; sourceTree = "<group>"; };
 		34C9B2291EF01CF524D30244 /* XCSchemeInfo+TestActionInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCSchemeInfo+TestActionInfo.swift"; sourceTree = "<group>"; };
 		35B677652107DF970284F881 /* XCSchemeInfo+LaunchActionInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCSchemeInfo+LaunchActionInfo.swift"; sourceTree = "<group>"; };
@@ -566,7 +565,6 @@
 		42D454C1362C4BA05C52C19F /* Writable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Writable.swift; sourceTree = "<group>"; };
 		436D85FCDE7395E243B8BEBA /* NSRecursiveLock+Sync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSRecursiveLock+Sync.swift"; sourceTree = "<group>"; };
 		43AF6DE99B538F8E7E37F899 /* private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = private.h; sourceTree = "<group>"; };
-		455F1A9BBB3BF3D2C421BF3D /* ZippyJSONCFamily.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = ZippyJSONCFamily.swift.modulemap; sourceTree = "<group>"; };
 		45A13A9006009ADAAD8E9F9A /* CreateFilesAndGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFilesAndGroups.swift; sourceTree = "<group>"; };
 		4667D2018215FECB1BDABE0E /* UIKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKit.swift; sourceTree = "<group>"; };
 		497FD778407F2E7EC05F5344 /* XCSchemeInfo+BuildActionInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCSchemeInfo+BuildActionInfo.swift"; sourceTree = "<group>"; };
@@ -884,14 +882,6 @@
 			path = Sources;
 			sourceTree = "<group>";
 		};
-		155EC867A94989AFEFDB96F0 /* com_github_michaeleisel_jjliso8601dateformatter */ = {
-			isa = PBXGroup;
-			children = (
-				337BDD45BFAB2E647A1DB6D5 /* JJLISO8601DateFormatter.swift.modulemap */,
-			);
-			path = com_github_michaeleisel_jjliso8601dateformatter;
-			sourceTree = "<group>";
-		};
 		16D13B92622FFC854FD738A2 /* build_bazel_rules_apple */ = {
 			isa = PBXGroup;
 			children = (
@@ -1153,20 +1143,10 @@
 			isa = PBXGroup;
 			children = (
 				EF839C6B8F1CD83468A1C570 /* applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889 */,
-				DE66EB7AC0FD0D44F988897F /* macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889 */,
 			);
 			name = "Bazel Generated Files";
 			path = "bazel-out";
 			sourceTree = SOURCE_ROOT;
-		};
-		6FD9535AFD3BB0DEC07FDF97 /* external */ = {
-			isa = PBXGroup;
-			children = (
-				155EC867A94989AFEFDB96F0 /* com_github_michaeleisel_jjliso8601dateformatter */,
-				93AB4BC770AAAE205437E9F3 /* com_github_michaeleisel_zippyjsoncfamily */,
-			);
-			path = external;
-			sourceTree = "<group>";
 		};
 		7C52659385AB50E089B7D733 /* Workspace */ = {
 			isa = PBXGroup;
@@ -1310,14 +1290,6 @@
 			path = Sources;
 			sourceTree = "<group>";
 		};
-		93AB4BC770AAAE205437E9F3 /* com_github_michaeleisel_zippyjsoncfamily */ = {
-			isa = PBXGroup;
-			children = (
-				455F1A9BBB3BF3D2C421BF3D /* ZippyJSONCFamily.swift.modulemap */,
-			);
-			path = com_github_michaeleisel_zippyjsoncfamily;
-			sourceTree = "<group>";
-		};
 		95175BB831AAEFFD676A9C15 /* Objects */ = {
 			isa = PBXGroup;
 			children = (
@@ -1375,14 +1347,6 @@
 				76837067E23DA5FF5E12E951 /* Logger.swift */,
 			);
 			path = src;
-			sourceTree = "<group>";
-		};
-		A6FBBD640D9640CFDCD3F9A9 /* bin */ = {
-			isa = PBXGroup;
-			children = (
-				6FD9535AFD3BB0DEC07FDF97 /* external */,
-			);
-			path = bin;
 			sourceTree = "<group>";
 		};
 		A8CCC3636AD3CCCAE6A8CADA /* rules_xcodeproj */ = {
@@ -1669,14 +1633,6 @@
 				BD74F9C88386CCA6B865F8DA /* OrderedDictionary+Values.swift */,
 			);
 			path = OrderedDictionary;
-			sourceTree = "<group>";
-		};
-		DE66EB7AC0FD0D44F988897F /* macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889 */ = {
-			isa = PBXGroup;
-			children = (
-				A6FBBD640D9640CFDCD3F9A9 /* bin */,
-			);
-			path = "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889";
 			sourceTree = "<group>";
 		};
 		DEB6BE6EC6236FEC4C634F95 /* Project */ = {

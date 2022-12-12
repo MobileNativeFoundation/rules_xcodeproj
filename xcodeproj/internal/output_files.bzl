@@ -136,7 +136,7 @@ def _create(
             (
                 "bg {}".format(direct_outputs.id),
                 False,
-                inputs.generated if inputs else depset(),
+                inputs.compiling_files if inputs else depset(),
             ),
             (
                 "bi {}".format(direct_outputs.id),

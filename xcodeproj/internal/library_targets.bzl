@@ -122,7 +122,7 @@ def process_library_target(
         product = product,
         linker_inputs = linker_inputs,
         automatic_target_info = automatic_target_info,
-        additional_files = list(modulemaps),
+        modulemaps = modulemaps,
         transitive_infos = transitive_infos,
     )
     outputs = output_files.collect(

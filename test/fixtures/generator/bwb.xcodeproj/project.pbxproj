@@ -433,14 +433,12 @@
 		12E9F366756D2F90DB8EA58C /* OrderedSet+UnorderedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedSet+UnorderedView.swift"; sourceTree = "<group>"; };
 		13178D86152EA5DB53397E9B /* PBXNativeTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBXNativeTarget.swift; sourceTree = "<group>"; };
 		1367A5751F367A14A2B665E0 /* XCScheme+PathRunnable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCScheme+PathRunnable.swift"; sourceTree = "<group>"; };
-		1439E6A342B06BF997BD50E6 /* ZippyJSONCFamily.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = ZippyJSONCFamily.swift.modulemap; sourceTree = "<group>"; };
 		14C978105BD3BB5C55528DBA /* XCSchemeInfo+PrePostActionInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCSchemeInfo+PrePostActionInfo.swift"; sourceTree = "<group>"; };
 		17A46E74D5EB9195A2F8109C /* GeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratorTests.swift; sourceTree = "<group>"; };
 		17C22B6C06CF33C672BD9C93 /* PBXObjectParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBXObjectParser.swift; sourceTree = "<group>"; };
 		1819CEC3382AC3F2E30ED6C2 /* Box.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
 		183888B2FF0D977B9E25A0C5 /* Path+Extras.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Path+Extras.swift"; sourceTree = "<group>"; };
 		192CCA0E01766355521E6E27 /* OrderedSet+Partial MutableCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedSet+Partial MutableCollection.swift"; sourceTree = "<group>"; };
-		1A772DB74E3895901A4E6D40 /* JJLISO8601DateFormatter.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = JJLISO8601DateFormatter.swift.modulemap; sourceTree = "<group>"; };
 		1A9526E2C4F63F4404FE5CA7 /* PBXProj+Testing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PBXProj+Testing.swift"; sourceTree = "<group>"; };
 		1ACD0E7E98834C26ED974D33 /* PBXTarget+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PBXTarget+Extensions.swift"; sourceTree = "<group>"; };
 		1B1EED3630789FEA1A31DA13 /* KeyPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyPath.swift; sourceTree = "<group>"; };
@@ -769,14 +767,6 @@
 			path = com_github_michaeleisel_zippyjsoncfamily;
 			sourceTree = "<group>";
 		};
-		14ECDDEECFC5EA6F63DCCA22 /* com_github_michaeleisel_zippyjsoncfamily */ = {
-			isa = PBXGroup;
-			children = (
-				1439E6A342B06BF997BD50E6 /* ZippyJSONCFamily.swift.modulemap */,
-			);
-			path = com_github_michaeleisel_zippyjsoncfamily;
-			sourceTree = "<group>";
-		};
 		183DDA1DEE3599FCD3558D11 /* Errors */ = {
 			isa = PBXGroup;
 			children = (
@@ -908,7 +898,6 @@
 			isa = PBXGroup;
 			children = (
 				58D75ECD95820B9CDF37D451 /* applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889 */,
-				9B344758BF22FD1430F7077F /* macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889 */,
 			);
 			name = "Bazel Generated Files";
 			path = "bazel-out";
@@ -964,14 +953,6 @@
 				B2D00433382BE55026CEC3EF /* generator */,
 			);
 			path = fixtures;
-			sourceTree = "<group>";
-		};
-		58757900A7F5F847EFF49E8F /* bin */ = {
-			isa = PBXGroup;
-			children = (
-				792BA709B2FEFF0393066935 /* external */,
-			);
-			path = bin;
 			sourceTree = "<group>";
 		};
 		58D75ECD95820B9CDF37D451 /* applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889 */ = {
@@ -1205,15 +1186,6 @@
 			path = com_github_michaeleisel_jjliso8601dateformatter;
 			sourceTree = "<group>";
 		};
-		792BA709B2FEFF0393066935 /* external */ = {
-			isa = PBXGroup;
-			children = (
-				FF7661D6E2759A4D2FDB3201 /* com_github_michaeleisel_jjliso8601dateformatter */,
-				14ECDDEECFC5EA6F63DCCA22 /* com_github_michaeleisel_zippyjsoncfamily */,
-			);
-			path = external;
-			sourceTree = "<group>";
-		};
 		7F40BEE5AA60854ADB6DF704 /* Internal */ = {
 			isa = PBXGroup;
 			children = (
@@ -1357,14 +1329,6 @@
 				5FD1FC055B44D4DF3601A0EA /* Sources */,
 			);
 			path = com_github_apple_swift_collections;
-			sourceTree = "<group>";
-		};
-		9B344758BF22FD1430F7077F /* macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889 */ = {
-			isa = PBXGroup;
-			children = (
-				58757900A7F5F847EFF49E8F /* bin */,
-			);
-			path = "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889";
 			sourceTree = "<group>";
 		};
 		9B838C2BDEC49CD24842BE11 /* bin */ = {
@@ -1692,14 +1656,6 @@
 				8600C65C1B0B862ABE4B068A /* XcodeProj */,
 			);
 			path = Sources;
-			sourceTree = "<group>";
-		};
-		FF7661D6E2759A4D2FDB3201 /* com_github_michaeleisel_jjliso8601dateformatter */ = {
-			isa = PBXGroup;
-			children = (
-				1A772DB74E3895901A4E6D40 /* JJLISO8601DateFormatter.swift.modulemap */,
-			);
-			path = com_github_michaeleisel_jjliso8601dateformatter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

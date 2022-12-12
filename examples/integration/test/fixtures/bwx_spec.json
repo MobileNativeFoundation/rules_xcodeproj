@@ -111,26 +111,6 @@
             "_": "com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator/GoogleMaps.framework",
             "t": "e"
         },
-        {
-            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap.swift.modulemap",
-            "t": "g"
-        },
-        {
-            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_modulemap.swift.modulemap",
-            "t": "g"
-        },
-        {
-            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap-module.modulemap",
-            "t": "g"
-        },
-        {
-            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap",
-            "t": "g"
-        },
-        {
-            "_": "com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator/GoogleMapsCore.framework",
-            "t": "e"
-        },
         "WidgetExtension/BUILD",
         "WidgetExtension/WidgetExtension.intentdefinition",
         "WidgetExtension/Info.plist",
@@ -156,6 +136,14 @@
         "iOSApp/Source/Info.plist",
         "iOSApp/Source/AltIcons/AltIcon-60.alticon/AltIcon-60@2x.png",
         "iOSApp/Source/AltIcons/AltIcon-60.alticon/AltIcon-60@3x.png",
+        {
+            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap-module.modulemap",
+            "t": "g"
+        },
+        {
+            "_": "com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator/GoogleMapsCore.framework",
+            "t": "e"
+        },
         {
             "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Resources/ExampleResources/bucket/deps.txt",
             "i": false,
@@ -185,18 +173,6 @@
         "iMessageApp/Info.extension.plist",
         "iMessageApp/Info.plist",
         "iOSApp/Test/SwiftUnitTests/BUILD",
-        {
-            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/external/FXPageControl/FXPageControl.swift.modulemap",
-            "t": "g"
-        },
-        {
-            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/Utils/Utils.swift.modulemap",
-            "t": "g"
-        },
-        {
-            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Test/TestingUtils/TestingUtils.swift.modulemap",
-            "t": "g"
-        },
         "macOSApp/third_party/BUILD",
         "macOSApp/third_party/ExampleFramework.framework",
         "macOSApp/Source/BUILD",
@@ -216,19 +192,6 @@
             "_": "examples_command_line_external/ImportableLibrary/Library.h",
             "t": "e"
         },
-        {
-            "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineToolLib/lib_impl.swift.modulemap",
-            "t": "g"
-        },
-        "CommandLine/swift_c_module/c_lib.modulemap",
-        {
-            "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/external/examples_command_line_external/Library.swift.modulemap",
-            "t": "g"
-        },
-        {
-            "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineToolLib/private_lib.swift.modulemap",
-            "t": "g"
-        },
         "CommandLine/CommandLineToolLib/dir with space/lib.h",
         "CommandLine/CommandLineTool/BUILD",
         "CommandLine/CommandLineTool/export_symbol_list.exp",
@@ -247,10 +210,6 @@
             "t": "e"
         },
         "CommandLine/Tests/BUILD",
-        {
-            "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineToolLib/lib_swift.swift.modulemap",
-            "t": "g"
-        },
         {
             "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework",
             "t": "e"
@@ -272,26 +231,6 @@
             "t": "e"
         },
         {
-            "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap.swift.modulemap",
-            "t": "g"
-        },
-        {
-            "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_modulemap.swift.modulemap",
-            "t": "g"
-        },
-        {
-            "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap-module.modulemap",
-            "t": "g"
-        },
-        {
-            "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap",
-            "t": "g"
-        },
-        {
-            "_": "com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64/GoogleMapsCore.framework",
-            "t": "e"
-        },
-        {
             "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework",
             "t": "e"
         },
@@ -302,6 +241,14 @@
         {
             "_": "applebin_watchos-watchos_arm64_32-dbg-ST-85d7639e6c1c/bin/watchOSApp/Info.withbundleid.plist",
             "t": "g"
+        },
+        {
+            "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap-module.modulemap",
+            "t": "g"
+        },
+        {
+            "_": "com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64/GoogleMapsCore.framework",
+            "t": "e"
         },
         {
             "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/iOSApp/Resources/ExampleResources/bucket/deps.txt",

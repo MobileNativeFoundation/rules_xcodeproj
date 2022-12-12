@@ -418,7 +418,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		00A7E0966239D4402118D903 /* lib_swift.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = lib_swift.swift.modulemap; sourceTree = "<group>"; };
 		01506E1C822A25B4F703986A /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		0156075391A8046358CF5FEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		0170D4C164FF00D6E562958C /* GoogleMapsCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMapsCore.framework; sourceTree = "<group>"; };
@@ -445,16 +444,12 @@
 		0FCCCBF2C1D3BDA06580DD2E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		10FD9C062371287B427F5031 /* Foo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Foo.m; sourceTree = "<group>"; };
 		12B2179B6021F5F75229954F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		135FF44A660CB51F710F0438 /* MixedAnswer_objc_modulemap.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = MixedAnswer_objc_modulemap.swift.modulemap; sourceTree = "<group>"; };
 		145EAD34E090ECF98C7ADF39 /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		148A986349BB88D9D9953B53 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		15A6973CB98E7CA53A64305B /* Launchd.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Launchd.plist; sourceTree = "<group>"; };
 		15BF6FBD9CFE69586F307A4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		16786327C1B50E11BC3CB9C8 /* MixedAnswer_swift_modulemap.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = MixedAnswer_swift_modulemap.swift.modulemap; sourceTree = "<group>"; };
 		17807A13BD9FD8A7855AA384 /* TestingUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingUtils.swift; sourceTree = "<group>"; };
 		17AB006A4D3E1A17E5F95D0E /* Lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lib.swift; sourceTree = "<group>"; };
-		1AD910C5F0C8FBA58C0B529F /* CoreUtilsObjC.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = CoreUtilsObjC.swift.modulemap; sourceTree = "<group>"; };
-		1B39D1B2A4E09749E6DA22A0 /* Utils.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = Utils.swift.modulemap; sourceTree = "<group>"; };
 		1C185B8AB07D4422FA56D6A5 /* liblib_swift.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_swift.a; path = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineToolLib/liblib_swift.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CFFF651F98DC7A0389F5DF4 /* Lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lib.swift; sourceTree = "<group>"; };
 		1D1177806FD1B277EEDB91BB /* LibFramework.tvOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LibFramework.tvOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -499,12 +494,10 @@
 		4BE7010DF7F402499DE7A05B /* bucket */ = {isa = PBXFileReference; lastKnownFileType = folder; path = bucket; sourceTree = "<group>"; };
 		4CC521D7942237DAE794164C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		4F656B1E0D2A36C763DB0770 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		501F54B1BF08601B5D257723 /* TestingUtils.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = TestingUtils.swift.modulemap; sourceTree = "<group>"; };
 		52644618FF22C027C79DE719 /* Lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lib.swift; sourceTree = "<group>"; };
 		5363C149251A898407013539 /* lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lib.swift; sourceTree = "<group>"; };
 		579EF68CC093C175048FB900 /* libc_lib.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libc_lib.a; path = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/swift_c_module/libc_lib.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		57A195462C22D04EEE52ADA1 /* UnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitTests.swift; sourceTree = "<group>"; };
-		57D1653C2B9CFE3448FEDA32 /* private_lib.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = private_lib.swift.modulemap; sourceTree = "<group>"; };
 		590C1F8173F7F592F432ACF0 /* SwiftGreetingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftGreetingsTests.swift; sourceTree = "<group>"; };
 		5943CDBFA4A38FDFF9113B4F /* MixedAnswer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MixedAnswer.m; sourceTree = "<group>"; };
 		59CD88D9B162385B1B9B0B5D /* Lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lib.swift; sourceTree = "<group>"; };
@@ -591,7 +584,6 @@
 		9FF10D5AC46EA2B02EE95EDC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A2A8FD058DE329954EC8EA34 /* libMixedAnswerLib_Swift.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libMixedAnswerLib_Swift.a; path = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/libMixedAnswerLib_Swift.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3A45A0819673348AC1A7EEE /* UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITests.swift; sourceTree = "<group>"; };
-		A4093AAF09DB7E1E800134B3 /* CoreUtilsObjC.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = CoreUtilsObjC.swift.modulemap; sourceTree = "<group>"; };
 		A41154AFFA53BE02DCE29451 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		A43526B3370311547CB489D0 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		A43B7F66FF9518FDB6203F44 /* private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = private.h; sourceTree = "<group>"; };
@@ -623,7 +615,6 @@
 		BC4B3EED0AEB423661DDA9DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		BD2A333C33D65FA17B059BE1 /* lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib.h; sourceTree = "<group>"; };
 		BDD13702FC4B105C40BB6E4A /* tvOSAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = tvOSAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		BE2CCD27442197C178BAAB04 /* Library.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = Library.swift.modulemap; sourceTree = "<group>"; };
 		BEEA406D7D2D485AEDBB4F40 /* RealAnswer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RealAnswer.h; sourceTree = "<group>"; };
 		BF4832B478762FF51FD99164 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C0974B851E6C4AEA3D723DDC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -631,7 +622,6 @@
 		C2E438CB34FAB698C0B7BE7F /* MixedAnswer_objc_modulemap-module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = "MixedAnswer_objc_modulemap-module.modulemap"; sourceTree = "<group>"; };
 		C454C50B0428F3DA857A8F1E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C7D6E9EA886ACE2FD42D136F /* lib.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = lib.m; sourceTree = "<group>"; };
-		C7F1D3B7505057A4744B13EC /* lib_impl.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = lib_impl.swift.modulemap; sourceTree = "<group>"; };
 		C8C653DDACA7470FA8EAA0E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C8DD100EC3FA656AEFE5A00B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C958AF1F0777021D72A8F6C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -648,7 +638,6 @@
 		D04DAB4233F4848FFE131AD9 /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = "<group>"; };
 		D1CC3840D2A9F952C6D3D9A3 /* Lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lib.swift; sourceTree = "<group>"; };
 		D20093170A54E92A741D748D /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
-		D2D3E081B1397B982A07773A /* FXPageControl.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = FXPageControl.swift.modulemap; sourceTree = "<group>"; };
 		D39BA5CDB665F6F2F15B90F1 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
 		D43313794DC4D47361B3DB08 /* export_symbol_list.exp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.exports; path = export_symbol_list.exp; sourceTree = "<group>"; };
 		D57326ECD169C0334D30213B /* WidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -670,7 +659,6 @@
 		E5546039F8ADD4A697128AAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		E5A7586BAF2608F1D9A11C1B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		E5FA0724A8A540E85270E748 /* ExternalFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalFramework.framework; path = CommandLine/external/ExternalFramework.framework; sourceTree = SOURCE_ROOT; };
-		E76B40B2394E68BE0E62418A /* MixedAnswer_objc_modulemap.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = MixedAnswer_objc_modulemap.swift.modulemap; sourceTree = "<group>"; };
 		E81E42BAE7CDD8F06A57750F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		E84DBAC32A7C151ED97289BA /* _CompileStub_.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = _CompileStub_.m; sourceTree = DERIVED_FILE_DIR; };
 		E851D6F2D8F78F93161DEF2C /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
@@ -679,11 +667,9 @@
 		EA88697F0347462657C473AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		EB3F8BDE135590B43799EA1F /* Intents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intents.swift; sourceTree = "<group>"; };
 		EC6FEFDC4CED0EF7E90B964A /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
-		EC9402CD0B8D85498EA382EC /* MixedAnswer_swift_modulemap.swift.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = MixedAnswer_swift_modulemap.swift.modulemap; sourceTree = "<group>"; };
 		EDF3C49F9EE73494542E6B4C /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		EE8AE93C5C2FE8F083423CF3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		EE96416B5B17D2BC4270EC75 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = wrapper.cfbundle; path = GoogleMaps.bundle; sourceTree = "<group>"; };
-		EEF008C3C9591C871AFD9ABA /* c_lib.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = c_lib.modulemap; sourceTree = "<group>"; };
 		F430FA1AB345C9D772DC1948 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F437B11C567E42BB19E890B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		F6471F15FF8A545408794F35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -749,7 +735,6 @@
 				0DE3C75C88AFEB7EE7E53939 /* BUILD */,
 				3AEDEEABC4913622A9147C75 /* c_lib.c */,
 				246221126DAC28EE34F192FE /* c_lib.h */,
-				EEF008C3C9591C871AFD9ABA /* c_lib.modulemap */,
 			);
 			path = swift_c_module;
 			sourceTree = "<group>";
@@ -918,8 +903,6 @@
 			isa = PBXGroup;
 			children = (
 				A57CEDA356C7BBB31A12AAD1 /* MixedAnswer_objc_modulemap-module.modulemap */,
-				135FF44A660CB51F710F0438 /* MixedAnswer_objc_modulemap.swift.modulemap */,
-				16786327C1B50E11BC3CB9C8 /* MixedAnswer_swift_modulemap.swift.modulemap */,
 				B5D8EBAF66479E130DABE64B /* MixedAnswer-Swift.h */,
 				90C449D2D93423BBC34D88F4 /* MixedAnswer.h */,
 			);
@@ -1237,16 +1220,6 @@
 			path = iOSAppObjCUnitTests.__internal__.__test_bundle;
 			sourceTree = "<group>";
 		};
-		3848A16814B21E8D214F66D8 /* CommandLineToolLib */ = {
-			isa = PBXGroup;
-			children = (
-				C7F1D3B7505057A4744B13EC /* lib_impl.swift.modulemap */,
-				00A7E0966239D4402118D903 /* lib_swift.swift.modulemap */,
-				57D1653C2B9CFE3448FEDA32 /* private_lib.swift.modulemap */,
-			);
-			path = CommandLineToolLib;
-			sourceTree = "<group>";
-		};
 		388178F9286577B498F4E2F3 /* tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1408,7 +1381,6 @@
 			isa = PBXGroup;
 			children = (
 				A94D0DC82AA39AC106F2A44B /* CommandLineTool */,
-				3848A16814B21E8D214F66D8 /* CommandLineToolLib */,
 			);
 			path = CommandLine;
 			sourceTree = "<group>";
@@ -1644,7 +1616,6 @@
 			isa = PBXGroup;
 			children = (
 				447167F6AD8E43AE079610F7 /* CommandLine */,
-				7AE473FBE4E0A21DC4BAF1C2 /* external */,
 			);
 			path = bin;
 			sourceTree = "<group>";
@@ -1673,22 +1644,6 @@
 				2C3BAB9B53AFC8E6FE66111E /* Info.plist */,
 			);
 			path = CommandLineToolTests.__internal__.__test_bundle;
-			sourceTree = "<group>";
-		};
-		6429CDE344C028D5AD3AC9FA /* CoreUtilsObjC */ = {
-			isa = PBXGroup;
-			children = (
-				A4093AAF09DB7E1E800134B3 /* CoreUtilsObjC.swift.modulemap */,
-			);
-			path = CoreUtilsObjC;
-			sourceTree = "<group>";
-		};
-		650EC4B80C1E718737B15DAF /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				1B39D1B2A4E09749E6DA22A0 /* Utils.swift.modulemap */,
-			);
-			path = Utils;
 			sourceTree = "<group>";
 		};
 		65376538564B8153D5BE5386 /* rules_xcodeproj */ = {
@@ -1841,14 +1796,6 @@
 			path = rules_xcodeproj;
 			sourceTree = "<group>";
 		};
-		74FD5AD789ABCABC7046DD1E /* FXPageControl */ = {
-			isa = PBXGroup;
-			children = (
-				D2D3E081B1397B982A07773A /* FXPageControl.swift.modulemap */,
-			);
-			path = FXPageControl;
-			sourceTree = "<group>";
-		};
 		75622EF6F3F10842E7A2CD82 /* UITests */ = {
 			isa = PBXGroup;
 			children = (
@@ -1922,14 +1869,6 @@
 				C4BB7AB6D5B83D116565BD99 /* macOSApp */,
 			);
 			path = bin;
-			sourceTree = "<group>";
-		};
-		7AE473FBE4E0A21DC4BAF1C2 /* external */ = {
-			isa = PBXGroup;
-			children = (
-				A5B936FC05580EC2934FAFFE /* examples_command_line_external */,
-			);
-			path = external;
 			sourceTree = "<group>";
 		};
 		7BC5E1675E0F2777D5079B1F /* dynamic */ = {
@@ -2132,8 +2071,6 @@
 			isa = PBXGroup;
 			children = (
 				9E36E76B9B25708F7D42E3CA /* CoreUtilsMixed */,
-				6429CDE344C028D5AD3AC9FA /* CoreUtilsObjC */,
-				650EC4B80C1E718737B15DAF /* Utils */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -2142,7 +2079,6 @@
 			isa = PBXGroup;
 			children = (
 				17807A13BD9FD8A7855AA384 /* TestingUtils.swift */,
-				501F54B1BF08601B5D257723 /* TestingUtils.swift.modulemap */,
 			);
 			path = TestingUtils;
 			sourceTree = "<group>";
@@ -2335,7 +2271,6 @@
 			isa = PBXGroup;
 			children = (
 				DC5FC297E7187149719F8BC6 /* CoreUtilsMixed */,
-				BB51C27DF46AEF60BAA8233A /* CoreUtilsObjC */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -2455,14 +2390,6 @@
 				A755C138B3C37E7179D040B6 /* BUILD */,
 			);
 			path = dynamic;
-			sourceTree = "<group>";
-		};
-		A5B936FC05580EC2934FAFFE /* examples_command_line_external */ = {
-			isa = PBXGroup;
-			children = (
-				BE2CCD27442197C178BAAB04 /* Library.swift.modulemap */,
-			);
-			path = examples_command_line_external;
 			sourceTree = "<group>";
 		};
 		A64A8FB36EB3FEA5FFE294CD /* CoreUtils */ = {
@@ -2614,14 +2541,6 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		B4769712E21E4A3E46771677 /* external */ = {
-			isa = PBXGroup;
-			children = (
-				74FD5AD789ABCABC7046DD1E /* FXPageControl */,
-			);
-			path = external;
-			sourceTree = "<group>";
-		};
 		B4B51909A6EB823B2B026AD5 /* dynamic */ = {
 			isa = PBXGroup;
 			children = (
@@ -2661,14 +2580,6 @@
 				BC4B3EED0AEB423661DDA9DC /* Info.plist */,
 			);
 			path = watchOSAppExtensionUnitTests.__internal__.__test_bundle;
-			sourceTree = "<group>";
-		};
-		BB51C27DF46AEF60BAA8233A /* CoreUtilsObjC */ = {
-			isa = PBXGroup;
-			children = (
-				1AD910C5F0C8FBA58C0B529F /* CoreUtilsObjC.swift.modulemap */,
-			);
-			path = CoreUtilsObjC;
 			sourceTree = "<group>";
 		};
 		BC6BBCE41818581A690C78C9 /* WidgetExtension */ = {
@@ -2818,8 +2729,6 @@
 			isa = PBXGroup;
 			children = (
 				C2E438CB34FAB698C0B7BE7F /* MixedAnswer_objc_modulemap-module.modulemap */,
-				E76B40B2394E68BE0E62418A /* MixedAnswer_objc_modulemap.swift.modulemap */,
-				EC9402CD0B8D85498EA382EC /* MixedAnswer_swift_modulemap.swift.modulemap */,
 				81A85427555C0B274CCCDC78 /* MixedAnswer-Swift.h */,
 				2E3A1AEB52E2F69D7FEF7953 /* MixedAnswer.h */,
 			);
@@ -3255,7 +3164,6 @@
 		EDAB5124464FC736F90968E0 /* bin */ = {
 			isa = PBXGroup;
 			children = (
-				B4769712E21E4A3E46771677 /* external */,
 				1DBEA7DC301E9A8253C8B15E /* iOSApp */,
 				3BF08D73F2E90E952A394148 /* Lib */,
 				CF0159797ED944DEFC738BED /* WidgetExtension */,
