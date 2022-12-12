@@ -247,7 +247,6 @@ def process_top_level_target(
     swift_info = target[SwiftInfo] if is_swift else None
 
     modulemaps = process_modulemaps(swift_info = swift_info)
-    additional_files.extend(list(modulemaps))
 
     app_icon_info = app_icons.get_info(ctx, automatic_target_info)
 
@@ -391,6 +390,7 @@ def process_top_level_target(
         bundle_resources = bundle_resources,
         automatic_target_info = automatic_target_info,
         additional_files = additional_files,
+        modulemaps = modulemaps,
         transitive_infos = transitive_infos,
         avoid_deps = avoid_deps,
     )

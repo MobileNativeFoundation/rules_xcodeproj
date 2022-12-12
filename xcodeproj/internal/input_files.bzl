@@ -110,6 +110,7 @@ def _collect_input_files(
         linker_inputs,
         automatic_target_info,
         additional_files = [],
+        modulemaps = None,
         transitive_infos,
         avoid_deps = []):
     """Collects all of the inputs of a target.
@@ -133,6 +134,8 @@ def _collect_input_files(
         additional_files: A `list` of `File`s to add to the inputs. This can
             be used to add files to the `generated` and `extra_files` fields
             (e.g. modulemaps or BUILD files).
+        modulemaps: A `depset` of `File`s that are modulemap dependencies for
+            `target`, or `None`.
         transitive_infos: A `list` of `XcodeProjInfo`s for the transitive
             dependencies of `target`.
         avoid_deps: A `list` of the targets that already consumed resources, and
@@ -492,10 +495,34 @@ def _collect_input_files(
         ],
     )
 
+    if modulemaps:
+        modulemaps = [f for f in modulemaps if not f.is_source]
+        modulemaps_depset = depset(modulemaps)
+    else:
+        modulemaps_depset = depset(
+            transitive = [
+                info.inputs._modulemaps
+                for attr, info in transitive_infos
+                if (info.target_type in
+                    automatic_target_info.xcode_targets.get(attr, [None]))
+            ],
+        )
+
+        # Purposeful flattening to work around large BEP issue.
+        # This is because we only get modulemaps already flattened. Ideally we
+        # would get a `depset` for the modulemaps, so they would be properly
+        # represented in the BEP.
+        modulemaps = modulemaps_depset.to_list()
+
     if id:
         compiling_output_group_name = "xc {}".format(id)
         indexstores_output_group_name = "xi {}".format(id)
         linking_output_group_name = "xl {}".format(id)
+
+        compiling_files = depset(
+            modulemaps,
+            transitive = [generated_depset],
+        )
 
         indexstores_filelist = filelists.write(
             ctx = ctx,
@@ -509,7 +536,7 @@ def _collect_input_files(
         indexstores_files = depset([indexstores_filelist])
 
         direct_group_list = [
-            (compiling_output_group_name, False, generated_depset),
+            (compiling_output_group_name, False, compiling_files),
             (indexstores_output_group_name, True, indexstores_files),
             (linking_output_group_name, False, depset()),
         ]
@@ -517,6 +544,7 @@ def _collect_input_files(
         compiling_output_group_name = None
         indexstores_output_group_name = None
         linking_output_group_name = None
+        compiling_files = generated_depset
         direct_group_list = None
 
     if not unfocused_libraries:
@@ -559,6 +587,7 @@ def _collect_input_files(
         )
 
     return struct(
+        _modulemaps = modulemaps_depset,
         _non_target_swift_info_modules = non_target_swift_info_modules,
         _output_group_list = depset(
             direct_group_list,
@@ -619,6 +648,7 @@ def _collect_input_files(
                 (info.target_type in
                  automatic_target_info.xcode_targets.get(attr, [None])))
         ]),
+        compiling_files = compiling_files,
         indexstores = indexstores_depset,
         extra_files = depset(
             [(label, tuple(extra_files))] if extra_files else None,
@@ -646,6 +676,7 @@ def _collect_input_files(
 
 def _from_resource_bundle(bundle):
     return struct(
+        _modulemaps = depset(),
         _non_target_swift_info_modules = depset(),
         _output_group_list = depset(),
         _product_framework_files = depset(),
@@ -666,6 +697,7 @@ def _from_resource_bundle(bundle):
         unfocused_generated_indexstores = None,
         unfocused_generated_linking = None,
         indexstores = depset(),
+        compiling_files = depset(),
         extra_files = depset(),
         uncategorized = depset(),
         unfocused_libraries = depset(),
@@ -688,6 +720,12 @@ def _merge_input_files(*, transitive_infos, extra_generated = None):
         via `transitive_infos` (e.g. `generated` and `extra_files`).
     """
     return struct(
+        _modulemaps = depset(
+            transitive = [
+                info.inputs._modulemaps
+                for _, info in transitive_infos
+            ],
+        ),
         _non_target_swift_info_modules = depset(
             transitive = [
                 info.inputs._non_target_swift_info_modules
@@ -763,6 +801,7 @@ def _merge_input_files(*, transitive_infos, extra_generated = None):
                 for _, info in transitive_infos
             ],
         ),
+        compiling_files = depset(),
         extra_files = depset(
             transitive = [
                 info.inputs.extra_files
