@@ -10,6 +10,7 @@ def _create(
         direct_outputs = None,
         automatic_target_info = None,
         infoplist = None,
+        inputs,
         transitive_infos,
         should_produce_dto,
         should_produce_output_groups):
@@ -22,6 +23,7 @@ def _create(
         automatic_target_info: The `XcodeProjAutomaticTargetProcessingInfo` for
             the target.
         infoplist: A `File` or `None`.
+        inputs: A value returned from `input_files.collect`, or `None`.
         transitive_infos: A `list` of `XcodeProjInfo`s for the transitive
             dependencies of the current target.
         should_produce_dto: If `True`, `outputs_files.to_dto` will return
@@ -70,17 +72,6 @@ def _create(
                  )))
         ])
 
-    transitive_generated_srcs = depset(
-        transitive = [
-            info.inputs.generated
-            for attr, info in transitive_infos
-            if (not automatic_target_info or
-                info.target_type in automatic_target_info.xcode_targets.get(
-                    attr,
-                    [None],
-                ))
-        ],
-    )
     transitive_indexestores = depset(
         [indexstore] if indexstore else None,
         transitive = [
@@ -145,7 +136,7 @@ def _create(
             (
                 "bg {}".format(direct_outputs.id),
                 False,
-                transitive_generated_srcs,
+                inputs.generated if inputs else depset(),
             ),
             (
                 "bi {}".format(direct_outputs.id),
@@ -236,6 +227,7 @@ def _collect_output_files(
         swift_info,
         top_level_product = None,
         infoplist = None,
+        inputs = None,
         transitive_infos,
         should_produce_dto = True,
         should_produce_output_groups = True):
@@ -248,6 +240,7 @@ def _collect_output_files(
         top_level_product: A value returned from `process_product`, or `None` if
             the target isn't a top level target.
         infoplist: A `File` or `None`.
+        inputs: A value returned from `input_files.collect`, or `None`.
         transitive_infos: A `list` of `XcodeProjInfo`s for the transitive
             dependencies of the target.
         should_produce_dto: If `True`, `outputs_files.to_dto` will return
@@ -272,6 +265,7 @@ def _collect_output_files(
         ctx = ctx,
         direct_outputs = outputs,
         infoplist = infoplist,
+        inputs = inputs,
         should_produce_dto = should_produce_dto,
         should_produce_output_groups = should_produce_output_groups,
         transitive_infos = transitive_infos,
@@ -296,6 +290,7 @@ def _merge_output_files(*, ctx, automatic_target_info, transitive_infos):
         ctx = ctx,
         transitive_infos = transitive_infos,
         automatic_target_info = automatic_target_info,
+        inputs = None,
         should_produce_dto = False,
         should_produce_output_groups = False,
     )
