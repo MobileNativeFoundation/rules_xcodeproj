@@ -397,6 +397,7 @@ def process_top_level_target(
     outputs = output_files.collect(
         ctx = ctx,
         id = id,
+        inputs = inputs,
         swift_info = swift_info,
         top_level_product = product,
         infoplist = infoplist,
