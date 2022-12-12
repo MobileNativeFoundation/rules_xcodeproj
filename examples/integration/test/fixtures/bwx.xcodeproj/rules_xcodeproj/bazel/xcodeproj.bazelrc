@@ -51,6 +51,9 @@ build:rules_xcodeproj --features=swift.use_global_index_store
 # `swift.use_global_module_cache` drastically speeds up swift builds
 build:rules_xcodeproj --features=swift.use_global_module_cache
 
+# Removes potentially large unneeded event from the BEP
+build:rules_xcodeproj --nolegacy_important_outputs
+
 # `--show_result=0` prevents showing the spec.json and intermediate `.xcodeproj`
 # in the logs when generating, and all of the many outputs when building
 build:rules_xcodeproj --show_result=0
