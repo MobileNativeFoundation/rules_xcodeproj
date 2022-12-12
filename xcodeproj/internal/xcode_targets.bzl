@@ -430,7 +430,7 @@ def _set_other_swift_flags(*, build_settings, xcode_target):
             "-Xcc -fmodule-map-file={}".format(
                 quote_if_needed(build_setting_path(file = file)),
             )
-            for file in xcode_target._modulemaps.files
+            for file in xcode_target._modulemaps
         ],
     )
 
@@ -590,8 +590,8 @@ def _xcode_target_to_dto(
     )
     set_if_true(
         dto,
-        "modulemaps",
-        [file_path_to_dto(fp) for fp in xcode_target._modulemaps.file_paths],
+        "has_modulemaps",
+        bool(xcode_target._modulemaps),
     )
     set_if_true(
         dto,

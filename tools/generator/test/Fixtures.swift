@@ -223,7 +223,7 @@ enum Fixtures {
                 path: .generated("e1/E.a")
             ),
             isSwift: true,
-            modulemaps: ["a/module.modulemap"],
+            hasModulemaps: true,
             inputs: .init(srcs: [.external("a_repo/a.swift")]),
             outputs: .init(
               swift: .init(

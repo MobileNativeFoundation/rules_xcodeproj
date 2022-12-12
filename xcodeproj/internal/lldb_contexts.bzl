@@ -182,7 +182,7 @@ def _lldb_context_to_dto(lldb_context, *, xcode_generated_paths):
                 "m",
                 [
                     build_setting_path(file = file)
-                    for file in clang.modulemaps.files
+                    for file in clang.modulemaps
                 ],
             )
 

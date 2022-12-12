@@ -78,16 +78,11 @@ def process_modulemaps(*, swift_info):
         swift_info: A `SwiftInfo` provider.
 
     Returns:
-        A `struct` containing the files and paths of the modules maps of the
-        passed `SwiftInfo`.
+        A `tuple` of files of the modules maps of the passed `SwiftInfo`.
     """
     if not swift_info:
-        return struct(
-            file_paths = (),
-            files = (),
-        )
+        return ()
 
-    modulemap_file_paths = []
     modulemap_files = []
     for module in swift_info.direct_modules:
         compilation_context = module.compilation_context
@@ -96,19 +91,12 @@ def process_modulemaps(*, swift_info):
 
         for module_map in compilation_context.module_maps:
             if type(module_map) == "File":
-                modulemap = file_path(module_map)
                 modulemap_files.append(module_map)
-            else:
-                modulemap = module_map
 
-            modulemap_file_paths.append(modulemap)
 
     # Different modules might be defined in the same modulemap file, so we need
     # to deduplicate them.
-    return struct(
-        file_paths = tuple(uniq(modulemap_file_paths)),
-        files = tuple(uniq(modulemap_files)),
-    )
+    return tuple(uniq(modulemap_files))
 
 def process_codesignopts(*, codesignopts, build_settings):
     """Logic for processing code signing flags.

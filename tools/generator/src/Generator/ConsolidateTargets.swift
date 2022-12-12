@@ -347,7 +347,7 @@ extension ConsolidatedTarget {
         hasLinkerFlags = !aTarget.linkerInputs.linkopts.isEmpty
 
         hasClangSearchPaths = sortedTargets.contains { target in
-            return !target.modulemaps.isEmpty
+            return target.hasModulemaps
                 || (!target.isSwift && target.searchPaths.hasIncludes)
         }
 
