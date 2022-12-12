@@ -205,6 +205,7 @@
                 "//tools/generator:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889",
                 "@com_github_pointfreeco_swift_custom_dump//:CustomDump macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889"
             ],
+            "has_modulemaps": true,
             "info_plist": {
                 "_": "applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/tools/generator/test/rules_xcodeproj/tests.__internal__.__test_bundle/Info.plist",
                 "t": "g"
@@ -463,16 +464,6 @@
                     "$(BUILD_DIR)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_pointfreeco_xctest_dynamic_overlay"
                 ]
             },
-            "modulemaps": [
-                {
-                    "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_jjliso8601dateformatter/JJLISO8601DateFormatter.swift.modulemap",
-                    "t": "g"
-                },
-                {
-                    "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_zippyjsoncfamily/ZippyJSONCFamily.swift.modulemap",
-                    "t": "g"
-                }
-            ],
             "name": "tests.__internal__.__test_bundle",
             "outputs": {
                 "p": true,
@@ -743,6 +734,7 @@
                 "@com_github_michaeleisel_zippyjson//:ZippyJSON macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889",
                 "@com_github_tuist_xcodeproj//:XcodeProj macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889"
             ],
+            "has_modulemaps": true,
             "inputs": {
                 "srcs": [
                     "tools/generator/src/BuildSettingConditional.swift",
@@ -818,16 +810,6 @@
                 ]
             },
             "label": "//tools/generator:generator.library",
-            "modulemaps": [
-                {
-                    "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_jjliso8601dateformatter/JJLISO8601DateFormatter.swift.modulemap",
-                    "t": "g"
-                },
-                {
-                    "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_zippyjsoncfamily/ZippyJSONCFamily.swift.modulemap",
-                    "t": "g"
-                }
-            ],
             "name": "generator.library",
             "outputs": {
                 "s": {
@@ -1451,6 +1433,7 @@
                 "@com_github_michaeleisel_jjliso8601dateformatter//:JJLISO8601DateFormatter macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889",
                 "@com_github_michaeleisel_zippyjsoncfamily//:ZippyJSONCFamily macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889"
             ],
+            "has_modulemaps": true,
             "inputs": {
                 "srcs": [
                     {
@@ -1460,16 +1443,6 @@
                 ]
             },
             "label": "@com_github_michaeleisel_zippyjson//:ZippyJSON",
-            "modulemaps": [
-                {
-                    "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_jjliso8601dateformatter/JJLISO8601DateFormatter.swift.modulemap",
-                    "t": "g"
-                },
-                {
-                    "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-0c83c5e59889/bin/external/com_github_michaeleisel_zippyjsoncfamily/ZippyJSONCFamily.swift.modulemap",
-                    "t": "g"
-                }
-            ],
             "name": "ZippyJSON",
             "outputs": {
                 "s": {

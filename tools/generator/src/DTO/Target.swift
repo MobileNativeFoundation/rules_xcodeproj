@@ -13,7 +13,7 @@ struct Target: Equatable {
     let testHost: TargetID?
     var buildSettings: [String: BuildSetting]
     var searchPaths: SearchPaths
-    var modulemaps: [FilePath]
+    let hasModulemaps: Bool
     var inputs: Inputs
     var linkerInputs: LinkerInputs
     var infoPlist: FilePath?
@@ -56,7 +56,7 @@ extension Target: Decodable {
         case testHost
         case buildSettings
         case searchPaths
-        case modulemaps
+        case hasModulemaps
         case inputs
         case linkerInputs
         case infoPlist
@@ -96,7 +96,8 @@ extension Target: Decodable {
             ) ?? [:]
         searchPaths = try container
             .decodeIfPresent(SearchPaths.self, forKey: .searchPaths) ?? .init()
-        modulemaps = try container.decodeFilePaths(.modulemaps)
+        hasModulemaps = try container
+            .decodeIfPresent(Bool.self, forKey: .hasModulemaps) ?? false
         inputs = try container
             .decodeIfPresent(Inputs.self, forKey: .inputs) ?? .init()
         linkerInputs = try container

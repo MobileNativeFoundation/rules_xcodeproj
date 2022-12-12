@@ -343,7 +343,7 @@ $(CONFIGURATION_BUILD_DIR)
 
             switch buildMode {
             case .xcode:
-                if !target.modulemaps.isEmpty {
+                if target.hasModulemaps {
                     try buildSettings.prepend(
                         onKey: "OTHER_SWIFT_FLAGS",
                         #"""
@@ -366,7 +366,7 @@ $(CONFIGURATION_BUILD_DIR)
                     )
                 }
             case .bazel:
-                if !target.modulemaps.isEmpty {
+                if target.hasModulemaps {
                     try buildSettings.prepend(
                         onKey: "OTHER_SWIFT_FLAGS",
                         #"""
