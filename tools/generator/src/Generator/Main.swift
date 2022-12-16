@@ -118,7 +118,7 @@ ERROR: build_mode wasn't one of the supported values: xcode, bazel
         targetsPaths: [Path]
     ) async throws -> Project {
         do {
-            async let targets = withThrowingTaskGroup(
+            async let targets: [TargetID: Target] = withThrowingTaskGroup(
                 of: [TargetID: Target].self
             ) { group in
                 var targets: [TargetID: Target] = [:]
