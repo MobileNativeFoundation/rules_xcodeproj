@@ -1,6 +1,9 @@
 import XcodeProj
 
 private extension PBXFileElement {
+    // TODO: Make thread-safe
+    private static var cache: [String: String] = [:]
+
     var sortOrder: Int {
         switch self {
         case is PBXVariantGroup:
@@ -22,10 +25,16 @@ private extension PBXFileElement {
     }
 
     var namePathSortString: String {
+        if let cached = Self.cache[uuid] {
+            return cached
+        }
+
         let parentNamePathSortString = parent?.namePathSortString ?? ""
-        return """
+        let ret = """
 \(name ?? path ?? "")\t\(name ?? "")\t\(path ?? "")\t\(parentNamePathSortString)
 """
+        Self.cache[uuid] = ret
+        return ret
     }
 }
 
@@ -91,15 +100,13 @@ extension Array where Element: PBXFileElement {
 }
 
 private struct PBXFileReferenceByTargetKey {
-    let targetKey: ConsolidatedTarget.Key
     let file: PBXFileReference
+    let sortString: String
 
     init(_ element: (key: ConsolidatedTarget.Key, value: PBXFileReference)) {
-        targetKey = element.key
         file = element.value
+        sortString = "\(file.namePathSortString)\t\(element.key)"
     }
-
-    var sortString: String { "\(file.namePathSortString)\t\(targetKey)" }
 }
 
 extension Dictionary
