@@ -11,18 +11,20 @@ extension Generator {
 
         do {
             let arguments = try parseArguments(CommandLine.arguments)
-            let project = try await readProject(
+            async let project = readProject(
                 path: arguments.projectSpecPath,
                 targetsPaths: arguments.targetsSpecPaths
             )
-            let rootDirs = try readRootDirectories(path: arguments.rootDirsPath)
-            let xccurrentversions = try readXCCurrentVersions(
+            async let rootDirs = readRootDirectories(
+                path: arguments.rootDirsPath
+            )
+            async let xccurrentversions = readXCCurrentVersions(
                 path: arguments.xccurrentversionsPath
             )
-            let extensionPointIdentifiers = try readExtensionPointIdentifiers(
+            async let extensionPointIdentifiers = readExtensionPointIdentifiers(
                 path: arguments.extensionPointIdentifiersPath
             )
-            let directories = Directories(
+            let directories = try await Directories(
                 workspace: rootDirs.workspaceDirectory,
                 projectRoot: arguments.projectRootDirectory,
                 external: rootDirs.externalDirectory,
@@ -31,7 +33,7 @@ extension Generator {
                 workspaceOutput: arguments.workspaceOutputPath
             )
 
-            try Generator(logger: logger).generate(
+            try await Generator(logger: logger).generate(
                 buildMode: arguments.buildMode,
                 forFixtures: arguments.forFixtures,
                 project: project,
@@ -102,14 +104,19 @@ ERROR: build_mode wasn't one of the supported values: xcode, bazel
         )
     }
 
-    static func decodeSpec<T: Decodable>(
+    static func decodeJSON<T: Decodable>(
         _ type: T.Type,
         from path: Path
     ) async throws -> T {
         return try await Task {
-            let decoder = ZippyJSONDecoder()
-            decoder.keyDecodingStrategy = .convertFromSnakeCase
-            return try decoder.decode(type, from: try path.read())
+            do {
+                let decoder = ZippyJSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                return try decoder.decode(type, from: try path.read())
+            } catch let error as DecodingError {
+                // Return a more detailed error message
+                throw PreconditionError(message: error.message)
+            }
         }.value
     }
 
@@ -117,39 +124,34 @@ ERROR: build_mode wasn't one of the supported values: xcode, bazel
         path: Path,
         targetsPaths: [Path]
     ) async throws -> Project {
-        do {
-            async let targets: [TargetID: Target] = withThrowingTaskGroup(
-                of: [TargetID: Target].self
-            ) { group in
-                var targets: [TargetID: Target] = [:]
+        async let targets: [TargetID: Target] = withThrowingTaskGroup(
+            of: [TargetID: Target].self
+        ) { group in
+            var targets: [TargetID: Target] = [:]
 
-                for path in targetsPaths {
-                    group.addTask {
-                        return try await decodeSpec(
-                            [TargetID: Target].self,
-                            from: path
-                        )
-                    }
+            for path in targetsPaths {
+                group.addTask {
+                    return try await decodeJSON(
+                        [TargetID: Target].self,
+                        from: path
+                    )
                 }
-
-                for try await targetsSlice in group {
-                    try targets.merge(targetsSlice) { _, new in
-                        throw PreconditionError(message: """
-Duplicate target (\(new.label) \(new.configuration) in target specs
-""")
-                    }
-                }
-
-                return targets
             }
 
-            var project = try await decodeSpec(Project.self, from: path)
-            project.targets = try await targets
-            return project
-        } catch let error as DecodingError {
-            // Return a more detailed error message
-            throw PreconditionError(message: error.message)
+            for try await targetsSlice in group {
+                try targets.merge(targetsSlice) { _, new in
+                    throw PreconditionError(message: """
+Duplicate target (\(new.label) \(new.configuration) in target specs
+""")
+                }
+            }
+
+            return targets
         }
+
+        var project = try await decodeJSON(Project.self, from: path)
+        project.targets = try await targets
+        return project
     }
 
     struct RootDirectories {
@@ -158,56 +160,46 @@ Duplicate target (\(new.label) \(new.configuration) in target specs
         let bazelOutDirectory: Path
     }
 
-    static func readRootDirectories(path: Path) throws -> RootDirectories {
-        let rootDirs = try path.read(.utf8)
-            .split(separator: "\n")
-            .map(String.init)
+    static func readRootDirectories(
+        path: Path
+    ) async throws -> RootDirectories {
+        return try await Task {
+            let rootDirs = try path.read(.utf8)
+                .split(separator: "\n")
+                .map(String.init)
 
-        guard rootDirs.count == 3 else {
-            throw UsageError(message: """
+            guard rootDirs.count == 3 else {
+                throw UsageError(message: """
 The root_dirs_file must contain three lines: one for the workspace directory, \
 one for the external repositories directory, and one for the bazel-out \
 directory.
 """)
-        }
+            }
 
-        return RootDirectories(
-            workspaceDirectory: Path(rootDirs[0]),
-            externalDirectory: Path(rootDirs[1]),
-            bazelOutDirectory: Path(rootDirs[2])
-        )
+            return RootDirectories(
+                workspaceDirectory: Path(rootDirs[0]),
+                externalDirectory: Path(rootDirs[1]),
+                bazelOutDirectory: Path(rootDirs[2])
+            )
+        }.value
     }
 
-    static func readXCCurrentVersions(path: Path) throws -> [XCCurrentVersion] {
-        let decoder = ZippyJSONDecoder()
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
-
-        do {
-            return try decoder.decode(
-                [XCCurrentVersion].self,
-                from: try path.read()
-            )
-        } catch let error as DecodingError {
-            // Return a more detailed error message
-            throw PreconditionError(message: error.message)
-        }
+    static func readXCCurrentVersions(
+        path: Path
+    ) async throws -> [XCCurrentVersion] {
+        return try await decodeJSON(
+            [XCCurrentVersion].self,
+            from: path
+        )
     }
 
     static func readExtensionPointIdentifiers(
         path: Path
-    ) throws -> [TargetID: ExtensionPointIdentifier] {
-        let decoder = ZippyJSONDecoder()
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
-
-        do {
-            return try decoder.decode(
-                [TargetID: ExtensionPointIdentifier].self,
-                from: try path.read()
-            )
-        } catch let error as DecodingError {
-            // Return a more detailed error message
-            throw PreconditionError(message: error.message)
-        }
+    ) async throws -> [TargetID: ExtensionPointIdentifier] {
+        return try await decodeJSON(
+            [TargetID: ExtensionPointIdentifier].self,
+            from: path
+        )
     }
 }
 
