@@ -2,6 +2,8 @@
 
 set -euo pipefail
 
+shopt -s nullglob
+
 readonly project_names=(%project_names%)
 readonly runners=(%runners%)
 
@@ -13,12 +15,14 @@ for i in "${!runners[@]}"; do
   name="${project_names[i]}"
 
   dir="$BUILD_WORKSPACE_DIRECTORY/${runner%/*}"
-  spec_dest="$dir/${name}_spec.json"
+  project_spec_dest="$dir/${name}_project_spec.json"
   xcodeproj_dest="$dir/$name.xcodeproj"
 
   "$runner"
 
-  updated_specs+=("$spec_dest")
+  updated_specs+=(
+    "$project_spec_dest"
+  )
   updated_xcodeprojs+=("$xcodeproj_dest")
 done
 
