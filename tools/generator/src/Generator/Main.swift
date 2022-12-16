@@ -118,12 +118,11 @@ ERROR: build_mode wasn't one of the supported values: xcode, bazel
         targetsPaths: [Path]
     ) async throws -> Project {
         do {
-            async let project = decodeSpec(Project.self, from: path)
-
-            var targets: [TargetID: Target] = [:]
-            try await withThrowingTaskGroup(
+            async let targets = withThrowingTaskGroup(
                 of: [TargetID: Target].self
             ) { group in
+                var targets: [TargetID: Target] = [:]
+
                 for path in targetsPaths {
                     group.addTask {
                         return try await decodeSpec(
@@ -132,6 +131,7 @@ ERROR: build_mode wasn't one of the supported values: xcode, bazel
                         )
                     }
                 }
+
                 for try await targetsSlice in group {
                     try targets.merge(targetsSlice) { _, new in
                         throw PreconditionError(message: """
@@ -139,12 +139,13 @@ Duplicate target (\(new.label) \(new.configuration) in target specs
 """)
                     }
                 }
+
+                return targets
             }
 
-            var ret = try await project
-            ret.targets = targets
-
-            return ret
+            var project = try await decodeSpec(Project.self, from: path)
+            project.targets = try await targets
+            return project
         } catch let error as DecodingError {
             // Return a more detailed error message
             throw PreconditionError(message: error.message)
