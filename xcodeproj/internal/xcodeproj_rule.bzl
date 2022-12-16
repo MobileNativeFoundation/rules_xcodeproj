@@ -686,6 +686,7 @@ def _write_spec(
         config,
         configuration,
         ctx,
+        is_fixture,
         envs,
         project_name,
         target_dtos,
@@ -749,8 +750,7 @@ def _write_spec(
 "replacement_labels":{replacement_labels},\
 "runner_label":"{runner_label}",\
 "scheme_autogeneration_mode":"{scheme_autogeneration_mode}",\
-"target_hosts":{target_hosts},\
-"targets":{targets}\
+"target_hosts":{target_hosts}
 }}
 """.format(
         bazel_config = config,
@@ -784,18 +784,48 @@ def _write_spec(
         runner_label = ctx.attr.runner_label,
         scheme_autogeneration_mode = ctx.attr.scheme_autogeneration_mode,
         target_hosts = json.encode(flattened_key_values.to_list(target_hosts)),
-        targets = json.encode(flattened_key_values.to_list(target_dtos)),
         envs = json.encode(
             flattened_key_values.to_list(envs),
         ),
     )
+
+    # 8 shards max (lowest number of threads on a Mac)
+    max_shard_count = 1 if is_fixture else 8
+
+    target_count = len(target_dtos)
+    shard_count = min(target_count, max_shard_count)
+
+    shard_size = target_count // shard_count
+    if target_count % shard_count != 0:
+        shard_size += 1
+
+        # Adjust down shard_count so we don't have empty shards
+        shard_count = target_count // shard_size
+        if target_count % shard_size != 0:
+            shard_count += 1
+
+    shard_size = shard_size * 2  # Each entry has a key and a value
+
+    flattened_targets = flattened_key_values.to_list(target_dtos)
+
+    target_shards = []
+    for shard in range(shard_count):
+        sharded_targets = flattened_targets[shard * shard_size:(shard + 1) * shard_size]
+
+        targets_json = json.encode(sharded_targets)
+        targets_output = ctx.actions.declare_file(
+            "{}-targets_spec.{}.json".format(ctx.attr.name, shard),
+        )
+        ctx.actions.write(targets_output, targets_json)
+
+        target_shards.append(targets_output)
 
     project_spec_output = ctx.actions.declare_file(
         "{}-project_spec.json".format(ctx.attr.name),
     )
     ctx.actions.write(project_spec_output, project_spec_json)
 
-    return [project_spec_output]
+    return [project_spec_output] + target_shards
 
 def _write_xccurrentversions(*, ctx, xccurrentversion_files):
     containers_file = ctx.actions.declare_file(
@@ -1178,6 +1208,7 @@ def _xcodeproj_impl(ctx):
 
     spec_files = _write_spec(
         ctx = ctx,
+        is_fixture = is_fixture,
         project_name = project_name,
         config = config,
         configuration = configuration,

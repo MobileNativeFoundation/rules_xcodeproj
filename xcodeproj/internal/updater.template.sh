@@ -16,12 +16,14 @@ for i in "${!runners[@]}"; do
 
   dir="$BUILD_WORKSPACE_DIRECTORY/${runner%/*}"
   project_spec_dest="$dir/${name}_project_spec.json"
+  targets_spec_dest="$dir/${name}_targets_spec.json"
   xcodeproj_dest="$dir/$name.xcodeproj"
 
   "$runner"
 
   updated_specs+=(
     "$project_spec_dest"
+    "$targets_spec_dest"
   )
   updated_xcodeprojs+=("$xcodeproj_dest")
 done
