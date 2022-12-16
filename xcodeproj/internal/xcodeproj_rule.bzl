@@ -804,7 +804,7 @@ def _write_spec(
         if target_count % shard_size != 0:
             shard_count += 1
 
-    shard_size = shard_size * 2 # Each entry has a key and a value
+    shard_size = shard_size * 2  # Each entry has a key and a value
 
     flattened_targets = flattened_key_values.to_list(target_dtos)
 
