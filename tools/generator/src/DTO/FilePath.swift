@@ -168,9 +168,18 @@ extension FilePath.PathType: Comparable {
 // MARK: Operators
 
 func + (lhs: FilePath, rhs: String) -> FilePath {
+    let path: Path
+    if rhs.isEmpty {
+        path = lhs.path
+    } else if lhs.path.string.isEmpty {
+        path = Path(rhs)
+    } else {
+        path = Path("\(lhs.path.string)/\(rhs)")
+    }
+
     return FilePath(
         type: lhs.type,
-        path: lhs.path + rhs,
+        path: path,
         isFolder: false,
         includeInNavigator: lhs.includeInNavigator,
         forceGroupCreation: lhs.forceGroupCreation
