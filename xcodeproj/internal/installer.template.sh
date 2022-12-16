@@ -75,11 +75,14 @@ if [[ $for_fixture -eq 1 ]]; then
   rm -rf "${dest%.xcodeproj}"*_spec*.json
 
   readonly spec_paths=%spec_paths%
-  for spec_path in "${spec_paths[@]}"; do
-    spec_src="$PWD/$spec_path"
-    spec_dest="${dest%.xcodeproj}_${spec_path##*-}"
-    python3 -m json.tool "$spec_src" > "$spec_dest"
-  done
+
+  project_spec_src="$PWD/${spec_paths[0]}"
+  project_spec_dest="${dest%.xcodeproj}_project_spec.json"
+  python3 -m json.tool "$project_spec_src" > "$project_spec_dest"
+
+  targets_spec_src="$PWD/${spec_paths[1]}"
+  targets_spec_dest="${dest%.xcodeproj}_targets_spec.json"
+  python3 -m json.tool "$targets_spec_src" > "$targets_spec_dest"
 fi
 
 # Sync over the project, changing the permissions to be writable

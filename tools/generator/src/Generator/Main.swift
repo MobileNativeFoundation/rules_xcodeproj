@@ -6,12 +6,15 @@ import PathKit
 @main
 extension Generator {
     /// The entry point for the `generator` tool.
-    static func main() {
+    static func main() async {
         let logger = DefaultLogger()
 
         do {
             let arguments = try parseArguments(CommandLine.arguments)
-            let project = try readProject(path: arguments.specPath)
+            let project = try await readProject(
+                path: arguments.projectSpecPath,
+                targetsPaths: arguments.targetsSpecPaths
+            )
             let rootDirs = try readRootDirectories(path: arguments.rootDirsPath)
             let xccurrentversions = try readXCCurrentVersions(
                 path: arguments.xccurrentversionsPath
@@ -44,7 +47,8 @@ extension Generator {
     }
 
     struct Arguments {
-        let specPath: Path
+        let projectSpecPath: Path
+        let targetsSpecPaths: [Path]
         let rootDirsPath: Path
         let xccurrentversionsPath: Path
         let extensionPointIdentifiersPath: Path
@@ -56,12 +60,13 @@ extension Generator {
     }
 
     static func parseArguments(_ arguments: [String]) throws -> Arguments {
-        guard arguments.count == 9 else {
+        guard arguments.count >= 10 else {
             throw UsageError(message: """
 Usage: \(arguments[0]) <path/to/root_dirs> \
 <path/to/xccurrentversions.json> <path/to/extensionPointIdentifiers.json> \
 <path/to/output/project.xcodeproj> <workspace/relative/output/path> \
-(xcode|bazel) <1 is for fixtures, otherwise 0> <path/to/project_spec.json>
+(xcode|bazel) <1 is for fixtures, otherwise 0> <path/to/project_spec.json> \
+[<path/to/targets_spec.json>, ...]
 """)
         }
 
@@ -84,7 +89,8 @@ ERROR: build_mode wasn't one of the supported values: xcode, bazel
         }
 
         return Arguments(
-            specPath: Path(arguments[8]),
+            projectSpecPath: Path(arguments[8]),
+            targetsSpecPaths: arguments.suffix(from: 9).map { Path($0) },
             rootDirsPath: Path(arguments[1]),
             xccurrentversionsPath: Path(arguments[2]),
             extensionPointIdentifiersPath: Path(arguments[3]),
@@ -96,12 +102,49 @@ ERROR: build_mode wasn't one of the supported values: xcode, bazel
         )
     }
 
-    static func readProject(path: Path) throws -> Project {
-        let decoder = ZippyJSONDecoder()
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
+    static func decodeSpec<T: Decodable>(
+        _ type: T.Type,
+        from path: Path
+    ) async throws -> T {
+        return try await Task {
+            let decoder = ZippyJSONDecoder()
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
+            return try decoder.decode(type, from: try path.read())
+        }.value
+    }
 
+    static func readProject(
+        path: Path,
+        targetsPaths: [Path]
+    ) async throws -> Project {
         do {
-            return try decoder.decode(Project.self, from: try path.read())
+            async let project = decodeSpec(Project.self, from: path)
+
+            var targets: [TargetID: Target] = [:]
+            try await withThrowingTaskGroup(
+                of: [TargetID: Target].self
+            ) { group in
+                for path in targetsPaths {
+                    group.addTask {
+                        return try await decodeSpec(
+                            [TargetID: Target].self,
+                            from: path
+                        )
+                    }
+                }
+                for try await targetsSlice in group {
+                    try targets.merge(targetsSlice) { _, new in
+                        throw PreconditionError(message: """
+Duplicate target (\(new.label) \(new.configuration) in target specs
+""")
+                    }
+                }
+            }
+
+            var ret = try await project
+            ret.targets = targets
+
+            return ret
         } catch let error as DecodingError {
             // Return a more detailed error message
             throw PreconditionError(message: error.message)
