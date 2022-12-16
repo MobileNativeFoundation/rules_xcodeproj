@@ -58,14 +58,14 @@ extension Generator {
     static func parseArguments(_ arguments: [String]) throws -> Arguments {
         guard arguments.count == 9 else {
             throw UsageError(message: """
-Usage: \(arguments[0]) <path/to/project.json> <path/to/root_dirs> \
+Usage: \(arguments[0]) <path/to/root_dirs> \
 <path/to/xccurrentversions.json> <path/to/extensionPointIdentifiers.json> \
 <path/to/output/project.xcodeproj> <workspace/relative/output/path> \
-(xcode|bazel) <1 is for fixtures, otherwise 0>
+(xcode|bazel) <1 is for fixtures, otherwise 0> <path/to/project_spec.json>
 """)
         }
 
-        let workspaceOutput = arguments[6]
+        let workspaceOutput = arguments[5]
         let workspaceOutputComponents = workspaceOutput.split(separator: "/")
 
         // Generate a relative path to the project root
@@ -76,7 +76,7 @@ Usage: \(arguments[0]) <path/to/project.json> <path/to/root_dirs> \
             .joined(separator: "/")
 
         guard
-            let buildMode = BuildMode(rawValue: arguments[7])
+            let buildMode = BuildMode(rawValue: arguments[6])
         else {
             throw UsageError(message: """
 ERROR: build_mode wasn't one of the supported values: xcode, bazel
@@ -84,15 +84,15 @@ ERROR: build_mode wasn't one of the supported values: xcode, bazel
         }
 
         return Arguments(
-            specPath: Path(arguments[1]),
-            rootDirsPath: Path(arguments[2]),
-            xccurrentversionsPath: Path(arguments[3]),
-            extensionPointIdentifiersPath: Path(arguments[4]),
-            outputPath: Path(arguments[5]),
+            specPath: Path(arguments[8]),
+            rootDirsPath: Path(arguments[1]),
+            xccurrentversionsPath: Path(arguments[2]),
+            extensionPointIdentifiersPath: Path(arguments[3]),
+            outputPath: Path(arguments[4]),
             workspaceOutputPath: Path(workspaceOutput),
             projectRootDirectory: Path(projectRoot),
             buildMode: buildMode,
-            forFixtures: arguments[8] == "1"
+            forFixtures: arguments[7] == "1"
         )
     }
 

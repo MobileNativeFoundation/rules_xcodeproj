@@ -2,6 +2,8 @@
 
 set -euo pipefail
 
+shopt -s nullglob
+
 # Functions
 
 # Echos the provided message to stderr and exits with an error (1)
@@ -70,9 +72,14 @@ dest_dir="$(dirname "${dest}")"
 
 # Sync over spec if requested
 if [[ $for_fixture -eq 1 ]]; then
-  readonly spec_src="$PWD/%spec_path%"
-  readonly spec_dest="${dest%.xcodeproj}_spec.json"
-  python3 -m json.tool "$spec_src" > "$spec_dest"
+  rm -rf "${dest%.xcodeproj}"*_spec*.json
+
+  readonly spec_paths=%spec_paths%
+  for spec_path in "${spec_paths[@]}"; do
+    spec_src="$PWD/$spec_path"
+    spec_dest="${dest%.xcodeproj}_${spec_path##*-}"
+    python3 -m json.tool "$spec_src" > "$spec_dest"
+  done
 fi
 
 # Sync over the project, changing the permissions to be writable
@@ -118,7 +125,6 @@ fi
 chmod u+w "$dest/rules_xcodeproj/bazel/"*
 
 # Keep only scripts as runnable
-shopt -s nullglob
 chmod u+x "$dest/rules_xcodeproj/"*.{py,sh}
 find "$dest/rules_xcodeproj/bazel" \
   -type f ! \( -name "swiftc" -o -name "*.sh" -o -name "*.py" \) \
