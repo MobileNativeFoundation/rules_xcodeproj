@@ -135,6 +135,7 @@ extension Generator {
             in pbxProj: PBXProj,
             filePath: FilePath,
             pathComponent: String,
+            parentIsLocalizedContainer: Bool,
             isLeaf: Bool,
             forceGroupCreation: Bool
         ) -> (PBXFileElement, isNew: Bool)? {
@@ -143,7 +144,7 @@ extension Generator {
                 // We don't add it directly; an element will get added once the
                 // next path component is evaluated.
                 return nil
-            } else if filePath.path.parent().isLocalizedContainer {
+            } else if parentIsLocalizedContainer {
                 // Localized file (e.g. /path/to/en.lproj/foo.png)
                 if let group = groups[filePath] {
                     return (group, false)
@@ -442,6 +443,7 @@ extension Generator {
 
             var coreDataContainer: XCVersionGroup?
             let components = fullFilePath.path.components
+            var parentIsLocalizedContainer = false
             for (offset, component) in components.enumerated() {
                 // swiftlint:disable:next shorthand_operator
                 filePath = filePath + component
@@ -452,6 +454,7 @@ extension Generator {
                         in: pbxProj,
                         filePath: filePath,
                         pathComponent: component,
+                        parentIsLocalizedContainer: parentIsLocalizedContainer,
                         isLeaf: isLeaf,
                         forceGroupCreation: fullFilePath.forceGroupCreation
                     )
@@ -480,6 +483,9 @@ extension Generator {
                     // End early if we get back a file element. This can happen
                     // if a folder-like file is added.
                     if element is PBXFileReference { break }
+                } else {
+                    // TODO: Indicate this better
+                    parentIsLocalizedContainer = true
                 }
             }
 
