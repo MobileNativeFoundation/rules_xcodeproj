@@ -442,9 +442,11 @@ extension Generator {
             }
 
             var coreDataContainer: XCVersionGroup?
-            let components = fullFilePath.path.components
+            let components = fullFilePath.path.string.split(separator: "/")
             var parentIsLocalizedContainer = false
             for (offset, component) in components.enumerated() {
+                let component = String(component)
+
                 // swiftlint:disable:next shorthand_operator
                 filePath = filePath + component
                 let isLeaf = offset == components.count - 1
@@ -453,7 +455,7 @@ extension Generator {
                     let (element, isNew) = createElement(
                         in: pbxProj,
                         filePath: filePath,
-                        pathComponent: component,
+                        pathComponent: String(component),
                         parentIsLocalizedContainer: parentIsLocalizedContainer,
                         isLeaf: isLeaf,
                         forceGroupCreation: fullFilePath.forceGroupCreation
