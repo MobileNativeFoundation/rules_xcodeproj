@@ -110,7 +110,8 @@ $(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py
             let script = createBuildScript(
                 in: pbxProj,
                 name: "Pre-build",
-                script: preBuildScript
+                script: preBuildScript,
+                alwaysOutOfDate: true
             )
             buildPhases.insert(script, at: 0)
         }
@@ -119,7 +120,8 @@ $(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py
             let script = createBuildScript(
                 in: pbxProj,
                 name: "Post-build",
-                script: postBuildScript
+                script: postBuildScript,
+                alwaysOutOfDate: true
             )
             buildPhases.append(script)
         }
@@ -211,12 +213,14 @@ perl -pe 's/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$ENV{$2}/g' \
     private static func createBuildScript(
         in pbxProj: PBXProj,
         name: String,
-        script: String
+        script: String,
+        alwaysOutOfDate: Bool = false
     ) -> PBXShellScriptBuildPhase {
         let script = PBXShellScriptBuildPhase(
             name: "\(name) Run Script",
             shellScript: "\(script)\n",
-            showEnvVarsInLog: false
+            showEnvVarsInLog: false,
+            alwaysOutOfDate: alwaysOutOfDate
         )
         pbxProj.add(object: script)
 
