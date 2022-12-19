@@ -298,6 +298,7 @@ def _collect_input_files(
             avoid_resource_infos = [
                 dep[AppleResourceInfo]
                 for dep in avoid_deps
+                if AppleResourceInfo in dep
             ],
         )
 
