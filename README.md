@@ -53,6 +53,7 @@ rules.
 
 - [Envoy Mobile](https://github.com/envoyproxy/envoy-mobile)
 - Robinhood
+- Slack
 - Spotify
 - [SwiftLint](https://github.com/realm/SwiftLint)
 
