@@ -14,9 +14,9 @@
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "8D4824C0E28AA351F01A06F5"
-                     BuildableName = "lib_headers"
-                     BlueprintName = "lib_headers"
+                     BlueprintIdentifier = "68A607DA29E1BF69B6FB3232"
+                     BuildableName = "lib_defines (macOS 11.0)"
+                     BlueprintName = "lib_defines (macOS 11.0)"
                      ReferencedContainer = "container:../../../../../test/fixtures/bwx.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
@@ -25,14 +25,14 @@
          <ExecutionAction
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
-               title = "Set Bazel Build Output Groups for lib_headers"
+               title = "Set Bazel Build Output Groups for lib_defines (macOS 11.0)"
                scriptText = "echo &quot;$BAZEL_LABEL,$BAZEL_TARGET_ID&quot; &gt;&gt; &quot;$SCHEME_TARGET_IDS_FILE&quot;&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "8D4824C0E28AA351F01A06F5"
-                     BuildableName = "lib_headers"
-                     BlueprintName = "lib_headers"
+                     BlueprintIdentifier = "68A607DA29E1BF69B6FB3232"
+                     BuildableName = "lib_defines (macOS 11.0)"
+                     BlueprintName = "lib_defines (macOS 11.0)"
                      ReferencedContainer = "container:../../../../../test/fixtures/bwx.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
@@ -48,9 +48,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8D4824C0E28AA351F01A06F5"
-               BuildableName = "lib_headers"
-               BlueprintName = "lib_headers"
+               BlueprintIdentifier = "68A607DA29E1BF69B6FB3232"
+               BuildableName = "lib_defines (macOS 11.0)"
+               BlueprintName = "lib_defines (macOS 11.0)"
                ReferencedContainer = "container:../../../../../test/fixtures/bwx.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

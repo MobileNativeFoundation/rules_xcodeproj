@@ -101,6 +101,15 @@ _SETTINGS = {
       "$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/Lib"
     ]
   },
+  "arm64-apple-macosx12.0.0 tool.binary" : {
+    "clang" : "-iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/macos-arm64-min12.0-applebin_macos-darwin_arm64-dbg-ST-efd85b15bd0a/bin\" -iquote \"$(BAZEL_EXTERNAL)/examples_command_line_external\" -iquote \"$(BAZEL_OUT)/macos-arm64-min12.0-applebin_macos-darwin_arm64-dbg-ST-efd85b15bd0a/bin/external/examples_command_line_external\" -I \"$(SRCROOT)/CommandLine/CommandLineToolLib/dir with space\" -I \"$(BAZEL_OUT)/macos-arm64-min12.0-applebin_macos-darwin_arm64-dbg-ST-efd85b15bd0a/bin/CommandLine/CommandLineToolLib/dir with space\" -I \"$(SRCROOT)/CommandLine/CommandLineToolLib/private\" -I \"$(BAZEL_OUT)/macos-arm64-min12.0-applebin_macos-darwin_arm64-dbg-ST-efd85b15bd0a/bin/CommandLine/CommandLineToolLib/private\" -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all -DSECRET_3=\\\"Hello\\\" -DSECRET_2=\\\"World!\\\" -iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/macos-arm64-min12.0-applebin_macos-darwin_arm64-dbg-ST-efd85b15bd0a/bin\" -iquote \"$(BAZEL_EXTERNAL)/examples_command_line_external\" -iquote \"$(BAZEL_OUT)/macos-arm64-min12.0-applebin_macos-darwin_arm64-dbg-ST-efd85b15bd0a/bin/external/examples_command_line_external\" -fmodule-map-file=\"$(BAZEL_OUT)/macos-arm64-min12.0-applebin_macos-darwin_arm64-dbg-ST-efd85b15bd0a/bin/CommandLine/CommandLineToolLib/lib_impl.swift.modulemap\" -fmodule-map-file=\"$(SRCROOT)/CommandLine/swift_c_module/c_lib.modulemap\" -fmodule-map-file=\"$(BAZEL_EXTERNAL)/examples_command_line_external/ExternalFramework.framework/Modules/module.modulemap\" -fmodule-map-file=\"$(BAZEL_OUT)/macos-arm64-min12.0-applebin_macos-darwin_arm64-dbg-ST-efd85b15bd0a/bin/external/examples_command_line_external/Library.swift.modulemap\" -fmodule-map-file=\"$(BAZEL_OUT)/macos-arm64-min12.0-applebin_macos-darwin_arm64-dbg-ST-efd85b15bd0a/bin/CommandLine/CommandLineToolLib/private_lib.swift.modulemap\" -O0 -fstack-protector -fstack-protector-all -iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/macos-arm64-min12.0-applebin_macos-darwin_arm64-dbg-ST-efd85b15bd0a/bin\" -O0 -fstack-protector -fstack-protector-all",
+    "frameworks" : [
+      "$(BAZEL_EXTERNAL)/examples_command_line_external"
+    ],
+    "includes" : [
+      "$(BAZEL_OUT)/macos-arm64-min12.0-applebin_macos-darwin_arm64-dbg-ST-efd85b15bd0a/bin/CommandLine/CommandLineToolLib"
+    ]
+  },
   "arm64-apple-tvos15.0.0 Lib.framework/Lib" : {
     "clang" : "-iquote \"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift\" -iquote \"$(BAZEL_OUT)/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin/external/com_github_krzyzanowskim_cryptoswift\" -iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-ST-4104480a806c/bin\" -fmodule-map-file=\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework/Modules/module.modulemap\" -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all",
     "frameworks" : [
@@ -271,6 +280,15 @@ _SETTINGS = {
     ],
     "includes" : [
       "$(PLATFORM_DIR)/Developer/usr/lib"
+    ]
+  },
+  "x86_64-apple-macosx12.0.0 tool.binary" : {
+    "clang" : "-iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-333c34497c04/bin\" -iquote \"$(BAZEL_EXTERNAL)/examples_command_line_external\" -iquote \"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-333c34497c04/bin/external/examples_command_line_external\" -I \"$(SRCROOT)/CommandLine/CommandLineToolLib/dir with space\" -I \"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-333c34497c04/bin/CommandLine/CommandLineToolLib/dir with space\" -I \"$(SRCROOT)/CommandLine/CommandLineToolLib/private\" -I \"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-333c34497c04/bin/CommandLine/CommandLineToolLib/private\" -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all -DSECRET_3=\\\"Hello\\\" -DSECRET_2=\\\"World!\\\" -iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-333c34497c04/bin\" -iquote \"$(BAZEL_EXTERNAL)/examples_command_line_external\" -iquote \"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-333c34497c04/bin/external/examples_command_line_external\" -fmodule-map-file=\"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-333c34497c04/bin/CommandLine/CommandLineToolLib/lib_impl.swift.modulemap\" -fmodule-map-file=\"$(SRCROOT)/CommandLine/swift_c_module/c_lib.modulemap\" -fmodule-map-file=\"$(BAZEL_EXTERNAL)/examples_command_line_external/ExternalFramework.framework/Modules/module.modulemap\" -fmodule-map-file=\"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-333c34497c04/bin/external/examples_command_line_external/Library.swift.modulemap\" -fmodule-map-file=\"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-333c34497c04/bin/CommandLine/CommandLineToolLib/private_lib.swift.modulemap\" -O0 -fstack-protector -fstack-protector-all -iquote \"$(PROJECT_DIR)\" -iquote \"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-333c34497c04/bin\" -O0 -fstack-protector -fstack-protector-all",
+    "frameworks" : [
+      "$(BAZEL_EXTERNAL)/examples_command_line_external"
+    ],
+    "includes" : [
+      "$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-333c34497c04/bin/CommandLine/CommandLineToolLib"
     ]
   },
   "x86_64-apple-tvos15.0.0-simulator Lib.framework/Lib" : {

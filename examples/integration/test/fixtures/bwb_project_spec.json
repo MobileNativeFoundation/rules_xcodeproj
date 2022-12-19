@@ -348,6 +348,10 @@
     "post_build_script": null,
     "pre_build_script": null,
     "replacement_labels": [
+        "//CommandLine/CommandLineTool:tool.binary macos-arm64-min12.0-applebin_macos-darwin_arm64-dbg-ST-efd85b15bd0a",
+        "@//CommandLine/CommandLineTool:UniversalCommandLineTool",
+        "//CommandLine/CommandLineTool:tool.binary macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-333c34497c04",
+        "@//CommandLine/CommandLineTool:UniversalCommandLineTool",
         "//CommandLine/Tests:CommandLineToolTests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473",
         "@//CommandLine/Tests:CommandLineToolTests",
         "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307",

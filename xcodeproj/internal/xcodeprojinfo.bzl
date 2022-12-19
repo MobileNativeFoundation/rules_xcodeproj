@@ -302,7 +302,8 @@ def _skip_target(
                 for attr, info in transitive_infos
                 if (target and
                     attr in deps_attrs and
-                    info.xcode_target)
+                    info.xcode_target and
+                    automatic_target_info.env)
             ],
             transitive = [
                 info.envs
