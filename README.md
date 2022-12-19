@@ -52,6 +52,7 @@ rules.
 ## Projects using rules_xcodeproj
 
 - [Envoy Mobile](https://github.com/envoyproxy/envoy-mobile)
+- Robinhood
 - Spotify
 - [SwiftLint](https://github.com/realm/SwiftLint)
 
