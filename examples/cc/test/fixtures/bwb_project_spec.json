@@ -16,12 +16,7 @@
     "envs": [],
     "extra_files": [
         "lib/BUILD",
-        "lib/lib.h",
         "lib2/BUILD",
-        {
-            "_": "examples_cc_external/lib.h",
-            "t": "e"
-        },
         "tool/BUILD",
         "test/fixtures/BUILD"
     ],

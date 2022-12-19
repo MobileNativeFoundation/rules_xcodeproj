@@ -142,6 +142,13 @@
 			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
 			remoteInfo = BazelDependencies;
 		};
+		4E03220CCC412046D47202E8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0805833D09730531AD081697 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
+			remoteInfo = BazelDependencies;
+		};
 		53B0D201209D5FC678C09FF3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0805833D09730531AD081697 /* Project object */;
@@ -318,6 +325,13 @@
 			remoteInfo = BazelDependencies;
 		};
 		DA3D8D1E0394587D9F6140FE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0805833D09730531AD081697 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
+			remoteInfo = BazelDependencies;
+		};
+		DAF62ABC0938A290BD383017 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0805833D09730531AD081697 /* Project object */;
 			proxyType = 1;
@@ -3388,6 +3402,21 @@
 			productReference = BC0D919D9C4954991E8C1FB8 /* iOSApp.app */;
 			productType = "com.apple.product-type.application";
 		};
+		1805B9D59874AB1F21A0CC56 /* lib_defines */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6E186CB374F54C88CE5DFCC0 /* Build configuration list for PBXNativeTarget "lib_defines" */;
+			buildPhases = (
+				F1069E8FF06104F2DB40379E /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1474B9355FAF0445FD4ED900 /* PBXTargetDependency */,
+			);
+			name = lib_defines;
+			productName = lib_defines;
+			productType = "com.apple.product-type.library.static";
+		};
 		1A40783EF59C680645DD16E1 /* CommandLineTool */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = A8F09F14F4463A8E11725B7D /* Build configuration list for PBXNativeTarget "CommandLineTool" */;
@@ -3934,6 +3963,21 @@
 			productReference = CB3DC152A3E3107BA02D60A1 /* macOSAppUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		E1E7EE86FBF380A44DC1A1DD /* lib_headers */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ECF6816CDEF12C3FEEB877BE /* Build configuration list for PBXNativeTarget "lib_headers" */;
+			buildPhases = (
+				9A78265C479BB96F9A859D0D /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D94AEC16C3734D9106CDB7DE /* PBXTargetDependency */,
+			);
+			name = lib_headers;
+			productName = lib_headers;
+			productType = "com.apple.product-type.library.static";
+		};
 		EACAA4186ECECF71B7BC09C6 /* tvOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00121B99D93E11CCDD1C735A /* Build configuration list for PBXNativeTarget "tvOS" */;
@@ -4037,6 +4081,10 @@
 						LastSwiftMigration = 9999;
 					};
 					1765D91CC168F25A5BC51603 = {
+						CreatedOnToolsVersion = 13.0.0;
+						LastSwiftMigration = 9999;
+					};
+					1805B9D59874AB1F21A0CC56 = {
 						CreatedOnToolsVersion = 13.0.0;
 						LastSwiftMigration = 9999;
 					};
@@ -4173,6 +4221,10 @@
 						LastSwiftMigration = 9999;
 						TestTargetID = AE02B41E521B2C6360C30D20;
 					};
+					E1E7EE86FBF380A44DC1A1DD = {
+						CreatedOnToolsVersion = 13.0.0;
+						LastSwiftMigration = 9999;
+					};
 					EACAA4186ECECF71B7BC09C6 = {
 						CreatedOnToolsVersion = 13.0.0;
 						LastSwiftMigration = 9999;
@@ -4224,6 +4276,8 @@
 				D2B147BDA8E8FC10D91B53BB /* iOSAppSwiftUnitTests */,
 				9D6BB9A04FEC771667C78F54 /* Lib (iOS, tvOS) */,
 				83D00AD7532094902D925C83 /* Lib (watchOS) */,
+				1805B9D59874AB1F21A0CC56 /* lib_defines */,
+				E1E7EE86FBF380A44DC1A1DD /* lib_headers */,
 				BC691472A2BC47F8E1D5D637 /* lib_impl */,
 				8E3B6C47A6106921076BC573 /* lib_swift */,
 				C03F5C0CA2104493AE9E52C9 /* LibFramework.tvOS */,
@@ -4934,6 +4988,22 @@
 			shellScript = "\"$BAZEL_INTEGRATION_DIR/generate_bazel_dependencies.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		9A78265C479BB96F9A859D0D /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\n\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		9C72B493BBB21FF221EBC79C /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -5338,6 +5408,22 @@
 			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\n\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		F1069E8FF06104F2DB40379E /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\n\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		F343BFA76D64F5F53017DEC2 /* Create linking dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -5722,6 +5808,12 @@
 			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
 			targetProxy = 334E33C35297EDCE3D14FD82 /* PBXContainerItemProxy */;
 		};
+		1474B9355FAF0445FD4ED900 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BazelDependencies;
+			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
+			targetProxy = 4E03220CCC412046D47202E8 /* PBXContainerItemProxy */;
+		};
 		1BB14BD319203CF277CB7228 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = BazelDependencies;
@@ -5937,6 +6029,12 @@
 			name = BazelDependencies;
 			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
 			targetProxy = F690C1C1C0C458108C2CC74A /* PBXContainerItemProxy */;
+		};
+		D94AEC16C3734D9106CDB7DE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BazelDependencies;
+			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
+			targetProxy = DAF62ABC0938A290BD383017 /* PBXContainerItemProxy */;
 		};
 		D96519F774F29A2A95CA6327 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -6540,6 +6638,95 @@
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 				WATCHOS_FILES = "$(BAZEL_OUT)/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin/Lib/Lib.swift";
 				WATCHSIMULATOR_FILES = "$(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/Lib/Lib.swift";
+			};
+			name = Debug;
+		};
+		29CB1392965D5D7A6EFCDD04 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = x86_64;
+				BAZEL_LABEL = "@//CommandLine/CommandLineToolLib:lib_defines";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineToolLib";
+				BAZEL_TARGET_ID = "//CommandLine/CommandLineToolLib:lib_defines macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473";
+				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				COMPILE_TARGET_NAME = lib_defines;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EXECUTABLE_EXTENSION = "";
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"_FORTIFY_SOURCE=1",
+					OS_MACOSX,
+					"DEBUG=1",
+					"SECRET_3=\\\"Hello\\\"",
+					"SECRET_2=\\\"World!\\\"",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				OTHER_CFLAGS = (
+					"-ivfsoverlay",
+					"$(OBJROOT)/bazel-out-overlay.yaml",
+					"-fstack-protector",
+					"-Wall",
+					"-Wthread-safety",
+					"-Wself-assign",
+					"-fno-omit-frame-pointer",
+					"-Wshorten-64-to-32",
+					"-Wbool-conversion",
+					"-Wconstant-conversion",
+					"-Wduplicate-method-match",
+					"-Wempty-body",
+					"-Wenum-conversion",
+					"-Wint-conversion",
+					"-Wunreachable-code",
+					"-Wmismatched-return-types",
+					"-Wundeclared-selector",
+					"-Wuninitialized",
+					"-Wunused-function",
+					"-Wunused-variable",
+					"-fno-autolink",
+					"-fstack-protector",
+					"-fstack-protector-all",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"-ivfsoverlay",
+					"$(OBJROOT)/bazel-out-overlay.yaml",
+					"-fstack-protector",
+					"-Wall",
+					"-Wthread-safety",
+					"-Wself-assign",
+					"-fno-omit-frame-pointer",
+					"-Wshorten-64-to-32",
+					"-Wbool-conversion",
+					"-Wconstant-conversion",
+					"-Wduplicate-method-match",
+					"-Wempty-body",
+					"-Wenum-conversion",
+					"-Wint-conversion",
+					"-Wunreachable-code",
+					"-Wmismatched-return-types",
+					"-Wundeclared-selector",
+					"-Wuninitialized",
+					"-Wunused-function",
+					"-Wunused-variable",
+					"-fno-autolink",
+					"-fstack-protector",
+					"-fstack-protector-all",
+				);
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR)";
+				PRODUCT_NAME = lib_defines;
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGET_NAME = lib_defines;
+				USER_HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)",
+					"$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin",
+				);
 			};
 			name = Debug;
 		};
@@ -7564,6 +7751,104 @@
 					"$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/external/com_github_krzyzanowskim_cryptoswift",
 					"$(PROJECT_DIR)",
 					"$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin",
+				);
+			};
+			name = Debug;
+		};
+		806E14A704826CA1B11C50AF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = x86_64;
+				BAZEL_LABEL = "@//CommandLine/CommandLineToolLib:lib_headers";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineToolLib";
+				BAZEL_TARGET_ID = "//CommandLine/CommandLineToolLib:lib_headers macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473";
+				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				COMPILE_TARGET_NAME = lib_headers;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EXECUTABLE_EXTENSION = "";
+				FRAMEWORK_SEARCH_PATHS = external/examples_command_line_external;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"_FORTIFY_SOURCE=1",
+					OS_MACOSX,
+					"DEBUG=1",
+					"SECRET_3=\\\"Hello\\\"",
+					"SECRET_2=\\\"World!\\\"",
+				);
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/CommandLine/CommandLineToolLib/dir with space\"",
+					"\"$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineToolLib/dir with space\"",
+					"$(SRCROOT)/CommandLine/CommandLineToolLib/private",
+					"$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineToolLib/private",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				OTHER_CFLAGS = (
+					"-ivfsoverlay",
+					"$(OBJROOT)/bazel-out-overlay.yaml",
+					"-fstack-protector",
+					"-Wall",
+					"-Wthread-safety",
+					"-Wself-assign",
+					"-fno-omit-frame-pointer",
+					"-Wshorten-64-to-32",
+					"-Wbool-conversion",
+					"-Wconstant-conversion",
+					"-Wduplicate-method-match",
+					"-Wempty-body",
+					"-Wenum-conversion",
+					"-Wint-conversion",
+					"-Wunreachable-code",
+					"-Wmismatched-return-types",
+					"-Wundeclared-selector",
+					"-Wuninitialized",
+					"-Wunused-function",
+					"-Wunused-variable",
+					"-fno-autolink",
+					"-fstack-protector",
+					"-fstack-protector-all",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"-ivfsoverlay",
+					"$(OBJROOT)/bazel-out-overlay.yaml",
+					"-fstack-protector",
+					"-Wall",
+					"-Wthread-safety",
+					"-Wself-assign",
+					"-fno-omit-frame-pointer",
+					"-Wshorten-64-to-32",
+					"-Wbool-conversion",
+					"-Wconstant-conversion",
+					"-Wduplicate-method-match",
+					"-Wempty-body",
+					"-Wenum-conversion",
+					"-Wint-conversion",
+					"-Wunreachable-code",
+					"-Wmismatched-return-types",
+					"-Wundeclared-selector",
+					"-Wuninitialized",
+					"-Wunused-function",
+					"-Wunused-variable",
+					"-fno-autolink",
+					"-fstack-protector",
+					"-fstack-protector-all",
+				);
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR)";
+				PRODUCT_NAME = lib_headers;
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGET_NAME = lib_headers;
+				USER_HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)",
+					"$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin",
+					"$(BAZEL_EXTERNAL)/examples_command_line_external",
+					"$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/external/examples_command_line_external",
 				);
 			};
 			name = Debug;
@@ -9099,6 +9384,14 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
+		6E186CB374F54C88CE5DFCC0 /* Build configuration list for PBXNativeTarget "lib_defines" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				29CB1392965D5D7A6EFCDD04 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
 		75EB161EFF626458F41F0CA7 /* Build configuration list for PBXNativeTarget "iMessageAppExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -9271,6 +9564,14 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				111C3642FF48431B6DC10483 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		ECF6816CDEF12C3FEEB877BE /* Build configuration list for PBXNativeTarget "lib_headers" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				806E14A704826CA1B11C50AF /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

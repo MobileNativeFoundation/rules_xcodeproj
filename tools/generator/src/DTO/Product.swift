@@ -5,7 +5,7 @@ struct Product: Equatable, Decodable {
     let type: PBXProductType
     let isResourceBundle: Bool
     let name: String
-    let path: FilePath
+    let path: FilePath?
     var additionalPaths: [FilePath]
     let executableName: String?
 
@@ -14,7 +14,7 @@ struct Product: Equatable, Decodable {
         type: PBXProductType,
         isResourceBundle: Bool = false,
         name: String,
-        path: FilePath,
+        path: FilePath?,
         additionalPaths: [FilePath] = [],
         executableName: String? = nil
     ) {

@@ -33,7 +33,12 @@ extension Generator {
                 // since we override `DEPLOYMENT_LOCATION` and
                 // `BUILT_PRODUCTS_DIR` for them
                 name = target.product.basename
-                path = "bazel-out/\(defaultTarget.product.path.path)"
+                path = defaultTarget.product.path
+                    .flatMap { "bazel-out/\($0.path)" }
+            }
+
+            guard let path = path else {
+                continue
             }
 
             let product = PBXFileReference(
