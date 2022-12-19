@@ -455,7 +455,7 @@ extension Generator {
                     let (element, isNew) = createElement(
                         in: pbxProj,
                         filePath: filePath,
-                        pathComponent: String(component),
+                        pathComponent: component,
                         parentIsLocalizedContainer: parentIsLocalizedContainer,
                         isLeaf: isLeaf,
                         forceGroupCreation: fullFilePath.forceGroupCreation
