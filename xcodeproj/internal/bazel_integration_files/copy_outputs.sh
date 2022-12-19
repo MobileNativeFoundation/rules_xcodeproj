@@ -57,6 +57,19 @@ else
       "$product_basename" \
       "$TARGET_BUILD_DIR"
 
+    # Incremental installation can fail if an embedded bundle is recompiled but
+    # the Info.plist is not updated. This causes the delta bundle that Xcode
+    # actually installs to not have a bundle ID for the embedded bundle. We
+    # avoid this potential issue by always including the Info.plist in the delta
+    # bundle by touching them.
+    # Source: https://github.com/bazelbuild/tulsi/commit/27354027fada7aa3ec3139fd686f85cc5039c564
+    # TODO: Pass the exact list of files to touch to this script
+    readonly plugins_dir="$TARGET_BUILD_DIR/${PLUGINS_FOLDER_PATH:-}"
+    if [[ "${TARGET_DEVICE_PLATFORM_NAME:-}" == "iphoneos" && \
+           -d "$plugins_dir" ]]; then
+      find "$plugins_dir" -depth 2 -name "Info.plist" -exec touch {} \;
+    fi
+
     # SwiftUI Previews has a hard time finding frameworks (`@rpath`) when using
     # framework schemes, so let's symlink them into
     # `$TARGET_BUILD_DIR` (since we modify `@rpath` to always include
