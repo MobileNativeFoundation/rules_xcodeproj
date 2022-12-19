@@ -925,6 +925,11 @@ def _write_create_xcode_overlay_script(*, ctx, targets):
     return output
 
 def _write_root_dirs(*, ctx):
+    if ctx.label.workspace_root:
+        fail("""\
+Can't generate a project into an external repository: {}\
+""".format(ctx.label.workspace_root))
+
     output = ctx.actions.declare_file("{}_root_dirs".format(ctx.attr.name))
 
     ctx.actions.run_shell(
@@ -935,8 +940,8 @@ remove_suffix="/${{project_full#*/*}}"
 workspace_root_element="${{project_full%$remove_suffix}}"
 
 execroot_workspace_dir="$(perl -MCwd -e 'print Cwd::abs_path' "{project_full}";)"
-workspace_root_element="$(readlink $execroot_workspace_dir/$workspace_root_element)"
-workspace_dir="${{workspace_root_element%/*}}"
+resolved_workspace_root_element="$(readlink $execroot_workspace_dir/$workspace_root_element)"
+workspace_dir="${{resolved_workspace_root_element%/*}}"
 
 bazel_out_full_path="$(perl -MCwd -e 'print Cwd::abs_path shift' "{bazel_out_full}";)"
 bazel_out_full_path="${{bazel_out_full_path#/private}}"
