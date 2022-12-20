@@ -28,8 +28,8 @@ while (("$#")); do
       bazel_path="${2}"
       shift 2
       ;;
-    "--bazelrc")
-      bazelrc="${2}"
+    "--xcodeproj_bazelrc")
+      xcodeproj_bazelrc="${2}"
       shift 2
       ;;
     "--destination")
@@ -118,7 +118,7 @@ else
   cp -c "${bazel_integration_files[@]}" "$dest/rules_xcodeproj/bazel"
 fi
 
-cp "$bazelrc" "$dest/rules_xcodeproj/bazel/xcodeproj.bazelrc"
+cp "$xcodeproj_bazelrc" "$dest/rules_xcodeproj/bazel/xcodeproj.bazelrc"
 if [[ -s "${extra_flags_bazelrc:-}" ]]; then
   cp "$extra_flags_bazelrc" "$dest/rules_xcodeproj/bazel/xcodeproj_extra_flags.bazelrc"
 else
