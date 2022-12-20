@@ -21,29 +21,37 @@ extension Generator {
             let target = disambiguatedTarget.target
             let inputs = target.inputs
             let outputs = target.outputs
+            let productBasename = target.product.basename
             let productType = target.product.type
 
-            guard let product = products.byTarget[key] else {
-                throw PreconditionError(message: """
-Product for target "\(key)" not found in `products`
-""")
+            let compileSources: (phase: PBXSourcesBuildPhase, hasCompileStub: Bool)?
+            let product: PBXFileReference?
+            if productBasename != nil {
+                guard let actualProduct = products.byTarget[key] else {
+                    throw PreconditionError(message: """
+    Product for target "\(key)" not found in `products`
+    """)
+                }
+                product = actualProduct
+                compileSources = try createCompileSourcesPhase(
+                    in: pbxProj,
+                    buildMode: buildMode,
+                    productType: productType,
+                    inputs: inputs,
+                    outputs: outputs,
+                    files: files
+                )
+            } else {
+                product = nil
+                compileSources = nil
             }
-
-            let compileSources = try createCompileSourcesPhase(
-                in: pbxProj,
-                buildMode: buildMode,
-                productType: productType,
-                inputs: inputs,
-                outputs: outputs,
-                files: files
-            )
 
             let buildPhases = [
                 try createBazelDependenciesScript(
                     in: pbxProj,
                     buildMode: buildMode,
                     productType: productType,
-                    productBasename: target.product.basename,
+                    productBasename: productBasename,
                     outputs: outputs
                 ),
                 try createCompilingDependenciesScript(
@@ -138,7 +146,7 @@ Product for target "\(key)" not found in `products`
         in pbxProj: PBXProj,
         buildMode: BuildMode,
         productType: PBXProductType,
-        productBasename: String,
+        productBasename: String?,
         outputs: ConsolidatedTargetOutputs
     ) throws -> PBXShellScriptBuildPhase? {
         guard buildMode.usesBazelModeBuildScripts else {
@@ -146,7 +154,7 @@ Product for target "\(key)" not found in `products`
         }
 
         let copyOutputs: String
-        if outputs.hasProductOutput {
+        if let productBasename = productBasename, outputs.hasProductOutput {
             copyOutputs = #"""
 else
   "$BAZEL_INTEGRATION_DIR/copy_outputs.sh" \

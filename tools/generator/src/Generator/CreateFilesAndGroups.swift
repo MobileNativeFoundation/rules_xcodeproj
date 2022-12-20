@@ -409,7 +409,8 @@ extension Generator {
                 target.outputs.forcedBazelCompileFiles(buildMode: buildMode)
             )
             if !target.inputs.containsSources,
-                target.product.type.hasCompilePhase
+                target.product.type.hasCompilePhase,
+                target.product.path != nil
             {
                 allInputPaths.insert(.internal(compileStubPath))
             }
@@ -553,13 +554,15 @@ already was set to `\(existingValue)`.
         switch buildMode {
         case .xcode:
             for (_, target) in targets {
-                guard !target.isUnfocusedDependency else {
+                guard let productPath = target.product.path,
+                      !target.isUnfocusedDependency
+                else {
                     continue
                 }
 
-                xcodeGeneratedFiles[target.product.path] = target.product.path
+                xcodeGeneratedFiles[productPath] = productPath
                 for filePath in target.product.additionalPaths {
-                    try setXcodeGeneratedFile(filePath, to: target.product.path)
+                    try setXcodeGeneratedFile(filePath, to: productPath)
                 }
                 if let swift = target.outputs.swift {
                     try setXcodeGeneratedFile(
@@ -630,7 +633,9 @@ already was set to `\(existingValue)`.
                     .nonReferencedContent(linkopts.joined())
             }
 
-            if let lldbContext = target.lldbContext {
+            if let lldbContext = target.lldbContext,
+               let lldbSettingsKey = target.lldbSettingsKey
+            {
                 // Since `testonly` is viral, we only need to check the target
                 let testingFrameworks: [String]
                 let testingIncludes: [String]
@@ -664,7 +669,7 @@ already was set to `\(existingValue)`.
 
                 let clang = clangOtherArgs.joined(separator: " ")
 
-                lldbSettingsMap[target.lldbSettingsKey] = LLDBSettings(
+                lldbSettingsMap[lldbSettingsKey] = LLDBSettings(
                     frameworks: testingFrameworks + frameworks,
                     includes: testingIncludes + includes,
                     clang: clang
@@ -873,12 +878,12 @@ private struct LLDBSettings: Equatable, Encodable {
 
 private extension Target {
     private func lldbSettingsKey(baseKey: String) -> String {
-        guard product.type.isBundle else {
+        guard let productPath = product.path, product.type.isBundle else {
             return baseKey
         }
 
         let executableName = product.executableName ??
-            product.path.path.lastComponentWithoutExtension
+            productPath.path.lastComponentWithoutExtension
 
         if platform.os == .macOS {
             return "\(baseKey)/Contents/MacOS/\(executableName)"
@@ -887,19 +892,28 @@ private extension Target {
         }
     }
 
-    var lldbSettingsKey: String {
+    var lldbSettingsKey: String? {
+        guard let productPath = product.path else {
+            return nil
+        }
+
         let baseKey = """
-\(platform.targetTriple) \(product.path.path.lastComponent)
+\(platform.targetTriple) \(productPath.path.lastComponent)
 """
         return lldbSettingsKey(baseKey: baseKey)
     }
 
     func xcodeSwiftGeneratedHeaderFilePath(_ filePath: FilePath) -> FilePath {
+        guard let productPath = product.path else {
+            // Should be caught earlier
+            return filePath
+        }
+
         // Needs to be adjusted when target merging changes the configuration
         #if DEBUG
         guard filePath.path.components[1] == "bin" else {
             // Handle weird test fixtures
-            let components = product.path.path.components[0..<1] +
+            let components = productPath.path.components[0..<1] +
                 filePath.path.components[1...]
             var filePath = filePath
             filePath.path = Path(components: components)
@@ -907,7 +921,7 @@ private extension Target {
         }
         #endif
 
-        let components = product.path.path.components[0..<2] +
+        let components = productPath.path.components[0..<2] +
             filePath.path.components[2...]
         var filePath = filePath
         filePath.path = Path(components: components)
@@ -915,10 +929,15 @@ private extension Target {
     }
 
     func xcodeSwiftModuleFilePath(_ filePath: FilePath) -> FilePath {
+        guard let productPath = product.path else {
+            // Should be caught earlier
+            return filePath
+        }
+
         if product.type.isFramework {
-            return product.path + "Modules/\(filePath.path.lastComponent)"
+            return productPath + "Modules/\(filePath.path.lastComponent)"
         } else {
-            return product.path.parent() + filePath.path.lastComponent
+            return productPath.parent() + filePath.path.lastComponent
         }
     }
 }

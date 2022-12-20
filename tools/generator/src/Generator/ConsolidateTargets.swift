@@ -329,9 +329,10 @@ extension ConsolidatedTarget {
         product = ConsolidatedTargetProduct(
             name: aTarget.product.name,
             type: aTarget.product.type,
-            basename: aTarget.product.path.path.lastComponent,
+            basename: aTarget.product.path?.path.lastComponent,
             paths: Set(targets.values.flatMap { target in
-                return [target.product.path] + target.product.additionalPaths
+                return (target.product.path.flatMap { [$0] } ?? []) +
+                    target.product.additionalPaths
             })
         )
         isSwift = aTarget.isSwift
@@ -468,7 +469,7 @@ extension ConsolidatedTarget {
 struct ConsolidatedTargetProduct: Equatable {
     let name: String
     let type: PBXProductType
-    let basename: String
+    let basename: String?
     let paths: Set<FilePath>
 }
 

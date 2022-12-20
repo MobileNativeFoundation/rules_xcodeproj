@@ -29,6 +29,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		1530FE4B983FF83EF171320D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
+			remoteInfo = BazelDependencies;
+		};
+		2EF3C555524E237AC36F6CD9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E48E9FEBBB9A5F8F1FE1B1CD;
+			remoteInfo = "@//lib:lib_impl";
+		};
 		42025A1CD8FA6A1FEB112EA2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
@@ -43,12 +57,40 @@
 			remoteGlobalIDString = 1674813229B44E631726DF6E;
 			remoteInfo = "@//lib2:lib_impl";
 		};
-		59511478AA09290DC3C73AC2 /* PBXContainerItemProxy */ = {
+		4FD282A469F17ACBB55287B5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
+			remoteInfo = BazelDependencies;
+		};
+		618D31D1E3C76BD49B0DC8B5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 9DF8EA4260F38FC7243F6241;
 			remoteInfo = "@examples_cc_external//:lib_impl";
+		};
+		741EFDDCC49C98BF599EA3FF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F5888B7C4A1664A1C60133AA;
+			remoteInfo = "@//lib:lib_defines";
+		};
+		79D313A1A9C5BB15A6117D26 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 49D5AEB977C23BD7F20AC337;
+			remoteInfo = "@examples_cc_external//:lib_defines";
+		};
+		7FE71A6EA59B8D4F290B5C07 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
+			remoteInfo = BazelDependencies;
 		};
 		880FFE0FA4EE63FB2C4847F8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -64,19 +106,33 @@
 			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
 			remoteInfo = BazelDependencies;
 		};
-		EBE081DB069A4BF46046FE21 /* PBXContainerItemProxy */ = {
+		D62532E75F0995F6931607AD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 79B2BB5ED6907F8C6C6E8896;
+			remoteInfo = "@examples_cc_external//:lib_headers";
+		};
+		E02DE9E65CD4ADCC0488ABD5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
 			remoteInfo = BazelDependencies;
 		};
-		F9D69D94708B6ED5E45131FC /* PBXContainerItemProxy */ = {
+		E7134F8EF9A9A7E8E747875E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = E48E9FEBBB9A5F8F1FE1B1CD;
-			remoteInfo = "@//lib:lib_impl";
+			remoteGlobalIDString = CF80CDB6431DA5E5A47AC869;
+			remoteInfo = "@//lib:lib_headers";
+		};
+		EBE081DB069A4BF46046FE21 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
+			remoteInfo = BazelDependencies;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -242,6 +298,38 @@
 			productName = lib_impl;
 			productType = "com.apple.product-type.library.static";
 		};
+		49D5AEB977C23BD7F20AC337 /* @examples_cc_external//:lib_defines */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2216884D5BAEF8F6D2DC37F8 /* Build configuration list for PBXNativeTarget "@examples_cc_external//:lib_defines" */;
+			buildPhases = (
+				F7F791E4152E3FB48EB8CB5F /* Create compiling dependencies */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				08B1339141E697DDDF6F906E /* PBXTargetDependency */,
+				440DC1AB003CF3EFBF661A1C /* PBXTargetDependency */,
+			);
+			name = "@examples_cc_external//:lib_defines";
+			productName = lib_defines;
+			productType = "com.apple.product-type.library.static";
+		};
+		79B2BB5ED6907F8C6C6E8896 /* @examples_cc_external//:lib_headers */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 57B722DF39AD4059390DC937 /* Build configuration list for PBXNativeTarget "@examples_cc_external//:lib_headers" */;
+			buildPhases = (
+				39BE4055CEA9EC6D5B7E3A8F /* Create compiling dependencies */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3C8027255F66182CED89C6E9 /* PBXTargetDependency */,
+				5B13FD230356929B64980A8D /* PBXTargetDependency */,
+			);
+			name = "@examples_cc_external//:lib_headers";
+			productName = lib_headers;
+			productType = "com.apple.product-type.library.static";
+		};
 		9DF8EA4260F38FC7243F6241 /* @examples_cc_external//:lib_impl */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = FA7CA526EED1582756E3E941 /* Build configuration list for PBXNativeTarget "@examples_cc_external//:lib_impl" */;
@@ -256,6 +344,22 @@
 			);
 			name = "@examples_cc_external//:lib_impl";
 			productName = lib_impl;
+			productType = "com.apple.product-type.library.static";
+		};
+		CF80CDB6431DA5E5A47AC869 /* @//lib:lib_headers */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 613DBB46757C69BEBB8C0A8B /* Build configuration list for PBXNativeTarget "@//lib:lib_headers" */;
+			buildPhases = (
+				1E467A68DB4D9713A581DAA1 /* Create compiling dependencies */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F325C38C904FE1CEE9BCB5FF /* PBXTargetDependency */,
+				47EE226EE51CBFDFEC711A5E /* PBXTargetDependency */,
+			);
+			name = "@//lib:lib_headers";
+			productName = lib_headers;
 			productType = "com.apple.product-type.library.static";
 		};
 		E48E9FEBBB9A5F8F1FE1B1CD /* @//lib:lib_impl */ = {
@@ -286,14 +390,30 @@
 			);
 			dependencies = (
 				C7CE0C2F304E0B02B1E4E5A4 /* PBXTargetDependency */,
-				352DFDCEE489902F858A718F /* PBXTargetDependency */,
+				0109E576AC174DF717DD57F7 /* PBXTargetDependency */,
 				33BE6091D980E6CC430D61CC /* PBXTargetDependency */,
-				59AC8FC7ED45C65DBD76BA41 /* PBXTargetDependency */,
+				21FD4BF1EC0A577104CD3F91 /* PBXTargetDependency */,
 			);
 			name = tool;
 			productName = tool;
 			productReference = B6393A8054CC3DB8C2683C2E /* tool */;
 			productType = "com.apple.product-type.tool";
+		};
+		F5888B7C4A1664A1C60133AA /* @//lib:lib_defines */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D9FAE6E2B5FC5DEBADA0C20A /* Build configuration list for PBXNativeTarget "@//lib:lib_defines" */;
+			buildPhases = (
+				9F6236E6EC9E09328DA30BDF /* Create compiling dependencies */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0DB6BFBDC544CF2C3009F54B /* PBXTargetDependency */,
+				0DA4D8F76E24C0A6CFC8154A /* PBXTargetDependency */,
+			);
+			name = "@//lib:lib_defines";
+			productName = lib_defines;
+			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
 
@@ -309,7 +429,19 @@
 						CreatedOnToolsVersion = 13.0.0;
 						LastSwiftMigration = 9999;
 					};
+					49D5AEB977C23BD7F20AC337 = {
+						CreatedOnToolsVersion = 13.0.0;
+						LastSwiftMigration = 9999;
+					};
+					79B2BB5ED6907F8C6C6E8896 = {
+						CreatedOnToolsVersion = 13.0.0;
+						LastSwiftMigration = 9999;
+					};
 					9DF8EA4260F38FC7243F6241 = {
+						CreatedOnToolsVersion = 13.0.0;
+						LastSwiftMigration = 9999;
+					};
+					CF80CDB6431DA5E5A47AC869 = {
 						CreatedOnToolsVersion = 13.0.0;
 						LastSwiftMigration = 9999;
 					};
@@ -318,6 +450,10 @@
 						LastSwiftMigration = 9999;
 					};
 					EC6A68AC956C60AA25485960 = {
+						CreatedOnToolsVersion = 13.0.0;
+						LastSwiftMigration = 9999;
+					};
+					F5888B7C4A1664A1C60133AA = {
 						CreatedOnToolsVersion = 13.0.0;
 						LastSwiftMigration = 9999;
 					};
@@ -340,8 +476,12 @@
 			projectRoot = "";
 			targets = (
 				FE59281FE487F27A37DC2EE7 /* BazelDependencies */,
+				F5888B7C4A1664A1C60133AA /* @//lib:lib_defines */,
+				CF80CDB6431DA5E5A47AC869 /* @//lib:lib_headers */,
 				E48E9FEBBB9A5F8F1FE1B1CD /* @//lib:lib_impl */,
 				1674813229B44E631726DF6E /* @//lib2:lib_impl */,
+				49D5AEB977C23BD7F20AC337 /* @examples_cc_external//:lib_defines */,
+				79B2BB5ED6907F8C6C6E8896 /* @examples_cc_external//:lib_headers */,
 				9DF8EA4260F38FC7243F6241 /* @examples_cc_external//:lib_impl */,
 				EC6A68AC956C60AA25485960 /* tool */,
 			);
@@ -350,6 +490,23 @@
 
 /* Begin PBXShellScriptBuildPhase section */
 		15530B82A3C1B00C682AF998 /* Create compiling dependencies */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(BAZEL_INTEGRATION_DIR)/create_xcode_overlay.sh",
+			);
+			name = "Create compiling dependencies";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$SCRIPT_INPUT_FILE_0\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1E467A68DB4D9713A581DAA1 /* Create compiling dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -400,6 +557,23 @@
 			shellScript = "perl -pe 's/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
+		39BE4055CEA9EC6D5B7E3A8F /* Create compiling dependencies */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(BAZEL_INTEGRATION_DIR)/create_xcode_overlay.sh",
+			);
+			name = "Create compiling dependencies";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$SCRIPT_INPUT_FILE_0\"\n";
+			showEnvVarsInLog = 0;
+		};
 		69580EBA0FAED5BDB37827D6 /* Create compiling dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -436,6 +610,23 @@
 			shellScript = "\"$BAZEL_INTEGRATION_DIR/generate_bazel_dependencies.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		9F6236E6EC9E09328DA30BDF /* Create compiling dependencies */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(BAZEL_INTEGRATION_DIR)/create_xcode_overlay.sh",
+			);
+			name = "Create compiling dependencies";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$SCRIPT_INPUT_FILE_0\"\n";
+			showEnvVarsInLog = 0;
+		};
 		DF9F91D4DC559C08850160A4 /* Create linking dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -454,6 +645,23 @@
 			showEnvVarsInLog = 0;
 		};
 		E881916100D775EF5F50A2C6 /* Create compiling dependencies */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(BAZEL_INTEGRATION_DIR)/create_xcode_overlay.sh",
+			);
+			name = "Create compiling dependencies";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$SCRIPT_INPUT_FILE_0\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F7F791E4152E3FB48EB8CB5F /* Create compiling dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -508,6 +716,36 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		0109E576AC174DF717DD57F7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "@//lib:lib_headers";
+			target = CF80CDB6431DA5E5A47AC869 /* @//lib:lib_headers */;
+			targetProxy = E7134F8EF9A9A7E8E747875E /* PBXContainerItemProxy */;
+		};
+		08B1339141E697DDDF6F906E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BazelDependencies;
+			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
+			targetProxy = 4FD282A469F17ACBB55287B5 /* PBXContainerItemProxy */;
+		};
+		0DA4D8F76E24C0A6CFC8154A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "@//lib:lib_impl";
+			target = E48E9FEBBB9A5F8F1FE1B1CD /* @//lib:lib_impl */;
+			targetProxy = 2EF3C555524E237AC36F6CD9 /* PBXContainerItemProxy */;
+		};
+		0DB6BFBDC544CF2C3009F54B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BazelDependencies;
+			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
+			targetProxy = 1530FE4B983FF83EF171320D /* PBXContainerItemProxy */;
+		};
+		21FD4BF1EC0A577104CD3F91 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "@examples_cc_external//:lib_headers";
+			target = 79B2BB5ED6907F8C6C6E8896 /* @examples_cc_external//:lib_headers */;
+			targetProxy = D62532E75F0995F6931607AD /* PBXContainerItemProxy */;
+		};
 		22C38633AA1187EC6099A753 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = BazelDependencies;
@@ -526,17 +764,29 @@
 			target = 1674813229B44E631726DF6E /* @//lib2:lib_impl */;
 			targetProxy = 4DAEA7EC6CB13136037C9ABB /* PBXContainerItemProxy */;
 		};
-		352DFDCEE489902F858A718F /* PBXTargetDependency */ = {
+		3C8027255F66182CED89C6E9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = "@//lib:lib_impl";
-			target = E48E9FEBBB9A5F8F1FE1B1CD /* @//lib:lib_impl */;
-			targetProxy = F9D69D94708B6ED5E45131FC /* PBXContainerItemProxy */;
+			name = BazelDependencies;
+			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
+			targetProxy = 7FE71A6EA59B8D4F290B5C07 /* PBXContainerItemProxy */;
 		};
-		59AC8FC7ED45C65DBD76BA41 /* PBXTargetDependency */ = {
+		440DC1AB003CF3EFBF661A1C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "@examples_cc_external//:lib_impl";
 			target = 9DF8EA4260F38FC7243F6241 /* @examples_cc_external//:lib_impl */;
-			targetProxy = 59511478AA09290DC3C73AC2 /* PBXContainerItemProxy */;
+			targetProxy = 618D31D1E3C76BD49B0DC8B5 /* PBXContainerItemProxy */;
+		};
+		47EE226EE51CBFDFEC711A5E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "@//lib:lib_defines";
+			target = F5888B7C4A1664A1C60133AA /* @//lib:lib_defines */;
+			targetProxy = 741EFDDCC49C98BF599EA3FF /* PBXContainerItemProxy */;
+		};
+		5B13FD230356929B64980A8D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "@examples_cc_external//:lib_defines";
+			target = 49D5AEB977C23BD7F20AC337 /* @examples_cc_external//:lib_defines */;
+			targetProxy = 79D313A1A9C5BB15A6117D26 /* PBXContainerItemProxy */;
 		};
 		8714A281BD8DEB70EFAA3A22 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -549,6 +799,12 @@
 			name = BazelDependencies;
 			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
 			targetProxy = 880FFE0FA4EE63FB2C4847F8 /* PBXContainerItemProxy */;
+		};
+		F325C38C904FE1CEE9BCB5FF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BazelDependencies;
+			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
+			targetProxy = E02DE9E65CD4ADCC0488ABD5 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -618,6 +874,142 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = lib_impl;
+				USER_HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)",
+					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-3688109ddba2/bin",
+				);
+			};
+			name = Debug;
+		};
+		16799184331883C7BF3BCF6C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = x86_64;
+				BAZEL_LABEL = "@//lib:lib_defines";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-3688109ddba2/bin/lib";
+				BAZEL_TARGET_ID = "//lib:lib_defines darwin_x86_64-dbg-ST-3688109ddba2";
+				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				COMPILE_TARGET_NAME = lib_defines;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EXECUTABLE_EXTENSION = "";
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"_FORTIFY_SOURCE=1",
+					"__DATE__=\"redacted\"",
+					"__TIMESTAMP__=\"redacted\"",
+					"__TIME__=\"redacted\"",
+					"SECRET_2=\\\"World!\\\"",
+				);
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				OTHER_CFLAGS = (
+					"-ivfsoverlay",
+					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
+					"-ivfsoverlay",
+					"$(OBJROOT)/bazel-out-overlay.yaml",
+					"-fstack-protector",
+					"-Wall",
+					"-Wthread-safety",
+					"-Wself-assign",
+					"-fno-omit-frame-pointer",
+					"-no-canonical-prefixes",
+					"-pthread",
+					"-no-canonical-prefixes",
+					"-Wno-builtin-macro-redefined",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"-ivfsoverlay",
+					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
+					"-ivfsoverlay",
+					"$(OBJROOT)/bazel-out-overlay.yaml",
+					"-fstack-protector",
+					"-Wall",
+					"-Wthread-safety",
+					"-Wself-assign",
+					"-fno-omit-frame-pointer",
+					"-no-canonical-prefixes",
+					"-pthread",
+					"-no-canonical-prefixes",
+					"-Wno-builtin-macro-redefined",
+				);
+				PRODUCT_NAME = lib_defines;
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGET_NAME = lib_defines;
+				USER_HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)",
+					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-3688109ddba2/bin",
+				);
+			};
+			name = Debug;
+		};
+		1747A747511AC5C4C482113E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = x86_64;
+				BAZEL_LABEL = "@//lib:lib_headers";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-3688109ddba2/bin/lib";
+				BAZEL_TARGET_ID = "//lib:lib_headers darwin_x86_64-dbg-ST-3688109ddba2";
+				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				COMPILE_TARGET_NAME = lib_headers;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EXECUTABLE_EXTENSION = "";
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"_FORTIFY_SOURCE=1",
+					"__DATE__=\"redacted\"",
+					"__TIMESTAMP__=\"redacted\"",
+					"__TIME__=\"redacted\"",
+					"SECRET_2=\\\"World!\\\"",
+				);
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				OTHER_CFLAGS = (
+					"-ivfsoverlay",
+					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
+					"-ivfsoverlay",
+					"$(OBJROOT)/bazel-out-overlay.yaml",
+					"-fstack-protector",
+					"-Wall",
+					"-Wthread-safety",
+					"-Wself-assign",
+					"-fno-omit-frame-pointer",
+					"-no-canonical-prefixes",
+					"-pthread",
+					"-no-canonical-prefixes",
+					"-Wno-builtin-macro-redefined",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"-ivfsoverlay",
+					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
+					"-ivfsoverlay",
+					"$(OBJROOT)/bazel-out-overlay.yaml",
+					"-fstack-protector",
+					"-Wall",
+					"-Wthread-safety",
+					"-Wself-assign",
+					"-fno-omit-frame-pointer",
+					"-no-canonical-prefixes",
+					"-pthread",
+					"-no-canonical-prefixes",
+					"-Wno-builtin-macro-redefined",
+				);
+				PRODUCT_NAME = lib_headers;
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGET_NAME = lib_headers;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",
 					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-3688109ddba2/bin",
@@ -751,6 +1143,146 @@
 				USE_HEADERMAP = NO;
 				VALIDATE_WORKSPACE = NO;
 				_BAZEL_OUTPUT_BASE = "$(PROJECT_DIR)/../..";
+			};
+			name = Debug;
+		};
+		C7F56363682C2F420E7651C8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = x86_64;
+				BAZEL_LABEL = "@examples_cc_external//:lib_defines";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-3688109ddba2/bin/external/examples_cc_external";
+				BAZEL_TARGET_ID = "@examples_cc_external//:lib_defines darwin_x86_64-dbg-ST-3688109ddba2";
+				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				COMPILE_TARGET_NAME = lib_defines;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EXECUTABLE_EXTENSION = "";
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"_FORTIFY_SOURCE=1",
+					"__DATE__=\"redacted\"",
+					"__TIMESTAMP__=\"redacted\"",
+					"__TIME__=\"redacted\"",
+					"EXTERNAL_SECRET_2=\\\"World?\\\"",
+				);
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				OTHER_CFLAGS = (
+					"-ivfsoverlay",
+					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
+					"-ivfsoverlay",
+					"$(OBJROOT)/bazel-out-overlay.yaml",
+					"-fstack-protector",
+					"-Wall",
+					"-Wthread-safety",
+					"-Wself-assign",
+					"-fno-omit-frame-pointer",
+					"-no-canonical-prefixes",
+					"-pthread",
+					"-no-canonical-prefixes",
+					"-Wno-builtin-macro-redefined",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"-ivfsoverlay",
+					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
+					"-ivfsoverlay",
+					"$(OBJROOT)/bazel-out-overlay.yaml",
+					"-fstack-protector",
+					"-Wall",
+					"-Wthread-safety",
+					"-Wself-assign",
+					"-fno-omit-frame-pointer",
+					"-no-canonical-prefixes",
+					"-pthread",
+					"-no-canonical-prefixes",
+					"-Wno-builtin-macro-redefined",
+				);
+				PRODUCT_NAME = lib_defines;
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGET_NAME = lib_defines;
+				USER_HEADER_SEARCH_PATHS = (
+					"$(BAZEL_EXTERNAL)/examples_cc_external",
+					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-3688109ddba2/bin/external/examples_cc_external",
+					"$(PROJECT_DIR)",
+					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-3688109ddba2/bin",
+				);
+			};
+			name = Debug;
+		};
+		D5FCC12F6A1A3101191D52BE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = x86_64;
+				BAZEL_LABEL = "@examples_cc_external//:lib_headers";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-3688109ddba2/bin/external/examples_cc_external";
+				BAZEL_TARGET_ID = "@examples_cc_external//:lib_headers darwin_x86_64-dbg-ST-3688109ddba2";
+				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				COMPILE_TARGET_NAME = lib_headers;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EXECUTABLE_EXTENSION = "";
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"_FORTIFY_SOURCE=1",
+					"__DATE__=\"redacted\"",
+					"__TIMESTAMP__=\"redacted\"",
+					"__TIME__=\"redacted\"",
+					"EXTERNAL_SECRET_2=\\\"World?\\\"",
+				);
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				OTHER_CFLAGS = (
+					"-ivfsoverlay",
+					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
+					"-ivfsoverlay",
+					"$(OBJROOT)/bazel-out-overlay.yaml",
+					"-fstack-protector",
+					"-Wall",
+					"-Wthread-safety",
+					"-Wself-assign",
+					"-fno-omit-frame-pointer",
+					"-no-canonical-prefixes",
+					"-pthread",
+					"-no-canonical-prefixes",
+					"-Wno-builtin-macro-redefined",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"-ivfsoverlay",
+					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
+					"-ivfsoverlay",
+					"$(OBJROOT)/bazel-out-overlay.yaml",
+					"-fstack-protector",
+					"-Wall",
+					"-Wthread-safety",
+					"-Wself-assign",
+					"-fno-omit-frame-pointer",
+					"-no-canonical-prefixes",
+					"-pthread",
+					"-no-canonical-prefixes",
+					"-Wno-builtin-macro-redefined",
+				);
+				PRODUCT_NAME = lib_headers;
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGET_NAME = lib_headers;
+				USER_HEADER_SEARCH_PATHS = (
+					"$(BAZEL_EXTERNAL)/examples_cc_external",
+					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-3688109ddba2/bin/external/examples_cc_external",
+					"$(PROJECT_DIR)",
+					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-3688109ddba2/bin",
+				);
 			};
 			name = Debug;
 		};
@@ -919,10 +1451,34 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
+		2216884D5BAEF8F6D2DC37F8 /* Build configuration list for PBXNativeTarget "@examples_cc_external//:lib_defines" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C7F56363682C2F420E7651C8 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
 		4193581FD52824B6B27A38B9 /* Build configuration list for PBXNativeTarget "@//lib:lib_impl" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00E49FEAD01BA87C74959D6D /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		57B722DF39AD4059390DC937 /* Build configuration list for PBXNativeTarget "@examples_cc_external//:lib_headers" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D5FCC12F6A1A3101191D52BE /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		613DBB46757C69BEBB8C0A8B /* Build configuration list for PBXNativeTarget "@//lib:lib_headers" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1747A747511AC5C4C482113E /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
@@ -947,6 +1503,14 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				67F44AB65FA7A2E38A56F5FB /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		D9FAE6E2B5FC5DEBADA0C20A /* Build configuration list for PBXNativeTarget "@//lib:lib_defines" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				16799184331883C7BF3BCF6C /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

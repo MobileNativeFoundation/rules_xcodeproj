@@ -105,7 +105,7 @@ def process_product(
         )
         fp = file_path(file)
         actual_fp = fp
-    elif CcInfo in target and linker_inputs:
+    elif CcInfo in target and linker_inputs and target.files != depset():
         file = linker_input_files.get_primary_static_library(linker_inputs)
         fp = file_path(file) if file else None
         actual_fp = fp
@@ -113,9 +113,6 @@ def process_product(
         file = None
         fp = None
         actual_fp = None
-
-    if not fp:
-        fail("Could not find product for target {}".format(target.label))
 
     if target and apple_common.AppleDynamicFramework in target:
         framework_files = (
