@@ -18,11 +18,11 @@ fail() {
 
 # Process Args
 
-readonly bazelrc="$PWD/%bazelrc%"
+readonly xcodeproj_bazelrc="$PWD/%xcodeproj_bazelrc%"
 readonly extra_flags_bazelrc="$PWD/%extra_flags_bazelrc%"
 
 installer_flags=(
-  --bazelrc "$bazelrc"
+  --xcodeproj_bazelrc "$xcodeproj_bazelrc"
   --extra_flags_bazelrc "$extra_flags_bazelrc"
 )
 
@@ -80,7 +80,7 @@ readonly nested_output_base="$output_base/rules_xcodeproj/build_output_base"
 
 bazelrcs=(
   --noworkspace_rc
-  "--bazelrc=$bazelrc"
+  "--bazelrc=$xcodeproj_bazelrc"
 )
 if [[ -s ".bazelrc" ]]; then
   bazelrcs+=("--bazelrc=.bazelrc")

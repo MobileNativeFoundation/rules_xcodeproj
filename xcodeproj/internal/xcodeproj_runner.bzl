@@ -92,7 +92,6 @@ def _write_runner(
         *,
         name,
         actions,
-        bazelrc,
         bazel_path,
         config,
         extra_flags_bazelrc,
@@ -100,7 +99,8 @@ def _write_runner(
         generator_label,
         project_name,
         runner_label,
-        template):
+        template,
+        xcodeproj_bazelrc):
     output = actions.declare_file("{}-runner.sh".format(name))
 
     actions.expand_template(
@@ -109,13 +109,13 @@ def _write_runner(
         is_executable = True,
         substitutions = {
             "%bazel_path%": bazel_path,
-            "%bazelrc%": bazelrc.short_path,
             "%config%": config,
             "%extra_flags_bazelrc%": extra_flags_bazelrc.short_path,
             "%extra_generator_flags%": extra_generator_flags,
             "%generator_label%": generator_label,
             "%project_name%": project_name,
             "%runner_label%": runner_label,
+            "%xcodeproj_bazelrc%": xcodeproj_bazelrc.short_path,
         },
     )
 
@@ -125,7 +125,7 @@ def _xcodeproj_runner_impl(ctx):
     config = ctx.attr.config
     project_name = ctx.attr.project_name
 
-    bazelrc = _write_xcodeproj_bazelrc(
+    xcodeproj_bazelrc = _write_xcodeproj_bazelrc(
         name = ctx.attr.name,
         actions = ctx.actions,
         config = config,
@@ -142,7 +142,6 @@ def _xcodeproj_runner_impl(ctx):
         name = ctx.attr.name,
         actions = ctx.actions,
         bazel_path = ctx.attr.bazel_path,
-        bazelrc = bazelrc,
         config = config,
         extra_flags_bazelrc = extra_flags_bazelrc,
         extra_generator_flags = (
@@ -152,6 +151,7 @@ def _xcodeproj_runner_impl(ctx):
         project_name = project_name,
         runner_label = str(ctx.label),
         template = ctx.file._runner_template,
+        xcodeproj_bazelrc = xcodeproj_bazelrc,
     )
 
     return [
@@ -159,8 +159,8 @@ def _xcodeproj_runner_impl(ctx):
             executable = runner,
             runfiles = ctx.runfiles(
                 files = [
-                    bazelrc,
                     extra_flags_bazelrc,
+                    xcodeproj_bazelrc,
                 ],
             ),
         ),
