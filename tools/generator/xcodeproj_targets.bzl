@@ -63,14 +63,22 @@ def get_xcode_schemes():
             launch_action = xcode_schemes.launch_action(
                 _APP_TARGET,
                 args = [
-                    "/tmp/spec.json",
-                    "bazel-output-base/execroot/_rules_xcodeproj/build_output_base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out/darwin_arm64-dbg/bin/tools/generator/xcodeproj.generator_root_dirs",
-                    "bazel-output-base/execroot/_rules_xcodeproj/build_output_base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out/darwin_arm64-dbg/bin/tools/generator/xcodeproj.generator_xccurrentversions",
-                    "bazel-output-base/execroot/_rules_xcodeproj/build_output_base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out/darwin_arm64-dbg/bin/tools/generator/xcodeproj.generator_extensionpointidentifiers",
+                    "bazel-output-base/rules_xcodeproj/build_output_base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out/darwin_arm64-dbg/bin/tools/generator/xcodeproj.generator_root_dirs",
+                    "bazel-output-base/rules_xcodeproj/build_output_base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out/darwin_arm64-dbg/bin/tools/generator/xcodeproj.generator_xccurrentversions",
+                    "bazel-output-base/rules_xcodeproj/build_output_base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out/darwin_arm64-dbg/bin/tools/generator/xcodeproj.generator_extensionpointidentifiers",
                     "/tmp/out.xcodeproj",
                     "/tmp/out.final.xcodeproj",
                     "bazel",
                     "0",
+                    "/tmp/specs/xcodeproj.generator-project_spec.json",
+                    "/tmp/specs/xcodeproj.generator-targets_spec.0.json",
+                    "/tmp/specs/xcodeproj.generator-targets_spec.1.json",
+                    "/tmp/specs/xcodeproj.generator-targets_spec.2.json",
+                    "/tmp/specs/xcodeproj.generator-targets_spec.3.json",
+                    "/tmp/specs/xcodeproj.generator-targets_spec.4.json",
+                    "/tmp/specs/xcodeproj.generator-targets_spec.5.json",
+                    "/tmp/specs/xcodeproj.generator-targets_spec.6.json",
+                    "/tmp/specs/xcodeproj.generator-targets_spec.7.json",
                 ],
                 # This is not necessary for the generator. It is here to help
                 # verify that custom environment variables are passed along.
