@@ -44,6 +44,10 @@ while (("$#")); do
       extra_flags_bazelrc="${2}"
       shift 2
       ;;
+    "--collect_specs")
+      specs_archive_path="${2}"
+      shift 2
+      ;;
     *)
       fail "Unrecognized argument: ${1}"
       ;;
@@ -70,11 +74,11 @@ dest_dir="$(dirname "${dest}")"
   fail "The destination directory does not exist or is not a directory" \
     "${dest_dir}"
 
+readonly spec_paths=%spec_paths%
+
 # Sync over spec if requested
 if [[ $for_fixture -eq 1 ]]; then
   rm -rf "${dest%.xcodeproj}"*_spec*.json
-
-  readonly spec_paths=%spec_paths%
 
   project_spec_src="$PWD/${spec_paths[0]}"
   project_spec_dest="${dest%.xcodeproj}_project_spec.json"
@@ -83,6 +87,14 @@ if [[ $for_fixture -eq 1 ]]; then
   targets_spec_src="$PWD/${spec_paths[1]}"
   targets_spec_dest="${dest%.xcodeproj}_targets_spec.json"
   python3 -m json.tool "$targets_spec_src" > "$targets_spec_dest"
+elif [[ -n "${specs_archive_path:-}" ]]; then
+  rm -f "$specs_archive_path"
+  COPYFILE_DISABLE=1 tar czfh "$specs_archive_path" "${spec_paths[@]}"
+
+  echo
+  echo "Collected specs into \"$specs_archive_path\""
+
+  exit 0
 fi
 
 # Sync over the project, changing the permissions to be writable

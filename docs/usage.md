@@ -305,3 +305,21 @@ For example, this will build all targets the same way that Xcode does:
 ```
 bazel run //:xcodeproj -- --generator_output_groups=all_targets build
 ```
+
+### `--collect_specs`
+
+To aid in debugging an issue, we may request that you provide us with the specs
+that were used to generate your project. The specs are intermediate JSON files
+used to communicate information from the analysis (Starlark) half of the
+generator to the execution (Swift) half of the generator. They contain file
+paths and build settings.
+
+Since the location and number of these files can be hard to determine, we've
+added a command to be able to easily collect them:
+
+```
+bazel run //:xcodeproj -- --collect_specs=/path/to/specs.tar.gz
+```
+
+The path passed to `--collect_specs` is where a `.tar.gz` archive containing the
+specs will be written.
