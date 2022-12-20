@@ -63,11 +63,11 @@ to include it in the list above.
 
 ## Compatibility
 
-- macOS 12.0-13.0
-- Xcode 13.0-14.1
+- macOS 12.0-13.1
+- Xcode 13.0-14.2
 - Bazel 5.3.0-6.0.0
-- rules_swift 1.0.0-1.2.0
-- rules_apple 1.0.1-1.1.2
+- rules_swift 1.0.0-1.4.0
+- rules_apple 1.0.1-2.0.0
 
 More versions of these tools and rulesets might be supported, but these are the
 ones we've officially tested with.
