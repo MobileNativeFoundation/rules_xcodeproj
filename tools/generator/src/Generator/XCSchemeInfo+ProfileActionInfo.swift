@@ -4,6 +4,17 @@ extension XCSchemeInfo {
     struct ProfileActionInfo: Equatable {
         let buildConfigurationName: String
         let targetInfo: XCSchemeInfo.TargetInfo
+        let workingDirectory: String?
+
+        init(
+            buildConfigurationName: String,
+            targetInfo: XCSchemeInfo.TargetInfo,
+            workingDirectory: String? = nil
+        ) {
+            self.buildConfigurationName = buildConfigurationName
+            self.targetInfo = targetInfo
+            self.workingDirectory = workingDirectory
+        }
     }
 }
 
@@ -23,7 +34,8 @@ extension XCSchemeInfo.ProfileActionInfo {
             targetInfo: .init(
                 resolveHostFor: original.targetInfo,
                 topLevelTargetInfos: topLevelTargetInfos
-            )
+            ),
+            workingDirectory: original.workingDirectory
         )
     }
 }
@@ -59,7 +71,8 @@ extension XCSchemeInfo.ProfileActionInfo {
                     for: profileAction.target,
                     context: "creating a `ProfileActionInfo`"
                 )
-            )
+            ),
+            workingDirectory: profileAction.workingDirectory
         )
     }
 }

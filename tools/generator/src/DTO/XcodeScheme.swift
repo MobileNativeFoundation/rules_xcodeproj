@@ -61,9 +61,9 @@ disabled, but the target is referenced in the scheme's \(keyPath.actionType) act
                 buildTargets[label] = buildTarget
             }
 
-            // Popuate the dictionary with any build targets that were explicitly specified.
-            // We are guaranteed not to have build targets with duplicate labels. So, we can just
-            // add these.
+            // Populate the dictionary with any build targets that were
+            // explicitly specified. We are guaranteed not to have build targets
+            // with duplicate labels. So, we can just add these.
             buildAction?.targets.forEach { buildTargets[$0.label] = $0 }
 
             // Default ProfileAction
@@ -75,7 +75,8 @@ disabled, but the target is referenced in the scheme's \(keyPath.actionType) act
             {
                 newProfileAction = .init(
                     target: launchAction.target,
-                    buildConfigurationName: launchAction.buildConfigurationName
+                    buildConfigurationName: launchAction.buildConfigurationName,
+                    workingDirectory: launchAction.workingDirectory
                 )
             } else {
                 newProfileAction = nil
@@ -406,13 +407,16 @@ extension XcodeScheme {
     struct ProfileAction: Equatable, Decodable {
         let buildConfigurationName: String
         let target: BazelLabel
+        let workingDirectory: String?
 
         init(
             target: BazelLabel,
-            buildConfigurationName: String = .defaultBuildConfigurationName
+            buildConfigurationName: String = .defaultBuildConfigurationName,
+            workingDirectory: String? = nil
         ) {
             self.target = target
             self.buildConfigurationName = buildConfigurationName
+            self.workingDirectory = workingDirectory
         }
     }
 }

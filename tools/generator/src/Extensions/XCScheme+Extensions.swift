@@ -63,7 +63,7 @@ extension XCScheme {
             )
         }
 
-        let launchAction: XCScheme.LaunchAction?
+        let launchAction: XCScheme.LaunchAction
         if let launchActionInfo = schemeInfo.launchActionInfo {
             launchAction = try .init(buildMode: buildMode, launchActionInfo: launchActionInfo)
         } else {
@@ -273,7 +273,9 @@ extension XCScheme.ProfileAction {
     convenience init(profileActionInfo: XCSchemeInfo.ProfileActionInfo) {
         self.init(
             buildableProductRunnable: profileActionInfo.runnable,
-            buildConfiguration: profileActionInfo.buildConfigurationName
+            buildConfiguration: profileActionInfo.buildConfigurationName,
+            customWorkingDirectory: profileActionInfo.workingDirectory,
+            useCustomWorkingDirectory: profileActionInfo.workingDirectory != nil
         )
     }
 }
