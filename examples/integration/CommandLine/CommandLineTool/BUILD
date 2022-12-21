@@ -1,5 +1,5 @@
-load("@build_bazel_rules_apple//apple:macos.bzl", "macos_command_line_application")
 load("@build_bazel_rules_apple//apple:apple.bzl", "apple_universal_binary")
+load("@build_bazel_rules_apple//apple:macos.bzl", "macos_command_line_application")
 load("@build_bazel_rules_swift//swift:swift.bzl", "swift_binary")
 load("@rules_cc//cc:defs.bzl", "objc_library")
 
