@@ -421,6 +421,405 @@
             "has_includes": true
         }
     },
+    "//CommandLine/CommandLineTool:tool.binary macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50",
+    {
+        "build_settings": {
+            "CLANG_CXX_LANGUAGE_STANDARD": "gnu++0x",
+            "CLANG_CXX_LIBRARY": "libc++",
+            "CLANG_ENABLE_MODULES": true,
+            "DEBUG_INFORMATION_FORMAT": "dwarf",
+            "ENABLE_BITCODE": false,
+            "ENABLE_STRICT_OBJC_MSGSEND": true,
+            "FRAMEWORK_SEARCH_PATHS": [
+                "$(BAZEL_EXTERNAL)/examples_command_line_external"
+            ],
+            "GCC_OPTIMIZATION_LEVEL": "0",
+            "GCC_PREPROCESSOR_DEFINITIONS": [
+                "_FORTIFY_SOURCE=1",
+                "OS_MACOSX",
+                "DEBUG=1",
+                "SECRET_3=\\\"Hello\\\"",
+                "SECRET_2=\\\"World!\\\""
+            ],
+            "HEADER_SEARCH_PATHS": [
+                "\"$(SRCROOT)/CommandLine/CommandLineToolLib/dir with space\"",
+                "\"$(BAZEL_OUT)/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50/bin/CommandLine/CommandLineToolLib/dir with space\"",
+                "$(SRCROOT)/CommandLine/CommandLineToolLib/private",
+                "$(BAZEL_OUT)/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50/bin/CommandLine/CommandLineToolLib/private"
+            ],
+            "OTHER_CFLAGS": [
+                "-fstack-protector",
+                "-Wall",
+                "-Wthread-safety",
+                "-Wself-assign",
+                "-fno-omit-frame-pointer",
+                "-Wshorten-64-to-32",
+                "-Wbool-conversion",
+                "-Wconstant-conversion",
+                "-Wduplicate-method-match",
+                "-Wempty-body",
+                "-Wenum-conversion",
+                "-Wint-conversion",
+                "-Wunreachable-code",
+                "-Wmismatched-return-types",
+                "-Wundeclared-selector",
+                "-Wuninitialized",
+                "-Wunused-function",
+                "-Wunused-variable",
+                "-fno-autolink",
+                "-fstack-protector",
+                "-fstack-protector-all"
+            ],
+            "OTHER_CPLUSPLUSFLAGS": [
+                "-fstack-protector",
+                "-Wall",
+                "-Wthread-safety",
+                "-Wself-assign",
+                "-fno-omit-frame-pointer",
+                "-Wshorten-64-to-32",
+                "-Wbool-conversion",
+                "-Wconstant-conversion",
+                "-Wduplicate-method-match",
+                "-Wempty-body",
+                "-Wenum-conversion",
+                "-Wint-conversion",
+                "-Wunreachable-code",
+                "-Wmismatched-return-types",
+                "-Wundeclared-selector",
+                "-Wuninitialized",
+                "-Wunused-function",
+                "-Wunused-variable",
+                "-fno-autolink",
+                "-fstack-protector",
+                "-fstack-protector-all"
+            ],
+            "PRODUCT_MODULE_NAME": "CommandLine_CommandLineTool_tool_binary",
+            "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+            "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+            "SWIFT_VERSION": "5.0",
+            "USER_HEADER_SEARCH_PATHS": [
+                "$(PROJECT_DIR)",
+                "$(BAZEL_OUT)/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50/bin",
+                "$(BAZEL_EXTERNAL)/examples_command_line_external",
+                "$(BAZEL_OUT)/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50/bin/external/examples_command_line_external"
+            ]
+        },
+        "compile_target": {
+            "id": "//CommandLine/CommandLineTool:tool.library macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50",
+            "name": "tool.library"
+        },
+        "configuration": "macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50",
+        "dependencies": [
+            "//CommandLine/CommandLineToolLib:lib_headers macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50"
+        ],
+        "inputs": {
+            "srcs": [
+                "CommandLine/CommandLineTool/main.m"
+            ]
+        },
+        "is_swift": false,
+        "label": "//CommandLine/CommandLineTool:tool.binary",
+        "linker_inputs": {
+            "linkopts": [
+                "-lc++",
+                "-headerpad_max_install_names",
+                "-framework",
+                "Foundation",
+                "-framework",
+                "ExternalFramework",
+                "-Wl,-rpath,/usr/lib/swift",
+                "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx",
+                "-L/usr/lib/swift",
+                "-ObjC",
+                "-no-canonical-prefixes",
+                "-lc++",
+                "$(BUILD_DIR)/bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50/bin/CommandLine/CommandLineToolLib/liblib_swift.a",
+                "$(BUILD_DIR)/bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50/bin/CommandLine/swift_c_module/libc_lib.a",
+                "$(BUILD_DIR)/bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50/bin/CommandLine/CommandLineToolLib/libprivate_lib.a",
+                "$(BUILD_DIR)/bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50/bin/CommandLine/CommandLineToolLib/liblib_impl.a",
+                "$(BUILD_DIR)/bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50/bin/CommandLine/CommandLineToolLib/libprivate_swift_lib.a",
+                "external/examples_command_line_external/ImportableLibrary/libImportableLibrary.a",
+                "-force_load",
+                "external/examples_command_line_external/ExternalFramework.framework/ExternalFramework"
+            ]
+        },
+        "name": "tool.binary",
+        "outputs": {
+            "p": true
+        },
+        "package_bin_dir": "bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50/bin/CommandLine/CommandLineTool",
+        "platform": {
+            "arch": "arm64",
+            "minimum_os_version": "11.0",
+            "os": "macos",
+            "variant": "macosx"
+        },
+        "product": {
+            "additional_paths": [
+                {
+                    "_": "macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50/bin/CommandLine/CommandLineTool/libtool.library.a",
+                    "t": "g"
+                }
+            ],
+            "executable_name": "tool.binary",
+            "is_resource_bundle": false,
+            "name": "tool.binary",
+            "path": {
+                "_": "macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50/bin/CommandLine/CommandLineTool/rules_xcodeproj/tool.binary/tool.binary",
+                "t": "g"
+            },
+            "type": "com.apple.product-type.tool"
+        },
+        "search_paths": {
+            "has_includes": true
+        }
+    },
+    "//CommandLine/CommandLineTool:tool.binary macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5",
+    {
+        "build_settings": {
+            "CLANG_CXX_LANGUAGE_STANDARD": "gnu++0x",
+            "CLANG_CXX_LIBRARY": "libc++",
+            "CLANG_ENABLE_MODULES": true,
+            "DEBUG_INFORMATION_FORMAT": "dwarf",
+            "ENABLE_BITCODE": false,
+            "ENABLE_STRICT_OBJC_MSGSEND": true,
+            "FRAMEWORK_SEARCH_PATHS": [
+                "$(BAZEL_EXTERNAL)/examples_command_line_external"
+            ],
+            "GCC_OPTIMIZATION_LEVEL": "0",
+            "GCC_PREPROCESSOR_DEFINITIONS": [
+                "_FORTIFY_SOURCE=1",
+                "OS_MACOSX",
+                "DEBUG=1",
+                "SECRET_3=\\\"Hello\\\"",
+                "SECRET_2=\\\"World!\\\""
+            ],
+            "HEADER_SEARCH_PATHS": [
+                "\"$(SRCROOT)/CommandLine/CommandLineToolLib/dir with space\"",
+                "\"$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5/bin/CommandLine/CommandLineToolLib/dir with space\"",
+                "$(SRCROOT)/CommandLine/CommandLineToolLib/private",
+                "$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5/bin/CommandLine/CommandLineToolLib/private"
+            ],
+            "OTHER_CFLAGS": [
+                "-fstack-protector",
+                "-Wall",
+                "-Wthread-safety",
+                "-Wself-assign",
+                "-fno-omit-frame-pointer",
+                "-Wshorten-64-to-32",
+                "-Wbool-conversion",
+                "-Wconstant-conversion",
+                "-Wduplicate-method-match",
+                "-Wempty-body",
+                "-Wenum-conversion",
+                "-Wint-conversion",
+                "-Wunreachable-code",
+                "-Wmismatched-return-types",
+                "-Wundeclared-selector",
+                "-Wuninitialized",
+                "-Wunused-function",
+                "-Wunused-variable",
+                "-fno-autolink",
+                "-fstack-protector",
+                "-fstack-protector-all"
+            ],
+            "OTHER_CPLUSPLUSFLAGS": [
+                "-fstack-protector",
+                "-Wall",
+                "-Wthread-safety",
+                "-Wself-assign",
+                "-fno-omit-frame-pointer",
+                "-Wshorten-64-to-32",
+                "-Wbool-conversion",
+                "-Wconstant-conversion",
+                "-Wduplicate-method-match",
+                "-Wempty-body",
+                "-Wenum-conversion",
+                "-Wint-conversion",
+                "-Wunreachable-code",
+                "-Wmismatched-return-types",
+                "-Wundeclared-selector",
+                "-Wuninitialized",
+                "-Wunused-function",
+                "-Wunused-variable",
+                "-fno-autolink",
+                "-fstack-protector",
+                "-fstack-protector-all"
+            ],
+            "PRODUCT_MODULE_NAME": "CommandLine_CommandLineTool_tool_binary",
+            "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+            "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+            "SWIFT_VERSION": "5.0",
+            "USER_HEADER_SEARCH_PATHS": [
+                "$(PROJECT_DIR)",
+                "$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5/bin",
+                "$(BAZEL_EXTERNAL)/examples_command_line_external",
+                "$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5/bin/external/examples_command_line_external"
+            ]
+        },
+        "compile_target": {
+            "id": "//CommandLine/CommandLineTool:tool.library macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5",
+            "name": "tool.library"
+        },
+        "configuration": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5",
+        "dependencies": [
+            "//CommandLine/CommandLineToolLib:lib_headers macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5"
+        ],
+        "inputs": {
+            "srcs": [
+                "CommandLine/CommandLineTool/main.m"
+            ]
+        },
+        "is_swift": false,
+        "label": "//CommandLine/CommandLineTool:tool.binary",
+        "linker_inputs": {
+            "linkopts": [
+                "-lc++",
+                "-headerpad_max_install_names",
+                "-framework",
+                "Foundation",
+                "-framework",
+                "ExternalFramework",
+                "-Wl,-rpath,/usr/lib/swift",
+                "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx",
+                "-L/usr/lib/swift",
+                "-ObjC",
+                "-no-canonical-prefixes",
+                "-lc++",
+                "$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5/bin/CommandLine/CommandLineToolLib/liblib_swift.a",
+                "$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5/bin/CommandLine/swift_c_module/libc_lib.a",
+                "$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5/bin/CommandLine/CommandLineToolLib/libprivate_lib.a",
+                "$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5/bin/CommandLine/CommandLineToolLib/liblib_impl.a",
+                "$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5/bin/CommandLine/CommandLineToolLib/libprivate_swift_lib.a",
+                "external/examples_command_line_external/ImportableLibrary/libImportableLibrary.a",
+                "-force_load",
+                "external/examples_command_line_external/ExternalFramework.framework/ExternalFramework"
+            ]
+        },
+        "name": "tool.binary",
+        "outputs": {
+            "p": true
+        },
+        "package_bin_dir": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5/bin/CommandLine/CommandLineTool",
+        "platform": {
+            "arch": "x86_64",
+            "minimum_os_version": "11.0",
+            "os": "macos",
+            "variant": "macosx"
+        },
+        "product": {
+            "additional_paths": [
+                {
+                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5/bin/CommandLine/CommandLineTool/libtool.library.a",
+                    "t": "g"
+                }
+            ],
+            "executable_name": "tool.binary",
+            "is_resource_bundle": false,
+            "name": "tool.binary",
+            "path": {
+                "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5/bin/CommandLine/CommandLineTool/rules_xcodeproj/tool.binary/tool.binary",
+                "t": "g"
+            },
+            "type": "com.apple.product-type.tool"
+        },
+        "search_paths": {
+            "has_includes": true
+        }
+    },
+    "//CommandLine/CommandLineToolLib:lib_defines macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50",
+    {
+        "build_settings": {
+            "CLANG_CXX_LANGUAGE_STANDARD": "gnu++0x",
+            "CLANG_CXX_LIBRARY": "libc++",
+            "DEBUG_INFORMATION_FORMAT": "dwarf",
+            "ENABLE_BITCODE": false,
+            "ENABLE_STRICT_OBJC_MSGSEND": true,
+            "GCC_OPTIMIZATION_LEVEL": "0",
+            "GCC_PREPROCESSOR_DEFINITIONS": [
+                "_FORTIFY_SOURCE=1",
+                "OS_MACOSX",
+                "DEBUG=1",
+                "SECRET_3=\\\"Hello\\\"",
+                "SECRET_2=\\\"World!\\\""
+            ],
+            "OTHER_CFLAGS": [
+                "-fstack-protector",
+                "-Wall",
+                "-Wthread-safety",
+                "-Wself-assign",
+                "-fno-omit-frame-pointer",
+                "-Wshorten-64-to-32",
+                "-Wbool-conversion",
+                "-Wconstant-conversion",
+                "-Wduplicate-method-match",
+                "-Wempty-body",
+                "-Wenum-conversion",
+                "-Wint-conversion",
+                "-Wunreachable-code",
+                "-Wmismatched-return-types",
+                "-Wundeclared-selector",
+                "-Wuninitialized",
+                "-Wunused-function",
+                "-Wunused-variable",
+                "-fno-autolink",
+                "-fstack-protector",
+                "-fstack-protector-all"
+            ],
+            "OTHER_CPLUSPLUSFLAGS": [
+                "-fstack-protector",
+                "-Wall",
+                "-Wthread-safety",
+                "-Wself-assign",
+                "-fno-omit-frame-pointer",
+                "-Wshorten-64-to-32",
+                "-Wbool-conversion",
+                "-Wconstant-conversion",
+                "-Wduplicate-method-match",
+                "-Wempty-body",
+                "-Wenum-conversion",
+                "-Wint-conversion",
+                "-Wunreachable-code",
+                "-Wmismatched-return-types",
+                "-Wundeclared-selector",
+                "-Wuninitialized",
+                "-Wunused-function",
+                "-Wunused-variable",
+                "-fno-autolink",
+                "-fstack-protector",
+                "-fstack-protector-all"
+            ],
+            "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+            "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+            "SWIFT_VERSION": "5.0",
+            "USER_HEADER_SEARCH_PATHS": [
+                "$(PROJECT_DIR)",
+                "$(BAZEL_OUT)/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50/bin"
+            ]
+        },
+        "configuration": "macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50",
+        "is_swift": false,
+        "label": "//CommandLine/CommandLineToolLib:lib_defines",
+        "name": "lib_defines",
+        "package_bin_dir": "bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50/bin/CommandLine/CommandLineToolLib",
+        "platform": {
+            "arch": "arm64",
+            "minimum_os_version": "11.0",
+            "os": "macos",
+            "variant": "macosx"
+        },
+        "product": {
+            "additional_paths": [],
+            "executable_name": null,
+            "is_resource_bundle": false,
+            "name": "lib_defines",
+            "path": null,
+            "type": "com.apple.product-type.library.static"
+        },
+        "search_paths": {
+            "has_includes": true
+        }
+    },
     "//CommandLine/CommandLineToolLib:lib_defines macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473",
     {
         "build_settings": {
@@ -507,6 +906,211 @@
             "executable_name": null,
             "is_resource_bundle": false,
             "name": "lib_defines",
+            "path": null,
+            "type": "com.apple.product-type.library.static"
+        },
+        "search_paths": {
+            "has_includes": true
+        }
+    },
+    "//CommandLine/CommandLineToolLib:lib_defines macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5",
+    {
+        "build_settings": {
+            "CLANG_CXX_LANGUAGE_STANDARD": "gnu++0x",
+            "CLANG_CXX_LIBRARY": "libc++",
+            "DEBUG_INFORMATION_FORMAT": "dwarf",
+            "ENABLE_BITCODE": false,
+            "ENABLE_STRICT_OBJC_MSGSEND": true,
+            "GCC_OPTIMIZATION_LEVEL": "0",
+            "GCC_PREPROCESSOR_DEFINITIONS": [
+                "_FORTIFY_SOURCE=1",
+                "OS_MACOSX",
+                "DEBUG=1",
+                "SECRET_3=\\\"Hello\\\"",
+                "SECRET_2=\\\"World!\\\""
+            ],
+            "OTHER_CFLAGS": [
+                "-fstack-protector",
+                "-Wall",
+                "-Wthread-safety",
+                "-Wself-assign",
+                "-fno-omit-frame-pointer",
+                "-Wshorten-64-to-32",
+                "-Wbool-conversion",
+                "-Wconstant-conversion",
+                "-Wduplicate-method-match",
+                "-Wempty-body",
+                "-Wenum-conversion",
+                "-Wint-conversion",
+                "-Wunreachable-code",
+                "-Wmismatched-return-types",
+                "-Wundeclared-selector",
+                "-Wuninitialized",
+                "-Wunused-function",
+                "-Wunused-variable",
+                "-fno-autolink",
+                "-fstack-protector",
+                "-fstack-protector-all"
+            ],
+            "OTHER_CPLUSPLUSFLAGS": [
+                "-fstack-protector",
+                "-Wall",
+                "-Wthread-safety",
+                "-Wself-assign",
+                "-fno-omit-frame-pointer",
+                "-Wshorten-64-to-32",
+                "-Wbool-conversion",
+                "-Wconstant-conversion",
+                "-Wduplicate-method-match",
+                "-Wempty-body",
+                "-Wenum-conversion",
+                "-Wint-conversion",
+                "-Wunreachable-code",
+                "-Wmismatched-return-types",
+                "-Wundeclared-selector",
+                "-Wuninitialized",
+                "-Wunused-function",
+                "-Wunused-variable",
+                "-fno-autolink",
+                "-fstack-protector",
+                "-fstack-protector-all"
+            ],
+            "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+            "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+            "SWIFT_VERSION": "5.0",
+            "USER_HEADER_SEARCH_PATHS": [
+                "$(PROJECT_DIR)",
+                "$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5/bin"
+            ]
+        },
+        "configuration": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5",
+        "is_swift": false,
+        "label": "//CommandLine/CommandLineToolLib:lib_defines",
+        "name": "lib_defines",
+        "package_bin_dir": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5/bin/CommandLine/CommandLineToolLib",
+        "platform": {
+            "arch": "x86_64",
+            "minimum_os_version": "11.0",
+            "os": "macos",
+            "variant": "macosx"
+        },
+        "product": {
+            "additional_paths": [],
+            "executable_name": null,
+            "is_resource_bundle": false,
+            "name": "lib_defines",
+            "path": null,
+            "type": "com.apple.product-type.library.static"
+        },
+        "search_paths": {
+            "has_includes": true
+        }
+    },
+    "//CommandLine/CommandLineToolLib:lib_headers macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50",
+    {
+        "build_settings": {
+            "CLANG_CXX_LANGUAGE_STANDARD": "gnu++0x",
+            "CLANG_CXX_LIBRARY": "libc++",
+            "DEBUG_INFORMATION_FORMAT": "dwarf",
+            "ENABLE_BITCODE": false,
+            "ENABLE_STRICT_OBJC_MSGSEND": true,
+            "FRAMEWORK_SEARCH_PATHS": [
+                "$(BAZEL_EXTERNAL)/examples_command_line_external"
+            ],
+            "GCC_OPTIMIZATION_LEVEL": "0",
+            "GCC_PREPROCESSOR_DEFINITIONS": [
+                "_FORTIFY_SOURCE=1",
+                "OS_MACOSX",
+                "DEBUG=1",
+                "SECRET_3=\\\"Hello\\\"",
+                "SECRET_2=\\\"World!\\\""
+            ],
+            "HEADER_SEARCH_PATHS": [
+                "\"$(SRCROOT)/CommandLine/CommandLineToolLib/dir with space\"",
+                "\"$(BAZEL_OUT)/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50/bin/CommandLine/CommandLineToolLib/dir with space\"",
+                "$(SRCROOT)/CommandLine/CommandLineToolLib/private",
+                "$(BAZEL_OUT)/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50/bin/CommandLine/CommandLineToolLib/private"
+            ],
+            "OTHER_CFLAGS": [
+                "-fstack-protector",
+                "-Wall",
+                "-Wthread-safety",
+                "-Wself-assign",
+                "-fno-omit-frame-pointer",
+                "-Wshorten-64-to-32",
+                "-Wbool-conversion",
+                "-Wconstant-conversion",
+                "-Wduplicate-method-match",
+                "-Wempty-body",
+                "-Wenum-conversion",
+                "-Wint-conversion",
+                "-Wunreachable-code",
+                "-Wmismatched-return-types",
+                "-Wundeclared-selector",
+                "-Wuninitialized",
+                "-Wunused-function",
+                "-Wunused-variable",
+                "-fno-autolink",
+                "-fstack-protector",
+                "-fstack-protector-all"
+            ],
+            "OTHER_CPLUSPLUSFLAGS": [
+                "-fstack-protector",
+                "-Wall",
+                "-Wthread-safety",
+                "-Wself-assign",
+                "-fno-omit-frame-pointer",
+                "-Wshorten-64-to-32",
+                "-Wbool-conversion",
+                "-Wconstant-conversion",
+                "-Wduplicate-method-match",
+                "-Wempty-body",
+                "-Wenum-conversion",
+                "-Wint-conversion",
+                "-Wunreachable-code",
+                "-Wmismatched-return-types",
+                "-Wundeclared-selector",
+                "-Wuninitialized",
+                "-Wunused-function",
+                "-Wunused-variable",
+                "-fno-autolink",
+                "-fstack-protector",
+                "-fstack-protector-all"
+            ],
+            "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+            "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+            "SWIFT_VERSION": "5.0",
+            "USER_HEADER_SEARCH_PATHS": [
+                "$(PROJECT_DIR)",
+                "$(BAZEL_OUT)/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50/bin",
+                "$(BAZEL_EXTERNAL)/examples_command_line_external",
+                "$(BAZEL_OUT)/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50/bin/external/examples_command_line_external"
+            ]
+        },
+        "configuration": "macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50",
+        "dependencies": [
+            "//CommandLine/CommandLineToolLib:lib_swift macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50"
+        ],
+        "inputs": {
+            "srcs": [
+                "CommandLine/CommandLineToolLib/dir with space/lib.h"
+            ]
+        },
+        "is_swift": false,
+        "label": "//CommandLine/CommandLineToolLib:lib_headers",
+        "name": "lib_headers",
+        "package_bin_dir": "bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50/bin/CommandLine/CommandLineToolLib",
+        "platform": {
+            "arch": "arm64",
+            "minimum_os_version": "11.0",
+            "os": "macos",
+            "variant": "macosx"
+        },
+        "product": {
+            "additional_paths": [],
+            "executable_name": null,
+            "is_resource_bundle": false,
+            "name": "lib_headers",
             "path": null,
             "type": "com.apple.product-type.library.static"
         },
@@ -626,6 +1230,223 @@
             "has_includes": true
         }
     },
+    "//CommandLine/CommandLineToolLib:lib_headers macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5",
+    {
+        "build_settings": {
+            "CLANG_CXX_LANGUAGE_STANDARD": "gnu++0x",
+            "CLANG_CXX_LIBRARY": "libc++",
+            "DEBUG_INFORMATION_FORMAT": "dwarf",
+            "ENABLE_BITCODE": false,
+            "ENABLE_STRICT_OBJC_MSGSEND": true,
+            "FRAMEWORK_SEARCH_PATHS": [
+                "$(BAZEL_EXTERNAL)/examples_command_line_external"
+            ],
+            "GCC_OPTIMIZATION_LEVEL": "0",
+            "GCC_PREPROCESSOR_DEFINITIONS": [
+                "_FORTIFY_SOURCE=1",
+                "OS_MACOSX",
+                "DEBUG=1",
+                "SECRET_3=\\\"Hello\\\"",
+                "SECRET_2=\\\"World!\\\""
+            ],
+            "HEADER_SEARCH_PATHS": [
+                "\"$(SRCROOT)/CommandLine/CommandLineToolLib/dir with space\"",
+                "\"$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5/bin/CommandLine/CommandLineToolLib/dir with space\"",
+                "$(SRCROOT)/CommandLine/CommandLineToolLib/private",
+                "$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5/bin/CommandLine/CommandLineToolLib/private"
+            ],
+            "OTHER_CFLAGS": [
+                "-fstack-protector",
+                "-Wall",
+                "-Wthread-safety",
+                "-Wself-assign",
+                "-fno-omit-frame-pointer",
+                "-Wshorten-64-to-32",
+                "-Wbool-conversion",
+                "-Wconstant-conversion",
+                "-Wduplicate-method-match",
+                "-Wempty-body",
+                "-Wenum-conversion",
+                "-Wint-conversion",
+                "-Wunreachable-code",
+                "-Wmismatched-return-types",
+                "-Wundeclared-selector",
+                "-Wuninitialized",
+                "-Wunused-function",
+                "-Wunused-variable",
+                "-fno-autolink",
+                "-fstack-protector",
+                "-fstack-protector-all"
+            ],
+            "OTHER_CPLUSPLUSFLAGS": [
+                "-fstack-protector",
+                "-Wall",
+                "-Wthread-safety",
+                "-Wself-assign",
+                "-fno-omit-frame-pointer",
+                "-Wshorten-64-to-32",
+                "-Wbool-conversion",
+                "-Wconstant-conversion",
+                "-Wduplicate-method-match",
+                "-Wempty-body",
+                "-Wenum-conversion",
+                "-Wint-conversion",
+                "-Wunreachable-code",
+                "-Wmismatched-return-types",
+                "-Wundeclared-selector",
+                "-Wuninitialized",
+                "-Wunused-function",
+                "-Wunused-variable",
+                "-fno-autolink",
+                "-fstack-protector",
+                "-fstack-protector-all"
+            ],
+            "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+            "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+            "SWIFT_VERSION": "5.0",
+            "USER_HEADER_SEARCH_PATHS": [
+                "$(PROJECT_DIR)",
+                "$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5/bin",
+                "$(BAZEL_EXTERNAL)/examples_command_line_external",
+                "$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5/bin/external/examples_command_line_external"
+            ]
+        },
+        "configuration": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5",
+        "dependencies": [
+            "//CommandLine/CommandLineToolLib:lib_swift macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5"
+        ],
+        "inputs": {
+            "srcs": [
+                "CommandLine/CommandLineToolLib/dir with space/lib.h"
+            ]
+        },
+        "is_swift": false,
+        "label": "//CommandLine/CommandLineToolLib:lib_headers",
+        "name": "lib_headers",
+        "package_bin_dir": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5/bin/CommandLine/CommandLineToolLib",
+        "platform": {
+            "arch": "x86_64",
+            "minimum_os_version": "11.0",
+            "os": "macos",
+            "variant": "macosx"
+        },
+        "product": {
+            "additional_paths": [],
+            "executable_name": null,
+            "is_resource_bundle": false,
+            "name": "lib_headers",
+            "path": null,
+            "type": "com.apple.product-type.library.static"
+        },
+        "search_paths": {
+            "has_includes": true
+        }
+    },
+    "//CommandLine/CommandLineToolLib:lib_impl macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50",
+    {
+        "build_settings": {
+            "CLANG_CXX_LANGUAGE_STANDARD": "gnu++0x",
+            "CLANG_CXX_LIBRARY": "libc++",
+            "DEBUG_INFORMATION_FORMAT": "dwarf",
+            "ENABLE_BITCODE": false,
+            "ENABLE_STRICT_OBJC_MSGSEND": true,
+            "GCC_OPTIMIZATION_LEVEL": "0",
+            "GCC_PREPROCESSOR_DEFINITIONS": [
+                "_FORTIFY_SOURCE=1",
+                "OS_MACOSX",
+                "DEBUG=1",
+                "SECRET_3=\\\"Hello\\\"",
+                "SECRET_2=\\\"World!\\\""
+            ],
+            "OTHER_CFLAGS": [
+                "-fstack-protector",
+                "-Wall",
+                "-Wthread-safety",
+                "-Wself-assign",
+                "-fno-omit-frame-pointer",
+                "-Wshorten-64-to-32",
+                "-Wbool-conversion",
+                "-Wconstant-conversion",
+                "-Wduplicate-method-match",
+                "-Wempty-body",
+                "-Wenum-conversion",
+                "-Wint-conversion",
+                "-Wunreachable-code",
+                "-Wmismatched-return-types",
+                "-Wundeclared-selector",
+                "-Wuninitialized",
+                "-Wunused-function",
+                "-Wunused-variable",
+                "-fno-autolink",
+                "-fstack-protector",
+                "-fstack-protector-all"
+            ],
+            "OTHER_CPLUSPLUSFLAGS": [
+                "-fstack-protector",
+                "-Wall",
+                "-Wthread-safety",
+                "-Wself-assign",
+                "-fno-omit-frame-pointer",
+                "-Wshorten-64-to-32",
+                "-Wbool-conversion",
+                "-Wconstant-conversion",
+                "-Wduplicate-method-match",
+                "-Wempty-body",
+                "-Wenum-conversion",
+                "-Wint-conversion",
+                "-Wunreachable-code",
+                "-Wmismatched-return-types",
+                "-Wundeclared-selector",
+                "-Wuninitialized",
+                "-Wunused-function",
+                "-Wunused-variable",
+                "-fno-autolink",
+                "-fstack-protector",
+                "-fstack-protector-all"
+            ],
+            "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+            "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+            "SWIFT_VERSION": "5.0",
+            "USER_HEADER_SEARCH_PATHS": [
+                "$(PROJECT_DIR)",
+                "$(BAZEL_OUT)/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50/bin"
+            ]
+        },
+        "configuration": "macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50",
+        "dependencies": [
+            "//CommandLine/CommandLineToolLib:lib_defines macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50"
+        ],
+        "inputs": {
+            "srcs": [
+                "CommandLine/CommandLineToolLib/lib.m",
+                "CommandLine/CommandLineToolLib/private.h"
+            ]
+        },
+        "is_swift": false,
+        "label": "//CommandLine/CommandLineToolLib:lib_impl",
+        "name": "lib_impl",
+        "package_bin_dir": "bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50/bin/CommandLine/CommandLineToolLib",
+        "platform": {
+            "arch": "arm64",
+            "minimum_os_version": "11.0",
+            "os": "macos",
+            "variant": "macosx"
+        },
+        "product": {
+            "additional_paths": [],
+            "executable_name": null,
+            "is_resource_bundle": false,
+            "name": "lib_impl",
+            "path": {
+                "_": "macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50/bin/CommandLine/CommandLineToolLib/liblib_impl.a",
+                "t": "g"
+            },
+            "type": "com.apple.product-type.library.static"
+        },
+        "search_paths": {
+            "has_includes": true
+        }
+    },
     "//CommandLine/CommandLineToolLib:lib_impl macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473",
     {
         "build_settings": {
@@ -731,6 +1552,185 @@
             "has_includes": true
         }
     },
+    "//CommandLine/CommandLineToolLib:lib_impl macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5",
+    {
+        "build_settings": {
+            "CLANG_CXX_LANGUAGE_STANDARD": "gnu++0x",
+            "CLANG_CXX_LIBRARY": "libc++",
+            "DEBUG_INFORMATION_FORMAT": "dwarf",
+            "ENABLE_BITCODE": false,
+            "ENABLE_STRICT_OBJC_MSGSEND": true,
+            "GCC_OPTIMIZATION_LEVEL": "0",
+            "GCC_PREPROCESSOR_DEFINITIONS": [
+                "_FORTIFY_SOURCE=1",
+                "OS_MACOSX",
+                "DEBUG=1",
+                "SECRET_3=\\\"Hello\\\"",
+                "SECRET_2=\\\"World!\\\""
+            ],
+            "OTHER_CFLAGS": [
+                "-fstack-protector",
+                "-Wall",
+                "-Wthread-safety",
+                "-Wself-assign",
+                "-fno-omit-frame-pointer",
+                "-Wshorten-64-to-32",
+                "-Wbool-conversion",
+                "-Wconstant-conversion",
+                "-Wduplicate-method-match",
+                "-Wempty-body",
+                "-Wenum-conversion",
+                "-Wint-conversion",
+                "-Wunreachable-code",
+                "-Wmismatched-return-types",
+                "-Wundeclared-selector",
+                "-Wuninitialized",
+                "-Wunused-function",
+                "-Wunused-variable",
+                "-fno-autolink",
+                "-fstack-protector",
+                "-fstack-protector-all"
+            ],
+            "OTHER_CPLUSPLUSFLAGS": [
+                "-fstack-protector",
+                "-Wall",
+                "-Wthread-safety",
+                "-Wself-assign",
+                "-fno-omit-frame-pointer",
+                "-Wshorten-64-to-32",
+                "-Wbool-conversion",
+                "-Wconstant-conversion",
+                "-Wduplicate-method-match",
+                "-Wempty-body",
+                "-Wenum-conversion",
+                "-Wint-conversion",
+                "-Wunreachable-code",
+                "-Wmismatched-return-types",
+                "-Wundeclared-selector",
+                "-Wuninitialized",
+                "-Wunused-function",
+                "-Wunused-variable",
+                "-fno-autolink",
+                "-fstack-protector",
+                "-fstack-protector-all"
+            ],
+            "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+            "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+            "SWIFT_VERSION": "5.0",
+            "USER_HEADER_SEARCH_PATHS": [
+                "$(PROJECT_DIR)",
+                "$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5/bin"
+            ]
+        },
+        "configuration": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5",
+        "dependencies": [
+            "//CommandLine/CommandLineToolLib:lib_defines macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5"
+        ],
+        "inputs": {
+            "srcs": [
+                "CommandLine/CommandLineToolLib/lib.m",
+                "CommandLine/CommandLineToolLib/private.h"
+            ]
+        },
+        "is_swift": false,
+        "label": "//CommandLine/CommandLineToolLib:lib_impl",
+        "name": "lib_impl",
+        "package_bin_dir": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5/bin/CommandLine/CommandLineToolLib",
+        "platform": {
+            "arch": "x86_64",
+            "minimum_os_version": "11.0",
+            "os": "macos",
+            "variant": "macosx"
+        },
+        "product": {
+            "additional_paths": [],
+            "executable_name": null,
+            "is_resource_bundle": false,
+            "name": "lib_impl",
+            "path": {
+                "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5/bin/CommandLine/CommandLineToolLib/liblib_impl.a",
+                "t": "g"
+            },
+            "type": "com.apple.product-type.library.static"
+        },
+        "search_paths": {
+            "has_includes": true
+        }
+    },
+    "//CommandLine/CommandLineToolLib:lib_swift macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50",
+    {
+        "build_settings": {
+            "DEBUG_INFORMATION_FORMAT": "dwarf",
+            "ENABLE_BITCODE": false,
+            "ENABLE_STRICT_OBJC_MSGSEND": true,
+            "ENABLE_TESTABILITY": true,
+            "FRAMEWORK_SEARCH_PATHS": [
+                "$(BAZEL_EXTERNAL)/examples_command_line_external"
+            ],
+            "GCC_OPTIMIZATION_LEVEL": "0",
+            "OTHER_SWIFT_FLAGS": "-Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50/bin/CommandLine/CommandLineToolLib/lib_impl.swift.modulemap -Xcc -fmodule-map-file=$(SRCROOT)/CommandLine/swift_c_module/c_lib.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/examples_command_line_external/ExternalFramework.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50/bin/external/examples_command_line_external/Library.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50/bin/CommandLine/CommandLineToolLib/private_lib.swift.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Xcc -DSECRET_3=\\\"Hello\\\" -Xcc -DSECRET_2=\\\"World!\\\" -Fexternal/examples_command_line_external -static",
+            "PRODUCT_MODULE_NAME": "LibSwift",
+            "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
+            "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50/bin/CommandLine/CommandLineToolLib",
+            "SWIFT_OBJC_INTERFACE_HEADER_NAME": "private/LibSwift-Swift.h",
+            "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+            "SWIFT_VERSION": "5.0",
+            "USER_HEADER_SEARCH_PATHS": [
+                "$(PROJECT_DIR)",
+                "$(BAZEL_OUT)/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50/bin",
+                "$(BAZEL_EXTERNAL)/examples_command_line_external",
+                "$(BAZEL_OUT)/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50/bin/external/examples_command_line_external"
+            ]
+        },
+        "configuration": "macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50",
+        "dependencies": [
+            "//CommandLine/swift_c_module:c_lib macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50",
+            "//CommandLine/CommandLineToolLib:lib_impl macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50",
+            "//CommandLine/CommandLineToolLib:private_lib macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50",
+            "//CommandLine/CommandLineToolLib:private_swift_lib macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50"
+        ],
+        "has_modulemaps": true,
+        "inputs": {
+            "srcs": [
+                "CommandLine/CommandLineToolLib/lib.swift"
+            ]
+        },
+        "label": "//CommandLine/CommandLineToolLib:lib_swift",
+        "name": "lib_swift",
+        "outputs": {
+            "s": {
+                "h": {
+                    "_": "macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50/bin/CommandLine/CommandLineToolLib/private/LibSwift-Swift.h",
+                    "t": "g"
+                },
+                "m": {
+                    "_": "macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50/bin/CommandLine/CommandLineToolLib/LibSwift.swiftmodule",
+                    "t": "g"
+                }
+            }
+        },
+        "package_bin_dir": "bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50/bin/CommandLine/CommandLineToolLib",
+        "platform": {
+            "arch": "arm64",
+            "minimum_os_version": "11.0",
+            "os": "macos",
+            "variant": "macosx"
+        },
+        "product": {
+            "additional_paths": [],
+            "executable_name": null,
+            "is_resource_bundle": false,
+            "name": "lib_swift",
+            "path": {
+                "_": "macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50/bin/CommandLine/CommandLineToolLib/liblib_swift.a",
+                "t": "g"
+            },
+            "type": "com.apple.product-type.library.static"
+        },
+        "search_paths": {
+            "has_includes": true
+        }
+    },
     "//CommandLine/CommandLineToolLib:lib_swift macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473",
     {
         "build_settings": {
@@ -797,6 +1797,156 @@
             "name": "lib_swift",
             "path": {
                 "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineToolLib/liblib_swift.a",
+                "t": "g"
+            },
+            "type": "com.apple.product-type.library.static"
+        },
+        "search_paths": {
+            "has_includes": true
+        }
+    },
+    "//CommandLine/CommandLineToolLib:lib_swift macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5",
+    {
+        "build_settings": {
+            "DEBUG_INFORMATION_FORMAT": "dwarf",
+            "ENABLE_BITCODE": false,
+            "ENABLE_STRICT_OBJC_MSGSEND": true,
+            "ENABLE_TESTABILITY": true,
+            "FRAMEWORK_SEARCH_PATHS": [
+                "$(BAZEL_EXTERNAL)/examples_command_line_external"
+            ],
+            "GCC_OPTIMIZATION_LEVEL": "0",
+            "OTHER_SWIFT_FLAGS": "-Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5/bin/CommandLine/CommandLineToolLib/lib_impl.swift.modulemap -Xcc -fmodule-map-file=$(SRCROOT)/CommandLine/swift_c_module/c_lib.modulemap -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/examples_command_line_external/ExternalFramework.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5/bin/external/examples_command_line_external/Library.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5/bin/CommandLine/CommandLineToolLib/private_lib.swift.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -Xcc -DSECRET_3=\\\"Hello\\\" -Xcc -DSECRET_2=\\\"World!\\\" -Fexternal/examples_command_line_external -static",
+            "PRODUCT_MODULE_NAME": "LibSwift",
+            "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
+            "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5/bin/CommandLine/CommandLineToolLib",
+            "SWIFT_OBJC_INTERFACE_HEADER_NAME": "private/LibSwift-Swift.h",
+            "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+            "SWIFT_VERSION": "5.0",
+            "USER_HEADER_SEARCH_PATHS": [
+                "$(PROJECT_DIR)",
+                "$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5/bin",
+                "$(BAZEL_EXTERNAL)/examples_command_line_external",
+                "$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5/bin/external/examples_command_line_external"
+            ]
+        },
+        "configuration": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5",
+        "dependencies": [
+            "//CommandLine/swift_c_module:c_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5",
+            "//CommandLine/CommandLineToolLib:lib_impl macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5",
+            "//CommandLine/CommandLineToolLib:private_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5",
+            "//CommandLine/CommandLineToolLib:private_swift_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5"
+        ],
+        "has_modulemaps": true,
+        "inputs": {
+            "srcs": [
+                "CommandLine/CommandLineToolLib/lib.swift"
+            ]
+        },
+        "label": "//CommandLine/CommandLineToolLib:lib_swift",
+        "name": "lib_swift",
+        "outputs": {
+            "s": {
+                "h": {
+                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5/bin/CommandLine/CommandLineToolLib/private/LibSwift-Swift.h",
+                    "t": "g"
+                },
+                "m": {
+                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5/bin/CommandLine/CommandLineToolLib/LibSwift.swiftmodule",
+                    "t": "g"
+                }
+            }
+        },
+        "package_bin_dir": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5/bin/CommandLine/CommandLineToolLib",
+        "platform": {
+            "arch": "x86_64",
+            "minimum_os_version": "11.0",
+            "os": "macos",
+            "variant": "macosx"
+        },
+        "product": {
+            "additional_paths": [],
+            "executable_name": null,
+            "is_resource_bundle": false,
+            "name": "lib_swift",
+            "path": {
+                "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5/bin/CommandLine/CommandLineToolLib/liblib_swift.a",
+                "t": "g"
+            },
+            "type": "com.apple.product-type.library.static"
+        },
+        "search_paths": {
+            "has_includes": true
+        }
+    },
+    "//CommandLine/CommandLineToolLib:private_lib macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50",
+    {
+        "build_settings": {
+            "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
+            "DEBUG_INFORMATION_FORMAT": "dwarf",
+            "ENABLE_BITCODE": false,
+            "ENABLE_STRICT_OBJC_MSGSEND": true,
+            "GCC_OPTIMIZATION_LEVEL": "0",
+            "GCC_PREPROCESSOR_DEFINITIONS": [
+                "_FORTIFY_SOURCE=1",
+                "__DATE__=\"redacted\"",
+                "__TIMESTAMP__=\"redacted\"",
+                "__TIME__=\"redacted\""
+            ],
+            "OTHER_CFLAGS": [
+                "-fstack-protector",
+                "-Wall",
+                "-Wthread-safety",
+                "-Wself-assign",
+                "-fno-omit-frame-pointer",
+                "-no-canonical-prefixes",
+                "-pthread",
+                "-no-canonical-prefixes",
+                "-Wno-builtin-macro-redefined"
+            ],
+            "OTHER_CPLUSPLUSFLAGS": [
+                "-fstack-protector",
+                "-Wall",
+                "-Wthread-safety",
+                "-Wself-assign",
+                "-fno-omit-frame-pointer",
+                "-no-canonical-prefixes",
+                "-pthread",
+                "-no-canonical-prefixes",
+                "-Wno-builtin-macro-redefined"
+            ],
+            "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+            "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+            "SWIFT_VERSION": "5.0",
+            "USER_HEADER_SEARCH_PATHS": [
+                "$(PROJECT_DIR)",
+                "$(BAZEL_OUT)/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50/bin"
+            ]
+        },
+        "configuration": "macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50",
+        "inputs": {
+            "srcs": [
+                "CommandLine/CommandLineToolLib/private_lib.c",
+                "CommandLine/CommandLineToolLib/private_lib.h"
+            ]
+        },
+        "is_swift": false,
+        "label": "//CommandLine/CommandLineToolLib:private_lib",
+        "name": "private_lib",
+        "package_bin_dir": "bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50/bin/CommandLine/CommandLineToolLib",
+        "platform": {
+            "arch": "arm64",
+            "minimum_os_version": "11.0",
+            "os": "macos",
+            "variant": "macosx"
+        },
+        "product": {
+            "additional_paths": [],
+            "executable_name": null,
+            "is_resource_bundle": false,
+            "name": "private_lib",
+            "path": {
+                "_": "macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50/bin/CommandLine/CommandLineToolLib/libprivate_lib.a",
                 "t": "g"
             },
             "type": "com.apple.product-type.library.static"
@@ -881,6 +2031,139 @@
             "has_includes": true
         }
     },
+    "//CommandLine/CommandLineToolLib:private_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5",
+    {
+        "build_settings": {
+            "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
+            "DEBUG_INFORMATION_FORMAT": "dwarf",
+            "ENABLE_BITCODE": false,
+            "ENABLE_STRICT_OBJC_MSGSEND": true,
+            "GCC_OPTIMIZATION_LEVEL": "0",
+            "GCC_PREPROCESSOR_DEFINITIONS": [
+                "_FORTIFY_SOURCE=1",
+                "__DATE__=\"redacted\"",
+                "__TIMESTAMP__=\"redacted\"",
+                "__TIME__=\"redacted\""
+            ],
+            "OTHER_CFLAGS": [
+                "-fstack-protector",
+                "-Wall",
+                "-Wthread-safety",
+                "-Wself-assign",
+                "-fno-omit-frame-pointer",
+                "-no-canonical-prefixes",
+                "-pthread",
+                "-no-canonical-prefixes",
+                "-Wno-builtin-macro-redefined"
+            ],
+            "OTHER_CPLUSPLUSFLAGS": [
+                "-fstack-protector",
+                "-Wall",
+                "-Wthread-safety",
+                "-Wself-assign",
+                "-fno-omit-frame-pointer",
+                "-no-canonical-prefixes",
+                "-pthread",
+                "-no-canonical-prefixes",
+                "-Wno-builtin-macro-redefined"
+            ],
+            "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+            "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+            "SWIFT_VERSION": "5.0",
+            "USER_HEADER_SEARCH_PATHS": [
+                "$(PROJECT_DIR)",
+                "$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5/bin"
+            ]
+        },
+        "configuration": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5",
+        "inputs": {
+            "srcs": [
+                "CommandLine/CommandLineToolLib/private_lib.c",
+                "CommandLine/CommandLineToolLib/private_lib.h"
+            ]
+        },
+        "is_swift": false,
+        "label": "//CommandLine/CommandLineToolLib:private_lib",
+        "name": "private_lib",
+        "package_bin_dir": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5/bin/CommandLine/CommandLineToolLib",
+        "platform": {
+            "arch": "x86_64",
+            "minimum_os_version": "11.0",
+            "os": "macos",
+            "variant": "macosx"
+        },
+        "product": {
+            "additional_paths": [],
+            "executable_name": null,
+            "is_resource_bundle": false,
+            "name": "private_lib",
+            "path": {
+                "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5/bin/CommandLine/CommandLineToolLib/libprivate_lib.a",
+                "t": "g"
+            },
+            "type": "com.apple.product-type.library.static"
+        },
+        "search_paths": {
+            "has_includes": true
+        }
+    },
+    "//CommandLine/CommandLineToolLib:private_swift_lib macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50",
+    {
+        "build_settings": {
+            "DEBUG_INFORMATION_FORMAT": "dwarf",
+            "ENABLE_BITCODE": false,
+            "ENABLE_STRICT_OBJC_MSGSEND": true,
+            "ENABLE_TESTABILITY": true,
+            "GCC_OPTIMIZATION_LEVEL": "0",
+            "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static",
+            "PRODUCT_MODULE_NAME": "_SwiftLib",
+            "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
+            "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+            "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+            "SWIFT_VERSION": "5.0",
+            "USER_HEADER_SEARCH_PATHS": [
+                "$(PROJECT_DIR)",
+                "$(BAZEL_OUT)/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50/bin"
+            ]
+        },
+        "configuration": "macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50",
+        "inputs": {
+            "srcs": [
+                "CommandLine/CommandLineToolLib/private_lib.swift"
+            ]
+        },
+        "label": "//CommandLine/CommandLineToolLib:private_swift_lib",
+        "name": "private_swift_lib",
+        "outputs": {
+            "s": {
+                "m": {
+                    "_": "macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50/bin/CommandLine/CommandLineToolLib/_SwiftLib.swiftmodule",
+                    "t": "g"
+                }
+            }
+        },
+        "package_bin_dir": "bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50/bin/CommandLine/CommandLineToolLib",
+        "platform": {
+            "arch": "arm64",
+            "minimum_os_version": "11.0",
+            "os": "macos",
+            "variant": "macosx"
+        },
+        "product": {
+            "additional_paths": [],
+            "executable_name": null,
+            "is_resource_bundle": false,
+            "name": "private_swift_lib",
+            "path": {
+                "_": "macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50/bin/CommandLine/CommandLineToolLib/libprivate_swift_lib.a",
+                "t": "g"
+            },
+            "type": "com.apple.product-type.library.static"
+        },
+        "search_paths": {
+            "has_includes": true
+        }
+    },
     "//CommandLine/CommandLineToolLib:private_swift_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473",
     {
         "build_settings": {
@@ -930,6 +2213,63 @@
             "name": "private_swift_lib",
             "path": {
                 "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineToolLib/libprivate_swift_lib.a",
+                "t": "g"
+            },
+            "type": "com.apple.product-type.library.static"
+        },
+        "search_paths": {
+            "has_includes": true
+        }
+    },
+    "//CommandLine/CommandLineToolLib:private_swift_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5",
+    {
+        "build_settings": {
+            "DEBUG_INFORMATION_FORMAT": "dwarf",
+            "ENABLE_BITCODE": false,
+            "ENABLE_STRICT_OBJC_MSGSEND": true,
+            "ENABLE_TESTABILITY": true,
+            "GCC_OPTIMIZATION_LEVEL": "0",
+            "OTHER_SWIFT_FLAGS": "-Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static",
+            "PRODUCT_MODULE_NAME": "_SwiftLib",
+            "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
+            "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+            "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+            "SWIFT_VERSION": "5.0",
+            "USER_HEADER_SEARCH_PATHS": [
+                "$(PROJECT_DIR)",
+                "$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5/bin"
+            ]
+        },
+        "configuration": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5",
+        "inputs": {
+            "srcs": [
+                "CommandLine/CommandLineToolLib/private_lib.swift"
+            ]
+        },
+        "label": "//CommandLine/CommandLineToolLib:private_swift_lib",
+        "name": "private_swift_lib",
+        "outputs": {
+            "s": {
+                "m": {
+                    "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5/bin/CommandLine/CommandLineToolLib/_SwiftLib.swiftmodule",
+                    "t": "g"
+                }
+            }
+        },
+        "package_bin_dir": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5/bin/CommandLine/CommandLineToolLib",
+        "platform": {
+            "arch": "x86_64",
+            "minimum_os_version": "11.0",
+            "os": "macos",
+            "variant": "macosx"
+        },
+        "product": {
+            "additional_paths": [],
+            "executable_name": null,
+            "is_resource_bundle": false,
+            "name": "private_swift_lib",
+            "path": {
+                "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5/bin/CommandLine/CommandLineToolLib/libprivate_swift_lib.a",
                 "t": "g"
             },
             "type": "com.apple.product-type.library.static"
@@ -1064,6 +2404,82 @@
             "has_includes": true
         }
     },
+    "//CommandLine/swift_c_module:c_lib macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50",
+    {
+        "build_settings": {
+            "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
+            "DEBUG_INFORMATION_FORMAT": "dwarf",
+            "ENABLE_BITCODE": false,
+            "ENABLE_STRICT_OBJC_MSGSEND": true,
+            "GCC_OPTIMIZATION_LEVEL": "0",
+            "GCC_PREPROCESSOR_DEFINITIONS": [
+                "_FORTIFY_SOURCE=1",
+                "__DATE__=\"redacted\"",
+                "__TIMESTAMP__=\"redacted\"",
+                "__TIME__=\"redacted\""
+            ],
+            "OTHER_CFLAGS": [
+                "-fstack-protector",
+                "-Wall",
+                "-Wthread-safety",
+                "-Wself-assign",
+                "-fno-omit-frame-pointer",
+                "-no-canonical-prefixes",
+                "-pthread",
+                "-no-canonical-prefixes",
+                "-Wno-builtin-macro-redefined"
+            ],
+            "OTHER_CPLUSPLUSFLAGS": [
+                "-fstack-protector",
+                "-Wall",
+                "-Wthread-safety",
+                "-Wself-assign",
+                "-fno-omit-frame-pointer",
+                "-no-canonical-prefixes",
+                "-pthread",
+                "-no-canonical-prefixes",
+                "-Wno-builtin-macro-redefined"
+            ],
+            "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+            "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+            "SWIFT_VERSION": "5.0",
+            "USER_HEADER_SEARCH_PATHS": [
+                "$(PROJECT_DIR)",
+                "$(BAZEL_OUT)/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50/bin"
+            ]
+        },
+        "configuration": "macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50",
+        "inputs": {
+            "srcs": [
+                "CommandLine/swift_c_module/c_lib.c",
+                "CommandLine/swift_c_module/c_lib.h"
+            ]
+        },
+        "is_swift": false,
+        "label": "//CommandLine/swift_c_module:c_lib",
+        "name": "c_lib",
+        "package_bin_dir": "bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50/bin/CommandLine/swift_c_module",
+        "platform": {
+            "arch": "arm64",
+            "minimum_os_version": "11.0",
+            "os": "macos",
+            "variant": "macosx"
+        },
+        "product": {
+            "additional_paths": [],
+            "executable_name": null,
+            "is_resource_bundle": false,
+            "name": "c_lib",
+            "path": {
+                "_": "macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50/bin/CommandLine/swift_c_module/libc_lib.a",
+                "t": "g"
+            },
+            "type": "com.apple.product-type.library.static"
+        },
+        "search_paths": {
+            "has_includes": true
+        }
+    },
     "//CommandLine/swift_c_module:c_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473",
     {
         "build_settings": {
@@ -1132,6 +2548,82 @@
             "name": "c_lib",
             "path": {
                 "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/swift_c_module/libc_lib.a",
+                "t": "g"
+            },
+            "type": "com.apple.product-type.library.static"
+        },
+        "search_paths": {
+            "has_includes": true
+        }
+    },
+    "//CommandLine/swift_c_module:c_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5",
+    {
+        "build_settings": {
+            "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
+            "DEBUG_INFORMATION_FORMAT": "dwarf",
+            "ENABLE_BITCODE": false,
+            "ENABLE_STRICT_OBJC_MSGSEND": true,
+            "GCC_OPTIMIZATION_LEVEL": "0",
+            "GCC_PREPROCESSOR_DEFINITIONS": [
+                "_FORTIFY_SOURCE=1",
+                "__DATE__=\"redacted\"",
+                "__TIMESTAMP__=\"redacted\"",
+                "__TIME__=\"redacted\""
+            ],
+            "OTHER_CFLAGS": [
+                "-fstack-protector",
+                "-Wall",
+                "-Wthread-safety",
+                "-Wself-assign",
+                "-fno-omit-frame-pointer",
+                "-no-canonical-prefixes",
+                "-pthread",
+                "-no-canonical-prefixes",
+                "-Wno-builtin-macro-redefined"
+            ],
+            "OTHER_CPLUSPLUSFLAGS": [
+                "-fstack-protector",
+                "-Wall",
+                "-Wthread-safety",
+                "-Wself-assign",
+                "-fno-omit-frame-pointer",
+                "-no-canonical-prefixes",
+                "-pthread",
+                "-no-canonical-prefixes",
+                "-Wno-builtin-macro-redefined"
+            ],
+            "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+            "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+            "SWIFT_VERSION": "5.0",
+            "USER_HEADER_SEARCH_PATHS": [
+                "$(PROJECT_DIR)",
+                "$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5/bin"
+            ]
+        },
+        "configuration": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5",
+        "inputs": {
+            "srcs": [
+                "CommandLine/swift_c_module/c_lib.c",
+                "CommandLine/swift_c_module/c_lib.h"
+            ]
+        },
+        "is_swift": false,
+        "label": "//CommandLine/swift_c_module:c_lib",
+        "name": "c_lib",
+        "package_bin_dir": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5/bin/CommandLine/swift_c_module",
+        "platform": {
+            "arch": "x86_64",
+            "minimum_os_version": "11.0",
+            "os": "macos",
+            "variant": "macosx"
+        },
+        "product": {
+            "additional_paths": [],
+            "executable_name": null,
+            "is_resource_bundle": false,
+            "name": "c_lib",
+            "path": {
+                "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5/bin/CommandLine/swift_c_module/libc_lib.a",
                 "t": "g"
             },
             "type": "com.apple.product-type.library.static"

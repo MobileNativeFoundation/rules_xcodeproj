@@ -1,4 +1,6 @@
+load("@build_bazel_rules_apple//apple:apple.bzl", "apple_universal_binary")
 load("@build_bazel_rules_apple//apple:macos.bzl", "macos_command_line_application")
+load("@build_bazel_rules_swift//swift:swift.bzl", "swift_binary")
 load("@rules_cc//cc:defs.bzl", "objc_library")
 
 macos_command_line_application(
@@ -13,6 +15,23 @@ macos_command_line_application(
     linkopts = ["-dead_strip"],
     minimum_os_version = "11.0",
     visibility = ["//visibility:public"],
+    deps = [":tool.library"],
+)
+
+apple_universal_binary(
+    name = "UniversalCommandLineTool",
+    binary = ":tool.binary",
+    forced_cpus = [
+        "x86_64",
+        "arm64",
+    ],
+    minimum_os_version = "11.0",
+    platform_type = "macos",
+    visibility = ["//visibility:public"],
+)
+
+swift_binary(
+    name = "tool.binary",
     deps = [":tool.library"],
 )
 

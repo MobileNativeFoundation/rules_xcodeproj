@@ -14,10 +14,10 @@
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "8D4824C0E28AA351F01A06F5"
-                     BuildableName = "lib_headers"
-                     BlueprintName = "lib_headers"
-                     ReferencedContainer = "container:../../../../../test/fixtures/bwx.xcodeproj">
+                     BlueprintIdentifier = "DD2ADF9E8181F75CC1016D6D"
+                     BuildableName = "lib_headers (arm64)"
+                     BlueprintName = "lib_headers (arm64)"
+                     ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
             </ActionContent>
@@ -25,15 +25,15 @@
          <ExecutionAction
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
-               title = "Set Bazel Build Output Groups for lib_headers"
+               title = "Set Bazel Build Output Groups for lib_headers (arm64)"
                scriptText = "echo &quot;$BAZEL_LABEL,$BAZEL_TARGET_ID&quot; &gt;&gt; &quot;$SCHEME_TARGET_IDS_FILE&quot;&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "8D4824C0E28AA351F01A06F5"
-                     BuildableName = "lib_headers"
-                     BlueprintName = "lib_headers"
-                     ReferencedContainer = "container:../../../../../test/fixtures/bwx.xcodeproj">
+                     BlueprintIdentifier = "DD2ADF9E8181F75CC1016D6D"
+                     BuildableName = "lib_headers (arm64)"
+                     BlueprintName = "lib_headers (arm64)"
+                     ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
             </ActionContent>
@@ -48,10 +48,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8D4824C0E28AA351F01A06F5"
-               BuildableName = "lib_headers"
-               BlueprintName = "lib_headers"
-               ReferencedContainer = "container:../../../../../test/fixtures/bwx.xcodeproj">
+               BlueprintIdentifier = "DD2ADF9E8181F75CC1016D6D"
+               BuildableName = "lib_headers (arm64)"
+               BlueprintName = "lib_headers (arm64)"
+               ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
