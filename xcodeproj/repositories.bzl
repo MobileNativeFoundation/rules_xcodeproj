@@ -103,11 +103,19 @@ native_binary(
         ignore_version_differences = ignore_version_differences,
     )
 
+    is_bazel_6 = hasattr(apple_common, "link_multi_arch_static_library")
+    if is_bazel_6:
+        rules_apple_sha256 = "43737f28a578d8d8d7ab7df2fb80225a6b23b9af9655fcdc66ae38eb2abcf2ed"
+        rules_apple_version = "2.0.0"
+    else:
+        rules_apple_sha256 = "f94e6dddf74739ef5cb30f000e13a2a613f6ebfa5e63588305a71fce8a8a9911"
+        rules_apple_version = "1.1.3"
+
     _maybe(
         http_archive,
         name = "build_bazel_rules_apple",
-        sha256 = "f94e6dddf74739ef5cb30f000e13a2a613f6ebfa5e63588305a71fce8a8a9911",
-        url = "https://github.com/bazelbuild/rules_apple/releases/download/1.1.3/rules_apple.1.1.3.tar.gz",
+        sha256 = rules_apple_sha256,
+        url = "https://github.com/bazelbuild/rules_apple/releases/download/{version}/rules_apple.{version}.tar.gz".format(version = rules_apple_version),
         ignore_version_differences = ignore_version_differences,
     )
 
