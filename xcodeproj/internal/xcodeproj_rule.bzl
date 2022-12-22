@@ -130,6 +130,7 @@ def _process_extra_files(
         *,
         ctx,
         focused_labels,
+        is_fixture,
         unfocused_labels,
         replacement_labels_by_label,
         inputs,
@@ -170,7 +171,12 @@ def _process_extra_files(
             for file in target.files.to_list()
         ])
 
-    return uniq(extra_files)
+    extra_files = uniq(extra_files)
+
+    if is_fixture:
+        extra_files = sorted(extra_files, key = lambda fp: fp.type + fp.path)
+
+    return extra_files
 
 def _process_targets(
         *,
@@ -721,9 +727,6 @@ def _write_spec(
         json.encode(ctx.attr.pre_build) if ctx.attr.pre_build else "null"
     )
 
-    if is_fixture:
-        extra_files = sorted(extra_files, key = lambda fp: fp.type + fp.path)
-
     # TODO: Strip fat frameworks instead of setting `VALIDATE_WORKSPACE`
     project_spec_json = """\
 {{\
@@ -1203,6 +1206,7 @@ def _xcodeproj_impl(ctx):
     extra_files = _process_extra_files(
         ctx = ctx,
         focused_labels = focused_labels,
+        is_fixture = is_fixture,
         unfocused_labels = unfocused_labels,
         replacement_labels_by_label = replacement_labels_by_label,
         inputs = inputs,
