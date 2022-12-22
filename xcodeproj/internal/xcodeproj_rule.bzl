@@ -13,6 +13,7 @@ load(
     "file_path",
     "file_path_to_dto",
     "parsed_file_path",
+    "raw_file_path",
 )
 load(":flattened_key_values.bzl", "flattened_key_values")
 load(":input_files.bzl", "input_files")
@@ -129,6 +130,7 @@ https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md
 def _process_extra_files(
         *,
         ctx,
+        configurations_map,
         focused_labels,
         is_fixture,
         unfocused_labels,
@@ -173,7 +175,25 @@ def _process_extra_files(
 
     extra_files = uniq(extra_files)
 
+    def _normalize_path(path):
+        configuration, _, suffix = path.partition("/")
+        if not suffix:
+            return path
+        return (
+            configurations_map.get(configuration, configuration) + "/" + suffix
+        )
+
     if is_fixture:
+        extra_files = [
+            raw_file_path(
+                type = fp.type,
+                path = _normalize_path(fp.path),
+                is_folder = fp.is_folder,
+                include_in_navigator = fp.include_in_navigator,
+                force_group_creation = fp.force_group_creation,
+            )
+            for fp in extra_files
+        ]
         extra_files = sorted(extra_files, key = lambda fp: fp.type + fp.path)
 
     return extra_files
@@ -181,6 +201,8 @@ def _process_extra_files(
 def _process_targets(
         *,
         build_mode,
+        is_fixture,
+        configuration,
         focused_labels,
         unfocused_labels,
         replacement_labels,
@@ -204,6 +226,27 @@ def _process_targets(
             transitive = [info.xcode_targets for info in infos],
         ).to_list()
     }
+
+    configurations_map = {}
+    if is_fixture:
+        prefix, sep, _ = configuration.partition("-ST-")
+        if sep:
+            configurations_map[configuration] = "{}-STABLE-0".format(prefix)
+
+        label_configurations = {}
+        for xcode_target in unprocessed_targets.values():
+            # Make it stable over labels
+            label_configurations.setdefault(xcode_target.label, {})[xcode_target.configuration] = xcode_target
+
+        configurations = {}
+        for label_configs in label_configurations.values():
+            for configuration in label_configs:
+                configurations[configuration] = None
+
+        for idx, configuration in enumerate(configurations):
+            prefix, sep, _ = configuration.partition("-ST-")
+            if sep:
+                configurations_map[configuration] = "{}-STABLE-{}".format(prefix, idx + 1)
 
     replacement_labels_by_label = {
         unprocessed_targets[id].label: label
@@ -680,6 +723,7 @@ actual targets: {}
         has_unfocused_targets,
         focused_targets_extra_files,
         replacement_labels_by_label,
+        configurations_map,
     )
 
 def should_include_outputs(build_mode):
@@ -771,7 +815,7 @@ def _write_spec(
             has_unfocused_targets or inputs.has_generated_files,
         ),
         generator_label = ctx.label,
-        index_import = build_setting_path(
+        index_import = "fixture-index-import-path" if is_fixture else build_setting_path(
             file = ctx.executable._index_import,
         ),
         minimum_xcode_version = minimum_xcode_version,
@@ -1035,6 +1079,7 @@ def _write_installer(
         name = None,
         bazel_integration_files,
         config,
+        configurations_map,
         install_path,
         is_fixture,
         spec_files,
@@ -1042,6 +1087,11 @@ def _write_installer(
     installer = ctx.actions.declare_file(
         "{}-installer.sh".format(name or ctx.attr.name),
     )
+
+    configurations_replacements = "\\n".join([
+        "{} {}".format(replacement, configuration)
+        for configuration, replacement in configurations_map.items()
+    ])
 
     ctx.actions.expand_template(
         template = ctx.file._installer_template,
@@ -1052,6 +1102,7 @@ def _write_installer(
                 [f.short_path for f in bazel_integration_files],
             ),
             "%config%": config,
+            "%configurations_replacements%": configurations_replacements,
             "%is_fixture%": "1" if is_fixture else "0",
             "%output_path%": install_path,
             "%source_path%": xcodeproj.short_path,
@@ -1181,8 +1232,11 @@ def _xcodeproj_impl(ctx):
         has_unfocused_targets,
         focused_targets_extra_files,
         replacement_labels_by_label,
+        configurations_map,
     ) = _process_targets(
         build_mode = build_mode,
+        is_fixture = is_fixture,
+        configuration = configuration,
         focused_labels = focused_labels,
         unfocused_labels = unfocused_labels,
         replacement_labels = replacement_labels,
@@ -1205,6 +1259,7 @@ def _xcodeproj_impl(ctx):
 
     extra_files = _process_extra_files(
         ctx = ctx,
+        configurations_map = configurations_map,
         focused_labels = focused_labels,
         is_fixture = is_fixture,
         unfocused_labels = unfocused_labels,
@@ -1249,6 +1304,47 @@ def _xcodeproj_impl(ctx):
         ctx = ctx,
         extension_infoplists = extension_infoplists,
     )
+
+    if configurations_map:
+        flags = " ".join([
+            "-e \'s/{}/{}/g\'".format(configuration, replacement)
+            for configuration, replacement in configurations_map.items()
+        ])
+
+        normalized_specs = [
+            ctx.actions.declare_file(
+                "{}-normalized_spec.{}.json".format(ctx.attr.name, idx),
+            )
+            for idx, file in enumerate(spec_files)
+        ]
+        normalized_extensionpointidentifiers = ctx.actions.declare_file(
+            "{}_normalized_extensionpointidentifiers_targetids".format(
+                ctx.attr.name,
+            ),
+        )
+
+        unstable_files = spec_files + [extensionpointidentifiers_file]
+        normalized_files = normalized_specs + [normalized_extensionpointidentifiers]
+        ctx.actions.run_shell(
+            inputs = unstable_files,
+            outputs = normalized_files,
+            command = """\
+readonly inputs={inputs}
+readonly outputs={outputs}
+
+for ((i = 0; i < ${{#inputs[@]}}; i++)); do
+sed {flags} ${{inputs[$i]}} > ${{outputs[$i]}}
+done
+""".format(
+                inputs = shell.array_literal([f.path for f in unstable_files]),
+                outputs = shell.array_literal([f.path for f in normalized_files]),
+                flags = flags,
+            ),
+        )
+
+        spec_files = normalized_specs
+        extensionpointidentifiers_file = normalized_extensionpointidentifiers
+
     xcodeproj, install_path = _write_xcodeproj(
         ctx = ctx,
         project_name = project_name,
@@ -1263,6 +1359,7 @@ def _xcodeproj_impl(ctx):
         ctx = ctx,
         bazel_integration_files = bazel_integration_files,
         config = config,
+        configurations_map = configurations_map,
         install_path = install_path,
         is_fixture = is_fixture,
         spec_files = spec_files,

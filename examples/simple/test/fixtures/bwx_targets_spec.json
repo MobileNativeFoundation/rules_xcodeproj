@@ -1,5 +1,5 @@
 [
-    "//:SwiftBin darwin_x86_64-dbg-ST-3688109ddba2",
+    "//:SwiftBin darwin_x86_64-dbg-STABLE-1",
     {
         "build_settings": {
             "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -15,10 +15,10 @@
             "SWIFT_VERSION": "5.0",
             "USER_HEADER_SEARCH_PATHS": [
                 "$(PROJECT_DIR)",
-                "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-3688109ddba2/bin"
+                "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-1/bin"
             ]
         },
-        "configuration": "darwin_x86_64-dbg-ST-3688109ddba2",
+        "configuration": "darwin_x86_64-dbg-STABLE-1",
         "inputs": {
             "srcs": [
                 "main.swift"
@@ -35,7 +35,7 @@
         "outputs": {
             "p": true
         },
-        "package_bin_dir": "bazel-out/darwin_x86_64-dbg-ST-3688109ddba2/bin",
+        "package_bin_dir": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin",
         "platform": {
             "arch": "x86_64",
             "minimum_os_version": "12.0",
@@ -48,7 +48,7 @@
             "is_resource_bundle": false,
             "name": "SwiftBin",
             "path": {
-                "_": "darwin_x86_64-dbg-ST-3688109ddba2/bin/rules_xcodeproj/SwiftBin/SwiftBin",
+                "_": "darwin_x86_64-dbg-STABLE-1/bin/rules_xcodeproj/SwiftBin/SwiftBin",
                 "t": "g"
             },
             "type": "com.apple.product-type.tool"
