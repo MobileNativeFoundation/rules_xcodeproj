@@ -276,9 +276,9 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				BAZEL_LABEL = "@//:SwiftBin";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/darwin_x86_64-dbg-ST-3688109ddba2/bin/rules_xcodeproj/SwiftBin/SwiftBin";
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-ST-3688109ddba2/bin";
-				BAZEL_TARGET_ID = "//:SwiftBin darwin_x86_64-dbg-ST-3688109ddba2";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/rules_xcodeproj/SwiftBin/SwiftBin";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-STABLE-1/bin";
+				BAZEL_TARGET_ID = "//:SwiftBin darwin_x86_64-dbg-STABLE-1";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				COMPILE_TARGET_NAME = SwiftBin;
@@ -289,7 +289,7 @@
 				ENABLE_TESTABILITY = YES;
 				EXECUTABLE_EXTENSION = "";
 				GCC_OPTIMIZATION_LEVEL = 0;
-				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/darwin_x86_64-dbg-ST-3688109ddba2/SwiftBin.link.params";
+				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/darwin_x86_64-dbg-STABLE-1/SwiftBin.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all";
@@ -304,7 +304,7 @@
 				TARGET_NAME = SwiftBin;
 				USER_HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)",
-					"$(BAZEL_OUT)/darwin_x86_64-dbg-ST-3688109ddba2/bin",
+					"$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-1/bin",
 				);
 			};
 			name = Debug;
@@ -316,7 +316,7 @@
 				CALCULATE_OUTPUT_GROUPS_SCRIPT = "$(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py";
 				INDEX_DATA_STORE_DIR = "$(INDEX_DATA_STORE_DIR)";
 				INDEX_DISABLE_SCRIPT_EXECUTION = YES;
-				INDEX_IMPORT = "$(BAZEL_OUT)/darwin_x86_64-opt-exec-2B5CBBC6-ST-8b5ad9965560/bin/external/rules_xcodeproj_index_import/index-import";
+				INDEX_IMPORT = "fixture-index-import-path";
 				RESOLVED_EXTERNAL_REPOSITORIES = "";
 				SUPPORTED_PLATFORMS = macosx;
 				SUPPORTS_MACCATALYST = YES;

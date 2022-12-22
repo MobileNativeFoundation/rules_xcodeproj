@@ -192,7 +192,7 @@ def normalized_file_path(file):
 
     return file_path(file)
 
-def _file_path(
+def raw_file_path(
         type,
         *,
         path,
@@ -213,7 +213,7 @@ def external_file_path(
         is_folder = False,
         include_in_navigator = True,
         force_group_creation = False):
-    return _file_path(
+    return raw_file_path(
         # Type: "e" == `.external`
         type = "e",
         # Path, removing `external/` prefix
@@ -229,7 +229,7 @@ def generated_file_path(
         is_folder = False,
         include_in_navigator = True,
         force_group_creation = False):
-    return _file_path(
+    return raw_file_path(
         # Type: "g" == `.generated`
         type = "g",
         # Path, removing `bazel-out/` prefix
@@ -254,7 +254,7 @@ def project_file_path(
         is_folder = False,
         include_in_navigator = True,
         force_group_creation = False):
-    return _file_path(
+    return raw_file_path(
         # Type: "p" == `.project`
         type = "p",
         path = path,

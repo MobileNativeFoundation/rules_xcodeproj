@@ -92,8 +92,6 @@ def _make_xcode_target(
         A mostly opaque `struct` that can be passed to `xcode_targets.to_dto`.
     """
     return struct(
-        _name = name,
-        _configuration = configuration,
         _compile_target = compile_target,
         _package_bin_dir = package_bin_dir,
         _is_testonly = is_testonly,
@@ -108,7 +106,9 @@ def _make_xcode_target(
         _dependencies = dependencies,
         _lldb_context = lldb_context,
         id = id,
+        name = name,
         label = label,
+        configuration = configuration,
         platform = platform,
         product = (
             _to_xcode_target_product(product) if not compile_target else product
@@ -222,9 +222,9 @@ def _merge_xcode_target(*, src, dest):
 
     return _make_xcode_target(
         id = dest.id,
-        name = dest._name,
+        name = dest.name,
         label = dest.label,
-        configuration = dest._configuration,
+        configuration = dest.configuration,
         compile_target = src,
         package_bin_dir = dest._package_bin_dir,
         platform = src.platform,
@@ -527,9 +527,9 @@ def _xcode_target_to_dto(
     inputs = xcode_target.inputs
 
     dto = {
-        "name": xcode_target._name,
+        "name": xcode_target.name,
         "label": str(xcode_target.label),
-        "configuration": xcode_target._configuration,
+        "configuration": xcode_target.configuration,
         "package_bin_dir": xcode_target._package_bin_dir,
         "platform": platform_info.to_dto(xcode_target.platform),
         "product": _product_to_dto(xcode_target.product),
@@ -538,7 +538,7 @@ def _xcode_target_to_dto(
     if xcode_target._compile_target:
         dto["compile_target"] = {
             "id": xcode_target._compile_target.id,
-            "name": xcode_target._compile_target._name,
+            "name": xcode_target._compile_target.name,
         }
 
     if xcode_target._is_testonly:

@@ -78,14 +78,29 @@ readonly spec_paths=%spec_paths%
 
 # Sync over spec if requested
 if [[ $for_fixture -eq 1 ]]; then
-  rm -rf "${dest%.xcodeproj}"*_spec*.json
+  # e.g. "test/fixtures/generator/bwb"
+  readonly mode_prefix="${dest%.xcodeproj}"
+  readonly mode="${mode_prefix##*/}"
+  readonly project_dir="${mode_prefix%/*}"
+
+  # Bazel versions can change the Starlark hashes, so we store replacements
+  # per version
+  pushd "$BUILD_WORKSPACE_DIRECTORY"
+  bazel_version=$("$bazel_path" info release | cut -d ' ' -f 2 | cut -d '.' -f 1)
+  popd
+  readonly bazel_version_dir="$project_dir/bazel-$bazel_version"
+  mkdir -p "$bazel_version_dir"
+
+  printf "%configurations_replacements%\n" > "$bazel_version_dir/${mode}_replacements.txt"
+
+  rm -rf "$mode_prefix"*_spec*.json
 
   project_spec_src="$PWD/${spec_paths[0]}"
-  project_spec_dest="${dest%.xcodeproj}_project_spec.json"
+  readonly project_spec_dest="${mode_prefix}_project_spec.json"
   python3 -m json.tool "$project_spec_src" > "$project_spec_dest"
 
   targets_spec_src="$PWD/${spec_paths[1]}"
-  targets_spec_dest="${dest%.xcodeproj}_targets_spec.json"
+  readonly targets_spec_dest="${mode_prefix}_targets_spec.json"
   python3 -m json.tool "$targets_spec_src" > "$targets_spec_dest"
 elif [[ -n "${specs_archive_path:-}" ]]; then
   rm -f "$specs_archive_path"

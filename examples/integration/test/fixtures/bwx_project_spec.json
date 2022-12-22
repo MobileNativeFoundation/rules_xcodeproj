@@ -11,7 +11,7 @@
         "USE_HEADERMAP": false,
         "VALIDATE_WORKSPACE": false
     },
-    "configuration": "darwin_x86_64-dbg-ST-0880460ee850",
+    "configuration": "darwin_x86_64-dbg-STABLE-0",
     "custom_xcode_schemes": [
         {
             "build_action": null,
@@ -41,37 +41,37 @@
         }
     ],
     "envs": [
-        "//CommandLine/Tests:CommandLineToolTests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473",
+        "//CommandLine/Tests:CommandLineToolTests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-STABLE-20",
         {
             "INTEGRATION_TEST_ENV_VAR": "TRUE"
         },
-        "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307",
+        "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-7",
         {
             "INTEGRATION_TEST_ENV_VAR": "TRUE",
             "IOS_APP_UNIT_TESTS": "CUSTOM_ENV_VALUE"
         },
-        "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307",
+        "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-7",
         {
             "INTEGRATION_TEST_ENV_VAR": "TRUE",
             "IOS_APP_UNIT_TESTS": "CUSTOM_ENV_VALUE"
         },
-        "//macOSApp/Test/UITests:macOSAppUITests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-ST-5a457b91a60a",
+        "//macOSApp/Test/UITests:macOSAppUITests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-STABLE-16",
         {
             "INTEGRATION_TEST_ENV_VAR": "TRUE"
         },
-        "//tvOSApp/Test/UITests:tvOSAppUITests.__internal__.__test_bundle applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514",
+        "//tvOSApp/Test/UITests:tvOSAppUITests.__internal__.__test_bundle applebin_tvos-tvos_x86_64-dbg-STABLE-13",
         {
             "INTEGRATION_TEST_ENV_VAR": "TRUE"
         },
-        "//tvOSApp/Test/UnitTests:tvOSAppUnitTests.__internal__.__test_bundle applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514",
+        "//tvOSApp/Test/UnitTests:tvOSAppUnitTests.__internal__.__test_bundle applebin_tvos-tvos_x86_64-dbg-STABLE-13",
         {
             "INTEGRATION_TEST_ENV_VAR": "TRUE"
         },
-        "//watchOSApp/Test/UITests:watchOSAppUITests.__internal__.__test_bundle applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673",
+        "//watchOSApp/Test/UITests:watchOSAppUITests.__internal__.__test_bundle applebin_watchos-watchos_x86_64-dbg-STABLE-9",
         {
             "INTEGRATION_TEST_ENV_VAR": "TRUE"
         },
-        "//watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests.__internal__.__test_bundle applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673",
+        "//watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests.__internal__.__test_bundle applebin_watchos-watchos_x86_64-dbg-STABLE-9",
         {
             "INTEGRATION_TEST_ENV_VAR": "TRUE"
         }
@@ -142,61 +142,61 @@
             "t": "e"
         },
         {
-            "_": "applebin_watchos-watchos_arm64_32-dbg-ST-85d7639e6c1c/bin/watchOSApp/Info.withbundleid.plist",
+            "_": "applebin_watchos-watchos_arm64_32-dbg-STABLE-10/bin/watchOSAppExtension/Info.withbundleid.plist",
             "t": "g"
         },
         {
-            "_": "applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin/watchOSAppExtension/Info.withbundleid.plist",
+            "_": "applebin_watchos-watchos_arm64_32-dbg-STABLE-12/bin/watchOSApp/Info.withbundleid.plist",
             "t": "g"
         },
         {
-            "_": "applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/watchOSAppExtension/Info.withbundleid.plist",
+            "_": "applebin_watchos-watchos_x86_64-dbg-STABLE-11/bin/watchOSApp/Info.withbundleid.plist",
             "t": "g"
         },
         {
-            "_": "applebin_watchos-watchos_x86_64-dbg-ST-8330f5878aa5/bin/watchOSApp/Info.withbundleid.plist",
+            "_": "applebin_watchos-watchos_x86_64-dbg-STABLE-9/bin/watchOSAppExtension/Info.withbundleid.plist",
             "t": "g"
         },
         {
-            "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/iOSApp/Resources/ExampleResources/bucket/deps.txt",
+            "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/iOSApp/Resources/ExampleResources/bucket/deps.txt",
             "i": false,
             "t": "g"
         },
         {
-            "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer-Swift.h",
+            "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer-Swift.h",
             "t": "g"
         },
         {
-            "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.h",
+            "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.h",
             "t": "g"
         },
         {
-            "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap-module.modulemap",
+            "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap-module.modulemap",
             "t": "g"
         },
         {
-            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Resources/ExampleResources/bucket/deps.txt",
+            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Resources/ExampleResources/bucket/deps.txt",
             "i": false,
             "t": "g"
         },
         {
-            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer-Swift.h",
+            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer-Swift.h",
             "t": "g"
         },
         {
-            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.h",
+            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.h",
             "t": "g"
         },
         {
-            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap-module.modulemap",
+            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap-module.modulemap",
             "t": "g"
         },
         {
-            "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineTool/CommandLineTool.merged_infoplist-intermediates/Info.plist",
+            "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17/bin/CommandLine/CommandLineTool/CommandLineTool.merged_infoplist-intermediates/Info.plist",
             "t": "g"
         },
         {
-            "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineTool/CommandLineTool.merged_launchdplists-intermediates/Launchd.plist",
+            "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17/bin/CommandLine/CommandLineTool/CommandLineTool.merged_launchdplists-intermediates/Launchd.plist",
             "t": "g"
         },
         "AppClip/BUILD",
@@ -265,55 +265,55 @@
     ],
     "force_bazel_dependencies": true,
     "generator_label": "//test/fixtures:xcodeproj_bwx.generator",
-    "index_import": "$(BAZEL_OUT)/darwin_x86_64-opt-exec-BDE7E609-ST-87fb5cb17941/bin/external/rules_xcodeproj_index_import/index-import",
+    "index_import": "fixture-index-import-path",
     "minimum_xcode_version": "13.0",
     "name": "bwx",
     "post_build_script": null,
     "pre_build_script": null,
     "replacement_labels": [
-        "//CommandLine/CommandLineTool:tool.binary macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-ST-cf559cc05a50",
+        "//CommandLine/CommandLineTool:tool.binary macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18",
         "@//CommandLine/CommandLineTool:UniversalCommandLineTool",
-        "//CommandLine/CommandLineTool:tool.binary macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-748018a6afb5",
+        "//CommandLine/CommandLineTool:tool.binary macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-19",
         "@//CommandLine/CommandLineTool:UniversalCommandLineTool",
-        "//CommandLine/Tests:CommandLineToolTests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473",
+        "//CommandLine/Tests:CommandLineToolTests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-STABLE-20",
         "@//CommandLine/Tests:CommandLineToolTests",
-        "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307",
+        "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-7",
         "@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests",
-        "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307",
+        "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-7",
         "@//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests",
-        "//macOSApp/Test/UITests:macOSAppUITests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-ST-5a457b91a60a",
+        "//macOSApp/Test/UITests:macOSAppUITests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-STABLE-16",
         "@//macOSApp/Test/UITests:macOSAppUITests",
-        "//tvOSApp/Test/UITests:tvOSAppUITests.__internal__.__test_bundle applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514",
+        "//tvOSApp/Test/UITests:tvOSAppUITests.__internal__.__test_bundle applebin_tvos-tvos_x86_64-dbg-STABLE-13",
         "@//tvOSApp/Test/UITests:tvOSAppUITests",
-        "//tvOSApp/Test/UnitTests:tvOSAppUnitTests.__internal__.__test_bundle applebin_tvos-tvos_x86_64-dbg-ST-c922fa386514",
+        "//tvOSApp/Test/UnitTests:tvOSAppUnitTests.__internal__.__test_bundle applebin_tvos-tvos_x86_64-dbg-STABLE-13",
         "@//tvOSApp/Test/UnitTests:tvOSAppUnitTests",
-        "//watchOSApp/Test/UITests:watchOSAppUITests.__internal__.__test_bundle applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673",
+        "//watchOSApp/Test/UITests:watchOSAppUITests.__internal__.__test_bundle applebin_watchos-watchos_x86_64-dbg-STABLE-9",
         "@//watchOSApp/Test/UITests:watchOSAppUITests",
-        "//watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests.__internal__.__test_bundle applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673",
+        "//watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests.__internal__.__test_bundle applebin_watchos-watchos_x86_64-dbg-STABLE-9",
         "@//watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests"
     ],
     "runner_label": "@//test/fixtures:xcodeproj_bwx",
     "scheme_autogeneration_mode": "all",
     "target_hosts": [
-        "//WidgetExtension:WidgetExtension applebin_ios-ios_arm64-dbg-ST-a79bc2d21871",
+        "//WidgetExtension:WidgetExtension applebin_ios-ios_arm64-dbg-STABLE-8",
         [
-            "//iOSApp/Source:iOSApp applebin_ios-ios_arm64-dbg-ST-a79bc2d21871"
+            "//iOSApp/Source:iOSApp applebin_ios-ios_arm64-dbg-STABLE-8"
         ],
-        "//WidgetExtension:WidgetExtension applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307",
+        "//WidgetExtension:WidgetExtension applebin_ios-ios_x86_64-dbg-STABLE-7",
         [
-            "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307"
+            "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-dbg-STABLE-7"
         ],
-        "//iMessageApp:iMessageAppExtension applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307",
+        "//iMessageApp:iMessageAppExtension applebin_ios-ios_x86_64-dbg-STABLE-7",
         [
-            "//iMessageApp:iMessageApp applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307"
+            "//iMessageApp:iMessageApp applebin_ios-ios_x86_64-dbg-STABLE-7"
         ],
-        "//watchOSAppExtension:watchOSAppExtension applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8",
+        "//watchOSAppExtension:watchOSAppExtension applebin_watchos-watchos_arm64_32-dbg-STABLE-10",
         [
-            "//watchOSApp:watchOSApp applebin_watchos-watchos_arm64_32-dbg-ST-85d7639e6c1c"
+            "//watchOSApp:watchOSApp applebin_watchos-watchos_arm64_32-dbg-STABLE-12"
         ],
-        "//watchOSAppExtension:watchOSAppExtension applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673",
+        "//watchOSAppExtension:watchOSAppExtension applebin_watchos-watchos_x86_64-dbg-STABLE-9",
         [
-            "//watchOSApp:watchOSApp applebin_watchos-watchos_x86_64-dbg-ST-8330f5878aa5"
+            "//watchOSApp:watchOSApp applebin_watchos-watchos_x86_64-dbg-STABLE-11"
         ]
     ]
 }

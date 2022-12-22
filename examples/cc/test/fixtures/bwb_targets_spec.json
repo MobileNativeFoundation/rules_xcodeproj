@@ -1,5 +1,5 @@
 [
-    "//lib2:lib_impl darwin_x86_64-dbg-ST-3688109ddba2",
+    "//lib2:lib_impl darwin_x86_64-dbg-STABLE-1",
     {
         "build_settings": {
             "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
@@ -40,14 +40,14 @@
             "SWIFT_VERSION": "5.0",
             "SYSTEM_HEADER_SEARCH_PATHS": [
                 "$(SRCROOT)/lib2/includes",
-                "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-3688109ddba2/bin/lib2/includes"
+                "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-1/bin/lib2/includes"
             ],
             "USER_HEADER_SEARCH_PATHS": [
                 "$(PROJECT_DIR)",
-                "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-3688109ddba2/bin"
+                "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-1/bin"
             ]
         },
-        "configuration": "darwin_x86_64-dbg-ST-3688109ddba2",
+        "configuration": "darwin_x86_64-dbg-STABLE-1",
         "inputs": {
             "srcs": [
                 "lib2/lib.c",
@@ -57,7 +57,7 @@
         "is_swift": false,
         "label": "//lib2:lib_impl",
         "name": "lib_impl",
-        "package_bin_dir": "bazel-out/darwin_x86_64-dbg-ST-3688109ddba2/bin/lib2",
+        "package_bin_dir": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib2",
         "platform": {
             "arch": "x86_64",
             "minimum_os_version": "12.0",
@@ -70,7 +70,7 @@
             "is_resource_bundle": false,
             "name": "lib_impl",
             "path": {
-                "_": "darwin_x86_64-dbg-ST-3688109ddba2/bin/lib2/liblib_impl.a",
+                "_": "darwin_x86_64-dbg-STABLE-1/bin/lib2/liblib_impl.a",
                 "t": "g"
             },
             "type": "com.apple.product-type.library.static"
@@ -79,7 +79,7 @@
             "has_includes": true
         }
     },
-    "//lib:lib_defines darwin_x86_64-dbg-ST-3688109ddba2",
+    "//lib:lib_defines darwin_x86_64-dbg-STABLE-1",
     {
         "build_settings": {
             "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
@@ -121,17 +121,17 @@
             "SWIFT_VERSION": "5.0",
             "USER_HEADER_SEARCH_PATHS": [
                 "$(PROJECT_DIR)",
-                "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-3688109ddba2/bin"
+                "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-1/bin"
             ]
         },
-        "configuration": "darwin_x86_64-dbg-ST-3688109ddba2",
+        "configuration": "darwin_x86_64-dbg-STABLE-1",
         "dependencies": [
-            "//lib:lib_impl darwin_x86_64-dbg-ST-3688109ddba2"
+            "//lib:lib_impl darwin_x86_64-dbg-STABLE-1"
         ],
         "is_swift": false,
         "label": "//lib:lib_defines",
         "name": "lib_defines",
-        "package_bin_dir": "bazel-out/darwin_x86_64-dbg-ST-3688109ddba2/bin/lib",
+        "package_bin_dir": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib",
         "platform": {
             "arch": "x86_64",
             "minimum_os_version": "12.0",
@@ -150,7 +150,7 @@
             "has_includes": true
         }
     },
-    "//lib:lib_headers darwin_x86_64-dbg-ST-3688109ddba2",
+    "//lib:lib_headers darwin_x86_64-dbg-STABLE-1",
     {
         "build_settings": {
             "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
@@ -192,12 +192,12 @@
             "SWIFT_VERSION": "5.0",
             "USER_HEADER_SEARCH_PATHS": [
                 "$(PROJECT_DIR)",
-                "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-3688109ddba2/bin"
+                "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-1/bin"
             ]
         },
-        "configuration": "darwin_x86_64-dbg-ST-3688109ddba2",
+        "configuration": "darwin_x86_64-dbg-STABLE-1",
         "dependencies": [
-            "//lib:lib_defines darwin_x86_64-dbg-ST-3688109ddba2"
+            "//lib:lib_defines darwin_x86_64-dbg-STABLE-1"
         ],
         "inputs": {
             "srcs": [
@@ -207,7 +207,7 @@
         "is_swift": false,
         "label": "//lib:lib_headers",
         "name": "lib_headers",
-        "package_bin_dir": "bazel-out/darwin_x86_64-dbg-ST-3688109ddba2/bin/lib",
+        "package_bin_dir": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib",
         "platform": {
             "arch": "x86_64",
             "minimum_os_version": "12.0",
@@ -226,7 +226,7 @@
             "has_includes": true
         }
     },
-    "//lib:lib_impl darwin_x86_64-dbg-ST-3688109ddba2",
+    "//lib:lib_impl darwin_x86_64-dbg-STABLE-1",
     {
         "build_settings": {
             "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
@@ -243,7 +243,7 @@
             ],
             "HEADER_SEARCH_PATHS": [
                 "$(SRCROOT)/lib/private",
-                "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-3688109ddba2/bin/lib/private"
+                "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-1/bin/lib/private"
             ],
             "OTHER_CFLAGS": [
                 "-fstack-protector",
@@ -272,10 +272,10 @@
             "SWIFT_VERSION": "5.0",
             "USER_HEADER_SEARCH_PATHS": [
                 "$(PROJECT_DIR)",
-                "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-3688109ddba2/bin"
+                "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-1/bin"
             ]
         },
-        "configuration": "darwin_x86_64-dbg-ST-3688109ddba2",
+        "configuration": "darwin_x86_64-dbg-STABLE-1",
         "inputs": {
             "srcs": [
                 "lib/lib.c",
@@ -285,7 +285,7 @@
         "is_swift": false,
         "label": "//lib:lib_impl",
         "name": "lib_impl",
-        "package_bin_dir": "bazel-out/darwin_x86_64-dbg-ST-3688109ddba2/bin/lib",
+        "package_bin_dir": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib",
         "platform": {
             "arch": "x86_64",
             "minimum_os_version": "12.0",
@@ -298,7 +298,7 @@
             "is_resource_bundle": false,
             "name": "lib_impl",
             "path": {
-                "_": "darwin_x86_64-dbg-ST-3688109ddba2/bin/lib/liblib_impl.lo",
+                "_": "darwin_x86_64-dbg-STABLE-1/bin/lib/liblib_impl.lo",
                 "t": "g"
             },
             "type": "com.apple.product-type.library.static"
@@ -307,10 +307,10 @@
             "has_includes": true
         }
     },
-    "//tool:tool darwin_x86_64-dbg-ST-3688109ddba2",
+    "//tool:tool darwin_x86_64-dbg-STABLE-1",
     {
         "build_settings": {
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/darwin_x86_64-dbg-ST-3688109ddba2/bin/tool/rules_xcodeproj/tool/tool",
+            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/tool/rules_xcodeproj/tool/tool",
             "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
             "DEBUG_INFORMATION_FORMAT": "dwarf",
             "ENABLE_BITCODE": false,
@@ -351,22 +351,22 @@
             "SWIFT_VERSION": "5.0",
             "SYSTEM_HEADER_SEARCH_PATHS": [
                 "$(SRCROOT)/lib2/includes",
-                "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-3688109ddba2/bin/lib2/includes"
+                "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-1/bin/lib2/includes"
             ],
             "USER_HEADER_SEARCH_PATHS": [
                 "$(PROJECT_DIR)",
-                "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-3688109ddba2/bin",
+                "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-1/bin",
                 "$(BAZEL_EXTERNAL)/examples_cc_external",
-                "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-3688109ddba2/bin/external/examples_cc_external",
+                "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external",
                 "$(BAZEL_EXTERNAL)/bazel_tools",
-                "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-3688109ddba2/bin/external/bazel_tools"
+                "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-1/bin/external/bazel_tools"
             ]
         },
-        "configuration": "darwin_x86_64-dbg-ST-3688109ddba2",
+        "configuration": "darwin_x86_64-dbg-STABLE-1",
         "dependencies": [
-            "//lib:lib_headers darwin_x86_64-dbg-ST-3688109ddba2",
-            "//lib2:lib_impl darwin_x86_64-dbg-ST-3688109ddba2",
-            "@examples_cc_external//:lib_headers darwin_x86_64-dbg-ST-3688109ddba2"
+            "//lib:lib_headers darwin_x86_64-dbg-STABLE-1",
+            "//lib2:lib_impl darwin_x86_64-dbg-STABLE-1",
+            "@examples_cc_external//:lib_headers darwin_x86_64-dbg-STABLE-1"
         ],
         "inputs": {
             "srcs": [
@@ -381,17 +381,17 @@
                 "-headerpad_max_install_names",
                 "-no-canonical-prefixes",
                 "-lc++",
-                "bazel-out/darwin_x86_64-dbg-ST-3688109ddba2/bin/lib2/liblib_impl.a",
-                "bazel-out/darwin_x86_64-dbg-ST-3688109ddba2/bin/external/examples_cc_external/liblib_impl.a",
+                "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib2/liblib_impl.a",
+                "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external/liblib_impl.a",
                 "-force_load",
-                "bazel-out/darwin_x86_64-dbg-ST-3688109ddba2/bin/lib/liblib_impl.lo"
+                "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib/liblib_impl.lo"
             ]
         },
         "name": "tool",
         "outputs": {
             "p": true
         },
-        "package_bin_dir": "bazel-out/darwin_x86_64-dbg-ST-3688109ddba2/bin/tool",
+        "package_bin_dir": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/tool",
         "platform": {
             "arch": "x86_64",
             "minimum_os_version": "12.0",
@@ -404,7 +404,7 @@
             "is_resource_bundle": false,
             "name": "tool",
             "path": {
-                "_": "darwin_x86_64-dbg-ST-3688109ddba2/bin/tool/rules_xcodeproj/tool/tool",
+                "_": "darwin_x86_64-dbg-STABLE-1/bin/tool/rules_xcodeproj/tool/tool",
                 "t": "g"
             },
             "type": "com.apple.product-type.tool"
@@ -413,7 +413,7 @@
             "has_includes": true
         }
     },
-    "@examples_cc_external//:lib_defines darwin_x86_64-dbg-ST-3688109ddba2",
+    "@examples_cc_external//:lib_defines darwin_x86_64-dbg-STABLE-1",
     {
         "build_settings": {
             "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
@@ -455,19 +455,19 @@
             "SWIFT_VERSION": "5.0",
             "USER_HEADER_SEARCH_PATHS": [
                 "$(BAZEL_EXTERNAL)/examples_cc_external",
-                "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-3688109ddba2/bin/external/examples_cc_external",
+                "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external",
                 "$(PROJECT_DIR)",
-                "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-3688109ddba2/bin"
+                "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-1/bin"
             ]
         },
-        "configuration": "darwin_x86_64-dbg-ST-3688109ddba2",
+        "configuration": "darwin_x86_64-dbg-STABLE-1",
         "dependencies": [
-            "@examples_cc_external//:lib_impl darwin_x86_64-dbg-ST-3688109ddba2"
+            "@examples_cc_external//:lib_impl darwin_x86_64-dbg-STABLE-1"
         ],
         "is_swift": false,
         "label": "@examples_cc_external//:lib_defines",
         "name": "lib_defines",
-        "package_bin_dir": "bazel-out/darwin_x86_64-dbg-ST-3688109ddba2/bin/external/examples_cc_external",
+        "package_bin_dir": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external",
         "platform": {
             "arch": "x86_64",
             "minimum_os_version": "12.0",
@@ -486,7 +486,7 @@
             "has_includes": true
         }
     },
-    "@examples_cc_external//:lib_headers darwin_x86_64-dbg-ST-3688109ddba2",
+    "@examples_cc_external//:lib_headers darwin_x86_64-dbg-STABLE-1",
     {
         "build_settings": {
             "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
@@ -528,14 +528,14 @@
             "SWIFT_VERSION": "5.0",
             "USER_HEADER_SEARCH_PATHS": [
                 "$(BAZEL_EXTERNAL)/examples_cc_external",
-                "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-3688109ddba2/bin/external/examples_cc_external",
+                "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external",
                 "$(PROJECT_DIR)",
-                "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-3688109ddba2/bin"
+                "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-1/bin"
             ]
         },
-        "configuration": "darwin_x86_64-dbg-ST-3688109ddba2",
+        "configuration": "darwin_x86_64-dbg-STABLE-1",
         "dependencies": [
-            "@examples_cc_external//:lib_defines darwin_x86_64-dbg-ST-3688109ddba2"
+            "@examples_cc_external//:lib_defines darwin_x86_64-dbg-STABLE-1"
         ],
         "inputs": {
             "srcs": [
@@ -548,7 +548,7 @@
         "is_swift": false,
         "label": "@examples_cc_external//:lib_headers",
         "name": "lib_headers",
-        "package_bin_dir": "bazel-out/darwin_x86_64-dbg-ST-3688109ddba2/bin/external/examples_cc_external",
+        "package_bin_dir": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external",
         "platform": {
             "arch": "x86_64",
             "minimum_os_version": "12.0",
@@ -567,7 +567,7 @@
             "has_includes": true
         }
     },
-    "@examples_cc_external//:lib_impl darwin_x86_64-dbg-ST-3688109ddba2",
+    "@examples_cc_external//:lib_impl darwin_x86_64-dbg-STABLE-1",
     {
         "build_settings": {
             "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
@@ -584,7 +584,7 @@
             ],
             "HEADER_SEARCH_PATHS": [
                 "$(BAZEL_EXTERNAL)/examples_cc_external/private",
-                "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-3688109ddba2/bin/external/examples_cc_external/private"
+                "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external/private"
             ],
             "OTHER_CFLAGS": [
                 "-fstack-protector",
@@ -613,12 +613,12 @@
             "SWIFT_VERSION": "5.0",
             "USER_HEADER_SEARCH_PATHS": [
                 "$(BAZEL_EXTERNAL)/examples_cc_external",
-                "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-3688109ddba2/bin/external/examples_cc_external",
+                "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external",
                 "$(PROJECT_DIR)",
-                "$(BAZEL_OUT)/darwin_x86_64-dbg-ST-3688109ddba2/bin"
+                "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-1/bin"
             ]
         },
-        "configuration": "darwin_x86_64-dbg-ST-3688109ddba2",
+        "configuration": "darwin_x86_64-dbg-STABLE-1",
         "inputs": {
             "srcs": [
                 {
@@ -634,7 +634,7 @@
         "is_swift": false,
         "label": "@examples_cc_external//:lib_impl",
         "name": "lib_impl",
-        "package_bin_dir": "bazel-out/darwin_x86_64-dbg-ST-3688109ddba2/bin/external/examples_cc_external",
+        "package_bin_dir": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external",
         "platform": {
             "arch": "x86_64",
             "minimum_os_version": "12.0",
@@ -647,7 +647,7 @@
             "is_resource_bundle": false,
             "name": "lib_impl",
             "path": {
-                "_": "darwin_x86_64-dbg-ST-3688109ddba2/bin/external/examples_cc_external/liblib_impl.a",
+                "_": "darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external/liblib_impl.a",
                 "t": "g"
             },
             "type": "com.apple.product-type.library.static"
