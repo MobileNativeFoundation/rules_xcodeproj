@@ -518,6 +518,7 @@ def _xcode_target_to_dto(
         additional_scheme_target_ids = None,
         build_mode,
         include_lldb_context,
+        is_fixture,
         is_unfocused_dependency = False,
         linker_products_map,
         should_include_outputs,
@@ -607,6 +608,7 @@ def _xcode_target_to_dto(
         dto,
         "linker_inputs",
         _linker_inputs_to_dto(
+            is_fixture = is_fixture,
             linker_inputs = xcode_target.linker_inputs,
             compile_target = xcode_target._compile_target,
             platform = xcode_target.platform,
@@ -758,6 +760,7 @@ def _linker_inputs_to_dto(
         linker_inputs,
         *,
         compile_target,
+        is_fixture,
         platform,
         xcode_generated_paths):
     if not linker_inputs:
@@ -818,6 +821,10 @@ def _linker_inputs_to_dto(
         path = xcode_generated_paths.get(path, path)
         linkopts.append("-force_load")
         linkopts.append(quote_if_needed(path))
+
+    if is_fixture and linkopts:
+        # We don't write the linkopts for fixtures
+        linkopts = ["fixture", "linkopts"]
 
     set_if_true(ret, "linkopts", linkopts)
 
