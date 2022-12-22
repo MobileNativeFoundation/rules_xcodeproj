@@ -78,116 +78,47 @@
     ],
     "extra_files": [
         {
+            "_": "build_bazel_rules_apple/apple/testing/DefaultTestBundle.plist",
+            "t": "e"
+        },
+        {
+            "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework",
+            "t": "e"
+        },
+        {
             "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework",
             "t": "e"
         },
-        "Lib/BUILD",
-        "AppClip/BUILD",
-        "iOSApp/BUILD",
-        "AppClip/Entitlements.entitlements",
-        "AppClip/Info.plist",
-        "AppClip/PreviewContent/Preview Assets.xcassets",
-        "Lib/Resources/Assets.xcassets",
-        "AppClip/Assets.xcassets",
-        "iOSApp/Resources/ExampleNestedResources/BUILD",
-        "iOSApp/Resources/ExampleNestedResources/Info.plist",
-        "iOSApp/Resources/ExampleResources/BUILD",
-        "iOSApp/Resources/ExampleResources/Info.plist",
-        "iOSApp/Source/BUILD",
-        "UI/BUILD",
-        "iOSApp/Source/CoreUtilsMixed/MixedAnswer/BUILD",
-        "iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.h",
         {
-            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.h",
-            "t": "g"
+            "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework",
+            "t": "e"
         },
         {
-            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer-Swift.h",
-            "t": "g"
+            "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework",
+            "t": "e"
         },
-        "iOSApp/Source/CoreUtilsObjC/BUILD",
         {
-            "_": "com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator/GoogleMapsBase.framework",
+            "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework",
+            "t": "e"
+        },
+        {
+            "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework",
+            "t": "e"
+        },
+        {
+            "_": "com_google_google_maps/GoogleMaps.xcframework/ios-arm64/GoogleMaps.framework",
+            "t": "e"
+        },
+        {
+            "_": "com_google_google_maps/GoogleMaps.xcframework/ios-arm64/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+            "f": true,
+            "g": true,
             "t": "e"
         },
         {
             "_": "com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator/GoogleMaps.framework",
             "t": "e"
         },
-        "WidgetExtension/BUILD",
-        "WidgetExtension/WidgetExtension.intentdefinition",
-        "WidgetExtension/Info.plist",
-        "WidgetExtension/Assets.xcassets",
-        "iOSApp/Source/CoreUtilsObjC/Info.plist",
-        "UI/Info.plist",
-        {
-            "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework",
-            "t": "e"
-        },
-        "watchOSAppExtension/BUILD",
-        "Lib/Info.plist",
-        "watchOSAppExtension/Info.plist",
-        {
-            "_": "applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/watchOSAppExtension/Info.withbundleid.plist",
-            "t": "g"
-        },
-        "watchOSAppExtension/Assets.xcassets",
-        "watchOSApp/BUILD",
-        "watchOSApp/Info.plist",
-        {
-            "_": "applebin_watchos-watchos_x86_64-dbg-ST-8330f5878aa5/bin/watchOSApp/Info.withbundleid.plist",
-            "t": "g"
-        },
-        "watchOSApp/Assets.xcassets",
-        "iOSApp/Resources/ExampleNestedResources/Assets.xcassets",
-        "iOSApp/Resources/ExampleNestedResources/en.lproj/Localizable.strings",
-        "iOSApp/Resources/ExampleNestedResources/es.lproj/Localizable.strings",
-        {
-            "_": "iOSApp/Resources/ExampleNestedResources/dir",
-            "f": true,
-            "g": true
-        },
-        {
-            "_": "examples_ios_app_external/bundles/Utils.bundle",
-            "f": true,
-            "g": true,
-            "t": "e"
-        },
-        "iOSApp/Resources/ExampleResources/Assets.xcassets",
-        {
-            "_": "iOSApp/Resources/ExampleResources/nested",
-            "f": true,
-            "g": true
-        },
-        {
-            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Resources/ExampleResources/bucket",
-            "f": true,
-            "g": true,
-            "t": "g"
-        },
-        "iOSApp/Source/Info.plist",
-        "iOSApp/Source/AltIcons/AltIcon-60.alticon/AltIcon-60@2x.png",
-        "iOSApp/Source/AltIcons/AltIcon-60.alticon/AltIcon-60@3x.png",
-        {
-            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap-module.modulemap",
-            "t": "g"
-        },
-        {
-            "_": "com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator/GoogleMapsCore.framework",
-            "t": "e"
-        },
-        {
-            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Resources/ExampleResources/bucket/deps.txt",
-            "i": false,
-            "t": "g"
-        },
-        "iOSApp/Source/PreviewContent/Preview Assets.xcassets",
-        "iOSApp/Source/Assets.xcassets",
-        "iOSApp/Source/Model.xcdatamodeld/Model.xcdatamodel/contents",
-        "iOSApp/Source/Model.xcdatamodeld/Model2.xcdatamodel/contents",
-        "iOSApp/Source/Launch.storyboard",
-        "iOSApp/Source/en.lproj/Localizable.strings",
-        "iOSApp/Source/es.lproj/Localizable.strings",
         {
             "_": "com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator/GoogleMaps.framework/Resources/GoogleMaps.bundle",
             "f": true,
@@ -195,59 +126,21 @@
             "t": "e"
         },
         {
-            "_": "iOSApp/Source/nested",
-            "f": true,
-            "g": true
-        },
-        "iOSApp/Source/en.lproj/unprocessed.json",
-        "iOSApp/Source/es.lproj/unprocessed.json",
-        "Lib/dist/dynamic/BUILD",
-        {
-            "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework",
+            "_": "com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64/GoogleMapsBase.framework",
             "t": "e"
         },
-        "tvOSApp/Source/BUILD",
-        "tvOSApp/Resources/BUILD",
-        "tvOSApp/Source/Info.plist",
-        "tvOSApp/Resources/PreviewContent/Preview Assets.xcassets",
-        "tvOSApp/Resources/Assets.xcassets",
-        "iOSApp/Resources/OnlyStructuredResources/BUILD",
-        "iOSApp/Resources/OnlyStructuredResources/Info.plist",
-        "iOSApp/Source/Utils/BUILD",
-        "iOSApp/Test/TestingUtils/BUILD",
-        "iOSApp/Test/TestingUtils/Greeting.swift.stencil",
-        "iOSApp/Test/TestingUtils/Answer.swift.stencil",
-        "iOSApp/Test/TestingUtils/merge.sh",
-        "iOSApp/Test/ObjCUnitTests/BUILD",
         {
-            "_": "iOSApp/Resources/OnlyStructuredResources/Nested",
-            "f": true,
-            "g": true
-        },
-        {
-            "_": "build_bazel_rules_apple/apple/testing/DefaultTestBundle.plist",
+            "_": "com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator/GoogleMapsBase.framework",
             "t": "e"
         },
-        "iMessageApp/BUILD",
-        "iMessageApp/Info.extension.plist",
-        "iMessageApp/ExtensionAssets.xcassets",
-        "iMessageApp/Base.lproj/MainInterface.storyboard",
-        "iMessageApp/Info.plist",
-        "iMessageApp/Assets.xcassets",
-        "iOSApp/Test/SwiftUnitTests/BUILD",
-        "macOSApp/third_party/BUILD",
-        "macOSApp/third_party/ExampleFramework.framework",
-        "macOSApp/Source/BUILD",
-        "macOSApp/Source/Info.plist",
-        "macOSApp/Source/PreviewContent/Preview Assets.xcassets",
-        "macOSApp/Source/Assets.xcassets",
-        "macOSApp/Test/UITests/BUILD",
-        "tvOSApp/Test/UITests/BUILD",
-        "tvOSApp/Test/UnitTests/BUILD",
-        "watchOSApp/Test/UITests/BUILD",
-        "watchOSAppExtension/Test/UnitTests/BUILD",
-        "CommandLine/CommandLineToolLib/BUILD",
-        "CommandLine/swift_c_module/BUILD",
+        {
+            "_": "com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64/GoogleMapsCore.framework",
+            "t": "e"
+        },
+        {
+            "_": "com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator/GoogleMapsCore.framework",
+            "t": "e"
+        },
         {
             "_": "examples_command_line_external/ExternalFramework.framework",
             "t": "e"
@@ -256,26 +149,42 @@
             "_": "examples_command_line_external/ImportableLibrary/Library.h",
             "t": "e"
         },
-        "CommandLine/CommandLineTool/BUILD",
-        "CommandLine/CommandLineTool/export_symbol_list.exp",
-        "CommandLine/CommandLineTool/Info.plist",
-        "CommandLine/CommandLineTool/Launchd.plist",
-        {
-            "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineTool/CommandLineTool.merged_infoplist-intermediates/Info.plist",
-            "t": "g"
-        },
-        {
-            "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineTool/CommandLineTool.merged_launchdplists-intermediates/Launchd.plist",
-            "t": "g"
-        },
         {
             "_": "examples_command_line_external/ImportableLibrary/libImportableLibrary.a",
             "t": "e"
         },
-        "CommandLine/Tests/BUILD",
         {
-            "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework",
+            "_": "examples_ios_app_external/bundles/Utils.bundle",
+            "f": true,
+            "g": true,
             "t": "e"
+        },
+        {
+            "_": "applebin_watchos-watchos_arm64_32-dbg-ST-85d7639e6c1c/bin/watchOSApp/Info.withbundleid.plist",
+            "t": "g"
+        },
+        {
+            "_": "applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin/watchOSAppExtension/Info.withbundleid.plist",
+            "t": "g"
+        },
+        {
+            "_": "applebin_watchos-watchos_x86_64-dbg-ST-7b12038e3673/bin/watchOSAppExtension/Info.withbundleid.plist",
+            "t": "g"
+        },
+        {
+            "_": "applebin_watchos-watchos_x86_64-dbg-ST-8330f5878aa5/bin/watchOSApp/Info.withbundleid.plist",
+            "t": "g"
+        },
+        {
+            "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/iOSApp/Resources/ExampleResources/bucket",
+            "f": true,
+            "g": true,
+            "t": "g"
+        },
+        {
+            "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/iOSApp/Resources/ExampleResources/bucket/deps.txt",
+            "i": false,
+            "t": "g"
         },
         {
             "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer-Swift.h",
@@ -286,59 +195,150 @@
             "t": "g"
         },
         {
-            "_": "com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64/GoogleMapsBase.framework",
-            "t": "e"
-        },
-        {
-            "_": "com_google_google_maps/GoogleMaps.xcframework/ios-arm64/GoogleMaps.framework",
-            "t": "e"
-        },
-        {
-            "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework",
-            "t": "e"
-        },
-        {
-            "_": "applebin_watchos-watchos_arm64_32-dbg-ST-f389b73ae0f8/bin/watchOSAppExtension/Info.withbundleid.plist",
-            "t": "g"
-        },
-        {
-            "_": "applebin_watchos-watchos_arm64_32-dbg-ST-85d7639e6c1c/bin/watchOSApp/Info.withbundleid.plist",
-            "t": "g"
-        },
-        {
-            "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/iOSApp/Resources/ExampleResources/bucket",
-            "f": true,
-            "g": true,
-            "t": "g"
-        },
-        {
             "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap-module.modulemap",
             "t": "g"
         },
         {
-            "_": "com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64/GoogleMapsCore.framework",
-            "t": "e"
+            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Resources/ExampleResources/bucket",
+            "f": true,
+            "g": true,
+            "t": "g"
         },
         {
-            "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-ST-a79bc2d21871/bin/iOSApp/Resources/ExampleResources/bucket/deps.txt",
+            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Resources/ExampleResources/bucket/deps.txt",
             "i": false,
             "t": "g"
         },
+        {
+            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer-Swift.h",
+            "t": "g"
+        },
+        {
+            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.h",
+            "t": "g"
+        },
+        {
+            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-ST-5e5f1c985307/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap-module.modulemap",
+            "t": "g"
+        },
+        {
+            "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineTool/CommandLineTool.merged_infoplist-intermediates/Info.plist",
+            "t": "g"
+        },
+        {
+            "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-ST-654a40ea2473/bin/CommandLine/CommandLineTool/CommandLineTool.merged_launchdplists-intermediates/Launchd.plist",
+            "t": "g"
+        },
+        "AppClip/Assets.xcassets",
+        "AppClip/BUILD",
+        "AppClip/Entitlements.entitlements",
+        "AppClip/Info.plist",
+        "AppClip/PreviewContent/Preview Assets.xcassets",
+        "CommandLine/CommandLineTool/BUILD",
+        "CommandLine/CommandLineTool/Info.plist",
+        "CommandLine/CommandLineTool/Launchd.plist",
+        "CommandLine/CommandLineTool/export_symbol_list.exp",
+        "CommandLine/CommandLineToolLib/BUILD",
+        "CommandLine/Tests/BUILD",
+        "CommandLine/swift_c_module/BUILD",
+        "Lib/BUILD",
+        "Lib/Info.plist",
+        "Lib/README.md",
+        "Lib/Resources/Assets.xcassets",
+        "Lib/dist/dynamic/BUILD",
+        "README.md",
+        "UI/BUILD",
+        "UI/Info.plist",
+        "WidgetExtension/Assets.xcassets",
+        "WidgetExtension/BUILD",
+        "WidgetExtension/Info.plist",
+        "WidgetExtension/WidgetExtension.intentdefinition",
+        "iMessageApp/Assets.xcassets",
+        "iMessageApp/BUILD",
+        "iMessageApp/Base.lproj/MainInterface.storyboard",
+        "iMessageApp/ExtensionAssets.xcassets",
+        "iMessageApp/Info.extension.plist",
+        "iMessageApp/Info.plist",
+        "iOSApp/BUILD",
+        "iOSApp/Resources/ExampleNestedResources/Assets.xcassets",
+        "iOSApp/Resources/ExampleNestedResources/BUILD",
+        "iOSApp/Resources/ExampleNestedResources/Info.plist",
+        {
+            "_": "iOSApp/Resources/ExampleNestedResources/dir",
+            "f": true,
+            "g": true
+        },
+        "iOSApp/Resources/ExampleNestedResources/en.lproj/Localizable.strings",
+        "iOSApp/Resources/ExampleNestedResources/es.lproj/Localizable.strings",
+        "iOSApp/Resources/ExampleResources/Assets.xcassets",
+        "iOSApp/Resources/ExampleResources/BUILD",
+        "iOSApp/Resources/ExampleResources/Info.plist",
+        {
+            "_": "iOSApp/Resources/ExampleResources/nested",
+            "f": true,
+            "g": true
+        },
+        "iOSApp/Resources/OnlyStructuredResources/BUILD",
+        "iOSApp/Resources/OnlyStructuredResources/Info.plist",
+        {
+            "_": "iOSApp/Resources/OnlyStructuredResources/Nested",
+            "f": true,
+            "g": true
+        },
+        "iOSApp/Source/AltIcons/AltIcon-60.alticon/AltIcon-60@2x.png",
+        "iOSApp/Source/AltIcons/AltIcon-60.alticon/AltIcon-60@3x.png",
+        "iOSApp/Source/Assets.xcassets",
+        "iOSApp/Source/BUILD",
+        "iOSApp/Source/CoreUtilsMixed/MixedAnswer/BUILD",
+        "iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.h",
+        "iOSApp/Source/CoreUtilsObjC/BUILD",
+        "iOSApp/Source/CoreUtilsObjC/Info.plist",
+        "iOSApp/Source/Info.plist",
+        "iOSApp/Source/Launch.storyboard",
+        "iOSApp/Source/Model.xcdatamodeld/Model.xcdatamodel/contents",
+        "iOSApp/Source/Model.xcdatamodeld/Model2.xcdatamodel/contents",
+        "iOSApp/Source/PreviewContent/Preview Assets.xcassets",
+        "iOSApp/Source/Utils/BUILD",
+        "iOSApp/Source/en.lproj/Localizable.strings",
+        "iOSApp/Source/en.lproj/unprocessed.json",
+        "iOSApp/Source/es.lproj/Localizable.strings",
+        "iOSApp/Source/es.lproj/unprocessed.json",
         "iOSApp/Source/launch_images_ios.xcassets",
         {
-            "_": "com_google_google_maps/GoogleMaps.xcframework/ios-arm64/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+            "_": "iOSApp/Source/nested",
             "f": true,
-            "g": true,
-            "t": "e"
+            "g": true
         },
-        {
-            "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework",
-            "t": "e"
-        },
-        "Lib/README.md",
+        "iOSApp/Test/ObjCUnitTests/BUILD",
+        "iOSApp/Test/SwiftUnitTests/BUILD",
+        "iOSApp/Test/TestingUtils/Answer.swift.stencil",
+        "iOSApp/Test/TestingUtils/BUILD",
+        "iOSApp/Test/TestingUtils/Greeting.swift.stencil",
+        "iOSApp/Test/TestingUtils/merge.sh",
         "iOSApp/ownership.yaml",
+        "macOSApp/Source/Assets.xcassets",
+        "macOSApp/Source/BUILD",
+        "macOSApp/Source/Info.plist",
+        "macOSApp/Source/PreviewContent/Preview Assets.xcassets",
+        "macOSApp/Test/UITests/BUILD",
+        "macOSApp/third_party/BUILD",
+        "macOSApp/third_party/ExampleFramework.framework",
         "test/fixtures/BUILD",
-        "README.md"
+        "tvOSApp/Resources/Assets.xcassets",
+        "tvOSApp/Resources/BUILD",
+        "tvOSApp/Resources/PreviewContent/Preview Assets.xcassets",
+        "tvOSApp/Source/BUILD",
+        "tvOSApp/Source/Info.plist",
+        "tvOSApp/Test/UITests/BUILD",
+        "tvOSApp/Test/UnitTests/BUILD",
+        "watchOSApp/Assets.xcassets",
+        "watchOSApp/BUILD",
+        "watchOSApp/Info.plist",
+        "watchOSApp/Test/UITests/BUILD",
+        "watchOSAppExtension/Assets.xcassets",
+        "watchOSAppExtension/BUILD",
+        "watchOSAppExtension/Info.plist",
+        "watchOSAppExtension/Test/UnitTests/BUILD"
     ],
     "force_bazel_dependencies": true,
     "generator_label": "//test/fixtures:xcodeproj_bwb.generator",

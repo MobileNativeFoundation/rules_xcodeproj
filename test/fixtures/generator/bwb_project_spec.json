@@ -137,14 +137,14 @@
         {}
     ],
     "extra_files": [
-        "tools/generator/BUILD",
-        "tools/generator/test/BUILD",
         {
             "_": "build_bazel_rules_apple/apple/testing/DefaultTestBundle.plist",
             "t": "e"
         },
-        "tools/swiftc_stub/BUILD",
-        "test/fixtures/generator/BUILD"
+        "test/fixtures/generator/BUILD",
+        "tools/generator/BUILD",
+        "tools/generator/test/BUILD",
+        "tools/swiftc_stub/BUILD"
     ],
     "force_bazel_dependencies": true,
     "generator_label": "//test/fixtures/generator:xcodeproj_bwb.generator",
