@@ -211,6 +211,7 @@ def xcodeproj_fixture(
             config = config,
             extra_files = extra_files,
             focused_targets = focused_targets,
+            is_fixture = True,
             minimum_xcode_version = _MINIMUM_XCODE_VERSION,
             post_build = post_build,
             pre_build = pre_build,
