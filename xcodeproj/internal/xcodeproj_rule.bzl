@@ -721,6 +721,9 @@ def _write_spec(
         json.encode(ctx.attr.pre_build) if ctx.attr.pre_build else "null"
     )
 
+    if is_fixture:
+        extra_files = sorted(extra_files, key = lambda fp: fp.type + fp.path)
+
     # TODO: Strip fat frameworks instead of setting `VALIDATE_WORKSPACE`
     project_spec_json = """\
 {{\

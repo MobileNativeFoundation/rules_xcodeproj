@@ -17,8 +17,8 @@
     "extra_files": [
         "lib/BUILD",
         "lib2/BUILD",
-        "tool/BUILD",
-        "test/fixtures/BUILD"
+        "test/fixtures/BUILD",
+        "tool/BUILD"
     ],
     "force_bazel_dependencies": false,
     "generator_label": "//test/fixtures:xcodeproj_bwb.generator",
