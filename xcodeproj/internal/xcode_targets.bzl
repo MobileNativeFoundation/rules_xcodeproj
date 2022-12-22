@@ -822,7 +822,6 @@ def _linker_inputs_to_dto(
         linkopts.append("-force_load")
         linkopts.append(quote_if_needed(path))
 
-
     if is_fixture and linkopts:
         # We don't write the linkopts for fixtures
         linkopts = ["fixture", "linkopts"]
