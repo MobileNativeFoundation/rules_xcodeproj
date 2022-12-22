@@ -110,6 +110,15 @@ pre_config_flags=(
   "--repo_env=USE_CLANG_CL=$xcode_build_version"
 )
 
+if [[ %is_fixture% -eq 1 ]]; then
+  if [[ %is_bazel_6% -eq 1 ]]; then
+    pre_config_flags+=(
+      # Until we stop testing Bazel 5, we want the strings to format the same
+      "--incompatible_unambiguous_label_stringification=false"
+    )
+  fi
+fi
+
 readonly bazel_cmd=(
   env
   PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"

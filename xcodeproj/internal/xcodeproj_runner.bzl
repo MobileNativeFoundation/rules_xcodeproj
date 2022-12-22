@@ -97,11 +97,14 @@ def _write_runner(
         extra_flags_bazelrc,
         extra_generator_flags,
         generator_label,
+        is_fixture,
         project_name,
         runner_label,
         template,
         xcodeproj_bazelrc):
     output = actions.declare_file("{}-runner.sh".format(name))
+
+    is_bazel_6 = hasattr(apple_common, "link_multi_arch_static_library")
 
     actions.expand_template(
         template = template,
@@ -113,6 +116,8 @@ def _write_runner(
             "%extra_flags_bazelrc%": extra_flags_bazelrc.short_path,
             "%extra_generator_flags%": extra_generator_flags,
             "%generator_label%": generator_label,
+            "%is_bazel_6%": "1" if is_bazel_6 else "0",
+            "%is_fixture%": "1" if is_fixture else "0",
             "%project_name%": project_name,
             "%runner_label%": runner_label,
             "%xcodeproj_bazelrc%": xcodeproj_bazelrc.short_path,
@@ -148,6 +153,7 @@ def _xcodeproj_runner_impl(ctx):
             ctx.attr._extra_generator_flags[BuildSettingInfo].value
         ),
         generator_label = ctx.attr.xcodeproj_target,
+        is_fixture = ctx.attr.is_fixture,
         project_name = project_name,
         runner_label = str(ctx.label),
         template = ctx.file._runner_template,
@@ -177,6 +183,9 @@ xcodeproj_runner = rule(
             mandatory = True,
         ),
         "config": attr.string(
+            mandatory = True,
+        ),
+        "is_fixture": attr.bool(
             mandatory = True,
         ),
         "project_name": attr.string(
