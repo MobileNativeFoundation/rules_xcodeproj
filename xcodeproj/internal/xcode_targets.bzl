@@ -577,6 +577,7 @@ def _xcode_target_to_dto(
         "build_settings",
         _build_settings_to_dto(
             build_mode = build_mode,
+            is_fixture = is_fixture,
             linker_products_map = linker_products_map,
             search_paths_intermediate = search_paths_intermediate,
             xcode_generated_paths = xcode_generated_paths,
@@ -677,6 +678,7 @@ def _xcode_target_to_dto(
 def _build_settings_to_dto(
         *,
         build_mode,
+        is_fixture,
         linker_products_map,
         search_paths_intermediate,
         xcode_generated_paths,
@@ -709,6 +711,25 @@ def _build_settings_to_dto(
         xcode_generated_paths = xcode_generated_paths,
         xcode_target = xcode_target,
     )
+
+    if is_fixture:
+        # Until we no longer support Bazel 5, we need to remove the
+        # `BAZEL_CURRENT_REPOSITORY` define so Bazel 5 and 6 have the same
+        # fixture
+        local_defines = []
+        for local_define in build_settings.pop(
+            "GCC_PREPROCESSOR_DEFINITIONS",
+            [],
+        ):
+            if local_define.startswith("BAZEL_CURRENT_REPOSITORY"):
+                continue
+            local_defines.append(local_define)
+        set_if_true(
+            build_settings,
+            "GCC_PREPROCESSOR_DEFINITIONS",
+            local_defines,
+        )
+
     return build_settings
 
 def _inputs_to_dto(inputs):
