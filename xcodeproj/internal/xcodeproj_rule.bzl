@@ -779,13 +779,16 @@ def _write_spec(
                     for id, label in replacement_labels.items()
                     if id in targets
                 },
+                sort = is_fixture,
             ),
         ),
         runner_label = ctx.attr.runner_label,
         scheme_autogeneration_mode = ctx.attr.scheme_autogeneration_mode,
-        target_hosts = json.encode(flattened_key_values.to_list(target_hosts)),
+        target_hosts = json.encode(
+            flattened_key_values.to_list(target_hosts, sort = is_fixture),
+        ),
         envs = json.encode(
-            flattened_key_values.to_list(envs),
+            flattened_key_values.to_list(envs, sort = is_fixture),
         ),
     )
 
@@ -806,7 +809,10 @@ def _write_spec(
 
     shard_size = shard_size * 2  # Each entry has a key and a value
 
-    flattened_targets = flattened_key_values.to_list(target_dtos)
+    flattened_targets = flattened_key_values.to_list(
+        target_dtos,
+        sort = is_fixture,
+    )
 
     target_shards = []
     for shard in range(shard_count):
