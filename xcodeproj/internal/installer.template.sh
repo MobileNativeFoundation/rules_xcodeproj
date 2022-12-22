@@ -132,18 +132,11 @@ readonly bazel_integration_files=%bazel_integration_files%
 if [[ $for_fixture -eq 1 ]]; then
   # Create empty static files for fixtures
   for file in "${bazel_integration_files[@]}"; do
-    filename="${file##*/}"
-
-    # TODO: Do a better check (or move to a better location)
-    if [[ "$filename" == "create_xcode_overlay.sh" ]]; then
-      cp -c "$file" "$dest/rules_xcodeproj/bazel"
-    else
-      :>"$dest/rules_xcodeproj/bazel/$filename"
-    fi
+    :>"$dest/rules_xcodeproj/bazel/${file##*/}"
   done
 
   # link params are represented in the spec
-  find "$dest/rules_xcodeproj/targets" -type f -exec sh -c ':> "$1"' _ {} \;
+  find "$dest/rules_xcodeproj/targets" -type f -exec sh -c ':>"$1"' _ {} \;
 else
   cp -c "${bazel_integration_files[@]}" "$dest/rules_xcodeproj/bazel"
 fi
