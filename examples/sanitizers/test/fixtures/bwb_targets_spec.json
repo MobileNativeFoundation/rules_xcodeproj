@@ -45,19 +45,8 @@
         "label": "//AddressSanitizerApp:AddressSanitizerApp",
         "linker_inputs": {
             "linkopts": [
-                "-ObjC",
-                "-Wl,-add_ast_path,bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/AddressSanitizerApp/AddressSanitizerApp.swiftmodule",
-                "-ObjC",
-                "-L/usr/lib/swift",
-                "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator",
-                "-Wl,-rpath,/usr/lib/swift",
-                "-lc++",
-                "-headerpad_max_install_names",
-                "-no-canonical-prefixes",
-                "-framework",
-                "Foundation",
-                "-framework",
-                "UIKit"
+                "fixture",
+                "linkopts"
             ]
         },
         "lldb_context": {
@@ -159,19 +148,8 @@
         "label": "//ThreadSanitizerApp:ThreadSanitizerApp",
         "linker_inputs": {
             "linkopts": [
-                "-ObjC",
-                "-Wl,-add_ast_path,bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/ThreadSanitizerApp/ThreadSanitizerApp.swiftmodule",
-                "-ObjC",
-                "-L/usr/lib/swift",
-                "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator",
-                "-Wl,-rpath,/usr/lib/swift",
-                "-lc++",
-                "-headerpad_max_install_names",
-                "-no-canonical-prefixes",
-                "-framework",
-                "Foundation",
-                "-framework",
-                "UIKit"
+                "fixture",
+                "linkopts"
             ]
         },
         "lldb_context": {
@@ -327,16 +305,8 @@
         "label": "//UndefinedBehaviorSanitizerApp:UndefinedBehaviorSanitizerApp",
         "linker_inputs": {
             "linkopts": [
-                "-ObjC",
-                "-framework",
-                "UIKit",
-                "-lc++",
-                "-headerpad_max_install_names",
-                "-no-canonical-prefixes",
-                "-framework",
-                "Foundation",
-                "-framework",
-                "UIKit"
+                "fixture",
+                "linkopts"
             ]
         },
         "name": "UndefinedBehaviorSanitizerApp",

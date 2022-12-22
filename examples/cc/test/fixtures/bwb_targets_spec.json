@@ -377,14 +377,8 @@
         "label": "//tool:tool",
         "linker_inputs": {
             "linkopts": [
-                "-lc++",
-                "-headerpad_max_install_names",
-                "-no-canonical-prefixes",
-                "-lc++",
-                "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib2/liblib_impl.a",
-                "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external/liblib_impl.a",
-                "-force_load",
-                "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib/liblib_impl.lo"
+                "fixture",
+                "linkopts"
             ]
         },
         "name": "tool",

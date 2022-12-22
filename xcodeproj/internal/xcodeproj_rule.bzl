@@ -639,6 +639,7 @@ actual targets: {}
 
         dto, replaced_dependencies = xcode_targets.to_dto(
             xcode_target = xcode_target,
+            is_fixture = is_fixture,
             additional_scheme_target_ids = additional_scheme_target_ids,
             build_mode = build_mode,
             include_lldb_context = include_lldb_context,

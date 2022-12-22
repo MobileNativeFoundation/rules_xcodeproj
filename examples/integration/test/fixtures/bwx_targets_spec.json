@@ -69,24 +69,8 @@
                 }
             ],
             "linkopts": [
-                "-ObjC",
-                "-framework",
-                "CryptoSwift",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/applebin_ios-ios_arm64-dbg-STABLE-8/bin/AppClip/AppClip.swiftmodule/arm64-apple-ios.swiftmodule",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/Lib/Lib.swiftmodule/arm64-apple-ios.swiftmodule",
-                "-ObjC",
-                "-L/usr/lib/swift",
-                "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos",
-                "-Wl,-rpath,/usr/lib/swift",
-                "-lc++",
-                "-headerpad_max_install_names",
-                "-no-canonical-prefixes",
-                "-framework",
-                "Foundation",
-                "-framework",
-                "UIKit",
-                "-force_load",
-                "$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/Lib/libLib.a"
+                "fixture",
+                "linkopts"
             ]
         },
         "name": "AppClip",
@@ -195,24 +179,8 @@
                 }
             ],
             "linkopts": [
-                "-ObjC",
-                "-framework",
-                "CryptoSwift",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-7/bin/AppClip/AppClip.swiftmodule/x86_64-apple-ios-simulator.swiftmodule",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/Lib/Lib.swiftmodule/x86_64-apple-ios-simulator.swiftmodule",
-                "-ObjC",
-                "-L/usr/lib/swift",
-                "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator",
-                "-Wl,-rpath,/usr/lib/swift",
-                "-lc++",
-                "-headerpad_max_install_names",
-                "-no-canonical-prefixes",
-                "-framework",
-                "Foundation",
-                "-framework",
-                "UIKit",
-                "-force_load",
-                "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/Lib/libLib.a"
+                "fixture",
+                "linkopts"
             ]
         },
         "name": "AppClip",
@@ -358,36 +326,8 @@
         "label": "//CommandLine/CommandLineTool:CommandLineTool",
         "linker_inputs": {
             "linkopts": [
-                "-ObjC",
-                "-framework",
-                "Foundation",
-                "-framework",
-                "ExternalFramework",
-                "-weak_framework",
-                "SwiftUI",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17/bin/CommandLine/CommandLineToolLib/LibSwift.swiftmodule/x86_64-apple-macos.swiftmodule",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17/bin/CommandLine/CommandLineToolLib/_SwiftLib.swiftmodule/x86_64-apple-macos.swiftmodule",
-                "-Wl,-add_ast_path,external/examples_command_line_external/ExternalFramework.framework/Modules/ExternalFramework.swiftmodule/x86_64.swiftmodule",
-                "-ObjC",
-                "-L/usr/lib/swift",
-                "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx",
-                "-Wl,-rpath,/usr/lib/swift",
-                "-Wl,-sectcreate,__TEXT,__launchd_plist,bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17/bin/CommandLine/CommandLineTool/CommandLineTool.merged_launchdplists-intermediates/Launchd.plist",
-                "-Wl,-dead_strip",
-                "-lc++",
-                "-headerpad_max_install_names",
-                "-Wl,-exported_symbols_list,CommandLine/CommandLineTool/export_symbol_list.exp",
-                "-no-canonical-prefixes",
-                "-framework",
-                "Foundation",
-                "$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17/bin/CommandLine/CommandLineToolLib/liblib_swift.a",
-                "$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17/bin/CommandLine/swift_c_module/libc_lib.a",
-                "$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17/bin/CommandLine/CommandLineToolLib/libprivate_lib.a",
-                "$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17/bin/CommandLine/CommandLineToolLib/liblib_impl.a",
-                "$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17/bin/CommandLine/CommandLineToolLib/libprivate_swift_lib.a",
-                "external/examples_command_line_external/ImportableLibrary/libImportableLibrary.a",
-                "-force_load",
-                "external/examples_command_line_external/ExternalFramework.framework/ExternalFramework"
+                "fixture",
+                "linkopts"
             ]
         },
         "name": "CommandLineTool",
@@ -521,26 +461,8 @@
         "label": "//CommandLine/CommandLineTool:tool.binary",
         "linker_inputs": {
             "linkopts": [
-                "-lc++",
-                "-headerpad_max_install_names",
-                "-framework",
-                "Foundation",
-                "-framework",
-                "ExternalFramework",
-                "-Wl,-rpath,/usr/lib/swift",
-                "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx",
-                "-L/usr/lib/swift",
-                "-ObjC",
-                "-no-canonical-prefixes",
-                "-lc++",
-                "$(BUILD_DIR)/bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18/bin/CommandLine/CommandLineToolLib/liblib_swift.a",
-                "$(BUILD_DIR)/bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18/bin/CommandLine/swift_c_module/libc_lib.a",
-                "$(BUILD_DIR)/bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18/bin/CommandLine/CommandLineToolLib/libprivate_lib.a",
-                "$(BUILD_DIR)/bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18/bin/CommandLine/CommandLineToolLib/liblib_impl.a",
-                "$(BUILD_DIR)/bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18/bin/CommandLine/CommandLineToolLib/libprivate_swift_lib.a",
-                "external/examples_command_line_external/ImportableLibrary/libImportableLibrary.a",
-                "-force_load",
-                "external/examples_command_line_external/ExternalFramework.framework/ExternalFramework"
+                "fixture",
+                "linkopts"
             ]
         },
         "name": "tool.binary",
@@ -674,26 +596,8 @@
         "label": "//CommandLine/CommandLineTool:tool.binary",
         "linker_inputs": {
             "linkopts": [
-                "-lc++",
-                "-headerpad_max_install_names",
-                "-framework",
-                "Foundation",
-                "-framework",
-                "ExternalFramework",
-                "-Wl,-rpath,/usr/lib/swift",
-                "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx",
-                "-L/usr/lib/swift",
-                "-ObjC",
-                "-no-canonical-prefixes",
-                "-lc++",
-                "$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-19/bin/CommandLine/CommandLineToolLib/liblib_swift.a",
-                "$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-19/bin/CommandLine/swift_c_module/libc_lib.a",
-                "$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-19/bin/CommandLine/CommandLineToolLib/libprivate_lib.a",
-                "$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-19/bin/CommandLine/CommandLineToolLib/liblib_impl.a",
-                "$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-19/bin/CommandLine/CommandLineToolLib/libprivate_swift_lib.a",
-                "external/examples_command_line_external/ImportableLibrary/libImportableLibrary.a",
-                "-force_load",
-                "external/examples_command_line_external/ExternalFramework.framework/ExternalFramework"
+                "fixture",
+                "linkopts"
             ]
         },
         "name": "tool.binary",
@@ -2334,37 +2238,8 @@
         "label": "//CommandLine/Tests:CommandLineToolTests.__internal__.__test_bundle",
         "linker_inputs": {
             "linkopts": [
-                "-ObjC",
-                "-framework",
-                "Foundation",
-                "-framework",
-                "ExternalFramework",
-                "-weak_framework",
-                "SwiftUI",
-                "-L$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/usr/lib",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-20/bin/CommandLine/Tests/LibSwiftTestsLib.swiftmodule/x86_64-apple-macos.swiftmodule",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17/bin/CommandLine/CommandLineToolLib/LibSwift.swiftmodule/x86_64-apple-macos.swiftmodule",
-                "-Wl,-add_ast_path,external/examples_command_line_external/ExternalFramework.framework/Modules/ExternalFramework.swiftmodule/x86_64.swiftmodule",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17/bin/CommandLine/CommandLineToolLib/_SwiftLib.swiftmodule/x86_64-apple-macos.swiftmodule",
-                "-ObjC",
-                "-L/usr/lib/swift",
-                "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx",
-                "-Wl,-rpath,/usr/lib/swift",
-                "-lc++",
-                "-headerpad_max_install_names",
-                "-framework",
-                "XCTest",
-                "-no-canonical-prefixes",
-                "-framework",
-                "Foundation",
-                "$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17/bin/CommandLine/CommandLineToolLib/liblib_swift.a",
-                "$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17/bin/CommandLine/swift_c_module/libc_lib.a",
-                "$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17/bin/CommandLine/CommandLineToolLib/libprivate_lib.a",
-                "$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17/bin/CommandLine/CommandLineToolLib/liblib_impl.a",
-                "$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17/bin/CommandLine/CommandLineToolLib/libprivate_swift_lib.a",
-                "external/examples_command_line_external/ImportableLibrary/libImportableLibrary.a",
-                "-force_load",
-                "external/examples_command_line_external/ExternalFramework.framework/ExternalFramework"
+                "fixture",
+                "linkopts"
             ]
         },
         "name": "CommandLineToolTests.__internal__.__test_bundle",
@@ -2679,23 +2554,8 @@
                 }
             ],
             "linkopts": [
-                "-ObjC",
-                "-framework",
-                "CryptoSwift",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/Lib/Lib.swiftmodule/arm64-apple-ios.swiftmodule",
-                "-ObjC",
-                "-L/usr/lib/swift",
-                "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos",
-                "-Wl,-rpath,/usr/lib/swift",
-                "-lc++",
-                "-headerpad_max_install_names",
-                "-no-canonical-prefixes",
-                "-framework",
-                "Foundation",
-                "-framework",
-                "UIKit",
-                "-force_load",
-                "$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/Lib/libLib.a"
+                "fixture",
+                "linkopts"
             ]
         },
         "name": "iOS",
@@ -2776,23 +2636,8 @@
                 }
             ],
             "linkopts": [
-                "-ObjC",
-                "-framework",
-                "CryptoSwift",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/Lib/Lib.swiftmodule/x86_64-apple-ios-simulator.swiftmodule",
-                "-ObjC",
-                "-L/usr/lib/swift",
-                "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator",
-                "-Wl,-rpath,/usr/lib/swift",
-                "-lc++",
-                "-headerpad_max_install_names",
-                "-no-canonical-prefixes",
-                "-framework",
-                "Foundation",
-                "-framework",
-                "UIKit",
-                "-force_load",
-                "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/Lib/libLib.a"
+                "fixture",
+                "linkopts"
             ]
         },
         "name": "iOS",
@@ -2872,23 +2717,8 @@
                 }
             ],
             "linkopts": [
-                "-ObjC",
-                "-framework",
-                "CryptoSwift",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-6/bin/Lib/Lib.swiftmodule/arm64-apple-tvos.swiftmodule",
-                "-ObjC",
-                "-L/usr/lib/swift",
-                "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/appletvos",
-                "-Wl,-rpath,/usr/lib/swift",
-                "-lc++",
-                "-headerpad_max_install_names",
-                "-no-canonical-prefixes",
-                "-framework",
-                "Foundation",
-                "-framework",
-                "UIKit",
-                "-force_load",
-                "$(BUILD_DIR)/bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-6/bin/Lib/libLib.a"
+                "fixture",
+                "linkopts"
             ]
         },
         "name": "tvOS",
@@ -2968,23 +2798,8 @@
                 }
             ],
             "linkopts": [
-                "-ObjC",
-                "-framework",
-                "CryptoSwift",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/Lib/Lib.swiftmodule/x86_64-apple-tvos-simulator.swiftmodule",
-                "-ObjC",
-                "-L/usr/lib/swift",
-                "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/appletvsimulator",
-                "-Wl,-rpath,/usr/lib/swift",
-                "-lc++",
-                "-headerpad_max_install_names",
-                "-no-canonical-prefixes",
-                "-framework",
-                "Foundation",
-                "-framework",
-                "UIKit",
-                "-force_load",
-                "$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/Lib/libLib.a"
+                "fixture",
+                "linkopts"
             ]
         },
         "name": "tvOS",
@@ -3064,23 +2879,8 @@
                 }
             ],
             "linkopts": [
-                "-ObjC",
-                "-framework",
-                "CryptoSwift",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-5/bin/Lib/Lib.swiftmodule/arm64_32-apple-watchos.swiftmodule",
-                "-ObjC",
-                "-L/usr/lib/swift",
-                "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos",
-                "-Wl,-rpath,/usr/lib/swift",
-                "-lc++",
-                "-headerpad_max_install_names",
-                "-no-canonical-prefixes",
-                "-framework",
-                "Foundation",
-                "-framework",
-                "UIKit",
-                "-force_load",
-                "$(BUILD_DIR)/bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-5/bin/Lib/libLib.a"
+                "fixture",
+                "linkopts"
             ]
         },
         "name": "watchOS",
@@ -3160,23 +2960,8 @@
                 }
             ],
             "linkopts": [
-                "-ObjC",
-                "-framework",
-                "CryptoSwift",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/Lib/Lib.swiftmodule/x86_64-apple-watchos-simulator.swiftmodule",
-                "-ObjC",
-                "-L/usr/lib/swift",
-                "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchsimulator",
-                "-Wl,-rpath,/usr/lib/swift",
-                "-lc++",
-                "-headerpad_max_install_names",
-                "-no-canonical-prefixes",
-                "-framework",
-                "Foundation",
-                "-framework",
-                "UIKit",
-                "-force_load",
-                "$(BUILD_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/Lib/libLib.a"
+                "fixture",
+                "linkopts"
             ]
         },
         "name": "watchOS",
@@ -3665,23 +3450,8 @@
                 }
             ],
             "linkopts": [
-                "-ObjC",
-                "-framework",
-                "CryptoSwift",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/Lib/Lib.swiftmodule/arm64-apple-ios.swiftmodule",
-                "-ObjC",
-                "-L/usr/lib/swift",
-                "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos",
-                "-Wl,-rpath,/usr/lib/swift",
-                "-lc++",
-                "-headerpad_max_install_names",
-                "-no-canonical-prefixes",
-                "-framework",
-                "Foundation",
-                "-framework",
-                "UIKit",
-                "-force_load",
-                "$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/Lib/libLib.a"
+                "fixture",
+                "linkopts"
             ]
         },
         "name": "LibFramework.iOS",
@@ -3762,23 +3532,8 @@
                 }
             ],
             "linkopts": [
-                "-ObjC",
-                "-framework",
-                "CryptoSwift",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/Lib/Lib.swiftmodule/x86_64-apple-ios-simulator.swiftmodule",
-                "-ObjC",
-                "-L/usr/lib/swift",
-                "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator",
-                "-Wl,-rpath,/usr/lib/swift",
-                "-lc++",
-                "-headerpad_max_install_names",
-                "-no-canonical-prefixes",
-                "-framework",
-                "Foundation",
-                "-framework",
-                "UIKit",
-                "-force_load",
-                "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/Lib/libLib.a"
+                "fixture",
+                "linkopts"
             ]
         },
         "name": "LibFramework.iOS",
@@ -3858,23 +3613,8 @@
                 }
             ],
             "linkopts": [
-                "-ObjC",
-                "-framework",
-                "CryptoSwift",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-6/bin/Lib/Lib.swiftmodule/arm64-apple-tvos.swiftmodule",
-                "-ObjC",
-                "-L/usr/lib/swift",
-                "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/appletvos",
-                "-Wl,-rpath,/usr/lib/swift",
-                "-lc++",
-                "-headerpad_max_install_names",
-                "-no-canonical-prefixes",
-                "-framework",
-                "Foundation",
-                "-framework",
-                "UIKit",
-                "-force_load",
-                "$(BUILD_DIR)/bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-6/bin/Lib/libLib.a"
+                "fixture",
+                "linkopts"
             ]
         },
         "name": "LibFramework.tvOS",
@@ -3954,23 +3694,8 @@
                 }
             ],
             "linkopts": [
-                "-ObjC",
-                "-framework",
-                "CryptoSwift",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/Lib/Lib.swiftmodule/x86_64-apple-tvos-simulator.swiftmodule",
-                "-ObjC",
-                "-L/usr/lib/swift",
-                "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/appletvsimulator",
-                "-Wl,-rpath,/usr/lib/swift",
-                "-lc++",
-                "-headerpad_max_install_names",
-                "-no-canonical-prefixes",
-                "-framework",
-                "Foundation",
-                "-framework",
-                "UIKit",
-                "-force_load",
-                "$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/Lib/libLib.a"
+                "fixture",
+                "linkopts"
             ]
         },
         "name": "LibFramework.tvOS",
@@ -4050,23 +3775,8 @@
                 }
             ],
             "linkopts": [
-                "-ObjC",
-                "-framework",
-                "CryptoSwift",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-5/bin/Lib/Lib.swiftmodule/arm64_32-apple-watchos.swiftmodule",
-                "-ObjC",
-                "-L/usr/lib/swift",
-                "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos",
-                "-Wl,-rpath,/usr/lib/swift",
-                "-lc++",
-                "-headerpad_max_install_names",
-                "-no-canonical-prefixes",
-                "-framework",
-                "Foundation",
-                "-framework",
-                "UIKit",
-                "-force_load",
-                "$(BUILD_DIR)/bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-5/bin/Lib/libLib.a"
+                "fixture",
+                "linkopts"
             ]
         },
         "name": "LibFramework.watchOS",
@@ -4146,23 +3856,8 @@
                 }
             ],
             "linkopts": [
-                "-ObjC",
-                "-framework",
-                "CryptoSwift",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/Lib/Lib.swiftmodule/x86_64-apple-watchos-simulator.swiftmodule",
-                "-ObjC",
-                "-L/usr/lib/swift",
-                "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchsimulator",
-                "-Wl,-rpath,/usr/lib/swift",
-                "-lc++",
-                "-headerpad_max_install_names",
-                "-no-canonical-prefixes",
-                "-framework",
-                "Foundation",
-                "-framework",
-                "UIKit",
-                "-force_load",
-                "$(BUILD_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/Lib/libLib.a"
+                "fixture",
+                "linkopts"
             ]
         },
         "name": "LibFramework.watchOS",
@@ -4264,24 +3959,8 @@
                 }
             ],
             "linkopts": [
-                "-ObjC",
-                "-framework",
-                "CryptoSwift",
-                "-framework",
-                "LibFramework.iOS",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/applebin_ios-ios_arm64-dbg-STABLE-8/bin/UI/UIFramework.iOS.framework/Modules/UI.swiftmodule/arm64-apple-ios.swiftmodule",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/Lib/Lib.swiftmodule/arm64-apple-ios.swiftmodule",
-                "-ObjC",
-                "-L/usr/lib/swift",
-                "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos",
-                "-Wl,-rpath,/usr/lib/swift",
-                "-lc++",
-                "-headerpad_max_install_names",
-                "-no-canonical-prefixes",
-                "-framework",
-                "Foundation",
-                "-framework",
-                "UIKit"
+                "fixture",
+                "linkopts"
             ]
         },
         "name": "UIFramework.iOS",
@@ -4393,24 +4072,8 @@
                 }
             ],
             "linkopts": [
-                "-ObjC",
-                "-framework",
-                "CryptoSwift",
-                "-framework",
-                "LibFramework.iOS",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-7/bin/UI/UIFramework.iOS.framework/Modules/UI.swiftmodule/x86_64-apple-ios-simulator.swiftmodule",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/Lib/Lib.swiftmodule/x86_64-apple-ios-simulator.swiftmodule",
-                "-ObjC",
-                "-L/usr/lib/swift",
-                "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator",
-                "-Wl,-rpath,/usr/lib/swift",
-                "-lc++",
-                "-headerpad_max_install_names",
-                "-no-canonical-prefixes",
-                "-framework",
-                "Foundation",
-                "-framework",
-                "UIKit"
+                "fixture",
+                "linkopts"
             ]
         },
         "name": "UIFramework.iOS",
@@ -4518,24 +4181,8 @@
                 }
             ],
             "linkopts": [
-                "-ObjC",
-                "-framework",
-                "CryptoSwift",
-                "-framework",
-                "LibFramework.tvOS",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/applebin_tvos-tvos_arm64-dbg-STABLE-14/bin/UI/UIFramework.tvOS.framework/Modules/UI.swiftmodule/arm64-apple-tvos.swiftmodule",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-6/bin/Lib/Lib.swiftmodule/arm64-apple-tvos.swiftmodule",
-                "-ObjC",
-                "-L/usr/lib/swift",
-                "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/appletvos",
-                "-Wl,-rpath,/usr/lib/swift",
-                "-lc++",
-                "-headerpad_max_install_names",
-                "-no-canonical-prefixes",
-                "-framework",
-                "Foundation",
-                "-framework",
-                "UIKit"
+                "fixture",
+                "linkopts"
             ]
         },
         "name": "UIFramework.tvOS",
@@ -4643,24 +4290,8 @@
                 }
             ],
             "linkopts": [
-                "-ObjC",
-                "-framework",
-                "CryptoSwift",
-                "-framework",
-                "LibFramework.tvOS",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-13/bin/UI/UIFramework.tvOS.framework/Modules/UI.swiftmodule/x86_64-apple-tvos-simulator.swiftmodule",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/Lib/Lib.swiftmodule/x86_64-apple-tvos-simulator.swiftmodule",
-                "-ObjC",
-                "-L/usr/lib/swift",
-                "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/appletvsimulator",
-                "-Wl,-rpath,/usr/lib/swift",
-                "-lc++",
-                "-headerpad_max_install_names",
-                "-no-canonical-prefixes",
-                "-framework",
-                "Foundation",
-                "-framework",
-                "UIKit"
+                "fixture",
+                "linkopts"
             ]
         },
         "name": "UIFramework.tvOS",
@@ -4768,24 +4399,8 @@
                 }
             ],
             "linkopts": [
-                "-ObjC",
-                "-framework",
-                "CryptoSwift",
-                "-framework",
-                "LibFramework.watchOS",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/applebin_watchos-watchos_arm64_32-dbg-STABLE-10/bin/UI/UIFramework.watchOS.framework/Modules/UI.swiftmodule/arm64_32-apple-watchos.swiftmodule",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-5/bin/Lib/Lib.swiftmodule/arm64_32-apple-watchos.swiftmodule",
-                "-ObjC",
-                "-L/usr/lib/swift",
-                "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos",
-                "-Wl,-rpath,/usr/lib/swift",
-                "-lc++",
-                "-headerpad_max_install_names",
-                "-no-canonical-prefixes",
-                "-framework",
-                "Foundation",
-                "-framework",
-                "UIKit"
+                "fixture",
+                "linkopts"
             ]
         },
         "name": "UIFramework.watchOS",
@@ -4893,24 +4508,8 @@
                 }
             ],
             "linkopts": [
-                "-ObjC",
-                "-framework",
-                "CryptoSwift",
-                "-framework",
-                "LibFramework.watchOS",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-9/bin/UI/UIFramework.watchOS.framework/Modules/UI.swiftmodule/x86_64-apple-watchos-simulator.swiftmodule",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/Lib/Lib.swiftmodule/x86_64-apple-watchos-simulator.swiftmodule",
-                "-ObjC",
-                "-L/usr/lib/swift",
-                "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchsimulator",
-                "-Wl,-rpath,/usr/lib/swift",
-                "-lc++",
-                "-headerpad_max_install_names",
-                "-no-canonical-prefixes",
-                "-framework",
-                "Foundation",
-                "-framework",
-                "UIKit"
+                "fixture",
+                "linkopts"
             ]
         },
         "name": "UIFramework.watchOS",
@@ -5022,24 +4621,8 @@
                 }
             ],
             "linkopts": [
-                "-ObjC",
-                "-framework",
-                "CryptoSwift",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/applebin_ios-ios_arm64-dbg-STABLE-8/bin/WidgetExtension/WidgetExtension.swiftmodule/arm64-apple-ios.swiftmodule",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/Lib/Lib.swiftmodule/arm64-apple-ios.swiftmodule",
-                "-ObjC",
-                "-L/usr/lib/swift",
-                "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos",
-                "-Wl,-rpath,/usr/lib/swift",
-                "-lc++",
-                "-headerpad_max_install_names",
-                "-no-canonical-prefixes",
-                "-framework",
-                "Foundation",
-                "-framework",
-                "UIKit",
-                "-force_load",
-                "$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/Lib/libLib.a"
+                "fixture",
+                "linkopts"
             ]
         },
         "name": "WidgetExtension",
@@ -5146,24 +4729,8 @@
                 }
             ],
             "linkopts": [
-                "-ObjC",
-                "-framework",
-                "CryptoSwift",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-7/bin/WidgetExtension/WidgetExtension.swiftmodule/x86_64-apple-ios-simulator.swiftmodule",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/Lib/Lib.swiftmodule/x86_64-apple-ios-simulator.swiftmodule",
-                "-ObjC",
-                "-L/usr/lib/swift",
-                "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator",
-                "-Wl,-rpath,/usr/lib/swift",
-                "-lc++",
-                "-headerpad_max_install_names",
-                "-no-canonical-prefixes",
-                "-framework",
-                "Foundation",
-                "-framework",
-                "UIKit",
-                "-force_load",
-                "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/Lib/libLib.a"
+                "fixture",
+                "linkopts"
             ]
         },
         "name": "WidgetExtension",
@@ -5330,24 +4897,8 @@
                 }
             ],
             "linkopts": [
-                "-ObjC",
-                "-framework",
-                "CryptoSwift",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-7/bin/iMessageApp/iMessageAppExtension.swiftmodule/x86_64-apple-ios-simulator.swiftmodule",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/Lib/Lib.swiftmodule/x86_64-apple-ios-simulator.swiftmodule",
-                "-ObjC",
-                "-L/usr/lib/swift",
-                "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator",
-                "-Wl,-rpath,/usr/lib/swift",
-                "-lc++",
-                "-headerpad_max_install_names",
-                "-no-canonical-prefixes",
-                "-framework",
-                "Foundation",
-                "-framework",
-                "UIKit",
-                "-force_load",
-                "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/Lib/libLib.a"
+                "fixture",
+                "linkopts"
             ]
         },
         "name": "iMessageAppExtension",
@@ -6073,15 +5624,8 @@
         "label": "//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC",
         "linker_inputs": {
             "linkopts": [
-                "-ObjC",
-                "-lc++",
-                "-lc++",
-                "-headerpad_max_install_names",
-                "-no-canonical-prefixes",
-                "-framework",
-                "Foundation",
-                "-framework",
-                "UIKit"
+                "fixture",
+                "linkopts"
             ]
         },
         "name": "FrameworkCoreUtilsObjC",
@@ -6227,15 +5771,8 @@
         "label": "//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC",
         "linker_inputs": {
             "linkopts": [
-                "-ObjC",
-                "-lc++",
-                "-lc++",
-                "-headerpad_max_install_names",
-                "-no-canonical-prefixes",
-                "-framework",
-                "Foundation",
-                "-framework",
-                "UIKit"
+                "fixture",
+                "linkopts"
             ]
         },
         "name": "FrameworkCoreUtilsObjC",
@@ -6515,47 +6052,8 @@
                 }
             ],
             "linkopts": [
-                "-ObjC",
-                "-framework",
-                "SystemConfiguration",
-                "-framework",
-                "CoreLocation",
-                "-framework",
-                "CoreTelephony",
-                "-framework",
-                "GoogleMaps",
-                "-framework",
-                "GoogleMapsCore",
-                "-framework",
-                "GoogleMapsBase",
-                "-framework",
-                "CryptoSwift",
-                "-framework",
-                "CoreUtilsObjC",
-                "-framework",
-                "UIFramework.iOS",
-                "-framework",
-                "LibFramework.iOS",
-                "-lc++",
-                "-lz",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/applebin_ios-ios_arm64-dbg-STABLE-8/bin/iOSApp/Source/iOSApp.swiftmodule/arm64-apple-ios.swiftmodule",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.swiftmodule/arm64-apple-ios.swiftmodule",
-                "--ld-path=external/rules_apple_linker_lld/ld64.lld",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/applebin_ios-ios_arm64-dbg-STABLE-8/bin/UI/UIFramework.iOS.framework/Modules/UI.swiftmodule/arm64-apple-ios.swiftmodule",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/Lib/Lib.swiftmodule/arm64-apple-ios.swiftmodule",
-                "-ObjC",
-                "-L/usr/lib/swift",
-                "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos",
-                "-Wl,-rpath,/usr/lib/swift",
-                "-lc++",
-                "-headerpad_max_install_names",
-                "-no-canonical-prefixes",
-                "-framework",
-                "Foundation",
-                "-framework",
-                "UIKit",
-                "$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/libMixedAnswer.a",
-                "$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/libMixedAnswerLib_Swift.a"
+                "fixture",
+                "linkopts"
             ]
         },
         "name": "iOSApp",
@@ -6721,47 +6219,8 @@
                 }
             ],
             "linkopts": [
-                "-ObjC",
-                "-framework",
-                "SystemConfiguration",
-                "-framework",
-                "CoreLocation",
-                "-framework",
-                "CoreTelephony",
-                "-framework",
-                "GoogleMaps",
-                "-framework",
-                "GoogleMapsCore",
-                "-framework",
-                "GoogleMapsBase",
-                "-framework",
-                "CryptoSwift",
-                "-framework",
-                "CoreUtilsObjC",
-                "-framework",
-                "UIFramework.iOS",
-                "-framework",
-                "LibFramework.iOS",
-                "-lc++",
-                "-lz",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-7/bin/iOSApp/Source/iOSApp.swiftmodule/x86_64-apple-ios-simulator.swiftmodule",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.swiftmodule/x86_64-apple-ios-simulator.swiftmodule",
-                "--ld-path=external/rules_apple_linker_lld/ld64.lld",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-7/bin/UI/UIFramework.iOS.framework/Modules/UI.swiftmodule/x86_64-apple-ios-simulator.swiftmodule",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/Lib/Lib.swiftmodule/x86_64-apple-ios-simulator.swiftmodule",
-                "-ObjC",
-                "-L/usr/lib/swift",
-                "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator",
-                "-Wl,-rpath,/usr/lib/swift",
-                "-lc++",
-                "-headerpad_max_install_names",
-                "-no-canonical-prefixes",
-                "-framework",
-                "Foundation",
-                "-framework",
-                "UIKit",
-                "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/libMixedAnswer.a",
-                "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/libMixedAnswerLib_Swift.a"
+                "fixture",
+                "linkopts"
             ]
         },
         "name": "iOSApp",
@@ -6958,48 +6417,8 @@
                 }
             ],
             "linkopts": [
-                "-ObjC",
-                "-framework",
-                "SystemConfiguration",
-                "-framework",
-                "CoreLocation",
-                "-framework",
-                "CoreTelephony",
-                "-framework",
-                "CoreGraphics",
-                "-framework",
-                "CryptoSwift",
-                "-framework",
-                "CoreUtilsObjC",
-                "-framework",
-                "UIFramework.iOS",
-                "-framework",
-                "LibFramework.iOS",
-                "-lc++",
-                "-lz",
-                "-L$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/TestingUtils/TestingUtils.swiftmodule/x86_64-apple-ios-simulator.swiftmodule",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-7/bin/iOSApp/Source/iOSApp.swiftmodule/x86_64-apple-ios-simulator.swiftmodule",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.swiftmodule/x86_64-apple-ios-simulator.swiftmodule",
-                "--ld-path=external/rules_apple_linker_lld/ld64.lld",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-7/bin/UI/UIFramework.iOS.framework/Modules/UI.swiftmodule/x86_64-apple-ios-simulator.swiftmodule",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/Lib/Lib.swiftmodule/x86_64-apple-ios-simulator.swiftmodule",
-                "-ObjC",
-                "-L/usr/lib/swift",
-                "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator",
-                "-Wl,-rpath,/usr/lib/swift",
-                "-lc++",
-                "-headerpad_max_install_names",
-                "-framework",
-                "XCTest",
-                "-no-canonical-prefixes",
-                "-framework",
-                "Foundation",
-                "-framework",
-                "UIKit",
-                "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/Utils/libUtils.a",
-                "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/external/FXPageControl/libFXPageControl.a",
-                "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/TestingUtils/libTestingUtils.a"
+                "fixture",
+                "linkopts"
             ]
         },
         "name": "iOSAppObjCUnitTests.__internal__.__test_bundle",
@@ -7137,49 +6556,8 @@
                 }
             ],
             "linkopts": [
-                "-ObjC",
-                "-framework",
-                "SystemConfiguration",
-                "-framework",
-                "CoreLocation",
-                "-framework",
-                "CoreTelephony",
-                "-framework",
-                "CoreGraphics",
-                "-framework",
-                "CryptoSwift",
-                "-framework",
-                "CoreUtilsObjC",
-                "-framework",
-                "UIFramework.iOS",
-                "-framework",
-                "LibFramework.iOS",
-                "-lc++",
-                "-lz",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-7/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTests.swiftmodule/x86_64-apple-ios-simulator.swiftmodule",
-                "-L$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/TestingUtils/TestingUtils.swiftmodule/x86_64-apple-ios-simulator.swiftmodule",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-7/bin/iOSApp/Source/iOSApp.swiftmodule/x86_64-apple-ios-simulator.swiftmodule",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.swiftmodule/x86_64-apple-ios-simulator.swiftmodule",
-                "--ld-path=external/rules_apple_linker_lld/ld64.lld",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-7/bin/UI/UIFramework.iOS.framework/Modules/UI.swiftmodule/x86_64-apple-ios-simulator.swiftmodule",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/Lib/Lib.swiftmodule/x86_64-apple-ios-simulator.swiftmodule",
-                "-ObjC",
-                "-L/usr/lib/swift",
-                "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator",
-                "-Wl,-rpath,/usr/lib/swift",
-                "-lc++",
-                "-headerpad_max_install_names",
-                "-framework",
-                "XCTest",
-                "-no-canonical-prefixes",
-                "-framework",
-                "Foundation",
-                "-framework",
-                "UIKit",
-                "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/Utils/libUtils.a",
-                "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/external/FXPageControl/libFXPageControl.a",
-                "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/TestingUtils/libTestingUtils.a"
+                "fixture",
+                "linkopts"
             ]
         },
         "name": "iOSAppSwiftUnitTests.__internal__.__test_bundle",
@@ -7340,21 +6718,8 @@
                 "macOSApp/third_party/ExampleFramework.framework"
             ],
             "linkopts": [
-                "-ObjC",
-                "-framework",
-                "ExampleFramework",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-16/bin/macOSApp/Source/macOSApp.swiftmodule/x86_64-apple-macos.swiftmodule",
-                "-ObjC",
-                "-L/usr/lib/swift",
-                "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx",
-                "-Wl,-rpath,/usr/lib/swift",
-                "-lc++",
-                "-headerpad_max_install_names",
-                "-no-canonical-prefixes",
-                "-framework",
-                "Foundation",
-                "-framework",
-                "Cocoa"
+                "fixture",
+                "linkopts"
             ]
         },
         "name": "macOSApp",
@@ -7441,20 +6806,8 @@
         "label": "//macOSApp/Test/UITests:macOSAppUITests.__internal__.__test_bundle",
         "linker_inputs": {
             "linkopts": [
-                "-ObjC",
-                "-L$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/usr/lib",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-16/bin/macOSApp/Test/UITests/macOSAppUITests.swiftmodule/x86_64-apple-macos.swiftmodule",
-                "-ObjC",
-                "-L/usr/lib/swift",
-                "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx",
-                "-Wl,-rpath,/usr/lib/swift",
-                "-lc++",
-                "-headerpad_max_install_names",
-                "-framework",
-                "XCTest",
-                "-no-canonical-prefixes",
-                "-framework",
-                "Foundation"
+                "fixture",
+                "linkopts"
             ]
         },
         "name": "macOSAppUITests.__internal__.__test_bundle",
@@ -7568,27 +6921,8 @@
                 }
             ],
             "linkopts": [
-                "-ObjC",
-                "-framework",
-                "CryptoSwift",
-                "-framework",
-                "UIFramework.tvOS",
-                "-framework",
-                "LibFramework.tvOS",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/applebin_tvos-tvos_arm64-dbg-STABLE-14/bin/tvOSApp/Source/tvOSApp.swiftmodule/arm64-apple-tvos.swiftmodule",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/applebin_tvos-tvos_arm64-dbg-STABLE-14/bin/UI/UIFramework.tvOS.framework/Modules/UI.swiftmodule/arm64-apple-tvos.swiftmodule",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-6/bin/Lib/Lib.swiftmodule/arm64-apple-tvos.swiftmodule",
-                "-ObjC",
-                "-L/usr/lib/swift",
-                "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/appletvos",
-                "-Wl,-rpath,/usr/lib/swift",
-                "-lc++",
-                "-headerpad_max_install_names",
-                "-no-canonical-prefixes",
-                "-framework",
-                "Foundation",
-                "-framework",
-                "UIKit"
+                "fixture",
+                "linkopts"
             ]
         },
         "name": "tvOSApp",
@@ -7700,27 +7034,8 @@
                 }
             ],
             "linkopts": [
-                "-ObjC",
-                "-framework",
-                "CryptoSwift",
-                "-framework",
-                "UIFramework.tvOS",
-                "-framework",
-                "LibFramework.tvOS",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-13/bin/tvOSApp/Source/tvOSApp.swiftmodule/x86_64-apple-tvos-simulator.swiftmodule",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-13/bin/UI/UIFramework.tvOS.framework/Modules/UI.swiftmodule/x86_64-apple-tvos-simulator.swiftmodule",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/Lib/Lib.swiftmodule/x86_64-apple-tvos-simulator.swiftmodule",
-                "-ObjC",
-                "-L/usr/lib/swift",
-                "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/appletvsimulator",
-                "-Wl,-rpath,/usr/lib/swift",
-                "-lc++",
-                "-headerpad_max_install_names",
-                "-no-canonical-prefixes",
-                "-framework",
-                "Foundation",
-                "-framework",
-                "UIKit"
+                "fixture",
+                "linkopts"
             ]
         },
         "name": "tvOSApp",
@@ -7807,22 +7122,8 @@
         "label": "//tvOSApp/Test/UITests:tvOSAppUITests.__internal__.__test_bundle",
         "linker_inputs": {
             "linkopts": [
-                "-ObjC",
-                "-L$(DEVELOPER_DIR)/Platforms/AppleTVSimulator.platform/Developer/usr/lib",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-13/bin/tvOSApp/Test/UITests/tvOSAppUITests.swiftmodule/x86_64-apple-tvos-simulator.swiftmodule",
-                "-ObjC",
-                "-L/usr/lib/swift",
-                "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/appletvsimulator",
-                "-Wl,-rpath,/usr/lib/swift",
-                "-lc++",
-                "-headerpad_max_install_names",
-                "-framework",
-                "XCTest",
-                "-no-canonical-prefixes",
-                "-framework",
-                "Foundation",
-                "-framework",
-                "UIKit"
+                "fixture",
+                "linkopts"
             ]
         },
         "name": "tvOSAppUITests.__internal__.__test_bundle",
@@ -7932,31 +7233,8 @@
                 }
             ],
             "linkopts": [
-                "-ObjC",
-                "-framework",
-                "CryptoSwift",
-                "-framework",
-                "UIFramework.tvOS",
-                "-framework",
-                "LibFramework.tvOS",
-                "-L$(DEVELOPER_DIR)/Platforms/AppleTVSimulator.platform/Developer/usr/lib",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-13/bin/tvOSApp/Test/UnitTests/tvOSAppUnitTests.swiftmodule/x86_64-apple-tvos-simulator.swiftmodule",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-13/bin/tvOSApp/Source/tvOSApp.swiftmodule/x86_64-apple-tvos-simulator.swiftmodule",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-13/bin/UI/UIFramework.tvOS.framework/Modules/UI.swiftmodule/x86_64-apple-tvos-simulator.swiftmodule",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/Lib/Lib.swiftmodule/x86_64-apple-tvos-simulator.swiftmodule",
-                "-ObjC",
-                "-L/usr/lib/swift",
-                "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/appletvsimulator",
-                "-Wl,-rpath,/usr/lib/swift",
-                "-lc++",
-                "-headerpad_max_install_names",
-                "-framework",
-                "XCTest",
-                "-no-canonical-prefixes",
-                "-framework",
-                "Foundation",
-                "-framework",
-                "UIKit"
+                "fixture",
+                "linkopts"
             ]
         },
         "name": "tvOSAppUnitTests.__internal__.__test_bundle",
@@ -8044,22 +7322,8 @@
         "label": "//watchOSApp/Test/UITests:watchOSAppUITests.__internal__.__test_bundle",
         "linker_inputs": {
             "linkopts": [
-                "-ObjC",
-                "-L$(DEVELOPER_DIR)/Platforms/WatchSimulator.platform/Developer/usr/lib",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-9/bin/watchOSApp/Test/UITests/watchOSAppUITestsLibrary.swiftmodule/x86_64-apple-watchos-simulator.swiftmodule",
-                "-ObjC",
-                "-L/usr/lib/swift",
-                "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchsimulator",
-                "-Wl,-rpath,/usr/lib/swift",
-                "-lc++",
-                "-headerpad_max_install_names",
-                "-framework",
-                "XCTest",
-                "-no-canonical-prefixes",
-                "-framework",
-                "Foundation",
-                "-framework",
-                "UIKit"
+                "fixture",
+                "linkopts"
             ]
         },
         "name": "watchOSAppUITests.__internal__.__test_bundle",
@@ -8294,30 +7558,8 @@
                 }
             ],
             "linkopts": [
-                "-ObjC",
-                "-framework",
-                "CryptoSwift",
-                "-framework",
-                "UIFramework.watchOS",
-                "-framework",
-                "LibFramework.watchOS",
-                "-L$(DEVELOPER_DIR)/Platforms/WatchSimulator.platform/Developer/usr/lib",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-9/bin/watchOSAppExtension/Test/UnitTests/watchOSAppExtensionUnitTestsLibrary.swiftmodule/x86_64-apple-watchos-simulator.swiftmodule",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-9/bin/UI/UIFramework.watchOS.framework/Modules/UI.swiftmodule/x86_64-apple-watchos-simulator.swiftmodule",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/Lib/Lib.swiftmodule/x86_64-apple-watchos-simulator.swiftmodule",
-                "-ObjC",
-                "-L/usr/lib/swift",
-                "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchsimulator",
-                "-Wl,-rpath,/usr/lib/swift",
-                "-lc++",
-                "-headerpad_max_install_names",
-                "-framework",
-                "XCTest",
-                "-no-canonical-prefixes",
-                "-framework",
-                "Foundation",
-                "-framework",
-                "UIKit"
+                "fixture",
+                "linkopts"
             ]
         },
         "name": "watchOSAppExtensionUnitTests.__internal__.__test_bundle",
@@ -8430,27 +7672,8 @@
                 }
             ],
             "linkopts": [
-                "-ObjC",
-                "-framework",
-                "CryptoSwift",
-                "-framework",
-                "UIFramework.watchOS",
-                "-framework",
-                "LibFramework.watchOS",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/applebin_watchos-watchos_arm64_32-dbg-STABLE-10/bin/watchOSAppExtension/watchOSAppExtension.swiftmodule/arm64_32-apple-watchos.swiftmodule",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/applebin_watchos-watchos_arm64_32-dbg-STABLE-10/bin/UI/UIFramework.watchOS.framework/Modules/UI.swiftmodule/arm64_32-apple-watchos.swiftmodule",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-5/bin/Lib/Lib.swiftmodule/arm64_32-apple-watchos.swiftmodule",
-                "-ObjC",
-                "-L/usr/lib/swift",
-                "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchos",
-                "-Wl,-rpath,/usr/lib/swift",
-                "-lc++",
-                "-headerpad_max_install_names",
-                "-no-canonical-prefixes",
-                "-framework",
-                "Foundation",
-                "-framework",
-                "UIKit"
+                "fixture",
+                "linkopts"
             ]
         },
         "name": "watchOSAppExtension",
@@ -8562,27 +7785,8 @@
                 }
             ],
             "linkopts": [
-                "-ObjC",
-                "-framework",
-                "CryptoSwift",
-                "-framework",
-                "UIFramework.watchOS",
-                "-framework",
-                "LibFramework.watchOS",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-9/bin/watchOSAppExtension/watchOSAppExtension.swiftmodule/x86_64-apple-watchos-simulator.swiftmodule",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-9/bin/UI/UIFramework.watchOS.framework/Modules/UI.swiftmodule/x86_64-apple-watchos-simulator.swiftmodule",
-                "-Wl,-add_ast_path,$(BUILD_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/Lib/Lib.swiftmodule/x86_64-apple-watchos-simulator.swiftmodule",
-                "-ObjC",
-                "-L/usr/lib/swift",
-                "-L$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/watchsimulator",
-                "-Wl,-rpath,/usr/lib/swift",
-                "-lc++",
-                "-headerpad_max_install_names",
-                "-no-canonical-prefixes",
-                "-framework",
-                "Foundation",
-                "-framework",
-                "UIKit"
+                "fixture",
+                "linkopts"
             ]
         },
         "name": "watchOSAppExtension",
