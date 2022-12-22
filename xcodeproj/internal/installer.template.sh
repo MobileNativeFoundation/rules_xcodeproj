@@ -126,6 +126,9 @@ if [[ $for_fixture -eq 1 ]]; then
       :>"$dest/rules_xcodeproj/bazel/$filename"
     fi
   done
+
+  # link params are represented in the spec
+  find "$dest/rules_xcodeproj/targets" -type f -exec sh -c ':> "$1"' _ {} \;
 else
   cp -c "${bazel_integration_files[@]}" "$dest/rules_xcodeproj/bazel"
 fi
