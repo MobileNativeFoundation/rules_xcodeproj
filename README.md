@@ -54,7 +54,7 @@ rules.
 - [Envoy Mobile](https://github.com/envoyproxy/envoy-mobile)
 - [Mercari](https://engineering.mercari.com/blog/entry/20221215-16cdd59909/)
 - Robinhood
-- Slack
+- [Slack](https://www.youtube.com/watch?v=wy3Q38VJ5uQ)
 - Spotify
 - [SwiftLint](https://github.com/realm/SwiftLint)
 
