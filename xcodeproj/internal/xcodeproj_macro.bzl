@@ -290,6 +290,8 @@ in your `.bazelrc` or `xcodeproj.bazelrc` file.""")
 
     generator_name = "{}.generator".format(name)
 
+    is_fixture = kwargs.pop("is_fixture", False)
+
     xcodeproj_rule = kwargs.pop("xcodeproj_rule", None)
     if not xcodeproj_rule:
         if build_mode == "bazel":
@@ -341,6 +343,7 @@ in your `.bazelrc` or `xcodeproj.bazelrc` file.""")
         name = name,
         bazel_path = bazel_path,
         config = config,
+        is_fixture = is_fixture,
         project_name = project_name,
         tags = tags,
         testonly = testonly,

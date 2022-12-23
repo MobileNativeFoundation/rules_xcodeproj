@@ -11,7 +11,7 @@
         "USE_HEADERMAP": false,
         "VALIDATE_WORKSPACE": false
     },
-    "configuration": "darwin_x86_64-dbg-ST-14942f8a2d44",
+    "configuration": "darwin_x86_64-dbg-STABLE-0",
     "custom_xcode_schemes": [],
     "envs": [],
     "extra_files": [
@@ -20,7 +20,7 @@
     ],
     "force_bazel_dependencies": false,
     "generator_label": "//test/fixtures:xcodeproj_bwx.generator",
-    "index_import": "$(BAZEL_OUT)/darwin_x86_64-opt-exec-2B5CBBC6-ST-8b5ad9965560/bin/external/rules_xcodeproj_index_import/index-import",
+    "index_import": "fixture-index-import-path",
     "minimum_xcode_version": "13.0",
     "name": "bwx",
     "post_build_script": "\"$SRCROOT/post-build w spaces.sh\"\n",
