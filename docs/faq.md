@@ -17,6 +17,7 @@ gh-md-toc --hide-header --hide-footer --start-depth=1
 * [What is CompileStub\.m?](#what-is-compilestubm)
 * [Do I need to place my custom Xcode scheme declarations in a function like `tools/generator`?](#do-i-need-to-place-my-custom-xcode-scheme-declarations-in-a-function-like-toolsgenerator)
 * [Why does `tools/generator` declare its custom Xcode schemes in a-function?](#why-does-toolsgenerator-declare-its-custom-xcode-schemes-in-a-function)
+* [Does the Archive action work?](#does-the-archive-action-work)
 
 ## Why are there multiple versions of some of my targets?
 
@@ -141,3 +142,15 @@ declarations in a function. They should be declared in a BUILD file alongside or
 inline with their `xcodeproj` target. Wrapping the declarations in a function is
 only necessary when sharing a set of custom schemes as is done with the fixture
 tests in this repository.
+
+## Does the Archive action work?
+
+Currently no effort is put into making the Archive action work correctly.
+rules_xcodeproj's primary goal is to support running and debugging of
+targets, and might make optimizations that break the generated `.xcarchive` that
+the Archive action produces.
+
+Instead of using the Archive action to submit to the App Store, you should
+instead [generate an IPA with
+`bazel`](https://github.com/bazelbuild/rules_apple/blob/master/doc/tutorials/ios-app.md#find-the-build-outputs)
+and upload that.
