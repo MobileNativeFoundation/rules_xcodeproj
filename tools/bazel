@@ -1,0 +1,15 @@
+#!/bin/bash
+
+set -euo pipefail
+
+bazel_version=$("$BAZEL_REAL" info release | cut -d ' ' -f 2 | cut -d '.' -f 1)
+
+tool_abs_location="$(perl -MCwd -e 'print Cwd::abs_path shift' "${BASH_SOURCE[0]}";)"
+readonly root_dir="${tool_abs_location%/*/*}"
+if [[ $bazel_version -lt 6 ]]; then
+  readonly bazel_version_bazelrc="$root_dir/bazel_5.bazelrc"
+else
+  readonly bazel_version_bazelrc="$root_dir/bazel_6.bazelrc"
+fi
+
+exec "$BAZEL_REAL" "--bazelrc=$bazel_version_bazelrc" "$@"
