@@ -86,4 +86,18 @@ def get_xcode_schemes():
                 ],
             ),
         ),
+        xcode_schemes.scheme(
+            name = "iOSAppSwiftUnitTests_CommandLineArgs_Scheme",
+            test_action = xcode_schemes.test_action(
+                env = {
+                    "IOSAPPSWIFTUNITTESTS_CUSTOMSCHEMEVAR": "TRUE",
+                },
+                args = [
+                    "--command_line_args=-AppleLanguages,(en)",
+                ],
+                targets = [
+                    "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests",
+                ],
+            ),
+        ),
     ]

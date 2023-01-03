@@ -25,6 +25,7 @@ enum Fixtures {
             "WDKE": ["I"],
             "WKE": ["W"],
         ],
+        args: [:],
         envs: [:],
         extraFiles: [
             .generated("a1b2c/bin/t.c"),

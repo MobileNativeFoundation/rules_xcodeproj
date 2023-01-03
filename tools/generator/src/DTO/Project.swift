@@ -10,6 +10,7 @@ struct Project: Equatable {
     var targets: [TargetID: Target] = [:]
     let replacementLabels: [TargetID: BazelLabel]
     let targetHosts: [TargetID: [TargetID]]
+    let args: [TargetID: [String]]
     let envs: [TargetID: [String: String]]
     let extraFiles: Set<FilePath>
     let schemeAutogenerationMode: SchemeAutogenerationMode
@@ -33,6 +34,7 @@ extension Project: Decodable {
         case replacementLabels
         case targetHosts
         case envs
+        case args
         case extraFiles
         case schemeAutogenerationMode
         case customXcodeSchemes
@@ -41,7 +43,7 @@ extension Project: Decodable {
         case preBuildScript
         case postBuildScript
     }
-    
+
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
@@ -63,6 +65,8 @@ extension Project: Decodable {
             .decode([TargetID: BazelLabel].self, forKey: .replacementLabels)
         targetHosts = try container
             .decode([TargetID: [TargetID]].self, forKey: .targetHosts)
+        args = try container
+            .decode([TargetID: [String]].self, forKey: .args)
         envs = try container
             .decode([TargetID: [String: String]].self, forKey: .envs)
         extraFiles = try container

@@ -51,6 +51,7 @@
         "inputs": {
             "srcs": [
                 "tools/generator/test/AddTargetsTests.swift",
+                "tools/generator/test/Array+ExtensionsTests.swift",
                 "tools/generator/test/BazelLabel+TestExtensions.swift",
                 "tools/generator/test/BazelLabelTests.swift",
                 "tools/generator/test/BuildSettingConditionalTests.swift",
@@ -540,6 +541,7 @@
                 "tools/generator/src/DTO/XCCurrentVersion.swift",
                 "tools/generator/src/DTO/XcodeScheme.swift",
                 "tools/generator/src/Errors.swift",
+                "tools/generator/src/Extensions/Array+Extensions.swift",
                 "tools/generator/src/Extensions/Dictionary+Extensions.swift",
                 "tools/generator/src/Extensions/Optional+Extensions.swift",
                 "tools/generator/src/Extensions/PBXGroup+Extensions.swift",
