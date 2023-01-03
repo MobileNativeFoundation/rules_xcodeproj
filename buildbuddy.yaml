@@ -1,118 +1,90 @@
+x_templates:
+  action_setup:
+    - &action_base
+      os: "darwin"
+      triggers:
+        push:
+          branches:
+            - "main"
+        pull_request:
+          branches:
+            - "*"
+
+    # Workspace selection
+    - &root_workspace
+      git_clean_exclude:
+        - bazel-output-base
+    - &examples_cc_workspace
+      bazel_workspace_dir: examples/cc
+      git_clean_exclude:
+        - examples/cc/bazel-output-base
+    - &examples_integration_workspace
+      bazel_workspace_dir: examples/integration
+      git_clean_exclude:
+        - examples/integration/bazel-output-base
+    - &examples_sanitizers_workspace
+      bazel_workspace_dir: examples/sanitizers
+      git_clean_exclude:
+        - examples/sanitizers/bazel-output-base
+    - &examples_simple_workspace
+      bazel_workspace_dir: examples/simple
+      git_clean_exclude:
+        - examples/simple/bazel-output-base
+
+  commands:
+    - &validate_integration "run --config=workflows //test/fixtures:validate"
+    - &build_all "build --config=workflows //..."
+    - &test_all "test --config=workflows //..."
+
 actions:
   - name: Test
-    os: "darwin"
-    triggers:
-      push:
-        branches:
-          - "main"
-      pull_request:
-        branches:
-          - "*"
-    git_clean_exclude:
-      - bazel-output-base
+    <<: *action_base
+    <<: *root_workspace
     bazel_commands:
-      - "test --config=workflows //..."
+      - *test_all
 
   - name: Integration Test - Root
-    os: "darwin"
-    triggers:
-      push:
-        branches:
-          - "main"
-      pull_request:
-        branches:
-          - "*"
-    git_clean_exclude:
-      - bazel-output-base
+    <<: *action_base
+    <<: *root_workspace
     bazel_commands:
-      - "run --config=workflows //test/fixtures:validate"
+      - *validate_integration
 
   - name: Integration Test - "examples/cc"
-    os: "darwin"
-    triggers:
-      push:
-        branches:
-          - "main"
-      pull_request:
-        branches:
-          - "*"
-    git_clean_exclude:
-      - examples/cc/bazel-output-base
-    bazel_workspace_dir: examples/cc
+    <<: *action_base
+    <<: *examples_cc_workspace
     bazel_commands:
-      - "run --config=workflows //test/fixtures:validate"
-      - "build --config=workflows //..."
+      - *validate_integration
+      - *build_all
 
   - name: Integration Test - "examples/integration"
-    os: "darwin"
-    triggers:
-      push:
-        branches:
-          - "main"
-      pull_request:
-        branches:
-          - "*"
-    git_clean_exclude:
-      - examples/integration/bazel-output-base
-    bazel_workspace_dir: examples/integration
+    <<: *action_base
+    <<: *examples_integration_workspace
     bazel_commands:
-      - "run --config=workflows //test/fixtures:validate"
-      - "test --config=workflows //..."
+      - *validate_integration
+      - *test_all
 
   - name: Integration Test - "examples/sanitizers"
-    os: "darwin"
-    triggers:
-      push:
-        branches:
-          - "main"
-      pull_request:
-        branches:
-          - "*"
-    git_clean_exclude:
-      - examples/sanitizers/bazel-output-base
-    bazel_workspace_dir: examples/sanitizers
+    <<: *action_base
+    <<: *examples_sanitizers_workspace
     bazel_commands:
-      - "run --config=workflows //test/fixtures:validate"
-      - "build --config=workflows //..."
+      - *validate_integration
+      - *build_all
 
   - name: Integration Test - "examples/simple"
-    os: "darwin"
-    triggers:
-      push:
-        branches:
-          - "main"
-      pull_request:
-        branches:
-          - "*"
-    git_clean_exclude:
-      - examples/simple/bazel-output-base
-    bazel_workspace_dir: examples/simple
+    <<: *action_base
+    <<: *examples_simple_workspace
     bazel_commands:
-      - "run --config=workflows //test/fixtures:validate"
-      - "build --config=workflows //..."
+      - *validate_integration
+      - *build_all
 
   - name: Buildifier Lint
-    triggers:
-      push:
-        branches:
-          - "main"
-      pull_request:
-        branches:
-          - "*"
-    git_clean_exclude:
-      - bazel-output-base
+    <<: *action_base
+    <<: *root_workspace
     bazel_commands:
       - "run --config=workflows //:buildifier.check"
 
   - name: Docs
-    triggers:
-      push:
-        branches:
-          - "main"
-      pull_request:
-        branches:
-          - "*"
-    git_clean_exclude:
-      - bazel-output-base
+    <<: *action_base
+    <<: *root_workspace
     bazel_commands:
       - "test --config=workflows //docs:diff_test"
