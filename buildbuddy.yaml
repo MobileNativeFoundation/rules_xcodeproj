@@ -14,24 +14,30 @@ x_templates:
     - &root_workspace
       git_clean_exclude:
         - bazel-output-base
+        - setup-bazel-output-base
     - &examples_cc_workspace
       bazel_workspace_dir: examples/cc
       git_clean_exclude:
         - examples/cc/bazel-output-base
+        - examples/cc/setup-bazel-output-base
     - &examples_integration_workspace
       bazel_workspace_dir: examples/integration
       git_clean_exclude:
         - examples/integration/bazel-output-base
+        - examples/integration/setup-bazel-output-base
     - &examples_sanitizers_workspace
       bazel_workspace_dir: examples/sanitizers
       git_clean_exclude:
         - examples/sanitizers/bazel-output-base
+        - examples/sanitizers/setup-bazel-output-base
     - &examples_simple_workspace
       bazel_workspace_dir: examples/simple
       git_clean_exclude:
         - examples/simple/bazel-output-base
+        - examples/simple/setup-bazel-output-base
 
   commands:
+    - &bazel_5_setup "--output_base=setup-bazel-output-base run --config=workflows @com_github_buildbuddy_io_rules_xcodeproj//tools:set_bazel_5"
     - &validate_integration "run --config=workflows //test/fixtures:validate"
     - &build_all "build --config=workflows //..."
     - &test_all "test --config=workflows //..."
@@ -42,17 +48,36 @@ actions:
     <<: *root_workspace
     bazel_commands:
       - *test_all
+  - name: Test - Bazel 5
+    <<: *action_base
+    <<: *root_workspace
+    bazel_commands:
+      - *bazel_5_setup
+      - *test_all
 
   - name: Integration Test - Root
     <<: *action_base
     <<: *root_workspace
     bazel_commands:
       - *validate_integration
+  - name: Integration Test - Root - Bazel 5
+    <<: *action_base
+    <<: *root_workspace
+    bazel_commands:
+      - *bazel_5_setup
+      - *validate_integration
 
   - name: Integration Test - "examples/cc"
     <<: *action_base
     <<: *examples_cc_workspace
     bazel_commands:
+      - *validate_integration
+      - *build_all
+  - name: Integration Test - "examples/cc" - Bazel 5
+    <<: *action_base
+    <<: *examples_cc_workspace
+    bazel_commands:
+      - *bazel_5_setup
       - *validate_integration
       - *build_all
 
@@ -62,6 +87,13 @@ actions:
     bazel_commands:
       - *validate_integration
       - *test_all
+  - name: Integration Test - "examples/integration" - Bazel 5
+    <<: *action_base
+    <<: *examples_integration_workspace
+    bazel_commands:
+      - *bazel_5_setup
+      - *validate_integration
+      - *test_all
 
   - name: Integration Test - "examples/sanitizers"
     <<: *action_base
@@ -69,11 +101,25 @@ actions:
     bazel_commands:
       - *validate_integration
       - *build_all
+  - name: Integration Test - "examples/sanitizers" - Bazel 5
+    <<: *action_base
+    <<: *examples_sanitizers_workspace
+    bazel_commands:
+      - *bazel_5_setup
+      - *validate_integration
+      - *build_all
 
   - name: Integration Test - "examples/simple"
     <<: *action_base
     <<: *examples_simple_workspace
     bazel_commands:
+      - *validate_integration
+      - *build_all
+  - name: Integration Test - "examples/simple" - Bazel 5
+    <<: *action_base
+    <<: *examples_simple_workspace
+    bazel_commands:
+      - *bazel_5_setup
       - *validate_integration
       - *build_all
 

@@ -1,3 +1,9 @@
+sh_binary(
+    name = "set_bazel_5",
+    srcs = ["set_bazel_5.sh"],
+    tags = ["manual"],
+)
+
 # Release
 
 filegroup(
