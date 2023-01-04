@@ -401,6 +401,9 @@ extension Generator {
         // Collect all files
         var allInputPaths = extraFiles
         for target in targets.values {
+            if let linkParams = target.linkParams {
+                allInputPaths.insert(linkParams)
+            }
             if let infoPlist = target.infoPlist {
                 allInputPaths.insert(infoPlist)
             }
@@ -627,12 +630,6 @@ already was set to `\(existingValue)`.
 
         var lldbSettingsMap: [String: LLDBSettings] = [:]
         for target in targets.values {
-            let linkopts = target.linkerInputs.linkopts.map { "\($0)\n" }
-            if !linkopts.isEmpty {
-                files[try target.linkParamsFilePath()] =
-                    .nonReferencedContent(linkopts.joined())
-            }
-
             if let lldbContext = target.lldbContext,
                let lldbSettingsKey = target.lldbSettingsKey
             {

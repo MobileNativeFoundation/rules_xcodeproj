@@ -1578,6 +1578,8 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
         ) -> PBXShellScriptBuildPhase {
             var outputPaths = ["$(DERIVED_FILE_DIR)/link.params"]
             var shellScript = #"""
+set -euo pipefail
+
 perl -pe 's/^("?)(.*\$\(.*\).*?)("?)$/"$2"/ ; s/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$ENV{$2}/g' \
   "$SCRIPT_INPUT_FILE_0" > "$SCRIPT_OUTPUT_FILE_0"
 

@@ -58,6 +58,8 @@
 
 /* Begin PBXFileReference section */
 		12A43BC80D3E4C61AB58E2AF /* ThreadSanitizerApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThreadSanitizerApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		324A50D469C6A74C3E7DD112 /* UndefinedBehaviorSanitizerApp.2.link.params */ = {isa = PBXFileReference; path = UndefinedBehaviorSanitizerApp.2.link.params; sourceTree = "<group>"; };
+		36ED036AD66E94FB8E31DEE4 /* ThreadSanitizerApp.1.link.params */ = {isa = PBXFileReference; path = ThreadSanitizerApp.1.link.params; sourceTree = "<group>"; };
 		3D138464FD12E1724C7054EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		4195E3FCF5965D3361B7221A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		42D05B47CBB12FAFED02EEA1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 		82CFC27FB62DEEBC9FA12225 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		87EC9513C5736899DDC15D52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8D2E20CAACB0741A21554C9E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		9959E6A17B7B8F1560025674 /* AddressSanitizerApp.0.link.params */ = {isa = PBXFileReference; path = AddressSanitizerApp.0.link.params; sourceTree = "<group>"; };
 		A378148853AE0BF93324A91C /* AddressSanitizerApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AddressSanitizerApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACC05503F29B0D40BB15C84F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		B13DA8B967470B62463A7C36 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
@@ -96,6 +99,14 @@
 			path = ../../../../..;
 			sourceTree = "<group>";
 		};
+		2A74A0BABCA13EF4011BFD00 /* bin */ = {
+			isa = PBXGroup;
+			children = (
+				9401D751AA6B1781111B8489 /* test */,
+			);
+			path = bin;
+			sourceTree = "<group>";
+		};
 		2A84A6FD612A2BEF44B2014C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -119,6 +130,14 @@
 				82CFC27FB62DEEBC9FA12225 /* main.m */,
 			);
 			path = Sources;
+			sourceTree = "<group>";
+		};
+		362DEFEF499FD1FCF27C95D3 /* fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				BE534ACECD6842E3D0C7EDA6 /* xcodeproj_bwx.generator-params */,
+			);
+			path = fixtures;
 			sourceTree = "<group>";
 		};
 		59D9F3B170BC4ECD9B49A46D /* AddressSanitizerApp */ = {
@@ -157,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				AAA4AB30424C6A5259C513DC /* applebin_ios-ios_x86_64-dbg-STABLE-2 */,
+				E9FB62E17E9CD717293583B0 /* darwin_x86_64-dbg-STABLE-0 */,
 			);
 			name = "Bazel Generated Files";
 			path = "bazel-out";
@@ -178,6 +198,14 @@
 				E5662377473D77F2456168DE /* UndefinedBehaviorSanitizerApp */,
 			);
 			path = bin;
+			sourceTree = "<group>";
+		};
+		9401D751AA6B1781111B8489 /* test */ = {
+			isa = PBXGroup;
+			children = (
+				362DEFEF499FD1FCF27C95D3 /* fixtures */,
+			);
+			path = test;
 			sourceTree = "<group>";
 		};
 		978B64846E4015CBBB29A213 /* AddressSanitizerApp */ = {
@@ -212,6 +240,16 @@
 				BA4CC5B0D48D7CEA61149DCB /* Info.plist */,
 			);
 			path = UndefinedBehaviorSanitizerApp;
+			sourceTree = "<group>";
+		};
+		BE534ACECD6842E3D0C7EDA6 /* xcodeproj_bwx.generator-params */ = {
+			isa = PBXGroup;
+			children = (
+				9959E6A17B7B8F1560025674 /* AddressSanitizerApp.0.link.params */,
+				36ED036AD66E94FB8E31DEE4 /* ThreadSanitizerApp.1.link.params */,
+				324A50D469C6A74C3E7DD112 /* UndefinedBehaviorSanitizerApp.2.link.params */,
+			);
+			path = "xcodeproj_bwx.generator-params";
 			sourceTree = "<group>";
 		};
 		C5DA04B2480EBE8D895B5826 /* Products */ = {
@@ -254,6 +292,14 @@
 				A4C38AD992F1763C5D0BEF9F /* rules_xcodeproj */,
 			);
 			path = UndefinedBehaviorSanitizerApp;
+			sourceTree = "<group>";
+		};
+		E9FB62E17E9CD717293583B0 /* darwin_x86_64-dbg-STABLE-0 */ = {
+			isa = PBXGroup;
+			children = (
+				2A74A0BABCA13EF4011BFD00 /* bin */,
+			);
+			path = "darwin_x86_64-dbg-STABLE-0";
 			sourceTree = "<group>";
 		};
 		F068E6E0ECBE5DD47B3FD0D6 /* ThreadSanitizerApp */ = {
@@ -424,7 +470,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
+			shellScript = "set -euo pipefail\n\nperl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
 		5E351775A9D4F280A4CF47A2 /* Create linking dependencies */ = {
@@ -441,7 +487,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
+			shellScript = "set -euo pipefail\n\nperl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
 		7168C7D4EC7D70376E5EC92C /* Create linking dependencies */ = {
@@ -458,7 +504,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
+			shellScript = "set -euo pipefail\n\nperl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
 		773C70B69E7F801B38FDC01C /* Generate Files */ = {
@@ -575,7 +621,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/applebin_ios-ios_x86_64-dbg-STABLE-2/AddressSanitizerApp/AddressSanitizerApp.link.params";
+				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/AddressSanitizerApp.0.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static";
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
@@ -632,7 +678,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/applebin_ios-ios_x86_64-dbg-STABLE-2/UndefinedBehaviorSanitizerApp/UndefinedBehaviorSanitizerApp.link.params";
+				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/UndefinedBehaviorSanitizerApp.2.link.params";
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",
 					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
@@ -783,7 +829,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/applebin_ios-ios_x86_64-dbg-STABLE-2/ThreadSanitizerApp/ThreadSanitizerApp.link.params";
+				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/ThreadSanitizerApp.1.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static";
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";

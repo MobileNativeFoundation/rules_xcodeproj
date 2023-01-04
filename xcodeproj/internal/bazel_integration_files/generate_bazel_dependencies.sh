@@ -26,6 +26,10 @@ else
   if [[ "$RULES_XCODEPROJ_BUILD_MODE" == "xcode" ]]; then
     # Inputs for compiling, inputs for linking, and index store data
     readonly output_group_prefixes="xc,xl,xi"
+  elif [[ "${ENABLE_PREVIEWS:-}" == "YES" ]]; then
+    # Compiled outputs (i.e. swiftmodules), products (i.e. bundles), generated
+    # inputs, index store data, and link params
+    readonly output_group_prefixes="bc,bp,bg,bi,bl"
   else
     # Compiled outputs (i.e. swiftmodules), products (i.e. bundles), generated
     # inputs, and index store data

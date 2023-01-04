@@ -267,7 +267,7 @@ struct ConsolidatedTarget: Equatable {
     let inputs: ConsolidatedTargetInputs
     let linkerInputs: ConsolidatedTargetLinkerInputs
     let hasClangSearchPaths: Bool
-    let hasLinkerFlags: Bool
+    let hasLinkParams: Bool
     let resourceBundleDependencies: Set<TargetID>
     let watchApplication: TargetID?
     let extensions: Set<TargetID>
@@ -345,7 +345,7 @@ extension ConsolidatedTarget {
             .map { $1 }
         inputs = Self.consolidateInputs(targets: sortedTargets)
         linkerInputs = Self.consolidateLinkerInputs(targets: sortedTargets)
-        hasLinkerFlags = !aTarget.linkerInputs.linkopts.isEmpty
+        hasLinkParams = aTarget.linkParams != nil
 
         hasClangSearchPaths = sortedTargets.contains { target in
             return target.hasModulemaps

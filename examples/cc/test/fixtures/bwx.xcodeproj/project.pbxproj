@@ -11,7 +11,7 @@
 			isa = PBXAggregateTarget;
 			buildConfigurationList = A4C19F2824EAB3EBB5D7EE24 /* Build configuration list for PBXAggregateTarget "BazelDependencies" */;
 			buildPhases = (
-				790733B6E675C2785F8020AC /* Fetch External Repositories */,
+				773C70B69E7F801B38FDC01C /* Generate Files */,
 				2FB8CA190C5FD287F83F39E3 /* Create swift_debug_settings.py */,
 			);
 			dependencies = (
@@ -139,6 +139,7 @@
 /* Begin PBXFileReference section */
 		10D21E69D7E12FFDA82B1273 /* lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib.h; sourceTree = "<group>"; };
 		1F8D330113018E003269E782 /* liblib_impl.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_impl.a; path = "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external/liblib_impl.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		50EE84464C0D09BEA535AD55 /* tool.7.link.params */ = {isa = PBXFileReference; path = tool.7.link.params; sourceTree = "<group>"; };
 		655197F36E3561F5EBB2B456 /* lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib.h; sourceTree = "<group>"; };
 		82E1AC498ACAE9E123276B7A /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		9EA769DDCBCA01C4A4A674AF /* lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = lib.c; sourceTree = "<group>"; };
@@ -165,6 +166,7 @@
 				CE093984B3218CD2FC972D09 /* test */,
 				8EC0A5AD173DDF13D9361EBE /* tool */,
 				29CFFE07E6D74CFE2F61B31F /* Bazel External Repositories */,
+				6DEE7775A87F3AD8AD281743 /* Bazel Generated Files */,
 				C5DA04B2480EBE8D895B5826 /* Products */,
 				2A84A6FD612A2BEF44B2014C /* Frameworks */,
 			);
@@ -188,11 +190,27 @@
 			path = ../../external;
 			sourceTree = SOURCE_ROOT;
 		};
+		2A74A0BABCA13EF4011BFD00 /* bin */ = {
+			isa = PBXGroup;
+			children = (
+				9401D751AA6B1781111B8489 /* test */,
+			);
+			path = bin;
+			sourceTree = "<group>";
+		};
 		2A84A6FD612A2BEF44B2014C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		362DEFEF499FD1FCF27C95D3 /* fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				BE534ACECD6842E3D0C7EDA6 /* xcodeproj_bwx.generator-params */,
+			);
+			path = fixtures;
 			sourceTree = "<group>";
 		};
 		6033DA143D6CA2B97C1808E7 /* private */ = {
@@ -202,6 +220,15 @@
 			);
 			path = private;
 			sourceTree = "<group>";
+		};
+		6DEE7775A87F3AD8AD281743 /* Bazel Generated Files */ = {
+			isa = PBXGroup;
+			children = (
+				E9FB62E17E9CD717293583B0 /* darwin_x86_64-dbg-STABLE-0 */,
+			);
+			name = "Bazel Generated Files";
+			path = "bazel-out";
+			sourceTree = SOURCE_ROOT;
 		};
 		8C751C8E5D51A45F0E89CB8F /* private */ = {
 			isa = PBXGroup;
@@ -220,6 +247,14 @@
 			path = tool;
 			sourceTree = "<group>";
 		};
+		9401D751AA6B1781111B8489 /* test */ = {
+			isa = PBXGroup;
+			children = (
+				362DEFEF499FD1FCF27C95D3 /* fixtures */,
+			);
+			path = test;
+			sourceTree = "<group>";
+		};
 		B93A94C580A3732A5B346592 /* examples_cc_external */ = {
 			isa = PBXGroup;
 			children = (
@@ -230,6 +265,14 @@
 			name = examples_cc_external;
 			path = external;
 			sourceTree = SOURCE_ROOT;
+		};
+		BE534ACECD6842E3D0C7EDA6 /* xcodeproj_bwx.generator-params */ = {
+			isa = PBXGroup;
+			children = (
+				50EE84464C0D09BEA535AD55 /* tool.7.link.params */,
+			);
+			path = "xcodeproj_bwx.generator-params";
+			sourceTree = "<group>";
 		};
 		C5DA04B2480EBE8D895B5826 /* Products */ = {
 			isa = PBXGroup;
@@ -256,6 +299,14 @@
 				B13DA8B967470B62463A7C36 /* BUILD */,
 			);
 			path = fixtures;
+			sourceTree = "<group>";
+		};
+		E9FB62E17E9CD717293583B0 /* darwin_x86_64-dbg-STABLE-0 */ = {
+			isa = PBXGroup;
+			children = (
+				2A74A0BABCA13EF4011BFD00 /* bin */,
+			);
+			path = "darwin_x86_64-dbg-STABLE-0";
 			sourceTree = "<group>";
 		};
 		F1B323372508EB9B5C75D7CE /* lib2 */ = {
@@ -591,7 +642,7 @@
 			shellScript = "\"$SCRIPT_INPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
-		790733B6E675C2785F8020AC /* Fetch External Repositories */ = {
+		773C70B69E7F801B38FDC01C /* Generate Files */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -599,9 +650,10 @@
 			);
 			inputPaths = (
 			);
-			name = "Fetch External Repositories";
+			name = "Generate Files";
 			outputFileListPaths = (
 				"$(INTERNAL_DIR)/external.xcfilelist",
+				"$(INTERNAL_DIR)/generated.xcfilelist",
 			);
 			outputPaths = (
 			);
@@ -641,7 +693,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
+			shellScript = "set -euo pipefail\n\nperl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E881916100D775EF5F50A2C6 /* Create compiling dependencies */ = {
@@ -1312,7 +1364,7 @@
 					"EXTERNAL_SECRET_2=\\\"World?\\\"",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
-				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/darwin_x86_64-dbg-STABLE-1/tool/tool.link.params";
+				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/tool.7.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",

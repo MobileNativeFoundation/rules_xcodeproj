@@ -134,9 +134,6 @@ if [[ $for_fixture -eq 1 ]]; then
   for file in "${bazel_integration_files[@]}"; do
     :>"$dest/rules_xcodeproj/bazel/${file##*/}"
   done
-
-  # link params are represented in the spec
-  find "$dest/rules_xcodeproj/targets" -type f -exec sh -c ':>"$1"' _ {} \;
 else
   cp -c "${bazel_integration_files[@]}" "$dest/rules_xcodeproj/bazel"
 fi

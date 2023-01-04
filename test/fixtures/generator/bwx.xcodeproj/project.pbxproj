@@ -539,6 +539,7 @@
 		2D1863816877A83D8249972F /* Target+Testing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Target+Testing.swift"; sourceTree = "<group>"; };
 		2E8E3AA92CA38CB6D7B594D9 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		2F1F7775D5D284BEA0AF9B26 /* XCSchemeInfo+DiagnosticsInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCSchemeInfo+DiagnosticsInfo.swift"; sourceTree = "<group>"; };
+		301626389F4F8A00B11DF117 /* tests.__internal__.__test_bundle.10.link.params */ = {isa = PBXFileReference; path = tests.__internal__.__test_bundle.10.link.params; sourceTree = "<group>"; };
 		3022A38A772394F16EF7432D /* XCScheme+ArchiveAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCScheme+ArchiveAction.swift"; sourceTree = "<group>"; };
 		33080E9D2CEBDB9DFE8DDC19 /* ConsolidatedTargetExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsolidatedTargetExtensionsTests.swift; sourceTree = "<group>"; };
 		330E5362342A8142E660CFA0 /* AddTargets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTargets.swift; sourceTree = "<group>"; };
@@ -568,6 +569,7 @@
 		45A13A9006009ADAAD8E9F9A /* CreateFilesAndGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFilesAndGroups.swift; sourceTree = "<group>"; };
 		4667D2018215FECB1BDABE0E /* UIKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKit.swift; sourceTree = "<group>"; };
 		497FD778407F2E7EC05F5344 /* XCSchemeInfo+BuildActionInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCSchemeInfo+BuildActionInfo.swift"; sourceTree = "<group>"; };
+		499C45A826671920EE54C033 /* swiftc.11.link.params */ = {isa = PBXFileReference; path = swiftc.11.link.params; sourceTree = "<group>"; };
 		4AD6D8D902C313C769352513 /* OrderedSet+Hashable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedSet+Hashable.swift"; sourceTree = "<group>"; };
 		4B1AE560D4716574E7653DD2 /* OrderedSet+Partial RangeReplaceableCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedSet+Partial RangeReplaceableCollection.swift"; sourceTree = "<group>"; };
 		4C4DCC4B5FF6EDDF7F9F33BD /* PBXTargets+ExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PBXTargets+ExtensionsTests.swift"; sourceTree = "<group>"; };
@@ -633,6 +635,7 @@
 		7F9E3D0B335CE4C4C88D677D /* tzfile__.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tzfile__.h; sourceTree = "<group>"; };
 		7FEC1D01E77A73516E5E7DE3 /* DisambiguateTargets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisambiguateTargets.swift; sourceTree = "<group>"; };
 		800E3E1F5EA50778894BF7FF /* Box.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
+		80603D672818FCFF6630F444 /* generator.7.link.params */ = {isa = PBXFileReference; path = generator.7.link.params; sourceTree = "<group>"; };
 		813B2B35ECDBF46275442C78 /* FilePath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePath.swift; sourceTree = "<group>"; };
 		817534E7BC230FBA1E2DCB0B /* XCScheme+AditionalOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCScheme+AditionalOption.swift"; sourceTree = "<group>"; };
 		818C055870131EA32A1AE33D /* TargetIDConsolidatedTargetKeyDictionary+ExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TargetIDConsolidatedTargetKeyDictionary+ExtensionsTests.swift"; sourceTree = "<group>"; };
@@ -935,6 +938,16 @@
 			path = ../../../../..;
 			sourceTree = "<group>";
 		};
+		1FA534AFD925C982D33D0861 /* xcodeproj_bwx.generator-params */ = {
+			isa = PBXGroup;
+			children = (
+				80603D672818FCFF6630F444 /* generator.7.link.params */,
+				499C45A826671920EE54C033 /* swiftc.11.link.params */,
+				301626389F4F8A00B11DF117 /* tests.__internal__.__test_bundle.10.link.params */,
+			);
+			path = "xcodeproj_bwx.generator-params";
+			sourceTree = "<group>";
+		};
 		1FE3D64FD4536CBEE13AB8FA /* OrderedSet */ = {
 			isa = PBXGroup;
 			children = (
@@ -1015,6 +1028,14 @@
 			path = ../../external;
 			sourceTree = SOURCE_ROOT;
 		};
+		2A74A0BABCA13EF4011BFD00 /* bin */ = {
+			isa = PBXGroup;
+			children = (
+				9401D751AA6B1781111B8489 /* test */,
+			);
+			path = bin;
+			sourceTree = "<group>";
+		};
 		2A84A6FD612A2BEF44B2014C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1028,6 +1049,14 @@
 				42D454C1362C4BA05C52C19F /* Writable.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		362DEFEF499FD1FCF27C95D3 /* fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				829CD0B2D14EAAD17626D4AE /* generator */,
+			);
+			path = fixtures;
 			sourceTree = "<group>";
 		};
 		41C079159B673ECFB8AA6063 /* Sources */ = {
@@ -1135,6 +1164,7 @@
 			isa = PBXGroup;
 			children = (
 				BCFF50255753F196840EA208 /* applebin_macos-darwin_x86_64-dbg-STABLE-2 */,
+				E9FB62E17E9CD717293583B0 /* darwin_x86_64-dbg-STABLE-0 */,
 			);
 			name = "Bazel Generated Files";
 			path = "bazel-out";
@@ -1244,6 +1274,14 @@
 			path = ZippyJSONCFamily;
 			sourceTree = "<group>";
 		};
+		829CD0B2D14EAAD17626D4AE /* generator */ = {
+			isa = PBXGroup;
+			children = (
+				1FA534AFD925C982D33D0861 /* xcodeproj_bwx.generator-params */,
+			);
+			path = generator;
+			sourceTree = "<group>";
+		};
 		894FF8B75D9E3CF44C847D85 /* com_github_pointfreeco_xctest_dynamic_overlay */ = {
 			isa = PBXGroup;
 			children = (
@@ -1272,6 +1310,14 @@
 				80F3B1F7A960856580C520D7 /* ZippyJSONCFamily */,
 			);
 			path = Sources;
+			sourceTree = "<group>";
+		};
+		9401D751AA6B1781111B8489 /* test */ = {
+			isa = PBXGroup;
+			children = (
+				362DEFEF499FD1FCF27C95D3 /* fixtures */,
+			);
+			path = test;
 			sourceTree = "<group>";
 		};
 		95175BB831AAEFFD676A9C15 /* Objects */ = {
@@ -1690,6 +1736,14 @@
 			path = generator;
 			sourceTree = "<group>";
 		};
+		E9FB62E17E9CD717293583B0 /* darwin_x86_64-dbg-STABLE-0 */ = {
+			isa = PBXGroup;
+			children = (
+				2A74A0BABCA13EF4011BFD00 /* bin */,
+			);
+			path = "darwin_x86_64-dbg-STABLE-0";
+			sourceTree = "<group>";
+		};
 		EAA16F82C1AE635AAB74DA00 /* generator */ = {
 			isa = PBXGroup;
 			children = (
@@ -2084,7 +2138,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\ntouch \"$SCRIPT_OUTPUT_FILE_1\"\n";
+			shellScript = "set -euo pipefail\n\nperl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\ntouch \"$SCRIPT_OUTPUT_FILE_1\"\n";
 			showEnvVarsInLog = 0;
 		};
 		2FB8CA190C5FD287F83F39E3 /* Create swift_debug_settings.py */ = {
@@ -2135,7 +2189,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
+			shellScript = "set -euo pipefail\n\nperl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
 		773C70B69E7F801B38FDC01C /* Generate Files */ = {
@@ -2172,7 +2226,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "perl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
+			shellScript = "set -euo pipefail\n\nperl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B3AB25EDFB6E631C35C27D22 /* Create compiling dependencies */ = {
@@ -2996,7 +3050,7 @@
 					"$(BAZEL_EXTERNAL)/com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/include",
 					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/include",
 				);
-				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/applebin_macos-darwin_x86_64-dbg-STABLE-2/tools/generator/generator.link.params";
+				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/generator/xcodeproj_bwx.generator-params/generator.7.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",
@@ -3204,7 +3258,7 @@
 				EXECUTABLE_EXTENSION = "";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GENERATE_INFOPLIST_FILE = YES;
-				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/applebin_macos-darwin_x86_64-dbg-STABLE-2/tools/swiftc_stub/swiftc.link.params";
+				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/generator/xcodeproj_bwx.generator-params/swiftc.11.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static";
@@ -3251,7 +3305,7 @@
 					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/include",
 				);
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-STABLE-2/bin/tools/generator/test/rules_xcodeproj/tests.__internal__.__test_bundle/Info.plist";
-				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/applebin_macos-darwin_x86_64-dbg-STABLE-2/tools/generator/test/tests.link.params";
+				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/generator/xcodeproj_bwx.generator-params/tests.__internal__.__test_bundle.10.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(DERIVED_FILE_DIR)/xcode-overlay.yaml -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_jjliso8601dateformatter/JJLISO8601DateFormatter.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_zippyjsoncfamily/ZippyJSONCFamily.swift.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static";

@@ -42,11 +42,9 @@
             ]
         },
         "label": "//AddressSanitizerApp:AddressSanitizerApp",
-        "linker_inputs": {
-            "linkopts": [
-                "fixture",
-                "linkopts"
-            ]
+        "link_params": {
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/AddressSanitizerApp.0.link.params",
+            "t": "g"
         },
         "name": "AddressSanitizerApp",
         "outputs": {
@@ -128,11 +126,9 @@
             ]
         },
         "label": "//ThreadSanitizerApp:ThreadSanitizerApp",
-        "linker_inputs": {
-            "linkopts": [
-                "fixture",
-                "linkopts"
-            ]
+        "link_params": {
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/ThreadSanitizerApp.1.link.params",
+            "t": "g"
         },
         "name": "ThreadSanitizerApp",
         "outputs": {
@@ -268,11 +264,9 @@
         },
         "is_swift": false,
         "label": "//UndefinedBehaviorSanitizerApp:UndefinedBehaviorSanitizerApp",
-        "linker_inputs": {
-            "linkopts": [
-                "fixture",
-                "linkopts"
-            ]
+        "link_params": {
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/UndefinedBehaviorSanitizerApp.2.link.params",
+            "t": "g"
         },
         "name": "UndefinedBehaviorSanitizerApp",
         "outputs": {

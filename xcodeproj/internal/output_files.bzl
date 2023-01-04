@@ -114,6 +114,7 @@ def _create(
     )
 
     if should_produce_output_groups and direct_outputs:
+        linking_output_group_name = "bl {}".format(direct_outputs.id)
         products_output_group_name = "bp {}".format(direct_outputs.id)
 
         indexstores_filelist = filelists.write(
@@ -143,9 +144,11 @@ def _create(
                 True,
                 indexstores_files,
             ),
+            (linking_output_group_name, False, depset()),
             (products_output_group_name, False, transitive_products),
         ]
     else:
+        linking_output_group_name = None
         products_output_group_name = None
         direct_group_list = None
 
@@ -169,6 +172,7 @@ def _create(
         _transitive_indexestores = transitive_indexestores,
         _transitive_products = transitive_products,
         direct_outputs = direct_outputs if should_produce_dto else None,
+        linking_output_group_name = linking_output_group_name,
         products_output_group_name = products_output_group_name,
         transitive_infoplists = transitive_infoplists,
     )
