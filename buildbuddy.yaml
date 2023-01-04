@@ -2,6 +2,7 @@ x_templates:
   action_setup:
     - &action_base
       os: "darwin"
+      resource_requests: { memory: 6GB }
       triggers:
         push:
           branches:
