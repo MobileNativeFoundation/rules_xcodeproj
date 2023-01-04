@@ -9,6 +9,8 @@ x_templates:
         pull_request:
           branches:
             - "*"
+    - &arm64
+      arch: "arm64"
 
     # Workspace selection
     - &root_workspace
@@ -44,6 +46,7 @@ x_templates:
 
 actions:
   - name: Test
+    <<: *arm64
     <<: *action_base
     <<: *root_workspace
     bazel_commands:
@@ -56,6 +59,7 @@ actions:
       - *test_all
 
   - name: Integration Test - Root
+    <<: *arm64
     <<: *action_base
     <<: *root_workspace
     bazel_commands:
@@ -82,6 +86,7 @@ actions:
       - *build_all
 
   - name: Integration Test - "examples/integration"
+    <<: *arm64
     <<: *action_base
     <<: *examples_integration_workspace
     bazel_commands:
