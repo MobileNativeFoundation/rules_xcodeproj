@@ -159,16 +159,14 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
             )
         }
 
-        if !target.linkerInputs.linkopts.isEmpty {
+        if let linkParams = target.linkParams {
             try buildSettings.prepend(
                 onKey: "OTHER_LDFLAGS",
                 ["@$(DERIVED_FILE_DIR)/link.params"]
             )
             buildSettings.set(
                 "LINK_PARAMS_FILE",
-                to: FilePathResolver.resolveInternal(
-                    try target.linkParamsFilePath().path
-                )
+                to: FilePathResolver.resolveGenerated(linkParams.path)
             )
         }
 
@@ -589,10 +587,6 @@ extension Target {
         components = ["targets"] + components
 
         return Path(components: components)
-    }
-
-    func linkParamsFilePath() throws -> FilePath {
-        return try .internal(internalTargetFilesPath() + "\(name).link.params")
     }
 }
 

@@ -113,16 +113,9 @@ enum Fixtures {
                 entitlements: "app.entitlements"
             ),
             linkerInputs: .init(
-                dynamicFrameworks: ["a/Fram.framework"],
-                linkopts: [
-                    "-framework",
-                    "Fram",
-                    "$(BUILD_DIR)/bazel-out/z/A.a",
-                    "a/imported.a",
-                    "-force_load",
-                    "$(BUILD_DIR)/bazel-out/a/c.lo",
-                ]
+                dynamicFrameworks: ["a/Fram.framework"]
             ),
+            linkParams: .generated("z/A.link.params"),
             resourceBundleDependencies: ["R 1"],
             dependencies: ["C 1", "A 1", "R 1"],
             outputs: .init(
@@ -162,9 +155,9 @@ enum Fixtures {
             ),
             testHost: "A 2",
             linkerInputs: .init(
-                dynamicFrameworks: [.generated("a/frameworks/b.framework")],
-                linkopts: ["-framework", "StaticFram", "-framework", "b"]
+                dynamicFrameworks: [.generated("a/frameworks/b.framework")]
             ),
+            linkParams: .generated("B.link.params"),
             dependencies: ["A 2", "B 1"]
         ),
         "B 3": Target.mock(
@@ -175,9 +168,7 @@ enum Fixtures {
                 path: .generated("B3.xctest")
             ),
             testHost: "A 2",
-            linkerInputs: .init(
-                linkopts: ["-framework", "StaticFram"]
-            ),
+            linkParams: .generated("B3.link.params"),
             dependencies: ["A 2", "B 1"]
         ),
         "C 1": Target.mock(
@@ -201,12 +192,7 @@ enum Fixtures {
                 path: .generated("d")
             ),
             inputs: .init(srcs: ["a/b/d.m"]),
-            linkerInputs: .init(
-                linkopts: [
-                    "-force_load",
-                    "$(BUILD_DIR)/bazel-out/a/c.lo",
-                ]
-            ),
+            linkParams: .generated("d.link.params"),
             dependencies: ["C 1"]
         ),
         "E1": Target.mock(
@@ -483,12 +469,48 @@ enum Fixtures {
             path: "a"
         )
 
+        // bazel-out/B.link.params
+
+        elements[.generated("B.link.params")] = PBXFileReference(
+            sourceTree: .group,
+            path: "B.link.params"
+        )
+
+        // bazel-out/B3.link.params
+
+        elements[.generated("B3.link.params")] = PBXFileReference(
+            sourceTree: .group,
+            path: "B3.link.params"
+        )
+
+        // bazel-out/d.link.params
+
+        elements[.generated("d.link.params")] = PBXFileReference(
+            sourceTree: .group,
+            path: "d.link.params"
+        )
+
         // bazel-out/v
 
         elements[.generated("v", isFolder: true)] = PBXFileReference(
             sourceTree: .group,
             lastKnownFileType: "folder",
             path: "v"
+        )
+
+        // bazel-out/z/A.link.params
+
+        elements[.generated("z/A.link.params")] = PBXFileReference(
+            sourceTree: .group,
+            path: "A.link.params"
+        )
+
+        // bazel-out/z
+
+        elements[.generated("z")] = PBXGroup(
+            children: [elements[.generated("z/A.link.params")]!],
+            sourceTree: .group,
+            path: "z"
         )
 
         // bazel-out
@@ -498,6 +520,10 @@ enum Fixtures {
                 elements[.generated("a")]!,
                 elements[.generated("a1b2c")]!,
                 elements[.generated("v", isFolder: true)]!,
+                elements[.generated("z")]!,
+                elements[.generated("B.link.params")]!,
+                elements[.generated("B3.link.params")]!,
+                elements[.generated("d.link.params")]!,
             ],
             sourceTree: .sourceRoot,
             name: "Bazel Generated Files",
@@ -1030,86 +1056,16 @@ $(BAZEL_EXTERNAL)/another_repo/b.swift
 
 """)
 
-        files[.internal("generated.xcfilelist")] = .nonReferencedContent(
-"""
+        files[.internal("generated.xcfilelist")] = .nonReferencedContent("""
+$(BAZEL_OUT)/B.link.params
+$(BAZEL_OUT)/B3.link.params
 $(BAZEL_OUT)/a/b/module.modulemap
 $(BAZEL_OUT)/a1b2c/bin/t.c
+$(BAZEL_OUT)/d.link.params
 $(BAZEL_OUT)/v/a.txt
+$(BAZEL_OUT)/z/A.link.params
 
 """)
-
-        // link.params
-
-        switch buildMode {
-        case .xcode:
-            files[.internal("targets/a1b2c/A 2/A.link.params")] =
-                .nonReferencedContent("""
--framework
-Fram
-$(BUILD_DIR)/bazel-out/z/A.a
-a/imported.a
--force_load
-$(BUILD_DIR)/bazel-out/a/c.lo
-
-""")
-
-            files[.internal("targets/a1b2c/B 2/B.link.params")] =
-                .nonReferencedContent("""
--framework
-StaticFram
--framework
-b
-
-""")
-
-            files[.internal("targets/a1b2c/B 3/B3.link.params")] =
-                .nonReferencedContent("""
--framework
-StaticFram
-
-""")
-
-            files[.internal("targets/a1b2c/C 2/d.link.params")] =
-                .nonReferencedContent("""
--force_load
-$(BUILD_DIR)/bazel-out/a/c.lo
-
-""")
-        case .bazel:
-            files[.internal("targets/a1b2c/A 2/A.link.params")] =
-                .nonReferencedContent("""
--framework
-Fram
-$(BUILD_DIR)/bazel-out/z/A.a
-a/imported.a
--force_load
-$(BUILD_DIR)/bazel-out/a/c.lo
-
-""")
-
-            files[.internal("targets/a1b2c/B 2/B.link.params")] =
-                .nonReferencedContent("""
--framework
-StaticFram
--framework
-b
-
-""")
-
-            files[.internal("targets/a1b2c/B 3/B3.link.params")] =
-                .nonReferencedContent("""
--framework
-StaticFram
-
-""")
-
-            files[.internal("targets/a1b2c/C 2/d.link.params")] =
-                .nonReferencedContent("""
--force_load
-$(BUILD_DIR)/bazel-out/a/c.lo
-
-""")
-        }
 
         // swift_debug_settings.py
 
@@ -1578,6 +1534,8 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
         ) -> PBXShellScriptBuildPhase {
             var outputPaths = ["$(DERIVED_FILE_DIR)/link.params"]
             var shellScript = #"""
+set -euo pipefail
+
 perl -pe 's/^("?)(.*\$\(.*\).*?)("?)$/"$2"/ ; s/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$ENV{$2}/g' \
   "$SCRIPT_INPUT_FILE_0" > "$SCRIPT_OUTPUT_FILE_0"
 
@@ -2164,9 +2122,7 @@ touch "$SCRIPT_OUTPUT_FILE_1"
                 "DEPLOYMENT_LOCATION": "NO",
                 "EXECUTABLE_NAME": "A_ExecutableName",
                 "GENERATE_INFOPLIST_FILE": "YES",
-                "LINK_PARAMS_FILE": """
-$(INTERNAL_DIR)/targets/a1b2c/A 2/A.link.params
-""",
+                "LINK_PARAMS_FILE": "$(BAZEL_OUT)/z/A.link.params",
                 "LD_RUNPATH_SEARCH_PATHS": [
                     "$(inherited)",
                     "@executable_path/../Frameworks",
@@ -2246,9 +2202,7 @@ $(INTERNAL_DIR)/targets/a1b2c/A 2/A.link.params
                 "COMPILE_TARGET_NAME": targets["B 2"]!.name,
                 "DEPLOYMENT_LOCATION": "NO",
                 "GENERATE_INFOPLIST_FILE": "YES",
-                "LINK_PARAMS_FILE": """
-$(INTERNAL_DIR)/targets/a1b2c/B 2/B.link.params
-""",
+                "LINK_PARAMS_FILE": "$(BAZEL_OUT)/B.link.params",
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_CFLAGS": [
                     "-ivfsoverlay",
@@ -2281,9 +2235,7 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2/A.app/A_ExecutableName
                 "COMPILE_TARGET_NAME": targets["B 3"]!.name,
                 "DEPLOYMENT_LOCATION": "NO",
                 "GENERATE_INFOPLIST_FILE": "YES",
-                "LINK_PARAMS_FILE": """
-$(INTERNAL_DIR)/targets/a1b2c/B 3/B3.link.params
-""",
+                "LINK_PARAMS_FILE": "$(BAZEL_OUT)/B3.link.params",
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_CFLAGS": [
                     "-ivfsoverlay",
@@ -2335,9 +2287,7 @@ $(INTERNAL_DIR)/targets/a1b2c/B 3/B3.link.params
                 "DEPLOYMENT_LOCATION": "NO",
                 "EXECUTABLE_EXTENSION": "",
                 "GENERATE_INFOPLIST_FILE": "YES",
-                "LINK_PARAMS_FILE": """
-$(INTERNAL_DIR)/targets/a1b2c/C 2/d.link.params
-""",
+                "LINK_PARAMS_FILE": "$(BAZEL_OUT)/d.link.params",
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_CFLAGS": [
                     "-ivfsoverlay",

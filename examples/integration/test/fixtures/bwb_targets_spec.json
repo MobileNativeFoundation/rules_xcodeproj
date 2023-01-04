@@ -57,16 +57,16 @@
             ]
         },
         "label": "//AppClip:AppClip",
+        "link_params": {
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/AppClip.59.link.params",
+            "t": "g"
+        },
         "linker_inputs": {
             "dynamic_frameworks": [
                 {
                     "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework",
                     "t": "e"
                 }
-            ],
-            "linkopts": [
-                "fixture",
-                "linkopts"
             ]
         },
         "lldb_context": {
@@ -207,16 +207,16 @@
             ]
         },
         "label": "//AppClip:AppClip",
+        "link_params": {
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/AppClip.1.link.params",
+            "t": "g"
+        },
         "linker_inputs": {
             "dynamic_frameworks": [
                 {
                     "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework",
                     "t": "e"
                 }
-            ],
-            "linkopts": [
-                "fixture",
-                "linkopts"
             ]
         },
         "lldb_context": {
@@ -405,11 +405,9 @@
         },
         "is_swift": false,
         "label": "//CommandLine/CommandLineTool:CommandLineTool",
-        "linker_inputs": {
-            "linkopts": [
-                "fixture",
-                "linkopts"
-            ]
+        "link_params": {
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/CommandLineTool.40.link.params",
+            "t": "g"
         },
         "lldb_context": {
             "c": [
@@ -586,11 +584,9 @@
         },
         "is_swift": false,
         "label": "//CommandLine/CommandLineTool:tool.binary",
-        "linker_inputs": {
-            "linkopts": [
-                "fixture",
-                "linkopts"
-            ]
+        "link_params": {
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/tool.binary.48.link.params",
+            "t": "g"
         },
         "lldb_context": {
             "c": [
@@ -789,11 +785,9 @@
         },
         "is_swift": false,
         "label": "//CommandLine/CommandLineTool:tool.binary",
-        "linker_inputs": {
-            "linkopts": [
-                "fixture",
-                "linkopts"
-            ]
+        "link_params": {
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/tool.binary.56.link.params",
+            "t": "g"
         },
         "lldb_context": {
             "c": [
@@ -2499,11 +2493,9 @@
         },
         "is_testonly": true,
         "label": "//CommandLine/Tests:CommandLineToolTests.__internal__.__test_bundle",
-        "linker_inputs": {
-            "linkopts": [
-                "fixture",
-                "linkopts"
-            ]
+        "link_params": {
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/CommandLineToolTests.__internal__.__test_bundle.57.link.params",
+            "t": "g"
         },
         "lldb_context": {
             "c": [
@@ -2876,16 +2868,16 @@
         },
         "is_swift": false,
         "label": "//Lib/dist/dynamic:iOS",
+        "link_params": {
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/iOS.71.link.params",
+            "t": "g"
+        },
         "linker_inputs": {
             "dynamic_frameworks": [
                 {
                     "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework",
                     "t": "e"
                 }
-            ],
-            "linkopts": [
-                "fixture",
-                "linkopts"
             ]
         },
         "lldb_context": {
@@ -2981,16 +2973,16 @@
         },
         "is_swift": false,
         "label": "//Lib/dist/dynamic:iOS",
+        "link_params": {
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/iOS.13.link.params",
+            "t": "g"
+        },
         "linker_inputs": {
             "dynamic_frameworks": [
                 {
                     "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework",
                     "t": "e"
                 }
-            ],
-            "linkopts": [
-                "fixture",
-                "linkopts"
             ]
         },
         "lldb_context": {
@@ -3085,16 +3077,16 @@
         },
         "is_swift": false,
         "label": "//Lib/dist/dynamic:tvOS",
+        "link_params": {
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/tvOS.73.link.params",
+            "t": "g"
+        },
         "linker_inputs": {
             "dynamic_frameworks": [
                 {
                     "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework",
                     "t": "e"
                 }
-            ],
-            "linkopts": [
-                "fixture",
-                "linkopts"
             ]
         },
         "lldb_context": {
@@ -3189,16 +3181,16 @@
         },
         "is_swift": false,
         "label": "//Lib/dist/dynamic:tvOS",
+        "link_params": {
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/tvOS.15.link.params",
+            "t": "g"
+        },
         "linker_inputs": {
             "dynamic_frameworks": [
                 {
                     "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework",
                     "t": "e"
                 }
-            ],
-            "linkopts": [
-                "fixture",
-                "linkopts"
             ]
         },
         "lldb_context": {
@@ -3293,16 +3285,16 @@
         },
         "is_swift": false,
         "label": "//Lib/dist/dynamic:watchOS",
+        "link_params": {
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/watchOS.74.link.params",
+            "t": "g"
+        },
         "linker_inputs": {
             "dynamic_frameworks": [
                 {
                     "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework",
                     "t": "e"
                 }
-            ],
-            "linkopts": [
-                "fixture",
-                "linkopts"
             ]
         },
         "lldb_context": {
@@ -3397,16 +3389,16 @@
         },
         "is_swift": false,
         "label": "//Lib/dist/dynamic:watchOS",
+        "link_params": {
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/watchOS.16.link.params",
+            "t": "g"
+        },
         "linker_inputs": {
             "dynamic_frameworks": [
                 {
                     "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework",
                     "t": "e"
                 }
-            ],
-            "linkopts": [
-                "fixture",
-                "linkopts"
             ]
         },
         "lldb_context": {
@@ -3909,16 +3901,16 @@
         },
         "is_swift": false,
         "label": "//Lib:LibFramework.tvOS",
+        "link_params": {
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/LibFramework.tvOS.75.link.params",
+            "t": "g"
+        },
         "linker_inputs": {
             "dynamic_frameworks": [
                 {
                     "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework",
                     "t": "e"
                 }
-            ],
-            "linkopts": [
-                "fixture",
-                "linkopts"
             ]
         },
         "lldb_context": {
@@ -4013,16 +4005,16 @@
         },
         "is_swift": false,
         "label": "//Lib:LibFramework.tvOS",
+        "link_params": {
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/LibFramework.tvOS.17.link.params",
+            "t": "g"
+        },
         "linker_inputs": {
             "dynamic_frameworks": [
                 {
                     "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework",
                     "t": "e"
                 }
-            ],
-            "linkopts": [
-                "fixture",
-                "linkopts"
             ]
         },
         "lldb_context": {
@@ -4117,16 +4109,16 @@
         },
         "is_swift": false,
         "label": "//Lib:LibFramework.watchOS",
+        "link_params": {
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/LibFramework.watchOS.66.link.params",
+            "t": "g"
+        },
         "linker_inputs": {
             "dynamic_frameworks": [
                 {
                     "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework",
                     "t": "e"
                 }
-            ],
-            "linkopts": [
-                "fixture",
-                "linkopts"
             ]
         },
         "lldb_context": {
@@ -4221,16 +4213,16 @@
         },
         "is_swift": false,
         "label": "//Lib:LibFramework.watchOS",
+        "link_params": {
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/LibFramework.watchOS.8.link.params",
+            "t": "g"
+        },
         "linker_inputs": {
             "dynamic_frameworks": [
                 {
                     "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework",
                     "t": "e"
                 }
-            ],
-            "linkopts": [
-                "fixture",
-                "linkopts"
             ]
         },
         "lldb_context": {
@@ -4348,6 +4340,10 @@
             ]
         },
         "label": "//UI:UIFramework.iOS",
+        "link_params": {
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/UIFramework.iOS.64.link.params",
+            "t": "g"
+        },
         "linker_inputs": {
             "dynamic_frameworks": [
                 {
@@ -4358,10 +4354,6 @@
                     "_": "applebin_ios-ios_arm64-dbg-STABLE-8/bin/Lib/frameworks/LibFramework.iOS.framework",
                     "t": "g"
                 }
-            ],
-            "linkopts": [
-                "fixture",
-                "linkopts"
             ]
         },
         "lldb_context": {
@@ -4509,6 +4501,10 @@
             ]
         },
         "label": "//UI:UIFramework.iOS",
+        "link_params": {
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/UIFramework.iOS.6.link.params",
+            "t": "g"
+        },
         "linker_inputs": {
             "dynamic_frameworks": [
                 {
@@ -4519,10 +4515,6 @@
                     "_": "applebin_ios-ios_x86_64-dbg-STABLE-7/bin/Lib/frameworks/LibFramework.iOS.framework",
                     "t": "g"
                 }
-            ],
-            "linkopts": [
-                "fixture",
-                "linkopts"
             ]
         },
         "lldb_context": {
@@ -4670,6 +4662,10 @@
             ]
         },
         "label": "//UI:UIFramework.tvOS",
+        "link_params": {
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/UIFramework.tvOS.76.link.params",
+            "t": "g"
+        },
         "linker_inputs": {
             "dynamic_frameworks": [
                 {
@@ -4680,10 +4676,6 @@
                     "_": "applebin_tvos-tvos_arm64-dbg-STABLE-14/bin/Lib/frameworks/LibFramework.tvOS.framework",
                     "t": "g"
                 }
-            ],
-            "linkopts": [
-                "fixture",
-                "linkopts"
             ]
         },
         "lldb_context": {
@@ -4831,6 +4823,10 @@
             ]
         },
         "label": "//UI:UIFramework.tvOS",
+        "link_params": {
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/UIFramework.tvOS.18.link.params",
+            "t": "g"
+        },
         "linker_inputs": {
             "dynamic_frameworks": [
                 {
@@ -4841,10 +4837,6 @@
                     "_": "applebin_tvos-tvos_x86_64-dbg-STABLE-13/bin/Lib/frameworks/LibFramework.tvOS.framework",
                     "t": "g"
                 }
-            ],
-            "linkopts": [
-                "fixture",
-                "linkopts"
             ]
         },
         "lldb_context": {
@@ -4992,6 +4984,10 @@
             ]
         },
         "label": "//UI:UIFramework.watchOS",
+        "link_params": {
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/UIFramework.watchOS.67.link.params",
+            "t": "g"
+        },
         "linker_inputs": {
             "dynamic_frameworks": [
                 {
@@ -5002,10 +4998,6 @@
                     "_": "applebin_watchos-watchos_arm64_32-dbg-STABLE-10/bin/Lib/frameworks/LibFramework.watchOS.framework",
                     "t": "g"
                 }
-            ],
-            "linkopts": [
-                "fixture",
-                "linkopts"
             ]
         },
         "lldb_context": {
@@ -5153,6 +5145,10 @@
             ]
         },
         "label": "//UI:UIFramework.watchOS",
+        "link_params": {
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/UIFramework.watchOS.9.link.params",
+            "t": "g"
+        },
         "linker_inputs": {
             "dynamic_frameworks": [
                 {
@@ -5163,10 +5159,6 @@
                     "_": "applebin_watchos-watchos_x86_64-dbg-STABLE-9/bin/Lib/frameworks/LibFramework.watchOS.framework",
                     "t": "g"
                 }
-            ],
-            "linkopts": [
-                "fixture",
-                "linkopts"
             ]
         },
         "lldb_context": {
@@ -5311,16 +5303,16 @@
             ]
         },
         "label": "//WidgetExtension:WidgetExtension",
+        "link_params": {
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/WidgetExtension.62.link.params",
+            "t": "g"
+        },
         "linker_inputs": {
             "dynamic_frameworks": [
                 {
                     "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework",
                     "t": "e"
                 }
-            ],
-            "linkopts": [
-                "fixture",
-                "linkopts"
             ]
         },
         "lldb_context": {
@@ -5460,16 +5452,16 @@
             ]
         },
         "label": "//WidgetExtension:WidgetExtension",
+        "link_params": {
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/WidgetExtension.4.link.params",
+            "t": "g"
+        },
         "linker_inputs": {
             "dynamic_frameworks": [
                 {
                     "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework",
                     "t": "e"
                 }
-            ],
-            "linkopts": [
-                "fixture",
-                "linkopts"
             ]
         },
         "lldb_context": {
@@ -5664,16 +5656,16 @@
             ]
         },
         "label": "//iMessageApp:iMessageAppExtension",
+        "link_params": {
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/iMessageAppExtension.24.link.params",
+            "t": "g"
+        },
         "linker_inputs": {
             "dynamic_frameworks": [
                 {
                     "_": "com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework",
                     "t": "e"
                 }
-            ],
-            "linkopts": [
-                "fixture",
-                "linkopts"
             ]
         },
         "lldb_context": {
@@ -6199,11 +6191,9 @@
         },
         "is_swift": false,
         "label": "//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC",
-        "linker_inputs": {
-            "linkopts": [
-                "fixture",
-                "linkopts"
-            ]
+        "link_params": {
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/FrameworkCoreUtilsObjC.63.link.params",
+            "t": "g"
         },
         "name": "FrameworkCoreUtilsObjC",
         "outputs": {
@@ -6348,11 +6338,9 @@
         },
         "is_swift": false,
         "label": "//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC",
-        "linker_inputs": {
-            "linkopts": [
-                "fixture",
-                "linkopts"
-            ]
+        "link_params": {
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/FrameworkCoreUtilsObjC.5.link.params",
+            "t": "g"
         },
         "name": "FrameworkCoreUtilsObjC",
         "outputs": {
@@ -6593,6 +6581,10 @@
             ]
         },
         "label": "//iOSApp/Source:iOSApp",
+        "link_params": {
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/iOSApp.70.link.params",
+            "t": "g"
+        },
         "linker_inputs": {
             "dynamic_frameworks": [
                 {
@@ -6611,10 +6603,6 @@
                     "_": "applebin_ios-ios_arm64-dbg-STABLE-8/bin/Lib/frameworks/LibFramework.iOS.framework",
                     "t": "g"
                 }
-            ],
-            "linkopts": [
-                "fixture",
-                "linkopts"
             ]
         },
         "lldb_context": {
@@ -6829,6 +6817,10 @@
             ]
         },
         "label": "//iOSApp/Source:iOSApp",
+        "link_params": {
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/iOSApp.12.link.params",
+            "t": "g"
+        },
         "linker_inputs": {
             "dynamic_frameworks": [
                 {
@@ -6847,10 +6839,6 @@
                     "_": "applebin_ios-ios_x86_64-dbg-STABLE-7/bin/Lib/frameworks/LibFramework.iOS.framework",
                     "t": "g"
                 }
-            ],
-            "linkopts": [
-                "fixture",
-                "linkopts"
             ]
         },
         "lldb_context": {
@@ -7113,6 +7101,10 @@
         "is_swift": false,
         "is_testonly": true,
         "label": "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests.__internal__.__test_bundle",
+        "link_params": {
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/iOSAppObjCUnitTests.__internal__.__test_bundle.23.link.params",
+            "t": "g"
+        },
         "linker_inputs": {
             "dynamic_frameworks": [
                 {
@@ -7131,10 +7123,6 @@
                     "_": "applebin_ios-ios_x86_64-dbg-STABLE-7/bin/Lib/frameworks/LibFramework.iOS.framework",
                     "t": "g"
                 }
-            ],
-            "linkopts": [
-                "fixture",
-                "linkopts"
             ]
         },
         "lldb_context": {
@@ -7351,6 +7339,10 @@
         },
         "is_testonly": true,
         "label": "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests.__internal__.__test_bundle",
+        "link_params": {
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/iOSAppSwiftUnitTests.__internal__.__test_bundle.26.link.params",
+            "t": "g"
+        },
         "linker_inputs": {
             "dynamic_frameworks": [
                 {
@@ -7369,10 +7361,6 @@
                     "_": "applebin_ios-ios_x86_64-dbg-STABLE-7/bin/Lib/frameworks/LibFramework.iOS.framework",
                     "t": "g"
                 }
-            ],
-            "linkopts": [
-                "fixture",
-                "linkopts"
             ]
         },
         "lldb_context": {
@@ -7667,13 +7655,13 @@
             ]
         },
         "label": "//macOSApp/Source:macOSApp",
+        "link_params": {
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/macOSApp.27.link.params",
+            "t": "g"
+        },
         "linker_inputs": {
             "dynamic_frameworks": [
                 "macOSApp/third_party/ExampleFramework.framework"
-            ],
-            "linkopts": [
-                "fixture",
-                "linkopts"
             ]
         },
         "lldb_context": {
@@ -7784,11 +7772,9 @@
         },
         "is_testonly": true,
         "label": "//macOSApp/Test/UITests:macOSAppUITests.__internal__.__test_bundle",
-        "linker_inputs": {
-            "linkopts": [
-                "fixture",
-                "linkopts"
-            ]
+        "link_params": {
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/macOSAppUITests.__internal__.__test_bundle.28.link.params",
+            "t": "g"
         },
         "lldb_context": {
             "c": [
@@ -7902,6 +7888,10 @@
             ]
         },
         "label": "//tvOSApp/Source:tvOSApp",
+        "link_params": {
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/tvOSApp.77.link.params",
+            "t": "g"
+        },
         "linker_inputs": {
             "dynamic_frameworks": [
                 {
@@ -7916,10 +7906,6 @@
                     "_": "applebin_tvos-tvos_arm64-dbg-STABLE-14/bin/Lib/frameworks/LibFramework.tvOS.framework",
                     "t": "g"
                 }
-            ],
-            "linkopts": [
-                "fixture",
-                "linkopts"
             ]
         },
         "lldb_context": {
@@ -8078,6 +8064,10 @@
             ]
         },
         "label": "//tvOSApp/Source:tvOSApp",
+        "link_params": {
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/tvOSApp.19.link.params",
+            "t": "g"
+        },
         "linker_inputs": {
             "dynamic_frameworks": [
                 {
@@ -8092,10 +8082,6 @@
                     "_": "applebin_tvos-tvos_x86_64-dbg-STABLE-13/bin/Lib/frameworks/LibFramework.tvOS.framework",
                     "t": "g"
                 }
-            ],
-            "linkopts": [
-                "fixture",
-                "linkopts"
             ]
         },
         "lldb_context": {
@@ -8248,11 +8234,9 @@
         },
         "is_testonly": true,
         "label": "//tvOSApp/Test/UITests:tvOSAppUITests.__internal__.__test_bundle",
-        "linker_inputs": {
-            "linkopts": [
-                "fixture",
-                "linkopts"
-            ]
+        "link_params": {
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/tvOSAppUITests.__internal__.__test_bundle.29.link.params",
+            "t": "g"
         },
         "lldb_context": {
             "c": [
@@ -8367,6 +8351,10 @@
         },
         "is_testonly": true,
         "label": "//tvOSApp/Test/UnitTests:tvOSAppUnitTests.__internal__.__test_bundle",
+        "link_params": {
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/tvOSAppUnitTests.__internal__.__test_bundle.30.link.params",
+            "t": "g"
+        },
         "linker_inputs": {
             "dynamic_frameworks": [
                 {
@@ -8381,10 +8369,6 @@
                     "_": "applebin_tvos-tvos_x86_64-dbg-STABLE-13/bin/Lib/frameworks/LibFramework.tvOS.framework",
                     "t": "g"
                 }
-            ],
-            "linkopts": [
-                "fixture",
-                "linkopts"
             ]
         },
         "lldb_context": {
@@ -8555,11 +8539,9 @@
         },
         "is_testonly": true,
         "label": "//watchOSApp/Test/UITests:watchOSAppUITests.__internal__.__test_bundle",
-        "linker_inputs": {
-            "linkopts": [
-                "fixture",
-                "linkopts"
-            ]
+        "link_params": {
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/watchOSAppUITests.__internal__.__test_bundle.31.link.params",
+            "t": "g"
         },
         "lldb_context": {
             "c": [
@@ -8798,6 +8780,10 @@
         },
         "is_testonly": true,
         "label": "//watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests.__internal__.__test_bundle",
+        "link_params": {
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/watchOSAppExtensionUnitTests.__internal__.__test_bundle.32.link.params",
+            "t": "g"
+        },
         "linker_inputs": {
             "dynamic_frameworks": [
                 {
@@ -8812,10 +8798,6 @@
                     "_": "applebin_watchos-watchos_x86_64-dbg-STABLE-9/bin/Lib/frameworks/LibFramework.watchOS.framework",
                     "t": "g"
                 }
-            ],
-            "linkopts": [
-                "fixture",
-                "linkopts"
             ]
         },
         "lldb_context": {
@@ -8976,6 +8958,10 @@
             ]
         },
         "label": "//watchOSAppExtension:watchOSAppExtension",
+        "link_params": {
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/watchOSAppExtension.68.link.params",
+            "t": "g"
+        },
         "linker_inputs": {
             "dynamic_frameworks": [
                 {
@@ -8990,10 +8976,6 @@
                     "_": "applebin_watchos-watchos_arm64_32-dbg-STABLE-10/bin/Lib/frameworks/LibFramework.watchOS.framework",
                     "t": "g"
                 }
-            ],
-            "linkopts": [
-                "fixture",
-                "linkopts"
             ]
         },
         "lldb_context": {
@@ -9153,6 +9135,10 @@
             ]
         },
         "label": "//watchOSAppExtension:watchOSAppExtension",
+        "link_params": {
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/watchOSAppExtension.10.link.params",
+            "t": "g"
+        },
         "linker_inputs": {
             "dynamic_frameworks": [
                 {
@@ -9167,10 +9153,6 @@
                     "_": "applebin_watchos-watchos_x86_64-dbg-STABLE-9/bin/Lib/frameworks/LibFramework.watchOS.framework",
                     "t": "g"
                 }
-            ],
-            "linkopts": [
-                "fixture",
-                "linkopts"
             ]
         },
         "lldb_context": {

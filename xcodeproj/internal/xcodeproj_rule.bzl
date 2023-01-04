@@ -200,6 +200,7 @@ def _process_extra_files(
 
 def _process_targets(
         *,
+        ctx,
         build_mode,
         is_fixture,
         configuration,
@@ -623,7 +624,9 @@ actual targets: {}
             )
 
     target_dtos = {}
-    for xcode_target in focused_targets.values():
+    target_dependencies = {}
+    target_link_params = {}
+    for index, xcode_target in enumerate(focused_targets.values()):
         transitive_dependencies = (
             target_transitive_dependencies[xcode_target.id]
         )
@@ -637,7 +640,8 @@ actual targets: {}
         else:
             additional_scheme_target_ids = None
 
-        dto, replaced_dependencies = xcode_targets.to_dto(
+        dto, replaced_dependencies, link_params = xcode_targets.to_dto(
+            ctx = ctx,
             xcode_target = xcode_target,
             is_fixture = is_fixture,
             additional_scheme_target_ids = additional_scheme_target_ids,
@@ -645,13 +649,56 @@ actual targets: {}
             include_lldb_context = include_lldb_context,
             is_unfocused_dependency = xcode_target.id in unfocused_dependencies,
             linker_products_map = linker_products_map,
+            params_index = index,
             should_include_outputs = should_include_outputs(build_mode),
             unfocused_targets = unfocused_targets,
             target_merges = target_merges,
             xcode_generated_paths = xcode_generated_paths,
         )
         target_dtos[xcode_target.id] = dto
+        target_dependencies[xcode_target.id] = (
+            transitive_dependencies,
+            replaced_dependencies,
+        )
+        if link_params:
+            target_link_params[xcode_target.id] = depset([link_params])
 
+    for xcode_target in focused_targets.values():
+        (
+            transitive_dependencies,
+            replaced_dependencies,
+        ) = target_dependencies[xcode_target.id]
+
+        transitive_link_params = []
+
+        link_params = target_link_params.get(xcode_target.id)
+        if link_params:
+            transitive_link_params.append(link_params)
+
+        for id in transitive_dependencies:
+            merge = target_merges.get(id)
+            if merge:
+                id = merge[0]
+                if id == xcode_target.id:
+                    continue
+            link_params = target_link_params.get(id)
+            if link_params:
+                transitive_link_params.append(link_params)
+
+        compiling_output_group_name = (
+            xcode_target.inputs.compiling_output_group_name
+        )
+        indexstores_output_group_name = (
+            xcode_target.inputs.indexstores_output_group_name
+        )
+        linking_output_group_name = (
+            xcode_target.inputs.linking_output_group_name
+        )
+        bwb_linking_output_group_name = (
+            xcode_target.outputs.linking_output_group_name
+        )
+
+        additional_linking_files = []
         for id in replaced_dependencies:
             if id in transitive_dependencies:
                 continue
@@ -659,17 +706,12 @@ actual targets: {}
             # The replaced dependency is not a transitive dependency, so we
             # need to add its merge in its output groups
 
-            compiling_output_group_name = (
-                xcode_target.inputs.compiling_output_group_name
-            )
-            indexstores_output_group_name = (
-                xcode_target.inputs.indexstores_output_group_name
-            )
-            linking_output_group_name = (
-                xcode_target.inputs.linking_output_group_name
-            )
+            link_params = target_link_params.get(id, None)
+            if link_params:
+                transitive_link_params.append(link_params)
 
             dep_target = focused_targets[id]
+
             dep_compiling_output_group_name = (
                 dep_target.inputs.compiling_output_group_name
             )
@@ -710,11 +752,20 @@ actual targets: {}
                     dep_linking_output_group_name,
                     [],
                 )
-                set_if_true(
-                    additional_generated,
-                    linking_output_group_name,
-                    additional_linking_files,
+
+        if transitive_link_params:
+            if linking_output_group_name:
+                additional_linking_files.extend(transitive_link_params)
+            if bwb_linking_output_group_name:
+                additional_outputs[bwb_linking_output_group_name] = (
+                    transitive_link_params
                 )
+
+        set_if_true(
+            additional_generated,
+            linking_output_group_name,
+            additional_linking_files,
+        )
 
     return (
         focused_targets,
@@ -1235,6 +1286,7 @@ def _xcodeproj_impl(ctx):
         replacement_labels_by_label,
         configurations_map,
     ) = _process_targets(
+        ctx = ctx,
         build_mode = build_mode,
         is_fixture = is_fixture,
         configuration = configuration,

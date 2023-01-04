@@ -25,11 +25,9 @@
             ]
         },
         "label": "//:SwiftBin",
-        "linker_inputs": {
-            "linkopts": [
-                "fixture",
-                "linkopts"
-            ]
+        "link_params": {
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/SwiftBin.0.link.params",
+            "t": "g"
         },
         "name": "SwiftBin",
         "outputs": {

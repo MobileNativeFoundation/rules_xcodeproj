@@ -16,6 +16,7 @@ struct Target: Equatable {
     let hasModulemaps: Bool
     var inputs: Inputs
     var linkerInputs: LinkerInputs
+    var linkParams: FilePath?
     var infoPlist: FilePath?
     var entitlements: FilePath?
     let resourceBundleDependencies: Set<TargetID>
@@ -59,6 +60,7 @@ extension Target: Decodable {
         case hasModulemaps
         case inputs
         case linkerInputs
+        case linkParams
         case infoPlist
         case entitlements
         case resourceBundleDependencies
@@ -103,6 +105,8 @@ extension Target: Decodable {
         linkerInputs = try container
             .decodeIfPresent(LinkerInputs.self, forKey: .linkerInputs) ??
             .init()
+        linkParams = try container
+            .decodeIfPresent(FilePath.self, forKey: .linkParams)
         infoPlist = try container
             .decodeIfPresent(FilePath.self, forKey: .infoPlist)
         entitlements = try container

@@ -101,6 +101,7 @@
 		889162C3C2543E5EA1748185 /* private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = private.h; sourceTree = "<group>"; };
 		929141189779333F1DDD490C /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		9E3FDAF45933E360CDCB3BAC /* lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = lib.c; sourceTree = "<group>"; };
+		A1891B8AF0EBEE66588DA614 /* tool.7.link.params */ = {isa = PBXFileReference; path = tool.7.link.params; sourceTree = "<group>"; };
 		D14C8349EFC6309D19C1FFFD /* lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = lib.c; sourceTree = "<group>"; };
 		D20093170A54E92A741D748D /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		E475F19E9E0AF14E1F46E023 /* liblib_impl.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_impl.a; path = "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external/liblib_impl.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -108,6 +109,30 @@
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
+		0AA83B642ECA8286582764C1 /* fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				1D48CBCAC6B7EE027B759A78 /* xcodeproj_bwb.generator-params */,
+			);
+			path = fixtures;
+			sourceTree = "<group>";
+		};
+		1BEF0788635BF32C08EDB7E2 /* test */ = {
+			isa = PBXGroup;
+			children = (
+				0AA83B642ECA8286582764C1 /* fixtures */,
+			);
+			path = test;
+			sourceTree = "<group>";
+		};
+		1D48CBCAC6B7EE027B759A78 /* xcodeproj_bwb.generator-params */ = {
+			isa = PBXGroup;
+			children = (
+				A1891B8AF0EBEE66588DA614 /* tool.7.link.params */,
+			);
+			path = "xcodeproj_bwb.generator-params";
+			sourceTree = "<group>";
+		};
 		37E3120547BEDCC42886C663 /* lib2 */ = {
 			isa = PBXGroup;
 			children = (
@@ -117,6 +142,15 @@
 			);
 			path = lib2;
 			sourceTree = "<group>";
+		};
+		38D12FD81F17842A5E5276F9 /* Bazel Generated Files */ = {
+			isa = PBXGroup;
+			children = (
+				EE297CCC0A7F8A721EA38521 /* darwin_x86_64-dbg-STABLE-0 */,
+			);
+			name = "Bazel Generated Files";
+			path = "bazel-out";
+			sourceTree = SOURCE_ROOT;
 		};
 		3BCB286303B532709B354800 /* includes */ = {
 			isa = PBXGroup;
@@ -181,6 +215,7 @@
 				F1024C07D3F609275C658D3F /* test */,
 				5C981C5BDF60FD9AF790B0BB /* tool */,
 				E35FE3EB7C97DE1172A312B1 /* Bazel External Repositories */,
+				38D12FD81F17842A5E5276F9 /* Bazel Generated Files */,
 				891FF4EFB55BD0CCB8B61ED5 /* Products */,
 				E41C6FEE91F3B36078EC9630 /* Frameworks */,
 			);
@@ -193,6 +228,14 @@
 				412E979B4EDBD9EAE95D73AB /* private.inc */,
 			);
 			path = private;
+			sourceTree = "<group>";
+		};
+		C1030DAB4E164A910DF09385 /* bin */ = {
+			isa = PBXGroup;
+			children = (
+				1BEF0788635BF32C08EDB7E2 /* test */,
+			);
+			path = bin;
 			sourceTree = "<group>";
 		};
 		C22F6A101E0D226EBF37333E /* examples_cc_external */ = {
@@ -220,6 +263,14 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EE297CCC0A7F8A721EA38521 /* darwin_x86_64-dbg-STABLE-0 */ = {
+			isa = PBXGroup;
+			children = (
+				C1030DAB4E164A910DF09385 /* bin */,
+			);
+			path = "darwin_x86_64-dbg-STABLE-0";
 			sourceTree = "<group>";
 		};
 		F1024C07D3F609275C658D3F /* test */ = {
@@ -544,7 +595,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -x\n\nif [[ \"${ENABLE_PREVIEWS:-}\" == \"YES\" ]]; then\nperl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\nelse\n  touch \"$SCRIPT_OUTPUT_FILE_0\"\nfi\n";
+			shellScript = "set -euo pipefail\n\nif [[ \"${ENABLE_PREVIEWS:-}\" == \"YES\" ]]; then\nperl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\nelse\n  touch \"$SCRIPT_OUTPUT_FILE_0\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		8AA0267F679300ED1FA6DF71 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
@@ -574,6 +625,7 @@
 			name = "Bazel Build";
 			outputFileListPaths = (
 				"$(INTERNAL_DIR)/external.xcfilelist",
+				"$(INTERNAL_DIR)/generated.xcfilelist",
 			);
 			outputPaths = (
 			);
@@ -943,7 +995,7 @@
 					"SECRET_2=\\\"World!\\\"",
 					"EXTERNAL_SECRET_2=\\\"World?\\\"",
 				);
-				LINK_PARAMS_FILE = "$(INTERNAL_DIR)/targets/darwin_x86_64-dbg-STABLE-1/tool/tool.link.params";
+				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/tool.7.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",

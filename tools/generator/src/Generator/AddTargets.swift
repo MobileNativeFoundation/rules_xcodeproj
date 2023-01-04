@@ -64,7 +64,7 @@ extension Generator {
                     in: pbxProj,
                     buildMode: buildMode,
                     hasCompileStub: compileSources?.hasCompileStub == true,
-                    hasLinkerFlags: target.hasLinkerFlags
+                    hasLinkParams: target.hasLinkParams
                 ),
                 try createHeadersPhase(
                     in: pbxProj,
@@ -227,9 +227,9 @@ Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)
         in pbxProj: PBXProj,
         buildMode: BuildMode,
         hasCompileStub: Bool,
-        hasLinkerFlags: Bool
+        hasLinkParams: Bool
     ) throws -> PBXShellScriptBuildPhase? {
-        guard hasLinkerFlags else {
+        guard hasLinkParams else {
             return nil
         }
 
@@ -239,10 +239,15 @@ perl -pe 's/^("?)(.*\$\(.*\).*?)("?)$/"$2"/ ; s/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$E
 """#
         var shellScriptComponents: [String]
         if buildMode == .xcode {
-            shellScriptComponents = [action + "\n"]
+            shellScriptComponents = [#"""
+set -euo pipefail
+
+\#(action)
+
+"""#]
         } else {
             shellScriptComponents = [#"""
-set -x
+set -euo pipefail
 
 if [[ "${ENABLE_PREVIEWS:-}" == "YES" ]]; then
 \#(action)
@@ -261,7 +266,6 @@ touch "$SCRIPT_OUTPUT_FILE_1"
 
 """#)
         }
-
 
         let script = PBXShellScriptBuildPhase(
             name: "Create linking dependencies",

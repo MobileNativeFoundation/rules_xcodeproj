@@ -374,11 +374,9 @@
         },
         "is_swift": false,
         "label": "//tool:tool",
-        "linker_inputs": {
-            "linkopts": [
-                "fixture",
-                "linkopts"
-            ]
+        "link_params": {
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/tool.7.link.params",
+            "t": "g"
         },
         "name": "tool",
         "outputs": {

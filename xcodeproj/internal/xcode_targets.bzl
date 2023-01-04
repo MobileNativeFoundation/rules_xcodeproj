@@ -178,6 +178,7 @@ def _to_xcode_target_outputs(outputs):
                 swift_generated_header = swift.generated_header
 
     return struct(
+        linking_output_group_name = outputs.linking_output_group_name,
         product_file = (
             direct_outputs.product if direct_outputs else None
         ),
@@ -283,6 +284,7 @@ def _merge_xcode_target_inputs(*, src, dest):
 
 def _merge_xcode_target_outputs(*, src, dest):
     return struct(
+        linking_output_group_name = dest.linking_output_group_name,
         swiftmodule = src.swiftmodule,
         swift_generated_header = src.swift_generated_header,
         product_file = dest.product_file,
@@ -517,10 +519,12 @@ def _xcode_target_to_dto(
         *,
         additional_scheme_target_ids = None,
         build_mode,
+        ctx,
         include_lldb_context,
         is_fixture,
         is_unfocused_dependency = False,
         linker_products_map,
+        params_index,
         should_include_outputs,
         unfocused_targets = {},
         target_merges = {},
@@ -572,6 +576,16 @@ def _xcode_target_to_dto(
         compile_target = xcode_target._compile_target,
     )
 
+    linker_inputs_dto, link_params = _linker_inputs_to_dto(
+        ctx = ctx,
+        linker_inputs = xcode_target.linker_inputs,
+        compile_target = xcode_target._compile_target,
+        name = xcode_target.name,
+        params_index = params_index,
+        platform = xcode_target.platform,
+        xcode_generated_paths = xcode_generated_paths,
+    )
+
     set_if_true(
         dto,
         "build_settings",
@@ -608,13 +622,12 @@ def _xcode_target_to_dto(
     set_if_true(
         dto,
         "linker_inputs",
-        _linker_inputs_to_dto(
-            is_fixture = is_fixture,
-            linker_inputs = xcode_target.linker_inputs,
-            compile_target = xcode_target._compile_target,
-            platform = xcode_target.platform,
-            xcode_generated_paths = xcode_generated_paths,
-        ),
+        linker_inputs_dto,
+    )
+    set_if_true(
+        dto,
+        "link_params",
+        file_path_to_dto(file_path(link_params)),
     )
     set_if_true(
         dto,
@@ -673,7 +686,7 @@ def _xcode_target_to_dto(
         ],
     )
 
-    return dto, replaced_dependencies
+    return dto, replaced_dependencies, link_params
 
 def _build_settings_to_dto(
         *,
@@ -780,12 +793,14 @@ def _inputs_to_dto(inputs):
 def _linker_inputs_to_dto(
         linker_inputs,
         *,
+        ctx,
         compile_target,
-        is_fixture,
+        name,
+        params_index,
         platform,
         xcode_generated_paths):
     if not linker_inputs:
-        return {}
+        return ({}, None)
 
     if compile_target:
         avoid_library = compile_target.product.file
@@ -843,13 +858,22 @@ def _linker_inputs_to_dto(
         linkopts.append("-force_load")
         linkopts.append(quote_if_needed(path))
 
-    if is_fixture and linkopts:
-        # We don't write the linkopts for fixtures
-        linkopts = ["fixture", "linkopts"]
+    if linkopts:
+        link_params = ctx.actions.declare_file(
+            "{}-params/{}.{}.link.params".format(
+                ctx.attr.name,
+                name,
+                params_index,
+            ),
+        )
+        ctx.actions.write(
+            content = "\n".join(linkopts) + "\n",
+            output = link_params,
+        )
+    else:
+        link_params = None
 
-    set_if_true(ret, "linkopts", linkopts)
-
-    return ret
+    return (ret, link_params)
 
 def _outputs_to_dto(outputs):
     dto = {}
