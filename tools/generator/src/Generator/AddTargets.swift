@@ -62,6 +62,7 @@ extension Generator {
                 ),
                 try createLinkingDependenciesScript(
                     in: pbxProj,
+                    buildMode: buildMode,
                     hasCompileStub: compileSources?.hasCompileStub == true,
                     hasLinkerFlags: target.hasLinkerFlags
                 ),
@@ -224,6 +225,7 @@ Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)
 
     private static func createLinkingDependenciesScript(
         in pbxProj: PBXProj,
+        buildMode: BuildMode,
         hasCompileStub: Bool,
         hasLinkerFlags: Bool
     ) throws -> PBXShellScriptBuildPhase? {
@@ -231,11 +233,25 @@ Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)
             return nil
         }
 
-        var shellScriptComponents = [#"""
+        let action = #"""
 perl -pe 's/^("?)(.*\$\(.*\).*?)("?)$/"$2"/ ; s/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$ENV{$2}/g' \
   "$SCRIPT_INPUT_FILE_0" > "$SCRIPT_OUTPUT_FILE_0"
+"""#
+        var shellScriptComponents: [String]
+        if buildMode == .xcode {
+            shellScriptComponents = [action + "\n"]
+        } else {
+            shellScriptComponents = [#"""
+set -x
+
+if [[ "${ENABLE_PREVIEWS:-}" == "YES" ]]; then
+\#(action)
+else
+  touch "$SCRIPT_OUTPUT_FILE_0"
+fi
 
 """#]
+        }
 
         var outputsPaths = ["$(DERIVED_FILE_DIR)/link.params"]
         if hasCompileStub {
