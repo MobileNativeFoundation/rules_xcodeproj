@@ -148,7 +148,9 @@ fi
 chmod u+w "$dest/rules_xcodeproj/bazel/"*
 
 # Keep only scripts as runnable
-chmod u+x "$dest/rules_xcodeproj/"*.{py,sh}
+find "$dest/rules_xcodeproj/bazel" \
+  -type f \( -name "*.sh" -o -name "*.py" \) \
+  -print0 | xargs -0 chmod u+x
 find "$dest/rules_xcodeproj/bazel" \
   -type f ! \( -name "swiftc" -o -name "*.sh" -o -name "*.py" \) \
   -print0 | xargs -0 chmod -x
