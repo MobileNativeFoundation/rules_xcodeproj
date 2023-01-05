@@ -628,65 +628,67 @@ already was set to `\(existingValue)`.
 
         // - `lldbSwiftSettingsModule`
 
-        var lldbSettingsMap: [String: LLDBSettings] = [:]
-        for target in targets.values {
-            if let lldbContext = target.lldbContext,
-               let lldbSettingsKey = target.lldbSettingsKey
-            {
-                // Since `testonly` is viral, we only need to check the target
-                let testingFrameworks: [String]
-                let testingIncludes: [String]
-                if target.isTestonly {
-                    testingFrameworks = [
-                        "$(PLATFORM_DIR)/Developer/Library/Frameworks",
-                        // This one is set by Bazel, but not Xcode
-                        "$(SDKROOT)/Developer/Library/Frameworks",
-                    ]
-                    testingIncludes = [
-                        "$(PLATFORM_DIR)/Developer/usr/lib",
-                    ]
-                } else {
-                    testingFrameworks = []
-                    testingIncludes = []
-                }
+        if buildMode != .xcode {
+            var lldbSettingsMap: [String: LLDBSettings] = [:]
+            for target in targets.values {
+                if let lldbContext = target.lldbContext,
+                   let lldbSettingsKey = target.lldbSettingsKey
+                {
+                    // Since `testonly` is viral, we only need to check the
+                    // target
+                    let testingFrameworks: [String]
+                    let testingIncludes: [String]
+                    if target.isTestonly {
+                        testingFrameworks = [
+                            "$(PLATFORM_DIR)/Developer/Library/Frameworks",
+                            // This one is set by Bazel, but not Xcode
+                            "$(SDKROOT)/Developer/Library/Frameworks",
+                        ]
+                        testingIncludes = [
+                            "$(PLATFORM_DIR)/Developer/usr/lib",
+                        ]
+                    } else {
+                        testingFrameworks = []
+                        testingIncludes = []
+                    }
 
-                let frameworks = lldbContext.frameworkSearchPaths
-                let includes = lldbContext.swiftmodules
+                    let frameworks = lldbContext.frameworkSearchPaths
+                    let includes = lldbContext.swiftmodules
 
-                var oncePaths: Set<String> = []
-                var onceOtherFlags: Set<String> = []
-                let clangOtherArgs = lldbContext.clang.map { clang in
-                    return clang.toClangExtraArgs(
-                        buildMode: buildMode,
-                        hasBazelDependencies: hasBazelDependencies,
-                        oncePaths: &oncePaths,
-                        onceOtherFlags: &onceOtherFlags
+                    var oncePaths: Set<String> = []
+                    var onceOtherFlags: Set<String> = []
+                    let clangOtherArgs = lldbContext.clang.map { clang in
+                        return clang.toClangExtraArgs(
+                            buildMode: buildMode,
+                            hasBazelDependencies: hasBazelDependencies,
+                            oncePaths: &oncePaths,
+                            onceOtherFlags: &onceOtherFlags
+                        )
+                    }
+
+                    let clang = clangOtherArgs.joined(separator: " ")
+
+                    lldbSettingsMap[lldbSettingsKey] = LLDBSettings(
+                        frameworks: testingFrameworks + frameworks,
+                        includes: testingIncludes + includes,
+                        clang: clang
                     )
                 }
-
-                let clang = clangOtherArgs.joined(separator: " ")
-
-                lldbSettingsMap[lldbSettingsKey] = LLDBSettings(
-                    frameworks: testingFrameworks + frameworks,
-                    includes: testingIncludes + includes,
-                    clang: clang
-                )
             }
-        }
 
-        let jsonEncoder = JSONEncoder()
-        jsonEncoder.keyEncodingStrategy = .convertToSnakeCase
-        jsonEncoder.outputFormatting = [
-            .prettyPrinted,
-            .sortedKeys,
-            .withoutEscapingSlashes,
-        ]
-        let lldbSettingsMapJSON = String(
-            data: try jsonEncoder.encode(lldbSettingsMap),
-            encoding: .utf8
-        )!
+            let jsonEncoder = JSONEncoder()
+            jsonEncoder.keyEncodingStrategy = .convertToSnakeCase
+            jsonEncoder.outputFormatting = [
+                .prettyPrinted,
+                .sortedKeys,
+                .withoutEscapingSlashes,
+            ]
+            let lldbSettingsMapJSON = String(
+                data: try jsonEncoder.encode(lldbSettingsMap),
+                encoding: .utf8
+            )!
 
-        let lldbSwiftSettingsModule = #"""
+            let lldbSwiftSettingsModule = #"""
 #!/usr/bin/python3
 
 """An lldb module that registers a stop hook to set swift settings."""
@@ -789,8 +791,9 @@ class StopHook:
 
 """#
 
-        files[.internal(lldbSwiftSettingsModulePath)] =
-            .nonReferencedContent(lldbSwiftSettingsModule)
+            files[.internal(lldbSwiftSettingsModulePath)] =
+                .nonReferencedContent(lldbSwiftSettingsModule)
+        }
 
         // Handle special groups
 
@@ -969,18 +972,6 @@ private extension LLDBContext.Clang {
             return #"-isystem "\#(path)""#
         }
 
-        let overlayArgs: [String]
-        if hasBazelDependencies &&
-            buildMode == .xcode &&
-            !modulemaps.isEmpty &&
-            !onceOtherFlags.contains(Self.overlayFlags)
-        {
-            onceOtherFlags.insert(Self.overlayFlags)
-            overlayArgs = [Self.overlayFlags]
-        } else {
-            overlayArgs = []
-        }
-
         var modulemapArgs: [String] = []
         for path in modulemaps {
             guard !oncePaths.contains(path) else {
@@ -1008,7 +999,6 @@ private extension LLDBContext.Clang {
         }
 
         return (
-            overlayArgs +
             quoteIncludesArgs +
             includesArgs +
             systemIncludesArgs +
