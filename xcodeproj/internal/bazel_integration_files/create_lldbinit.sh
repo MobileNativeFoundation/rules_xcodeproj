@@ -62,9 +62,11 @@ echo "settings append target.source-map ./external/ \"$build_external\""
 # Project files
 echo "settings append target.source-map ./ \"$SRCROOT\""
 
-# Import swift_debug_settings.py
-#
-# This Python module sets a stop hook, that when hit, sets the Swift debug
-# settings (i.e. `target.swift-*``) for the module of the current frame. This
-# fixes debugging when using `-serialize-debugging-options`.
-echo "command script import \"$OBJROOT/swift_debug_settings.py\""
+if [[ "$RULES_XCODEPROJ_BUILD_MODE" != "xcode" ]]; then
+  # Import swift_debug_settings.py
+  #
+  # This Python module sets a stop hook, that when hit, sets the Swift debug
+  # settings (i.e. `target.swift-*``) for the module of the current frame. This
+  # fixes debugging when using `-serialize-debugging-options`.
+  echo "command script import \"$OBJROOT/swift_debug_settings.py\""
+fi

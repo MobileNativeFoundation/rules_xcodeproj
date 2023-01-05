@@ -1069,8 +1069,9 @@ $(BAZEL_OUT)/z/A.link.params
 
         // swift_debug_settings.py
 
-        files[.internal("swift_debug_settings.py")] =
-            .nonReferencedContent(#"""
+        if buildMode != .xcode {
+            files[.internal("swift_debug_settings.py")] =
+                .nonReferencedContent(#"""
 #!/usr/bin/python3
 
 """An lldb module that registers a stop hook to set swift settings."""
@@ -1174,6 +1175,7 @@ class StopHook:
         return True
 
 """#)
+        }
 
         // `xcodeGeneratedfiles`
 
