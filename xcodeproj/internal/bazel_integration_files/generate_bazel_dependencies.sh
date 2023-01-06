@@ -123,10 +123,7 @@ source "$BAZEL_INTEGRATION_DIR/bazel_build.sh"
 
 if [[ "$ACTION" != "indexbuild" && "${ENABLE_PREVIEWS:-}" != "YES" ]]; then
   # shellcheck disable=SC2046
-  "$BAZEL_INTEGRATION_DIR/create_lldbinit.sh" \
-    "$PROJECT_DIR" \
-    $(xargs -n1 <<< "${RESOLVED_EXTERNAL_REPOSITORIES:-}") \
-    > "$BAZEL_LLDB_INIT"
+  "$BAZEL_INTEGRATION_DIR/create_lldbinit.sh"
 fi
 
 # Async actions
