@@ -93,7 +93,11 @@ def build_setting_path(
     if type == "g":
         # Generated
         if use_build_dir:
-            build_setting = "$(BUILD_DIR)/{}".format(path)
+            if path:
+                build_setting = "$(BUILD_DIR)/{}".format(path)
+            else:
+                # Support directory reference
+                build_setting = "$(BUILD_DIR)"
         elif absolute_path:
             # Removing "bazel-out" prefix
             build_setting = "$(BAZEL_OUT){}".format(path[9:])
@@ -102,8 +106,12 @@ def build_setting_path(
     elif type == "e":
         # External
         if absolute_path:
-            # Removing "external" prefix
-            build_setting = "$(BAZEL_EXTERNAL){}".format(path[8:])
+            if path:
+                # Removing "external" prefix
+                build_setting = "$(BAZEL_EXTERNAL){}".format(path[8:])
+            else:
+                # Support directory reference
+                build_setting = "$(BAZEL_EXTERNAL)"
         else:
             build_setting = path
     else:
@@ -240,10 +248,10 @@ def generated_file_path(
     )
 
 def is_external_path(path):
-    return path.startswith("external/")
+    return path == "external" or path.startswith("external/")
 
 def is_generated_path(path):
-    return path.startswith("bazel-out/")
+    return path == "bazel-out" or path.startswith("bazel-out/")
 
 def is_generated_file_path(fp):
     return fp.type == "g"
