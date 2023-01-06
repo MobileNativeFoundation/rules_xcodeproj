@@ -7558,6 +7558,10 @@
 					"__TIMESTAMP__=\"redacted\"",
 					"__TIME__=\"redacted\"",
 				);
+				HEADER_SEARCH_PATHS = (
+					"$(BAZEL_OUT)",
+					"$(BAZEL_EXTERNAL)",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",
@@ -9245,6 +9249,10 @@
 					"__TIMESTAMP__=\"redacted\"",
 					"__TIME__=\"redacted\"",
 				);
+				HEADER_SEARCH_PATHS = (
+					"$(BAZEL_OUT)",
+					"$(BAZEL_EXTERNAL)",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",
@@ -9970,6 +9978,10 @@
 					"__DATE__=\"redacted\"",
 					"__TIMESTAMP__=\"redacted\"",
 					"__TIME__=\"redacted\"",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(BAZEL_OUT)",
+					"$(BAZEL_EXTERNAL)",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (

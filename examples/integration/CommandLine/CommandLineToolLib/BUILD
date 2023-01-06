@@ -24,6 +24,12 @@ cc_library(
     name = "private_lib",
     srcs = ["private_lib.c"],
     hdrs = ["private_lib.h"],
+    copts = [
+        # This isn't needed bty anything, it's to exercise an edge case in
+        # `FilePath` detection.
+        "-Ibazel-out",
+        "-Iexternal",
+    ],
     tags = ["swift_module=_Lib"],
 )
 

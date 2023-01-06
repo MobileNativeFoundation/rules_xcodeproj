@@ -9977,6 +9977,10 @@
 					"__TIME__=\"redacted\"",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(BAZEL_OUT)",
+					"$(BAZEL_EXTERNAL)",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",
@@ -10691,6 +10695,10 @@
 					"__TIME__=\"redacted\"",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(BAZEL_OUT)",
+					"$(BAZEL_EXTERNAL)",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",
@@ -11803,6 +11811,10 @@
 					"__TIME__=\"redacted\"",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(BAZEL_OUT)",
+					"$(BAZEL_EXTERNAL)",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",

@@ -1791,6 +1791,10 @@
                 "__TIMESTAMP__=\"redacted\"",
                 "__TIME__=\"redacted\""
             ],
+            "HEADER_SEARCH_PATHS": [
+                "$(BAZEL_OUT)",
+                "$(BAZEL_EXTERNAL)"
+            ],
             "OTHER_CFLAGS": [
                 "-fstack-protector",
                 "-Wall",
@@ -1867,6 +1871,10 @@
                 "__TIMESTAMP__=\"redacted\"",
                 "__TIME__=\"redacted\""
             ],
+            "HEADER_SEARCH_PATHS": [
+                "$(BAZEL_OUT)",
+                "$(BAZEL_EXTERNAL)"
+            ],
             "OTHER_CFLAGS": [
                 "-fstack-protector",
                 "-Wall",
@@ -1942,6 +1950,10 @@
                 "__DATE__=\"redacted\"",
                 "__TIMESTAMP__=\"redacted\"",
                 "__TIME__=\"redacted\""
+            ],
+            "HEADER_SEARCH_PATHS": [
+                "$(BAZEL_OUT)",
+                "$(BAZEL_EXTERNAL)"
             ],
             "OTHER_CFLAGS": [
                 "-fstack-protector",
