@@ -37,11 +37,6 @@ x_templates:
       git_clean_exclude:
         - examples/sanitizers/bazel-output-base
         - examples/sanitizers/setup-bazel-output-base
-    - &examples_simple_workspace
-      bazel_workspace_dir: examples/simple
-      git_clean_exclude:
-        - examples/simple/bazel-output-base
-        - examples/simple/setup-bazel-output-base
 
   commands:
     - &bazel_5_setup "--output_base=setup-bazel-output-base run --config=workflows @com_github_buildbuddy_io_rules_xcodeproj//tools:set_bazel_5"
@@ -136,22 +131,6 @@ actions:
     <<: *action_base
     <<: *normal_resources
     <<: *examples_sanitizers_workspace
-    bazel_commands:
-      - *bazel_5_setup
-      - *validate_integration
-      - *build_all
-
-  - name: Integration Test - "examples/simple"
-    <<: *arm64
-    <<: *action_base
-    <<: *normal_resources
-    <<: *examples_simple_workspace
-    bazel_commands:
-      - *validate_integration
-      - *build_all
-  - name: Integration Test - "examples/simple" - Bazel 5
-    <<: *action_base
-    <<: *examples_simple_workspace
     bazel_commands:
       - *bazel_5_setup
       - *validate_integration
