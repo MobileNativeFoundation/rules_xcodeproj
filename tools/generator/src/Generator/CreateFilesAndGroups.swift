@@ -940,11 +940,6 @@ private extension Target {
 }
 
 private extension LLDBContext.Clang {
-    private static let overlayFlags = #"""
--ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml \#
--ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml
-"""#
-
     func toClangExtraArgs(
         buildMode: BuildMode,
         hasBazelDependencies: Bool,
