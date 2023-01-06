@@ -15,7 +15,7 @@ x_templates:
     - &normal_resources
       resource_requests: { memory: 6GB }
     - &light_resources
-      resource_requests: { memory: 3GB }
+      resource_requests: { memory: 3GB, cpu: 1 }
 
     # Workspace selection
     - &root_workspace
@@ -50,6 +50,20 @@ x_templates:
     - &test_all "test --config=workflows //..."
 
 actions:
+  - name: Buildifier Lint
+    <<: *action_base
+    <<: *light_resources
+    <<: *root_workspace
+    bazel_commands:
+      - "run --config=workflows //:buildifier.check"
+
+  - name: Docs
+    <<: *action_base
+    <<: *light_resources
+    <<: *root_workspace
+    bazel_commands:
+      - "test --config=workflows //docs:diff_test"
+
   - name: Test
     <<: *arm64
     <<: *normal_resources
@@ -79,6 +93,7 @@ actions:
       - *validate_integration
 
   - name: Integration Test - "examples/cc"
+    <<: *arm64
     <<: *action_base
     <<: *normal_resources
     <<: *examples_cc_workspace
@@ -139,17 +154,3 @@ actions:
       - *bazel_5_setup
       - *validate_integration
       - *build_all
-
-  - name: Buildifier Lint
-    <<: *action_base
-    <<: *light_resources
-    <<: *root_workspace
-    bazel_commands:
-      - "run --config=workflows //:buildifier.check"
-
-  - name: Docs
-    <<: *action_base
-    <<: *light_resources
-    <<: *root_workspace
-    bazel_commands:
-      - "test --config=workflows //docs:diff_test"
