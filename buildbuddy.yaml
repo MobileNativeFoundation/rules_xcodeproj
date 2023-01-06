@@ -125,6 +125,7 @@ actions:
       - *test_all
 
   - name: Integration Test - "examples/sanitizers"
+    <<: *arm64
     <<: *action_base
     <<: *normal_resources
     <<: *examples_sanitizers_workspace
@@ -141,6 +142,7 @@ actions:
       - *build_all
 
   - name: Integration Test - "examples/simple"
+    <<: *arm64
     <<: *action_base
     <<: *normal_resources
     <<: *examples_simple_workspace
