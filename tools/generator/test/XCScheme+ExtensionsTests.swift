@@ -244,7 +244,8 @@ extension XCSchemeExtensionsTests {
         let productType = launchActionInfo.targetInfo.productType
         let launchAction = try XCScheme.LaunchAction(
             buildMode: .xcode,
-            launchActionInfo: launchActionInfo
+            launchActionInfo: launchActionInfo,
+            otherPreActions: []
         )
         let expected = XCScheme.LaunchAction(
             runnable: launchActionInfo.runnable,
@@ -276,7 +277,8 @@ extension XCSchemeExtensionsTests {
         let productType = launchActionInfo.targetInfo.productType
         let launchAction = try XCScheme.LaunchAction(
             buildMode: .bazel,
-            launchActionInfo: launchActionInfo
+            launchActionInfo: launchActionInfo,
+            otherPreActions: []
         )
         let expected = XCScheme.LaunchAction(
             runnable: launchActionInfo.runnable,
@@ -312,7 +314,8 @@ extension XCSchemeExtensionsTests {
         let productType = launchActionInfo.targetInfo.productType
         let launchAction = try XCScheme.LaunchAction(
             buildMode: .bazel,
-            launchActionInfo: launchActionInfo
+            launchActionInfo: launchActionInfo,
+            otherPreActions: []
         )
         let expected = XCScheme.LaunchAction(
             runnable: launchActionInfo.runnable,
@@ -539,7 +542,8 @@ extension XCSchemeExtensionsTests {
         // when
         let launchAction = try XCScheme.LaunchAction(
             buildMode: .xcode,
-            launchActionInfo: launchActionInfo
+            launchActionInfo: launchActionInfo,
+            otherPreActions: []
         )
         
         // then

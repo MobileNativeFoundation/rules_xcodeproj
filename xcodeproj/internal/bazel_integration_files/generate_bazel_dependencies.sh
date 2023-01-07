@@ -119,13 +119,6 @@ readonly build_pre_config_flags
 # `bazel_build.sh` sets `indexstores_filelists`
 source "$BAZEL_INTEGRATION_DIR/bazel_build.sh"
 
-# Create `bazel.lldbinit``
-
-if [[ "$ACTION" != "indexbuild" && "${ENABLE_PREVIEWS:-}" != "YES" ]]; then
-  # shellcheck disable=SC2046
-  "$BAZEL_INTEGRATION_DIR/create_lldbinit.sh"
-fi
-
 # Async actions
 #
 # For these commands to run in the background, both stdout and stderr need to be
