@@ -43,7 +43,7 @@ extension Generator {
             "BAZEL_CONFIG": project.bazelConfig,
             "BAZEL_EXTERNAL": "$(BAZEL_OUTPUT_BASE)/external",
             "BAZEL_INTEGRATION_DIR": "$(INTERNAL_DIR)/bazel",
-            "BAZEL_LLDB_INIT": "$(OBJROOT)/bazel.lldbinit",
+            "BAZEL_LLDB_INIT": "$(HOME)/.lldbinit-rules_xcodeproj",
             "BAZEL_OUT": "$(PROJECT_DIR)/bazel-out",
             "_BAZEL_OUTPUT_BASE": "$(PROJECT_DIR)/../..",
             "BAZEL_OUTPUT_BASE": "$(_BAZEL_OUTPUT_BASE:standardizepath)",

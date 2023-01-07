@@ -34,7 +34,7 @@ final class CreateProjectTests: XCTestCase {
             buildSettings: project.buildSettings.asDictionary.merging([
                 "BAZEL_CONFIG": project.bazelConfig,
                 "BAZEL_EXTERNAL": "$(BAZEL_OUTPUT_BASE)/external",
-                "BAZEL_LLDB_INIT": "$(OBJROOT)/bazel.lldbinit",
+                "BAZEL_LLDB_INIT": "$(HOME)/.lldbinit-rules_xcodeproj",
                 "BAZEL_OUT": "$(PROJECT_DIR)/bazel-out",
                 "_BAZEL_OUTPUT_BASE": "$(PROJECT_DIR)/../..",
                 "BAZEL_OUTPUT_BASE": "$(_BAZEL_OUTPUT_BASE:standardizepath)",
@@ -153,7 +153,7 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
             buildSettings: project.buildSettings.asDictionary.merging([
                 "BAZEL_CONFIG": "rules_xcodeproj_fixtures",
                 "BAZEL_EXTERNAL": "$(BAZEL_OUTPUT_BASE)/external",
-                "BAZEL_LLDB_INIT": "$(OBJROOT)/bazel.lldbinit",
+                "BAZEL_LLDB_INIT": "$(HOME)/.lldbinit-rules_xcodeproj",
                 "BAZEL_OUT": "$(PROJECT_DIR)/bazel-out",
                 "_BAZEL_OUTPUT_BASE": "$(PROJECT_DIR)/../..",
                 "BAZEL_OUTPUT_BASE": "$(_BAZEL_OUTPUT_BASE:standardizepath)",

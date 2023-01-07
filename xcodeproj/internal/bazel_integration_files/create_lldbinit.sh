@@ -16,11 +16,6 @@ readonly index_external="$index_execution_root/external"
 
 {
 
-# Load ~/.lldbinit if it exists
-if [[ -f "$HOME/.lldbinit" ]]; then
-  echo "command source ~/.lldbinit"
-fi
-
 # Set `CWD` to `$execution_root` so relative paths in binaries work
 #
 # This is needed because we use the `oso_prefix_is_pwd` feature, which makes the
@@ -73,3 +68,11 @@ echo "settings append target.source-map ./ \"$SRCROOT\""
 echo "command script import \"$OBJROOT/swift_debug_settings.py\""
 
 } > "$BAZEL_LLDB_INIT"
+
+touch "$HOME/.lldbinit"
+
+readonly required_source='command source ~/.lldbinit-rules_xcodeproj'
+if ! grep -m 1 -q "$required_source" "$HOME/.lldbinit"; then
+  # Update `~/.lldbinit` to source `~/.lldbinit-rules_xcodeproj`
+  echo "$required_source" >> "$HOME/.lldbinit"
+fi
