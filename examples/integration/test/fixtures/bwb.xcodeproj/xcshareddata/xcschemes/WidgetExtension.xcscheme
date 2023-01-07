@@ -109,6 +109,24 @@
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES"
       launchAutomaticallySubstyle = "2">
+      <PreActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Update .lldbinit"
+               scriptText = "&quot;$BAZEL_INTEGRATION_DIR/create_lldbinit.sh&quot;">
+               <EnvironmentBuildable>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "06E3C912B8DE52D274641347"
+                     BuildableName = "WidgetExtension.appex"
+                     BlueprintName = "WidgetExtension"
+                     ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
+                  </BuildableReference>
+               </EnvironmentBuildable>
+            </ActionContent>
+         </ExecutionAction>
+      </PreActions>
       <RemoteRunnable
          runnableDebuggingMode = "2"
          BundleIdentifier = "com.apple.springboard">

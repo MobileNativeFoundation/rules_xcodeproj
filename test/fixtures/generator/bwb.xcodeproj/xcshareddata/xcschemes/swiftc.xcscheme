@@ -93,6 +93,24 @@
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES"
       enableAddressSanitizer = "YES">
+      <PreActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Update .lldbinit"
+               scriptText = "&quot;$BAZEL_INTEGRATION_DIR/create_lldbinit.sh&quot;">
+               <EnvironmentBuildable>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "2CF4E33AE578202202C2EC87"
+                     BuildableName = "swiftc"
+                     BlueprintName = "swiftc"
+                     ReferencedContainer = "container:../../../../../test/fixtures/generator/bwb.xcodeproj">
+                  </BuildableReference>
+               </EnvironmentBuildable>
+            </ActionContent>
+         </ExecutionAction>
+      </PreActions>
       <BuildableProductRunnable
          runnableDebuggingMode = "0">
          <BuildableReference

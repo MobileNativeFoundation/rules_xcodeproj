@@ -65,7 +65,20 @@ extension XCScheme {
 
         let launchAction: XCScheme.LaunchAction
         if let launchActionInfo = schemeInfo.launchActionInfo {
-            launchAction = try .init(buildMode: buildMode, launchActionInfo: launchActionInfo)
+            var otherPreActions: [XCScheme.ExecutionAction] = []
+            if buildMode != .xcode {
+                otherPreActions.append(
+                    .createLLDBInit(
+                        buildableReference: launchActionInfo
+                            .targetInfo.buildableReference
+                    )
+                )
+            }
+            launchAction = try .init(
+                buildMode: buildMode,
+                launchActionInfo: launchActionInfo,
+                otherPreActions: otherPreActions
+            )
         } else {
             launchAction = .init(
                 runnable: nil,
@@ -188,6 +201,18 @@ fi
             environmentBuildable: buildableReference
         )
     }
+
+    static func createLLDBInit(
+        buildableReference: XCScheme.BuildableReference
+    ) -> XCScheme.ExecutionAction {
+        return .init(
+            scriptText: #"""
+"$BAZEL_INTEGRATION_DIR/create_lldbinit.sh"
+"""#,
+            title: "Update .lldbinit",
+            environmentBuildable: buildableReference
+        )
+    }
 }
 
 extension XCScheme.CommandLineArguments {
@@ -237,7 +262,11 @@ extension XCScheme.TestAction {
 }
 
 extension XCScheme.LaunchAction {
-    convenience init(buildMode: BuildMode, launchActionInfo: XCSchemeInfo.LaunchActionInfo) throws {
+    convenience init(
+        buildMode: BuildMode,
+        launchActionInfo: XCSchemeInfo.LaunchActionInfo,
+        otherPreActions: [XCScheme.ExecutionAction]
+    ) throws {
         let commandlineArguments = XCScheme.CommandLineArguments(
             xcSchemeInfoArgs: launchActionInfo.args
         )
@@ -248,6 +277,7 @@ extension XCScheme.LaunchAction {
         self.init(
             runnable: launchActionInfo.runnable,
             buildConfiguration: launchActionInfo.buildConfigurationName,
+            preActions: otherPreActions,
             macroExpansion: try launchActionInfo.macroExpansion,
             selectedDebuggerIdentifier: launchActionInfo.debugger,
             selectedLauncherIdentifier: launchActionInfo.launcher,
