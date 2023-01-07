@@ -74,6 +74,12 @@ extension XCSchemeInfo.LaunchActionInfo {
                 bundleIdentifier: "com.apple.springboard",
                 runnableDebuggingMode: "2"
             )
+        } else if targetInfo.isMessageAppExtension {
+            return XCScheme.RemoteRunnable(
+                buildableReference: targetInfo.buildableReference,
+                bundleIdentifier: "com.apple.MobileSMS",
+                runnableDebuggingMode: "1"
+            )
         } else {
             // If targeting a device for a Watch App, Xcode modifies the scheme
             // to use a `RemoteRunnable`. It does this automatically though, so

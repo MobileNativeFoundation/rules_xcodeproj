@@ -92,8 +92,9 @@
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES"
       launchAutomaticallySubstyle = "2">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <RemoteRunnable
+         runnableDebuggingMode = "1"
+         BundleIdentifier = "com.apple.MobileSMS">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "FDA59F09C0DC31A1D18B6509"
@@ -101,7 +102,7 @@
             BlueprintName = "iMessageAppExtension"
             ReferencedContainer = "container:../../../../../test/fixtures/bwx.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </RemoteRunnable>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"

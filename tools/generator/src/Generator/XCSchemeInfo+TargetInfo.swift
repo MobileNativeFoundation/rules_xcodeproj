@@ -163,6 +163,10 @@ extension XCSchemeInfo.TargetInfo {
 // MARK: `isWidgetKitExtension`
 
 extension XCSchemeInfo.TargetInfo {
+    var isMessageAppExtension: Bool {
+        return extensionPointIdentifiers.contains(.messagePayloadProvider)
+    }
+
     var isWidgetKitExtension: Bool {
         return extensionPointIdentifiers.contains(.widgetKitExtension)
     }
