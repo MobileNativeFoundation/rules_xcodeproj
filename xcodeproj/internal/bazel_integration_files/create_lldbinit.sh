@@ -45,13 +45,15 @@ echo "settings append target.source-map ./bazel-out/ \"$index_bazel_out\""
 # `bazel-out` when set from swiftsourcefile
 echo "settings append target.source-map ./bazel-out/ \"$build_bazel_out\""
 
-# `external` for local repositories when set from Project navigator
-while IFS='' read -r x; do external_repos+=("$x"); done < <(xargs -n1 <<< "${RESOLVED_EXTERNAL_REPOSITORIES:-}")
-for (( i=0; i<${#external_repos[@]}; i+=2 )); do
-  dir_name="${external_repos[$i]}"
-  path="${external_repos[$i+1]}"
-  echo "settings append target.source-map \"./external/$dir_name\" \"$path\""
-done
+if [[ -n "${RESOLVED_EXTERNAL_REPOSITORIES:-}" ]]; then
+  # `external` for local repositories when set from Project navigator
+  while IFS='' read -r x; do external_repos+=("$x"); done < <(xargs -n1 <<< "$RESOLVED_EXTERNAL_REPOSITORIES")
+  for (( i=0; i<${#external_repos[@]}; i+=2 )); do
+    dir_name="${external_repos[$i]}"
+    path="${external_repos[$i+1]}"
+    echo "settings append target.source-map \"./external/$dir_name\" \"$path\""
+  done
+fi
 
 # `external` when set from Project navigator
 echo "settings append target.source-map ./external/ \"$BAZEL_EXTERNAL\""
