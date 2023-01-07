@@ -5,7 +5,6 @@ enum XCSchemeConstants {
     static let defaultLastUpgradeVersion = "9999"
     static let lldbInitVersion = "1.7"
     static let posixSpawnLauncher = "Xcode.IDEFoundation.Launcher.PosixSpawn"
-    static let customLLDBInitFile = "$(BAZEL_LLDB_INIT)"
 }
 
 extension XCScheme.BuildableReference {
@@ -58,8 +57,7 @@ extension XCScheme {
         } else {
             testAction = .init(
                 buildConfiguration: .defaultBuildConfigurationName,
-                macroExpansion: nil,
-                customLLDBInitFile: XCSchemeConstants.customLLDBInitFile
+                macroExpansion: nil
             )
         }
 
@@ -81,8 +79,7 @@ extension XCScheme {
         } else {
             launchAction = .init(
                 runnable: nil,
-                buildConfiguration: .defaultBuildConfigurationName,
-                customLLDBInitFile: XCSchemeConstants.customLLDBInitFile
+                buildConfiguration: .defaultBuildConfigurationName
             )
         }
 
@@ -254,8 +251,7 @@ extension XCScheme.TestAction {
             enableUBSanitizer: testActionInfo.diagnostics.sanitizers
                 .undefinedBehavior,
             commandlineArguments: commandlineArguments,
-            environmentVariables: environmentVariables.isEmpty ? nil : environmentVariables,
-            customLLDBInitFile: XCSchemeConstants.customLLDBInitFile
+            environmentVariables: environmentVariables.isEmpty ? nil : environmentVariables
         )
     }
 }
@@ -292,8 +288,7 @@ extension XCScheme.LaunchAction {
             commandlineArguments: commandlineArguments,
             environmentVariables: environmentVariables.isEmpty ? nil : environmentVariables,
             launchAutomaticallySubstyle: launchActionInfo.targetInfo.productType
-                .launchAutomaticallySubstyle,
-            customLLDBInitFile: XCSchemeConstants.customLLDBInitFile
+                .launchAutomaticallySubstyle
         )
     }
 }
