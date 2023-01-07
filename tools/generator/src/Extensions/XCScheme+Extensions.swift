@@ -65,15 +65,14 @@ extension XCScheme {
 
         let launchAction: XCScheme.LaunchAction
         if let launchActionInfo = schemeInfo.launchActionInfo {
-            var otherPreActions: [XCScheme.ExecutionAction] = []
-            if buildMode != .xcode {
-                otherPreActions.append(
-                    .createLLDBInit(
-                        buildableReference: launchActionInfo
-                            .targetInfo.buildableReference
-                    )
+            // TODO: Make this similar to `initBazelBuildOutputGroupsFile()`,
+            // instead of `otherPreActions`
+            let otherPreActions: [XCScheme.ExecutionAction] = [
+                .createLLDBInit(
+                    buildableReference: launchActionInfo
+                        .targetInfo.buildableReference
                 )
-            }
+            ]
             launchAction = try .init(
                 buildMode: buildMode,
                 launchActionInfo: launchActionInfo,
