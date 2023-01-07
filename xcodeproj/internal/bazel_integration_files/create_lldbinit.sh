@@ -2,8 +2,7 @@
 
 set -euo pipefail
 
-readonly execution_root="$1"
-shift
+readonly execution_root="$PROJECT_DIR"
 
 readonly output_base="${execution_root%/*/*}"
 readonly build_bazel_out="$execution_root/bazel-out"
@@ -14,6 +13,8 @@ readonly index_execution_root="${output_base%/*}/indexbuild_output_base/execroot
 
 readonly index_bazel_out="$index_execution_root/bazel-out"
 readonly index_external="$index_execution_root/external"
+
+{
 
 # Load ~/.lldbinit if it exists
 if [[ -f "$HOME/.lldbinit" ]]; then
@@ -45,10 +46,10 @@ echo "settings append target.source-map ./bazel-out/ \"$index_bazel_out\""
 echo "settings append target.source-map ./bazel-out/ \"$build_bazel_out\""
 
 # `external` for local repositories when set from Project navigator
-while [[ $# -gt 0 ]]; do
-  dir_name="$1"
-  path="$2"
-  shift 2
+while IFS='' read -r x; do external_repos+=("$x"); done < <(xargs -n1 <<< "${RESOLVED_EXTERNAL_REPOSITORIES:-}")
+for (( i=0; i<${#external_repos[@]}; i+=2 )); do
+  dir_name="${external_repos[$i]}"
+  path="${external_repos[$i+1]}"
   echo "settings append target.source-map \"./external/$dir_name\" \"$path\""
 done
 
@@ -68,3 +69,5 @@ echo "settings append target.source-map ./ \"$SRCROOT\""
 # settings (i.e. `target.swift-*``) for the module of the current frame. This
 # fixes debugging when using `-serialize-debugging-options`.
 echo "command script import \"$OBJROOT/swift_debug_settings.py\""
+
+} > "$BAZEL_LLDB_INIT"
