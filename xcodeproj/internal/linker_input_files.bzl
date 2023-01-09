@@ -321,10 +321,6 @@ def _process_linkopts(linkopts):
             skip_next -= 1
             continue
 
-        if linkopt == "-Xlinker" and linkopts[idx + 1] == "-objc_abi_version":
-            skip_next = 3
-            continue
-
         linkopt = _process_linkopt(linkopt)
         if linkopt:
             ret.append(linkopt)
@@ -333,8 +329,6 @@ def _process_linkopts(linkopts):
 
 def _process_linkopt(linkopt):
     if linkopt == "OSO_PREFIX_MAP_PWD":
-        return None
-    if linkopt == "-Wl,-objc_abi_version,2":
         return None
     if linkopt.startswith("-Wl,-sectcreate,__TEXT,__entitlements,"):
         return None
