@@ -348,8 +348,6 @@ def _process_linkopt(linkopt):
     # TODO: Remove these filter once we move path logic out of the generator
     if linkopt.startswith("-F"):
         return None
-    if linkopt.startswith("-Wl,-rpath,@"):
-        return None
     if linkopt.startswith("-Wl,-install_name,"):
         return None
     if linkopt.startswith("@"):

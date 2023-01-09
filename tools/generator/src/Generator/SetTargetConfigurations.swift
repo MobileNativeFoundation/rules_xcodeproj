@@ -295,28 +295,24 @@ $(CONFIGURATION_BUILD_DIR)
             )
         }
 
-        if let ldRunpathSearchPaths = target.ldRunpathSearchPaths {
-            if buildMode == .xcode && target.product.type.isFramework {
-                buildSettings.set("LD_RUNPATH_SEARCH_PATHS", to: [
-                    "$(PREVIEWS_LD_RUNPATH_SEARCH_PATHS__$(ENABLE_PREVIEWS))",
-                ])
-                buildSettings.set("PREVIEWS_LD_RUNPATH_SEARCH_PATHS__", to: [
-                    "$(PREVIEWS_LD_RUNPATH_SEARCH_PATHS__NO)",
-                ])
-                buildSettings.set(
-                    "PREVIEWS_LD_RUNPATH_SEARCH_PATHS__NO",
-                    to: ldRunpathSearchPaths
-                )
-                buildSettings.set("PREVIEWS_LD_RUNPATH_SEARCH_PATHS__YES", to: [
-                    "$(PREVIEWS_LD_RUNPATH_SEARCH_PATHS__NO)",
-                    "$(FRAMEWORK_SEARCH_PATHS)",
-                ])
-            } else {
-                buildSettings.set(
-                    "LD_RUNPATH_SEARCH_PATHS",
-                    to: ldRunpathSearchPaths
-                )
-            }
+        // TODO: Think about setting this `link.params` directly. This will
+        // ensure they come after other `-rpath` declarations, and will probably
+        // allow us to remove setting `FRAMEWORK_SEARCH_PATHS` (and instead use
+        // a `compile.params`).
+        if buildMode == .xcode && target.product.type == .framework {
+            buildSettings.set("LD_RUNPATH_SEARCH_PATHS", to: [
+                "$(PREVIEWS_LD_RUNPATH_SEARCH_PATHS__$(ENABLE_PREVIEWS))",
+            ])
+            buildSettings.set("PREVIEWS_LD_RUNPATH_SEARCH_PATHS__", to: [
+                "$(PREVIEWS_LD_RUNPATH_SEARCH_PATHS__NO)",
+            ])
+            buildSettings.set(
+                "PREVIEWS_LD_RUNPATH_SEARCH_PATHS__NO",
+                to: []
+            )
+            buildSettings.set("PREVIEWS_LD_RUNPATH_SEARCH_PATHS__YES", to: [
+                "$(FRAMEWORK_SEARCH_PATHS)",
+            ])
         }
         
         // Set VFS overlays
@@ -511,63 +507,6 @@ Build setting for \(key) is not an array: \(buildSetting)
 }
 
 extension Target {
-    fileprivate var ldRunpathSearchPaths: [String]? {
-        switch (platform.os, product.type) {
-        // Applications
-        case (.macOS, .application):
-            return [
-                "$(inherited)",
-                "@executable_path/../Frameworks",
-            ]
-        case (_, .application), (_, .onDemandInstallCapableApplication):
-            return [
-                "$(inherited)",
-                "@executable_path/Frameworks",
-            ]
-
-        // Frameworks
-        case (.macOS, .framework):
-            return [
-                "$(inherited)",
-                "@executable_path/../Frameworks",
-                "@loader_path/Frameworks",
-            ]
-        case (_, .framework):
-            return [
-                "$(inherited)",
-                "@executable_path/Frameworks",
-                "@loader_path/Frameworks",
-            ]
-
-        // App Extensions
-        case let (.macOS, type) where type.isAppExtension:
-            return [
-                "$(inherited)",
-                "@executable_path/../Frameworks",
-                "@executable_path/../../../../Frameworks",
-            ]
-        case (.watchOS, .appExtension):
-            // This needs to be before the below `type.isAppExtension` check
-            // as `.appExtension` is covered in that
-            return [
-                "$(inherited)",
-                "@executable_path/Frameworks",
-                "@executable_path/../../Frameworks",
-                "@executable_path/../../../../Frameworks",
-            ]
-        case let (_, type) where type.isAppExtension:
-            return [
-                "$(inherited)",
-                "@executable_path/Frameworks",
-                "@executable_path/../../Frameworks",
-            ]
-
-        default:
-            // Tests don't need a special setting, they are handled by Xcode
-            return nil
-        }
-    }
-
     private func internalTargetFilesPath() throws -> Path {
         var components = packageBinDir.components
         guard
