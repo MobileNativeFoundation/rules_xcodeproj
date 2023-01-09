@@ -312,17 +312,13 @@ def _get_library_static_libraries(linker_inputs, *, dep_compilation_providers):
 def _process_linkopts(linkopts):
     ret = []
     skip_next = 0
-    for idx, linkopt in enumerate(linkopts):
+    for linkopt in linkopts:
         if skip_next:
             skip_next -= 1
             continue
         skip_next = _LD_SKIP_OPTS.get(linkopt, 0)
         if skip_next:
             skip_next -= 1
-            continue
-
-        if linkopt == "-Xlinker" and linkopts[idx + 1] == "-objc_abi_version":
-            skip_next = 3
             continue
 
         linkopt = _process_linkopt(linkopt)
@@ -333,8 +329,6 @@ def _process_linkopts(linkopts):
 
 def _process_linkopt(linkopt):
     if linkopt == "OSO_PREFIX_MAP_PWD":
-        return None
-    if linkopt == "-Wl,-objc_abi_version,2":
         return None
     if linkopt.startswith("-Wl,-sectcreate,__TEXT,__entitlements,"):
         return None
