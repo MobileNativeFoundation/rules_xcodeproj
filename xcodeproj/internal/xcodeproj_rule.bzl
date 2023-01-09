@@ -393,88 +393,11 @@ targets.
 
     additional_generated = {}
     additional_outputs = {}
-    target_transitive_dependencies = {}
     for xcode_target in focused_targets.values():
-        transitive_dependencies = {
-            id: None
-            for id in xcode_target.transitive_dependencies.to_list()
-        }
-        target_transitive_dependencies[xcode_target.id] = (
-            transitive_dependencies
-        )
-
-        additional_compiling_files = []
-        additional_indexstores_files = []
-        additional_linking_files = []
-        for dependency in transitive_dependencies:
-            unfocused_dependency = unfocused_dependencies.get(dependency)
-            if not unfocused_dependency:
-                continue
-            unfocused_compiling_files = (
-                unfocused_dependency.inputs.unfocused_generated_compiling
-            )
-            unfocused_indexstores_files = (
-                unfocused_dependency.inputs.unfocused_generated_indexstores
-            )
-            unfocused_linking_files = (
-                unfocused_dependency.inputs.unfocused_generated_linking
-            )
-            if unfocused_compiling_files:
-                additional_compiling_files.append(
-                    depset(unfocused_compiling_files),
-                )
-            if unfocused_indexstores_files:
-                additional_indexstores_files.append(
-                    depset(unfocused_indexstores_files),
-                )
-            if unfocused_linking_files:
-                additional_linking_files.append(
-                    depset(unfocused_linking_files),
-                )
-
-        compiling_output_group_name = (
-            xcode_target.inputs.compiling_output_group_name
-        )
-        indexstores_output_group_name = (
-            xcode_target.inputs.indexstores_output_group_name
-        )
-        if compiling_output_group_name:
-            set_if_true(
-                additional_generated,
-                compiling_output_group_name,
-                additional_compiling_files,
-            )
-        if indexstores_output_group_name:
-            set_if_true(
-                additional_generated,
-                indexstores_output_group_name,
-                additional_indexstores_files,
-            )
-
         label = replacement_labels.get(
             xcode_target.id,
             xcode_target.label,
         )
-        target_infoplists = infoplists.get(label)
-        if target_infoplists:
-            additional_linking_files.extend(target_infoplists)
-            products_output_group_name = (
-                xcode_target.outputs.products_output_group_name
-            )
-            if products_output_group_name:
-                additional_outputs[products_output_group_name] = (
-                    target_infoplists
-                )
-
-        linking_output_group_name = (
-            xcode_target.inputs.linking_output_group_name
-        )
-        if linking_output_group_name:
-            set_if_true(
-                additional_generated,
-                linking_output_group_name,
-                additional_linking_files,
-            )
 
         invalid_extra_files_targets = sets.to_list(
             sets.difference(
@@ -627,9 +550,10 @@ actual targets: {}
     target_dependencies = {}
     target_link_params = {}
     for index, xcode_target in enumerate(focused_targets.values()):
-        transitive_dependencies = (
-            target_transitive_dependencies[xcode_target.id]
-        )
+        transitive_dependencies = {
+            id: None
+            for id in xcode_target.transitive_dependencies.to_list()
+        }
 
         if include_swiftui_previews_scheme_targets:
             additional_scheme_target_ids = _calculate_swiftui_preview_targets(
@@ -698,7 +622,51 @@ actual targets: {}
             xcode_target.outputs.linking_output_group_name
         )
 
+        additional_compiling_files = []
+        additional_indexstores_files = []
         additional_linking_files = []
+
+        label = replacement_labels.get(
+            xcode_target.id,
+            xcode_target.label,
+        )
+        target_infoplists = infoplists.get(label)
+        if target_infoplists:
+            additional_linking_files.extend(target_infoplists)
+            products_output_group_name = (
+                xcode_target.outputs.products_output_group_name
+            )
+            if products_output_group_name:
+                additional_outputs[products_output_group_name] = (
+                    target_infoplists
+                )
+
+        for dependency in transitive_dependencies:
+            unfocused_dependency = unfocused_dependencies.get(dependency)
+            if not unfocused_dependency:
+                continue
+            unfocused_compiling_files = (
+                unfocused_dependency.inputs.unfocused_generated_compiling
+            )
+            unfocused_indexstores_files = (
+                unfocused_dependency.inputs.unfocused_generated_indexstores
+            )
+            unfocused_linking_files = (
+                unfocused_dependency.inputs.unfocused_generated_linking
+            )
+            if unfocused_compiling_files:
+                additional_compiling_files.append(
+                    depset(unfocused_compiling_files),
+                )
+            if unfocused_indexstores_files:
+                additional_indexstores_files.append(
+                    depset(unfocused_indexstores_files),
+                )
+            if unfocused_linking_files:
+                additional_linking_files.append(
+                    depset(unfocused_linking_files),
+                )
+
         for id in replaced_dependencies:
             if id in transitive_dependencies:
                 continue
@@ -728,11 +696,6 @@ actual targets: {}
                     [],
                 )
                 additional_compiling_files.append(dep_target.inputs.generated)
-                set_if_true(
-                    additional_generated,
-                    compiling_output_group_name,
-                    additional_compiling_files,
-                )
             if (indexstores_output_group_name and
                 dep_indexstores_output_group_name):
                 additional_indexstores_files = additional_generated.get(
@@ -741,11 +704,6 @@ actual targets: {}
                 )
                 additional_indexstores_files.append(
                     dep_target.inputs.indexstores,
-                )
-                set_if_true(
-                    additional_generated,
-                    indexstores_output_group_name,
-                    additional_indexstores_files,
                 )
             if linking_output_group_name and dep_linking_output_group_name:
                 additional_linking_files = additional_generated.get(
@@ -761,11 +719,24 @@ actual targets: {}
                     transitive_link_params
                 )
 
-        set_if_true(
-            additional_generated,
-            linking_output_group_name,
-            additional_linking_files,
-        )
+        if compiling_output_group_name:
+            set_if_true(
+                additional_generated,
+                compiling_output_group_name,
+                additional_compiling_files,
+            )
+        if indexstores_output_group_name:
+            set_if_true(
+                additional_generated,
+                indexstores_output_group_name,
+                additional_indexstores_files,
+            )
+        if linking_output_group_name:
+            set_if_true(
+                additional_generated,
+                linking_output_group_name,
+                additional_linking_files,
+            )
 
     return (
         focused_targets,
