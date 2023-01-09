@@ -83,16 +83,18 @@ def _is_categorized_attr(attr, *, automatic_target_info):
     else:
         return False
 
-def _process_cc_info_headers(headers, *, output_files, pch, generated):
+def _process_cc_info_headers(headers, *, output_files, pch, srcs, generated):
     def _process_header(header):
         if not header.is_source:
             generated.append(header)
-        return header
+        return normalized_file_path(header)
 
     return [
         _process_header(header)
         for header in headers
-        if header not in pch and header not in output_files
+        if (header not in pch and
+            header not in output_files and
+            header not in srcs)
     ]
 
 # API
@@ -360,12 +362,13 @@ def _collect_input_files(
     # headers from `objc_import` and the like.
     if CcInfo in target:
         compilation_context = target[CcInfo].compilation_context
-        srcs.extend(_process_cc_info_headers(
+        extra_files.extend(_process_cc_info_headers(
             (compilation_context.direct_private_headers +
              compilation_context.direct_public_headers +
              compilation_context.direct_textual_headers),
             output_files = output_files,
             pch = pch,
+            srcs = srcs,
             generated = generated,
         ))
 

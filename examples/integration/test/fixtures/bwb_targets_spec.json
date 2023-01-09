@@ -1251,11 +1251,6 @@
         "dependencies": [
             "//CommandLine/CommandLineToolLib:lib_swift macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18"
         ],
-        "inputs": {
-            "srcs": [
-                "CommandLine/CommandLineToolLib/dir with space/lib.h"
-            ]
-        },
         "is_swift": false,
         "label": "//CommandLine/CommandLineToolLib:lib_headers",
         "name": "lib_headers",
@@ -1363,11 +1358,6 @@
         "dependencies": [
             "//CommandLine/CommandLineToolLib:lib_swift macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17"
         ],
-        "inputs": {
-            "srcs": [
-                "CommandLine/CommandLineToolLib/dir with space/lib.h"
-            ]
-        },
         "is_swift": false,
         "label": "//CommandLine/CommandLineToolLib:lib_headers",
         "name": "lib_headers",
@@ -1475,11 +1465,6 @@
         "dependencies": [
             "//CommandLine/CommandLineToolLib:lib_swift macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-19"
         ],
-        "inputs": {
-            "srcs": [
-                "CommandLine/CommandLineToolLib/dir with space/lib.h"
-            ]
-        },
         "is_swift": false,
         "label": "//CommandLine/CommandLineToolLib:lib_headers",
         "name": "lib_headers",
@@ -2090,8 +2075,7 @@
         "configuration": "macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18",
         "inputs": {
             "srcs": [
-                "CommandLine/CommandLineToolLib/private_lib.c",
-                "CommandLine/CommandLineToolLib/private_lib.h"
+                "CommandLine/CommandLineToolLib/private_lib.c"
             ]
         },
         "is_swift": false,
@@ -2170,8 +2154,7 @@
         "configuration": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17",
         "inputs": {
             "srcs": [
-                "CommandLine/CommandLineToolLib/private_lib.c",
-                "CommandLine/CommandLineToolLib/private_lib.h"
+                "CommandLine/CommandLineToolLib/private_lib.c"
             ]
         },
         "is_swift": false,
@@ -2250,8 +2233,7 @@
         "configuration": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-19",
         "inputs": {
             "srcs": [
-                "CommandLine/CommandLineToolLib/private_lib.c",
-                "CommandLine/CommandLineToolLib/private_lib.h"
+                "CommandLine/CommandLineToolLib/private_lib.c"
             ]
         },
         "is_swift": false,
@@ -2661,8 +2643,7 @@
         "configuration": "macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18",
         "inputs": {
             "srcs": [
-                "CommandLine/swift_c_module/c_lib.c",
-                "CommandLine/swift_c_module/c_lib.h"
+                "CommandLine/swift_c_module/c_lib.c"
             ]
         },
         "is_swift": false,
@@ -2737,8 +2718,7 @@
         "configuration": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17",
         "inputs": {
             "srcs": [
-                "CommandLine/swift_c_module/c_lib.c",
-                "CommandLine/swift_c_module/c_lib.h"
+                "CommandLine/swift_c_module/c_lib.c"
             ]
         },
         "is_swift": false,
@@ -2813,8 +2793,7 @@
         "configuration": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-19",
         "inputs": {
             "srcs": [
-                "CommandLine/swift_c_module/c_lib.c",
-                "CommandLine/swift_c_module/c_lib.h"
+                "CommandLine/swift_c_module/c_lib.c"
             ]
         },
         "is_swift": false,
@@ -5838,8 +5817,7 @@
         ],
         "inputs": {
             "srcs": [
-                "iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.m",
-                "iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.h"
+                "iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.m"
             ]
         },
         "is_swift": false,
@@ -5952,8 +5930,7 @@
         ],
         "inputs": {
             "srcs": [
-                "iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.m",
-                "iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.h"
+                "iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.m"
             ]
         },
         "is_swift": false,
@@ -6479,9 +6456,7 @@
         ],
         "inputs": {
             "srcs": [
-                "iOSApp/Source/Utils/Foo.m",
-                "iOSApp/Source/Utils/Utils.h",
-                "iOSApp/Source/Utils/Foo.h"
+                "iOSApp/Source/Utils/Foo.m"
             ]
         },
         "is_swift": false,
@@ -9350,10 +9325,6 @@
             "srcs": [
                 {
                     "_": "FXPageControl/FXPageControl/FXPageControl.m",
-                    "t": "e"
-                },
-                {
-                    "_": "FXPageControl/FXPageControl/FXPageControl.h",
                     "t": "e"
                 }
             ]

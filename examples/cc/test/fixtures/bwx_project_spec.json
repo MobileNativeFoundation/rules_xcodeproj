@@ -16,8 +16,14 @@
     "custom_xcode_schemes": [],
     "envs": [],
     "extra_files": [
+        {
+            "_": "examples_cc_external/lib.h",
+            "t": "e"
+        },
         "lib/BUILD",
+        "lib/lib.h",
         "lib2/BUILD",
+        "lib2/includes/lib.h",
         "test/fixtures/BUILD",
         "tool/BUILD"
     ],
