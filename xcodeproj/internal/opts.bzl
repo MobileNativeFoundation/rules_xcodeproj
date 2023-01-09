@@ -419,14 +419,6 @@ def _process_cxxopts(opts, *, build_settings):
         if opt.startswith("-O"):
             optimizations.append(opt)
             return True
-        if opt.startswith("-std="):
-            build_settings["CLANG_CXX_LANGUAGE_STANDARD"] = _xcode_std_value(
-                opt[5:],
-            )
-            return True
-        if opt.startswith("-stdlib="):
-            build_settings["CLANG_CXX_LIBRARY"] = opt[8:]
-            return True
         if opt == "-g":
             # We use a `dict` instead of setting a single value because
             # assigning to `has_debug_info` creates a new local variable instead
@@ -1059,13 +1051,6 @@ def _expand_make_variables(*, ctx, values, attribute_name):
         ctx.expand_make_variables(attribute_name, value, {})
         for value in values
     ]
-
-def _xcode_std_value(std):
-    """Converts a '-std' option value to an Xcode recognized value."""
-    if std.endswith("11"):
-        # Xcode encodes "c++11" as "c++0x"
-        return std[:-2] + "0x"
-    return std
 
 # API
 

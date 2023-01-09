@@ -2,7 +2,6 @@
     "//lib2:lib_impl darwin_x86_64-dbg-STABLE-1",
     {
         "build_settings": {
-            "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
             "DEBUG_INFORMATION_FORMAT": "dwarf",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
@@ -30,6 +29,7 @@
                 "-Wthread-safety",
                 "-Wself-assign",
                 "-fno-omit-frame-pointer",
+                "-std=c++11",
                 "-no-canonical-prefixes",
                 "-pthread",
                 "-no-canonical-prefixes",
@@ -81,7 +81,6 @@
     "//lib:lib_defines darwin_x86_64-dbg-STABLE-1",
     {
         "build_settings": {
-            "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
             "DEBUG_INFORMATION_FORMAT": "dwarf",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
@@ -110,6 +109,7 @@
                 "-Wthread-safety",
                 "-Wself-assign",
                 "-fno-omit-frame-pointer",
+                "-std=c++11",
                 "-no-canonical-prefixes",
                 "-pthread",
                 "-no-canonical-prefixes",
@@ -152,7 +152,6 @@
     "//lib:lib_headers darwin_x86_64-dbg-STABLE-1",
     {
         "build_settings": {
-            "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
             "DEBUG_INFORMATION_FORMAT": "dwarf",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
@@ -181,6 +180,7 @@
                 "-Wthread-safety",
                 "-Wself-assign",
                 "-fno-omit-frame-pointer",
+                "-std=c++11",
                 "-no-canonical-prefixes",
                 "-pthread",
                 "-no-canonical-prefixes",
@@ -223,7 +223,6 @@
     "//lib:lib_impl darwin_x86_64-dbg-STABLE-1",
     {
         "build_settings": {
-            "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
             "DEBUG_INFORMATION_FORMAT": "dwarf",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
@@ -256,6 +255,7 @@
                 "-Wthread-safety",
                 "-Wself-assign",
                 "-fno-omit-frame-pointer",
+                "-std=c++11",
                 "-no-canonical-prefixes",
                 "-pthread",
                 "-no-canonical-prefixes",
@@ -305,7 +305,6 @@
     {
         "build_settings": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/tool/rules_xcodeproj/tool/tool",
-            "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
             "DEBUG_INFORMATION_FORMAT": "dwarf",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
@@ -335,6 +334,7 @@
                 "-Wthread-safety",
                 "-Wself-assign",
                 "-fno-omit-frame-pointer",
+                "-std=c++11",
                 "-no-canonical-prefixes",
                 "-pthread",
                 "-no-canonical-prefixes",
@@ -402,7 +402,6 @@
     "@examples_cc_external//:lib_defines darwin_x86_64-dbg-STABLE-1",
     {
         "build_settings": {
-            "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
             "DEBUG_INFORMATION_FORMAT": "dwarf",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
@@ -431,6 +430,7 @@
                 "-Wthread-safety",
                 "-Wself-assign",
                 "-fno-omit-frame-pointer",
+                "-std=c++11",
                 "-no-canonical-prefixes",
                 "-pthread",
                 "-no-canonical-prefixes",
@@ -475,7 +475,6 @@
     "@examples_cc_external//:lib_headers darwin_x86_64-dbg-STABLE-1",
     {
         "build_settings": {
-            "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
             "DEBUG_INFORMATION_FORMAT": "dwarf",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
@@ -504,6 +503,7 @@
                 "-Wthread-safety",
                 "-Wself-assign",
                 "-fno-omit-frame-pointer",
+                "-std=c++11",
                 "-no-canonical-prefixes",
                 "-pthread",
                 "-no-canonical-prefixes",
@@ -548,7 +548,6 @@
     "@examples_cc_external//:lib_impl darwin_x86_64-dbg-STABLE-1",
     {
         "build_settings": {
-            "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
             "DEBUG_INFORMATION_FORMAT": "dwarf",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
@@ -581,6 +580,7 @@
                 "-Wthread-safety",
                 "-Wself-assign",
                 "-fno-omit-frame-pointer",
+                "-std=c++11",
                 "-no-canonical-prefixes",
                 "-pthread",
                 "-no-canonical-prefixes",

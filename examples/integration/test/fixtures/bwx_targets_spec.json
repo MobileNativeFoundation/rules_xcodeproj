@@ -223,8 +223,6 @@
     "//CommandLine/CommandLineTool:CommandLineTool applebin_macos-darwin_x86_64-dbg-STABLE-20",
     {
         "build_settings": {
-            "CLANG_CXX_LANGUAGE_STANDARD": "gnu++0x",
-            "CLANG_CXX_LIBRARY": "libc++",
             "CLANG_ENABLE_MODULES": true,
             "DEBUG_INFORMATION_FORMAT": "dwarf",
             "ENABLE_BITCODE": false,
@@ -273,6 +271,8 @@
                 "-v"
             ],
             "OTHER_CPLUSPLUSFLAGS": [
+                "-stdlib=libc++",
+                "-std=gnu++11",
                 "-fstack-protector",
                 "-Wall",
                 "-Wthread-safety",
@@ -362,8 +362,6 @@
     "//CommandLine/CommandLineTool:tool.binary macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18",
     {
         "build_settings": {
-            "CLANG_CXX_LANGUAGE_STANDARD": "gnu++0x",
-            "CLANG_CXX_LIBRARY": "libc++",
             "CLANG_ENABLE_MODULES": true,
             "DEBUG_INFORMATION_FORMAT": "dwarf",
             "ENABLE_BITCODE": false,
@@ -409,6 +407,8 @@
                 "-fstack-protector-all"
             ],
             "OTHER_CPLUSPLUSFLAGS": [
+                "-stdlib=libc++",
+                "-std=gnu++11",
                 "-fstack-protector",
                 "-Wall",
                 "-Wthread-safety",
@@ -495,8 +495,6 @@
     "//CommandLine/CommandLineTool:tool.binary macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-19",
     {
         "build_settings": {
-            "CLANG_CXX_LANGUAGE_STANDARD": "gnu++0x",
-            "CLANG_CXX_LIBRARY": "libc++",
             "CLANG_ENABLE_MODULES": true,
             "DEBUG_INFORMATION_FORMAT": "dwarf",
             "ENABLE_BITCODE": false,
@@ -542,6 +540,8 @@
                 "-fstack-protector-all"
             ],
             "OTHER_CPLUSPLUSFLAGS": [
+                "-stdlib=libc++",
+                "-std=gnu++11",
                 "-fstack-protector",
                 "-Wall",
                 "-Wthread-safety",
@@ -628,8 +628,6 @@
     "//CommandLine/CommandLineToolLib:lib_defines macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18",
     {
         "build_settings": {
-            "CLANG_CXX_LANGUAGE_STANDARD": "gnu++0x",
-            "CLANG_CXX_LIBRARY": "libc++",
             "DEBUG_INFORMATION_FORMAT": "dwarf",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
@@ -665,6 +663,8 @@
                 "-fstack-protector-all"
             ],
             "OTHER_CPLUSPLUSFLAGS": [
+                "-stdlib=libc++",
+                "-std=gnu++11",
                 "-fstack-protector",
                 "-Wall",
                 "-Wthread-safety",
@@ -721,8 +721,6 @@
     "//CommandLine/CommandLineToolLib:lib_defines macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17",
     {
         "build_settings": {
-            "CLANG_CXX_LANGUAGE_STANDARD": "gnu++0x",
-            "CLANG_CXX_LIBRARY": "libc++",
             "DEBUG_INFORMATION_FORMAT": "dwarf",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
@@ -758,6 +756,8 @@
                 "-fstack-protector-all"
             ],
             "OTHER_CPLUSPLUSFLAGS": [
+                "-stdlib=libc++",
+                "-std=gnu++11",
                 "-fstack-protector",
                 "-Wall",
                 "-Wthread-safety",
@@ -814,8 +814,6 @@
     "//CommandLine/CommandLineToolLib:lib_defines macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-19",
     {
         "build_settings": {
-            "CLANG_CXX_LANGUAGE_STANDARD": "gnu++0x",
-            "CLANG_CXX_LIBRARY": "libc++",
             "DEBUG_INFORMATION_FORMAT": "dwarf",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
@@ -851,6 +849,8 @@
                 "-fstack-protector-all"
             ],
             "OTHER_CPLUSPLUSFLAGS": [
+                "-stdlib=libc++",
+                "-std=gnu++11",
                 "-fstack-protector",
                 "-Wall",
                 "-Wthread-safety",
@@ -907,8 +907,6 @@
     "//CommandLine/CommandLineToolLib:lib_headers macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18",
     {
         "build_settings": {
-            "CLANG_CXX_LANGUAGE_STANDARD": "gnu++0x",
-            "CLANG_CXX_LIBRARY": "libc++",
             "DEBUG_INFORMATION_FORMAT": "dwarf",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
@@ -953,6 +951,8 @@
                 "-fstack-protector-all"
             ],
             "OTHER_CPLUSPLUSFLAGS": [
+                "-stdlib=libc++",
+                "-std=gnu++11",
                 "-fstack-protector",
                 "-Wall",
                 "-Wthread-safety",
@@ -1014,8 +1014,6 @@
     "//CommandLine/CommandLineToolLib:lib_headers macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17",
     {
         "build_settings": {
-            "CLANG_CXX_LANGUAGE_STANDARD": "gnu++0x",
-            "CLANG_CXX_LIBRARY": "libc++",
             "DEBUG_INFORMATION_FORMAT": "dwarf",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
@@ -1060,6 +1058,8 @@
                 "-fstack-protector-all"
             ],
             "OTHER_CPLUSPLUSFLAGS": [
+                "-stdlib=libc++",
+                "-std=gnu++11",
                 "-fstack-protector",
                 "-Wall",
                 "-Wthread-safety",
@@ -1121,8 +1121,6 @@
     "//CommandLine/CommandLineToolLib:lib_headers macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-19",
     {
         "build_settings": {
-            "CLANG_CXX_LANGUAGE_STANDARD": "gnu++0x",
-            "CLANG_CXX_LIBRARY": "libc++",
             "DEBUG_INFORMATION_FORMAT": "dwarf",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
@@ -1167,6 +1165,8 @@
                 "-fstack-protector-all"
             ],
             "OTHER_CPLUSPLUSFLAGS": [
+                "-stdlib=libc++",
+                "-std=gnu++11",
                 "-fstack-protector",
                 "-Wall",
                 "-Wthread-safety",
@@ -1228,8 +1228,6 @@
     "//CommandLine/CommandLineToolLib:lib_impl macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18",
     {
         "build_settings": {
-            "CLANG_CXX_LANGUAGE_STANDARD": "gnu++0x",
-            "CLANG_CXX_LIBRARY": "libc++",
             "DEBUG_INFORMATION_FORMAT": "dwarf",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
@@ -1265,6 +1263,8 @@
                 "-fstack-protector-all"
             ],
             "OTHER_CPLUSPLUSFLAGS": [
+                "-stdlib=libc++",
+                "-std=gnu++11",
                 "-fstack-protector",
                 "-Wall",
                 "-Wthread-safety",
@@ -1333,8 +1333,6 @@
     "//CommandLine/CommandLineToolLib:lib_impl macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17",
     {
         "build_settings": {
-            "CLANG_CXX_LANGUAGE_STANDARD": "gnu++0x",
-            "CLANG_CXX_LIBRARY": "libc++",
             "DEBUG_INFORMATION_FORMAT": "dwarf",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
@@ -1370,6 +1368,8 @@
                 "-fstack-protector-all"
             ],
             "OTHER_CPLUSPLUSFLAGS": [
+                "-stdlib=libc++",
+                "-std=gnu++11",
                 "-fstack-protector",
                 "-Wall",
                 "-Wthread-safety",
@@ -1438,8 +1438,6 @@
     "//CommandLine/CommandLineToolLib:lib_impl macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-19",
     {
         "build_settings": {
-            "CLANG_CXX_LANGUAGE_STANDARD": "gnu++0x",
-            "CLANG_CXX_LIBRARY": "libc++",
             "DEBUG_INFORMATION_FORMAT": "dwarf",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
@@ -1475,6 +1473,8 @@
                 "-fstack-protector-all"
             ],
             "OTHER_CPLUSPLUSFLAGS": [
+                "-stdlib=libc++",
+                "-std=gnu++11",
                 "-fstack-protector",
                 "-Wall",
                 "-Wthread-safety",
@@ -1765,7 +1765,6 @@
     "//CommandLine/CommandLineToolLib:private_lib macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18",
     {
         "build_settings": {
-            "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
             "DEBUG_INFORMATION_FORMAT": "dwarf",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
@@ -1797,6 +1796,7 @@
                 "-Wthread-safety",
                 "-Wself-assign",
                 "-fno-omit-frame-pointer",
+                "-std=c++11",
                 "-no-canonical-prefixes",
                 "-pthread",
                 "-no-canonical-prefixes",
@@ -1844,7 +1844,6 @@
     "//CommandLine/CommandLineToolLib:private_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17",
     {
         "build_settings": {
-            "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
             "DEBUG_INFORMATION_FORMAT": "dwarf",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
@@ -1876,6 +1875,7 @@
                 "-Wthread-safety",
                 "-Wself-assign",
                 "-fno-omit-frame-pointer",
+                "-std=c++11",
                 "-no-canonical-prefixes",
                 "-pthread",
                 "-no-canonical-prefixes",
@@ -1923,7 +1923,6 @@
     "//CommandLine/CommandLineToolLib:private_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-19",
     {
         "build_settings": {
-            "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
             "DEBUG_INFORMATION_FORMAT": "dwarf",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
@@ -1955,6 +1954,7 @@
                 "-Wthread-safety",
                 "-Wself-assign",
                 "-fno-omit-frame-pointer",
+                "-std=c++11",
                 "-no-canonical-prefixes",
                 "-pthread",
                 "-no-canonical-prefixes",
@@ -2268,7 +2268,6 @@
     "//CommandLine/swift_c_module:c_lib macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18",
     {
         "build_settings": {
-            "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
             "DEBUG_INFORMATION_FORMAT": "dwarf",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
@@ -2296,6 +2295,7 @@
                 "-Wthread-safety",
                 "-Wself-assign",
                 "-fno-omit-frame-pointer",
+                "-std=c++11",
                 "-no-canonical-prefixes",
                 "-pthread",
                 "-no-canonical-prefixes",
@@ -2343,7 +2343,6 @@
     "//CommandLine/swift_c_module:c_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17",
     {
         "build_settings": {
-            "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
             "DEBUG_INFORMATION_FORMAT": "dwarf",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
@@ -2371,6 +2370,7 @@
                 "-Wthread-safety",
                 "-Wself-assign",
                 "-fno-omit-frame-pointer",
+                "-std=c++11",
                 "-no-canonical-prefixes",
                 "-pthread",
                 "-no-canonical-prefixes",
@@ -2418,7 +2418,6 @@
     "//CommandLine/swift_c_module:c_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-19",
     {
         "build_settings": {
-            "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
             "DEBUG_INFORMATION_FORMAT": "dwarf",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
@@ -2446,6 +2445,7 @@
                 "-Wthread-safety",
                 "-Wself-assign",
                 "-fno-omit-frame-pointer",
+                "-std=c++11",
                 "-no-canonical-prefixes",
                 "-pthread",
                 "-no-canonical-prefixes",
@@ -5168,8 +5168,6 @@
     "//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswer ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4",
     {
         "build_settings": {
-            "CLANG_CXX_LANGUAGE_STANDARD": "gnu++0x",
-            "CLANG_CXX_LIBRARY": "libc++",
             "DEBUG_INFORMATION_FORMAT": "dwarf",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
@@ -5206,6 +5204,8 @@
                 "-fstack-protector-all"
             ],
             "OTHER_CPLUSPLUSFLAGS": [
+                "-stdlib=libc++",
+                "-std=gnu++11",
                 "-fstack-protector",
                 "-Wall",
                 "-Wthread-safety",
@@ -5273,8 +5273,6 @@
     "//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswer ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
     {
         "build_settings": {
-            "CLANG_CXX_LANGUAGE_STANDARD": "gnu++0x",
-            "CLANG_CXX_LIBRARY": "libc++",
             "DEBUG_INFORMATION_FORMAT": "dwarf",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
@@ -5315,6 +5313,8 @@
                 "-fstack-protector-all"
             ],
             "OTHER_CPLUSPLUSFLAGS": [
+                "-stdlib=libc++",
+                "-std=gnu++11",
                 "-fstack-protector",
                 "-Wall",
                 "-Wthread-safety",
@@ -5508,8 +5508,6 @@
     "//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC applebin_ios-ios_arm64-dbg-STABLE-8",
     {
         "build_settings": {
-            "CLANG_CXX_LANGUAGE_STANDARD": "gnu++0x",
-            "CLANG_CXX_LIBRARY": "libc++",
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf",
             "ENABLE_BITCODE": false,
@@ -5548,6 +5546,8 @@
                 "-fstack-protector-all"
             ],
             "OTHER_CPLUSPLUSFLAGS": [
+                "-stdlib=libc++",
+                "-std=gnu++11",
                 "-fstack-protector",
                 "-Wall",
                 "-Wthread-safety",
@@ -5645,8 +5645,6 @@
     "//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC applebin_ios-ios_x86_64-dbg-STABLE-7",
     {
         "build_settings": {
-            "CLANG_CXX_LANGUAGE_STANDARD": "gnu++0x",
-            "CLANG_CXX_LIBRARY": "libc++",
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf",
             "ENABLE_BITCODE": false,
@@ -5689,6 +5687,8 @@
                 "-fstack-protector-all"
             ],
             "OTHER_CPLUSPLUSFLAGS": [
+                "-stdlib=libc++",
+                "-std=gnu++11",
                 "-fstack-protector",
                 "-Wall",
                 "-Wthread-safety",
@@ -5790,8 +5790,6 @@
     "//iOSApp/Source/Utils:Utils ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
     {
         "build_settings": {
-            "CLANG_CXX_LANGUAGE_STANDARD": "gnu++0x",
-            "CLANG_CXX_LIBRARY": "libc++",
             "DEBUG_INFORMATION_FORMAT": "dwarf",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
@@ -5833,6 +5831,8 @@
                 "-fstack-protector-all"
             ],
             "OTHER_CPLUSPLUSFLAGS": [
+                "-stdlib=libc++",
+                "-std=gnu++11",
                 "-fstack-protector",
                 "-Wall",
                 "-Wthread-safety",
@@ -6243,8 +6243,6 @@
     "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-7",
     {
         "build_settings": {
-            "CLANG_CXX_LANGUAGE_STANDARD": "gnu++0x",
-            "CLANG_CXX_LIBRARY": "libc++",
             "CLANG_ENABLE_MODULES": true,
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -6298,6 +6296,8 @@
                 "-fstack-protector-all"
             ],
             "OTHER_CPLUSPLUSFLAGS": [
+                "-stdlib=libc++",
+                "-std=gnu++11",
                 "-fstack-protector",
                 "-Wall",
                 "-Wthread-safety",
@@ -7798,8 +7798,6 @@
     "@FXPageControl//:FXPageControl ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
     {
         "build_settings": {
-            "CLANG_CXX_LANGUAGE_STANDARD": "gnu++0x",
-            "CLANG_CXX_LIBRARY": "libc++",
             "DEBUG_INFORMATION_FORMAT": "dwarf",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
@@ -7837,6 +7835,8 @@
                 "-fstack-protector-all"
             ],
             "OTHER_CPLUSPLUSFLAGS": [
+                "-stdlib=libc++",
+                "-std=gnu++11",
                 "-fstack-protector",
                 "-Wall",
                 "-Wthread-safety",
