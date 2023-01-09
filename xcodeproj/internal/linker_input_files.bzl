@@ -312,7 +312,7 @@ def _get_library_static_libraries(linker_inputs, *, dep_compilation_providers):
 def _process_linkopts(linkopts):
     ret = []
     skip_next = 0
-    for idx, linkopt in enumerate(linkopts):
+    for linkopt in linkopts:
         if skip_next:
             skip_next -= 1
             continue
