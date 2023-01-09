@@ -3165,6 +3165,7 @@
 				INTERNAL_DIR = "$(PROJECT_FILE_PATH)/rules_xcodeproj";
 				LD = "$(BAZEL_INTEGRATION_DIR)/ld.sh";
 				LDPLUSPLUS = "$(BAZEL_INTEGRATION_DIR)/ld.sh";
+				LD_DYLIB_INSTALL_NAME = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 				);
 				LIBTOOL = "$(BAZEL_INTEGRATION_DIR)/libtool.sh";

@@ -82,6 +82,7 @@ $(INDEXING_DEPLOYMENT_LOCATION__NO)
             "INTERNAL_DIR": """
 $(PROJECT_FILE_PATH)/\(directories.internalDirectoryName)
 """,
+            "LD_DYLIB_INSTALL_NAME": "",
             // We don't want Xcode to set any search paths, since we set them in
             // `link.params`
             "LD_RUNPATH_SEARCH_PATHS": [],

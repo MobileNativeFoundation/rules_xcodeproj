@@ -2167,7 +2167,6 @@ touch "$SCRIPT_OUTPUT_FILE_1"
                 "BAZEL_TARGET_ID": "B 1",
                 "BAZEL_TARGET_ID[sdk=macosx*]": "$(BAZEL_TARGET_ID)",
                 "COMPILE_TARGET_NAME": targets["B 1"]!.name,
-                "DYLIB_INSTALL_NAME_BASE": "@rpath",
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "MACH_O_TYPE": "staticlib",
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",

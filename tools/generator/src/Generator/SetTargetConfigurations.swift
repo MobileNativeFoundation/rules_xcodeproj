@@ -213,10 +213,6 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
             to: target.platform.minimumOsVersion.pretty
         )
 
-        if target.product.type.isFramework {
-            buildSettings["DYLIB_INSTALL_NAME_BASE"] = "@rpath"
-        }
-
         if target.isTestonly {
             buildSettings["ENABLE_TESTING_SEARCH_PATHS"] = true
         }
