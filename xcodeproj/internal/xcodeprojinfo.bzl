@@ -85,6 +85,7 @@ def _should_skip_target(*, ctx, target):
 
 def _target_info_fields(
         *,
+        args,
         compilation_providers,
         dependencies,
         envs,
@@ -109,6 +110,7 @@ def _target_info_fields(
     This should be merged with other fields to fully create an `XcodeProjInfo`.
 
     Args:
+        args: Maps to the `XcodeProjInfo.args` field.
         compilation_providers: Maps to the `XcodeProjInfo.compilation_providers`
             field.
         dependencies: Maps to the `XcodeProjInfo.dependencies` field.
@@ -140,6 +142,7 @@ def _target_info_fields(
     Returns:
         A `dict` containing the following fields:
 
+        *   `args`
         *   `compilation_providers`
         *   `dependencies`
         *   `extension_infoplists`
@@ -162,6 +165,7 @@ def _target_info_fields(
         *   `xcode_required_targets`
     """
     return {
+        "args": args,
         "compilation_providers": compilation_providers,
         "dependencies": dependencies,
         "extension_infoplists": extension_infoplists,
@@ -232,6 +236,24 @@ def _skip_target(
     )
 
     return _target_info_fields(
+        args = depset(
+            [
+                _create_args_depset(
+                    ctx = ctx,
+                    id = info.xcode_target.id,
+                    automatic_target_info = automatic_target_info,
+                )
+                for attr, info in transitive_infos
+                if (target and
+                    attr in deps_attrs and
+                    info.xcode_target and
+                    automatic_target_info.args)
+            ],
+            transitive = [
+                info.args
+                for _, info in transitive_infos
+            ],
+        ),
         compilation_providers = compilation_providers,
         dependencies = dependencies,
         extension_infoplists = depset(
@@ -323,6 +345,12 @@ def _skip_target(
         ),
     )
 
+def _create_args_depset(*, ctx, id, automatic_target_info):
+    return struct(
+        id = id,
+        args = getattr(ctx.rule.attr, automatic_target_info.args, []),
+    )
+
 def _create_envs_depset(*, ctx, id, automatic_target_info):
     test_env = getattr(ctx.rule.attr, automatic_target_info.env, {})
 
@@ -394,6 +422,12 @@ def _create_xcodeprojinfo(
         )
 
     return _target_info_fields(
+        args = depset(
+            transitive = [
+                info.args
+                for _, info in transitive_infos
+            ],
+        ),
         compilation_providers = processed_target.compilation_providers,
         dependencies = processed_target.dependencies,
         extension_infoplists = depset(

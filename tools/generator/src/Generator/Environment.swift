@@ -104,6 +104,7 @@ struct Environment {
         _ buildMode: BuildMode,
         _ targetResolver: TargetResolver,
         _ xcodeprojLabel: BazelLabel,
+        _ args: [TargetID: [String]],
         _ envs: [TargetID: [String: String]]
     ) throws -> [XCScheme]
 
@@ -112,6 +113,7 @@ struct Environment {
         _ buildMode: BuildMode,
         _ targetResolver: TargetResolver,
         _ customSchemeNames: Set<String>,
+        _ args: [TargetID: [String]],
         _ envs: [TargetID: [String: String]]
     ) throws -> [XCScheme]
 

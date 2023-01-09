@@ -11,6 +11,12 @@
         "USE_HEADERMAP": false,
         "VALIDATE_WORKSPACE": false
     },
+    "args": [
+        "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-7",
+        [
+            "--command_line_args=-AppleLanguages,(en-GB)"
+        ]
+    ],
     "configuration": "darwin_x86_64-dbg-STABLE-0",
     "custom_xcode_schemes": [
         {
@@ -36,6 +42,27 @@
                 "targets": [
                     "@//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests",
                     "@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests"
+                ]
+            }
+        },
+        {
+            "build_action": null,
+            "launch_action": null,
+            "name": "iOSAppSwiftUnitTests_CommandLineArgs_Scheme",
+            "test_action": {
+                "args": [
+                    "--command_line_args=-AppleLanguages,(en)"
+                ],
+                "build_configuration_name": "Debug",
+                "diagnostics": null,
+                "env": {
+                    "IOSAPPSWIFTUNITTESTS_CUSTOMSCHEMEVAR": "TRUE"
+                },
+                "expand_variables_based_on": null,
+                "post_actions": [],
+                "pre_actions": [],
+                "targets": [
+                    "@//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests"
                 ]
             }
         }

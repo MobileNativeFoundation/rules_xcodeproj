@@ -3,6 +3,7 @@ load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
 
 ios_unit_test(
     name = "iOSAppSwiftUnitTests",
+    args = ["--command_line_args=-AppleLanguages,(en-GB)"],
     bundle_id = "io.buildbuddy.example.tests",
     env = {
         "IOS_APP_UNIT_TESTS": "CUSTOM_ENV_VALUE",

@@ -756,6 +756,7 @@ def should_include_outputs(build_mode):
 
 def _write_spec(
         *,
+        args,
         config,
         configuration,
         ctx,
@@ -809,6 +810,7 @@ def _write_spec(
 "USE_HEADERMAP":false,\
 "VALIDATE_WORKSPACE":false\
 }},\
+"args": {args},\
 "configuration":"{configuration}",\
 "custom_xcode_schemes":{custom_xcode_schemes},\
 "envs": {envs},\
@@ -826,6 +828,9 @@ def _write_spec(
 "target_hosts":{target_hosts}
 }}
 """.format(
+        args = json.encode(
+            flattened_key_values.to_list(args, sort = is_fixture),
+        ),
         bazel_config = config,
         bazel_path = ctx.attr.bazel_path,
         bazel_workspace_name = ctx.workspace_name,
@@ -1239,6 +1244,13 @@ def _xcodeproj_impl(ctx):
             transitive = [info.replacement_labels for info in infos],
         ).to_list()
     }
+    args = {
+        s.id: s.args
+        for s in depset(
+            transitive = [info.args for info in infos],
+        ).to_list()
+        if s.args
+    }
     envs = {
         s.id: s.env
         for s in depset(
@@ -1305,6 +1317,7 @@ def _xcodeproj_impl(ctx):
 
     spec_files = _write_spec(
         ctx = ctx,
+        args = args,
         is_fixture = is_fixture,
         project_name = project_name,
         config = config,
