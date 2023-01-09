@@ -50,8 +50,7 @@
         "configuration": "darwin_x86_64-dbg-STABLE-1",
         "inputs": {
             "srcs": [
-                "lib2/lib.c",
-                "lib2/includes/lib.h"
+                "lib2/lib.c"
             ]
         },
         "is_swift": false,
@@ -199,11 +198,6 @@
         "dependencies": [
             "//lib:lib_defines darwin_x86_64-dbg-STABLE-1"
         ],
-        "inputs": {
-            "srcs": [
-                "lib/lib.h"
-            ]
-        },
         "is_swift": false,
         "label": "//lib:lib_headers",
         "name": "lib_headers",
@@ -529,14 +523,6 @@
         "dependencies": [
             "@examples_cc_external//:lib_defines darwin_x86_64-dbg-STABLE-1"
         ],
-        "inputs": {
-            "srcs": [
-                {
-                    "_": "examples_cc_external/lib.h",
-                    "t": "e"
-                }
-            ]
-        },
         "is_swift": false,
         "label": "@examples_cc_external//:lib_headers",
         "name": "lib_headers",

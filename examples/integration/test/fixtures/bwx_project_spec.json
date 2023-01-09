@@ -105,6 +105,10 @@
     ],
     "extra_files": [
         {
+            "_": "FXPageControl/FXPageControl/FXPageControl.h",
+            "t": "e"
+        },
+        {
             "_": "build_bazel_rules_apple/apple/testing/DefaultTestBundle.plist",
             "t": "e"
         },
@@ -234,8 +238,11 @@
         "CommandLine/CommandLineTool/Launchd.plist",
         "CommandLine/CommandLineTool/export_symbol_list.exp",
         "CommandLine/CommandLineToolLib/BUILD",
+        "CommandLine/CommandLineToolLib/dir with space/lib.h",
+        "CommandLine/CommandLineToolLib/private_lib.h",
         "CommandLine/Tests/BUILD",
         "CommandLine/swift_c_module/BUILD",
+        "CommandLine/swift_c_module/c_lib.h",
         "Lib/BUILD",
         "Lib/Info.plist",
         "Lib/README.md",
@@ -265,6 +272,8 @@
         "iOSApp/Source/CoreUtilsObjC/Info.plist",
         "iOSApp/Source/Info.plist",
         "iOSApp/Source/Utils/BUILD",
+        "iOSApp/Source/Utils/Foo.h",
+        "iOSApp/Source/Utils/Utils.h",
         "iOSApp/Test/ObjCUnitTests/BUILD",
         "iOSApp/Test/SwiftUnitTests/BUILD",
         "iOSApp/Test/TestingUtils/Answer.swift.stencil",
