@@ -71,6 +71,7 @@ $(INDEXING_DEPLOYMENT_LOCATION__NO)
                 "INDEXING_DEPLOYMENT_LOCATION__YES": false,
                 "INSTALL_PATH": "$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)/bin",
                 "INTERNAL_DIR": "$(PROJECT_FILE_PATH)/r_xcp",
+                "LD_RUNPATH_SEARCH_PATHS": [],
                 "RULES_XCODEPROJ_BUILD_MODE": "xcode",
                 "SCHEME_TARGET_IDS_FILE": """
 $(OBJROOT)/scheme_target_ids
@@ -196,6 +197,7 @@ $(INDEXING_DEPLOYMENT_LOCATION__NO)
                 "INDEXING_DEPLOYMENT_LOCATION__YES": false,
                 "INSTALL_PATH": "$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)/bin",
                 "INTERNAL_DIR": "$(PROJECT_FILE_PATH)/r_xcp",
+                "LD_RUNPATH_SEARCH_PATHS": [],
                 "RULES_XCODEPROJ_BUILD_MODE": "bazel",
                 "SCHEME_TARGET_IDS_FILE": """
 $(OBJROOT)/scheme_target_ids

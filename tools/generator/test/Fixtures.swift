@@ -2124,10 +2124,6 @@ touch "$SCRIPT_OUTPUT_FILE_1"
                 "EXECUTABLE_NAME": "A_ExecutableName",
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "LINK_PARAMS_FILE": "$(BAZEL_OUT)/z/A.link.params",
-                "LD_RUNPATH_SEARCH_PATHS": [
-                    "$(inherited)",
-                    "@executable_path/../Frameworks",
-                ],
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_LDFLAGS": "@$(DERIVED_FILE_DIR)/link.params",
                 "OTHER_SWIFT_FLAGS": #"""
@@ -2150,10 +2146,6 @@ touch "$SCRIPT_OUTPUT_FILE_1"
                 "DEPLOYMENT_LOCATION": "NO",
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "IPHONEOS_DEPLOYMENT_TARGET": "11.0",
-                "LD_RUNPATH_SEARCH_PATHS": [
-                    "$(inherited)",
-                    "@executable_path/Frameworks",
-                ],
                 "OTHER_CFLAGS": [
                     "-ivfsoverlay",
                     "$(OBJROOT)/bazel-out-overlay.yaml",
@@ -2351,10 +2343,6 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2/A.app/A_ExecutableName
                 "DEPLOYMENT_LOCATION": "NO",
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "IPHONEOS_DEPLOYMENT_TARGET": "12.0",
-                "LD_RUNPATH_SEARCH_PATHS": [
-                    "$(inherited)",
-                    "@executable_path/Frameworks",
-                ],
                 "OTHER_CFLAGS": [
                     "-ivfsoverlay",
                     "$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
@@ -2485,11 +2473,6 @@ $(MACOSX_FILES)
                 "DEPLOYMENT_LOCATION": "NO",
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "IPHONEOS_DEPLOYMENT_TARGET": "11.0",
-                "LD_RUNPATH_SEARCH_PATHS": [
-                    "$(inherited)",
-                    "@executable_path/Frameworks",
-                    "@executable_path/../../Frameworks",
-                ],
                 "OTHER_CFLAGS": [
                     "-ivfsoverlay",
                     "$(OBJROOT)/bazel-out-overlay.yaml",
@@ -2516,11 +2499,6 @@ $(MACOSX_FILES)
                 "COMPILE_TARGET_NAME": targets["WKE"]!.name,
                 "DEPLOYMENT_LOCATION": "NO",
                 "GENERATE_INFOPLIST_FILE": "YES",
-                "LD_RUNPATH_SEARCH_PATHS": [
-                    "$(inherited)",
-                    "@executable_path/Frameworks",
-                    "@executable_path/../../Frameworks",
-                ],
                 "OTHER_CFLAGS": [
                     "-ivfsoverlay",
                     "$(OBJROOT)/bazel-out-overlay.yaml",

@@ -646,10 +646,6 @@
 				);
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/UndefinedBehaviorSanitizerApp/rules_xcodeproj/UndefinedBehaviorSanitizerApp/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/UndefinedBehaviorSanitizerApp.2.link.params";
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",
@@ -780,6 +776,8 @@
 				INTERNAL_DIR = "$(PROJECT_FILE_PATH)/rules_xcodeproj";
 				LD = "$(BAZEL_INTEGRATION_DIR)/ld.sh";
 				LDPLUSPLUS = "$(BAZEL_INTEGRATION_DIR)/ld.sh";
+				LD_RUNPATH_SEARCH_PATHS = (
+				);
 				LIBTOOL = "$(BAZEL_INTEGRATION_DIR)/libtool.sh";
 				ONLY_ACTIVE_ARCH = YES;
 				RULES_XCODEPROJ_BUILD_MODE = bazel;
@@ -818,10 +816,6 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/ThreadSanitizerApp/rules_xcodeproj/ThreadSanitizerApp/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/ThreadSanitizerApp.1.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static";
@@ -870,10 +864,6 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/AddressSanitizerApp/rules_xcodeproj/AddressSanitizerApp/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/AddressSanitizerApp.0.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all -static";
