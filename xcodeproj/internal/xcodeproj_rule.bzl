@@ -488,63 +488,11 @@ actual targets: {}
                 dest = focused_targets[dest],
             )
 
-    xcode_generated_paths = {}
-    for xcode_target in focused_targets.values():
-        if build_mode != "xcode" or xcode_target.id in unfocused_dependencies:
-            continue
-
-        product = xcode_target.product
-        product_file = product.file
-        if not product_file:
-            continue
-
-        product_file_path = product_file.path
-        xcode_product_path = build_setting_path(
-            file = product_file,
-            path = product_file_path,
-            use_build_dir = True,
-        )
-        xcode_generated_paths[product_file_path] = (
-            xcode_product_path
-        )
-        for file in product.additional_product_files:
-            xcode_generated_paths[file.path] = xcode_product_path
-        for file in product.framework_files.to_list():
-            xcode_generated_paths[file.path] = (
-                xcode_product_path
-            )
-
-        swiftmodule = xcode_target.outputs.swiftmodule
-        if swiftmodule:
-            swiftmodule_basename = swiftmodule.basename
-            if product.type == "com.apple.product-type.framework":
-                path = product_file.path + "/Modules/" + swiftmodule_basename
-            else:
-                path = product_file.dirname + "/" + swiftmodule_basename
-
-            xcode_generated_paths[swiftmodule.path] = (
-                build_setting_path(
-                    file = swiftmodule,
-                    path = path,
-                    use_build_dir = True,
-                )
-            )
-
-        generated_header = xcode_target.outputs.swift_generated_header
-        if generated_header:
-            product_components = product.file.path.split("/", 3)
-            header_components = generated_header.path.split("/")
-            final_components = (product_components[0:2] +
-                                header_components[2:])
-            path = "/".join(final_components)
-
-            xcode_generated_paths[generated_header.path] = (
-                build_setting_path(
-                    file = generated_header,
-                    path = path,
-                    use_build_dir = True,
-                )
-            )
+    xcode_generated_paths = _process_xcode_generated_paths(
+        build_mode = build_mode,
+        focused_targets = focused_targets,
+        unfocused_dependencies = unfocused_dependencies,
+    )
 
     target_dtos = {}
     target_dependencies = {}
@@ -748,6 +696,76 @@ actual targets: {}
         replacement_labels_by_label,
         configurations_map,
     )
+
+def _process_xcode_generated_paths(
+        *,
+        build_mode,
+        focused_targets,
+        unfocused_dependencies):
+    if build_mode != "xcode":
+        return {}
+
+    xcode_generated_paths = {}
+    for xcode_target in focused_targets.values():
+        if xcode_target.id in unfocused_dependencies:
+            continue
+
+        product = xcode_target.product
+        product_file = product.file
+        if not product_file:
+            continue
+
+        product_file_path = product_file.path
+        xcode_product_path = build_setting_path(
+            file = product_file,
+            path = product_file_path,
+            use_build_dir = True,
+        )
+        xcode_generated_paths[product_file_path] = (
+            xcode_product_path
+        )
+        for file in product.additional_product_files:
+            xcode_generated_paths[file.path] = xcode_product_path
+        for file in product.framework_files.to_list():
+            xcode_generated_paths[file.path] = (
+                xcode_product_path
+            )
+
+        swiftmodule = xcode_target.outputs.swiftmodule
+        if swiftmodule:
+            swiftmodule_basename = swiftmodule.basename
+            if product.type == "com.apple.product-type.framework":
+                path = (
+                    product_file.path + "/Modules/" + swiftmodule_basename
+                )
+            else:
+                path = product_file.dirname + "/" + swiftmodule_basename
+
+            xcode_generated_paths[swiftmodule.path] = (
+                build_setting_path(
+                    file = swiftmodule,
+                    path = path,
+                    use_build_dir = True,
+                )
+            )
+
+        generated_header = xcode_target.outputs.swift_generated_header
+        if generated_header:
+            product_components = product.file.path.split("/", 3)
+            header_components = generated_header.path.split("/")
+            final_components = (product_components[0:2] +
+                                header_components[2:])
+            path = "/".join(final_components)
+
+            xcode_generated_paths[generated_header.path] = (
+                build_setting_path(
+                    file = generated_header,
+                    path = path,
+                    use_build_dir = True,
+                )
+            )
+
+    return xcode_generated_paths
 
 def should_include_outputs(build_mode):
     return build_mode != "bazel_via_proxy"
