@@ -1031,8 +1031,6 @@
     "@com_github_michaeleisel_jjliso8601dateformatter//:JJLISO8601DateFormatter macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
     {
         "build_settings": {
-            "CLANG_CXX_LANGUAGE_STANDARD": "gnu++0x",
-            "CLANG_CXX_LIBRARY": "libc++",
             "DEBUG_INFORMATION_FORMAT": "dwarf",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
@@ -1076,6 +1074,8 @@
                 "-fstack-protector-all"
             ],
             "OTHER_CPLUSPLUSFLAGS": [
+                "-stdlib=libc++",
+                "-std=gnu++11",
                 "-fstack-protector",
                 "-Wall",
                 "-Wthread-safety",
@@ -1250,8 +1250,6 @@
     "@com_github_michaeleisel_zippyjsoncfamily//:ZippyJSONCFamily macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
     {
         "build_settings": {
-            "CLANG_CXX_LANGUAGE_STANDARD": "c++17",
-            "CLANG_CXX_LIBRARY": "libc++",
             "DEBUG_INFORMATION_FORMAT": "dwarf",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
@@ -1295,6 +1293,8 @@
                 "-fstack-protector-all"
             ],
             "OTHER_CPLUSPLUSFLAGS": [
+                "-stdlib=libc++",
+                "-std=gnu++11",
                 "-fstack-protector",
                 "-Wall",
                 "-Wthread-safety",
@@ -1314,6 +1314,7 @@
                 "-Wunused-function",
                 "-Wunused-variable",
                 "-fno-autolink",
+                "-std=c++17",
                 "-Wno-unused-function",
                 "-Wno-reorder-ctor",
                 "-Wno-return-type-c-linkage",

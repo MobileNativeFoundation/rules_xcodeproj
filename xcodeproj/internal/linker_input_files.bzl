@@ -334,8 +334,6 @@ def _process_linkopt(linkopt):
         return None
     if linkopt.startswith("-Wl,-sectcreate,__TEXT,__info_plist,"):
         return None
-    if linkopt.startswith("-stdlib=") or linkopt.startswith("-std="):
-        return None
     if linkopt.endswith(".o"):
         return None
 
