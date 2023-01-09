@@ -744,6 +744,7 @@
 		9B56D9298492068E642846F0 /* tvOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tvOSApp.swift; sourceTree = "<group>"; };
 		9B899E47D0A86524DC726EAB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		9B9B00577F9503C23091539C /* Foo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Foo.h; sourceTree = "<group>"; };
+		9C8D29E938D61D6A4521087A /* MixedAnswer_swift_modulemap-module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = "MixedAnswer_swift_modulemap-module.modulemap"; sourceTree = "<group>"; };
 		9CDBE2A70903CB6B2F488438 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
 		9CE82A32473010BC48F4AB2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		9E3C67424F456D9FF51EEBDA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -762,6 +763,7 @@
 		A43526B3370311547CB489D0 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		A43B7F66FF9518FDB6203F44 /* private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = private.h; sourceTree = "<group>"; };
 		A4B7C7B0B3E5966287BE381D /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
+		A67AC1982B08388B0B071590 /* MixedAnswer_swift_modulemap-module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = "MixedAnswer_swift_modulemap-module.modulemap"; sourceTree = "<group>"; };
 		A72784148E298BC9F8822CE8 /* libFXPageControl.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libFXPageControl.a; path = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/external/FXPageControl/libFXPageControl.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A755C138B3C37E7179D040B6 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		A7DD5DC08825B46B051D74B0 /* UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITests.swift; sourceTree = "<group>"; };
@@ -1402,6 +1404,7 @@
 			isa = PBXGroup;
 			children = (
 				06AA4CD7626D6683A7C05BF2 /* MixedAnswer_objc_modulemap-module.modulemap */,
+				9C8D29E938D61D6A4521087A /* MixedAnswer_swift_modulemap-module.modulemap */,
 				989BE7BB78C57F38AA24315F /* MixedAnswer-Swift.h */,
 				7182358A4BB859EEBEA8F898 /* MixedAnswer.h */,
 			);
@@ -3345,6 +3348,7 @@
 			isa = PBXGroup;
 			children = (
 				6B00EC1FF87EA42B279BC75C /* MixedAnswer_objc_modulemap-module.modulemap */,
+				A67AC1982B08388B0B071590 /* MixedAnswer_swift_modulemap-module.modulemap */,
 				F4A7544F046BBC6B8B679EBC /* MixedAnswer-Swift.h */,
 				F2002F1F8D5FE17C4FB7442A /* MixedAnswer.h */,
 			);

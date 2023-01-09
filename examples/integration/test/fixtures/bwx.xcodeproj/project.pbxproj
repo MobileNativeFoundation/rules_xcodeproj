@@ -1287,6 +1287,7 @@
 		0C26431BEA9BDE85719573AE /* UIFramework.watchOS.10.link.params */ = {isa = PBXFileReference; path = UIFramework.watchOS.10.link.params; sourceTree = "<group>"; };
 		0C3FDBB8B1E303119EECC45D /* tvOS.75.link.params */ = {isa = PBXFileReference; path = tvOS.75.link.params; sourceTree = "<group>"; };
 		0CAFEF0F325F4DD3305F200F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0D6CCA19C1E8F68274A36015 /* MixedAnswer_swift_modulemap-module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = "MixedAnswer_swift_modulemap-module.modulemap"; sourceTree = "<group>"; };
 		0E61A4D2267ABDA80881881E /* ExampleFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ExampleFramework.framework; sourceTree = "<group>"; };
 		0EAF4CCFF14C889E4A033E83 /* Info.withbundleid.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.withbundleid.plist; sourceTree = "<group>"; };
 		0EB4BF51D9CE54168033C166 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -1524,6 +1525,7 @@
 		CC08EB503D739663D1FCF7B0 /* AltIcon-60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AltIcon-60@2x.png"; sourceTree = "<group>"; };
 		CC3A6DBE416393F44D96AFDD /* Launchd.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Launchd.plist; sourceTree = "<group>"; };
 		CCE87302DD400A927D780233 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		CD1F9E4C45CB493613146755 /* MixedAnswer_swift_modulemap-module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = "MixedAnswer_swift_modulemap-module.modulemap"; sourceTree = "<group>"; };
 		CD78523E99A7179D8EBC0A81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CD9B5C446AD8743E2EC5284C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		CE5C7FA633009F456D7C4262 /* AppClip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppClip.swift; sourceTree = "<group>"; };
@@ -2044,6 +2046,7 @@
 			isa = PBXGroup;
 			children = (
 				9CC503C000379F2665D27C33 /* MixedAnswer_objc_modulemap-module.modulemap */,
+				CD1F9E4C45CB493613146755 /* MixedAnswer_swift_modulemap-module.modulemap */,
 				C85BD205586AA00838254725 /* MixedAnswer-Swift.h */,
 				2FDA674CB67420ACD5685C09 /* MixedAnswer.h */,
 			);
@@ -4140,6 +4143,7 @@
 			isa = PBXGroup;
 			children = (
 				8864D10D2387038D474CB645 /* MixedAnswer_objc_modulemap-module.modulemap */,
+				0D6CCA19C1E8F68274A36015 /* MixedAnswer_swift_modulemap-module.modulemap */,
 				28C2351458EB8E80300B9529 /* MixedAnswer-Swift.h */,
 				098A13592873A554818B90CA /* MixedAnswer.h */,
 			);
