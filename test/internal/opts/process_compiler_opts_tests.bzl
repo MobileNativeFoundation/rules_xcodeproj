@@ -382,38 +382,6 @@ def process_compiler_opts_test_suite(name):
 
     # Specific Xcode build settings
 
-    # CLANG_CXX_LANGUAGE_STANDARD
-
-    _add_test(
-        name = "{}_options-std".format(name),
-        conlyopts = ["-std=c++42"],
-        cxxopts = ["-std=c++42"],
-        expected_build_settings = {
-            "CLANG_CXX_LANGUAGE_STANDARD": "c++42",
-            "OTHER_CFLAGS": ["-std=c++42"],
-        },
-    )
-
-    _add_test(
-        name = "{}_options-std=c++0x".format(name),
-        cxxopts = ["-std=c++11"],
-        expected_build_settings = {
-            "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
-        },
-    )
-
-    # CLANG_CXX_LIBRARY
-
-    _add_test(
-        name = "{}_options-stdlib".format(name),
-        conlyopts = ["-stdlib=random"],
-        cxxopts = ["-stdlib=random"],
-        expected_build_settings = {
-            "CLANG_CXX_LIBRARY": "random",
-            "OTHER_CFLAGS": ["-stdlib=random"],
-        },
-    )
-
     ## DEBUG_INFORMATION_FORMAT
 
     _add_test(

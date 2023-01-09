@@ -2887,8 +2887,6 @@
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_jjliso8601dateformatter";
 				BAZEL_TARGET_ID = "@com_github_michaeleisel_jjliso8601dateformatter//:JJLISO8601DateFormatter macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
 				COMPILE_TARGET_NAME = JJLISO8601DateFormatter;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
@@ -2938,6 +2936,8 @@
 				OTHER_CPLUSPLUSFLAGS = (
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
+					"-stdlib=libc++",
+					"-std=gnu++11",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -2991,8 +2991,6 @@
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_zippyjsoncfamily";
 				BAZEL_TARGET_ID = "@com_github_michaeleisel_zippyjsoncfamily//:ZippyJSONCFamily macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
-				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
-				CLANG_CXX_LIBRARY = "libc++";
 				COMPILE_TARGET_NAME = ZippyJSONCFamily;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
@@ -3042,6 +3040,8 @@
 				OTHER_CPLUSPLUSFLAGS = (
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
+					"-stdlib=libc++",
+					"-std=gnu++11",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -3061,6 +3061,7 @@
 					"-Wunused-function",
 					"-Wunused-variable",
 					"-fno-autolink",
+					"-std=c++17",
 					"-Wno-unused-function",
 					"-Wno-reorder-ctor",
 					"-Wno-return-type-c-linkage",
@@ -3165,6 +3166,8 @@
 				INTERNAL_DIR = "$(PROJECT_FILE_PATH)/rules_xcodeproj";
 				LD = "$(BAZEL_INTEGRATION_DIR)/ld.sh";
 				LDPLUSPLUS = "$(BAZEL_INTEGRATION_DIR)/ld.sh";
+				LD_DYLIB_INSTALL_NAME = "";
+				LD_OBJC_ABI_VERSION = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 				);
 				LIBTOOL = "$(BAZEL_INTEGRATION_DIR)/libtool.sh";

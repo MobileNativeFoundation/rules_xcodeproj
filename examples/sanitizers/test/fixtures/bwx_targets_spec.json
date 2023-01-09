@@ -170,8 +170,6 @@
     "//UndefinedBehaviorSanitizerApp:UndefinedBehaviorSanitizerApp applebin_ios-ios_x86_64-dbg-STABLE-2",
     {
         "build_settings": {
-            "CLANG_CXX_LANGUAGE_STANDARD": "gnu++0x",
-            "CLANG_CXX_LIBRARY": "libc++",
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf",
             "ENABLE_BITCODE": false,
@@ -210,6 +208,8 @@
                 "-fstack-protector-all"
             ],
             "OTHER_CPLUSPLUSFLAGS": [
+                "-stdlib=libc++",
+                "-std=gnu++11",
                 "-fstack-protector",
                 "-Wall",
                 "-Wthread-safety",

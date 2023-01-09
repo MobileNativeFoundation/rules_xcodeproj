@@ -869,7 +869,6 @@
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib";
 				BAZEL_TARGET_ID = "//lib:lib_impl darwin_x86_64-dbg-STABLE-1";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
-				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				COMPILE_TARGET_NAME = lib_impl;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
@@ -914,6 +913,7 @@
 					"-Wthread-safety",
 					"-Wself-assign",
 					"-fno-omit-frame-pointer",
+					"-std=c++11",
 					"-no-canonical-prefixes",
 					"-pthread",
 					"-no-canonical-prefixes",
@@ -941,7 +941,6 @@
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib";
 				BAZEL_TARGET_ID = "//lib:lib_defines darwin_x86_64-dbg-STABLE-1";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
-				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				COMPILE_TARGET_NAME = lib_defines;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
@@ -982,6 +981,7 @@
 					"-Wthread-safety",
 					"-Wself-assign",
 					"-fno-omit-frame-pointer",
+					"-std=c++11",
 					"-no-canonical-prefixes",
 					"-pthread",
 					"-no-canonical-prefixes",
@@ -1009,7 +1009,6 @@
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib";
 				BAZEL_TARGET_ID = "//lib:lib_headers darwin_x86_64-dbg-STABLE-1";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
-				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				COMPILE_TARGET_NAME = lib_headers;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
@@ -1050,6 +1049,7 @@
 					"-Wthread-safety",
 					"-Wself-assign",
 					"-fno-omit-frame-pointer",
+					"-std=c++11",
 					"-no-canonical-prefixes",
 					"-pthread",
 					"-no-canonical-prefixes",
@@ -1077,7 +1077,6 @@
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib2";
 				BAZEL_TARGET_ID = "//lib2:lib_impl darwin_x86_64-dbg-STABLE-1";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
-				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				COMPILE_TARGET_NAME = lib_impl;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
@@ -1116,6 +1115,7 @@
 					"-Wthread-safety",
 					"-Wself-assign",
 					"-fno-omit-frame-pointer",
+					"-std=c++11",
 					"-no-canonical-prefixes",
 					"-pthread",
 					"-no-canonical-prefixes",
@@ -1185,6 +1185,8 @@
 				INDEX_FORCE_SCRIPT_EXECUTION = YES;
 				INSTALL_PATH = "$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)/bin";
 				INTERNAL_DIR = "$(PROJECT_FILE_PATH)/rules_xcodeproj";
+				LD_DYLIB_INSTALL_NAME = "";
+				LD_OBJC_ABI_VERSION = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 				);
 				ONLY_ACTIVE_ARCH = YES;
@@ -1208,7 +1210,6 @@
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external";
 				BAZEL_TARGET_ID = "@examples_cc_external//:lib_defines darwin_x86_64-dbg-STABLE-1";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
-				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				COMPILE_TARGET_NAME = lib_defines;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
@@ -1249,6 +1250,7 @@
 					"-Wthread-safety",
 					"-Wself-assign",
 					"-fno-omit-frame-pointer",
+					"-std=c++11",
 					"-no-canonical-prefixes",
 					"-pthread",
 					"-no-canonical-prefixes",
@@ -1278,7 +1280,6 @@
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external";
 				BAZEL_TARGET_ID = "@examples_cc_external//:lib_headers darwin_x86_64-dbg-STABLE-1";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
-				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				COMPILE_TARGET_NAME = lib_headers;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
@@ -1319,6 +1320,7 @@
 					"-Wthread-safety",
 					"-Wself-assign",
 					"-fno-omit-frame-pointer",
+					"-std=c++11",
 					"-no-canonical-prefixes",
 					"-pthread",
 					"-no-canonical-prefixes",
@@ -1349,7 +1351,6 @@
 				BAZEL_TARGET_ID = "//tool:tool darwin_x86_64-dbg-STABLE-1";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
-				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				COMPILE_TARGET_NAME = tool;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEPLOYMENT_LOCATION = NO;
@@ -1393,6 +1394,7 @@
 					"-Wthread-safety",
 					"-Wself-assign",
 					"-fno-omit-frame-pointer",
+					"-std=c++11",
 					"-no-canonical-prefixes",
 					"-pthread",
 					"-no-canonical-prefixes",
@@ -1429,7 +1431,6 @@
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external";
 				BAZEL_TARGET_ID = "@examples_cc_external//:lib_impl darwin_x86_64-dbg-STABLE-1";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
-				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				COMPILE_TARGET_NAME = lib_impl;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
@@ -1473,6 +1474,7 @@
 					"-Wthread-safety",
 					"-Wself-assign",
 					"-fno-omit-frame-pointer",
+					"-std=c++11",
 					"-no-canonical-prefixes",
 					"-pthread",
 					"-no-canonical-prefixes",

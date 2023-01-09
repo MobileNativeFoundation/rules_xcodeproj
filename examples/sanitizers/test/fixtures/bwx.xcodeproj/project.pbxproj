@@ -654,8 +654,6 @@
 				BAZEL_TARGET_ID = "//UndefinedBehaviorSanitizerApp:UndefinedBehaviorSanitizerApp applebin_ios-ios_x86_64-dbg-STABLE-2";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = UndefinedBehaviorSanitizerApp.library;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -707,6 +705,8 @@
 					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
+					"-stdlib=libc++",
+					"-std=gnu++11",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -783,6 +783,8 @@
 				INDEX_FORCE_SCRIPT_EXECUTION = YES;
 				INSTALL_PATH = "$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)/bin";
 				INTERNAL_DIR = "$(PROJECT_FILE_PATH)/rules_xcodeproj";
+				LD_DYLIB_INSTALL_NAME = "";
+				LD_OBJC_ABI_VERSION = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 				);
 				ONLY_ACTIVE_ARCH = YES;
