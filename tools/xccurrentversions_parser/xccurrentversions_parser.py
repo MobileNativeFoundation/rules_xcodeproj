@@ -6,7 +6,7 @@ import sys
 def _main(
         containers_path: str,
         xcurrentversions_file_list: str,
-        output_path) -> None:
+        output_path: str) -> None:
     with open(containers_path, encoding = "utf-8") as fp:
         file_paths = fp.read().splitlines()
     with open(xcurrentversions_file_list, encoding = "utf-8") as fp:

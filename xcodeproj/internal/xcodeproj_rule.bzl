@@ -488,7 +488,8 @@ actual targets: {}
                 dest = focused_targets[dest],
             )
 
-    xcode_generated_paths = _process_xcode_generated_paths(
+    xcode_generated_paths, xcode_generated_paths_file = _process_xcode_generated_paths(
+        ctx = ctx,
         build_mode = build_mode,
         focused_targets = focused_targets,
         unfocused_dependencies = unfocused_dependencies,
@@ -520,12 +521,14 @@ actual targets: {}
             build_mode = build_mode,
             include_lldb_context = include_lldb_context,
             is_unfocused_dependency = xcode_target.id in unfocused_dependencies,
+            link_params_processor = ctx.executable._link_params_processor,
             linker_products_map = linker_products_map,
             params_index = index,
             should_include_outputs = should_include_outputs(build_mode),
             unfocused_targets = unfocused_targets,
             target_merges = target_merges,
             xcode_generated_paths = xcode_generated_paths,
+            xcode_generated_paths_file = xcode_generated_paths_file,
         )
         target_dtos[xcode_target.id] = dto
         target_dependencies[xcode_target.id] = (
@@ -699,13 +702,22 @@ actual targets: {}
 
 def _process_xcode_generated_paths(
         *,
+        ctx,
         build_mode,
         focused_targets,
         unfocused_dependencies):
-    if build_mode != "xcode":
-        return {}
-
     xcode_generated_paths = {}
+    xcode_generated_paths_file = ctx.actions.declare_file(
+        "{}-xcode_generated_paths.json".format(ctx.attr.name),
+    )
+
+    if build_mode != "xcode":
+        ctx.actions.write(
+            content = json.encode(xcode_generated_paths),
+            output = xcode_generated_paths_file,
+        )
+        return xcode_generated_paths, xcode_generated_paths_file
+
     for xcode_target in focused_targets.values():
         if xcode_target.id in unfocused_dependencies:
             continue
@@ -765,7 +777,12 @@ def _process_xcode_generated_paths(
                 )
             )
 
-    return xcode_generated_paths
+    ctx.actions.write(
+        content = json.encode(xcode_generated_paths),
+        output = xcode_generated_paths_file,
+    )
+
+    return xcode_generated_paths, xcode_generated_paths_file
 
 def should_include_outputs(build_mode):
     return build_mode != "bazel_via_proxy"
@@ -1748,6 +1765,11 @@ transitive dependencies of the targets specified in the
             default = Label("//xcodeproj/internal:installer.template.sh"),
         ),
         "_is_fixture": attr.bool(default = is_fixture),
+        "_link_params_processor": attr.label(
+            cfg = "exec",
+            default = Label("//tools/params_processors:link_params_processor"),
+            executable = True,
+        ),
         "_xccurrentversions_parser": attr.label(
             cfg = "exec",
             default = Label("//tools/xccurrentversions_parser"),

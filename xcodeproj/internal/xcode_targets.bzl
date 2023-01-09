@@ -160,7 +160,8 @@ def _to_xcode_target_linker_inputs(linker_inputs):
     return struct(
         dynamic_frameworks = top_level_values.dynamic_frameworks,
         force_load_libraries = top_level_values.force_load_libraries,
-        linkopts = top_level_values.linkopts,
+        link_args = top_level_values.link_args,
+        link_args_inputs = top_level_values.link_args_inputs,
         static_libraries = top_level_values.static_libraries,
         static_frameworks = top_level_values.static_frameworks,
     )
@@ -523,12 +524,14 @@ def _xcode_target_to_dto(
         include_lldb_context,
         is_fixture,
         is_unfocused_dependency = False,
+        link_params_processor,
         linker_products_map,
         params_index,
         should_include_outputs,
         unfocused_targets = {},
         target_merges = {},
-        xcode_generated_paths):
+        xcode_generated_paths,
+        xcode_generated_paths_file):
     inputs = xcode_target.inputs
 
     dto = {
@@ -578,12 +581,13 @@ def _xcode_target_to_dto(
 
     linker_inputs_dto, link_params = _linker_inputs_to_dto(
         ctx = ctx,
+        link_params_processor = link_params_processor,
         linker_inputs = xcode_target.linker_inputs,
         compile_target = xcode_target._compile_target,
         name = xcode_target.name,
         params_index = params_index,
         platform = xcode_target.platform,
-        xcode_generated_paths = xcode_generated_paths,
+        xcode_generated_paths_file = xcode_generated_paths_file,
     )
 
     set_if_true(
@@ -795,10 +799,11 @@ def _linker_inputs_to_dto(
         *,
         ctx,
         compile_target,
+        link_params_processor,
         name,
         params_index,
         platform,
-        xcode_generated_paths):
+        xcode_generated_paths_file):
     if not linker_inputs:
         return ({}, None)
 
@@ -817,48 +822,7 @@ def _linker_inputs_to_dto(
         ],
     )
 
-    if xcode_generated_paths:
-        swift_triple = platform_info.to_swift_triple(platform)
-
-        def _process_linkopt_value(value):
-            xcode_path = xcode_generated_paths.get(value)
-            if not xcode_path:
-                return value
-            if paths.split_extension(xcode_path)[1] != ".swiftmodule":
-                return xcode_path
-            return "{}/{}.swiftmodule".format(xcode_path, swift_triple)
-
-        def _process_linkopt_component(component):
-            prefix, sep, suffix = component.partition("=")
-            if not sep:
-                return _process_linkopt_value(component)
-            return "{}={}".format(prefix, _process_linkopt_value(suffix))
-
-        def _process_linkopt(linkopt):
-            return ",".join([
-                _process_linkopt_component(component)
-                for component in linkopt.split(",")
-            ])
-
-        linkopts = [_process_linkopt(opt) for opt in linker_inputs.linkopts]
-    else:
-        linkopts = list(linker_inputs.linkopts)
-
-    linkopts.extend([
-        quote_if_needed(xcode_generated_paths.get(file.path, file.path))
-        for file in linker_inputs.static_libraries
-        if file != avoid_library
-    ])
-
-    for file in linker_inputs.force_load_libraries:
-        if file == avoid_library:
-            continue
-        path = file.path
-        path = xcode_generated_paths.get(path, path)
-        linkopts.append("-force_load")
-        linkopts.append(quote_if_needed(path))
-
-    if linkopts:
+    if linker_inputs.link_args:
         link_params = ctx.actions.declare_file(
             "{}-params/{}.{}.link.params".format(
                 ctx.attr.name,
@@ -866,9 +830,23 @@ def _linker_inputs_to_dto(
                 params_index,
             ),
         )
-        ctx.actions.write(
-            content = "\n".join(linkopts) + "\n",
-            output = link_params,
+
+        args = ctx.actions.args()
+        args.add(xcode_generated_paths_file)
+        args.add(avoid_library.path if avoid_library else "")
+        args.add(platform_info.to_swift_triple(platform))
+        args.add(link_params)
+
+        ctx.actions.run(
+            executable = link_params_processor,
+            arguments = [args] + linker_inputs.link_args,
+            mnemonic = "ProcessLinkParams",
+            progress_message = "Generating %{output}",
+            inputs = (
+                [xcode_generated_paths_file] +
+                list(linker_inputs.link_args_inputs)
+            ),
+            outputs = [link_params],
         )
     else:
         link_params = None

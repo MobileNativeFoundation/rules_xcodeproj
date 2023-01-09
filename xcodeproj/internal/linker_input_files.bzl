@@ -3,27 +3,6 @@
 load("@bazel_skylib//lib:sets.bzl", "sets")
 load(":collections.bzl", "flatten", "uniq")
 
-# linker flags that we don't want to propagate to Xcode.
-# The values are the number of flags to skip, 1 being the flag itself, 2 being
-# another flag right after it, etc.
-_LD_SKIP_OPTS = {
-    "-bundle": 2,
-    "-bundle_loader": 2,
-    "-dynamiclib": 1,
-    "-e": 2,
-    "-fapplication-extension": 1,
-    "-isysroot": 2,
-    "-filelist": 2,
-    "-fobjc-link-runtime": 1,
-    "-o": 2,
-    "-static": 1,
-    "-target": 2,
-    "OSO_PREFIX_MAP_PWD": 1,
-
-    # TODO: Remove this filter once we move path logic out of the generator
-    "-force_load": 2,
-}
-
 _SKIP_INPUT_EXTENSIONS = {
     "a": None,
     "app": None,
@@ -235,21 +214,26 @@ def _extract_top_level_values(
     else:
         return None
 
+    link_args = None
+    link_args_inputs = None
     if target:
         # TODO: Make this configurable with `XcodeProjAutomaticTargetProcessingInfo`
-        linkopts = []
         for action in target.actions:
             if action.mnemonic in ("ObjcLink", "CppLink"):
-                linkopts = _process_linkopts(action.argv[1:])
+                link_args = action.args
+                link_args_inputs = tuple([
+                    f
+                    for f in action.inputs.to_list()
+                    if f.path.endswith("-linker.objlist")
+                ])
                 break
-    else:
-        linkopts = []
 
     return struct(
         additional_input_files = tuple(additional_input_files),
         dynamic_frameworks = tuple(dynamic_frameworks),
         force_load_libraries = tuple(force_load_libraries),
-        linkopts = tuple(linkopts),
+        link_args = link_args,
+        link_args_inputs = link_args_inputs,
         static_frameworks = tuple(static_frameworks),
         static_libraries = tuple(static_libraries),
     )
@@ -309,48 +293,6 @@ def _get_library_static_libraries(linker_inputs, *, dep_compilation_providers):
     )
 
     return (direct, transitive)
-
-def _process_linkopts(linkopts):
-    ret = []
-    skip_next = 0
-    for linkopt in linkopts:
-        if skip_next:
-            skip_next -= 1
-            continue
-        skip_next = _LD_SKIP_OPTS.get(linkopt, 0)
-        if skip_next:
-            skip_next -= 1
-            continue
-
-        linkopt = _process_linkopt(linkopt)
-        if linkopt:
-            ret.append(linkopt)
-
-    return ret
-
-def _process_linkopt(linkopt):
-    if linkopt.startswith("-Wl,-sectcreate,__TEXT,__entitlements,"):
-        return None
-    if linkopt.startswith("-Wl,-sectcreate,__TEXT,__info_plist,"):
-        return None
-    if linkopt.endswith(".o"):
-        return None
-
-    # TODO: Remove these filter once we move path logic out of the generator
-    if linkopt.startswith("-F"):
-        return None
-    if linkopt.startswith("@"):
-        return None
-    if linkopt.endswith(".a") or linkopt.endswith(".lo"):
-        return None
-
-    # Use Xcode set `DEVELOPER_DIR`
-    linkopt = linkopt.replace(
-        "__BAZEL_XCODE_DEVELOPER_DIR__",
-        "$(DEVELOPER_DIR)",
-    )
-
-    return linkopt
 
 def _to_input_files(linker_inputs):
     top_level_values = linker_inputs._top_level_values
