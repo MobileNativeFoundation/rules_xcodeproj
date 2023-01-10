@@ -743,7 +743,7 @@ def _process_xcode_generated_paths(
             executable_name = product.executable_name
             xcode_generated_paths[product.executable.path] = paths.join(
                 xcode_product_path,
-                executable_name
+                executable_name,
             )
 
         for file in product.additional_product_files:
