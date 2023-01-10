@@ -146,18 +146,6 @@ def _extract_top_level_values(
             avoid_static_framework_files = sets.make()
             avoid_static_libraries = sets.make()
 
-        force_load_libraries = [
-            file
-            for file in objc.force_load_library.to_list()
-            if not sets.contains(avoid_static_libraries, file)
-        ]
-
-        # We don't want to include force loaded libraries in `static_libraries`
-        avoid_static_libraries = sets.union(
-            avoid_static_libraries,
-            sets.make(force_load_libraries),
-        )
-
         dynamic_frameworks = objc.dynamic_framework_file.to_list()
         static_frameworks = [
             file
@@ -193,7 +181,6 @@ def _extract_top_level_values(
         dynamic_frameworks = []
         static_frameworks = []
 
-        force_load_libraries = []
         static_libraries = []
         additional_input_files = []
         for input in cc_linker_inputs:
@@ -203,13 +190,9 @@ def _extract_top_level_values(
             for library in input.libraries:
                 if sets.contains(avoid_libraries, library):
                     continue
-                if library.alwayslink:
-                    force_load_libraries.append(library.static_library)
-                else:
-                    static_libraries.append(library.static_library)
+                static_libraries.append(library.static_library)
 
         # Dedup libraries
-        force_load_libraries = uniq(force_load_libraries)
         static_libraries = uniq(static_libraries)
     else:
         return None
@@ -234,7 +217,7 @@ def _extract_top_level_values(
         link_args = link_args,
         link_args_inputs = link_args_inputs,
         static_frameworks = tuple(static_frameworks),
-        static_libraries = tuple(static_libraries + force_load_libraries),
+        static_libraries = tuple(static_libraries),
     )
 
 def _process_additional_inputs(files):
