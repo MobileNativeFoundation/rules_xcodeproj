@@ -159,7 +159,6 @@ def _to_xcode_target_linker_inputs(linker_inputs):
 
     return struct(
         dynamic_frameworks = top_level_values.dynamic_frameworks,
-        force_load_libraries = top_level_values.force_load_libraries,
         link_args = top_level_values.link_args,
         link_args_inputs = top_level_values.link_args_inputs,
         static_libraries = top_level_values.static_libraries,
@@ -976,7 +975,7 @@ def _get_top_level_static_libraries(xcode_target):
         fail("""\
 Target '{}' requires `ObjcProvider` or `CcInfo`\
 """.format(xcode_target.label))
-    return linker_inputs.static_libraries + linker_inputs.force_load_libraries
+    return linker_inputs.static_libraries
 
 xcode_targets = struct(
     get_top_level_static_libraries = _get_top_level_static_libraries,
