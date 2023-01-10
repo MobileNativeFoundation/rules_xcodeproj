@@ -113,7 +113,7 @@ def _process_linkopts(
         if opt.startswith("-Wl,-sectcreate,__TEXT,__info_plist,"):
             return None
 
-        # Xcode add object files
+        # Xcode adds object files
         if opt.endswith(".o"):
             return None
 
