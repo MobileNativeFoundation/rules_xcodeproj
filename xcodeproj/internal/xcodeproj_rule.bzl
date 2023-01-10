@@ -739,7 +739,7 @@ def _process_xcode_generated_paths(
         for file in product.additional_product_files:
             xcode_generated_paths[file.path] = xcode_product_path
         for file in product.framework_files.to_list():
-            xcode_generated_paths[file.path] = (
+            xcode_generated_paths[file.dirname] = (
                 xcode_product_path
             )
 

@@ -375,8 +375,9 @@ def _set_search_paths(
 
     framework_build_setting_paths = {}
     for file in frameworks:
-        search_path = paths.dirname(file.dirname)
-        xcode_generated_path = xcode_generated_paths.get(file.path)
+        framework_path = file.dirname
+        search_path = paths.dirname(framework_path)
+        xcode_generated_path = xcode_generated_paths.get(framework_path)
         if xcode_generated_path:
             framework_build_setting_paths.setdefault(search_path, {})[True] = (
                 paths.dirname(xcode_generated_path)
