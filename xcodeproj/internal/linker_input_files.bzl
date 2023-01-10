@@ -18,6 +18,7 @@ _LD_SKIP_OPTS = {
     "-o": 2,
     "-static": 1,
     "-target": 2,
+    "OSO_PREFIX_MAP_PWD": 1,
 
     # TODO: Remove this filter once we move path logic out of the generator
     "-force_load": 2,
@@ -328,8 +329,6 @@ def _process_linkopts(linkopts):
     return ret
 
 def _process_linkopt(linkopt):
-    if linkopt == "OSO_PREFIX_MAP_PWD":
-        return None
     if linkopt.startswith("-Wl,-sectcreate,__TEXT,__entitlements,"):
         return None
     if linkopt.startswith("-Wl,-sectcreate,__TEXT,__info_plist,"):
