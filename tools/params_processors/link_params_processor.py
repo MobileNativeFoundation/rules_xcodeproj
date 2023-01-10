@@ -40,15 +40,24 @@ def _parse_args(args: List[str]) -> List[str]:
 # The values are the number of flags to skip, 1 being the flag itself, 2 being
 # another flag right after it, etc.
 _LD_SKIP_OPTS = {
+    # Xcode sets the output path
+    "-o": 2,
+
+    # Xcode sets these, and no way to unset it
     "-bundle": 2,
     "-dynamiclib": 1,
     "-e": 2,
-    "-fapplication-extension": 1,
     "-isysroot": 2,
-    "-fobjc-link-runtime": 1,
-    "-o": 2,
     "-static": 1,
     "-target": 2,
+
+    # Xcode sets this, even if `CLANG_LINK_OBJC_RUNTIME = NO` is set
+    "-fobjc-link-runtime": 1,
+
+    # We let Xcode set this currently, until we pass through compiler flags
+    "-fapplication-extension": 1,
+
+    # This is wrapped_clang specific, and we don't want to translate it for BwX
     "OSO_PREFIX_MAP_PWD": 1,
 }
 
@@ -96,10 +105,15 @@ def _process_linkopts(
                 processed_linkopts.pop()
             return None
 
+        # Xcode sets entitlements
         if opt.startswith("-Wl,-sectcreate,__TEXT,__entitlements,"):
             return None
+
+        # Xcode sets Info.plist
         if opt.startswith("-Wl,-sectcreate,__TEXT,__info_plist,"):
             return None
+
+        # Xcode add object files
         if opt.endswith(".o"):
             return None
 
