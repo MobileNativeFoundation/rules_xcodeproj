@@ -736,8 +736,20 @@ def _process_xcode_generated_paths(
         xcode_generated_paths[product_file_path] = (
             xcode_product_path
         )
+
+        executable = product.executable
+        if executable and product.type.startswith("com.apple.product-type.app"):
+            # Possible test hosts (apps and app extensions)
+            executable_name = product.executable_name
+            xcode_generated_paths[product.executable.path] = paths.join(
+                xcode_product_path,
+                executable_name
+            )
+
         for file in product.additional_product_files:
-            xcode_generated_paths[file.path] = xcode_product_path
+            path = file.path
+            xcode_generated_paths[path] = xcode_product_path
+
         for file in product.framework_files.to_list():
             xcode_generated_paths[file.dirname] = (
                 xcode_product_path

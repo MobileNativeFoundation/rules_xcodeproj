@@ -121,7 +121,13 @@ def process_product(
     else:
         framework_files = depset()
 
+    if target and apple_common.AppleExecutableBinary in target:
+        executable = target[apple_common.AppleExecutableBinary].binary
+    else:
+        executable = None
+
     return struct(
+        executable = executable,
         executable_name = executable_name,
         name = product_name,
         framework_files = framework_files,

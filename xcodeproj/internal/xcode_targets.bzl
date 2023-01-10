@@ -194,10 +194,11 @@ def _to_xcode_target_product(product):
         type = product.type,
         file = product.file,
         file_path = product.file_path,
+        executable = product.executable,
+        executable_name = product.executable_name,
         additional_product_files = tuple(),
         framework_files = product.framework_files,
         _additional_files = product.framework_files,
-        _executable_name = product.executable_name,
         _is_resource_bundle = product.is_resource_bundle,
     )
 
@@ -298,6 +299,8 @@ def _merge_xcode_target_product(*, src, dest):
         type = dest.type,
         file = dest.file,
         file_path = dest.file_path,
+        executable = dest.executable,
+        executable_name = dest.executable_name,
         framework_files = depset(
             transitive = [dest.framework_files, src.framework_files],
         ),
@@ -306,7 +309,6 @@ def _merge_xcode_target_product(*, src, dest):
             [src.file],
             transitive = [dest._additional_files, src._additional_files],
         ),
-        _executable_name = dest._executable_name,
         _is_resource_bundle = dest._is_resource_bundle,
     )
 
@@ -870,7 +872,7 @@ def _product_to_dto(product):
             file_path_to_dto(normalized_file_path(file))
             for file in product._additional_files.to_list()
         ],
-        "executable_name": product._executable_name,
+        "executable_name": product.executable_name,
         "is_resource_bundle": product._is_resource_bundle,
         "name": product.name,
         "path": file_path_to_dto(product.file_path),
