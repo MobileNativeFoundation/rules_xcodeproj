@@ -231,11 +231,10 @@ def _extract_top_level_values(
     return struct(
         additional_input_files = tuple(additional_input_files),
         dynamic_frameworks = tuple(dynamic_frameworks),
-        force_load_libraries = tuple(force_load_libraries),
         link_args = link_args,
         link_args_inputs = link_args_inputs,
         static_frameworks = tuple(static_frameworks),
-        static_libraries = tuple(static_libraries),
+        static_libraries = tuple(static_libraries + force_load_libraries),
     )
 
 def _process_additional_inputs(files):
@@ -305,8 +304,7 @@ def _to_input_files(linker_inputs):
         top_level_values.static_frameworks,
     ) + [
         file
-        for file in (top_level_values.static_libraries +
-                     top_level_values.force_load_libraries)
+        for file in top_level_values.static_libraries
         if file.is_source
     ]
 
