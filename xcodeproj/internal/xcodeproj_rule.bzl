@@ -322,7 +322,7 @@ targets.
         label_str = bazel_labels.normalize(label)
 
         # Remove from unfocused (to support `xcode_required_targets`)
-        unfocused_targets.pop(xcode_target.id, default = None)
+        unfocused_targets.pop(xcode_target.id, None)
 
         # Adjust `unfocused_labels` for `extra_files` logic later
         if sets.contains(unfocused_labels, label_str):
@@ -367,7 +367,7 @@ targets.
         focused_targets[src] = src_target
 
         # Remove from unfocused (to support `xcode_required_targets`)
-        unfocused_targets.pop(src, default = None)
+        unfocused_targets.pop(src, None)
 
         # Adjust `unfocused_labels` for `extra_files` logic later
         if sets.contains(unfocused_labels, src_label):
