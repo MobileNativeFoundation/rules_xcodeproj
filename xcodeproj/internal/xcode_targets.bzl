@@ -422,6 +422,18 @@ def _set_search_paths(
         ],
     )
 
+def _set_linker_settings(*, build_mode, build_settings, xcode_target):
+    if (build_mode != "xcode" or
+        xcode_target.product.type != "com.apple.product-type.framework"):
+        return
+
+    build_settings.update({
+        "LD_RUNPATH_SEARCH_PATHS": "$(PREVIEWS_LD_RUNPATH_SEARCH_PATHS__$(ENABLE_PREVIEWS))",
+        "PREVIEWS_LD_RUNPATH_SEARCH_PATHS__": "$(PREVIEWS_LD_RUNPATH_SEARCH_PATHS__NO)",
+        "PREVIEWS_LD_RUNPATH_SEARCH_PATHS__NO": [],
+        "PREVIEWS_LD_RUNPATH_SEARCH_PATHS__YES": ["$(FRAMEWORK_SEARCH_PATHS)"],
+    })
+
 def _set_preview_framework_paths(
         *,
         build_mode,
@@ -687,6 +699,11 @@ def _build_settings_to_dto(
         xcode_target):
     build_settings = structs.to_dict(xcode_target._build_settings)
     _set_bazel_outputs_product(
+        build_mode = build_mode,
+        build_settings = build_settings,
+        xcode_target = xcode_target,
+    )
+    _set_linker_settings(
         build_mode = build_mode,
         build_settings = build_settings,
         xcode_target = xcode_target,
