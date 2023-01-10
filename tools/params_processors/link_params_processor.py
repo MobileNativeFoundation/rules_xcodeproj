@@ -41,7 +41,6 @@ def _parse_args(args: List[str]) -> List[str]:
 # another flag right after it, etc.
 _LD_SKIP_OPTS = {
     "-bundle": 2,
-    "-bundle_loader": 2,
     "-dynamiclib": 1,
     "-e": 2,
     "-fapplication-extension": 1,

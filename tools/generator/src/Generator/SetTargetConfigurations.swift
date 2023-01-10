@@ -420,9 +420,6 @@ Test host target with key "\(testHostKey)" not found in \
             return
         }
 
-        buildSettings[.any, default: [:]]["BUNDLE_LOADER"] =
-            "$(TEST_HOST)"
-
         for target in targets {
             guard let testHostID = target.testHost else {
                 continue
