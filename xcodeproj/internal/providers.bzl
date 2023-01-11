@@ -58,6 +58,10 @@ attributes.
 A sequence of attribute names to collect `File`s from for the `launchdplists`-like
 attributes.
 """,
+        "link_mnemonics": """\
+A sequence of mnemonic (action) names to gather link parameters. The first
+action that matches any of the mnemonics is used.
+""",
         "non_arc_srcs": """\
 A sequence of attribute names to collect `File`s from for `non_arc_srcs`-like
 attributes.

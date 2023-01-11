@@ -18,12 +18,15 @@ _SKIP_INPUT_EXTENSIONS = {
 def _collect_linker_inputs(
         *,
         target,
+        automatic_target_info,
         compilation_providers,
         avoid_compilation_providers = None):
     """Collects linker input files for a target.
 
     Args:
         target: The `Target`.
+        automatic_target_info:  The `XcodeProjAutomaticTargetProcessingInfo` for
+            `target`.
         compilation_providers: A value returned by
             `compilation_providers.collect`.
         avoid_compilation_providers: A value returned from
@@ -43,6 +46,7 @@ def _collect_linker_inputs(
         primary_static_library = None
         top_level_values = _extract_top_level_values(
             target = target,
+            automatic_target_info = automatic_target_info,
             compilation_providers = compilation_providers,
             avoid_compilation_providers = avoid_compilation_providers,
             objc_libraries = objc_libraries,
@@ -120,6 +124,7 @@ def _extract_libraries(compilation_providers):
 def _extract_top_level_values(
         *,
         target,
+        automatic_target_info,
         compilation_providers,
         avoid_compilation_providers,
         objc_libraries,
@@ -200,13 +205,14 @@ def _extract_top_level_values(
     link_args = None
     link_args_inputs = None
     if target:
-        # TODO: Make this configurable with `XcodeProjAutomaticTargetProcessingInfo`
         for action in target.actions:
-            if action.mnemonic in ("ObjcLink", "CppLink"):
+            if action.mnemonic in automatic_target_info.link_mnemonics:
                 link_args = action.args
                 link_args_inputs = tuple([
                     f
                     for f in action.inputs.to_list()
+                    # TODO: Generalize this or add to
+                    # `XcodeProjAutomaticTargetProcessingInfo` somehow?
                     if f.path.endswith("-linker.objlist")
                 ])
                 break

@@ -83,6 +83,7 @@ rules_xcodeproj requires {} to have `{}` set.
     )
     linker_inputs = linker_input_files.collect(
         target = target,
+        automatic_target_info = automatic_target_info,
         compilation_providers = compilation_providers,
     )
     search_paths = target_search_paths.make(
