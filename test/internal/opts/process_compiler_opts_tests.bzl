@@ -379,7 +379,7 @@ def process_compiler_opts_test_suite(name):
 -keep-me=something.swift \
 -passthrough \
 -Xcc \
--a=$(BAZEL_OUT)/hi\
+-a=bazel-out/hi\
 """,
         },
     )
