@@ -363,6 +363,7 @@ def process_top_level_target(
     )
     linker_inputs = linker_input_files.collect(
         target = target,
+        automatic_target_info = automatic_target_info,
         compilation_providers = compilation_providers,
         avoid_compilation_providers = avoid_compilation_providers,
     )

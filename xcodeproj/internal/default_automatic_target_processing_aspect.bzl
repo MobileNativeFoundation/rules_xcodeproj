@@ -72,6 +72,7 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
     hdrs = []
     infoplists = []
     launchdplists = []
+    link_mnemonics = ["ObjcLink", "CppLink"]
     bazel_build_mode_error = None
     non_arc_srcs = []
     pch = None
@@ -199,6 +200,7 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
             hdrs = hdrs,
             infoplists = infoplists,
             launchdplists = launchdplists,
+            link_mnemonics = link_mnemonics,
             non_arc_srcs = non_arc_srcs,
             pch = pch,
             provisioning_profile = provisioning_profile,
