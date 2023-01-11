@@ -394,8 +394,8 @@ def _process_cxxopts(opts, *, build_settings):
         *   A `list` of unhandled C++ compiler options.
         *   A `list` of defines parsed.
         *   A `list` of C++ compiler optimization levels parsed.
-        *   A value returned by `_create_search_paths` with the parsed search
-            paths.
+        *   A value returned by `create_opts_search_paths` with the parsed
+            search paths.
         *   A `bool` indicting if the target has debug info enabled.
     """
     defines = []
@@ -475,8 +475,8 @@ def _process_copts(*, conlyopts, cxxopts, build_settings):
 
         *   A `list` of unhandled C compiler options.
         *   A `list` of unhandled C++ compiler options.
-        *   A value returned by `_create_search_paths` with the parsed search
-            paths.
+        *   A value returned by `create_opts_search_paths` with the parsed
+            search paths.
         *   A `bool` indicting if the target has debug info enabled for C.
         *   A `bool` indicting if the target has debug info enabled for C++.
     """
@@ -571,8 +571,8 @@ def _process_swiftopts(
         A `tuple` containing three elements:
 
         *   A `list` of unhandled Swift compiler options.
-        *   A value returned by `_create_search_paths` with the parsed search
-            paths.
+        *   A value returned by `create_opts_search_paths` with the parsed
+            search paths.
         *   A `bool` indicting if the target has debug info enabled.
     """
     swiftcopts, raw_has_debug_info = _process_full_swiftcopts(
