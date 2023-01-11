@@ -55,6 +55,7 @@ def _xcodeproj_aspect_impl(target, ctx):
         # one
         info = create_xcodeprojinfo(
             ctx = ctx,
+            build_mode = ctx.attr._build_mode,
             target = target,
             transitive_infos = _transitive_infos(
                 ctx = ctx,
