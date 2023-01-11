@@ -15,6 +15,7 @@ gh-md-toc --hide-header --hide-footer --start-depth=1
 * [Why do I get an error like "Provisioning profile "PROFILE\_NAME" is Xcode managed, but signing settings require a manually managed profile\. (in target 'TARGET' from project 'PROJECT')"?](#why-do-i-get-an-error-like-provisioning-profile-profile_name-is-xcode-managed-but-signing-settings-require-a-manually-managed-profile-in-target-target-from-project-project)
 * [Why do I get an error like "No profile for team 'TEAM' matching 'PROFILE\_NAME' found: Xcode couldn't find any provisioning profiles matching 'TEAM\_ID/PROFILE\_NAME'\. Install the profile (by dragging and dropping it onto Xcode's dock item) or select a different one in the Signing &amp; Capabilities tab of the target editor\."?](#why-do-i-get-an-error-like-no-profile-for-team-team-matching-profile_name-found-xcode-couldnt-find-any-provisioning-profiles-matching-team_idprofile_name-install-the-profile-by-dragging-and-dropping-it-onto-xcodes-dock-item-or-select-a-different-one-in-the-signing--capabilities-tab-of-the-target-editor)
 * [What is CompileStub\.m?](#what-is-compilestubm)
+* [Why do some of my `swift_library`s compile twice in BwX mode?](#why-do-some-of-my-swift_librarys-compile-twice-in-bwx-mode)
 * [Do I need to place my custom Xcode scheme declarations in a function like `tools/generator`?](#do-i-need-to-place-my-custom-xcode-scheme-declarations-in-a-function-like-toolsgenerator)
 * [Why does `tools/generator` declare its custom Xcode schemes in a-function?](#why-does-toolsgenerator-declare-its-custom-xcode-schemes-in-a-function)
 * [Does the Archive action work?](#does-the-archive-action-work)
@@ -117,6 +118,21 @@ SwiftUI Previews), there are a couple ways to fix it. For tests, setting the
 first top level target as the `test_host` will allow for the library to merge.
 In other cases, refactor the build graph to have the shared code in it's own
 library separate from the top level target's primary library.
+
+## Why do some of my `swift_library`s compile twice in BwX mode?
+
+If you have header based rules that depend on the Swift generated header (i.e.
+custom modulemap or hmap rules), then when BwX mode generates those files with
+Bazel, it causes Bazel to generate the Swift generated header by compiling the
+swiftmodule.
+
+Possible solutions are:
+
+- Refactoring mixed-language targets to single language targets, removing the
+  need for the custom modulemap that references the Swift generated header
+- Remove the use of header maps (hmaps), or don't include Swift generated
+  headers in them
+- Use BwB mode instead
 
 ## Do I need to place my custom Xcode scheme declarations in a function like `tools/generator`?
 
