@@ -364,6 +364,7 @@ def _create_envs_depset(*, ctx, id, automatic_target_info):
 def _create_xcodeprojinfo(
         *,
         ctx,
+        build_mode,
         target,
         transitive_infos,
         automatic_target_info):
@@ -371,6 +372,7 @@ def _create_xcodeprojinfo(
 
     Args:
         ctx: The aspect context.
+        build_mode: See `xcodeproj.build_mode`.
         target: The `Target` to process.
         automatic_target_info: The `XcodeProjAutomaticTargetProcessingInfo` for
             `target`.
@@ -400,6 +402,7 @@ def _create_xcodeprojinfo(
     elif AppleBundleInfo in target:
         processed_target = process_top_level_target(
             ctx = ctx,
+            build_mode = build_mode,
             target = target,
             automatic_target_info = automatic_target_info,
             bundle_info = target[AppleBundleInfo],
@@ -408,6 +411,7 @@ def _create_xcodeprojinfo(
     elif target[DefaultInfo].files_to_run.executable:
         processed_target = process_top_level_target(
             ctx = ctx,
+            build_mode = build_mode,
             target = target,
             automatic_target_info = automatic_target_info,
             bundle_info = None,
@@ -416,6 +420,7 @@ def _create_xcodeprojinfo(
     else:
         processed_target = process_library_target(
             ctx = ctx,
+            build_mode = build_mode,
             target = target,
             automatic_target_info = automatic_target_info,
             transitive_infos = transitive_infos,
@@ -527,11 +532,12 @@ def _create_xcodeprojinfo(
 
 # API
 
-def create_xcodeprojinfo(*, ctx, target, transitive_infos):
+def create_xcodeprojinfo(*, ctx, build_mode, target, transitive_infos):
     """Creates an `XcodeProjInfo` for the given target.
 
     Args:
         ctx: The aspect context.
+        build_mode: See `xcodeproj.build_mode`.
         target: The `Target` to process.
         transitive_infos: A `list` of `XcodeProjInfo`s from the transitive
             dependencies of `target`.
@@ -558,6 +564,7 @@ def create_xcodeprojinfo(*, ctx, target, transitive_infos):
     else:
         info_fields = _create_xcodeprojinfo(
             ctx = ctx,
+            build_mode = build_mode,
             target = target,
             automatic_target_info = automatic_target_info,
             transitive_infos = transitive_infos,

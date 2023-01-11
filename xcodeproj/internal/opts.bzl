@@ -83,11 +83,12 @@ _UNSUPPORTED_CC_FEATURES = [
 
 # Compiler option processing
 
-def _get_unprocessed_compiler_opts(*, ctx, target):
+def _get_unprocessed_compiler_opts(*, ctx, build_mode, target):
     """Returns the unprocessed compiler options for the given target.
 
     Args:
         ctx: The aspect context.
+        build_mode: See `xcodeproj.build_mode`.
         target: The `Target` that the compiler options will be retrieved from.
 
     Returns:
@@ -179,6 +180,13 @@ def _get_unprocessed_compiler_opts(*, ctx, target):
         cpp = ctx.fragments.cpp
         conlyopts = base_copts + cpp.copts + cpp.conlyopts + user_copts
         cxxopts = base_cxxopts + cpp.copts + cpp.cxxopts + user_copts
+
+        if build_mode == "xcode":
+            for opt in conlyopts + cxxopts:
+                if opt.startswith("-ivfsoverlay`"):
+                    fail("""\
+Using VFS overlays with `build_mode = "xcode"` is unsupported.
+""")
 
     return (
         conlyopts,
@@ -549,6 +557,7 @@ def _process_swiftopts(
         *,
         full_swiftcopts,
         user_swiftcopts,
+        build_mode,
         compilation_mode,
         objc_fragment,
         cc_info,
@@ -559,6 +568,7 @@ def _process_swiftopts(
     Args:
         full_swiftcopts: A `list` of Swift compiler options.
         user_swiftcopts: A `list` of user-provided Swift compiler options.
+        build_mode: See `xcodeproj.build_mode`.
         compilation_mode: The current compilation mode.
         objc_fragment: The `objc` configuration fragment.
         cc_info: The `CcInfo` provider for the target.
@@ -577,6 +587,7 @@ def _process_swiftopts(
     """
     swiftcopts, raw_has_debug_info = _process_full_swiftcopts(
         full_swiftcopts,
+        build_mode = build_mode,
         compilation_mode = compilation_mode,
         objc_fragment = objc_fragment,
         cc_info = cc_info,
@@ -601,6 +612,7 @@ def _process_swiftopts(
 def _process_full_swiftcopts(
         opts,
         *,
+        build_mode,
         compilation_mode,
         objc_fragment,
         cc_info,
@@ -610,6 +622,7 @@ def _process_full_swiftcopts(
 
     Args:
         opts: A `list` of Swift compiler options.
+        build_mode: See `xcodeproj.build_mode`.
         compilation_mode: The current compilation mode.
         objc_fragment: The `objc` configuration fragment.
         cc_info: The `CcInfo` provider for the target.
@@ -651,6 +664,10 @@ under {}""".format(opt, package_bin_dir))
             return True
         if opt.startswith("-I"):
             return True
+        if build_mode == "xcode" and opt.startswith("-vfsoverlay"):
+            fail("""\
+Using VFS overlays with `build_mode = "xcode"` is unsupported.
+""")
         if opt == "-g":
             # We use a `dict` instead of setting a single value because
             # assigning to `has_debug_info` creates a new local variable instead
@@ -865,6 +882,7 @@ def _process_compiler_opts(
         conlyopts,
         cxxopts,
         full_swiftcopts,
+        build_mode,
         compilation_mode,
         cpp_fragment,
         objc_fragment,
@@ -879,6 +897,7 @@ def _process_compiler_opts(
         cxxopts: A `list` of C++ compiler options.
         full_swiftcopts: A `list` of Swift compiler options.
         user_swiftcopts: A `list` of user-provided Swift compiler options.
+        build_mode: See `xcodeproj.build_mode`.
         compilation_mode: The current compilation mode.
         cpp_fragment: The `cpp` configuration fragment.
         objc_fragment: The `objc` configuration fragment.
@@ -917,6 +936,7 @@ def _process_compiler_opts(
     swiftcopts, swift_search_paths, swift_has_debug_info = _process_swiftopts(
         full_swiftcopts = full_swiftcopts,
         user_swiftcopts = user_swiftcopts,
+        build_mode = build_mode,
         compilation_mode = compilation_mode,
         objc_fragment = objc_fragment,
         cc_info = cc_info,
@@ -976,6 +996,7 @@ def _process_compiler_opts(
 def _process_target_compiler_opts(
         *,
         ctx,
+        build_mode,
         target,
         package_bin_dir,
         build_settings):
@@ -983,6 +1004,7 @@ def _process_target_compiler_opts(
 
     Args:
         ctx: The aspect context.
+        build_mode: See `xcodeproj.build_mode`.
         target: The `Target` that the compiler options will be retrieved from.
         package_bin_dir: The package directory for `target` within
             `ctx.bin_dir`.
@@ -1002,6 +1024,7 @@ def _process_target_compiler_opts(
         user_swiftcopts,
     ) = _get_unprocessed_compiler_opts(
         ctx = ctx,
+        build_mode = build_mode,
         target = target,
     )
     return _process_compiler_opts(
@@ -1009,6 +1032,7 @@ def _process_target_compiler_opts(
         cxxopts = cxxopts,
         full_swiftcopts = full_swiftcopts,
         user_swiftcopts = user_swiftcopts,
+        build_mode = build_mode,
         compilation_mode = ctx.var["COMPILATION_MODE"],
         cpp_fragment = ctx.fragments.cpp,
         objc_fragment = ctx.fragments.objc,
@@ -1054,11 +1078,12 @@ def _expand_make_variables(*, ctx, values, attribute_name):
 
 # API
 
-def process_opts(*, ctx, target, package_bin_dir, build_settings):
+def process_opts(*, ctx, build_mode, target, package_bin_dir, build_settings):
     """Processes the compiler options for a target.
 
     Args:
         ctx: The aspect context.
+        build_mode: See `xcodeproj.build_mode`.
         target: The `Target` that the compiler and linker options will be
             retrieved from.
         package_bin_dir: The package directory for `target` within
@@ -1074,6 +1099,7 @@ def process_opts(*, ctx, target, package_bin_dir, build_settings):
     """
     search_paths = _process_target_compiler_opts(
         ctx = ctx,
+        build_mode = build_mode,
         target = target,
         package_bin_dir = package_bin_dir,
         build_settings = build_settings,
