@@ -95,6 +95,7 @@ extension XCSchemeInfo.TestActionInfo {
         testAction: XcodeScheme.TestAction?,
         targetResolver: TargetResolver,
         targetIDsByLabel: [BazelLabel: TargetID],
+        args: [TargetID: [String]],
         envs: [TargetID: [String: String]]
     ) throws {
         guard let testAction = testAction else {
@@ -139,7 +140,7 @@ Expected at least one target in `TestAction.targets`
                     )
                 )
             },
-            args: testAction.args,
+            args: testAction.args.extractCommandLineArguments(),
             diagnostics: XCSchemeInfo.DiagnosticsInfo(
                 diagnostics: testAction.diagnostics
             ),

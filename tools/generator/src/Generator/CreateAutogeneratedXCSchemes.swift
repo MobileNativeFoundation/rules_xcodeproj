@@ -9,6 +9,7 @@ extension Generator {
         buildMode: BuildMode,
         targetResolver: TargetResolver,
         customSchemeNames: Set<String>,
+        args: [TargetID: [String]],
         envs: [TargetID: [String: String]]
     ) throws -> [XCScheme] {
         let shouldAutogenerateSchemes: Bool
@@ -37,6 +38,7 @@ extension Generator {
                 let shouldCreateTestAction = pbxTarget.isTestable
                 let shouldCreateLaunchAction = pbxTarget.isLaunchable
                 var env: [String: String] = [:]
+                var targetArgs: [String] = []
                 if shouldCreateTestAction {
                     env = try envs.first(where: { testEnv in
                         let testEnvTargetInfo: XCSchemeInfo.TargetInfo = try targetResolver.targetInfo(targetID: testEnv.key)
@@ -45,6 +47,13 @@ extension Generator {
                         }
                         return false
                     })?.value ?? [:]
+                    targetArgs = try args.first(where: { passedArgs in
+                        let passedArgsTargetInfo: XCSchemeInfo.TargetInfo = try targetResolver.targetInfo(targetID: passedArgs.key)
+                        if passedArgsTargetInfo == targetInfo {
+                            return true
+                        }
+                        return false
+                    })?.value.extractCommandLineArguments() ?? []
                 }
 
                 let schemeInfo = try XCSchemeInfo(
@@ -55,6 +64,7 @@ extension Generator {
                         .init(
                             buildConfigurationName: buildConfigurationName,
                             targetInfos: [targetInfo],
+                            args: targetArgs,
                             env: env
                         ) : nil,
                     launchActionInfo: shouldCreateLaunchAction ?

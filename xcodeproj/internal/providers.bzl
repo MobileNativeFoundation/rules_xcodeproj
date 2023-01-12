@@ -16,6 +16,10 @@ An attribute name (or `None`) to collect the application alternate icons.
         "app_icons": """\
 An attribute name (or `None`) to collect the application icons.
 """,
+        "args": """\
+A `List` (or `None`) representing the command line arguments that this target should execute or
+test with.
+""",
         "bazel_build_mode_error": """\
 If `build_mode = "bazel"`, then if this is non-`None`, it will be raised as an
 error during analysis.
@@ -54,6 +58,10 @@ attributes.
 A sequence of attribute names to collect `File`s from for the `launchdplists`-like
 attributes.
 """,
+        "link_mnemonics": """\
+A sequence of mnemonic (action) names to gather link parameters. The first
+action that matches any of the mnemonics is used.
+""",
         "non_arc_srcs": """\
 A sequence of attribute names to collect `File`s from for `non_arc_srcs`-like
 attributes.
@@ -91,6 +99,11 @@ target_type = struct(
 XcodeProjInfo = provider(
     "Provides information needed to generate an Xcode project.",
     fields = {
+        "args": """\
+A `depset` of `struct`s with `id` and `arg` fields. The `id` field is the
+target id of the target and `arg` values
+for the target (if applicable).
+""",
         "compilation_providers": """\
 A value returned from `compilation_providers.collect_for_{non_,}top_level`.
 """,

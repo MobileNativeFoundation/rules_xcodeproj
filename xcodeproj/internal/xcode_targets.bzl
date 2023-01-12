@@ -159,8 +159,8 @@ def _to_xcode_target_linker_inputs(linker_inputs):
 
     return struct(
         dynamic_frameworks = top_level_values.dynamic_frameworks,
-        force_load_libraries = top_level_values.force_load_libraries,
-        linkopts = top_level_values.linkopts,
+        link_args = top_level_values.link_args,
+        link_args_inputs = top_level_values.link_args_inputs,
         static_libraries = top_level_values.static_libraries,
         static_frameworks = top_level_values.static_frameworks,
     )
@@ -194,10 +194,11 @@ def _to_xcode_target_product(product):
         type = product.type,
         file = product.file,
         file_path = product.file_path,
+        executable = product.executable,
+        executable_name = product.executable_name,
         additional_product_files = tuple(),
         framework_files = product.framework_files,
         _additional_files = product.framework_files,
-        _executable_name = product.executable_name,
         _is_resource_bundle = product.is_resource_bundle,
     )
 
@@ -298,6 +299,8 @@ def _merge_xcode_target_product(*, src, dest):
         type = dest.type,
         file = dest.file,
         file_path = dest.file_path,
+        executable = dest.executable,
+        executable_name = dest.executable_name,
         framework_files = depset(
             transitive = [dest.framework_files, src.framework_files],
         ),
@@ -306,7 +309,6 @@ def _merge_xcode_target_product(*, src, dest):
             [src.file],
             transitive = [dest._additional_files, src._additional_files],
         ),
-        _executable_name = dest._executable_name,
         _is_resource_bundle = dest._is_resource_bundle,
     )
 
@@ -375,8 +377,9 @@ def _set_search_paths(
 
     framework_build_setting_paths = {}
     for file in frameworks:
-        search_path = paths.dirname(file.dirname)
-        xcode_generated_path = xcode_generated_paths.get(file.path)
+        framework_path = file.dirname
+        search_path = paths.dirname(framework_path)
+        xcode_generated_path = xcode_generated_paths.get(framework_path)
         if xcode_generated_path:
             framework_build_setting_paths.setdefault(search_path, {})[True] = (
                 paths.dirname(xcode_generated_path)
@@ -523,12 +526,14 @@ def _xcode_target_to_dto(
         include_lldb_context,
         is_fixture,
         is_unfocused_dependency = False,
+        link_params_processor,
         linker_products_map,
         params_index,
         should_include_outputs,
         unfocused_targets = {},
         target_merges = {},
-        xcode_generated_paths):
+        xcode_generated_paths,
+        xcode_generated_paths_file):
     inputs = xcode_target.inputs
 
     dto = {
@@ -578,12 +583,13 @@ def _xcode_target_to_dto(
 
     linker_inputs_dto, link_params = _linker_inputs_to_dto(
         ctx = ctx,
+        link_params_processor = link_params_processor,
         linker_inputs = xcode_target.linker_inputs,
         compile_target = xcode_target._compile_target,
         name = xcode_target.name,
         params_index = params_index,
         platform = xcode_target.platform,
-        xcode_generated_paths = xcode_generated_paths,
+        xcode_generated_paths_file = xcode_generated_paths_file,
     )
 
     set_if_true(
@@ -795,10 +801,11 @@ def _linker_inputs_to_dto(
         *,
         ctx,
         compile_target,
+        link_params_processor,
         name,
         params_index,
         platform,
-        xcode_generated_paths):
+        xcode_generated_paths_file):
     if not linker_inputs:
         return ({}, None)
 
@@ -817,48 +824,7 @@ def _linker_inputs_to_dto(
         ],
     )
 
-    if xcode_generated_paths:
-        swift_triple = platform_info.to_swift_triple(platform)
-
-        def _process_linkopt_value(value):
-            xcode_path = xcode_generated_paths.get(value)
-            if not xcode_path:
-                return value
-            if paths.split_extension(xcode_path)[1] != ".swiftmodule":
-                return xcode_path
-            return "{}/{}.swiftmodule".format(xcode_path, swift_triple)
-
-        def _process_linkopt_component(component):
-            prefix, sep, suffix = component.partition("=")
-            if not sep:
-                return _process_linkopt_value(component)
-            return "{}={}".format(prefix, _process_linkopt_value(suffix))
-
-        def _process_linkopt(linkopt):
-            return ",".join([
-                _process_linkopt_component(component)
-                for component in linkopt.split(",")
-            ])
-
-        linkopts = [_process_linkopt(opt) for opt in linker_inputs.linkopts]
-    else:
-        linkopts = list(linker_inputs.linkopts)
-
-    linkopts.extend([
-        quote_if_needed(xcode_generated_paths.get(file.path, file.path))
-        for file in linker_inputs.static_libraries
-        if file != avoid_library
-    ])
-
-    for file in linker_inputs.force_load_libraries:
-        if file == avoid_library:
-            continue
-        path = file.path
-        path = xcode_generated_paths.get(path, path)
-        linkopts.append("-force_load")
-        linkopts.append(quote_if_needed(path))
-
-    if linkopts:
+    if linker_inputs.link_args:
         link_params = ctx.actions.declare_file(
             "{}-params/{}.{}.link.params".format(
                 ctx.attr.name,
@@ -866,9 +832,23 @@ def _linker_inputs_to_dto(
                 params_index,
             ),
         )
-        ctx.actions.write(
-            content = "\n".join(linkopts) + "\n",
-            output = link_params,
+
+        args = ctx.actions.args()
+        args.add(xcode_generated_paths_file)
+        args.add(avoid_library.path if avoid_library else "")
+        args.add(platform_info.to_swift_triple(platform))
+        args.add(link_params)
+
+        ctx.actions.run(
+            executable = link_params_processor,
+            arguments = [args] + linker_inputs.link_args,
+            mnemonic = "ProcessLinkParams",
+            progress_message = "Generating %{output}",
+            inputs = (
+                [xcode_generated_paths_file] +
+                list(linker_inputs.link_args_inputs)
+            ),
+            outputs = [link_params],
         )
     else:
         link_params = None
@@ -892,7 +872,7 @@ def _product_to_dto(product):
             file_path_to_dto(normalized_file_path(file))
             for file in product._additional_files.to_list()
         ],
-        "executable_name": product._executable_name,
+        "executable_name": product.executable_name,
         "is_resource_bundle": product._is_resource_bundle,
         "name": product.name,
         "path": file_path_to_dto(product.file_path),
@@ -998,7 +978,7 @@ def _get_top_level_static_libraries(xcode_target):
         fail("""\
 Target '{}' requires `ObjcProvider` or `CcInfo`\
 """.format(xcode_target.label))
-    return linker_inputs.static_libraries + linker_inputs.force_load_libraries
+    return linker_inputs.static_libraries
 
 xcode_targets = struct(
     get_top_level_static_libraries = _get_top_level_static_libraries,

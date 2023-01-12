@@ -1,4 +1,5 @@
 enum ExtensionPointIdentifier: String, Decodable {
+    case messagePayloadProvider = "com.apple.message-payload-provider"
     case widgetKitExtension = "com.apple.widgetkit-extension"
     case unknown = ""
 

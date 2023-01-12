@@ -142,9 +142,12 @@ for output_group in "${output_groups[@]}"; do
     target="${BASH_REMATCH[4]}"
     configuration="${BASH_REMATCH[5]}"
     filelist="$output_path/$configuration/bin/${repo:+"external/$repo/"}$package/$target-${output_type}.filelist"
+  elif [[ "$output_group" == "all_xc" ]]; then
+    continue
   else
-    echo "error: output group doesn't match regex. Please file a bug report" \
-"here: https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md" \
+    echo "error: output group ($output_group) doesn't match regex. Please" \
+"file a bug report here:" \
+"https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md" \
       >&2
     exit 1
   fi

@@ -165,6 +165,7 @@ def process_top_level_properties(
 def process_top_level_target(
         *,
         ctx,
+        build_mode,
         target,
         automatic_target_info,
         bundle_info,
@@ -173,6 +174,7 @@ def process_top_level_target(
 
     Args:
         ctx: The aspect context.
+        build_mode: See `xcodeproj.build_mode`.
         target: The `Target` to process.
         automatic_target_info: The `XcodeProjAutomaticTargetProcessingInfo` for
             `target`.
@@ -312,6 +314,7 @@ def process_top_level_target(
     )
     opts_search_paths = process_opts(
         ctx = ctx,
+        build_mode = build_mode,
         target = target,
         package_bin_dir = package_bin_dir,
         build_settings = build_settings,
@@ -363,6 +366,7 @@ def process_top_level_target(
     )
     linker_inputs = linker_input_files.collect(
         target = target,
+        automatic_target_info = automatic_target_info,
         compilation_providers = compilation_providers,
         avoid_compilation_providers = avoid_compilation_providers,
     )

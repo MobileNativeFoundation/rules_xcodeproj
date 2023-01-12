@@ -335,7 +335,7 @@ def collect_resources(
     for child_bundle_path in parent_bundle_paths:
         bundle = resource_bundle_targets[child_bundle_path]
         if not bundle.resources and not bundle.dependency_paths:
-            resource_bundle_targets.pop(child_bundle_path, default = None)
+            resource_bundle_targets.pop(child_bundle_path, None)
             continue
 
         parent = root_bundle

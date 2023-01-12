@@ -462,11 +462,12 @@ rules, then you will use these providers to communicate between them.
 ## XcodeProjAutomaticTargetProcessingInfo
 
 <pre>
-XcodeProjAutomaticTargetProcessingInfo(<a href="#XcodeProjAutomaticTargetProcessingInfo-all_attrs">all_attrs</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-alternate_icons">alternate_icons</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-app_icons">app_icons</a>,
+XcodeProjAutomaticTargetProcessingInfo(<a href="#XcodeProjAutomaticTargetProcessingInfo-all_attrs">all_attrs</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-alternate_icons">alternate_icons</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-app_icons">app_icons</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-args">args</a>,
                                        <a href="#XcodeProjAutomaticTargetProcessingInfo-bazel_build_mode_error">bazel_build_mode_error</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-bundle_id">bundle_id</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-codesignopts">codesignopts</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-deps">deps</a>,
                                        <a href="#XcodeProjAutomaticTargetProcessingInfo-entitlements">entitlements</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-env">env</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-exported_symbols_lists">exported_symbols_lists</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-hdrs">hdrs</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-infoplists">infoplists</a>,
-                                       <a href="#XcodeProjAutomaticTargetProcessingInfo-launchdplists">launchdplists</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-non_arc_srcs">non_arc_srcs</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-pch">pch</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-provisioning_profile">provisioning_profile</a>,
-                                       <a href="#XcodeProjAutomaticTargetProcessingInfo-should_generate_target">should_generate_target</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-srcs">srcs</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-target_type">target_type</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-xcode_targets">xcode_targets</a>)
+                                       <a href="#XcodeProjAutomaticTargetProcessingInfo-launchdplists">launchdplists</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-link_mnemonics">link_mnemonics</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-non_arc_srcs">non_arc_srcs</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-pch">pch</a>,
+                                       <a href="#XcodeProjAutomaticTargetProcessingInfo-provisioning_profile">provisioning_profile</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-should_generate_target">should_generate_target</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-srcs">srcs</a>,
+                                       <a href="#XcodeProjAutomaticTargetProcessingInfo-target_type">target_type</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-xcode_targets">xcode_targets</a>)
 </pre>
 
 Provides needed information about a target to allow rules_xcodeproj to
@@ -484,6 +485,7 @@ return a `XcodeProjInfo` provider instance instead.
 | <a id="XcodeProjAutomaticTargetProcessingInfo-all_attrs"></a>all_attrs |  -    |
 | <a id="XcodeProjAutomaticTargetProcessingInfo-alternate_icons"></a>alternate_icons |  An attribute name (or <code>None</code>) to collect the application alternate icons.    |
 | <a id="XcodeProjAutomaticTargetProcessingInfo-app_icons"></a>app_icons |  An attribute name (or <code>None</code>) to collect the application icons.    |
+| <a id="XcodeProjAutomaticTargetProcessingInfo-args"></a>args |  A <code>List</code> (or <code>None</code>) representing the command line arguments that this target should execute or test with.    |
 | <a id="XcodeProjAutomaticTargetProcessingInfo-bazel_build_mode_error"></a>bazel_build_mode_error |  If <code>build_mode = "bazel"</code>, then if this is non-<code>None</code>, it will be raised as an error during analysis.    |
 | <a id="XcodeProjAutomaticTargetProcessingInfo-bundle_id"></a>bundle_id |  An attribute name (or <code>None</code>) to collect the bundle id string from.    |
 | <a id="XcodeProjAutomaticTargetProcessingInfo-codesignopts"></a>codesignopts |  An attribute name (or <code>None</code>) to collect the <code>codesignopts</code> <code>list</code> from.    |
@@ -494,6 +496,7 @@ return a `XcodeProjInfo` provider instance instead.
 | <a id="XcodeProjAutomaticTargetProcessingInfo-hdrs"></a>hdrs |  A sequence of attribute names to collect <code>File</code>s from for <code>hdrs</code>-like attributes.    |
 | <a id="XcodeProjAutomaticTargetProcessingInfo-infoplists"></a>infoplists |  A sequence of attribute names to collect <code>File</code>s from for the <code>infoplists</code>-like attributes.    |
 | <a id="XcodeProjAutomaticTargetProcessingInfo-launchdplists"></a>launchdplists |  A sequence of attribute names to collect <code>File</code>s from for the <code>launchdplists</code>-like attributes.    |
+| <a id="XcodeProjAutomaticTargetProcessingInfo-link_mnemonics"></a>link_mnemonics |  A sequence of mnemonic (action) names to gather link parameters. The first action that matches any of the mnemonics is used.    |
 | <a id="XcodeProjAutomaticTargetProcessingInfo-non_arc_srcs"></a>non_arc_srcs |  A sequence of attribute names to collect <code>File</code>s from for <code>non_arc_srcs</code>-like attributes.    |
 | <a id="XcodeProjAutomaticTargetProcessingInfo-pch"></a>pch |  An attribute name (or <code>None</code>) to collect <code>File</code>s from for the <code>pch</code>-like attribute.    |
 | <a id="XcodeProjAutomaticTargetProcessingInfo-provisioning_profile"></a>provisioning_profile |  An attribute name (or <code>None</code>) to collect <code>File</code>s from for the <code>provisioning_profile</code>-like attribute.    |
@@ -508,7 +511,7 @@ return a `XcodeProjInfo` provider instance instead.
 ## XcodeProjInfo
 
 <pre>
-XcodeProjInfo(<a href="#XcodeProjInfo-compilation_providers">compilation_providers</a>, <a href="#XcodeProjInfo-dependencies">dependencies</a>, <a href="#XcodeProjInfo-envs">envs</a>, <a href="#XcodeProjInfo-extension_infoplists">extension_infoplists</a>, <a href="#XcodeProjInfo-hosted_targets">hosted_targets</a>,
+XcodeProjInfo(<a href="#XcodeProjInfo-args">args</a>, <a href="#XcodeProjInfo-compilation_providers">compilation_providers</a>, <a href="#XcodeProjInfo-dependencies">dependencies</a>, <a href="#XcodeProjInfo-envs">envs</a>, <a href="#XcodeProjInfo-extension_infoplists">extension_infoplists</a>, <a href="#XcodeProjInfo-hosted_targets">hosted_targets</a>,
               <a href="#XcodeProjInfo-inputs">inputs</a>, <a href="#XcodeProjInfo-is_top_level_target">is_top_level_target</a>, <a href="#XcodeProjInfo-label">label</a>, <a href="#XcodeProjInfo-lldb_context">lldb_context</a>, <a href="#XcodeProjInfo-potential_target_merges">potential_target_merges</a>, <a href="#XcodeProjInfo-outputs">outputs</a>,
               <a href="#XcodeProjInfo-replacement_labels">replacement_labels</a>, <a href="#XcodeProjInfo-resource_bundle_informations">resource_bundle_informations</a>, <a href="#XcodeProjInfo-rule_kind">rule_kind</a>, <a href="#XcodeProjInfo-search_paths">search_paths</a>, <a href="#XcodeProjInfo-target_type">target_type</a>,
               <a href="#XcodeProjInfo-transitive_dependencies">transitive_dependencies</a>, <a href="#XcodeProjInfo-xcode_required_targets">xcode_required_targets</a>, <a href="#XcodeProjInfo-xcode_target">xcode_target</a>, <a href="#XcodeProjInfo-xcode_targets">xcode_targets</a>)
@@ -521,6 +524,7 @@ Provides information needed to generate an Xcode project.
 
 | Name  | Description |
 | :------------- | :------------- |
+| <a id="XcodeProjInfo-args"></a>args |  A <code>depset</code> of <code>struct</code>s with <code>id</code> and <code>arg</code> fields. The <code>id</code> field is the target id of the target and <code>arg</code> values for the target (if applicable).    |
 | <a id="XcodeProjInfo-compilation_providers"></a>compilation_providers |  A value returned from <code>compilation_providers.collect_for_{non_,}top_level</code>.    |
 | <a id="XcodeProjInfo-dependencies"></a>dependencies |  A <code>depset</code> of target ids (see the <code>target</code> <code>struct</code>) that this target directly depends on.    |
 | <a id="XcodeProjInfo-envs"></a>envs |  A <code>depset</code> of <code>struct</code>s with <code>id</code> and <code>env</code> fields. The <code>id</code> field is the target id of the target and <code>env</code> values for the target (if applicable).    |

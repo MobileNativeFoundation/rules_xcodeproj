@@ -25,6 +25,7 @@ enum Fixtures {
             "WDKE": ["I"],
             "WKE": ["W"],
         ],
+        args: [:],
         envs: [:],
         extraFiles: [
             .generated("a1b2c/bin/t.c"),
@@ -2123,10 +2124,6 @@ touch "$SCRIPT_OUTPUT_FILE_1"
                 "EXECUTABLE_NAME": "A_ExecutableName",
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "LINK_PARAMS_FILE": "$(BAZEL_OUT)/z/A.link.params",
-                "LD_RUNPATH_SEARCH_PATHS": [
-                    "$(inherited)",
-                    "@executable_path/../Frameworks",
-                ],
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_LDFLAGS": "@$(DERIVED_FILE_DIR)/link.params",
                 "OTHER_SWIFT_FLAGS": #"""
@@ -2149,10 +2146,6 @@ touch "$SCRIPT_OUTPUT_FILE_1"
                 "DEPLOYMENT_LOCATION": "NO",
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "IPHONEOS_DEPLOYMENT_TARGET": "11.0",
-                "LD_RUNPATH_SEARCH_PATHS": [
-                    "$(inherited)",
-                    "@executable_path/Frameworks",
-                ],
                 "OTHER_CFLAGS": [
                     "-ivfsoverlay",
                     "$(OBJROOT)/bazel-out-overlay.yaml",
@@ -2174,7 +2167,6 @@ touch "$SCRIPT_OUTPUT_FILE_1"
                 "BAZEL_TARGET_ID": "B 1",
                 "BAZEL_TARGET_ID[sdk=macosx*]": "$(BAZEL_TARGET_ID)",
                 "COMPILE_TARGET_NAME": targets["B 1"]!.name,
-                "DYLIB_INSTALL_NAME_BASE": "@rpath",
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "MACH_O_TYPE": "staticlib",
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
@@ -2198,7 +2190,6 @@ touch "$SCRIPT_OUTPUT_FILE_1"
                 "BUILT_PRODUCTS_DIR": "$(CONFIGURATION_BUILD_DIR)",
                 "BAZEL_TARGET_ID": "B 2",
                 "BAZEL_TARGET_ID[sdk=macosx*]": "$(BAZEL_TARGET_ID)",
-                "BUNDLE_LOADER": "$(TEST_HOST)",
                 "COMPILE_TARGET_NAME": targets["B 2"]!.name,
                 "DEPLOYMENT_LOCATION": "NO",
                 "GENERATE_INFOPLIST_FILE": "YES",
@@ -2350,10 +2341,6 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2/A.app/A_ExecutableName
                 "DEPLOYMENT_LOCATION": "NO",
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "IPHONEOS_DEPLOYMENT_TARGET": "12.0",
-                "LD_RUNPATH_SEARCH_PATHS": [
-                    "$(inherited)",
-                    "@executable_path/Frameworks",
-                ],
                 "OTHER_CFLAGS": [
                     "-ivfsoverlay",
                     "$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
@@ -2484,11 +2471,6 @@ $(MACOSX_FILES)
                 "DEPLOYMENT_LOCATION": "NO",
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "IPHONEOS_DEPLOYMENT_TARGET": "11.0",
-                "LD_RUNPATH_SEARCH_PATHS": [
-                    "$(inherited)",
-                    "@executable_path/Frameworks",
-                    "@executable_path/../../Frameworks",
-                ],
                 "OTHER_CFLAGS": [
                     "-ivfsoverlay",
                     "$(OBJROOT)/bazel-out-overlay.yaml",
@@ -2515,11 +2497,6 @@ $(MACOSX_FILES)
                 "COMPILE_TARGET_NAME": targets["WKE"]!.name,
                 "DEPLOYMENT_LOCATION": "NO",
                 "GENERATE_INFOPLIST_FILE": "YES",
-                "LD_RUNPATH_SEARCH_PATHS": [
-                    "$(inherited)",
-                    "@executable_path/Frameworks",
-                    "@executable_path/../../Frameworks",
-                ],
                 "OTHER_CFLAGS": [
                     "-ivfsoverlay",
                     "$(OBJROOT)/bazel-out-overlay.yaml",

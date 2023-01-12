@@ -8,6 +8,7 @@ extension Generator {
         buildMode: BuildMode,
         targetResolver: TargetResolver,
         runnerLabel: BazelLabel,
+        args: [TargetID: [String]],
         envs: [TargetID: [String: String]]
     ) throws -> [XCScheme] {
         return try schemes.map { scheme in
@@ -15,6 +16,7 @@ extension Generator {
                 scheme: scheme,
                 targetResolver: targetResolver,
                 runnerLabel: runnerLabel,
+                args: args,
                 envs: envs
             )
             return try XCScheme(buildMode: buildMode, schemeInfo: schemeInfo)

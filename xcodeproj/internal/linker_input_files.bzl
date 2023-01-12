@@ -3,26 +3,6 @@
 load("@bazel_skylib//lib:sets.bzl", "sets")
 load(":collections.bzl", "flatten", "uniq")
 
-# linker flags that we don't want to propagate to Xcode.
-# The values are the number of flags to skip, 1 being the flag itself, 2 being
-# another flag right after it, etc.
-_LD_SKIP_OPTS = {
-    "-bundle": 2,
-    "-bundle_loader": 2,
-    "-dynamiclib": 1,
-    "-e": 2,
-    "-fapplication-extension": 1,
-    "-isysroot": 2,
-    "-filelist": 2,
-    "-fobjc-link-runtime": 1,
-    "-o": 2,
-    "-static": 1,
-    "-target": 2,
-
-    # TODO: Remove this filter once we move path logic out of the generator
-    "-force_load": 2,
-}
-
 _SKIP_INPUT_EXTENSIONS = {
     "a": None,
     "app": None,
@@ -38,12 +18,15 @@ _SKIP_INPUT_EXTENSIONS = {
 def _collect_linker_inputs(
         *,
         target,
+        automatic_target_info,
         compilation_providers,
         avoid_compilation_providers = None):
     """Collects linker input files for a target.
 
     Args:
         target: The `Target`.
+        automatic_target_info:  The `XcodeProjAutomaticTargetProcessingInfo` for
+            `target`.
         compilation_providers: A value returned by
             `compilation_providers.collect`.
         avoid_compilation_providers: A value returned from
@@ -63,6 +46,7 @@ def _collect_linker_inputs(
         primary_static_library = None
         top_level_values = _extract_top_level_values(
             target = target,
+            automatic_target_info = automatic_target_info,
             compilation_providers = compilation_providers,
             avoid_compilation_providers = avoid_compilation_providers,
             objc_libraries = objc_libraries,
@@ -140,6 +124,7 @@ def _extract_libraries(compilation_providers):
 def _extract_top_level_values(
         *,
         target,
+        automatic_target_info,
         compilation_providers,
         avoid_compilation_providers,
         objc_libraries,
@@ -165,18 +150,6 @@ def _extract_top_level_values(
         else:
             avoid_static_framework_files = sets.make()
             avoid_static_libraries = sets.make()
-
-        force_load_libraries = [
-            file
-            for file in objc.force_load_library.to_list()
-            if not sets.contains(avoid_static_libraries, file)
-        ]
-
-        # We don't want to include force loaded libraries in `static_libraries`
-        avoid_static_libraries = sets.union(
-            avoid_static_libraries,
-            sets.make(force_load_libraries),
-        )
 
         dynamic_frameworks = objc.dynamic_framework_file.to_list()
         static_frameworks = [
@@ -213,7 +186,6 @@ def _extract_top_level_values(
         dynamic_frameworks = []
         static_frameworks = []
 
-        force_load_libraries = []
         static_libraries = []
         additional_input_files = []
         for input in cc_linker_inputs:
@@ -223,32 +195,33 @@ def _extract_top_level_values(
             for library in input.libraries:
                 if sets.contains(avoid_libraries, library):
                     continue
-                if library.alwayslink:
-                    force_load_libraries.append(library.static_library)
-                else:
-                    static_libraries.append(library.static_library)
+                static_libraries.append(library.static_library)
 
         # Dedup libraries
-        force_load_libraries = uniq(force_load_libraries)
         static_libraries = uniq(static_libraries)
     else:
         return None
 
+    link_args = None
+    link_args_inputs = None
     if target:
-        # TODO: Make this configurable with `XcodeProjAutomaticTargetProcessingInfo`
-        linkopts = []
         for action in target.actions:
-            if action.mnemonic in ("ObjcLink", "CppLink"):
-                linkopts = _process_linkopts(action.argv[1:])
+            if action.mnemonic in automatic_target_info.link_mnemonics:
+                link_args = action.args
+                link_args_inputs = tuple([
+                    f
+                    for f in action.inputs.to_list()
+                    # TODO: Generalize this or add to
+                    # `XcodeProjAutomaticTargetProcessingInfo` somehow?
+                    if f.path.endswith("-linker.objlist")
+                ])
                 break
-    else:
-        linkopts = []
 
     return struct(
         additional_input_files = tuple(additional_input_files),
         dynamic_frameworks = tuple(dynamic_frameworks),
-        force_load_libraries = tuple(force_load_libraries),
-        linkopts = tuple(linkopts),
+        link_args = link_args,
+        link_args_inputs = link_args_inputs,
         static_frameworks = tuple(static_frameworks),
         static_libraries = tuple(static_libraries),
     )
@@ -309,62 +282,6 @@ def _get_library_static_libraries(linker_inputs, *, dep_compilation_providers):
 
     return (direct, transitive)
 
-def _process_linkopts(linkopts):
-    ret = []
-    skip_next = 0
-    for idx, linkopt in enumerate(linkopts):
-        if skip_next:
-            skip_next -= 1
-            continue
-        skip_next = _LD_SKIP_OPTS.get(linkopt, 0)
-        if skip_next:
-            skip_next -= 1
-            continue
-
-        if linkopt == "-Xlinker" and linkopts[idx + 1] == "-objc_abi_version":
-            skip_next = 3
-            continue
-
-        linkopt = _process_linkopt(linkopt)
-        if linkopt:
-            ret.append(linkopt)
-
-    return ret
-
-def _process_linkopt(linkopt):
-    if linkopt == "OSO_PREFIX_MAP_PWD":
-        return None
-    if linkopt == "-Wl,-objc_abi_version,2":
-        return None
-    if linkopt.startswith("-Wl,-sectcreate,__TEXT,__entitlements,"):
-        return None
-    if linkopt.startswith("-Wl,-sectcreate,__TEXT,__info_plist,"):
-        return None
-    if linkopt.startswith("-stdlib=") or linkopt.startswith("-std="):
-        return None
-    if linkopt.endswith(".o"):
-        return None
-
-    # TODO: Remove these filter once we move path logic out of the generator
-    if linkopt.startswith("-F"):
-        return None
-    if linkopt.startswith("-Wl,-rpath,@"):
-        return None
-    if linkopt.startswith("-Wl,-install_name,"):
-        return None
-    if linkopt.startswith("@"):
-        return None
-    if linkopt.endswith(".a") or linkopt.endswith(".lo"):
-        return None
-
-    # Use Xcode set `DEVELOPER_DIR`
-    linkopt = linkopt.replace(
-        "__BAZEL_XCODE_DEVELOPER_DIR__",
-        "$(DEVELOPER_DIR)",
-    )
-
-    return linkopt
-
 def _to_input_files(linker_inputs):
     top_level_values = linker_inputs._top_level_values
     if not top_level_values:
@@ -376,8 +293,7 @@ def _to_input_files(linker_inputs):
         top_level_values.static_frameworks,
     ) + [
         file
-        for file in (top_level_values.static_libraries +
-                     top_level_values.force_load_libraries)
+        for file in top_level_values.static_libraries
         if file.is_source
     ]
 

@@ -5,7 +5,6 @@ enum XCSchemeConstants {
     static let defaultLastUpgradeVersion = "9999"
     static let lldbInitVersion = "1.7"
     static let posixSpawnLauncher = "Xcode.IDEFoundation.Launcher.PosixSpawn"
-    static let customLLDBInitFile = "$(BAZEL_LLDB_INIT)"
 }
 
 extension XCScheme.BuildableReference {
@@ -58,19 +57,29 @@ extension XCScheme {
         } else {
             testAction = .init(
                 buildConfiguration: .defaultBuildConfigurationName,
-                macroExpansion: nil,
-                customLLDBInitFile: XCSchemeConstants.customLLDBInitFile
+                macroExpansion: nil
             )
         }
 
         let launchAction: XCScheme.LaunchAction
         if let launchActionInfo = schemeInfo.launchActionInfo {
-            launchAction = try .init(buildMode: buildMode, launchActionInfo: launchActionInfo)
+            // TODO: Make this similar to `initBazelBuildOutputGroupsFile()`,
+            // instead of `otherPreActions`
+            let otherPreActions: [XCScheme.ExecutionAction] = [
+                .createLLDBInit(
+                    buildableReference: launchActionInfo
+                        .targetInfo.buildableReference
+                )
+            ]
+            launchAction = try .init(
+                buildMode: buildMode,
+                launchActionInfo: launchActionInfo,
+                otherPreActions: otherPreActions
+            )
         } else {
             launchAction = .init(
                 runnable: nil,
-                buildConfiguration: .defaultBuildConfigurationName,
-                customLLDBInitFile: XCSchemeConstants.customLLDBInitFile
+                buildConfiguration: .defaultBuildConfigurationName
             )
         }
 
@@ -188,6 +197,18 @@ fi
             environmentBuildable: buildableReference
         )
     }
+
+    static func createLLDBInit(
+        buildableReference: XCScheme.BuildableReference
+    ) -> XCScheme.ExecutionAction {
+        return .init(
+            scriptText: #"""
+"$BAZEL_INTEGRATION_DIR/create_lldbinit.sh"
+"""#,
+            title: "Update .lldbinit",
+            environmentBuildable: buildableReference
+        )
+    }
 }
 
 extension XCScheme.CommandLineArguments {
@@ -230,14 +251,17 @@ extension XCScheme.TestAction {
             enableUBSanitizer: testActionInfo.diagnostics.sanitizers
                 .undefinedBehavior,
             commandlineArguments: commandlineArguments,
-            environmentVariables: environmentVariables.isEmpty ? nil : environmentVariables,
-            customLLDBInitFile: XCSchemeConstants.customLLDBInitFile
+            environmentVariables: environmentVariables.isEmpty ? nil : environmentVariables
         )
     }
 }
 
 extension XCScheme.LaunchAction {
-    convenience init(buildMode: BuildMode, launchActionInfo: XCSchemeInfo.LaunchActionInfo) throws {
+    convenience init(
+        buildMode: BuildMode,
+        launchActionInfo: XCSchemeInfo.LaunchActionInfo,
+        otherPreActions: [XCScheme.ExecutionAction]
+    ) throws {
         let commandlineArguments = XCScheme.CommandLineArguments(
             xcSchemeInfoArgs: launchActionInfo.args
         )
@@ -248,6 +272,7 @@ extension XCScheme.LaunchAction {
         self.init(
             runnable: launchActionInfo.runnable,
             buildConfiguration: launchActionInfo.buildConfigurationName,
+            preActions: otherPreActions,
             macroExpansion: try launchActionInfo.macroExpansion,
             selectedDebuggerIdentifier: launchActionInfo.debugger,
             selectedLauncherIdentifier: launchActionInfo.launcher,
@@ -263,8 +288,7 @@ extension XCScheme.LaunchAction {
             commandlineArguments: commandlineArguments,
             environmentVariables: environmentVariables.isEmpty ? nil : environmentVariables,
             launchAutomaticallySubstyle: launchActionInfo.targetInfo.productType
-                .launchAutomaticallySubstyle,
-            customLLDBInitFile: XCSchemeConstants.customLLDBInitFile
+                .launchAutomaticallySubstyle
         )
     }
 }

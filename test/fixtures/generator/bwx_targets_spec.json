@@ -51,6 +51,7 @@
         "inputs": {
             "srcs": [
                 "tools/generator/test/AddTargetsTests.swift",
+                "tools/generator/test/Array+ExtensionsTests.swift",
                 "tools/generator/test/BazelLabel+TestExtensions.swift",
                 "tools/generator/test/BazelLabelTests.swift",
                 "tools/generator/test/BuildSettingConditionalTests.swift",
@@ -540,6 +541,7 @@
                 "tools/generator/src/DTO/XCCurrentVersion.swift",
                 "tools/generator/src/DTO/XcodeScheme.swift",
                 "tools/generator/src/Errors.swift",
+                "tools/generator/src/Extensions/Array+Extensions.swift",
                 "tools/generator/src/Extensions/Dictionary+Extensions.swift",
                 "tools/generator/src/Extensions/Optional+Extensions.swift",
                 "tools/generator/src/Extensions/PBXGroup+Extensions.swift",
@@ -1029,8 +1031,6 @@
     "@com_github_michaeleisel_jjliso8601dateformatter//:JJLISO8601DateFormatter macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
     {
         "build_settings": {
-            "CLANG_CXX_LANGUAGE_STANDARD": "gnu++0x",
-            "CLANG_CXX_LIBRARY": "libc++",
             "DEBUG_INFORMATION_FORMAT": "dwarf",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
@@ -1074,6 +1074,8 @@
                 "-fstack-protector-all"
             ],
             "OTHER_CPLUSPLUSFLAGS": [
+                "-stdlib=libc++",
+                "-std=gnu++11",
                 "-fstack-protector",
                 "-Wall",
                 "-Wthread-safety",
@@ -1248,8 +1250,6 @@
     "@com_github_michaeleisel_zippyjsoncfamily//:ZippyJSONCFamily macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
     {
         "build_settings": {
-            "CLANG_CXX_LANGUAGE_STANDARD": "c++17",
-            "CLANG_CXX_LIBRARY": "libc++",
             "DEBUG_INFORMATION_FORMAT": "dwarf",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
@@ -1293,6 +1293,8 @@
                 "-fstack-protector-all"
             ],
             "OTHER_CPLUSPLUSFLAGS": [
+                "-stdlib=libc++",
+                "-std=gnu++11",
                 "-fstack-protector",
                 "-Wall",
                 "-Wthread-safety",
@@ -1312,6 +1314,7 @@
                 "-Wunused-function",
                 "-Wunused-variable",
                 "-fno-autolink",
+                "-std=c++17",
                 "-Wno-unused-function",
                 "-Wno-reorder-ctor",
                 "-Wno-return-type-c-linkage",

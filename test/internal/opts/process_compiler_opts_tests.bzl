@@ -17,6 +17,7 @@ def _process_compiler_opts_test_impl(ctx):
         cxxopts = ctx.attr.cxxopts,
         full_swiftcopts = ctx.attr.full_swiftcopts,
         user_swiftcopts = ctx.attr.user_swiftcopts,
+        build_mode = ctx.attr.build_mode,
         compilation_mode = ctx.attr.compilation_mode,
         cpp_fragment = _cpp_fragment_stub(ctx.attr.cpp_fragment),
         objc_fragment = _objc_fragment_stub(ctx.attr.objc_fragment),
@@ -64,6 +65,7 @@ def _process_compiler_opts_test_impl(ctx):
 process_compiler_opts_test = unittest.make(
     impl = _process_compiler_opts_test_impl,
     attrs = {
+        "build_mode": attr.string(mandatory = True),
         "cc_info_defines": attr.string_list(default = []),
         "compilation_mode": attr.string(mandatory = True),
         "conlyopts": attr.string_list(mandatory = True),
@@ -138,6 +140,7 @@ def process_compiler_opts_test_suite(name):
             cxxopts = [],
             full_swiftcopts = [],
             user_swiftcopts = [],
+            build_mode = "bazel",
             compilation_mode = "dbg",
             cpp_fragment = None,
             objc_fragment = None,
@@ -150,6 +153,7 @@ def process_compiler_opts_test_suite(name):
             cxxopts = cxxopts,
             full_swiftcopts = full_swiftcopts,
             user_swiftcopts = user_swiftcopts,
+            build_mode = build_mode,
             compilation_mode = compilation_mode,
             cpp_fragment = cpp_fragment,
             objc_fragment = objc_fragment,
@@ -381,38 +385,6 @@ def process_compiler_opts_test_suite(name):
     )
 
     # Specific Xcode build settings
-
-    # CLANG_CXX_LANGUAGE_STANDARD
-
-    _add_test(
-        name = "{}_options-std".format(name),
-        conlyopts = ["-std=c++42"],
-        cxxopts = ["-std=c++42"],
-        expected_build_settings = {
-            "CLANG_CXX_LANGUAGE_STANDARD": "c++42",
-            "OTHER_CFLAGS": ["-std=c++42"],
-        },
-    )
-
-    _add_test(
-        name = "{}_options-std=c++0x".format(name),
-        cxxopts = ["-std=c++11"],
-        expected_build_settings = {
-            "CLANG_CXX_LANGUAGE_STANDARD": "c++0x",
-        },
-    )
-
-    # CLANG_CXX_LIBRARY
-
-    _add_test(
-        name = "{}_options-stdlib".format(name),
-        conlyopts = ["-stdlib=random"],
-        cxxopts = ["-stdlib=random"],
-        expected_build_settings = {
-            "CLANG_CXX_LIBRARY": "random",
-            "OTHER_CFLAGS": ["-stdlib=random"],
-        },
-    )
 
     ## DEBUG_INFORMATION_FORMAT
 

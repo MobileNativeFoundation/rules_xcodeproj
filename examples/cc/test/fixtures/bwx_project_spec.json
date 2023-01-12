@@ -11,12 +11,19 @@
         "USE_HEADERMAP": false,
         "VALIDATE_WORKSPACE": false
     },
+    "args": [],
     "configuration": "darwin_x86_64-dbg-STABLE-0",
     "custom_xcode_schemes": [],
     "envs": [],
     "extra_files": [
+        {
+            "_": "examples_cc_external/lib.h",
+            "t": "e"
+        },
         "lib/BUILD",
+        "lib/lib.h",
         "lib2/BUILD",
+        "lib2/includes/lib.h",
         "test/fixtures/BUILD",
         "tool/BUILD"
     ],

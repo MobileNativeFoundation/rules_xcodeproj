@@ -161,6 +161,7 @@ class Generator {
             buildMode,
             targetResolver,
             project.runnerLabel,
+            project.args,
             project.envs
         )
         let customSchemeNames = Set(schemes.map(\.name))
@@ -169,6 +170,7 @@ class Generator {
             buildMode,
             targetResolver,
             customSchemeNames,
+            project.args,
             project.envs
         ))
         let sharedData = environment.createXCSharedData(schemes)

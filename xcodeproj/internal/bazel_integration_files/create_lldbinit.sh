@@ -2,8 +2,7 @@
 
 set -euo pipefail
 
-readonly execution_root="$1"
-shift
+readonly execution_root="$PROJECT_DIR"
 
 readonly output_base="${execution_root%/*/*}"
 readonly build_bazel_out="$execution_root/bazel-out"
@@ -15,10 +14,7 @@ readonly index_execution_root="${output_base%/*}/indexbuild_output_base/execroot
 readonly index_bazel_out="$index_execution_root/bazel-out"
 readonly index_external="$index_execution_root/external"
 
-# Load ~/.lldbinit if it exists
-if [[ -f "$HOME/.lldbinit" ]]; then
-  echo "command source ~/.lldbinit"
-fi
+{
 
 # Set `CWD` to `$execution_root` so relative paths in binaries work
 #
@@ -44,13 +40,15 @@ echo "settings append target.source-map ./bazel-out/ \"$index_bazel_out\""
 # `bazel-out` when set from swiftsourcefile
 echo "settings append target.source-map ./bazel-out/ \"$build_bazel_out\""
 
-# `external` for local repositories when set from Project navigator
-while [[ $# -gt 0 ]]; do
-  dir_name="$1"
-  path="$2"
-  shift 2
-  echo "settings append target.source-map \"./external/$dir_name\" \"$path\""
-done
+if [[ -n "${RESOLVED_EXTERNAL_REPOSITORIES:-}" ]]; then
+  # `external` for local repositories when set from Project navigator
+  while IFS='' read -r x; do external_repos+=("$x"); done < <(xargs -n1 <<< "$RESOLVED_EXTERNAL_REPOSITORIES")
+  for (( i=0; i<${#external_repos[@]}; i+=2 )); do
+    dir_name="${external_repos[$i]}"
+    path="${external_repos[$i+1]}"
+    echo "settings append target.source-map \"./external/$dir_name\" \"$path\""
+  done
+fi
 
 # `external` when set from Project navigator
 echo "settings append target.source-map ./external/ \"$BAZEL_EXTERNAL\""
@@ -68,3 +66,13 @@ echo "settings append target.source-map ./ \"$SRCROOT\""
 # settings (i.e. `target.swift-*``) for the module of the current frame. This
 # fixes debugging when using `-serialize-debugging-options`.
 echo "command script import \"$OBJROOT/swift_debug_settings.py\""
+
+} > "$BAZEL_LLDB_INIT"
+
+touch "$HOME/.lldbinit"
+
+readonly required_source='command source ~/.lldbinit-rules_xcodeproj'
+if ! grep -m 1 -q "$required_source" "$HOME/.lldbinit"; then
+  # Update `~/.lldbinit` to source `~/.lldbinit-rules_xcodeproj`
+  echo "$required_source" >> "$HOME/.lldbinit"
+fi

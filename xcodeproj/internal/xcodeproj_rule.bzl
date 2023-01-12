@@ -322,7 +322,7 @@ targets.
         label_str = bazel_labels.normalize(label)
 
         # Remove from unfocused (to support `xcode_required_targets`)
-        unfocused_targets.pop(xcode_target.id, default = None)
+        unfocused_targets.pop(xcode_target.id, None)
 
         # Adjust `unfocused_labels` for `extra_files` logic later
         if sets.contains(unfocused_labels, label_str):
@@ -367,7 +367,7 @@ targets.
         focused_targets[src] = src_target
 
         # Remove from unfocused (to support `xcode_required_targets`)
-        unfocused_targets.pop(src, default = None)
+        unfocused_targets.pop(src, None)
 
         # Adjust `unfocused_labels` for `extra_files` logic later
         if sets.contains(unfocused_labels, src_label):
@@ -393,88 +393,11 @@ targets.
 
     additional_generated = {}
     additional_outputs = {}
-    target_transitive_dependencies = {}
     for xcode_target in focused_targets.values():
-        transitive_dependencies = {
-            id: None
-            for id in xcode_target.transitive_dependencies.to_list()
-        }
-        target_transitive_dependencies[xcode_target.id] = (
-            transitive_dependencies
-        )
-
-        additional_compiling_files = []
-        additional_indexstores_files = []
-        additional_linking_files = []
-        for dependency in transitive_dependencies:
-            unfocused_dependency = unfocused_dependencies.get(dependency)
-            if not unfocused_dependency:
-                continue
-            unfocused_compiling_files = (
-                unfocused_dependency.inputs.unfocused_generated_compiling
-            )
-            unfocused_indexstores_files = (
-                unfocused_dependency.inputs.unfocused_generated_indexstores
-            )
-            unfocused_linking_files = (
-                unfocused_dependency.inputs.unfocused_generated_linking
-            )
-            if unfocused_compiling_files:
-                additional_compiling_files.append(
-                    depset(unfocused_compiling_files),
-                )
-            if unfocused_indexstores_files:
-                additional_indexstores_files.append(
-                    depset(unfocused_indexstores_files),
-                )
-            if unfocused_linking_files:
-                additional_linking_files.append(
-                    depset(unfocused_linking_files),
-                )
-
-        compiling_output_group_name = (
-            xcode_target.inputs.compiling_output_group_name
-        )
-        indexstores_output_group_name = (
-            xcode_target.inputs.indexstores_output_group_name
-        )
-        if compiling_output_group_name:
-            set_if_true(
-                additional_generated,
-                compiling_output_group_name,
-                additional_compiling_files,
-            )
-        if indexstores_output_group_name:
-            set_if_true(
-                additional_generated,
-                indexstores_output_group_name,
-                additional_indexstores_files,
-            )
-
         label = replacement_labels.get(
             xcode_target.id,
             xcode_target.label,
         )
-        target_infoplists = infoplists.get(label)
-        if target_infoplists:
-            additional_linking_files.extend(target_infoplists)
-            products_output_group_name = (
-                xcode_target.outputs.products_output_group_name
-            )
-            if products_output_group_name:
-                additional_outputs[products_output_group_name] = (
-                    target_infoplists
-                )
-
-        linking_output_group_name = (
-            xcode_target.inputs.linking_output_group_name
-        )
-        if linking_output_group_name:
-            set_if_true(
-                additional_generated,
-                linking_output_group_name,
-                additional_linking_files,
-            )
 
         invalid_extra_files_targets = sets.to_list(
             sets.difference(
@@ -565,71 +488,21 @@ actual targets: {}
                 dest = focused_targets[dest],
             )
 
-    xcode_generated_paths = {}
-    for xcode_target in focused_targets.values():
-        if build_mode != "xcode" or xcode_target.id in unfocused_dependencies:
-            continue
-
-        product = xcode_target.product
-        product_file = product.file
-        if not product_file:
-            continue
-
-        product_file_path = product_file.path
-        xcode_product_path = build_setting_path(
-            file = product_file,
-            path = product_file_path,
-            use_build_dir = True,
-        )
-        xcode_generated_paths[product_file_path] = (
-            xcode_product_path
-        )
-        for file in product.additional_product_files:
-            xcode_generated_paths[file.path] = xcode_product_path
-        for file in product.framework_files.to_list():
-            xcode_generated_paths[file.path] = (
-                xcode_product_path
-            )
-
-        swiftmodule = xcode_target.outputs.swiftmodule
-        if swiftmodule:
-            swiftmodule_basename = swiftmodule.basename
-            if product.type == "com.apple.product-type.framework":
-                path = product_file.path + "/Modules/" + swiftmodule_basename
-            else:
-                path = product_file.dirname + "/" + swiftmodule_basename
-
-            xcode_generated_paths[swiftmodule.path] = (
-                build_setting_path(
-                    file = swiftmodule,
-                    path = path,
-                    use_build_dir = True,
-                )
-            )
-
-        generated_header = xcode_target.outputs.swift_generated_header
-        if generated_header:
-            product_components = product.file.path.split("/", 3)
-            header_components = generated_header.path.split("/")
-            final_components = (product_components[0:2] +
-                                header_components[2:])
-            path = "/".join(final_components)
-
-            xcode_generated_paths[generated_header.path] = (
-                build_setting_path(
-                    file = generated_header,
-                    path = path,
-                    use_build_dir = True,
-                )
-            )
+    xcode_generated_paths, xcode_generated_paths_file = _process_xcode_generated_paths(
+        ctx = ctx,
+        build_mode = build_mode,
+        focused_targets = focused_targets,
+        unfocused_dependencies = unfocused_dependencies,
+    )
 
     target_dtos = {}
     target_dependencies = {}
     target_link_params = {}
     for index, xcode_target in enumerate(focused_targets.values()):
-        transitive_dependencies = (
-            target_transitive_dependencies[xcode_target.id]
-        )
+        transitive_dependencies = {
+            id: None
+            for id in xcode_target.transitive_dependencies.to_list()
+        }
 
         if include_swiftui_previews_scheme_targets:
             additional_scheme_target_ids = _calculate_swiftui_preview_targets(
@@ -648,12 +521,14 @@ actual targets: {}
             build_mode = build_mode,
             include_lldb_context = include_lldb_context,
             is_unfocused_dependency = xcode_target.id in unfocused_dependencies,
+            link_params_processor = ctx.executable._link_params_processor,
             linker_products_map = linker_products_map,
             params_index = index,
             should_include_outputs = should_include_outputs(build_mode),
             unfocused_targets = unfocused_targets,
             target_merges = target_merges,
             xcode_generated_paths = xcode_generated_paths,
+            xcode_generated_paths_file = xcode_generated_paths_file,
         )
         target_dtos[xcode_target.id] = dto
         target_dependencies[xcode_target.id] = (
@@ -698,7 +573,51 @@ actual targets: {}
             xcode_target.outputs.linking_output_group_name
         )
 
+        additional_compiling_files = []
+        additional_indexstores_files = []
         additional_linking_files = []
+
+        label = replacement_labels.get(
+            xcode_target.id,
+            xcode_target.label,
+        )
+        target_infoplists = infoplists.get(label)
+        if target_infoplists:
+            additional_linking_files.extend(target_infoplists)
+            products_output_group_name = (
+                xcode_target.outputs.products_output_group_name
+            )
+            if products_output_group_name:
+                additional_outputs[products_output_group_name] = (
+                    target_infoplists
+                )
+
+        for dependency in transitive_dependencies:
+            unfocused_dependency = unfocused_dependencies.get(dependency)
+            if not unfocused_dependency:
+                continue
+            unfocused_compiling_files = (
+                unfocused_dependency.inputs.unfocused_generated_compiling
+            )
+            unfocused_indexstores_files = (
+                unfocused_dependency.inputs.unfocused_generated_indexstores
+            )
+            unfocused_linking_files = (
+                unfocused_dependency.inputs.unfocused_generated_linking
+            )
+            if unfocused_compiling_files:
+                additional_compiling_files.append(
+                    depset(unfocused_compiling_files),
+                )
+            if unfocused_indexstores_files:
+                additional_indexstores_files.append(
+                    depset(unfocused_indexstores_files),
+                )
+            if unfocused_linking_files:
+                additional_linking_files.append(
+                    depset(unfocused_linking_files),
+                )
+
         for id in replaced_dependencies:
             if id in transitive_dependencies:
                 continue
@@ -728,11 +647,6 @@ actual targets: {}
                     [],
                 )
                 additional_compiling_files.append(dep_target.inputs.generated)
-                set_if_true(
-                    additional_generated,
-                    compiling_output_group_name,
-                    additional_compiling_files,
-                )
             if (indexstores_output_group_name and
                 dep_indexstores_output_group_name):
                 additional_indexstores_files = additional_generated.get(
@@ -741,11 +655,6 @@ actual targets: {}
                 )
                 additional_indexstores_files.append(
                     dep_target.inputs.indexstores,
-                )
-                set_if_true(
-                    additional_generated,
-                    indexstores_output_group_name,
-                    additional_indexstores_files,
                 )
             if linking_output_group_name and dep_linking_output_group_name:
                 additional_linking_files = additional_generated.get(
@@ -761,11 +670,24 @@ actual targets: {}
                     transitive_link_params
                 )
 
-        set_if_true(
-            additional_generated,
-            linking_output_group_name,
-            additional_linking_files,
-        )
+        if compiling_output_group_name:
+            set_if_true(
+                additional_generated,
+                compiling_output_group_name,
+                additional_compiling_files,
+            )
+        if indexstores_output_group_name:
+            set_if_true(
+                additional_generated,
+                indexstores_output_group_name,
+                additional_indexstores_files,
+            )
+        if linking_output_group_name:
+            set_if_true(
+                additional_generated,
+                linking_output_group_name,
+                additional_linking_files,
+            )
 
     return (
         focused_targets,
@@ -778,6 +700,102 @@ actual targets: {}
         configurations_map,
     )
 
+def _process_xcode_generated_paths(
+        *,
+        ctx,
+        build_mode,
+        focused_targets,
+        unfocused_dependencies):
+    xcode_generated_paths = {}
+    xcode_generated_paths_file = ctx.actions.declare_file(
+        "{}-xcode_generated_paths.json".format(ctx.attr.name),
+    )
+
+    if build_mode != "xcode":
+        ctx.actions.write(
+            content = json.encode(xcode_generated_paths),
+            output = xcode_generated_paths_file,
+        )
+        return xcode_generated_paths, xcode_generated_paths_file
+
+    for xcode_target in focused_targets.values():
+        if xcode_target.id in unfocused_dependencies:
+            continue
+
+        product = xcode_target.product
+        product_file = product.file
+        if not product_file:
+            continue
+
+        product_file_path = product_file.path
+        xcode_product_path = build_setting_path(
+            file = product_file,
+            path = product_file_path,
+            use_build_dir = True,
+        )
+        xcode_generated_paths[product_file_path] = (
+            xcode_product_path
+        )
+
+        executable = product.executable
+        if executable and product.type.startswith("com.apple.product-type.app"):
+            # Possible test hosts (apps and app extensions)
+            executable_name = product.executable_name
+            xcode_generated_paths[product.executable.path] = paths.join(
+                xcode_product_path,
+                executable_name,
+            )
+
+        for file in product.additional_product_files:
+            path = file.path
+            xcode_generated_paths[path] = xcode_product_path
+
+        for file in product.framework_files.to_list():
+            xcode_generated_paths[file.dirname] = (
+                xcode_product_path
+            )
+
+        swiftmodule = xcode_target.outputs.swiftmodule
+        if swiftmodule:
+            swiftmodule_basename = swiftmodule.basename
+            if product.type == "com.apple.product-type.framework":
+                path = (
+                    product_file.path + "/Modules/" + swiftmodule_basename
+                )
+            else:
+                path = product_file.dirname + "/" + swiftmodule_basename
+
+            xcode_generated_paths[swiftmodule.path] = (
+                build_setting_path(
+                    file = swiftmodule,
+                    path = path,
+                    use_build_dir = True,
+                )
+            )
+
+        generated_header = xcode_target.outputs.swift_generated_header
+        if generated_header:
+            product_components = product.file.path.split("/", 3)
+            header_components = generated_header.path.split("/")
+            final_components = (product_components[0:2] +
+                                header_components[2:])
+            path = "/".join(final_components)
+
+            xcode_generated_paths[generated_header.path] = (
+                build_setting_path(
+                    file = generated_header,
+                    path = path,
+                    use_build_dir = True,
+                )
+            )
+
+    ctx.actions.write(
+        content = json.encode(xcode_generated_paths),
+        output = xcode_generated_paths_file,
+    )
+
+    return xcode_generated_paths, xcode_generated_paths_file
+
 def should_include_outputs(build_mode):
     return build_mode != "bazel_via_proxy"
 
@@ -785,6 +803,7 @@ def should_include_outputs(build_mode):
 
 def _write_spec(
         *,
+        args,
         config,
         configuration,
         ctx,
@@ -838,6 +857,7 @@ def _write_spec(
 "USE_HEADERMAP":false,\
 "VALIDATE_WORKSPACE":false\
 }},\
+"args": {args},\
 "configuration":"{configuration}",\
 "custom_xcode_schemes":{custom_xcode_schemes},\
 "envs": {envs},\
@@ -855,6 +875,9 @@ def _write_spec(
 "target_hosts":{target_hosts}
 }}
 """.format(
+        args = json.encode(
+            flattened_key_values.to_list(args, sort = is_fixture),
+        ),
         bazel_config = config,
         bazel_path = ctx.attr.bazel_path,
         bazel_workspace_name = ctx.workspace_name,
@@ -1268,6 +1291,13 @@ def _xcodeproj_impl(ctx):
             transitive = [info.replacement_labels for info in infos],
         ).to_list()
     }
+    args = {
+        s.id: s.args
+        for s in depset(
+            transitive = [info.args for info in infos],
+        ).to_list()
+        if s.args
+    }
     envs = {
         s.id: s.env
         for s in depset(
@@ -1334,6 +1364,7 @@ def _xcodeproj_impl(ctx):
 
     spec_files = _write_spec(
         ctx = ctx,
+        args = args,
         is_fixture = is_fixture,
         project_name = project_name,
         config = config,
@@ -1746,6 +1777,11 @@ transitive dependencies of the targets specified in the
             default = Label("//xcodeproj/internal:installer.template.sh"),
         ),
         "_is_fixture": attr.bool(default = is_fixture),
+        "_link_params_processor": attr.label(
+            cfg = "exec",
+            default = Label("//tools/params_processors:link_params_processor"),
+            executable = True,
+        ),
         "_xccurrentversions_parser": attr.label(
             cfg = "exec",
             default = Label("//tools/xccurrentversions_parser"),

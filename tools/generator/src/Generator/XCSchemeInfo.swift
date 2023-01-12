@@ -120,6 +120,7 @@ extension XCSchemeInfo {
         scheme: XcodeScheme,
         targetResolver: TargetResolver,
         runnerLabel: BazelLabel,
+        args: [TargetID: [String]],
         envs: [TargetID: [String: String]]
     ) throws {
         let targetIDsByLabel = try scheme.resolveTargetIDs(
@@ -138,6 +139,7 @@ extension XCSchemeInfo {
                 testAction: schemeWithDefaults.testAction,
                 targetResolver: targetResolver,
                 targetIDsByLabel: targetIDsByLabel,
+                args: args,
                 envs: envs
             ),
             launchActionInfo: .init(

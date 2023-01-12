@@ -34,7 +34,7 @@ final class CreateProjectTests: XCTestCase {
             buildSettings: project.buildSettings.asDictionary.merging([
                 "BAZEL_CONFIG": project.bazelConfig,
                 "BAZEL_EXTERNAL": "$(BAZEL_OUTPUT_BASE)/external",
-                "BAZEL_LLDB_INIT": "$(OBJROOT)/bazel.lldbinit",
+                "BAZEL_LLDB_INIT": "$(HOME)/.lldbinit-rules_xcodeproj",
                 "BAZEL_OUT": "$(PROJECT_DIR)/bazel-out",
                 "_BAZEL_OUTPUT_BASE": "$(PROJECT_DIR)/../..",
                 "BAZEL_OUTPUT_BASE": "$(_BAZEL_OUTPUT_BASE:standardizepath)",
@@ -71,6 +71,9 @@ $(INDEXING_DEPLOYMENT_LOCATION__NO)
                 "INDEXING_DEPLOYMENT_LOCATION__YES": false,
                 "INSTALL_PATH": "$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)/bin",
                 "INTERNAL_DIR": "$(PROJECT_FILE_PATH)/r_xcp",
+                "LD_OBJC_ABI_VERSION": "",
+                "LD_DYLIB_INSTALL_NAME": "",
+                "LD_RUNPATH_SEARCH_PATHS": [],
                 "RULES_XCODEPROJ_BUILD_MODE": "xcode",
                 "SCHEME_TARGET_IDS_FILE": """
 $(OBJROOT)/scheme_target_ids
@@ -153,7 +156,7 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
             buildSettings: project.buildSettings.asDictionary.merging([
                 "BAZEL_CONFIG": "rules_xcodeproj_fixtures",
                 "BAZEL_EXTERNAL": "$(BAZEL_OUTPUT_BASE)/external",
-                "BAZEL_LLDB_INIT": "$(OBJROOT)/bazel.lldbinit",
+                "BAZEL_LLDB_INIT": "$(HOME)/.lldbinit-rules_xcodeproj",
                 "BAZEL_OUT": "$(PROJECT_DIR)/bazel-out",
                 "_BAZEL_OUTPUT_BASE": "$(PROJECT_DIR)/../..",
                 "BAZEL_OUTPUT_BASE": "$(_BAZEL_OUTPUT_BASE:standardizepath)",
@@ -196,6 +199,9 @@ $(INDEXING_DEPLOYMENT_LOCATION__NO)
                 "INDEXING_DEPLOYMENT_LOCATION__YES": false,
                 "INSTALL_PATH": "$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)/bin",
                 "INTERNAL_DIR": "$(PROJECT_FILE_PATH)/r_xcp",
+                "LD_OBJC_ABI_VERSION": "",
+                "LD_DYLIB_INSTALL_NAME": "",
+                "LD_RUNPATH_SEARCH_PATHS": [],
                 "RULES_XCODEPROJ_BUILD_MODE": "bazel",
                 "SCHEME_TARGET_IDS_FILE": """
 $(OBJROOT)/scheme_target_ids

@@ -61,16 +61,18 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
         srcs = []
 
     alternate_icons = None
-    env = None
     app_icons = None
+    args = None
     bundle_id = None
     codesignopts = None
     deps = ["deps"]
     entitlements = None
+    env = None
     exported_symbols_lists = []
     hdrs = []
     infoplists = []
     launchdplists = []
+    link_mnemonics = ["ObjcLink", "CppLink"]
     bazel_build_mode_error = None
     non_arc_srcs = []
     pch = None
@@ -110,6 +112,8 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
         if _is_test_target(target):
             xcode_targets["test_host"] = [target_type.compile]
             env = "env"
+            if "args" in attrs:
+                args = "args"
         if "alternate_icons" in attrs:
             alternate_icons = "alternate_icons"
         if "app_clips" in attrs:
@@ -185,6 +189,7 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
             all_attrs = attrs,
             alternate_icons = alternate_icons,
             app_icons = app_icons,
+            args = args,
             bazel_build_mode_error = bazel_build_mode_error,
             bundle_id = bundle_id,
             codesignopts = codesignopts,
@@ -195,6 +200,7 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
             hdrs = hdrs,
             infoplists = infoplists,
             launchdplists = launchdplists,
+            link_mnemonics = link_mnemonics,
             non_arc_srcs = non_arc_srcs,
             pch = pch,
             provisioning_profile = provisioning_profile,

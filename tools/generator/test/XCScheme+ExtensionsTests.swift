@@ -135,8 +135,7 @@ extension XCSchemeExtensionsTests {
             postActions: [
                 .init(scriptText: "exit 1", title: "Custom Post Script", environmentBuildable: libraryTargetInfo.buildableReference)
             ],
-            shouldUseLaunchSchemeArgsEnv: true,
-            customLLDBInitFile: XCSchemeConstants.customLLDBInitFile
+            shouldUseLaunchSchemeArgsEnv: true
         )
         XCTAssertEqual(actual, expected)
     }
@@ -164,8 +163,7 @@ extension XCSchemeExtensionsTests {
             commandlineArguments: .init(arguments: [.init(name: "--hello", enabled: true)]),
             environmentVariables: [
                 .init(variable: "CUSTOM_ENV_VAR", value: "goodbye", enabled: true),
-            ],
-            customLLDBInitFile: XCSchemeConstants.customLLDBInitFile
+            ]
         )
         XCTAssertEqual(actual, expected)
     }
@@ -188,8 +186,7 @@ extension XCSchemeExtensionsTests {
                 .init(skipped: false, buildableReference: uiTestTargetInfo.buildableReference),
             ],
             shouldUseLaunchSchemeArgsEnv: false,
-            environmentVariables: .bazelLaunchEnvironmentVariables,
-            customLLDBInitFile: XCSchemeConstants.customLLDBInitFile
+            environmentVariables: .bazelLaunchEnvironmentVariables
         )
         XCTAssertEqual(actual, expected)
     }
@@ -218,8 +215,7 @@ extension XCSchemeExtensionsTests {
             environmentVariables: (
                 [.init(variable: "CUSTOM_ENV_VAR", value: "goodbye", enabled: true)] +
                     .bazelLaunchEnvironmentVariables
-            ).sortedLocalizedStandard(),
-            customLLDBInitFile: XCSchemeConstants.customLLDBInitFile
+            ).sortedLocalizedStandard()
         )
         XCTAssertEqual(actual, expected)
     }
@@ -244,7 +240,8 @@ extension XCSchemeExtensionsTests {
         let productType = launchActionInfo.targetInfo.productType
         let launchAction = try XCScheme.LaunchAction(
             buildMode: .xcode,
-            launchActionInfo: launchActionInfo
+            launchActionInfo: launchActionInfo,
+            otherPreActions: []
         )
         let expected = XCScheme.LaunchAction(
             runnable: launchActionInfo.runnable,
@@ -254,8 +251,7 @@ extension XCSchemeExtensionsTests {
             selectedLauncherIdentifier: launchActionInfo.launcher,
             askForAppToLaunch: nil,
             environmentVariables: nil,
-            launchAutomaticallySubstyle: productType.launchAutomaticallySubstyle,
-            customLLDBInitFile: XCSchemeConstants.customLLDBInitFile
+            launchAutomaticallySubstyle: productType.launchAutomaticallySubstyle
         )
         XCTAssertEqual(launchAction, expected)
     }
@@ -276,7 +272,8 @@ extension XCSchemeExtensionsTests {
         let productType = launchActionInfo.targetInfo.productType
         let launchAction = try XCScheme.LaunchAction(
             buildMode: .bazel,
-            launchActionInfo: launchActionInfo
+            launchActionInfo: launchActionInfo,
+            otherPreActions: []
         )
         let expected = XCScheme.LaunchAction(
             runnable: launchActionInfo.runnable,
@@ -286,8 +283,7 @@ extension XCSchemeExtensionsTests {
             selectedLauncherIdentifier: launchActionInfo.launcher,
             askForAppToLaunch: nil,
             environmentVariables: .bazelLaunchEnvironmentVariables,
-            launchAutomaticallySubstyle: productType.launchAutomaticallySubstyle,
-            customLLDBInitFile: XCSchemeConstants.customLLDBInitFile
+            launchAutomaticallySubstyle: productType.launchAutomaticallySubstyle
         )
         XCTAssertEqual(launchAction, expected)
     }
@@ -312,7 +308,8 @@ extension XCSchemeExtensionsTests {
         let productType = launchActionInfo.targetInfo.productType
         let launchAction = try XCScheme.LaunchAction(
             buildMode: .bazel,
-            launchActionInfo: launchActionInfo
+            launchActionInfo: launchActionInfo,
+            otherPreActions: []
         )
         let expected = XCScheme.LaunchAction(
             runnable: launchActionInfo.runnable,
@@ -326,8 +323,7 @@ extension XCSchemeExtensionsTests {
                 [.init(variable: "CUSTOM_ENV_VAR", value: env["CUSTOM_ENV_VAR"]!, enabled: true)] +
                     .bazelLaunchEnvironmentVariables
             ).sortedLocalizedStandard(),
-            launchAutomaticallySubstyle: productType.launchAutomaticallySubstyle,
-            customLLDBInitFile: XCSchemeConstants.customLLDBInitFile
+            launchAutomaticallySubstyle: productType.launchAutomaticallySubstyle
         )
         XCTAssertEqual(launchAction, expected)
     }
@@ -539,7 +535,8 @@ extension XCSchemeExtensionsTests {
         // when
         let launchAction = try XCScheme.LaunchAction(
             buildMode: .xcode,
-            launchActionInfo: launchActionInfo
+            launchActionInfo: launchActionInfo,
+            otherPreActions: []
         )
         
         // then
@@ -553,8 +550,7 @@ extension XCSchemeExtensionsTests {
             enableAddressSanitizer: true,
             enableThreadSanitizer: false,
             enableUBSanitizer: true,
-            launchAutomaticallySubstyle: productType.launchAutomaticallySubstyle,
-            customLLDBInitFile: XCSchemeConstants.customLLDBInitFile
+            launchAutomaticallySubstyle: productType.launchAutomaticallySubstyle
         )
         XCTAssertNoDifference(launchAction, expected)
     }
@@ -603,8 +599,7 @@ extension XCSchemeExtensionsTests {
             ],
             enableAddressSanitizer: true,
             enableThreadSanitizer: false,
-            enableUBSanitizer: true,
-            customLLDBInitFile: XCSchemeConstants.customLLDBInitFile
+            enableUBSanitizer: true
         )
         XCTAssertNoDifference(testAction, expected)
     }
