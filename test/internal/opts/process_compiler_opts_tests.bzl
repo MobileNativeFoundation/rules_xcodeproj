@@ -75,17 +75,6 @@ def _cpp_fragment(*, apple_generate_dsym):
         "apple_generate_dsym": json.encode(apple_generate_dsym),
     }
 
-def _objc_fragment(
-        *,
-        copts,
-        copts_for_current_compilation_mode):
-    return {
-        "copts": json.encode(copts),
-        "copts_for_current_compilation_mode": json.encode(
-            copts_for_current_compilation_mode,
-        ),
-    }
-
 def _cpp_fragment_stub(dict):
     if not dict:
         return struct(

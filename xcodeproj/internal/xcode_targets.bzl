@@ -318,12 +318,6 @@ def _prepend_array_build_setting(*, build_settings, key, values):
         values.extend(existing)
     set_if_true(build_settings, key, values)
 
-def _prepend_string_build_setting(*, build_settings, key, values):
-    existing = build_settings.get(key, None)
-    if existing:
-        values.append(existing)
-    set_if_true(build_settings, key, " ".join(values))
-
 def _set_bazel_outputs_product(
         *,
         build_mode,
