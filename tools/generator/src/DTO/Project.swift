@@ -1,6 +1,5 @@
 struct Project: Equatable {
     let name: String
-    let bazelWorkspaceName: String
     let bazelConfig: String
     let generatorLabel: BazelLabel
     let runnerLabel: BazelLabel
@@ -24,7 +23,6 @@ struct Project: Equatable {
 extension Project: Decodable {
     enum CodingKeys: String, CodingKey {
         case name
-        case bazelWorkspaceName
         case bazelConfig
         case generatorLabel
         case runnerLabel
@@ -48,8 +46,6 @@ extension Project: Decodable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
         name = try container.decode(String.self, forKey: .name)
-        bazelWorkspaceName = try container
-            .decode(String.self, forKey: .bazelWorkspaceName)
         bazelConfig = try container.decode(String.self, forKey: .bazelConfig)
         generatorLabel = try container
             .decode(BazelLabel.self, forKey: .generatorLabel)
