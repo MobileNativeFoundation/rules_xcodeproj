@@ -8,6 +8,7 @@ from typing import Dict, List
 
 def _main(
         xcode_generated_paths_path: str,
+        generated_framework_search_paths_path: str,
         self_linked_path: str,
         swift_triple: str,
         output_path: str,
@@ -16,10 +17,14 @@ def _main(
     with open(xcode_generated_paths_path, encoding = "utf-8") as fp:
         xcode_generated_paths = json.load(fp)
 
+    with open(generated_framework_search_paths_path, encoding = "utf-8") as fp:
+        generated_framework_search_paths = json.load(fp)
+
     linkopts = _process_linkopts(
         # First argument is the tool name
         linkopts = _parse_args(args)[1:],
         xcode_generated_paths = xcode_generated_paths,
+        generated_framework_search_paths = generated_framework_search_paths,
         self_linked_path = self_linked_path,
         swift_triple = swift_triple
     )
@@ -65,6 +70,7 @@ _LD_SKIP_OPTS = {
 def _process_linkopts(
         linkopts: List[str],
         xcode_generated_paths: Dict[str, str],
+        generated_framework_search_paths: Dict[str, Dict[str, str]],
         self_linked_path: str,
         swift_triple: str
     ) -> List[str]:
@@ -121,9 +127,17 @@ def _process_linkopts(
         if opt.startswith("-L__BAZEL_XCODE_"):
             return None
 
-        # TODO: Remove these filter once we move path logic out of the generator
         if opt.startswith("-F"):
-            return None
+            path = opt[2:]
+            search_paths = generated_framework_search_paths.get(path)
+            if search_paths:
+                xcode_path = search_paths.get("x")
+                if xcode_path:
+                    processed_linkopts.append("-F" + xcode_path)
+                bazel_path = search_paths.get("b")
+                if bazel_path:
+                    processed_linkopts.append("-F" + bazel_path)
+                return None
 
         # Use Xcode set `DEVELOPER_DIR`
         opt = opt.replace("__BAZEL_XCODE_DEVELOPER_DIR__", "$(DEVELOPER_DIR)")
@@ -155,14 +169,22 @@ def _process_linkopts(
 
 
 if __name__ == "__main__":
-    if len(sys.argv) < 5:
+    if len(sys.argv) < 7:
         print(
             f"""
-Usage: {sys.argv[0]} <xcode_generated_paths.json> <self_linked_output> \
-<swift_triple> <output> <args...>\
+Usage: {sys.argv[0]} <xcode_generated_paths.json> \
+<generated_framework_search_paths.json> <self_linked_output> <swift_triple> \
+<output> <args...>\
 """,
             file = sys.stderr,
         )
         exit(1)
 
-    _main(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5:])
+    _main(
+        sys.argv[1],
+        sys.argv[2],
+        sys.argv[3],
+        sys.argv[4],
+        sys.argv[5],
+        sys.argv[6:],
+    )
