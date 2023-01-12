@@ -846,7 +846,6 @@ def _write_spec(
     project_spec_json = """\
 {{\
 "bazel_config":"{bazel_config}",\
-"bazel_workspace_name":"{bazel_workspace_name}",\
 "build_settings":{{\
 "ALWAYS_SEARCH_USER_PATHS":false,\
 "BAZEL_PATH":"{bazel_path}",\
@@ -880,7 +879,6 @@ def _write_spec(
         ),
         bazel_config = config,
         bazel_path = ctx.attr.bazel_path,
-        bazel_workspace_name = ctx.workspace_name,
         configuration = configuration,
         custom_xcode_schemes = custom_xcode_schemes_json,
         extra_files = json.encode(
