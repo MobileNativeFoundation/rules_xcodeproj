@@ -290,26 +290,6 @@ $(CONFIGURATION_BUILD_DIR)
                 to: FilePathResolver.resolve(pch)
             )
         }
-
-        // TODO: Think about setting this `link.params` directly. This will
-        // ensure they come after other `-rpath` declarations, and will probably
-        // allow us to remove setting `FRAMEWORK_SEARCH_PATHS` (and instead use
-        // a `compile.params`).
-        if buildMode == .xcode && target.product.type == .framework {
-            buildSettings.set("LD_RUNPATH_SEARCH_PATHS", to: [
-                "$(PREVIEWS_LD_RUNPATH_SEARCH_PATHS__$(ENABLE_PREVIEWS))",
-            ])
-            buildSettings.set("PREVIEWS_LD_RUNPATH_SEARCH_PATHS__", to: [
-                "$(PREVIEWS_LD_RUNPATH_SEARCH_PATHS__NO)",
-            ])
-            buildSettings.set(
-                "PREVIEWS_LD_RUNPATH_SEARCH_PATHS__NO",
-                to: []
-            )
-            buildSettings.set("PREVIEWS_LD_RUNPATH_SEARCH_PATHS__YES", to: [
-                "$(FRAMEWORK_SEARCH_PATHS)",
-            ])
-        }
         
         // Set VFS overlays
 
