@@ -221,7 +221,8 @@ def _process_base_compiler_opts(
         if skip_next:
             skip_next -= 1
             continue
-        if "__BAZEL_XCODE_" in opt:
+        if (opt.startswith("-F__BAZEL_XCODE_") or
+            opt.startswith("-I__BAZEL_XCODE_")):
             # Theses options are already handled by Xcode
             continue
         root_opt = opt.split("=")[0]
@@ -237,6 +238,12 @@ def _process_base_compiler_opts(
             if skip_next:
                 # No need to decrement 1, since we need to skip the first opt
                 continue
+
+        # Use Xcode set `DEVELOPER_DIR`
+        opt = opt.replace("__BAZEL_XCODE_DEVELOPER_DIR__", "$(DEVELOPER_DIR)")
+
+        # Use Xcode set `SDKROOT`
+        opt = opt.replace("__BAZEL_XCODE_SDKROOT__", "$(SDKROOT)")
 
         if opt != "-Xfrontend":
             previous_vfsoverlay_opt = previous_frontend_opt or previous_opt
