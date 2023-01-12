@@ -364,6 +364,10 @@ def _set_search_paths(
             ],
         )
 
+    if (xcode_target.product.type != "com.apple.product-type.framework" or
+        not generated_framework_search_paths):
+        return
+
     framework_search_paths = []
     for search_paths in generated_framework_search_paths.values():
         xcode_path = search_paths.get("x")
@@ -373,25 +377,14 @@ def _set_search_paths(
         if bazel_path:
             framework_search_paths.append(bazel_path)
 
-    set_if_true(
-        build_settings,
-        "FRAMEWORK_SEARCH_PATHS",
-        [
-            quote_if_needed(path)
-            for path in framework_search_paths
-        ],
-    )
-
-def _set_linker_settings(*, build_mode, build_settings, xcode_target):
-    if (build_mode != "xcode" or
-        xcode_target.product.type != "com.apple.product-type.framework"):
-        return
-
     build_settings.update({
         "LD_RUNPATH_SEARCH_PATHS": "$(PREVIEWS_LD_RUNPATH_SEARCH_PATHS__$(ENABLE_PREVIEWS))",
         "PREVIEWS_LD_RUNPATH_SEARCH_PATHS__": "$(PREVIEWS_LD_RUNPATH_SEARCH_PATHS__NO)",
         "PREVIEWS_LD_RUNPATH_SEARCH_PATHS__NO": [],
-        "PREVIEWS_LD_RUNPATH_SEARCH_PATHS__YES": ["$(FRAMEWORK_SEARCH_PATHS)"],
+        "PREVIEWS_LD_RUNPATH_SEARCH_PATHS__YES": [
+            quote_if_needed(path)
+            for path in framework_search_paths
+        ],
     })
 
 def _set_preview_framework_paths(
@@ -478,6 +471,9 @@ def _generated_framework_search_paths(
         search_paths_intermediate,
         xcode_generated_paths,
         xcode_target):
+    if build_mode != "xcode":
+        return {}
+
     if xcode_target.linker_inputs:
         frameworks = xcode_target.linker_inputs.dynamic_frameworks
     else:
@@ -493,18 +489,11 @@ def _generated_framework_search_paths(
                 paths.dirname(xcode_generated_path)
             )
         else:
-            if build_mode == "xcode":
-                # Since we use `$(FRAMEWORK_SEARCH_PATHS)` in
-                # `PREVIEWS_LD_RUNPATH_SEARCH_PATHS__YES`, we need to fully
-                #  qualify the paths
-                bs_path = build_setting_path(
-                    file = file,
-                    path = search_path,
-                )
-            else:
-                bs_path = search_path
+            # Since we use `framework_search_paths` in
+            # `PREVIEWS_LD_RUNPATH_SEARCH_PATHS__YES`, we need to fully
+            #  qualify the paths
             framework_search_paths.setdefault(search_path, {})["b"] = (
-                bs_path
+                build_setting_path(file = file, path = search_path)
             )
 
     ordered_framework_search_paths = {}
@@ -515,12 +504,8 @@ def _generated_framework_search_paths(
             continue
 
         # Imported frameworks
-        if build_mode == "xcode":
-            bs_path = build_setting_path(path = search_path)
-        else:
-            bs_path = search_path
         ordered_framework_search_paths.setdefault(search_path, {})["b"] = (
-            bs_path
+            build_setting_path(path = search_path)
         )
 
     return ordered_framework_search_paths
@@ -598,9 +583,10 @@ def _xcode_target_to_dto(
 
     linker_inputs_dto, link_params = _linker_inputs_to_dto(
         ctx = ctx,
+        compile_target = xcode_target._compile_target,
+        generated_framework_search_paths = generated_framework_search_paths,
         link_params_processor = link_params_processor,
         linker_inputs = xcode_target.linker_inputs,
-        compile_target = xcode_target._compile_target,
         name = xcode_target.name,
         params_index = params_index,
         platform = xcode_target.platform,
@@ -725,11 +711,6 @@ def _build_settings_to_dto(
         build_settings = build_settings,
         xcode_target = xcode_target,
     )
-    _set_linker_settings(
-        build_mode = build_mode,
-        build_settings = build_settings,
-        xcode_target = xcode_target,
-    )
     _set_preview_framework_paths(
         build_mode = build_mode,
         build_settings = build_settings,
@@ -818,6 +799,7 @@ def _linker_inputs_to_dto(
         *,
         ctx,
         compile_target,
+        generated_framework_search_paths,
         link_params_processor,
         name,
         params_index,
@@ -842,6 +824,18 @@ def _linker_inputs_to_dto(
     )
 
     if linker_inputs.link_args:
+        generated_framework_search_paths_file = ctx.actions.declare_file(
+            "{}-params/{}.{}.generated_framework_search_paths.json".format(
+                ctx.attr.name,
+                name,
+                params_index,
+            ),
+        )
+        ctx.actions.write(
+            output = generated_framework_search_paths_file,
+            content = json.encode(generated_framework_search_paths),
+        )
+
         link_params = ctx.actions.declare_file(
             "{}-params/{}.{}.link.params".format(
                 ctx.attr.name,
@@ -852,6 +846,7 @@ def _linker_inputs_to_dto(
 
         args = ctx.actions.args()
         args.add(xcode_generated_paths_file)
+        args.add(generated_framework_search_paths_file)
         args.add(avoid_library.path if avoid_library else "")
         args.add(platform_info.to_swift_triple(platform))
         args.add(link_params)
@@ -862,8 +857,10 @@ def _linker_inputs_to_dto(
             mnemonic = "ProcessLinkParams",
             progress_message = "Generating %{output}",
             inputs = (
-                [xcode_generated_paths_file] +
-                list(linker_inputs.link_args_inputs)
+                [
+                    xcode_generated_paths_file,
+                    generated_framework_search_paths_file,
+                ] + list(linker_inputs.link_args_inputs)
             ),
             outputs = [link_params],
         )
