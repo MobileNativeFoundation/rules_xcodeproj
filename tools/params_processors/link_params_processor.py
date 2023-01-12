@@ -117,15 +117,19 @@ def _process_linkopts(
         if opt.endswith(".o"):
             return None
 
+        # Xcode adds system library search paths
+        if opt.startswith("-L__BAZEL_XCODE_"):
+            return None
+
         # TODO: Remove these filter once we move path logic out of the generator
         if opt.startswith("-F"):
             return None
 
         # Use Xcode set `DEVELOPER_DIR`
-        opt = opt.replace(
-            "__BAZEL_XCODE_DEVELOPER_DIR__",
-            "$(DEVELOPER_DIR)",
-        )
+        opt = opt.replace("__BAZEL_XCODE_DEVELOPER_DIR__", "$(DEVELOPER_DIR)")
+
+        # Use Xcode set `SDKROOT`
+        opt = opt.replace("__BAZEL_XCODE_SDKROOT__", "$(SDKROOT)")
 
         return ",".join([
             _process_linkopt_component(component)
