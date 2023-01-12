@@ -318,12 +318,6 @@ def _prepend_array_build_setting(*, build_settings, key, values):
         values.extend(existing)
     set_if_true(build_settings, key, values)
 
-def _prepend_string_build_setting(*, build_settings, key, values):
-    existing = build_settings.get(key, None)
-    if existing:
-        values.append(existing)
-    set_if_true(build_settings, key, " ".join(values))
-
 def _set_bazel_outputs_product(
         *,
         build_mode,
@@ -345,30 +339,31 @@ def _set_search_paths(
         search_paths_intermediate,
         xcode_generated_paths,
         xcode_target):
-    _prepend_array_build_setting(
-        build_settings = build_settings,
-        key = "USER_HEADER_SEARCH_PATHS",
-        values = [
-            quote_if_needed(build_setting_path(path = path))
-            for path in search_paths_intermediate.quote_includes
-        ],
-    )
-    _prepend_array_build_setting(
-        build_settings = build_settings,
-        key = "HEADER_SEARCH_PATHS",
-        values = [
-            quote_if_needed(build_setting_path(path = path))
-            for path in search_paths_intermediate.includes
-        ],
-    )
-    _prepend_array_build_setting(
-        build_settings = build_settings,
-        key = "SYSTEM_HEADER_SEARCH_PATHS",
-        values = [
-            quote_if_needed(build_setting_path(path = path))
-            for path in search_paths_intermediate.system_includes
-        ],
-    )
+    if not xcode_target.is_swift:
+        _prepend_array_build_setting(
+            build_settings = build_settings,
+            key = "USER_HEADER_SEARCH_PATHS",
+            values = [
+                quote_if_needed(build_setting_path(path = path))
+                for path in search_paths_intermediate.quote_includes
+            ],
+        )
+        _prepend_array_build_setting(
+            build_settings = build_settings,
+            key = "HEADER_SEARCH_PATHS",
+            values = [
+                quote_if_needed(build_setting_path(path = path))
+                for path in search_paths_intermediate.includes
+            ],
+        )
+        _prepend_array_build_setting(
+            build_settings = build_settings,
+            key = "SYSTEM_HEADER_SEARCH_PATHS",
+            values = [
+                quote_if_needed(build_setting_path(path = path))
+                for path in search_paths_intermediate.system_includes
+            ],
+        )
 
     if xcode_target.linker_inputs:
         frameworks = xcode_target.linker_inputs.dynamic_frameworks
@@ -424,18 +419,6 @@ def _set_search_paths(
         [
             quote_if_needed(path)
             for path in framework_search_paths
-        ],
-    )
-
-def _set_other_swift_flags(*, build_settings, xcode_target):
-    _prepend_string_build_setting(
-        build_settings = build_settings,
-        key = "OTHER_SWIFT_FLAGS",
-        values = [
-            "-Xcc -fmodule-map-file={}".format(
-                quote_if_needed(build_setting_path(file = file)),
-            )
-            for file in xcode_target._modulemaps
         ],
     )
 
@@ -705,10 +688,6 @@ def _build_settings_to_dto(
     build_settings = structs.to_dict(xcode_target._build_settings)
     _set_bazel_outputs_product(
         build_mode = build_mode,
-        build_settings = build_settings,
-        xcode_target = xcode_target,
-    )
-    _set_other_swift_flags(
         build_settings = build_settings,
         xcode_target = xcode_target,
     )

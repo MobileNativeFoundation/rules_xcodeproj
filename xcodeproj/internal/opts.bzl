@@ -1,7 +1,6 @@
 """Functions for processing compiler and linker options."""
 
 load("@bazel_tools//tools/cpp:toolchain_utils.bzl", "find_cpp_toolchain")
-load("@bazel_skylib//lib:collections.bzl", "collections")
 load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo")
 load(":collections.bzl", "set_if_true", "uniq")
 
@@ -25,8 +24,6 @@ _CC_SKIP_OPTS = {
 # The values are the number of flags to skip, 1 being the flag itself, 2 being
 # another flag right after it, etc.
 _SWIFTC_SKIP_OPTS = {
-    # TODO: Handle this better. We probably don't need to skip it at all (though probably `-Xcc -Fsomething` should still be skipped)
-    "-Xcc": 2,
     "-Xwrapped-swift": 1,
     "-debug-prefix-map": 2,
     "-emit-module-path": 2,
@@ -46,7 +43,6 @@ _SWIFTC_SKIP_OPTS = {
     "-parse-as-library": 1,
     "-sdk": 2,
     "-target": 2,
-    "-vfsoverlay": 2,
 }
 
 _SWIFTC_SKIP_COMPOUND_OPTS = {
@@ -56,7 +52,6 @@ _SWIFTC_SKIP_COMPOUND_OPTS = {
         "-no-clang-module-breadcrumbs": 1,
         "-no-serialize-debugging-options": 1,
         "-serialize-debugging-options": 1,
-        "-vfsoverlay": 3,
     },
 }
 
@@ -221,6 +216,7 @@ def _process_base_compiler_opts(
     processed_opts = []
     skip_next = 0
     previous_opt = None
+    previous_frontend_opt = None
     for idx, opt in enumerate(opts):
         if skip_next:
             skip_next -= 1
@@ -229,12 +225,6 @@ def _process_base_compiler_opts(
             # Theses options are already handled by Xcode
             continue
         root_opt = opt.split("=")[0]
-
-        # TODO: This is limited to swiftc, but there isn't a better place to
-        # put it right now. Hopefully moving to `.params` parsing will help.
-        if root_opt.startswith("-vfsoverlay") and opts[idx - 1] == "-Xfrontend":
-            processed_opts.pop()
-            continue
 
         skip_next = skip_opts.get(root_opt, 0)
         if skip_next:
@@ -248,11 +238,33 @@ def _process_base_compiler_opts(
                 # No need to decrement 1, since we need to skip the first opt
                 continue
 
+        if opt != "-Xfrontend":
+            previous_vfsoverlay_opt = previous_frontend_opt or previous_opt
+
+            # -vfsoverlay doesn't apply `-working_directory=`, so we need to
+            # prefix it ourselves
+            _, opt_prefix, suffix = opt.partition("-vfsoverlay")
+            if not opt_prefix:
+                _, opt_prefix, suffix = opt.partition("-ivfsoverlay")
+            if suffix:
+                if not suffix.startswith("/"):
+                    opt = opt_prefix + "$(PROJECT_DIR)/" + suffix
+            elif (previous_vfsoverlay_opt == "-vfsoverlay" or
+                  previous_vfsoverlay_opt == "-ivfsoverlay"):
+                if not opt.startswith("/"):
+                    opt = "$(PROJECT_DIR)/" + opt
+
         processed_opt = (
             extra_processing and
             extra_processing(opt, previous_opt)
         )
+
+        if previous_opt == "-Xfrontend":
+            previous_frontend_opt = opt
+        elif opt != "-Xfrontend":
+            previous_frontend_opt = None
         previous_opt = opt
+
         opt = processed_opt
         if not opt:
             continue
@@ -560,9 +572,6 @@ def _process_swiftopts(
         full_swiftcopts,
         user_swiftcopts,
         build_mode,
-        compilation_mode,
-        objc_fragment,
-        cc_info,
         package_bin_dir,
         build_settings):
     """Processes Swift compiler options.
@@ -571,9 +580,6 @@ def _process_swiftopts(
         full_swiftcopts: A `list` of Swift compiler options.
         user_swiftcopts: A `list` of user-provided Swift compiler options.
         build_mode: See `xcodeproj.build_mode`.
-        compilation_mode: The current compilation mode.
-        objc_fragment: The `objc` configuration fragment.
-        cc_info: The `CcInfo` provider for the target.
         package_bin_dir: The package directory for the target within
             `ctx.bin_dir`.
         build_settings: A mutable `dict` that will be updated with build
@@ -590,9 +596,6 @@ def _process_swiftopts(
     swiftcopts, raw_has_debug_info = _process_full_swiftcopts(
         full_swiftcopts,
         build_mode = build_mode,
-        compilation_mode = compilation_mode,
-        objc_fragment = objc_fragment,
-        cc_info = cc_info,
         package_bin_dir = package_bin_dir,
         build_settings = build_settings,
     )
@@ -615,9 +618,6 @@ def _process_full_swiftcopts(
         opts,
         *,
         build_mode,
-        compilation_mode,
-        objc_fragment,
-        cc_info,
         package_bin_dir,
         build_settings):
     """Processes the full Swift compiler options (including Bazel ones).
@@ -625,9 +625,6 @@ def _process_full_swiftcopts(
     Args:
         opts: A `list` of Swift compiler options.
         build_mode: See `xcodeproj.build_mode`.
-        compilation_mode: The current compilation mode.
-        objc_fragment: The `objc` configuration fragment.
-        cc_info: The `CcInfo` provider for the target.
         package_bin_dir: The package directory for the target within
             `ctx.bin_dir`.
         build_settings: A mutable `dict` that will be updated with build
@@ -652,6 +649,15 @@ def _process_full_swiftcopts(
     has_debug_info = {}
 
     def process(opt, previous_opt):
+        if opt.startswith("-isystem"):
+            return "-isystem" + _process_copt_possible_path(opt[8:])
+        if opt.startswith("-iquote"):
+            return "-iquote" + _process_copt_possible_path(opt[7:])
+        if opt.startswith("-I"):
+            return "-I" + _process_copt_possible_path(opt[2:])
+        if previous_opt == "-Xcc":
+            return _process_xcc_copt(opt)
+
         if previous_opt == "-emit-objc-header-path":
             if not opt.startswith(package_bin_dir):
                 fail("""\
@@ -663,8 +669,6 @@ under {}""".format(opt, package_bin_dir))
 
         if opt.startswith("-O"):
             build_settings["SWIFT_OPTIMIZATION_LEVEL"] = opt
-            return None
-        if opt.startswith("-I"):
             return None
         if build_mode == "xcode" and opt.startswith("-vfsoverlay"):
             fail("""\
@@ -704,6 +708,7 @@ Using VFS overlays with `build_mode = "xcode"` is unsupported.
             # the future we could collect Swift compiler options similar to how
             # we collect C and C++ compiler options.
             return None
+
         return opt
 
     # Xcode's default is `-O` when not set, so minimally set it to `-Onone`,
@@ -718,17 +723,6 @@ Using VFS overlays with `build_mode = "xcode"` is unsupported.
     )
 
     has_debug_info = bool(has_debug_info)
-
-    # If we have swift flags, then we need to add in the PCM flags
-    if opts:
-        processed_opts = collections.before_each(
-            "-Xcc",
-            swift_pcm_copts(
-                compilation_mode = compilation_mode,
-                objc_fragment = objc_fragment,
-                cc_info = cc_info,
-            ),
-        ) + processed_opts
 
     set_if_true(
         build_settings,
@@ -755,39 +749,39 @@ def _process_user_swiftcopts(opts):
         *   A `bool` indicting if the target has debug info enabled.
     """
 
-    additional_opts = []
     quote_includes = []
     includes = []
     system_includes = []
     has_debug_info = {}
 
     def process(opt, previous_opt):
-        # TODO: handle the format "-Xcc -iquote -Xcc path"
-        if previous_opt == "-Xcc" and opt.startswith("-isystem"):
-            system_includes.append(opt[8:])
-            return None
-        if previous_opt == "-Xcc" and opt.startswith("-iquote"):
-            quote_includes.append(opt[7:])
-            return None
-        if previous_opt == "-Xcc" and opt.startswith("-I"):
-            includes.append(opt[2:])
-            return None
-
-        if previous_opt == "-Xcc":
-            additional_opts.extend(["-Xcc", _process_user_copt(opt)])
-            return None
-
-        if opt == "-Xcc":
-            return None
         if opt == "-g":
             # We use a `dict` instead of setting a single value because
             # assigning to `has_debug_info` creates a new local variable instead
             # of assigning to the existing variable
             has_debug_info[True] = None
             return None
-        return opt
 
-    _process_base_compiler_opts(
+        # TODO: handle the format "-Xcc -iquote -Xcc path"
+        if opt.startswith("-isystem"):
+            path = opt[8:]
+            if previous_opt == "-Xcc":
+                system_includes.append(path)
+            return "-isystem" + _process_copt_possible_path(path)
+        if opt.startswith("-iquote"):
+            path = opt[7:]
+            if previous_opt == "-Xcc":
+                quote_includes.append(path)
+            return "-iquote" + _process_copt_possible_path(path)
+        if opt.startswith("-I"):
+            path = opt[2:]
+            if previous_opt == "-Xcc":
+                includes.append(path)
+            return "-I" + _process_copt_possible_path(path)
+
+        return _process_xcc_copt(opt)
+
+    additional_opts = _process_base_compiler_opts(
         opts = opts,
         skip_opts = {},  # Empty in order to process all user opts.
         extra_processing = process,
@@ -803,20 +797,20 @@ def _process_user_swiftcopts(opts):
 
     return additional_opts, search_paths, has_debug_info
 
-def _process_user_copt(copt):
+def _process_xcc_copt(copt):
     components = copt.split("=", 1)
     if len(components) > 1:
         return "{}={}".format(
             components[0],
-            _process_user_copt_possible_path(components[1]),
+            _process_copt_possible_path(components[1]),
         )
-    return _process_user_copt_possible_path(copt)
+    return _process_copt_possible_path(copt)
 
-def _process_user_copt_possible_path(copt):
-    if copt.startswith("bazel-out/"):
-        return "$(BAZEL_OUT)/{}".format(copt[10:])
-    if copt.startswith("external/"):
-        return "$(BAZEL_EXTERNAL)/{}".format(copt[9:])
+def _process_copt_possible_path(copt):
+    if copt == "bazel-out" or copt.startswith("bazel-out/"):
+        return "$(BAZEL_OUT){}".format(copt[9:])
+    if copt == "external" or copt.startswith("external/"):
+        return "$(BAZEL_EXTERNAL){}".format(copt[8:])
     return copt
 
 def swift_pcm_copts(*, compilation_mode, objc_fragment, cc_info):
@@ -885,10 +879,7 @@ def _process_compiler_opts(
         cxxopts,
         full_swiftcopts,
         build_mode,
-        compilation_mode,
         cpp_fragment,
-        objc_fragment,
-        cc_info,
         user_swiftcopts,
         package_bin_dir,
         build_settings):
@@ -900,10 +891,7 @@ def _process_compiler_opts(
         full_swiftcopts: A `list` of Swift compiler options.
         user_swiftcopts: A `list` of user-provided Swift compiler options.
         build_mode: See `xcodeproj.build_mode`.
-        compilation_mode: The current compilation mode.
         cpp_fragment: The `cpp` configuration fragment.
-        objc_fragment: The `objc` configuration fragment.
-        cc_info: The `CcInfo` provider for the target.
         package_bin_dir: The package directory for the target within
             `ctx.bin_dir`.
         build_settings: A mutable `dict` that will be updated with build
@@ -939,9 +927,6 @@ def _process_compiler_opts(
         full_swiftcopts = full_swiftcopts,
         user_swiftcopts = user_swiftcopts,
         build_mode = build_mode,
-        compilation_mode = compilation_mode,
-        objc_fragment = objc_fragment,
-        cc_info = cc_info,
         package_bin_dir = package_bin_dir,
         build_settings = build_settings,
     )
@@ -1035,10 +1020,7 @@ def _process_target_compiler_opts(
         full_swiftcopts = full_swiftcopts,
         user_swiftcopts = user_swiftcopts,
         build_mode = build_mode,
-        compilation_mode = ctx.var["COMPILATION_MODE"],
         cpp_fragment = ctx.fragments.cpp,
-        objc_fragment = ctx.fragments.objc,
-        cc_info = target[CcInfo] if CcInfo in target else None,
         package_bin_dir = package_bin_dir,
         build_settings = build_settings,
     )
