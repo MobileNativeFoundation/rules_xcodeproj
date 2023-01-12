@@ -212,8 +212,8 @@ def _process_base_compiler_opts(
             keys and values are handled the same as `skip_opts`, except 1 is
             added to whatever is returned for the skip number.
         extra_processing: An optional function that provides further processing
-            of an option. Returns `True` if the option was handled, otherwise
-            `False`.
+            of an option. Returns the processed opt, or `None` if it as handled
+            another way (like being added to build settings).
 
     Returns:
         A `list` of unhandled options.
