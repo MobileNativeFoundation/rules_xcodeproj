@@ -656,7 +656,9 @@ def _process_full_swiftcopts(
         if opt.startswith("-I"):
             return "-I" + _process_copt_possible_path(opt[2:])
         if previous_opt == "-Xcc":
-            return _process_xcc_copt(opt)
+            # We do this check here, to prevent the `-O` and `-D` logic below
+            # from incorrectly detecting this situation
+            return _process_copy_for_paths(opt)
 
         if previous_opt == "-emit-objc-header-path":
             if not opt.startswith(package_bin_dir):
@@ -709,7 +711,7 @@ Using VFS overlays with `build_mode = "xcode"` is unsupported.
             # we collect C and C++ compiler options.
             return None
 
-        return opt
+        return _process_copy_for_paths(opt)
 
     # Xcode's default is `-O` when not set, so minimally set it to `-Onone`,
     # which matches swiftc's default.
@@ -779,7 +781,7 @@ def _process_user_swiftcopts(opts):
                 includes.append(path)
             return "-I" + _process_copt_possible_path(path)
 
-        return _process_xcc_copt(opt)
+        return _process_copy_for_paths(opt)
 
     additional_opts = _process_base_compiler_opts(
         opts = opts,
@@ -797,7 +799,7 @@ def _process_user_swiftcopts(opts):
 
     return additional_opts, search_paths, has_debug_info
 
-def _process_xcc_copt(copt):
+def _process_copy_for_paths(copt):
     components = copt.split("=", 1)
     if len(components) > 1:
         return "{}={}".format(
