@@ -334,10 +334,9 @@ def _set_bazel_outputs_product(
 
 def _set_search_paths(
         *,
-        build_mode,
         build_settings,
+        generated_framework_search_paths,
         search_paths_intermediate,
-        xcode_generated_paths,
         xcode_target):
     if not xcode_target.is_swift:
         _prepend_array_build_setting(
@@ -365,51 +364,12 @@ def _set_search_paths(
             ],
         )
 
-    if xcode_target.linker_inputs:
-        frameworks = xcode_target.linker_inputs.dynamic_frameworks
-    else:
-        frameworks = []
-
-    framework_build_setting_paths = {}
-    for file in frameworks:
-        framework_path = file.dirname
-        search_path = paths.dirname(framework_path)
-        xcode_generated_path = xcode_generated_paths.get(framework_path)
-        if xcode_generated_path:
-            framework_build_setting_paths.setdefault(search_path, {})[True] = (
-                paths.dirname(xcode_generated_path)
-            )
-        else:
-            if build_mode == "xcode":
-                # Since we use `$(FRAMEWORK_SEARCH_PATHS)` in
-                # `PREVIEWS_LD_RUNPATH_SEARCH_PATHS__YES`, we need to fully
-                #  qualify the paths
-                bs_path = build_setting_path(
-                    file = file,
-                    path = search_path,
-                )
-            else:
-                bs_path = search_path
-            framework_build_setting_paths.setdefault(search_path, {})[False] = (
-                bs_path
-            )
-
     framework_search_paths = []
-    for path in search_paths_intermediate.framework_includes:
-        search_paths = framework_build_setting_paths.get(path)
-        if not search_paths:
-            # Imported frameworks
-            if build_mode == "xcode":
-                framework_search_paths.append(build_setting_path(path = path))
-            else:
-                framework_search_paths.append(path)
-            continue
-
-        xcode_path = search_paths.get(True)
+    for search_paths in generated_framework_search_paths.values():
+        xcode_path = search_paths.get("x")
         if xcode_path:
             framework_search_paths.append(xcode_path)
-
-        bazel_path = search_paths.get(False)
+        bazel_path = search_paths.get("b")
         if bazel_path:
             framework_search_paths.append(bazel_path)
 
@@ -512,6 +472,59 @@ def _set_swift_include_paths(
 
     set_if_true(build_settings, "SWIFT_INCLUDE_PATHS", " ".join(includes))
 
+def _generated_framework_search_paths(
+        *,
+        build_mode,
+        search_paths_intermediate,
+        xcode_generated_paths,
+        xcode_target):
+    if xcode_target.linker_inputs:
+        frameworks = xcode_target.linker_inputs.dynamic_frameworks
+    else:
+        frameworks = []
+
+    framework_search_paths = {}
+    for file in frameworks:
+        framework_path = file.dirname
+        search_path = paths.dirname(framework_path)
+        xcode_generated_path = xcode_generated_paths.get(framework_path)
+        if xcode_generated_path:
+            framework_search_paths.setdefault(search_path, {})["x"] = (
+                paths.dirname(xcode_generated_path)
+            )
+        else:
+            if build_mode == "xcode":
+                # Since we use `$(FRAMEWORK_SEARCH_PATHS)` in
+                # `PREVIEWS_LD_RUNPATH_SEARCH_PATHS__YES`, we need to fully
+                #  qualify the paths
+                bs_path = build_setting_path(
+                    file = file,
+                    path = search_path,
+                )
+            else:
+                bs_path = search_path
+            framework_search_paths.setdefault(search_path, {})["b"] = (
+                bs_path
+            )
+
+    ordered_framework_search_paths = {}
+    for search_path in search_paths_intermediate.framework_includes:
+        search_paths = framework_search_paths.get(search_path)
+        if search_paths:
+            ordered_framework_search_paths[search_path] = search_paths
+            continue
+
+        # Imported frameworks
+        if build_mode == "xcode":
+            bs_path = build_setting_path(path = search_path)
+        else:
+            bs_path = search_path
+        ordered_framework_search_paths.setdefault(search_path, {})["b"] = (
+            bs_path
+        )
+
+    return ordered_framework_search_paths
+
 def _xcode_target_to_dto(
         xcode_target,
         *,
@@ -576,6 +589,13 @@ def _xcode_target_to_dto(
         compile_target = xcode_target._compile_target,
     )
 
+    generated_framework_search_paths = _generated_framework_search_paths(
+        build_mode = build_mode,
+        search_paths_intermediate = search_paths_intermediate,
+        xcode_generated_paths = xcode_generated_paths,
+        xcode_target = xcode_target,
+    )
+
     linker_inputs_dto, link_params = _linker_inputs_to_dto(
         ctx = ctx,
         link_params_processor = link_params_processor,
@@ -594,6 +614,7 @@ def _xcode_target_to_dto(
             build_mode = build_mode,
             is_fixture = is_fixture,
             linker_products_map = linker_products_map,
+            generated_framework_search_paths = generated_framework_search_paths,
             search_paths_intermediate = search_paths_intermediate,
             xcode_generated_paths = xcode_generated_paths,
             xcode_target = xcode_target,
@@ -694,6 +715,7 @@ def _build_settings_to_dto(
         build_mode,
         is_fixture,
         linker_products_map,
+        generated_framework_search_paths,
         search_paths_intermediate,
         xcode_generated_paths,
         xcode_target):
@@ -715,10 +737,9 @@ def _build_settings_to_dto(
         xcode_target = xcode_target,
     )
     _set_search_paths(
-        build_mode = build_mode,
         build_settings = build_settings,
+        generated_framework_search_paths = generated_framework_search_paths,
         search_paths_intermediate = search_paths_intermediate,
-        xcode_generated_paths = xcode_generated_paths,
         xcode_target = xcode_target,
     )
     _set_swift_include_paths(
