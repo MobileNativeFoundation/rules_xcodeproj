@@ -212,13 +212,13 @@ def _process_base_compiler_opts(
             keys and values are handled the same as `skip_opts`, except 1 is
             added to whatever is returned for the skip number.
         extra_processing: An optional function that provides further processing
-            of an option. Returns `True` if the option was handled, otherwise
-            `False`.
+            of an option. Returns the processed opt, or `None` if it as handled
+            another way (like being added to build settings).
 
     Returns:
         A `list` of unhandled options.
     """
-    unhandled_opts = []
+    processed_opts = []
     skip_next = 0
     previous_opt = None
     for idx, opt in enumerate(opts):
@@ -233,7 +233,7 @@ def _process_base_compiler_opts(
         # TODO: This is limited to swiftc, but there isn't a better place to
         # put it right now. Hopefully moving to `.params` parsing will help.
         if root_opt.startswith("-vfsoverlay") and opts[idx - 1] == "-Xfrontend":
-            unhandled_opts.pop()
+            processed_opts.pop()
             continue
 
         skip_next = skip_opts.get(root_opt, 0)
@@ -248,16 +248,18 @@ def _process_base_compiler_opts(
                 # No need to decrement 1, since we need to skip the first opt
                 continue
 
-        handled = (
+        processed_opt = (
             extra_processing and
             extra_processing(opt, previous_opt)
         )
         previous_opt = opt
-        if handled:
+        opt = processed_opt
+        if not opt:
             continue
-        unhandled_opts.append(opt)
 
-    return unhandled_opts
+        processed_opts.append(opt)
+
+    return processed_opts
 
 def create_opts_search_paths(quote_includes, includes, system_includes):
     """Creates a value representing search paths of a target.
@@ -333,32 +335,32 @@ def _process_conlyopts(opts, *, build_settings):
     def process(opt, previous_opt):
         if previous_opt == "-isystem":
             system_includes.append(opt)
-            return True
+            return None
         if previous_opt == "-iquote":
             quote_includes.append(opt)
-            return True
+            return None
         if previous_opt == "-I":
             includes.append(opt)
-            return True
+            return None
 
         if opt.startswith("-O"):
             optimizations.append(opt)
-            return True
+            return None
         if opt == "-g":
             # We use a `dict` instead of setting a single value because
             # assigning to `has_debug_info` creates a new local variable instead
             # of assigning to the existing variable
             has_debug_info[True] = None
-            return True
+            return None
         if opt == "-isystem":
-            return True
+            return None
         if opt == "-iquote":
-            return True
+            return None
         if opt == "-I":
-            return True
+            return None
         if opt.startswith("-I"):
             includes.append(opt[2:])
-            return True
+            return None
         if opt.startswith("-D"):
             value = opt[2:]
             if value.startswith("OBJC_OLD_DISPATCH_PROTOTYPES"):
@@ -366,12 +368,12 @@ def _process_conlyopts(opts, *, build_settings):
                     build_settings["ENABLE_STRICT_OBJC_MSGSEND"] = False
                 elif value.endswith("=1"):
                     build_settings["ENABLE_STRICT_OBJC_MSGSEND"] = True
-                return True
+                return None
             defines.append(value)
-            return True
-        return False
+            return None
+        return opt
 
-    unhandled_opts = _process_base_compiler_opts(
+    processed_opts = _process_base_compiler_opts(
         opts = opts,
         skip_opts = _CC_SKIP_OPTS,
         extra_processing = process,
@@ -386,7 +388,7 @@ def _process_conlyopts(opts, *, build_settings):
         system_includes = uniq(system_includes),
     )
 
-    return unhandled_opts, defines, optimizations, search_paths, has_debug_info
+    return processed_opts, defines, optimizations, search_paths, has_debug_info
 
 def _process_cxxopts(opts, *, build_settings):
     """Processes C++ compiler options.
@@ -416,43 +418,43 @@ def _process_cxxopts(opts, *, build_settings):
     def process(opt, previous_opt):
         if previous_opt == "-isystem":
             system_includes.append(opt)
-            return True
+            return None
         if previous_opt == "-iquote":
             quote_includes.append(opt)
-            return True
+            return None
         if previous_opt == "-I":
             includes.append(opt)
-            return True
+            return None
 
         if opt.startswith("-O"):
             optimizations.append(opt)
-            return True
+            return None
         if opt == "-g":
             # We use a `dict` instead of setting a single value because
             # assigning to `has_debug_info` creates a new local variable instead
             # of assigning to the existing variable
             has_debug_info[True] = None
-            return True
+            return None
         if opt == "-isystem":
-            return True
+            return None
         if opt == "-iquote":
-            return True
+            return None
         if opt == "-I":
-            return True
+            return None
         if opt.startswith("-I"):
             includes.append(opt[2:])
-            return True
+            return None
         if opt.startswith("-D"):
             value = opt[2:]
             if value.startswith("OBJC_OLD_DISPATCH_PROTOTYPES"):
                 if value.endswith("=1"):
                     build_settings["ENABLE_STRICT_OBJC_MSGSEND"] = False
-                return True
+                return None
             defines.append(value)
-            return True
-        return False
+            return None
+        return opt
 
-    unhandled_opts = _process_base_compiler_opts(
+    processed_opts = _process_base_compiler_opts(
         opts = opts,
         skip_opts = _CC_SKIP_OPTS,
         extra_processing = process,
@@ -467,7 +469,7 @@ def _process_cxxopts(opts, *, build_settings):
         system_includes = uniq(system_includes),
     )
 
-    return unhandled_opts, defines, optimizations, search_paths, has_debug_info
+    return processed_opts, defines, optimizations, search_paths, has_debug_info
 
 def _process_copts(*, conlyopts, cxxopts, build_settings):
     """Processes C and C++ compiler options.
@@ -657,13 +659,13 @@ def _process_full_swiftcopts(
 under {}""".format(opt, package_bin_dir))
             header_name = opt[len(package_bin_dir) + 1:]
             build_settings["SWIFT_OBJC_INTERFACE_HEADER_NAME"] = header_name
-            return True
+            return None
 
         if opt.startswith("-O"):
             build_settings["SWIFT_OPTIMIZATION_LEVEL"] = opt
-            return True
+            return None
         if opt.startswith("-I"):
-            return True
+            return None
         if build_mode == "xcode" and opt.startswith("-vfsoverlay"):
             fail("""\
 Using VFS overlays with `build_mode = "xcode"` is unsupported.
@@ -673,42 +675,42 @@ Using VFS overlays with `build_mode = "xcode"` is unsupported.
             # assigning to `has_debug_info` creates a new local variable instead
             # of assigning to the existing variable
             has_debug_info[True] = None
-            return True
+            return None
         if opt == "-enable-testing":
             build_settings["ENABLE_TESTABILITY"] = True
-            return True
+            return None
         if opt == "-application-extension":
             build_settings["APPLICATION_EXTENSION_API_ONLY"] = True
-            return True
+            return None
         compilation_mode = _SWIFT_COMPILATION_MODE_OPTS.get(opt, "")
         if compilation_mode:
             build_settings["SWIFT_COMPILATION_MODE"] = compilation_mode
-            return True
+            return None
         if opt.startswith("-swift-version="):
             build_settings["SWIFT_VERSION"] = opt[15:]
-            return True
+            return None
         if opt == "-emit-objc-header-path":
             # Handled in `previous_opt` check above
-            return True
+            return None
         if opt.startswith("-strict-concurrency="):
             build_settings["SWIFT_STRICT_CONCURRENCY"] = opt[20:]
-            return True
+            return None
         if opt.startswith("-D"):
             defines.append(opt[2:])
-            return True
+            return None
         if not opt.startswith("-") and opt.endswith(".swift"):
             # These are the files to compile, not options. They are seen here
             # because of the way we collect Swift compiler options. Ideally in
             # the future we could collect Swift compiler options similar to how
             # we collect C and C++ compiler options.
-            return True
-        return False
+            return None
+        return opt
 
     # Xcode's default is `-O` when not set, so minimally set it to `-Onone`,
     # which matches swiftc's default.
     build_settings["SWIFT_OPTIMIZATION_LEVEL"] = "-Onone"
 
-    unhandled_opts = _process_base_compiler_opts(
+    processed_opts = _process_base_compiler_opts(
         opts = opts,
         skip_opts = _SWIFTC_SKIP_OPTS,
         compound_skip_opts = _SWIFTC_SKIP_COMPOUND_OPTS,
@@ -719,14 +721,14 @@ Using VFS overlays with `build_mode = "xcode"` is unsupported.
 
     # If we have swift flags, then we need to add in the PCM flags
     if opts:
-        unhandled_opts = collections.before_each(
+        processed_opts = collections.before_each(
             "-Xcc",
             swift_pcm_copts(
                 compilation_mode = compilation_mode,
                 objc_fragment = objc_fragment,
                 cc_info = cc_info,
             ),
-        ) + unhandled_opts
+        ) + processed_opts
 
     set_if_true(
         build_settings,
@@ -735,7 +737,7 @@ Using VFS overlays with `build_mode = "xcode"` is unsupported.
         " ".join(uniq(defines)),
     )
 
-    return unhandled_opts, has_debug_info
+    return processed_opts, has_debug_info
 
 def _process_user_swiftcopts(opts):
     """Processes user-provided Swift compiler options.
@@ -763,27 +765,27 @@ def _process_user_swiftcopts(opts):
         # TODO: handle the format "-Xcc -iquote -Xcc path"
         if previous_opt == "-Xcc" and opt.startswith("-isystem"):
             system_includes.append(opt[8:])
-            return True
+            return None
         if previous_opt == "-Xcc" and opt.startswith("-iquote"):
             quote_includes.append(opt[7:])
-            return True
+            return None
         if previous_opt == "-Xcc" and opt.startswith("-I"):
             includes.append(opt[2:])
-            return True
+            return None
 
         if previous_opt == "-Xcc":
             additional_opts.extend(["-Xcc", _process_user_copt(opt)])
-            return True
+            return None
 
         if opt == "-Xcc":
-            return True
+            return None
         if opt == "-g":
             # We use a `dict` instead of setting a single value because
             # assigning to `has_debug_info` creates a new local variable instead
             # of assigning to the existing variable
             has_debug_info[True] = None
-            return True
-        return False
+            return None
+        return opt
 
     _process_base_compiler_opts(
         opts = opts,
