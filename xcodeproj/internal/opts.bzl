@@ -1,7 +1,6 @@
 """Functions for processing compiler and linker options."""
 
 load("@bazel_tools//tools/cpp:toolchain_utils.bzl", "find_cpp_toolchain")
-load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo")
 load(":collections.bzl", "set_if_true", "uniq")
 
 # C and C++ compiler flags that we don't want to propagate to Xcode.
@@ -91,36 +90,21 @@ def _get_unprocessed_compiler_opts(*, ctx, build_mode, target):
 
         *   A `list` of C compiler options.
         *   A `list` of C++ compiler options.
-        *   A `list` of all Swift compiler options.
-        *   A `list` of user Swift compiler options.
+        *   A `list` of Swift compiler options.
     """
 
     # TODO: Handle perfileopts somehow?
 
     conlyopts = []
     cxxopts = []
-    raw_swiftcopts = []
-    user_swiftcopts = []
+    swiftcopts = []
 
     for action in target.actions:
         if action.mnemonic == "SwiftCompile":
             # First two arguments are "worker" and "swiftc"
-            raw_swiftcopts = action.argv[2:]
+            swiftcopts = action.argv[2:]
 
-    if SwiftInfo in target or raw_swiftcopts:
-        # Rule level swiftcopts are included in action.argv above
-        user_swiftcopts = getattr(ctx.rule.attr, "copts", [])
-        user_swiftcopts = _expand_locations(
-            ctx = ctx,
-            values = user_swiftcopts,
-            targets = getattr(ctx.rule.attr, "swiftc_inputs", []),
-        )
-        user_swiftcopts = _expand_make_variables(
-            ctx = ctx,
-            values = user_swiftcopts,
-            attribute_name = "copts",
-        )
-    elif CcInfo in target:
+    if not swiftcopts and CcInfo in target:
         cc_toolchain = find_cpp_toolchain(ctx)
 
         feature_configuration = cc_common.configure_features(
@@ -186,8 +170,7 @@ Using VFS overlays with `build_mode = "xcode"` is unsupported.
     return (
         conlyopts,
         cxxopts,
-        raw_swiftcopts,
-        user_swiftcopts,
+        swiftcopts,
     )
 
 def _process_base_compiler_opts(
@@ -292,8 +275,8 @@ def create_opts_search_paths(quote_includes, includes, system_includes):
             values).
 
     Returns:
-        A `struct` containing the `quote_includes` and `includes` fields
-        provided as arguments.
+        A `struct` containing the `quote_includes`, `includes`, and
+        `system_includes` fields provided as arguments.
     """
     return struct(
         quote_includes = tuple(quote_includes),
@@ -588,54 +571,7 @@ def _process_copts(*, conlyopts, cxxopts, build_settings):
         cxx_has_debug_info,
     )
 
-def _process_swiftopts(
-        *,
-        full_swiftcopts,
-        user_swiftcopts,
-        build_mode,
-        package_bin_dir,
-        build_settings):
-    """Processes Swift compiler options.
-
-    Args:
-        full_swiftcopts: A `list` of Swift compiler options.
-        user_swiftcopts: A `list` of user-provided Swift compiler options.
-        build_mode: See `xcodeproj.build_mode`.
-        package_bin_dir: The package directory for the target within
-            `ctx.bin_dir`.
-        build_settings: A mutable `dict` that will be updated with build
-            settings that are parsed from `opts`.
-
-    Returns:
-        A `tuple` containing three elements:
-
-        *   A `list` of unhandled Swift compiler options.
-        *   A value returned by `create_opts_search_paths` with the parsed
-            search paths.
-        *   A `bool` indicting if the target has debug info enabled.
-    """
-    swiftcopts, raw_has_debug_info = _process_full_swiftcopts(
-        full_swiftcopts,
-        build_mode = build_mode,
-        package_bin_dir = package_bin_dir,
-        build_settings = build_settings,
-    )
-
-    (
-        additional_swiftcopts,
-        swift_search_paths,
-        user_has_debug_info,
-    ) = _process_user_swiftcopts(user_swiftcopts, build_mode = build_mode)
-
-    has_debug_info = raw_has_debug_info or user_has_debug_info
-
-    return (
-        swiftcopts + additional_swiftcopts,
-        swift_search_paths,
-        has_debug_info,
-    )
-
-def _process_full_swiftcopts(
+def _process_swiftcopts(
         opts,
         *,
         build_mode,
@@ -652,9 +588,11 @@ def _process_full_swiftcopts(
             settings that are parsed from `opts`.
 
     Returns:
-        A `tuple` containing two elements:
+        A `tuple` containing three elements:
 
-        *   A `list` of unhandled Swift compiler options.
+        *   A `list` of processed Swift compiler options.
+        *   A value returned by `create_opts_search_paths` with the parsed
+            search paths.
         *   A `bool` indicting if the target has debug info enabled.
     """
 
@@ -667,20 +605,33 @@ def _process_full_swiftcopts(
     build_settings["SWIFT_OBJC_INTERFACE_HEADER_NAME"] = ""
 
     defines = []
+    quote_includes = []
+    includes = []
+    system_includes = []
     has_debug_info = {}
 
     def process(opt, previous_opt):
+        # TODO: handle the format "-Xcc -iquote -Xcc path"
         if opt.startswith("-isystem"):
+            path = opt[8:]
+            if previous_opt == "-Xcc":
+                system_includes.append(path)
             if build_mode == "xcode":
-                return "-isystem" + _process_copt_possible_path(opt[8:])
+                return "-isystem" + _process_copt_possible_path(path)
             return opt
         if opt.startswith("-iquote"):
+            path = opt[7:]
+            if previous_opt == "-Xcc":
+                quote_includes.append(path)
             if build_mode == "xcode":
-                return "-iquote" + _process_copt_possible_path(opt[7:])
+                return "-iquote" + _process_copt_possible_path(path)
             return opt
         if opt.startswith("-I"):
+            path = opt[2:]
+            if previous_opt == "-Xcc":
+                includes.append(path)
             if build_mode == "xcode":
-                return "-I" + _process_copt_possible_path(opt[2:])
+                return "-I" + _process_copt_possible_path(path)
             return opt
         if previous_opt == "-Xcc":
             # We do this check here, to prevent the `-O` and `-D` logic below
@@ -757,6 +708,12 @@ Using VFS overlays with `build_mode = "xcode"` is unsupported.
 
     has_debug_info = bool(has_debug_info)
 
+    search_paths = create_opts_search_paths(
+        quote_includes = uniq(quote_includes),
+        includes = uniq(includes),
+        system_includes = uniq(system_includes),
+    )
+
     set_if_true(
         build_settings,
         "SWIFT_ACTIVE_COMPILATION_CONDITIONS",
@@ -764,80 +721,7 @@ Using VFS overlays with `build_mode = "xcode"` is unsupported.
         " ".join(uniq(defines)),
     )
 
-    return processed_opts, has_debug_info
-
-def _process_user_swiftcopts(opts, *, build_mode):
-    """Processes user-provided Swift compiler options.
-
-    Args:
-        opts: A `list` of Swift compiler options.
-        build_mode: See `xcodeproj.build_mode`.
-
-    Note: any flag processed here needs to be filtered from processing in
-    `_process_full_swiftcopts`.
-
-    Returns:
-        A `tuple` containing two elements:
-
-        *   A `list` of search paths.
-        *   A `bool` indicting if the target has debug info enabled.
-    """
-
-    quote_includes = []
-    includes = []
-    system_includes = []
-    has_debug_info = {}
-
-    def process(opt, previous_opt):
-        if opt == "-g":
-            # We use a `dict` instead of setting a single value because
-            # assigning to `has_debug_info` creates a new local variable instead
-            # of assigning to the existing variable
-            has_debug_info[True] = None
-            return None
-
-        # TODO: handle the format "-Xcc -iquote -Xcc path"
-        if opt.startswith("-isystem"):
-            path = opt[8:]
-            if previous_opt == "-Xcc":
-                system_includes.append(path)
-            if build_mode == "xcode":
-                return "-isystem" + _process_copt_possible_path(path)
-            return opt
-        if opt.startswith("-iquote"):
-            path = opt[7:]
-            if previous_opt == "-Xcc":
-                quote_includes.append(path)
-            if build_mode == "xcode":
-                return "-iquote" + _process_copt_possible_path(path)
-            return opt
-        if opt.startswith("-I"):
-            path = opt[2:]
-            if previous_opt == "-Xcc":
-                includes.append(path)
-            if build_mode == "xcode":
-                return "-I" + _process_copt_possible_path(path)
-            return opt
-
-        if build_mode == "xcode":
-            return _process_copy_for_paths(opt)
-        return opt
-
-    additional_opts = _process_base_compiler_opts(
-        opts = opts,
-        skip_opts = {},  # Empty in order to process all user opts.
-        extra_processing = process,
-    )
-
-    has_debug_info = bool(has_debug_info)
-
-    search_paths = create_opts_search_paths(
-        quote_includes = uniq(quote_includes),
-        includes = uniq(includes),
-        system_includes = uniq(system_includes),
-    )
-
-    return additional_opts, search_paths, has_debug_info
+    return processed_opts, search_paths, has_debug_info
 
 def _process_copy_for_paths(copt):
     components = copt.split("=", 1)
@@ -878,7 +762,7 @@ def _swift_command_line_objc_copts(*, compilation_mode, objc_fragment):
         objc_fragment: The `objc` configuration fragment.
 
     Returns:
-        A list of `clang` copts, each of which is preceded by `-Xcc` so that
+        A `list` of `clang` copts, each of which is preceded by `-Xcc` so that
         they can be passed through `swiftc` to its underlying ClangImporter
         instance.
     """
@@ -919,10 +803,9 @@ def _process_compiler_opts(
         *,
         conlyopts,
         cxxopts,
-        full_swiftcopts,
+        swiftcopts,
         build_mode,
         cpp_fragment,
-        user_swiftcopts,
         package_bin_dir,
         build_settings):
     """Processes compiler options.
@@ -930,8 +813,7 @@ def _process_compiler_opts(
     Args:
         conlyopts: A `list` of C compiler options.
         cxxopts: A `list` of C++ compiler options.
-        full_swiftcopts: A `list` of Swift compiler options.
-        user_swiftcopts: A `list` of user-provided Swift compiler options.
+        swiftcopts: A `list` of Swift compiler options.
         build_mode: See `xcodeproj.build_mode`.
         cpp_fragment: The `cpp` configuration fragment.
         package_bin_dir: The package directory for the target within
@@ -952,6 +834,7 @@ def _process_compiler_opts(
     build_settings["ENABLE_STRICT_OBJC_MSGSEND"] = True
 
     has_copts = conlyopts or cxxopts
+    has_swiftcop = swiftcopts
 
     (
         conlyopts,
@@ -965,9 +848,8 @@ def _process_compiler_opts(
         cxxopts = cxxopts,
         build_settings = build_settings,
     )
-    swiftcopts, swift_search_paths, swift_has_debug_info = _process_swiftopts(
-        full_swiftcopts = full_swiftcopts,
-        user_swiftcopts = user_swiftcopts,
+    swiftcopts, swift_search_paths, swift_has_debug_info = _process_swiftcopts(
+        opts = swiftcopts,
         build_mode = build_mode,
         package_bin_dir = package_bin_dir,
         build_settings = build_settings,
@@ -977,7 +859,7 @@ def _process_compiler_opts(
     if has_copts:
         has_debug_info[c_has_debug_info] = None
         has_debug_info[cxx_has_debug_info] = None
-    if full_swiftcopts:
+    if has_swiftcop:
         has_debug_info[swift_has_debug_info] = None
 
     has_debug_infos = has_debug_info.keys()
@@ -1049,8 +931,7 @@ def _process_target_compiler_opts(
     (
         conlyopts,
         cxxopts,
-        full_swiftcopts,
-        user_swiftcopts,
+        swiftcopts,
     ) = _get_unprocessed_compiler_opts(
         ctx = ctx,
         build_mode = build_mode,
@@ -1059,8 +940,7 @@ def _process_target_compiler_opts(
     return _process_compiler_opts(
         conlyopts = conlyopts,
         cxxopts = cxxopts,
-        full_swiftcopts = full_swiftcopts,
-        user_swiftcopts = user_swiftcopts,
+        swiftcopts = swiftcopts,
         build_mode = build_mode,
         cpp_fragment = ctx.fragments.cpp,
         package_bin_dir = package_bin_dir,

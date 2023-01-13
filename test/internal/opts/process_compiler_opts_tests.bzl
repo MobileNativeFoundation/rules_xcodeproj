@@ -15,8 +15,7 @@ def _process_compiler_opts_test_impl(ctx):
     search_paths = process_compiler_opts(
         conlyopts = ctx.attr.conlyopts,
         cxxopts = ctx.attr.cxxopts,
-        full_swiftcopts = ctx.attr.full_swiftcopts,
-        user_swiftcopts = ctx.attr.user_swiftcopts,
+        swiftcopts = ctx.attr.swiftcopts,
         build_mode = ctx.attr.build_mode,
         cpp_fragment = _cpp_fragment_stub(ctx.attr.cpp_fragment),
         package_bin_dir = ctx.attr.package_bin_dir,
@@ -65,8 +64,7 @@ process_compiler_opts_test = unittest.make(
         "expected_search_paths": attr.string(mandatory = True),
         "cpp_fragment": attr.string_dict(mandatory = False),
         "package_bin_dir": attr.string(mandatory = True),
-        "full_swiftcopts": attr.string_list(mandatory = True),
-        "user_swiftcopts": attr.string_list(mandatory = True),
+        "swiftcopts": attr.string_list(mandatory = True),
     },
 )
 
@@ -104,8 +102,7 @@ def process_compiler_opts_test_suite(name):
             },
             conlyopts = [],
             cxxopts = [],
-            full_swiftcopts = [],
-            user_swiftcopts = [],
+            swiftcopts = [],
             build_mode = "bazel",
             cpp_fragment = None,
             package_bin_dir = ""):
@@ -114,8 +111,7 @@ def process_compiler_opts_test_suite(name):
             name = name,
             conlyopts = conlyopts,
             cxxopts = cxxopts,
-            full_swiftcopts = full_swiftcopts,
-            user_swiftcopts = user_swiftcopts,
+            swiftcopts = swiftcopts,
             build_mode = build_mode,
             cpp_fragment = cpp_fragment,
             package_bin_dir = package_bin_dir,
@@ -129,7 +125,7 @@ def process_compiler_opts_test_suite(name):
     _add_test(
         name = "{}_swift_integration_bazel".format(name),
         build_mode = "bazel",
-        full_swiftcopts = [
+        swiftcopts = [
             "-target",
             "arm64-apple-ios15.0-simulator",
             "-sdk",
@@ -172,7 +168,6 @@ def process_compiler_opts_test_suite(name):
             "examples/xcode_like/ExampleUITests/ExampleUITests.swift",
             "examples/xcode_like/ExampleUITests/ExampleUITestsLaunchTests.swift",
         ],
-        user_swiftcopts = [],
         expected_build_settings = {
             "APPLICATION_EXTENSION_API_ONLY": "True",
             "ENABLE_TESTABILITY": "True",
@@ -190,12 +185,20 @@ weird \
 """,
             "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
         },
+        expected_search_paths = {
+            "quote_includes": [
+                ".",
+                "bazel-out/ios-sim_arm64-min15.0-applebin_ios-ios_sim_arm64-fastbuild-ST-4e6c2a19403f/bin",
+            ],
+            "includes": [],
+            "system_includes": [],
+        },
     )
 
     _add_test(
         name = "{}_swift_integration_xcode".format(name),
         build_mode = "xcode",
-        full_swiftcopts = [
+        swiftcopts = [
             "-target",
             "arm64-apple-ios15.0-simulator",
             "-sdk",
@@ -238,7 +241,6 @@ weird \
             "examples/xcode_like/ExampleUITests/ExampleUITests.swift",
             "examples/xcode_like/ExampleUITests/ExampleUITestsLaunchTests.swift",
         ],
-        user_swiftcopts = [],
         expected_build_settings = {
             "APPLICATION_EXTENSION_API_ONLY": "True",
             "ENABLE_TESTABILITY": "True",
@@ -256,14 +258,21 @@ weird \
 """,
             "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
         },
+        expected_search_paths = {
+            "quote_includes": [
+                ".",
+                "bazel-out/ios-sim_arm64-min15.0-applebin_ios-ios_sim_arm64-fastbuild-ST-4e6c2a19403f/bin",
+            ],
+            "includes": [],
+            "system_includes": [],
+        },
     )
 
     _add_test(
         name = "{}_empty".format(name),
         conlyopts = [],
         cxxopts = [],
-        full_swiftcopts = [],
-        user_swiftcopts = [],
+        swiftcopts = [],
         expected_build_settings = {},
     )
 
@@ -335,7 +344,7 @@ weird \
             "-passthrough",
             "-mios-simulator-version-min=14.0",
         ],
-        full_swiftcopts = [
+        swiftcopts = [
             "-output-file-map",
             "path",
             "-passthrough",
@@ -394,10 +403,6 @@ weird \
             "-Xwrapped-swift",
             "-passthrough",
         ],
-        user_swiftcopts = [
-            "-Xcc",
-            "-b=bazel-out/hi",
-        ],
         expected_build_settings = {
             "OTHER_CFLAGS": [
                 "-passthrough",
@@ -442,9 +447,7 @@ $(PROJECT_DIR)/relative/Path.yaml \
 -weird \
 -Xcc \
 -a=bazel-out/hi \
--passthrough \
--Xcc \
--b=bazel-out/hi\
+-passthrough\
 """,
         },
         expected_search_paths = {
@@ -492,7 +495,7 @@ $(PROJECT_DIR)/relative/Path.yaml \
             "-passthrough",
             "-mios-simulator-version-min=14.0",
         ],
-        full_swiftcopts = [
+        swiftcopts = [
             "-output-file-map",
             "path",
             "-passthrough",
@@ -535,10 +538,6 @@ $(PROJECT_DIR)/relative/Path.yaml \
             "-Xwrapped-swift",
             "-passthrough",
         ],
-        user_swiftcopts = [
-            "-Xcc",
-            "-b=bazel-out/hi",
-        ],
         expected_build_settings = {
             "OTHER_CFLAGS": [
                 "-passthrough",
@@ -567,9 +566,7 @@ $(PROJECT_DIR)/relative/Path.yaml \
 -weird \
 -Xcc \
 -a=$(BAZEL_OUT)/hi \
--passthrough \
--Xcc \
--b=$(BAZEL_OUT)/hi\
+-passthrough\
 """,
         },
         expected_search_paths = {
@@ -587,7 +584,7 @@ $(PROJECT_DIR)/relative/Path.yaml \
         name = "{}_all-debug-dsym".format(name),
         conlyopts = ["-g"],
         cxxopts = ["-g"],
-        full_swiftcopts = ["-g"],
+        swiftcopts = ["-g"],
         cpp_fragment = _cpp_fragment(apple_generate_dsym = True),
         expected_build_settings = {
             "DEBUG_INFORMATION_FORMAT": None,
@@ -598,7 +595,7 @@ $(PROJECT_DIR)/relative/Path.yaml \
         name = "{}_all-debug-no-dsym".format(name),
         conlyopts = ["-g"],
         cxxopts = ["-g"],
-        full_swiftcopts = ["-g"],
+        swiftcopts = ["-g"],
         cpp_fragment = _cpp_fragment(apple_generate_dsym = False),
         expected_build_settings = {
             "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -609,7 +606,7 @@ $(PROJECT_DIR)/relative/Path.yaml \
         name = "{}_c-debug-dsym".format(name),
         conlyopts = ["-g"],
         cxxopts = ["-g"],
-        full_swiftcopts = [],
+        swiftcopts = [],
         cpp_fragment = _cpp_fragment(apple_generate_dsym = True),
         expected_build_settings = {
             "DEBUG_INFORMATION_FORMAT": None,
@@ -620,7 +617,7 @@ $(PROJECT_DIR)/relative/Path.yaml \
         name = "{}_c-debug-no-dsym".format(name),
         conlyopts = ["-g"],
         cxxopts = ["-g"],
-        full_swiftcopts = [],
+        swiftcopts = [],
         cpp_fragment = _cpp_fragment(apple_generate_dsym = False),
         expected_build_settings = {
             "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -631,7 +628,7 @@ $(PROJECT_DIR)/relative/Path.yaml \
         name = "{}_conly-debug".format(name),
         conlyopts = ["-g"],
         cxxopts = [],
-        full_swiftcopts = [],
+        swiftcopts = [],
         cpp_fragment = _cpp_fragment(apple_generate_dsym = False),
         expected_build_settings = {
             "DEBUG_INFORMATION_FORMAT": "",
@@ -643,7 +640,7 @@ $(PROJECT_DIR)/relative/Path.yaml \
         name = "{}_cxx-debug".format(name),
         conlyopts = [],
         cxxopts = ["-g"],
-        full_swiftcopts = [],
+        swiftcopts = [],
         cpp_fragment = _cpp_fragment(apple_generate_dsym = False),
         expected_build_settings = {
             "DEBUG_INFORMATION_FORMAT": "",
@@ -655,7 +652,7 @@ $(PROJECT_DIR)/relative/Path.yaml \
         name = "{}_swift-debug-dsym".format(name),
         conlyopts = [],
         cxxopts = [],
-        full_swiftcopts = ["-g"],
+        swiftcopts = ["-g"],
         cpp_fragment = _cpp_fragment(apple_generate_dsym = True),
         expected_build_settings = {
             "DEBUG_INFORMATION_FORMAT": None,
@@ -666,7 +663,7 @@ $(PROJECT_DIR)/relative/Path.yaml \
         name = "{}_swift-debug-no-dsym".format(name),
         conlyopts = [],
         cxxopts = [],
-        full_swiftcopts = ["-g"],
+        swiftcopts = ["-g"],
         cpp_fragment = _cpp_fragment(apple_generate_dsym = False),
         expected_build_settings = {
             "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -677,7 +674,7 @@ $(PROJECT_DIR)/relative/Path.yaml \
         name = "{}_swift-and-c-debug".format(name),
         conlyopts = ["-g"],
         cxxopts = [],
-        full_swiftcopts = ["-g"],
+        swiftcopts = ["-g"],
         cpp_fragment = _cpp_fragment(apple_generate_dsym = False),
         expected_build_settings = {
             "DEBUG_INFORMATION_FORMAT": "",
@@ -701,7 +698,7 @@ $(PROJECT_DIR)/relative/Path.yaml \
 
     _add_test(
         name = "{}_swift_option-enable-testing".format(name),
-        full_swiftcopts = ["-enable-testing"],
+        swiftcopts = ["-enable-testing"],
         expected_build_settings = {
             "ENABLE_TESTABILITY": "True",
         },
@@ -711,7 +708,7 @@ $(PROJECT_DIR)/relative/Path.yaml \
 
     _add_test(
         name = "{}_swift_option-application-extension".format(name),
-        full_swiftcopts = ["-application-extension"],
+        swiftcopts = ["-application-extension"],
         expected_build_settings = {
             "APPLICATION_EXTENSION_API_ONLY": "True",
         },
@@ -776,7 +773,7 @@ $(PROJECT_DIR)/relative/Path.yaml \
 
     _add_test(
         name = "{}_defines".format(name),
-        full_swiftcopts = [
+        swiftcopts = [
             "-DDEBUG",
             "-DBAZEL",
             "-DDEBUG",
@@ -791,7 +788,7 @@ $(PROJECT_DIR)/relative/Path.yaml \
 
     _add_test(
         name = "{}_multiple_swift_compilation_modes".format(name),
-        full_swiftcopts = [
+        swiftcopts = [
             "-wmo",
             "-no-whole-module-optimization",
         ],
@@ -802,7 +799,7 @@ $(PROJECT_DIR)/relative/Path.yaml \
 
     _add_test(
         name = "{}_swift_option-incremental".format(name),
-        full_swiftcopts = ["-incremental"],
+        swiftcopts = ["-incremental"],
         expected_build_settings = {
             "SWIFT_COMPILATION_MODE": "singlefile",
         },
@@ -810,7 +807,7 @@ $(PROJECT_DIR)/relative/Path.yaml \
 
     _add_test(
         name = "{}_swift_option-whole-module-optimization".format(name),
-        full_swiftcopts = ["-whole-module-optimization"],
+        swiftcopts = ["-whole-module-optimization"],
         expected_build_settings = {
             "SWIFT_COMPILATION_MODE": "wholemodule",
         },
@@ -818,7 +815,7 @@ $(PROJECT_DIR)/relative/Path.yaml \
 
     _add_test(
         name = "{}_swift_option-wmo".format(name),
-        full_swiftcopts = ["-wmo"],
+        swiftcopts = ["-wmo"],
         expected_build_settings = {
             "SWIFT_COMPILATION_MODE": "wholemodule",
         },
@@ -826,7 +823,7 @@ $(PROJECT_DIR)/relative/Path.yaml \
 
     _add_test(
         name = "{}_swift_option-no-whole-module-optimization".format(name),
-        full_swiftcopts = ["-no-whole-module-optimization"],
+        swiftcopts = ["-no-whole-module-optimization"],
         expected_build_settings = {
             "SWIFT_COMPILATION_MODE": "singlefile",
         },
@@ -836,7 +833,7 @@ $(PROJECT_DIR)/relative/Path.yaml \
 
     _add_test(
         name = "{}_generated_header".format(name),
-        full_swiftcopts = [
+        swiftcopts = [
             "-emit-objc-header-path",
             "a/b/c/TestingUtils-Custom.h",
         ],
@@ -850,7 +847,7 @@ $(PROJECT_DIR)/relative/Path.yaml \
 
     _add_test(
         name = "{}_multiple_swift_optimization_levels".format(name),
-        full_swiftcopts = [
+        swiftcopts = [
             "-Osize",
             "-Onone",
             "-O",
@@ -862,7 +859,7 @@ $(PROJECT_DIR)/relative/Path.yaml \
 
     _add_test(
         name = "{}_swift_option-Onone".format(name),
-        full_swiftcopts = ["-Onone"],
+        swiftcopts = ["-Onone"],
         expected_build_settings = {
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
         },
@@ -870,7 +867,7 @@ $(PROJECT_DIR)/relative/Path.yaml \
 
     _add_test(
         name = "{}_swift_option-O".format(name),
-        full_swiftcopts = ["-O"],
+        swiftcopts = ["-O"],
         expected_build_settings = {
             "SWIFT_OPTIMIZATION_LEVEL": "-O",
         },
@@ -878,7 +875,7 @@ $(PROJECT_DIR)/relative/Path.yaml \
 
     _add_test(
         name = "{}_swift_option-Osize".format(name),
-        full_swiftcopts = ["-Osize"],
+        swiftcopts = ["-Osize"],
         expected_build_settings = {
             "SWIFT_OPTIMIZATION_LEVEL": "-Osize",
         },
@@ -888,7 +885,7 @@ $(PROJECT_DIR)/relative/Path.yaml \
 
     _add_test(
         name = "{}_swift_option-strict-concurrency".format(name),
-        full_swiftcopts = ["-strict-concurrency=targeted"],
+        swiftcopts = ["-strict-concurrency=targeted"],
         expected_build_settings = {
             "SWIFT_STRICT_CONCURRENCY": "targeted",
         },
@@ -898,7 +895,7 @@ $(PROJECT_DIR)/relative/Path.yaml \
 
     _add_test(
         name = "{}_swift_option-swift-version".format(name),
-        full_swiftcopts = ["-swift-version=42"],
+        swiftcopts = ["-swift-version=42"],
         expected_build_settings = {
             "SWIFT_VERSION": "42",
         },
@@ -932,7 +929,7 @@ $(PROJECT_DIR)/relative/Path.yaml \
             "s3/s4",
             "-isystems3/s4/s5",
         ],
-        user_swiftcopts = [
+        swiftcopts = [
             "-Xcc",
             "-Ic/d/e",
             "-Xcc",
