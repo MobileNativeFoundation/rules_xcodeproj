@@ -353,6 +353,7 @@ weird \
 $(PROJECT_DIR)/relative/Path.yaml \
 -passthrough \
 -passthrough \
+-I__BAZEL_XCODE_SOMETHING_/path \
 -passthrough \
 -I$(BAZEL_OUT)/... \
 -passthrough \
@@ -377,6 +378,11 @@ $(PROJECT_DIR)/relative/Path.yaml \
 -Xcc \
 -b=$(BAZEL_OUT)/hi\
 """,
+        },
+        expected_search_paths = {
+            "quote_includes": [],
+            "includes": ["__BAZEL_XCODE_SOMETHING_/path", "__BAZEL_XCODE_BOSS_"],
+            "system_includes": [],
         },
     )
 
