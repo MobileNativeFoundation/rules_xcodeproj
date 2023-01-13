@@ -911,6 +911,7 @@ $(PROJECT_DIR)/relative/Path.yaml \
         conlyopts = [
             "-iquote",
             "a/b/c",
+            "-iquotea/b/c/d",
             "-Ix/y/z",
             "-I",
             "1/2/3",
@@ -918,15 +919,18 @@ $(PROJECT_DIR)/relative/Path.yaml \
             "0/9",
             "-isystem",
             "s1/s2",
+            "-isystems1/s2/s3",
         ],
         cxxopts = [
             "-iquote",
             "y/z",
+            "-iquotey/z/1",
             "-Ix/y/z",
             "-I",
             "aa/bb",
             "-isystem",
             "s3/s4",
+            "-isystems3/s4/s5",
         ],
         user_swiftcopts = [
             "-Xcc",
@@ -942,8 +946,10 @@ $(PROJECT_DIR)/relative/Path.yaml \
         expected_search_paths = {
             "quote_includes": [
                 "a/b/c",
+                "a/b/c/d",
                 "0/9",
                 "y/z",
+                "y/z/1",
                 "4/5",
             ],
             "includes": [
@@ -954,7 +960,9 @@ $(PROJECT_DIR)/relative/Path.yaml \
             ],
             "system_includes": [
                 "s1/s2",
+                "s1/s2/s3",
                 "s3/s4",
+                "s3/s4/s5",
                 "s5/s6",
             ],
         },
