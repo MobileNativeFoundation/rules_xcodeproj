@@ -127,7 +127,74 @@ def process_compiler_opts_test_suite(name):
     # Base
 
     _add_test(
-        name = "{}_swift_integration".format(name),
+        name = "{}_swift_integration_bazel".format(name),
+        build_mode = "bazel",
+        full_swiftcopts = [
+            "-target",
+            "arm64-apple-ios15.0-simulator",
+            "-sdk",
+            "__BAZEL_XCODE_SDKROOT__",
+            "-F__BAZEL_XCODE_DEVELOPER_DIR__/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks",
+            "-F__BAZEL_XCODE_SDKROOT__/Developer/Library/Frameworks",
+            "-I__BAZEL_XCODE_DEVELOPER_DIR__/Platforms/iPhoneSimulator.platform/Developer/usr/lib",
+            "-emit-object",
+            "-output-file-map",
+            "bazel-out/ios-sim_arm64-min15.0-applebin_ios-ios_sim_arm64-fastbuild-ST-4e6c2a19403f/bin/examples/ExampleUITests/ExampleUITests.library.output_file_map.json",
+            "-Xfrontend",
+            "-no-clang-module-breadcrumbs",
+            "-emit-module-path",
+            "bazel-out/ios-sim_arm64-min15.0-applebin_ios-ios_sim_arm64-fastbuild-ST-4e6c2a19403f/bin/examples/ExampleUITests/ExampleUITests.swiftmodule",
+            "-DDEBUG",
+            "-Onone",
+            "-Xfrontend",
+            "-serialize-debugging-options",
+            "-enable-testing",
+            "-application-extension",
+            "weird",
+            "-gline-tables-only",
+            "-Xwrapped-swift=-debug-prefix-pwd-is-dot",
+            "-Xwrapped-swift=-ephemeral-module-cache",
+            "-Xcc",
+            "-iquote.",
+            "-Xcc",
+            "-iquotebazel-out/ios-sim_arm64-min15.0-applebin_ios-ios_sim_arm64-fastbuild-ST-4e6c2a19403f/bin",
+            "-Xfrontend",
+            "-color-diagnostics",
+            "-enable-batch-mode",
+            "-unhandled",
+            "-module-name",
+            "ExampleUITests",
+            "-parse-as-library",
+            "-Xcc",
+            "-O0",
+            "-Xcc",
+            "-DDEBUG=1",
+            "examples/xcode_like/ExampleUITests/ExampleUITests.swift",
+            "examples/xcode_like/ExampleUITests/ExampleUITestsLaunchTests.swift",
+        ],
+        user_swiftcopts = [],
+        expected_build_settings = {
+            "APPLICATION_EXTENSION_API_ONLY": "True",
+            "ENABLE_TESTABILITY": "True",
+            "OTHER_SWIFT_FLAGS": """\
+weird \
+-Xcc \
+-iquote. \
+-Xcc \
+-iquotebazel-out/ios-sim_arm64-min15.0-applebin_ios-ios_sim_arm64-fastbuild-ST-4e6c2a19403f/bin \
+-unhandled \
+-Xcc \
+-O0 \
+-Xcc \
+-DDEBUG=1\
+""",
+            "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
+        },
+    )
+
+    _add_test(
+        name = "{}_swift_integration_xcode".format(name),
+        build_mode = "xcode",
         full_swiftcopts = [
             "-target",
             "arm64-apple-ios15.0-simulator",
@@ -231,7 +298,8 @@ weird \
     # Other things that end with ".swift", but don't start with "-"
 
     _add_test(
-        name = "{}_skips".format(name),
+        name = "{}_skips_bazel".format(name),
+        build_mode = "bazel",
         conlyopts = [
             "-mtvos-simulator-version-min=8.0",
             "-passthrough",
@@ -355,7 +423,7 @@ $(PROJECT_DIR)/relative/Path.yaml \
 -passthrough \
 -I__BAZEL_XCODE_SOMETHING_/path \
 -passthrough \
--I$(BAZEL_OUT)/... \
+-Ibazel-out/... \
 -passthrough \
 -Xfrontend \
 -vfsoverlay \
@@ -370,6 +438,131 @@ $(PROJECT_DIR)/relative/Path.yaml \
 -vfsoverlay/Some/Path.yaml \
 -Xfrontend \
 -vfsoverlay$(PROJECT_DIR)/relative/Path.yaml \
+-Xcc \
+-weird \
+-Xcc \
+-a=bazel-out/hi \
+-passthrough \
+-Xcc \
+-b=bazel-out/hi\
+""",
+        },
+        expected_search_paths = {
+            "quote_includes": [],
+            "includes": ["__BAZEL_XCODE_SOMETHING_/path", "__BAZEL_XCODE_BOSS_"],
+            "system_includes": [],
+        },
+    )
+
+    _add_test(
+        name = "{}_skips_xcode".format(name),
+        build_mode = "xcode",
+        conlyopts = [
+            "-mtvos-simulator-version-min=8.0",
+            "-passthrough",
+            "-isysroot",
+            "other",
+            "-mios-simulator-version-min=11.2",
+            "-miphoneos-version-min=9.0",
+            "-passthrough",
+            "-mtvos-version-min=12.1",
+            "-I__BAZEL_XCODE_SOMETHING_/path",
+            "-mwatchos-simulator-version-min=10.1",
+            "-passthrough",
+            "-mwatchos-version-min=9.2",
+            "-target",
+            "ios",
+            "-mmacosx-version-min=12.0",
+            "-passthrough",
+        ],
+        cxxopts = [
+            "-isysroot",
+            "something",
+            "-miphoneos-version-min=9.4",
+            "-mmacosx-version-min=10.9",
+            "-passthrough",
+            "-mtvos-version-min=12.2",
+            "-mwatchos-simulator-version-min=9.3",
+            "-passthrough",
+            "-mtvos-simulator-version-min=12.1",
+            "-mwatchos-version-min=10.2",
+            "-I__BAZEL_XCODE_BOSS_",
+            "-target",
+            "macos",
+            "-passthrough",
+            "-mios-simulator-version-min=14.0",
+        ],
+        full_swiftcopts = [
+            "-output-file-map",
+            "path",
+            "-passthrough",
+            "-debug-prefix-map",
+            "__BAZEL_XCODE_DEVELOPER_DIR__=DEVELOPER_DIR",
+            "-file-prefix-map",
+            "__BAZEL_XCODE_DEVELOPER_DIR__=DEVELOPER_DIR",
+            "-emit-module-path",
+            "path",
+            "-passthrough",
+            "-Xfrontend",
+            "-color-diagnostics",
+            "-Xfrontend",
+            "-import-underlying-module",
+            "-emit-object",
+            "-enable-batch-mode",
+            "-passthrough",
+            "-gline-tables-only",
+            "-sdk",
+            "something",
+            "-module-name",
+            "name",
+            "-passthrough",
+            "-I__BAZEL_XCODE_SOMETHING_/path",
+            "-num-threads",
+            "6",
+            "-passthrough",
+            "-Ibazel-out/...",
+            "-parse-as-library",
+            "-passthrough",
+            "-parse-as-library",
+            "-keep-me=something.swift",
+            "reject-me.swift",
+            "-target",
+            "ios",
+            "-Xcc",
+            "-weird",
+            "-Xcc",
+            "-a=bazel-out/hi",
+            "-Xwrapped-swift",
+            "-passthrough",
+        ],
+        user_swiftcopts = [
+            "-Xcc",
+            "-b=bazel-out/hi",
+        ],
+        expected_build_settings = {
+            "OTHER_CFLAGS": [
+                "-passthrough",
+                "-passthrough",
+                "-passthrough",
+                "-passthrough",
+            ],
+            "OTHER_CPLUSPLUSFLAGS": [
+                "-passthrough",
+                "-passthrough",
+                "-passthrough",
+            ],
+            "OTHER_SWIFT_FLAGS": """\
+-passthrough \
+-passthrough \
+-Xfrontend \
+-import-underlying-module \
+-passthrough \
+-passthrough \
+-I__BAZEL_XCODE_SOMETHING_/path \
+-passthrough \
+-I$(BAZEL_OUT)/... \
+-passthrough \
+-keep-me=something.swift \
 -Xcc \
 -weird \
 -Xcc \

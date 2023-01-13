@@ -613,7 +613,7 @@ def _process_swiftopts(
         additional_swiftcopts,
         swift_search_paths,
         user_has_debug_info,
-    ) = _process_user_swiftcopts(user_swiftcopts)
+    ) = _process_user_swiftcopts(user_swiftcopts, build_mode = build_mode)
 
     has_debug_info = raw_has_debug_info or user_has_debug_info
 
@@ -659,15 +659,23 @@ def _process_full_swiftcopts(
 
     def process(opt, previous_opt):
         if opt.startswith("-isystem"):
-            return "-isystem" + _process_copt_possible_path(opt[8:])
+            if build_mode == "xcode":
+                return "-isystem" + _process_copt_possible_path(opt[8:])
+            return opt
         if opt.startswith("-iquote"):
-            return "-iquote" + _process_copt_possible_path(opt[7:])
+            if build_mode == "xcode":
+                return "-iquote" + _process_copt_possible_path(opt[7:])
+            return opt
         if opt.startswith("-I"):
-            return "-I" + _process_copt_possible_path(opt[2:])
+            if build_mode == "xcode":
+                return "-I" + _process_copt_possible_path(opt[2:])
+            return opt
         if previous_opt == "-Xcc":
             # We do this check here, to prevent the `-O` and `-D` logic below
             # from incorrectly detecting this situation
-            return _process_copy_for_paths(opt)
+            if build_mode == "xcode":
+                return _process_copy_for_paths(opt)
+            return opt
 
         if previous_opt == "-emit-objc-header-path":
             if not opt.startswith(package_bin_dir):
@@ -720,7 +728,9 @@ Using VFS overlays with `build_mode = "xcode"` is unsupported.
             # we collect C and C++ compiler options.
             return None
 
-        return _process_copy_for_paths(opt)
+        if build_mode == "xcode":
+            return _process_copy_for_paths(opt)
+        return opt
 
     # Xcode's default is `-O` when not set, so minimally set it to `-Onone`,
     # which matches swiftc's default.
@@ -744,11 +754,12 @@ Using VFS overlays with `build_mode = "xcode"` is unsupported.
 
     return processed_opts, has_debug_info
 
-def _process_user_swiftcopts(opts):
+def _process_user_swiftcopts(opts, *, build_mode):
     """Processes user-provided Swift compiler options.
 
     Args:
         opts: A `list` of Swift compiler options.
+        build_mode: See `xcodeproj.build_mode`.
 
     Note: any flag processed here needs to be filtered from processing in
     `_process_full_swiftcopts`.
@@ -778,19 +789,27 @@ def _process_user_swiftcopts(opts):
             path = opt[8:]
             if previous_opt == "-Xcc":
                 system_includes.append(path)
-            return "-isystem" + _process_copt_possible_path(path)
+            if build_mode == "xcode":
+                return "-isystem" + _process_copt_possible_path(path)
+            return opt
         if opt.startswith("-iquote"):
             path = opt[7:]
             if previous_opt == "-Xcc":
                 quote_includes.append(path)
-            return "-iquote" + _process_copt_possible_path(path)
+            if build_mode == "xcode":
+                return "-iquote" + _process_copt_possible_path(path)
+            return opt
         if opt.startswith("-I"):
             path = opt[2:]
             if previous_opt == "-Xcc":
                 includes.append(path)
-            return "-I" + _process_copt_possible_path(path)
+            if build_mode == "xcode":
+                return "-I" + _process_copt_possible_path(path)
+            return opt
 
-        return _process_copy_for_paths(opt)
+        if build_mode == "xcode":
+            return _process_copy_for_paths(opt)
+        return opt
 
     additional_opts = _process_base_compiler_opts(
         opts = opts,
