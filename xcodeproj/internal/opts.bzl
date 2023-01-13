@@ -222,7 +222,7 @@ def _process_base_compiler_opts(
             skip_next -= 1
             continue
         if (opt.startswith("-F__BAZEL_XCODE_") or
-            opt.startswith("-I__BAZEL_XCODE_")):
+            opt.startswith("-I__BAZEL_XCODE_DEVELOPER_DIR__/Platforms/")):
             # Theses options are already handled by Xcode
             continue
         root_opt = opt.split("=")[0]
