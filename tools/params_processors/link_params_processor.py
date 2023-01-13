@@ -123,10 +123,6 @@ def _process_linkopts(
         if opt.endswith(".o"):
             return None
 
-        # Xcode adds system library search paths
-        if opt.startswith("-L__BAZEL_XCODE_"):
-            return None
-
         if opt.startswith("-F"):
             path = opt[2:]
             search_paths = generated_framework_search_paths.get(path)
