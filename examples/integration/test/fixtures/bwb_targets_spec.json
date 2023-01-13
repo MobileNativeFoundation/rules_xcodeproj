@@ -567,12 +567,6 @@
         "lldb_context": {
             "c": [
                 {
-                    "i": [
-                        "$(SRCROOT)/CommandLine/CommandLineToolLib/dir with space",
-                        "$(BAZEL_OUT)/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18/bin/CommandLine/CommandLineToolLib/dir with space",
-                        "$(SRCROOT)/CommandLine/CommandLineToolLib/private",
-                        "$(BAZEL_OUT)/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18/bin/CommandLine/CommandLineToolLib/private"
-                    ],
                     "o": [
                         "-O0",
                         "-DDEBUG=1",
@@ -580,12 +574,6 @@
                         "-fstack-protector-all",
                         "-DSECRET_3=\\\"Hello\\\"",
                         "-DSECRET_2=\\\"World!\\\""
-                    ],
-                    "q": [
-                        "$(PROJECT_DIR)",
-                        "$(BAZEL_OUT)/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18/bin",
-                        "$(BAZEL_EXTERNAL)/examples_command_line_external",
-                        "$(BAZEL_OUT)/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18/bin/external/examples_command_line_external"
                     ]
                 },
                 {
@@ -765,12 +753,6 @@
         "lldb_context": {
             "c": [
                 {
-                    "i": [
-                        "$(SRCROOT)/CommandLine/CommandLineToolLib/dir with space",
-                        "$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-19/bin/CommandLine/CommandLineToolLib/dir with space",
-                        "$(SRCROOT)/CommandLine/CommandLineToolLib/private",
-                        "$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-19/bin/CommandLine/CommandLineToolLib/private"
-                    ],
                     "o": [
                         "-O0",
                         "-DDEBUG=1",
@@ -778,12 +760,6 @@
                         "-fstack-protector-all",
                         "-DSECRET_3=\\\"Hello\\\"",
                         "-DSECRET_2=\\\"World!\\\""
-                    ],
-                    "q": [
-                        "$(PROJECT_DIR)",
-                        "$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-19/bin",
-                        "$(BAZEL_EXTERNAL)/examples_command_line_external",
-                        "$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-19/bin/external/examples_command_line_external"
                     ]
                 },
                 {
@@ -6249,8 +6225,6 @@
                 {
                     "i": [
                         "$(SRCROOT)/iOSApp/Source/CoreUtilsObjC",
-                        "$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/iOSApp/Source/CoreUtilsObjC",
-                        "$(SRCROOT)/iOSApp/Source/CoreUtilsObjC",
                         "$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/iOSApp/Source/CoreUtilsObjC"
                     ],
                     "m": [
@@ -6465,8 +6439,6 @@
             "c": [
                 {
                     "i": [
-                        "$(SRCROOT)/iOSApp/Source/CoreUtilsObjC",
-                        "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsObjC",
                         "$(SRCROOT)/iOSApp/Source/CoreUtilsObjC",
                         "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsObjC"
                     ],
@@ -6743,8 +6715,6 @@
                 {
                     "i": [
                         "$(SRCROOT)/iOSApp/Source/CoreUtilsObjC",
-                        "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsObjC",
-                        "$(SRCROOT)/iOSApp/Source/CoreUtilsObjC",
                         "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsObjC"
                     ],
                     "m": [
@@ -6960,8 +6930,6 @@
                 {
                     "i": [
                         "$(SRCROOT)/iOSApp/Source/CoreUtilsObjC",
-                        "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsObjC",
-                        "$(SRCROOT)/iOSApp/Source/CoreUtilsObjC",
                         "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsObjC"
                     ],
                     "m": [
@@ -6997,8 +6965,6 @@
                 },
                 {
                     "i": [
-                        "$(SRCROOT)/iOSApp/Source/CoreUtilsObjC",
-                        "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsObjC",
                         "$(SRCROOT)/iOSApp/Source/CoreUtilsObjC",
                         "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsObjC"
                     ],

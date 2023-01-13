@@ -128,23 +128,16 @@ def _lldb_context_to_dto(lldb_context, *, xcode_generated_paths):
     for _, clang in lldb_context._clang.to_list():
         # TODO: DRY this up with `target_search_paths`
         search_paths = clang.search_paths
-        cc_info = search_paths._compilation_providers._cc_info
-        compilation_context = cc_info.compilation_context
         opts_search_paths = search_paths._opts_search_paths
 
         if opts_search_paths:
-            opts_includes = list(opts_search_paths.includes)
-            opts_quote_includes = list(opts_search_paths.quote_includes)
-            opts_system_includes = list(opts_search_paths.system_includes)
+            includes = opts_search_paths.includes
+            quote_includes = opts_search_paths.quote_includes
+            system_includes = opts_search_paths.system_includes
         else:
-            opts_includes = []
-            opts_quote_includes = []
-            opts_system_includes = []
-
-        quote_includes = depset(
-            [".", search_paths._bin_dir_path] + opts_quote_includes,
-            transitive = [compilation_context.quote_includes],
-        )
+            includes = []
+            quote_includes = []
+            system_includes = []
 
         clang_dto = {}
 
@@ -153,7 +146,7 @@ def _lldb_context_to_dto(lldb_context, *, xcode_generated_paths):
             "q",
             [
                 build_setting_path(path = path)
-                for path in quote_includes.to_list()
+                for path in quote_includes
             ],
         )
         set_if_true(
@@ -161,8 +154,7 @@ def _lldb_context_to_dto(lldb_context, *, xcode_generated_paths):
             "i",
             [
                 build_setting_path(path = path)
-                for path in (compilation_context.includes.to_list() +
-                             opts_includes)
+                for path in includes
             ],
         )
         set_if_true(
@@ -170,8 +162,7 @@ def _lldb_context_to_dto(lldb_context, *, xcode_generated_paths):
             "s",
             [
                 build_setting_path(path = path)
-                for path in (compilation_context.system_includes.to_list() +
-                             opts_system_includes)
+                for path in system_includes
             ],
         )
 
