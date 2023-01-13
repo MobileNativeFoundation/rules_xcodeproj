@@ -642,7 +642,7 @@ def _process_swiftcopts(
             # We do this check here, to prevent the `-O` and `-D` logic below
             # from incorrectly detecting this situation
             if build_mode == "xcode":
-                return _process_copy_for_paths(opt)
+                return _process_copt_for_paths(opt)
             return opt
 
         if previous_opt == "-emit-objc-header-path":
@@ -697,7 +697,7 @@ Using VFS overlays with `build_mode = "xcode"` is unsupported.
             return None
 
         if build_mode == "xcode":
-            return _process_copy_for_paths(opt)
+            return _process_copt_for_paths(opt)
         return opt
 
     # Xcode's default is `-O` when not set, so minimally set it to `-Onone`,
@@ -728,7 +728,7 @@ Using VFS overlays with `build_mode = "xcode"` is unsupported.
 
     return processed_opts, search_paths, has_debug_info
 
-def _process_copy_for_paths(copt):
+def _process_copt_for_paths(copt):
     components = copt.split("=", 1)
     if len(components) > 1:
         return "{}={}".format(
