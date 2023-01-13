@@ -7388,18 +7388,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				TARGET_NAME = iOS;
-				USER_HEADER_SEARCH_PATHS = (
-					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
-					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/external/com_github_krzyzanowskim_cryptoswift",
-					"$(PROJECT_DIR)",
-					"$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-7/bin",
-				);
-				"USER_HEADER_SEARCH_PATHS[sdk=iphoneos*]" = (
-					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
-					"$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/external/com_github_krzyzanowskim_cryptoswift",
-					"$(PROJECT_DIR)",
-					"$(BAZEL_OUT)/applebin_ios-ios_arm64-dbg-STABLE-8/bin",
-				);
 			};
 			name = Debug;
 		};
@@ -8045,18 +8033,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = tvOS;
 				TVOS_DEPLOYMENT_TARGET = 15.0;
-				USER_HEADER_SEARCH_PATHS = (
-					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
-					"$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/external/com_github_krzyzanowskim_cryptoswift",
-					"$(PROJECT_DIR)",
-					"$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-dbg-STABLE-13/bin",
-				);
-				"USER_HEADER_SEARCH_PATHS[sdk=appletvos*]" = (
-					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
-					"$(BAZEL_OUT)/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-6/bin/external/com_github_krzyzanowskim_cryptoswift",
-					"$(PROJECT_DIR)",
-					"$(BAZEL_OUT)/applebin_tvos-tvos_arm64-dbg-STABLE-14/bin",
-				);
 			};
 			name = Debug;
 		};
@@ -8359,18 +8335,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = LibFramework.tvOS;
 				TVOS_DEPLOYMENT_TARGET = 15.0;
-				USER_HEADER_SEARCH_PATHS = (
-					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
-					"$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/external/com_github_krzyzanowskim_cryptoswift",
-					"$(PROJECT_DIR)",
-					"$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-dbg-STABLE-13/bin",
-				);
-				"USER_HEADER_SEARCH_PATHS[sdk=appletvos*]" = (
-					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
-					"$(BAZEL_OUT)/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-6/bin/external/com_github_krzyzanowskim_cryptoswift",
-					"$(PROJECT_DIR)",
-					"$(BAZEL_OUT)/applebin_tvos-tvos_arm64-dbg-STABLE-14/bin",
-				);
 			};
 			name = Debug;
 		};
@@ -9056,18 +9020,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = watchOS;
-				USER_HEADER_SEARCH_PATHS = (
-					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
-					"$(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/external/com_github_krzyzanowskim_cryptoswift",
-					"$(PROJECT_DIR)",
-					"$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-dbg-STABLE-9/bin",
-				);
-				"USER_HEADER_SEARCH_PATHS[sdk=watchos*]" = (
-					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
-					"$(BAZEL_OUT)/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-5/bin/external/com_github_krzyzanowskim_cryptoswift",
-					"$(PROJECT_DIR)",
-					"$(BAZEL_OUT)/applebin_watchos-watchos_arm64_32-dbg-STABLE-10/bin",
-				);
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = Debug;
@@ -9473,18 +9425,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = LibFramework.watchOS;
-				USER_HEADER_SEARCH_PATHS = (
-					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
-					"$(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/external/com_github_krzyzanowskim_cryptoswift",
-					"$(PROJECT_DIR)",
-					"$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-dbg-STABLE-9/bin",
-				);
-				"USER_HEADER_SEARCH_PATHS[sdk=watchos*]" = (
-					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
-					"$(BAZEL_OUT)/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-5/bin/external/com_github_krzyzanowskim_cryptoswift",
-					"$(PROJECT_DIR)",
-					"$(BAZEL_OUT)/applebin_watchos-watchos_arm64_32-dbg-STABLE-10/bin",
-				);
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = Debug;
@@ -9966,10 +9906,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				TARGET_NAME = iMessageApp;
-				USER_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
-					"$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-7/bin",
-				);
 			};
 			name = Debug;
 		};
@@ -10343,8 +10279,6 @@
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXTERNAL)/FXPageControl",
 					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/external/FXPageControl",
-					"$(PROJECT_DIR)",
-					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin",
 				);
 			};
 			name = Debug;
@@ -10840,14 +10774,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = watchOSApp;
-				USER_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
-					"$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-dbg-STABLE-11/bin",
-				);
-				"USER_HEADER_SEARCH_PATHS[sdk=watchos*]" = (
-					"$(PROJECT_DIR)",
-					"$(BAZEL_OUT)/applebin_watchos-watchos_arm64_32-dbg-STABLE-12/bin",
-				);
 				WATCHOS_DEPLOYMENT_TARGET = 8.0;
 			};
 			name = Debug;
