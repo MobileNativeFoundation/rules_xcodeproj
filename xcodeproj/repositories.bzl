@@ -51,7 +51,8 @@ pass `ignore_version_differences = True` to `xcodeproj_rules_dependencies()`.
 # buildifier: disable=unnamed-macro
 def xcodeproj_rules_dependencies(
         ignore_version_differences = False,
-        use_dev_patches = False):
+        use_dev_patches = False,
+        include_bzlmod_ready_dependencies = True):
     """Fetches repositories that are dependencies of `rules_xcodeproj`.
 
     Users should call this macro in their `WORKSPACE` to ensure that all of the
@@ -63,22 +64,41 @@ def xcodeproj_rules_dependencies(
             incompatible versions of dependency repositories will be silenced.
         use_dev_patches: If `True`, use patches that are intended to be
             applied to the development version of the repository.
+        include_bzlmod_ready_dependencies: Whether or not bzlmod-ready
+            dependencies should be included.
     """
-    _maybe(
-        http_archive,
-        name = "bazel_skylib",
-        sha256 = "74d544d96f4a5bb630d465ca8bbcfe231e3594e5aae57e1edbf17a6eb3ca2506",
-        url = "https://github.com/bazelbuild/bazel-skylib/releases/download/1.3.0/bazel-skylib-1.3.0.tar.gz",
-        ignore_version_differences = ignore_version_differences,
-    )
+    if include_bzlmod_ready_dependencies:
+        _maybe(
+            http_archive,
+            name = "bazel_skylib",
+            sha256 = "74d544d96f4a5bb630d465ca8bbcfe231e3594e5aae57e1edbf17a6eb3ca2506",
+            url = "https://github.com/bazelbuild/bazel-skylib/releases/download/1.3.0/bazel-skylib-1.3.0.tar.gz",
+            ignore_version_differences = ignore_version_differences,
+        )
 
-    _maybe(
-        http_archive,
-        name = "build_bazel_rules_swift",
-        sha256 = "84e2cc1c9e3593ae2c0aa4c773bceeb63c2d04c02a74a6e30c1961684d235593",
-        url = "https://github.com/bazelbuild/rules_swift/releases/download/1.5.1/rules_swift.1.5.1.tar.gz",
-        ignore_version_differences = ignore_version_differences,
-    )
+        _maybe(
+            http_archive,
+            name = "build_bazel_rules_swift",
+            sha256 = "84e2cc1c9e3593ae2c0aa4c773bceeb63c2d04c02a74a6e30c1961684d235593",
+            url = "https://github.com/bazelbuild/rules_swift/releases/download/1.5.1/rules_swift.1.5.1.tar.gz",
+            ignore_version_differences = ignore_version_differences,
+        )
+
+        is_bazel_6 = hasattr(apple_common, "link_multi_arch_static_library")
+        if is_bazel_6:
+            rules_apple_sha256 = "43737f28a578d8d8d7ab7df2fb80225a6b23b9af9655fcdc66ae38eb2abcf2ed"
+            rules_apple_version = "2.0.0"
+        else:
+            rules_apple_sha256 = "f94e6dddf74739ef5cb30f000e13a2a613f6ebfa5e63588305a71fce8a8a9911"
+            rules_apple_version = "1.1.3"
+
+        _maybe(
+            http_archive,
+            name = "build_bazel_rules_apple",
+            sha256 = rules_apple_sha256,
+            url = "https://github.com/bazelbuild/rules_apple/releases/download/{version}/rules_apple.{version}.tar.gz".format(version = rules_apple_version),
+            ignore_version_differences = ignore_version_differences,
+        )
 
     # `rules_swift` depends on `build_bazel_rules_swift_index_import`, and we
     # also need to use `index-import`, so we could declare the same dependency
@@ -100,22 +120,6 @@ native_binary(
 """,
         sha256 = "802f33638b996abe76285d1e0246e661919c0c3222877681e66c519f78145511",
         url = "https://github.com/MobileNativeFoundation/index-import/releases/download/5.7/index-import.tar.gz",
-        ignore_version_differences = ignore_version_differences,
-    )
-
-    is_bazel_6 = hasattr(apple_common, "link_multi_arch_static_library")
-    if is_bazel_6:
-        rules_apple_sha256 = "43737f28a578d8d8d7ab7df2fb80225a6b23b9af9655fcdc66ae38eb2abcf2ed"
-        rules_apple_version = "2.0.0"
-    else:
-        rules_apple_sha256 = "f94e6dddf74739ef5cb30f000e13a2a613f6ebfa5e63588305a71fce8a8a9911"
-        rules_apple_version = "1.1.3"
-
-    _maybe(
-        http_archive,
-        name = "build_bazel_rules_apple",
-        sha256 = rules_apple_sha256,
-        url = "https://github.com/bazelbuild/rules_apple/releases/download/{version}/rules_apple.{version}.tar.gz".format(version = rules_apple_version),
         ignore_version_differences = ignore_version_differences,
     )
 
