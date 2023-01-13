@@ -221,7 +221,9 @@ def _process_base_compiler_opts(
         if skip_next:
             skip_next -= 1
             continue
-        if (opt.startswith("-F__BAZEL_XCODE_") or
+        if (opt == "-F__BAZEL_XCODE_SDKROOT__/Developer/Library/Frameworks" or
+            opt == "-F__BAZEL_XCODE_SDKROOT__/System/Library/Frameworks" or
+            opt.startswith("-F__BAZEL_XCODE_DEVELOPER_DIR__/Platforms/") or
             opt.startswith("-I__BAZEL_XCODE_DEVELOPER_DIR__/Platforms/")):
             # Theses options are already handled by Xcode
             continue
