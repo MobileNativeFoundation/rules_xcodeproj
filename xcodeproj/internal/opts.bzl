@@ -379,6 +379,12 @@ def _process_conlyopts(opts, *, build_settings):
             return None
         if opt == "-I":
             return None
+        if opt.startswith("-isystem"):
+            system_includes.append(opt[8:])
+            return None
+        if opt.startswith("-iquote"):
+            quote_includes.append(opt[7:])
+            return None
         if opt.startswith("-I"):
             includes.append(opt[2:])
             return None
@@ -461,6 +467,12 @@ def _process_cxxopts(opts, *, build_settings):
         if opt == "-iquote":
             return None
         if opt == "-I":
+            return None
+        if opt.startswith("-isystem"):
+            system_includes.append(opt[8:])
+            return None
+        if opt.startswith("-iquote"):
+            quote_includes.append(opt[7:])
             return None
         if opt.startswith("-I"):
             includes.append(opt[2:])
