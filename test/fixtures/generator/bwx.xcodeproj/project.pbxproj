@@ -1833,7 +1833,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 098ECC207AD7CA38CAB13ADA /* Build configuration list for PBXNativeTarget "generator" */;
 			buildPhases = (
-				0526F613A0521424B1525042 /* Create compiling dependencies */,
 				2873C638E3CBD8B23D24AC62 /* Create linking dependencies */,
 				A20A184C7539826C418740CC /* Sources */,
 			);
@@ -2096,23 +2095,6 @@
 
 /* Begin PBXShellScriptBuildPhase section */
 		00C39D247C21E354CA493E9F /* Create compiling dependencies */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(BAZEL_INTEGRATION_DIR)/create_xcode_overlay.sh",
-			);
-			name = "Create compiling dependencies";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"$SCRIPT_INPUT_FILE_0\"\n";
-			showEnvVarsInLog = 0;
-		};
-		0526F613A0521424B1525042 /* Create compiling dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -3008,8 +2990,6 @@
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXTERNAL)/com_github_michaeleisel_zippyjsoncfamily",
 					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_zippyjsoncfamily",
-					"$(PROJECT_DIR)",
-					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin",
 				);
 			};
 			name = Debug;
@@ -3031,23 +3011,13 @@
 				EXECUTABLE_EXTENSION = "";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GENERATE_INFOPLIST_FILE = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(BAZEL_EXTERNAL)/com_github_michaeleisel_jjliso8601dateformatter/Sources/JJLISO8601DateFormatter/include",
-					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_jjliso8601dateformatter/Sources/JJLISO8601DateFormatter/include",
-					"$(BAZEL_EXTERNAL)/com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/include",
-					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/include",
-				);
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/generator/xcodeproj_bwx.generator-params/generator.7.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",
-					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
-					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 				);
 				OTHER_CPLUSPLUSFLAGS = (
-					"-ivfsoverlay",
-					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 				);
@@ -3059,14 +3029,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = generator;
-				USER_HEADER_SEARCH_PATHS = (
-					"$(BAZEL_EXTERNAL)/com_github_michaeleisel_jjliso8601dateformatter",
-					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_jjliso8601dateformatter",
-					"$(BAZEL_EXTERNAL)/com_github_michaeleisel_zippyjsoncfamily",
-					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_zippyjsoncfamily",
-					"$(PROJECT_DIR)",
-					"$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-STABLE-2/bin",
-				);
 			};
 			name = Debug;
 		};
@@ -3215,8 +3177,6 @@
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXTERNAL)/com_github_michaeleisel_jjliso8601dateformatter",
 					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_jjliso8601dateformatter",
-					"$(PROJECT_DIR)",
-					"$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin",
 				);
 			};
 			name = Debug;

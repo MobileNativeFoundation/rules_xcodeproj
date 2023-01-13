@@ -918,25 +918,10 @@ def _search_paths_to_intermediate(search_paths, *, compile_target):
             cc_info = None
 
     if cc_info:
-        compilation_context = cc_info.compilation_context
         opts_search_paths = compile_search_paths._opts_search_paths
-
-        if opts_search_paths:
-            opts_includes = list(opts_search_paths.includes)
-            opts_quote_includes = list(opts_search_paths.quote_includes)
-            opts_system_includes = list(opts_search_paths.system_includes)
-        else:
-            opts_includes = []
-            opts_quote_includes = []
-            opts_system_includes = []
-
-        quote_includes = depset(
-            [".", compile_search_paths._bin_dir_path] + opts_quote_includes,
-            transitive = [compilation_context.quote_includes],
-        ).to_list()
-        includes = compilation_context.includes.to_list() + opts_includes
-        system_includes = (compilation_context.system_includes.to_list() +
-                           opts_system_includes)
+        includes = opts_search_paths.includes
+        quote_includes = opts_search_paths.quote_includes
+        system_includes = opts_search_paths.system_includes
     else:
         quote_includes = []
         includes = []

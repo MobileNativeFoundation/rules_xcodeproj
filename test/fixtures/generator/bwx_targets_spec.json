@@ -313,23 +313,9 @@
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
             "GCC_OPTIMIZATION_LEVEL": "0",
-            "HEADER_SEARCH_PATHS": [
-                "$(BAZEL_EXTERNAL)/com_github_michaeleisel_jjliso8601dateformatter/Sources/JJLISO8601DateFormatter/include",
-                "$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_jjliso8601dateformatter/Sources/JJLISO8601DateFormatter/include",
-                "$(BAZEL_EXTERNAL)/com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/include",
-                "$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/include"
-            ],
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-            "SWIFT_VERSION": "5.0",
-            "USER_HEADER_SEARCH_PATHS": [
-                "$(BAZEL_EXTERNAL)/com_github_michaeleisel_jjliso8601dateformatter",
-                "$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_jjliso8601dateformatter",
-                "$(BAZEL_EXTERNAL)/com_github_michaeleisel_zippyjsoncfamily",
-                "$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_zippyjsoncfamily",
-                "$(PROJECT_DIR)",
-                "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-STABLE-2/bin"
-            ]
+            "SWIFT_VERSION": "5.0"
         },
         "configuration": "applebin_macos-darwin_x86_64-dbg-STABLE-2",
         "dependencies": [
@@ -483,7 +469,7 @@
             "type": "com.apple.product-type.tool"
         },
         "search_paths": {
-            "has_includes": true
+            "has_includes": false
         }
     },
     "//tools/generator:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
@@ -1089,9 +1075,7 @@
             "SWIFT_VERSION": "5.0",
             "USER_HEADER_SEARCH_PATHS": [
                 "$(BAZEL_EXTERNAL)/com_github_michaeleisel_jjliso8601dateformatter",
-                "$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_jjliso8601dateformatter",
-                "$(PROJECT_DIR)",
-                "$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin"
+                "$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_jjliso8601dateformatter"
             ]
         },
         "configuration": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
@@ -1294,9 +1278,7 @@
             "SWIFT_VERSION": "5.0",
             "USER_HEADER_SEARCH_PATHS": [
                 "$(BAZEL_EXTERNAL)/com_github_michaeleisel_zippyjsoncfamily",
-                "$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_zippyjsoncfamily",
-                "$(PROJECT_DIR)",
-                "$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin"
+                "$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_zippyjsoncfamily"
             ]
         },
         "configuration": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",

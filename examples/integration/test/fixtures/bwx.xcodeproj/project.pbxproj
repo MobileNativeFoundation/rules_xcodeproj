@@ -4422,7 +4422,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AD31562E1C81A14E5AE6FF64 /* Build configuration list for PBXNativeTarget "watchOSApp" */;
 			buildPhases = (
-				2591DA2B1885CB84F32218A9 /* Create compiling dependencies */,
 				3F15C214513EBB6C3C513EB3 /* Resources */,
 				059251028EA368233C79DC18 /* Embed App Extensions */,
 			);
@@ -4651,7 +4650,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EED69E6677FA4A1D173C9F27 /* Build configuration list for PBXNativeTarget "iMessageApp" */;
 			buildPhases = (
-				D111F89B8A7B7C15804685E1 /* Create compiling dependencies */,
 				72706C4746B792B0E3EA11B9 /* Resources */,
 				294721B38B8A22C3714E22A6 /* Embed App Extensions */,
 			);
@@ -6278,23 +6276,6 @@
 			shellScript = "\"$SCRIPT_INPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
-		2591DA2B1885CB84F32218A9 /* Create compiling dependencies */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(BAZEL_INTEGRATION_DIR)/create_xcode_overlay.sh",
-			);
-			name = "Create compiling dependencies";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"$SCRIPT_INPUT_FILE_0\"\n";
-			showEnvVarsInLog = 0;
-		};
 		2B3D36DE638238A881EB0F4D /* Create compiling dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -7304,23 +7285,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "set -euo pipefail\n\nperl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D111F89B8A7B7C15804685E1 /* Create compiling dependencies */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(BAZEL_INTEGRATION_DIR)/create_xcode_overlay.sh",
-			);
-			name = "Create compiling dependencies";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"$SCRIPT_INPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
 		DA9D59F71B3003C604D55396 /* Create linking dependencies */ = {
@@ -9508,13 +9472,9 @@
 				"INFOPLIST_FILE[sdk=watchos*]" = "$(BAZEL_OUT)/applebin_watchos-watchos_arm64_32-dbg-STABLE-12/bin/watchOSApp/rules_xcodeproj/watchOSApp/Info.plist";
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",
-					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
-					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 				);
 				OTHER_CPLUSPLUSFLAGS = (
-					"-ivfsoverlay",
-					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 				);
@@ -9526,14 +9486,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = watchOSApp;
-				USER_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
-					"$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-dbg-STABLE-11/bin",
-				);
-				"USER_HEADER_SEARCH_PATHS[sdk=watchos*]" = (
-					"$(PROJECT_DIR)",
-					"$(BAZEL_OUT)/applebin_watchos-watchos_arm64_32-dbg-STABLE-12/bin",
-				);
 				WATCHOS_DEPLOYMENT_TARGET = 8.0;
 			};
 			name = Debug;
@@ -9595,18 +9547,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				TARGET_NAME = LibFramework.iOS;
-				USER_HEADER_SEARCH_PATHS = (
-					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
-					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/external/com_github_krzyzanowskim_cryptoswift",
-					"$(PROJECT_DIR)",
-					"$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-7/bin",
-				);
-				"USER_HEADER_SEARCH_PATHS[sdk=iphoneos*]" = (
-					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
-					"$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/external/com_github_krzyzanowskim_cryptoswift",
-					"$(PROJECT_DIR)",
-					"$(BAZEL_OUT)/applebin_ios-ios_arm64-dbg-STABLE-8/bin",
-				);
 			};
 			name = Debug;
 		};
@@ -9734,18 +9674,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = watchOS;
-				USER_HEADER_SEARCH_PATHS = (
-					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
-					"$(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/external/com_github_krzyzanowskim_cryptoswift",
-					"$(PROJECT_DIR)",
-					"$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-dbg-STABLE-9/bin",
-				);
-				"USER_HEADER_SEARCH_PATHS[sdk=watchos*]" = (
-					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
-					"$(BAZEL_OUT)/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-5/bin/external/com_github_krzyzanowskim_cryptoswift",
-					"$(PROJECT_DIR)",
-					"$(BAZEL_OUT)/applebin_watchos-watchos_arm64_32-dbg-STABLE-10/bin",
-				);
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 				WATCHOS_FILES = "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework";
 				WATCHSIMULATOR_FILES = "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework";
@@ -9773,13 +9701,9 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",
-					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
-					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 				);
 				OTHER_CPLUSPLUSFLAGS = (
-					"-ivfsoverlay",
-					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 				);
@@ -9793,10 +9717,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				TARGET_NAME = iMessageApp;
-				USER_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
-					"$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-7/bin",
-				);
 			};
 			name = Debug;
 		};
@@ -10151,18 +10071,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = LibFramework.tvOS;
 				TVOS_DEPLOYMENT_TARGET = 15.0;
-				USER_HEADER_SEARCH_PATHS = (
-					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
-					"$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/external/com_github_krzyzanowskim_cryptoswift",
-					"$(PROJECT_DIR)",
-					"$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-dbg-STABLE-13/bin",
-				);
-				"USER_HEADER_SEARCH_PATHS[sdk=appletvos*]" = (
-					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
-					"$(BAZEL_OUT)/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-6/bin/external/com_github_krzyzanowskim_cryptoswift",
-					"$(PROJECT_DIR)",
-					"$(BAZEL_OUT)/applebin_tvos-tvos_arm64-dbg-STABLE-14/bin",
-				);
 			};
 			name = Debug;
 		};
@@ -10354,8 +10262,6 @@
 				USER_HEADER_SEARCH_PATHS = (
 					"$(BAZEL_EXTERNAL)/FXPageControl",
 					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/external/FXPageControl",
-					"$(PROJECT_DIR)",
-					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin",
 				);
 			};
 			name = Debug;
@@ -10666,18 +10572,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = tvOS;
 				TVOS_DEPLOYMENT_TARGET = 15.0;
-				USER_HEADER_SEARCH_PATHS = (
-					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
-					"$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/external/com_github_krzyzanowskim_cryptoswift",
-					"$(PROJECT_DIR)",
-					"$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-dbg-STABLE-13/bin",
-				);
-				"USER_HEADER_SEARCH_PATHS[sdk=appletvos*]" = (
-					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
-					"$(BAZEL_OUT)/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-6/bin/external/com_github_krzyzanowskim_cryptoswift",
-					"$(PROJECT_DIR)",
-					"$(BAZEL_OUT)/applebin_tvos-tvos_arm64-dbg-STABLE-14/bin",
-				);
 			};
 			name = Debug;
 		};
@@ -11207,18 +11101,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				TARGET_NAME = iOS;
-				USER_HEADER_SEARCH_PATHS = (
-					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
-					"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/external/com_github_krzyzanowskim_cryptoswift",
-					"$(PROJECT_DIR)",
-					"$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-7/bin",
-				);
-				"USER_HEADER_SEARCH_PATHS[sdk=iphoneos*]" = (
-					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
-					"$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/external/com_github_krzyzanowskim_cryptoswift",
-					"$(PROJECT_DIR)",
-					"$(BAZEL_OUT)/applebin_ios-ios_arm64-dbg-STABLE-8/bin",
-				);
 			};
 			name = Debug;
 		};
@@ -12127,18 +12009,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = LibFramework.watchOS;
-				USER_HEADER_SEARCH_PATHS = (
-					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
-					"$(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/external/com_github_krzyzanowskim_cryptoswift",
-					"$(PROJECT_DIR)",
-					"$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-dbg-STABLE-9/bin",
-				);
-				"USER_HEADER_SEARCH_PATHS[sdk=watchos*]" = (
-					"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift",
-					"$(BAZEL_OUT)/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-5/bin/external/com_github_krzyzanowskim_cryptoswift",
-					"$(PROJECT_DIR)",
-					"$(BAZEL_OUT)/applebin_watchos-watchos_arm64_32-dbg-STABLE-10/bin",
-				);
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 				WATCHOS_FILES = "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework";
 				WATCHSIMULATOR_FILES = "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework";
