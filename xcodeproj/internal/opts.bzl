@@ -105,8 +105,6 @@ def _get_unprocessed_compiler_opts(*, ctx, build_mode, target):
             swiftcopts = action.argv[2:]
 
     if not swiftcopts and CcInfo in target:
-        cc_info = target[CcInfo]
-        compilation_context = cc_info.compilation_context
         cc_toolchain = find_cpp_toolchain(ctx)
 
         feature_configuration = cc_common.configure_features(
