@@ -403,13 +403,13 @@ def _process_conlyopts(opts, *, build_settings):
     def process(opt, previous_opt):
         if previous_opt == "-isystem":
             system_includes.append(opt)
-            return None
+            return opt
         if previous_opt == "-iquote":
             quote_includes.append(opt)
-            return None
+            return opt
         if previous_opt == "-I":
             includes.append(opt)
-            return None
+            return opt
 
         if opt.startswith("-O"):
             optimizations.append(opt)
@@ -420,21 +420,17 @@ def _process_conlyopts(opts, *, build_settings):
             # of assigning to the existing variable
             has_debug_info[True] = None
             return None
-        if opt == "-isystem":
-            return None
-        if opt == "-iquote":
-            return None
-        if opt == "-I":
-            return None
+        if opt == "-isystem" or opt == "-iquote" or opt == "-I" or opt == "-F":
+            return opt
         if opt.startswith("-isystem"):
             system_includes.append(opt[8:])
-            return None
+            return opt
         if opt.startswith("-iquote"):
             quote_includes.append(opt[7:])
-            return None
+            return opt
         if opt.startswith("-I"):
             includes.append(opt[2:])
-            return None
+            return opt
         if opt.startswith("-F"):
             framework_includes.append(opt[2:])
             return opt
@@ -493,13 +489,13 @@ def _process_cxxopts(opts, *, build_settings):
     def process(opt, previous_opt):
         if previous_opt == "-isystem":
             system_includes.append(opt)
-            return None
+            return opt
         if previous_opt == "-iquote":
             quote_includes.append(opt)
-            return None
+            return opt
         if previous_opt == "-I":
             includes.append(opt)
-            return None
+            return opt
 
         if opt.startswith("-O"):
             optimizations.append(opt)
@@ -510,21 +506,17 @@ def _process_cxxopts(opts, *, build_settings):
             # of assigning to the existing variable
             has_debug_info[True] = None
             return None
-        if opt == "-isystem":
-            return None
-        if opt == "-iquote":
-            return None
-        if opt == "-I":
-            return None
+        if opt == "-isystem" or opt == "-iquote" or opt == "-I" or opt == "-F":
+            return opt
         if opt.startswith("-isystem"):
             system_includes.append(opt[8:])
-            return None
+            return opt
         if opt.startswith("-iquote"):
             quote_includes.append(opt[7:])
-            return None
+            return opt
         if opt.startswith("-I"):
             includes.append(opt[2:])
-            return None
+            return opt
         if opt.startswith("-F"):
             framework_includes.append(opt[2:])
             return opt

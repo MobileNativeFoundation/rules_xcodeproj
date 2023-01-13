@@ -216,6 +216,10 @@
                 "-Wuninitialized",
                 "-Wunused-function",
                 "-Wunused-variable",
+                "-iquote",
+                ".",
+                "-iquote",
+                "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin",
                 "-DOS_IOS",
                 "-fno-autolink",
                 "-fexceptions",
@@ -230,11 +234,7 @@
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
             "SWIFT_VERSION": "5.0",
-            "TARGETED_DEVICE_FAMILY": "1",
-            "USER_HEADER_SEARCH_PATHS": [
-                ".",
-                "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin"
-            ]
+            "TARGETED_DEVICE_FAMILY": "1"
         },
         "compile_target": {
             "id": "//UndefinedBehaviorSanitizerApp:UndefinedBehaviorSanitizerApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",

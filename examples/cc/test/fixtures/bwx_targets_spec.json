@@ -13,6 +13,14 @@
                 "-Wthread-safety",
                 "-Wself-assign",
                 "-fno-omit-frame-pointer",
+                "-iquote",
+                ".",
+                "-iquote",
+                "bazel-out/darwin_x86_64-dbg-STABLE-1/bin",
+                "-isystem",
+                "lib2/includes",
+                "-isystem",
+                "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib2/includes",
                 "-no-canonical-prefixes",
                 "-pthread",
                 "-no-canonical-prefixes",
@@ -23,15 +31,7 @@
             ],
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-            "SWIFT_VERSION": "5.0",
-            "SYSTEM_HEADER_SEARCH_PATHS": [
-                "lib2/includes",
-                "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib2/includes"
-            ],
-            "USER_HEADER_SEARCH_PATHS": [
-                ".",
-                "bazel-out/darwin_x86_64-dbg-STABLE-1/bin"
-            ]
+            "SWIFT_VERSION": "5.0"
         },
         "configuration": "darwin_x86_64-dbg-STABLE-1",
         "inputs": {
@@ -141,10 +141,6 @@
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
             "GCC_OPTIMIZATION_LEVEL": "0",
-            "HEADER_SEARCH_PATHS": [
-                "lib/private",
-                "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib/private"
-            ],
             "OTHER_CFLAGS": [
                 "-D_FORTIFY_SOURCE=1",
                 "-fstack-protector",
@@ -152,6 +148,10 @@
                 "-Wthread-safety",
                 "-Wself-assign",
                 "-fno-omit-frame-pointer",
+                "-iquote",
+                ".",
+                "-iquote",
+                "bazel-out/darwin_x86_64-dbg-STABLE-1/bin",
                 "-DSECRET_3=\"Hello\"",
                 "-no-canonical-prefixes",
                 "-pthread",
@@ -159,15 +159,13 @@
                 "-Wno-builtin-macro-redefined",
                 "-D__DATE__=\"redacted\"",
                 "-D__TIMESTAMP__=\"redacted\"",
-                "-D__TIME__=\"redacted\""
+                "-D__TIME__=\"redacted\"",
+                "-Ilib/private",
+                "-Ibazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib/private"
             ],
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-            "SWIFT_VERSION": "5.0",
-            "USER_HEADER_SEARCH_PATHS": [
-                ".",
-                "bazel-out/darwin_x86_64-dbg-STABLE-1/bin"
-            ]
+            "SWIFT_VERSION": "5.0"
         },
         "configuration": "darwin_x86_64-dbg-STABLE-1",
         "inputs": {
@@ -215,6 +213,22 @@
                 "-Wthread-safety",
                 "-Wself-assign",
                 "-fno-omit-frame-pointer",
+                "-iquote",
+                ".",
+                "-iquote",
+                "bazel-out/darwin_x86_64-dbg-STABLE-1/bin",
+                "-iquote",
+                "external/examples_cc_external",
+                "-iquote",
+                "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external",
+                "-iquote",
+                "external/bazel_tools",
+                "-iquote",
+                "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/bazel_tools",
+                "-isystem",
+                "lib2/includes",
+                "-isystem",
+                "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib2/includes",
                 "-DSECRET_2=\"World!\"",
                 "-DEXTERNAL_SECRET_2=\"World?\"",
                 "-no-canonical-prefixes",
@@ -227,19 +241,7 @@
             ],
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-            "SWIFT_VERSION": "5.0",
-            "SYSTEM_HEADER_SEARCH_PATHS": [
-                "lib2/includes",
-                "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib2/includes"
-            ],
-            "USER_HEADER_SEARCH_PATHS": [
-                ".",
-                "bazel-out/darwin_x86_64-dbg-STABLE-1/bin",
-                "external/examples_cc_external",
-                "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external",
-                "external/bazel_tools",
-                "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/bazel_tools"
-            ]
+            "SWIFT_VERSION": "5.0"
         },
         "configuration": "darwin_x86_64-dbg-STABLE-1",
         "dependencies": [
@@ -361,10 +363,6 @@
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
             "GCC_OPTIMIZATION_LEVEL": "0",
-            "HEADER_SEARCH_PATHS": [
-                "external/examples_cc_external/private",
-                "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external/private"
-            ],
             "OTHER_CFLAGS": [
                 "-D_FORTIFY_SOURCE=1",
                 "-fstack-protector",
@@ -372,6 +370,10 @@
                 "-Wthread-safety",
                 "-Wself-assign",
                 "-fno-omit-frame-pointer",
+                "-iquote",
+                "external/examples_cc_external",
+                "-iquote",
+                "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external",
                 "-DEXTERNAL_SECRET_3=\"Goodbye\"",
                 "-no-canonical-prefixes",
                 "-pthread",
@@ -379,15 +381,13 @@
                 "-Wno-builtin-macro-redefined",
                 "-D__DATE__=\"redacted\"",
                 "-D__TIMESTAMP__=\"redacted\"",
-                "-D__TIME__=\"redacted\""
+                "-D__TIME__=\"redacted\"",
+                "-Iexternal/examples_cc_external/private",
+                "-Ibazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external/private"
             ],
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-            "SWIFT_VERSION": "5.0",
-            "USER_HEADER_SEARCH_PATHS": [
-                "external/examples_cc_external",
-                "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external"
-            ]
+            "SWIFT_VERSION": "5.0"
         },
         "configuration": "darwin_x86_64-dbg-STABLE-1",
         "inputs": {
