@@ -647,22 +647,31 @@ def _process_swiftcopts(
             path = opt[8:]
             if previous_opt == "-Xcc":
                 system_includes.append(path)
-            if build_mode == "xcode":
-                return "-isystem" + _process_copt_possible_path(path)
+            if (build_mode == "xcode" and path != "." and
+                not path.startswith("/")):
+                return "-isystem$(PROJECT_DIR)/" + path
             return opt
         if opt.startswith("-iquote"):
             path = opt[7:]
             if previous_opt == "-Xcc":
                 quote_includes.append(path)
-            if build_mode == "xcode":
-                return "-iquote" + _process_copt_possible_path(path)
+            if (build_mode == "xcode" and path != "." and
+                not path.startswith("/")):
+                return "-iquote$(PROJECT_DIR)/" + path
             return opt
         if opt.startswith("-I"):
             path = opt[2:]
             if previous_opt == "-Xcc":
                 includes.append(path)
-            if build_mode == "xcode":
-                return "-I" + _process_copt_possible_path(path)
+            if (build_mode == "xcode" and path != "." and
+                not path.startswith("/")):
+                return "-I$(PROJECT_DIR)/" + path
+            return opt
+        if opt.startswith("-fmodule-map-file="):
+            path = opt[18:]
+            if (build_mode == "xcode" and path != "." and
+                not path.startswith("/")):
+                return "-fmodule-map-file=$(PROJECT_DIR)/" + path
             return opt
         if opt.startswith("-F"):
             framework_includes.append(opt[2:])
@@ -670,8 +679,6 @@ def _process_swiftcopts(
         if previous_opt == "-Xcc":
             # We do this check here, to prevent the `-O` and `-D` logic below
             # from incorrectly detecting this situation
-            if build_mode == "xcode":
-                return _process_copt_for_paths(opt)
             return opt
 
         if previous_opt == "-emit-objc-header-path":
@@ -725,8 +732,6 @@ Using VFS overlays with `build_mode = "xcode"` is unsupported.
             # we collect C and C++ compiler options.
             return None
 
-        if build_mode == "xcode":
-            return _process_copt_for_paths(opt)
         return opt
 
     # Xcode's default is `-O` when not set, so minimally set it to `-Onone`,
@@ -757,22 +762,6 @@ Using VFS overlays with `build_mode = "xcode"` is unsupported.
     )
 
     return processed_opts, search_paths, has_debug_info
-
-def _process_copt_for_paths(copt):
-    components = copt.split("=", 1)
-    if len(components) > 1:
-        return "{}={}".format(
-            components[0],
-            _process_copt_possible_path(components[1]),
-        )
-    return _process_copt_possible_path(copt)
-
-def _process_copt_possible_path(copt):
-    if copt == "bazel-out" or copt.startswith("bazel-out/"):
-        return "$(BAZEL_OUT){}".format(copt[9:])
-    if copt == "external" or copt.startswith("external/"):
-        return "$(BAZEL_EXTERNAL){}".format(copt[8:])
-    return copt
 
 def swift_pcm_copts(*, compilation_mode, objc_fragment, cc_info):
     base_pcm_flags = _swift_command_line_objc_copts(

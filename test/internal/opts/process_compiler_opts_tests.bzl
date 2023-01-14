@@ -251,7 +251,7 @@ weird \
 -Xcc \
 -iquote. \
 -Xcc \
--iquote$(BAZEL_OUT)/ios-sim_arm64-min15.0-applebin_ios-ios_sim_arm64-fastbuild-ST-4e6c2a19403f/bin \
+-iquote$(PROJECT_DIR)/bazel-out/ios-sim_arm64-min15.0-applebin_ios-ios_sim_arm64-fastbuild-ST-4e6c2a19403f/bin \
 -unhandled \
 -Xcc \
 -O0 \
@@ -561,15 +561,15 @@ $(PROJECT_DIR)/relative/Path.yaml \
 -import-underlying-module \
 -passthrough \
 -passthrough \
--I__BAZEL_XCODE_SOMETHING_/path \
+-I$(PROJECT_DIR)/__BAZEL_XCODE_SOMETHING_/path \
 -passthrough \
--I$(BAZEL_OUT)/... \
+-I$(PROJECT_DIR)/bazel-out/... \
 -passthrough \
 -keep-me=something.swift \
 -Xcc \
 -weird \
 -Xcc \
--a=$(BAZEL_OUT)/hi \
+-a=bazel-out/hi \
 -passthrough\
 """,
         },
