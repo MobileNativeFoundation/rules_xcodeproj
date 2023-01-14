@@ -9,6 +9,7 @@ from typing import Dict, List
 def _main(
         xcode_generated_paths_path: str,
         generated_framework_search_paths_path: str,
+        is_framework: bool,
         self_linked_path: str,
         swift_triple: str,
         output_path: str,
@@ -25,6 +26,7 @@ def _main(
         linkopts = _parse_args(args)[1:],
         xcode_generated_paths = xcode_generated_paths,
         generated_framework_search_paths = generated_framework_search_paths,
+        is_framework = is_framework,
         self_linked_path = self_linked_path,
         swift_triple = swift_triple
     )
@@ -71,6 +73,7 @@ def _process_linkopts(
         linkopts: List[str],
         xcode_generated_paths: Dict[str, str],
         generated_framework_search_paths: Dict[str, Dict[str, str]],
+        is_framework: bool,
         self_linked_path: str,
         swift_triple: str
     ) -> List[str]:
@@ -99,29 +102,35 @@ def _process_linkopts(
         return "{}={}".format(prefix, _process_linkopt_value(suffix))
 
     processed_linkopts = []
+    swiftui_previews_linkopts = []
     last_opt = None
     def _process_linkopt(opt):
         if opt == "-filelist":
-            return None
+            return
         if last_opt == "-filelist":
             processed_linkopts.extend(_process_filelist(opt))
-            return None
+            return
         if self_linked_path and opt.endswith(self_linked_path):
             if last_opt == "-force_load":
                 processed_linkopts.pop()
-            return None
+            return
+
+        if opt == "-Wl,-rpath,@loader_path/SwiftUIPreviewsFrameworks":
+            if is_framework:
+                processed_linkopts.extend(swiftui_previews_linkopts)
+            return
 
         # Xcode sets entitlements
         if opt.startswith("-Wl,-sectcreate,__TEXT,__entitlements,"):
-            return None
+            return
 
         # Xcode sets Info.plist
         if opt.startswith("-Wl,-sectcreate,__TEXT,__info_plist,"):
-            return None
+            return
 
         # Xcode adds object files
         if opt.endswith(".o"):
-            return None
+            return
 
         if opt.startswith("-F"):
             path = opt[2:]
@@ -130,10 +139,12 @@ def _process_linkopts(
                 xcode_path = search_paths.get("x")
                 if xcode_path:
                     processed_linkopts.append("-F" + xcode_path)
+                    swiftui_previews_linkopts.append("-Wl,-rpath," + xcode_path)
                 bazel_path = search_paths.get("b")
                 if bazel_path:
                     processed_linkopts.append("-F" + bazel_path)
-                return None
+                    swiftui_previews_linkopts.append("-Wl,-rpath," + bazel_path)
+                return
 
         # Use Xcode set `DEVELOPER_DIR`
         opt = opt.replace("__BAZEL_XCODE_DEVELOPER_DIR__", "$(DEVELOPER_DIR)")
@@ -141,10 +152,10 @@ def _process_linkopts(
         # Use Xcode set `SDKROOT`
         opt = opt.replace("__BAZEL_XCODE_SDKROOT__", "$(SDKROOT)")
 
-        return ",".join([
+        processed_linkopts.append(",".join([
             _process_linkopt_component(component)
             for component in opt.split(",")
-        ])
+        ]))
 
     skip_next = 0
     for linkopt in linkopts:
@@ -156,21 +167,19 @@ def _process_linkopts(
             skip_next -= 1
             continue
 
-        new_linkopt = _process_linkopt(linkopt)
+        _process_linkopt(linkopt)
         last_opt = linkopt
-        if new_linkopt:
-            processed_linkopts.append(new_linkopt)
 
     return processed_linkopts
 
 
 if __name__ == "__main__":
-    if len(sys.argv) < 7:
+    if len(sys.argv) < 8:
         print(
             f"""
 Usage: {sys.argv[0]} <xcode_generated_paths.json> \
-<generated_framework_search_paths.json> <self_linked_output> <swift_triple> \
-<output> <args...>\
+<generated_framework_search_paths.json> <is_framework> <self_linked_output> \
+<swift_triple> <output> <args...>\
 """,
             file = sys.stderr,
         )
@@ -179,8 +188,9 @@ Usage: {sys.argv[0]} <xcode_generated_paths.json> \
     _main(
         sys.argv[1],
         sys.argv[2],
-        sys.argv[3],
+        sys.argv[3] == "1",
         sys.argv[4],
         sys.argv[5],
-        sys.argv[6:],
+        sys.argv[6],
+        sys.argv[7:],
     )
