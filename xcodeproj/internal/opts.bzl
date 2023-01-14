@@ -273,7 +273,12 @@ def _process_base_compiler_opts(
 
     return processed_opts
 
-def create_opts_search_paths(quote_includes, includes, system_includes):
+def create_opts_search_paths(
+        *,
+        quote_includes,
+        includes,
+        system_includes,
+        framework_includes):
     """Creates a value representing search paths of a target.
 
     Args:
@@ -281,15 +286,19 @@ def create_opts_search_paths(quote_includes, includes, system_includes):
         includes: A `list` of include paths (i.e. `-I` values).
         system_includes: A `list` of system include paths (i.e. `-isystem`
             values).
+        framework_includes: A `list` of framework include paths (i.e. `-F`
+            values).
 
     Returns:
         A `struct` containing the `quote_includes`, `includes`, and
-        `system_includes` fields provided as arguments.
+        `system_includes`, and `framework_includes` fields provided as
+        arguments.
     """
     return struct(
         quote_includes = tuple(quote_includes),
         includes = tuple(includes),
         system_includes = tuple(system_includes),
+        framework_includes = tuple(framework_includes),
     )
 
 def merge_opts_search_paths(search_paths):
@@ -307,16 +316,19 @@ def merge_opts_search_paths(search_paths):
     quote_includes = []
     includes = []
     system_includes = []
+    framework_includes = []
 
     for search_path in search_paths:
         quote_includes.extend(search_path.quote_includes)
         includes.extend(search_path.includes)
         system_includes.extend(search_path.system_includes)
+        framework_includes.extend(search_path.framework_includes)
 
     return create_opts_search_paths(
         quote_includes = uniq(quote_includes),
         includes = uniq(includes),
         system_includes = uniq(system_includes),
+        framework_includes = uniq(framework_includes),
     )
 
 def _process_conlyopts(opts, *, build_settings):
@@ -342,6 +354,7 @@ def _process_conlyopts(opts, *, build_settings):
     quote_includes = []
     includes = []
     system_includes = []
+    framework_includes = []
     has_debug_info = {}
 
     def process(opt, previous_opt):
@@ -379,6 +392,9 @@ def _process_conlyopts(opts, *, build_settings):
         if opt.startswith("-I"):
             includes.append(opt[2:])
             return None
+        if opt.startswith("-F"):
+            framework_includes.append(opt[2:])
+            return opt
         if opt.startswith("-D"):
             value = opt[2:]
             if value.startswith("OBJC_OLD_DISPATCH_PROTOTYPES"):
@@ -404,6 +420,7 @@ def _process_conlyopts(opts, *, build_settings):
         quote_includes = uniq(quote_includes),
         includes = uniq(includes),
         system_includes = uniq(system_includes),
+        framework_includes = uniq(framework_includes),
     )
 
     return processed_opts, defines, optimizations, search_paths, has_debug_info
@@ -431,6 +448,7 @@ def _process_cxxopts(opts, *, build_settings):
     quote_includes = []
     includes = []
     system_includes = []
+    framework_includes = []
     has_debug_info = {}
 
     def process(opt, previous_opt):
@@ -468,6 +486,9 @@ def _process_cxxopts(opts, *, build_settings):
         if opt.startswith("-I"):
             includes.append(opt[2:])
             return None
+        if opt.startswith("-F"):
+            framework_includes.append(opt[2:])
+            return opt
         if opt.startswith("-D"):
             value = opt[2:]
             if value.startswith("OBJC_OLD_DISPATCH_PROTOTYPES"):
@@ -491,6 +512,7 @@ def _process_cxxopts(opts, *, build_settings):
         quote_includes = uniq(quote_includes),
         includes = uniq(includes),
         system_includes = uniq(system_includes),
+        framework_includes = uniq(framework_includes),
     )
 
     return processed_opts, defines, optimizations, search_paths, has_debug_info
@@ -616,6 +638,7 @@ def _process_swiftcopts(
     quote_includes = []
     includes = []
     system_includes = []
+    framework_includes = []
     has_debug_info = {}
 
     def process(opt, previous_opt):
@@ -640,6 +663,9 @@ def _process_swiftcopts(
                 includes.append(path)
             if build_mode == "xcode":
                 return "-I" + _process_copt_possible_path(path)
+            return opt
+        if opt.startswith("-F"):
+            framework_includes.append(opt[2:])
             return opt
         if previous_opt == "-Xcc":
             # We do this check here, to prevent the `-O` and `-D` logic below
@@ -720,6 +746,7 @@ Using VFS overlays with `build_mode = "xcode"` is unsupported.
         quote_includes = uniq(quote_includes),
         includes = uniq(includes),
         system_includes = uniq(system_includes),
+        framework_includes = uniq(framework_includes),
     )
 
     set_if_true(
