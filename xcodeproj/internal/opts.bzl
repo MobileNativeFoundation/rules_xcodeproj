@@ -127,6 +127,9 @@ def _get_unprocessed_compiler_opts(*, ctx, build_mode, target):
             include_directories = compilation_context.includes,
             quote_include_directories = compilation_context.quote_includes,
             system_include_directories = compilation_context.system_includes,
+            framework_include_directories = (
+                compilation_context.framework_includes
+            ),
         )
 
         is_objc = apple_common.Objc in target
