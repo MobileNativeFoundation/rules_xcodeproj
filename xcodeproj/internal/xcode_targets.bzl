@@ -335,7 +335,6 @@ def _set_bazel_outputs_product(
 def _set_search_paths(
         *,
         build_settings,
-        generated_framework_search_paths,
         search_paths_intermediate,
         xcode_target):
     if not xcode_target.is_swift:
@@ -363,29 +362,6 @@ def _set_search_paths(
                 for path in search_paths_intermediate.system_includes
             ],
         )
-
-    if (xcode_target.product.type != "com.apple.product-type.framework" or
-        not generated_framework_search_paths):
-        return
-
-    framework_search_paths = []
-    for search_paths in generated_framework_search_paths.values():
-        xcode_path = search_paths.get("x")
-        if xcode_path:
-            framework_search_paths.append(xcode_path)
-        bazel_path = search_paths.get("b")
-        if bazel_path:
-            framework_search_paths.append(bazel_path)
-
-    build_settings.update({
-        "LD_RUNPATH_SEARCH_PATHS": "$(PREVIEWS_LD_RUNPATH_SEARCH_PATHS__$(ENABLE_PREVIEWS))",
-        "PREVIEWS_LD_RUNPATH_SEARCH_PATHS__": "$(PREVIEWS_LD_RUNPATH_SEARCH_PATHS__NO)",
-        "PREVIEWS_LD_RUNPATH_SEARCH_PATHS__NO": [],
-        "PREVIEWS_LD_RUNPATH_SEARCH_PATHS__YES": [
-            quote_if_needed(path)
-            for path in framework_search_paths
-        ],
-    })
 
 def _set_preview_framework_paths(
         *,
@@ -489,9 +465,8 @@ def _generated_framework_search_paths(
                 paths.dirname(xcode_generated_path)
             )
         else:
-            # Since we use `framework_search_paths` in
-            # `PREVIEWS_LD_RUNPATH_SEARCH_PATHS__YES`, we need to fully
-            #  qualify the paths
+            # Since we use `framework_search_paths` in `link.params`, we need to
+            # fully qualify the paths
             framework_search_paths.setdefault(search_path, {})["b"] = (
                 build_setting_path(file = file, path = search_path)
             )
@@ -585,6 +560,9 @@ def _xcode_target_to_dto(
         ctx = ctx,
         compile_target = xcode_target._compile_target,
         generated_framework_search_paths = generated_framework_search_paths,
+        is_framework = (
+            xcode_target.product.type == "com.apple.product-type.framework"
+        ),
         link_params_processor = link_params_processor,
         linker_inputs = xcode_target.linker_inputs,
         name = xcode_target.name,
@@ -600,7 +578,6 @@ def _xcode_target_to_dto(
             build_mode = build_mode,
             is_fixture = is_fixture,
             linker_products_map = linker_products_map,
-            generated_framework_search_paths = generated_framework_search_paths,
             search_paths_intermediate = search_paths_intermediate,
             xcode_generated_paths = xcode_generated_paths,
             xcode_target = xcode_target,
@@ -701,7 +678,6 @@ def _build_settings_to_dto(
         build_mode,
         is_fixture,
         linker_products_map,
-        generated_framework_search_paths,
         search_paths_intermediate,
         xcode_generated_paths,
         xcode_target):
@@ -719,7 +695,6 @@ def _build_settings_to_dto(
     )
     _set_search_paths(
         build_settings = build_settings,
-        generated_framework_search_paths = generated_framework_search_paths,
         search_paths_intermediate = search_paths_intermediate,
         xcode_target = xcode_target,
     )
@@ -800,6 +775,7 @@ def _linker_inputs_to_dto(
         ctx,
         compile_target,
         generated_framework_search_paths,
+        is_framework,
         link_params_processor,
         name,
         params_index,
@@ -847,6 +823,7 @@ def _linker_inputs_to_dto(
         args = ctx.actions.args()
         args.add(xcode_generated_paths_file)
         args.add(generated_framework_search_paths_file)
+        args.add("1" if is_framework else "0")
         args.add(avoid_library.path if avoid_library else "")
         args.add(platform_info.to_swift_triple(platform))
         args.add(link_params)
