@@ -218,6 +218,7 @@ def _get_outputs(*, id, product, swift_info):
         id = id,
         is_framework = is_framework,
         product = product.file if product else None,
+        product_path = product.path if product else None,
         product_file_path = product.actual_file_path if product else None,
         swift = swift,
     )

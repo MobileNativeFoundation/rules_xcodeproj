@@ -182,6 +182,9 @@ def _to_xcode_target_outputs(outputs):
         product_file = (
             direct_outputs.product if direct_outputs else None
         ),
+        product_path = (
+            direct_outputs.product_path if direct_outputs else None
+        ),
         products_output_group_name = outputs.products_output_group_name,
         swiftmodule = swiftmodule,
         swift_generated_header = swift_generated_header,
@@ -289,6 +292,7 @@ def _merge_xcode_target_outputs(*, src, dest):
         swiftmodule = src.swiftmodule,
         swift_generated_header = src.swift_generated_header,
         product_file = dest.product_file,
+        product_path = dest.product_path,
         products_output_group_name = dest.products_output_group_name,
         transitive_infoplists = dest.transitive_infoplists,
     )
@@ -326,11 +330,11 @@ def _set_bazel_outputs_product(
     if build_mode != "bazel":
         return
 
-    file = xcode_target.outputs.product_file
-    if not file:
+    path = xcode_target.outputs.product_path
+    if not path:
         return
 
-    build_settings["BAZEL_OUTPUTS_PRODUCT"] = file.path
+    build_settings["BAZEL_OUTPUTS_PRODUCT"] = path
 
 def _set_search_paths(
         *,
