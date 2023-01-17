@@ -43,7 +43,7 @@ if [[ -n "${RESOLVED_EXTERNAL_REPOSITORIES:-}" ]]; then
   for (( i=0; i<${#external_repos[@]}; i+=2 )); do
     dir_name="${external_repos[$i]}"
     path="${external_repos[$i+1]}"
-    echo "settings append target.source-map \"./external/$dir_name\" \"$path\""
+    echo "settings append target.source-map \"./external/$dir_name/\" \"$path\""
   done
 fi
 
