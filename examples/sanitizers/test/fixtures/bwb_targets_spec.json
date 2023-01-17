@@ -2,7 +2,7 @@
     "//AddressSanitizerApp:AddressSanitizerApp applebin_ios-ios_x86_64-dbg-STABLE-2",
     {
         "build_settings": {
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/AddressSanitizerApp/AddressSanitizerApp.ipa",
+            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/AddressSanitizerApp/AddressSanitizerApp_archive-root/Payload/AddressSanitizerApp.app",
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf",
             "ENABLE_BITCODE": false,
@@ -99,7 +99,7 @@
     "//ThreadSanitizerApp:ThreadSanitizerApp applebin_ios-ios_x86_64-dbg-STABLE-2",
     {
         "build_settings": {
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/ThreadSanitizerApp/ThreadSanitizerApp.ipa",
+            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/ThreadSanitizerApp/ThreadSanitizerApp_archive-root/Payload/ThreadSanitizerApp.app",
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf",
             "ENABLE_BITCODE": false,
@@ -196,7 +196,7 @@
     "//UndefinedBehaviorSanitizerApp:UndefinedBehaviorSanitizerApp applebin_ios-ios_x86_64-dbg-STABLE-2",
     {
         "build_settings": {
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/UndefinedBehaviorSanitizerApp/UndefinedBehaviorSanitizerApp.ipa",
+            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/UndefinedBehaviorSanitizerApp/UndefinedBehaviorSanitizerApp_archive-root/Payload/UndefinedBehaviorSanitizerApp.app",
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf",
             "ENABLE_BITCODE": false,

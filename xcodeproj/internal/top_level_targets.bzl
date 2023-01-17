@@ -144,9 +144,7 @@ def process_top_level_properties(
 
             # "some/test.xctest/binary" -> "some/test.xctest"
             xctest_path = bundle_file.path
-            bundle_path = xctest_path[
-                :-(len(xctest_path.split(".xctest/")[1]) + 1)
-            ]
+            bundle_path = xctest_path[:-(len(xctest_path.split(".xctest/")[1]) + 1)]
             bundle_file_path = file_path(
                 bundle_file,
                 path = bundle_path,
