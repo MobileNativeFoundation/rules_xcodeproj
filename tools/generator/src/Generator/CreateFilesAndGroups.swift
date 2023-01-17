@@ -65,12 +65,14 @@ extension Generator {
         files: [FilePath: File],
         rootElements: [PBXFileElement],
         xcodeGeneratedFiles: [FilePath: FilePath],
-        resolvedExternalRepositories: [(Path, Path)]
+        resolvedRepositories: [(Path, Path)]
     ) {
         var fileReferences: [FilePath: PBXFileReference] = [:]
         var groups: [FilePath: PBXGroup] = [:]
         var knownRegions: Set<String> = []
-        var resolvedExternalRepositories: [(Path, Path)] = []
+        var resolvedRepositories: [(Path, Path)] = [
+            ("", forFixtures ? "$(SRCROOT)" : directories.workspace),
+        ]
 
         func resolveFilePath(
             _ filePath: FilePath,
@@ -99,8 +101,11 @@ extension Generator {
                     let relativePath = Path(components: relativeComponents)
 
                     if isGroup {
-                        resolvedExternalRepositories.append(
-                            (filePath.path, "$(SRCROOT)" + relativePath)
+                        resolvedRepositories.append(
+                            (
+                                "/external" + filePath.path,
+                                "$(SRCROOT)" + relativePath
+                            )
                         )
                     }
 
@@ -111,8 +116,8 @@ extension Generator {
                     )
                 } else {
                     if isGroup {
-                        resolvedExternalRepositories.append(
-                            (filePath.path, symlinkDest)
+                        resolvedRepositories.append(
+                            ("/external" + filePath.path, symlinkDest)
                         )
                     }
 
@@ -819,7 +824,7 @@ class StopHook:
             files,
             rootElements,
             xcodeGeneratedFiles,
-            resolvedExternalRepositories
+            resolvedRepositories
         )
     }
 

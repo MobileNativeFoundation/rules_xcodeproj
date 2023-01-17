@@ -4,17 +4,17 @@ import XcodeProj
 extension Generator {
     static func setAdditionalProjectConfiguration (
         _ pbxProj: PBXProj,
-        _ resolvedExternalRepositories: [(Path, Path)]
+        _ resolvedRepositories: [(Path, Path)]
     ) {
-        let resolvedExternalRepositoriesString = resolvedExternalRepositories
+        let resolvedRepositoriesString = resolvedRepositories
             // Sorted by length to ensure that subdirectories are listed first
-            .sorted { $0.0.string.count > $1.0.string.count }
+            .sorted { $0.1.string.count > $1.1.string.count }
             .map { #""\#($0)" "\#($1)""# }
             .joined(separator: " ")
 
         for configuration in pbxProj.buildConfigurations {
-            configuration.buildSettings["RESOLVED_EXTERNAL_REPOSITORIES"] =
-            resolvedExternalRepositoriesString
+            configuration.buildSettings["RESOLVED_REPOSITORIES"] =
+                resolvedRepositoriesString
         }
     }
 }

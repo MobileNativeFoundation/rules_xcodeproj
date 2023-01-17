@@ -429,7 +429,7 @@ enum Fixtures {
         files: [FilePath: File],
         elements: [FilePath: PBXFileElement],
         xcodeGeneratedFiles: [FilePath: FilePath],
-        resolvedExternalRepositories: [(Path, Path)]
+        resolvedRepositories: [(Path, Path)]
     ) {
         var elements: [FilePath: PBXFileElement] = [:]
 

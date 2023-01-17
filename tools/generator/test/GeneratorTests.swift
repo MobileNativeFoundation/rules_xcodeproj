@@ -156,7 +156,7 @@ final class GeneratorTests: XCTestCase {
             files,
             filesAndGroups,
             xcodeGeneratedFiles,
-            resolvedExternalRepositories
+            resolvedRepositories
         ) = Fixtures.files(
             in: pbxProj,
             buildMode: buildMode,
@@ -289,7 +289,7 @@ final class GeneratorTests: XCTestCase {
             files: [FilePath: File],
             rootElements: [PBXFileElement],
             xcodeGeneratedFiles: [FilePath: FilePath],
-            resolvedExternalRepositories: [(Path, Path)]
+            resolvedRepositories: [(Path, Path)]
         ) {
             createFilesAndGroupsCalled.append(.init(
                 pbxProj: pbxProj,
@@ -304,7 +304,7 @@ final class GeneratorTests: XCTestCase {
                 files,
                 rootElements,
                 xcodeGeneratedFiles,
-                resolvedExternalRepositories
+                resolvedRepositories
             )
         }
 
@@ -328,7 +328,7 @@ final class GeneratorTests: XCTestCase {
             [SetAdditionalProjectConfigurationCalled] = []
         func setAdditionalProjectConfiguration(
             in pbxProj: PBXProj,
-            resolvedExternalRepositories: [(Path, Path)]
+            resolvedRepositories: [(Path, Path)]
         ) {
             setAdditionalProjectConfigurationCalled.append(.init(
                 pbxProj: pbxProj

@@ -79,7 +79,7 @@ class Generator {
             files,
             rootElements,
             xcodeGeneratedFiles,
-            resolvedExternalRepositories
+            resolvedRepositories
         ) = try environment.createFilesAndGroups(
             pbxProj,
             buildMode,
@@ -94,7 +94,7 @@ class Generator {
 
         environment.setAdditionalProjectConfiguration(
             pbxProj,
-            resolvedExternalRepositories
+            resolvedRepositories
         )
 
         let consolidatedTargets = try environment.consolidateTargets(

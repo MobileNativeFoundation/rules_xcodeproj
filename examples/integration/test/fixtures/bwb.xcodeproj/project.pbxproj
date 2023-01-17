@@ -10057,7 +10057,7 @@
 				);
 				LIBTOOL = "$(BAZEL_INTEGRATION_DIR)/libtool.sh";
 				ONLY_ACTIVE_ARCH = YES;
-				RESOLVED_EXTERNAL_REPOSITORIES = "\"examples_command_line_external/ImportableLibrary\" \"$(SRCROOT)/CommandLine/external/ImportableLibrary\" \"examples_ios_app_external\" \"$(SRCROOT)/iOSApp/external\"";
+				RESOLVED_REPOSITORIES = "\"/external/examples_command_line_external/ImportableLibrary\" \"$(SRCROOT)/CommandLine/external/ImportableLibrary\" \"/external/examples_ios_app_external\" \"$(SRCROOT)/iOSApp/external\" \"\" \"$(SRCROOT)\"";
 				RULES_XCODEPROJ_BUILD_MODE = bazel;
 				SCHEME_TARGET_IDS_FILE = "$(OBJROOT)/scheme_target_ids";
 				SRCROOT = ../../../../..;
