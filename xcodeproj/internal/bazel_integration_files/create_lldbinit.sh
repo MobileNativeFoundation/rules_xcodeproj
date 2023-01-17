@@ -37,16 +37,6 @@ echo "settings set target.source-map ./bazel-out/ \"$BAZEL_OUT\""
 # `bazel-out` when set from indexing opened file
 echo "settings append target.source-map ./bazel-out/ \"$index_bazel_out\""
 
-if [[ -n "${RESOLVED_EXTERNAL_REPOSITORIES:-}" ]]; then
-  # `external` for local repositories when set from Project navigator
-  while IFS='' read -r x; do external_repos+=("$x"); done < <(xargs -n1 <<< "$RESOLVED_EXTERNAL_REPOSITORIES")
-  for (( i=0; i<${#external_repos[@]}; i+=2 )); do
-    dir_name="${external_repos[$i]}"
-    path="${external_repos[$i+1]}"
-    echo "settings append target.source-map \"./external/$dir_name/\" \"$path\""
-  done
-fi
-
 # `external` when set from Project navigator
 echo "settings append target.source-map ./external/ \"$BAZEL_EXTERNAL\""
 # `external` when set from indexing opened file
@@ -54,8 +44,22 @@ echo "settings append target.source-map ./external/ \"$index_external\""
 # `external` when set from swiftsourcefile
 echo "settings append target.source-map ./external/ \"$build_external\""
 
-# Project files
-echo "settings append target.source-map ./ \"$SRCROOT\""
+# Project files and locally resolved external repositories
+#
+# lldb seems to match breakpoints based on the second argument, using a simple
+# prefix check that doesn't take into account the trailing slash. This means
+# that we have to order the source-map settings so that the longest paths are
+# first, otherwise an earlier setting can prevent a later setting from matching.
+if [[ -n "${RESOLVED_REPOSITORIES:-}" ]]; then
+  # `external` for local repositories when set from Project navigator,
+  # and the project root
+  while IFS='' read -r x; do repos+=("$x"); done < <(xargs -n1 <<< "$RESOLVED_REPOSITORIES")
+  for (( i=0; i<${#repos[@]}; i+=2 )); do
+    prefix="${repos[$i]}"
+    path="${repos[$i+1]}"
+    echo "settings append target.source-map \".$prefix/\" \"$path\""
+  done
+fi
 
 # Import swift_debug_settings.py
 #

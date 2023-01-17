@@ -38,12 +38,12 @@ struct Environment {
         files: [FilePath: File],
         rootElements: [PBXFileElement],
         xcodeGeneratedFiles: [FilePath: FilePath],
-        resolvedExternalRepositories: [(Path, Path)]
+        resolvedRepositories: [(Path, Path)]
     )
 
     let setAdditionalProjectConfiguration: (
         _ pbxProj: PBXProj,
-        _ resolvedExternalRepositories: [(Path, Path)]
+        _ resolvedRepositories: [(Path, Path)]
     ) -> Void
 
     let createProducts: (
