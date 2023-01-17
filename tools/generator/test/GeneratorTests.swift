@@ -318,6 +318,29 @@ final class GeneratorTests: XCTestCase {
             directories: directories
         )]
 
+        // MARK: setAdditionalProjectConfiguration()
+
+        struct SetAdditionalProjectConfigurationCalled: Equatable {
+            let pbxProj: PBXProj
+        }
+
+        var setAdditionalProjectConfigurationCalled:
+            [SetAdditionalProjectConfigurationCalled] = []
+        func setAdditionalProjectConfiguration(
+            in pbxProj: PBXProj,
+            resolvedExternalRepositories: [(Path, Path)]
+        ) {
+            setAdditionalProjectConfigurationCalled.append(.init(
+                pbxProj: pbxProj
+            ))
+        }
+
+        let expectedSetAdditionalProjectConfigurationCalled = [
+            SetAdditionalProjectConfigurationCalled(
+                pbxProj: pbxProj
+            ),
+        ]
+
         // MARK: consolidateTargets()
 
         struct ConsolidateTargetsCalled: Equatable {
@@ -444,7 +467,6 @@ final class GeneratorTests: XCTestCase {
             minimumXcodeVersion: SemanticVersion,
             indexImport: String,
             files: [FilePath: File],
-            resolvedExternalRepositories: [(Path, Path)],
             bazelConfig: String,
             generatorLabel: BazelLabel,
             generatorConfiguration: String,
@@ -761,6 +783,8 @@ final class GeneratorTests: XCTestCase {
             processReplacementLabels: processReplacementLabels,
             consolidateTargets: consolidateTargets,
             createFilesAndGroups: createFilesAndGroups,
+            setAdditionalProjectConfiguration:
+                setAdditionalProjectConfiguration,
             createProducts: createProducts,
             populateMainGroup: populateMainGroup,
             disambiguateTargets: disambiguateTargets,
@@ -810,6 +834,10 @@ final class GeneratorTests: XCTestCase {
         XCTAssertNoDifference(
             createFilesAndGroupsCalled,
             expectedCreateFilesAndGroupsCalled
+        )
+        XCTAssertNoDifference(
+            setAdditionalProjectConfigurationCalled,
+            expectedSetAdditionalProjectConfigurationCalled
         )
         XCTAssertNoDifference(
             createProductsCalled,

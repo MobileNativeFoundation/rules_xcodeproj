@@ -589,7 +589,6 @@
 				CALCULATE_OUTPUT_GROUPS_SCRIPT = "$(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py";
 				INDEX_DATA_STORE_DIR = "$(INDEX_DATA_STORE_DIR)";
 				INDEX_IMPORT = "fixture-index-import-path";
-				RESOLVED_EXTERNAL_REPOSITORIES = "";
 				SUPPORTED_PLATFORMS = iphonesimulator;
 				SUPPORTS_MACCATALYST = YES;
 				TARGET_NAME = BazelDependencies;
@@ -784,6 +783,7 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 				);
 				ONLY_ACTIVE_ARCH = YES;
+				RESOLVED_EXTERNAL_REPOSITORIES = "";
 				RULES_XCODEPROJ_BUILD_MODE = xcode;
 				SCHEME_TARGET_IDS_FILE = "$(OBJROOT)/scheme_target_ids";
 				SRCROOT = ../../../../..;

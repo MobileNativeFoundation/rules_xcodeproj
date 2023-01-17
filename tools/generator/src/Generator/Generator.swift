@@ -12,6 +12,8 @@ class Generator {
         processReplacementLabels: Generator.processReplacementLabels,
         consolidateTargets: Generator.consolidateTargets,
         createFilesAndGroups: Generator.createFilesAndGroups,
+        setAdditionalProjectConfiguration:
+            Generator.setAdditionalProjectConfiguration,
         createProducts: Generator.createProducts,
         populateMainGroup: populateMainGroup,
         disambiguateTargets: Generator.disambiguateTargets,
@@ -90,6 +92,11 @@ class Generator {
             logger
         )
 
+        environment.setAdditionalProjectConfiguration(
+            pbxProj,
+            resolvedExternalRepositories
+        )
+
         let consolidatedTargets = try environment.consolidateTargets(
             targets,
             xcodeGeneratedFiles,
@@ -116,7 +123,6 @@ class Generator {
             project.minimumXcodeVersion,
             project.indexImport,
             files,
-            resolvedExternalRepositories,
             project.bazelConfig,
             project.generatorLabel,
             project.configuration,

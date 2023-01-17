@@ -8867,7 +8867,6 @@
 				INDEX_DATA_STORE_DIR = "$(INDEX_DATA_STORE_DIR)";
 				INDEX_DISABLE_SCRIPT_EXECUTION = YES;
 				INDEX_IMPORT = "fixture-index-import-path";
-				RESOLVED_EXTERNAL_REPOSITORIES = "\"examples_command_line_external/ImportableLibrary\" \"$(SRCROOT)/CommandLine/external/ImportableLibrary\" \"examples_ios_app_external\" \"$(SRCROOT)/iOSApp/external\"";
 				SUPPORTED_PLATFORMS = macosx;
 				SUPPORTS_MACCATALYST = YES;
 				TARGET_NAME = BazelDependencies;
@@ -10058,6 +10057,7 @@
 				);
 				LIBTOOL = "$(BAZEL_INTEGRATION_DIR)/libtool.sh";
 				ONLY_ACTIVE_ARCH = YES;
+				RESOLVED_EXTERNAL_REPOSITORIES = "\"examples_command_line_external/ImportableLibrary\" \"$(SRCROOT)/CommandLine/external/ImportableLibrary\" \"examples_ios_app_external\" \"$(SRCROOT)/iOSApp/external\"";
 				RULES_XCODEPROJ_BUILD_MODE = bazel;
 				SCHEME_TARGET_IDS_FILE = "$(OBJROOT)/scheme_target_ids";
 				SRCROOT = ../../../../..;

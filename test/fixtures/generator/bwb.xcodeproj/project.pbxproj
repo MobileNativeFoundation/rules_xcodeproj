@@ -246,6 +246,7 @@
 		BECD01BA300E00331FACF49C /* _Hashtable+Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A5223CE3ED58001C49FE15 /* _Hashtable+Header.swift */; };
 		BFCCE08B291B40F8BCD53410 /* JSONSerialization.mm in Sources */ = {isa = PBXBuildFile; fileRef = 26A9188E264AA8D418D49A8D /* JSONSerialization.mm */; };
 		C06FFF6C987B8779D83AD76A /* Platform+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4B73BE1DC5509640DDCBCA /* Platform+Extensions.swift */; };
+		C1EF6F8745683EC239F07F31 /* SetAdditionalProjectConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AF120756CDFD2E4D366102 /* SetAdditionalProjectConfiguration.swift */; };
 		C41DDB4D3921E664100AA2B8 /* XCSchemeInfo+ProfileActionInfoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5F8AA7804846155CFD79CC /* XCSchemeInfo+ProfileActionInfoTests.swift */; };
 		C68682DD3E215724587291ED /* XCSchemeInfo+PrePostActionInfoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE1550104BA8818733ACC86 /* XCSchemeInfo+PrePostActionInfoTests.swift */; };
 		C6E6C91B5F999E68FBCF59D6 /* OrderedSet+Invariants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB38800E4A200B1E17E4D0D /* OrderedSet+Invariants.swift */; };
@@ -639,6 +640,7 @@
 		A61F49C0EE9330580BB0169B /* ReferenceGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferenceGenerator.swift; sourceTree = "<group>"; };
 		A68A9610D685E01B9069236C /* XCCurrentVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCCurrentVersion.swift; sourceTree = "<group>"; };
 		A8A3E5A993AEE45CE7217367 /* PBXRezBuildPhase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBXRezBuildPhase.swift; sourceTree = "<group>"; };
+		A8AF120756CDFD2E4D366102 /* SetAdditionalProjectConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetAdditionalProjectConfiguration.swift; sourceTree = "<group>"; };
 		ABA94B592863254CECD2A4DE /* OrderedSet+Partial SetAlgebra+Predicates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedSet+Partial SetAlgebra+Predicates.swift"; sourceTree = "<group>"; };
 		AC9FD305C4225E40F5327120 /* XCSchemeInfo+TestActionInfoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCSchemeInfo+TestActionInfoTests.swift"; sourceTree = "<group>"; };
 		ACC4BE5749A2825648295DA0 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
@@ -843,6 +845,7 @@
 				B430E1F12A9EF757D481C28F /* PopulateMainGroup.swift */,
 				4764E4510BA9E11BFF455502 /* ProcessReplacementLabels.swift */,
 				4A56789CB89B52C6464FD38F /* SemanticVersion.swift */,
+				A8AF120756CDFD2E4D366102 /* SetAdditionalProjectConfiguration.swift */,
 				8C5CEE8583D6B165FACC19C7 /* SetTargetConfigurations.swift */,
 				57B67C14EB0479AEFAD69673 /* SetTargetDependencies.swift */,
 				B56516A0679CA62A37FD1F7E /* TargetResolver.swift */,
@@ -2546,6 +2549,7 @@
 				75CF813428759BDB21C4BE52 /* PopulateMainGroup.swift in Sources */,
 				03B10623A9F4A7ED4B9A454F /* ProcessReplacementLabels.swift in Sources */,
 				18E250500AF3F82A1FB26488 /* SemanticVersion.swift in Sources */,
+				C1EF6F8745683EC239F07F31 /* SetAdditionalProjectConfiguration.swift in Sources */,
 				09AA6FA25ABA47AC6A2B7806 /* SetTargetConfigurations.swift in Sources */,
 				947BA9361CB52508E27C5B7D /* SetTargetDependencies.swift in Sources */,
 				9462C7263DAD38C72797D3A8 /* TargetResolver.swift in Sources */,
@@ -2795,7 +2799,6 @@
 				INDEX_DATA_STORE_DIR = "$(INDEX_DATA_STORE_DIR)";
 				INDEX_DISABLE_SCRIPT_EXECUTION = YES;
 				INDEX_IMPORT = "fixture-index-import-path";
-				RESOLVED_EXTERNAL_REPOSITORIES = "";
 				SUPPORTED_PLATFORMS = macosx;
 				SUPPORTS_MACCATALYST = YES;
 				TARGET_NAME = BazelDependencies;
@@ -3142,6 +3145,7 @@
 				);
 				LIBTOOL = "$(BAZEL_INTEGRATION_DIR)/libtool.sh";
 				ONLY_ACTIVE_ARCH = YES;
+				RESOLVED_EXTERNAL_REPOSITORIES = "";
 				RULES_XCODEPROJ_BUILD_MODE = bazel;
 				SCHEME_TARGET_IDS_FILE = "$(OBJROOT)/scheme_target_ids";
 				SRCROOT = ../../../../..;
