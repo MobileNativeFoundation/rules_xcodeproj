@@ -158,6 +158,7 @@
 		76F699267C0326C77D23C387 /* XCSchemeInfo+TargetInfoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180BD33CC2B059C25C7DEC95 /* XCSchemeInfo+TargetInfoTests.swift */; };
 		7870FA6396BB71808E5A448A /* GameKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CC919FE8B5CB6D2E8E2836 /* GameKit.swift */; };
 		78DCA0F4C4671D6F3FC4A6AE /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54068A8C12F0110E869B159F /* Array+Extensions.swift */; };
+		7B0123E90D4E3D2D8A228FED /* SetAdditionalProjectConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E94BCF4475CEF19121E416 /* SetAdditionalProjectConfiguration.swift */; };
 		7DD40282D119808407D2F5D3 /* PBXObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A761EF346DEF38694FBC490F /* PBXObject.swift */; };
 		7E15BA4BCA08762B90F7FDF3 /* Array+Extras.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31BA8BCB988172A766E60FE /* Array+Extras.swift */; };
 		7E449490609EDC218AFCB74D /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E3E1F5EA50778894BF7FF /* Box.swift */; };
@@ -673,6 +674,7 @@
 		92D58BB1B65A4CE329A0ACE7 /* PBXProductType+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PBXProductType+Extensions.swift"; sourceTree = "<group>"; };
 		9336BBE76C331269E1912CB0 /* PBXBuildFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBXBuildFile.swift; sourceTree = "<group>"; };
 		93F0086B109A14B60823D214 /* PBXSourcesBuildPhase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBXSourcesBuildPhase.swift; sourceTree = "<group>"; };
+		95E94BCF4475CEF19121E416 /* SetAdditionalProjectConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetAdditionalProjectConfiguration.swift; sourceTree = "<group>"; };
 		965C8301286D612C0D7514A2 /* OrderedDictionary+Partial RangeReplaceableCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedDictionary+Partial RangeReplaceableCollection.swift"; sourceTree = "<group>"; };
 		96978B78786FFB310C41DFDE /* XCWorkspaceDataFileRef.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCWorkspaceDataFileRef.swift; sourceTree = "<group>"; };
 		9704E0628AFD05B054DC1ED9 /* OrderedSet+UnstableInternals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedSet+UnstableInternals.swift"; sourceTree = "<group>"; };
@@ -1621,6 +1623,7 @@
 				73F38515E87488039D5ED0EC /* PopulateMainGroup.swift */,
 				854528EA9A693DC32507798D /* ProcessReplacementLabels.swift */,
 				282A3E83DE16BD17AB4671BF /* SemanticVersion.swift */,
+				95E94BCF4475CEF19121E416 /* SetAdditionalProjectConfiguration.swift */,
 				10B1FC780D4BE80D1438FF83 /* SetTargetConfigurations.swift */,
 				FAA37BECE2AD8D399B416516 /* SetTargetDependencies.swift */,
 				E1C8EA74CBEA0685A0929665 /* TargetResolver.swift */,
@@ -2474,6 +2477,7 @@
 				EF6ED16BF041EA93A6117492 /* PopulateMainGroup.swift in Sources */,
 				F46DB512C166E7638F56E3FD /* ProcessReplacementLabels.swift in Sources */,
 				E66723DA3F69574220B61475 /* SemanticVersion.swift in Sources */,
+				7B0123E90D4E3D2D8A228FED /* SetAdditionalProjectConfiguration.swift in Sources */,
 				545AB8476A28E55F4E259413 /* SetTargetConfigurations.swift in Sources */,
 				1298717120FF78624A7BE2A7 /* SetTargetDependencies.swift in Sources */,
 				C05367CD225D44CFAE114A74 /* TargetResolver.swift in Sources */,
@@ -3039,7 +3043,6 @@
 				CALCULATE_OUTPUT_GROUPS_SCRIPT = "$(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py";
 				INDEX_DATA_STORE_DIR = "$(INDEX_DATA_STORE_DIR)";
 				INDEX_IMPORT = "fixture-index-import-path";
-				RESOLVED_EXTERNAL_REPOSITORIES = "";
 				SUPPORTED_PLATFORMS = macosx;
 				SUPPORTS_MACCATALYST = YES;
 				TARGET_NAME = BazelDependencies;
@@ -3354,6 +3357,7 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 				);
 				ONLY_ACTIVE_ARCH = YES;
+				RESOLVED_EXTERNAL_REPOSITORIES = "";
 				RULES_XCODEPROJ_BUILD_MODE = xcode;
 				SCHEME_TARGET_IDS_FILE = "$(OBJROOT)/scheme_target_ids";
 				SRCROOT = ../../../../..;

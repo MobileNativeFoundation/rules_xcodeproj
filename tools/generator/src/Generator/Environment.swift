@@ -41,6 +41,11 @@ struct Environment {
         resolvedExternalRepositories: [(Path, Path)]
     )
 
+    let setAdditionalProjectConfiguration: (
+        _ pbxProj: PBXProj,
+        _ resolvedExternalRepositories: [(Path, Path)]
+    ) -> Void
+
     let createProducts: (
         _ pbxProj: PBXProj,
         _ consolidatedTargets: ConsolidatedTargets
@@ -64,7 +69,6 @@ struct Environment {
         _ minimumXcodeVersion: SemanticVersion,
         _ indexImport: String,
         _ files: [FilePath: File],
-        _ resolvedExternalRepositories: [(Path, Path)],
         _ bazelConfig: String,
         _ generatorLabel: BazelLabel,
         _ generatorConfiguration: String,

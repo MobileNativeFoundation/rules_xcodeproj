@@ -26,7 +26,6 @@ extension Generator {
         minimumXcodeVersion: SemanticVersion,
         indexImport: String,
         files: [FilePath: File],
-        resolvedExternalRepositories: [(Path, Path)],
         bazelConfig: String,
         generatorLabel: BazelLabel,
         generatorConfiguration: String,
@@ -58,11 +57,6 @@ $(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py
 """,
             "INDEX_DATA_STORE_DIR": "$(INDEX_DATA_STORE_DIR)",
             "INDEX_IMPORT": indexImport,
-            "RESOLVED_EXTERNAL_REPOSITORIES": resolvedExternalRepositories
-                // Sorted by length to ensure that subdirectories are listed first
-                .sorted { $0.0.string.count > $1.0.string.count }
-                .map { #""\#($0)" "\#($1)""# }
-                .joined(separator: " "),
             // We have to support only a single platform to prevent issues
             // with duplicated outputs during Index Build, but it also
             // has to be a platform that one of the targets uses, otherwise
