@@ -99,7 +99,6 @@ def process_compiler_opts_test_suite(name):
                 "quote_includes": [],
                 "includes": [],
                 "system_includes": [],
-                "framework_includes": [],
             },
             conlyopts = [],
             cxxopts = [],
@@ -193,7 +192,6 @@ weird \
             ],
             "includes": [],
             "system_includes": [],
-            "framework_includes": [],
         },
     )
 
@@ -267,7 +265,6 @@ weird \
             ],
             "includes": [],
             "system_includes": [],
-            "framework_includes": [],
         },
     )
 
@@ -457,7 +454,6 @@ $(PROJECT_DIR)/relative/Path.yaml \
             "quote_includes": [],
             "includes": ["__BAZEL_XCODE_SOMETHING_/path", "__BAZEL_XCODE_BOSS_"],
             "system_includes": [],
-            "framework_includes": [],
         },
     )
 
@@ -577,7 +573,6 @@ $(PROJECT_DIR)/relative/Path.yaml \
             "quote_includes": [],
             "includes": ["__BAZEL_XCODE_SOMETHING_/path", "__BAZEL_XCODE_BOSS_"],
             "system_includes": [],
-            "framework_includes": [],
         },
     )
 
@@ -967,7 +962,6 @@ $(PROJECT_DIR)/relative/Path.yaml \
                 "s3/s4/s5",
                 "s5/s6",
             ],
-            "framework_includes": [],
         },
     )
 

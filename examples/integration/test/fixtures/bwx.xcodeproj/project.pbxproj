@@ -4440,6 +4440,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CE8EC23F8BA0F8067187BFCC /* Build configuration list for PBXNativeTarget "tvOS" */;
 			buildPhases = (
+				39D12E4B152047D1BD1E0352 /* Create compiling dependencies */,
 				70EC5FA6C0DE858D8B6B9D03 /* Create linking dependencies */,
 				35B1A496C141A511B68CD01C /* Sources */,
 				14EAA527ACD60CF941F8067F /* Resources */,
@@ -4809,6 +4810,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DE753F1584BAEEE9E9B3D961 /* Build configuration list for PBXNativeTarget "watchOS" */;
 			buildPhases = (
+				A50A81B5FDEDE5A2D01C0ADD /* Create compiling dependencies */,
 				38D23D8B1AAFCDF9FFBB24FF /* Create linking dependencies */,
 				5596CC0905ED033FAAB9CC5E /* Sources */,
 				E0E3499207E58E757421A8E3 /* Resources */,
@@ -4878,6 +4880,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AE0571773EF9410BE199D216 /* Build configuration list for PBXNativeTarget "iOS" */;
 			buildPhases = (
+				5D05E62E3439F73AAF970359 /* Create compiling dependencies */,
 				94BB8CE548C9CEB38922293F /* Create linking dependencies */,
 				150ECE9B10A24EDCD68433E6 /* Sources */,
 				71069F15E90765B29EE0DB37 /* Resources */,
@@ -4913,6 +4916,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 03AE913C17EEF71D6B5750C0 /* Build configuration list for PBXNativeTarget "LibFramework.iOS" */;
 			buildPhases = (
+				BF0B59A38D7C23911E248719 /* Create compiling dependencies */,
 				6E34424248DBC273AB573C53 /* Create linking dependencies */,
 				72C05C54D2004F8886EDBB81 /* Sources */,
 				C75DDAD9B5747607C0104492 /* Resources */,
@@ -5284,6 +5288,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2C2259872DE0B8304500939E /* Build configuration list for PBXNativeTarget "LibFramework.tvOS" */;
 			buildPhases = (
+				9971185EB9A65D63D5198C27 /* Create compiling dependencies */,
 				027230613C505EE933350262 /* Create linking dependencies */,
 				A373CFAE1BBE832180746E37 /* Sources */,
 				43E9A189D5F0F26DFA8F01E5 /* Resources */,
@@ -5399,6 +5404,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D091FF3C234DBDF3E3287A5D /* Build configuration list for PBXNativeTarget "LibFramework.watchOS" */;
 			buildPhases = (
+				86F260C4472945B880AFA820 /* Create compiling dependencies */,
 				2E87C18EFCEF052665AC3147 /* Create linking dependencies */,
 				EAE6BB8CF20B0B9694FAD79B /* Sources */,
 				B3DA5EAAE6D1E354FD06A0C0 /* Resources */,
@@ -6340,6 +6346,23 @@
 			shellScript = "set -euo pipefail\n\nperl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\ntouch \"$SCRIPT_OUTPUT_FILE_1\"\n";
 			showEnvVarsInLog = 0;
 		};
+		39D12E4B152047D1BD1E0352 /* Create compiling dependencies */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(BAZEL_INTEGRATION_DIR)/create_xcode_overlay.sh",
+			);
+			name = "Create compiling dependencies";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$SCRIPT_INPUT_FILE_0\"\n";
+			showEnvVarsInLog = 0;
+		};
 		3C0639924615EA9F3E740EB8 /* Create compiling dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -6460,6 +6483,23 @@
 			showEnvVarsInLog = 0;
 		};
 		50924B1B30D07B5082A4F739 /* Create compiling dependencies */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(BAZEL_INTEGRATION_DIR)/create_xcode_overlay.sh",
+			);
+			name = "Create compiling dependencies";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$SCRIPT_INPUT_FILE_0\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5D05E62E3439F73AAF970359 /* Create compiling dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -6736,6 +6776,23 @@
 			shellScript = "if [[ -z \"${SWIFT_OBJC_INTERFACE_HEADER_NAME:-}\" ]]; then\n  exit 0\nfi\n\ncp \"${SCRIPT_INPUT_FILE_0}\" \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		86F260C4472945B880AFA820 /* Create compiling dependencies */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(BAZEL_INTEGRATION_DIR)/create_xcode_overlay.sh",
+			);
+			name = "Create compiling dependencies";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$SCRIPT_INPUT_FILE_0\"\n";
+			showEnvVarsInLog = 0;
+		};
 		88A9F0ABA45AD0DEBC0B77B7 /* Create compiling dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -6839,6 +6896,23 @@
 			shellScript = "set -euo pipefail\n\nperl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
+		9971185EB9A65D63D5198C27 /* Create compiling dependencies */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(BAZEL_INTEGRATION_DIR)/create_xcode_overlay.sh",
+			);
+			name = "Create compiling dependencies";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$SCRIPT_INPUT_FILE_0\"\n";
+			showEnvVarsInLog = 0;
+		};
 		9AA3C6BB6A2C78549C071136 /* Create compiling dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -6908,6 +6982,23 @@
 			showEnvVarsInLog = 0;
 		};
 		9E588528644F5887C1B033F1 /* Create compiling dependencies */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(BAZEL_INTEGRATION_DIR)/create_xcode_overlay.sh",
+			);
+			name = "Create compiling dependencies";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$SCRIPT_INPUT_FILE_0\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A50A81B5FDEDE5A2D01C0ADD /* Create compiling dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -7024,6 +7115,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "set -euo pipefail\n\nperl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BF0B59A38D7C23911E248719 /* Create compiling dependencies */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(BAZEL_INTEGRATION_DIR)/create_xcode_overlay.sh",
+			);
+			name = "Create compiling dependencies";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$SCRIPT_INPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
 		BFBEF6090107E1BB9D4CBE0A /* Create compiling dependencies */ = {
@@ -9417,9 +9525,13 @@
 				"LINK_PARAMS_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/LibFramework.iOS.65.link.params";
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",
+					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
+					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 				);
 				OTHER_CPLUSPLUSFLAGS = (
+					"-ivfsoverlay",
+					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 				);
@@ -9537,9 +9649,13 @@
 				"LINK_PARAMS_FILE[sdk=watchos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/watchOS.76.link.params";
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",
+					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
+					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 				);
 				OTHER_CPLUSPLUSFLAGS = (
+					"-ivfsoverlay",
+					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 				);
@@ -9924,9 +10040,13 @@
 				"LINK_PARAMS_FILE[sdk=appletvos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/LibFramework.tvOS.77.link.params";
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",
+					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
+					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 				);
 				OTHER_CPLUSPLUSFLAGS = (
+					"-ivfsoverlay",
+					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 				);
@@ -10404,9 +10524,13 @@
 				"LINK_PARAMS_FILE[sdk=appletvos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/tvOS.75.link.params";
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",
+					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
+					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 				);
 				OTHER_CPLUSPLUSFLAGS = (
+					"-ivfsoverlay",
+					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 				);
@@ -10925,9 +11049,13 @@
 				"LINK_PARAMS_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/iOS.73.link.params";
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",
+					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
+					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 				);
 				OTHER_CPLUSPLUSFLAGS = (
+					"-ivfsoverlay",
+					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 				);
@@ -11826,9 +11954,13 @@
 				"LINK_PARAMS_FILE[sdk=watchos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/LibFramework.watchOS.68.link.params";
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",
+					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
+					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 				);
 				OTHER_CPLUSPLUSFLAGS = (
+					"-ivfsoverlay",
+					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 				);
