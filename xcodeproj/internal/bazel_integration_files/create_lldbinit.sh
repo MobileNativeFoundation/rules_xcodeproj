@@ -5,7 +5,6 @@ set -euo pipefail
 readonly execution_root="$PROJECT_DIR"
 
 readonly output_base="${execution_root%/*/*}"
-readonly build_bazel_out="$execution_root/bazel-out"
 readonly build_external="$execution_root/external"
 
 readonly workspace_name="${execution_root##*/}"
@@ -33,12 +32,10 @@ mkdir -p "$index_external"
 # navigator, or indexing (e.g. Jump to Definition), it will use the paths
 # specified below.
 
-# `bazel-out` when set from Project navigator
+# `bazel-out` when set from Project navigator or swiftsourcefile
 echo "settings set target.source-map ./bazel-out/ \"$BAZEL_OUT\""
 # `bazel-out` when set from indexing opened file
 echo "settings append target.source-map ./bazel-out/ \"$index_bazel_out\""
-# `bazel-out` when set from swiftsourcefile
-echo "settings append target.source-map ./bazel-out/ \"$build_bazel_out\""
 
 if [[ -n "${RESOLVED_EXTERNAL_REPOSITORIES:-}" ]]; then
   # `external` for local repositories when set from Project navigator
