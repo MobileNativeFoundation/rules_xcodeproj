@@ -473,7 +473,7 @@ def _generated_framework_search_paths(
 
     ordered_framework_search_paths = {}
     for search_path in search_paths_intermediate.framework_includes:
-        search_paths = framework_search_paths.get(search_path)
+        search_paths = framework_search_paths.pop(search_path, None)
         if search_paths:
             ordered_framework_search_paths[search_path] = search_paths
             continue
@@ -482,6 +482,10 @@ def _generated_framework_search_paths(
         ordered_framework_search_paths.setdefault(search_path, {})["b"] = (
             build_setting_path(path = search_path)
         )
+
+    # Add remaining items from `framework_search_paths`, for linker only paths
+    for search_path, search_paths in framework_search_paths.items():
+        ordered_framework_search_paths[search_path] = search_paths
 
     return ordered_framework_search_paths
 
@@ -879,10 +883,8 @@ def _search_paths_to_intermediate(search_paths, *, compile_target):
 
     if compilation_providers:
         cc_info = compilation_providers._cc_info
-        objc = compilation_providers._objc
     else:
         cc_info = None
-        objc = None
 
     if compile_target:
         compile_search_paths = compile_target._search_paths
@@ -899,19 +901,11 @@ def _search_paths_to_intermediate(search_paths, *, compile_target):
         includes = opts_search_paths.includes
         quote_includes = opts_search_paths.quote_includes
         system_includes = opts_search_paths.system_includes
+        framework_includes = opts_search_paths.framework_includes
     else:
         quote_includes = []
         includes = []
         system_includes = []
-
-    if objc:
-        framework_includes = depset(
-            transitive = [
-                objc.static_framework_paths,
-                objc.dynamic_framework_paths,
-            ],
-        ).to_list()
-    else:
         framework_includes = []
 
     return struct(
