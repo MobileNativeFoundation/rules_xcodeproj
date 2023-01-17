@@ -66,6 +66,7 @@ def process_product(
         product_type,
         is_resource_bundle = False,
         bundle_file = None,
+        bundle_path = None,
         bundle_file_path = None,
         archive_file_path = None,
         executable_name = None,
@@ -83,6 +84,8 @@ def process_product(
         is_resource_bundle: Whether the product is a resource bundle.
         bundle_file: If the product is a bundle, this is `File` for the bundle,
             otherwise `None`.
+        bundle_path: If the product is a bundle, this is the path to
+            the bundle, when not in an archive, otherwise `None`.
         bundle_file_path: If the product is a bundle, this is the `file_path` to
             the bundle, when not in an archive, otherwise `None`.
         archive_file_path: If the product is a bundle, this is
@@ -114,6 +117,13 @@ def process_product(
         fp = None
         actual_fp = None
 
+    if bundle_path:
+        path = bundle_path
+    elif file:
+        path = file.path
+    else:
+        path = None
+
     if target and apple_common.AppleDynamicFramework in target:
         framework_files = (
             target[apple_common.AppleDynamicFramework].framework_files
@@ -132,6 +142,7 @@ def process_product(
         name = product_name,
         framework_files = framework_files,
         file = file,
+        path = path,
         file_path = fp,
         actual_file_path = actual_fp,
         type = product_type,

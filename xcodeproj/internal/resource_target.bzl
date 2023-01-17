@@ -25,10 +25,8 @@ def _process_resource_bundle(bundle, *, information):
     )
 
     package_bin_dir = bundle.package_bin_dir
-    bundle_file_path = parsed_file_path(paths.join(
-        package_bin_dir,
-        "{}.bundle".format(name),
-    ))
+    bundle_path = paths.join(package_bin_dir, "{}.bundle".format(name))
+    bundle_file_path = parsed_file_path(bundle_path)
 
     product = process_product(
         ctx = None,
@@ -37,6 +35,7 @@ def _process_resource_bundle(bundle, *, information):
         product_type = "com.apple.product-type.bundle",
         is_resource_bundle = True,
         bundle_file = None,
+        bundle_path = bundle_path,
         bundle_file_path = bundle_file_path,
         linker_inputs = None,
     )

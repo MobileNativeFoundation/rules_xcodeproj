@@ -90,6 +90,7 @@ def process_top_level_properties(
             archive_file_path = file_path(bundle_file)
 
             if tree_artifact_enabled:
+                bundle_path = bundle_file.path
                 bundle_file_path = archive_file_path
             else:
                 bundle_extension = bundle_info.bundle_extension
@@ -109,9 +110,10 @@ def process_top_level_properties(
         elif product_type.startswith("com.apple.product-type.framework"):
             # Some rules only set the binary for static frameworks
             bundle_file = bundle_info.binary
+            bundle_path = bundle_file.dirname
             archive_file_path = file_path(
                 bundle_file,
-                path = bundle_file.dirname,
+                path = bundle_path,
             )
             bundle_file_path = archive_file_path
         else:
@@ -142,20 +144,24 @@ def process_top_level_properties(
 
             # "some/test.xctest/binary" -> "some/test.xctest"
             xctest_path = bundle_file.path
-            path = xctest_path[:-(len(xctest_path.split(".xctest/")[1]) + 1)]
+            bundle_path = xctest_path[
+                :-(len(xctest_path.split(".xctest/")[1]) + 1)
+            ]
             bundle_file_path = file_path(
                 bundle_file,
-                path = path,
+                path = bundle_path,
             )
             archive_file_path = bundle_file_path
         else:
             product_type = "com.apple.product-type.tool"
+            bundle_path = None
             bundle_file_path = None
             archive_file_path = None
 
     return struct(
         archive_file_path = archive_file_path,
         bundle_file = bundle_file,
+        bundle_path = bundle_path,
         bundle_file_path = bundle_file_path,
         executable_name = executable_name,
         product_name = product_name,
@@ -377,6 +383,7 @@ def process_top_level_target(
         product_name = props.product_name,
         product_type = props.product_type,
         bundle_file = props.bundle_file,
+        bundle_path = props.bundle_path,
         bundle_file_path = props.bundle_file_path,
         archive_file_path = props.archive_file_path,
         executable_name = props.executable_name,
