@@ -30,6 +30,7 @@ filegroup(
     name = "release_files",
     srcs = [
         "LICENSE",
+        "MODULE.bazel",
         "//third_party:release_files",
         "//tools:release_files",
         "//xcodeproj:release_files",
