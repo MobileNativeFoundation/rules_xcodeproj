@@ -170,9 +170,9 @@ def process_compiler_opts_test_suite(name):
             "examples/xcode_like/ExampleUITests/ExampleUITestsLaunchTests.swift",
         ],
         expected_build_settings = {
-            "APPLICATION_EXTENSION_API_ONLY": "True",
             "ENABLE_TESTABILITY": "True",
             "OTHER_SWIFT_FLAGS": """\
+-application-extension \
 weird \
 -Xcc \
 -iquote. \
@@ -244,9 +244,9 @@ weird \
             "examples/xcode_like/ExampleUITests/ExampleUITestsLaunchTests.swift",
         ],
         expected_build_settings = {
-            "APPLICATION_EXTENSION_API_ONLY": "True",
             "ENABLE_TESTABILITY": "True",
             "OTHER_SWIFT_FLAGS": """\
+-application-extension \
 weird \
 -Xcc \
 -iquote. \
@@ -706,16 +706,6 @@ $(PROJECT_DIR)/relative/Path.yaml \
         swiftcopts = ["-enable-testing"],
         expected_build_settings = {
             "ENABLE_TESTABILITY": "True",
-        },
-    )
-
-    ## APPLICATION_EXTENSION_API_ONLY
-
-    _add_test(
-        name = "{}_swift_option-application-extension".format(name),
-        swiftcopts = ["-application-extension"],
-        expected_build_settings = {
-            "APPLICATION_EXTENSION_API_ONLY": "True",
         },
     )
 

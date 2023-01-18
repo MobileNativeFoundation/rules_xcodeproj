@@ -61,9 +61,6 @@ _LD_SKIP_OPTS = {
     # Xcode sets this, even if `CLANG_LINK_OBJC_RUNTIME = NO` is set
     "-fobjc-link-runtime": 1,
 
-    # We let Xcode set this currently, until we pass through compiler flags
-    "-fapplication-extension": 1,
-
     # This is wrapped_clang specific, and we don't want to translate it for BwX
     "OSO_PREFIX_MAP_PWD": 1,
 }
