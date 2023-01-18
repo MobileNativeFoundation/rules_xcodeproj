@@ -26,7 +26,7 @@
                     }
                 },
                 "env": {},
-                "target": "@//AddressSanitizerApp:AddressSanitizerApp",
+                "target": "//AddressSanitizerApp:AddressSanitizerApp",
                 "working_directory": null
             },
             "name": "AddressSanitizer",
@@ -45,7 +45,7 @@
                     }
                 },
                 "env": {},
-                "target": "@//ThreadSanitizerApp:ThreadSanitizerApp",
+                "target": "//ThreadSanitizerApp:ThreadSanitizerApp",
                 "working_directory": null
             },
             "name": "ThreadSanitizer",
@@ -64,7 +64,7 @@
                     }
                 },
                 "env": {},
-                "target": "@//UndefinedBehaviorSanitizerApp:UndefinedBehaviorSanitizerApp",
+                "target": "//UndefinedBehaviorSanitizerApp:UndefinedBehaviorSanitizerApp",
                 "working_directory": null
             },
             "name": "UndefinedBehaviorSanitizer",
@@ -89,7 +89,7 @@
     "post_build_script": null,
     "pre_build_script": null,
     "replacement_labels": [],
-    "runner_label": "@//test/fixtures:xcodeproj_bwb",
+    "runner_label": "//test/fixtures:xcodeproj_bwb",
     "scheme_autogeneration_mode": "none",
     "target_hosts": []
 }

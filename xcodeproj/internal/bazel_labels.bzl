@@ -88,23 +88,24 @@ def make_bazel_labels(workspace_name_resolvers = workspace_name_resolvers):
 
     def _normalize(value):
         if type(value) == "Label":
-            repository_name = value.workspace_name
-            if not repository_name.startswith("@"):
-                # Support `--noincompatible_unambiguous_label_stringification`
-                repository_name = "@" + repository_name
-            parts = _create_label_parts(
-                repository_name = repository_name,
-                package = value.package,
-                name = value.name,
-            )
+            label = value
         else:
             parts = _parse(value)
 
-        return "{repo_name}//{package}:{name}".format(
-            repo_name = parts.repository_name,
-            package = parts.package,
-            name = parts.name,
-        )
+            is_bazel_6 = hasattr(apple_common, "link_multi_arch_static_library")
+            if is_bazel_6:
+                repo_prefix = "@"
+            else:
+                repo_prefix = ""
+
+            label = Label("{repo_prefix}{repo_name}//{package}:{name}".format(
+                repo_prefix = repo_prefix,
+                repo_name = parts.repository_name,
+                package = parts.package,
+                name = parts.name,
+            ))
+
+        return str(label)
 
     return struct(
         create = _create_label_parts,
