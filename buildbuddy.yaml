@@ -43,6 +43,9 @@ x_templates:
     - &validate_integration "run --config=workflows //test/fixtures:validate"
     - &build_all "build --config=workflows //..."
     - &test_all "test --config=workflows //..."
+    - &bzlmod_generate_integration "run --config=workflows //test/fixtures:update"
+    - &bzlmod_build_all "build --config=bzlmod_workflows //..."
+    - &bzlmod_test_all "test --config=bzlmod_workflows //test/..."
 
 actions:
   - name: Buildifier Lint
@@ -66,6 +69,13 @@ actions:
     <<: *root_workspace
     bazel_commands:
       - *test_all
+  - name: Test - Bzlmod
+    <<: *arm64
+    <<: *normal_resources
+    <<: *action_base
+    <<: *root_workspace
+    bazel_commands:
+      - *bzlmod_test_all
   - name: Test - Bazel 5
     <<: *action_base
     <<: *root_workspace
@@ -80,6 +90,13 @@ actions:
     <<: *root_workspace
     bazel_commands:
       - *validate_integration
+  - name: Integration Test - Root Bzlmod
+    <<: *arm64
+    <<: *action_base
+    <<: *normal_resources
+    <<: *root_workspace
+    bazel_commands:
+      - *bzlmod_generate_integration
   - name: Integration Test - Root - Bazel 5
     <<: *action_base
     <<: *root_workspace
@@ -95,6 +112,14 @@ actions:
     bazel_commands:
       - *validate_integration
       - *build_all
+  - name: Integration Test - "examples/cc" - Bzlmod
+    <<: *arm64
+    <<: *action_base
+    <<: *normal_resources
+    <<: *examples_cc_workspace
+    bazel_commands:
+      - *bzlmod_generate_integration
+      - *bzlmod_build_all
   - name: Integration Test - "examples/cc" - Bazel 5
     <<: *action_base
     <<: *examples_cc_workspace
