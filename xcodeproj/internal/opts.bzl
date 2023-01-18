@@ -706,9 +706,6 @@ Using VFS overlays with `build_mode = "xcode"` is unsupported.
         if opt == "-enable-testing":
             build_settings["ENABLE_TESTABILITY"] = True
             return None
-        if opt == "-application-extension":
-            build_settings["APPLICATION_EXTENSION_API_ONLY"] = True
-            return None
         compilation_mode = _SWIFT_COMPILATION_MODE_OPTS.get(opt, "")
         if compilation_mode:
             build_settings["SWIFT_COMPILATION_MODE"] = compilation_mode

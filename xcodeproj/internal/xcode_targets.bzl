@@ -216,10 +216,7 @@ def _merge_xcode_target(*, src, dest):
         A value as returned by `xcode_targets.make`.
     """
 
-    # We remove `APPLICATION_EXTENSION_API_ONLY` from `build_settings`, as only
-    # the value from the top-level target is valid
     build_settings = dict(structs.to_dict(src._build_settings))
-    build_settings.pop("APPLICATION_EXTENSION_API_ONLY", None)
     build_settings = dicts.add(
         structs.to_dict(dest._build_settings),
         build_settings,
