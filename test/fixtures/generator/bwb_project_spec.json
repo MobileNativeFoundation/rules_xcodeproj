@@ -17,14 +17,14 @@
             "build_action": {
                 "post_actions": [
                     {
-                        "expand_variables_based_on": "@//tools/generator:generator",
+                        "expand_variables_based_on": "//tools/generator:generator",
                         "name": "Example: Stop build time tracking...",
                         "script": "echo 'Completed Building target: generator'"
                     }
                 ],
                 "pre_actions": [
                     {
-                        "expand_variables_based_on": "@//tools/generator:generator",
+                        "expand_variables_based_on": "//tools/generator:generator",
                         "name": "Example: Start build time tracking...",
                         "script": "echo 'Building target: generator'"
                     }
@@ -38,7 +38,7 @@
                             "running": "unspecified",
                             "testing": "unspecified"
                         },
-                        "label": "@//tools/generator:generator"
+                        "label": "//tools/generator:generator"
                     }
                 ]
             },
@@ -72,7 +72,7 @@
                 "env": {
                     "CUSTOM_ENV_VAR": "hello"
                 },
-                "target": "@//tools/generator:generator",
+                "target": "//tools/generator:generator",
                 "working_directory": "$(BUILD_WORKSPACE_DIRECTORY)"
             },
             "name": "generator",
@@ -93,7 +93,7 @@
                 "post_actions": [],
                 "pre_actions": [],
                 "targets": [
-                    "@//tools/generator/test:tests"
+                    "//tools/generator/test:tests"
                 ]
             }
         },
@@ -110,7 +110,7 @@
                             "running": "enabled",
                             "testing": "enabled"
                         },
-                        "label": "@//tools/swiftc_stub:swiftc"
+                        "label": "//tools/swiftc_stub:swiftc"
                     }
                 ]
             },
@@ -125,7 +125,7 @@
                     }
                 },
                 "env": {},
-                "target": "@//tools/swiftc_stub:swiftc",
+                "target": "//tools/swiftc_stub:swiftc",
                 "working_directory": null
             },
             "name": "swiftc",
@@ -155,9 +155,9 @@
     "pre_build_script": null,
     "replacement_labels": [
         "//tools/generator/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-STABLE-2",
-        "@//tools/generator/test:tests"
+        "//tools/generator/test:tests"
     ],
-    "runner_label": "@//test/fixtures/generator:xcodeproj_bwb",
+    "runner_label": "//test/fixtures/generator:xcodeproj_bwb",
     "scheme_autogeneration_mode": "none",
     "target_hosts": []
 }

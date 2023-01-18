@@ -138,6 +138,10 @@ for output_group in "${output_groups[@]}"; do
     fi
 
     repo="${BASH_REMATCH[2]}"
+    if [[ "$repo" == "@" ]]; then
+      repo=""
+    fi
+
     package="${BASH_REMATCH[3]}"
     target="${BASH_REMATCH[4]}"
     configuration="${BASH_REMATCH[5]}"
