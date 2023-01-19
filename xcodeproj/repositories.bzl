@@ -299,3 +299,49 @@ swift_library(
         url = "https://github.com/apple/swift-collections/archive/refs/tags/1.0.2.tar.gz",
         ignore_version_differences = ignore_version_differences,
     )
+
+# buildifier: disable=unnamed-macro
+def xcodeproj_rules_dev_dependencies(ignore_version_differences = False):
+    # Setup Swift Custom Dump test dependency
+    _maybe(
+        http_archive,
+        name = "com_github_pointfreeco_xctest_dynamic_overlay",
+        build_file_content = """\
+load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
+
+swift_library(
+    name = "XCTestDynamicOverlay",
+    module_name = "XCTestDynamicOverlay",
+    srcs = glob(["Sources/XCTestDynamicOverlay/**/*.swift"]),
+    visibility = ["//visibility:public"],
+)
+""",
+        sha256 = "97169124feb98b409f5b890bd95bb147c2fba0dba3098f9bf24c539270ee9601",
+        strip_prefix = "xctest-dynamic-overlay-0.2.1",
+        url = "https://github.com/pointfreeco/xctest-dynamic-overlay/archive/refs/tags/0.2.1.tar.gz",
+        ignore_version_differences = ignore_version_differences,
+    )
+
+    _maybe(
+        http_archive,
+        name = "com_github_pointfreeco_swift_custom_dump",
+        build_file_content = """\
+load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
+
+swift_library(
+    name = "CustomDump",
+    module_name = "CustomDump",
+    srcs = glob(["Sources/CustomDump/**/*.swift"]),
+    deps = ["@com_github_pointfreeco_xctest_dynamic_overlay//:XCTestDynamicOverlay"],
+    visibility = ["//visibility:public"],
+)
+""",
+        patches = [
+            # Custom for our tests
+            "//third_party/com_github_pointfreeco_swift_custom_dump:type_name.patch",
+        ],
+        sha256 = "a45e8f275794960651043623e23abb8365f0455b4ad5976bc56a4fa00c5efb31",
+        strip_prefix = "swift-custom-dump-0.5.0",
+        url = "https://github.com/pointfreeco/swift-custom-dump/archive/refs/tags/0.5.0.tar.gz",
+        ignore_version_differences = ignore_version_differences,
+    )
