@@ -249,7 +249,8 @@ def _process_base_compiler_opts(
             if suffix:
                 if not suffix.startswith("/"):
                     opt = opt_prefix + "$(PROJECT_DIR)/" + suffix
-            elif (previous_vfsoverlay_opt == "-vfsoverlay" or
+            elif (previous_opt == "--config" or
+                  previous_vfsoverlay_opt == "-vfsoverlay" or
                   previous_vfsoverlay_opt == "-ivfsoverlay"):
                 if not opt.startswith("/"):
                     opt = "$(PROJECT_DIR)/" + opt

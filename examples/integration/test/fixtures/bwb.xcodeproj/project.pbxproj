@@ -707,6 +707,7 @@
 		847B3D46C150D0CF60A9F5F8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		84D982C64D4FD100F6E0ADD2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8532613063C75BE299BAE034 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		85EA3835C75F91884EF53F01 /* verbose.cfg */ = {isa = PBXFileReference; path = verbose.cfg; sourceTree = "<group>"; };
 		85FE6B2FC044696E6DF496F0 /* ExtensionAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ExtensionAssets.xcassets; sourceTree = "<group>"; };
 		8622E9EBF45390EB6BA4428A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		869C0C887E86CAB594580443 /* ExampleFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ExampleFramework.framework; sourceTree = "<group>"; };
@@ -3093,6 +3094,7 @@
 				0156075391A8046358CF5FEE /* Info.plist */,
 				15A6973CB98E7CA53A64305B /* Launchd.plist */,
 				F430FA1AB345C9D772DC1948 /* main.m */,
+				85EA3835C75F91884EF53F01 /* verbose.cfg */,
 			);
 			path = CommandLineTool;
 			sourceTree = "<group>";
@@ -7763,6 +7765,8 @@
 					"-Wunused-variable",
 					"-Fexternal/examples_command_line_external",
 					"-fno-autolink",
+					"--config",
+					"$(PROJECT_DIR)/CommandLine/CommandLineTool/verbose.cfg",
 					"-fstack-protector",
 					"-fstack-protector-all",
 				);
@@ -7792,6 +7796,8 @@
 					"-Wunused-variable",
 					"-Fexternal/examples_command_line_external",
 					"-fno-autolink",
+					"--config",
+					"$(PROJECT_DIR)/CommandLine/CommandLineTool/verbose.cfg",
 					"-fstack-protector",
 					"-fstack-protector-all",
 				);
@@ -8401,6 +8407,8 @@
 					"-Wunused-variable",
 					"-Fexternal/examples_command_line_external",
 					"-fno-autolink",
+					"--config",
+					"$(PROJECT_DIR)/CommandLine/CommandLineTool/verbose.cfg",
 					"-fstack-protector",
 					"-fstack-protector-all",
 				);
@@ -8429,6 +8437,8 @@
 					"-Wunused-variable",
 					"-Fexternal/examples_command_line_external",
 					"-fno-autolink",
+					"--config",
+					"$(PROJECT_DIR)/CommandLine/CommandLineTool/verbose.cfg",
 					"-fstack-protector",
 					"-fstack-protector-all",
 				);
@@ -8537,6 +8547,8 @@
 					"-Wunused-variable",
 					"-Fexternal/examples_command_line_external",
 					"-fno-autolink",
+					"--config",
+					"$(PROJECT_DIR)/CommandLine/CommandLineTool/verbose.cfg",
 					"-fstack-protector",
 					"-fstack-protector-all",
 				);
@@ -8565,6 +8577,8 @@
 					"-Wunused-variable",
 					"-Fexternal/examples_command_line_external",
 					"-fno-autolink",
+					"--config",
+					"$(PROJECT_DIR)/CommandLine/CommandLineTool/verbose.cfg",
 					"-fstack-protector",
 					"-fstack-protector-all",
 				);
