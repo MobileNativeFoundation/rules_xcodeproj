@@ -6,7 +6,7 @@ load(
     "xcodeproj_rules_dev_dependencies",
 )
 
-xcodeproj_rules_dependencies(use_dev_patches = True)
+xcodeproj_rules_dependencies()
 
 load(
     "@build_bazel_rules_apple//apple:repositories.bzl",

@@ -51,7 +51,6 @@ pass `ignore_version_differences = True` to `xcodeproj_rules_dependencies()`.
 # buildifier: disable=unnamed-macro
 def xcodeproj_rules_dependencies(
         ignore_version_differences = False,
-        use_dev_patches = False,
         include_bzlmod_ready_dependencies = True):
     """Fetches repositories that are dependencies of `rules_xcodeproj`.
 
@@ -62,8 +61,6 @@ def xcodeproj_rules_dependencies(
     Args:
         ignore_version_differences: If `True`, warnings about potentially
             incompatible versions of dependency repositories will be silenced.
-        use_dev_patches: If `True`, use patches that are intended to be
-            applied to the development version of the repository.
         include_bzlmod_ready_dependencies: Whether or not bzlmod-ready
             dependencies should be included.
     """
@@ -236,14 +233,6 @@ swift_library(
         ignore_version_differences = ignore_version_differences,
     )
 
-    if use_dev_patches:
-        xcodeproj_patches = [
-            # Custom for our tests
-            "@com_github_buildbuddy_io_rules_xcodeproj//third_party/com_github_tuist_xcodeproj:parent_equatable.patch",
-        ]
-    else:
-        xcodeproj_patches = []
-
     # Main branch as of 2022-09-07. Contains implementation for
     # XCScheme.ExecutionAction.shellToInvoke
     xcodeproj_git_sha = "b7e93122d08e59497211ea12f4da73e6a4d7d598"
@@ -263,7 +252,6 @@ swift_library(
     ],
 )
 """,
-        patches = xcodeproj_patches,
         sha256 = "376f13a99dcb70961ebde9fcaa7bfeb360422990161b7fb35954937f671574dc",
         strip_prefix = "XcodeProj-%s" % xcodeproj_git_sha,
         url = "https://github.com/tuist/XcodeProj/archive/%s.tar.gz" % xcodeproj_git_sha,
