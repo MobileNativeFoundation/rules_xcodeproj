@@ -59,6 +59,7 @@ rules.
 - Spotify
 - [SwiftLint](https://github.com/realm/SwiftLint)
 - Tinder
+- Ergatta
 
 If you are also using rules_xcodeproj for your project, feel free to open a PR
 to include it in the list above.
