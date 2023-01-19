@@ -1,5 +1,8 @@
 # Import parent workspace settings
 import %workspace%/../../shared.bazelrc
 
+# This example doesn't support bzlmod yet
+build --noexperimental_enable_bzlmod
+
 # Use a user.bazelrc if it exists
 try-import %workspace%/user.bazelrc

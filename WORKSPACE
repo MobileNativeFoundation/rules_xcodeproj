@@ -1,6 +1,10 @@
 workspace(name = "com_github_buildbuddy_io_rules_xcodeproj")
 
-load("//xcodeproj:repositories.bzl", "xcodeproj_rules_dependencies")
+load(
+    "//xcodeproj:repositories.bzl",
+    "xcodeproj_rules_dependencies",
+    "xcodeproj_rules_dev_dependencies",
+)
 
 xcodeproj_rules_dependencies(use_dev_patches = True)
 
@@ -25,48 +29,7 @@ load(
 
 swift_rules_extra_dependencies()
 
-# Setup Swift Custom Dump test dependency
-
-load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
-
-http_archive(
-    name = "com_github_pointfreeco_xctest_dynamic_overlay",
-    build_file_content = """\
-load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
-
-swift_library(
-    name = "XCTestDynamicOverlay",
-    module_name = "XCTestDynamicOverlay",
-    srcs = glob(["Sources/XCTestDynamicOverlay/**/*.swift"]),
-    visibility = ["//visibility:public"],
-)
-""",
-    sha256 = "97169124feb98b409f5b890bd95bb147c2fba0dba3098f9bf24c539270ee9601",
-    strip_prefix = "xctest-dynamic-overlay-0.2.1",
-    url = "https://github.com/pointfreeco/xctest-dynamic-overlay/archive/refs/tags/0.2.1.tar.gz",
-)
-
-http_archive(
-    name = "com_github_pointfreeco_swift_custom_dump",
-    build_file_content = """\
-load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
-
-swift_library(
-    name = "CustomDump",
-    module_name = "CustomDump",
-    srcs = glob(["Sources/CustomDump/**/*.swift"]),
-    deps = ["@com_github_pointfreeco_xctest_dynamic_overlay//:XCTestDynamicOverlay"],
-    visibility = ["//visibility:public"],
-)
-""",
-    patches = [
-        # Custom for our tests
-        "//third_party/com_github_pointfreeco_swift_custom_dump:type_name.patch",
-    ],
-    sha256 = "a45e8f275794960651043623e23abb8365f0455b4ad5976bc56a4fa00c5efb31",
-    strip_prefix = "swift-custom-dump-0.5.0",
-    url = "https://github.com/pointfreeco/swift-custom-dump/archive/refs/tags/0.5.0.tar.gz",
-)
+xcodeproj_rules_dev_dependencies()
 
 # Setup the Skylib dependency, this is required to use the Starlark unittest
 # framework. Since this is only used for rules_xcodeproj's tests, we configure
@@ -79,6 +42,8 @@ load("@bazel_skylib//:workspace.bzl", "bazel_skylib_workspace")
 bazel_skylib_workspace()
 
 # Buildifier
+
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 http_archive(
     name = "buildifier_prebuilt",

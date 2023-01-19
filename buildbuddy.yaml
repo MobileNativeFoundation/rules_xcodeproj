@@ -39,13 +39,13 @@ x_templates:
         - examples/sanitizers/setup-bazel-output-base
 
   commands:
-    - &bazel_5_setup "--output_base=setup-bazel-output-base run --config=workflows @com_github_buildbuddy_io_rules_xcodeproj//tools:set_bazel_5"
-    - &validate_integration "run --config=workflows //test/fixtures:validate"
-    - &build_all "build --config=workflows //..."
-    - &test_all "test --config=workflows //..."
+    - &bazel_5_setup "--output_base=setup-bazel-output-base run --config=workflows --noexperimental_enable_bzlmod @com_github_buildbuddy_io_rules_xcodeproj//tools:set_bazel_5"
+    - &validate_integration "run --config=workflows --noexperimental_enable_bzlmod //test/fixtures:validate"
+    - &build_all "build --config=workflows --noexperimental_enable_bzlmod //..."
+    - &test_all "test --config=workflows --noexperimental_enable_bzlmod //..."
     - &bzlmod_generate_integration "run --config=workflows //test/fixtures:update"
-    - &bzlmod_build_all "build --config=bzlmod_workflows //..."
-    - &bzlmod_test_all "test --config=bzlmod_workflows //test/..."
+    - &bzlmod_build_all "build --config=workflows //..."
+    - &bzlmod_test_all "test --config=workflows //test/..."
 
 actions:
   - name: Buildifier Lint
@@ -60,7 +60,7 @@ actions:
     <<: *light_resources
     <<: *root_workspace
     bazel_commands:
-      - "test --config=workflows //docs:diff_test"
+      - "test --config=workflows --noenable_bzlmod //docs:diff_test"
 
   - name: Test
     <<: *arm64

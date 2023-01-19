@@ -81,7 +81,11 @@ cd "$BUILD_WORKSPACE_DIRECTORY"
 bazel_path=$(which "%bazel_path%")
 installer_flags+=(--bazel_path "$bazel_path")
 
-execution_root=$("$bazel_path" info execution_root)
+if [[ %is_fixture% -eq 1 && %is_bazel_6% -eq 1 ]]; then
+  execution_root=$("$bazel_path" info --noexperimental_enable_bzlmod execution_root)
+else
+  execution_root=$("$bazel_path" info execution_root)
+fi
 installer_flags+=(--execution_root "$execution_root")
 
 readonly output_base="${execution_root%/*/*}"
@@ -110,13 +114,14 @@ pre_config_flags=(
   "--repo_env=USE_CLANG_CL=$xcode_build_version"
 )
 
-if [[ %is_fixture% -eq 1 ]]; then
-  if [[ %is_bazel_6% -eq 1 ]]; then
-    pre_config_flags+=(
-      # Until we stop testing Bazel 5, we want the strings to format the same
-      "--incompatible_unambiguous_label_stringification=false"
-    )
-  fi
+if [[ %is_fixture% -eq 1 && %is_bazel_6% -eq 1 ]]; then
+  pre_config_flags+=(
+    # Until we stop testing Bazel 5, we want the strings to format the same
+    "--incompatible_unambiguous_label_stringification=false"
+
+    # bzlmod adjust labels in a way that we can't account for yet
+    "--noexperimental_enable_bzlmod"
+  )
 fi
 
 readonly bazel_cmd=(

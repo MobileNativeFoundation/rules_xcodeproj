@@ -12,4 +12,4 @@ else
   readonly bazel_version_bazelrc="$root_dir/bazel_6.bazelrc"
 fi
 
-exec "$BAZEL_REAL" "--bazelrc=$bazel_version_bazelrc" "$@"
+exec "$BAZEL_REAL" "--noworkspace_rc" "--bazelrc=$bazel_version_bazelrc" "--bazelrc=.bazelrc" "$@"

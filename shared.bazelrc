@@ -35,10 +35,6 @@ build:cache --@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:extra_common_
 build:cache --@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:extra_indexbuild_flags='--bes_backend= --bes_results_url='
 build:cache --@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:extra_generator_flags='--bes_backend= --bes_results_url='
 
-build:bzlmod_cache --config=cache
-build:bzlmod_cache --enable_bzlmod
-build:bzlmod_cache --@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:extra_common_flags='--config=cache --enable_bzlmod'
-
 # Build with --config=remote to use BuildBuddy RBE
 build:remote --config=cache
 build:remote --remote_executor=grpcs://remote.buildbuddy.io
@@ -52,10 +48,6 @@ build:workflows --color=yes
 build:workflows --terminal_columns=120
 build:workflows --disk_cache=
 build:workflows --@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:extra_generator_flags='--config=workflows --bes_backend= --bes_results_url='
-
-build:bzlmod_workflows --config=workflows
-build:bzlmod_workflows --enable_bzlmod
-build:bzlmod_workflows --@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:extra_generator_flags='--config=workflows --enable_bzlmod --bes_backend= --bes_results_url='
 
 # Show detailed errors for test failures
 test --test_output=errors --test_summary=detailed
