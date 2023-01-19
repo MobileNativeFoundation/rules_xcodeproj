@@ -50,8 +50,6 @@ def make_bazel_labels(workspace_name_resolvers = workspace_name_resolvers):
         # Extract the repo name
         if root_sep_pos > 0:
             repo_name = value[:root_sep_pos]
-            if repo_name.startswith("@@"):
-                repo_name = repo_name[1:]
         else:
             repo_name = workspace_name_resolvers.repository_name()
 
@@ -90,18 +88,11 @@ def make_bazel_labels(workspace_name_resolvers = workspace_name_resolvers):
 
     def _normalize(value):
         if type(value) == "Label":
-            label = value
+            return str(value)
         else:
             parts = _parse(value)
 
-            is_bazel_6 = hasattr(apple_common, "link_multi_arch_static_library")
-            if is_bazel_6:
-                repo_prefix = "@"
-            else:
-                repo_prefix = ""
-
-            label = Label("{repo_prefix}{repo_name}//{package}:{name}".format(
-                repo_prefix = repo_prefix,
+            label = Label("{repo_name}//{package}:{name}".format(
                 repo_name = parts.repository_name,
                 package = parts.package,
                 name = parts.name,
