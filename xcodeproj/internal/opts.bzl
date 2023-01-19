@@ -7,7 +7,7 @@ load(":collections.bzl", "set_if_true", "uniq")
 # The values are the number of flags to skip, 1 being the flag itself, 2 being
 # another flag right after it, etc.
 _CC_SKIP_OPTS = {
-    "-fcolor-diagnostics": 1,
+    # Xcode sets these, and no way to unset them
     "-isysroot": 2,
     "-mios-simulator-version-min": 1,
     "-miphoneos-version-min": 1,
@@ -17,40 +17,62 @@ _CC_SKIP_OPTS = {
     "-mwatchos-simulator-version-min": 1,
     "-mwatchos-version-min": 1,
     "-target": 2,
+
+    # We want Xcode to control coloring
+    "-fcolor-diagnostics": 1,
 }
 
 # Swift compiler flags that we don't want to propagate to Xcode.
 # The values are the number of flags to skip, 1 being the flag itself, 2 being
 # another flag right after it, etc.
 _SWIFTC_SKIP_OPTS = {
-    "-Xwrapped-swift": 1,
-    "-debug-prefix-map": 2,
+    # Xcode sets output paths
     "-emit-module-path": 2,
     "-emit-object": 1,
-    "-emit-symbol-graph-dir": 2,
+    "-output-file-map": 2,
+
+    # Xcode sets these, and no way to unset them
     "-enable-bare-slash-regex": 1,
-    "-enable-batch-mode": 1,
-    "-file-prefix-map": 2,
-    # TODO: See if we need to support this
-    "-gline-tables-only": 1,
-    "-index-ignore-system-modules": 1,
-    "-index-store-path": 2,
-    "-module-cache-path": 2,
     "-module-name": 2,
     "-num-threads": 2,
-    "-output-file-map": 2,
     "-parse-as-library": 1,
     "-sdk": 2,
     "-target": 2,
+
+    # We want to use Xcode's normal PCM handling
+    "-module-cache-path": 2,
+
+    # We want Xcode's normal debug handling
+    "-debug-prefix-map": 2,
+    "-file-prefix-map": 2,
+    "-gline-tables-only": 1,
+
+    # We want to use Xcode's normal indexing handling
+    "-index-ignore-system-modules": 1,
+    "-index-store-path": 2,
+
+    # We set Xcode build settings to control these
+    "-enable-batch-mode": 1,
+
+    # We don't want to translate this for BwX
+    "-emit-symbol-graph-dir": 2,
+
+    # This is rules_swift specific, and we don't want to translate it for BwX
+    "-Xwrapped-swift": 1,
 }
 
 _SWIFTC_SKIP_COMPOUND_OPTS = {
     "-Xfrontend": {
+        # We want Xcode to control coloring
         "-color-diagnostics": 1,
-        "-emit-symbol-graph": 1,
+
+        # We want Xcode's normal debug handling
         "-no-clang-module-breadcrumbs": 1,
         "-no-serialize-debugging-options": 1,
         "-serialize-debugging-options": 1,
+
+        # We don't want to translate this for BwX
+        "-emit-symbol-graph": 1,
     },
 }
 
