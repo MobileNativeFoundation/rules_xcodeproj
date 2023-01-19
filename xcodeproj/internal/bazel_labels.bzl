@@ -50,6 +50,8 @@ def make_bazel_labels(workspace_name_resolvers = workspace_name_resolvers):
         # Extract the repo name
         if root_sep_pos > 0:
             repo_name = value[:root_sep_pos]
+            if repo_name.startswith("@@"):
+                repo_name = repo_name[1:]
         else:
             repo_name = workspace_name_resolvers.repository_name()
 

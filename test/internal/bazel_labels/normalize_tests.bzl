@@ -21,19 +21,18 @@ bazel_labels = make_bazel_labels(
     ),
 )
 
-def _repo_prefix():
-    is_bazel_6 = hasattr(apple_common, "link_multi_arch_static_library")
-    if is_bazel_6:
-        return "@"
-    else:
-        return ""
+def _main_repo_prefix():
+    return str(Label("@//:BUILD")).partition("//")[0]
+
+def _external_repo_prefix():
+    return str(Label("@_repo//:BUILD")).partition("_")[0]
 
 def _relative_label_test(ctx):
     env = unittest.begin(ctx)
 
     value = ":chicken"
     actual = bazel_labels.normalize(value)
-    expected = _repo_prefix() + "//Sources/Foo:chicken"
+    expected = _main_repo_prefix() + "//Sources/Foo:chicken"
     asserts.equals(env, expected, actual)
 
     return unittest.end(env)
@@ -45,7 +44,7 @@ def _absolute_label_with_repo_name_test(ctx):
 
     value = "@my_dep//Sources/Foo:chicken"
     actual = bazel_labels.normalize(value)
-    expected = value
+    expected = _external_repo_prefix() + "my_dep//Sources/Foo:chicken"
     asserts.equals(env, expected, actual)
 
     return unittest.end(env)
@@ -57,7 +56,7 @@ def _absolute_label_without_repo_name_test(ctx):
 
     value = "//Sources/Foo:chicken"
     actual = bazel_labels.normalize(value)
-    expected = _repo_prefix() + "//Sources/Foo:chicken"
+    expected = _main_repo_prefix() + "//Sources/Foo:chicken"
     asserts.equals(env, expected, actual)
 
     return unittest.end(env)
