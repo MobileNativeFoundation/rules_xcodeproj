@@ -343,7 +343,7 @@ def _set_search_paths(
             build_settings = build_settings,
             key = "USER_HEADER_SEARCH_PATHS",
             values = [
-                quote_if_needed(build_setting_path(path = path))
+                quote_if_needed(path)
                 for path in search_paths_intermediate.quote_includes
             ],
         )
@@ -351,7 +351,7 @@ def _set_search_paths(
             build_settings = build_settings,
             key = "HEADER_SEARCH_PATHS",
             values = [
-                quote_if_needed(build_setting_path(path = path))
+                quote_if_needed(path)
                 for path in search_paths_intermediate.includes
             ],
         )
@@ -359,7 +359,7 @@ def _set_search_paths(
             build_settings = build_settings,
             key = "SYSTEM_HEADER_SEARCH_PATHS",
             values = [
-                quote_if_needed(build_setting_path(path = path))
+                quote_if_needed(path)
                 for path in search_paths_intermediate.system_includes
             ],
         )

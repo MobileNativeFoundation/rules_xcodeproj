@@ -884,8 +884,8 @@
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
-					"$(SRCROOT)/lib/private",
-					"$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-1/bin/lib/private",
+					lib/private,
+					"bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib/private",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_CFLAGS = (
@@ -927,8 +927,8 @@
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = lib_impl;
 				USER_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
-					"$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-1/bin",
+					.,
+					"bazel-out/darwin_x86_64-dbg-STABLE-1/bin",
 				);
 			};
 			name = Debug;
@@ -995,8 +995,8 @@
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = lib_defines;
 				USER_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
-					"$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-1/bin",
+					.,
+					"bazel-out/darwin_x86_64-dbg-STABLE-1/bin",
 				);
 			};
 			name = Debug;
@@ -1063,8 +1063,8 @@
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = lib_headers;
 				USER_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
-					"$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-1/bin",
+					.,
+					"bazel-out/darwin_x86_64-dbg-STABLE-1/bin",
 				);
 			};
 			name = Debug;
@@ -1128,13 +1128,13 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				SYSTEM_HEADER_SEARCH_PATHS = (
-					"$(SRCROOT)/lib2/includes",
-					"$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-1/bin/lib2/includes",
+					lib2/includes,
+					"bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib2/includes",
 				);
 				TARGET_NAME = lib_impl;
 				USER_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
-					"$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-1/bin",
+					.,
+					"bazel-out/darwin_x86_64-dbg-STABLE-1/bin",
 				);
 			};
 			name = Debug;
@@ -1264,8 +1264,8 @@
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = lib_defines;
 				USER_HEADER_SEARCH_PATHS = (
-					"$(BAZEL_EXTERNAL)/examples_cc_external",
-					"$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external",
+					external/examples_cc_external,
+					"bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external",
 				);
 			};
 			name = Debug;
@@ -1332,8 +1332,8 @@
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = lib_headers;
 				USER_HEADER_SEARCH_PATHS = (
-					"$(BAZEL_EXTERNAL)/examples_cc_external",
-					"$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external",
+					external/examples_cc_external,
+					"bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external",
 				);
 			};
 			name = Debug;
@@ -1404,17 +1404,17 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				SYSTEM_HEADER_SEARCH_PATHS = (
-					"$(SRCROOT)/lib2/includes",
-					"$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-1/bin/lib2/includes",
+					lib2/includes,
+					"bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib2/includes",
 				);
 				TARGET_NAME = tool;
 				USER_HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
-					"$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-1/bin",
-					"$(BAZEL_EXTERNAL)/examples_cc_external",
-					"$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external",
-					"$(BAZEL_EXTERNAL)/bazel_tools",
-					"$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-1/bin/external/bazel_tools",
+					.,
+					"bazel-out/darwin_x86_64-dbg-STABLE-1/bin",
+					external/examples_cc_external,
+					"bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external",
+					external/bazel_tools,
+					"bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/bazel_tools",
 				);
 			};
 			name = Debug;
@@ -1441,8 +1441,8 @@
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
-					"$(BAZEL_EXTERNAL)/examples_cc_external/private",
-					"$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external/private",
+					external/examples_cc_external/private,
+					"bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external/private",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_CFLAGS = (
@@ -1484,8 +1484,8 @@
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = lib_impl;
 				USER_HEADER_SEARCH_PATHS = (
-					"$(BAZEL_EXTERNAL)/examples_cc_external",
-					"$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external",
+					external/examples_cc_external,
+					"bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external",
 				);
 			};
 			name = Debug;

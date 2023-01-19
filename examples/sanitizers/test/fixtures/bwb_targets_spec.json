@@ -269,8 +269,8 @@
             "SWIFT_VERSION": "5.0",
             "TARGETED_DEVICE_FAMILY": "1",
             "USER_HEADER_SEARCH_PATHS": [
-                "$(PROJECT_DIR)",
-                "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin"
+                ".",
+                "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin"
             ]
         },
         "compile_target": {
