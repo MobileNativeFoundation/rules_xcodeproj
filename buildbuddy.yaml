@@ -90,7 +90,7 @@ actions:
     <<: *root_workspace
     bazel_commands:
       - *validate_integration
-  - name: Integration Test - Root Bzlmod
+  - name: Integration Test - Root - Bzlmod
     <<: *arm64
     <<: *action_base
     <<: *normal_resources
