@@ -82,10 +82,10 @@ bazel_skylib_workspace()
 
 http_archive(
     name = "buildifier_prebuilt",
-    sha256 = "95387c9dded7f8e3bdd4c598bc2ca4fbb6366cb214fa52e7d7b689eb2f421e01",
-    strip_prefix = "buildifier-prebuilt-6.0.0",
+    sha256 = "f7093a960a8c3471552764892ce12cb62d9b72600fa4c8b08b2090c45db05ce8",
+    strip_prefix = "buildifier-prebuilt-6.0.0.1",
     urls = [
-        "https://github.com/keith/buildifier-prebuilt/archive/6.0.0.tar.gz",
+        "https://github.com/keith/buildifier-prebuilt/archive/6.0.0.1.tar.gz",
     ],
 )
 
