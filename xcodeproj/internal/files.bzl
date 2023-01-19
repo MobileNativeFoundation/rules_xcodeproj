@@ -115,8 +115,8 @@ def build_setting_path(
         else:
             build_setting = path
     else:
-        # Project
-        if absolute_path:
+        # Project or absolute
+        if absolute_path and not path.startswith("/"):
             build_setting = "$(SRCROOT)/{}".format(path)
         else:
             build_setting = path
