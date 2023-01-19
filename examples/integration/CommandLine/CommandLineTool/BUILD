@@ -39,7 +39,10 @@ objc_library(
     name = "tool.library",
     srcs = ["main.m"],
     hdrs = ["verbose.cfg"],
-    copts = ["--config", "CommandLine/CommandLineTool/verbose.cfg"],
+    copts = [
+        "--config",
+        "CommandLine/CommandLineTool/verbose.cfg",
+    ],
     enable_modules = True,
     tags = ["manual"],
     deps = [
