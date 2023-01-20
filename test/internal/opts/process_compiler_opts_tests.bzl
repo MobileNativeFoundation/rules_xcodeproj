@@ -249,7 +249,7 @@ weird \
 -application-extension \
 weird \
 -Xcc \
--iquote. \
+-iquote$(PROJECT_DIR) \
 -Xcc \
 -iquote$(PROJECT_DIR)/bazel-out/ios-sim_arm64-min15.0-applebin_ios-ios_sim_arm64-fastbuild-ST-4e6c2a19403f/bin \
 -unhandled \
