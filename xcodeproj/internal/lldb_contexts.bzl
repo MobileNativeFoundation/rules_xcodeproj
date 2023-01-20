@@ -54,14 +54,11 @@ def _collect_lldb_context(
             ),
         )]
 
-        objc = search_paths._compilation_providers._objc
-        if objc:
-            framework_paths = [depset(
-                transitive = [
-                    objc.static_framework_paths,
-                    objc.dynamic_framework_paths,
-                ],
-            )]
+        opts_search_paths = search_paths._opts_search_paths
+        if opts_search_paths:
+            framework_paths = opts_search_paths.framework_includes
+        else:
+            framework_paths = tuple()
 
     return struct(
         _clang = depset(
@@ -73,7 +70,8 @@ def _collect_lldb_context(
             order = "topological",
         ),
         _framework_search_paths = depset(
-            transitive = framework_paths + [
+            direct = framework_paths,
+            transitive = [
                 info.lldb_context._framework_search_paths
                 for info in transitive_infos
             ],
