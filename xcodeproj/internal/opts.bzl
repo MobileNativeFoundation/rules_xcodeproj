@@ -668,36 +668,57 @@ def _process_swiftcopts(
         # TODO: handle the format "-Xcc -iquote -Xcc path"
         if opt.startswith("-isystem"):
             path = opt[8:]
-            if previous_opt == "-Xcc":
-                system_includes.append(path)
-            if (build_mode == "xcode" and path != "." and
-                not path.startswith("/")):
-                return "-isystem$(PROJECT_DIR)/" + path
+            if (previous_opt == "-Xcc" or
+                (build_mode == "xcode" and not path.startswith("/"))):
+                if path == ".":
+                    bwx_opt = "-isystem$(PROJECT_DIR)"
+                else:
+                    bwx_opt = "-isystem$(PROJECT_DIR)/" + path
+                if build_mode == "xcode":
+                    opt = bwx_opt
+                if previous_opt == "-Xcc":
+                    system_includes.append(path)
             return opt
         if opt.startswith("-iquote"):
             path = opt[7:]
-            if previous_opt == "-Xcc":
-                quote_includes.append(path)
-            if (build_mode == "xcode" and path != "." and
-                not path.startswith("/")):
-                return "-iquote$(PROJECT_DIR)/" + path
+            if (previous_opt == "-Xcc" or
+                (build_mode == "xcode" and not path.startswith("/"))):
+                if path == ".":
+                    bwx_opt = "-iquote$(PROJECT_DIR)"
+                else:
+                    bwx_opt = "-iquote$(PROJECT_DIR)/" + path
+                if build_mode == "xcode":
+                    opt = bwx_opt
+                if previous_opt == "-Xcc":
+                    quote_includes.append(path)
             return opt
         if opt.startswith("-I"):
             path = opt[2:]
-            if previous_opt == "-Xcc":
-                includes.append(path)
-            if (build_mode == "xcode" and path != "." and
-                not path.startswith("/")):
-                return "-I$(PROJECT_DIR)/" + path
+            if (previous_opt == "-Xcc" or
+                (build_mode == "xcode" and not path.startswith("/"))):
+                if path == ".":
+                    bwx_opt = "-I$(PROJECT_DIR)"
+                else:
+                    bwx_opt = "-I$(PROJECT_DIR)/" + path
+                if build_mode == "xcode":
+                    opt = bwx_opt
+                if previous_opt == "-Xcc":
+                    includes.append(path)
             return opt
         if opt.startswith("-fmodule-map-file="):
             path = opt[18:]
-            if (build_mode == "xcode" and path != "." and
-                not path.startswith("/")):
-                return "-fmodule-map-file=$(PROJECT_DIR)/" + path
+            if (previous_opt == "-Xcc" or
+                (build_mode == "xcode" and not path.startswith("/"))):
+                if path == ".":
+                    bwx_opt = "-fmodule-map-file=$(PROJECT_DIR)"
+                else:
+                    bwx_opt = "-fmodule-map-file=$(PROJECT_DIR)/" + path
+                if build_mode == "xcode":
+                    opt = bwx_opt
             return opt
         if opt.startswith("-F"):
-            framework_includes.append(opt[2:])
+            path = opt[2:]
+            framework_includes.append(path)
             return opt
         if previous_opt == "-Xcc":
             # We do this check here, to prevent the `-O` and `-D` logic below
