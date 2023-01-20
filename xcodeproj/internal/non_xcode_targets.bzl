@@ -115,10 +115,10 @@ rules_xcodeproj requires {} to have `{}` set.
             transitive_infos = transitive_infos,
         ),
         lldb_context = lldb_contexts.collect(
-            compilation_mode = ctx.var["COMPILATION_MODE"],
-            objc_fragment = ctx.fragments.objc,
             id = None,
             is_swift = is_swift,
+            # TODO: Should we still collect this?
+            clang_opts = [],
             search_paths = search_paths,
             modulemaps = process_modulemaps(swift_info = swift_info),
             swiftmodules = swiftmodules,

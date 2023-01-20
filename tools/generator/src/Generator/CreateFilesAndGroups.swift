@@ -951,34 +951,6 @@ private extension LLDBContext.Clang {
         oncePaths: inout Set<String>,
         onceOtherFlags: inout Set<String>
     ) -> String {
-        let quoteIncludesArgs: [String] = quoteIncludes.map { path in
-            return #"-iquote "\#(path)""#
-        }
-
-        var includesArgs: [String] = []
-        for path in includes {
-            guard !oncePaths.contains(path) else {
-                continue
-            }
-            oncePaths.insert(path)
-
-            includesArgs.append(#"-I "\#(path)""#)
-        }
-
-        let systemIncludesArgs: [String] = systemIncludes.map { path in
-            return #"-isystem "\#(path)""#
-        }
-
-        var modulemapArgs: [String] = []
-        for path in modulemaps {
-            guard !oncePaths.contains(path) else {
-                continue
-            }
-            oncePaths.insert(path)
-
-            modulemapArgs.append(#"-fmodule-map-file="\#(path)""#)
-        }
-
         var filteredOpts: [String] = []
         for opt in opts {
             guard !onceOtherFlags.contains(opt) else {
@@ -991,18 +963,16 @@ private extension LLDBContext.Clang {
             // have the same value as the last time the key was used.
             if opt.starts(with: "-D") {
                 onceOtherFlags.insert(opt)
+            } else if opt.starts(with: "-fmodule-map-file=") ||
+                opt.starts(with: "-I") {
+                // TODO: Make sure we aren't supposed to de-duplicate `-iquote`
+                // or `-systemquote`
+                onceOtherFlags.insert(opt)
             }
             filteredOpts.append(opt)
         }
 
-        return (
-            quoteIncludesArgs +
-            includesArgs +
-            systemIncludesArgs +
-            modulemapArgs +
-            filteredOpts
-        )
-            .joined(separator: " ")
+        return filteredOpts.joined(separator: " ")
     }
 }
 

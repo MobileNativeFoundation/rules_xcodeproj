@@ -275,6 +275,7 @@ def _skip_target(
         lldb_context = lldb_contexts.collect(
             id = None,
             is_swift = False,
+            clang_opts = [],
             search_paths = search_paths,
             transitive_infos = [
                 info
