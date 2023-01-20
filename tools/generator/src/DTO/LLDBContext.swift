@@ -2,23 +2,11 @@ import PathKit
 
 struct LLDBContext: Equatable {
     struct Clang: Equatable {
-        let quoteIncludes: [String]
-        let includes: [String]
-        let systemIncludes: [String]
-        let modulemaps: [String]
         let opts: [String]
 
         init(
-            quoteIncludes: [String] = [],
-            includes: [String] = [],
-            systemIncludes: [String] = [],
-            modulemaps: [String] = [],
             opts: [String] = []
         ) {
-            self.quoteIncludes = quoteIncludes
-            self.includes = includes
-            self.systemIncludes = systemIncludes
-            self.modulemaps = modulemaps
             self.opts = opts
         }
     }
@@ -61,24 +49,12 @@ extension LLDBContext: Decodable {
 
 extension LLDBContext.Clang: Decodable {
     enum CodingKeys: String, CodingKey {
-        case quoteIncludes = "q"
-        case includes = "i"
-        case systemIncludes = "s"
-        case modulemaps = "m"
         case opts = "o"
     }
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        quoteIncludes = try container
-            .decodeIfPresent([String].self, forKey: .quoteIncludes) ?? []
-        includes = try container
-            .decodeIfPresent([String].self, forKey: .includes) ?? []
-        systemIncludes = try container
-            .decodeIfPresent([String].self, forKey: .systemIncludes) ?? []
-        modulemaps = try container
-            .decodeIfPresent([String].self, forKey: .modulemaps) ?? []
         opts = try container.decodeIfPresent([String].self, forKey: .opts) ?? []
     }
 }

@@ -644,6 +644,7 @@ def _process_swiftcopts(
         A `tuple` containing three elements:
 
         *   A `list` of processed Swift compiler options.
+        *   A `list` of clang compiler options.
         *   A value returned by `create_opts_search_paths` with the parsed
             search paths.
         *   A `bool` indicting if the target has debug info enabled.
@@ -662,6 +663,7 @@ def _process_swiftcopts(
     includes = []
     system_includes = []
     framework_includes = []
+    clang_opts = []
     has_debug_info = {}
 
     def process(opt, previous_opt):
@@ -678,6 +680,7 @@ def _process_swiftcopts(
                     opt = bwx_opt
                 if previous_opt == "-Xcc":
                     system_includes.append(path)
+                    clang_opts.append(bwx_opt)
             return opt
         if opt.startswith("-iquote"):
             path = opt[7:]
@@ -691,6 +694,7 @@ def _process_swiftcopts(
                     opt = bwx_opt
                 if previous_opt == "-Xcc":
                     quote_includes.append(path)
+                    clang_opts.append(bwx_opt)
             return opt
         if opt.startswith("-I"):
             path = opt[2:]
@@ -704,6 +708,7 @@ def _process_swiftcopts(
                     opt = bwx_opt
                 if previous_opt == "-Xcc":
                     includes.append(path)
+                    clang_opts.append(bwx_opt)
             return opt
         if opt.startswith("-fmodule-map-file="):
             path = opt[18:]
@@ -715,6 +720,7 @@ def _process_swiftcopts(
                     bwx_opt = "-fmodule-map-file=$(PROJECT_DIR)/" + path
                 if build_mode == "xcode":
                     opt = bwx_opt
+                clang_opts.append(bwx_opt)
             return opt
         if opt.startswith("-F"):
             path = opt[2:]
@@ -723,6 +729,7 @@ def _process_swiftcopts(
         if previous_opt == "-Xcc":
             # We do this check here, to prevent the `-O` and `-D` logic below
             # from incorrectly detecting this situation
+            clang_opts.append(opt)
             return opt
 
         if previous_opt == "-emit-objc-header-path":
@@ -802,67 +809,7 @@ Using VFS overlays with `build_mode = "xcode"` is unsupported.
         " ".join(uniq(defines)),
     )
 
-    return processed_opts, search_paths, has_debug_info
-
-def swift_pcm_copts(*, compilation_mode, objc_fragment, cc_info):
-    base_pcm_flags = _swift_command_line_objc_copts(
-        compilation_mode = compilation_mode,
-        objc_fragment = objc_fragment,
-    )
-    pcm_defines = [
-        "-D{}".format(define.replace("\\", "\\\\").replace('"', '\\"'))
-        for define in (
-            cc_info.compilation_context.defines.to_list() if cc_info else []
-        )
-    ]
-
-    return base_pcm_flags + pcm_defines
-
-# Lifted from rules_swift, to mimic its behavior
-def _swift_command_line_objc_copts(*, compilation_mode, objc_fragment):
-    """Returns copts that should be passed to `clang` from the `objc` fragment.
-
-    Args:
-        compilation_mode: The current compilation mode.
-        objc_fragment: The `objc` configuration fragment.
-
-    Returns:
-        A `list` of `clang` copts, each of which is preceded by `-Xcc` so that
-        they can be passed through `swiftc` to its underlying ClangImporter
-        instance.
-    """
-
-    # In general, every compilation mode flag from native `objc_*` rules should
-    # be passed, but `-g` seems to break Clang module compilation. Since this
-    # flag does not make much sense for module compilation and only touches
-    # headers, it's ok to omit.
-    # TODO: These flags were originally being set by Bazel's legacy
-    # hardcoded Objective-C behavior, which has been migrated to crosstool. In
-    # the long term, we should query crosstool for the flags we're interested in
-    # and pass those to ClangImporter, and do this across all platforms. As an
-    # immediate short-term workaround, we preserve the old behavior by passing
-    # the exact set of flags that Bazel was originally passing if the list we
-    # get back from the configuration fragment is empty.
-    legacy_copts = objc_fragment.copts_for_current_compilation_mode
-    if not legacy_copts:
-        if compilation_mode == "dbg":
-            legacy_copts = [
-                "-O0",
-                "-DDEBUG=1",
-                "-fstack-protector",
-                "-fstack-protector-all",
-            ]
-        elif compilation_mode == "opt":
-            legacy_copts = [
-                "-Os",
-                "-DNDEBUG=1",
-                "-Wno-unused-variable",
-                "-Winit-self",
-                "-Wno-extra",
-            ]
-
-    clang_copts = objc_fragment.copts + legacy_copts
-    return [copt for copt in clang_copts if copt != "-g"]
+    return processed_opts, clang_opts, search_paths, has_debug_info
 
 def _process_compiler_opts(
         *,
@@ -888,10 +835,11 @@ def _process_compiler_opts(
             `swiftcopts` lists.
 
     Returns:
-        A `struct` containing the following fields:
+        A `tuple` containing two elements:
 
-        *   `quotes_includes`: A `list` of quote include paths parsed.
-        *   `includes`: A `list` of include paths parsed.
+        *   A value returned by `create_opts_search_paths` with the parsed
+            search paths
+        *   A `list` of Swift PCM (clang) compiler options.
     """
 
     # Xcode's default for `ENABLE_STRICT_OBJC_MSGSEND` doesn't match its new
@@ -913,7 +861,12 @@ def _process_compiler_opts(
         cxxopts = cxxopts,
         build_settings = build_settings,
     )
-    swiftcopts, swift_search_paths, swift_has_debug_info = _process_swiftcopts(
+    (
+        swiftcopts,
+        clang_opts,
+        swift_search_paths,
+        swift_has_debug_info,
+    ) = _process_swiftcopts(
         opts = swiftcopts,
         build_mode = build_mode,
         package_bin_dir = package_bin_dir,
@@ -963,11 +916,13 @@ def _process_compiler_opts(
         " ".join(swiftcopts),
     )
 
-    return merge_opts_search_paths([
+    search_paths = merge_opts_search_paths([
         conly_search_paths,
         cxx_search_paths,
         swift_search_paths,
     ])
+
+    return search_paths, clang_opts
 
 def _process_target_compiler_opts(
         *,
@@ -988,10 +943,11 @@ def _process_target_compiler_opts(
             settings that are parsed from the target's compiler options.
 
     Returns:
-        A `struct` containing the following fields:
+        A `tuple` containing two elements:
 
-        *   `quotes_includes`: A `list` of quote include paths parsed.
-        *   `includes`: A `list` of include paths parsed.
+        *   A value returned by `create_opts_search_paths` with the parsed
+            search paths
+        *   A `list` of Swift PCM (clang) compiler options.
     """
     (
         conlyopts,
@@ -1063,19 +1019,19 @@ def process_opts(*, ctx, build_mode, target, package_bin_dir, build_settings):
             settings that are parsed from the compiler and linker options.
 
     Returns:
-        A `struct` containing the following fields:
+        A `tuple` containing two elements:
 
-        *   `quotes_includes`: A `list` of quote include paths parsed.
-        *   `includes`: A `list` of include paths parsed.
+        *   A value returned by `create_opts_search_paths` with the parsed
+            search paths
+        *   A `list` of Swift PCM (clang) compiler options.
     """
-    search_paths = _process_target_compiler_opts(
+    return _process_target_compiler_opts(
         ctx = ctx,
         build_mode = build_mode,
         target = target,
         package_bin_dir = package_bin_dir,
         build_settings = build_settings,
     )
-    return search_paths
 
 # These functions are exposed only for access in unit tests.
 testable = struct(

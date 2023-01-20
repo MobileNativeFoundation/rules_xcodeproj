@@ -7,14 +7,12 @@ load(
     "build_setting_path",
     "is_generated_path",
 )
-load(":opts.bzl", "swift_pcm_copts")
 
 def _collect_lldb_context(
         *,
-        compilation_mode = None,
-        objc_fragment = None,
         id,
         is_swift,
+        clang_opts,
         search_paths,
         modulemaps = None,
         swiftmodules = None,
@@ -22,10 +20,9 @@ def _collect_lldb_context(
     """Collects lldb context information for a target.
 
     Args:
-        compilation_mode: The current compilation mode.
-        objc_fragment: The `objc` configuration fragment.
         id: The unique identifier of the target.
         is_swift: Whether the target compiles Swift code.
+        clang_opts: A `list` of Swift PCM (clang) compiler options.
         search_paths: A value returned from `target_search_paths.make`.
         modulemaps: The value returned from `process_modulemaps`.
         swiftmodules: The value returned from `process_swiftmodules`.
@@ -38,13 +35,6 @@ def _collect_lldb_context(
     framework_paths = []
     clang = []
     if id and is_swift and search_paths and search_paths._compilation_providers:
-        # TODO: Include any user specified `-Xcc` flags
-        clang_opts = swift_pcm_copts(
-            compilation_mode = compilation_mode,
-            objc_fragment = objc_fragment,
-            cc_info = search_paths._compilation_providers._cc_info,
-        )
-
         clang = [(
             id,
             struct(
@@ -124,59 +114,8 @@ def _lldb_context_to_dto(lldb_context, *, xcode_generated_paths):
 
     clang_dtos = []
     for _, clang in lldb_context._clang.to_list():
-        # TODO: DRY this up with `target_search_paths`
-        search_paths = clang.search_paths
-        opts_search_paths = search_paths._opts_search_paths
-
-        if opts_search_paths:
-            includes = opts_search_paths.includes
-            quote_includes = opts_search_paths.quote_includes
-            system_includes = opts_search_paths.system_includes
-        else:
-            includes = []
-            quote_includes = []
-            system_includes = []
-
         clang_dto = {}
-
-        set_if_true(
-            clang_dto,
-            "q",
-            [
-                build_setting_path(path = path)
-                for path in quote_includes
-            ],
-        )
-        set_if_true(
-            clang_dto,
-            "i",
-            [
-                build_setting_path(path = path)
-                for path in includes
-            ],
-        )
-        set_if_true(
-            clang_dto,
-            "s",
-            [
-                build_setting_path(path = path)
-                for path in system_includes
-            ],
-        )
-
-        modulemaps = clang.modulemaps
-        if modulemaps:
-            set_if_true(
-                clang_dto,
-                "m",
-                [
-                    build_setting_path(file = file)
-                    for file in clang.modulemaps
-                ],
-            )
-
         set_if_true(clang_dto, "o", clang.opts)
-
         clang_dtos.append(clang_dto)
 
     set_if_true(dto, "c", clang_dtos)

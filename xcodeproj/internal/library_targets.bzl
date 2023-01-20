@@ -58,7 +58,7 @@ def process_library_target(
         label.workspace_root,
         label.package,
     )
-    opts_search_paths = process_opts(
+    opts_search_paths, clang_opts = process_opts(
         ctx = ctx,
         build_mode = build_mode,
         target = target,
@@ -148,10 +148,9 @@ def process_library_target(
     )
     swiftmodules = process_swiftmodules(swift_info = swift_info)
     lldb_context = lldb_contexts.collect(
-        compilation_mode = ctx.var["COMPILATION_MODE"],
-        objc_fragment = ctx.fragments.objc,
         id = id,
         is_swift = is_swift,
+        clang_opts = clang_opts,
         search_paths = search_paths,
         modulemaps = modulemaps,
         swiftmodules = swiftmodules,
