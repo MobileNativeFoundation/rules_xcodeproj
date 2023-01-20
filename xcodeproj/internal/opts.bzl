@@ -725,6 +725,12 @@ def _process_swiftcopts(
         if opt.startswith("-F"):
             path = opt[2:]
             framework_includes.append(path)
+            if previous_opt == "-Xcc":
+                if path == ".":
+                    bwx_opt = "-F$(PROJECT_DIR)"
+                else:
+                    bwx_opt = "-F$(PROJECT_DIR)/" + path
+                clang_opts.append(bwx_opt)
             return opt
         if previous_opt == "-Xcc":
             # We do this check here, to prevent the `-O` and `-D` logic below
