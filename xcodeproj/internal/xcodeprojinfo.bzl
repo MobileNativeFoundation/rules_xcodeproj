@@ -225,10 +225,7 @@ def _skip_target(
             if XcodeProjInfo in deps
         ],
     )
-    search_paths = target_search_paths.make(
-        compilation_providers = None,
-        bin_dir_path = None,
-    )
+    search_paths = target_search_paths.make()
 
     dependencies, transitive_dependencies = process_dependencies(
         automatic_target_info = None,

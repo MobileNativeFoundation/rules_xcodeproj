@@ -479,8 +479,6 @@ def process_top_level_target(
         build_settings = build_settings,
     )
     search_paths = target_search_paths.make(
-        compilation_providers = compilation_providers,
-        bin_dir_path = ctx.bin_dir.path,
         opts_search_paths = opts_search_paths,
     )
     swiftmodules = process_swiftmodules(swift_info = swift_info)
