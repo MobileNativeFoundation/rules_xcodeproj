@@ -176,6 +176,8 @@ def process_compiler_opts_test_suite(name):
             "-O0",
             "-Xcc",
             "-DDEBUG=1",
+            "-Xcc",
+            "-Fsomewhere",
             "examples/xcode_like/ExampleUITests/ExampleUITests.swift",
             "examples/xcode_like/ExampleUITests/ExampleUITestsLaunchTests.swift",
         ],
@@ -192,7 +194,9 @@ weird \
 -Xcc \
 -O0 \
 -Xcc \
--DDEBUG=1\
+-DDEBUG=1 \
+-Xcc \
+-Fsomewhere\
 """,
             "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
         },
@@ -201,6 +205,7 @@ weird \
             "-iquote$(PROJECT_DIR)/bazel-out/ios-sim_arm64-min15.0-applebin_ios-ios_sim_arm64-fastbuild-ST-4e6c2a19403f/bin",
             "-O0",
             "-DDEBUG=1",
+            "-F$(PROJECT_DIR)/somewhere",
         ],
         expected_search_paths = {
             "quote_includes": [
@@ -209,7 +214,9 @@ weird \
             ],
             "includes": [],
             "system_includes": [],
-            "framework_includes": [],
+            "framework_includes": [
+                "somewhere",
+            ],
         },
     )
 
@@ -256,6 +263,8 @@ weird \
             "-O0",
             "-Xcc",
             "-DDEBUG=1",
+            "-Xcc",
+            "-Fsomewhere",
             "examples/xcode_like/ExampleUITests/ExampleUITests.swift",
             "examples/xcode_like/ExampleUITests/ExampleUITestsLaunchTests.swift",
         ],
@@ -272,7 +281,9 @@ weird \
 -Xcc \
 -O0 \
 -Xcc \
--DDEBUG=1\
+-DDEBUG=1 \
+-Xcc \
+-Fsomewhere\
 """,
             "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
         },
@@ -281,6 +292,7 @@ weird \
             "-iquote$(PROJECT_DIR)/bazel-out/ios-sim_arm64-min15.0-applebin_ios-ios_sim_arm64-fastbuild-ST-4e6c2a19403f/bin",
             "-O0",
             "-DDEBUG=1",
+            "-F$(PROJECT_DIR)/somewhere",
         ],
         expected_search_paths = {
             "quote_includes": [
@@ -289,7 +301,9 @@ weird \
             ],
             "includes": [],
             "system_includes": [],
-            "framework_includes": [],
+            "framework_includes": [
+                "somewhere",
+            ],
         },
     )
 
