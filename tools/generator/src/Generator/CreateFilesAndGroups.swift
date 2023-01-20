@@ -964,7 +964,7 @@ private extension LLDBContext.Clang {
             if opt.starts(with: "-D") {
                 onceOtherFlags.insert(opt)
             } else if opt.starts(with: "-fmodule-map-file=") ||
-                opt.starts(with: "-I") {
+                opt.starts(with: "-I") || opt.starts(with: "-F") {
                 // TODO: Make sure we aren't supposed to de-duplicate `-iquote`
                 // or `-systemquote`
                 onceOtherFlags.insert(opt)
