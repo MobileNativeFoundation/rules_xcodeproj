@@ -152,6 +152,12 @@ def _get_unprocessed_compiler_opts(*, ctx, build_mode, target):
             framework_include_directories = (
                 compilation_context.framework_includes
             ),
+            preprocessor_defines = depset(
+                transitive = [
+                    compilation_context.local_defines,
+                    compilation_context.defines,
+                ],
+            ),
         )
 
         is_objc = apple_common.Objc in target
@@ -366,13 +372,11 @@ def _process_conlyopts(opts, *, build_settings):
         A `tuple` containing four elements:
 
         *   A `list` of unhandled C compiler options.
-        *   A `list` of defines parsed.
         *   A `list` of C compiler optimization levels parsed.
         *   A value returned by `create_opts_search_paths` with the parsed
             search paths.
         *   A `bool` indicting if the target has debug info enabled.
     """
-    defines = []
     optimizations = []
     quote_includes = []
     includes = []
@@ -423,11 +427,10 @@ def _process_conlyopts(opts, *, build_settings):
             if value.startswith("OBJC_OLD_DISPATCH_PROTOTYPES"):
                 if value.endswith("=1"):
                     build_settings["ENABLE_STRICT_OBJC_MSGSEND"] = False
-                elif value.endswith("=1"):
+                elif value.endswith("=0"):
                     build_settings["ENABLE_STRICT_OBJC_MSGSEND"] = True
                 return None
-            defines.append(value)
-            return None
+            return opt
         return opt
 
     processed_opts = _process_base_compiler_opts(
@@ -436,7 +439,6 @@ def _process_conlyopts(opts, *, build_settings):
         extra_processing = process,
     )
 
-    defines = uniq(defines)
     has_debug_info = bool(has_debug_info)
 
     search_paths = create_opts_search_paths(
@@ -446,7 +448,7 @@ def _process_conlyopts(opts, *, build_settings):
         framework_includes = uniq(framework_includes),
     )
 
-    return processed_opts, defines, optimizations, search_paths, has_debug_info
+    return processed_opts, optimizations, search_paths, has_debug_info
 
 def _process_cxxopts(opts, *, build_settings):
     """Processes C++ compiler options.
@@ -460,13 +462,11 @@ def _process_cxxopts(opts, *, build_settings):
         A `tuple` containing five elements:
 
         *   A `list` of unhandled C++ compiler options.
-        *   A `list` of defines parsed.
         *   A `list` of C++ compiler optimization levels parsed.
         *   A value returned by `create_opts_search_paths` with the parsed
             search paths.
         *   A `bool` indicting if the target has debug info enabled.
     """
-    defines = []
     optimizations = []
     quote_includes = []
     includes = []
@@ -517,9 +517,10 @@ def _process_cxxopts(opts, *, build_settings):
             if value.startswith("OBJC_OLD_DISPATCH_PROTOTYPES"):
                 if value.endswith("=1"):
                     build_settings["ENABLE_STRICT_OBJC_MSGSEND"] = False
+                elif value.endswith("=0"):
+                    build_settings["ENABLE_STRICT_OBJC_MSGSEND"] = True
                 return None
-            defines.append(value)
-            return None
+            return opt
         return opt
 
     processed_opts = _process_base_compiler_opts(
@@ -528,7 +529,6 @@ def _process_cxxopts(opts, *, build_settings):
         extra_processing = process,
     )
 
-    defines = uniq(defines)
     has_debug_info = bool(has_debug_info)
 
     search_paths = create_opts_search_paths(
@@ -538,7 +538,7 @@ def _process_cxxopts(opts, *, build_settings):
         framework_includes = uniq(framework_includes),
     )
 
-    return processed_opts, defines, optimizations, search_paths, has_debug_info
+    return processed_opts, optimizations, search_paths, has_debug_info
 
 def _process_copts(*, conlyopts, cxxopts, build_settings):
     """Processes C and C++ compiler options.
@@ -561,14 +561,12 @@ def _process_copts(*, conlyopts, cxxopts, build_settings):
     """
     (
         conlyopts,
-        conly_defines,
         conly_optimizations,
         conly_search_paths,
         c_has_debug_info,
     ) = _process_conlyopts(conlyopts, build_settings = build_settings)
     (
         cxxopts,
-        cxx_defines,
         cxx_optimizations,
         cxx_search_paths,
         cxx_has_debug_info,
@@ -593,31 +591,9 @@ def _process_copts(*, conlyopts, cxxopts, build_settings):
         cxx_optimizations = [default_cxx_optimization] + cxx_optimizations
     build_settings["GCC_OPTIMIZATION_LEVEL"] = gcc_optimization[2:]
 
-    # Calculate GCC_PREPROCESSOR_DEFINITIONS, from common conly and cxx defines
-    defines = []
-    for conly_define, cxx_define in zip(conly_defines, cxx_defines):
-        if conly_define != cxx_define:
-            break
-        defines.append(conly_define)
-
-    set_if_true(
-        build_settings,
-        "GCC_PREPROCESSOR_DEFINITIONS",
-        tuple(defines),
-    )
-
-    conly_defines = [
-        "-D{}".format(define)
-        for define in conly_defines[len(defines):]
-    ]
-    cxx_defines = [
-        "-D{}".format(define)
-        for define in cxx_defines[len(defines):]
-    ]
-
     return (
-        conly_optimizations + conly_defines + conlyopts,
-        cxx_optimizations + cxx_defines + cxxopts,
+        conly_optimizations + conlyopts,
+        cxx_optimizations + cxxopts,
         conly_search_paths,
         cxx_search_paths,
         c_has_debug_info,

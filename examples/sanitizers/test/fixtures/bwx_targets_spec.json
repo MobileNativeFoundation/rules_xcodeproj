@@ -167,12 +167,8 @@
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
             "GCC_OPTIMIZATION_LEVEL": "0",
-            "GCC_PREPROCESSOR_DEFINITIONS": [
-                "_FORTIFY_SOURCE=1",
-                "OS_IOS",
-                "DEBUG=1"
-            ],
             "OTHER_CFLAGS": [
+                "-D_FORTIFY_SOURCE=1",
                 "-fstack-protector",
                 "-Wall",
                 "-Wthread-safety",
@@ -191,17 +187,20 @@
                 "-Wuninitialized",
                 "-Wunused-function",
                 "-Wunused-variable",
+                "-DOS_IOS",
                 "-fno-autolink",
                 "-fexceptions",
                 "-fasm-blocks",
                 "-fobjc-abi-version=2",
                 "-fobjc-legacy-dispatch",
+                "-DDEBUG=1",
                 "-fstack-protector",
                 "-fstack-protector-all"
             ],
             "OTHER_CPLUSPLUSFLAGS": [
                 "-stdlib=libc++",
                 "-std=gnu++11",
+                "-D_FORTIFY_SOURCE=1",
                 "-fstack-protector",
                 "-Wall",
                 "-Wthread-safety",
@@ -220,11 +219,13 @@
                 "-Wuninitialized",
                 "-Wunused-function",
                 "-Wunused-variable",
+                "-DOS_IOS",
                 "-fno-autolink",
                 "-fexceptions",
                 "-fasm-blocks",
                 "-fobjc-abi-version=2",
                 "-fobjc-legacy-dispatch",
+                "-DDEBUG=1",
                 "-fstack-protector",
                 "-fstack-protector-all"
             ],

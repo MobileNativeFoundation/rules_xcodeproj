@@ -106,61 +106,6 @@ def process_codesignopts(*, codesignopts, build_settings):
     if codesignopts and build_settings != None:
         set_if_true(build_settings, "OTHER_CODE_SIGN_FLAGS", codesignopts)
 
-def process_defines(*, compilation_providers, build_settings):
-    """ Logic for processing defines of a module
-
-    Args:
-        compilation_providers: A value returned by
-            `compilation_providers.collect`.
-        build_settings: A mutable `dict` that will be updated with the
-            `GCC_PREPROCESSOR_DEFINITIONS` build setting.
-
-    Returns:
-        The modified build settings object
-    """
-    cc_info = compilation_providers._cc_info
-    is_swift = compilation_providers._is_swift
-    if not is_swift and cc_info and build_settings != None:
-        # We don't set `SWIFT_ACTIVE_COMPILATION_CONDITIONS` because the way we
-        # process Swift compile options already accounts for `defines`
-
-        # Order should be:
-        # - toolchain defines
-        # - defines
-        # - local defines
-        # - copt defines
-        # but since build_settings["GCC_PREPROCESSOR_DEFINITIONS"] will have
-        # "toolchain defines" and "copt defines", those will both be first
-        # before "defines" and "local defines". This will only matter if `copts`
-        # is used to override `defines` instead of `local_defines`. If that
-        # becomes an issue in practice, we can refactor `process_copts` to
-        # support this better.
-
-        defines = depset(
-            transitive = [
-                cc_info.compilation_context.defines,
-                cc_info.compilation_context.local_defines,
-            ],
-        )
-        escaped_defines = [
-            define.replace("\\", "\\\\").replace('"', '\\"')
-            for define in defines.to_list()
-        ]
-
-        setting = list(build_settings.get(
-            "GCC_PREPROCESSOR_DEFINITIONS",
-            tuple(),
-        )) + escaped_defines
-
-        # Remove duplicates
-        setting = reversed(uniq(reversed(setting)))
-
-        set_if_true(
-            build_settings,
-            "GCC_PREPROCESSOR_DEFINITIONS",
-            tuple(setting),
-        )
-
 def process_swiftmodules(*, swift_info):
     """Processes swiftmodules.
 

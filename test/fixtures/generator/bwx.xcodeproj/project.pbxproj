@@ -2905,11 +2905,6 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"_FORTIFY_SOURCE=1",
-					OS_MACOSX,
-					"DEBUG=1",
-				);
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					external/com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/include,
@@ -2921,6 +2916,7 @@
 					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
+					"-D_FORTIFY_SOURCE=1",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -2939,6 +2935,7 @@
 					"-Wuninitialized",
 					"-Wunused-function",
 					"-Wunused-variable",
+					"-DOS_MACOSX",
 					"-fno-autolink",
 					"-std=c++17",
 					"-Wno-unused-function",
@@ -2946,6 +2943,7 @@
 					"-Wno-return-type-c-linkage",
 					"-Wno-shorten-64-to-32",
 					"-Wno-unused-variable",
+					"-DDEBUG=1",
 					"-fstack-protector",
 					"-fstack-protector-all",
 				);
@@ -2956,6 +2954,7 @@
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 					"-stdlib=libc++",
 					"-std=gnu++11",
+					"-D_FORTIFY_SOURCE=1",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -2974,6 +2973,7 @@
 					"-Wuninitialized",
 					"-Wunused-function",
 					"-Wunused-variable",
+					"-DOS_MACOSX",
 					"-fno-autolink",
 					"-std=c++17",
 					"-Wno-unused-function",
@@ -2981,6 +2981,7 @@
 					"-Wno-return-type-c-linkage",
 					"-Wno-shorten-64-to-32",
 					"-Wno-unused-variable",
+					"-DDEBUG=1",
 					"-fstack-protector",
 					"-fstack-protector-all",
 				);
@@ -3091,11 +3092,6 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"_FORTIFY_SOURCE=1",
-					OS_MACOSX,
-					"DEBUG=1",
-				);
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					external/com_github_michaeleisel_jjliso8601dateformatter/Sources/JJLISO8601DateFormatter/include,
@@ -3107,6 +3103,7 @@
 					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
+					"-D_FORTIFY_SOURCE=1",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -3125,6 +3122,7 @@
 					"-Wuninitialized",
 					"-Wunused-function",
 					"-Wunused-variable",
+					"-DOS_MACOSX",
 					"-fno-autolink",
 					"-Wno-incompatible-pointer-types",
 					"-Wno-incompatible-pointer-types-discards-qualifiers",
@@ -3132,6 +3130,7 @@
 					"-Wno-unreachable-code",
 					"-Wno-unused-function",
 					"-Wno-unused-variable",
+					"-DDEBUG=1",
 					"-fstack-protector",
 					"-fstack-protector-all",
 				);
@@ -3142,6 +3141,7 @@
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 					"-stdlib=libc++",
 					"-std=gnu++11",
+					"-D_FORTIFY_SOURCE=1",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -3160,6 +3160,7 @@
 					"-Wuninitialized",
 					"-Wunused-function",
 					"-Wunused-variable",
+					"-DOS_MACOSX",
 					"-fno-autolink",
 					"-Wno-incompatible-pointer-types",
 					"-Wno-incompatible-pointer-types-discards-qualifiers",
@@ -3167,6 +3168,7 @@
 					"-Wno-unreachable-code",
 					"-Wno-unused-function",
 					"-Wno-unused-variable",
+					"-DDEBUG=1",
 					"-fstack-protector",
 					"-fstack-protector-all",
 				);
