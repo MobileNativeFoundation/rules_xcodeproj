@@ -12,7 +12,7 @@ def _process_compiler_opts_test_impl(ctx):
     env = unittest.begin(ctx)
 
     build_settings = {}
-    search_paths = process_compiler_opts(
+    search_paths, clang_opts = process_compiler_opts(
         conlyopts = ctx.attr.conlyopts,
         cxxopts = ctx.attr.cxxopts,
         swiftcopts = ctx.attr.swiftcopts,
@@ -52,6 +52,13 @@ def _process_compiler_opts_test_impl(ctx):
         "search_paths",
     )
 
+    asserts.equals(
+        env,
+        ctx.attr.expected_clang_opts,
+        clang_opts,
+        "clang_opts",
+    )
+
     return unittest.end(env)
 
 process_compiler_opts_test = unittest.make(
@@ -61,6 +68,7 @@ process_compiler_opts_test = unittest.make(
         "conlyopts": attr.string_list(mandatory = True),
         "cxxopts": attr.string_list(mandatory = True),
         "expected_build_settings": attr.string_dict(mandatory = True),
+        "expected_clang_opts": attr.string_list(mandatory = True),
         "expected_search_paths": attr.string(mandatory = True),
         "cpp_fragment": attr.string_dict(mandatory = False),
         "package_bin_dir": attr.string(mandatory = True),
@@ -95,6 +103,7 @@ def process_compiler_opts_test_suite(name):
             *,
             name,
             expected_build_settings,
+            expected_clang_opts = [],
             expected_search_paths = {
                 "quote_includes": [],
                 "includes": [],
@@ -117,6 +126,7 @@ def process_compiler_opts_test_suite(name):
             cpp_fragment = cpp_fragment,
             package_bin_dir = package_bin_dir,
             expected_build_settings = stringify_dict(expected_build_settings),
+            expected_clang_opts = expected_clang_opts,
             expected_search_paths = json.encode(expected_search_paths),
             timeout = "short",
         )
@@ -186,6 +196,12 @@ weird \
 """,
             "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
         },
+        expected_clang_opts = [
+            "-iquote$(PROJECT_DIR)",
+            "-iquote$(PROJECT_DIR)/bazel-out/ios-sim_arm64-min15.0-applebin_ios-ios_sim_arm64-fastbuild-ST-4e6c2a19403f/bin",
+            "-O0",
+            "-DDEBUG=1",
+        ],
         expected_search_paths = {
             "quote_includes": [
                 ".",
@@ -260,6 +276,12 @@ weird \
 """,
             "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
         },
+        expected_clang_opts = [
+            "-iquote$(PROJECT_DIR)",
+            "-iquote$(PROJECT_DIR)/bazel-out/ios-sim_arm64-min15.0-applebin_ios-ios_sim_arm64-fastbuild-ST-4e6c2a19403f/bin",
+            "-O0",
+            "-DDEBUG=1",
+        ],
         expected_search_paths = {
             "quote_includes": [
                 ".",
@@ -453,6 +475,10 @@ $(PROJECT_DIR)/relative/Path.yaml \
 -passthrough\
 """,
         },
+        expected_clang_opts = [
+            "-weird",
+            "-a=bazel-out/hi",
+        ],
         expected_search_paths = {
             "quote_includes": [],
             "includes": ["__BAZEL_XCODE_SOMETHING_/path", "__BAZEL_XCODE_BOSS_"],
@@ -573,6 +599,10 @@ $(PROJECT_DIR)/relative/Path.yaml \
 -passthrough\
 """,
         },
+        expected_clang_opts = [
+            "-weird",
+            "-a=bazel-out/hi",
+        ],
         expected_search_paths = {
             "quote_includes": [],
             "includes": ["__BAZEL_XCODE_SOMETHING_/path", "__BAZEL_XCODE_BOSS_"],
@@ -935,6 +965,11 @@ $(PROJECT_DIR)/relative/Path.yaml \
         expected_build_settings = {
             "OTHER_SWIFT_FLAGS": "-Xcc -Ic/d/e -Xcc -iquote4/5 -Xcc -isystems5/s6",
         },
+        expected_clang_opts = [
+            "-I$(PROJECT_DIR)/c/d/e",
+            "-iquote$(PROJECT_DIR)/4/5",
+            "-isystem$(PROJECT_DIR)/s5/s6",
+        ],
         expected_search_paths = {
             "quote_includes": [
                 "a/b/c",
