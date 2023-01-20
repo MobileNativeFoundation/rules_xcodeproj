@@ -52,6 +52,7 @@ rules.
 ## Projects using rules_xcodeproj
 
 - [Envoy Mobile](https://github.com/envoyproxy/envoy-mobile)
+- Ergatta
 - Lyft
 - [Mercari](https://engineering.mercari.com/blog/entry/20221215-16cdd59909/)
 - Robinhood
