@@ -876,28 +876,12 @@ def _product_to_dto(product):
     }
 
 def _search_paths_to_intermediate(search_paths, *, compile_target):
-    compile_search_paths = search_paths
-    if search_paths:
-        compilation_providers = search_paths._compilation_providers
-    else:
-        compilation_providers = None
-
-    if compilation_providers:
-        cc_info = compilation_providers._cc_info
-    else:
-        cc_info = None
-
     if compile_target:
         compile_search_paths = compile_target._search_paths
-        merged_compilation_providers = (
-            compile_target._search_paths._compilation_providers
-        )
-        if merged_compilation_providers:
-            cc_info = merged_compilation_providers._cc_info
-        else:
-            cc_info = None
+    else:
+        compile_search_paths = search_paths
 
-    if cc_info:
+    if compile_search_paths:
         opts_search_paths = compile_search_paths._opts_search_paths
         includes = opts_search_paths.includes
         quote_includes = opts_search_paths.quote_includes
