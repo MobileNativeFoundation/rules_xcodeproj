@@ -603,7 +603,7 @@ def _process_copts(*, conlyopts, cxxopts, build_settings):
     set_if_true(
         build_settings,
         "GCC_PREPROCESSOR_DEFINITIONS",
-        defines,
+        tuple(defines),
     )
 
     conly_defines = [

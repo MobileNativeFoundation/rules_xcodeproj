@@ -147,10 +147,10 @@ def process_defines(*, compilation_providers, build_settings):
             for define in defines.to_list()
         ]
 
-        setting = build_settings.get(
+        setting = list(build_settings.get(
             "GCC_PREPROCESSOR_DEFINITIONS",
-            [],
-        ) + escaped_defines
+            tuple(),
+        )) + escaped_defines
 
         # Remove duplicates
         setting = reversed(uniq(reversed(setting)))
