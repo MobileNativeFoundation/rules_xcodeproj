@@ -34,7 +34,7 @@ def _collect_lldb_context(
     """
     framework_paths = []
     clang = []
-    if id and is_swift and search_paths and search_paths._compilation_providers:
+    if id and is_swift and search_paths:
         clang = [(
             id,
             struct(
