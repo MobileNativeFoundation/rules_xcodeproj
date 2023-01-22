@@ -105,7 +105,7 @@ fi
 # Runtime Sanitizers
 if [[ $apply_sanitizers -eq 1 ]]; then
   if [ "${ENABLE_ADDRESS_SANITIZER:-}" == "YES" ]; then
-    build_pre_config_flags+=(--features=asan)
+    build_pre_config_flags+=(--copt -fno-omit-frame-pointer --copt=-fsanitize=address --linkopt -fsanitize=address --copt -fno-sanitize-recover=all)
   fi
   if [ "${ENABLE_THREAD_SANITIZER:-}" == "YES" ]; then
     build_pre_config_flags+=(--features=tsan)
