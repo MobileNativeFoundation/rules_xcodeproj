@@ -42,6 +42,8 @@ def _create(
     direct_products = []
     indexstore = None
 
+    dsym_files = None
+
     if direct_outputs:
         is_framework = direct_outputs.is_framework
         swift = direct_outputs.swift
@@ -50,6 +52,9 @@ def _create(
 
         if direct_outputs.product:
             direct_products.append(direct_outputs.product)
+
+        if direct_outputs.dsym_files:
+            dsym_files = direct_outputs.dsym_files
     else:
         is_framework = False
         swift = None
@@ -112,6 +117,8 @@ def _create(
                 ))
         ],
     )
+    if dsym_files:
+        transitive_products = depset(transitive_products.to_list() + dsym_files.to_list())
 
     if should_produce_output_groups and direct_outputs:
         linking_output_group_name = "bl {}".format(direct_outputs.id)
@@ -177,7 +184,7 @@ def _create(
         transitive_infoplists = transitive_infoplists,
     )
 
-def _get_outputs(*, id, product, swift_info):
+def _get_outputs(*, id, product, swift_info, debug_outputs, output_group_info):
     """Collects the output files for a given target.
 
     The outputs are bucketed into two categories: build and index. The build
@@ -190,6 +197,8 @@ def _get_outputs(*, id, product, swift_info):
         product: A value returned from `process_product`, or `None` if the
             target isn't a top level target.
         swift_info: The `SwiftInfo` provider for the target, or `None`.
+        debug_outputs: The `AppleDebugOutputs` provider for the target, or `None`.
+        output_group_info: The `OutputGroupInfo` provider for the target, or `None`.
 
     Returns:
         A `struct` containing the following fields:
@@ -214,14 +223,29 @@ def _get_outputs(*, id, product, swift_info):
     else:
         is_framework = False
 
+    dsym_files = None 
+    # _has_dsym will be False if --apple_generate_dsym is not passed
+    if _has_dsym(debug_outputs) and output_group_info and "dsyms" in output_group_info:
+        dsym_files = output_group_info["dsyms"]
+
     return struct(
         id = id,
         is_framework = is_framework,
         product = product.file if product else None,
         product_path = product.path if product else None,
         product_file_path = product.actual_file_path if product else None,
+        dsym_files = dsym_files,
         swift = swift,
     )
+
+def _has_dsym(debug_outputs):
+    """Returns True if the given target provides dSYM, otherwise False."""
+    if debug_outputs:
+        outputs_map = debug_outputs.outputs_map
+        for _, arch_outputs in outputs_map.items():
+            if "dsym_binary" in arch_outputs:
+                return True
+    return False
 
 # API
 
@@ -230,6 +254,8 @@ def _collect_output_files(
         ctx,
         id,
         swift_info,
+        debug_outputs,
+        output_group_info,
         top_level_product = None,
         infoplist = None,
         inputs = None,
@@ -242,6 +268,8 @@ def _collect_output_files(
         ctx: The aspect context.
         id: A unique identifier for the target.
         swift_info: The `SwiftInfo` provider for the target, or `None`.
+        debug_outputs: The `AppleDebugOutputs provider for the target, or `None`.
+        output_group_info: The `OutputGroupInfo` provider for the target, or `None`.
         top_level_product: A value returned from `process_product`, or `None` if
             the target isn't a top level target.
         infoplist: A `File` or `None`.
@@ -260,10 +288,13 @@ def _collect_output_files(
         An opaque `struct` that should be used with `output_files.to_dto` or
         `output_files.to_output_groups_fields`.
     """
+
     outputs = _get_outputs(
         id = id,
         product = top_level_product,
         swift_info = swift_info,
+        debug_outputs = debug_outputs,
+        output_group_info = output_group_info,
     )
 
     return _create(

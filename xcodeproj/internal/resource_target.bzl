@@ -44,6 +44,8 @@ def _process_resource_bundle(bundle, *, information):
         ctx = None,
         id = id,
         swift_info = None,
+        debug_outputs = None,
+        output_group_info = None,
         transitive_infos = [],
         should_produce_dto = False,
         should_produce_output_groups = False,
