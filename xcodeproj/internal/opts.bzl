@@ -650,7 +650,6 @@ def _process_swiftcopts(
     # Default to not creating the Swift generated header.
     build_settings["SWIFT_OBJC_INTERFACE_HEADER_NAME"] = ""
 
-    defines = []
     quote_includes = []
     includes = []
     system_includes = []
@@ -725,7 +724,7 @@ def _process_swiftcopts(
                 clang_opts.append(bwx_opt)
             return opt
         if previous_opt == "-Xcc":
-            # We do this check here, to prevent the `-O` and `-D` logic below
+            # We do this check here, to prevent the `-O` logic below
             # from incorrectly detecting this situation
             clang_opts.append(opt)
             return opt
@@ -768,9 +767,6 @@ Using VFS overlays with `build_mode = "xcode"` is unsupported.
         if opt.startswith("-strict-concurrency="):
             build_settings["SWIFT_STRICT_CONCURRENCY"] = opt[20:]
             return None
-        if opt.startswith("-D"):
-            defines.append(opt[2:])
-            return None
         if not opt.startswith("-") and opt.endswith(".swift"):
             # These are the files to compile, not options. They are seen here
             # because of the way we collect Swift compiler options. Ideally in
@@ -798,13 +794,6 @@ Using VFS overlays with `build_mode = "xcode"` is unsupported.
         includes = uniq(includes),
         system_includes = uniq(system_includes),
         framework_includes = uniq(framework_includes),
-    )
-
-    set_if_true(
-        build_settings,
-        "SWIFT_ACTIVE_COMPILATION_CONDITIONS",
-        # Eliminate duplicates
-        " ".join(uniq(defines)),
     )
 
     return processed_opts, clang_opts, search_paths, has_debug_info
