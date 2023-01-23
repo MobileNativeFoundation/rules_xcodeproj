@@ -21,22 +21,6 @@
                 "-D__TIMESTAMP__=\"redacted\"",
                 "-D__TIME__=\"redacted\""
             ],
-            "OTHER_CPLUSPLUSFLAGS": [
-                "-D_FORTIFY_SOURCE=1",
-                "-fstack-protector",
-                "-Wall",
-                "-Wthread-safety",
-                "-Wself-assign",
-                "-fno-omit-frame-pointer",
-                "-std=c++11",
-                "-no-canonical-prefixes",
-                "-pthread",
-                "-no-canonical-prefixes",
-                "-Wno-builtin-macro-redefined",
-                "-D__DATE__=\"redacted\"",
-                "-D__TIMESTAMP__=\"redacted\"",
-                "-D__TIME__=\"redacted\""
-            ],
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
             "SWIFT_VERSION": "5.0",
@@ -83,50 +67,11 @@
     "//lib:lib_defines darwin_x86_64-dbg-STABLE-1",
     {
         "build_settings": {
-            "DEBUG_INFORMATION_FORMAT": "dwarf",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
-            "GCC_OPTIMIZATION_LEVEL": "0",
-            "OTHER_CFLAGS": [
-                "-D_FORTIFY_SOURCE=1",
-                "-fstack-protector",
-                "-Wall",
-                "-Wthread-safety",
-                "-Wself-assign",
-                "-fno-omit-frame-pointer",
-                "-DSECRET_2=\"World!\"",
-                "-no-canonical-prefixes",
-                "-pthread",
-                "-no-canonical-prefixes",
-                "-Wno-builtin-macro-redefined",
-                "-D__DATE__=\"redacted\"",
-                "-D__TIMESTAMP__=\"redacted\"",
-                "-D__TIME__=\"redacted\""
-            ],
-            "OTHER_CPLUSPLUSFLAGS": [
-                "-D_FORTIFY_SOURCE=1",
-                "-fstack-protector",
-                "-Wall",
-                "-Wthread-safety",
-                "-Wself-assign",
-                "-fno-omit-frame-pointer",
-                "-std=c++11",
-                "-DSECRET_2=\"World!\"",
-                "-no-canonical-prefixes",
-                "-pthread",
-                "-no-canonical-prefixes",
-                "-Wno-builtin-macro-redefined",
-                "-D__DATE__=\"redacted\"",
-                "-D__TIMESTAMP__=\"redacted\"",
-                "-D__TIME__=\"redacted\""
-            ],
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-            "SWIFT_VERSION": "5.0",
-            "USER_HEADER_SEARCH_PATHS": [
-                ".",
-                "bazel-out/darwin_x86_64-dbg-STABLE-1/bin"
-            ]
+            "SWIFT_VERSION": "5.0"
         },
         "configuration": "darwin_x86_64-dbg-STABLE-1",
         "dependencies": [
@@ -151,56 +96,17 @@
             "type": "com.apple.product-type.library.static"
         },
         "search_paths": {
-            "has_includes": true
+            "has_includes": false
         }
     },
     "//lib:lib_headers darwin_x86_64-dbg-STABLE-1",
     {
         "build_settings": {
-            "DEBUG_INFORMATION_FORMAT": "dwarf",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
-            "GCC_OPTIMIZATION_LEVEL": "0",
-            "OTHER_CFLAGS": [
-                "-D_FORTIFY_SOURCE=1",
-                "-fstack-protector",
-                "-Wall",
-                "-Wthread-safety",
-                "-Wself-assign",
-                "-fno-omit-frame-pointer",
-                "-DSECRET_2=\"World!\"",
-                "-no-canonical-prefixes",
-                "-pthread",
-                "-no-canonical-prefixes",
-                "-Wno-builtin-macro-redefined",
-                "-D__DATE__=\"redacted\"",
-                "-D__TIMESTAMP__=\"redacted\"",
-                "-D__TIME__=\"redacted\""
-            ],
-            "OTHER_CPLUSPLUSFLAGS": [
-                "-D_FORTIFY_SOURCE=1",
-                "-fstack-protector",
-                "-Wall",
-                "-Wthread-safety",
-                "-Wself-assign",
-                "-fno-omit-frame-pointer",
-                "-std=c++11",
-                "-DSECRET_2=\"World!\"",
-                "-no-canonical-prefixes",
-                "-pthread",
-                "-no-canonical-prefixes",
-                "-Wno-builtin-macro-redefined",
-                "-D__DATE__=\"redacted\"",
-                "-D__TIMESTAMP__=\"redacted\"",
-                "-D__TIME__=\"redacted\""
-            ],
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-            "SWIFT_VERSION": "5.0",
-            "USER_HEADER_SEARCH_PATHS": [
-                ".",
-                "bazel-out/darwin_x86_64-dbg-STABLE-1/bin"
-            ]
+            "SWIFT_VERSION": "5.0"
         },
         "configuration": "darwin_x86_64-dbg-STABLE-1",
         "dependencies": [
@@ -225,7 +131,7 @@
             "type": "com.apple.product-type.library.static"
         },
         "search_paths": {
-            "has_includes": true
+            "has_includes": false
         }
     },
     "//lib:lib_impl darwin_x86_64-dbg-STABLE-1",
@@ -246,23 +152,6 @@
                 "-Wthread-safety",
                 "-Wself-assign",
                 "-fno-omit-frame-pointer",
-                "-DSECRET_3=\"Hello\"",
-                "-no-canonical-prefixes",
-                "-pthread",
-                "-no-canonical-prefixes",
-                "-Wno-builtin-macro-redefined",
-                "-D__DATE__=\"redacted\"",
-                "-D__TIMESTAMP__=\"redacted\"",
-                "-D__TIME__=\"redacted\""
-            ],
-            "OTHER_CPLUSPLUSFLAGS": [
-                "-D_FORTIFY_SOURCE=1",
-                "-fstack-protector",
-                "-Wall",
-                "-Wthread-safety",
-                "-Wself-assign",
-                "-fno-omit-frame-pointer",
-                "-std=c++11",
                 "-DSECRET_3=\"Hello\"",
                 "-no-canonical-prefixes",
                 "-pthread",
@@ -337,24 +226,6 @@
                 "-D__TIMESTAMP__=\"redacted\"",
                 "-D__TIME__=\"redacted\""
             ],
-            "OTHER_CPLUSPLUSFLAGS": [
-                "-D_FORTIFY_SOURCE=1",
-                "-fstack-protector",
-                "-Wall",
-                "-Wthread-safety",
-                "-Wself-assign",
-                "-fno-omit-frame-pointer",
-                "-std=c++11",
-                "-DSECRET_2=\"World!\"",
-                "-DEXTERNAL_SECRET_2=\"World?\"",
-                "-no-canonical-prefixes",
-                "-pthread",
-                "-no-canonical-prefixes",
-                "-Wno-builtin-macro-redefined",
-                "-D__DATE__=\"redacted\"",
-                "-D__TIMESTAMP__=\"redacted\"",
-                "-D__TIME__=\"redacted\""
-            ],
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
             "SWIFT_VERSION": "5.0",
@@ -417,50 +288,11 @@
     "@examples_cc_external//:lib_defines darwin_x86_64-dbg-STABLE-1",
     {
         "build_settings": {
-            "DEBUG_INFORMATION_FORMAT": "dwarf",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
-            "GCC_OPTIMIZATION_LEVEL": "0",
-            "OTHER_CFLAGS": [
-                "-D_FORTIFY_SOURCE=1",
-                "-fstack-protector",
-                "-Wall",
-                "-Wthread-safety",
-                "-Wself-assign",
-                "-fno-omit-frame-pointer",
-                "-DEXTERNAL_SECRET_2=\"World?\"",
-                "-no-canonical-prefixes",
-                "-pthread",
-                "-no-canonical-prefixes",
-                "-Wno-builtin-macro-redefined",
-                "-D__DATE__=\"redacted\"",
-                "-D__TIMESTAMP__=\"redacted\"",
-                "-D__TIME__=\"redacted\""
-            ],
-            "OTHER_CPLUSPLUSFLAGS": [
-                "-D_FORTIFY_SOURCE=1",
-                "-fstack-protector",
-                "-Wall",
-                "-Wthread-safety",
-                "-Wself-assign",
-                "-fno-omit-frame-pointer",
-                "-std=c++11",
-                "-DEXTERNAL_SECRET_2=\"World?\"",
-                "-no-canonical-prefixes",
-                "-pthread",
-                "-no-canonical-prefixes",
-                "-Wno-builtin-macro-redefined",
-                "-D__DATE__=\"redacted\"",
-                "-D__TIMESTAMP__=\"redacted\"",
-                "-D__TIME__=\"redacted\""
-            ],
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-            "SWIFT_VERSION": "5.0",
-            "USER_HEADER_SEARCH_PATHS": [
-                "external/examples_cc_external",
-                "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external"
-            ]
+            "SWIFT_VERSION": "5.0"
         },
         "configuration": "darwin_x86_64-dbg-STABLE-1",
         "dependencies": [
@@ -485,56 +317,17 @@
             "type": "com.apple.product-type.library.static"
         },
         "search_paths": {
-            "has_includes": true
+            "has_includes": false
         }
     },
     "@examples_cc_external//:lib_headers darwin_x86_64-dbg-STABLE-1",
     {
         "build_settings": {
-            "DEBUG_INFORMATION_FORMAT": "dwarf",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
-            "GCC_OPTIMIZATION_LEVEL": "0",
-            "OTHER_CFLAGS": [
-                "-D_FORTIFY_SOURCE=1",
-                "-fstack-protector",
-                "-Wall",
-                "-Wthread-safety",
-                "-Wself-assign",
-                "-fno-omit-frame-pointer",
-                "-DEXTERNAL_SECRET_2=\"World?\"",
-                "-no-canonical-prefixes",
-                "-pthread",
-                "-no-canonical-prefixes",
-                "-Wno-builtin-macro-redefined",
-                "-D__DATE__=\"redacted\"",
-                "-D__TIMESTAMP__=\"redacted\"",
-                "-D__TIME__=\"redacted\""
-            ],
-            "OTHER_CPLUSPLUSFLAGS": [
-                "-D_FORTIFY_SOURCE=1",
-                "-fstack-protector",
-                "-Wall",
-                "-Wthread-safety",
-                "-Wself-assign",
-                "-fno-omit-frame-pointer",
-                "-std=c++11",
-                "-DEXTERNAL_SECRET_2=\"World?\"",
-                "-no-canonical-prefixes",
-                "-pthread",
-                "-no-canonical-prefixes",
-                "-Wno-builtin-macro-redefined",
-                "-D__DATE__=\"redacted\"",
-                "-D__TIMESTAMP__=\"redacted\"",
-                "-D__TIME__=\"redacted\""
-            ],
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-            "SWIFT_VERSION": "5.0",
-            "USER_HEADER_SEARCH_PATHS": [
-                "external/examples_cc_external",
-                "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external"
-            ]
+            "SWIFT_VERSION": "5.0"
         },
         "configuration": "darwin_x86_64-dbg-STABLE-1",
         "dependencies": [
@@ -559,7 +352,7 @@
             "type": "com.apple.product-type.library.static"
         },
         "search_paths": {
-            "has_includes": true
+            "has_includes": false
         }
     },
     "@examples_cc_external//:lib_impl darwin_x86_64-dbg-STABLE-1",
@@ -580,23 +373,6 @@
                 "-Wthread-safety",
                 "-Wself-assign",
                 "-fno-omit-frame-pointer",
-                "-DEXTERNAL_SECRET_3=\"Goodbye\"",
-                "-no-canonical-prefixes",
-                "-pthread",
-                "-no-canonical-prefixes",
-                "-Wno-builtin-macro-redefined",
-                "-D__DATE__=\"redacted\"",
-                "-D__TIMESTAMP__=\"redacted\"",
-                "-D__TIME__=\"redacted\""
-            ],
-            "OTHER_CPLUSPLUSFLAGS": [
-                "-D_FORTIFY_SOURCE=1",
-                "-fstack-protector",
-                "-Wall",
-                "-Wthread-safety",
-                "-Wself-assign",
-                "-fno-omit-frame-pointer",
-                "-std=c++11",
                 "-DEXTERNAL_SECRET_3=\"Goodbye\"",
                 "-no-canonical-prefixes",
                 "-pthread",

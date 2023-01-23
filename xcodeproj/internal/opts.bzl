@@ -99,12 +99,20 @@ _UNSUPPORTED_CC_FEATURES = [
 
 # Compiler option processing
 
-def _get_unprocessed_compiler_opts(*, ctx, build_mode, target):
+def _get_unprocessed_compiler_opts(
+        *,
+        ctx,
+        build_mode,
+        has_c_sources,
+        has_cxx_sources,
+        target):
     """Returns the unprocessed compiler options for the given target.
 
     Args:
         ctx: The aspect context.
         build_mode: See `xcodeproj.build_mode`.
+        has_c_sources: `True` if `target` has C sources.
+        has_cxx_sources: `True` if `target` has C++ sources.
         target: The `Target` that the compiler options will be retrieved from.
 
     Returns:
@@ -117,16 +125,14 @@ def _get_unprocessed_compiler_opts(*, ctx, build_mode, target):
 
     # TODO: Handle perfileopts somehow?
 
-    conlyopts = []
-    cxxopts = []
     swiftcopts = []
-
     for action in target.actions:
         if action.mnemonic == "SwiftCompile":
             # First two arguments are "worker" and "swiftc"
             swiftcopts = action.argv[2:]
 
-    if not swiftcopts and CcInfo in target:
+    if (not swiftcopts and CcInfo in target and
+        (has_c_sources or has_cxx_sources)):
         cc_info = target[CcInfo]
         compilation_context = cc_info.compilation_context
         cc_toolchain = find_cpp_toolchain(ctx)
@@ -160,18 +166,6 @@ def _get_unprocessed_compiler_opts(*, ctx, build_mode, target):
             ),
         )
 
-        is_objc = apple_common.Objc in target
-        base_copts = cc_common.get_memory_inefficient_command_line(
-            feature_configuration = feature_configuration,
-            action_name = "objc-compile" if is_objc else "c-compile",
-            variables = variables,
-        )
-        base_cxxopts = cc_common.get_memory_inefficient_command_line(
-            feature_configuration = feature_configuration,
-            action_name = "objc++-compile" if is_objc else "c++-compile",
-            variables = variables,
-        )
-
         user_copts = getattr(ctx.rule.attr, "copts", [])
         user_copts = _expand_locations(
             ctx = ctx,
@@ -184,6 +178,7 @@ def _get_unprocessed_compiler_opts(*, ctx, build_mode, target):
             attribute_name = "copts",
         )
 
+        is_objc = apple_common.Objc in target
         if is_objc:
             objc = ctx.fragments.objc
             user_copts = (
@@ -193,8 +188,26 @@ def _get_unprocessed_compiler_opts(*, ctx, build_mode, target):
             )
 
         cpp = ctx.fragments.cpp
-        conlyopts = base_copts + cpp.copts + cpp.conlyopts + user_copts
-        cxxopts = base_cxxopts + cpp.copts + cpp.cxxopts + user_copts
+
+        if has_c_sources:
+            base_copts = cc_common.get_memory_inefficient_command_line(
+                feature_configuration = feature_configuration,
+                action_name = "objc-compile" if is_objc else "c-compile",
+                variables = variables,
+            )
+            conlyopts = base_copts + cpp.copts + cpp.conlyopts + user_copts
+        else:
+            conlyopts = []
+
+        if has_cxx_sources:
+            base_cxxopts = cc_common.get_memory_inefficient_command_line(
+                feature_configuration = feature_configuration,
+                action_name = "objc++-compile" if is_objc else "c++-compile",
+                variables = variables,
+            )
+            cxxopts = base_cxxopts + cpp.copts + cpp.cxxopts + user_copts
+        else:
+            cxxopts = []
 
         if build_mode == "xcode":
             for opt in conlyopts + cxxopts:
@@ -202,6 +215,9 @@ def _get_unprocessed_compiler_opts(*, ctx, build_mode, target):
                     fail("""\
 Using VFS overlays with `build_mode = "xcode"` is unsupported.
 """)
+    else:
+        conlyopts = []
+        cxxopts = []
 
     return (
         conlyopts,
@@ -540,7 +556,11 @@ def _process_cxxopts(opts, *, build_settings):
 
     return processed_opts, optimizations, search_paths, has_debug_info
 
-def _process_copts(*, conlyopts, cxxopts, build_settings):
+def _process_copts(
+        *,
+        conlyopts,
+        cxxopts,
+        build_settings):
     """Processes C and C++ compiler options.
 
     Args:
@@ -559,6 +579,8 @@ def _process_copts(*, conlyopts, cxxopts, build_settings):
         *   A `bool` indicting if the target has debug info enabled for C.
         *   A `bool` indicting if the target has debug info enabled for C++.
     """
+    has_copts = conlyopts or cxxopts
+
     (
         conlyopts,
         conly_optimizations,
@@ -572,24 +594,26 @@ def _process_copts(*, conlyopts, cxxopts, build_settings):
         cxx_has_debug_info,
     ) = _process_cxxopts(cxxopts, build_settings = build_settings)
 
-    # Calculate GCC_OPTIMIZATION_LEVEL, preserving C/C++ specific settings
-    if conly_optimizations:
-        default_conly_optimization = conly_optimizations[0]
-        conly_optimizations = conly_optimizations[1:]
-    else:
-        default_conly_optimization = "-O0"
-    if cxx_optimizations:
-        default_cxx_optimization = cxx_optimizations[0]
-        cxx_optimizations = cxx_optimizations[1:]
-    else:
-        default_cxx_optimization = "-O0"
-    if default_conly_optimization == default_cxx_optimization:
-        gcc_optimization = default_conly_optimization
-    else:
-        gcc_optimization = "-O0"
-        conly_optimizations = [default_conly_optimization] + conly_optimizations
-        cxx_optimizations = [default_cxx_optimization] + cxx_optimizations
-    build_settings["GCC_OPTIMIZATION_LEVEL"] = gcc_optimization[2:]
+    if has_copts:
+        # Calculate GCC_OPTIMIZATION_LEVEL, preserving C/C++ specific settings
+        if conly_optimizations:
+            default_conly_optimization = conly_optimizations[0]
+            conly_optimizations = conly_optimizations[1:]
+        else:
+            default_conly_optimization = "-O0"
+        if cxx_optimizations:
+            default_cxx_optimization = cxx_optimizations[0]
+            cxx_optimizations = cxx_optimizations[1:]
+        else:
+            default_cxx_optimization = "-O0"
+        if default_conly_optimization == default_cxx_optimization:
+            gcc_optimization = default_conly_optimization
+        else:
+            gcc_optimization = "-O0"
+            conly_optimizations = ([default_conly_optimization] +
+                                   conly_optimizations)
+            cxx_optimizations = [default_cxx_optimization] + cxx_optimizations
+        build_settings["GCC_OPTIMIZATION_LEVEL"] = gcc_optimization[2:]
 
     return (
         conly_optimizations + conlyopts,
@@ -828,7 +852,8 @@ def _process_compiler_opts(
     # project default, so we need to set it explicitly
     build_settings["ENABLE_STRICT_OBJC_MSGSEND"] = True
 
-    has_copts = conlyopts or cxxopts
+    has_conlyopts = conlyopts
+    has_cxxopts = cxxopts
     has_swiftcop = swiftcopts
 
     (
@@ -856,8 +881,9 @@ def _process_compiler_opts(
     )
 
     has_debug_info = {}
-    if has_copts:
+    if has_conlyopts:
         has_debug_info[c_has_debug_info] = None
+    if has_cxxopts:
         has_debug_info[cxx_has_debug_info] = None
     if has_swiftcop:
         has_debug_info[swift_has_debug_info] = None
@@ -871,13 +897,13 @@ def _process_compiler_opts(
             build_settings["DEBUG_INFORMATION_FORMAT"] = ""
         elif not cpp_fragment.apple_generate_dsym:
             build_settings["DEBUG_INFORMATION_FORMAT"] = "dwarf"
-    else:
+    elif has_debug_infos:
         build_settings["DEBUG_INFORMATION_FORMAT"] = ""
-        if c_has_debug_info:
+        if has_conlyopts and c_has_debug_info:
             conlyopts = ["-g"] + conlyopts
-        if cxx_has_debug_info:
+        if has_cxxopts and cxx_has_debug_info:
             cxxopts = ["-g"] + cxxopts
-        if swift_has_debug_info:
+        if has_swiftcop and swift_has_debug_info:
             swiftcopts = ["-g"] + swiftcopts
 
     # TODO: Split out `WARNING_CFLAGS`? (Must maintain order, and only ones that apply to both c and cxx)
@@ -910,6 +936,8 @@ def _process_target_compiler_opts(
         *,
         ctx,
         build_mode,
+        has_c_sources,
+        has_cxx_sources,
         target,
         package_bin_dir,
         build_settings):
@@ -918,6 +946,8 @@ def _process_target_compiler_opts(
     Args:
         ctx: The aspect context.
         build_mode: See `xcodeproj.build_mode`.
+        has_c_sources: `True` if `target` has C sources.
+        has_cxx_sources: `True` if `target` has C++ sources.
         target: The `Target` that the compiler options will be retrieved from.
         package_bin_dir: The package directory for `target` within
             `ctx.bin_dir`.
@@ -938,6 +968,8 @@ def _process_target_compiler_opts(
     ) = _get_unprocessed_compiler_opts(
         ctx = ctx,
         build_mode = build_mode,
+        has_c_sources = has_c_sources,
+        has_cxx_sources = has_cxx_sources,
         target = target,
     )
     return _process_compiler_opts(
@@ -987,12 +1019,22 @@ def _expand_make_variables(*, ctx, values, attribute_name):
 
 # API
 
-def process_opts(*, ctx, build_mode, target, package_bin_dir, build_settings):
+def process_opts(
+        *,
+        ctx,
+        build_mode,
+        has_c_sources,
+        has_cxx_sources,
+        target,
+        package_bin_dir,
+        build_settings):
     """Processes the compiler options for a target.
 
     Args:
         ctx: The aspect context.
         build_mode: See `xcodeproj.build_mode`.
+        has_c_sources: `True` if `target` has C sources.
+        has_cxx_sources: `True` if `target` has C++ sources.
         target: The `Target` that the compiler and linker options will be
             retrieved from.
         package_bin_dir: The package directory for `target` within
@@ -1010,6 +1052,8 @@ def process_opts(*, ctx, build_mode, target, package_bin_dir, build_settings):
     return _process_target_compiler_opts(
         ctx = ctx,
         build_mode = build_mode,
+        has_c_sources = has_c_sources,
+        has_cxx_sources = has_cxx_sources,
         target = target,
         package_bin_dir = package_bin_dir,
         build_settings = build_settings,

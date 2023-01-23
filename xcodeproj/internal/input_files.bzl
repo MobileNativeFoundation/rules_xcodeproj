@@ -99,6 +99,22 @@ def _process_cc_info_headers(headers, *, exclude_headers, pch, srcs, generated):
 
 # API
 
+_C_EXTENSIONS = {
+    "c": None,
+    "m": None,
+}
+
+_CXX_EXTENSIONS = {
+    "cc": None,
+    "cpp": None,
+    "cxx": None,
+    "c++": None,
+    "C": None,
+    "cu": None,
+    "cl": None,
+    "mm": None,
+}
+
 def _collect_input_files(
         *,
         ctx,
@@ -178,6 +194,8 @@ def _collect_input_files(
     entitlements = []
     extra_files = []
     generated = []
+    c_srcs = []
+    cxx_srcs = []
     hdrs = []
     non_arc_srcs = []
     pch = []
@@ -196,6 +214,11 @@ def _collect_input_files(
         categorized = True
         if attr in automatic_target_info.srcs:
             srcs.append(file)
+            extension = file.extension
+            if extension in _C_EXTENSIONS:
+                c_srcs.append(file)
+            elif extension in _CXX_EXTENSIONS:
+                cxx_srcs.append(file)
         elif attr in automatic_target_info.non_arc_srcs:
             non_arc_srcs.append(file)
         elif attr in automatic_target_info.hdrs:
@@ -620,6 +643,8 @@ def _collect_input_files(
         non_arc_srcs = depset(non_arc_srcs),
         hdrs = depset(hdrs),
         pch = pch[0] if pch else None,
+        has_c_sources = bool(c_srcs),
+        has_cxx_sources = bool(cxx_srcs),
         resources = resources,
         resource_bundles = depset(
             resource_bundles,
@@ -701,6 +726,8 @@ def _from_resource_bundle(bundle):
         non_arc_srcs = depset(),
         hdrs = depset(),
         pch = None,
+        has_c_sources = False,
+        has_cxx_sources = False,
         resources = depset(bundle.resources),
         resource_bundles = depset(),
         resource_bundle_dependencies = bundle.dependencies,
@@ -775,6 +802,8 @@ def _merge_input_files(*, transitive_infos, extra_generated = None):
         non_arc_srcs = depset(),
         hdrs = depset(),
         pch = None,
+        has_c_sources = False,
+        has_cxx_sources = False,
         resources = None,
         resource_bundles = depset(
             transitive = [

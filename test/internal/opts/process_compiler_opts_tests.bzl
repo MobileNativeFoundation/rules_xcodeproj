@@ -11,11 +11,15 @@ process_compiler_opts = testable.process_compiler_opts
 def _process_compiler_opts_test_impl(ctx):
     env = unittest.begin(ctx)
 
+    conlyopts = ctx.attr.conlyopts
+    cxxopts = ctx.attr.cxxopts
+    swiftcopts = ctx.attr.swiftcopts
+
     build_settings = {}
     search_paths, clang_opts = process_compiler_opts(
-        conlyopts = ctx.attr.conlyopts,
-        cxxopts = ctx.attr.cxxopts,
-        swiftcopts = ctx.attr.swiftcopts,
+        conlyopts = conlyopts,
+        cxxopts = cxxopts,
+        swiftcopts = swiftcopts,
         build_mode = ctx.attr.build_mode,
         cpp_fragment = _cpp_fragment_stub(ctx.attr.cpp_fragment),
         package_bin_dir = ctx.attr.package_bin_dir,
@@ -25,13 +29,16 @@ def _process_compiler_opts_test_impl(ctx):
     json_search_paths = json.encode(search_paths)
 
     expected_build_settings = {
-        "DEBUG_INFORMATION_FORMAT": "",
         "ENABLE_STRICT_OBJC_MSGSEND": "True",
-        "GCC_OPTIMIZATION_LEVEL": "0",
         "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
         "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
         "SWIFT_VERSION": "5.0",
     }
+    if conlyopts or cxxopts:
+        expected_build_settings["GCC_OPTIMIZATION_LEVEL"] = "0"
+    if conlyopts or cxxopts or swiftcopts:
+        expected_build_settings["DEBUG_INFORMATION_FORMAT"] = ""
+
     expected_build_settings.update(ctx.attr.expected_build_settings)
 
     if (ctx.attr.expected_build_settings.get("DEBUG_INFORMATION_FORMAT", "") ==
@@ -680,8 +687,7 @@ $(PROJECT_DIR)/relative/Path.yaml \
         swiftcopts = [],
         cpp_fragment = _cpp_fragment(apple_generate_dsym = False),
         expected_build_settings = {
-            "DEBUG_INFORMATION_FORMAT": "",
-            "OTHER_CFLAGS": ["-g"],
+            "DEBUG_INFORMATION_FORMAT": "dwarf",
         },
     )
 
@@ -692,8 +698,7 @@ $(PROJECT_DIR)/relative/Path.yaml \
         swiftcopts = [],
         cpp_fragment = _cpp_fragment(apple_generate_dsym = False),
         expected_build_settings = {
-            "DEBUG_INFORMATION_FORMAT": "",
-            "OTHER_CPLUSPLUSFLAGS": ["-g"],
+            "DEBUG_INFORMATION_FORMAT": "dwarf",
         },
     )
 
@@ -726,9 +731,7 @@ $(PROJECT_DIR)/relative/Path.yaml \
         swiftcopts = ["-g"],
         cpp_fragment = _cpp_fragment(apple_generate_dsym = False),
         expected_build_settings = {
-            "DEBUG_INFORMATION_FORMAT": "",
-            "OTHER_CFLAGS": ["-g"],
-            "OTHER_SWIFT_FLAGS": "-g",
+            "DEBUG_INFORMATION_FORMAT": "dwarf",
         },
     )
 

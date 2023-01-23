@@ -672,40 +672,6 @@
 					"-fstack-protector",
 					"-fstack-protector-all",
 				);
-				OTHER_CPLUSPLUSFLAGS = (
-					"-ivfsoverlay",
-					"$(OBJROOT)/bazel-out-overlay.yaml",
-					"-stdlib=libc++",
-					"-std=gnu++11",
-					"-D_FORTIFY_SOURCE=1",
-					"-fstack-protector",
-					"-Wall",
-					"-Wthread-safety",
-					"-Wself-assign",
-					"-fno-omit-frame-pointer",
-					"-Wshorten-64-to-32",
-					"-Wbool-conversion",
-					"-Wconstant-conversion",
-					"-Wduplicate-method-match",
-					"-Wempty-body",
-					"-Wenum-conversion",
-					"-Wint-conversion",
-					"-Wunreachable-code",
-					"-Wmismatched-return-types",
-					"-Wundeclared-selector",
-					"-Wuninitialized",
-					"-Wunused-function",
-					"-Wunused-variable",
-					"-DOS_IOS",
-					"-fno-autolink",
-					"-fexceptions",
-					"-fasm-blocks",
-					"-fobjc-abi-version=2",
-					"-fobjc-legacy-dispatch",
-					"-DDEBUG=1",
-					"-fstack-protector",
-					"-fstack-protector-all",
-				);
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR)";
 				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example;
@@ -816,7 +782,6 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/ThreadSanitizerApp/rules_xcodeproj/ThreadSanitizerApp/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/ThreadSanitizerApp.1.link.params";
@@ -860,7 +825,6 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/AddressSanitizerApp/rules_xcodeproj/AddressSanitizerApp/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/AddressSanitizerApp.0.link.params";
