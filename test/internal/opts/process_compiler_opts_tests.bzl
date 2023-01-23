@@ -191,6 +191,7 @@ def process_compiler_opts_test_suite(name):
         expected_build_settings = {
             "ENABLE_TESTABILITY": "True",
             "OTHER_SWIFT_FLAGS": """\
+-DDEBUG \
 -application-extension \
 weird \
 -Xcc \
@@ -205,7 +206,6 @@ weird \
 -Xcc \
 -Fsomewhere\
 """,
-            "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
         },
         expected_clang_opts = [
             "-iquote$(PROJECT_DIR)",
@@ -278,6 +278,7 @@ weird \
         expected_build_settings = {
             "ENABLE_TESTABILITY": "True",
             "OTHER_SWIFT_FLAGS": """\
+-DDEBUG \
 -application-extension \
 weird \
 -Xcc \
@@ -292,7 +293,6 @@ weird \
 -Xcc \
 -Fsomewhere\
 """,
-            "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG",
         },
         expected_clang_opts = [
             "-iquote$(PROJECT_DIR)",
@@ -799,21 +799,6 @@ $(PROJECT_DIR)/relative/Path.yaml \
         cxxopts = ["-O1"],
         expected_build_settings = {
             "GCC_OPTIMIZATION_LEVEL": "1",
-        },
-    )
-
-    ## SWIFT_ACTIVE_COMPILATION_CONDITIONS
-
-    _add_test(
-        name = "{}_defines".format(name),
-        swiftcopts = [
-            "-DDEBUG",
-            "-DBAZEL",
-            "-DDEBUG",
-            "-DBAZEL",
-        ],
-        expected_build_settings = {
-            "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG BAZEL",
         },
     )
 
