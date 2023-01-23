@@ -650,7 +650,6 @@ def _process_swiftcopts(
     # Default to not creating the Swift generated header.
     build_settings["SWIFT_OBJC_INTERFACE_HEADER_NAME"] = ""
 
-    defines = []
     quote_includes = []
     includes = []
     system_includes = []
