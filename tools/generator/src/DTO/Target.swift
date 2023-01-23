@@ -12,7 +12,6 @@ struct Target: Equatable {
     var isSwift: Bool
     let testHost: TargetID?
     var buildSettings: [String: BuildSetting]
-    var searchPaths: SearchPaths
     let hasModulemaps: Bool
     var inputs: Inputs
     var linkerInputs: LinkerInputs
@@ -56,7 +55,6 @@ extension Target: Decodable {
         case isSwift
         case testHost
         case buildSettings
-        case searchPaths
         case hasModulemaps
         case inputs
         case linkerInputs
@@ -96,8 +94,6 @@ extension Target: Decodable {
                 [String: BuildSetting].self,
                 forKey: .buildSettings
             ) ?? [:]
-        searchPaths = try container
-            .decodeIfPresent(SearchPaths.self, forKey: .searchPaths) ?? .init()
         hasModulemaps = try container
             .decodeIfPresent(Bool.self, forKey: .hasModulemaps) ?? false
         inputs = try container

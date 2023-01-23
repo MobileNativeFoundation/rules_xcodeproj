@@ -349,7 +349,7 @@ extension ConsolidatedTarget {
 
         hasClangSearchPaths = sortedTargets.contains { target in
             return target.hasModulemaps
-                || (!target.isSwift && target.searchPaths.hasIncludes)
+                || (!target.isSwift && target.inputs.containsSourceFiles)
         }
 
         var baselineFiles: Set<FilePath> = aTarget

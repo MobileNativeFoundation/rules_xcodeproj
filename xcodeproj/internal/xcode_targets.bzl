@@ -556,11 +556,6 @@ def _xcode_target_to_dto(
 
     set_if_true(
         dto,
-        "search_paths",
-        _search_paths_intermediate_to_dto(search_paths_intermediate),
-    )
-    set_if_true(
-        dto,
         "has_modulemaps",
         bool(xcode_target._modulemaps),
     )
@@ -855,31 +850,13 @@ def _search_paths_to_intermediate(search_paths, *, compile_target):
 
     if compile_search_paths:
         opts_search_paths = compile_search_paths._opts_search_paths
-        includes = opts_search_paths.includes
-        quote_includes = opts_search_paths.quote_includes
-        system_includes = opts_search_paths.system_includes
         framework_includes = opts_search_paths.framework_includes
     else:
-        quote_includes = []
-        includes = []
-        system_includes = []
         framework_includes = []
 
     return struct(
-        quote_includes = quote_includes,
-        includes = includes,
-        system_includes = system_includes,
         framework_includes = framework_includes,
     )
-
-def _search_paths_intermediate_to_dto(search_paths_intermediate):
-    dto = {
-        "has_includes": bool(search_paths_intermediate.quote_includes or
-                             search_paths_intermediate.includes or
-                             search_paths_intermediate.system_includes or
-                             search_paths_intermediate.framework_includes),
-    }
-    return dto
 
 def _swift_to_dto(outputs):
     dto = {
