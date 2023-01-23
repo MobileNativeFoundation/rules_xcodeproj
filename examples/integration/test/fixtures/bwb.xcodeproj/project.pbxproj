@@ -7389,10 +7389,6 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				HEADER_SEARCH_PATHS = (
-					"bazel-out",
-					external,
-				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",
@@ -7403,6 +7399,10 @@
 					"-Wthread-safety",
 					"-Wself-assign",
 					"-fno-omit-frame-pointer",
+					"-iquote",
+					.,
+					"-iquote",
+					"bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18/bin",
 					"-no-canonical-prefixes",
 					"-pthread",
 					"-no-canonical-prefixes",
@@ -7410,6 +7410,8 @@
 					"-D__DATE__=\"redacted\"",
 					"-D__TIMESTAMP__=\"redacted\"",
 					"-D__TIME__=\"redacted\"",
+					"-Ibazel-out",
+					"-Iexternal",
 				);
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR)";
 				PRODUCT_NAME = private_lib;
@@ -7419,10 +7421,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = private_lib;
-				USER_HEADER_SEARCH_PATHS = (
-					.,
-					"bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18/bin",
-				);
 			};
 			name = Debug;
 		};
@@ -7557,12 +7555,6 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				EXECUTABLE_EXTENSION = "";
 				GCC_OPTIMIZATION_LEVEL = 0;
-				HEADER_SEARCH_PATHS = (
-					"\"CommandLine/CommandLineToolLib/dir with space\"",
-					"\"bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17/bin/CommandLine/CommandLineToolLib/dir with space\"",
-					CommandLine/CommandLineToolLib/private,
-					"bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17/bin/CommandLine/CommandLineToolLib/private",
-				);
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-STABLE-20/bin/CommandLine/CommandLineTool/rules_xcodeproj/CommandLineTool/Info.plist";
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/CommandLineTool.40.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
@@ -7588,6 +7580,18 @@
 					"-Wuninitialized",
 					"-Wunused-function",
 					"-Wunused-variable",
+					"-iquote",
+					.,
+					"-iquote",
+					"bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17/bin",
+					"-iquote",
+					external/examples_command_line_external,
+					"-iquote",
+					"bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17/bin/external/examples_command_line_external",
+					"-ICommandLine/CommandLineToolLib/dir with space",
+					"-Ibazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17/bin/CommandLine/CommandLineToolLib/dir with space",
+					"-ICommandLine/CommandLineToolLib/private",
+					"-Ibazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17/bin/CommandLine/CommandLineToolLib/private",
 					"-DSECRET_3=\"Hello\"",
 					"-DSECRET_2=\"World!\"",
 					"-Fexternal/examples_command_line_external",
@@ -7609,12 +7613,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = CommandLineTool;
-				USER_HEADER_SEARCH_PATHS = (
-					.,
-					"bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17/bin",
-					external/examples_command_line_external,
-					"bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17/bin/external/examples_command_line_external",
-				);
 			};
 			name = Debug;
 		};
@@ -7783,6 +7781,10 @@
 					"-Wthread-safety",
 					"-Wself-assign",
 					"-fno-omit-frame-pointer",
+					"-iquote",
+					.,
+					"-iquote",
+					"bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18/bin",
 					"-no-canonical-prefixes",
 					"-pthread",
 					"-no-canonical-prefixes",
@@ -7799,10 +7801,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = c_lib;
-				USER_HEADER_SEARCH_PATHS = (
-					.,
-					"bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18/bin",
-				);
 			};
 			name = Debug;
 		};
@@ -7990,12 +7988,6 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				EXECUTABLE_EXTENSION = binary;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				HEADER_SEARCH_PATHS = (
-					"\"CommandLine/CommandLineToolLib/dir with space\"",
-					"\"bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18/bin/CommandLine/CommandLineToolLib/dir with space\"",
-					CommandLine/CommandLineToolLib/private,
-					"bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18/bin/CommandLine/CommandLineToolLib/private",
-				);
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/tool.binary.48.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (
@@ -8020,6 +8012,18 @@
 					"-Wuninitialized",
 					"-Wunused-function",
 					"-Wunused-variable",
+					"-iquote",
+					.,
+					"-iquote",
+					"bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18/bin",
+					"-iquote",
+					external/examples_command_line_external,
+					"-iquote",
+					"bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18/bin/external/examples_command_line_external",
+					"-ICommandLine/CommandLineToolLib/dir with space",
+					"-Ibazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18/bin/CommandLine/CommandLineToolLib/dir with space",
+					"-ICommandLine/CommandLineToolLib/private",
+					"-Ibazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18/bin/CommandLine/CommandLineToolLib/private",
 					"-DSECRET_3=\"Hello\"",
 					"-DSECRET_2=\"World!\"",
 					"-Fexternal/examples_command_line_external",
@@ -8041,12 +8045,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = UniversalCommandLineTool;
-				USER_HEADER_SEARCH_PATHS = (
-					.,
-					"bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18/bin",
-					external/examples_command_line_external,
-					"bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18/bin/external/examples_command_line_external",
-				);
 			};
 			name = Debug;
 		};
@@ -8097,12 +8095,6 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				EXECUTABLE_EXTENSION = binary;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				HEADER_SEARCH_PATHS = (
-					"\"CommandLine/CommandLineToolLib/dir with space\"",
-					"\"bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-19/bin/CommandLine/CommandLineToolLib/dir with space\"",
-					CommandLine/CommandLineToolLib/private,
-					"bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-19/bin/CommandLine/CommandLineToolLib/private",
-				);
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/tool.binary.56.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (
@@ -8127,6 +8119,18 @@
 					"-Wuninitialized",
 					"-Wunused-function",
 					"-Wunused-variable",
+					"-iquote",
+					.,
+					"-iquote",
+					"bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-19/bin",
+					"-iquote",
+					external/examples_command_line_external,
+					"-iquote",
+					"bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-19/bin/external/examples_command_line_external",
+					"-ICommandLine/CommandLineToolLib/dir with space",
+					"-Ibazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-19/bin/CommandLine/CommandLineToolLib/dir with space",
+					"-ICommandLine/CommandLineToolLib/private",
+					"-Ibazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-19/bin/CommandLine/CommandLineToolLib/private",
 					"-DSECRET_3=\"Hello\"",
 					"-DSECRET_2=\"World!\"",
 					"-Fexternal/examples_command_line_external",
@@ -8148,12 +8152,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = UniversalCommandLineTool;
-				USER_HEADER_SEARCH_PATHS = (
-					.,
-					"bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-19/bin",
-					external/examples_command_line_external,
-					"bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-19/bin/external/examples_command_line_external",
-				);
 			};
 			name = Debug;
 		};
@@ -8422,10 +8420,6 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				HEADER_SEARCH_PATHS = (
-					"bazel-out",
-					external,
-				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",
@@ -8436,6 +8430,10 @@
 					"-Wthread-safety",
 					"-Wself-assign",
 					"-fno-omit-frame-pointer",
+					"-iquote",
+					.,
+					"-iquote",
+					"bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-19/bin",
 					"-no-canonical-prefixes",
 					"-pthread",
 					"-no-canonical-prefixes",
@@ -8443,6 +8441,8 @@
 					"-D__DATE__=\"redacted\"",
 					"-D__TIMESTAMP__=\"redacted\"",
 					"-D__TIME__=\"redacted\"",
+					"-Ibazel-out",
+					"-Iexternal",
 				);
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR)";
 				PRODUCT_NAME = private_lib;
@@ -8452,10 +8452,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = private_lib;
-				USER_HEADER_SEARCH_PATHS = (
-					.,
-					"bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-19/bin",
-				);
 			};
 			name = Debug;
 		};
@@ -8519,10 +8515,6 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				HEADER_SEARCH_PATHS = (
-					iOSApp/Source/CoreUtilsObjC,
-					"bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsObjC",
-				);
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-7/bin/iOSApp/Test/ObjCUnitTests/rules_xcodeproj/iOSAppObjCUnitTests.__internal__.__test_bundle/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/iOSAppObjCUnitTests.__internal__.__test_bundle.23.link.params";
@@ -8548,6 +8540,24 @@
 					"-Wuninitialized",
 					"-Wunused-function",
 					"-Wunused-variable",
+					"-iquote",
+					.,
+					"-iquote",
+					"bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin",
+					"-iquote",
+					external/com_github_krzyzanowskim_cryptoswift,
+					"-iquote",
+					"bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/external/com_github_krzyzanowskim_cryptoswift",
+					"-iquote",
+					external/com_google_google_maps,
+					"-iquote",
+					"bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/external/com_google_google_maps",
+					"-iquote",
+					external/FXPageControl,
+					"-iquote",
+					"bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/external/FXPageControl",
+					"-IiOSApp/Source/CoreUtilsObjC",
+					"-Ibazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsObjC",
 					"-DAWESOME",
 					"-Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator",
 					"-Fexternal/com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator",
@@ -8577,16 +8587,6 @@
 				TARGET_BUILD_DIR = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-7/bin/iOSApp/Source$(TARGET_BUILD_SUBPATH)";
 				TARGET_NAME = iOSAppObjCUnitTests;
 				TEST_HOST = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-7/bin/iOSApp/Source/iOSApp.app/iOSApp_ExecutableName";
-				USER_HEADER_SEARCH_PATHS = (
-					.,
-					"bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin",
-					external/com_github_krzyzanowskim_cryptoswift,
-					"bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/external/com_github_krzyzanowskim_cryptoswift",
-					external/com_google_google_maps,
-					"bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/external/com_google_google_maps",
-					external/FXPageControl,
-					"bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/external/FXPageControl",
-				);
 			};
 			name = Debug;
 		};
@@ -8898,10 +8898,6 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				HEADER_SEARCH_PATHS = (
-					"bazel-out",
-					external,
-				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",
@@ -8912,6 +8908,10 @@
 					"-Wthread-safety",
 					"-Wself-assign",
 					"-fno-omit-frame-pointer",
+					"-iquote",
+					.,
+					"-iquote",
+					"bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17/bin",
 					"-no-canonical-prefixes",
 					"-pthread",
 					"-no-canonical-prefixes",
@@ -8919,6 +8919,8 @@
 					"-D__DATE__=\"redacted\"",
 					"-D__TIMESTAMP__=\"redacted\"",
 					"-D__TIME__=\"redacted\"",
+					"-Ibazel-out",
+					"-Iexternal",
 				);
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR)";
 				PRODUCT_NAME = private_lib;
@@ -8928,10 +8930,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = private_lib;
-				USER_HEADER_SEARCH_PATHS = (
-					.,
-					"bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17/bin",
-				);
 			};
 			name = Debug;
 		};
@@ -8985,6 +8983,10 @@
 					"-Wthread-safety",
 					"-Wself-assign",
 					"-fno-omit-frame-pointer",
+					"-iquote",
+					.,
+					"-iquote",
+					"bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-19/bin",
 					"-no-canonical-prefixes",
 					"-pthread",
 					"-no-canonical-prefixes",
@@ -9001,10 +9003,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = c_lib;
-				USER_HEADER_SEARCH_PATHS = (
-					.,
-					"bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-19/bin",
-				);
 			};
 			name = Debug;
 		};
@@ -9021,10 +9019,6 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				HEADER_SEARCH_PATHS = (
-					iOSApp/Source/CoreUtilsObjC,
-					"bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsObjC",
-				);
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",
@@ -9048,6 +9042,16 @@
 					"-Wuninitialized",
 					"-Wunused-function",
 					"-Wunused-variable",
+					"-iquote",
+					.,
+					"-iquote",
+					"bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin",
+					"-iquote",
+					external/FXPageControl,
+					"-iquote",
+					"bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/external/FXPageControl",
+					"-IiOSApp/Source/CoreUtilsObjC",
+					"-Ibazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsObjC",
 					"-DOS_IOS",
 					"-fno-autolink",
 					"-fexceptions",
@@ -9068,12 +9072,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = Utils;
-				USER_HEADER_SEARCH_PATHS = (
-					.,
-					"bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin",
-					external/FXPageControl,
-					"bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/external/FXPageControl",
-				);
 			};
 			name = Debug;
 		};
@@ -9113,6 +9111,10 @@
 					"-Wuninitialized",
 					"-Wunused-function",
 					"-Wunused-variable",
+					"-iquote",
+					.,
+					"-iquote",
+					"bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18/bin",
 					"-DSECRET_3=\"Hello\"",
 					"-DSECRET_2=\"World!\"",
 					"-DOS_MACOSX",
@@ -9129,10 +9131,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = lib_impl;
-				USER_HEADER_SEARCH_PATHS = (
-					.,
-					"bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18/bin",
-				);
 			};
 			name = Debug;
 		};
@@ -9205,6 +9203,10 @@
 					"-Wuninitialized",
 					"-Wunused-function",
 					"-Wunused-variable",
+					"-iquote",
+					.,
+					"-iquote",
+					"bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-19/bin",
 					"-DSECRET_3=\"Hello\"",
 					"-DSECRET_2=\"World!\"",
 					"-DOS_MACOSX",
@@ -9221,10 +9223,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = lib_impl;
-				USER_HEADER_SEARCH_PATHS = (
-					.,
-					"bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-19/bin",
-				);
 			};
 			name = Debug;
 		};
@@ -9322,6 +9320,10 @@
 					"-Wuninitialized",
 					"-Wunused-function",
 					"-Wunused-variable",
+					"-iquote",
+					.,
+					"-iquote",
+					"bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17/bin",
 					"-DSECRET_3=\"Hello\"",
 					"-DSECRET_2=\"World!\"",
 					"-DOS_MACOSX",
@@ -9338,10 +9340,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = lib_impl;
-				USER_HEADER_SEARCH_PATHS = (
-					.,
-					"bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17/bin",
-				);
 			};
 			name = Debug;
 		};
@@ -9425,6 +9423,10 @@
 					"-Wuninitialized",
 					"-Wunused-function",
 					"-Wunused-variable",
+					"-iquote",
+					external/FXPageControl,
+					"-iquote",
+					"bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/external/FXPageControl",
 					"-DOS_IOS",
 					"-fno-autolink",
 					"-fexceptions",
@@ -9445,10 +9447,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = FXPageControl;
-				USER_HEADER_SEARCH_PATHS = (
-					external/FXPageControl,
-					"bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/external/FXPageControl",
-				);
 			};
 			name = Debug;
 		};
@@ -9561,8 +9559,6 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				HEADER_SEARCH_PATHS = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/CoreUtilsMixed";
-				"HEADER_SEARCH_PATHS[sdk=iphoneos*]" = "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/iOSApp/CoreUtilsMixed";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",
@@ -9586,12 +9582,17 @@
 					"-Wuninitialized",
 					"-Wunused-function",
 					"-Wunused-variable",
+					"-iquote",
+					.,
+					"-iquote",
+					"bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin",
 					"-DOS_IOS",
 					"-fno-autolink",
 					"-fexceptions",
 					"-fasm-blocks",
 					"-fobjc-abi-version=2",
 					"-fobjc-legacy-dispatch",
+					"-Ibazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/CoreUtilsMixed",
 					"-DDEBUG=1",
 					"-fstack-protector",
 					"-fstack-protector-all",
@@ -9618,8 +9619,13 @@
 					"-Wuninitialized",
 					"-Wunused-function",
 					"-Wunused-variable",
+					"-iquote",
+					.,
+					"-iquote",
+					"bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin",
 					"-DOS_IOS",
 					"-fno-autolink",
+					"-Ibazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/iOSApp/CoreUtilsMixed",
 					"-DDEBUG=1",
 					"-fstack-protector",
 					"-fstack-protector-all",
@@ -9633,14 +9639,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = MixedAnswer;
-				USER_HEADER_SEARCH_PATHS = (
-					.,
-					"bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin",
-				);
-				"USER_HEADER_SEARCH_PATHS[sdk=iphoneos*]" = (
-					.,
-					"bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin",
-				);
 			};
 			name = Debug;
 		};
@@ -9753,6 +9751,10 @@
 					"-Wthread-safety",
 					"-Wself-assign",
 					"-fno-omit-frame-pointer",
+					"-iquote",
+					.,
+					"-iquote",
+					"bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17/bin",
 					"-no-canonical-prefixes",
 					"-pthread",
 					"-no-canonical-prefixes",
@@ -9769,10 +9771,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = c_lib;
-				USER_HEADER_SEARCH_PATHS = (
-					.,
-					"bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17/bin",
-				);
 			};
 			name = Debug;
 		};
@@ -9911,14 +9909,6 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/iOSApp/Source/CoreUtilsObjC/CoreUtils/CoreUtils.pch";
-				HEADER_SEARCH_PATHS = (
-					iOSApp/Source/CoreUtilsObjC,
-					"bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsObjC",
-				);
-				"HEADER_SEARCH_PATHS[sdk=iphoneos*]" = (
-					iOSApp/Source/CoreUtilsObjC,
-					"bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/iOSApp/Source/CoreUtilsObjC",
-				);
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-7/bin/iOSApp/Source/CoreUtilsObjC/rules_xcodeproj/FrameworkCoreUtilsObjC/Info.plist";
 				"INFOPLIST_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/applebin_ios-ios_arm64-dbg-STABLE-8/bin/iOSApp/Source/CoreUtilsObjC/rules_xcodeproj/FrameworkCoreUtilsObjC/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -9948,6 +9938,12 @@
 					"-Wuninitialized",
 					"-Wunused-function",
 					"-Wunused-variable",
+					"-iquote",
+					.,
+					"-iquote",
+					"bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin",
+					"-IiOSApp/Source/CoreUtilsObjC",
+					"-Ibazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsObjC",
 					"-DOS_IOS",
 					"-fno-autolink",
 					"-fexceptions",
@@ -9982,6 +9978,12 @@
 					"-Wuninitialized",
 					"-Wunused-function",
 					"-Wunused-variable",
+					"-iquote",
+					.,
+					"-iquote",
+					"bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin",
+					"-IiOSApp/Source/CoreUtilsObjC",
+					"-Ibazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/iOSApp/Source/CoreUtilsObjC",
 					"-DOS_IOS",
 					"-fno-autolink",
 					"-DDEBUG=1",
@@ -10002,14 +10004,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				TARGET_NAME = FrameworkCoreUtilsObjC;
-				USER_HEADER_SEARCH_PATHS = (
-					.,
-					"bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin",
-				);
-				"USER_HEADER_SEARCH_PATHS[sdk=iphoneos*]" = (
-					.,
-					"bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin",
-				);
 			};
 			name = Debug;
 		};

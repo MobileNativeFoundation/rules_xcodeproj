@@ -453,12 +453,14 @@ weird \
             "OTHER_CFLAGS": [
                 "-passthrough",
                 "-passthrough",
+                "-I__BAZEL_XCODE_SOMETHING_/path",
                 "-passthrough",
                 "-passthrough",
             ],
             "OTHER_CPLUSPLUSFLAGS": [
                 "-passthrough",
                 "-passthrough",
+                "-I__BAZEL_XCODE_BOSS_",
                 "-passthrough",
             ],
             "OTHER_SWIFT_FLAGS": """\
@@ -593,12 +595,14 @@ $(PROJECT_DIR)/relative/Path.yaml \
             "OTHER_CFLAGS": [
                 "-passthrough",
                 "-passthrough",
+                "-I__BAZEL_XCODE_SOMETHING_/path",
                 "-passthrough",
                 "-passthrough",
             ],
             "OTHER_CPLUSPLUSFLAGS": [
                 "-passthrough",
                 "-passthrough",
+                "-I__BAZEL_XCODE_BOSS_",
                 "-passthrough",
             ],
             "OTHER_SWIFT_FLAGS": """\
@@ -967,6 +971,30 @@ $(PROJECT_DIR)/relative/Path.yaml \
             "-isystems5/s6",
         ],
         expected_build_settings = {
+            "OTHER_CFLAGS": [
+                "-iquote",
+                "a/b/c",
+                "-iquotea/b/c/d",
+                "-Ix/y/z",
+                "-I",
+                "1/2/3",
+                "-iquote",
+                "0/9",
+                "-isystem",
+                "s1/s2",
+                "-isystems1/s2/s3",
+            ],
+            "OTHER_CPLUSPLUSFLAGS": [
+                "-iquote",
+                "y/z",
+                "-iquotey/z/1",
+                "-Ix/y/z",
+                "-I",
+                "aa/bb",
+                "-isystem",
+                "s3/s4",
+                "-isystems3/s4/s5",
+            ],
             "OTHER_SWIFT_FLAGS": "-Xcc -Ic/d/e -Xcc -iquote4/5 -Xcc -isystems5/s6",
         },
         expected_clang_opts = [

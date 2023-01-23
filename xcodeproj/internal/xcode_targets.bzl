@@ -10,7 +10,6 @@ load(
     "file_path",
     "file_path_to_dto",
     "normalized_file_path",
-    "quote_if_needed",
 )
 load(":lldb_contexts.bzl", "lldb_contexts")
 load(":platform.bzl", "platform_info")
@@ -317,12 +316,6 @@ def _merge_xcode_target_product(*, src, dest):
         _is_resource_bundle = dest._is_resource_bundle,
     )
 
-def _prepend_array_build_setting(*, build_settings, key, values):
-    existing = build_settings.get(key, None)
-    if existing:
-        values.extend(existing)
-    set_if_true(build_settings, key, values)
-
 def _set_bazel_outputs_product(
         *,
         build_mode,
@@ -336,37 +329,6 @@ def _set_bazel_outputs_product(
         return
 
     build_settings["BAZEL_OUTPUTS_PRODUCT"] = path
-
-def _set_search_paths(
-        *,
-        build_settings,
-        search_paths_intermediate,
-        xcode_target):
-    if not xcode_target.is_swift:
-        _prepend_array_build_setting(
-            build_settings = build_settings,
-            key = "USER_HEADER_SEARCH_PATHS",
-            values = [
-                quote_if_needed(path)
-                for path in search_paths_intermediate.quote_includes
-            ],
-        )
-        _prepend_array_build_setting(
-            build_settings = build_settings,
-            key = "HEADER_SEARCH_PATHS",
-            values = [
-                quote_if_needed(path)
-                for path in search_paths_intermediate.includes
-            ],
-        )
-        _prepend_array_build_setting(
-            build_settings = build_settings,
-            key = "SYSTEM_HEADER_SEARCH_PATHS",
-            values = [
-                quote_if_needed(path)
-                for path in search_paths_intermediate.system_includes
-            ],
-        )
 
 def _set_preview_framework_paths(
         *,
@@ -587,7 +549,6 @@ def _xcode_target_to_dto(
             build_mode = build_mode,
             is_fixture = is_fixture,
             linker_products_map = linker_products_map,
-            search_paths_intermediate = search_paths_intermediate,
             xcode_generated_paths = xcode_generated_paths,
             xcode_target = xcode_target,
         ),
@@ -687,7 +648,6 @@ def _build_settings_to_dto(
         build_mode,
         is_fixture,
         linker_products_map,
-        search_paths_intermediate,
         xcode_generated_paths,
         xcode_target):
     build_settings = structs.to_dict(xcode_target._build_settings)
@@ -700,11 +660,6 @@ def _build_settings_to_dto(
         build_mode = build_mode,
         build_settings = build_settings,
         linker_products_map = linker_products_map,
-        xcode_target = xcode_target,
-    )
-    _set_search_paths(
-        build_settings = build_settings,
-        search_paths_intermediate = search_paths_intermediate,
         xcode_target = xcode_target,
     )
     _set_swift_include_paths(
