@@ -27,7 +27,6 @@ load(":target_id.bzl", "get_id")
 load(
     ":target_properties.bzl",
     "process_codesignopts",
-    "process_defines",
     "process_dependencies",
     "process_modulemaps",
     "process_swiftmodules",
@@ -474,10 +473,6 @@ def process_top_level_target(
             codesignopts = codesignopts,
             build_settings = build_settings,
         )
-    process_defines(
-        compilation_providers = compilation_providers,
-        build_settings = build_settings,
-    )
     search_paths = target_search_paths.make(
         opts_search_paths = opts_search_paths,
     )

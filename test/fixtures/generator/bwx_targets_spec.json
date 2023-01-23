@@ -930,16 +930,12 @@
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
             "GCC_OPTIMIZATION_LEVEL": "0",
-            "GCC_PREPROCESSOR_DEFINITIONS": [
-                "_FORTIFY_SOURCE=1",
-                "OS_MACOSX",
-                "DEBUG=1"
-            ],
             "HEADER_SEARCH_PATHS": [
                 "external/com_github_michaeleisel_jjliso8601dateformatter/Sources/JJLISO8601DateFormatter/include",
                 "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_jjliso8601dateformatter/Sources/JJLISO8601DateFormatter/include"
             ],
             "OTHER_CFLAGS": [
+                "-D_FORTIFY_SOURCE=1",
                 "-fstack-protector",
                 "-Wall",
                 "-Wthread-safety",
@@ -958,6 +954,7 @@
                 "-Wuninitialized",
                 "-Wunused-function",
                 "-Wunused-variable",
+                "-DOS_MACOSX",
                 "-fno-autolink",
                 "-Wno-incompatible-pointer-types",
                 "-Wno-incompatible-pointer-types-discards-qualifiers",
@@ -965,12 +962,14 @@
                 "-Wno-unreachable-code",
                 "-Wno-unused-function",
                 "-Wno-unused-variable",
+                "-DDEBUG=1",
                 "-fstack-protector",
                 "-fstack-protector-all"
             ],
             "OTHER_CPLUSPLUSFLAGS": [
                 "-stdlib=libc++",
                 "-std=gnu++11",
+                "-D_FORTIFY_SOURCE=1",
                 "-fstack-protector",
                 "-Wall",
                 "-Wthread-safety",
@@ -989,6 +988,7 @@
                 "-Wuninitialized",
                 "-Wunused-function",
                 "-Wunused-variable",
+                "-DOS_MACOSX",
                 "-fno-autolink",
                 "-Wno-incompatible-pointer-types",
                 "-Wno-incompatible-pointer-types-discards-qualifiers",
@@ -996,6 +996,7 @@
                 "-Wno-unreachable-code",
                 "-Wno-unused-function",
                 "-Wno-unused-variable",
+                "-DDEBUG=1",
                 "-fstack-protector",
                 "-fstack-protector-all"
             ],
@@ -1133,16 +1134,12 @@
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
             "GCC_OPTIMIZATION_LEVEL": "0",
-            "GCC_PREPROCESSOR_DEFINITIONS": [
-                "_FORTIFY_SOURCE=1",
-                "OS_MACOSX",
-                "DEBUG=1"
-            ],
             "HEADER_SEARCH_PATHS": [
                 "external/com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/include",
                 "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/include"
             ],
             "OTHER_CFLAGS": [
+                "-D_FORTIFY_SOURCE=1",
                 "-fstack-protector",
                 "-Wall",
                 "-Wthread-safety",
@@ -1161,6 +1158,7 @@
                 "-Wuninitialized",
                 "-Wunused-function",
                 "-Wunused-variable",
+                "-DOS_MACOSX",
                 "-fno-autolink",
                 "-std=c++17",
                 "-Wno-unused-function",
@@ -1168,12 +1166,14 @@
                 "-Wno-return-type-c-linkage",
                 "-Wno-shorten-64-to-32",
                 "-Wno-unused-variable",
+                "-DDEBUG=1",
                 "-fstack-protector",
                 "-fstack-protector-all"
             ],
             "OTHER_CPLUSPLUSFLAGS": [
                 "-stdlib=libc++",
                 "-std=gnu++11",
+                "-D_FORTIFY_SOURCE=1",
                 "-fstack-protector",
                 "-Wall",
                 "-Wthread-safety",
@@ -1192,6 +1192,7 @@
                 "-Wuninitialized",
                 "-Wunused-function",
                 "-Wunused-variable",
+                "-DOS_MACOSX",
                 "-fno-autolink",
                 "-std=c++17",
                 "-Wno-unused-function",
@@ -1199,6 +1200,7 @@
                 "-Wno-return-type-c-linkage",
                 "-Wno-shorten-64-to-32",
                 "-Wno-unused-variable",
+                "-DDEBUG=1",
                 "-fstack-protector",
                 "-fstack-protector-all"
             ],

@@ -656,11 +656,6 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"_FORTIFY_SOURCE=1",
-					OS_IOS,
-					"DEBUG=1",
-				);
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/UndefinedBehaviorSanitizerApp/rules_xcodeproj/UndefinedBehaviorSanitizerApp/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/UndefinedBehaviorSanitizerApp.2.link.params";
@@ -669,6 +664,7 @@
 					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
+					"-D_FORTIFY_SOURCE=1",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -687,11 +683,13 @@
 					"-Wuninitialized",
 					"-Wunused-function",
 					"-Wunused-variable",
+					"-DOS_IOS",
 					"-fno-autolink",
 					"-fexceptions",
 					"-fasm-blocks",
 					"-fobjc-abi-version=2",
 					"-fobjc-legacy-dispatch",
+					"-DDEBUG=1",
 					"-fstack-protector",
 					"-fstack-protector-all",
 				);
@@ -702,6 +700,7 @@
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 					"-stdlib=libc++",
 					"-std=gnu++11",
+					"-D_FORTIFY_SOURCE=1",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -720,11 +719,13 @@
 					"-Wuninitialized",
 					"-Wunused-function",
 					"-Wunused-variable",
+					"-DOS_IOS",
 					"-fno-autolink",
 					"-fexceptions",
 					"-fasm-blocks",
 					"-fobjc-abi-version=2",
 					"-fobjc-legacy-dispatch",
+					"-DDEBUG=1",
 					"-fstack-protector",
 					"-fstack-protector-all",
 				);

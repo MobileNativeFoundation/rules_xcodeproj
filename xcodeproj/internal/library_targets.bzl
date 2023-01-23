@@ -18,7 +18,6 @@ load(":target_search_paths.bzl", "target_search_paths")
 load(":target_id.bzl", "get_id")
 load(
     ":target_properties.bzl",
-    "process_defines",
     "process_dependencies",
     "process_modulemaps",
     "process_swiftmodules",
@@ -137,10 +136,6 @@ def process_library_target(
         transitive_infos = transitive_infos,
     )
 
-    process_defines(
-        compilation_providers = compilation_providers,
-        build_settings = build_settings,
-    )
     search_paths = target_search_paths.make(
         opts_search_paths = opts_search_paths,
     )
