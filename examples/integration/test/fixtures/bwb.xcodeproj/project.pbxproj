@@ -7268,17 +7268,11 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				EXECUTABLE_EXTENSION = "";
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"_FORTIFY_SOURCE=1",
-					OS_MACOSX,
-					"DEBUG=1",
-					"SECRET_3=\\\"Hello\\\"",
-					"SECRET_2=\\\"World!\\\"",
-				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
+					"-D_FORTIFY_SOURCE=1",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -7297,7 +7291,11 @@
 					"-Wuninitialized",
 					"-Wunused-function",
 					"-Wunused-variable",
+					"-DSECRET_3=\"Hello\"",
+					"-DSECRET_2=\"World!\"",
+					"-DOS_MACOSX",
 					"-fno-autolink",
+					"-DDEBUG=1",
 					"-fstack-protector",
 					"-fstack-protector-all",
 				);
@@ -7306,6 +7304,7 @@
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 					"-stdlib=libc++",
 					"-std=gnu++11",
+					"-D_FORTIFY_SOURCE=1",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -7324,7 +7323,11 @@
 					"-Wuninitialized",
 					"-Wunused-function",
 					"-Wunused-variable",
+					"-DSECRET_3=\"Hello\"",
+					"-DSECRET_2=\"World!\"",
+					"-DOS_MACOSX",
 					"-fno-autolink",
+					"-DDEBUG=1",
 					"-fstack-protector",
 					"-fstack-protector-all",
 				);
@@ -7465,12 +7468,6 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"_FORTIFY_SOURCE=1",
-					"__DATE__=\"redacted\"",
-					"__TIMESTAMP__=\"redacted\"",
-					"__TIME__=\"redacted\"",
-				);
 				HEADER_SEARCH_PATHS = (
 					"bazel-out",
 					external,
@@ -7479,6 +7476,7 @@
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
+					"-D_FORTIFY_SOURCE=1",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -7488,10 +7486,14 @@
 					"-pthread",
 					"-no-canonical-prefixes",
 					"-Wno-builtin-macro-redefined",
+					"-D__DATE__=\"redacted\"",
+					"-D__TIMESTAMP__=\"redacted\"",
+					"-D__TIME__=\"redacted\"",
 				);
 				OTHER_CPLUSPLUSFLAGS = (
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
+					"-D_FORTIFY_SOURCE=1",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -7502,6 +7504,9 @@
 					"-pthread",
 					"-no-canonical-prefixes",
 					"-Wno-builtin-macro-redefined",
+					"-D__DATE__=\"redacted\"",
+					"-D__TIMESTAMP__=\"redacted\"",
+					"-D__TIME__=\"redacted\"",
 				);
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR)";
 				PRODUCT_NAME = private_lib;
@@ -7532,13 +7537,6 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				EXECUTABLE_EXTENSION = "";
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"_FORTIFY_SOURCE=1",
-					OS_MACOSX,
-					"DEBUG=1",
-					"SECRET_3=\\\"Hello\\\"",
-					"SECRET_2=\\\"World!\\\"",
-				);
 				HEADER_SEARCH_PATHS = (
 					"\"CommandLine/CommandLineToolLib/dir with space\"",
 					"\"bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-19/bin/CommandLine/CommandLineToolLib/dir with space\"",
@@ -7549,6 +7547,7 @@
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
+					"-D_FORTIFY_SOURCE=1",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -7567,8 +7566,12 @@
 					"-Wuninitialized",
 					"-Wunused-function",
 					"-Wunused-variable",
+					"-DSECRET_3=\"Hello\"",
+					"-DSECRET_2=\"World!\"",
 					"-Fexternal/examples_command_line_external",
+					"-DOS_MACOSX",
 					"-fno-autolink",
+					"-DDEBUG=1",
 					"-fstack-protector",
 					"-fstack-protector-all",
 				);
@@ -7577,6 +7580,7 @@
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 					"-stdlib=libc++",
 					"-std=gnu++11",
+					"-D_FORTIFY_SOURCE=1",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -7595,8 +7599,12 @@
 					"-Wuninitialized",
 					"-Wunused-function",
 					"-Wunused-variable",
+					"-DSECRET_3=\"Hello\"",
+					"-DSECRET_2=\"World!\"",
 					"-Fexternal/examples_command_line_external",
+					"-DOS_MACOSX",
 					"-fno-autolink",
+					"-DDEBUG=1",
 					"-fstack-protector",
 					"-fstack-protector-all",
 				);
@@ -7726,13 +7734,6 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				EXECUTABLE_EXTENSION = "";
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"_FORTIFY_SOURCE=1",
-					OS_MACOSX,
-					"DEBUG=1",
-					"SECRET_3=\\\"Hello\\\"",
-					"SECRET_2=\\\"World!\\\"",
-				);
 				HEADER_SEARCH_PATHS = (
 					"\"CommandLine/CommandLineToolLib/dir with space\"",
 					"\"bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17/bin/CommandLine/CommandLineToolLib/dir with space\"",
@@ -7745,6 +7746,7 @@
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
+					"-D_FORTIFY_SOURCE=1",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -7763,10 +7765,14 @@
 					"-Wuninitialized",
 					"-Wunused-function",
 					"-Wunused-variable",
+					"-DSECRET_3=\"Hello\"",
+					"-DSECRET_2=\"World!\"",
 					"-Fexternal/examples_command_line_external",
+					"-DOS_MACOSX",
 					"-fno-autolink",
 					"--config",
 					"$(PROJECT_DIR)/CommandLine/CommandLineTool/verbose.cfg",
+					"-DDEBUG=1",
 					"-fstack-protector",
 					"-fstack-protector-all",
 				);
@@ -7776,6 +7782,7 @@
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 					"-stdlib=libc++",
 					"-std=gnu++11",
+					"-D_FORTIFY_SOURCE=1",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -7794,10 +7801,14 @@
 					"-Wuninitialized",
 					"-Wunused-function",
 					"-Wunused-variable",
+					"-DSECRET_3=\"Hello\"",
+					"-DSECRET_2=\"World!\"",
 					"-Fexternal/examples_command_line_external",
+					"-DOS_MACOSX",
 					"-fno-autolink",
 					"--config",
 					"$(PROJECT_DIR)/CommandLine/CommandLineTool/verbose.cfg",
+					"-DDEBUG=1",
 					"-fstack-protector",
 					"-fstack-protector-all",
 				);
@@ -7914,13 +7925,6 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				EXECUTABLE_EXTENSION = "";
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"_FORTIFY_SOURCE=1",
-					OS_MACOSX,
-					"DEBUG=1",
-					"SECRET_3=\\\"Hello\\\"",
-					"SECRET_2=\\\"World!\\\"",
-				);
 				HEADER_SEARCH_PATHS = (
 					"\"CommandLine/CommandLineToolLib/dir with space\"",
 					"\"bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17/bin/CommandLine/CommandLineToolLib/dir with space\"",
@@ -7931,6 +7935,7 @@
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
+					"-D_FORTIFY_SOURCE=1",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -7949,8 +7954,12 @@
 					"-Wuninitialized",
 					"-Wunused-function",
 					"-Wunused-variable",
+					"-DSECRET_3=\"Hello\"",
+					"-DSECRET_2=\"World!\"",
 					"-Fexternal/examples_command_line_external",
+					"-DOS_MACOSX",
 					"-fno-autolink",
+					"-DDEBUG=1",
 					"-fstack-protector",
 					"-fstack-protector-all",
 				);
@@ -7959,6 +7968,7 @@
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 					"-stdlib=libc++",
 					"-std=gnu++11",
+					"-D_FORTIFY_SOURCE=1",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -7977,8 +7987,12 @@
 					"-Wuninitialized",
 					"-Wunused-function",
 					"-Wunused-variable",
+					"-DSECRET_3=\"Hello\"",
+					"-DSECRET_2=\"World!\"",
 					"-Fexternal/examples_command_line_external",
+					"-DOS_MACOSX",
 					"-fno-autolink",
+					"-DDEBUG=1",
 					"-fstack-protector",
 					"-fstack-protector-all",
 				);
@@ -8060,16 +8074,11 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"_FORTIFY_SOURCE=1",
-					"__DATE__=\"redacted\"",
-					"__TIMESTAMP__=\"redacted\"",
-					"__TIME__=\"redacted\"",
-				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
+					"-D_FORTIFY_SOURCE=1",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -8079,10 +8088,14 @@
 					"-pthread",
 					"-no-canonical-prefixes",
 					"-Wno-builtin-macro-redefined",
+					"-D__DATE__=\"redacted\"",
+					"-D__TIMESTAMP__=\"redacted\"",
+					"-D__TIME__=\"redacted\"",
 				);
 				OTHER_CPLUSPLUSFLAGS = (
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
+					"-D_FORTIFY_SOURCE=1",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -8093,6 +8106,9 @@
 					"-pthread",
 					"-no-canonical-prefixes",
 					"-Wno-builtin-macro-redefined",
+					"-D__DATE__=\"redacted\"",
+					"-D__TIMESTAMP__=\"redacted\"",
+					"-D__TIME__=\"redacted\"",
 				);
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR)";
 				PRODUCT_NAME = c_lib;
@@ -8226,17 +8242,11 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				EXECUTABLE_EXTENSION = "";
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"_FORTIFY_SOURCE=1",
-					OS_MACOSX,
-					"DEBUG=1",
-					"SECRET_3=\\\"Hello\\\"",
-					"SECRET_2=\\\"World!\\\"",
-				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
+					"-D_FORTIFY_SOURCE=1",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -8255,7 +8265,11 @@
 					"-Wuninitialized",
 					"-Wunused-function",
 					"-Wunused-variable",
+					"-DSECRET_3=\"Hello\"",
+					"-DSECRET_2=\"World!\"",
+					"-DOS_MACOSX",
 					"-fno-autolink",
+					"-DDEBUG=1",
 					"-fstack-protector",
 					"-fstack-protector-all",
 				);
@@ -8264,6 +8278,7 @@
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 					"-stdlib=libc++",
 					"-std=gnu++11",
+					"-D_FORTIFY_SOURCE=1",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -8282,7 +8297,11 @@
 					"-Wuninitialized",
 					"-Wunused-function",
 					"-Wunused-variable",
+					"-DSECRET_3=\"Hello\"",
+					"-DSECRET_2=\"World!\"",
+					"-DOS_MACOSX",
 					"-fno-autolink",
+					"-DDEBUG=1",
 					"-fstack-protector",
 					"-fstack-protector-all",
 				);
@@ -8369,13 +8388,6 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				EXECUTABLE_EXTENSION = binary;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"_FORTIFY_SOURCE=1",
-					OS_MACOSX,
-					"DEBUG=1",
-					"SECRET_3=\\\"Hello\\\"",
-					"SECRET_2=\\\"World!\\\"",
-				);
 				HEADER_SEARCH_PATHS = (
 					"\"CommandLine/CommandLineToolLib/dir with space\"",
 					"\"bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18/bin/CommandLine/CommandLineToolLib/dir with space\"",
@@ -8387,6 +8399,7 @@
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
+					"-D_FORTIFY_SOURCE=1",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -8405,10 +8418,14 @@
 					"-Wuninitialized",
 					"-Wunused-function",
 					"-Wunused-variable",
+					"-DSECRET_3=\"Hello\"",
+					"-DSECRET_2=\"World!\"",
 					"-Fexternal/examples_command_line_external",
+					"-DOS_MACOSX",
 					"-fno-autolink",
 					"--config",
 					"$(PROJECT_DIR)/CommandLine/CommandLineTool/verbose.cfg",
+					"-DDEBUG=1",
 					"-fstack-protector",
 					"-fstack-protector-all",
 				);
@@ -8417,6 +8434,7 @@
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 					"-stdlib=libc++",
 					"-std=gnu++11",
+					"-D_FORTIFY_SOURCE=1",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -8435,10 +8453,14 @@
 					"-Wuninitialized",
 					"-Wunused-function",
 					"-Wunused-variable",
+					"-DSECRET_3=\"Hello\"",
+					"-DSECRET_2=\"World!\"",
 					"-Fexternal/examples_command_line_external",
+					"-DOS_MACOSX",
 					"-fno-autolink",
 					"--config",
 					"$(PROJECT_DIR)/CommandLine/CommandLineTool/verbose.cfg",
+					"-DDEBUG=1",
 					"-fstack-protector",
 					"-fstack-protector-all",
 				);
@@ -8509,13 +8531,6 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				EXECUTABLE_EXTENSION = binary;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"_FORTIFY_SOURCE=1",
-					OS_MACOSX,
-					"DEBUG=1",
-					"SECRET_3=\\\"Hello\\\"",
-					"SECRET_2=\\\"World!\\\"",
-				);
 				HEADER_SEARCH_PATHS = (
 					"\"CommandLine/CommandLineToolLib/dir with space\"",
 					"\"bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-19/bin/CommandLine/CommandLineToolLib/dir with space\"",
@@ -8527,6 +8542,7 @@
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
+					"-D_FORTIFY_SOURCE=1",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -8545,10 +8561,14 @@
 					"-Wuninitialized",
 					"-Wunused-function",
 					"-Wunused-variable",
+					"-DSECRET_3=\"Hello\"",
+					"-DSECRET_2=\"World!\"",
 					"-Fexternal/examples_command_line_external",
+					"-DOS_MACOSX",
 					"-fno-autolink",
 					"--config",
 					"$(PROJECT_DIR)/CommandLine/CommandLineTool/verbose.cfg",
+					"-DDEBUG=1",
 					"-fstack-protector",
 					"-fstack-protector-all",
 				);
@@ -8557,6 +8577,7 @@
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 					"-stdlib=libc++",
 					"-std=gnu++11",
+					"-D_FORTIFY_SOURCE=1",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -8575,10 +8596,14 @@
 					"-Wuninitialized",
 					"-Wunused-function",
 					"-Wunused-variable",
+					"-DSECRET_3=\"Hello\"",
+					"-DSECRET_2=\"World!\"",
 					"-Fexternal/examples_command_line_external",
+					"-DOS_MACOSX",
 					"-fno-autolink",
 					"--config",
 					"$(PROJECT_DIR)/CommandLine/CommandLineTool/verbose.cfg",
+					"-DDEBUG=1",
 					"-fstack-protector",
 					"-fstack-protector-all",
 				);
@@ -8669,13 +8694,6 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				EXECUTABLE_EXTENSION = "";
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"_FORTIFY_SOURCE=1",
-					OS_MACOSX,
-					"DEBUG=1",
-					"SECRET_3=\\\"Hello\\\"",
-					"SECRET_2=\\\"World!\\\"",
-				);
 				HEADER_SEARCH_PATHS = (
 					"\"CommandLine/CommandLineToolLib/dir with space\"",
 					"\"bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18/bin/CommandLine/CommandLineToolLib/dir with space\"",
@@ -8686,6 +8704,7 @@
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
+					"-D_FORTIFY_SOURCE=1",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -8704,8 +8723,12 @@
 					"-Wuninitialized",
 					"-Wunused-function",
 					"-Wunused-variable",
+					"-DSECRET_3=\"Hello\"",
+					"-DSECRET_2=\"World!\"",
 					"-Fexternal/examples_command_line_external",
+					"-DOS_MACOSX",
 					"-fno-autolink",
+					"-DDEBUG=1",
 					"-fstack-protector",
 					"-fstack-protector-all",
 				);
@@ -8714,6 +8737,7 @@
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 					"-stdlib=libc++",
 					"-std=gnu++11",
+					"-D_FORTIFY_SOURCE=1",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -8732,8 +8756,12 @@
 					"-Wuninitialized",
 					"-Wunused-function",
 					"-Wunused-variable",
+					"-DSECRET_3=\"Hello\"",
+					"-DSECRET_2=\"World!\"",
 					"-Fexternal/examples_command_line_external",
+					"-DOS_MACOSX",
 					"-fno-autolink",
+					"-DDEBUG=1",
 					"-fstack-protector",
 					"-fstack-protector-all",
 				);
@@ -8907,7 +8935,6 @@
 				ENABLE_TESTABILITY = YES;
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = AWESOME;
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-7/bin/iOSApp/Test/SwiftUnitTests/rules_xcodeproj/iOSAppSwiftUnitTests.__internal__.__test_bundle/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/iOSAppSwiftUnitTests.__internal__.__test_bundle.26.link.params";
@@ -8947,12 +8974,6 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"_FORTIFY_SOURCE=1",
-					"__DATE__=\"redacted\"",
-					"__TIMESTAMP__=\"redacted\"",
-					"__TIME__=\"redacted\"",
-				);
 				HEADER_SEARCH_PATHS = (
 					"bazel-out",
 					external,
@@ -8961,6 +8982,7 @@
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
+					"-D_FORTIFY_SOURCE=1",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -8970,10 +8992,14 @@
 					"-pthread",
 					"-no-canonical-prefixes",
 					"-Wno-builtin-macro-redefined",
+					"-D__DATE__=\"redacted\"",
+					"-D__TIMESTAMP__=\"redacted\"",
+					"-D__TIME__=\"redacted\"",
 				);
 				OTHER_CPLUSPLUSFLAGS = (
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
+					"-D_FORTIFY_SOURCE=1",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -8984,6 +9010,9 @@
 					"-pthread",
 					"-no-canonical-prefixes",
 					"-Wno-builtin-macro-redefined",
+					"-D__DATE__=\"redacted\"",
+					"-D__TIMESTAMP__=\"redacted\"",
+					"-D__TIME__=\"redacted\"",
 				);
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR)";
 				PRODUCT_NAME = private_lib;
@@ -9069,12 +9098,6 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"_FORTIFY_SOURCE=1",
-					OS_IOS,
-					"DEBUG=1",
-					AWESOME,
-				);
 				HEADER_SEARCH_PATHS = (
 					iOSApp/Source/CoreUtilsObjC,
 					"bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsObjC",
@@ -9085,6 +9108,7 @@
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
+					"-D_FORTIFY_SOURCE=1",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -9103,14 +9127,17 @@
 					"-Wuninitialized",
 					"-Wunused-function",
 					"-Wunused-variable",
+					"-DAWESOME",
 					"-Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator",
 					"-Fexternal/com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator",
 					"-Fexternal/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator",
+					"-DOS_IOS",
 					"-fno-autolink",
 					"-fexceptions",
 					"-fasm-blocks",
 					"-fobjc-abi-version=2",
 					"-fobjc-legacy-dispatch",
+					"-DDEBUG=1",
 					"-fstack-protector",
 					"-fstack-protector-all",
 				);
@@ -9119,6 +9146,7 @@
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 					"-stdlib=libc++",
 					"-std=gnu++11",
+					"-D_FORTIFY_SOURCE=1",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -9137,14 +9165,17 @@
 					"-Wuninitialized",
 					"-Wunused-function",
 					"-Wunused-variable",
+					"-DAWESOME",
 					"-Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator",
 					"-Fexternal/com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator",
 					"-Fexternal/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator",
+					"-DOS_IOS",
 					"-fno-autolink",
 					"-fexceptions",
 					"-fasm-blocks",
 					"-fobjc-abi-version=2",
 					"-fobjc-legacy-dispatch",
+					"-DDEBUG=1",
 					"-fstack-protector",
 					"-fstack-protector-all",
 				);
@@ -9284,17 +9315,11 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				EXECUTABLE_EXTENSION = "";
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"_FORTIFY_SOURCE=1",
-					OS_MACOSX,
-					"DEBUG=1",
-					"SECRET_3=\\\"Hello\\\"",
-					"SECRET_2=\\\"World!\\\"",
-				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
+					"-D_FORTIFY_SOURCE=1",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -9313,7 +9338,11 @@
 					"-Wuninitialized",
 					"-Wunused-function",
 					"-Wunused-variable",
+					"-DSECRET_3=\"Hello\"",
+					"-DSECRET_2=\"World!\"",
+					"-DOS_MACOSX",
 					"-fno-autolink",
+					"-DDEBUG=1",
 					"-fstack-protector",
 					"-fstack-protector-all",
 				);
@@ -9322,6 +9351,7 @@
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 					"-stdlib=libc++",
 					"-std=gnu++11",
+					"-D_FORTIFY_SOURCE=1",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -9340,7 +9370,11 @@
 					"-Wuninitialized",
 					"-Wunused-function",
 					"-Wunused-variable",
+					"-DSECRET_3=\"Hello\"",
+					"-DSECRET_2=\"World!\"",
+					"-DOS_MACOSX",
 					"-fno-autolink",
+					"-DDEBUG=1",
 					"-fstack-protector",
 					"-fstack-protector-all",
 				);
@@ -9563,12 +9597,6 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"_FORTIFY_SOURCE=1",
-					"__DATE__=\"redacted\"",
-					"__TIMESTAMP__=\"redacted\"",
-					"__TIME__=\"redacted\"",
-				);
 				HEADER_SEARCH_PATHS = (
 					"bazel-out",
 					external,
@@ -9577,6 +9605,7 @@
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
+					"-D_FORTIFY_SOURCE=1",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -9586,10 +9615,14 @@
 					"-pthread",
 					"-no-canonical-prefixes",
 					"-Wno-builtin-macro-redefined",
+					"-D__DATE__=\"redacted\"",
+					"-D__TIMESTAMP__=\"redacted\"",
+					"-D__TIME__=\"redacted\"",
 				);
 				OTHER_CPLUSPLUSFLAGS = (
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
+					"-D_FORTIFY_SOURCE=1",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -9600,6 +9633,9 @@
 					"-pthread",
 					"-no-canonical-prefixes",
 					"-Wno-builtin-macro-redefined",
+					"-D__DATE__=\"redacted\"",
+					"-D__TIMESTAMP__=\"redacted\"",
+					"-D__TIME__=\"redacted\"",
 				);
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR)";
 				PRODUCT_NAME = private_lib;
@@ -9657,16 +9693,11 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"_FORTIFY_SOURCE=1",
-					"__DATE__=\"redacted\"",
-					"__TIMESTAMP__=\"redacted\"",
-					"__TIME__=\"redacted\"",
-				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
+					"-D_FORTIFY_SOURCE=1",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -9676,10 +9707,14 @@
 					"-pthread",
 					"-no-canonical-prefixes",
 					"-Wno-builtin-macro-redefined",
+					"-D__DATE__=\"redacted\"",
+					"-D__TIMESTAMP__=\"redacted\"",
+					"-D__TIME__=\"redacted\"",
 				);
 				OTHER_CPLUSPLUSFLAGS = (
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
+					"-D_FORTIFY_SOURCE=1",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -9690,6 +9725,9 @@
 					"-pthread",
 					"-no-canonical-prefixes",
 					"-Wno-builtin-macro-redefined",
+					"-D__DATE__=\"redacted\"",
+					"-D__TIMESTAMP__=\"redacted\"",
+					"-D__TIME__=\"redacted\"",
 				);
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR)";
 				PRODUCT_NAME = c_lib;
@@ -9719,11 +9757,6 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"_FORTIFY_SOURCE=1",
-					OS_IOS,
-					"DEBUG=1",
-				);
 				HEADER_SEARCH_PATHS = (
 					iOSApp/Source/CoreUtilsObjC,
 					"bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsObjC",
@@ -9732,6 +9765,7 @@
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
+					"-D_FORTIFY_SOURCE=1",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -9750,11 +9784,13 @@
 					"-Wuninitialized",
 					"-Wunused-function",
 					"-Wunused-variable",
+					"-DOS_IOS",
 					"-fno-autolink",
 					"-fexceptions",
 					"-fasm-blocks",
 					"-fobjc-abi-version=2",
 					"-fobjc-legacy-dispatch",
+					"-DDEBUG=1",
 					"-fstack-protector",
 					"-fstack-protector-all",
 				);
@@ -9763,6 +9799,7 @@
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 					"-stdlib=libc++",
 					"-std=gnu++11",
+					"-D_FORTIFY_SOURCE=1",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -9781,11 +9818,13 @@
 					"-Wuninitialized",
 					"-Wunused-function",
 					"-Wunused-variable",
+					"-DOS_IOS",
 					"-fno-autolink",
 					"-fexceptions",
 					"-fasm-blocks",
 					"-fobjc-abi-version=2",
 					"-fobjc-legacy-dispatch",
+					"-DDEBUG=1",
 					"-fstack-protector",
 					"-fstack-protector-all",
 				);
@@ -9821,17 +9860,11 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"_FORTIFY_SOURCE=1",
-					OS_MACOSX,
-					"DEBUG=1",
-					"SECRET_3=\\\"Hello\\\"",
-					"SECRET_2=\\\"World!\\\"",
-				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
+					"-D_FORTIFY_SOURCE=1",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -9850,7 +9883,11 @@
 					"-Wuninitialized",
 					"-Wunused-function",
 					"-Wunused-variable",
+					"-DSECRET_3=\"Hello\"",
+					"-DSECRET_2=\"World!\"",
+					"-DOS_MACOSX",
 					"-fno-autolink",
+					"-DDEBUG=1",
 					"-fstack-protector",
 					"-fstack-protector-all",
 				);
@@ -9859,6 +9896,7 @@
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 					"-stdlib=libc++",
 					"-std=gnu++11",
+					"-D_FORTIFY_SOURCE=1",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -9877,7 +9915,11 @@
 					"-Wuninitialized",
 					"-Wunused-function",
 					"-Wunused-variable",
+					"-DSECRET_3=\"Hello\"",
+					"-DSECRET_2=\"World!\"",
+					"-DOS_MACOSX",
 					"-fno-autolink",
+					"-DDEBUG=1",
 					"-fstack-protector",
 					"-fstack-protector-all",
 				);
@@ -9951,17 +9993,11 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"_FORTIFY_SOURCE=1",
-					OS_MACOSX,
-					"DEBUG=1",
-					"SECRET_3=\\\"Hello\\\"",
-					"SECRET_2=\\\"World!\\\"",
-				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
+					"-D_FORTIFY_SOURCE=1",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -9980,7 +10016,11 @@
 					"-Wuninitialized",
 					"-Wunused-function",
 					"-Wunused-variable",
+					"-DSECRET_3=\"Hello\"",
+					"-DSECRET_2=\"World!\"",
+					"-DOS_MACOSX",
 					"-fno-autolink",
+					"-DDEBUG=1",
 					"-fstack-protector",
 					"-fstack-protector-all",
 				);
@@ -9989,6 +10029,7 @@
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 					"-stdlib=libc++",
 					"-std=gnu++11",
+					"-D_FORTIFY_SOURCE=1",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -10007,7 +10048,11 @@
 					"-Wuninitialized",
 					"-Wunused-function",
 					"-Wunused-variable",
+					"-DSECRET_3=\"Hello\"",
+					"-DSECRET_2=\"World!\"",
+					"-DOS_MACOSX",
 					"-fno-autolink",
+					"-DDEBUG=1",
 					"-fstack-protector",
 					"-fstack-protector-all",
 				);
@@ -10097,17 +10142,11 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"_FORTIFY_SOURCE=1",
-					OS_MACOSX,
-					"DEBUG=1",
-					"SECRET_3=\\\"Hello\\\"",
-					"SECRET_2=\\\"World!\\\"",
-				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
+					"-D_FORTIFY_SOURCE=1",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -10126,7 +10165,11 @@
 					"-Wuninitialized",
 					"-Wunused-function",
 					"-Wunused-variable",
+					"-DSECRET_3=\"Hello\"",
+					"-DSECRET_2=\"World!\"",
+					"-DOS_MACOSX",
 					"-fno-autolink",
+					"-DDEBUG=1",
 					"-fstack-protector",
 					"-fstack-protector-all",
 				);
@@ -10135,6 +10178,7 @@
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 					"-stdlib=libc++",
 					"-std=gnu++11",
+					"-D_FORTIFY_SOURCE=1",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -10153,7 +10197,11 @@
 					"-Wuninitialized",
 					"-Wunused-function",
 					"-Wunused-variable",
+					"-DSECRET_3=\"Hello\"",
+					"-DSECRET_2=\"World!\"",
+					"-DOS_MACOSX",
 					"-fno-autolink",
+					"-DDEBUG=1",
 					"-fstack-protector",
 					"-fstack-protector-all",
 				);
@@ -10230,15 +10278,11 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"_FORTIFY_SOURCE=1",
-					OS_IOS,
-					"DEBUG=1",
-				);
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
+					"-D_FORTIFY_SOURCE=1",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -10257,11 +10301,13 @@
 					"-Wuninitialized",
 					"-Wunused-function",
 					"-Wunused-variable",
+					"-DOS_IOS",
 					"-fno-autolink",
 					"-fexceptions",
 					"-fasm-blocks",
 					"-fobjc-abi-version=2",
 					"-fobjc-legacy-dispatch",
+					"-DDEBUG=1",
 					"-fstack-protector",
 					"-fstack-protector-all",
 				);
@@ -10270,6 +10316,7 @@
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 					"-stdlib=libc++",
 					"-std=gnu++11",
+					"-D_FORTIFY_SOURCE=1",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -10288,11 +10335,13 @@
 					"-Wuninitialized",
 					"-Wunused-function",
 					"-Wunused-variable",
+					"-DOS_IOS",
 					"-fno-autolink",
 					"-fexceptions",
 					"-fasm-blocks",
 					"-fobjc-abi-version=2",
 					"-fobjc-legacy-dispatch",
+					"-DDEBUG=1",
 					"-fstack-protector",
 					"-fstack-protector-all",
 				);
@@ -10424,17 +10473,13 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"_FORTIFY_SOURCE=1",
-					OS_IOS,
-					"DEBUG=1",
-				);
 				HEADER_SEARCH_PATHS = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/CoreUtilsMixed";
 				"HEADER_SEARCH_PATHS[sdk=iphoneos*]" = "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/iOSApp/CoreUtilsMixed";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
+					"-D_FORTIFY_SOURCE=1",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -10453,17 +10498,20 @@
 					"-Wuninitialized",
 					"-Wunused-function",
 					"-Wunused-variable",
+					"-DOS_IOS",
 					"-fno-autolink",
 					"-fexceptions",
 					"-fasm-blocks",
 					"-fobjc-abi-version=2",
 					"-fobjc-legacy-dispatch",
+					"-DDEBUG=1",
 					"-fstack-protector",
 					"-fstack-protector-all",
 				);
 				"OTHER_CFLAGS[sdk=iphoneos*]" = (
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
+					"-D_FORTIFY_SOURCE=1",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -10482,7 +10530,9 @@
 					"-Wuninitialized",
 					"-Wunused-function",
 					"-Wunused-variable",
+					"-DOS_IOS",
 					"-fno-autolink",
+					"-DDEBUG=1",
 					"-fstack-protector",
 					"-fstack-protector-all",
 				);
@@ -10491,6 +10541,7 @@
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 					"-stdlib=libc++",
 					"-std=gnu++11",
+					"-D_FORTIFY_SOURCE=1",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -10509,11 +10560,13 @@
 					"-Wuninitialized",
 					"-Wunused-function",
 					"-Wunused-variable",
+					"-DOS_IOS",
 					"-fno-autolink",
 					"-fexceptions",
 					"-fasm-blocks",
 					"-fobjc-abi-version=2",
 					"-fobjc-legacy-dispatch",
+					"-DDEBUG=1",
 					"-fstack-protector",
 					"-fstack-protector-all",
 				);
@@ -10522,6 +10575,7 @@
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 					"-stdlib=libc++",
 					"-std=gnu++11",
+					"-D_FORTIFY_SOURCE=1",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -10540,7 +10594,9 @@
 					"-Wuninitialized",
 					"-Wunused-function",
 					"-Wunused-variable",
+					"-DOS_IOS",
 					"-fno-autolink",
+					"-DDEBUG=1",
 					"-fstack-protector",
 					"-fstack-protector-all",
 				);
@@ -10630,10 +10686,6 @@
 				ENABLE_TESTABILITY = YES;
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"SECRET_3=\\\"Hello\\\"",
-					"SECRET_2=\\\"World!\\\"",
-				);
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-STABLE-20/bin/CommandLine/Tests/rules_xcodeproj/CommandLineToolTests.__internal__.__test_bundle/Info.plist";
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/CommandLineToolTests.__internal__.__test_bundle.57.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
@@ -10669,16 +10721,11 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"_FORTIFY_SOURCE=1",
-					"__DATE__=\"redacted\"",
-					"__TIMESTAMP__=\"redacted\"",
-					"__TIME__=\"redacted\"",
-				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
+					"-D_FORTIFY_SOURCE=1",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -10688,10 +10735,14 @@
 					"-pthread",
 					"-no-canonical-prefixes",
 					"-Wno-builtin-macro-redefined",
+					"-D__DATE__=\"redacted\"",
+					"-D__TIMESTAMP__=\"redacted\"",
+					"-D__TIME__=\"redacted\"",
 				);
 				OTHER_CPLUSPLUSFLAGS = (
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
+					"-D_FORTIFY_SOURCE=1",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -10702,6 +10753,9 @@
 					"-pthread",
 					"-no-canonical-prefixes",
 					"-Wno-builtin-macro-redefined",
+					"-D__DATE__=\"redacted\"",
+					"-D__TIMESTAMP__=\"redacted\"",
+					"-D__TIME__=\"redacted\"",
 				);
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR)";
 				PRODUCT_NAME = c_lib;
@@ -10864,11 +10918,6 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/iOSApp/Source/CoreUtilsObjC/CoreUtils/CoreUtils.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"_FORTIFY_SOURCE=1",
-					OS_IOS,
-					"DEBUG=1",
-				);
 				HEADER_SEARCH_PATHS = (
 					iOSApp/Source/CoreUtilsObjC,
 					"bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsObjC",
@@ -10885,6 +10934,7 @@
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
+					"-D_FORTIFY_SOURCE=1",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -10903,17 +10953,20 @@
 					"-Wuninitialized",
 					"-Wunused-function",
 					"-Wunused-variable",
+					"-DOS_IOS",
 					"-fno-autolink",
 					"-fexceptions",
 					"-fasm-blocks",
 					"-fobjc-abi-version=2",
 					"-fobjc-legacy-dispatch",
+					"-DDEBUG=1",
 					"-fstack-protector",
 					"-fstack-protector-all",
 				);
 				"OTHER_CFLAGS[sdk=iphoneos*]" = (
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
+					"-D_FORTIFY_SOURCE=1",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -10932,7 +10985,9 @@
 					"-Wuninitialized",
 					"-Wunused-function",
 					"-Wunused-variable",
+					"-DOS_IOS",
 					"-fno-autolink",
+					"-DDEBUG=1",
 					"-fstack-protector",
 					"-fstack-protector-all",
 				);
@@ -10941,6 +10996,7 @@
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 					"-stdlib=libc++",
 					"-std=gnu++11",
+					"-D_FORTIFY_SOURCE=1",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -10959,11 +11015,13 @@
 					"-Wuninitialized",
 					"-Wunused-function",
 					"-Wunused-variable",
+					"-DOS_IOS",
 					"-fno-autolink",
 					"-fexceptions",
 					"-fasm-blocks",
 					"-fobjc-abi-version=2",
 					"-fobjc-legacy-dispatch",
+					"-DDEBUG=1",
 					"-fstack-protector",
 					"-fstack-protector-all",
 				);
@@ -10972,6 +11030,7 @@
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 					"-stdlib=libc++",
 					"-std=gnu++11",
+					"-D_FORTIFY_SOURCE=1",
 					"-fstack-protector",
 					"-Wall",
 					"-Wthread-safety",
@@ -10990,7 +11049,9 @@
 					"-Wuninitialized",
 					"-Wunused-function",
 					"-Wunused-variable",
+					"-DOS_IOS",
 					"-fno-autolink",
+					"-DDEBUG=1",
 					"-fstack-protector",
 					"-fstack-protector-all",
 				);

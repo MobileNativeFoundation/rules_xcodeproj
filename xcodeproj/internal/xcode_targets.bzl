@@ -713,18 +713,31 @@ def _build_settings_to_dto(
         # Until we no longer support Bazel 5, we need to remove the
         # `BAZEL_CURRENT_REPOSITORY` define so Bazel 5 and 6 have the same
         # fixture
-        local_defines = []
-        for local_define in build_settings.pop(
-            "GCC_PREPROCESSOR_DEFINITIONS",
+        copts = []
+        cxxopts = []
+        for opt in build_settings.pop(
+            "OTHER_CFLAGS",
             [],
         ):
-            if local_define.startswith("BAZEL_CURRENT_REPOSITORY"):
+            if opt.startswith("-DBAZEL_CURRENT_REPOSITORY="):
                 continue
-            local_defines.append(local_define)
+            copts.append(opt)
+        for opt in build_settings.pop(
+            "OTHER_CPLUSPLUSFLAGS",
+            [],
+        ):
+            if opt.startswith("-DBAZEL_CURRENT_REPOSITORY="):
+                continue
+            cxxopts.append(opt)
         set_if_true(
             build_settings,
-            "GCC_PREPROCESSOR_DEFINITIONS",
-            local_defines,
+            "OTHER_CFLAGS",
+            copts,
+        )
+        set_if_true(
+            build_settings,
+            "OTHER_CPLUSPLUSFLAGS",
+            cxxopts,
         )
 
     return build_settings
