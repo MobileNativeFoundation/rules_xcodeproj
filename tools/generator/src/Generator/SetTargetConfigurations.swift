@@ -300,15 +300,19 @@ $(CONFIGURATION_BUILD_DIR)
                     "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml"
                 )
             } else {
-                try buildSettings.prepend(
-                    onKey: "OTHER_CFLAGS",
-                    ["-ivfsoverlay", "$(OBJROOT)/bazel-out-overlay.yaml"]
-                )
+                if buildSettings.keys.contains("OTHER_CFLAGS") {
+                    try buildSettings.prepend(
+                        onKey: "OTHER_CFLAGS",
+                        ["-ivfsoverlay", "$(OBJROOT)/bazel-out-overlay.yaml"]
+                    )
+                }
 
-                try buildSettings.prepend(
-                    onKey: "OTHER_CPLUSPLUSFLAGS",
-                    ["-ivfsoverlay", "$(OBJROOT)/bazel-out-overlay.yaml"]
-                )
+                if buildSettings.keys.contains("OTHER_CPLUSPLUSFLAGS") {
+                    try buildSettings.prepend(
+                        onKey: "OTHER_CPLUSPLUSFLAGS",
+                        ["-ivfsoverlay", "$(OBJROOT)/bazel-out-overlay.yaml"]
+                    )
+                }
             }
 
             switch buildMode {
@@ -325,15 +329,25 @@ $(CONFIGURATION_BUILD_DIR)
 
                 if !target.isSwift && target.searchPaths.hasIncludes
                 {
-                    try buildSettings.prepend(
-                        onKey: "OTHER_CFLAGS",
-                        ["-ivfsoverlay", "$(DERIVED_FILE_DIR)/xcode-overlay.yaml"]
-                    )
+                    if buildSettings.keys.contains("OTHER_CFLAGS") {
+                        try buildSettings.prepend(
+                            onKey: "OTHER_CFLAGS",
+                            [
+                                "-ivfsoverlay",
+                                "$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
+                            ]
+                        )
+                    }
 
-                    try buildSettings.prepend(
-                        onKey: "OTHER_CPLUSPLUSFLAGS",
-                        ["-ivfsoverlay", "$(DERIVED_FILE_DIR)/xcode-overlay.yaml"]
-                    )
+                    if buildSettings.keys.contains("OTHER_CPLUSPLUSFLAGS") {
+                        try buildSettings.prepend(
+                            onKey: "OTHER_CPLUSPLUSFLAGS",
+                            [
+                                "-ivfsoverlay",
+                                "$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
+                            ]
+                        )
+                    }
                 }
             case .bazel:
                 if target.hasModulemaps {

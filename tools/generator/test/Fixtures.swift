@@ -2145,14 +2145,6 @@ touch "$SCRIPT_OUTPUT_FILE_1"
                 "DEPLOYMENT_LOCATION": "NO",
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "IPHONEOS_DEPLOYMENT_TARGET": "11.0",
-                "OTHER_CFLAGS": [
-                    "-ivfsoverlay",
-                    "$(OBJROOT)/bazel-out-overlay.yaml",
-                ],
-                "OTHER_CPLUSPLUSFLAGS": [
-                    "-ivfsoverlay",
-                    "$(OBJROOT)/bazel-out-overlay.yaml",
-                ],
                 "PRODUCT_NAME": "AC",
                 "SDKROOT": "iphoneos",
                 "SUPPORTED_PLATFORMS": "iphoneos",
@@ -2169,14 +2161,6 @@ touch "$SCRIPT_OUTPUT_FILE_1"
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "MACH_O_TYPE": "staticlib",
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
-                "OTHER_CFLAGS": [
-                    "-ivfsoverlay",
-                    "$(OBJROOT)/bazel-out-overlay.yaml",
-                ],
-                "OTHER_CPLUSPLUSFLAGS": [
-                    "-ivfsoverlay",
-                    "$(OBJROOT)/bazel-out-overlay.yaml",
-                ],
                 "PRODUCT_NAME": "b",
                 "SDKROOT": "macosx",
                 "SUPPORTED_PLATFORMS": "macosx",
@@ -2194,14 +2178,6 @@ touch "$SCRIPT_OUTPUT_FILE_1"
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "LINK_PARAMS_FILE": "$(BAZEL_OUT)/B.link.params",
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
-                "OTHER_CFLAGS": [
-                    "-ivfsoverlay",
-                    "$(OBJROOT)/bazel-out-overlay.yaml",
-                ],
-                "OTHER_CPLUSPLUSFLAGS": [
-                    "-ivfsoverlay",
-                    "$(OBJROOT)/bazel-out-overlay.yaml",
-                ],
                 "OTHER_LDFLAGS": "@$(DERIVED_FILE_DIR)/link.params",
                 "PRODUCT_NAME": "B",
                 "SDKROOT": "macosx",
@@ -2227,14 +2203,6 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2/A.app/A_ExecutableName
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "LINK_PARAMS_FILE": "$(BAZEL_OUT)/B3.link.params",
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
-                "OTHER_CFLAGS": [
-                    "-ivfsoverlay",
-                    "$(OBJROOT)/bazel-out-overlay.yaml",
-                ],
-                "OTHER_CPLUSPLUSFLAGS": [
-                    "-ivfsoverlay",
-                    "$(OBJROOT)/bazel-out-overlay.yaml",
-                ],
                 "OTHER_LDFLAGS": "@$(DERIVED_FILE_DIR)/link.params",
                 "PRODUCT_NAME": "B3",
                 "SDKROOT": "macosx",
@@ -2253,14 +2221,6 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2/A.app/A_ExecutableName
                 "GCC_PREFIX_HEADER": "$(SRCROOT)/a/b/c.pch",
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
-                "OTHER_CFLAGS": [
-                    "-ivfsoverlay",
-                    "$(OBJROOT)/bazel-out-overlay.yaml",
-                ],
-                "OTHER_CPLUSPLUSFLAGS": [
-                    "-ivfsoverlay",
-                    "$(OBJROOT)/bazel-out-overlay.yaml",
-                ],
                 "PRODUCT_NAME": "c",
                 "SDKROOT": "macosx",
                 "SUPPORTED_PLATFORMS": "macosx",
@@ -2279,14 +2239,6 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2/A.app/A_ExecutableName
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "LINK_PARAMS_FILE": "$(BAZEL_OUT)/d.link.params",
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
-                "OTHER_CFLAGS": [
-                    "-ivfsoverlay",
-                    "$(OBJROOT)/bazel-out-overlay.yaml",
-                ],
-                "OTHER_CPLUSPLUSFLAGS": [
-                    "-ivfsoverlay",
-                    "$(OBJROOT)/bazel-out-overlay.yaml",
-                ],
                 "OTHER_LDFLAGS": "@$(DERIVED_FILE_DIR)/link.params",
                 "PRODUCT_NAME": "d",
                 "SDKROOT": "macosx",
@@ -2340,18 +2292,6 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2/A.app/A_ExecutableName
                 "DEPLOYMENT_LOCATION": "NO",
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "IPHONEOS_DEPLOYMENT_TARGET": "12.0",
-                "OTHER_CFLAGS": [
-                    "-ivfsoverlay",
-                    "$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
-                    "-ivfsoverlay",
-                    "$(OBJROOT)/bazel-out-overlay.yaml",
-                ],
-                "OTHER_CPLUSPLUSFLAGS": [
-                    "-ivfsoverlay",
-                    "$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
-                    "-ivfsoverlay",
-                    "$(OBJROOT)/bazel-out-overlay.yaml",
-                ],
                 "PRODUCT_NAME": "I",
                 "SDKROOT": "iphoneos",
                 "SUPPORTED_PLATFORMS": "iphoneos",
@@ -2367,14 +2307,6 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2/A.app/A_ExecutableName
                 "COMPILE_TARGET_NAME": targets["R 1"]!.name,
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
-                "OTHER_CFLAGS": [
-                    "-ivfsoverlay",
-                    "$(OBJROOT)/bazel-out-overlay.yaml",
-                ],
-                "OTHER_CPLUSPLUSFLAGS": [
-                    "-ivfsoverlay",
-                    "$(OBJROOT)/bazel-out-overlay.yaml",
-                ],
                 "PRODUCT_NAME": "R 1",
                 "SDKROOT": "macosx",
                 "SUPPORTED_PLATFORMS": "macosx",
@@ -2443,14 +2375,6 @@ $(MACOSX_FILES)
                 "COMPILE_TARGET_NAME": targets["W"]!.name,
                 "DEPLOYMENT_LOCATION": "NO",
                 "GENERATE_INFOPLIST_FILE": "YES",
-                "OTHER_CFLAGS": [
-                    "-ivfsoverlay",
-                    "$(OBJROOT)/bazel-out-overlay.yaml",
-                ],
-                "OTHER_CPLUSPLUSFLAGS": [
-                    "-ivfsoverlay",
-                    "$(OBJROOT)/bazel-out-overlay.yaml",
-                ],
                 "PRODUCT_NAME": "W",
                 "SDKROOT": "watchos",
                 "SUPPORTED_PLATFORMS": "watchos",
@@ -2470,14 +2394,6 @@ $(MACOSX_FILES)
                 "DEPLOYMENT_LOCATION": "NO",
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "IPHONEOS_DEPLOYMENT_TARGET": "11.0",
-                "OTHER_CFLAGS": [
-                    "-ivfsoverlay",
-                    "$(OBJROOT)/bazel-out-overlay.yaml",
-                ],
-                "OTHER_CPLUSPLUSFLAGS": [
-                    "-ivfsoverlay",
-                    "$(OBJROOT)/bazel-out-overlay.yaml",
-                ],
                 "PRODUCT_NAME": "WDKE",
                 "SDKROOT": "iphoneos",
                 "SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD": "YES",
@@ -2496,14 +2412,6 @@ $(MACOSX_FILES)
                 "COMPILE_TARGET_NAME": targets["WKE"]!.name,
                 "DEPLOYMENT_LOCATION": "NO",
                 "GENERATE_INFOPLIST_FILE": "YES",
-                "OTHER_CFLAGS": [
-                    "-ivfsoverlay",
-                    "$(OBJROOT)/bazel-out-overlay.yaml",
-                ],
-                "OTHER_CPLUSPLUSFLAGS": [
-                    "-ivfsoverlay",
-                    "$(OBJROOT)/bazel-out-overlay.yaml",
-                ],
                 "PRODUCT_NAME": "WKE",
                 "SDKROOT": "watchos",
                 "SUPPORTED_PLATFORMS": "watchos",

@@ -310,19 +310,6 @@ def process_top_level_target(
     )
     platform = platform_info.collect(ctx = ctx)
 
-    package_bin_dir = join_paths_ignoring_empty(
-        ctx.bin_dir.path,
-        label.workspace_root,
-        label.package,
-    )
-    opts_search_paths, clang_opts = process_opts(
-        ctx = ctx,
-        build_mode = build_mode,
-        target = target,
-        package_bin_dir = package_bin_dir,
-        build_settings = build_settings,
-    )
-
     avoid_compilation_providers_list = [
         (info.xcode_target, info.compilation_providers)
         for info in framework_infos
@@ -410,6 +397,21 @@ def process_top_level_target(
         top_level_product = product,
         infoplist = infoplist,
         transitive_infos = transitive_infos,
+    )
+
+    package_bin_dir = join_paths_ignoring_empty(
+        ctx.bin_dir.path,
+        label.workspace_root,
+        label.package,
+    )
+    opts_search_paths, clang_opts = process_opts(
+        ctx = ctx,
+        build_mode = build_mode,
+        has_c_sources = inputs.has_c_sources,
+        has_cxx_sources = inputs.has_cxx_sources,
+        target = target,
+        package_bin_dir = package_bin_dir,
+        build_settings = build_settings,
     )
 
     if not inputs.srcs:
