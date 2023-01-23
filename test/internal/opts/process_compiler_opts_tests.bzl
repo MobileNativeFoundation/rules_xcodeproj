@@ -112,9 +112,6 @@ def process_compiler_opts_test_suite(name):
             expected_build_settings,
             expected_clang_opts = [],
             expected_search_paths = {
-                "quote_includes": [],
-                "includes": [],
-                "system_includes": [],
                 "framework_includes": [],
             },
             conlyopts = [],
@@ -215,12 +212,6 @@ weird \
             "-F$(PROJECT_DIR)/somewhere",
         ],
         expected_search_paths = {
-            "quote_includes": [
-                ".",
-                "bazel-out/ios-sim_arm64-min15.0-applebin_ios-ios_sim_arm64-fastbuild-ST-4e6c2a19403f/bin",
-            ],
-            "includes": [],
-            "system_includes": [],
             "framework_includes": [
                 "somewhere",
             ],
@@ -302,12 +293,6 @@ weird \
             "-F$(PROJECT_DIR)/somewhere",
         ],
         expected_search_paths = {
-            "quote_includes": [
-                ".",
-                "bazel-out/ios-sim_arm64-min15.0-applebin_ios-ios_sim_arm64-fastbuild-ST-4e6c2a19403f/bin",
-            ],
-            "includes": [],
-            "system_includes": [],
             "framework_includes": [
                 "somewhere",
             ],
@@ -503,9 +488,6 @@ $(PROJECT_DIR)/relative/Path.yaml \
             "-a=bazel-out/hi",
         ],
         expected_search_paths = {
-            "quote_includes": [],
-            "includes": ["__BAZEL_XCODE_SOMETHING_/path", "__BAZEL_XCODE_BOSS_"],
-            "system_includes": [],
             "framework_includes": [],
         },
     )
@@ -629,9 +611,6 @@ $(PROJECT_DIR)/relative/Path.yaml \
             "-a=bazel-out/hi",
         ],
         expected_search_paths = {
-            "quote_includes": [],
-            "includes": ["__BAZEL_XCODE_SOMETHING_/path", "__BAZEL_XCODE_BOSS_"],
-            "system_includes": [],
             "framework_includes": [],
         },
     )
@@ -988,27 +967,6 @@ $(PROJECT_DIR)/relative/Path.yaml \
             "-isystem$(PROJECT_DIR)/s5/s6",
         ],
         expected_search_paths = {
-            "quote_includes": [
-                "a/b/c",
-                "a/b/c/d",
-                "0/9",
-                "y/z",
-                "y/z/1",
-                "4/5",
-            ],
-            "includes": [
-                "x/y/z",
-                "1/2/3",
-                "aa/bb",
-                "c/d/e",
-            ],
-            "system_includes": [
-                "s1/s2",
-                "s1/s2/s3",
-                "s3/s4",
-                "s3/s4/s5",
-                "s5/s6",
-            ],
             "framework_includes": [],
         },
     )

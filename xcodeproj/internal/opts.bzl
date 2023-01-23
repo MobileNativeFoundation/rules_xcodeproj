@@ -318,31 +318,18 @@ def _process_base_compiler_opts(
 
     return processed_opts
 
-def create_opts_search_paths(
-        *,
-        quote_includes,
-        includes,
-        system_includes,
-        framework_includes):
+def create_opts_search_paths(*, framework_includes):
     """Creates a value representing search paths of a target.
 
     Args:
-        quote_includes: A `list` of quote include paths (i.e `-iquote` values).
-        includes: A `list` of include paths (i.e. `-I` values).
-        system_includes: A `list` of system include paths (i.e. `-isystem`
-            values).
         framework_includes: A `list` of framework include paths (i.e. `-F`
             values).
 
     Returns:
-        A `struct` containing the `quote_includes`, `includes`, and
-        `system_includes`, and `framework_includes` fields provided as
+        A `struct` containing the `framework_includes` fields provided as
         arguments.
     """
     return struct(
-        quote_includes = tuple(quote_includes),
-        includes = tuple(includes),
-        system_includes = tuple(system_includes),
         framework_includes = tuple(framework_includes),
     )
 
@@ -358,21 +345,12 @@ def merge_opts_search_paths(search_paths):
         provided to it being the merged and deduplicated values from
         `search_paths`.
     """
-    quote_includes = []
-    includes = []
-    system_includes = []
     framework_includes = []
 
     for search_path in search_paths:
-        quote_includes.extend(search_path.quote_includes)
-        includes.extend(search_path.includes)
-        system_includes.extend(search_path.system_includes)
         framework_includes.extend(search_path.framework_includes)
 
     return create_opts_search_paths(
-        quote_includes = uniq(quote_includes),
-        includes = uniq(includes),
-        system_includes = uniq(system_includes),
         framework_includes = uniq(framework_includes),
     )
 
@@ -394,23 +372,10 @@ def _process_conlyopts(opts, *, build_settings):
         *   A `bool` indicting if the target has debug info enabled.
     """
     optimizations = []
-    quote_includes = []
-    includes = []
-    system_includes = []
     framework_includes = []
     has_debug_info = {}
 
-    def process(opt, previous_opt):
-        if previous_opt == "-isystem":
-            system_includes.append(opt)
-            return opt
-        if previous_opt == "-iquote":
-            quote_includes.append(opt)
-            return opt
-        if previous_opt == "-I":
-            includes.append(opt)
-            return opt
-
+    def process(opt, _):
         if opt.startswith("-O"):
             optimizations.append(opt)
             return None
@@ -420,16 +385,7 @@ def _process_conlyopts(opts, *, build_settings):
             # of assigning to the existing variable
             has_debug_info[True] = None
             return None
-        if opt == "-isystem" or opt == "-iquote" or opt == "-I" or opt == "-F":
-            return opt
-        if opt.startswith("-isystem"):
-            system_includes.append(opt[8:])
-            return opt
-        if opt.startswith("-iquote"):
-            quote_includes.append(opt[7:])
-            return opt
-        if opt.startswith("-I"):
-            includes.append(opt[2:])
+        if opt == "-F":
             return opt
         if opt.startswith("-F"):
             framework_includes.append(opt[2:])
@@ -454,9 +410,6 @@ def _process_conlyopts(opts, *, build_settings):
     has_debug_info = bool(has_debug_info)
 
     search_paths = create_opts_search_paths(
-        quote_includes = uniq(quote_includes),
-        includes = uniq(includes),
-        system_includes = uniq(system_includes),
         framework_includes = uniq(framework_includes),
     )
 
@@ -480,23 +433,10 @@ def _process_cxxopts(opts, *, build_settings):
         *   A `bool` indicting if the target has debug info enabled.
     """
     optimizations = []
-    quote_includes = []
-    includes = []
-    system_includes = []
     framework_includes = []
     has_debug_info = {}
 
-    def process(opt, previous_opt):
-        if previous_opt == "-isystem":
-            system_includes.append(opt)
-            return opt
-        if previous_opt == "-iquote":
-            quote_includes.append(opt)
-            return opt
-        if previous_opt == "-I":
-            includes.append(opt)
-            return opt
-
+    def process(opt, _):
         if opt.startswith("-O"):
             optimizations.append(opt)
             return None
@@ -506,16 +446,7 @@ def _process_cxxopts(opts, *, build_settings):
             # of assigning to the existing variable
             has_debug_info[True] = None
             return None
-        if opt == "-isystem" or opt == "-iquote" or opt == "-I" or opt == "-F":
-            return opt
-        if opt.startswith("-isystem"):
-            system_includes.append(opt[8:])
-            return opt
-        if opt.startswith("-iquote"):
-            quote_includes.append(opt[7:])
-            return opt
-        if opt.startswith("-I"):
-            includes.append(opt[2:])
+        if opt == "-F":
             return opt
         if opt.startswith("-F"):
             framework_includes.append(opt[2:])
@@ -540,9 +471,6 @@ def _process_cxxopts(opts, *, build_settings):
     has_debug_info = bool(has_debug_info)
 
     search_paths = create_opts_search_paths(
-        quote_includes = uniq(quote_includes),
-        includes = uniq(includes),
-        system_includes = uniq(system_includes),
         framework_includes = uniq(framework_includes),
     )
 
@@ -650,9 +578,6 @@ def _process_swiftcopts(
     # Default to not creating the Swift generated header.
     build_settings["SWIFT_OBJC_INTERFACE_HEADER_NAME"] = ""
 
-    quote_includes = []
-    includes = []
-    system_includes = []
     framework_includes = []
     clang_opts = []
     has_debug_info = {}
@@ -670,7 +595,6 @@ def _process_swiftcopts(
                 if build_mode == "xcode":
                     opt = bwx_opt
                 if previous_opt == "-Xcc":
-                    system_includes.append(path)
                     clang_opts.append(bwx_opt)
             return opt
         if opt.startswith("-iquote"):
@@ -684,7 +608,6 @@ def _process_swiftcopts(
                 if build_mode == "xcode":
                     opt = bwx_opt
                 if previous_opt == "-Xcc":
-                    quote_includes.append(path)
                     clang_opts.append(bwx_opt)
             return opt
         if opt.startswith("-I"):
@@ -698,7 +621,6 @@ def _process_swiftcopts(
                 if build_mode == "xcode":
                     opt = bwx_opt
                 if previous_opt == "-Xcc":
-                    includes.append(path)
                     clang_opts.append(bwx_opt)
             return opt
         if opt.startswith("-fmodule-map-file="):
@@ -790,9 +712,6 @@ Using VFS overlays with `build_mode = "xcode"` is unsupported.
     has_debug_info = bool(has_debug_info)
 
     search_paths = create_opts_search_paths(
-        quote_includes = uniq(quote_includes),
-        includes = uniq(includes),
-        system_includes = uniq(system_includes),
         framework_includes = uniq(framework_includes),
     )
 

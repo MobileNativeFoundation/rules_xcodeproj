@@ -59,9 +59,6 @@
                 "t": "g"
             },
             "type": "com.apple.product-type.library.static"
-        },
-        "search_paths": {
-            "has_includes": true
         }
     },
     "//lib:lib_defines darwin_x86_64-dbg-STABLE-1",
@@ -94,9 +91,6 @@
             "name": "lib_defines",
             "path": null,
             "type": "com.apple.product-type.library.static"
-        },
-        "search_paths": {
-            "has_includes": false
         }
     },
     "//lib:lib_headers darwin_x86_64-dbg-STABLE-1",
@@ -129,9 +123,6 @@
             "name": "lib_headers",
             "path": null,
             "type": "com.apple.product-type.library.static"
-        },
-        "search_paths": {
-            "has_includes": false
         }
     },
     "//lib:lib_impl darwin_x86_64-dbg-STABLE-1",
@@ -194,9 +185,6 @@
                 "t": "g"
             },
             "type": "com.apple.product-type.library.static"
-        },
-        "search_paths": {
-            "has_includes": true
         }
     },
     "//tool:tool darwin_x86_64-dbg-STABLE-1",
@@ -282,9 +270,6 @@
                 "t": "g"
             },
             "type": "com.apple.product-type.tool"
-        },
-        "search_paths": {
-            "has_includes": true
         }
     },
     "@examples_cc_external//:lib_defines darwin_x86_64-dbg-STABLE-1",
@@ -317,9 +302,6 @@
             "name": "lib_defines",
             "path": null,
             "type": "com.apple.product-type.library.static"
-        },
-        "search_paths": {
-            "has_includes": false
         }
     },
     "@examples_cc_external//:lib_headers darwin_x86_64-dbg-STABLE-1",
@@ -352,9 +334,6 @@
             "name": "lib_headers",
             "path": null,
             "type": "com.apple.product-type.library.static"
-        },
-        "search_paths": {
-            "has_includes": false
         }
     },
     "@examples_cc_external//:lib_impl darwin_x86_64-dbg-STABLE-1",
@@ -423,9 +402,6 @@
                 "t": "g"
             },
             "type": "com.apple.product-type.library.static"
-        },
-        "search_paths": {
-            "has_includes": true
         }
     }
 ]

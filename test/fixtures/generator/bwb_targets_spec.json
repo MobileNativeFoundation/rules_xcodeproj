@@ -258,9 +258,6 @@
                 "t": "g"
             },
             "type": "com.apple.product-type.bundle.unit-test"
-        },
-        "search_paths": {
-            "has_includes": true
         }
     },
     "//tools/generator:generator applebin_macos-darwin_x86_64-dbg-STABLE-2",
@@ -396,9 +393,6 @@
                 "t": "g"
             },
             "type": "com.apple.product-type.tool"
-        },
-        "search_paths": {
-            "has_includes": false
         }
     },
     "//tools/generator:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
@@ -440,7 +434,6 @@
                 "tools/generator/src/DTO/Product.swift",
                 "tools/generator/src/DTO/Project.swift",
                 "tools/generator/src/DTO/SchemeAutogenerationMode.swift",
-                "tools/generator/src/DTO/SearchPaths.swift",
                 "tools/generator/src/DTO/Target.swift",
                 "tools/generator/src/DTO/TargetID.swift",
                 "tools/generator/src/DTO/XCCurrentVersion.swift",
@@ -526,9 +519,6 @@
                 "t": "g"
             },
             "type": "com.apple.product-type.library.static"
-        },
-        "search_paths": {
-            "has_includes": true
         }
     },
     "//tools/swiftc_stub:swiftc applebin_macos-darwin_x86_64-dbg-STABLE-2",
@@ -606,9 +596,6 @@
                 "t": "g"
             },
             "type": "com.apple.product-type.tool"
-        },
-        "search_paths": {
-            "has_includes": true
         }
     },
     "@com_github_apple_swift_collections//:OrderedCollections macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
@@ -856,9 +843,6 @@
                 "t": "g"
             },
             "type": "com.apple.product-type.library.static"
-        },
-        "search_paths": {
-            "has_includes": true
         }
     },
     "@com_github_kylef_pathkit//:PathKit macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
@@ -910,9 +894,6 @@
                 "t": "g"
             },
             "type": "com.apple.product-type.library.static"
-        },
-        "search_paths": {
-            "has_includes": true
         }
     },
     "@com_github_michaeleisel_jjliso8601dateformatter//:JJLISO8601DateFormatter macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
@@ -1017,9 +998,6 @@
                 "t": "g"
             },
             "type": "com.apple.product-type.library.static"
-        },
-        "search_paths": {
-            "has_includes": true
         }
     },
     "@com_github_michaeleisel_zippyjson//:ZippyJSON macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
@@ -1076,9 +1054,6 @@
                 "t": "g"
             },
             "type": "com.apple.product-type.library.static"
-        },
-        "search_paths": {
-            "has_includes": true
         }
     },
     "@com_github_michaeleisel_zippyjsoncfamily//:ZippyJSONCFamily macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
@@ -1173,9 +1148,6 @@
                 "t": "g"
             },
             "type": "com.apple.product-type.library.static"
-        },
-        "search_paths": {
-            "has_includes": true
         }
     },
     "@com_github_pointfreeco_swift_custom_dump//:CustomDump macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
@@ -1327,9 +1299,6 @@
                 "t": "g"
             },
             "type": "com.apple.product-type.library.static"
-        },
-        "search_paths": {
-            "has_includes": true
         }
     },
     "@com_github_pointfreeco_xctest_dynamic_overlay//:XCTestDynamicOverlay macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
@@ -1381,9 +1350,6 @@
                 "t": "g"
             },
             "type": "com.apple.product-type.library.static"
-        },
-        "search_paths": {
-            "has_includes": true
         }
     },
     "@com_github_tuist_xcodeproj//:XcodeProj macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
@@ -1815,9 +1781,6 @@
                 "t": "g"
             },
             "type": "com.apple.product-type.library.static"
-        },
-        "search_paths": {
-            "has_includes": true
         }
     }
 ]

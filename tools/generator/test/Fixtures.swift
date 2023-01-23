@@ -244,9 +244,6 @@ enum Fixtures {
             buildSettings: [
                 "PRODUCT_MODULE_NAME": .string("_Stubbed_I"),
             ],
-            searchPaths: .init(
-                hasIncludes: true
-            ),
             watchApplication: "W",
             appClips: ["AC"],
             dependencies: ["AC", "W"]
@@ -1621,6 +1618,7 @@ touch "$SCRIPT_OUTPUT_FILE_1"
                 ),
             ],
             "B 1": [
+                createCreateCompilingDependenciesShellScript(),
                 PBXHeadersBuildPhase(
                     files: buildFiles([
                         PBXBuildFile(
@@ -1669,6 +1667,7 @@ touch "$SCRIPT_OUTPUT_FILE_1"
                 ),
             ],
             "C 1": [
+                createCreateCompilingDependenciesShellScript(),
                 PBXSourcesBuildPhase(
                     files: buildFiles([
                         PBXBuildFile(file: elements["a/b/c.m"]!),
@@ -1676,6 +1675,7 @@ touch "$SCRIPT_OUTPUT_FILE_1"
                 ),
             ],
             "C 2": [
+                createCreateCompilingDependenciesShellScript(),
                 createCreateLinkingDependenciesShellScript(),
                 PBXSourcesBuildPhase(
                     files: buildFiles([
@@ -1701,7 +1701,6 @@ touch "$SCRIPT_OUTPUT_FILE_1"
                 createGeneratedHeaderShellScript(),
             ],
             "I": [
-                createCreateCompilingDependenciesShellScript(),
                 PBXSourcesBuildPhase(
                     files: buildFiles([PBXBuildFile(
                         file: elements[.internal("_CompileStub_.m")]!
