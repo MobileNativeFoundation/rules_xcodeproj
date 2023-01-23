@@ -52,18 +52,6 @@ def process_library_target(
 
     build_settings = {}
 
-    package_bin_dir = join_paths_ignoring_empty(
-        ctx.bin_dir.path,
-        label.workspace_root,
-        label.package,
-    )
-    opts_search_paths, clang_opts = process_opts(
-        ctx = ctx,
-        build_mode = build_mode,
-        target = target,
-        package_bin_dir = package_bin_dir,
-        build_settings = build_settings,
-    )
     product_name = ctx.rule.attr.name
     set_if_true(
         build_settings,
@@ -134,6 +122,21 @@ def process_library_target(
         inputs = inputs,
         swift_info = swift_info,
         transitive_infos = transitive_infos,
+    )
+
+    package_bin_dir = join_paths_ignoring_empty(
+        ctx.bin_dir.path,
+        label.workspace_root,
+        label.package,
+    )
+    opts_search_paths, clang_opts = process_opts(
+        ctx = ctx,
+        build_mode = build_mode,
+        has_c_sources = inputs.has_c_sources,
+        has_cxx_sources = inputs.has_cxx_sources,
+        target = target,
+        package_bin_dir = package_bin_dir,
+        build_settings = build_settings,
     )
 
     search_paths = target_search_paths.make(

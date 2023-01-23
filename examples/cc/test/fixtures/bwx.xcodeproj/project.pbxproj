@@ -353,7 +353,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2216884D5BAEF8F6D2DC37F8 /* Build configuration list for PBXNativeTarget "@examples_cc_external//:lib_defines" */;
 			buildPhases = (
-				F7F791E4152E3FB48EB8CB5F /* Create compiling dependencies */,
 			);
 			buildRules = (
 			);
@@ -369,7 +368,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 57B722DF39AD4059390DC937 /* Build configuration list for PBXNativeTarget "@examples_cc_external//:lib_headers" */;
 			buildPhases = (
-				39BE4055CEA9EC6D5B7E3A8F /* Create compiling dependencies */,
 			);
 			buildRules = (
 			);
@@ -401,7 +399,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 613DBB46757C69BEBB8C0A8B /* Build configuration list for PBXNativeTarget "@//lib:lib_headers" */;
 			buildPhases = (
-				1E467A68DB4D9713A581DAA1 /* Create compiling dependencies */,
 			);
 			buildRules = (
 			);
@@ -454,7 +451,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D9FAE6E2B5FC5DEBADA0C20A /* Build configuration list for PBXNativeTarget "@//lib:lib_defines" */;
 			buildPhases = (
-				9F6236E6EC9E09328DA30BDF /* Create compiling dependencies */,
 			);
 			buildRules = (
 			);
@@ -557,23 +553,6 @@
 			shellScript = "\"$SCRIPT_INPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
-		1E467A68DB4D9713A581DAA1 /* Create compiling dependencies */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(BAZEL_INTEGRATION_DIR)/create_xcode_overlay.sh",
-			);
-			name = "Create compiling dependencies";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"$SCRIPT_INPUT_FILE_0\"\n";
-			showEnvVarsInLog = 0;
-		};
 		26930AFFB7188AF135605E52 /* Create compiling dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -606,23 +585,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "perl -pe 's/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
-			showEnvVarsInLog = 0;
-		};
-		39BE4055CEA9EC6D5B7E3A8F /* Create compiling dependencies */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(BAZEL_INTEGRATION_DIR)/create_xcode_overlay.sh",
-			);
-			name = "Create compiling dependencies";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"$SCRIPT_INPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
 		69580EBA0FAED5BDB37827D6 /* Create compiling dependencies */ = {
@@ -662,23 +624,6 @@
 			shellScript = "\"$BAZEL_INTEGRATION_DIR/generate_bazel_dependencies.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9F6236E6EC9E09328DA30BDF /* Create compiling dependencies */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(BAZEL_INTEGRATION_DIR)/create_xcode_overlay.sh",
-			);
-			name = "Create compiling dependencies";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"$SCRIPT_INPUT_FILE_0\"\n";
-			showEnvVarsInLog = 0;
-		};
 		DF9F91D4DC559C08850160A4 /* Create linking dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -697,23 +642,6 @@
 			showEnvVarsInLog = 0;
 		};
 		E881916100D775EF5F50A2C6 /* Create compiling dependencies */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(BAZEL_INTEGRATION_DIR)/create_xcode_overlay.sh",
-			);
-			name = "Create compiling dependencies";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"$SCRIPT_INPUT_FILE_0\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F7F791E4152E3FB48EB8CB5F /* Create compiling dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -901,27 +829,6 @@
 					"-D__TIMESTAMP__=\"redacted\"",
 					"-D__TIME__=\"redacted\"",
 				);
-				OTHER_CPLUSPLUSFLAGS = (
-					"-ivfsoverlay",
-					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
-					"-ivfsoverlay",
-					"$(OBJROOT)/bazel-out-overlay.yaml",
-					"-D_FORTIFY_SOURCE=1",
-					"-fstack-protector",
-					"-Wall",
-					"-Wthread-safety",
-					"-Wself-assign",
-					"-fno-omit-frame-pointer",
-					"-std=c++11",
-					"-DSECRET_3=\"Hello\"",
-					"-no-canonical-prefixes",
-					"-pthread",
-					"-no-canonical-prefixes",
-					"-Wno-builtin-macro-redefined",
-					"-D__DATE__=\"redacted\"",
-					"-D__TIMESTAMP__=\"redacted\"",
-					"-D__TIME__=\"redacted\"",
-				);
 				PRODUCT_NAME = lib_impl;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
@@ -945,54 +852,11 @@
 				BAZEL_TARGET_ID = "//lib:lib_defines darwin_x86_64-dbg-STABLE-1";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = lib_defines;
-				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				EXECUTABLE_EXTENSION = "";
-				GCC_OPTIMIZATION_LEVEL = 0;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				OTHER_CFLAGS = (
-					"-ivfsoverlay",
-					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
-					"-ivfsoverlay",
-					"$(OBJROOT)/bazel-out-overlay.yaml",
-					"-D_FORTIFY_SOURCE=1",
-					"-fstack-protector",
-					"-Wall",
-					"-Wthread-safety",
-					"-Wself-assign",
-					"-fno-omit-frame-pointer",
-					"-DSECRET_2=\"World!\"",
-					"-no-canonical-prefixes",
-					"-pthread",
-					"-no-canonical-prefixes",
-					"-Wno-builtin-macro-redefined",
-					"-D__DATE__=\"redacted\"",
-					"-D__TIMESTAMP__=\"redacted\"",
-					"-D__TIME__=\"redacted\"",
-				);
-				OTHER_CPLUSPLUSFLAGS = (
-					"-ivfsoverlay",
-					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
-					"-ivfsoverlay",
-					"$(OBJROOT)/bazel-out-overlay.yaml",
-					"-D_FORTIFY_SOURCE=1",
-					"-fstack-protector",
-					"-Wall",
-					"-Wthread-safety",
-					"-Wself-assign",
-					"-fno-omit-frame-pointer",
-					"-std=c++11",
-					"-DSECRET_2=\"World!\"",
-					"-no-canonical-prefixes",
-					"-pthread",
-					"-no-canonical-prefixes",
-					"-Wno-builtin-macro-redefined",
-					"-D__DATE__=\"redacted\"",
-					"-D__TIMESTAMP__=\"redacted\"",
-					"-D__TIME__=\"redacted\"",
-				);
 				PRODUCT_NAME = lib_defines;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
@@ -1000,10 +864,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = lib_defines;
-				USER_HEADER_SEARCH_PATHS = (
-					.,
-					"bazel-out/darwin_x86_64-dbg-STABLE-1/bin",
-				);
 			};
 			name = Debug;
 		};
@@ -1016,54 +876,11 @@
 				BAZEL_TARGET_ID = "//lib:lib_headers darwin_x86_64-dbg-STABLE-1";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = lib_headers;
-				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				EXECUTABLE_EXTENSION = "";
-				GCC_OPTIMIZATION_LEVEL = 0;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				OTHER_CFLAGS = (
-					"-ivfsoverlay",
-					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
-					"-ivfsoverlay",
-					"$(OBJROOT)/bazel-out-overlay.yaml",
-					"-D_FORTIFY_SOURCE=1",
-					"-fstack-protector",
-					"-Wall",
-					"-Wthread-safety",
-					"-Wself-assign",
-					"-fno-omit-frame-pointer",
-					"-DSECRET_2=\"World!\"",
-					"-no-canonical-prefixes",
-					"-pthread",
-					"-no-canonical-prefixes",
-					"-Wno-builtin-macro-redefined",
-					"-D__DATE__=\"redacted\"",
-					"-D__TIMESTAMP__=\"redacted\"",
-					"-D__TIME__=\"redacted\"",
-				);
-				OTHER_CPLUSPLUSFLAGS = (
-					"-ivfsoverlay",
-					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
-					"-ivfsoverlay",
-					"$(OBJROOT)/bazel-out-overlay.yaml",
-					"-D_FORTIFY_SOURCE=1",
-					"-fstack-protector",
-					"-Wall",
-					"-Wthread-safety",
-					"-Wself-assign",
-					"-fno-omit-frame-pointer",
-					"-std=c++11",
-					"-DSECRET_2=\"World!\"",
-					"-no-canonical-prefixes",
-					"-pthread",
-					"-no-canonical-prefixes",
-					"-Wno-builtin-macro-redefined",
-					"-D__DATE__=\"redacted\"",
-					"-D__TIMESTAMP__=\"redacted\"",
-					"-D__TIME__=\"redacted\"",
-				);
 				PRODUCT_NAME = lib_headers;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
@@ -1071,10 +888,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = lib_headers;
-				USER_HEADER_SEARCH_PATHS = (
-					.,
-					"bazel-out/darwin_x86_64-dbg-STABLE-1/bin",
-				);
 			};
 			name = Debug;
 		};
@@ -1104,26 +917,6 @@
 					"-Wthread-safety",
 					"-Wself-assign",
 					"-fno-omit-frame-pointer",
-					"-no-canonical-prefixes",
-					"-pthread",
-					"-no-canonical-prefixes",
-					"-Wno-builtin-macro-redefined",
-					"-D__DATE__=\"redacted\"",
-					"-D__TIMESTAMP__=\"redacted\"",
-					"-D__TIME__=\"redacted\"",
-				);
-				OTHER_CPLUSPLUSFLAGS = (
-					"-ivfsoverlay",
-					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
-					"-ivfsoverlay",
-					"$(OBJROOT)/bazel-out-overlay.yaml",
-					"-D_FORTIFY_SOURCE=1",
-					"-fstack-protector",
-					"-Wall",
-					"-Wthread-safety",
-					"-Wself-assign",
-					"-fno-omit-frame-pointer",
-					"-std=c++11",
 					"-no-canonical-prefixes",
 					"-pthread",
 					"-no-canonical-prefixes",
@@ -1222,54 +1015,11 @@
 				BAZEL_TARGET_ID = "@examples_cc_external//:lib_defines darwin_x86_64-dbg-STABLE-1";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = lib_defines;
-				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				EXECUTABLE_EXTENSION = "";
-				GCC_OPTIMIZATION_LEVEL = 0;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				OTHER_CFLAGS = (
-					"-ivfsoverlay",
-					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
-					"-ivfsoverlay",
-					"$(OBJROOT)/bazel-out-overlay.yaml",
-					"-D_FORTIFY_SOURCE=1",
-					"-fstack-protector",
-					"-Wall",
-					"-Wthread-safety",
-					"-Wself-assign",
-					"-fno-omit-frame-pointer",
-					"-DEXTERNAL_SECRET_2=\"World?\"",
-					"-no-canonical-prefixes",
-					"-pthread",
-					"-no-canonical-prefixes",
-					"-Wno-builtin-macro-redefined",
-					"-D__DATE__=\"redacted\"",
-					"-D__TIMESTAMP__=\"redacted\"",
-					"-D__TIME__=\"redacted\"",
-				);
-				OTHER_CPLUSPLUSFLAGS = (
-					"-ivfsoverlay",
-					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
-					"-ivfsoverlay",
-					"$(OBJROOT)/bazel-out-overlay.yaml",
-					"-D_FORTIFY_SOURCE=1",
-					"-fstack-protector",
-					"-Wall",
-					"-Wthread-safety",
-					"-Wself-assign",
-					"-fno-omit-frame-pointer",
-					"-std=c++11",
-					"-DEXTERNAL_SECRET_2=\"World?\"",
-					"-no-canonical-prefixes",
-					"-pthread",
-					"-no-canonical-prefixes",
-					"-Wno-builtin-macro-redefined",
-					"-D__DATE__=\"redacted\"",
-					"-D__TIMESTAMP__=\"redacted\"",
-					"-D__TIME__=\"redacted\"",
-				);
 				PRODUCT_NAME = lib_defines;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
@@ -1277,10 +1027,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = lib_defines;
-				USER_HEADER_SEARCH_PATHS = (
-					external/examples_cc_external,
-					"bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external",
-				);
 			};
 			name = Debug;
 		};
@@ -1293,54 +1039,11 @@
 				BAZEL_TARGET_ID = "@examples_cc_external//:lib_headers darwin_x86_64-dbg-STABLE-1";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = lib_headers;
-				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				EXECUTABLE_EXTENSION = "";
-				GCC_OPTIMIZATION_LEVEL = 0;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				OTHER_CFLAGS = (
-					"-ivfsoverlay",
-					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
-					"-ivfsoverlay",
-					"$(OBJROOT)/bazel-out-overlay.yaml",
-					"-D_FORTIFY_SOURCE=1",
-					"-fstack-protector",
-					"-Wall",
-					"-Wthread-safety",
-					"-Wself-assign",
-					"-fno-omit-frame-pointer",
-					"-DEXTERNAL_SECRET_2=\"World?\"",
-					"-no-canonical-prefixes",
-					"-pthread",
-					"-no-canonical-prefixes",
-					"-Wno-builtin-macro-redefined",
-					"-D__DATE__=\"redacted\"",
-					"-D__TIMESTAMP__=\"redacted\"",
-					"-D__TIME__=\"redacted\"",
-				);
-				OTHER_CPLUSPLUSFLAGS = (
-					"-ivfsoverlay",
-					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
-					"-ivfsoverlay",
-					"$(OBJROOT)/bazel-out-overlay.yaml",
-					"-D_FORTIFY_SOURCE=1",
-					"-fstack-protector",
-					"-Wall",
-					"-Wthread-safety",
-					"-Wself-assign",
-					"-fno-omit-frame-pointer",
-					"-std=c++11",
-					"-DEXTERNAL_SECRET_2=\"World?\"",
-					"-no-canonical-prefixes",
-					"-pthread",
-					"-no-canonical-prefixes",
-					"-Wno-builtin-macro-redefined",
-					"-D__DATE__=\"redacted\"",
-					"-D__TIMESTAMP__=\"redacted\"",
-					"-D__TIME__=\"redacted\"",
-				);
 				PRODUCT_NAME = lib_headers;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
@@ -1348,10 +1051,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = lib_headers;
-				USER_HEADER_SEARCH_PATHS = (
-					external/examples_cc_external,
-					"bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external",
-				);
 			};
 			name = Debug;
 		};
@@ -1385,28 +1084,6 @@
 					"-Wthread-safety",
 					"-Wself-assign",
 					"-fno-omit-frame-pointer",
-					"-DSECRET_2=\"World!\"",
-					"-DEXTERNAL_SECRET_2=\"World?\"",
-					"-no-canonical-prefixes",
-					"-pthread",
-					"-no-canonical-prefixes",
-					"-Wno-builtin-macro-redefined",
-					"-D__DATE__=\"redacted\"",
-					"-D__TIMESTAMP__=\"redacted\"",
-					"-D__TIME__=\"redacted\"",
-				);
-				OTHER_CPLUSPLUSFLAGS = (
-					"-ivfsoverlay",
-					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
-					"-ivfsoverlay",
-					"$(OBJROOT)/bazel-out-overlay.yaml",
-					"-D_FORTIFY_SOURCE=1",
-					"-fstack-protector",
-					"-Wall",
-					"-Wthread-safety",
-					"-Wself-assign",
-					"-fno-omit-frame-pointer",
-					"-std=c++11",
 					"-DSECRET_2=\"World!\"",
 					"-DEXTERNAL_SECRET_2=\"World?\"",
 					"-no-canonical-prefixes",
@@ -1470,27 +1147,6 @@
 					"-Wthread-safety",
 					"-Wself-assign",
 					"-fno-omit-frame-pointer",
-					"-DEXTERNAL_SECRET_3=\"Goodbye\"",
-					"-no-canonical-prefixes",
-					"-pthread",
-					"-no-canonical-prefixes",
-					"-Wno-builtin-macro-redefined",
-					"-D__DATE__=\"redacted\"",
-					"-D__TIMESTAMP__=\"redacted\"",
-					"-D__TIME__=\"redacted\"",
-				);
-				OTHER_CPLUSPLUSFLAGS = (
-					"-ivfsoverlay",
-					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
-					"-ivfsoverlay",
-					"$(OBJROOT)/bazel-out-overlay.yaml",
-					"-D_FORTIFY_SOURCE=1",
-					"-fstack-protector",
-					"-Wall",
-					"-Wthread-safety",
-					"-Wself-assign",
-					"-fno-omit-frame-pointer",
-					"-std=c++11",
 					"-DEXTERNAL_SECRET_3=\"Goodbye\"",
 					"-no-canonical-prefixes",
 					"-pthread",
