@@ -327,7 +327,7 @@ $(CONFIGURATION_BUILD_DIR)
                     )
                 }
 
-                if !target.isSwift && target.searchPaths.hasIncludes
+                if !target.isSwift && target.inputs.containsSourceFiles
                 {
                     if buildSettings.keys.contains("OTHER_CFLAGS") {
                         try buildSettings.prepend(
@@ -527,7 +527,7 @@ private extension Platform.OS {
     }
 }
 
-private extension Inputs {
+extension Inputs {
     var containsSourceFiles: Bool {
         return !(srcs.isEmpty && nonArcSrcs.isEmpty)
     }
