@@ -2880,10 +2880,6 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				HEADER_SEARCH_PATHS = (
-					external/com_github_michaeleisel_jjliso8601dateformatter/Sources/JJLISO8601DateFormatter/include,
-					"bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_jjliso8601dateformatter/Sources/JJLISO8601DateFormatter/include",
-				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_CFLAGS = (
 					"-ivfsoverlay",
@@ -2907,6 +2903,12 @@
 					"-Wuninitialized",
 					"-Wunused-function",
 					"-Wunused-variable",
+					"-iquote",
+					external/com_github_michaeleisel_jjliso8601dateformatter,
+					"-iquote",
+					"bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_jjliso8601dateformatter",
+					"-Iexternal/com_github_michaeleisel_jjliso8601dateformatter/Sources/JJLISO8601DateFormatter/include",
+					"-Ibazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_jjliso8601dateformatter/Sources/JJLISO8601DateFormatter/include",
 					"-DOS_MACOSX",
 					"-fno-autolink",
 					"-Wno-incompatible-pointer-types",
@@ -2927,10 +2929,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = JJLISO8601DateFormatter;
-				USER_HEADER_SEARCH_PATHS = (
-					external/com_github_michaeleisel_jjliso8601dateformatter,
-					"bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_jjliso8601dateformatter",
-				);
 			};
 			name = Debug;
 		};
@@ -2947,10 +2945,6 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				HEADER_SEARCH_PATHS = (
-					external/com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/include,
-					"bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/include",
-				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_CPLUSPLUSFLAGS = (
 					"-ivfsoverlay",
@@ -2976,6 +2970,12 @@
 					"-Wuninitialized",
 					"-Wunused-function",
 					"-Wunused-variable",
+					"-iquote",
+					external/com_github_michaeleisel_zippyjsoncfamily,
+					"-iquote",
+					"bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_zippyjsoncfamily",
+					"-Iexternal/com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/include",
+					"-Ibazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/include",
 					"-DOS_MACOSX",
 					"-fno-autolink",
 					"-std=c++17",
@@ -2996,10 +2996,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = ZippyJSONCFamily;
-				USER_HEADER_SEARCH_PATHS = (
-					external/com_github_michaeleisel_zippyjsoncfamily,
-					"bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_zippyjsoncfamily",
-				);
 			};
 			name = Debug;
 		};

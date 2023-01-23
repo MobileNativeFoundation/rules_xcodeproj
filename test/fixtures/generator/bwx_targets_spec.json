@@ -924,10 +924,6 @@
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
             "GCC_OPTIMIZATION_LEVEL": "0",
-            "HEADER_SEARCH_PATHS": [
-                "external/com_github_michaeleisel_jjliso8601dateformatter/Sources/JJLISO8601DateFormatter/include",
-                "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_jjliso8601dateformatter/Sources/JJLISO8601DateFormatter/include"
-            ],
             "OTHER_CFLAGS": [
                 "-D_FORTIFY_SOURCE=1",
                 "-fstack-protector",
@@ -948,6 +944,12 @@
                 "-Wuninitialized",
                 "-Wunused-function",
                 "-Wunused-variable",
+                "-iquote",
+                "external/com_github_michaeleisel_jjliso8601dateformatter",
+                "-iquote",
+                "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_jjliso8601dateformatter",
+                "-Iexternal/com_github_michaeleisel_jjliso8601dateformatter/Sources/JJLISO8601DateFormatter/include",
+                "-Ibazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_jjliso8601dateformatter/Sources/JJLISO8601DateFormatter/include",
                 "-DOS_MACOSX",
                 "-fno-autolink",
                 "-Wno-incompatible-pointer-types",
@@ -962,11 +964,7 @@
             ],
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-            "SWIFT_VERSION": "5.0",
-            "USER_HEADER_SEARCH_PATHS": [
-                "external/com_github_michaeleisel_jjliso8601dateformatter",
-                "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_jjliso8601dateformatter"
-            ]
+            "SWIFT_VERSION": "5.0"
         },
         "configuration": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
         "inputs": {
@@ -1093,10 +1091,6 @@
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
             "GCC_OPTIMIZATION_LEVEL": "0",
-            "HEADER_SEARCH_PATHS": [
-                "external/com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/include",
-                "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/include"
-            ],
             "OTHER_CPLUSPLUSFLAGS": [
                 "-stdlib=libc++",
                 "-std=gnu++11",
@@ -1119,6 +1113,12 @@
                 "-Wuninitialized",
                 "-Wunused-function",
                 "-Wunused-variable",
+                "-iquote",
+                "external/com_github_michaeleisel_zippyjsoncfamily",
+                "-iquote",
+                "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_zippyjsoncfamily",
+                "-Iexternal/com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/include",
+                "-Ibazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/include",
                 "-DOS_MACOSX",
                 "-fno-autolink",
                 "-std=c++17",
@@ -1133,11 +1133,7 @@
             ],
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-            "SWIFT_VERSION": "5.0",
-            "USER_HEADER_SEARCH_PATHS": [
-                "external/com_github_michaeleisel_zippyjsoncfamily",
-                "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_zippyjsoncfamily"
-            ]
+            "SWIFT_VERSION": "5.0"
         },
         "configuration": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
         "inputs": {
