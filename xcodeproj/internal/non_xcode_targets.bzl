@@ -21,7 +21,6 @@ load(
     "process_swiftmodules",
     "should_bundle_resources",
 )
-load(":target_search_paths.bzl", "target_search_paths")
 
 def process_non_xcode_target(
         *,
@@ -86,7 +85,6 @@ rules_xcodeproj requires {} to have `{}` set.
         automatic_target_info = automatic_target_info,
         compilation_providers = compilation_providers,
     )
-    search_paths = target_search_paths.make()
     swiftmodules = process_swiftmodules(swift_info = swift_info)
 
     dependencies, transitive_dependencies = process_dependencies(
@@ -116,7 +114,6 @@ rules_xcodeproj requires {} to have `{}` set.
             is_swift = is_swift,
             # TODO: Should we still collect this?
             clang_opts = [],
-            search_paths = search_paths,
             modulemaps = process_modulemaps(swift_info = swift_info),
             swiftmodules = swiftmodules,
             transitive_infos = [
@@ -132,7 +129,7 @@ rules_xcodeproj requires {} to have `{}` set.
             transitive_infos = transitive_infos,
         ),
         resource_bundle_informations = resource_bundle_informations,
-        search_paths = search_paths,
+        search_paths = None,
         transitive_dependencies = transitive_dependencies,
         xcode_target = None,
     )
