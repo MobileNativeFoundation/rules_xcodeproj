@@ -32,7 +32,6 @@ load(
     "process_swiftmodules",
     "should_bundle_resources",
 )
-load(":target_search_paths.bzl", "target_search_paths")
 load(":xcode_targets.bzl", "xcode_targets")
 
 def get_tree_artifact_enabled(*, ctx, bundle_info):
@@ -405,7 +404,7 @@ def process_top_level_target(
         label.workspace_root,
         label.package,
     )
-    opts_search_paths, clang_opts = process_opts(
+    search_paths, clang_opts = process_opts(
         ctx = ctx,
         build_mode = build_mode,
         has_c_sources = inputs.has_c_sources,
@@ -473,9 +472,6 @@ def process_top_level_target(
             codesignopts = codesignopts,
             build_settings = build_settings,
         )
-    search_paths = target_search_paths.make(
-        opts_search_paths = opts_search_paths,
-    )
     swiftmodules = process_swiftmodules(swift_info = swift_info)
     lldb_context = lldb_contexts.collect(
         id = id,

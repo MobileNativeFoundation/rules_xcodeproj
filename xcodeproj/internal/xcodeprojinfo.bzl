@@ -20,7 +20,6 @@ load(
     "target_type",
 )
 load(":processed_target.bzl", "processed_target")
-load(":target_search_paths.bzl", "target_search_paths")
 load(":targets.bzl", "targets")
 load(
     ":target_properties.bzl",
@@ -225,7 +224,6 @@ def _skip_target(
             if XcodeProjInfo in deps
         ],
     )
-    search_paths = target_search_paths.make()
 
     dependencies, transitive_dependencies = process_dependencies(
         automatic_target_info = None,
@@ -273,7 +271,6 @@ def _skip_target(
             id = None,
             is_swift = False,
             clang_opts = [],
-            search_paths = search_paths,
             transitive_infos = [
                 info
                 for _, info in transitive_infos
@@ -310,7 +307,7 @@ def _skip_target(
             ],
         ),
         rule_kind = None,
-        search_paths = search_paths,
+        search_paths = None,
         target_type = target_type.compile,
         envs = depset(
             [

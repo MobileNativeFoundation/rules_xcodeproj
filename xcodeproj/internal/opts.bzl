@@ -318,7 +318,7 @@ def _process_base_compiler_opts(
 
     return processed_opts
 
-def create_opts_search_paths(*, framework_includes):
+def create_search_paths(*, framework_includes):
     """Creates a value representing search paths of a target.
 
     Args:
@@ -333,15 +333,15 @@ def create_opts_search_paths(*, framework_includes):
         framework_includes = tuple(framework_includes),
     )
 
-def merge_opts_search_paths(search_paths):
+def merge_search_paths(search_paths):
     """Merges a `list` of search paths into a single set set of search paths.
 
     Args:
         search_paths: A `list` of values returned from
-            `create_opts_search_paths`.
+            `create_search_paths`.
 
     Returns:
-        A value returned from `create_opts_search_paths`, with the search paths
+        A value returned from `create_search_paths`, with the search paths
         provided to it being the merged and deduplicated values from
         `search_paths`.
     """
@@ -350,7 +350,7 @@ def merge_opts_search_paths(search_paths):
     for search_path in search_paths:
         framework_includes.extend(search_path.framework_includes)
 
-    return create_opts_search_paths(
+    return create_search_paths(
         framework_includes = uniq(framework_includes),
     )
 
@@ -367,8 +367,8 @@ def _process_conlyopts(opts, *, build_settings):
 
         *   A `list` of unhandled C compiler options.
         *   A `list` of C compiler optimization levels parsed.
-        *   A value returned by `create_opts_search_paths` with the parsed
-            search paths.
+        *   A value returned by `create_search_paths` with the parsed search
+            paths.
         *   A `bool` indicting if the target has debug info enabled.
     """
     optimizations = []
@@ -409,7 +409,7 @@ def _process_conlyopts(opts, *, build_settings):
 
     has_debug_info = bool(has_debug_info)
 
-    search_paths = create_opts_search_paths(
+    search_paths = create_search_paths(
         framework_includes = uniq(framework_includes),
     )
 
@@ -428,8 +428,8 @@ def _process_cxxopts(opts, *, build_settings):
 
         *   A `list` of unhandled C++ compiler options.
         *   A `list` of C++ compiler optimization levels parsed.
-        *   A value returned by `create_opts_search_paths` with the parsed
-            search paths.
+        *   A value returned by `create_search_paths` with the parsed search
+            paths.
         *   A `bool` indicting if the target has debug info enabled.
     """
     optimizations = []
@@ -470,7 +470,7 @@ def _process_cxxopts(opts, *, build_settings):
 
     has_debug_info = bool(has_debug_info)
 
-    search_paths = create_opts_search_paths(
+    search_paths = create_search_paths(
         framework_includes = uniq(framework_includes),
     )
 
@@ -494,8 +494,8 @@ def _process_copts(
 
         *   A `list` of unhandled C compiler options.
         *   A `list` of unhandled C++ compiler options.
-        *   A value returned by `create_opts_search_paths` with the parsed
-            search paths.
+        *   A value returned by `create_search_paths` with the parsed search
+            paths.
         *   A `bool` indicting if the target has debug info enabled for C.
         *   A `bool` indicting if the target has debug info enabled for C++.
     """
@@ -565,8 +565,8 @@ def _process_swiftcopts(
 
         *   A `list` of processed Swift compiler options.
         *   A `list` of clang compiler options.
-        *   A value returned by `create_opts_search_paths` with the parsed
-            search paths.
+        *   A value returned by `create_search_paths` with the parsed search
+            paths.
         *   A `bool` indicting if the target has debug info enabled.
     """
 
@@ -711,7 +711,7 @@ Using VFS overlays with `build_mode = "xcode"` is unsupported.
 
     has_debug_info = bool(has_debug_info)
 
-    search_paths = create_opts_search_paths(
+    search_paths = create_search_paths(
         framework_includes = uniq(framework_includes),
     )
 
@@ -743,8 +743,8 @@ def _process_compiler_opts(
     Returns:
         A `tuple` containing two elements:
 
-        *   A value returned by `create_opts_search_paths` with the parsed
-            search paths
+        *   A value returned by `create_search_paths` with the parsed search
+            paths.
         *   A `list` of Swift PCM (clang) compiler options.
     """
 
@@ -824,7 +824,7 @@ def _process_compiler_opts(
         " ".join(swiftcopts),
     )
 
-    search_paths = merge_opts_search_paths([
+    search_paths = merge_search_paths([
         conly_search_paths,
         cxx_search_paths,
         swift_search_paths,
@@ -857,8 +857,8 @@ def _process_target_compiler_opts(
     Returns:
         A `tuple` containing two elements:
 
-        *   A value returned by `create_opts_search_paths` with the parsed
-            search paths
+        *   A value returned by `create_search_paths` with the parsed search
+            paths.
         *   A `list` of Swift PCM (clang) compiler options.
     """
     (
@@ -945,8 +945,8 @@ def process_opts(
     Returns:
         A `tuple` containing two elements:
 
-        *   A value returned by `create_opts_search_paths` with the parsed
-            search paths
+        *   A value returned by `create_search_paths` with the parsed search
+            paths.
         *   A `list` of Swift PCM (clang) compiler options.
     """
     return _process_target_compiler_opts(

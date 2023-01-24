@@ -63,8 +63,7 @@ def _make_xcode_target(
         test_host: The `id` of the target that is the test host for this
             target, or `None` if this target does not have a test host.
         build_settings: A `dict` of Xcode build settings for the target.
-        search_paths: A value returned from `target_search_paths.make`, or
-            `None`.
+        search_paths: A value returned from `process_opts`, or `None`.
         modulemaps: The value returned from `process_modulemaps`.
         swiftmodules: The value returned from `process_swiftmodules`.
         inputs: The value returned from `input_files.collect`.
