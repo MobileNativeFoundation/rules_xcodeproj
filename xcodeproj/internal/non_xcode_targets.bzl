@@ -17,7 +17,6 @@ load(":target_id.bzl", "get_id")
 load(
     ":target_properties.bzl",
     "process_dependencies",
-    "process_modulemaps",
     "process_swiftmodules",
     "should_bundle_resources",
 )
