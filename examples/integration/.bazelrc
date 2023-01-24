@@ -13,12 +13,6 @@ build:rules_xcodeproj_integration --define=foo=bar
 # Required for sharing cache between Intel and Apple silicon
 build:rules_xcodeproj --@build_bazel_rules_swift//swift:universal_tools
 
-build:rules_xcodeproj --apple_generate_dsym
-build:rules_xcodeproj --output_groups=+dsyms
-
-build --apple_generate_dsym
-build --output_groups=+dsyms
-
 build --test_env=INTEGRATION_TEST_ENV_VAR=TRUE
 
 # This example doesn't support bzlmod yet

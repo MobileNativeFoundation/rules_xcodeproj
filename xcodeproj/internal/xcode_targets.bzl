@@ -224,15 +224,15 @@ def _to_xcode_target_outputs(outputs):
                 swift_generated_header = swift.generated_header
 
     return struct(
+        dsym_files =  (
+            direct_outputs.dsym_files if direct_outputs else None
+        ),
         linking_output_group_name = outputs.linking_output_group_name,
         product_file = (
             direct_outputs.product if direct_outputs else None
         ),
         product_path = (
             direct_outputs.product_path if direct_outputs else None
-        ),
-        dsym_files =  (
-            direct_outputs.dsym_files if direct_outputs else None
         ),
         products_output_group_name = outputs.products_output_group_name,
         swiftmodule = swiftmodule,
@@ -337,12 +337,12 @@ def _merge_xcode_target_inputs(*, src, dest):
 
 def _merge_xcode_target_outputs(*, src, dest):
     return struct(
+        dsym_files = dest.dsym_files,
         linking_output_group_name = dest.linking_output_group_name,
         swiftmodule = src.swiftmodule,
         swift_generated_header = src.swift_generated_header,
         product_file = dest.product_file,
         product_path = dest.product_path,
-        dsym_files = dest.dsym_files,
         products_output_group_name = dest.products_output_group_name,
         transitive_infoplists = dest.transitive_infoplists,
     )
@@ -375,9 +375,9 @@ def _set_bazel_outputs_product(
     if build_mode != "bazel":
         return
 
-    product_file = xcode_target.outputs.product_file
-    if product_file:
-        build_settings["BAZEL_OUTPUTS_PRODUCT"] = product_file.path
+    product_path = xcode_target.outputs.product_path
+    if product_path:
+        build_settings["BAZEL_OUTPUTS_PRODUCT"] = product_path
     
     dsym_files = xcode_target.outputs.dsym_files
     if dsym_files:
@@ -388,9 +388,9 @@ def _set_bazel_outputs_product(
             if not file_path.endswith('Info.plist'):
                 # ../Product.dSYM/Contents/Resources/DWARF/Product
                 dsym_path =  "/".join(file_path.split('/')[:-4])
-                dsym_paths.append(dsym_path)
+                dsym_paths.append("\"{}\"".format(dsym_path))
         if dsym_paths:
-            build_settings["BAZEL_OUTPUTS_DSYM"] = " ".join(dsym_paths)
+            build_settings["BAZEL_OUTPUTS_DSYM"] = dsym_paths
 
 def _set_preview_framework_paths(
         *,

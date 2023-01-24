@@ -626,7 +626,7 @@ $(PROJECT_DIR)/relative/Path.yaml \
         swiftcopts = ["-g"],
         cpp_fragment = _cpp_fragment(apple_generate_dsym = True),
         expected_build_settings = {
-            "DEBUG_INFORMATION_FORMAT": None,
+            "DEBUG_INFORMATION_FORMAT": "",
         },
     )
 

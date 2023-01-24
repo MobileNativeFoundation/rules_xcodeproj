@@ -115,11 +115,11 @@ def process_library_target(
     output_group_info = target[OutputGroupInfo] if OutputGroupInfo in target else None
     outputs = output_files.collect(
         ctx = ctx,
+        debug_outputs = debug_outputs,
         id = id,
         inputs = inputs,
-        swift_info = swift_info,
-        debug_outputs = debug_outputs,
         output_group_info = output_group_info,
+        swift_info = swift_info,
         transitive_infos = transitive_infos,
     )
 
