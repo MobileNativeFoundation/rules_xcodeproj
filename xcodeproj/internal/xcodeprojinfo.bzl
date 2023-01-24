@@ -395,6 +395,7 @@ def _create_xcodeprojinfo(
             transitive_infos = transitive_infos,
         )
     elif AppleBundleInfo in target and target[AppleBundleInfo].binary:
+        # Checking for `binary` being set is to work around a rules_ios issue
         processed_target = process_top_level_target(
             ctx = ctx,
             build_mode = build_mode,
