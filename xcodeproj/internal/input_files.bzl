@@ -221,6 +221,11 @@ def _collect_input_files(
                 cxx_srcs.append(file)
         elif attr in automatic_target_info.non_arc_srcs:
             non_arc_srcs.append(file)
+            extension = file.extension
+            if extension in _C_EXTENSIONS:
+                c_srcs.append(file)
+            elif extension in _CXX_EXTENSIONS:
+                cxx_srcs.append(file)
         elif attr in automatic_target_info.hdrs:
             hdrs.append(file)
         elif attr == automatic_target_info.pch:
