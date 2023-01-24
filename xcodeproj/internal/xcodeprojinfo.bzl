@@ -74,10 +74,6 @@ def _should_skip_target(*, ctx, target):
     Returns:
         `True` if `target` should be skipped for target generation.
     """
-    if AppleBundleInfo in target and not target[AppleBundleInfo].binary:
-        # Skip over rules_ios's placeholder provider
-        return True
-
     if AppleBinaryInfo in target and not hasattr(ctx.rule.attr, "deps"):
         return True
 
@@ -398,7 +394,7 @@ def _create_xcodeprojinfo(
             automatic_target_info = automatic_target_info,
             transitive_infos = transitive_infos,
         )
-    elif AppleBundleInfo in target:
+    elif AppleBundleInfo in target and target[AppleBundleInfo].binary:
         processed_target = process_top_level_target(
             ctx = ctx,
             build_mode = build_mode,
