@@ -411,7 +411,6 @@ def _set_swift_include_paths(
 def _generated_framework_search_paths(
         *,
         build_mode,
-        search_paths_intermediate,
         xcode_generated_paths,
         xcode_target):
     if build_mode != "xcode":
@@ -432,29 +431,11 @@ def _generated_framework_search_paths(
                 paths.dirname(xcode_generated_path)
             )
         else:
-            # Since we use `framework_search_paths` in `link.params`, we need to
-            # fully qualify the paths
             framework_search_paths.setdefault(search_path, {})["b"] = (
-                build_setting_path(file = file, path = search_path)
+                search_path
             )
 
-    ordered_framework_search_paths = {}
-    for search_path in search_paths_intermediate.framework_includes:
-        search_paths = framework_search_paths.pop(search_path, None)
-        if search_paths:
-            ordered_framework_search_paths[search_path] = search_paths
-            continue
-
-        # Imported frameworks
-        ordered_framework_search_paths.setdefault(search_path, {})["b"] = (
-            build_setting_path(path = search_path)
-        )
-
-    # Add remaining items from `framework_search_paths`, for linker only paths
-    for search_path, search_paths in framework_search_paths.items():
-        ordered_framework_search_paths[search_path] = search_paths
-
-    return ordered_framework_search_paths
+    return framework_search_paths
 
 def _xcode_target_to_dto(
         xcode_target,
@@ -515,14 +496,8 @@ def _xcode_target_to_dto(
             ),
         )
 
-    search_paths_intermediate = _search_paths_to_intermediate(
-        search_paths = xcode_target._search_paths,
-        compile_target = xcode_target._compile_target,
-    )
-
     generated_framework_search_paths = _generated_framework_search_paths(
         build_mode = build_mode,
-        search_paths_intermediate = search_paths_intermediate,
         xcode_generated_paths = xcode_generated_paths,
         xcode_target = xcode_target,
     )
@@ -841,22 +816,6 @@ def _product_to_dto(product):
         "path": file_path_to_dto(product.file_path),
         "type": product.type,
     }
-
-def _search_paths_to_intermediate(search_paths, *, compile_target):
-    if compile_target:
-        compile_search_paths = compile_target._search_paths
-    else:
-        compile_search_paths = search_paths
-
-    if compile_search_paths:
-        opts_search_paths = compile_search_paths._opts_search_paths
-        framework_includes = opts_search_paths.framework_includes
-    else:
-        framework_includes = []
-
-    return struct(
-        framework_includes = framework_includes,
-    )
 
 def _swift_to_dto(outputs):
     dto = {

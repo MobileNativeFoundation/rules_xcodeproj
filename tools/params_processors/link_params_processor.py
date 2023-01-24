@@ -129,6 +129,12 @@ def _process_linkopts(
         if opt.endswith(".o"):
             return
 
+        # Use Xcode set `DEVELOPER_DIR`
+        opt = opt.replace("__BAZEL_XCODE_DEVELOPER_DIR__", "$(DEVELOPER_DIR)")
+
+        # Use Xcode set `SDKROOT`
+        opt = opt.replace("__BAZEL_XCODE_SDKROOT__", "$(SDKROOT)")
+
         if opt.startswith("-F"):
             path = opt[2:]
             search_paths = generated_framework_search_paths.get(path)
@@ -140,14 +146,22 @@ def _process_linkopts(
                 bazel_path = search_paths.get("b")
                 if bazel_path:
                     processed_linkopts.append("-F" + bazel_path)
-                    swiftui_previews_linkopts.append("-Wl,-rpath," + bazel_path)
-                return
-
-        # Use Xcode set `DEVELOPER_DIR`
-        opt = opt.replace("__BAZEL_XCODE_DEVELOPER_DIR__", "$(DEVELOPER_DIR)")
-
-        # Use Xcode set `SDKROOT`
-        opt = opt.replace("__BAZEL_XCODE_SDKROOT__", "$(SDKROOT)")
+                    if bazel_path.startswith("/"):
+                        swiftui_previews_linkopts.append(
+                            "-Wl,-rpath," + bazel_path,
+                        )
+                    else:
+                        swiftui_previews_linkopts.append(
+                            "-Wl,-rpath,$(PROJECT_DIR)/" + bazel_path,
+                        )
+            else:
+                processed_linkopts.append(opt)
+                prefix = path[0]
+                if prefix != "/" and prefix != "$":
+                    swiftui_previews_linkopts.append(
+                        "-Wl,-rpath,$(PROJECT_DIR)/" + path,
+                    )
+            return
 
         processed_linkopts.append(",".join([
             _process_linkopt_component(component)
