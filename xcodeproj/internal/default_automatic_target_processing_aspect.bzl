@@ -105,7 +105,8 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
         bundle_id = "bundle_id"
         infoplists = ["infoplists"]
         should_generate_target = False
-    elif AppleBundleInfo in target:
+    elif AppleBundleInfo in target and target[AppleBundleInfo].binary:
+        # Checking for `binary` being set is to work around a rules_ios issue
         xcode_targets = {
             "deps": [target_type.compile, None],
         }
@@ -138,6 +139,11 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
             provisioning_profile = "provisioning_profile"
         if "watch_application" in attrs:
             xcode_targets["watch_application"] = [target_type.compile]
+    elif AppleBundleInfo in target:
+        should_generate_target = False
+        xcode_targets = {
+            "deps": [this_target_type, None],
+        }
     elif AppleBinaryInfo in target:
         if "binary" in attrs:
             deps_attr = "binary"
