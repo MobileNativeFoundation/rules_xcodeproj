@@ -1,6 +1,6 @@
 @import XCTest;
 
-#import "iOSApp/Test/TestingUtils/SwiftAPI/TestingUtils-Swift.h"
+#import <SwiftAPI/TestingUtils-Swift.h>
 #import "iOSApp/Source/Utils/Utils.h"
 
 @interface ObjCUnitTests : XCTestCase
