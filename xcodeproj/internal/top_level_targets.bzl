@@ -478,7 +478,6 @@ def process_top_level_target(
         is_swift = is_swift,
         clang_opts = clang_opts,
         search_paths = search_paths,
-        modulemaps = modulemaps,
         swiftmodules = swiftmodules,
         transitive_infos = deps_infos,
     )

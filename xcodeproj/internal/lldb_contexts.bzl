@@ -14,7 +14,6 @@ def _collect_lldb_context(
         is_swift,
         clang_opts,
         search_paths = None,
-        modulemaps = None,
         swiftmodules = None,
         transitive_infos):
     """Collects lldb context information for a target.
@@ -24,7 +23,6 @@ def _collect_lldb_context(
         is_swift: Whether the target compiles Swift code.
         clang_opts: A `list` of Swift PCM (clang) compiler options.
         search_paths: A value returned from `process_opts`.
-        modulemaps: The value returned from `process_modulemaps`.
         swiftmodules: The value returned from `process_swiftmodules`.
         transitive_infos: A `list` of `XcodeProjInfo`s for the transitive
             dependencies of the target.
@@ -35,14 +33,7 @@ def _collect_lldb_context(
     framework_paths = []
     clang = []
     if id and is_swift and search_paths:
-        clang = [(
-            id,
-            struct(
-                search_paths = search_paths,
-                modulemaps = modulemaps,
-                opts = tuple(clang_opts),
-            ),
-        )]
+        clang = [(id, tuple(clang_opts))]
 
         if search_paths:
             framework_paths = search_paths.framework_includes
@@ -112,9 +103,9 @@ def _lldb_context_to_dto(lldb_context, *, xcode_generated_paths):
     )
 
     clang_dtos = []
-    for _, clang in lldb_context._clang.to_list():
+    for _, opts in lldb_context._clang.to_list():
         clang_dto = {}
-        set_if_true(clang_dto, "o", clang.opts)
+        set_if_true(clang_dto, "o", opts)
         clang_dtos.append(clang_dto)
 
     set_if_true(dto, "c", clang_dtos)

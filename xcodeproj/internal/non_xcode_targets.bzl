@@ -114,7 +114,6 @@ rules_xcodeproj requires {} to have `{}` set.
             is_swift = is_swift,
             # TODO: Should we still collect this?
             clang_opts = [],
-            modulemaps = process_modulemaps(swift_info = swift_info),
             swiftmodules = swiftmodules,
             transitive_infos = [
                 info
