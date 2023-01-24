@@ -13,7 +13,7 @@ def _collect_lldb_context(
         id,
         is_swift,
         clang_opts,
-        search_paths,
+        search_paths = None,
         modulemaps = None,
         swiftmodules = None,
         transitive_infos):
@@ -23,7 +23,7 @@ def _collect_lldb_context(
         id: The unique identifier of the target.
         is_swift: Whether the target compiles Swift code.
         clang_opts: A `list` of Swift PCM (clang) compiler options.
-        search_paths: A value returned from `target_search_paths.make`.
+        search_paths: A value returned from `process_opts`.
         modulemaps: The value returned from `process_modulemaps`.
         swiftmodules: The value returned from `process_swiftmodules`.
         transitive_infos: A `list` of `XcodeProjInfo`s for the transitive
@@ -44,9 +44,8 @@ def _collect_lldb_context(
             ),
         )]
 
-        opts_search_paths = search_paths._opts_search_paths
-        if opts_search_paths:
-            framework_paths = opts_search_paths.framework_includes
+        if search_paths:
+            framework_paths = search_paths.framework_includes
         else:
             framework_paths = tuple()
 

@@ -46,7 +46,7 @@ def processed_target(
             the `XcodeProjInfo.potential_target_merges` `depset`.
         resource_bundle_informations: An optional `list` of `struct`s that will
             be in the `XcodeProjInfo.resource_bundle_informations` `depset`.
-        search_paths: A value as returned from `target_search_paths.make`.
+        search_paths: A value as returned from `process_opts`.
         transitive_dependencies: A `depset` of target ids of transitive
             dependencies of this target.
         xcode_target: An optional value returned from `xcode_targets.make` that

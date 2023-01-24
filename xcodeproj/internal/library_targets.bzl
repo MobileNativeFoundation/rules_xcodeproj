@@ -14,7 +14,6 @@ load(":output_files.bzl", "output_files")
 load(":platform.bzl", "platform_info")
 load(":processed_target.bzl", "processed_target")
 load(":product.bzl", "process_product")
-load(":target_search_paths.bzl", "target_search_paths")
 load(":target_id.bzl", "get_id")
 load(
     ":target_properties.bzl",
@@ -129,7 +128,7 @@ def process_library_target(
         label.workspace_root,
         label.package,
     )
-    opts_search_paths, clang_opts = process_opts(
+    search_paths, clang_opts = process_opts(
         ctx = ctx,
         build_mode = build_mode,
         has_c_sources = inputs.has_c_sources,
@@ -139,9 +138,6 @@ def process_library_target(
         build_settings = build_settings,
     )
 
-    search_paths = target_search_paths.make(
-        opts_search_paths = opts_search_paths,
-    )
     swiftmodules = process_swiftmodules(swift_info = swift_info)
     lldb_context = lldb_contexts.collect(
         id = id,
