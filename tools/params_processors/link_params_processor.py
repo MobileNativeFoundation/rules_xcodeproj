@@ -129,6 +129,12 @@ def _process_linkopts(
         if opt.endswith(".o"):
             return
 
+        # We don't want the BwB swizzle fix for BwX mode
+        if opt.endswith("/libswizzle_absolute_xcttestsourcelocation.a"):
+            if last_opt == "-force_load":
+                processed_linkopts.pop()
+            return
+
         # Use Xcode set `DEVELOPER_DIR`
         opt = opt.replace("__BAZEL_XCODE_DEVELOPER_DIR__", "$(DEVELOPER_DIR)")
 
