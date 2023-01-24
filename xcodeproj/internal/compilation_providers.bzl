@@ -118,7 +118,7 @@ def _to_objc(objc, cc_info):
         ),
     )
 
-def _get_xcode_library_targets(*, compilation_providers):
+def _get_mergable_xcode_library_targets(*, compilation_providers):
     """Returns the Xcode library target dependencies for this target.
 
     Args:
@@ -126,10 +126,16 @@ def _get_xcode_library_targets(*, compilation_providers):
             `compilation_providers.merge`.
 
     Returns:
-        A list of targets `struct`s that are Xcode library targets.
+        A list of `struct`s that contain the following elements:
+
+        * `id`: The target id.
+        * `product_path`: The path to the product.
     """
     return [
-        target
+        struct(
+            id = target.id,
+            product_path = target.product.file_path,
+        )
         for target, providers in (
             compilation_providers._transitive_compilation_providers
         )
@@ -138,6 +144,6 @@ def _get_xcode_library_targets(*, compilation_providers):
 
 compilation_providers = struct(
     collect = _collect_compilation_providers,
-    get_xcode_library_targets = _get_xcode_library_targets,
+    get_mergable_xcode_library_targets = _get_mergable_xcode_library_targets,
     merge = _merge_compilation_providers,
 )
