@@ -300,19 +300,16 @@ $(CONFIGURATION_BUILD_DIR)
                     "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml"
                 )
             } else {
-                if buildSettings.keys.contains("OTHER_CFLAGS") {
-                    try buildSettings.prepend(
-                        onKey: "OTHER_CFLAGS",
-                        ["-ivfsoverlay", "$(OBJROOT)/bazel-out-overlay.yaml"]
-                    )
-                }
-
-                if buildSettings.keys.contains("OTHER_CPLUSPLUSFLAGS") {
-                    try buildSettings.prepend(
-                        onKey: "OTHER_CPLUSPLUSFLAGS",
-                        ["-ivfsoverlay", "$(OBJROOT)/bazel-out-overlay.yaml"]
-                    )
-                }
+                try buildSettings.prepend(
+                    onKey: "OTHER_CFLAGS",
+                    onlyIfSet: true,
+                    ["-ivfsoverlay", "$(OBJROOT)/bazel-out-overlay.yaml"]
+                )
+                try buildSettings.prepend(
+                    onKey: "OTHER_CPLUSPLUSFLAGS",
+                    onlyIfSet: true,
+                    ["-ivfsoverlay", "$(OBJROOT)/bazel-out-overlay.yaml"]
+                )
             }
 
             switch buildMode {
@@ -329,25 +326,22 @@ $(CONFIGURATION_BUILD_DIR)
 
                 if !target.isSwift && target.inputs.containsSourceFiles
                 {
-                    if buildSettings.keys.contains("OTHER_CFLAGS") {
-                        try buildSettings.prepend(
-                            onKey: "OTHER_CFLAGS",
-                            [
-                                "-ivfsoverlay",
-                                "$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
-                            ]
-                        )
-                    }
-
-                    if buildSettings.keys.contains("OTHER_CPLUSPLUSFLAGS") {
-                        try buildSettings.prepend(
-                            onKey: "OTHER_CPLUSPLUSFLAGS",
-                            [
-                                "-ivfsoverlay",
-                                "$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
-                            ]
-                        )
-                    }
+                    try buildSettings.prepend(
+                        onKey: "OTHER_CFLAGS",
+                        onlyIfSet: true,
+                        [
+                            "-ivfsoverlay",
+                            "$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
+                        ]
+                    )
+                    try buildSettings.prepend(
+                        onKey: "OTHER_CPLUSPLUSFLAGS",
+                        onlyIfSet: true,
+                        [
+                            "-ivfsoverlay",
+                            "$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
+                        ]
+                    )
                 }
             case .bazel:
                 if target.hasModulemaps {
@@ -360,19 +354,16 @@ $(CONFIGURATION_BUILD_DIR)
                 }
             }
 
-            if buildSettings.keys.contains("OTHER_CFLAGS") {
-                try buildSettings.prepend(
-                    onKey: "OTHER_CFLAGS",
-                    ["-working-directory=$(PROJECT_DIR)"]
-                )
-            }
-
-            if buildSettings.keys.contains("OTHER_CPLUSPLUSFLAGS") {
-                try buildSettings.prepend(
-                    onKey: "OTHER_CPLUSPLUSFLAGS",
-                    ["-working-directory=$(PROJECT_DIR)"]
-                )
-            }
+            try buildSettings.prepend(
+                onKey: "OTHER_CFLAGS",
+                onlyIfSet: true,
+                ["-working-directory=$(PROJECT_DIR)"]
+            )
+            try buildSettings.prepend(
+                onKey: "OTHER_CPLUSPLUSFLAGS",
+                onlyIfSet: true,
+                ["-working-directory=$(PROJECT_DIR)"]
+            )
         }
 
         return buildSettings
@@ -490,8 +481,23 @@ Build setting for \(key) is not a string: \(buildSetting)
         }
     }
 
-    mutating func prepend(onKey key: Key, _ content: [String]) throws {
-        let buildSetting = self[key, default: .array([])]
+    mutating func prepend(
+        onKey key: Key,
+        onlyIfSet: Bool = false,
+        _ content: [String]
+    ) throws {
+        let maybeBuildSetting = self[key]
+
+        let buildSetting: Value
+        if let maybeBuildSetting = maybeBuildSetting {
+            buildSetting = maybeBuildSetting
+        } else {
+            guard !onlyIfSet else {
+                return
+            }
+            buildSetting = .array([])
+        }
+
         switch buildSetting {
         case let .array(existing):
             let new = content + existing
