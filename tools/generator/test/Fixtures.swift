@@ -1083,6 +1083,8 @@ _BUNDLE_EXTENSIONS = [
     ".app",
 ]
 
+_TRIPLE_MATCH = re.compile(r"([^-]+-[^-]+)(-\D+)[^-]*(-.*)?")
+
 _SETTINGS = {
 
 }
@@ -1125,9 +1127,9 @@ class StopHook:
             return
 
         module_name = module.file.__get_fullpath__()
-        target_triple = module.GetTriple()
+        versionless_triple = _TRIPLE_MATCH.sub(r"\1\2\3", module.GetTriple())
         executable_path = _get_relative_executable_path(module_name)
-        key = f"{target_triple} {executable_path}"
+        key = f"{versionless_triple} {executable_path}"
 
         settings = _SETTINGS.get(key)
 

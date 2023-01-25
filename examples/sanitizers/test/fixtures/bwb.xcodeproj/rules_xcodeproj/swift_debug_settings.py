@@ -13,8 +13,10 @@ _BUNDLE_EXTENSIONS = [
     ".app",
 ]
 
+_TRIPLE_MATCH = re.compile(r"([^-]+-[^-]+)(-\D+)[^-]*(-.*)?")
+
 _SETTINGS = {
-  "x86_64-apple-ios15.0.0-simulator AddressSanitizerApp.app/AddressSanitizerApp" : {
+  "x86_64-apple-ios-simulator AddressSanitizerApp.app/AddressSanitizerApp" : {
     "clang" : "-iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all",
     "frameworks" : [
 
@@ -23,7 +25,7 @@ _SETTINGS = {
 
     ]
   },
-  "x86_64-apple-ios15.0.0-simulator ThreadSanitizerApp.app/ThreadSanitizerApp" : {
+  "x86_64-apple-ios-simulator ThreadSanitizerApp.app/ThreadSanitizerApp" : {
     "clang" : "-iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all",
     "frameworks" : [
 
@@ -72,9 +74,9 @@ class StopHook:
             return
 
         module_name = module.file.__get_fullpath__()
-        target_triple = module.GetTriple()
+        versionless_triple = _TRIPLE_MATCH.sub(r"\1\2\3", module.GetTriple())
         executable_path = _get_relative_executable_path(module_name)
-        key = f"{target_triple} {executable_path}"
+        key = f"{versionless_triple} {executable_path}"
 
         settings = _SETTINGS.get(key)
 
