@@ -14,6 +14,7 @@ objc_library(
         "lib.m",
         "private.h",
     ],
+    sdk_includes = ["uuid"],
     tags = ["manual"],
     deps = [
         ":lib_defines",
