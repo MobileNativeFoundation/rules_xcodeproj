@@ -15,7 +15,7 @@ final class CreateProjectTests: XCTestCase {
         let directories = Directories(
             workspace: "/Users/TimApple/app",
             projectRoot: projectRootDirectory,
-            bazelOut: "/tmp/bazel-output-base/rules_xcodeproj/build_output_base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out",
+            executionRoot: "/tmp/bazel-output-base/rules_xcodeproj/build_output_base/execroot/com_github_buildbuddy_io_rules_xcodeproj",
             internalDirectoryName: "r_xcp",
             workspaceOutput: "X.xcodeproj"
         )
@@ -105,7 +105,7 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
             compatibilityVersion: "Xcode 14.0",
             mainGroup: expectedMainGroup,
             developmentRegion: "en",
-            projectDirPath: directories.bazelOut.parent().string,
+            projectDirPath: directories.executionRoot.string,
             attributes: attributes
         )
         expectedPBXProj.add(object: expectedPBXProject)
@@ -137,7 +137,7 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
         let directories = Directories(
             workspace: "/Users/TimApple/app",
             projectRoot: projectRootDirectory,
-            bazelOut: "/tmp/bazel-output-base/rules_xcodeproj/build_output_base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out",
+            executionRoot: "/tmp/bazel-output-base/rules_xcodeproj/build_output_base/execroot/com_github_buildbuddy_io_rules_xcodeproj",
             internalDirectoryName: "r_xcp",
             workspaceOutput: "X.xcodeproj"
         )
@@ -235,7 +235,7 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
             compatibilityVersion: "Xcode 14.0",
             mainGroup: expectedMainGroup,
             developmentRegion: "en",
-            projectDirPath: directories.bazelOut.parent().string,
+            projectDirPath: directories.executionRoot.string,
             attributes: attributes
         )
         expectedPBXProj.add(object: expectedPBXProject)

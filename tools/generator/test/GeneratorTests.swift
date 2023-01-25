@@ -49,7 +49,7 @@ final class GeneratorTests: XCTestCase {
         let schemeAutogenerationMode: SchemeAutogenerationMode = .auto
         let workspaceDirectory: Path = "/Users/TimApple/project"
         let projectRootDirectory: Path = "/Users/TimApple/project/subdir"
-        let bazelOutDirectory: Path = "/some/bazel/bazel-out"
+        let executionRootDirectory: Path = "/some/bazel"
         let internalDirectoryName = "rules_xcodeproj"
         let workspaceOutputPath: Path = "P.xcodeproj"
         let outputPath: Path = "P.xcodeproj"
@@ -57,7 +57,7 @@ final class GeneratorTests: XCTestCase {
         let directories = Directories(
             workspace: workspaceDirectory,
             projectRoot: projectRootDirectory,
-            bazelOut: bazelOutDirectory,
+            executionRoot: executionRootDirectory,
             internalDirectoryName: internalDirectoryName,
             workspaceOutput: workspaceOutputPath
         )
