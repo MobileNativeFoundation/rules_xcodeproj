@@ -87,7 +87,6 @@ $(PROJECT_FILE_PATH)/\(directories.internalDirectoryName)
             // We don't want Xcode to set any search paths, since we set them in
             // `link.params`
             "LD_RUNPATH_SEARCH_PATHS": [],
-            "REAL_BAZEL_OUT": (projectDir + "bazel-out").string,
             "RULES_XCODEPROJ_BUILD_MODE": buildMode.rawValue,
             "SCHEME_TARGET_IDS_FILE": """
 $(OBJROOT)/scheme_target_ids
