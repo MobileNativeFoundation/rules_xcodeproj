@@ -91,6 +91,8 @@
 		09466FF029E11E89738CB1A4 /* lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = lib.c; sourceTree = "<group>"; };
 		1275B9959F6B83551E10A8A7 /* lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib.h; sourceTree = "<group>"; };
 		1900009A79549C461F0C7AE2 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
+		2225C6CEB4DCA8C7A5BF3CE1 /* lib2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib2.h; sourceTree = "<group>"; };
+		235FC75E1F9AECE9BA1B1FB5 /* lib2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib2.h; sourceTree = "<group>"; };
 		31DF9C31A85F3D35C78C2272 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		412E979B4EDBD9EAE95D73AB /* private.inc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = private.inc; sourceTree = "<group>"; };
 		41DF8BF17074FC4386EF0D07 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
@@ -105,7 +107,6 @@
 		D14C8349EFC6309D19C1FFFD /* lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = lib.c; sourceTree = "<group>"; };
 		D20093170A54E92A741D748D /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		E475F19E9E0AF14E1F46E023 /* liblib_impl.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_impl.a; path = "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external/liblib_impl.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E4EBB38504BE53DB526F49B9 /* lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -147,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				EE297CCC0A7F8A721EA38521 /* darwin_x86_64-dbg-STABLE-0 */,
+				E801DFE43E968584A413D3DE /* darwin_x86_64-dbg-STABLE-1 */,
 			);
 			name = "Bazel Generated Files";
 			path = "bazel-out";
@@ -155,7 +157,7 @@
 		3BCB286303B532709B354800 /* includes */ = {
 			isa = PBXGroup;
 			children = (
-				E4EBB38504BE53DB526F49B9 /* lib.h */,
+				235FC75E1F9AECE9BA1B1FB5 /* lib2.h */,
 			);
 			path = includes;
 			sourceTree = "<group>";
@@ -222,12 +224,28 @@
 			path = ../../../../..;
 			sourceTree = "<group>";
 		};
+		A5D7C1AB360888677DF60F7F /* _virtual_includes */ = {
+			isa = PBXGroup;
+			children = (
+				BAF4AEB9C603A03CE5E860B6 /* lib_impl */,
+			);
+			path = _virtual_includes;
+			sourceTree = "<group>";
+		};
 		ABF9C3886C2C4CDB0B07B727 /* private */ = {
 			isa = PBXGroup;
 			children = (
 				412E979B4EDBD9EAE95D73AB /* private.inc */,
 			);
 			path = private;
+			sourceTree = "<group>";
+		};
+		BAF4AEB9C603A03CE5E860B6 /* lib_impl */ = {
+			isa = PBXGroup;
+			children = (
+				EAE1D846C5AB3C9D01A189D5 /* lib2_prefix */,
+			);
+			path = lib_impl;
 			sourceTree = "<group>";
 		};
 		C1030DAB4E164A910DF09385 /* bin */ = {
@@ -249,6 +267,14 @@
 			path = external;
 			sourceTree = SOURCE_ROOT;
 		};
+		DA71B8AC4306AD7E3F4B9A12 /* lib2 */ = {
+			isa = PBXGroup;
+			children = (
+				A5D7C1AB360888677DF60F7F /* _virtual_includes */,
+			);
+			path = lib2;
+			sourceTree = "<group>";
+		};
 		E35FE3EB7C97DE1172A312B1 /* Bazel External Repositories */ = {
 			isa = PBXGroup;
 			children = (
@@ -263,6 +289,30 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E801DFE43E968584A413D3DE /* darwin_x86_64-dbg-STABLE-1 */ = {
+			isa = PBXGroup;
+			children = (
+				E81910963D9E1C03A03788EB /* bin */,
+			);
+			path = "darwin_x86_64-dbg-STABLE-1";
+			sourceTree = "<group>";
+		};
+		E81910963D9E1C03A03788EB /* bin */ = {
+			isa = PBXGroup;
+			children = (
+				DA71B8AC4306AD7E3F4B9A12 /* lib2 */,
+			);
+			path = bin;
+			sourceTree = "<group>";
+		};
+		EAE1D846C5AB3C9D01A189D5 /* lib2_prefix */ = {
+			isa = PBXGroup;
+			children = (
+				2225C6CEB4DCA8C7A5BF3CE1 /* lib2.h */,
+			);
+			path = lib2_prefix;
 			sourceTree = "<group>";
 		};
 		EE297CCC0A7F8A721EA38521 /* darwin_x86_64-dbg-STABLE-0 */ = {
@@ -869,6 +919,7 @@
 					.,
 					"-iquote",
 					"bazel-out/darwin_x86_64-dbg-STABLE-1/bin",
+					"-Ibazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib2/_virtual_includes/lib_impl",
 					"-isystem",
 					lib2/includes,
 					"-isystem",
@@ -932,6 +983,7 @@
 					external/bazel_tools,
 					"-iquote",
 					"bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/bazel_tools",
+					"-Ibazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib2/_virtual_includes/lib_impl",
 					"-isystem",
 					lib2/includes,
 					"-isystem",

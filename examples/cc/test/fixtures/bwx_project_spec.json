@@ -19,14 +19,18 @@
             "_": "examples_cc_external/lib.h",
             "t": "e"
         },
+        {
+            "_": "darwin_x86_64-dbg-STABLE-1/bin/lib2/_virtual_includes/lib_impl/lib2_prefix/lib2.h",
+            "t": "g"
+        },
         "lib/BUILD",
         "lib/lib.h",
         "lib2/BUILD",
-        "lib2/includes/lib.h",
+        "lib2/includes/lib2.h",
         "test/fixtures/BUILD",
         "tool/BUILD"
     ],
-    "force_bazel_dependencies": false,
+    "force_bazel_dependencies": true,
     "generator_label": "//test/fixtures:xcodeproj_bwx.generator",
     "index_import": "fixture-index-import-path",
     "minimum_xcode_version": "13.0",
