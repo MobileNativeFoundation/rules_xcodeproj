@@ -806,6 +806,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_CFLAGS = (
+					"-working-directory=$(PROJECT_DIR)",
 					"-ivfsoverlay",
 					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
 					"-ivfsoverlay",
@@ -905,6 +906,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_CFLAGS = (
+					"-working-directory=$(PROJECT_DIR)",
 					"-ivfsoverlay",
 					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
 					"-ivfsoverlay",
@@ -991,7 +993,6 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 				);
 				ONLY_ACTIVE_ARCH = YES;
-				REAL_BAZEL_OUT = "../../bazel-output-base/rules_xcodeproj/build_output_base/execroot/__main__/bazel-out";
 				RESOLVED_REPOSITORIES = "\"/external/examples_cc_external\" \"$(SRCROOT)/external\" \"\" \"$(SRCROOT)\"";
 				RULES_XCODEPROJ_BUILD_MODE = xcode;
 				SCHEME_TARGET_IDS_FILE = "$(OBJROOT)/scheme_target_ids";
@@ -1073,6 +1074,7 @@
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/tool.7.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_CFLAGS = (
+					"-working-directory=$(PROJECT_DIR)",
 					"-ivfsoverlay",
 					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
 					"-ivfsoverlay",
@@ -1136,6 +1138,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_CFLAGS = (
+					"-working-directory=$(PROJECT_DIR)",
 					"-ivfsoverlay",
 					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
 					"-ivfsoverlay",

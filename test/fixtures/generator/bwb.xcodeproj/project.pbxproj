@@ -2875,6 +2875,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_CFLAGS = (
+					"-working-directory=$(PROJECT_DIR)",
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 					"-D_FORTIFY_SOURCE=1",
@@ -2940,6 +2941,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_CPLUSPLUSFLAGS = (
+					"-working-directory=$(PROJECT_DIR)",
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 					"-stdlib=libc++",
@@ -3061,7 +3063,6 @@
 				);
 				LIBTOOL = "$(BAZEL_INTEGRATION_DIR)/libtool.sh";
 				ONLY_ACTIVE_ARCH = YES;
-				REAL_BAZEL_OUT = "../../../bazel-output-base/rules_xcodeproj/build_output_base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out";
 				RESOLVED_REPOSITORIES = "\"\" \"$(SRCROOT)\"";
 				RULES_XCODEPROJ_BUILD_MODE = bazel;
 				SCHEME_TARGET_IDS_FILE = "$(OBJROOT)/scheme_target_ids";

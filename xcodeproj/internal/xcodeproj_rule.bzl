@@ -1036,7 +1036,7 @@ def _write_create_xcode_overlay_script(*, ctx, targets):
 
         path = generated_header.path
         build_dir = "$BUILD_DIR/{}".format(path)
-        bazel_out = "$REAL_BAZEL_OUT{}".format(path[9:])
+        bazel_out = "$BAZEL_OUT{}".format(path[9:])
 
         roots.append("""\
 {{"external-contents": "{build_dir}","name": "${{bazel_out_prefix}}{bazel_out}","type": "file"}}\

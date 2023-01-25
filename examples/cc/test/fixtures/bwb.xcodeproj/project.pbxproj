@@ -770,6 +770,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_CFLAGS = (
+					"-working-directory=$(PROJECT_DIR)",
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 					"-D_FORTIFY_SOURCE=1",
@@ -857,6 +858,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_CFLAGS = (
+					"-working-directory=$(PROJECT_DIR)",
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 					"-D_FORTIFY_SOURCE=1",
@@ -912,6 +914,7 @@
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/tool.7.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_CFLAGS = (
+					"-working-directory=$(PROJECT_DIR)",
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 					"-D_FORTIFY_SOURCE=1",
@@ -1025,7 +1028,6 @@
 				);
 				LIBTOOL = "$(BAZEL_INTEGRATION_DIR)/libtool.sh";
 				ONLY_ACTIVE_ARCH = YES;
-				REAL_BAZEL_OUT = "../../bazel-output-base/rules_xcodeproj/build_output_base/execroot/__main__/bazel-out";
 				RESOLVED_REPOSITORIES = "\"/external/examples_cc_external\" \"$(SRCROOT)/external\" \"\" \"$(SRCROOT)\"";
 				RULES_XCODEPROJ_BUILD_MODE = bazel;
 				SCHEME_TARGET_IDS_FILE = "$(OBJROOT)/scheme_target_ids";
@@ -1081,6 +1083,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_CFLAGS = (
+					"-working-directory=$(PROJECT_DIR)",
 					"-ivfsoverlay",
 					"$(OBJROOT)/bazel-out-overlay.yaml",
 					"-D_FORTIFY_SOURCE=1",
