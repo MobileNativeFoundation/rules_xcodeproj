@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 #include "lib/lib.h"
-#include "lib2/includes/lib.h"
+#include "lib2_prefix/lib2.h"
 #include "lib.h"
 
 int main(int argc, char *argv[]) {

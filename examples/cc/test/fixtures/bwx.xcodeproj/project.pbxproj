@@ -138,12 +138,13 @@
 
 /* Begin PBXFileReference section */
 		10D21E69D7E12FFDA82B1273 /* lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib.h; sourceTree = "<group>"; };
+		18DF90BBBA2BA8D2AF06D94F /* lib2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib2.h; sourceTree = "<group>"; };
 		1F8D330113018E003269E782 /* liblib_impl.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_impl.a; path = "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external/liblib_impl.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		50EE84464C0D09BEA535AD55 /* tool.7.link.params */ = {isa = PBXFileReference; path = tool.7.link.params; sourceTree = "<group>"; };
 		655197F36E3561F5EBB2B456 /* lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib.h; sourceTree = "<group>"; };
+		68571FA99BB8CAC9AA027C16 /* lib2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib2.h; sourceTree = "<group>"; };
 		82E1AC498ACAE9E123276B7A /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		9EA769DDCBCA01C4A4A674AF /* lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = lib.c; sourceTree = "<group>"; };
-		A152F23141923241C1F9C6D6 /* lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib.h; sourceTree = "<group>"; };
 		AE0CF9E68A28C21F8DDA2623 /* lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = lib.c; sourceTree = "<group>"; };
 		B13DA8B967470B62463A7C36 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		B2DBE3AAD7A0F87B677A8325 /* lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = lib.c; sourceTree = "<group>"; };
@@ -176,7 +177,7 @@
 		242BDC8EF177A1E564584025 /* includes */ = {
 			isa = PBXGroup;
 			children = (
-				A152F23141923241C1F9C6D6 /* lib.h */,
+				18DF90BBBA2BA8D2AF06D94F /* lib2.h */,
 			);
 			path = includes;
 			sourceTree = "<group>";
@@ -225,6 +226,7 @@
 			isa = PBXGroup;
 			children = (
 				E9FB62E17E9CD717293583B0 /* darwin_x86_64-dbg-STABLE-0 */,
+				E6B50228DFEE5588FC3049F5 /* darwin_x86_64-dbg-STABLE-1 */,
 			);
 			name = "Bazel Generated Files";
 			path = "bazel-out";
@@ -255,6 +257,14 @@
 			path = test;
 			sourceTree = "<group>";
 		};
+		9D98A980AB9AC7DD60FFD42E /* lib2_prefix */ = {
+			isa = PBXGroup;
+			children = (
+				68571FA99BB8CAC9AA027C16 /* lib2.h */,
+			);
+			path = lib2_prefix;
+			sourceTree = "<group>";
+		};
 		B93A94C580A3732A5B346592 /* examples_cc_external */ = {
 			isa = PBXGroup;
 			children = (
@@ -272,6 +282,14 @@
 				50EE84464C0D09BEA535AD55 /* tool.7.link.params */,
 			);
 			path = "xcodeproj_bwx.generator-params";
+			sourceTree = "<group>";
+		};
+		C3144C02CAB17102DE33D499 /* _virtual_includes */ = {
+			isa = PBXGroup;
+			children = (
+				EBEDC2FF6549759CC50554EA /* lib_impl */,
+			);
+			path = _virtual_includes;
 			sourceTree = "<group>";
 		};
 		C5DA04B2480EBE8D895B5826 /* Products */ = {
@@ -301,12 +319,28 @@
 			path = fixtures;
 			sourceTree = "<group>";
 		};
+		E6B50228DFEE5588FC3049F5 /* darwin_x86_64-dbg-STABLE-1 */ = {
+			isa = PBXGroup;
+			children = (
+				F50670A68B4CC3845824719F /* bin */,
+			);
+			path = "darwin_x86_64-dbg-STABLE-1";
+			sourceTree = "<group>";
+		};
 		E9FB62E17E9CD717293583B0 /* darwin_x86_64-dbg-STABLE-0 */ = {
 			isa = PBXGroup;
 			children = (
 				2A74A0BABCA13EF4011BFD00 /* bin */,
 			);
 			path = "darwin_x86_64-dbg-STABLE-0";
+			sourceTree = "<group>";
+		};
+		EBEDC2FF6549759CC50554EA /* lib_impl */ = {
+			isa = PBXGroup;
+			children = (
+				9D98A980AB9AC7DD60FFD42E /* lib2_prefix */,
+			);
+			path = lib_impl;
 			sourceTree = "<group>";
 		};
 		F1B323372508EB9B5C75D7CE /* lib2 */ = {
@@ -319,6 +353,14 @@
 			path = lib2;
 			sourceTree = "<group>";
 		};
+		F50670A68B4CC3845824719F /* bin */ = {
+			isa = PBXGroup;
+			children = (
+				FC3D4E078F411C4DDAC367B0 /* lib2 */,
+			);
+			path = bin;
+			sourceTree = "<group>";
+		};
 		FA261E4AF708F00AB0368E11 /* lib */ = {
 			isa = PBXGroup;
 			children = (
@@ -328,6 +370,14 @@
 				10D21E69D7E12FFDA82B1273 /* lib.h */,
 			);
 			path = lib;
+			sourceTree = "<group>";
+		};
+		FC3D4E078F411C4DDAC367B0 /* lib2 */ = {
+			isa = PBXGroup;
+			children = (
+				C3144C02CAB17102DE33D499 /* _virtual_includes */,
+			);
+			path = lib2;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -921,6 +971,7 @@
 					.,
 					"-iquote",
 					"bazel-out/darwin_x86_64-dbg-STABLE-1/bin",
+					"-Ibazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib2/_virtual_includes/lib_impl",
 					"-isystem",
 					lib2/includes,
 					"-isystem",
@@ -1097,6 +1148,7 @@
 					external/bazel_tools,
 					"-iquote",
 					"bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/bazel_tools",
+					"-Ibazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib2/_virtual_includes/lib_impl",
 					"-isystem",
 					lib2/includes,
 					"-isystem",
