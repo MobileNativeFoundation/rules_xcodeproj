@@ -47,8 +47,8 @@ def _parse_args(args: List[str]) -> List[str]:
 # The values are the number of flags to skip, 1 being the flag itself, 2 being
 # another flag right after it, etc.
 _LD_SKIP_OPTS = {
-    # # Xcode sets the output path
-    # "-o": 2,
+    # Xcode sets the output path
+    "-o": 2,
 
     # Xcode sets these, and no way to unset it
     "-bundle": 2,
