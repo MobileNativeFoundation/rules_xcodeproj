@@ -20,8 +20,8 @@ objc_library(
         "//iOSApp/Resources/OnlyStructuredResources",
         "@examples_ios_app_external//:ExternalImportedBundle",
     ],
-    includes = ["../TestingUtils"],
     enable_modules = True,
+    includes = ["../TestingUtils"],
     module_name = "iOSAppObjCUnitTests",
     tags = ["manual"],
     deps = [
