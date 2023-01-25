@@ -53,7 +53,25 @@ extension XCScheme {
 
         let testAction: XCScheme.TestAction?
         if let testActionInfo = schemeInfo.testActionInfo {
-            testAction = try .init(buildMode: buildMode, testActionInfo: testActionInfo)
+            // TODO: Make this similar to `initBazelBuildOutputGroupsFile()`,
+            // instead of `otherPreActions`
+            var otherPreActions: [XCScheme.ExecutionAction] = []
+            if let aTargetInfo = testActionInfo.targetInfos
+                .lazy
+                .sortedLocalizedStandard(\.pbxTarget.name)
+                .first
+            {
+                otherPreActions.append(
+                    .createLLDBInit(
+                        buildableReference: aTargetInfo.buildableReference
+                    )
+                )
+            }
+            testAction = try .init(
+                buildMode: buildMode,
+                testActionInfo: testActionInfo,
+                otherPreActions: otherPreActions
+            )
         } else {
             testAction = .init(
                 buildConfiguration: .defaultBuildConfigurationName,
@@ -85,7 +103,18 @@ extension XCScheme {
 
         let profileAction: XCScheme.ProfileAction?
         if let profileActionInfo = schemeInfo.profileActionInfo {
-            profileAction = .init(profileActionInfo: profileActionInfo)
+            // TODO: Make this similar to `initBazelBuildOutputGroupsFile()`,
+            // instead of `otherPreActions`
+            let otherPreActions: [XCScheme.ExecutionAction] = [
+                .createLLDBInit(
+                    buildableReference: profileActionInfo
+                        .targetInfo.buildableReference
+                )
+            ]
+            profileAction = .init(
+                profileActionInfo: profileActionInfo,
+                otherPreActions: otherPreActions
+            )
         } else {
             profileAction = .init(
                 buildableProductRunnable: nil,
@@ -223,7 +252,11 @@ extension XCScheme.CommandLineArguments {
 }
 
 extension XCScheme.TestAction {
-    convenience init(buildMode: BuildMode, testActionInfo: XCSchemeInfo.TestActionInfo) throws {
+    convenience init(
+        buildMode: BuildMode,
+        testActionInfo: XCSchemeInfo.TestActionInfo,
+        otherPreActions: [XCScheme.ExecutionAction] = []
+    ) throws {
         let commandlineArguments = XCScheme.CommandLineArguments(
             xcSchemeInfoArgs: testActionInfo.args
         )
@@ -241,7 +274,8 @@ extension XCScheme.TestAction {
                 .filter(\.pbxTarget.isTestable)
                 .sortedLocalizedStandard(\.pbxTarget.name)
                 .map { .init(skipped: false, buildableReference: $0.buildableReference) },
-            preActions: testActionInfo.preActions.map(\.executionAction),
+            preActions: testActionInfo.preActions.map(\.executionAction) +
+                otherPreActions,
             postActions: testActionInfo.postActions.map(\.executionAction),
             shouldUseLaunchSchemeArgsEnv: shouldUseLaunchSchemeArgsEnv,
             enableAddressSanitizer: testActionInfo.diagnostics.sanitizers
@@ -294,10 +328,14 @@ extension XCScheme.LaunchAction {
 }
 
 extension XCScheme.ProfileAction {
-    convenience init(profileActionInfo: XCSchemeInfo.ProfileActionInfo) {
+    convenience init(
+        profileActionInfo: XCSchemeInfo.ProfileActionInfo,
+        otherPreActions: [XCScheme.ExecutionAction]
+    ) {
         self.init(
             buildableProductRunnable: profileActionInfo.runnable,
             buildConfiguration: profileActionInfo.buildConfigurationName,
+            preActions: otherPreActions,
             customWorkingDirectory: profileActionInfo.workingDirectory,
             useCustomWorkingDirectory: profileActionInfo.workingDirectory != nil
         )
