@@ -21,6 +21,7 @@ objc_library(
         "@examples_ios_app_external//:ExternalImportedBundle",
     ],
     enable_modules = True,
+    includes = ["../TestingUtils"],
     module_name = "iOSAppObjCUnitTests",
     tags = ["manual"],
     deps = [
