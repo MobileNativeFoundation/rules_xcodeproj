@@ -2898,6 +2898,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_CPLUSPLUSFLAGS = (
+					"-working-directory=$(PROJECT_DIR)",
 					"-ivfsoverlay",
 					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
 					"-ivfsoverlay",
@@ -3036,6 +3037,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_CFLAGS = (
+					"-working-directory=$(PROJECT_DIR)",
 					"-ivfsoverlay",
 					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
 					"-ivfsoverlay",
@@ -3252,7 +3254,6 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 				);
 				ONLY_ACTIVE_ARCH = YES;
-				REAL_BAZEL_OUT = "../../../bazel-output-base/rules_xcodeproj/build_output_base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out";
 				RESOLVED_REPOSITORIES = "\"\" \"$(SRCROOT)\"";
 				RULES_XCODEPROJ_BUILD_MODE = xcode;
 				SCHEME_TARGET_IDS_FILE = "$(OBJROOT)/scheme_target_ids";

@@ -8535,6 +8535,7 @@
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/tool.binary.49.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (
+					"-working-directory=$(PROJECT_DIR)",
 					"-ivfsoverlay",
 					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
 					"-ivfsoverlay",
@@ -8668,6 +8669,7 @@
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/FrameworkCoreUtilsObjC.5.link.params";
 				"LINK_PARAMS_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/FrameworkCoreUtilsObjC.64.link.params";
 				OTHER_CPLUSPLUSFLAGS = (
+					"-working-directory=$(PROJECT_DIR)",
 					"-ivfsoverlay",
 					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
 					"-ivfsoverlay",
@@ -8710,6 +8712,7 @@
 					"-fstack-protector-all",
 				);
 				"OTHER_CPLUSPLUSFLAGS[sdk=iphoneos*]" = (
+					"-working-directory=$(PROJECT_DIR)",
 					"-ivfsoverlay",
 					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
 					"-ivfsoverlay",
@@ -8781,6 +8784,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_CFLAGS = (
+					"-working-directory=$(PROJECT_DIR)",
 					"-ivfsoverlay",
 					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
 					"-ivfsoverlay",
@@ -8820,6 +8824,7 @@
 					"-fstack-protector-all",
 				);
 				"OTHER_CFLAGS[sdk=iphoneos*]" = (
+					"-working-directory=$(PROJECT_DIR)",
 					"-ivfsoverlay",
 					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
 					"-ivfsoverlay",
@@ -9138,6 +9143,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (
+					"-working-directory=$(PROJECT_DIR)",
 					"-ivfsoverlay",
 					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
 					"-ivfsoverlay",
@@ -9324,6 +9330,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (
+					"-working-directory=$(PROJECT_DIR)",
 					"-ivfsoverlay",
 					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
 					"-ivfsoverlay",
@@ -9385,6 +9392,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_CFLAGS = (
+					"-working-directory=$(PROJECT_DIR)",
 					"-ivfsoverlay",
 					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
 					"-ivfsoverlay",
@@ -9607,6 +9615,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (
+					"-working-directory=$(PROJECT_DIR)",
 					"-ivfsoverlay",
 					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
 					"-ivfsoverlay",
@@ -9697,6 +9706,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (
+					"-working-directory=$(PROJECT_DIR)",
 					"-ivfsoverlay",
 					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
 					"-ivfsoverlay",
@@ -9745,6 +9755,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (
+					"-working-directory=$(PROJECT_DIR)",
 					"-ivfsoverlay",
 					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
 					"-ivfsoverlay",
@@ -10082,6 +10093,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/iOSAppObjCUnitTests.__internal__.__test_bundle.24.link.params";
 				OTHER_CFLAGS = (
+					"-working-directory=$(PROJECT_DIR)",
 					"-ivfsoverlay",
 					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
 					"-ivfsoverlay",
@@ -10179,6 +10191,7 @@
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/tool.binary.57.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (
+					"-working-directory=$(PROJECT_DIR)",
 					"-ivfsoverlay",
 					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
 					"-ivfsoverlay",
@@ -10333,6 +10346,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (
+					"-working-directory=$(PROJECT_DIR)",
 					"-ivfsoverlay",
 					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
 					"-ivfsoverlay",
@@ -10383,6 +10397,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (
+					"-working-directory=$(PROJECT_DIR)",
 					"-ivfsoverlay",
 					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
 					"-ivfsoverlay",
@@ -10488,6 +10503,7 @@
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/CommandLineTool.41.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (
+					"-working-directory=$(PROJECT_DIR)",
 					"-ivfsoverlay",
 					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
 					"-ivfsoverlay",
@@ -10620,7 +10636,6 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 				);
 				ONLY_ACTIVE_ARCH = YES;
-				REAL_BAZEL_OUT = "../../bazel-output-base/rules_xcodeproj/build_output_base/execroot/__main__/bazel-out";
 				RESOLVED_REPOSITORIES = "\"/external/examples_command_line_external/ImportableLibrary\" \"$(SRCROOT)/CommandLine/external/ImportableLibrary\" \"/external/examples_ios_app_external\" \"$(SRCROOT)/iOSApp/external\" \"\" \"$(SRCROOT)\"";
 				RULES_XCODEPROJ_BUILD_MODE = xcode;
 				SCHEME_TARGET_IDS_FILE = "$(OBJROOT)/scheme_target_ids";
@@ -10690,6 +10705,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (
+					"-working-directory=$(PROJECT_DIR)",
 					"-ivfsoverlay",
 					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
 					"-ivfsoverlay",
@@ -10791,6 +10807,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = (
+					"-working-directory=$(PROJECT_DIR)",
 					"-ivfsoverlay",
 					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
 					"-ivfsoverlay",
@@ -11084,6 +11101,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_CFLAGS = (
+					"-working-directory=$(PROJECT_DIR)",
 					"-ivfsoverlay",
 					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
 					"-ivfsoverlay",
