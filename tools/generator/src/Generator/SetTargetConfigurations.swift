@@ -533,15 +533,6 @@ extension Inputs {
     }
 }
 
-private extension String {
-    func removingPrefix(_ prefix: String) -> String {
-        guard hasPrefix(prefix) else {
-            return self
-        }
-        return String(self.prefix(prefix.count))
-    }
-}
-
 public extension Array where Element: Hashable {
     /// Return the array with all duplicates removed.
     ///
