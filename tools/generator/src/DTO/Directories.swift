@@ -9,7 +9,6 @@ struct Directories: Equatable {
     let `internal`: Path
 
     let projectRoot: Path
-    let external: Path
     let absoluteExternal: Path
     let bazelOut: Path
 
@@ -21,7 +20,6 @@ struct Directories: Equatable {
     init(
         workspace: Path,
         projectRoot: Path,
-        external: Path,
         bazelOut: Path,
         internalDirectoryName: String,
         workspaceOutput: Path
@@ -34,9 +32,9 @@ struct Directories: Equatable {
         `internal` = workspaceOutput + internalDirectoryName
 
         self.projectRoot = projectRoot
-        self.external = external
         self.bazelOut = bazelOut
 
+        let external = bazelOut.parent().parent().parent() + "external"
         if external.isRelative {
             absoluteExternal = workspace + external
         } else {
