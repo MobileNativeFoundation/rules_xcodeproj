@@ -1072,14 +1072,14 @@ execroot_workspace_dir="$(perl -MCwd -e 'print Cwd::abs_path' "{project_full}";)
 resolved_workspace_root_element="$(readlink $execroot_workspace_dir/$workspace_root_element)"
 workspace_dir="${{resolved_workspace_root_element%/*}}"
 
-bazel_out_full_path="$(perl -MCwd -e 'print Cwd::abs_path shift' "{bazel_out_full}";)"
-bazel_out="${{bazel_out_full_path%/{bazel_out_full}}}/bazel-out"
+bin_dir_full_path="$(perl -MCwd -e 'print Cwd::abs_path shift' "{bin_dir_full}";)"
+execution_root="${{bin_dir_full_path%/{bin_dir_full}}}"
 
 echo "$workspace_dir" > "{out_full}"
-echo "${{bazel_out#$workspace_dir/}}" >> "{out_full}"
+echo "${{execution_root#$workspace_dir/}}" >> "{out_full}"
 """.format(
             project_full = ctx.build_file_path,
-            bazel_out_full = ctx.bin_dir.path,
+            bin_dir_full = ctx.bin_dir.path,
             out_full = output.path,
         ),
         mnemonic = "CalculateXcodeProjRootDirs",

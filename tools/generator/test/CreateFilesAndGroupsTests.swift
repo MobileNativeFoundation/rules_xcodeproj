@@ -24,14 +24,14 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         let xccurrentversions: [XCCurrentVersion] = []
         let workspaceDirectory: Path = "/app-project"
         let projectRootDirectory: Path = "/"
-        let bazelOutDirectory: Path = "/some/bazel12/bazel-out"
+        let executionRootDirectory: Path = "/some/bazel12"
         let internalDirectoryName = "rules_xcp"
         let workspaceOutputPath: Path = "Project.xcodeproj"
 
         let directories = Directories(
             workspace: workspaceDirectory,
             projectRoot: projectRootDirectory,
-            bazelOut: bazelOutDirectory,
+            executionRoot: executionRootDirectory,
             internalDirectoryName: internalDirectoryName,
             workspaceOutput: workspaceOutputPath
         )
@@ -102,14 +102,14 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         let xccurrentversions = Fixtures.xccurrentversions
         let workspaceDirectory: Path = "/Users/TimApple/app"
         let projectRootDirectory: Path = "/Users/TimApple"
-        let bazelOutDirectory: Path = "/some/bazel15/bazel-out"
+        let executionRootDirectory: Path = "/some/bazel15"
         let internalDirectoryName = "rules_xcp"
         let workspaceOutputPath: Path = "Project.xcodeproj"
 
         let directories = Directories(
             workspace: workspaceDirectory,
             projectRoot: projectRootDirectory,
-            bazelOut: bazelOutDirectory,
+            executionRoot: executionRootDirectory,
             internalDirectoryName: internalDirectoryName,
             workspaceOutput: workspaceOutputPath
         )
@@ -207,14 +207,14 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         let xccurrentversions = Fixtures.xccurrentversions
         let workspaceDirectory: Path = "/Users/TimApple/app"
         let projectRootDirectory: Path = "/Users/TimApple"
-        let bazelOutDirectory: Path = "/some/bazel15/bazel-out"
+        let executionRootDirectory: Path = "/some/bazel15"
         let internalDirectoryName = "rules_xcp"
         let workspaceOutputPath: Path = "Project.xcodeproj"
 
         let directories = Directories(
             workspace: workspaceDirectory,
             projectRoot: projectRootDirectory,
-            bazelOut: bazelOutDirectory,
+            executionRoot: executionRootDirectory,
             internalDirectoryName: internalDirectoryName,
             workspaceOutput: workspaceOutputPath
         )

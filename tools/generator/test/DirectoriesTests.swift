@@ -6,14 +6,14 @@ import XCTest
 class DirectoriesTests: XCTestCase {
     let workspaceDirectory: Path = "/Users/TimApple/project"
     let projectRootDirectory: Path = "/Users/TimApple"
-    let bazelOutDirectory: Path = "/some/bazel2/bazel-out"
+    let executionRootDirectory: Path = "/some/bazel2"
     let internalDirectoryName = "internal_name"
     let workspaceOutputPath: Path = "path/to/Foo.xcodeproj"
 
     lazy var directories = Directories(
         workspace: workspaceDirectory,
         projectRoot: projectRootDirectory,
-        bazelOut: bazelOutDirectory,
+        executionRoot: executionRootDirectory,
         internalDirectoryName: internalDirectoryName,
         workspaceOutput: workspaceOutputPath
     )

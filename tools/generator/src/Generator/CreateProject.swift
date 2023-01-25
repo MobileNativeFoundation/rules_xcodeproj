@@ -14,7 +14,7 @@ extension Generator {
     ) -> PBXProj {
         let pbxProj = PBXProj()
 
-        let nonRelativeProjectDir = directories.bazelOut.parent()
+        let nonRelativeProjectDir = directories.executionRoot
 
         let projectDir: Path
         if nonRelativeProjectDir.isRelative {

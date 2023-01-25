@@ -10,7 +10,7 @@ struct Directories: Equatable {
 
     let projectRoot: Path
     let absoluteExternal: Path
-    let bazelOut: Path
+    let executionRoot: Path
 
     /// In XcodeProj, a `referencedContainer` in a `XCScheme.BuildableReference`
     /// accepts a string in the format `container:<path-to-xcodeproj-dir>`. This
@@ -20,7 +20,7 @@ struct Directories: Equatable {
     init(
         workspace: Path,
         projectRoot: Path,
-        bazelOut: Path,
+        executionRoot: Path,
         internalDirectoryName: String,
         workspaceOutput: Path
     ) {
@@ -32,9 +32,9 @@ struct Directories: Equatable {
         `internal` = workspaceOutput + internalDirectoryName
 
         self.projectRoot = projectRoot
-        self.bazelOut = bazelOut
+        self.executionRoot = executionRoot
 
-        let external = bazelOut.parent().parent().parent() + "external"
+        let external = executionRoot.parent().parent() + "external"
         if external.isRelative {
             absoluteExternal = workspace + external
         } else {
@@ -42,9 +42,9 @@ struct Directories: Equatable {
         }
 
         let containerWorkspace: Path
-        if bazelOut.isRelative {
+        if executionRoot.isRelative {
             containerWorkspace = Path(
-                components: (0 ..< (bazelOut.components.count - 1))
+                components: (0 ..< executionRoot.components.count)
                     .map { _ in ".." }
             )
         } else {
