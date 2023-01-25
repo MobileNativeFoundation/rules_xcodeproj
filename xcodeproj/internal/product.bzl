@@ -1,5 +1,6 @@
 """Functions for calculating a target's product."""
 
+load("@bazel_skylib//lib:paths.bzl", "paths")
 load(
     ":files.bzl",
     "file_path",
@@ -136,6 +137,16 @@ def process_product(
     else:
         executable = None
 
+    if target:
+        label = target.label
+        package_dir = paths.join(
+            label.workspace_name,
+            ctx.bin_dir.path,
+            label.package,
+        )
+    else:
+        package_dir = None
+
     return struct(
         executable = executable,
         executable_name = executable_name,
@@ -145,6 +156,7 @@ def process_product(
         path = path,
         file_path = fp,
         actual_file_path = actual_fp,
+        package_dir = package_dir,
         type = product_type,
         is_resource_bundle = is_resource_bundle,
     )

@@ -107,7 +107,7 @@ def _process_linkopts(
         if last_opt == "-filelist":
             processed_linkopts.extend(_process_filelist(opt))
             return
-        if self_linked_path and opt.endswith(self_linked_path):
+        if opt.endswith(self_linked_path):
             if last_opt == "-force_load":
                 processed_linkopts.pop()
             return
