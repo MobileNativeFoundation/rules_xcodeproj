@@ -87,6 +87,7 @@ $(PROJECT_FILE_PATH)/\(directories.internalDirectoryName)
             // We don't want Xcode to set any search paths, since we set them in
             // `link.params`
             "LD_RUNPATH_SEARCH_PATHS": [],
+            "REAL_BAZEL_OUT": (projectDir + "bazel-out").string,
             "RULES_XCODEPROJ_BUILD_MODE": buildMode.rawValue,
             "SCHEME_TARGET_IDS_FILE": """
 $(OBJROOT)/scheme_target_ids
@@ -132,6 +133,13 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
             "LastUpgradeCheck": 9999,
         ]
 
+        let projectDirPath: String
+        if projectDir.string.hasPrefix("/private/") {
+            projectDirPath = String(projectDir.string.dropFirst(8))
+        } else {
+            projectDirPath = projectDir.string
+        }
+
         let pbxProject = PBXProject(
             name: project.name,
             buildConfigurationList: buildConfigurationList,
@@ -141,7 +149,7 @@ Xcode \(min(project.minimumXcodeVersion.major, 14)).0
             mainGroup: mainGroup,
             // TODO: Make developmentRegion configurable?
             developmentRegion: "en",
-            projectDirPath: projectDir.string,
+            projectDirPath: projectDirPath,
             attributes: attributes
         )
         pbxProj.add(object: pbxProject)

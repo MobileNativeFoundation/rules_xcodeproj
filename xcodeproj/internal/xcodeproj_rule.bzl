@@ -1036,7 +1036,7 @@ def _write_create_xcode_overlay_script(*, ctx, targets):
 
         path = generated_header.path
         build_dir = "$BUILD_DIR/{}".format(path)
-        bazel_out = "$BAZEL_OUT{}".format(path[9:])
+        bazel_out = "$REAL_BAZEL_OUT{}".format(path[9:])
 
         roots.append("""\
 {{"external-contents": "{build_dir}","name": "${{bazel_out_prefix}}{bazel_out}","type": "file"}}\
@@ -1073,7 +1073,6 @@ resolved_workspace_root_element="$(readlink $execroot_workspace_dir/$workspace_r
 workspace_dir="${{resolved_workspace_root_element%/*}}"
 
 bazel_out_full_path="$(perl -MCwd -e 'print Cwd::abs_path shift' "{bazel_out_full}";)"
-bazel_out_full_path="${{bazel_out_full_path#/private}}"
 bazel_out="${{bazel_out_full_path%/{bazel_out_full}}}/bazel-out"
 
 echo "$workspace_dir" > "{out_full}"
