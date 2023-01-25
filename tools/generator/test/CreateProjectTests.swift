@@ -73,8 +73,6 @@ $(INDEXING_DEPLOYMENT_LOCATION__NO)
                 "LD_OBJC_ABI_VERSION": "",
                 "LD_DYLIB_INSTALL_NAME": "",
                 "LD_RUNPATH_SEARCH_PATHS": [],
-                "REAL_BAZEL_OUT": (directories.executionRoot + "bazel-out")
-                    .string,
                 "RULES_XCODEPROJ_BUILD_MODE": "xcode",
                 "SCHEME_TARGET_IDS_FILE": """
 $(OBJROOT)/scheme_target_ids
@@ -202,8 +200,6 @@ $(INDEXING_DEPLOYMENT_LOCATION__NO)
                 "LD_OBJC_ABI_VERSION": "",
                 "LD_DYLIB_INSTALL_NAME": "",
                 "LD_RUNPATH_SEARCH_PATHS": [],
-                "REAL_BAZEL_OUT": (directories.executionRoot + "bazel-out")
-                    .string,
                 "RULES_XCODEPROJ_BUILD_MODE": "bazel",
                 "SCHEME_TARGET_IDS_FILE": """
 $(OBJROOT)/scheme_target_ids

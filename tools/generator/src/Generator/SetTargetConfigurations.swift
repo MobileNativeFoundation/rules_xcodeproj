@@ -359,6 +359,20 @@ $(CONFIGURATION_BUILD_DIR)
                     )
                 }
             }
+
+            if buildSettings.keys.contains("OTHER_CFLAGS") {
+                try buildSettings.prepend(
+                    onKey: "OTHER_CFLAGS",
+                    ["-working-directory=$(PROJECT_DIR)"]
+                )
+            }
+
+            if buildSettings.keys.contains("OTHER_CPLUSPLUSFLAGS") {
+                try buildSettings.prepend(
+                    onKey: "OTHER_CPLUSPLUSFLAGS",
+                    ["-working-directory=$(PROJECT_DIR)"]
+                )
+            }
         }
 
         return buildSettings
