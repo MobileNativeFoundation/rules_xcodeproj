@@ -9,7 +9,6 @@ final class SetTargetConfigurationsTests: XCTestCase {
     private static let directories = Directories(
         workspace: "/Users/TimApple/app",
         projectRoot: "/Users/TimApple",
-        external: "bazel-output-base/execroot/_rules_xcodeproj/build_output_base/external",
         bazelOut: "bazel-output-base/execroot/_rules_xcodeproj/build_output_base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out",
         internalDirectoryName: "rules_xcodeproj",
         workspaceOutput: "out/p.xcodeproj"
