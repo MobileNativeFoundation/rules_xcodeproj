@@ -162,7 +162,6 @@ def _to_xcode_target_linker_inputs(linker_inputs):
         link_args = top_level_values.link_args,
         link_args_inputs = top_level_values.link_args_inputs,
         static_libraries = top_level_values.static_libraries,
-        static_frameworks = top_level_values.static_frameworks,
     )
 
 def _to_xcode_target_outputs(outputs):
