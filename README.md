@@ -59,6 +59,7 @@ rules.
 - [Slack](https://www.youtube.com/watch?v=wy3Q38VJ5uQ)
 - Spotify
 - [SwiftLint](https://github.com/realm/SwiftLint)
+- Ten Ten
 - Tinder
 
 If you are also using rules_xcodeproj for your project, feel free to open a PR
