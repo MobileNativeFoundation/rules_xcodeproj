@@ -148,17 +148,6 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
     ) throws -> [String: BuildSetting] {
         var buildSettings = target.buildSettings
 
-        // Work around stubbed swiftc messing with Indexing setting of
-        // `-working-directory` incorrectly
-        if buildMode == .bazel {
-            try buildSettings.prepend(
-                onKey: "OTHER_SWIFT_FLAGS",
-                """
--Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR)
-"""
-            )
-        }
-
         if let linkParams = target.linkParams {
             try buildSettings.prepend(
                 onKey: "OTHER_LDFLAGS",
@@ -354,6 +343,17 @@ $(CONFIGURATION_BUILD_DIR)
                 }
             }
 
+            // Work around stubbed swiftc messing with Indexing setting of
+            // `-working-directory` incorrectly
+            if buildMode == .bazel {
+                try buildSettings.prepend(
+                    onKey: "OTHER_SWIFT_FLAGS",
+                    onlyIfSet: true,
+                    """
+-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR)
+"""
+                )
+            }
             try buildSettings.prepend(
                 onKey: "OTHER_CFLAGS",
                 onlyIfSet: true,
@@ -458,8 +458,23 @@ $(BUILD_DIR)/\(testHost.packageBinDir)/\(productPath)/\(executableName)
 }
 
 private extension Dictionary where Value == BuildSetting {
-    mutating func prepend(onKey key: Key, _ content: String) throws {
-        let buildSetting = self[key, default: .string("")]
+    mutating func prepend(
+        onKey key: Key,
+        onlyIfSet: Bool = false,
+        _ content: String
+    ) throws {
+        let maybeBuildSetting = self[key]
+
+        let buildSetting: Value
+        if let maybeBuildSetting = maybeBuildSetting {
+            buildSetting = maybeBuildSetting
+        } else {
+            guard !onlyIfSet else {
+                return
+            }
+            buildSetting = .string("")
+        }
+
         switch buildSetting {
         case let .string(existing):
             let new: String

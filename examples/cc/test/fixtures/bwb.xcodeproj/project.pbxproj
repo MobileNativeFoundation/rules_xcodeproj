@@ -794,7 +794,6 @@
 					"-Iexternal/examples_cc_external/private",
 					"-Ibazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external/private",
 				);
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR)";
 				PRODUCT_NAME = lib_impl;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
@@ -832,7 +831,6 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				EXECUTABLE_EXTENSION = "";
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR)";
 				PRODUCT_NAME = lib_defines;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
@@ -883,7 +881,6 @@
 					"-D__TIMESTAMP__=\\\"redacted\\\"",
 					"-D__TIME__=\\\"redacted\\\"",
 				);
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR)";
 				PRODUCT_NAME = lib_impl;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
@@ -950,7 +947,6 @@
 					"-D__TIME__=\\\"redacted\\\"",
 				);
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR)";
 				PRODUCT_NAME = tool;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
@@ -974,7 +970,6 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				EXECUTABLE_EXTENSION = "";
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR)";
 				PRODUCT_NAME = lib_headers;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
@@ -1056,7 +1051,6 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				EXECUTABLE_EXTENSION = "";
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR)";
 				PRODUCT_NAME = lib_headers;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
@@ -1107,7 +1101,6 @@
 					"-Ilib/private",
 					"-Ibazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib/private",
 				);
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR)";
 				PRODUCT_NAME = lib_impl;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
@@ -1131,7 +1124,6 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				EXECUTABLE_EXTENSION = "";
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR)";
 				PRODUCT_NAME = lib_defines;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
