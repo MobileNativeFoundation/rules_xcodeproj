@@ -85,12 +85,12 @@ def _compute_primary_static_library(
     # Ideally we would only return the static library that is owned by this
     # target, but sometimes another rule creates the output and this rule
     # outputs it. So far the first library has always been the correct one.
-    if compilation_providers._objc:
+    if compilation_providers.objc:
         for library in objc_libraries:
             if library.is_source:
                 continue
             return library
-    elif compilation_providers._cc_info:
+    elif compilation_providers.cc_info:
         for input in cc_linker_inputs:
             for library in input.libraries:
                 if library.static_library.is_source:
@@ -99,8 +99,8 @@ def _compute_primary_static_library(
     return None
 
 def _extract_libraries(compilation_providers):
-    if compilation_providers._objc:
-        objc = compilation_providers._objc
+    if compilation_providers.objc:
+        objc = compilation_providers.objc
         objc_libraries = [
             file
             for file in depset(
@@ -112,8 +112,8 @@ def _extract_libraries(compilation_providers):
             ).to_list()
         ]
         cc_linker_inputs = []
-    elif compilation_providers._cc_info:
-        cc_info = compilation_providers._cc_info
+    elif compilation_providers.cc_info:
+        cc_info = compilation_providers.cc_info
         objc_libraries = []
         cc_linker_inputs = cc_info.linking_context.linker_inputs.to_list()
     else:
@@ -129,10 +129,10 @@ def _extract_top_level_values(
         avoid_compilation_providers,
         objc_libraries,
         cc_linker_inputs):
-    if compilation_providers._objc:
-        objc = compilation_providers._objc
+    if compilation_providers.objc:
+        objc = compilation_providers.objc
         if avoid_compilation_providers:
-            avoid_objc = avoid_compilation_providers._objc
+            avoid_objc = avoid_compilation_providers.objc
             if not avoid_objc:
                 fail("""\
 `avoid_compilation_providers` doesn't have `ObjcProvider`, but \
@@ -167,9 +167,9 @@ def _extract_top_level_values(
         additional_input_files = _process_additional_inputs(
             objc.link_inputs.to_list(),
         )
-    elif compilation_providers._cc_info:
+    elif compilation_providers.cc_info:
         if avoid_compilation_providers:
-            avoid_cc_info = avoid_compilation_providers._cc_info
+            avoid_cc_info = avoid_compilation_providers.cc_info
             if not avoid_cc_info:
                 fail("""\
 `avoid_compilation_providers` doesn't have `CcInfo`, but \
@@ -239,12 +239,12 @@ def _collect_libraries(
         objc_libraries,
         cc_linker_inputs):
     libraries = []
-    if compilation_providers._objc:
+    if compilation_providers.objc:
         for library in objc_libraries:
             if library.is_source:
                 continue
             libraries.append(library)
-    elif compilation_providers._cc_info:
+    elif compilation_providers.cc_info:
         for input in cc_linker_inputs:
             for library in input.libraries:
                 if library.static_library.is_source:

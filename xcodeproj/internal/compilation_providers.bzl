@@ -17,13 +17,13 @@ def _collect_compilation_providers(*, cc_info, objc, swift_info, is_xcode_target
     is_xcode_library_target = cc_info and is_xcode_target
 
     return struct(
-        _cc_info = cc_info,
         _is_swift = swift_info != None,
         _is_top_level = False,
         _is_xcode_library_target = is_xcode_library_target,
-        _objc = objc,
         _propagated_objc = objc,
         _transitive_compilation_providers = (),
+        cc_info = cc_info,
+        objc = objc,
     )
 
 def _merge_compilation_providers(
@@ -50,15 +50,15 @@ def _merge_compilation_providers(
     cc_info = cc_common.merge_cc_infos(
         direct_cc_infos = [cc_info] if cc_info else [],
         cc_infos = [
-            providers._cc_info
+            providers.cc_info
             for _, providers in transitive_compilation_providers
-            if providers._cc_info
+            if providers.cc_info
         ],
     )
 
     objc = None
     maybe_objc_providers = [
-        _to_objc(providers._propagated_objc, providers._cc_info)
+        _to_objc(providers._propagated_objc, providers.cc_info)
         for _, providers in transitive_compilation_providers
     ]
     objc_providers = [objc for objc in maybe_objc_providers if objc]
@@ -70,15 +70,15 @@ def _merge_compilation_providers(
         propagated_objc = objc
 
     return struct(
-        _cc_info = cc_info,
         _is_swift = swift_info != None,
         _is_top_level = True,
         _is_xcode_library_target = False,
-        _objc = objc,
         _propagated_objc = propagated_objc,
         _transitive_compilation_providers = tuple(
             transitive_compilation_providers,
         ),
+        cc_info = cc_info,
+        objc = objc,
     )
 
 def _to_objc(objc, cc_info):
