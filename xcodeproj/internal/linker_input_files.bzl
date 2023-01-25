@@ -218,11 +218,11 @@ def _extract_top_level_values(
                 break
 
     return struct(
-        additional_input_files = tuple(additional_input_files),
+        _additional_input_files = tuple(additional_input_files),
+        _static_frameworks = tuple(static_frameworks),
         dynamic_frameworks = tuple(dynamic_frameworks),
         link_args = link_args,
         link_args_inputs = link_args_inputs,
-        static_frameworks = tuple(static_frameworks),
         static_libraries = tuple(static_libraries),
     )
 
@@ -288,9 +288,9 @@ def _to_input_files(linker_inputs):
         return []
 
     return list(
-        top_level_values.additional_input_files +
+        top_level_values._additional_input_files +
         top_level_values.dynamic_frameworks +
-        top_level_values.static_frameworks,
+        top_level_values._static_frameworks,
     ) + [
         file
         for file in top_level_values.static_libraries
