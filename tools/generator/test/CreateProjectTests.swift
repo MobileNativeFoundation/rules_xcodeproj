@@ -15,7 +15,7 @@ final class CreateProjectTests: XCTestCase {
         let directories = Directories(
             workspace: "/Users/TimApple/app",
             projectRoot: projectRootDirectory,
-            bazelOut: "/tmp/bazel-output-base/rules_xcodeproj/build_output_base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out",
+            executionRoot: "/tmp/bazel-output-base/rules_xcodeproj/build_output_base/execroot/com_github_buildbuddy_io_rules_xcodeproj",
             internalDirectoryName: "r_xcp",
             workspaceOutput: "X.xcodeproj"
         )
@@ -73,7 +73,8 @@ $(INDEXING_DEPLOYMENT_LOCATION__NO)
                 "LD_OBJC_ABI_VERSION": "",
                 "LD_DYLIB_INSTALL_NAME": "",
                 "LD_RUNPATH_SEARCH_PATHS": [],
-                "REAL_BAZEL_OUT": directories.bazelOut.string,
+                "REAL_BAZEL_OUT": (directories.executionRoot + "bazel-out")
+                    .string,
                 "RULES_XCODEPROJ_BUILD_MODE": "xcode",
                 "SCHEME_TARGET_IDS_FILE": """
 $(OBJROOT)/scheme_target_ids
@@ -105,7 +106,7 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
             compatibilityVersion: "Xcode 14.0",
             mainGroup: expectedMainGroup,
             developmentRegion: "en",
-            projectDirPath: directories.bazelOut.parent().string,
+            projectDirPath: directories.executionRoot.string,
             attributes: attributes
         )
         expectedPBXProj.add(object: expectedPBXProject)
@@ -137,7 +138,7 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
         let directories = Directories(
             workspace: "/Users/TimApple/app",
             projectRoot: projectRootDirectory,
-            bazelOut: "/tmp/bazel-output-base/rules_xcodeproj/build_output_base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out",
+            executionRoot: "/tmp/bazel-output-base/rules_xcodeproj/build_output_base/execroot/com_github_buildbuddy_io_rules_xcodeproj",
             internalDirectoryName: "r_xcp",
             workspaceOutput: "X.xcodeproj"
         )
@@ -201,7 +202,8 @@ $(INDEXING_DEPLOYMENT_LOCATION__NO)
                 "LD_OBJC_ABI_VERSION": "",
                 "LD_DYLIB_INSTALL_NAME": "",
                 "LD_RUNPATH_SEARCH_PATHS": [],
-                "REAL_BAZEL_OUT": directories.bazelOut.string,
+                "REAL_BAZEL_OUT": (directories.executionRoot + "bazel-out")
+                    .string,
                 "RULES_XCODEPROJ_BUILD_MODE": "bazel",
                 "SCHEME_TARGET_IDS_FILE": """
 $(OBJROOT)/scheme_target_ids
@@ -235,7 +237,7 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
             compatibilityVersion: "Xcode 14.0",
             mainGroup: expectedMainGroup,
             developmentRegion: "en",
-            projectDirPath: directories.bazelOut.parent().string,
+            projectDirPath: directories.executionRoot.string,
             attributes: attributes
         )
         expectedPBXProj.add(object: expectedPBXProject)

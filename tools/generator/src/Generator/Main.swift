@@ -27,7 +27,7 @@ extension Generator {
             let directories = try await Directories(
                 workspace: rootDirs.workspaceDirectory,
                 projectRoot: arguments.projectRootDirectory,
-                bazelOut: rootDirs.bazelOutDirectory,
+                executionRoot: rootDirs.executionRootDirectory,
                 internalDirectoryName: "rules_xcodeproj",
                 workspaceOutput: arguments.workspaceOutputPath
             )
@@ -155,7 +155,7 @@ Duplicate target (\(new.label) \(new.configuration) in target specs
 
     struct RootDirectories {
         let workspaceDirectory: Path
-        let bazelOutDirectory: Path
+        let executionRootDirectory: Path
     }
 
     static func readRootDirectories(
@@ -169,13 +169,13 @@ Duplicate target (\(new.label) \(new.configuration) in target specs
             guard rootDirs.count == 2 else {
                 throw UsageError(message: """
 The root_dirs_file must contain three lines: one for the workspace directory \
-and one for the bazel-out directory.
+and one for the execution root directory.
 """)
             }
 
             return RootDirectories(
                 workspaceDirectory: Path(rootDirs[0]),
-                bazelOutDirectory: Path(rootDirs[1])
+                executionRootDirectory: Path(rootDirs[1])
             )
         }.value
     }
