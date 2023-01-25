@@ -23,11 +23,9 @@ struct Platform: Equatable, Hashable, Decodable {
 }
 
 extension Platform {
-    var targetTriple: String {
-        let osVersion = minimumOsVersion.full
-
+    var versionlessTargetTriple: String {
         return """
-\(arch)-apple-\(variant.targetTriplePrefix)\(osVersion)\(variant.tripleSuffix)
+\(arch)-apple-\(variant.targetTriplePrefix)\(variant.tripleSuffix)
 """
     }
 }
