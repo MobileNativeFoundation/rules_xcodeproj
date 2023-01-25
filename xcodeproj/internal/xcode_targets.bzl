@@ -199,6 +199,7 @@ def _to_xcode_target_product(product):
         file_path = product.file_path,
         executable = product.executable,
         executable_name = product.executable_name,
+        package_dir = product.package_dir,
         additional_product_files = tuple(),
         framework_files = product.framework_files,
         _additional_files = product.framework_files,
@@ -304,6 +305,7 @@ def _merge_xcode_target_product(*, src, dest):
         file_path = dest.file_path,
         executable = dest.executable,
         executable_name = dest.executable_name,
+        package_dir = dest.package_dir,
         framework_files = depset(
             transitive = [dest.framework_files, src.framework_files],
         ),
@@ -513,6 +515,7 @@ def _xcode_target_to_dto(
         name = xcode_target.name,
         params_index = params_index,
         platform = xcode_target.platform,
+        product = xcode_target.product,
         xcode_generated_paths_file = xcode_generated_paths_file,
     )
 
@@ -726,14 +729,19 @@ def _linker_inputs_to_dto(
         name,
         params_index,
         platform,
+        product,
         xcode_generated_paths_file):
     if not linker_inputs:
         return ({}, None)
 
     if compile_target:
-        avoid_library = compile_target.product.file
+        self_product_path = compile_target.product.file.path
     else:
-        avoid_library = None
+        # Handle `{cc,swift}_{binary,test}` with `srcs` case
+        self_product_path = paths.join(
+            product.package_dir,
+            "lib{}.lo".format(name),
+        )
 
     ret = {}
     set_if_true(
@@ -770,7 +778,7 @@ def _linker_inputs_to_dto(
         args.add(xcode_generated_paths_file)
         args.add(generated_framework_search_paths_file)
         args.add("1" if is_framework else "0")
-        args.add(avoid_library.path if avoid_library else "")
+        args.add(self_product_path)
         args.add(platform_info.to_swift_triple(platform))
         args.add(link_params)
 
