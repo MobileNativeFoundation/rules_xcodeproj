@@ -1075,10 +1075,8 @@ workspace_dir="${{resolved_workspace_root_element%/*}}"
 bazel_out_full_path="$(perl -MCwd -e 'print Cwd::abs_path shift' "{bazel_out_full}";)"
 bazel_out_full_path="${{bazel_out_full_path#/private}}"
 bazel_out="${{bazel_out_full_path%/{bazel_out_full}}}/bazel-out"
-external="${{bazel_out%/*/*/*}}/external"
 
 echo "$workspace_dir" > "{out_full}"
-echo "${{external#$workspace_dir/}}" >> "{out_full}"
 echo "${{bazel_out#$workspace_dir/}}" >> "{out_full}"
 """.format(
             project_full = ctx.build_file_path,

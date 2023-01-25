@@ -15,7 +15,6 @@ final class CreateProjectTests: XCTestCase {
         let directories = Directories(
             workspace: "/Users/TimApple/app",
             projectRoot: projectRootDirectory,
-            external: "/tmp/bazel-output-base/rules_xcodeproj/build_output_base/external",
             bazelOut: "/tmp/bazel-output-base/rules_xcodeproj/build_output_base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out",
             internalDirectoryName: "r_xcp",
             workspaceOutput: "X.xcodeproj"
@@ -137,7 +136,6 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
         let directories = Directories(
             workspace: "/Users/TimApple/app",
             projectRoot: projectRootDirectory,
-            external: "/tmp/bazel-output-base/rules_xcodeproj/build_output_base/external",
             bazelOut: "/tmp/bazel-output-base/rules_xcodeproj/build_output_base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out",
             internalDirectoryName: "r_xcp",
             workspaceOutput: "X.xcodeproj"
