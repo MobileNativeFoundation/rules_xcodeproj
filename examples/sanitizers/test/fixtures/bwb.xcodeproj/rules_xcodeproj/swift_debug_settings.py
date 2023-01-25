@@ -3,6 +3,7 @@
 """An lldb module that registers a stop hook to set swift settings."""
 
 import lldb
+import re
 
 # Order matters, it needs to be from the most nested to the least
 _BUNDLE_EXTENSIONS = [
