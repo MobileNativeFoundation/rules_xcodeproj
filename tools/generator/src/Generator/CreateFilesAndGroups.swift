@@ -631,29 +631,9 @@ already was set to `\(existingValue)`.
             if let lldbContext = target.lldbContext,
                let lldbSettingsKey = target.lldbSettingsKey
             {
-                // Since `testonly` is viral, we only need to check the target
-                let testingFrameworks: [String]
-                let testingIncludes: [String]
-                if target.isTestonly {
-                    testingFrameworks = [
-                        "$(PLATFORM_DIR)/Developer/Library/Frameworks",
-                        // This one is set by Bazel, but not Xcode
-                        "$(SDKROOT)/Developer/Library/Frameworks",
-                    ]
-                    testingIncludes = [
-                        "$(PLATFORM_DIR)/Developer/usr/lib",
-                    ]
-                } else {
-                    testingFrameworks = []
-                    testingIncludes = []
-                }
-
-                let frameworks = lldbContext.frameworkSearchPaths
-                let includes = lldbContext.swiftmodules
-
                 lldbSettingsMap[lldbSettingsKey] = LLDBSettings(
-                    frameworks: testingFrameworks + frameworks,
-                    includes: testingIncludes + includes,
+                    frameworks: lldbContext.frameworkSearchPaths,
+                    includes: lldbContext.swiftmodules,
                     clang: lldbContext.clang
                 )
             }
