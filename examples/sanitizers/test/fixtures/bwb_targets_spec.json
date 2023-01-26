@@ -43,14 +43,12 @@
         },
         "lldb_context": {
             "c": [
-                [
-                    "-iquote$(PROJECT_DIR)",
-                    "-iquote$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin",
-                    "-O0",
-                    "-DDEBUG=1",
-                    "-fstack-protector",
-                    "-fstack-protector-all"
-                ]
+                "-iquote$(PROJECT_DIR)",
+                "-iquote$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin",
+                "-O0",
+                "-DDEBUG=1",
+                "-fstack-protector",
+                "-fstack-protector-all"
             ]
         },
         "name": "AddressSanitizerApp",
@@ -131,14 +129,12 @@
         },
         "lldb_context": {
             "c": [
-                [
-                    "-iquote$(PROJECT_DIR)",
-                    "-iquote$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin",
-                    "-O0",
-                    "-DDEBUG=1",
-                    "-fstack-protector",
-                    "-fstack-protector-all"
-                ]
+                "-iquote$(PROJECT_DIR)",
+                "-iquote$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin",
+                "-O0",
+                "-DDEBUG=1",
+                "-fstack-protector",
+                "-fstack-protector-all"
             ]
         },
         "name": "ThreadSanitizerApp",

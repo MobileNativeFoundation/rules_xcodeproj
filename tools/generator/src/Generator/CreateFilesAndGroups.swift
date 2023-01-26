@@ -943,32 +943,7 @@ private extension LLDBContext {
         buildMode: BuildMode,
         hasBazelDependencies: Bool
     ) -> String {
-        var onceOtherFlags: Set<String> = []
-
-        var filteredOpts: [String] = []
-        for opts in clangOpts {
-            for opt in opts {
-                guard !onceOtherFlags.contains(opt) else {
-                    continue
-                }
-                // This can lead to correctness issues if the value of a define
-                // is specified multiple times, and different on different targets,
-                // but it's how lldb currently handles it. Ideally it should use
-                // a dictionary for the key of the define and only filter ones that
-                // have the same value as the last time the key was used.
-                if opt.starts(with: "-D") {
-                    onceOtherFlags.insert(opt)
-                } else if opt.starts(with: "-fmodule-map-file=") ||
-                    opt.starts(with: "-I") || opt.starts(with: "-F") {
-                    // TODO: Make sure we aren't supposed to de-duplicate `-iquote`
-                    // or `-systemquote`
-                    onceOtherFlags.insert(opt)
-                }
-                filteredOpts.append(opt)
-            }
-        }
-
-        return filteredOpts.joined(separator: " ")
+        return clangOpts.joined(separator: " ")
     }
 }
 
