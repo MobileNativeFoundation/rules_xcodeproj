@@ -255,9 +255,6 @@ __Values__
 - `none`: No schemes are automatically generated.
 - `all`: A scheme is generated for every buildable target even if custom schemes
   are provided.
-- `top_level_only`: A scheme is generated for every top-level target even if
-  custom schemes are provided. A top-level target in this context is one that is
-  not depended upon by any other target in the Xcode project.
 
 The default value for `scheme_autogeneration_mode` is `auto`.
 
