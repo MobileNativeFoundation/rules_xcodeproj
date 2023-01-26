@@ -657,15 +657,11 @@ already was set to `\(existingValue)`.
 
                 let frameworks = lldbContext.frameworkSearchPaths
                 let includes = lldbContext.swiftmodules
-                let clang = lldbContext.toClangExtraArgs(
-                    buildMode: buildMode,
-                    hasBazelDependencies: hasBazelDependencies
-                )
 
                 lldbSettingsMap[lldbSettingsKey] = LLDBSettings(
                     frameworks: testingFrameworks + frameworks,
                     includes: testingIncludes + includes,
-                    clang: clang
+                    clang: lldbContext.clang
                 )
             }
         }
@@ -935,15 +931,6 @@ private extension Target {
         } else {
             return productPath.parent() + filePath.path.lastComponent
         }
-    }
-}
-
-private extension LLDBContext {
-    func toClangExtraArgs(
-        buildMode: BuildMode,
-        hasBazelDependencies: Bool
-    ) -> String {
-        return clangOpts.joined(separator: " ")
     }
 }
 
