@@ -89,7 +89,7 @@ def _lldb_context_to_dto(lldb_context, *, is_testonly, xcode_generated_paths):
 
     set_if_true(
         dto,
-        "frameworks",
+        "f",
         testing_frameworks + [
             build_setting_path(path = path)
             for path in lldb_context._framework_search_paths.to_list()
@@ -109,7 +109,7 @@ def _lldb_context_to_dto(lldb_context, *, is_testonly, xcode_generated_paths):
 
     set_if_true(
         dto,
-        "includes",
+        "s",
         testing_includes + uniq([
             _handle_swiftmodule_path(file)
             for file in lldb_context._swiftmodules.to_list()
@@ -133,7 +133,7 @@ def _lldb_context_to_dto(lldb_context, *, is_testonly, xcode_generated_paths):
                 once_flags[opt] = None
             clang_opts.append(opt)
 
-    set_if_true(dto, "clang", " ".join(clang_opts))
+    set_if_true(dto, "c", " ".join(clang_opts))
 
     return dto
 

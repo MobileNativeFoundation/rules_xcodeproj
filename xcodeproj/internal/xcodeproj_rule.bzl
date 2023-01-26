@@ -825,7 +825,7 @@ def _write_swift_debug_settings(*, ctx, settings):
         template = ctx.file._swift_debug_settings_template,
         output = output,
         substitutions = {
-            "%settings_map%": json.encode_indent(settings, indent = "  "),
+            "%settings_map%": json.encode_indent(settings),
         },
     )
 
