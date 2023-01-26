@@ -102,10 +102,22 @@ def _lldb_context_to_dto(lldb_context, *, xcode_generated_paths):
         ]),
     )
 
+    once_flags = {}
     clang_opts = []
     for _, opts in lldb_context._clang.to_list():
-        if opts:
-            clang_opts.append(opts)
+        for opt in opts:
+            if opt in once_flags:
+                continue
+            if (opt.startswith("-D") or opt.startswith("-I") or
+                opt.startswith("-fmodule-map-file=") or opt.startswith("-F")):
+                # This can lead to correctness issues if the value of a define
+                # is specified multiple times, and different on different
+                # targets, but it's how lldb currently handles it. Ideally it
+                # should use a dictionary for the key of the define and only
+                # filter ones that have the same value as the last time the key
+                # was used.
+                once_flags[opt] = None
+            clang_opts.append(opt)
 
     set_if_true(dto, "c", clang_opts)
 
