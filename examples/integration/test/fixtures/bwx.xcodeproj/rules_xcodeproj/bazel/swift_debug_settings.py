@@ -16,9 +16,7 @@ _BUNDLE_EXTENSIONS = [
 
 _TRIPLE_MATCH = re.compile(r"([^-]+-[^-]+)(-\D+)[^-]*(-.*)?")
 
-_SETTINGS = {
-
-}
+_SETTINGS = {}
 
 def __lldb_init_module(debugger, _internal_dict):
     # Register the stop hook when this module is loaded in lldb
@@ -67,7 +65,7 @@ class StopHook:
         if settings:
             frameworks = " ".join([
                 f'"{path}"'
-                for path in settings["frameworks"]
+                for path in settings.get("frameworks", [])
             ])
             if frameworks:
                 lldb.debugger.HandleCommand(
@@ -80,7 +78,7 @@ class StopHook:
 
             includes = " ".join([
                 f'"{path}"'
-                for path in settings["includes"]
+                for path in settings.get("includes", [])
             ])
             if includes:
                 lldb.debugger.HandleCommand(
@@ -91,7 +89,7 @@ class StopHook:
                     "settings clear target.swift-module-search-paths",
                 )
 
-            clang = settings["clang"]
+            clang = settings.get("clang")
             if clang:
                 lldb.debugger.HandleCommand(
                     f"settings set -- target.swift-extra-clang-flags '{clang}'",

@@ -188,9 +188,7 @@ $(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py
     ) -> PBXShellScriptBuildPhase {
         let script = PBXShellScriptBuildPhase(
             name: "Create swift_debug_settings.py",
-            inputPaths: [
-                FilePathResolver.resolveInternal(lldbSwiftSettingsModulePath),
-            ],
+            inputPaths: ["$(BAZEL_INTEGRATION_DIR)/swift_debug_settings.py"],
             outputPaths: ["$(OBJROOT)/swift_debug_settings.py"],
             shellScript: #"""
 perl -pe 's/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$ENV{$2}/g' \

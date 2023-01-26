@@ -626,7 +626,7 @@
 			files = (
 			);
 			inputPaths = (
-				"$(INTERNAL_DIR)/swift_debug_settings.py",
+				"$(BAZEL_INTEGRATION_DIR)/swift_debug_settings.py",
 			);
 			name = "Create swift_debug_settings.py";
 			outputPaths = (

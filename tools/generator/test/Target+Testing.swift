@@ -27,7 +27,6 @@ extension Target {
         appClips: Set<TargetID> = [],
         dependencies: Set<TargetID> = [],
         outputs: Outputs = .init(),
-        lldbContext: LLDBContext? = nil,
         isUnfocusedDependency: Bool = false,
         additionalSchemeTargets: Set<TargetID> = []
     ) -> Self {
@@ -53,7 +52,6 @@ extension Target {
             appClips: appClips,
             dependencies: dependencies,
             outputs: outputs,
-            lldbContext: lldbContext,
             isUnfocusedDependency: isUnfocusedDependency,
             additionalSchemeTargets: additionalSchemeTargets
         )
