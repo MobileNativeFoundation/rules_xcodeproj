@@ -657,19 +657,10 @@ already was set to `\(existingValue)`.
 
                 let frameworks = lldbContext.frameworkSearchPaths
                 let includes = lldbContext.swiftmodules
-
-                var oncePaths: Set<String> = []
-                var onceOtherFlags: Set<String> = []
-                let clangOtherArgs = lldbContext.clang.map { clang in
-                    return clang.toClangExtraArgs(
-                        buildMode: buildMode,
-                        hasBazelDependencies: hasBazelDependencies,
-                        oncePaths: &oncePaths,
-                        onceOtherFlags: &onceOtherFlags
-                    )
-                }
-
-                let clang = clangOtherArgs.joined(separator: " ")
+                let clang = lldbContext.toClangExtraArgs(
+                    buildMode: buildMode,
+                    hasBazelDependencies: hasBazelDependencies
+                )
 
                 lldbSettingsMap[lldbSettingsKey] = LLDBSettings(
                     frameworks: testingFrameworks + frameworks,
@@ -947,32 +938,34 @@ private extension Target {
     }
 }
 
-private extension LLDBContext.Clang {
+private extension LLDBContext {
     func toClangExtraArgs(
         buildMode: BuildMode,
-        hasBazelDependencies: Bool,
-        oncePaths: inout Set<String>,
-        onceOtherFlags: inout Set<String>
+        hasBazelDependencies: Bool
     ) -> String {
+        var onceOtherFlags: Set<String> = []
+
         var filteredOpts: [String] = []
-        for opt in opts {
-            guard !onceOtherFlags.contains(opt) else {
-                continue
+        for opts in clangOpts {
+            for opt in opts {
+                guard !onceOtherFlags.contains(opt) else {
+                    continue
+                }
+                // This can lead to correctness issues if the value of a define
+                // is specified multiple times, and different on different targets,
+                // but it's how lldb currently handles it. Ideally it should use
+                // a dictionary for the key of the define and only filter ones that
+                // have the same value as the last time the key was used.
+                if opt.starts(with: "-D") {
+                    onceOtherFlags.insert(opt)
+                } else if opt.starts(with: "-fmodule-map-file=") ||
+                    opt.starts(with: "-I") || opt.starts(with: "-F") {
+                    // TODO: Make sure we aren't supposed to de-duplicate `-iquote`
+                    // or `-systemquote`
+                    onceOtherFlags.insert(opt)
+                }
+                filteredOpts.append(opt)
             }
-            // This can lead to correctness issues if the value of a define
-            // is specified multiple times, and different on different targets,
-            // but it's how lldb currently handles it. Ideally it should use
-            // a dictionary for the key of the define and only filter ones that
-            // have the same value as the last time the key was used.
-            if opt.starts(with: "-D") {
-                onceOtherFlags.insert(opt)
-            } else if opt.starts(with: "-fmodule-map-file=") ||
-                opt.starts(with: "-I") || opt.starts(with: "-F") {
-                // TODO: Make sure we aren't supposed to de-duplicate `-iquote`
-                // or `-systemquote`
-                onceOtherFlags.insert(opt)
-            }
-            filteredOpts.append(opt)
         }
 
         return filteredOpts.joined(separator: " ")
