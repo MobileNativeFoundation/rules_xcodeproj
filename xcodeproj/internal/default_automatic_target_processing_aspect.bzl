@@ -84,6 +84,7 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
     if ctx.rule.kind == "cc_library":
         xcode_targets = {
             "deps": [target_type.compile, None],
+            "implementation_deps": [target_type.compile],
             "interface_deps": [target_type.compile],
         }
     elif ctx.rule.kind == "objc_library":
