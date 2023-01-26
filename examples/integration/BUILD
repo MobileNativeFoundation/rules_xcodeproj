@@ -47,7 +47,7 @@ exports_files(["README.md"])
     xcodeproj(
         name = "xcodeproj-{}".format(simulator_cpu),
         associated_extra_files = ASSOCIATED_EXTRA_FILES,
-        build_mode = "bazel",
+        build_mode = "xcode",
         config = CONFIG,
         extra_files = EXTRA_FILES,
         ios_simulator_cpus = simulator_cpu,
