@@ -34,6 +34,7 @@ filegroup(
     srcs = glob(
         ["**"],
         exclude = [
+            "**/.*",
             "fixtures.bzl",
             "updater.template.sh",
             "validator.template.sh",

@@ -8,7 +8,12 @@ sh_binary(
 
 filegroup(
     name = "release_files",
-    srcs = glob(["**"]) + [
+    srcs = glob(
+        ["**"],
+        exclude = [
+            "**/.*",
+        ],
+    ) + [
         "//" + package_name() + "/extensionpointidentifiers_parser:release_files",
         "//" + package_name() + "/generator:release_files",
         "//" + package_name() + "/params_processors:release_files",
