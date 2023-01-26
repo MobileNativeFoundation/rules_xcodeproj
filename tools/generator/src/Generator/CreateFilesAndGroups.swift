@@ -624,13 +624,6 @@ already was set to `\(existingValue)`.
 
         // Write target internal files
 
-        let hasBazelDependencies = needsBazelDependenciesTarget(
-            buildMode: buildMode,
-            forceBazelDependencies: forceBazelDependencies,
-            files: files,
-            hasTargets: !targets.isEmpty
-        )
-
         // - `lldbSwiftSettingsModule`
 
         var lldbSettingsMap: [String: LLDBSettings] = [:]
