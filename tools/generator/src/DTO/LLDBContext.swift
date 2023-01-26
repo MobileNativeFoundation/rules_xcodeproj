@@ -3,16 +3,16 @@ import PathKit
 struct LLDBContext: Equatable {
     let frameworkSearchPaths: [String]
     let swiftmodules: [String]
-    let clangOpts: [String]
+    let clang: String
 
     init(
         frameworkSearchPaths: [String] = [],
         swiftmodules: [String] = [],
-        clangOpts: [String] = []
+        clang: String = ""
     ) {
         self.frameworkSearchPaths = frameworkSearchPaths
         self.swiftmodules = swiftmodules
-        self.clangOpts = clangOpts
+        self.clang = clang
     }
 }
 
@@ -22,7 +22,7 @@ extension LLDBContext: Decodable {
     enum CodingKeys: String, CodingKey {
         case frameworkSearchPaths = "f"
         case swiftmodules = "s"
-        case clangOpts = "c"
+        case clang = "c"
     }
 
     init(from decoder: Decoder) throws {
@@ -32,7 +32,6 @@ extension LLDBContext: Decodable {
             .decodeIfPresent([String].self, forKey: .frameworkSearchPaths) ?? []
         swiftmodules = try container
             .decodeIfPresent([String].self, forKey: .swiftmodules) ?? []
-        clangOpts = try container
-            .decodeIfPresent([String].self, forKey: .clangOpts) ?? []
+        clang = try container.decodeIfPresent(String.self, forKey: .clang) ?? ""
     }
 }

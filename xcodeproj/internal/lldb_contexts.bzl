@@ -119,7 +119,7 @@ def _lldb_context_to_dto(lldb_context, *, xcode_generated_paths):
                 once_flags[opt] = None
             clang_opts.append(opt)
 
-    set_if_true(dto, "c", clang_opts)
+    set_if_true(dto, "c", " ".join(clang_opts))
 
     return dto
 
