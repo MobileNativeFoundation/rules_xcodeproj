@@ -67,16 +67,30 @@ def _collect_lldb_context(
         ),
     )
 
-def _lldb_context_to_dto(lldb_context, *, xcode_generated_paths):
+def _lldb_context_to_dto(lldb_context, *, is_testonly, xcode_generated_paths):
     if not lldb_context:
         return {}
 
     dto = {}
 
+    # Since `testonly` is viral, we only need to check the target
+    if is_testonly:
+        testing_frameworks = [
+            "$(PLATFORM_DIR)/Developer/Library/Frameworks",
+            # This one is set by Bazel, but not Xcode
+            "$(SDKROOT)/Developer/Library/Frameworks",
+        ]
+        testing_includes = [
+            "$(PLATFORM_DIR)/Developer/usr/lib",
+        ]
+    else:
+        testing_frameworks = []
+        testing_includes = []
+
     set_if_true(
         dto,
         "f",
-        [
+        testing_frameworks + [
             build_setting_path(path = path)
             for path in lldb_context._framework_search_paths.to_list()
             if not is_generated_path(path)
@@ -96,7 +110,7 @@ def _lldb_context_to_dto(lldb_context, *, xcode_generated_paths):
     set_if_true(
         dto,
         "s",
-        uniq([
+        testing_includes + uniq([
             _handle_swiftmodule_path(file)
             for file in lldb_context._swiftmodules.to_list()
         ]),
