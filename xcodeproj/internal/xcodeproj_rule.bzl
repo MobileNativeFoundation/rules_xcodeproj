@@ -825,7 +825,7 @@ def _write_swift_debug_settings(*, ctx, settings):
         template = ctx.file._swift_debug_settings_template,
         output = output,
         substitutions = {
-            "%settings_map%": json.encode_indent(settings, indent = '  '),
+            "%settings_map%": json.encode_indent(settings, indent = "  "),
         },
     )
 
@@ -1462,7 +1462,7 @@ done
         swift_debug_settings = normalized_swift_debug_settings
 
     bazel_integration_files = list(ctx.files._base_integration_files) + [
-        swift_debug_settings
+        swift_debug_settings,
     ]
     if build_mode == "xcode":
         bazel_integration_files.append(
