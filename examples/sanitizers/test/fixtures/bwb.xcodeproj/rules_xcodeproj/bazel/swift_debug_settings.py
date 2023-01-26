@@ -17,23 +17,11 @@ _BUNDLE_EXTENSIONS = [
 _TRIPLE_MATCH = re.compile(r"([^-]+-[^-]+)(-\D+)[^-]*(-.*)?")
 
 _SETTINGS = {
-  "x86_64-apple-ios-simulator AddressSanitizerApp.app/AddressSanitizerApp" : {
-    "clang" : "-iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all",
-    "frameworks" : [
-
-    ],
-    "includes" : [
-
-    ]
+  "x86_64-apple-ios-simulator AddressSanitizerApp.app/AddressSanitizerApp": {
+    "clang": "-iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all"
   },
-  "x86_64-apple-ios-simulator ThreadSanitizerApp.app/ThreadSanitizerApp" : {
-    "clang" : "-iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all",
-    "frameworks" : [
-
-    ],
-    "includes" : [
-
-    ]
+  "x86_64-apple-ios-simulator ThreadSanitizerApp.app/ThreadSanitizerApp": {
+    "clang": "-iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all"
   }
 }
 
@@ -84,7 +72,7 @@ class StopHook:
         if settings:
             frameworks = " ".join([
                 f'"{path}"'
-                for path in settings["frameworks"]
+                for path in settings.get("frameworks", [])
             ])
             if frameworks:
                 lldb.debugger.HandleCommand(
@@ -97,7 +85,7 @@ class StopHook:
 
             includes = " ".join([
                 f'"{path}"'
-                for path in settings["includes"]
+                for path in settings.get("includes", [])
             ])
             if includes:
                 lldb.debugger.HandleCommand(
@@ -108,7 +96,7 @@ class StopHook:
                     "settings clear target.swift-module-search-paths",
                 )
 
-            clang = settings["clang"]
+            clang = settings.get("clang")
             if clang:
                 lldb.debugger.HandleCommand(
                     f"settings set -- target.swift-extra-clang-flags '{clang}'",

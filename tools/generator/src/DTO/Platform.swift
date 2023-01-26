@@ -22,14 +22,6 @@ struct Platform: Equatable, Hashable, Decodable {
     let minimumOsVersion: SemanticVersion
 }
 
-extension Platform {
-    var versionlessTargetTriple: String {
-        return """
-\(arch)-apple-\(variant.targetTriplePrefix)\(variant.tripleSuffix)
-"""
-    }
-}
-
 extension Platform.OS {
     var deploymentTargetBuildSettingKey: String {
         switch self {

@@ -290,7 +290,6 @@
 		E6ADB26ABC74EB1D263F05D1 /* XCScheme+EnvironmentVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65123348DC3959E1D008FBA5 /* XCScheme+EnvironmentVariable.swift */; };
 		E878F5FE0AED5AD171029A0C /* BuildSettingConditional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6984980F5E1BB0C4900146 /* BuildSettingConditional.swift */; };
 		E88056113DFB19CB1774A2BC /* PlistValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4336885822E8CDC294B591 /* PlistValue.swift */; };
-		E8B50EA47CFE287ABAD7C423 /* LLDBContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B93B6C7F536EAEE9088C1E /* LLDBContext.swift */; };
 		E8BF45B891266C2493484CCA /* KeyedDecodingContainer+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A444EA1D327BCC04F2AAD191 /* KeyedDecodingContainer+Additions.swift */; };
 		E9D7770FE1B31401B5A04D1D /* XCWorkspaceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882129C20926E28E123BFD52 /* XCWorkspaceData.swift */; };
 		EA88E99875C717277FFE3C9C /* XCSchemeInfo+OtherActionInfos.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8685445A421BA6986C541A /* XCSchemeInfo+OtherActionInfos.swift */; };
@@ -682,7 +681,6 @@
 		D5FF557B7B1D208E940BC8CE /* OrderedSet+UnstableInternals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedSet+UnstableInternals.swift"; sourceTree = "<group>"; };
 		D6E582D5C01224A3FA34D482 /* XCScheme+TestableReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCScheme+TestableReference.swift"; sourceTree = "<group>"; };
 		D7A0B1FD74B7719CE5808DBA /* XCWorkspaceDataFileRef.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCWorkspaceDataFileRef.swift; sourceTree = "<group>"; };
-		D7B93B6C7F536EAEE9088C1E /* LLDBContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLDBContext.swift; sourceTree = "<group>"; };
 		D893B5D58BCA16EF15776B38 /* XCRemoteSwiftPackageReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCRemoteSwiftPackageReference.swift; sourceTree = "<group>"; };
 		D964D0013E3290129AEF8690 /* PBXResourcesBuildPhase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBXResourcesBuildPhase.swift; sourceTree = "<group>"; };
 		D99E1A2E41892C7D98CE6F55 /* _UnsafeBitset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _UnsafeBitset.swift; sourceTree = "<group>"; };
@@ -1416,7 +1414,6 @@
 				67E2F3366BA142B6FCDC1068 /* FilePath.swift */,
 				65BCCBFD2580E61EBB1CBE33 /* Inputs.swift */,
 				A360977902D77B4835C533C1 /* LinkerInputs.swift */,
-				D7B93B6C7F536EAEE9088C1E /* LLDBContext.swift */,
 				F6B4888E4BA83F2EF9A6697E /* Outputs.swift */,
 				C7DA709BE91CA3453B355B57 /* Platform.swift */,
 				413E1B0ED94C1ECB8EA8A198 /* Product.swift */,
@@ -2035,7 +2032,7 @@
 			files = (
 			);
 			inputPaths = (
-				"$(INTERNAL_DIR)/swift_debug_settings.py",
+				"$(BAZEL_INTEGRATION_DIR)/swift_debug_settings.py",
 			);
 			name = "Create swift_debug_settings.py";
 			outputPaths = (
@@ -2500,7 +2497,6 @@
 				9850288321117129E043B6D8 /* ExtensionPointIdentifier.swift in Sources */,
 				5F9DE813FFD55AA35D4C44DB /* FilePath.swift in Sources */,
 				F067676699B0542511511A94 /* Inputs.swift in Sources */,
-				E8B50EA47CFE287ABAD7C423 /* LLDBContext.swift in Sources */,
 				CC217856D2F6439626D8D9DD /* LinkerInputs.swift in Sources */,
 				D399961E846FD7EF1C795FAD /* Outputs.swift in Sources */,
 				ECAD26FA8667BAF70A26BD37 /* Platform.swift in Sources */,
