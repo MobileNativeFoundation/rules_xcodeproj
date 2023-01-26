@@ -1,28 +1,36 @@
 load("@buildifier_prebuilt//:rules.bzl", "buildifier")
+load("@rules_pkg//pkg:tar.bzl", "pkg_tar")
 
 # Release
 
-# TODO: Use rules_pkg
-genrule(
+filegroup(
     name = "release",
-    srcs = [":release_files"],
-    outs = [
-        "release.tar.gz",
-        "release.tar.gz.sha256",
+    srcs = [
+        ":release_pkg",
+        ":release_pkg_sha256",
     ],
+)
+
+genrule(
+    name = "release_pkg_sha256",
+    srcs = [":release_pkg"],
+    outs = ["release.tar.gz.sha256"],
     cmd = """\
 set -euo pipefail
 
-outs=($(OUTS))
-
-COPYFILE_DISABLE=1 tar czvfh "$${outs[0]}" \
-  --exclude .DS_Store \
-  --exclude **/*.xcodeproj \
-  --exclude ^bazel-out/ \
-  --exclude ^external/ \
-  *
-shasum -a 256 "$${outs[0]}" > "$${outs[1]}"
+shasum -a 256 $< > $@
     """,
+    tags = ["manual"],
+)
+
+pkg_tar(
+    name = "release_pkg",
+    srcs = [":release_files"],
+    mode = "0444",
+    owner = "0.0",
+    package_file_name = "release.tar.gz",
+    extension = "tar.gz",
+    strip_prefix = ".",
     tags = ["manual"],
 )
 

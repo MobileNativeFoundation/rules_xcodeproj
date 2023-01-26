@@ -21,6 +21,11 @@ bazel_dep(
     version = "6.0.0.1",
     dev_dependency = True,
 )
+bazel_dep(
+    name = "rules_pkg",
+    version = "0.7.0",
+    dev_dependency = True,
+)
 
 non_module_deps = use_extension("//xcodeproj:extensions.bzl", "non_module_deps")
 use_repo(
