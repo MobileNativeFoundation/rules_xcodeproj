@@ -492,6 +492,7 @@ def _xcode_target_to_dto(
             "lldb_context",
             lldb_contexts.to_dto(
                 xcode_target._lldb_context,
+                is_testonly = xcode_target._is_testonly,
                 xcode_generated_paths = xcode_generated_paths,
             ),
         )
