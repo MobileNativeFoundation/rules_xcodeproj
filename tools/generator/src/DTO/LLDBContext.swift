@@ -1,28 +1,18 @@
 import PathKit
 
 struct LLDBContext: Equatable {
-    struct Clang: Equatable {
-        let opts: [String]
-
-        init(
-            opts: [String] = []
-        ) {
-            self.opts = opts
-        }
-    }
-
     let frameworkSearchPaths: [String]
     let swiftmodules: [String]
-    let clang: [Clang]
+    let clangOpts: [[String]]
 
     init(
         frameworkSearchPaths: [String] = [],
         swiftmodules: [String] = [],
-        clang: [Clang] = []
+        clangOpts: [[String]] = []
     ) {
         self.frameworkSearchPaths = frameworkSearchPaths
         self.swiftmodules = swiftmodules
-        self.clang = clang
+        self.clangOpts = clangOpts
     }
 }
 
@@ -32,7 +22,7 @@ extension LLDBContext: Decodable {
     enum CodingKeys: String, CodingKey {
         case frameworkSearchPaths = "f"
         case swiftmodules = "s"
-        case clang = "c"
+        case clangOpts = "c"
     }
 
     init(from decoder: Decoder) throws {
@@ -42,19 +32,7 @@ extension LLDBContext: Decodable {
             .decodeIfPresent([String].self, forKey: .frameworkSearchPaths) ?? []
         swiftmodules = try container
             .decodeIfPresent([String].self, forKey: .swiftmodules) ?? []
-        clang = try container
-            .decodeIfPresent([Clang].self, forKey: .clang) ?? []
-    }
-}
-
-extension LLDBContext.Clang: Decodable {
-    enum CodingKeys: String, CodingKey {
-        case opts = "o"
-    }
-
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-
-        opts = try container.decodeIfPresent([String].self, forKey: .opts) ?? []
+        clangOpts = try container
+            .decodeIfPresent([[String]].self, forKey: .clangOpts) ?? []
     }
 }

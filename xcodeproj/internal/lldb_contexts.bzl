@@ -102,13 +102,12 @@ def _lldb_context_to_dto(lldb_context, *, xcode_generated_paths):
         ]),
     )
 
-    clang_dtos = []
+    clang_opts = []
     for _, opts in lldb_context._clang.to_list():
-        clang_dto = {}
-        set_if_true(clang_dto, "o", opts)
-        clang_dtos.append(clang_dto)
+        if opts:
+            clang_opts.append(opts)
 
-    set_if_true(dto, "c", clang_dtos)
+    set_if_true(dto, "c", clang_opts)
 
     return dto
 
