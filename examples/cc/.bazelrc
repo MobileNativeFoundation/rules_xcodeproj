@@ -1,5 +1,7 @@
 # Import parent workspace settings
 import %workspace%/../../shared.bazelrc
 
+build --experimental_cc_implementation_deps
+
 # Use a user.bazelrc if it exists
 try-import %workspace%/user.bazelrc

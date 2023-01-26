@@ -15,7 +15,7 @@ cc_library(
 cc_library(
     name = "lib_defines",
     defines = ["SECRET_2=\\\"World!\\\""],
-    deps = [":lib_impl"],
+    implementation_deps = [":lib_impl"],
 )
 
 cc_library(
