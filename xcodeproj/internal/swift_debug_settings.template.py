@@ -65,7 +65,7 @@ class StopHook:
         if settings:
             frameworks = " ".join([
                 f'"{path}"'
-                for path in settings.get("frameworks", [])
+                for path in settings.get("f", [])
             ])
             if frameworks:
                 lldb.debugger.HandleCommand(
@@ -78,7 +78,7 @@ class StopHook:
 
             includes = " ".join([
                 f'"{path}"'
-                for path in settings.get("includes", [])
+                for path in settings.get("s", [])
             ])
             if includes:
                 lldb.debugger.HandleCommand(
@@ -89,7 +89,7 @@ class StopHook:
                     "settings clear target.swift-module-search-paths",
                 )
 
-            clang = settings.get("clang")
+            clang = settings.get("c")
             if clang:
                 lldb.debugger.HandleCommand(
                     f"settings set -- target.swift-extra-clang-flags '{clang}'",
