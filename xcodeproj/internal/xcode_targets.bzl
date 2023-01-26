@@ -11,7 +11,6 @@ load(
     "file_path_to_dto",
     "normalized_file_path",
 )
-load(":lldb_contexts.bzl", "lldb_contexts")
 load(":platform.bzl", "platform_info")
 
 def _make_xcode_target(
@@ -89,6 +88,10 @@ def _make_xcode_target(
     Returns:
         A mostly opaque `struct` that can be passed to `xcode_targets.to_dto`.
     """
+    product = (
+        _to_xcode_target_product(product) if not compile_target else product
+    )
+
     return struct(
         _compile_target = compile_target,
         _package_bin_dir = package_bin_dir,
@@ -102,17 +105,19 @@ def _make_xcode_target(
         _extensions = tuple(extensions),
         _app_clips = tuple(app_clips),
         _dependencies = dependencies,
-        _lldb_context = lldb_context,
         id = id,
         name = name,
         label = label,
         configuration = configuration,
         platform = platform,
-        product = (
-            _to_xcode_target_product(product) if not compile_target else product
-        ),
+        product = product,
         linker_inputs = (
             _to_xcode_target_linker_inputs(linker_inputs) if not compile_target else linker_inputs
+        ),
+        lldb_context = lldb_context,
+        lldb_context_key = _lldb_context_key(
+            platform = platform,
+            product = product,
         ),
         inputs = (
             _to_xcode_target_inputs(inputs) if not compile_target else inputs
@@ -125,6 +130,48 @@ def _make_xcode_target(
         transitive_dependencies = transitive_dependencies,
         xcode_required_targets = xcode_required_targets,
     )
+
+_BUNDLE_TYPES = {
+    "com.apple.product-type.application": None,
+    "com.apple.product-type.application.on-demand-install-capable": None,
+    "com.apple.product-type.application.watchapp": None,
+    "com.apple.product-type.application.watchapp2": None,
+    "com.apple.product-type.app-extension": None,
+    "com.apple.product-type.app-extension.messages": None,
+    "com.apple.product-type.bundle": None,
+    "com.apple.product-type.bundle.ui-testing": None,
+    "com.apple.product-type.bundle.unit-test": None,
+    "com.apple.product-type.extensionkit-extension": None,
+    "com.apple.product-type.framework": None,
+    "com.apple.product-type.tv-app-extension": None,
+    "com.apple.product-type.watchkit-extension": None,
+    "com.apple.product-type.watchkit2-extension": None,
+}
+
+def _lldb_context_key(*, platform, product):
+    if not product.file_path:
+        return None
+
+    product_basename = paths.basename(product.file_path.path)
+    base_key = "{} {}".format(
+        platform_info.to_lldb_context_triple(platform),
+        product_basename,
+    )
+
+    if not product.type in _BUNDLE_TYPES:
+        return base_key
+
+    executable_name = product.executable_name
+    if not executable_name:
+        executable_name = paths.split_extension(product_basename)[0]
+
+    if platform_info.is_platform_type(
+        platform,
+        apple_common.platform_type.macos,
+    ):
+        return "{}/Contents/MacOS/{}".format(base_key, executable_name)
+
+    return "{}/{}".format(base_key, executable_name)
 
 def _to_xcode_target_inputs(inputs):
     return struct(
@@ -258,7 +305,7 @@ def _merge_xcode_target(*, src, dest):
             src = src.outputs,
             dest = dest.outputs,
         ),
-        lldb_context = dest._lldb_context,
+        lldb_context = dest.lldb_context,
         xcode_required_targets = dest.xcode_required_targets,
     )
 
@@ -443,7 +490,6 @@ def _xcode_target_to_dto(
         additional_scheme_target_ids = None,
         build_mode,
         ctx,
-        include_lldb_context,
         is_fixture,
         is_unfocused_dependency = False,
         link_params_processor,
@@ -485,17 +531,6 @@ def _xcode_target_to_dto(
 
     if xcode_target._watch_application not in unfocused_targets:
         set_if_true(dto, "watch_application", xcode_target._watch_application)
-
-    if include_lldb_context:
-        set_if_true(
-            dto,
-            "lldb_context",
-            lldb_contexts.to_dto(
-                xcode_target._lldb_context,
-                is_testonly = xcode_target._is_testonly,
-                xcode_generated_paths = xcode_generated_paths,
-            ),
-        )
 
     generated_framework_search_paths = _generated_framework_search_paths(
         build_mode = build_mode,

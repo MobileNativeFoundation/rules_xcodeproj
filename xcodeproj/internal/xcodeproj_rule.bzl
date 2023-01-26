@@ -17,6 +17,7 @@ load(
 )
 load(":flattened_key_values.bzl", "flattened_key_values")
 load(":input_files.bzl", "input_files")
+load(":lldb_contexts.bzl", "lldb_contexts")
 load(":output_files.bzl", "output_files")
 load(":platform.bzl", "platform_info")
 load(":providers.bzl", "XcodeProjInfo")
@@ -496,6 +497,7 @@ actual targets: {}
     )
 
     target_dtos = {}
+    lldb_contexts_dto = {}
     target_dependencies = {}
     target_link_params = {}
     for index, xcode_target in enumerate(focused_targets.values()):
@@ -513,13 +515,23 @@ actual targets: {}
         else:
             additional_scheme_target_ids = None
 
+        if include_lldb_context and xcode_target.lldb_context_key:
+            set_if_true(
+                lldb_contexts_dto,
+                xcode_target.lldb_context_key,
+                lldb_contexts.to_dto(
+                    xcode_target.lldb_context,
+                    is_testonly = xcode_target._is_testonly,
+                    xcode_generated_paths = xcode_generated_paths,
+                ),
+            )
+
         dto, replaced_dependencies, link_params = xcode_targets.to_dto(
             ctx = ctx,
             xcode_target = xcode_target,
             is_fixture = is_fixture,
             additional_scheme_target_ids = additional_scheme_target_ids,
             build_mode = build_mode,
-            include_lldb_context = include_lldb_context,
             is_unfocused_dependency = xcode_target.id in unfocused_dependencies,
             link_params_processor = ctx.executable._link_params_processor,
             linker_products_map = linker_products_map,
@@ -698,6 +710,7 @@ actual targets: {}
         focused_targets_extra_files,
         replacement_labels_by_label,
         configurations_map,
+        lldb_contexts_dto,
     )
 
 def _process_xcode_generated_paths(
@@ -800,6 +813,23 @@ def should_include_outputs(build_mode):
     return build_mode != "bazel_via_proxy"
 
 # Actions
+
+def _write_swift_debug_settings(*, ctx, settings):
+    output = ctx.actions.declare_file(
+        "{}_bazel_integration_files/swift_debug_settings.py".format(
+            ctx.attr.name,
+        ),
+    )
+
+    ctx.actions.expand_template(
+        template = ctx.file._swift_debug_settings_template,
+        output = output,
+        substitutions = {
+            "%settings_map%": json.encode_indent(settings, indent = "  "),
+        },
+    )
+
+    return output
 
 def _write_spec(
         *,
@@ -1310,6 +1340,7 @@ def _xcodeproj_impl(ctx):
         focused_targets_extra_files,
         replacement_labels_by_label,
         configurations_map,
+        lldb_contexts_dto,
     ) = _process_targets(
         ctx = ctx,
         build_mode = build_mode,
@@ -1326,14 +1357,6 @@ def _xcodeproj_impl(ctx):
             ctx.attr.adjust_schemes_for_swiftui_previews
         ),
     )
-
-    bazel_integration_files = list(ctx.files._base_integration_files)
-    if build_mode == "xcode":
-        bazel_integration_files.append(
-            _write_create_xcode_overlay_script(ctx = ctx, targets = targets),
-        )
-    else:
-        bazel_integration_files.extend(ctx.files._bazel_integration_files)
 
     extra_files = _process_extra_files(
         ctx = ctx,
@@ -1383,6 +1406,10 @@ def _xcodeproj_impl(ctx):
         ctx = ctx,
         extension_infoplists = extension_infoplists,
     )
+    swift_debug_settings = _write_swift_debug_settings(
+        ctx = ctx,
+        settings = lldb_contexts_dto,
+    )
 
     if configurations_map:
         flags = " ".join([
@@ -1392,18 +1419,27 @@ def _xcodeproj_impl(ctx):
 
         normalized_specs = [
             ctx.actions.declare_file(
-                "{}-normalized_spec.{}.json".format(ctx.attr.name, idx),
+                "{}-normalized/spec.{}.json".format(ctx.attr.name, idx),
             )
             for idx, file in enumerate(spec_files)
         ]
         normalized_extensionpointidentifiers = ctx.actions.declare_file(
-            "{}_normalized_extensionpointidentifiers_targetids".format(
+            "{}_normalized/extensionpointidentifiers_targetids".format(
                 ctx.attr.name,
             ),
         )
+        normalized_swift_debug_settings = ctx.actions.declare_file(
+            "{}_normalized/swift_debug_settings.py".format(ctx.attr.name),
+        )
 
-        unstable_files = spec_files + [extensionpointidentifiers_file]
-        normalized_files = normalized_specs + [normalized_extensionpointidentifiers]
+        unstable_files = spec_files + [
+            extensionpointidentifiers_file,
+            swift_debug_settings,
+        ]
+        normalized_files = normalized_specs + [
+            normalized_extensionpointidentifiers,
+            normalized_swift_debug_settings,
+        ]
         ctx.actions.run_shell(
             inputs = unstable_files,
             outputs = normalized_files,
@@ -1423,6 +1459,17 @@ done
 
         spec_files = normalized_specs
         extensionpointidentifiers_file = normalized_extensionpointidentifiers
+        swift_debug_settings = normalized_swift_debug_settings
+
+    bazel_integration_files = list(ctx.files._base_integration_files) + [
+        swift_debug_settings,
+    ]
+    if build_mode == "xcode":
+        bazel_integration_files.append(
+            _write_create_xcode_overlay_script(ctx = ctx, targets = targets),
+        )
+    else:
+        bazel_integration_files.extend(ctx.files._bazel_integration_files)
 
     xcodeproj, install_path = _write_xcodeproj(
         ctx = ctx,
@@ -1776,6 +1823,12 @@ transitive dependencies of the targets specified in the
             cfg = "exec",
             default = Label("//tools/params_processors:link_params_processor"),
             executable = True,
+        ),
+        "_swift_debug_settings_template": attr.label(
+            allow_single_file = True,
+            default = Label(
+                "//xcodeproj/internal:swift_debug_settings.template.py",
+            ),
         ),
         "_xccurrentversions_parser": attr.label(
             cfg = "exec",

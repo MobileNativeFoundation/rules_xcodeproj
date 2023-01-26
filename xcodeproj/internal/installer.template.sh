@@ -132,7 +132,11 @@ readonly bazel_integration_files=%bazel_integration_files%
 if [[ $for_fixture -eq 1 ]]; then
   # Create empty static files for fixtures
   for file in "${bazel_integration_files[@]}"; do
-    :>"$dest/rules_xcodeproj/bazel/${file##*/}"
+    if [[ "${file##*/}" == "swift_debug_settings.py" ]]; then
+      cp -c "$file" "$dest/rules_xcodeproj/bazel"
+    else
+      :>"$dest/rules_xcodeproj/bazel/${file##*/}"
+    fi
   done
 else
   cp -c "${bazel_integration_files[@]}" "$dest/rules_xcodeproj/bazel"

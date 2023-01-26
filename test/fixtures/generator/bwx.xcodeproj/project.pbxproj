@@ -225,7 +225,6 @@
 		B2BC1C5F902D1E73F1B27A10 /* XCSchemeInfo+ProfileActionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880425B6FC2AFA562D2E2AA9 /* XCSchemeInfo+ProfileActionInfo.swift */; };
 		B378A968338574B6EDE03B0C /* XCScheme+ExecutionAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3234A5BE127B3ABCED3B5C /* XCScheme+ExecutionAction.swift */; };
 		B42EE9BC03C8F12CA7C6D5FC /* XCScheme+ArchiveAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3022A38A772394F16EF7432D /* XCScheme+ArchiveAction.swift */; };
-		B4449C3CF4C932729D94262D /* LLDBContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1DDA17D271BF65028FB848 /* LLDBContext.swift */; };
 		B44E435E5CF1300129004F07 /* ZippyJSONDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A952F44C93F0E4E30AC48BF /* ZippyJSONDecoder.swift */; };
 		B6572EF59FC0741F09F143FA /* Optional+ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743EE4E9856631C27E98DFDD /* Optional+ExtensionsTests.swift */; };
 		B7574C7DE1B21D4C8EB0A0E9 /* PBXCopyFilesBuildPhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FB834A81FCB53FBB856880 /* PBXCopyFilesBuildPhase.swift */; };
@@ -500,7 +499,6 @@
 		09860928321863A262460E2D /* XCScheme+ProfileAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCScheme+ProfileAction.swift"; sourceTree = "<group>"; };
 		0A4FE5D25840EEF06B1B5C12 /* XCScheme+CommandLineArguments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCScheme+CommandLineArguments.swift"; sourceTree = "<group>"; };
 		0A52103593FBAD44CB34CA00 /* OrderedDictionary+Initializers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedDictionary+Initializers.swift"; sourceTree = "<group>"; };
-		0B1DDA17D271BF65028FB848 /* LLDBContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLDBContext.swift; sourceTree = "<group>"; };
 		0BD403D59FD279723BD9B059 /* _CompileStub_.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = _CompileStub_.m; sourceTree = DERIVED_FILE_DIR; };
 		0BE3FBF7F2F94CB58BD0909E /* libZippyJSON.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libZippyJSON.a; path = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_zippyjson/libZippyJSON.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C4E9C0C10A32A284CC1715E /* PathKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathKit.swift; sourceTree = "<group>"; };
@@ -1107,7 +1105,6 @@
 				813B2B35ECDBF46275442C78 /* FilePath.swift */,
 				7B897629F141C3564CCB3756 /* Inputs.swift */,
 				D588B8820BC03A5E9EDC8249 /* LinkerInputs.swift */,
-				0B1DDA17D271BF65028FB848 /* LLDBContext.swift */,
 				A9D1243E27562547E676FEFA /* Outputs.swift */,
 				551DDE2B20710995C0D38C88 /* Platform.swift */,
 				9D86E0CDB1E6709FBE075C12 /* Product.swift */,
@@ -2135,7 +2132,7 @@
 			files = (
 			);
 			inputPaths = (
-				"$(INTERNAL_DIR)/swift_debug_settings.py",
+				"$(BAZEL_INTEGRATION_DIR)/swift_debug_settings.py",
 			);
 			name = "Create swift_debug_settings.py";
 			outputPaths = (
@@ -2428,7 +2425,6 @@
 				EE4AFD6E945243B3C060DF6E /* ExtensionPointIdentifier.swift in Sources */,
 				73C7CE7559CFF134CECC64A0 /* FilePath.swift in Sources */,
 				F8DA72B1905E21CDC36B0183 /* Inputs.swift in Sources */,
-				B4449C3CF4C932729D94262D /* LLDBContext.swift in Sources */,
 				5FF6E13323C28C208D95CE0C /* LinkerInputs.swift in Sources */,
 				6999125B2584C0F0B3BDAEF9 /* Outputs.swift in Sources */,
 				919B9B3C49FF06B2ECB48BBB /* Platform.swift in Sources */,

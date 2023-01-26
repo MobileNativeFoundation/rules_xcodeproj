@@ -80,9 +80,6 @@ final class CreateFilesAndGroupsTests: XCTestCase {
 
         // Assert
 
-        // Remove `.internal("swift_debug_settings.py")` as it's a pain to check
-        createdFiles.removeValue(forKey: .internal("swift_debug_settings.py"))
-
         XCTAssertNoDifference(createdRootElements, expectedRootElements)
         XCTAssertNoDifference(createdFiles, expectedFiles)
 
