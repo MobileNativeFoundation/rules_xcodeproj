@@ -217,7 +217,8 @@ def _get_outputs(*, debug_outputs, id, product, swift_info, output_group_info):
             if swift:
                 break
 
-    dsym_files = None 
+    dsym_files = None
+
     # _has_dsym will be False if --apple_generate_dsym is not passed
     if _has_dsym(debug_outputs) and output_group_info and "dsyms" in output_group_info:
         dsym_files = output_group_info["dsyms"]

@@ -224,7 +224,7 @@ def _to_xcode_target_outputs(outputs):
                 swift_generated_header = swift.generated_header
 
     return struct(
-        dsym_files =  (
+        dsym_files = (
             direct_outputs.dsym_files if direct_outputs else None
         ),
         linking_output_group_name = outputs.linking_output_group_name,
@@ -378,16 +378,17 @@ def _set_bazel_outputs_product(
     product_path = xcode_target.outputs.product_path
     if product_path:
         build_settings["BAZEL_OUTPUTS_PRODUCT"] = product_path
-    
+
     dsym_files = xcode_target.outputs.dsym_files
     if dsym_files:
         dsym_paths = []
         for file in dsym_files.to_list():
             file_path = file.path
+
             # dSYM files contain plist and DWARF.
-            if not file_path.endswith('Info.plist'):
+            if not file_path.endswith("Info.plist"):
                 # ../Product.dSYM/Contents/Resources/DWARF/Product
-                dsym_path =  "/".join(file_path.split('/')[:-4])
+                dsym_path = "/".join(file_path.split("/")[:-4])
                 dsym_paths.append("\"{}\"".format(dsym_path))
         if dsym_paths:
             build_settings["BAZEL_OUTPUTS_DSYM"] = dsym_paths
