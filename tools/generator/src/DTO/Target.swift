@@ -17,7 +17,6 @@ struct Target: Equatable {
     var linkerInputs: LinkerInputs
     var linkParams: FilePath?
     var infoPlist: FilePath?
-    var entitlements: FilePath?
     let resourceBundleDependencies: Set<TargetID>
     let watchApplication: TargetID?
     let extensions: Set<TargetID>
@@ -103,8 +102,6 @@ extension Target: Decodable {
             .decodeIfPresent(FilePath.self, forKey: .linkParams)
         infoPlist = try container
             .decodeIfPresent(FilePath.self, forKey: .infoPlist)
-        entitlements = try container
-            .decodeIfPresent(FilePath.self, forKey: .entitlements)
         resourceBundleDependencies = try container
             .decodeTargetIDs(.resourceBundleDependencies)
         watchApplication = try container
