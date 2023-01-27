@@ -75,13 +75,10 @@ xcodeproj(
 
 filegroup(
     name = "release_files",
-    srcs = glob(
-        ["**"],
-        exclude = [
-            "**/.*",
-            "*.xcodeproj/**",
-        ],
-    ),
+    srcs = [
+        "BUILD.release.bazel",
+        ":universal_generator",
+    ],
     tags = ["manual"],
     visibility = ["//:__subpackages__"],
 )
