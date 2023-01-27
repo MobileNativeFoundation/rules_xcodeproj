@@ -1,5 +1,4 @@
 load("@bazel_skylib//rules:common_settings.bzl", "string_flag")
-load("@rules_pkg//:mappings.bzl", "pkg_filegroup", "pkg_files")
 
 string_flag(
     name = "extra_common_flags",
@@ -27,25 +26,17 @@ string_flag(
 
 # Release
 
-pkg_files(
-    name = "package_release_files",
+filegroup(
+    name = "release_files",
     srcs = glob(
         ["**"],
         exclude = [
             "**/.*",
             "testing.bzl",
         ],
-    ),
-    tags = ["manual"],
-)
-
-pkg_filegroup(
-    name = "release_files",
-    srcs = [
-        ":package_release_files",
+    ) + [
         "//" + package_name() + "/internal:release_files",
     ],
-    prefix = package_name().split("/")[-1],
     tags = ["manual"],
-    visibility = ["//visibility:public"],
+    visibility = ["//:__subpackages__"],
 )
