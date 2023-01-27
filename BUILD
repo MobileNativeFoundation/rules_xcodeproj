@@ -35,6 +35,7 @@ filegroup(
         "//tools:release_files",
         "//xcodeproj:release_files",
     ],
+    tags = ["manual"],
 )
 
 # Buildifier

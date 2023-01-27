@@ -83,5 +83,6 @@ filegroup(
             "test/**",
         ],
     ),
+    tags = ["manual"],
     visibility = ["//visibility:public"],
 )

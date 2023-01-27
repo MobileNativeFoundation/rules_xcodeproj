@@ -43,5 +43,6 @@ filegroup(
     ) + [
         "//" + package_name() + "/bazel_integration_files:release_files",
     ],
+    tags = ["manual"],
     visibility = ["//visibility:public"],
 )
