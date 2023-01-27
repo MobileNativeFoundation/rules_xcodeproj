@@ -69,15 +69,6 @@ actions:
     bazel_commands:
       - "test --config=workflows --noenable_bzlmod //docs:diff_test"
 
-  - name: Validate release.tar.gz
-    <<: *arm64
-    <<: *normal_resources
-    <<: *action_base
-    <<: *examples_cc_workspace
-    bazel_commands:
-      - *set_release_archive_override
-      - run --config=workflows //:xcodeproj
-
   - name: Test
     <<: *arm64
     <<: *normal_resources
@@ -180,3 +171,12 @@ actions:
     bazel_commands:
       - *validate_integration
       - *build_all
+
+  - name: Validate release.tar.gz
+    <<: *arm64
+    <<: *normal_resources
+    <<: *action_base
+    <<: *examples_cc_workspace
+    bazel_commands:
+      - *set_release_archive_override
+      - run --config=workflows //:xcodeproj
