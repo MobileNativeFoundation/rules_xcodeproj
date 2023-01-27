@@ -7,7 +7,6 @@ filegroup(
     srcs = [
         "LICENSE",
         "MODULE.bazel",
-        "//third_party:release_files",
         "//tools:release_files",
         "//xcodeproj:release_files",
     ],
