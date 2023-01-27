@@ -12,7 +12,6 @@ load(
     "@rules_pkg//:mappings.bzl",
     "pkg_filegroup",
     "pkg_files",
-    "strip_prefix",
 )
 load("//xcodeproj:defs.bzl", "xcodeproj")
 load(
@@ -89,7 +88,6 @@ pkg_files(
             "test/**",
         ],
     ),
-    strip_prefix = strip_prefix.from_root(),
     tags = ["manual"],
 )
 
@@ -98,6 +96,7 @@ pkg_filegroup(
     srcs = [
         ":package_release_files",
     ],
+    prefix = package_name().split("/")[-1],
     tags = ["manual"],
     visibility = ["//visibility:public"],
 )
