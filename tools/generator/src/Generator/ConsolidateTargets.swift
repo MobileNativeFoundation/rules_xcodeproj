@@ -490,12 +490,6 @@ struct ConsolidatedTargetOutputs: Equatable {
     let hasSwiftOutputs: Bool
 }
 
-// MARK: - Constant `ConsolidatedTarget.Key`s
-
-extension ConsolidatedTarget.Key {
-    static let bazelDependencies: Self = .init([TargetID("bazel_dependencies")])
-}
-
 // MARK: - Private extensions
 
 private extension Target {

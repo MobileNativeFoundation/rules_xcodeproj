@@ -59,12 +59,6 @@ extension Sequence {
     }
 }
 
-extension Sequence where Element == String {
-    func sortedLocalizedStandard() -> [Element] {
-        return sortedLocalizedStandard(\.self)
-    }
-}
-
 extension Sequence where Element: PBXFileElement {
     func sortedLocalizedStandard() -> [Element] {
         return sortedLocalizedStandard(\.namePathSortString)

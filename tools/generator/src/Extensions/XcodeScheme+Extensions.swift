@@ -22,9 +22,6 @@ extension XcodeScheme.TargetWithID: Comparable {
 // MARK: Resolve TargetIDs
 
 extension XcodeScheme {
-    /// Represents a configuration string (Target.configuration).
-    typealias Configuration = String
-
     func aliasErrorMessage(runnerLabel: BazelLabel, missingLabel: BazelLabel) -> String {
         return """
 Target \(missingLabel) was not found in the transitive dependencies of \(runnerLabel)'s \
