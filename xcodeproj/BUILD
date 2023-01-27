@@ -30,7 +30,10 @@ filegroup(
     name = "release_files",
     srcs = glob(
         ["**"],
-        exclude = ["testing.bzl"],
+        exclude = [
+            "**/.*",
+            "testing.bzl",
+        ],
     ) + [
         "//" + package_name() + "/internal:release_files",
     ],
