@@ -1,5 +1,3 @@
-load("@rules_pkg//:mappings.bzl", "pkg_files")
-
 py_binary(
     name = "xccurrentversions_parser",
     srcs = ["xccurrentversions_parser.py"],
@@ -11,7 +9,7 @@ py_binary(
 
 # Release
 
-pkg_files(
+filegroup(
     name = "release_files",
     srcs = glob(
         ["**"],
@@ -19,7 +17,6 @@ pkg_files(
             "**/.*",
         ],
     ),
-    prefix = package_name().split("/")[-1],
     tags = ["manual"],
-    visibility = ["//visibility:public"],
+    visibility = ["//:__subpackages__"],
 )
