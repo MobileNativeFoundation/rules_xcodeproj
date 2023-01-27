@@ -55,10 +55,10 @@ def _platform_to_dto(platform):
     platform_type = apple_platform.platform_type
 
     dto = {
-        "os": str(platform_type),
-        "variant": _PLATFORM_NAME[apple_platform],
-        "arch": platform._arch,
-        "minimum_os_version": platform._os_version,
+        "o": str(platform_type),
+        "v": _PLATFORM_NAME[apple_platform],
+        "a": platform._arch,
+        "m": platform._os_version,
     }
 
     return dto

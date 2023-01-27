@@ -1,4 +1,4 @@
-struct Platform: Equatable, Hashable, Decodable {
+struct Platform: Equatable, Hashable {
     enum OS: String, Decodable {
         case macOS = "macos"
         case iOS = "ios"
@@ -133,5 +133,26 @@ extension Platform.Variant: Comparable {
         case (.watchOSDevice, _): return true
         case (_, .watchOSDevice): return false
         }
+    }
+}
+
+// MARK: - Decodable
+
+extension Platform: Decodable {
+    enum CodingKeys: String, CodingKey {
+        case os = "o"
+        case variant = "v"
+        case arch = "a"
+        case minimumOsVersion = "m"
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        os = try container.decode(Platform.OS.self, forKey: .os)
+        variant = try container.decode(Platform.Variant.self, forKey: .variant)
+        arch = try container.decode(String.self, forKey: .arch)
+        minimumOsVersion = try container
+            .decode(SemanticVersion.self, forKey: .minimumOsVersion)
     }
 }

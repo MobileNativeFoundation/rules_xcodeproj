@@ -1,7 +1,7 @@
 import PathKit
 import XcodeProj
 
-struct Product: Equatable, Decodable {
+struct Product: Equatable {
     let type: PBXProductType
     let isResourceBundle: Bool
     let name: String
@@ -24,5 +24,32 @@ struct Product: Equatable, Decodable {
         self.path = path
         self.additionalPaths = additionalPaths
         self.executableName = executableName
+    }
+}
+
+// MARK: - Decodable
+
+extension Product: Decodable {
+    enum CodingKeys: String, CodingKey {
+        case type = "t"
+        case isResourceBundle = "r"
+        case name = "n"
+        case path = "p"
+        case additionalPaths = "a"
+        case executableName = "e"
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        type = try container.decode(PBXProductType.self, forKey: .type)
+        isResourceBundle = try container
+            .decodeIfPresent(Bool.self, forKey: .isResourceBundle) ?? false
+        name = try container.decode(String.self, forKey: .name)
+        path = try container.decodeIfPresent(FilePath.self, forKey: .path)
+        additionalPaths = try container
+            .decodeIfPresent([FilePath].self, forKey: .additionalPaths) ?? []
+        executableName = try container
+            .decodeIfPresent(String.self, forKey: .executableName)
     }
 }
