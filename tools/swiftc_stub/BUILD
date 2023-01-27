@@ -8,7 +8,6 @@ load(
     "swift_binary",
     "swift_library",
 )
-load("@rules_pkg//:mappings.bzl", "pkg_files")
 
 # This target exists to keep configurations the same between the generator
 # and the tests, which makes the Xcode development experience better. If we used
@@ -48,7 +47,7 @@ apple_universal_binary(
 
 # Release
 
-pkg_files(
+filegroup(
     name = "release_files",
     srcs = glob(
         ["**"],
@@ -56,7 +55,6 @@ pkg_files(
             "**/.*",
         ],
     ),
-    prefix = package_name().split("/")[-1],
     tags = ["manual"],
-    visibility = ["//visibility:public"],
+    visibility = ["//:__subpackages__"],
 )

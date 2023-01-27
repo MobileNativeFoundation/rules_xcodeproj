@@ -1,5 +1,3 @@
-load("@rules_pkg//:mappings.bzl", "pkg_files")
-
 _BASE_FILES = [
     "bazel_build.sh",
     "calculate_output_groups.py",
@@ -108,7 +106,7 @@ genrule(
 
 # Release
 
-pkg_files(
+filegroup(
     name = "release_files",
     srcs = glob(
         ["**"],
@@ -116,7 +114,6 @@ pkg_files(
             "**/.*",
         ],
     ),
-    prefix = package_name().split("/")[-1],
     tags = ["manual"],
-    visibility = ["//visibility:public"],
+    visibility = ["//:__subpackages__"],
 )
