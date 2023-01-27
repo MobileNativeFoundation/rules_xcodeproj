@@ -49,12 +49,10 @@ apple_universal_binary(
 
 filegroup(
     name = "release_files",
-    srcs = glob(
-        ["**"],
-        exclude = [
-            "**/.*",
-        ],
-    ),
+    srcs = [
+        "BUILD.release.bazel",
+        ":universal_swiftc_stub",
+    ],
     tags = ["manual"],
     visibility = ["//:__subpackages__"],
 )
