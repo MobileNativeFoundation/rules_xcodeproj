@@ -76,8 +76,7 @@ actions:
     <<: *examples_cc_workspace
     bazel_commands:
       - *set_release_archive_override
-      - *bzlmod_generate_integration
-      - *bzlmod_build_all
+      - build --config=workflows run //:xcodeproj
 
   - name: Test
     <<: *arm64
