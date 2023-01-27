@@ -12,6 +12,10 @@ x_templates:
     - &arm64
       arch: "arm64"
 
+    - &bazel_5
+      env:
+        USE_BAZEL_VERSION: 5.4.0
+
     - &normal_resources
       resource_requests: { memory: 6GB }
     - &light_resources
@@ -39,7 +43,6 @@ x_templates:
         - examples/sanitizers/setup-bazel-output-base
 
   commands:
-    - &bazel_5_setup "--output_base=setup-bazel-output-base run --config=workflows --noexperimental_enable_bzlmod @com_github_buildbuddy_io_rules_xcodeproj//tools:set_bazel_5"
     - &validate_integration "run --config=workflows --noexperimental_enable_bzlmod //test/fixtures:validate"
     - &build_all "build --config=workflows --noexperimental_enable_bzlmod //..."
     - &test_all "test --config=workflows --noexperimental_enable_bzlmod //..."
@@ -77,10 +80,11 @@ actions:
     bazel_commands:
       - *bzlmod_test_all
   - name: Test - Bazel 5
+    <<: *bazel_5
+    <<: *normal_resources
     <<: *action_base
     <<: *root_workspace
     bazel_commands:
-      - *bazel_5_setup
       - *test_all
 
   - name: Integration Test - Root
@@ -98,10 +102,11 @@ actions:
     bazel_commands:
       - *bzlmod_generate_integration
   - name: Integration Test - Root - Bazel 5
+    <<: *bazel_5
     <<: *action_base
+    <<: *normal_resources
     <<: *root_workspace
     bazel_commands:
-      - *bazel_5_setup
       - *validate_integration
 
   - name: Integration Test - "examples/cc"
@@ -121,10 +126,11 @@ actions:
       - *bzlmod_generate_integration
       - *bzlmod_build_all
   - name: Integration Test - "examples/cc" - Bazel 5
+    <<: *bazel_5
     <<: *action_base
+    <<: *normal_resources
     <<: *examples_cc_workspace
     bazel_commands:
-      - *bazel_5_setup
       - *validate_integration
       - *build_all
 
@@ -137,10 +143,11 @@ actions:
       - *validate_integration
       - *test_all
   - name: Integration Test - "examples/integration" - Bazel 5
+    <<: *bazel_5
     <<: *action_base
+    <<: *normal_resources
     <<: *examples_integration_workspace
     bazel_commands:
-      - *bazel_5_setup
       - *validate_integration
       - *test_all
 
@@ -153,10 +160,10 @@ actions:
       - *validate_integration
       - *build_all
   - name: Integration Test - "examples/sanitizers" - Bazel 5
+    <<: *bazel_5
     <<: *action_base
     <<: *normal_resources
     <<: *examples_sanitizers_workspace
     bazel_commands:
-      - *bazel_5_setup
       - *validate_integration
       - *build_all
