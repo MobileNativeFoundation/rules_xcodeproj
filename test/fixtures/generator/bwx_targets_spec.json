@@ -1,7 +1,26 @@
 [
     "//tools/generator/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-STABLE-2",
     {
-        "build_settings": {
+        "1": "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-2/bin/tools/generator/test",
+        "2": {
+            "a": "x86_64",
+            "m": "12.0",
+            "o": "macos",
+            "v": "macosx"
+        },
+        "3": {
+            "i": "//tools/generator/test:tests.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
+            "n": "tests.library"
+        },
+        "4": {
+            "_": "applebin_macos-darwin_x86_64-dbg-STABLE-2/bin/tools/generator/test/rules_xcodeproj/tests.__internal__.__test_bundle/Info.plist",
+            "t": "g"
+        },
+        "6": {
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/generator/xcodeproj_bwx.generator-params/tests.__internal__.__test_bundle.10.link.params",
+            "t": "g"
+        },
+        "b": {
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf",
             "ENABLE_BITCODE": false,
@@ -18,22 +37,13 @@
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
             "SWIFT_VERSION": "5.0"
         },
-        "compile_target": {
-            "id": "//tools/generator/test:tests.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
-            "name": "tests.library"
-        },
-        "configuration": "applebin_macos-darwin_x86_64-dbg-STABLE-2",
-        "dependencies": [
+        "c": "applebin_macos-darwin_x86_64-dbg-STABLE-2",
+        "d": [
             "//tools/generator:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
             "@com_github_pointfreeco_swift_custom_dump//:CustomDump macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1"
         ],
-        "has_modulemaps": true,
-        "info_plist": {
-            "_": "applebin_macos-darwin_x86_64-dbg-STABLE-2/bin/tools/generator/test/rules_xcodeproj/tests.__internal__.__test_bundle/Info.plist",
-            "t": "g"
-        },
-        "inputs": {
-            "srcs": [
+        "i": {
+            "s": [
                 "tools/generator/test/AddTargetsTests.swift",
                 "tools/generator/test/Array+ExtensionsTests.swift",
                 "tools/generator/test/BazelLabel+TestExtensions.swift",
@@ -85,14 +95,10 @@
                 "tools/generator/test/XcodeSchemeTests.swift"
             ]
         },
-        "is_testonly": true,
-        "label": "//tools/generator/test:tests.__internal__.__test_bundle",
-        "link_params": {
-            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/generator/xcodeproj_bwx.generator-params/tests.__internal__.__test_bundle.10.link.params",
-            "t": "g"
-        },
-        "name": "tests.__internal__.__test_bundle",
-        "outputs": {
+        "l": "//tools/generator/test:tests.__internal__.__test_bundle",
+        "m": true,
+        "n": "tests.__internal__.__test_bundle",
+        "o": {
             "p": true,
             "s": {
                 "m": {
@@ -101,33 +107,37 @@
                 }
             }
         },
-        "package_bin_dir": "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-2/bin/tools/generator/test",
-        "platform": {
-            "arch": "x86_64",
-            "minimum_os_version": "12.0",
-            "os": "macos",
-            "variant": "macosx"
-        },
-        "product": {
-            "additional_paths": [
+        "p": {
+            "a": [
                 {
                     "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/tools/generator/test/libtests.library.a",
                     "t": "g"
                 }
             ],
-            "executable_name": "tests",
-            "is_resource_bundle": false,
-            "name": "tests",
-            "path": {
+            "e": "tests",
+            "n": "tests",
+            "p": {
                 "_": "applebin_macos-darwin_x86_64-dbg-STABLE-2/bin/tools/generator/test/tests.__internal__.__test_bundle_archive-root/tests.xctest",
                 "t": "g"
             },
-            "type": "com.apple.product-type.bundle.unit-test"
-        }
+            "t": "com.apple.product-type.bundle.unit-test"
+        },
+        "t": true
     },
     "//tools/generator:generator applebin_macos-darwin_x86_64-dbg-STABLE-2",
     {
-        "build_settings": {
+        "1": "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-2/bin/tools/generator",
+        "2": {
+            "a": "x86_64",
+            "m": "12.0",
+            "o": "macos",
+            "v": "macosx"
+        },
+        "6": {
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/generator/xcodeproj_bwx.generator-params/generator.7.link.params",
+            "t": "g"
+        },
+        "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
@@ -135,42 +145,36 @@
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
             "SWIFT_VERSION": "5.0"
         },
-        "configuration": "applebin_macos-darwin_x86_64-dbg-STABLE-2",
-        "dependencies": [
+        "c": "applebin_macos-darwin_x86_64-dbg-STABLE-2",
+        "d": [
             "//tools/generator:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1"
         ],
-        "is_swift": false,
-        "label": "//tools/generator:generator",
-        "link_params": {
-            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/generator/xcodeproj_bwx.generator-params/generator.7.link.params",
-            "t": "g"
-        },
-        "name": "generator",
-        "outputs": {
+        "l": "//tools/generator:generator",
+        "n": "generator",
+        "o": {
             "p": true
         },
-        "package_bin_dir": "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-2/bin/tools/generator",
-        "platform": {
-            "arch": "x86_64",
-            "minimum_os_version": "12.0",
-            "os": "macos",
-            "variant": "macosx"
-        },
-        "product": {
-            "additional_paths": [],
-            "executable_name": "generator",
-            "is_resource_bundle": false,
-            "name": "generator",
-            "path": {
+        "p": {
+            "e": "generator",
+            "n": "generator",
+            "p": {
                 "_": "applebin_macos-darwin_x86_64-dbg-STABLE-2/bin/tools/generator/rules_xcodeproj/generator/generator",
                 "t": "g"
             },
-            "type": "com.apple.product-type.tool"
-        }
+            "t": "com.apple.product-type.tool"
+        },
+        "s": false
     },
     "//tools/generator:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
     {
-        "build_settings": {
+        "1": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/tools/generator",
+        "2": {
+            "a": "x86_64",
+            "m": "12.0",
+            "o": "macos",
+            "v": "macosx"
+        },
+        "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
@@ -182,16 +186,15 @@
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
             "SWIFT_VERSION": "5.0"
         },
-        "configuration": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
-        "dependencies": [
+        "c": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
+        "d": [
             "@com_github_apple_swift_collections//:OrderedCollections macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
             "@com_github_kylef_pathkit//:PathKit macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
             "@com_github_michaeleisel_zippyjson//:ZippyJSON macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
             "@com_github_tuist_xcodeproj//:XcodeProj macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1"
         ],
-        "has_modulemaps": true,
-        "inputs": {
-            "srcs": [
+        "i": {
+            "s": [
                 "tools/generator/src/BuildSettingConditional.swift",
                 "tools/generator/src/DTO/BazelLabel.swift",
                 "tools/generator/src/DTO/BuildMode.swift",
@@ -264,9 +267,10 @@
                 "tools/generator/src/Logger.swift"
             ]
         },
-        "label": "//tools/generator:generator.library",
-        "name": "generator.library",
-        "outputs": {
+        "l": "//tools/generator:generator.library",
+        "m": true,
+        "n": "generator.library",
+        "o": {
             "s": {
                 "m": {
                     "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/tools/generator/generator.swiftmodule",
@@ -274,28 +278,33 @@
                 }
             }
         },
-        "package_bin_dir": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/tools/generator",
-        "platform": {
-            "arch": "x86_64",
-            "minimum_os_version": "12.0",
-            "os": "macos",
-            "variant": "macosx"
-        },
-        "product": {
-            "additional_paths": [],
-            "executable_name": null,
-            "is_resource_bundle": false,
-            "name": "generator.library",
-            "path": {
+        "p": {
+            "n": "generator.library",
+            "p": {
                 "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/tools/generator/libgenerator.library.a",
                 "t": "g"
             },
-            "type": "com.apple.product-type.library.static"
+            "t": "com.apple.product-type.library.static"
         }
     },
     "//tools/swiftc_stub:swiftc applebin_macos-darwin_x86_64-dbg-STABLE-2",
     {
-        "build_settings": {
+        "1": "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-2/bin/tools/swiftc_stub",
+        "2": {
+            "a": "x86_64",
+            "m": "12.0",
+            "o": "macos",
+            "v": "macosx"
+        },
+        "3": {
+            "i": "//tools/swiftc_stub:swiftc_stub.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
+            "n": "swiftc_stub.library"
+        },
+        "6": {
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/generator/xcodeproj_bwx.generator-params/swiftc.11.link.params",
+            "t": "g"
+        },
+        "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
@@ -306,23 +315,15 @@
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
             "SWIFT_VERSION": "5.0"
         },
-        "compile_target": {
-            "id": "//tools/swiftc_stub:swiftc_stub.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
-            "name": "swiftc_stub.library"
-        },
-        "configuration": "applebin_macos-darwin_x86_64-dbg-STABLE-2",
-        "inputs": {
-            "srcs": [
+        "c": "applebin_macos-darwin_x86_64-dbg-STABLE-2",
+        "i": {
+            "s": [
                 "tools/swiftc_stub/main.swift"
             ]
         },
-        "label": "//tools/swiftc_stub:swiftc",
-        "link_params": {
-            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/generator/xcodeproj_bwx.generator-params/swiftc.11.link.params",
-            "t": "g"
-        },
-        "name": "swiftc",
-        "outputs": {
+        "l": "//tools/swiftc_stub:swiftc",
+        "n": "swiftc",
+        "o": {
             "p": true,
             "s": {
                 "m": {
@@ -331,33 +332,32 @@
                 }
             }
         },
-        "package_bin_dir": "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-2/bin/tools/swiftc_stub",
-        "platform": {
-            "arch": "x86_64",
-            "minimum_os_version": "12.0",
-            "os": "macos",
-            "variant": "macosx"
-        },
-        "product": {
-            "additional_paths": [
+        "p": {
+            "a": [
                 {
                     "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/tools/swiftc_stub/libswiftc_stub.library.a",
                     "t": "g"
                 }
             ],
-            "executable_name": "swiftc",
-            "is_resource_bundle": false,
-            "name": "swiftc",
-            "path": {
+            "e": "swiftc",
+            "n": "swiftc",
+            "p": {
                 "_": "applebin_macos-darwin_x86_64-dbg-STABLE-2/bin/tools/swiftc_stub/rules_xcodeproj/swiftc/swiftc",
                 "t": "g"
             },
-            "type": "com.apple.product-type.tool"
+            "t": "com.apple.product-type.tool"
         }
     },
     "@com_github_apple_swift_collections//:OrderedCollections macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
     {
-        "build_settings": {
+        "1": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_apple_swift_collections",
+        "2": {
+            "a": "x86_64",
+            "m": "12.0",
+            "o": "macos",
+            "v": "macosx"
+        },
+        "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
@@ -368,9 +368,9 @@
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
             "SWIFT_VERSION": "5.0"
         },
-        "configuration": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
-        "inputs": {
-            "srcs": [
+        "c": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
+        "i": {
+            "s": [
                 {
                     "_": "com_github_apple_swift_collections/Sources/OrderedCollections/HashTable/_HashTable+Bucket.swift",
                     "t": "e"
@@ -573,9 +573,9 @@
                 }
             ]
         },
-        "label": "@com_github_apple_swift_collections//:OrderedCollections",
-        "name": "OrderedCollections",
-        "outputs": {
+        "l": "@com_github_apple_swift_collections//:OrderedCollections",
+        "n": "OrderedCollections",
+        "o": {
             "s": {
                 "m": {
                     "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_apple_swift_collections/OrderedCollections.swiftmodule",
@@ -583,28 +583,25 @@
                 }
             }
         },
-        "package_bin_dir": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_apple_swift_collections",
-        "platform": {
-            "arch": "x86_64",
-            "minimum_os_version": "12.0",
-            "os": "macos",
-            "variant": "macosx"
-        },
-        "product": {
-            "additional_paths": [],
-            "executable_name": null,
-            "is_resource_bundle": false,
-            "name": "OrderedCollections",
-            "path": {
+        "p": {
+            "n": "OrderedCollections",
+            "p": {
                 "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_apple_swift_collections/libOrderedCollections.a",
                 "t": "g"
             },
-            "type": "com.apple.product-type.library.static"
+            "t": "com.apple.product-type.library.static"
         }
     },
     "@com_github_kylef_pathkit//:PathKit macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
     {
-        "build_settings": {
+        "1": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_kylef_pathkit",
+        "2": {
+            "a": "x86_64",
+            "m": "12.0",
+            "o": "macos",
+            "v": "macosx"
+        },
+        "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
@@ -615,18 +612,18 @@
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
             "SWIFT_VERSION": "5.0"
         },
-        "configuration": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
-        "inputs": {
-            "srcs": [
+        "c": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
+        "i": {
+            "s": [
                 {
                     "_": "com_github_kylef_pathkit/Sources/PathKit.swift",
                     "t": "e"
                 }
             ]
         },
-        "label": "@com_github_kylef_pathkit//:PathKit",
-        "name": "PathKit",
-        "outputs": {
+        "l": "@com_github_kylef_pathkit//:PathKit",
+        "n": "PathKit",
+        "o": {
             "s": {
                 "m": {
                     "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_kylef_pathkit/PathKit.swiftmodule",
@@ -634,28 +631,25 @@
                 }
             }
         },
-        "package_bin_dir": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_kylef_pathkit",
-        "platform": {
-            "arch": "x86_64",
-            "minimum_os_version": "12.0",
-            "os": "macos",
-            "variant": "macosx"
-        },
-        "product": {
-            "additional_paths": [],
-            "executable_name": null,
-            "is_resource_bundle": false,
-            "name": "PathKit",
-            "path": {
+        "p": {
+            "n": "PathKit",
+            "p": {
                 "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_kylef_pathkit/libPathKit.a",
                 "t": "g"
             },
-            "type": "com.apple.product-type.library.static"
+            "t": "com.apple.product-type.library.static"
         }
     },
     "@com_github_michaeleisel_jjliso8601dateformatter//:JJLISO8601DateFormatter macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
     {
-        "build_settings": {
+        "1": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_jjliso8601dateformatter",
+        "2": {
+            "a": "x86_64",
+            "m": "12.0",
+            "o": "macos",
+            "v": "macosx"
+        },
+        "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
@@ -702,9 +696,9 @@
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
             "SWIFT_VERSION": "5.0"
         },
-        "configuration": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
-        "inputs": {
-            "srcs": [
+        "c": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
+        "i": {
+            "s": [
                 {
                     "_": "com_github_michaeleisel_jjliso8601dateformatter/Sources/JJLISO8601DateFormatter/JJLISO8601DateFormatter.m",
                     "t": "e"
@@ -735,31 +729,28 @@
                 }
             ]
         },
-        "is_swift": false,
-        "label": "@com_github_michaeleisel_jjliso8601dateformatter//:JJLISO8601DateFormatter",
-        "name": "JJLISO8601DateFormatter",
-        "package_bin_dir": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_jjliso8601dateformatter",
-        "platform": {
-            "arch": "x86_64",
-            "minimum_os_version": "12.0",
-            "os": "macos",
-            "variant": "macosx"
-        },
-        "product": {
-            "additional_paths": [],
-            "executable_name": null,
-            "is_resource_bundle": false,
-            "name": "JJLISO8601DateFormatter",
-            "path": {
+        "l": "@com_github_michaeleisel_jjliso8601dateformatter//:JJLISO8601DateFormatter",
+        "n": "JJLISO8601DateFormatter",
+        "p": {
+            "n": "JJLISO8601DateFormatter",
+            "p": {
                 "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_jjliso8601dateformatter/libJJLISO8601DateFormatter.a",
                 "t": "g"
             },
-            "type": "com.apple.product-type.library.static"
-        }
+            "t": "com.apple.product-type.library.static"
+        },
+        "s": false
     },
     "@com_github_michaeleisel_zippyjson//:ZippyJSON macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
     {
-        "build_settings": {
+        "1": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_zippyjson",
+        "2": {
+            "a": "x86_64",
+            "m": "12.0",
+            "o": "macos",
+            "v": "macosx"
+        },
+        "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
@@ -770,23 +761,23 @@
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
             "SWIFT_VERSION": "5.0"
         },
-        "configuration": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
-        "dependencies": [
+        "c": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
+        "d": [
             "@com_github_michaeleisel_jjliso8601dateformatter//:JJLISO8601DateFormatter macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
             "@com_github_michaeleisel_zippyjsoncfamily//:ZippyJSONCFamily macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1"
         ],
-        "has_modulemaps": true,
-        "inputs": {
-            "srcs": [
+        "i": {
+            "s": [
                 {
                     "_": "com_github_michaeleisel_zippyjson/Sources/ZippyJSON/ZippyJSONDecoder.swift",
                     "t": "e"
                 }
             ]
         },
-        "label": "@com_github_michaeleisel_zippyjson//:ZippyJSON",
-        "name": "ZippyJSON",
-        "outputs": {
+        "l": "@com_github_michaeleisel_zippyjson//:ZippyJSON",
+        "m": true,
+        "n": "ZippyJSON",
+        "o": {
             "s": {
                 "m": {
                     "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_zippyjson/ZippyJSON.swiftmodule",
@@ -794,28 +785,25 @@
                 }
             }
         },
-        "package_bin_dir": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_zippyjson",
-        "platform": {
-            "arch": "x86_64",
-            "minimum_os_version": "12.0",
-            "os": "macos",
-            "variant": "macosx"
-        },
-        "product": {
-            "additional_paths": [],
-            "executable_name": null,
-            "is_resource_bundle": false,
-            "name": "ZippyJSON",
-            "path": {
+        "p": {
+            "n": "ZippyJSON",
+            "p": {
                 "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_zippyjson/libZippyJSON.a",
                 "t": "g"
             },
-            "type": "com.apple.product-type.library.static"
+            "t": "com.apple.product-type.library.static"
         }
     },
     "@com_github_michaeleisel_zippyjsoncfamily//:ZippyJSONCFamily macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
     {
-        "build_settings": {
+        "1": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_zippyjsoncfamily",
+        "2": {
+            "a": "x86_64",
+            "m": "12.0",
+            "o": "macos",
+            "v": "macosx"
+        },
+        "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
@@ -864,9 +852,9 @@
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
             "SWIFT_VERSION": "5.0"
         },
-        "configuration": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
-        "inputs": {
-            "srcs": [
+        "c": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
+        "i": {
+            "s": [
                 {
                     "_": "com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/JSONSerialization.mm",
                     "t": "e"
@@ -885,31 +873,28 @@
                 }
             ]
         },
-        "is_swift": false,
-        "label": "@com_github_michaeleisel_zippyjsoncfamily//:ZippyJSONCFamily",
-        "name": "ZippyJSONCFamily",
-        "package_bin_dir": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_zippyjsoncfamily",
-        "platform": {
-            "arch": "x86_64",
-            "minimum_os_version": "12.0",
-            "os": "macos",
-            "variant": "macosx"
-        },
-        "product": {
-            "additional_paths": [],
-            "executable_name": null,
-            "is_resource_bundle": false,
-            "name": "ZippyJSONCFamily",
-            "path": {
+        "l": "@com_github_michaeleisel_zippyjsoncfamily//:ZippyJSONCFamily",
+        "n": "ZippyJSONCFamily",
+        "p": {
+            "n": "ZippyJSONCFamily",
+            "p": {
                 "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_zippyjsoncfamily/libZippyJSONCFamily.a",
                 "t": "g"
             },
-            "type": "com.apple.product-type.library.static"
-        }
+            "t": "com.apple.product-type.library.static"
+        },
+        "s": false
     },
     "@com_github_pointfreeco_swift_custom_dump//:CustomDump macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
     {
-        "build_settings": {
+        "1": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_pointfreeco_swift_custom_dump",
+        "2": {
+            "a": "x86_64",
+            "m": "12.0",
+            "o": "macos",
+            "v": "macosx"
+        },
+        "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
@@ -921,12 +906,12 @@
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
             "SWIFT_VERSION": "5.0"
         },
-        "configuration": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
-        "dependencies": [
+        "c": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
+        "d": [
             "@com_github_pointfreeco_xctest_dynamic_overlay//:XCTestDynamicOverlay macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1"
         ],
-        "inputs": {
-            "srcs": [
+        "i": {
+            "s": [
                 {
                     "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Conformances/CoreImage.swift",
                     "t": "e"
@@ -1029,9 +1014,9 @@
                 }
             ]
         },
-        "label": "@com_github_pointfreeco_swift_custom_dump//:CustomDump",
-        "name": "CustomDump",
-        "outputs": {
+        "l": "@com_github_pointfreeco_swift_custom_dump//:CustomDump",
+        "n": "CustomDump",
+        "o": {
             "s": {
                 "m": {
                     "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_pointfreeco_swift_custom_dump/CustomDump.swiftmodule",
@@ -1039,28 +1024,25 @@
                 }
             }
         },
-        "package_bin_dir": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_pointfreeco_swift_custom_dump",
-        "platform": {
-            "arch": "x86_64",
-            "minimum_os_version": "12.0",
-            "os": "macos",
-            "variant": "macosx"
-        },
-        "product": {
-            "additional_paths": [],
-            "executable_name": null,
-            "is_resource_bundle": false,
-            "name": "CustomDump",
-            "path": {
+        "p": {
+            "n": "CustomDump",
+            "p": {
                 "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_pointfreeco_swift_custom_dump/libCustomDump.a",
                 "t": "g"
             },
-            "type": "com.apple.product-type.library.static"
+            "t": "com.apple.product-type.library.static"
         }
     },
     "@com_github_pointfreeco_xctest_dynamic_overlay//:XCTestDynamicOverlay macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
     {
-        "build_settings": {
+        "1": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_pointfreeco_xctest_dynamic_overlay",
+        "2": {
+            "a": "x86_64",
+            "m": "12.0",
+            "o": "macos",
+            "v": "macosx"
+        },
+        "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
@@ -1071,18 +1053,18 @@
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
             "SWIFT_VERSION": "5.0"
         },
-        "configuration": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
-        "inputs": {
-            "srcs": [
+        "c": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
+        "i": {
+            "s": [
                 {
                     "_": "com_github_pointfreeco_xctest_dynamic_overlay/Sources/XCTestDynamicOverlay/XCTFail.swift",
                     "t": "e"
                 }
             ]
         },
-        "label": "@com_github_pointfreeco_xctest_dynamic_overlay//:XCTestDynamicOverlay",
-        "name": "XCTestDynamicOverlay",
-        "outputs": {
+        "l": "@com_github_pointfreeco_xctest_dynamic_overlay//:XCTestDynamicOverlay",
+        "n": "XCTestDynamicOverlay",
+        "o": {
             "s": {
                 "m": {
                     "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/XCTestDynamicOverlay.swiftmodule",
@@ -1090,28 +1072,25 @@
                 }
             }
         },
-        "package_bin_dir": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_pointfreeco_xctest_dynamic_overlay",
-        "platform": {
-            "arch": "x86_64",
-            "minimum_os_version": "12.0",
-            "os": "macos",
-            "variant": "macosx"
-        },
-        "product": {
-            "additional_paths": [],
-            "executable_name": null,
-            "is_resource_bundle": false,
-            "name": "XCTestDynamicOverlay",
-            "path": {
+        "p": {
+            "n": "XCTestDynamicOverlay",
+            "p": {
                 "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/libXCTestDynamicOverlay.a",
                 "t": "g"
             },
-            "type": "com.apple.product-type.library.static"
+            "t": "com.apple.product-type.library.static"
         }
     },
     "@com_github_tuist_xcodeproj//:XcodeProj macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
     {
-        "build_settings": {
+        "1": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_tuist_xcodeproj",
+        "2": {
+            "a": "x86_64",
+            "m": "12.0",
+            "o": "macos",
+            "v": "macosx"
+        },
+        "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
@@ -1123,12 +1102,12 @@
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
             "SWIFT_VERSION": "5.0"
         },
-        "configuration": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
-        "dependencies": [
+        "c": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
+        "d": [
             "@com_github_kylef_pathkit//:PathKit macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1"
         ],
-        "inputs": {
-            "srcs": [
+        "i": {
+            "s": [
                 {
                     "_": "com_github_tuist_xcodeproj/Sources/XcodeProj/Errors/Errors.swift",
                     "t": "e"
@@ -1511,9 +1490,9 @@
                 }
             ]
         },
-        "label": "@com_github_tuist_xcodeproj//:XcodeProj",
-        "name": "XcodeProj",
-        "outputs": {
+        "l": "@com_github_tuist_xcodeproj//:XcodeProj",
+        "n": "XcodeProj",
+        "o": {
             "s": {
                 "m": {
                     "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_tuist_xcodeproj/XcodeProj.swiftmodule",
@@ -1521,23 +1500,13 @@
                 }
             }
         },
-        "package_bin_dir": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_tuist_xcodeproj",
-        "platform": {
-            "arch": "x86_64",
-            "minimum_os_version": "12.0",
-            "os": "macos",
-            "variant": "macosx"
-        },
-        "product": {
-            "additional_paths": [],
-            "executable_name": null,
-            "is_resource_bundle": false,
-            "name": "XcodeProj",
-            "path": {
+        "p": {
+            "n": "XcodeProj",
+            "p": {
                 "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_tuist_xcodeproj/libXcodeProj.a",
                 "t": "g"
             },
-            "type": "com.apple.product-type.library.static"
+            "t": "com.apple.product-type.library.static"
         }
     }
 ]

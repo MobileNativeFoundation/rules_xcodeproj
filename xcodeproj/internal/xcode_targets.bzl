@@ -503,34 +503,34 @@ def _xcode_target_to_dto(
     inputs = xcode_target.inputs
 
     dto = {
-        "name": xcode_target.name,
-        "label": str(xcode_target.label),
-        "configuration": xcode_target.configuration,
-        "package_bin_dir": xcode_target._package_bin_dir,
-        "platform": platform_info.to_dto(xcode_target.platform),
-        "product": _product_to_dto(xcode_target.product),
+        "n": xcode_target.name,
+        "l": str(xcode_target.label),
+        "c": xcode_target.configuration,
+        "1": xcode_target._package_bin_dir,
+        "2": platform_info.to_dto(xcode_target.platform),
+        "p": _product_to_dto(xcode_target.product),
     }
 
     if xcode_target._compile_target:
-        dto["compile_target"] = {
-            "id": xcode_target._compile_target.id,
-            "name": xcode_target._compile_target.name,
+        dto["3"] = {
+            "i": xcode_target._compile_target.id,
+            "n": xcode_target._compile_target.name,
         }
 
     if xcode_target._is_testonly:
-        dto["is_testonly"] = True
+        dto["t"] = True
 
     if not xcode_target.is_swift:
-        dto["is_swift"] = False
+        dto["s"] = False
 
     if is_unfocused_dependency:
-        dto["is_unfocused_dependency"] = True
+        dto["u"] = True
 
     if xcode_target._test_host not in unfocused_targets:
-        set_if_true(dto, "test_host", xcode_target._test_host)
+        set_if_true(dto, "h", xcode_target._test_host)
 
     if xcode_target._watch_application not in unfocused_targets:
-        set_if_true(dto, "watch_application", xcode_target._watch_application)
+        set_if_true(dto, "w", xcode_target._watch_application)
 
     generated_framework_search_paths = _generated_framework_search_paths(
         build_mode = build_mode,
@@ -556,7 +556,7 @@ def _xcode_target_to_dto(
 
     set_if_true(
         dto,
-        "build_settings",
+        "b",
         _build_settings_to_dto(
             build_mode = build_mode,
             is_fixture = is_fixture,
@@ -568,37 +568,37 @@ def _xcode_target_to_dto(
 
     set_if_true(
         dto,
-        "has_modulemaps",
+        "m",
         bool(xcode_target._modulemaps),
     )
     set_if_true(
         dto,
-        "resource_bundle_dependencies",
+        "r",
         [
             id
             for id in inputs.resource_bundle_dependencies.to_list()
             if id not in unfocused_targets
         ],
     )
-    set_if_true(dto, "inputs", _inputs_to_dto(inputs))
+    set_if_true(dto, "i", _inputs_to_dto(inputs))
     set_if_true(
         dto,
-        "linker_inputs",
+        "5",
         linker_inputs_dto,
     )
     set_if_true(
         dto,
-        "link_params",
+        "6",
         file_path_to_dto(file_path(link_params)),
     )
     set_if_true(
         dto,
-        "info_plist",
+        "4",
         file_path_to_dto(file_path(xcode_target.infoplist)),
     )
     set_if_true(
         dto,
-        "extensions",
+        "e",
         [
             id
             for id in xcode_target._extensions
@@ -607,7 +607,7 @@ def _xcode_target_to_dto(
     )
     set_if_true(
         dto,
-        "app_clips",
+        "a",
         [
             id
             for id in xcode_target._app_clips
@@ -616,11 +616,11 @@ def _xcode_target_to_dto(
     )
 
     if should_include_outputs:
-        set_if_true(dto, "outputs", _outputs_to_dto(xcode_target.outputs))
+        set_if_true(dto, "o", _outputs_to_dto(xcode_target.outputs))
 
     set_if_true(
         dto,
-        "additional_scheme_targets",
+        "7",
         additional_scheme_target_ids,
     )
 
@@ -637,7 +637,7 @@ def _xcode_target_to_dto(
 
     set_if_true(
         dto,
-        "dependencies",
+        "d",
         [
             _handle_dependency(id)
             for id in xcode_target._dependencies.to_list()
@@ -726,28 +726,28 @@ def _inputs_to_dto(inputs):
     """
     ret = {}
 
-    def _process_attr(attr):
+    def _process_attr(attr, key):
         value = getattr(inputs, attr)
         if value:
-            ret[attr] = [
+            ret[key] = [
                 file_path_to_dto(file_path(file))
                 for file in value.to_list()
             ]
 
-    _process_attr("srcs")
-    _process_attr("non_arc_srcs")
-    _process_attr("hdrs")
+    _process_attr("srcs", "s")
+    _process_attr("non_arc_srcs", "n")
+    _process_attr("hdrs", "h")
 
     if inputs.pch:
-        ret["pch"] = file_path_to_dto(file_path(inputs.pch))
+        ret["p"] = file_path_to_dto(file_path(inputs.pch))
 
     if inputs.entitlements:
-        ret["entitlements"] = file_path_to_dto(file_path(inputs.entitlements))
+        ret["e"] = file_path_to_dto(file_path(inputs.entitlements))
 
     if inputs.resources:
         set_if_true(
             ret,
-            "resources",
+            "r",
             [file_path_to_dto(fp) for fp in inputs.resources.to_list()],
         )
 
@@ -781,7 +781,7 @@ def _linker_inputs_to_dto(
     ret = {}
     set_if_true(
         ret,
-        "dynamic_frameworks",
+        "d",
         [
             file_path_to_dto(file_path(file, path = file.dirname))
             for file in linker_inputs.dynamic_frameworks
@@ -847,17 +847,24 @@ def _outputs_to_dto(outputs):
     return dto
 
 def _product_to_dto(product):
-    return {
-        "additional_paths": [
+    dto =  {
+        "n": product.name,
+        "t": product.type,
+    }
+
+    set_if_true(dto, "p", file_path_to_dto(product.file_path))
+    set_if_true(
+        dto,
+        "a",
+        [
             file_path_to_dto(normalized_file_path(file))
             for file in product._additional_files.to_list()
         ],
-        "executable_name": product.executable_name,
-        "is_resource_bundle": product._is_resource_bundle,
-        "name": product.name,
-        "path": file_path_to_dto(product.file_path),
-        "type": product.type,
-    }
+    )
+    set_if_true(dto, "r", product._is_resource_bundle)
+    set_if_true(dto, "e", product.executable_name)
+
+    return dto
 
 def _swift_to_dto(outputs):
     dto = {

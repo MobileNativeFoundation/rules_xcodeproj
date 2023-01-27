@@ -14,7 +14,7 @@ struct LinkerInputs: Equatable {
 
 extension LinkerInputs: Decodable {
     enum CodingKeys: String, CodingKey {
-        case dynamicFrameworks
+        case dynamicFrameworks = "d"
     }
 
     init(from decoder: Decoder) throws {

@@ -52,12 +52,12 @@ extension Inputs {
 
 extension Inputs: Decodable {
     enum CodingKeys: String, CodingKey {
-        case srcs
-        case nonArcSrcs
-        case hdrs
-        case pch
-        case resources
-        case entitlements
+        case srcs = "s"
+        case nonArcSrcs = "n"
+        case hdrs = "h"
+        case pch = "p"
+        case resources = "r"
+        case entitlements = "e"
     }
 
     init(from decoder: Decoder) throws {

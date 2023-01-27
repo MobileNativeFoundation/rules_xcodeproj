@@ -1,7 +1,14 @@
 [
     "//lib2:lib_impl darwin_x86_64-dbg-STABLE-1",
     {
-        "build_settings": {
+        "1": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib2",
+        "2": {
+            "a": "x86_64",
+            "m": "12.0",
+            "o": "macos",
+            "v": "macosx"
+        },
+        "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
@@ -34,101 +41,90 @@
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
             "SWIFT_VERSION": "5.0"
         },
-        "configuration": "darwin_x86_64-dbg-STABLE-1",
-        "inputs": {
-            "srcs": [
+        "c": "darwin_x86_64-dbg-STABLE-1",
+        "i": {
+            "s": [
                 "lib2/lib.c"
             ]
         },
-        "is_swift": false,
-        "label": "//lib2:lib_impl",
-        "name": "lib_impl",
-        "package_bin_dir": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib2",
-        "platform": {
-            "arch": "x86_64",
-            "minimum_os_version": "12.0",
-            "os": "macos",
-            "variant": "macosx"
-        },
-        "product": {
-            "additional_paths": [],
-            "executable_name": null,
-            "is_resource_bundle": false,
-            "name": "lib_impl",
-            "path": {
+        "l": "//lib2:lib_impl",
+        "n": "lib_impl",
+        "p": {
+            "n": "lib_impl",
+            "p": {
                 "_": "darwin_x86_64-dbg-STABLE-1/bin/lib2/liblib_impl.a",
                 "t": "g"
             },
-            "type": "com.apple.product-type.library.static"
-        }
+            "t": "com.apple.product-type.library.static"
+        },
+        "s": false
     },
     "//lib:lib_defines darwin_x86_64-dbg-STABLE-1",
     {
-        "build_settings": {
+        "1": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib",
+        "2": {
+            "a": "x86_64",
+            "m": "12.0",
+            "o": "macos",
+            "v": "macosx"
+        },
+        "b": {
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
             "SWIFT_VERSION": "5.0"
         },
-        "configuration": "darwin_x86_64-dbg-STABLE-1",
-        "dependencies": [
+        "c": "darwin_x86_64-dbg-STABLE-1",
+        "d": [
             "//lib:lib_impl darwin_x86_64-dbg-STABLE-1"
         ],
-        "is_swift": false,
-        "label": "//lib:lib_defines",
-        "name": "lib_defines",
-        "package_bin_dir": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib",
-        "platform": {
-            "arch": "x86_64",
-            "minimum_os_version": "12.0",
-            "os": "macos",
-            "variant": "macosx"
+        "l": "//lib:lib_defines",
+        "n": "lib_defines",
+        "p": {
+            "n": "lib_defines",
+            "t": "com.apple.product-type.library.static"
         },
-        "product": {
-            "additional_paths": [],
-            "executable_name": null,
-            "is_resource_bundle": false,
-            "name": "lib_defines",
-            "path": null,
-            "type": "com.apple.product-type.library.static"
-        }
+        "s": false
     },
     "//lib:lib_headers darwin_x86_64-dbg-STABLE-1",
     {
-        "build_settings": {
+        "1": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib",
+        "2": {
+            "a": "x86_64",
+            "m": "12.0",
+            "o": "macos",
+            "v": "macosx"
+        },
+        "b": {
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
             "SWIFT_VERSION": "5.0"
         },
-        "configuration": "darwin_x86_64-dbg-STABLE-1",
-        "dependencies": [
+        "c": "darwin_x86_64-dbg-STABLE-1",
+        "d": [
             "//lib:lib_defines darwin_x86_64-dbg-STABLE-1"
         ],
-        "is_swift": false,
-        "label": "//lib:lib_headers",
-        "name": "lib_headers",
-        "package_bin_dir": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib",
-        "platform": {
-            "arch": "x86_64",
-            "minimum_os_version": "12.0",
-            "os": "macos",
-            "variant": "macosx"
+        "l": "//lib:lib_headers",
+        "n": "lib_headers",
+        "p": {
+            "n": "lib_headers",
+            "t": "com.apple.product-type.library.static"
         },
-        "product": {
-            "additional_paths": [],
-            "executable_name": null,
-            "is_resource_bundle": false,
-            "name": "lib_headers",
-            "path": null,
-            "type": "com.apple.product-type.library.static"
-        }
+        "s": false
     },
     "//lib:lib_impl darwin_x86_64-dbg-STABLE-1",
     {
-        "build_settings": {
+        "1": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib",
+        "2": {
+            "a": "x86_64",
+            "m": "12.0",
+            "o": "macos",
+            "v": "macosx"
+        },
+        "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
@@ -159,38 +155,39 @@
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
             "SWIFT_VERSION": "5.0"
         },
-        "configuration": "darwin_x86_64-dbg-STABLE-1",
-        "inputs": {
-            "srcs": [
+        "c": "darwin_x86_64-dbg-STABLE-1",
+        "i": {
+            "s": [
                 "lib/lib.c",
                 "lib/private/private.h"
             ]
         },
-        "is_swift": false,
-        "label": "//lib:lib_impl",
-        "name": "lib_impl",
-        "package_bin_dir": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib",
-        "platform": {
-            "arch": "x86_64",
-            "minimum_os_version": "12.0",
-            "os": "macos",
-            "variant": "macosx"
-        },
-        "product": {
-            "additional_paths": [],
-            "executable_name": null,
-            "is_resource_bundle": false,
-            "name": "lib_impl",
-            "path": {
+        "l": "//lib:lib_impl",
+        "n": "lib_impl",
+        "p": {
+            "n": "lib_impl",
+            "p": {
                 "_": "darwin_x86_64-dbg-STABLE-1/bin/lib/liblib_impl.lo",
                 "t": "g"
             },
-            "type": "com.apple.product-type.library.static"
-        }
+            "t": "com.apple.product-type.library.static"
+        },
+        "s": false
     },
     "//tool:tool darwin_x86_64-dbg-STABLE-1",
     {
-        "build_settings": {
+        "1": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/tool",
+        "2": {
+            "a": "x86_64",
+            "m": "12.0",
+            "o": "macos",
+            "v": "macosx"
+        },
+        "6": {
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/tool.7.link.params",
+            "t": "g"
+        },
+        "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/tool/rules_xcodeproj/tool/tool",
             "DEBUG_INFORMATION_FORMAT": "dwarf",
             "ENABLE_BITCODE": false,
@@ -234,113 +231,99 @@
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
             "SWIFT_VERSION": "5.0"
         },
-        "configuration": "darwin_x86_64-dbg-STABLE-1",
-        "dependencies": [
+        "c": "darwin_x86_64-dbg-STABLE-1",
+        "d": [
             "//lib:lib_headers darwin_x86_64-dbg-STABLE-1",
             "//lib2:lib_impl darwin_x86_64-dbg-STABLE-1",
             "@examples_cc_external//:lib_headers darwin_x86_64-dbg-STABLE-1"
         ],
-        "inputs": {
-            "srcs": [
+        "i": {
+            "s": [
                 "tool/main.c"
             ]
         },
-        "is_swift": false,
-        "label": "//tool:tool",
-        "link_params": {
-            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/tool.7.link.params",
-            "t": "g"
-        },
-        "name": "tool",
-        "outputs": {
+        "l": "//tool:tool",
+        "n": "tool",
+        "o": {
             "p": true
         },
-        "package_bin_dir": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/tool",
-        "platform": {
-            "arch": "x86_64",
-            "minimum_os_version": "12.0",
-            "os": "macos",
-            "variant": "macosx"
-        },
-        "product": {
-            "additional_paths": [],
-            "executable_name": "tool",
-            "is_resource_bundle": false,
-            "name": "tool",
-            "path": {
+        "p": {
+            "e": "tool",
+            "n": "tool",
+            "p": {
                 "_": "darwin_x86_64-dbg-STABLE-1/bin/tool/rules_xcodeproj/tool/tool",
                 "t": "g"
             },
-            "type": "com.apple.product-type.tool"
-        }
+            "t": "com.apple.product-type.tool"
+        },
+        "s": false
     },
     "@examples_cc_external//:lib_defines darwin_x86_64-dbg-STABLE-1",
     {
-        "build_settings": {
+        "1": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external",
+        "2": {
+            "a": "x86_64",
+            "m": "12.0",
+            "o": "macos",
+            "v": "macosx"
+        },
+        "b": {
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
             "SWIFT_VERSION": "5.0"
         },
-        "configuration": "darwin_x86_64-dbg-STABLE-1",
-        "dependencies": [
+        "c": "darwin_x86_64-dbg-STABLE-1",
+        "d": [
             "@examples_cc_external//:lib_impl darwin_x86_64-dbg-STABLE-1"
         ],
-        "is_swift": false,
-        "label": "@examples_cc_external//:lib_defines",
-        "name": "lib_defines",
-        "package_bin_dir": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external",
-        "platform": {
-            "arch": "x86_64",
-            "minimum_os_version": "12.0",
-            "os": "macos",
-            "variant": "macosx"
+        "l": "@examples_cc_external//:lib_defines",
+        "n": "lib_defines",
+        "p": {
+            "n": "lib_defines",
+            "t": "com.apple.product-type.library.static"
         },
-        "product": {
-            "additional_paths": [],
-            "executable_name": null,
-            "is_resource_bundle": false,
-            "name": "lib_defines",
-            "path": null,
-            "type": "com.apple.product-type.library.static"
-        }
+        "s": false
     },
     "@examples_cc_external//:lib_headers darwin_x86_64-dbg-STABLE-1",
     {
-        "build_settings": {
+        "1": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external",
+        "2": {
+            "a": "x86_64",
+            "m": "12.0",
+            "o": "macos",
+            "v": "macosx"
+        },
+        "b": {
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
             "SWIFT_VERSION": "5.0"
         },
-        "configuration": "darwin_x86_64-dbg-STABLE-1",
-        "dependencies": [
+        "c": "darwin_x86_64-dbg-STABLE-1",
+        "d": [
             "@examples_cc_external//:lib_defines darwin_x86_64-dbg-STABLE-1"
         ],
-        "is_swift": false,
-        "label": "@examples_cc_external//:lib_headers",
-        "name": "lib_headers",
-        "package_bin_dir": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external",
-        "platform": {
-            "arch": "x86_64",
-            "minimum_os_version": "12.0",
-            "os": "macos",
-            "variant": "macosx"
+        "l": "@examples_cc_external//:lib_headers",
+        "n": "lib_headers",
+        "p": {
+            "n": "lib_headers",
+            "t": "com.apple.product-type.library.static"
         },
-        "product": {
-            "additional_paths": [],
-            "executable_name": null,
-            "is_resource_bundle": false,
-            "name": "lib_headers",
-            "path": null,
-            "type": "com.apple.product-type.library.static"
-        }
+        "s": false
     },
     "@examples_cc_external//:lib_impl darwin_x86_64-dbg-STABLE-1",
     {
-        "build_settings": {
+        "1": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external",
+        "2": {
+            "a": "x86_64",
+            "m": "12.0",
+            "o": "macos",
+            "v": "macosx"
+        },
+        "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
@@ -371,9 +354,9 @@
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
             "SWIFT_VERSION": "5.0"
         },
-        "configuration": "darwin_x86_64-dbg-STABLE-1",
-        "inputs": {
-            "srcs": [
+        "c": "darwin_x86_64-dbg-STABLE-1",
+        "i": {
+            "s": [
                 {
                     "_": "examples_cc_external/lib.c",
                     "t": "e"
@@ -384,26 +367,16 @@
                 }
             ]
         },
-        "is_swift": false,
-        "label": "@examples_cc_external//:lib_impl",
-        "name": "lib_impl",
-        "package_bin_dir": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external",
-        "platform": {
-            "arch": "x86_64",
-            "minimum_os_version": "12.0",
-            "os": "macos",
-            "variant": "macosx"
-        },
-        "product": {
-            "additional_paths": [],
-            "executable_name": null,
-            "is_resource_bundle": false,
-            "name": "lib_impl",
-            "path": {
+        "l": "@examples_cc_external//:lib_impl",
+        "n": "lib_impl",
+        "p": {
+            "n": "lib_impl",
+            "p": {
                 "_": "darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external/liblib_impl.a",
                 "t": "g"
             },
-            "type": "com.apple.product-type.library.static"
-        }
+            "t": "com.apple.product-type.library.static"
+        },
+        "s": false
     }
 ]
