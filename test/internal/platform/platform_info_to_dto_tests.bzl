@@ -70,10 +70,10 @@ def platform_info_to_dto_test_suite(name):
         arch = "wild",
         minimum_os_version = "12.0",
         expected_platform_dict = {
-            "arch": "wild",
-            "minimum_os_version": "12.0",
-            "os": "tvos",
-            "variant": "appletvos",
+            "a": "wild",
+            "m": "12.0",
+            "o": "tvos",
+            "v": "appletvos",
         },
     )
 
@@ -85,10 +85,10 @@ def platform_info_to_dto_test_suite(name):
         arch = "arm64",
         minimum_os_version = "12.1",
         expected_platform_dict = {
-            "arch": "arm64",
-            "minimum_os_version": "12.1",
-            "os": "macos",
-            "variant": "macosx",
+            "a": "arm64",
+            "m": "12.1",
+            "o": "macos",
+            "v": "macosx",
         },
     )
 

@@ -27,7 +27,7 @@ struct Target: Equatable {
     var additionalSchemeTargets: Set<TargetID>
 }
 
-struct CompileTarget: Equatable, Decodable {
+struct CompileTarget: Equatable {
     let id: TargetID
     let name: String
 }
@@ -42,31 +42,30 @@ extension Target {
 
 extension Target: Decodable {
     enum CodingKeys: String, CodingKey {
-        case name
-        case label
-        case configuration
-        case compileTarget
-        case packageBinDir
-        case platform
-        case product
-        case isTestonly
-        case isSwift
-        case testHost
-        case buildSettings
-        case hasModulemaps
-        case inputs
-        case linkerInputs
-        case linkParams
-        case infoPlist
-        case entitlements
-        case resourceBundleDependencies
-        case watchApplication
-        case extensions
-        case appClips
-        case dependencies
-        case outputs
-        case isUnfocusedDependency
-        case additionalSchemeTargets
+        case name = "n"
+        case label = "l"
+        case configuration = "c"
+        case compileTarget = "3"
+        case packageBinDir = "1"
+        case platform = "2"
+        case product = "p"
+        case isTestonly = "t"
+        case isSwift = "s"
+        case testHost = "h"
+        case buildSettings = "b"
+        case hasModulemaps = "m"
+        case inputs = "i"
+        case linkerInputs = "5"
+        case linkParams = "6"
+        case infoPlist = "4"
+        case resourceBundleDependencies = "r"
+        case watchApplication = "w"
+        case extensions = "e"
+        case appClips = "a"
+        case dependencies = "d"
+        case outputs = "o"
+        case isUnfocusedDependency = "u"
+        case additionalSchemeTargets = "7"
     }
 
     init(from decoder: Decoder) throws {
@@ -117,6 +116,21 @@ extension Target: Decodable {
             .decodeTargetIDs(.additionalSchemeTargets)
     }
 }
+
+extension CompileTarget: Decodable {
+    enum CodingKeys: String, CodingKey {
+        case id = "i"
+        case name = "n"
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        id = try container.decode(TargetID.self, forKey: .id)
+        name = try container.decode(String.self, forKey: .name)
+    }
+}
+
 
 private extension KeyedDecodingContainer where K == Target.CodingKeys {
     func decodeFilePaths(_ key: K) throws -> [FilePath] {

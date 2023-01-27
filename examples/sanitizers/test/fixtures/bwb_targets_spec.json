@@ -1,7 +1,26 @@
 [
     "//AddressSanitizerApp:AddressSanitizerApp applebin_ios-ios_x86_64-dbg-STABLE-2",
     {
-        "build_settings": {
+        "1": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/AddressSanitizerApp",
+        "2": {
+            "a": "x86_64",
+            "m": "15.0",
+            "o": "ios",
+            "v": "iphonesimulator"
+        },
+        "3": {
+            "i": "//AddressSanitizerApp:AddressSanitizerApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
+            "n": "AddressSanitizerApp.library"
+        },
+        "4": {
+            "_": "applebin_ios-ios_x86_64-dbg-STABLE-2/bin/AddressSanitizerApp/rules_xcodeproj/AddressSanitizerApp/Info.plist",
+            "t": "g"
+        },
+        "6": {
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/AddressSanitizerApp.0.link.params",
+            "t": "g"
+        },
+        "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/AddressSanitizerApp/AddressSanitizerApp.ipa",
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -20,29 +39,17 @@
             "SWIFT_VERSION": "5.0",
             "TARGETED_DEVICE_FAMILY": "1"
         },
-        "compile_target": {
-            "id": "//AddressSanitizerApp:AddressSanitizerApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
-            "name": "AddressSanitizerApp.library"
-        },
-        "configuration": "applebin_ios-ios_x86_64-dbg-STABLE-2",
-        "info_plist": {
-            "_": "applebin_ios-ios_x86_64-dbg-STABLE-2/bin/AddressSanitizerApp/rules_xcodeproj/AddressSanitizerApp/Info.plist",
-            "t": "g"
-        },
-        "inputs": {
-            "srcs": [
+        "c": "applebin_ios-ios_x86_64-dbg-STABLE-2",
+        "i": {
+            "s": [
                 "AddressSanitizerApp/AddressSanitizerApp.swift",
                 "AddressSanitizerApp/AddressSanitizerExamples.swift",
                 "AddressSanitizerApp/ContentView.swift"
             ]
         },
-        "label": "//AddressSanitizerApp:AddressSanitizerApp",
-        "link_params": {
-            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/AddressSanitizerApp.0.link.params",
-            "t": "g"
-        },
-        "name": "AddressSanitizerApp",
-        "outputs": {
+        "l": "//AddressSanitizerApp:AddressSanitizerApp",
+        "n": "AddressSanitizerApp",
+        "o": {
             "p": true,
             "s": {
                 "m": {
@@ -51,33 +58,44 @@
                 }
             }
         },
-        "package_bin_dir": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/AddressSanitizerApp",
-        "platform": {
-            "arch": "x86_64",
-            "minimum_os_version": "15.0",
-            "os": "ios",
-            "variant": "iphonesimulator"
-        },
-        "product": {
-            "additional_paths": [
+        "p": {
+            "a": [
                 {
                     "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/AddressSanitizerApp/libAddressSanitizerApp.library.a",
                     "t": "g"
                 }
             ],
-            "executable_name": "AddressSanitizerApp",
-            "is_resource_bundle": false,
-            "name": "AddressSanitizerApp",
-            "path": {
+            "e": "AddressSanitizerApp",
+            "n": "AddressSanitizerApp",
+            "p": {
                 "_": "applebin_ios-ios_x86_64-dbg-STABLE-2/bin/AddressSanitizerApp/AddressSanitizerApp_archive-root/Payload/AddressSanitizerApp.app",
                 "t": "g"
             },
-            "type": "com.apple.product-type.application"
+            "t": "com.apple.product-type.application"
         }
     },
     "//ThreadSanitizerApp:ThreadSanitizerApp applebin_ios-ios_x86_64-dbg-STABLE-2",
     {
-        "build_settings": {
+        "1": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/ThreadSanitizerApp",
+        "2": {
+            "a": "x86_64",
+            "m": "15.0",
+            "o": "ios",
+            "v": "iphonesimulator"
+        },
+        "3": {
+            "i": "//ThreadSanitizerApp:ThreadSanitizerApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
+            "n": "ThreadSanitizerApp.library"
+        },
+        "4": {
+            "_": "applebin_ios-ios_x86_64-dbg-STABLE-2/bin/ThreadSanitizerApp/rules_xcodeproj/ThreadSanitizerApp/Info.plist",
+            "t": "g"
+        },
+        "6": {
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/ThreadSanitizerApp.1.link.params",
+            "t": "g"
+        },
+        "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/ThreadSanitizerApp/ThreadSanitizerApp.ipa",
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -96,29 +114,17 @@
             "SWIFT_VERSION": "5.0",
             "TARGETED_DEVICE_FAMILY": "1"
         },
-        "compile_target": {
-            "id": "//ThreadSanitizerApp:ThreadSanitizerApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
-            "name": "ThreadSanitizerApp.library"
-        },
-        "configuration": "applebin_ios-ios_x86_64-dbg-STABLE-2",
-        "info_plist": {
-            "_": "applebin_ios-ios_x86_64-dbg-STABLE-2/bin/ThreadSanitizerApp/rules_xcodeproj/ThreadSanitizerApp/Info.plist",
-            "t": "g"
-        },
-        "inputs": {
-            "srcs": [
+        "c": "applebin_ios-ios_x86_64-dbg-STABLE-2",
+        "i": {
+            "s": [
                 "ThreadSanitizerApp/ContentView.swift",
                 "ThreadSanitizerApp/ThreadSanitizerApp.swift",
                 "ThreadSanitizerApp/ThreadSanitizerExamples.swift"
             ]
         },
-        "label": "//ThreadSanitizerApp:ThreadSanitizerApp",
-        "link_params": {
-            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/ThreadSanitizerApp.1.link.params",
-            "t": "g"
-        },
-        "name": "ThreadSanitizerApp",
-        "outputs": {
+        "l": "//ThreadSanitizerApp:ThreadSanitizerApp",
+        "n": "ThreadSanitizerApp",
+        "o": {
             "p": true,
             "s": {
                 "m": {
@@ -127,33 +133,44 @@
                 }
             }
         },
-        "package_bin_dir": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/ThreadSanitizerApp",
-        "platform": {
-            "arch": "x86_64",
-            "minimum_os_version": "15.0",
-            "os": "ios",
-            "variant": "iphonesimulator"
-        },
-        "product": {
-            "additional_paths": [
+        "p": {
+            "a": [
                 {
                     "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/ThreadSanitizerApp/libThreadSanitizerApp.library.a",
                     "t": "g"
                 }
             ],
-            "executable_name": "ThreadSanitizerApp",
-            "is_resource_bundle": false,
-            "name": "ThreadSanitizerApp",
-            "path": {
+            "e": "ThreadSanitizerApp",
+            "n": "ThreadSanitizerApp",
+            "p": {
                 "_": "applebin_ios-ios_x86_64-dbg-STABLE-2/bin/ThreadSanitizerApp/ThreadSanitizerApp_archive-root/Payload/ThreadSanitizerApp.app",
                 "t": "g"
             },
-            "type": "com.apple.product-type.application"
+            "t": "com.apple.product-type.application"
         }
     },
     "//UndefinedBehaviorSanitizerApp:UndefinedBehaviorSanitizerApp applebin_ios-ios_x86_64-dbg-STABLE-2",
     {
-        "build_settings": {
+        "1": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/UndefinedBehaviorSanitizerApp",
+        "2": {
+            "a": "x86_64",
+            "m": "15.0",
+            "o": "ios",
+            "v": "iphonesimulator"
+        },
+        "3": {
+            "i": "//UndefinedBehaviorSanitizerApp:UndefinedBehaviorSanitizerApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
+            "n": "UndefinedBehaviorSanitizerApp.library"
+        },
+        "4": {
+            "_": "applebin_ios-ios_x86_64-dbg-STABLE-2/bin/UndefinedBehaviorSanitizerApp/rules_xcodeproj/UndefinedBehaviorSanitizerApp/Info.plist",
+            "t": "g"
+        },
+        "6": {
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/UndefinedBehaviorSanitizerApp.2.link.params",
+            "t": "g"
+        },
+        "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/UndefinedBehaviorSanitizerApp/UndefinedBehaviorSanitizerApp.ipa",
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf",
@@ -200,54 +217,34 @@
             "SWIFT_VERSION": "5.0",
             "TARGETED_DEVICE_FAMILY": "1"
         },
-        "compile_target": {
-            "id": "//UndefinedBehaviorSanitizerApp:UndefinedBehaviorSanitizerApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
-            "name": "UndefinedBehaviorSanitizerApp.library"
-        },
-        "configuration": "applebin_ios-ios_x86_64-dbg-STABLE-2",
-        "info_plist": {
-            "_": "applebin_ios-ios_x86_64-dbg-STABLE-2/bin/UndefinedBehaviorSanitizerApp/rules_xcodeproj/UndefinedBehaviorSanitizerApp/Info.plist",
-            "t": "g"
-        },
-        "inputs": {
-            "srcs": [
+        "c": "applebin_ios-ios_x86_64-dbg-STABLE-2",
+        "i": {
+            "s": [
                 "UndefinedBehaviorSanitizerApp/Sources/AppDelegate.h",
                 "UndefinedBehaviorSanitizerApp/Sources/AppDelegate.m",
                 "UndefinedBehaviorSanitizerApp/Sources/main.m"
             ]
         },
-        "is_swift": false,
-        "label": "//UndefinedBehaviorSanitizerApp:UndefinedBehaviorSanitizerApp",
-        "link_params": {
-            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/UndefinedBehaviorSanitizerApp.2.link.params",
-            "t": "g"
-        },
-        "name": "UndefinedBehaviorSanitizerApp",
-        "outputs": {
+        "l": "//UndefinedBehaviorSanitizerApp:UndefinedBehaviorSanitizerApp",
+        "n": "UndefinedBehaviorSanitizerApp",
+        "o": {
             "p": true
         },
-        "package_bin_dir": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/UndefinedBehaviorSanitizerApp",
-        "platform": {
-            "arch": "x86_64",
-            "minimum_os_version": "15.0",
-            "os": "ios",
-            "variant": "iphonesimulator"
-        },
-        "product": {
-            "additional_paths": [
+        "p": {
+            "a": [
                 {
                     "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/UndefinedBehaviorSanitizerApp/libUndefinedBehaviorSanitizerApp.library.a",
                     "t": "g"
                 }
             ],
-            "executable_name": "UndefinedBehaviorSanitizerApp",
-            "is_resource_bundle": false,
-            "name": "UndefinedBehaviorSanitizerApp",
-            "path": {
+            "e": "UndefinedBehaviorSanitizerApp",
+            "n": "UndefinedBehaviorSanitizerApp",
+            "p": {
                 "_": "applebin_ios-ios_x86_64-dbg-STABLE-2/bin/UndefinedBehaviorSanitizerApp/UndefinedBehaviorSanitizerApp_archive-root/Payload/UndefinedBehaviorSanitizerApp.app",
                 "t": "g"
             },
-            "type": "com.apple.product-type.application"
-        }
+            "t": "com.apple.product-type.application"
+        },
+        "s": false
     }
 ]
