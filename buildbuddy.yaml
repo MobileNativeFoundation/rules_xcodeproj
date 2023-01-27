@@ -76,7 +76,7 @@ actions:
     <<: *examples_cc_workspace
     bazel_commands:
       - *set_release_archive_override
-      - build --config=workflows run //:xcodeproj
+      - run --config=workflows //:xcodeproj
 
   - name: Test
     <<: *arm64
