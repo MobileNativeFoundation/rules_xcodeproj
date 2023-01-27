@@ -8,6 +8,12 @@ load(
     "swift_binary",
     "swift_library",
 )
+load(
+    "@rules_pkg//:mappings.bzl",
+    "pkg_filegroup",
+    "pkg_files",
+    "strip_prefix",
+)
 load("//xcodeproj:defs.bzl", "xcodeproj")
 load(
     ":xcodeproj_targets.bzl",
@@ -73,8 +79,8 @@ xcodeproj(
 
 # Release
 
-filegroup(
-    name = "release_files",
+pkg_files(
+    name = "package_release_files",
     srcs = glob(
         ["**"],
         exclude = [
@@ -83,6 +89,15 @@ filegroup(
             "test/**",
         ],
     ),
+    strip_prefix = strip_prefix.from_root(),
+    tags = ["manual"],
+)
+
+pkg_filegroup(
+    name = "release_files",
+    srcs = [
+        ":package_release_files",
+    ],
     tags = ["manual"],
     visibility = ["//visibility:public"],
 )

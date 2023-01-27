@@ -1,4 +1,5 @@
 load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
+load("@rules_pkg//:mappings.bzl", "pkg_filegroup", "pkg_files", "strip_prefix")
 
 bzl_library(
     name = "bazel_tools",
@@ -29,8 +30,8 @@ exports_files(glob(["*.template.*"]))
 
 # Release
 
-filegroup(
-    name = "release_files",
+pkg_files(
+    name = "package_release_files",
     srcs = glob(
         ["**"],
         exclude = [
@@ -40,7 +41,15 @@ filegroup(
             "validator.template.sh",
             "xcodeproj_tests.bzl",
         ],
-    ) + [
+    ),
+    strip_prefix = strip_prefix.from_root(),
+    tags = ["manual"],
+)
+
+pkg_filegroup(
+    name = "release_files",
+    srcs = [
+        ":package_release_files",
         "//" + package_name() + "/bazel_integration_files:release_files",
     ],
     tags = ["manual"],
