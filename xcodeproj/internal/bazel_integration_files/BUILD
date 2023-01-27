@@ -1,3 +1,5 @@
+load("@rules_pkg//:mappings.bzl", "pkg_files", "strip_prefix")
+
 _BASE_FILES = [
     "bazel_build.sh",
     "calculate_output_groups.py",
@@ -106,7 +108,7 @@ genrule(
 
 # Release
 
-filegroup(
+pkg_files(
     name = "release_files",
     srcs = glob(
         ["**"],
@@ -114,6 +116,7 @@ filegroup(
             "**/.*",
         ],
     ),
+    strip_prefix = strip_prefix.from_root(),
     tags = ["manual"],
     visibility = ["//visibility:public"],
 )
