@@ -1,4 +1,5 @@
 load("@buildifier_prebuilt//:rules.bzl", "buildifier")
+load("@rules_pkg//:mappings.bzl", "pkg_filegroup", "pkg_files", "strip_prefix")
 load("@rules_pkg//pkg:tar.bzl", "pkg_tar")
 
 # Release
@@ -34,11 +35,20 @@ pkg_tar(
     tags = ["manual"],
 )
 
-filegroup(
-    name = "release_files",
+pkg_files(
+    name = "package_release_files",
     srcs = [
         "LICENSE",
         "MODULE.bazel",
+    ],
+    strip_prefix = strip_prefix.from_root(),
+    tags = ["manual"],
+)
+
+pkg_filegroup(
+    name = "release_files",
+    srcs = [
+        ":package_release_files",
         "//third_party:release_files",
         "//tools:release_files",
         "//xcodeproj:release_files",
