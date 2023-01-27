@@ -37,5 +37,6 @@ filegroup(
     ) + [
         "//" + package_name() + "/internal:release_files",
     ],
+    tags = ["manual"],
     visibility = ["//visibility:public"],
 )

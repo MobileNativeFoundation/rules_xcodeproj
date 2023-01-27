@@ -20,5 +20,6 @@ filegroup(
         "//" + package_name() + "/swiftc_stub:release_files",
         "//" + package_name() + "/xccurrentversions_parser:release_files",
     ],
+    tags = ["manual"],
     visibility = ["//visibility:public"],
 )

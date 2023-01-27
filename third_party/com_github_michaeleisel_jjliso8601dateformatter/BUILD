@@ -8,5 +8,6 @@ filegroup(
             "**/.*",
         ],
     ),
+    tags = ["manual"],
     visibility = ["//visibility:public"],
 )
