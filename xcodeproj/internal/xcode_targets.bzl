@@ -847,7 +847,7 @@ def _outputs_to_dto(outputs):
     return dto
 
 def _product_to_dto(product):
-    dto =  {
+    dto = {
         "n": product.name,
         "t": product.type,
     }
