@@ -2,5 +2,3 @@ tasks:
   verify_targets_macos:
     name: Verify build targets
     platform: macos
-    build_targets:
-    - "@rules_xcodeproj//tools/generator:xcodeproj"

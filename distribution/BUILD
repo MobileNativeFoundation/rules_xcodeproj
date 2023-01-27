@@ -1,11 +1,19 @@
 load("@rules_pkg//pkg:tar.bzl", "pkg_tar")
+load(":opt_wrapper.bzl", "opt_wrapper")
+
+opt_wrapper(
+    name = "release",
+    dep = ":release_filegroup",
+    tags = ["manual"],
+)
 
 filegroup(
-    name = "release",
+    name = "release_filegroup",
     srcs = [
         ":release_pkg",
         ":release_pkg_sha256",
     ],
+    tags = ["manual"],
 )
 
 genrule(
@@ -27,8 +35,15 @@ pkg_tar(
     ],
     extension = "tar.gz",
     mode = "0444",
+    modes = {
+        "tools/generator/prebuilt_universal_generator": "0744",
+    },
     owner = "0.0",
     package_file_name = "release.tar.gz",
+    remap_paths = {
+        "tools/generator/BUILD.release.bazel": "tools/generator/BUILD",
+        "tools/generator/universal_generator": "tools/generator/prebuilt_universal_generator",
+    },
     strip_prefix = "/",
     tags = ["manual"],
 )
