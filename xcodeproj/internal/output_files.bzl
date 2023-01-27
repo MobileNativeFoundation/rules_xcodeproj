@@ -40,9 +40,8 @@ def _create(
     """
     compiled = None
     direct_products = []
-    indexstore = None
-
     dsym_files = depset()
+    indexstore = None
 
     if direct_outputs:
         is_framework = direct_outputs.is_framework
@@ -191,9 +190,11 @@ def _get_outputs(*, debug_outputs, id, product, swift_info, output_group_info):
     indexing process.
 
     Args:
-        debug_outputs: The `AppleDebugOutputs` provider for the target, or `None`.
+        debug_outputs: The `AppleDebugOutputs` provider for the target, or
+            `None`.
         id: The unique identifier of the target.
-        output_group_info: The `OutputGroupInfo` provider for the target, or `None`.
+        output_group_info: The `OutputGroupInfo` provider for the target, or
+            `None`.
         product: A value returned from `process_product`, or `None` if the
             target isn't a top level target.
         swift_info: The `SwiftInfo` provider for the target, or `None`.
@@ -201,7 +202,7 @@ def _get_outputs(*, debug_outputs, id, product, swift_info, output_group_info):
     Returns:
         A `struct` containing the following fields:
 
-        *    `dsym_files`: A `depset` of dSYM files or `None`.
+        *   `dsym_files`: A `depset` of dSYM files or `None`.
         *   `id`: The unique identifier of the target.
         *   `product`: A `File` for the target's product (e.g. ".app" or ".zip")
             or `None`.
@@ -217,9 +218,8 @@ def _get_outputs(*, debug_outputs, id, product, swift_info, output_group_info):
             if swift:
                 break
 
-    dsym_files = None
-
     # _has_dsym will be False if --apple_generate_dsym is not passed
+    dsym_files = None
     if _has_dsym(debug_outputs) and output_group_info and "dsyms" in output_group_info:
         dsym_files = output_group_info["dsyms"]
 
@@ -266,9 +266,11 @@ def _collect_output_files(
 
     Args:
         ctx: The aspect context.
-        debug_outputs: The `AppleDebugOutputs provider for the target, or `None`.
+        debug_outputs: The `AppleDebugOutputs` provider for the target, or
+            `None`.
         id: A unique identifier for the target.
-        output_group_info: The `OutputGroupInfo` provider for the target, or `None`.
+        output_group_info: The `OutputGroupInfo` provider for the target, or
+            `None`.
         swift_info: The `SwiftInfo` provider for the target, or `None`.
         top_level_product: A value returned from `process_product`, or `None` if
             the target isn't a top level target.
@@ -288,7 +290,6 @@ def _collect_output_files(
         An opaque `struct` that should be used with `output_files.to_dto` or
         `output_files.to_output_groups_fields`.
     """
-
     outputs = _get_outputs(
         debug_outputs = debug_outputs,
         id = id,
