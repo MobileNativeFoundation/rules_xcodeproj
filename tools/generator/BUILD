@@ -77,7 +77,11 @@ filegroup(
     name = "release_files",
     srcs = glob(
         ["**"],
-        exclude = ["test/**"],
+        exclude = [
+            "**/.*",
+            "*.xcodeproj/**",
+            "test/**",
+        ],
     ),
     visibility = ["//visibility:public"],
 )

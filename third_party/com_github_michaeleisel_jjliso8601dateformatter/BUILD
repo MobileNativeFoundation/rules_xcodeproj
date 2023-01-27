@@ -2,6 +2,11 @@
 
 filegroup(
     name = "release_files",
-    srcs = glob(["*"]),
+    srcs = glob(
+        ["*"],
+        exclude = [
+            "**/.*",
+        ],
+    ),
     visibility = ["//visibility:public"],
 )
