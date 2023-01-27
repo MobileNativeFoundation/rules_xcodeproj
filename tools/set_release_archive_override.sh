@@ -13,7 +13,7 @@ echo
 bazel --output_base=setup-bazel-output-base build //distribution:release
 
 archive_path="$(bazel --output_base=setup-bazel-output-base info output_path)/darwin_arm64-opt/bin/distribution/release.tar.gz"
-integrity="sha256-$(cut -d' ' -f 1 /Users/brentley/Developer/rules_xcodeproj/setup-bazel-output-base/execroot/_main/bazel-out/darwin_arm64-opt/bin/distribution/release.tar.gz.sha256 | xxd -r -p | openssl base64 -A)"
+integrity="sha256-$(cut -d' ' -f 1 $archive_path.sha256 | xxd -r -p | openssl base64 -A)"
 
 echo
 echo "archive_path: $archive_path"
