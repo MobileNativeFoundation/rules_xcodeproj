@@ -26,10 +26,10 @@ shasum -a 256 $< > $@
 pkg_tar(
     name = "release_pkg",
     srcs = [":release_files"],
+    extension = "tar.gz",
     mode = "0444",
     owner = "0.0",
     package_file_name = "release.tar.gz",
-    extension = "tar.gz",
     strip_prefix = ".",
     tags = ["manual"],
 )
