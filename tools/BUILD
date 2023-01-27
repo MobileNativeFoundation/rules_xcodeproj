@@ -1,4 +1,4 @@
-load("@rules_pkg//:mappings.bzl", "pkg_filegroup", "pkg_files", "strip_prefix")
+load("@rules_pkg//:mappings.bzl", "pkg_filegroup", "pkg_files")
 
 sh_binary(
     name = "set_bazel_5",
@@ -16,7 +16,6 @@ pkg_files(
             "**/.*",
         ],
     ),
-    strip_prefix = strip_prefix.from_root(),
     tags = ["manual"],
 )
 
@@ -30,6 +29,7 @@ pkg_filegroup(
         "//" + package_name() + "/swiftc_stub:release_files",
         "//" + package_name() + "/xccurrentversions_parser:release_files",
     ],
+    prefix = "tools",
     tags = ["manual"],
     visibility = ["//visibility:public"],
 )

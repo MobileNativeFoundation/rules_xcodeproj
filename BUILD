@@ -1,5 +1,5 @@
 load("@buildifier_prebuilt//:rules.bzl", "buildifier")
-load("@rules_pkg//:mappings.bzl", "pkg_filegroup", "pkg_files", "strip_prefix")
+load("@rules_pkg//:mappings.bzl", "pkg_filegroup", "pkg_files")
 load("@rules_pkg//pkg:tar.bzl", "pkg_tar")
 
 # Release
@@ -41,7 +41,6 @@ pkg_files(
         "LICENSE",
         "MODULE.bazel",
     ],
-    strip_prefix = strip_prefix.from_root(),
     tags = ["manual"],
 )
 

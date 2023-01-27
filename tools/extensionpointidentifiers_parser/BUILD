@@ -1,4 +1,4 @@
-load("@rules_pkg//:mappings.bzl", "pkg_files", "strip_prefix")
+load("@rules_pkg//:mappings.bzl", "pkg_files")
 
 py_binary(
     name = "extensionpointidentifiers_parser",
@@ -19,7 +19,7 @@ pkg_files(
             "**/.*",
         ],
     ),
-    strip_prefix = strip_prefix.from_root(),
+    prefix = package_name().split("/")[-1],
     tags = ["manual"],
     visibility = ["//visibility:public"],
 )
