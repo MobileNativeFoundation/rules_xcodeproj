@@ -1,6 +1,6 @@
 sh_binary(
-    name = "set_bazel_5",
-    srcs = ["set_bazel_5.sh"],
+    name = "set_release_archive_override",
+    srcs = ["set_release_archive_override.sh"],
     tags = ["manual"],
 )
 

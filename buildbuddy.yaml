@@ -29,20 +29,24 @@ x_templates:
     - &examples_cc_workspace
       bazel_workspace_dir: examples/cc
       git_clean_exclude:
+        - setup-bazel-output-base
         - examples/cc/bazel-output-base
         - examples/cc/setup-bazel-output-base
     - &examples_integration_workspace
       bazel_workspace_dir: examples/integration
       git_clean_exclude:
+        - setup-bazel-output-base
         - examples/integration/bazel-output-base
         - examples/integration/setup-bazel-output-base
     - &examples_sanitizers_workspace
       bazel_workspace_dir: examples/sanitizers
       git_clean_exclude:
+        - setup-bazel-output-base
         - examples/sanitizers/bazel-output-base
         - examples/sanitizers/setup-bazel-output-base
 
   commands:
+    - &set_release_archive_override "--output_base=setup-bazel-output-base run --config=workflows @com_github_buildbuddy_io_rules_xcodeproj//tools:set_release_archive_override"
     - &validate_integration "run --config=workflows --noexperimental_enable_bzlmod //test/fixtures:validate"
     - &build_all "build --config=workflows --noexperimental_enable_bzlmod //..."
     - &test_all "test --config=workflows --noexperimental_enable_bzlmod //..."
@@ -167,3 +171,12 @@ actions:
     bazel_commands:
       - *validate_integration
       - *build_all
+
+  - name: Validate release.tar.gz
+    <<: *arm64
+    <<: *normal_resources
+    <<: *action_base
+    <<: *examples_cc_workspace
+    bazel_commands:
+      - *set_release_archive_override
+      - run --config=workflows //:xcodeproj
