@@ -1,23 +1,6 @@
 {
-    "args": [
-        "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-7",
-        [
-            "--command_line_args=-AppleLanguages,(en-GB)"
-        ]
-    ],
-    "bazel_config": "rules_xcodeproj_integration",
-    "build_settings": {
-        "ALWAYS_SEARCH_USER_PATHS": false,
-        "BAZEL_PATH": "bazel",
-        "CLANG_ENABLE_OBJC_ARC": true,
-        "CLANG_MODULES_AUTOLINK": false,
-        "COPY_PHASE_STRIP": false,
-        "ONLY_ACTIVE_ARCH": true,
-        "USE_HEADERMAP": false,
-        "VALIDATE_WORKSPACE": false
-    },
-    "configuration": "darwin_x86_64-dbg-STABLE-0",
-    "envs": [
+    "B": "rules_xcodeproj_integration",
+    "E": [
         "//CommandLine/Tests:CommandLineToolTests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-STABLE-20",
         {
             "INTEGRATION_TEST_ENV_VAR": "TRUE"
@@ -53,7 +36,25 @@
             "INTEGRATION_TEST_ENV_VAR": "TRUE"
         }
     ],
-    "extra_files": [
+    "R": "//test/fixtures:xcodeproj_bwb",
+    "a": [
+        "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-7",
+        [
+            "--command_line_args=-AppleLanguages,(en-GB)"
+        ]
+    ],
+    "b": {
+        "ALWAYS_SEARCH_USER_PATHS": false,
+        "BAZEL_PATH": "bazel",
+        "CLANG_ENABLE_OBJC_ARC": true,
+        "CLANG_MODULES_AUTOLINK": false,
+        "COPY_PHASE_STRIP": false,
+        "ONLY_ACTIVE_ARCH": true,
+        "USE_HEADERMAP": false,
+        "VALIDATE_WORKSPACE": false
+    },
+    "c": "darwin_x86_64-dbg-STABLE-0",
+    "e": [
         {
             "_": "FXPageControl/FXPageControl/FXPageControl.h",
             "t": "e"
@@ -335,11 +336,11 @@
         "watchOSAppExtension/Info.plist",
         "watchOSAppExtension/Test/UnitTests/BUILD"
     ],
-    "generator_label": "//test/fixtures:xcodeproj_bwb.generator",
-    "index_import": "fixture-index-import-path",
-    "minimum_xcode_version": "13.0",
-    "name": "bwb",
-    "replacement_labels": [
+    "g": "//test/fixtures:xcodeproj_bwb.generator",
+    "i": "fixture-index-import-path",
+    "m": "13.0",
+    "n": "bwb",
+    "r": [
         "//CommandLine/CommandLineTool:tool.binary macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18",
         "//CommandLine/CommandLineTool:UniversalCommandLineTool",
         "//CommandLine/CommandLineTool:tool.binary macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-19",
@@ -361,9 +362,8 @@
         "//watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests.__internal__.__test_bundle applebin_watchos-watchos_x86_64-dbg-STABLE-9",
         "//watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests"
     ],
-    "runner_label": "//test/fixtures:xcodeproj_bwb",
-    "scheme_autogeneration_mode": "all",
-    "target_hosts": [
+    "s": "all",
+    "t": [
         "//WidgetExtension:WidgetExtension applebin_ios-ios_arm64-dbg-STABLE-8",
         [
             "//iOSApp/Source:iOSApp applebin_ios-ios_arm64-dbg-STABLE-8"

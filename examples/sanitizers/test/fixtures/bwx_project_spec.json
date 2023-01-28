@@ -1,6 +1,7 @@
 {
-    "bazel_config": "rules_xcodeproj",
-    "build_settings": {
+    "B": "rules_xcodeproj",
+    "R": "//test/fixtures:xcodeproj_bwx",
+    "b": {
         "ALWAYS_SEARCH_USER_PATHS": false,
         "BAZEL_PATH": "bazel",
         "CLANG_ENABLE_OBJC_ARC": true,
@@ -10,8 +11,8 @@
         "USE_HEADERMAP": false,
         "VALIDATE_WORKSPACE": false
     },
-    "configuration": "darwin_x86_64-dbg-STABLE-0",
-    "extra_files": [
+    "c": "darwin_x86_64-dbg-STABLE-0",
+    "e": [
         "AddressSanitizerApp/BUILD",
         "AddressSanitizerApp/Info.plist",
         "ThreadSanitizerApp/BUILD",
@@ -20,11 +21,10 @@
         "UndefinedBehaviorSanitizerApp/Info.plist",
         "test/fixtures/BUILD"
     ],
-    "force_bazel_dependencies": false,
-    "generator_label": "//test/fixtures:xcodeproj_bwx.generator",
-    "index_import": "fixture-index-import-path",
-    "minimum_xcode_version": "13.0",
-    "name": "bwx",
-    "runner_label": "//test/fixtures:xcodeproj_bwx",
-    "scheme_autogeneration_mode": "none"
+    "f": false,
+    "g": "//test/fixtures:xcodeproj_bwx.generator",
+    "i": "fixture-index-import-path",
+    "m": "13.0",
+    "n": "bwx",
+    "s": "none"
 }
