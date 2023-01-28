@@ -223,13 +223,6 @@ perl -pe 's/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$ENV{$2}/g' \
 private extension Dictionary where Key == FilePath {
     var containsExternalFiles: Bool { keys.containsExternalFiles }
     var containsGeneratedFiles: Bool { keys.containsGeneratedFiles }
-
-    var containsInfoPlists: Bool {
-        contains(where: { filePath, _ in
-            return filePath.type == .generated
-                && filePath.path.lastComponent == "Info.plist"
-        })
-    }
 }
 
 private extension Sequence where Element == FilePath {

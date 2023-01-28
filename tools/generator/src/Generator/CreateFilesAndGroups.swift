@@ -692,14 +692,6 @@ already was set to `\(existingValue)`.
     }
 }
 
-// MARK: - Private Types
-
-private struct LLDBSettings: Equatable, Encodable {
-    let frameworks: [String]
-    let includes: [String]
-    let clang: String
-}
-
 // MARK: - Extensions
 
 private extension Target {
@@ -755,8 +747,4 @@ private extension Outputs {
 
         return []
     }
-}
-
-private extension Path {
-    var sourceTree: PBXSourceTree { isAbsolute ? .absolute : .group }
 }
