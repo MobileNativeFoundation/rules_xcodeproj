@@ -29,16 +29,6 @@ extension Outputs {
     var hasSwiftOutputs: Bool {
         return swift != nil
     }
-
-    mutating func merge(_ other: Outputs) {
-        swift = other.swift
-    }
-
-    func merging(_ other: Outputs) -> Outputs {
-        var types = self
-        types.merge(other)
-        return types
-    }
 }
 
 // MARK: - Decodable
@@ -72,11 +62,5 @@ extension Outputs.Swift: Decodable {
             FilePath.self,
             forKey: .generatedHeader
         )
-    }
-}
-
-private extension KeyedDecodingContainer where K == Outputs.CodingKeys {
-    func decodeFilePaths(_ key: K) throws -> [FilePath] {
-        return try decodeIfPresent([FilePath].self, forKey: key) ?? []
     }
 }

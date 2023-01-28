@@ -1,20 +1,6 @@
 import XcodeProj
 
 extension PBXProductType {
-    var isApplication: Bool {
-        switch self {
-        case .application,
-             .watchApp,
-             .watch2App,
-             .watch2AppContainer,
-             .messagesApplication,
-             .onDemandInstallCapableApplication:
-            return true
-        default:
-            return false
-        }
-    }
-
     var isWatchApplication: Bool {
         switch self {
         case .watchApp,
@@ -67,39 +53,6 @@ extension PBXProductType {
              .instrumentsPackage,
              .intentsServiceExtension,
              .onDemandInstallCapableApplication:
-            return true
-        default:
-            return false
-        }
-    }
-
-    var isExecutable: Bool {
-        switch self {
-        case .application,
-             .framework,
-             .xcFramework, // Could be
-             .dynamicLibrary,
-             .bundle, // Could be
-             .unitTestBundle,
-             .uiTestBundle,
-             .appExtension,
-             .extensionKitExtension,
-             .commandLineTool,
-             .watchApp,
-             .watch2App,
-             .watch2AppContainer,
-             .watchExtension,
-             .watch2Extension,
-             .tvExtension,
-             .messagesApplication,
-             .messagesExtension,
-             .xpcService,
-             .ocUnitTestBundle,
-             .xcodeExtension,
-             .intentsServiceExtension,
-             .onDemandInstallCapableApplication,
-             .driverExtension,
-             .systemExtension:
             return true
         default:
             return false

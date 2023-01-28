@@ -133,14 +133,6 @@ extension CompileTarget: Decodable {
 
 
 private extension KeyedDecodingContainer where K == Target.CodingKeys {
-    func decodeFilePaths(_ key: K) throws -> [FilePath] {
-        return try decodeIfPresent([FilePath].self, forKey: key) ?? []
-    }
-
-    func decodeFilePaths(_ key: K) throws -> Set<FilePath> {
-        return try decodeIfPresent(Set<FilePath>.self, forKey: key) ?? []
-    }
-
     func decodeTargetIDs(_ key: K) throws -> Set<TargetID> {
         return try decodeIfPresent(Set<TargetID>.self, forKey: key) ?? []
     }

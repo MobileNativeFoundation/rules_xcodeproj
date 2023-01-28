@@ -113,10 +113,6 @@ class XCSchemeInfoHostInfoTests: XCTestCase {
         pbxTargetInfo: macOSAppPBXTargetInfo,
         index: 3
     )
-    lazy var iOSAppHostInfo = XCSchemeInfo.HostInfo(
-        pbxTargetInfo: iOSAppPBXTargetInfo,
-        index: 2
-    )
     lazy var anotheriOSAppHostInfo = XCSchemeInfo.HostInfo(
         pbxTargetInfo: anotheriOSAppPBXTargetInfo,
         index: 4

@@ -528,29 +528,6 @@ Build setting for \(key) is not an array: \(buildSetting)
     }
 }
 
-extension Target {
-    private func internalTargetFilesPath() throws -> Path {
-        var components = packageBinDir.components
-        guard
-            components.count >= 3,
-            components[0] == "bazel-out",
-            components[2] == "bin"
-        else {
-            throw PreconditionError(message: """
-`packageBinDir` is in unexpected format: \(packageBinDir)
-""")
-        }
-        // Remove "bin/"
-        components.remove(at: 2)
-        // Remove "bazel-out/"
-        components.remove(at: 0)
-        // Add our components
-        components = ["targets"] + components
-
-        return Path(components: components)
-    }
-}
-
 private extension Platform.OS {
     var sdkRoot: String {
         switch self {
@@ -578,12 +555,6 @@ public extension Array where Element: Hashable {
     func uniqued() -> [Element] {
         var seen = Set<Element>()
         return filter { seen.insert($0).inserted }
-    }
-}
-
-private extension Dictionary where Value == BuildSetting {
-    mutating func set(_ key: Key, to value: Path) {
-        self[key] = .string(value.string)
     }
 }
 

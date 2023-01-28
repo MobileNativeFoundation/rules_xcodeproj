@@ -48,30 +48,6 @@ extension Platform.Variant {
         case .watchOSSimulator: return Self.simulatorEnvironment
         }
     }
-
-    var targetTriplePrefix: String {
-        switch self {
-        case .macOS: return "macosx"
-        case .iOSDevice: return "ios"
-        case .iOSSimulator: return "ios"
-        case .tvOSDevice: return "tvos"
-        case .tvOSSimulator: return "tvos"
-        case .watchOSDevice: return "watchos"
-        case .watchOSSimulator: return "watchos"
-        }
-    }
-
-    var tripleSuffix: String {
-        switch self {
-        case .macOS: return ""
-        case .iOSDevice: return ""
-        case .iOSSimulator: return "-simulator"
-        case .tvOSDevice: return ""
-        case .tvOSSimulator: return "-simulator"
-        case .watchOSDevice: return ""
-        case .watchOSSimulator: return "-simulator"
-        }
-    }
 }
 
 // MARK: - Comparable
