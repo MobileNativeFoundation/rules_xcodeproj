@@ -835,7 +835,6 @@ def _write_spec(
         *,
         args,
         config,
-        configuration,
         ctx,
         is_fixture,
         envs,
@@ -883,7 +882,6 @@ def _write_spec(
             "USE_HEADERMAP": False,
             "VALIDATE_WORKSPACE": False,
         },
-        "c": configuration,
         "g": str(ctx.label),
         "i": "fixture-index-import-path" if is_fixture else build_setting_path(
             file = ctx.executable._index_import,
@@ -1388,7 +1386,6 @@ def _xcodeproj_impl(ctx):
         is_fixture = is_fixture,
         project_name = project_name,
         config = config,
-        configuration = configuration,
         envs = envs,
         targets = targets,
         target_dtos = target_dtos,

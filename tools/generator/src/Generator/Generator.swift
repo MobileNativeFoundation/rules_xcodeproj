@@ -125,7 +125,6 @@ class Generator {
             files,
             project.bazelConfig,
             project.generatorLabel,
-            project.configuration,
             project.preBuildScript,
             project.postBuildScript,
             consolidatedTargets

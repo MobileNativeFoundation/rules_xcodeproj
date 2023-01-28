@@ -71,7 +71,6 @@ struct Environment {
         _ files: [FilePath: File],
         _ bazelConfig: String,
         _ generatorLabel: BazelLabel,
-        _ generatorConfiguration: String,
         _ preBuildScript: String?,
         _ postBuildScript: String?,
         _ consolidatedTargets: ConsolidatedTargets

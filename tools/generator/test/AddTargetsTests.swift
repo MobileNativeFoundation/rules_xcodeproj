@@ -15,7 +15,6 @@ final class AddTargetsTests: XCTestCase {
         let expectedMainGroup = expectedPBXProj.rootObject!.mainGroup!
 
         let generatorLabel = "@//:project"
-        let generatorConfiguration = "1234zyx"
         let consolidatedTargets = Fixtures.consolidatedTargets
         let workspaceDirectory: Path = "/app-project"
         let projectRootDirectory: Path = "~/Developer/project"
@@ -52,13 +51,11 @@ final class AddTargetsTests: XCTestCase {
 
         let bazelDependenciesTarget = Fixtures.bazelDependenciesTarget(
             in: pbxProj,
-            generatorLabel: generatorLabel,
-            generatorConfiguration: generatorConfiguration
+            generatorLabel: generatorLabel
         )
         let expectedBazelDependenciesTarget = Fixtures.bazelDependenciesTarget(
             in: expectedPBXProj,
-            generatorLabel: generatorLabel,
-            generatorConfiguration: generatorConfiguration
+            generatorLabel: generatorLabel
         )
 
         let disambiguatedTargets = Fixtures.disambiguatedTargets(
