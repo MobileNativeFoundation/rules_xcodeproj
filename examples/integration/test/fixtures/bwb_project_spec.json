@@ -1,4 +1,10 @@
 {
+    "args": [
+        "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-7",
+        [
+            "--command_line_args=-AppleLanguages,(en-GB)"
+        ]
+    ],
     "bazel_config": "rules_xcodeproj_integration",
     "build_settings": {
         "ALWAYS_SEARCH_USER_PATHS": false,
@@ -10,12 +16,6 @@
         "USE_HEADERMAP": false,
         "VALIDATE_WORKSPACE": false
     },
-    "args": [
-        "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-7",
-        [
-            "--command_line_args=-AppleLanguages,(en-GB)"
-        ]
-    ],
     "configuration": "darwin_x86_64-dbg-STABLE-0",
     "envs": [
         "//CommandLine/Tests:CommandLineToolTests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-STABLE-20",
@@ -335,13 +335,10 @@
         "watchOSAppExtension/Info.plist",
         "watchOSAppExtension/Test/UnitTests/BUILD"
     ],
-    "force_bazel_dependencies": true,
     "generator_label": "//test/fixtures:xcodeproj_bwb.generator",
     "index_import": "fixture-index-import-path",
     "minimum_xcode_version": "13.0",
     "name": "bwb",
-    "post_build_script": null,
-    "pre_build_script": null,
     "replacement_labels": [
         "//CommandLine/CommandLineTool:tool.binary macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18",
         "//CommandLine/CommandLineTool:UniversalCommandLineTool",

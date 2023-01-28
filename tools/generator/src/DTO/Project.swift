@@ -57,19 +57,24 @@ extension Project: Decodable {
         buildSettings = try container
             .decode([String: BuildSetting].self, forKey: .buildSettings)
         replacementLabels = try container
-            .decode([TargetID: BazelLabel].self, forKey: .replacementLabels)
+            .decodeIfPresent(
+                [TargetID: BazelLabel].self,
+                forKey: .replacementLabels
+            ) ?? [:]
         targetHosts = try container
-            .decode([TargetID: [TargetID]].self, forKey: .targetHosts)
+            .decodeIfPresent([TargetID: [TargetID]].self, forKey: .targetHosts)
+            ?? [:]
         args = try container
-            .decode([TargetID: [String]].self, forKey: .args)
+            .decodeIfPresent([TargetID: [String]].self, forKey: .args) ?? [:]
         envs = try container
-            .decode([TargetID: [String: String]].self, forKey: .envs)
+            .decodeIfPresent([TargetID: [String: String]].self, forKey: .envs)
+            ?? [:]
         extraFiles = try container
-            .decode(Set<FilePath>.self, forKey: .extraFiles)
+            .decodeIfPresent(Set<FilePath>.self, forKey: .extraFiles) ?? []
         schemeAutogenerationMode = try container
             .decode(SchemeAutogenerationMode.self, forKey: .schemeAutogenerationMode)
         forceBazelDependencies = try container
-            .decode(Bool.self, forKey: .forceBazelDependencies)
+            .decodeIfPresent(Bool.self, forKey: .forceBazelDependencies) ?? true
         indexImport = try container
             .decode(String.self, forKey: .indexImport)
         preBuildScript = try container

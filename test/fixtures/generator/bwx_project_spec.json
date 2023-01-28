@@ -10,7 +10,6 @@
         "USE_HEADERMAP": false,
         "VALIDATE_WORKSPACE": false
     },
-    "args": [],
     "configuration": "darwin_x86_64-dbg-STABLE-0",
     "envs": [
         "//tools/generator/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-STABLE-2",
@@ -26,18 +25,14 @@
         "tools/generator/test/BUILD",
         "tools/swiftc_stub/BUILD"
     ],
-    "force_bazel_dependencies": true,
     "generator_label": "//test/fixtures/generator:xcodeproj_bwx.generator",
     "index_import": "fixture-index-import-path",
     "minimum_xcode_version": "13.0",
     "name": "bwx",
-    "post_build_script": null,
-    "pre_build_script": null,
     "replacement_labels": [
         "//tools/generator/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-STABLE-2",
         "//tools/generator/test:tests"
     ],
     "runner_label": "//test/fixtures/generator:xcodeproj_bwx",
-    "scheme_autogeneration_mode": "none",
-    "target_hosts": []
+    "scheme_autogeneration_mode": "none"
 }
