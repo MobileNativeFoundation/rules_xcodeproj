@@ -10,7 +10,6 @@ enum Fixtures {
         bazelConfig: "rules_xcodeproj_fixtures",
         generatorLabel: "@//:xcodeproj.generator",
         runnerLabel: "@//:xcodeproj",
-        configuration: "z3y2z",
         minimumXcodeVersion: "14.0.1",
         buildSettings: [
             "ALWAYS_SEARCH_USER_PATHS": .bool(false),
@@ -1308,8 +1307,7 @@ $(BAZEL_OUT)/z/A.link.params
 
     static func bazelDependenciesTarget(
         in pbxProj: PBXProj,
-        generatorLabel: String,
-        generatorConfiguration: String
+        generatorLabel: String
     ) -> PBXAggregateTarget {
         let allPlatforms = """
 watchsimulator \
@@ -1913,8 +1911,7 @@ touch "$SCRIPT_OUTPUT_FILE_1"
 
         let bazelDependenciesTarget = Fixtures.bazelDependenciesTarget(
             in: pbxProj,
-            generatorLabel: "@//:xcodeproj",
-            generatorConfiguration: "xyz321"
+            generatorLabel: "@//:xcodeproj"
         )
 
         let disambiguatedTargets = Fixtures.disambiguatedTargets(

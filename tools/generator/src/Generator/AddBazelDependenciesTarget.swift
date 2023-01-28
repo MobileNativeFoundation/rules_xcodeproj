@@ -28,7 +28,6 @@ extension Generator {
         files: [FilePath: File],
         bazelConfig: String,
         generatorLabel: BazelLabel,
-        generatorConfiguration: String,
         preBuildScript: String?,
         postBuildScript: String?,
         consolidatedTargets: ConsolidatedTargets
@@ -88,8 +87,7 @@ $(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py
             targets: consolidatedTargets.targets.values
                 .flatMap { $0.sortedTargets },
             files: files,
-            generatorLabel: generatorLabel,
-            generatorConfiguration: generatorConfiguration
+            generatorLabel: generatorLabel
         )
 
         let createLLDBSettingsModuleScript =
@@ -142,8 +140,7 @@ $(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py
         buildMode: BuildMode,
         targets: [Target],
         files: [FilePath: File],
-        generatorLabel: BazelLabel,
-        generatorConfiguration: String
+        generatorLabel: BazelLabel
     ) -> PBXShellScriptBuildPhase {
         let hasGeneratedFiles = files.containsGeneratedFiles
 

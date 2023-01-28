@@ -14,7 +14,6 @@ final class GeneratorTests: XCTestCase {
             bazelConfig: "rules_xcodeproj_test",
             generatorLabel: "@//a/P:xcodeproj.gen",
             runnerLabel: "@//a/P:xcodeproj",
-            configuration: "abc123",
             minimumXcodeVersion: "13.2.0",
             buildSettings: [:],
             targets: Fixtures.targets,
@@ -450,7 +449,6 @@ final class GeneratorTests: XCTestCase {
             let files: [FilePath: File]
             let bazelConfig: String
             let generatorLabel: BazelLabel
-            let generatorConfiguration: String
             let preBuildScript: String?
             let postBuildScript: String?
             let consolidatedTargets: ConsolidatedTargets
@@ -467,7 +465,6 @@ final class GeneratorTests: XCTestCase {
             files: [FilePath: File],
             bazelConfig: String,
             generatorLabel: BazelLabel,
-            generatorConfiguration: String,
             preBuildScript: String?,
             postBuildScript: String?,
             consolidatedTargets: ConsolidatedTargets
@@ -481,7 +478,6 @@ final class GeneratorTests: XCTestCase {
                 files: files,
                 bazelConfig: bazelConfig,
                 generatorLabel: generatorLabel,
-                generatorConfiguration: generatorConfiguration,
                 preBuildScript: preBuildScript,
                 postBuildScript: postBuildScript,
                 consolidatedTargets: consolidatedTargets
@@ -499,7 +495,6 @@ final class GeneratorTests: XCTestCase {
                 files: files,
                 bazelConfig: project.bazelConfig,
                 generatorLabel: project.generatorLabel,
-                generatorConfiguration: project.configuration,
                 preBuildScript: project.preBuildScript,
                 postBuildScript: project.postBuildScript,
                 consolidatedTargets: consolidatedTargets
