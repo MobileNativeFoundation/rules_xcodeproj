@@ -872,8 +872,8 @@ def _write_spec(
     # TODO: Strip fat frameworks instead of setting `VALIDATE_WORKSPACE`
 
     spec_dto = {
-        "bazel_config": config,
-        "build_settings": {
+        "B": config,
+        "b": {
             "ALWAYS_SEARCH_USER_PATHS": False,
             "BAZEL_PATH": ctx.attr.bazel_path,
             "CLANG_ENABLE_OBJC_ARC": True,
@@ -883,51 +883,51 @@ def _write_spec(
             "USE_HEADERMAP": False,
             "VALIDATE_WORKSPACE": False,
         },
-        "configuration": configuration,
-        "generator_label": str(ctx.label),
-        "index_import": "fixture-index-import-path" if is_fixture else build_setting_path(
+        "c": configuration,
+        "g": str(ctx.label),
+        "i": "fixture-index-import-path" if is_fixture else build_setting_path(
             file = ctx.executable._index_import,
         ),
-        "minimum_xcode_version": minimum_xcode_version,
-        "name": project_name,
-        "runner_label": ctx.attr.runner_label,
-        "scheme_autogeneration_mode": ctx.attr.scheme_autogeneration_mode,
+        "m": minimum_xcode_version,
+        "n": project_name,
+        "R": ctx.attr.runner_label,
+        "s": ctx.attr.scheme_autogeneration_mode,
     }
 
     force_bazel_dependencies = (
         has_unfocused_targets or inputs.has_generated_files
     )
     if not force_bazel_dependencies:
-        spec_dto["force_bazel_dependencies"] = False
+        spec_dto["f"] = False
 
     set_if_true(
         spec_dto,
-        "args",
+        "a",
         flattened_key_values.to_list(args, sort = is_fixture),
     )
     set_if_true(
         spec_dto,
-        "extra_files",
+        "e",
         [file_path_to_dto(file) for file in extra_files],
     )
     set_if_true(
         spec_dto,
-        "envs",
+        "E",
         flattened_key_values.to_list(envs, sort = is_fixture),
     )
     set_if_true(
         spec_dto,
-        "post_build_script",
+        "P",
         ctx.attr.post_build,
     )
     set_if_true(
         spec_dto,
-        "pre_build_script",
+        "p",
         ctx.attr.pre_build,
     )
     set_if_true(
         spec_dto,
-        "replacement_labels",
+        "r",
         flattened_key_values.to_list(
             {
                 id: bazel_labels.normalize(label)
@@ -939,7 +939,7 @@ def _write_spec(
     )
     set_if_true(
         spec_dto,
-        "target_hosts",
+        "t",
         flattened_key_values.to_list(target_hosts, sort = is_fixture),
     )
 

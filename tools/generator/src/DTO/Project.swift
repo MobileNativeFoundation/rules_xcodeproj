@@ -22,23 +22,23 @@ struct Project: Equatable {
 
 extension Project: Decodable {
     enum CodingKeys: String, CodingKey {
-        case name
-        case bazelConfig
-        case generatorLabel
-        case runnerLabel
-        case configuration
-        case minimumXcodeVersion
-        case buildSettings
-        case replacementLabels
-        case targetHosts
-        case envs
-        case args
-        case extraFiles
-        case schemeAutogenerationMode
-        case forceBazelDependencies
-        case indexImport
-        case preBuildScript
-        case postBuildScript
+        case name = "n"
+        case bazelConfig = "B"
+        case generatorLabel = "g"
+        case runnerLabel = "R"
+        case configuration = "c"
+        case minimumXcodeVersion = "m"
+        case buildSettings = "b"
+        case replacementLabels = "r"
+        case targetHosts = "t"
+        case envs = "E"
+        case args = "a"
+        case extraFiles = "e"
+        case schemeAutogenerationMode = "s"
+        case forceBazelDependencies = "f"
+        case indexImport = "i"
+        case preBuildScript = "p"
+        case postBuildScript = "P"
     }
 
     init(from decoder: Decoder) throws {

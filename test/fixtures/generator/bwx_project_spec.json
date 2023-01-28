@@ -1,6 +1,11 @@
 {
-    "bazel_config": "rules_xcodeproj",
-    "build_settings": {
+    "B": "rules_xcodeproj",
+    "E": [
+        "//tools/generator/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-STABLE-2",
+        {}
+    ],
+    "R": "//test/fixtures/generator:xcodeproj_bwx",
+    "b": {
         "ALWAYS_SEARCH_USER_PATHS": false,
         "BAZEL_PATH": "bazel",
         "CLANG_ENABLE_OBJC_ARC": true,
@@ -10,12 +15,8 @@
         "USE_HEADERMAP": false,
         "VALIDATE_WORKSPACE": false
     },
-    "configuration": "darwin_x86_64-dbg-STABLE-0",
-    "envs": [
-        "//tools/generator/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-STABLE-2",
-        {}
-    ],
-    "extra_files": [
+    "c": "darwin_x86_64-dbg-STABLE-0",
+    "e": [
         {
             "_": "build_bazel_rules_apple/apple/testing/DefaultTestBundle.plist",
             "t": "e"
@@ -25,14 +26,13 @@
         "tools/generator/test/BUILD",
         "tools/swiftc_stub/BUILD"
     ],
-    "generator_label": "//test/fixtures/generator:xcodeproj_bwx.generator",
-    "index_import": "fixture-index-import-path",
-    "minimum_xcode_version": "13.0",
-    "name": "bwx",
-    "replacement_labels": [
+    "g": "//test/fixtures/generator:xcodeproj_bwx.generator",
+    "i": "fixture-index-import-path",
+    "m": "13.0",
+    "n": "bwx",
+    "r": [
         "//tools/generator/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-STABLE-2",
         "//tools/generator/test:tests"
     ],
-    "runner_label": "//test/fixtures/generator:xcodeproj_bwx",
-    "scheme_autogeneration_mode": "none"
+    "s": "none"
 }
