@@ -105,13 +105,6 @@ actions:
     <<: *root_workspace
     bazel_commands:
       - *bzlmod_generate_integration
-  - name: Integration Test - Root - Bazel 5
-    <<: *bazel_5
-    <<: *action_base
-    <<: *normal_resources
-    <<: *root_workspace
-    bazel_commands:
-      - *validate_integration
 
   - name: Integration Test - "examples/cc"
     <<: *arm64
@@ -129,14 +122,6 @@ actions:
     bazel_commands:
       - *bzlmod_generate_integration
       - *bzlmod_build_all
-  - name: Integration Test - "examples/cc" - Bazel 5
-    <<: *bazel_5
-    <<: *action_base
-    <<: *normal_resources
-    <<: *examples_cc_workspace
-    bazel_commands:
-      - *validate_integration
-      - *build_all
 
   - name: Integration Test - "examples/integration"
     <<: *arm64
@@ -157,14 +142,6 @@ actions:
 
   - name: Integration Test - "examples/sanitizers"
     <<: *arm64
-    <<: *action_base
-    <<: *normal_resources
-    <<: *examples_sanitizers_workspace
-    bazel_commands:
-      - *validate_integration
-      - *build_all
-  - name: Integration Test - "examples/sanitizers" - Bazel 5
-    <<: *bazel_5
     <<: *action_base
     <<: *normal_resources
     <<: *examples_sanitizers_workspace
