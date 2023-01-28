@@ -72,7 +72,10 @@ extension Project: Decodable {
         extraFiles = try container
             .decodeIfPresent(Set<FilePath>.self, forKey: .extraFiles) ?? []
         schemeAutogenerationMode = try container
-            .decode(SchemeAutogenerationMode.self, forKey: .schemeAutogenerationMode)
+            .decodeIfPresent(
+                SchemeAutogenerationMode.self,
+                forKey: .schemeAutogenerationMode
+            ) ?? .all
         forceBazelDependencies = try container
             .decodeIfPresent(Bool.self, forKey: .forceBazelDependencies) ?? true
         indexImport = try container
