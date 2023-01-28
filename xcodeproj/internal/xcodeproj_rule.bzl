@@ -872,16 +872,6 @@ def _write_spec(
 
     spec_dto = {
         "B": config,
-        "b": {
-            "ALWAYS_SEARCH_USER_PATHS": False,
-            "BAZEL_PATH": ctx.attr.bazel_path,
-            "CLANG_ENABLE_OBJC_ARC": True,
-            "CLANG_MODULES_AUTOLINK": False,
-            "COPY_PHASE_STRIP": False,
-            "ONLY_ACTIVE_ARCH": True,
-            "USE_HEADERMAP": False,
-            "VALIDATE_WORKSPACE": False,
-        },
         "g": str(ctx.label),
         "i": "fixture-index-import-path" if is_fixture else build_setting_path(
             file = ctx.executable._index_import,
@@ -890,6 +880,10 @@ def _write_spec(
         "n": project_name,
         "R": ctx.attr.runner_label,
     }
+
+    bazel_path = ctx.attr.bazel_path
+    if bazel_path != "bazel":
+        spec_dto["b"] = bazel_path
 
     force_bazel_dependencies = (
         has_unfocused_targets or inputs.has_generated_files

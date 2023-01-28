@@ -38,8 +38,8 @@ extension Generator {
         )
         pbxProj.add(object: mainGroup)
 
-        var buildSettings = project.buildSettings.asDictionary
-        buildSettings.merge([
+        var buildSettings: [String: Any] = [
+            "ALWAYS_SEARCH_USER_PATHS": false,
             "BAZEL_CONFIG": project.bazelConfig,
             "BAZEL_EXTERNAL": "$(BAZEL_OUTPUT_BASE)/external",
             "BAZEL_INTEGRATION_DIR": "$(INTERNAL_DIR)/bazel",
@@ -47,6 +47,7 @@ extension Generator {
             "BAZEL_OUT": "$(PROJECT_DIR)/bazel-out",
             "_BAZEL_OUTPUT_BASE": "$(PROJECT_DIR)/../..",
             "BAZEL_OUTPUT_BASE": "$(_BAZEL_OUTPUT_BASE:standardizepath)",
+            "BAZEL_PATH": project.bazel,
             "BAZEL_WORKSPACE_ROOT": "$(SRCROOT)",
             "BUILD_DIR": """
 $(SYMROOT)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
@@ -58,7 +59,10 @@ $(SYMROOT)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
             "BUILT_PRODUCTS_DIR": """
 $(INDEXING_BUILT_PRODUCTS_DIR__$(INDEX_ENABLE_BUILD_ARENA))
 """,
+            "CLANG_ENABLE_OBJC_ARC": true,
+            "CLANG_MODULES_AUTOLINK": false,
             "CONFIGURATION_BUILD_DIR": "$(BUILD_DIR)/$(BAZEL_PACKAGE_BIN_DIR)",
+            "COPY_PHASE_STRIP": false,
             "DEPLOYMENT_LOCATION": """
 $(INDEXING_DEPLOYMENT_LOCATION__$(INDEX_ENABLE_BUILD_ARENA)),
 """,
@@ -87,6 +91,7 @@ $(PROJECT_FILE_PATH)/\(directories.internalDirectoryName)
             // We don't want Xcode to set any search paths, since we set them in
             // `link.params`
             "LD_RUNPATH_SEARCH_PATHS": [],
+            "ONLY_ACTIVE_ARCH": true,
             "RULES_XCODEPROJ_BUILD_MODE": buildMode.rawValue,
             "SCHEME_TARGET_IDS_FILE": """
 $(OBJROOT)/scheme_target_ids
@@ -99,7 +104,9 @@ $(OBJROOT)/scheme_target_ids
             "TARGET_TEMP_DIR": """
 $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
 """,
-        ], uniquingKeysWith: { _, r in r })
+            "USE_HEADERMAP": false,
+            "VALIDATE_WORKSPACE": false,
+        ]
 
         if buildMode.usesBazelModeBuildScripts {
             buildSettings.merge([

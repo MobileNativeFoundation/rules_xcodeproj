@@ -11,11 +11,11 @@ final class GeneratorTests: XCTestCase {
 
         let project = Project(
             name: "P",
+            bazel: "bz",
             bazelConfig: "rules_xcodeproj_test",
             generatorLabel: "@//a/P:xcodeproj.gen",
             runnerLabel: "@//a/P:xcodeproj",
             minimumXcodeVersion: "13.2.0",
-            buildSettings: [:],
             targets: Fixtures.targets,
             replacementLabels: [:],
             targetHosts: [

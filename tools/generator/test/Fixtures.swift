@@ -7,15 +7,11 @@ import XcodeProj
 enum Fixtures {
     static let project = Project(
         name: "Bazel",
+        bazel: "bazelisk",
         bazelConfig: "rules_xcodeproj_fixtures",
         generatorLabel: "@//:xcodeproj.generator",
         runnerLabel: "@//:xcodeproj",
         minimumXcodeVersion: "14.0.1",
-        buildSettings: [
-            "ALWAYS_SEARCH_USER_PATHS": .bool(false),
-            "COPY_PHASE_STRIP": .bool(false),
-            "ONLY_ACTIVE_ARCH": .bool(true),
-        ],
         targets: targets,
         replacementLabels: [:],
         targetHosts: [
