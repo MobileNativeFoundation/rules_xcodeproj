@@ -54,7 +54,7 @@ final class CreateFilesAndGroupsTests: XCTestCase {
 
         // Act
 
-        var (
+        let (
             createdFiles,
             createdRootElements,
             _,

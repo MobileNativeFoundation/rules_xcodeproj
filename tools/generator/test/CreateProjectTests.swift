@@ -30,13 +30,15 @@ final class CreateProjectTests: XCTestCase {
 
         let debugConfiguration = XCBuildConfiguration(
             name: "Debug",
-            buildSettings: project.buildSettings.asDictionary.merging([
+            buildSettings: [
+                "ALWAYS_SEARCH_USER_PATHS": false,
                 "BAZEL_CONFIG": project.bazelConfig,
                 "BAZEL_EXTERNAL": "$(BAZEL_OUTPUT_BASE)/external",
                 "BAZEL_LLDB_INIT": "$(HOME)/.lldbinit-rules_xcodeproj",
                 "BAZEL_OUT": "$(PROJECT_DIR)/bazel-out",
                 "_BAZEL_OUTPUT_BASE": "$(PROJECT_DIR)/../..",
                 "BAZEL_OUTPUT_BASE": "$(_BAZEL_OUTPUT_BASE:standardizepath)",
+                "BAZEL_PATH": "bazelisk",
                 "BAZEL_WORKSPACE_ROOT": "$(SRCROOT)",
                 "BAZEL_INTEGRATION_DIR": "$(INTERNAL_DIR)/bazel",
                 "BUILD_WORKSPACE_DIRECTORY": "$(SRCROOT)",
@@ -46,9 +48,12 @@ $(SYMROOT)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
                 "BUILT_PRODUCTS_DIR": """
 $(INDEXING_BUILT_PRODUCTS_DIR__$(INDEX_ENABLE_BUILD_ARENA))
 """,
+                "CLANG_ENABLE_OBJC_ARC": true,
+                "CLANG_MODULES_AUTOLINK": false,
                 "CONFIGURATION_BUILD_DIR": """
 $(BUILD_DIR)/$(BAZEL_PACKAGE_BIN_DIR)
 """,
+                "COPY_PHASE_STRIP": false,
                 "DEPLOYMENT_LOCATION": """
 $(INDEXING_DEPLOYMENT_LOCATION__$(INDEX_ENABLE_BUILD_ARENA)),
 """,
@@ -73,6 +78,7 @@ $(INDEXING_DEPLOYMENT_LOCATION__NO)
                 "LD_OBJC_ABI_VERSION": "",
                 "LD_DYLIB_INSTALL_NAME": "",
                 "LD_RUNPATH_SEARCH_PATHS": [],
+                "ONLY_ACTIVE_ARCH": true,
                 "RULES_XCODEPROJ_BUILD_MODE": "xcode",
                 "SCHEME_TARGET_IDS_FILE": """
 $(OBJROOT)/scheme_target_ids
@@ -83,7 +89,9 @@ $(OBJROOT)/scheme_target_ids
                 "TARGET_TEMP_DIR": """
 $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
 """,
-            ]) { $1 }
+                "USE_HEADERMAP": false,
+                "VALIDATE_WORKSPACE": false,
+            ]
         )
         expectedPBXProj.add(object: debugConfiguration)
         let expectedBuildConfigurationList = XCConfigurationList(
@@ -151,13 +159,15 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
 
         let debugConfiguration = XCBuildConfiguration(
             name: "Debug",
-            buildSettings: project.buildSettings.asDictionary.merging([
+            buildSettings: [
+                "ALWAYS_SEARCH_USER_PATHS": false,
                 "BAZEL_CONFIG": "rules_xcodeproj_fixtures",
                 "BAZEL_EXTERNAL": "$(BAZEL_OUTPUT_BASE)/external",
                 "BAZEL_LLDB_INIT": "$(HOME)/.lldbinit-rules_xcodeproj",
                 "BAZEL_OUT": "$(PROJECT_DIR)/bazel-out",
                 "_BAZEL_OUTPUT_BASE": "$(PROJECT_DIR)/../..",
                 "BAZEL_OUTPUT_BASE": "$(_BAZEL_OUTPUT_BASE:standardizepath)",
+                "BAZEL_PATH": "bazelisk",
                 "BAZEL_WORKSPACE_ROOT": "$(SRCROOT)",
                 "BUILD_DIR": """
 $(SYMROOT)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
@@ -169,10 +179,13 @@ $(INDEXING_BUILT_PRODUCTS_DIR__$(INDEX_ENABLE_BUILD_ARENA))
 """,
                 "CC": "$(BAZEL_INTEGRATION_DIR)/clang.sh",
                 "CXX": "$(BAZEL_INTEGRATION_DIR)/clang.sh",
+                "CLANG_ENABLE_OBJC_ARC": true,
+                "CLANG_MODULES_AUTOLINK": false,
                 "CODE_SIGNING_ALLOWED": false,
                 "CONFIGURATION_BUILD_DIR": """
 $(BUILD_DIR)/$(BAZEL_PACKAGE_BIN_DIR)
 """,
+                "COPY_PHASE_STRIP": false,
                 "DEPLOYMENT_LOCATION": """
 $(INDEXING_DEPLOYMENT_LOCATION__$(INDEX_ENABLE_BUILD_ARENA)),
 """,
@@ -200,6 +213,7 @@ $(INDEXING_DEPLOYMENT_LOCATION__NO)
                 "LD_OBJC_ABI_VERSION": "",
                 "LD_DYLIB_INSTALL_NAME": "",
                 "LD_RUNPATH_SEARCH_PATHS": [],
+                "ONLY_ACTIVE_ARCH": true,
                 "RULES_XCODEPROJ_BUILD_MODE": "bazel",
                 "SCHEME_TARGET_IDS_FILE": """
 $(OBJROOT)/scheme_target_ids
@@ -212,7 +226,9 @@ $(OBJROOT)/scheme_target_ids
                 "TARGET_TEMP_DIR": """
 $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
 """,
-            ]) { $1 }
+                "USE_HEADERMAP": false,
+                "VALIDATE_WORKSPACE": false,
+            ]
         )
         expectedPBXProj.add(object: debugConfiguration)
         let expectedBuildConfigurationList = XCConfigurationList(

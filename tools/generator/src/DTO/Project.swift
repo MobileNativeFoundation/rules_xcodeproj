@@ -1,10 +1,10 @@
 struct Project: Equatable {
     let name: String
+    let bazel: String
     let bazelConfig: String
     let generatorLabel: BazelLabel
     let runnerLabel: BazelLabel
     let minimumXcodeVersion: SemanticVersion
-    let buildSettings: [String: BuildSetting]
     var targets: [TargetID: Target] = [:]
     let replacementLabels: [TargetID: BazelLabel]
     let targetHosts: [TargetID: [TargetID]]
@@ -22,11 +22,11 @@ struct Project: Equatable {
 extension Project: Decodable {
     enum CodingKeys: String, CodingKey {
         case name = "n"
+        case bazel = "b"
         case bazelConfig = "B"
         case generatorLabel = "g"
         case runnerLabel = "R"
         case minimumXcodeVersion = "m"
-        case buildSettings = "b"
         case replacementLabels = "r"
         case targetHosts = "t"
         case envs = "E"
@@ -43,6 +43,8 @@ extension Project: Decodable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
         name = try container.decode(String.self, forKey: .name)
+        bazel = try container
+            .decodeIfPresent(String.self, forKey: .bazel) ?? "bazel"
         bazelConfig = try container.decode(String.self, forKey: .bazelConfig)
         generatorLabel = try container
             .decode(BazelLabel.self, forKey: .generatorLabel)
@@ -50,8 +52,6 @@ extension Project: Decodable {
             .decode(BazelLabel.self, forKey: .runnerLabel)
         minimumXcodeVersion = try container
             .decode(SemanticVersion.self, forKey: .minimumXcodeVersion)
-        buildSettings = try container
-            .decode([String: BuildSetting].self, forKey: .buildSettings)
         replacementLabels = try container
             .decodeIfPresent(
                 [TargetID: BazelLabel].self,
