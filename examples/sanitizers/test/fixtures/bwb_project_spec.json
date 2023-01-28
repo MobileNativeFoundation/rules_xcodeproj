@@ -10,9 +10,7 @@
         "USE_HEADERMAP": false,
         "VALIDATE_WORKSPACE": false
     },
-    "args": [],
     "configuration": "darwin_x86_64-dbg-STABLE-0",
-    "envs": [],
     "extra_files": [
         "AddressSanitizerApp/BUILD",
         "AddressSanitizerApp/Info.plist",
@@ -27,10 +25,6 @@
     "index_import": "fixture-index-import-path",
     "minimum_xcode_version": "13.0",
     "name": "bwb",
-    "post_build_script": null,
-    "pre_build_script": null,
-    "replacement_labels": [],
     "runner_label": "//test/fixtures:xcodeproj_bwb",
-    "scheme_autogeneration_mode": "none",
-    "target_hosts": []
+    "scheme_autogeneration_mode": "none"
 }
