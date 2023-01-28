@@ -5,16 +5,6 @@
         {}
     ],
     "R": "//test/fixtures/generator:xcodeproj_bwb",
-    "b": {
-        "ALWAYS_SEARCH_USER_PATHS": false,
-        "BAZEL_PATH": "bazel",
-        "CLANG_ENABLE_OBJC_ARC": true,
-        "CLANG_MODULES_AUTOLINK": false,
-        "COPY_PHASE_STRIP": false,
-        "ONLY_ACTIVE_ARCH": true,
-        "USE_HEADERMAP": false,
-        "VALIDATE_WORKSPACE": false
-    },
     "e": [
         {
             "_": "build_bazel_rules_apple/apple/testing/DefaultTestBundle.plist",
