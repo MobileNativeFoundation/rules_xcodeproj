@@ -869,84 +869,81 @@ def _write_spec(
     )
     ctx.actions.write(custom_schemes_output, custom_xcode_schemes_json)
 
-    # Have to do this dance because attr.string's default is ""
-    post_build_script = (
-        json.encode(ctx.attr.post_build) if ctx.attr.post_build else "null"
-    )
-    pre_build_script = (
-        json.encode(ctx.attr.pre_build) if ctx.attr.pre_build else "null"
-    )
-
     # TODO: Strip fat frameworks instead of setting `VALIDATE_WORKSPACE`
-    project_spec_json = """\
-{{\
-"bazel_config":"{bazel_config}",\
-"build_settings":{{\
-"ALWAYS_SEARCH_USER_PATHS":false,\
-"BAZEL_PATH":"{bazel_path}",\
-"CLANG_ENABLE_OBJC_ARC":true,\
-"CLANG_MODULES_AUTOLINK":false,\
-"COPY_PHASE_STRIP":false,\
-"ONLY_ACTIVE_ARCH":true,\
-"USE_HEADERMAP":false,\
-"VALIDATE_WORKSPACE":false\
-}},\
-"args": {args},\
-"configuration":"{configuration}",\
-"envs": {envs},\
-"extra_files":{extra_files},\
-"force_bazel_dependencies":{force_bazel_dependencies},\
-"generator_label":"{generator_label}",\
-"index_import":"{index_import}",\
-"minimum_xcode_version":"{minimum_xcode_version}",\
-"name":"{name}",\
-"post_build_script":{post_build_script},\
-"pre_build_script":{pre_build_script},\
-"replacement_labels":{replacement_labels},\
-"runner_label":"{runner_label}",\
-"scheme_autogeneration_mode":"{scheme_autogeneration_mode}",\
-"target_hosts":{target_hosts}
-}}
-""".format(
-        args = json.encode(
-            flattened_key_values.to_list(args, sort = is_fixture),
-        ),
-        bazel_config = config,
-        bazel_path = ctx.attr.bazel_path,
-        configuration = configuration,
-        extra_files = json.encode(
-            [file_path_to_dto(file) for file in extra_files],
-        ),
-        force_bazel_dependencies = json.encode(
-            has_unfocused_targets or inputs.has_generated_files,
-        ),
-        generator_label = ctx.label,
-        index_import = "fixture-index-import-path" if is_fixture else build_setting_path(
+
+    spec_dto = {
+        "bazel_config": config,
+        "build_settings": {
+            "ALWAYS_SEARCH_USER_PATHS": False,
+            "BAZEL_PATH": ctx.attr.bazel_path,
+            "CLANG_ENABLE_OBJC_ARC": True,
+            "CLANG_MODULES_AUTOLINK": False,
+            "COPY_PHASE_STRIP": False,
+            "ONLY_ACTIVE_ARCH": True,
+            "USE_HEADERMAP": False,
+            "VALIDATE_WORKSPACE": False,
+        },
+        "configuration": configuration,
+        "generator_label": str(ctx.label),
+        "index_import": "fixture-index-import-path" if is_fixture else build_setting_path(
             file = ctx.executable._index_import,
         ),
-        minimum_xcode_version = minimum_xcode_version,
-        name = project_name,
-        post_build_script = post_build_script,
-        pre_build_script = pre_build_script,
-        replacement_labels = json.encode(
-            flattened_key_values.to_list(
-                {
-                    id: bazel_labels.normalize(label)
-                    for id, label in replacement_labels.items()
-                    if id in targets
-                },
-                sort = is_fixture,
-            ),
-        ),
-        runner_label = ctx.attr.runner_label,
-        scheme_autogeneration_mode = ctx.attr.scheme_autogeneration_mode,
-        target_hosts = json.encode(
-            flattened_key_values.to_list(target_hosts, sort = is_fixture),
-        ),
-        envs = json.encode(
-            flattened_key_values.to_list(envs, sort = is_fixture),
+        "minimum_xcode_version": minimum_xcode_version,
+        "name": project_name,
+        "runner_label": ctx.attr.runner_label,
+        "scheme_autogeneration_mode": ctx.attr.scheme_autogeneration_mode,
+    }
+
+    force_bazel_dependencies = (
+        has_unfocused_targets or inputs.has_generated_files
+    )
+    if not force_bazel_dependencies:
+        spec_dto["force_bazel_dependencies"] = False
+
+    set_if_true(
+        spec_dto,
+        "args",
+        flattened_key_values.to_list(args, sort = is_fixture),
+    )
+    set_if_true(
+        spec_dto,
+        "extra_files",
+        [file_path_to_dto(file) for file in extra_files],
+    )
+    set_if_true(
+        spec_dto,
+        "envs",
+        flattened_key_values.to_list(envs, sort = is_fixture),
+    )
+    set_if_true(
+        spec_dto,
+        "post_build_script",
+        ctx.attr.post_build,
+    )
+    set_if_true(
+        spec_dto,
+        "pre_build_script",
+        ctx.attr.pre_build,
+    )
+    set_if_true(
+        spec_dto,
+        "replacement_labels",
+        flattened_key_values.to_list(
+            {
+                id: bazel_labels.normalize(label)
+                for id, label in replacement_labels.items()
+                if id in targets
+            },
+            sort = is_fixture,
         ),
     )
+    set_if_true(
+        spec_dto,
+        "target_hosts",
+        flattened_key_values.to_list(target_hosts, sort = is_fixture),
+    )
+
+    project_spec_json = json.encode(spec_dto)
 
     # 8 shards max (lowest number of threads on a Mac)
     max_shard_count = 1 if is_fixture else 8
