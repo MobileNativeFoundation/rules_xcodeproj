@@ -13,6 +13,7 @@ extension Generator {
             let arguments = try parseArguments(CommandLine.arguments)
             async let project = readProject(
                 path: arguments.projectSpecPath,
+                customXcodeSchemesPath: arguments.customXcodeSchemesPath,
                 targetsPaths: arguments.targetsSpecPaths
             )
             async let rootDirs = readRootDirectories(
@@ -49,6 +50,7 @@ extension Generator {
 
     struct Arguments {
         let projectSpecPath: Path
+        let customXcodeSchemesPath: Path
         let targetsSpecPaths: [Path]
         let rootDirsPath: Path
         let xccurrentversionsPath: Path
@@ -61,13 +63,13 @@ extension Generator {
     }
 
     static func parseArguments(_ arguments: [String]) throws -> Arguments {
-        guard arguments.count >= 10 else {
+        guard arguments.count >= 11 else {
             throw UsageError(message: """
 Usage: \(arguments[0]) <path/to/root_dirs> \
 <path/to/xccurrentversions.json> <path/to/extensionPointIdentifiers.json> \
 <path/to/output/project.xcodeproj> <workspace/relative/output/path> \
 (xcode|bazel) <1 is for fixtures, otherwise 0> <path/to/project_spec.json> \
-[<path/to/targets_spec.json>, ...]
+<path/to/custom_xcode_schemes.json> [<path/to/targets_spec.json>, ...]
 """)
         }
 
@@ -91,7 +93,8 @@ ERROR: build_mode wasn't one of the supported values: xcode, bazel
 
         return Arguments(
             projectSpecPath: Path(arguments[8]),
-            targetsSpecPaths: arguments.suffix(from: 9).map { Path($0) },
+            customXcodeSchemesPath: Path(arguments[9]),
+            targetsSpecPaths: arguments.suffix(from: 10).map { Path($0) },
             rootDirsPath: Path(arguments[1]),
             xccurrentversionsPath: Path(arguments[2]),
             extensionPointIdentifiersPath: Path(arguments[3]),
@@ -121,6 +124,7 @@ ERROR: build_mode wasn't one of the supported values: xcode, bazel
 
     static func readProject(
         path: Path,
+        customXcodeSchemesPath: Path,
         targetsPaths: [Path]
     ) async throws -> Project {
         async let targets: [TargetID: Target] = withThrowingTaskGroup(
@@ -147,9 +151,15 @@ Duplicate target (\(new.label) \(new.configuration) in target specs
 
             return targets
         }
+        
+        async let customXcodeSchemes = decodeJSON(
+            [XcodeScheme].self,
+            from: customXcodeSchemesPath
+        )
 
         var project = try await decodeJSON(Project.self, from: path)
         project.targets = try await targets
+        project.customXcodeSchemes = try await customXcodeSchemes
         return project
     }
 

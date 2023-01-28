@@ -13,7 +13,7 @@ struct Project: Equatable {
     let envs: [TargetID: [String: String]]
     let extraFiles: Set<FilePath>
     let schemeAutogenerationMode: SchemeAutogenerationMode
-    let customXcodeSchemes: [XcodeScheme]
+    var customXcodeSchemes: [XcodeScheme] = []
     let forceBazelDependencies: Bool
     let indexImport: String
     let preBuildScript: String?
@@ -35,7 +35,6 @@ extension Project: Decodable {
         case args
         case extraFiles
         case schemeAutogenerationMode
-        case customXcodeSchemes
         case forceBazelDependencies
         case indexImport
         case preBuildScript
@@ -69,8 +68,6 @@ extension Project: Decodable {
             .decode(Set<FilePath>.self, forKey: .extraFiles)
         schemeAutogenerationMode = try container
             .decode(SchemeAutogenerationMode.self, forKey: .schemeAutogenerationMode)
-        customXcodeSchemes = try container
-            .decode([XcodeScheme].self, forKey: .customXcodeSchemes)
         forceBazelDependencies = try container
             .decode(Bool.self, forKey: .forceBazelDependencies)
         indexImport = try container

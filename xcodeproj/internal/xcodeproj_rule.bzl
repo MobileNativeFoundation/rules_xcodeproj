@@ -864,6 +864,11 @@ def _write_spec(
     else:
         custom_xcode_schemes_json = ctx.attr.schemes_json
 
+    custom_schemes_output = ctx.actions.declare_file(
+        "{}-custom_xcode_schemes.json".format(ctx.attr.name),
+    )
+    ctx.actions.write(custom_schemes_output, custom_xcode_schemes_json)
+
     # Have to do this dance because attr.string's default is ""
     post_build_script = (
         json.encode(ctx.attr.post_build) if ctx.attr.post_build else "null"
@@ -888,7 +893,6 @@ def _write_spec(
 }},\
 "args": {args},\
 "configuration":"{configuration}",\
-"custom_xcode_schemes":{custom_xcode_schemes},\
 "envs": {envs},\
 "extra_files":{extra_files},\
 "force_bazel_dependencies":{force_bazel_dependencies},\
@@ -910,7 +914,6 @@ def _write_spec(
         bazel_config = config,
         bazel_path = ctx.attr.bazel_path,
         configuration = configuration,
-        custom_xcode_schemes = custom_xcode_schemes_json,
         extra_files = json.encode(
             [file_path_to_dto(file) for file in extra_files],
         ),
@@ -984,7 +987,7 @@ def _write_spec(
     )
     ctx.actions.write(project_spec_output, project_spec_json)
 
-    return [project_spec_output] + target_shards
+    return [project_spec_output, custom_schemes_output] + target_shards
 
 def _write_xccurrentversions(*, ctx, xccurrentversion_files):
     containers_file = ctx.actions.declare_file(
