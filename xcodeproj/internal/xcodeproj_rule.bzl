@@ -891,7 +891,6 @@ def _write_spec(
         "m": minimum_xcode_version,
         "n": project_name,
         "R": ctx.attr.runner_label,
-        "s": ctx.attr.scheme_autogeneration_mode,
     }
 
     force_bazel_dependencies = (
@@ -899,6 +898,9 @@ def _write_spec(
     )
     if not force_bazel_dependencies:
         spec_dto["f"] = False
+
+    if ctx.attr.scheme_autogeneration_mode != "all":
+        spec_dto["s"] = ctx.attr.scheme_autogeneration_mode
 
     set_if_true(
         spec_dto,
