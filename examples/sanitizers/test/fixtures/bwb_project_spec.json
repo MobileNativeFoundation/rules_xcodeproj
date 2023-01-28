@@ -12,65 +12,6 @@
     },
     "args": [],
     "configuration": "darwin_x86_64-dbg-STABLE-0",
-    "custom_xcode_schemes": [
-        {
-            "build_action": null,
-            "launch_action": {
-                "args": [],
-                "build_configuration_name": "Debug",
-                "diagnostics": {
-                    "sanitizers": {
-                        "address": true,
-                        "thread": false,
-                        "undefined_behavior": false
-                    }
-                },
-                "env": {},
-                "target": "//AddressSanitizerApp:AddressSanitizerApp",
-                "working_directory": null
-            },
-            "name": "AddressSanitizer",
-            "test_action": null
-        },
-        {
-            "build_action": null,
-            "launch_action": {
-                "args": [],
-                "build_configuration_name": "Debug",
-                "diagnostics": {
-                    "sanitizers": {
-                        "address": false,
-                        "thread": true,
-                        "undefined_behavior": false
-                    }
-                },
-                "env": {},
-                "target": "//ThreadSanitizerApp:ThreadSanitizerApp",
-                "working_directory": null
-            },
-            "name": "ThreadSanitizer",
-            "test_action": null
-        },
-        {
-            "build_action": null,
-            "launch_action": {
-                "args": [],
-                "build_configuration_name": "Debug",
-                "diagnostics": {
-                    "sanitizers": {
-                        "address": false,
-                        "thread": false,
-                        "undefined_behavior": true
-                    }
-                },
-                "env": {},
-                "target": "//UndefinedBehaviorSanitizerApp:UndefinedBehaviorSanitizerApp",
-                "working_directory": null
-            },
-            "name": "UndefinedBehaviorSanitizer",
-            "test_action": null
-        }
-    ],
     "envs": [],
     "extra_files": [
         "AddressSanitizerApp/BUILD",

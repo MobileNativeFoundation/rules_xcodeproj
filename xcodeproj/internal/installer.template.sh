@@ -99,7 +99,12 @@ if [[ $for_fixture -eq 1 ]]; then
   readonly project_spec_dest="${mode_prefix}_project_spec.json"
   python3 -m json.tool "$project_spec_src" > "$project_spec_dest"
 
-  targets_spec_src="$PWD/${spec_paths[1]}"
+  custom_xcode_schemes_src="$PWD/${spec_paths[1]}"
+  readonly custom_xcode_schemes_dest="${mode_prefix}_custom_xcode_schemes.json"
+  python3 -m json.tool "$custom_xcode_schemes_src" \
+    > "$custom_xcode_schemes_dest"
+
+  targets_spec_src="$PWD/${spec_paths[2]}"
   readonly targets_spec_dest="${mode_prefix}_targets_spec.json"
   python3 -m json.tool "$targets_spec_src" > "$targets_spec_dest"
 elif [[ -n "${specs_archive_path:-}" ]]; then
