@@ -91,7 +91,15 @@ extension BuildSetting: ExpressibleByBooleanLiteral {
 // MARK: - Convenience
 
 extension Dictionary where Value == BuildSetting {
+    mutating func set(_ key: Key, to value: Bool) {
+        self[key] = .bool(value)
+    }
+
     mutating func set(_ key: Key, to value: String) {
         self[key] = .string(value)
+    }
+
+    mutating func set(_ key: Key, to value: [String]) {
+        self[key] = .array(value)
     }
 }

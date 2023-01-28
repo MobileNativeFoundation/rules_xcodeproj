@@ -368,6 +368,49 @@ final class SetTargetConfigurationsTests: XCTestCase {
         )
     }
 
+    static func getBuildSettings(
+        _ keyPrefix: String,
+        from pbxTargets: [ConsolidatedTarget.Key: PBXNativeTarget],
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) throws -> [ConsolidatedTarget.Key: [String: [String]]] {
+        var selectedBuildSettings: [
+            ConsolidatedTarget.Key: [String: [String]]
+        ] = [:]
+        for (key, pbxTarget) in pbxTargets {
+            let buildSettings = try XCTUnwrap(
+                pbxTarget
+                    .buildConfigurationList?
+                    .buildConfigurations
+                    .first?
+                    .buildSettings,
+                file: file,
+                line: line
+            )
+            selectedBuildSettings[key] = try buildSettings
+                .filter { key, _ in key.hasPrefix(keyPrefix) }
+                .mapValues { anyBuildSetting in
+                    let buildSetting: [String]
+                    if let stringBuildSetting = anyBuildSetting as? String {
+                        if stringBuildSetting.isEmpty {
+                            buildSetting = []
+                        } else {
+                            buildSetting = [stringBuildSetting]
+                        }
+                    } else {
+                        buildSetting = try XCTUnwrap(
+                            anyBuildSetting as? [String],
+                            file: file,
+                            line: line
+                        )
+                    }
+
+                    return buildSetting
+                }
+        }
+        return selectedBuildSettings
+    }
+
     static func getBuildSettings<BuildSettingType>(
         _ keyPrefix: String,
         from pbxTargets: [ConsolidatedTarget.Key: PBXNativeTarget],
