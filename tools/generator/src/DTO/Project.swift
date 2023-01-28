@@ -3,7 +3,6 @@ struct Project: Equatable {
     let bazelConfig: String
     let generatorLabel: BazelLabel
     let runnerLabel: BazelLabel
-    let configuration: String
     let minimumXcodeVersion: SemanticVersion
     let buildSettings: [String: BuildSetting]
     var targets: [TargetID: Target] = [:]
@@ -26,7 +25,6 @@ extension Project: Decodable {
         case bazelConfig = "B"
         case generatorLabel = "g"
         case runnerLabel = "R"
-        case configuration = "c"
         case minimumXcodeVersion = "m"
         case buildSettings = "b"
         case replacementLabels = "r"
@@ -50,8 +48,6 @@ extension Project: Decodable {
             .decode(BazelLabel.self, forKey: .generatorLabel)
         runnerLabel = try container
             .decode(BazelLabel.self, forKey: .runnerLabel)
-        configuration = try container
-            .decode(String.self, forKey: .configuration)
         minimumXcodeVersion = try container
             .decode(SemanticVersion.self, forKey: .minimumXcodeVersion)
         buildSettings = try container
