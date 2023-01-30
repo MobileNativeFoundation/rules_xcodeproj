@@ -102,15 +102,31 @@ fi
 
 # Runtime Sanitizers
 if [[ $apply_sanitizers -eq 1 ]]; then
-  readonly common_sanitizer_flags="--copt -fno-omit-frame-pointer --copt -fno-sanitize-recover=all"
+  build_pre_config_flags+=(
+    --copt=-fno-omit-frame-pointer
+    --copt=-fno-sanitize-recover=all
+  )
   if [ "${ENABLE_ADDRESS_SANITIZER:-}" == "YES" ]; then
-    build_pre_config_flags+=($common_sanitizer_flags --copt=-fsanitize=address --linkopt=-fsanitize=address --swiftcopt=-sanitize=address --copt -Wno-macro-redefined --copt -D_FORTIFY_SOURCE=0)
+    build_pre_config_flags+=(
+      --copt=-fsanitize=address
+      --linkopt=-fsanitize=address
+      --swiftcopt=-sanitize=address
+      --copt=-Wno-macro-redefined
+      --copt=-D_FORTIFY_SOURCE=0
+    )
   fi
   if [ "${ENABLE_THREAD_SANITIZER:-}" == "YES" ]; then
-    build_pre_config_flags+=($common_sanitizer_flags --copt=-fsanitize=thread --linkopt=-fsanitize=thread --swiftcopt=-sanitize=thread)
+    build_pre_config_flags+=(
+      --copt=-fsanitize=thread
+      --linkopt=-fsanitize=thread
+      --swiftcopt=-sanitize=thread
+      )
   fi
   if [ "${ENABLE_UNDEFINED_BEHAVIOR_SANITIZER:-}" == "YES" ]; then
-    build_pre_config_flags+=($common_sanitizer_flags --copt=-fsanitize=undefined --linkopt=-fsanitize=undefined)
+    build_pre_config_flags+=(
+      --copt=-fsanitize=undefined
+      --linkopt=-fsanitize=undefined
+    )
   fi
 fi
 readonly build_pre_config_flags
