@@ -103,15 +103,17 @@ if [[ -s "$extra_flags_bazelrc" ]]; then
 fi
 
 developer_dir=$(xcode-select -p)
-xcode_build_version=$(/usr/bin/xcodebuild -version | tail -1 | cut -d " " -f3)
 pre_config_flags=(
+  # Be explicit about our desired Xcode version
+  "--xcode_version=%xcode_version%"
+
   # Set `DEVELOPER_DIR` in case a bazel wrapper filters it
   "--repo_env=DEVELOPER_DIR=$developer_dir"
 
   # Work around https://github.com/bazelbuild/bazel/issues/8902
   # `USE_CLANG_CL` is only used on Windows, we set it here to cause Bazel to
   # re-evaluate the cc_toolchain for a different Xcode version
-  "--repo_env=USE_CLANG_CL=$xcode_build_version"
+  "--repo_env=USE_CLANG_CL=%xcode_version%"
 )
 
 if [[ %is_fixture% -eq 1 && %is_bazel_6% -eq 1 ]]; then

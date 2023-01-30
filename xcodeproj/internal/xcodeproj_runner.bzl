@@ -101,6 +101,7 @@ def _write_runner(
         project_name,
         runner_label,
         template,
+        xcode_version,
         xcodeproj_bazelrc):
     output = actions.declare_file("{}-runner.sh".format(name))
 
@@ -120,6 +121,7 @@ def _write_runner(
             "%is_fixture%": "1" if is_fixture else "0",
             "%project_name%": project_name,
             "%runner_label%": runner_label,
+            "%xcode_version%": xcode_version,
             "%xcodeproj_bazelrc%": xcodeproj_bazelrc.short_path,
         },
     )
@@ -129,6 +131,9 @@ def _write_runner(
 def _xcodeproj_runner_impl(ctx):
     config = ctx.attr.config
     project_name = ctx.attr.project_name
+
+    xcode_config = ctx.attr._xcode_config[apple_common.XcodeVersionConfig]
+    xcode_version = str(xcode_config.xcode_version()).split(".")[3]
 
     xcodeproj_bazelrc = _write_xcodeproj_bazelrc(
         name = ctx.attr.name,
@@ -157,6 +162,7 @@ def _xcodeproj_runner_impl(ctx):
         project_name = project_name,
         runner_label = str(ctx.label),
         template = ctx.file._runner_template,
+        xcode_version = xcode_version,
         xcodeproj_bazelrc = xcodeproj_bazelrc,
     )
 
@@ -217,6 +223,12 @@ xcodeproj_runner = rule(
         "_runner_template": attr.label(
             allow_single_file = True,
             default = Label("//xcodeproj/internal:runner.template.sh"),
+        ),
+        "_xcode_config": attr.label(
+            default = configuration_field(
+                name = "xcode_config_label",
+                fragment = "apple",
+            ),
         ),
     },
     executable = True,
