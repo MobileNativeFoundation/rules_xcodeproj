@@ -47,8 +47,7 @@ def _calculate_unfocused_dependencies(
         targets,
         focused_targets,
         unfocused_libraries,
-        unfocused_targets,
-        files_only_targets):
+        unfocused_targets):
     if build_mode != "xcode":
         return {}
 
@@ -396,7 +395,6 @@ targets.
         focused_targets = focused_targets.values(),
         unfocused_libraries = unfocused_libraries,
         unfocused_targets = unfocused_targets,
-        files_only_targets = files_only_targets,
     )
 
     has_automatic_unfocused_targets = sets.length(unfocused_libraries) > 0
@@ -433,7 +431,7 @@ actual targets: {}
                 focused_targets_extra_files.append(
                     (
                         label,
-                        [file_path(f) for f in file.files.to_list()]
+                        [file_path(f) for f in file.files.to_list()],
                     ),
                 )
 
