@@ -71,11 +71,9 @@ else
   done
 
   if [ -z "${output_groups:-}" ]; then
-    echo "error: BazelDependencies invoked without any output groups set." \
-"Please file a bug report here:" \
-"https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md" \
-      >&2
-    exit 1
+    echo "BazelDependencies invoked without any output groups set." \
+      "Exiting early."
+    exit
   else
     labels=()
     while IFS= read -r -d '' label; do

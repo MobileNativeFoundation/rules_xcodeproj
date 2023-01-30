@@ -116,18 +116,6 @@ https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md""",
         )
         return scheme_labels_and_target_ids
 
-    if not labels_and_target_ids:
-        print(
-            """\
-warning: Couldn't determine labels and target ids from PIFCache
-
-warning: Using scheme labels and target ids as a fallback. Please file a bug \
-report here: \
-https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md""",
-            file = sys.stderr,
-        )
-        labels_and_target_ids = scheme_labels_and_target_ids
-
     return labels_and_target_ids
 
 def _calculate_guid_labels_and_target_ids(base_objroot):
