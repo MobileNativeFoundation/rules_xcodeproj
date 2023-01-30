@@ -329,6 +329,7 @@ extension ConsolidatedTarget {
         product = ConsolidatedTargetProduct(
             name: aTarget.product.name,
             type: aTarget.product.type,
+            isResourceBundle: aTarget.product.isResourceBundle,
             basename: aTarget.product.path?.path.lastComponent,
             paths: Set(targets.values.flatMap { target in
                 return (target.product.path.flatMap { [$0] } ?? []) +
@@ -469,6 +470,7 @@ extension ConsolidatedTarget {
 struct ConsolidatedTargetProduct: Equatable {
     let name: String
     let type: PBXProductType
+    let isResourceBundle: Bool
     let basename: String?
     let paths: Set<FilePath>
 }
