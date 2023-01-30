@@ -212,8 +212,6 @@ def _process_targets(
         infos,
         owned_extra_files,
         include_swiftui_previews_scheme_targets):
-    # TODO: Do this at the `top_level_targets` level, to allow marking as
-    # required for BwX
     resource_bundle_xcode_targets = process_resource_bundles(
         bundles = inputs.resource_bundles.to_list(),
         resource_bundle_informations = depset(
@@ -275,8 +273,12 @@ targets.
     unfocused_libraries = sets.make(inputs.unfocused_libraries.to_list())
     has_focused_labels = sets.length(focused_labels) > 0
 
+    if build_mode == "xcode":
+        transitive_focused_targets = [depset(resource_bundle_xcode_targets)]
+    else:
+        transitive_focused_targets = []
+
     linker_products_map = {}
-    transitive_focused_targets = []
     unfocused_targets = {}
     for xcode_target in unprocessed_targets.values():
         if build_mode == "bazel":
