@@ -51,6 +51,7 @@ extension Generator {
                     in: pbxProj,
                     buildMode: buildMode,
                     productType: productType,
+                    isResourceBundle: target.product.isResourceBundle,
                     productBasename: productBasename,
                     outputs: outputs
                 ),
@@ -147,10 +148,11 @@ extension Generator {
         in pbxProj: PBXProj,
         buildMode: BuildMode,
         productType: PBXProductType,
+        isResourceBundle: Bool,
         productBasename: String?,
         outputs: ConsolidatedTargetOutputs
     ) throws -> PBXShellScriptBuildPhase? {
-        guard buildMode.usesBazelModeBuildScripts else {
+        guard buildMode.usesBazelModeBuildScripts && !isResourceBundle else {
             return nil
         }
 
