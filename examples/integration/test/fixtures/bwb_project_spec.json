@@ -113,6 +113,12 @@
             "t": "e"
         },
         {
+            "_": "examples_ios_app_external/bundles/Utils.bundle",
+            "f": true,
+            "g": true,
+            "t": "e"
+        },
+        {
             "_": "applebin_watchos-watchos_arm64_32-dbg-STABLE-10/bin/watchOSAppExtension/Info.withbundleid.plist",
             "t": "g"
         },
@@ -126,6 +132,12 @@
         },
         {
             "_": "applebin_watchos-watchos_x86_64-dbg-STABLE-9/bin/watchOSAppExtension/Info.withbundleid.plist",
+            "t": "g"
+        },
+        {
+            "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/iOSApp/Resources/ExampleResources/bucket",
+            "f": true,
+            "g": true,
             "t": "g"
         },
         {
@@ -147,6 +159,12 @@
         },
         {
             "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_modulemap-module.modulemap",
+            "t": "g"
+        },
+        {
+            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Resources/ExampleResources/bucket",
+            "f": true,
+            "g": true,
             "t": "g"
         },
         {
@@ -206,12 +224,31 @@
         "iMessageApp/Info.extension.plist",
         "iMessageApp/Info.plist",
         "iOSApp/BUILD",
+        "iOSApp/Resources/ExampleNestedResources/Assets.xcassets",
         "iOSApp/Resources/ExampleNestedResources/BUILD",
         "iOSApp/Resources/ExampleNestedResources/Info.plist",
+        {
+            "_": "iOSApp/Resources/ExampleNestedResources/dir",
+            "f": true,
+            "g": true
+        },
+        "iOSApp/Resources/ExampleNestedResources/en.lproj/Localizable.strings",
+        "iOSApp/Resources/ExampleNestedResources/es.lproj/Localizable.strings",
+        "iOSApp/Resources/ExampleResources/Assets.xcassets",
         "iOSApp/Resources/ExampleResources/BUILD",
         "iOSApp/Resources/ExampleResources/Info.plist",
+        {
+            "_": "iOSApp/Resources/ExampleResources/nested",
+            "f": true,
+            "g": true
+        },
         "iOSApp/Resources/OnlyStructuredResources/BUILD",
         "iOSApp/Resources/OnlyStructuredResources/Info.plist",
+        {
+            "_": "iOSApp/Resources/OnlyStructuredResources/Nested",
+            "f": true,
+            "g": true
+        },
         "iOSApp/Source/AltIcons/AltIcon-60.alticon/AltIcon-60@2x.png",
         "iOSApp/Source/AltIcons/AltIcon-60.alticon/AltIcon-60@3x.png",
         "iOSApp/Source/BUILD",

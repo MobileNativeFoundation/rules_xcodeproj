@@ -248,8 +248,8 @@ def _to_xcode_target_product(product):
         package_dir = product.package_dir,
         additional_product_files = tuple(),
         framework_files = product.framework_files,
+        is_resource_bundle = product.is_resource_bundle,
         _additional_files = product.framework_files,
-        _is_resource_bundle = product.is_resource_bundle,
     )
 
 def _merge_xcode_target(*, src, dest):
@@ -356,11 +356,11 @@ def _merge_xcode_target_product(*, src, dest):
             transitive = [dest.framework_files, src.framework_files],
         ),
         additional_product_files = tuple([src.file]),
+        is_resource_bundle = dest.is_resource_bundle,
         _additional_files = depset(
             [src.file],
             transitive = [dest._additional_files, src._additional_files],
         ),
-        _is_resource_bundle = dest._is_resource_bundle,
     )
 
 def _set_bazel_outputs_product(
@@ -496,7 +496,7 @@ def _xcode_target_to_dto(
         linker_products_map,
         params_index,
         should_include_outputs,
-        unfocused_targets = {},
+        excluded_targets = {},
         target_merges = {},
         xcode_generated_paths,
         xcode_generated_paths_file):
@@ -526,10 +526,10 @@ def _xcode_target_to_dto(
     if is_unfocused_dependency:
         dto["u"] = True
 
-    if xcode_target._test_host not in unfocused_targets:
+    if xcode_target._test_host not in excluded_targets:
         set_if_true(dto, "h", xcode_target._test_host)
 
-    if xcode_target._watch_application not in unfocused_targets:
+    if xcode_target._watch_application not in excluded_targets:
         set_if_true(dto, "w", xcode_target._watch_application)
 
     generated_framework_search_paths = _generated_framework_search_paths(
@@ -577,7 +577,7 @@ def _xcode_target_to_dto(
         [
             id
             for id in inputs.resource_bundle_dependencies.to_list()
-            if id not in unfocused_targets
+            if id not in excluded_targets
         ],
     )
     set_if_true(dto, "i", _inputs_to_dto(inputs))
@@ -602,7 +602,7 @@ def _xcode_target_to_dto(
         [
             id
             for id in xcode_target._extensions
-            if id not in unfocused_targets
+            if id not in excluded_targets
         ],
     )
     set_if_true(
@@ -611,7 +611,7 @@ def _xcode_target_to_dto(
         [
             id
             for id in xcode_target._app_clips
-            if id not in unfocused_targets
+            if id not in excluded_targets
         ],
     )
 
@@ -641,7 +641,7 @@ def _xcode_target_to_dto(
         [
             _handle_dependency(id)
             for id in xcode_target._dependencies.to_list()
-            if (id not in unfocused_targets and
+            if (id not in excluded_targets and
                 # TODO: Move dependency filtering here (out of the generator)
                 # In BwX mode there can only be one merge destination
                 target_merges.get(id, [id])[0] != xcode_target.id)
@@ -861,7 +861,7 @@ def _product_to_dto(product):
             for file in product._additional_files.to_list()
         ],
     )
-    set_if_true(dto, "r", product._is_resource_bundle)
+    set_if_true(dto, "r", product.is_resource_bundle)
     set_if_true(dto, "e", product.executable_name)
 
     return dto
