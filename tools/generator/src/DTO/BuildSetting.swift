@@ -88,6 +88,14 @@ extension BuildSetting: ExpressibleByBooleanLiteral {
     }
 }
 
+// MARK: - ExpressibleByArrayLiteral
+
+extension BuildSetting: ExpressibleByArrayLiteral {
+    public init(arrayLiteral elements: String...) {
+        self = .array(elements)
+    }
+}
+
 // MARK: - Convenience
 
 extension Dictionary where Value == BuildSetting {
