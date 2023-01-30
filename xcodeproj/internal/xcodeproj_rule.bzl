@@ -47,7 +47,8 @@ def _calculate_unfocused_dependencies(
         targets,
         focused_targets,
         unfocused_libraries,
-        unfocused_targets):
+        unfocused_targets,
+        files_only_targets):
     if build_mode != "xcode":
         return {}
 
@@ -278,6 +279,10 @@ targets.
     else:
         transitive_focused_targets = []
 
+    exclude_resource_bundles = build_mode != "xcode"
+
+    files_only_targets = {}
+    focused_targets_extra_files = []
     linker_products_map = {}
     unfocused_targets = {}
     for xcode_target in unprocessed_targets.values():
@@ -298,6 +303,15 @@ targets.
             (has_focused_labels and
              not sets.contains(focused_labels, label_str))):
             unfocused_targets[xcode_target.id] = xcode_target
+            continue
+
+        if xcode_target.product.is_resource_bundle and exclude_resource_bundles:
+            # Don't create targets for resource bundles in BwB mode, but still
+            # include their files if they aren't unfocused
+            focused_targets_extra_files.append(
+                (xcode_target.label, xcode_target.inputs.resources.to_list()),
+            )
+            files_only_targets[xcode_target.id] = xcode_target
             continue
 
         transitive_focused_targets.append(
@@ -382,9 +396,8 @@ targets.
         focused_targets = focused_targets.values(),
         unfocused_libraries = unfocused_libraries,
         unfocused_targets = unfocused_targets,
+        files_only_targets = files_only_targets,
     )
-
-    focused_targets_extra_files = []
 
     has_automatic_unfocused_targets = sets.length(unfocused_libraries) > 0
     has_unfocused_targets = bool(unfocused_targets)
@@ -417,8 +430,12 @@ actual targets: {}
         label_str = bazel_labels.normalize(label)
         for file, owner_label in owned_extra_files.items():
             if label_str == owner_label:
-                for f in file.files.to_list():
-                    focused_targets_extra_files.append((label, [file_path(f)]))
+                focused_targets_extra_files.append(
+                    (
+                        label,
+                        [file_path(f) for f in file.files.to_list()]
+                    ),
+                )
 
     # Filter `target_merge_dests` after processing focused targets
     if has_unfocused_targets:
@@ -498,6 +515,8 @@ actual targets: {}
         unfocused_dependencies = unfocused_dependencies,
     )
 
+    excluded_targets = dicts.add(unfocused_targets, files_only_targets)
+
     target_dtos = {}
     lldb_contexts_dto = {}
     target_dependencies = {}
@@ -539,7 +558,7 @@ actual targets: {}
             linker_products_map = linker_products_map,
             params_index = index,
             should_include_outputs = should_include_outputs(build_mode),
-            unfocused_targets = unfocused_targets,
+            excluded_targets = excluded_targets,
             target_merges = target_merges,
             xcode_generated_paths = xcode_generated_paths,
             xcode_generated_paths_file = xcode_generated_paths_file,
