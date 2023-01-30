@@ -366,6 +366,35 @@ $(CONFIGURATION_BUILD_DIR)
             )
         }
 
+        // Append settings when using ASAN
+        if let cFlags = buildSettings["OTHER_CFLAGS"],
+            cFlags.contains("-D_FORTIFY_SOURCE=1")
+        {
+            buildSettings["ASAN_OTHER_CFLAGS__"] = "$(ASAN_OTHER_CFLAGS__NO)"
+            buildSettings["ASAN_OTHER_CFLAGS__NO"] = cFlags
+            buildSettings["ASAN_OTHER_CFLAGS__YES"] = [
+                "$(ASAN_OTHER_CFLAGS__NO)",
+                "-Wno-macro-redefined",
+                "-D_FORTIFY_SOURCE=0",
+            ]
+            buildSettings["OTHER_CFLAGS"] =
+                "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))"
+        }
+        if let cxxFlags = buildSettings["OTHER_CPLUSPLUSFLAGS"],
+            cxxFlags.contains("-D_FORTIFY_SOURCE=1")
+        {
+            buildSettings["ASAN_OTHER_CPLUSPLUSFLAGS__"] =
+                "$(ASAN_OTHER_CPLUSPLUSFLAGS__NO)"
+            buildSettings["ASAN_OTHER_CPLUSPLUSFLAGS__NO"] = cxxFlags
+            buildSettings["ASAN_OTHER_CPLUSPLUSFLAGS__YES"] = [
+                "$(ASAN_OTHER_CPLUSPLUSFLAGS__NO)",
+                "-Wno-macro-redefined",
+                "-D_FORTIFY_SOURCE=0",
+            ]
+            buildSettings["OTHER_CPLUSPLUSFLAGS"] =
+                "$(ASAN_OTHER_CPLUSPLUSFLAGS__$(CLANG_ADDRESS_SANITIZER))"
+        }
+
         return buildSettings
     }
 
