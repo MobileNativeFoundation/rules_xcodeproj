@@ -18,7 +18,6 @@ load(
     ":target_properties.bzl",
     "process_dependencies",
     "process_swiftmodules",
-    "should_bundle_resources",
 )
 
 def process_non_xcode_target(
@@ -48,8 +47,7 @@ def process_non_xcode_target(
     if AppleResourceBundleInfo in target and AppleResourceInfo not in target:
         # `apple_bundle_import` returns a `AppleResourceBundleInfo` and also
         # a `AppleResourceInfo`, so we use that to exclude it
-        bundle_resources = should_bundle_resources(ctx = ctx)
-        if bundle_resources and not getattr(
+        if not getattr(
             ctx.rule.attr,
             automatic_target_info.infoplists[0],
             None,
@@ -101,7 +99,6 @@ rules_xcodeproj requires {} to have `{}` set.
             unfocused = None,
             id = None,
             platform = None,
-            bundle_resources = False,
             is_bundle = False,
             product = None,
             linker_inputs = linker_inputs,

@@ -122,7 +122,6 @@ def _collect_input_files(
         unfocused = False,
         id,
         platform,
-        bundle_resources,
         is_bundle,
         product,
         linker_inputs,
@@ -141,9 +140,6 @@ def _collect_input_files(
             `non_xcode_target`s).
         id: A unique identifier for the target.
         platform: A value returned from `platform_info.collect`.
-        bundle_resources: Whether resources will be bundled in the generated
-            project. If this is `False` then all resources will get added to
-            `extra_files` instead of `resources`.
         is_bundle: Whether `target` is a bundle.
         product: A value returned from `process_product`.
         linker_inputs: A value returned from `linker_file_inputs.collect`.
@@ -363,21 +359,11 @@ def _collect_input_files(
         ])
 
         extra_files.extend(resources_result.extra_files)
-        if bundle_resources:
-            resource_bundles = resources_result.bundles
-            if resources_result.dependencies:
-                resource_bundle_dependencies = resources_result.dependencies
-            if resources_result.resources:
-                resources = depset(resources_result.resources)
-        else:
-            extra_files.extend(resources_result.resources)
-            transitive_extra_files.extend([
-                # TODO: Use bundle.label here
-                # We need to adjust BwB to show resource bundle targets
-                # as unfocused dependency targets.
-                depset([(label, bundle.resources)])
-                for bundle in resources_result.bundles
-            ])
+        resource_bundles = resources_result.bundles
+        if resources_result.dependencies:
+            resource_bundle_dependencies = resources_result.dependencies
+        if resources_result.resources:
+            resources = depset(resources_result.resources)
     else:
         resource_bundle_labels = depset(
             transitive = [

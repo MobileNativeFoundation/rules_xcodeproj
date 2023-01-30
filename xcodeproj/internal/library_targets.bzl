@@ -20,7 +20,6 @@ load(
     "process_dependencies",
     "process_modulemaps",
     "process_swiftmodules",
-    "should_bundle_resources",
 )
 load(":xcode_targets.bzl", "xcode_targets")
 
@@ -99,15 +98,12 @@ def process_library_target(
         linker_inputs = linker_inputs,
     )
 
-    bundle_resources = should_bundle_resources(ctx = ctx)
-
     modulemaps = process_modulemaps(swift_info = swift_info)
     inputs = input_files.collect(
         ctx = ctx,
         target = target,
         id = id,
         platform = platform,
-        bundle_resources = bundle_resources,
         is_bundle = False,
         product = product,
         linker_inputs = linker_inputs,

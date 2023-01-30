@@ -2,17 +2,6 @@
 
 load(":collections.bzl", "set_if_true", "uniq")
 
-def should_bundle_resources(ctx):
-    """Determines whether resources should be bundled in the generated project.
-
-    Args:
-        ctx: The aspect context.
-
-    Returns:
-        `True` if resources should be bundled, `False` otherwise.
-    """
-    return ctx.attr._build_mode != "bazel"
-
 def should_include_non_xcode_outputs(ctx):
     """Determines whether outputs of non Xcode targets should be included in \
     output groups.
