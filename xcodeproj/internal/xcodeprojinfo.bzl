@@ -24,7 +24,6 @@ load(":targets.bzl", "targets")
 load(
     ":target_properties.bzl",
     "process_dependencies",
-    "should_bundle_resources",
 )
 load(":top_level_targets.bzl", "process_top_level_target")
 
@@ -381,10 +380,7 @@ def _create_xcodeprojinfo(
     if not _should_create_provider(ctx = ctx, target = target):
         return None
 
-    if (
-        automatic_target_info.bazel_build_mode_error and
-        should_bundle_resources(ctx = ctx)
-    ):
+    if automatic_target_info.bazel_build_mode_error and build_mode != "bazel":
         fail(automatic_target_info.bazel_build_mode_error)
 
     if not automatic_target_info.should_generate_target:
