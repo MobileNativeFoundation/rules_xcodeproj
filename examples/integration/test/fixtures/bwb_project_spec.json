@@ -81,19 +81,7 @@
             "t": "e"
         },
         {
-            "_": "com_google_google_maps/GoogleMaps.xcframework/ios-arm64/GoogleMaps.framework/Resources/GoogleMaps.bundle",
-            "f": true,
-            "g": true,
-            "t": "e"
-        },
-        {
             "_": "com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator/GoogleMaps.framework",
-            "t": "e"
-        },
-        {
-            "_": "com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator/GoogleMaps.framework/Resources/GoogleMaps.bundle",
-            "f": true,
-            "g": true,
             "t": "e"
         },
         {
@@ -125,12 +113,6 @@
             "t": "e"
         },
         {
-            "_": "examples_ios_app_external/bundles/Utils.bundle",
-            "f": true,
-            "g": true,
-            "t": "e"
-        },
-        {
             "_": "applebin_watchos-watchos_arm64_32-dbg-STABLE-10/bin/watchOSAppExtension/Info.withbundleid.plist",
             "t": "g"
         },
@@ -144,12 +126,6 @@
         },
         {
             "_": "applebin_watchos-watchos_x86_64-dbg-STABLE-9/bin/watchOSAppExtension/Info.withbundleid.plist",
-            "t": "g"
-        },
-        {
-            "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/iOSApp/Resources/ExampleResources/bucket",
-            "f": true,
-            "g": true,
             "t": "g"
         },
         {
@@ -171,12 +147,6 @@
         },
         {
             "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_modulemap-module.modulemap",
-            "t": "g"
-        },
-        {
-            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Resources/ExampleResources/bucket",
-            "f": true,
-            "g": true,
             "t": "g"
         },
         {
@@ -208,11 +178,9 @@
             "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17/bin/CommandLine/CommandLineTool/CommandLineTool.merged_launchdplists-intermediates/Launchd.plist",
             "t": "g"
         },
-        "AppClip/Assets.xcassets",
         "AppClip/BUILD",
         "AppClip/Entitlements.entitlements",
         "AppClip/Info.plist",
-        "AppClip/PreviewContent/Preview Assets.xcassets",
         "CommandLine/CommandLineTool/BUILD",
         "CommandLine/CommandLineTool/Info.plist",
         "CommandLine/CommandLineTool/Launchd.plist",
@@ -227,73 +195,34 @@
         "Lib/BUILD",
         "Lib/Info.plist",
         "Lib/README.md",
-        "Lib/Resources/Assets.xcassets",
         "Lib/dist/dynamic/BUILD",
         "README.md",
         "UI/BUILD",
         "UI/Info.plist",
-        "WidgetExtension/Assets.xcassets",
         "WidgetExtension/BUILD",
         "WidgetExtension/Info.plist",
         "WidgetExtension/WidgetExtension.intentdefinition",
-        "iMessageApp/Assets.xcassets",
         "iMessageApp/BUILD",
-        "iMessageApp/Base.lproj/MainInterface.storyboard",
-        "iMessageApp/ExtensionAssets.xcassets",
         "iMessageApp/Info.extension.plist",
         "iMessageApp/Info.plist",
         "iOSApp/BUILD",
-        "iOSApp/Resources/ExampleNestedResources/Assets.xcassets",
         "iOSApp/Resources/ExampleNestedResources/BUILD",
         "iOSApp/Resources/ExampleNestedResources/Info.plist",
-        {
-            "_": "iOSApp/Resources/ExampleNestedResources/dir",
-            "f": true,
-            "g": true
-        },
-        "iOSApp/Resources/ExampleNestedResources/en.lproj/Localizable.strings",
-        "iOSApp/Resources/ExampleNestedResources/es.lproj/Localizable.strings",
-        "iOSApp/Resources/ExampleResources/Assets.xcassets",
         "iOSApp/Resources/ExampleResources/BUILD",
         "iOSApp/Resources/ExampleResources/Info.plist",
-        {
-            "_": "iOSApp/Resources/ExampleResources/nested",
-            "f": true,
-            "g": true
-        },
         "iOSApp/Resources/OnlyStructuredResources/BUILD",
         "iOSApp/Resources/OnlyStructuredResources/Info.plist",
-        {
-            "_": "iOSApp/Resources/OnlyStructuredResources/Nested",
-            "f": true,
-            "g": true
-        },
         "iOSApp/Source/AltIcons/AltIcon-60.alticon/AltIcon-60@2x.png",
         "iOSApp/Source/AltIcons/AltIcon-60.alticon/AltIcon-60@3x.png",
-        "iOSApp/Source/Assets.xcassets",
         "iOSApp/Source/BUILD",
         "iOSApp/Source/CoreUtilsMixed/MixedAnswer/BUILD",
         "iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.h",
         "iOSApp/Source/CoreUtilsObjC/BUILD",
         "iOSApp/Source/CoreUtilsObjC/Info.plist",
         "iOSApp/Source/Info.plist",
-        "iOSApp/Source/Launch.storyboard",
-        "iOSApp/Source/Model.xcdatamodeld/Model.xcdatamodel/contents",
-        "iOSApp/Source/Model.xcdatamodeld/Model2.xcdatamodel/contents",
-        "iOSApp/Source/PreviewContent/Preview Assets.xcassets",
         "iOSApp/Source/Utils/BUILD",
         "iOSApp/Source/Utils/Foo.h",
         "iOSApp/Source/Utils/Utils.h",
-        "iOSApp/Source/en.lproj/Localizable.strings",
-        "iOSApp/Source/en.lproj/unprocessed.json",
-        "iOSApp/Source/es.lproj/Localizable.strings",
-        "iOSApp/Source/es.lproj/unprocessed.json",
-        "iOSApp/Source/launch_images_ios.xcassets",
-        {
-            "_": "iOSApp/Source/nested",
-            "f": true,
-            "g": true
-        },
         "iOSApp/Test/ObjCUnitTests/BUILD",
         "iOSApp/Test/SwiftUnitTests/BUILD",
         "iOSApp/Test/TestingUtils/Answer.swift.stencil",
@@ -301,26 +230,20 @@
         "iOSApp/Test/TestingUtils/Greeting.swift.stencil",
         "iOSApp/Test/TestingUtils/merge.sh",
         "iOSApp/ownership.yaml",
-        "macOSApp/Source/Assets.xcassets",
         "macOSApp/Source/BUILD",
         "macOSApp/Source/Info.plist",
-        "macOSApp/Source/PreviewContent/Preview Assets.xcassets",
         "macOSApp/Test/UITests/BUILD",
         "macOSApp/third_party/BUILD",
         "macOSApp/third_party/ExampleFramework.framework",
         "test/fixtures/BUILD",
-        "tvOSApp/Resources/Assets.xcassets",
         "tvOSApp/Resources/BUILD",
-        "tvOSApp/Resources/PreviewContent/Preview Assets.xcassets",
         "tvOSApp/Source/BUILD",
         "tvOSApp/Source/Info.plist",
         "tvOSApp/Test/UITests/BUILD",
         "tvOSApp/Test/UnitTests/BUILD",
-        "watchOSApp/Assets.xcassets",
         "watchOSApp/BUILD",
         "watchOSApp/Info.plist",
         "watchOSApp/Test/UITests/BUILD",
-        "watchOSAppExtension/Assets.xcassets",
         "watchOSAppExtension/BUILD",
         "watchOSAppExtension/Info.plist",
         "watchOSAppExtension/Test/UnitTests/BUILD"

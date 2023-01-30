@@ -30,7 +30,6 @@ load(
     "process_dependencies",
     "process_modulemaps",
     "process_swiftmodules",
-    "should_bundle_resources",
 )
 load(":xcode_targets.bzl", "xcode_targets")
 
@@ -290,8 +289,6 @@ def process_top_level_target(
         build_settings = build_settings,
     )
 
-    bundle_resources = should_bundle_resources(ctx = ctx)
-
     # The common case is to have a `bundle_info`, so this check prevents
     # expanding the `depset` unless needed. Yes, this uses knowledge of what
     # `process_top_level_properties` and `output_files.collect` does internally.
@@ -382,7 +379,6 @@ def process_top_level_target(
         is_bundle = is_bundle,
         product = product,
         linker_inputs = linker_inputs,
-        bundle_resources = bundle_resources,
         automatic_target_info = automatic_target_info,
         additional_files = additional_files,
         modulemaps = modulemaps,

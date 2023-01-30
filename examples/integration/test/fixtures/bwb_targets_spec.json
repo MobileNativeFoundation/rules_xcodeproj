@@ -58,6 +58,11 @@
                 "_": "applebin_ios-ios_arm64-dbg-STABLE-8/bin/AppClip/Entitlements.withbundleid.plist",
                 "t": "g"
             },
+            "r": [
+                "AppClip/PreviewContent/Preview Assets.xcassets",
+                "Lib/Resources/Assets.xcassets",
+                "AppClip/Assets.xcassets"
+            ],
             "s": [
                 "AppClip/AppClip.swift",
                 "AppClip/ContentView.swift"
@@ -149,6 +154,11 @@
                 "_": "applebin_ios-ios_x86_64-dbg-STABLE-7/bin/AppClip/Entitlements.withbundleid.plist",
                 "t": "g"
             },
+            "r": [
+                "AppClip/PreviewContent/Preview Assets.xcassets",
+                "Lib/Resources/Assets.xcassets",
+                "AppClip/Assets.xcassets"
+            ],
             "s": [
                 "AppClip/AppClip.swift",
                 "AppClip/ContentView.swift"
@@ -1642,6 +1652,11 @@
         "d": [
             "//Lib:Lib ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4"
         ],
+        "i": {
+            "r": [
+                "Lib/Resources/Assets.xcassets"
+            ]
+        },
         "l": "//Lib/dist/dynamic:iOS",
         "n": "iOS",
         "o": {
@@ -1709,6 +1724,11 @@
         "d": [
             "//Lib:Lib ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1"
         ],
+        "i": {
+            "r": [
+                "Lib/Resources/Assets.xcassets"
+            ]
+        },
         "l": "//Lib/dist/dynamic:iOS",
         "n": "iOS",
         "o": {
@@ -1775,6 +1795,11 @@
         "d": [
             "//Lib:Lib tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-6"
         ],
+        "i": {
+            "r": [
+                "Lib/Resources/Assets.xcassets"
+            ]
+        },
         "l": "//Lib/dist/dynamic:tvOS",
         "n": "tvOS",
         "o": {
@@ -1841,6 +1866,11 @@
         "d": [
             "//Lib:Lib tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3"
         ],
+        "i": {
+            "r": [
+                "Lib/Resources/Assets.xcassets"
+            ]
+        },
         "l": "//Lib/dist/dynamic:tvOS",
         "n": "tvOS",
         "o": {
@@ -1907,6 +1937,11 @@
         "d": [
             "//Lib:Lib watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-5"
         ],
+        "i": {
+            "r": [
+                "Lib/Resources/Assets.xcassets"
+            ]
+        },
         "l": "//Lib/dist/dynamic:watchOS",
         "n": "watchOS",
         "o": {
@@ -1973,6 +2008,11 @@
         "d": [
             "//Lib:Lib watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2"
         ],
+        "i": {
+            "r": [
+                "Lib/Resources/Assets.xcassets"
+            ]
+        },
         "l": "//Lib/dist/dynamic:watchOS",
         "n": "watchOS",
         "o": {
@@ -2339,6 +2379,11 @@
         "d": [
             "//Lib:Lib tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-6"
         ],
+        "i": {
+            "r": [
+                "Lib/Resources/Assets.xcassets"
+            ]
+        },
         "l": "//Lib:LibFramework.tvOS",
         "n": "LibFramework.tvOS",
         "o": {
@@ -2405,6 +2450,11 @@
         "d": [
             "//Lib:Lib tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3"
         ],
+        "i": {
+            "r": [
+                "Lib/Resources/Assets.xcassets"
+            ]
+        },
         "l": "//Lib:LibFramework.tvOS",
         "n": "LibFramework.tvOS",
         "o": {
@@ -2471,6 +2521,11 @@
         "d": [
             "//Lib:Lib watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-5"
         ],
+        "i": {
+            "r": [
+                "Lib/Resources/Assets.xcassets"
+            ]
+        },
         "l": "//Lib:LibFramework.watchOS",
         "n": "LibFramework.watchOS",
         "o": {
@@ -2537,6 +2592,11 @@
         "d": [
             "//Lib:Lib watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2"
         ],
+        "i": {
+            "r": [
+                "Lib/Resources/Assets.xcassets"
+            ]
+        },
         "l": "//Lib:LibFramework.watchOS",
         "n": "LibFramework.watchOS",
         "o": {
@@ -3220,6 +3280,10 @@
             "//Lib:Lib ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4"
         ],
         "i": {
+            "r": [
+                "Lib/Resources/Assets.xcassets",
+                "WidgetExtension/Assets.xcassets"
+            ],
             "s": [
                 "WidgetExtension/WidgetExtension.swift",
                 {
@@ -3310,6 +3374,10 @@
             "//Lib:Lib ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1"
         ],
         "i": {
+            "r": [
+                "Lib/Resources/Assets.xcassets",
+                "WidgetExtension/Assets.xcassets"
+            ],
             "s": [
                 "WidgetExtension/WidgetExtension.swift",
                 {
@@ -3379,6 +3447,11 @@
         "e": [
             "//iMessageApp:iMessageAppExtension applebin_ios-ios_x86_64-dbg-STABLE-7"
         ],
+        "i": {
+            "r": [
+                "iMessageApp/Assets.xcassets"
+            ]
+        },
         "l": "//iMessageApp:iMessageApp",
         "n": "iMessageApp",
         "o": {
@@ -3449,6 +3522,11 @@
             "//Lib:Lib ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1"
         ],
         "i": {
+            "r": [
+                "iMessageApp/ExtensionAssets.xcassets",
+                "Lib/Resources/Assets.xcassets",
+                "iMessageApp/Base.lproj/MainInterface.storyboard"
+            ],
             "s": [
                 "iMessageApp/MessagesViewController.swift"
             ]
@@ -3480,6 +3558,231 @@
             },
             "t": "com.apple.product-type.app-extension.messages"
         }
+    },
+    "//iOSApp/Resources/ExampleNestedResources:ExampleNestedResources ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4",
+    {
+        "1": "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/iOSApp/Resources/ExampleNestedResources",
+        "2": {
+            "a": "arm64",
+            "m": "15.0",
+            "o": "ios",
+            "v": "iphoneos"
+        },
+        "b": {
+            "PRODUCT_BUNDLE_IDENTIFIER": "com.example.resources.nested"
+        },
+        "c": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4",
+        "i": {
+            "r": [
+                "iOSApp/Resources/ExampleNestedResources/Assets.xcassets",
+                "iOSApp/Resources/ExampleNestedResources/en.lproj/Localizable.strings",
+                "iOSApp/Resources/ExampleNestedResources/es.lproj/Localizable.strings",
+                {
+                    "_": "iOSApp/Resources/ExampleNestedResources/dir",
+                    "f": true,
+                    "g": true
+                },
+                {
+                    "_": "examples_ios_app_external/bundles/Utils.bundle",
+                    "f": true,
+                    "g": true,
+                    "t": "e"
+                }
+            ]
+        },
+        "l": "//iOSApp/Resources/ExampleNestedResources:ExampleNestedResources",
+        "n": "ExampleNestedResources",
+        "p": {
+            "n": "ExampleNestedResources",
+            "p": {
+                "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/iOSApp/Resources/ExampleNestedResources/ExampleNestedResources.bundle",
+                "t": "g"
+            },
+            "r": true,
+            "t": "com.apple.product-type.bundle"
+        },
+        "s": false
+    },
+    "//iOSApp/Resources/ExampleNestedResources:ExampleNestedResources ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
+    {
+        "1": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Resources/ExampleNestedResources",
+        "2": {
+            "a": "x86_64",
+            "m": "15.0",
+            "o": "ios",
+            "v": "iphonesimulator"
+        },
+        "b": {
+            "PRODUCT_BUNDLE_IDENTIFIER": "com.example.resources.nested"
+        },
+        "c": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
+        "i": {
+            "r": [
+                "iOSApp/Resources/ExampleNestedResources/Assets.xcassets",
+                "iOSApp/Resources/ExampleNestedResources/en.lproj/Localizable.strings",
+                "iOSApp/Resources/ExampleNestedResources/es.lproj/Localizable.strings",
+                {
+                    "_": "iOSApp/Resources/ExampleNestedResources/dir",
+                    "f": true,
+                    "g": true
+                },
+                {
+                    "_": "examples_ios_app_external/bundles/Utils.bundle",
+                    "f": true,
+                    "g": true,
+                    "t": "e"
+                }
+            ]
+        },
+        "l": "//iOSApp/Resources/ExampleNestedResources:ExampleNestedResources",
+        "n": "ExampleNestedResources",
+        "p": {
+            "n": "ExampleNestedResources",
+            "p": {
+                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Resources/ExampleNestedResources/ExampleNestedResources.bundle",
+                "t": "g"
+            },
+            "r": true,
+            "t": "com.apple.product-type.bundle"
+        },
+        "s": false
+    },
+    "//iOSApp/Resources/ExampleResources:ExampleResources ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4",
+    {
+        "1": "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/iOSApp/Resources/ExampleResources",
+        "2": {
+            "a": "arm64",
+            "m": "15.0",
+            "o": "ios",
+            "v": "iphoneos"
+        },
+        "7": [
+            "//iOSApp/Resources/ExampleNestedResources:ExampleNestedResources ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4"
+        ],
+        "b": {
+            "PRODUCT_BUNDLE_IDENTIFIER": "com.example.resources"
+        },
+        "c": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4",
+        "d": [
+            "//iOSApp/Resources/ExampleNestedResources:ExampleNestedResources ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4"
+        ],
+        "i": {
+            "r": [
+                "iOSApp/Resources/ExampleResources/Assets.xcassets",
+                {
+                    "_": "iOSApp/Resources/ExampleResources/nested",
+                    "f": true,
+                    "g": true
+                },
+                {
+                    "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/iOSApp/Resources/ExampleResources/bucket",
+                    "f": true,
+                    "g": true,
+                    "t": "g"
+                }
+            ]
+        },
+        "l": "//iOSApp/Resources/ExampleResources:ExampleResources",
+        "n": "ExampleResources",
+        "p": {
+            "n": "ExampleResources",
+            "p": {
+                "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/iOSApp/Resources/ExampleResources/ExampleResources.bundle",
+                "t": "g"
+            },
+            "r": true,
+            "t": "com.apple.product-type.bundle"
+        },
+        "r": [
+            "//iOSApp/Resources/ExampleNestedResources:ExampleNestedResources ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4"
+        ],
+        "s": false
+    },
+    "//iOSApp/Resources/ExampleResources:ExampleResources ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
+    {
+        "1": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Resources/ExampleResources",
+        "2": {
+            "a": "x86_64",
+            "m": "15.0",
+            "o": "ios",
+            "v": "iphonesimulator"
+        },
+        "7": [
+            "//iOSApp/Resources/ExampleNestedResources:ExampleNestedResources ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1"
+        ],
+        "b": {
+            "PRODUCT_BUNDLE_IDENTIFIER": "com.example.resources"
+        },
+        "c": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
+        "d": [
+            "//iOSApp/Resources/ExampleNestedResources:ExampleNestedResources ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1"
+        ],
+        "i": {
+            "r": [
+                "iOSApp/Resources/ExampleResources/Assets.xcassets",
+                {
+                    "_": "iOSApp/Resources/ExampleResources/nested",
+                    "f": true,
+                    "g": true
+                },
+                {
+                    "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Resources/ExampleResources/bucket",
+                    "f": true,
+                    "g": true,
+                    "t": "g"
+                }
+            ]
+        },
+        "l": "//iOSApp/Resources/ExampleResources:ExampleResources",
+        "n": "ExampleResources",
+        "p": {
+            "n": "ExampleResources",
+            "p": {
+                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Resources/ExampleResources/ExampleResources.bundle",
+                "t": "g"
+            },
+            "r": true,
+            "t": "com.apple.product-type.bundle"
+        },
+        "r": [
+            "//iOSApp/Resources/ExampleNestedResources:ExampleNestedResources ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1"
+        ],
+        "s": false
+    },
+    "//iOSApp/Resources/OnlyStructuredResources:OnlyStructuredResources ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
+    {
+        "1": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Resources/OnlyStructuredResources",
+        "2": {
+            "a": "x86_64",
+            "m": "15.0",
+            "o": "ios",
+            "v": "iphonesimulator"
+        },
+        "b": {
+            "PRODUCT_BUNDLE_IDENTIFIER": "com.example.only_structured_resources"
+        },
+        "c": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
+        "i": {
+            "r": [
+                {
+                    "_": "iOSApp/Resources/OnlyStructuredResources/Nested",
+                    "f": true,
+                    "g": true
+                }
+            ]
+        },
+        "l": "//iOSApp/Resources/OnlyStructuredResources:OnlyStructuredResources",
+        "n": "OnlyStructuredResources",
+        "p": {
+            "n": "OnlyStructuredResources",
+            "p": {
+                "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Resources/OnlyStructuredResources/OnlyStructuredResources.bundle",
+                "t": "g"
+            },
+            "r": true,
+            "t": "com.apple.product-type.bundle"
+        },
+        "s": false
     },
     "//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswer ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4",
     {
@@ -4110,6 +4413,30 @@
         ],
         "i": {
             "e": "iOSApp/Source/ios app.entitlements",
+            "r": [
+                "iOSApp/Source/PreviewContent/Preview Assets.xcassets",
+                "iOSApp/Source/AltIcons/AltIcon-60.alticon/AltIcon-60@2x.png",
+                "iOSApp/Source/AltIcons/AltIcon-60.alticon/AltIcon-60@3x.png",
+                "iOSApp/Source/Assets.xcassets",
+                "iOSApp/Source/launch_images_ios.xcassets",
+                "iOSApp/Source/Model.xcdatamodeld/Model.xcdatamodel/contents",
+                "iOSApp/Source/Model.xcdatamodeld/Model2.xcdatamodel/contents",
+                "iOSApp/Source/en.lproj/Localizable.strings",
+                "iOSApp/Source/es.lproj/Localizable.strings",
+                {
+                    "_": "com_google_google_maps/GoogleMaps.xcframework/ios-arm64/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+                    "f": true,
+                    "g": true,
+                    "t": "e"
+                },
+                {
+                    "_": "iOSApp/Source/nested",
+                    "f": true,
+                    "g": true
+                },
+                "iOSApp/Source/en.lproj/unprocessed.json",
+                "iOSApp/Source/es.lproj/unprocessed.json"
+            ],
             "s": [
                 "iOSApp/Source/iOSApp.swift"
             ]
@@ -4141,6 +4468,10 @@
             },
             "t": "com.apple.product-type.application"
         },
+        "r": [
+            "//iOSApp/Resources/ExampleResources:ExampleResources ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4",
+            "//iOSApp/Resources/ExampleNestedResources:ExampleNestedResources ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4"
+        ],
         "w": "//watchOSApp:watchOSApp applebin_watchos-watchos_arm64_32-dbg-STABLE-12"
     },
     "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-dbg-STABLE-7",
@@ -4228,6 +4559,30 @@
         ],
         "i": {
             "e": "iOSApp/Source/ios app.entitlements",
+            "r": [
+                "iOSApp/Source/PreviewContent/Preview Assets.xcassets",
+                "iOSApp/Source/AltIcons/AltIcon-60.alticon/AltIcon-60@2x.png",
+                "iOSApp/Source/AltIcons/AltIcon-60.alticon/AltIcon-60@3x.png",
+                "iOSApp/Source/Assets.xcassets",
+                "iOSApp/Source/Model.xcdatamodeld/Model.xcdatamodel/contents",
+                "iOSApp/Source/Model.xcdatamodeld/Model2.xcdatamodel/contents",
+                "iOSApp/Source/Launch.storyboard",
+                "iOSApp/Source/en.lproj/Localizable.strings",
+                "iOSApp/Source/es.lproj/Localizable.strings",
+                {
+                    "_": "com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+                    "f": true,
+                    "g": true,
+                    "t": "e"
+                },
+                {
+                    "_": "iOSApp/Source/nested",
+                    "f": true,
+                    "g": true
+                },
+                "iOSApp/Source/en.lproj/unprocessed.json",
+                "iOSApp/Source/es.lproj/unprocessed.json"
+            ],
             "s": [
                 "iOSApp/Source/iOSApp.swift"
             ]
@@ -4259,6 +4614,10 @@
             },
             "t": "com.apple.product-type.application"
         },
+        "r": [
+            "//iOSApp/Resources/ExampleResources:ExampleResources ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
+            "//iOSApp/Resources/ExampleNestedResources:ExampleNestedResources ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1"
+        ],
         "w": "//watchOSApp:watchOSApp applebin_watchos-watchos_x86_64-dbg-STABLE-11"
     },
     "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-7",
@@ -4386,6 +4745,14 @@
         ],
         "h": "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-dbg-STABLE-7",
         "i": {
+            "r": [
+                {
+                    "_": "examples_ios_app_external/bundles/Utils.bundle",
+                    "f": true,
+                    "g": true,
+                    "t": "e"
+                }
+            ],
             "s": [
                 "iOSApp/Test/ObjCUnitTests/ObjCUnitTests.m"
             ]
@@ -4410,6 +4777,9 @@
             },
             "t": "com.apple.product-type.bundle.unit-test"
         },
+        "r": [
+            "//iOSApp/Resources/OnlyStructuredResources:OnlyStructuredResources ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1"
+        ],
         "s": false,
         "t": true
     },
@@ -4488,6 +4858,15 @@
         ],
         "h": "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-dbg-STABLE-7",
         "i": {
+            "r": [
+                "iOSApp/Resources/ExampleResources/Assets.xcassets",
+                {
+                    "_": "examples_ios_app_external/bundles/Utils.bundle",
+                    "f": true,
+                    "g": true,
+                    "t": "e"
+                }
+            ],
             "s": [
                 "iOSApp/Test/SwiftUnitTests/SwiftUnitTests.swift"
             ]
@@ -4621,6 +5000,10 @@
         },
         "c": "applebin_macos-darwin_x86_64-dbg-STABLE-16",
         "i": {
+            "r": [
+                "macOSApp/Source/PreviewContent/Preview Assets.xcassets",
+                "macOSApp/Source/Assets.xcassets"
+            ],
             "s": [
                 "macOSApp/Source/ContentView.swift",
                 "macOSApp/Source/macOSApp.swift"
@@ -4801,6 +5184,10 @@
             "//UI:UIFramework.tvOS applebin_tvos-tvos_arm64-dbg-STABLE-14"
         ],
         "i": {
+            "r": [
+                "tvOSApp/Resources/PreviewContent/Preview Assets.xcassets",
+                "tvOSApp/Resources/Assets.xcassets"
+            ],
             "s": [
                 "tvOSApp/Source/tvOSApp.swift"
             ]
@@ -4898,6 +5285,10 @@
             "//UI:UIFramework.tvOS applebin_tvos-tvos_x86_64-dbg-STABLE-13"
         ],
         "i": {
+            "r": [
+                "tvOSApp/Resources/PreviewContent/Preview Assets.xcassets",
+                "tvOSApp/Resources/Assets.xcassets"
+            ],
             "s": [
                 "tvOSApp/Source/tvOSApp.swift"
             ]
@@ -5232,6 +5623,11 @@
         "e": [
             "//watchOSAppExtension:watchOSAppExtension applebin_watchos-watchos_arm64_32-dbg-STABLE-10"
         ],
+        "i": {
+            "r": [
+                "watchOSApp/Assets.xcassets"
+            ]
+        },
         "l": "//watchOSApp:watchOSApp",
         "n": "watchOSApp",
         "o": {
@@ -5284,6 +5680,11 @@
         "e": [
             "//watchOSAppExtension:watchOSAppExtension applebin_watchos-watchos_x86_64-dbg-STABLE-9"
         ],
+        "i": {
+            "r": [
+                "watchOSApp/Assets.xcassets"
+            ]
+        },
         "l": "//watchOSApp:watchOSApp",
         "n": "watchOSApp",
         "o": {
@@ -5465,6 +5866,9 @@
             "//UI:UIFramework.watchOS applebin_watchos-watchos_arm64_32-dbg-STABLE-10"
         ],
         "i": {
+            "r": [
+                "watchOSAppExtension/Assets.xcassets"
+            ],
             "s": [
                 "watchOSAppExtension/watchOSApp.swift"
             ]
@@ -5563,6 +5967,9 @@
             "//UI:UIFramework.watchOS applebin_watchos-watchos_x86_64-dbg-STABLE-9"
         ],
         "i": {
+            "r": [
+                "watchOSAppExtension/Assets.xcassets"
+            ],
             "s": [
                 "watchOSAppExtension/watchOSApp.swift"
             ]
