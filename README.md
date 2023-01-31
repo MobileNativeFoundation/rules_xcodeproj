@@ -80,7 +80,7 @@ ones we've officially tested with.
 
 From the
 [release you wish to use](https://github.com/buildbuddy-io/rules_xcodeproj/releases),
-copy the Bzlmod or WORKSPACE snippets into your repository.
+copy the Bzlmod or WORKSPACE snippet into your repository.
 
 ## Usage
 
