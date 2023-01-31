@@ -109,6 +109,10 @@ extension XCScheme {
                 .createLLDBInit(
                     buildableReference: profileActionInfo
                         .targetInfo.buildableReference
+                ),
+                .copyDSYMs(
+                    buildableReference: profileActionInfo
+                        .targetInfo.buildableReference
                 )
             ]
             profileAction = .init(
@@ -235,6 +239,18 @@ fi
 "$BAZEL_INTEGRATION_DIR/create_lldbinit.sh"
 """#,
             title: "Update .lldbinit",
+            environmentBuildable: buildableReference
+        )
+    }
+
+    static func copyDSYMs(
+        buildableReference: XCScheme.BuildableReference
+    ) -> XCScheme.ExecutionAction {
+        return .init(
+            scriptText: #"""
+"$BAZEL_INTEGRATION_DIR/copy_dsyms.sh"
+"""#,
+            title: "Copy dSYMs",
             environmentBuildable: buildableReference
         )
     }
