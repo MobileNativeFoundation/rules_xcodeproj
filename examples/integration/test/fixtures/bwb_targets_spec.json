@@ -25,7 +25,7 @@
             ]
         },
         "6": {
-            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/AppClip.59.link.params",
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/AppClip.53.link.params",
             "t": "g"
         },
         "b": {
@@ -216,7 +216,7 @@
             "t": "g"
         },
         "6": {
-            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/CommandLineTool.40.link.params",
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/CommandLineTool.38.link.params",
             "t": "g"
         },
         "b": {
@@ -282,7 +282,7 @@
         },
         "c": "applebin_macos-darwin_x86_64-dbg-STABLE-20",
         "d": [
-            "//CommandLine/CommandLineToolLib:lib_headers macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17"
+            "//CommandLine/CommandLineToolLib:lib_swift macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17"
         ],
         "i": {
             "s": [
@@ -325,7 +325,7 @@
             "n": "tool.library"
         },
         "6": {
-            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/tool.binary.48.link.params",
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/tool.binary.44.link.params",
             "t": "g"
         },
         "b": {
@@ -386,7 +386,7 @@
         },
         "c": "macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18",
         "d": [
-            "//CommandLine/CommandLineToolLib:lib_headers macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18"
+            "//CommandLine/CommandLineToolLib:lib_swift macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18"
         ],
         "i": {
             "s": [
@@ -429,7 +429,7 @@
             "n": "tool.library"
         },
         "6": {
-            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/tool.binary.56.link.params",
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/tool.binary.50.link.params",
             "t": "g"
         },
         "b": {
@@ -490,7 +490,7 @@
         },
         "c": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-19",
         "d": [
-            "//CommandLine/CommandLineToolLib:lib_headers macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-19"
+            "//CommandLine/CommandLineToolLib:lib_swift macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-19"
         ],
         "i": {
             "s": [
@@ -516,165 +516,6 @@
                 "t": "g"
             },
             "t": "com.apple.product-type.tool"
-        },
-        "s": false
-    },
-    "//CommandLine/CommandLineToolLib:lib_defines macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18",
-    {
-        "1": "bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18/bin/CommandLine/CommandLineToolLib",
-        "2": {
-            "a": "arm64",
-            "m": "11.0",
-            "o": "macos",
-            "v": "macosx"
-        },
-        "b": {
-            "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
-            "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
-            "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-            "SWIFT_VERSION": "5.0"
-        },
-        "c": "macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18",
-        "l": "//CommandLine/CommandLineToolLib:lib_defines",
-        "n": "lib_defines",
-        "p": {
-            "n": "lib_defines",
-            "t": "com.apple.product-type.library.static"
-        },
-        "s": false
-    },
-    "//CommandLine/CommandLineToolLib:lib_defines macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17",
-    {
-        "1": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17/bin/CommandLine/CommandLineToolLib",
-        "2": {
-            "a": "x86_64",
-            "m": "11.0",
-            "o": "macos",
-            "v": "macosx"
-        },
-        "b": {
-            "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
-            "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
-            "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-            "SWIFT_VERSION": "5.0"
-        },
-        "c": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17",
-        "l": "//CommandLine/CommandLineToolLib:lib_defines",
-        "n": "lib_defines",
-        "p": {
-            "n": "lib_defines",
-            "t": "com.apple.product-type.library.static"
-        },
-        "s": false
-    },
-    "//CommandLine/CommandLineToolLib:lib_defines macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-19",
-    {
-        "1": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-19/bin/CommandLine/CommandLineToolLib",
-        "2": {
-            "a": "x86_64",
-            "m": "11.0",
-            "o": "macos",
-            "v": "macosx"
-        },
-        "b": {
-            "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
-            "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
-            "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-            "SWIFT_VERSION": "5.0"
-        },
-        "c": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-19",
-        "l": "//CommandLine/CommandLineToolLib:lib_defines",
-        "n": "lib_defines",
-        "p": {
-            "n": "lib_defines",
-            "t": "com.apple.product-type.library.static"
-        },
-        "s": false
-    },
-    "//CommandLine/CommandLineToolLib:lib_headers macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18",
-    {
-        "1": "bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18/bin/CommandLine/CommandLineToolLib",
-        "2": {
-            "a": "arm64",
-            "m": "11.0",
-            "o": "macos",
-            "v": "macosx"
-        },
-        "b": {
-            "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
-            "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
-            "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-            "SWIFT_VERSION": "5.0"
-        },
-        "c": "macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18",
-        "d": [
-            "//CommandLine/CommandLineToolLib:lib_swift macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18"
-        ],
-        "l": "//CommandLine/CommandLineToolLib:lib_headers",
-        "n": "lib_headers",
-        "p": {
-            "n": "lib_headers",
-            "t": "com.apple.product-type.library.static"
-        },
-        "s": false
-    },
-    "//CommandLine/CommandLineToolLib:lib_headers macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17",
-    {
-        "1": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17/bin/CommandLine/CommandLineToolLib",
-        "2": {
-            "a": "x86_64",
-            "m": "11.0",
-            "o": "macos",
-            "v": "macosx"
-        },
-        "b": {
-            "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
-            "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
-            "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-            "SWIFT_VERSION": "5.0"
-        },
-        "c": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17",
-        "d": [
-            "//CommandLine/CommandLineToolLib:lib_swift macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17"
-        ],
-        "l": "//CommandLine/CommandLineToolLib:lib_headers",
-        "n": "lib_headers",
-        "p": {
-            "n": "lib_headers",
-            "t": "com.apple.product-type.library.static"
-        },
-        "s": false
-    },
-    "//CommandLine/CommandLineToolLib:lib_headers macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-19",
-    {
-        "1": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-19/bin/CommandLine/CommandLineToolLib",
-        "2": {
-            "a": "x86_64",
-            "m": "11.0",
-            "o": "macos",
-            "v": "macosx"
-        },
-        "b": {
-            "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
-            "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
-            "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-            "SWIFT_VERSION": "5.0"
-        },
-        "c": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-19",
-        "d": [
-            "//CommandLine/CommandLineToolLib:lib_swift macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-19"
-        ],
-        "l": "//CommandLine/CommandLineToolLib:lib_headers",
-        "n": "lib_headers",
-        "p": {
-            "n": "lib_headers",
-            "t": "com.apple.product-type.library.static"
         },
         "s": false
     },
@@ -730,9 +571,6 @@
             "SWIFT_VERSION": "5.0"
         },
         "c": "macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18",
-        "d": [
-            "//CommandLine/CommandLineToolLib:lib_defines macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18"
-        ],
         "i": {
             "s": [
                 "CommandLine/CommandLineToolLib/lib.m",
@@ -803,9 +641,6 @@
             "SWIFT_VERSION": "5.0"
         },
         "c": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17",
-        "d": [
-            "//CommandLine/CommandLineToolLib:lib_defines macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17"
-        ],
         "i": {
             "s": [
                 "CommandLine/CommandLineToolLib/lib.m",
@@ -876,9 +711,6 @@
             "SWIFT_VERSION": "5.0"
         },
         "c": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-19",
-        "d": [
-            "//CommandLine/CommandLineToolLib:lib_defines macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-19"
-        ],
         "i": {
             "s": [
                 "CommandLine/CommandLineToolLib/lib.m",
@@ -1392,7 +1224,7 @@
             "t": "g"
         },
         "6": {
-            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/CommandLineToolTests.__internal__.__test_bundle.57.link.params",
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/CommandLineToolTests.__internal__.__test_bundle.51.link.params",
             "t": "g"
         },
         "b": {
@@ -1641,7 +1473,7 @@
             ]
         },
         "6": {
-            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/iOS.71.link.params",
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/iOS.65.link.params",
             "t": "g"
         },
         "b": {
@@ -1785,7 +1617,7 @@
             ]
         },
         "6": {
-            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/tvOS.73.link.params",
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/tvOS.67.link.params",
             "t": "g"
         },
         "b": {
@@ -1927,7 +1759,7 @@
             ]
         },
         "6": {
-            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/watchOS.74.link.params",
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/watchOS.68.link.params",
             "t": "g"
         },
         "b": {
@@ -2369,7 +2201,7 @@
             ]
         },
         "6": {
-            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/LibFramework.tvOS.75.link.params",
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/LibFramework.tvOS.69.link.params",
             "t": "g"
         },
         "b": {
@@ -2517,7 +2349,7 @@
             ]
         },
         "6": {
-            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/LibFramework.watchOS.66.link.params",
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/LibFramework.watchOS.60.link.params",
             "t": "g"
         },
         "b": {
@@ -2673,7 +2505,7 @@
             ]
         },
         "6": {
-            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/UIFramework.iOS.64.link.params",
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/UIFramework.iOS.58.link.params",
             "t": "g"
         },
         "b": {
@@ -2883,7 +2715,7 @@
             ]
         },
         "6": {
-            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/UIFramework.tvOS.76.link.params",
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/UIFramework.tvOS.70.link.params",
             "t": "g"
         },
         "7": [
@@ -3093,7 +2925,7 @@
             ]
         },
         "6": {
-            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/UIFramework.watchOS.67.link.params",
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/UIFramework.watchOS.61.link.params",
             "t": "g"
         },
         "7": [
@@ -3299,7 +3131,7 @@
             ]
         },
         "6": {
-            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/WidgetExtension.62.link.params",
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/WidgetExtension.56.link.params",
             "t": "g"
         },
         "b": {
@@ -3876,7 +3708,7 @@
             "t": "g"
         },
         "6": {
-            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/FrameworkCoreUtilsObjC.63.link.params",
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/FrameworkCoreUtilsObjC.57.link.params",
             "t": "g"
         },
         "b": {
@@ -4203,7 +4035,7 @@
             ]
         },
         "6": {
-            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/iOSApp.70.link.params",
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/iOSApp.64.link.params",
             "t": "g"
         },
         "7": [
@@ -5032,7 +4864,7 @@
             ]
         },
         "6": {
-            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/tvOSApp.77.link.params",
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/tvOSApp.71.link.params",
             "t": "g"
         },
         "7": [
@@ -5744,7 +5576,7 @@
             ]
         },
         "6": {
-            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/watchOSAppExtension.68.link.params",
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/watchOSAppExtension.62.link.params",
             "t": "g"
         },
         "7": [

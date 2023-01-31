@@ -39,7 +39,11 @@ def process_dependencies(*, automatic_target_info, transitive_infos):
                 )):
             continue
         all_transitive_dependencies.append(info.transitive_dependencies)
-        if info.xcode_target:
+        if info.xcode_target and info.xcode_target.should_create_xcode_target:
+            # TODO: Refactor `should_create_xcode_target` and
+            # `should_generate_target` handling. The only reason we don't use
+            # `should_generate_target` for header-only targets is because we
+            # want to be able to unfocus their files.
             direct_dependencies.append(info.xcode_target.id)
         else:
             # We pass on the next level of dependencies if the previous target

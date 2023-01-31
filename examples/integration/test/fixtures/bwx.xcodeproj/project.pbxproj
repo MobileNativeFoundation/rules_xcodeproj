@@ -178,13 +178,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		0066589288D0D5F00F84878E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
-			remoteInfo = BazelDependencies;
-		};
 		01FCC91D6927105EA2B8D389 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
@@ -437,13 +430,6 @@
 			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
 			remoteInfo = BazelDependencies;
 		};
-		3E58AA2A4924222D22A3EC50 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
-			remoteInfo = BazelDependencies;
-		};
 		43436D7A65E128E2EE4EBFC0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
@@ -485,13 +471,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
 			remoteInfo = BazelDependencies;
-		};
-		517D980840A70453F943CA3E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = FF1172E397CBCB80994248D7;
-			remoteInfo = "lib_swift (70419)";
 		};
 		51D52A56D93791FCECA02FCC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -535,20 +514,6 @@
 			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
 			remoteInfo = BazelDependencies;
 		};
-		65DC6B2AE2CABA799A1472CF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
-			remoteInfo = BazelDependencies;
-		};
-		65E5F6F26CB13848A6402832 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = FDAAB6F4BD24E6EF4C524280;
-			remoteInfo = "lib_swift (c7049)";
-		};
 		69917F7A7264716F8B632D9A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
@@ -557,13 +522,6 @@
 			remoteInfo = FrameworkCoreUtilsObjC;
 		};
 		69FACF3FCAE1B6A644FAE204 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
-			remoteInfo = BazelDependencies;
-		};
-		6B6847F78151236D660C0F38 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
 			proxyType = 1;
@@ -585,13 +543,6 @@
 			remoteInfo = iOSApp;
 		};
 		72FBC93C36DD0FED23B6D0C4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
-			remoteInfo = BazelDependencies;
-		};
-		73346DF7B5FAACF281C99023 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
 			proxyType = 1;
@@ -654,6 +605,13 @@
 			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
 			remoteInfo = BazelDependencies;
 		};
+		8A56F633AA7EAFCC858E5955 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FDAAB6F4BD24E6EF4C524280;
+			remoteInfo = "lib_swift (c7049)";
+		};
 		8CEF5E6A7BFEBF56698C0988 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
@@ -675,19 +633,19 @@
 			remoteGlobalIDString = 182B42EFE70A5561F1C023E5;
 			remoteInfo = watchOSApp;
 		};
+		91A25D5004BC3FDF72FC3B47 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4D0BA3037D9626451A75ADA8;
+			remoteInfo = "lib_swift (arm64)";
+		};
 		91E85750662C20786D0C9502 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = FA17ED668CEC23FAB473B8EE;
 			remoteInfo = "c_lib (70419)";
-		};
-		924225D19A2C19B80ED0DDA7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
-			remoteInfo = BazelDependencies;
 		};
 		92D97789B9BA0EC17D085B35 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -709,6 +667,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 9A63A40F4548616B6FC99E1D;
 			remoteInfo = LibFramework.iOS;
+		};
+		99B7F6C4C88C82D0F5F0D09A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FF1172E397CBCB80994248D7;
+			remoteInfo = "lib_swift (70419)";
 		};
 		9C6A67C7CAD218F6D033CCD0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -780,13 +745,6 @@
 			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
 			remoteInfo = BazelDependencies;
 		};
-		B3BCE5CCB9E00DAE0FEA8CAC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B8BB8941D8B4790065DB0C13;
-			remoteInfo = "lib_headers (70419)";
-		};
 		B5BC5F5622FD3B4B41EDA030 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
@@ -794,26 +752,12 @@
 			remoteGlobalIDString = C85A6D48FFB584AD923EF50E;
 			remoteInfo = "private_swift_lib (c7049)";
 		};
-		B6058C57ABCBE20996580D51 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C8E947DCBD3E1E36A899C25B;
-			remoteInfo = "lib_headers (c7049)";
-		};
 		B9CC8EC919C2E74B3CAB0222 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = D094AA317C2527FB0FCC5015;
 			remoteInfo = "Lib (watchOS)";
-		};
-		BA21AC716B66D1C1C686E80D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B7ABA540A466EB4DBBC135D8;
-			remoteInfo = "lib_defines (c7049)";
 		};
 		BA90E139F9A2657720980562 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -849,13 +793,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
 			remoteInfo = BazelDependencies;
-		};
-		C9D2B7002AA21699BD7E1BC7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A5EACAE40D41F5B733F8BDE1;
-			remoteInfo = "lib_defines (arm64)";
 		};
 		CFCD97C2433A529E9D15DD32 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -919,13 +856,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
 			remoteInfo = BazelDependencies;
-		};
-		E3E17BA8252E0EA0F5F61E2F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 96C7A8A4E3BE0C47D1D2E018;
-			remoteInfo = "lib_headers (arm64)";
 		};
 		E480521BEC484A08E14104A6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1032,26 +962,12 @@
 			remoteGlobalIDString = 967BEB9EDFB3230C10A206A8;
 			remoteInfo = ExampleNestedResources;
 		};
-		FC5F2B23A91FD7F47A3B8CFE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 9662E3C5739C614E2A31959B;
-			remoteInfo = "lib_defines (70419)";
-		};
 		FC9C3A55176997E6D7891EC0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
 			remoteInfo = BazelDependencies;
-		};
-		FD8A25E3B51FA3918C6A8489 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 4D0BA3037D9626451A75ADA8;
-			remoteInfo = "lib_swift (arm64)";
 		};
 		FECDA6B3950300F8F7F7E3C0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1265,6 +1181,7 @@
 
 /* Begin PBXFileReference section */
 		001FDBFC42F9A11C5CFEEAA6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0147CF232ECA32FA8F1EF2F3 /* LibFramework.watchOS.67.link.params */ = {isa = PBXFileReference; path = LibFramework.watchOS.67.link.params; sourceTree = "<group>"; };
 		015E6004A77E27E5BDBF92F8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		015E719AD51FD198C7A5EEC4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		01DD2D8423D766C6804C7322 /* LibFramework.iOS.11.link.params */ = {isa = PBXFileReference; path = LibFramework.iOS.11.link.params; sourceTree = "<group>"; };
@@ -1272,8 +1189,6 @@
 		045D79E4499451C4B2475FF5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		046009DFD93D95D778F001B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		04D9C28E81207205F686C362 /* Foo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Foo.h; sourceTree = "<group>"; };
-		06167684945CCD09029DB464 /* iOS.78.link.params */ = {isa = PBXFileReference; path = iOS.78.link.params; sourceTree = "<group>"; };
-		0690AA6C776008C5D258EE58 /* LibFramework.iOS.70.link.params */ = {isa = PBXFileReference; path = LibFramework.iOS.70.link.params; sourceTree = "<group>"; };
 		06E75DFC033DC0631CE8EF02 /* WidgetExtension.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = WidgetExtension.intentdefinition; sourceTree = "<group>"; };
 		0701D4FA5A690C1643D35B00 /* launch_images_ios.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = launch_images_ios.xcassets; sourceTree = "<group>"; };
 		079BC96B2EEA2028181E169C /* watchOSAppExtensionUnitTests.__internal__.__test_bundle.38.link.params */ = {isa = PBXFileReference; path = watchOSAppExtensionUnitTests.__internal__.__test_bundle.38.link.params; sourceTree = "<group>"; };
@@ -1306,18 +1221,17 @@
 		1A1F31FDD0500E63F33B1506 /* LibFramework.tvOS.23.link.params */ = {isa = PBXFileReference; path = LibFramework.tvOS.23.link.params; sourceTree = "<group>"; };
 		1A580E62D3570C8171C06E7C /* Foo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Foo.m; sourceTree = "<group>"; };
 		1A9B9689D76A550CCCEB0600 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		1CE0E78A81E9A033576B6FAE /* UIFramework.tvOS.83.link.params */ = {isa = PBXFileReference; path = UIFramework.tvOS.83.link.params; sourceTree = "<group>"; };
 		1DBCA5BBFB401A657C243166 /* FXPageControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FXPageControl.h; sourceTree = "<group>"; };
 		1EBCB856193A610747419205 /* LibFramework.iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LibFramework.iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EDA6869BEDB7B73A3C66D51 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		1F8D330113018E003269E782 /* liblib_impl.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_impl.a; path = "bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18/bin/CommandLine/CommandLineToolLib/liblib_impl.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2124C0E94F14B8B0F71C8AB9 /* UnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitTests.swift; sourceTree = "<group>"; };
 		217370817D19BDB8AA2F139C /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
-		217B6CF13FAE266080BB316D /* WidgetExtension.68.link.params */ = {isa = PBXFileReference; path = WidgetExtension.68.link.params; sourceTree = "<group>"; };
 		21BB700A66EAE483F5DCA14E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2283C778437B6BE3239A496A /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		22B280C2C213DF7908FBFECB /* Entitlements.withbundleid.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Entitlements.withbundleid.plist; sourceTree = "<group>"; };
 		24A1BBB5B40DDFD8D69097BD /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
+		24DE3541825B9914D0938DF8 /* UIFramework.iOS.65.link.params */ = {isa = PBXFileReference; path = UIFramework.iOS.65.link.params; sourceTree = "<group>"; };
 		2655F0EEA768F2D5A6F72261 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		26F729C388DDC512C3CA56DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		273ED34283627367087A2DE0 /* CommandLineToolTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CommandLineToolTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1333,6 +1247,7 @@
 		2CF62E4C0E80AFA93C961D93 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		2D457A99D0ED81ADDF52D3FD /* nested */ = {isa = PBXFileReference; lastKnownFileType = folder; path = nested; sourceTree = "<group>"; };
 		2DCCC93E187EFCE9A1EE1B71 /* libMixedAnswerLib_Swift.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libMixedAnswerLib_Swift.a; path = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/libMixedAnswerLib_Swift.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2EEE88F66E9E38B5E6259EEE /* tvOSApp.78.link.params */ = {isa = PBXFileReference; path = tvOSApp.78.link.params; sourceTree = "<group>"; };
 		2F43CF7476674E5FCD5C5FBB /* UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITests.swift; sourceTree = "<group>"; };
 		2FDA674CB67420ACD5685C09 /* MixedAnswer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MixedAnswer.h; sourceTree = "<group>"; };
 		3031FBC93776A6C8743E6F5C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -1342,21 +1257,25 @@
 		31E3D6F06983030936AF5737 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		31EBAA302BF21712CB52AF4A /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = "<group>"; };
 		33F88ADEDB7809198F344595 /* liblib_swift.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_swift.a; path = "bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18/bin/CommandLine/CommandLineToolLib/liblib_swift.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3477D6885393A6D539B41A1B /* iOSApp.71.link.params */ = {isa = PBXFileReference; path = iOSApp.71.link.params; sourceTree = "<group>"; };
+		3535D370E66576D7B3FB0BAA /* watchOS.75.link.params */ = {isa = PBXFileReference; path = watchOS.75.link.params; sourceTree = "<group>"; };
 		377BB3CE77D26BF4FC27696B /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = "<group>"; };
 		38D51FF469C531901A0E5BFF /* Lib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Lib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		38D78F9578FBE79E3F7259FD /* libprivate_lib.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libprivate_lib.a; path = "bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18/bin/CommandLine/CommandLineToolLib/libprivate_lib.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3971F51F852EA035B285D597 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
 		3CC158C62E2B15E86DB3BA17 /* GoogleMapsCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMapsCore.framework; sourceTree = "<group>"; };
 		3D17756CBC2C2C7F24BCF617 /* LibFramework.watchOS.14.link.params */ = {isa = PBXFileReference; path = LibFramework.watchOS.14.link.params; sourceTree = "<group>"; };
+		3D2EBA508702A4270C6E2672 /* CommandLineTool.44.link.params */ = {isa = PBXFileReference; path = CommandLineTool.44.link.params; sourceTree = "<group>"; };
 		3D320AC98EA795C9D1CD7815 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		3D877D8438CA7799E8AEC192 /* UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITests.swift; sourceTree = "<group>"; };
 		3DAFA2A92EEBC0B9090DD9CF /* UI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UI.h; sourceTree = "<group>"; };
 		3EE65ECD62FEA45BE4F90CA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		3FDF92641DF054BD26A2E8F3 /* UIFramework.iOS.71.link.params */ = {isa = PBXFileReference; path = UIFramework.iOS.71.link.params; sourceTree = "<group>"; };
 		4057ACD3B5DBD242C9035849 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
+		42CB3EA7ABABC532EDC4C574 /* AppClip.59.link.params */ = {isa = PBXFileReference; path = AppClip.59.link.params; sourceTree = "<group>"; };
 		43619E6CF5072EF7FDF3C805 /* bucket */ = {isa = PBXFileReference; lastKnownFileType = folder; path = bucket; sourceTree = "<group>"; };
 		43BA86738346000EDE044E68 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		47288CCEE7F77EF6F091BBBC /* Model2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model2.xcdatamodel; sourceTree = "<group>"; };
+		47C8E68B02CF872CF3984683 /* CommandLineToolTests.__internal__.__test_bundle.57.link.params */ = {isa = PBXFileReference; path = CommandLineToolTests.__internal__.__test_bundle.57.link.params; sourceTree = "<group>"; };
 		485B8AA039F27E3AFFFE438E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		498EE205CFEE32FE9E4312E1 /* FrameworkCoreUtilsObjC.10.link.params */ = {isa = PBXFileReference; path = FrameworkCoreUtilsObjC.10.link.params; sourceTree = "<group>"; };
 		4A3C0917FCDFDF3032D1435B /* ExternalFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalFramework.framework; path = CommandLine/external/ExternalFramework.framework; sourceTree = SOURCE_ROOT; };
@@ -1369,6 +1288,7 @@
 		4EB3A64ACFAE88637ADD5A59 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		4F21B55C0FF592EB8A6B490E /* c_lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = c_lib.c; sourceTree = "<group>"; };
 		50EC4D089420A7BEDD5ED41E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		53D3C6CB48DFBB632D7F4AA4 /* UIFramework.tvOS.77.link.params */ = {isa = PBXFileReference; path = UIFramework.tvOS.77.link.params; sourceTree = "<group>"; };
 		5559C296108A70A80C77AB2B /* TestingUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingUtils.swift; sourceTree = "<group>"; };
 		557A12C749D0A23CF53C12B1 /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = "<group>"; };
 		55CD781B5F019C8FEAAC6B88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -1395,6 +1315,7 @@
 		636CB8D6B2BB4127CCE16B5D /* Answer.swift.stencil */ = {isa = PBXFileReference; path = Answer.swift.stencil; sourceTree = "<group>"; };
 		636E3CE914F0A9759EFD81C3 /* CommandLineTool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CommandLineTool; sourceTree = BUILT_PRODUCTS_DIR; };
 		64504842BEF8E32A994F8224 /* watchOSAppUITests.__internal__.__test_bundle.37.link.params */ = {isa = PBXFileReference; path = watchOSAppUITests.__internal__.__test_bundle.37.link.params; sourceTree = "<group>"; };
+		652BA0ACA89C16E0080B3CFF /* tool.binary.56.link.params */ = {isa = PBXFileReference; path = tool.binary.56.link.params; sourceTree = "<group>"; };
 		655FBBBF8B98FCCFD4A638C4 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = wrapper.cfbundle; path = GoogleMaps.bundle; sourceTree = "<group>"; };
 		65689CDD728D49E33DAAAFCB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		66DFDE9A70E21133C511E9DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -1425,7 +1346,6 @@
 		7A32DA21EB368F8D41E6DA1B /* liblib_impl.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_impl.a; path = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-19/bin/CommandLine/CommandLineToolLib/liblib_impl.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A53AE9C1B017C97902BCD50 /* libc_lib.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libc_lib.a; path = "bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18/bin/CommandLine/swift_c_module/libc_lib.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B83FA3D9C641551A4E408D2 /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = "<group>"; };
-		7D182804BD392C80A1517D00 /* CommandLineToolTests.__internal__.__test_bundle.63.link.params */ = {isa = PBXFileReference; path = CommandLineToolTests.__internal__.__test_bundle.63.link.params; sourceTree = "<group>"; };
 		7D803CCB6F4CDD4EE182DEA4 /* Lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lib.swift; sourceTree = "<group>"; };
 		7E16D0C3B1A292BBEE1E86A9 /* UIFramework.tvOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UIFramework.tvOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E988FAD93140F189CCB6BDA /* WidgetExtension.9.link.params */ = {isa = PBXFileReference; path = WidgetExtension.9.link.params; sourceTree = "<group>"; };
@@ -1433,19 +1353,19 @@
 		7EDDD85F566BB5161AB475A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		7EFB85FA99269A06FB5C03F2 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7F5B724BDC1069B03FE231A1 /* private_lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = private_lib.swift; sourceTree = "<group>"; };
-		7F748ECB55E22B13BDB63190 /* tool.binary.62.link.params */ = {isa = PBXFileReference; path = tool.binary.62.link.params; sourceTree = "<group>"; };
 		7F8A0C902A4B221092E73C06 /* iOSApp.18.link.params */ = {isa = PBXFileReference; path = iOSApp.18.link.params; sourceTree = "<group>"; };
 		82E8B9B3096F1717E8D751F7 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8315FB69B74562174BD55A85 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		83F5236CD826B4469E05000D /* Info.extension.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.extension.plist; sourceTree = "<group>"; };
 		84D5A42BA758970DA5410886 /* libLib.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libLib.a; path = "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/Lib/libLib.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		85D685971A87BFE0B68CD16B /* tool.binary.50.link.params */ = {isa = PBXFileReference; path = tool.binary.50.link.params; sourceTree = "<group>"; };
 		85E7714EA831CA635017CD09 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		86D7CCDBD0CDEAAAEDF3C86E /* AppClip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppClip.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		86E1463A14E60FDB7B433E4B /* WidgetExtension.62.link.params */ = {isa = PBXFileReference; path = WidgetExtension.62.link.params; sourceTree = "<group>"; };
 		875CA26FB8119C039F89E8E6 /* watchOSApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = watchOSApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8782496D7D7A013102474DAC /* private_lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = private_lib.c; sourceTree = "<group>"; };
 		87948F9E74E041BE3EEB12BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8864D10D2387038D474CB645 /* MixedAnswer_objc_modulemap-module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = "MixedAnswer_objc_modulemap-module.modulemap"; sourceTree = "<group>"; };
-		8A96FC0F923AD8F0D7A7E0B7 /* watchOS.81.link.params */ = {isa = PBXFileReference; path = watchOS.81.link.params; sourceTree = "<group>"; };
 		8CD2681FF92A3EF76D38D118 /* WidgetExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetExtension.swift; sourceTree = "<group>"; };
 		8D1C3274E698C0F339AC7EE1 /* UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestsLaunchTests.swift; sourceTree = "<group>"; };
 		8DD3F821E51F622E4DA16F5F /* Lib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Lib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1464,24 +1384,24 @@
 		9CC503C000379F2665D27C33 /* MixedAnswer_objc_modulemap-module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = "MixedAnswer_objc_modulemap-module.modulemap"; sourceTree = "<group>"; };
 		9D43DF405F8552589305B5B5 /* ExtensionAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ExtensionAssets.xcassets; sourceTree = "<group>"; };
 		9D5EF7589979407840A31CC5 /* libprivate_lib.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libprivate_lib.a; path = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-19/bin/CommandLine/CommandLineToolLib/libprivate_lib.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9DDC8B56F04F149065E44EAC /* tvOS.80.link.params */ = {isa = PBXFileReference; path = tvOS.80.link.params; sourceTree = "<group>"; };
 		9DF2EFFA963073536B32CC95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		9F8452F73F5C2F6B5014A988 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
-		A01FBA83FDF75601A1E1F2DE /* CommandLineTool.46.link.params */ = {isa = PBXFileReference; path = CommandLineTool.46.link.params; sourceTree = "<group>"; };
 		A05675A4B440A99E53CDBBA4 /* lib.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = lib.m; sourceTree = "<group>"; };
 		A064660271C9A418C9AC2853 /* UIFramework.tvOS.24.link.params */ = {isa = PBXFileReference; path = UIFramework.tvOS.24.link.params; sourceTree = "<group>"; };
 		A1E70C26B36D2217147E9D69 /* tvOSAppUITests.__internal__.__test_bundle.35.link.params */ = {isa = PBXFileReference; path = tvOSAppUITests.__internal__.__test_bundle.35.link.params; sourceTree = "<group>"; };
+		A2E40329FB7CCCBA650C532F /* watchOSAppExtension.69.link.params */ = {isa = PBXFileReference; path = watchOSAppExtension.69.link.params; sourceTree = "<group>"; };
 		A4854B7BC8759DDD37CFCFB2 /* iMessageApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iMessageApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A4A817481E6A2DFC72022FF7 /* LibFramework.iOS.64.link.params */ = {isa = PBXFileReference; path = LibFramework.iOS.64.link.params; sourceTree = "<group>"; };
 		A5B3CFC681DCFFFB6FCA402F /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		A6A0590170CDA4DCB3F08334 /* merge.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = merge.sh; sourceTree = "<group>"; };
 		A7132631C56C8635B793BD17 /* SwiftGreetingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftGreetingsTests.swift; sourceTree = "<group>"; };
 		A82636781F42D61A3F8193EA /* libprivate_swift_lib.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libprivate_swift_lib.a; path = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17/bin/CommandLine/CommandLineToolLib/libprivate_swift_lib.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A89CF199A3717444698BC978 /* liblib_swift.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_swift.a; path = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17/bin/CommandLine/CommandLineToolLib/liblib_swift.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A948B65A9C0EECFA413229EB /* tvOS.74.link.params */ = {isa = PBXFileReference; path = tvOS.74.link.params; sourceTree = "<group>"; };
 		A9C850636A467769FB95E294 /* macOSAppUITests.__internal__.__test_bundle.34.link.params */ = {isa = PBXFileReference; path = macOSAppUITests.__internal__.__test_bundle.34.link.params; sourceTree = "<group>"; };
 		A9CE0B8352BFC78ACA124C3A /* tool.binary */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tool.binary; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA359A22F3659E4C06CAB217 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		AC2F05074197F1DF4452D1AD /* Launch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
-		AC96FF968BA5A93640745975 /* watchOSAppExtension.75.link.params */ = {isa = PBXFileReference; path = watchOSAppExtension.75.link.params; sourceTree = "<group>"; };
 		ACCBAFFBB5927FE7677AD3A7 /* WidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD8F5A31780C72DA3C1EFBBC /* libMixedAnswer.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libMixedAnswer.a; path = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/libMixedAnswer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEC214E4750445CF57C1429A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -1490,20 +1410,18 @@
 		B13DA8B967470B62463A7C36 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		B2F9C29D6C9BF3D4C5999E22 /* libprivate_lib.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libprivate_lib.a; path = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17/bin/CommandLine/CommandLineToolLib/libprivate_lib.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B46AE552FB5FA2E62FA30FCA /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
-		B64982FFAD95C5B99ADF7C16 /* UIFramework.watchOS.74.link.params */ = {isa = PBXFileReference; path = UIFramework.watchOS.74.link.params; sourceTree = "<group>"; };
+		B6FD1BC83BD35E03F890E91F /* iOS.72.link.params */ = {isa = PBXFileReference; path = iOS.72.link.params; sourceTree = "<group>"; };
 		B72CB4B5F7896B3C3EB681E3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B93E97B994939406F03CCD10 /* UIFramework.watchOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UIFramework.watchOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9B05D55A05926D9694FB87D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		B9DB47B3BF933EF7CB4377E1 /* Answers.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Answers.mm; sourceTree = "<group>"; };
 		B9F69D92883DB27E1BDEEC42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		BA2BC95AA5243F6176BF0D2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		BAA205E6177C9428E614479D /* iOSApp.77.link.params */ = {isa = PBXFileReference; path = iOSApp.77.link.params; sourceTree = "<group>"; };
 		BB59772F03F91E4E91D0E962 /* Entitlements.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Entitlements.entitlements; sourceTree = "<group>"; };
 		BC693E854FF1F9374F47C009 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		BCB48D640037238CD172DBA2 /* MixedAnswer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MixedAnswer.h; sourceTree = "<group>"; };
 		BDEA007CD57B8894DA7B7C9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		BE2C6B0FD60946402E17DD2D /* tvOSApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tvOSApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		BE87DDF1B9AB50962DE2D694 /* LibFramework.tvOS.82.link.params */ = {isa = PBXFileReference; path = LibFramework.tvOS.82.link.params; sourceTree = "<group>"; };
 		BEABA3215EF0ADFD43509CBC /* ExampleNestedResources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleNestedResources.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEFCF64D3CCFA34D4E220324 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		C0536BEB6D4A787F956E4910 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -1543,7 +1461,6 @@
 		D7C88769FC1D1D6606E7F26A /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		D7E097D979810115F729563E /* GoogleMapsBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMapsBase.framework; sourceTree = "<group>"; };
 		D83941D078E948D985372EC7 /* UIFramework.watchOS.15.link.params */ = {isa = PBXFileReference; path = UIFramework.watchOS.15.link.params; sourceTree = "<group>"; };
-		D854ACC9B4FE4BCE0DDA049E /* tvOSApp.84.link.params */ = {isa = PBXFileReference; path = tvOSApp.84.link.params; sourceTree = "<group>"; };
 		D8920BF82B7F862415A7F1BB /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		D897B29D0000EA5C72EEA672 /* watchOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = watchOSApp.swift; sourceTree = "<group>"; };
 		D89D63C63D7F51544A52B173 /* libTestingUtils.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libTestingUtils.a; path = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/TestingUtils/libTestingUtils.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1552,27 +1469,26 @@
 		DB1707851007E63305C749E4 /* CoreUtilsObjC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CoreUtilsObjC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBA38F8D49E03A0C739A2E25 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		DE01342B818329303E981F98 /* Lib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Lib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		DE6A0B78C0DC54160B2DF177 /* tool.binary.54.link.params */ = {isa = PBXFileReference; path = tool.binary.54.link.params; sourceTree = "<group>"; };
 		DEF20FF4DDBA8849AC31D8F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		DF443AB455A2BDD3CD13671D /* OnlyStructuredResources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OnlyStructuredResources.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF4802D8580A4DE0B18BE23D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DFAAB8B6C6A5B261FE9FE114 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		DFC9F7A642F32A6D408BC37D /* libc_lib.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libc_lib.a; path = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-19/bin/CommandLine/swift_c_module/libc_lib.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DFE44827EE40E1F6AB75CA85 /* FrameworkCoreUtilsObjC.63.link.params */ = {isa = PBXFileReference; path = FrameworkCoreUtilsObjC.63.link.params; sourceTree = "<group>"; };
 		E135F778E8931913A777DAC5 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		E17E75D090217B10AE0BAF46 /* liblib_impl.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_impl.a; path = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17/bin/CommandLine/CommandLineToolLib/liblib_impl.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1F8E96E36D76FC0FE607DFD /* libprivate_swift_lib.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libprivate_swift_lib.a; path = "bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18/bin/CommandLine/CommandLineToolLib/libprivate_swift_lib.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E242991AA330F0842CE4C329 /* LibFramework.watchOS.73.link.params */ = {isa = PBXFileReference; path = LibFramework.watchOS.73.link.params; sourceTree = "<group>"; };
 		E7B005556CA96365E4CD9D39 /* WatchOSAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchOSAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		E873D50BFA51FB4C8595902A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		E8DE3185C606D11DED30A8EB /* AppClip.65.link.params */ = {isa = PBXFileReference; path = AppClip.65.link.params; sourceTree = "<group>"; };
 		E8F9F53F1AF1F33710DDCB2A /* GoogleMapsCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMapsCore.framework; sourceTree = "<group>"; };
 		EB4F6C262452722833BDCD80 /* liblib_swift.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_swift.a; path = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-19/bin/CommandLine/CommandLineToolLib/liblib_swift.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB67D93967E29EA7B0E51EB6 /* UIFramework.watchOS.68.link.params */ = {isa = PBXFileReference; path = UIFramework.watchOS.68.link.params; sourceTree = "<group>"; };
 		ECA057588599A84E3B081F3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		ECB87A5996AE6B25054E509E /* LibFramework.tvOS.76.link.params */ = {isa = PBXFileReference; path = LibFramework.tvOS.76.link.params; sourceTree = "<group>"; };
 		EDE59ABB9C6D255A2720E825 /* private_lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = private_lib.h; sourceTree = "<group>"; };
 		EDF8A317F9410AE4EC336650 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		EE66D9B19B22D4AE6ABDBB00 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		EEBC00D12331D1F42136FA62 /* macOSApp.33.link.params */ = {isa = PBXFileReference; path = macOSApp.33.link.params; sourceTree = "<group>"; };
-		EFAD776B5053CF5778A71192 /* FrameworkCoreUtilsObjC.69.link.params */ = {isa = PBXFileReference; path = FrameworkCoreUtilsObjC.69.link.params; sourceTree = "<group>"; };
 		F01E7614F3F87646997624DB /* ownership.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = ownership.yaml; sourceTree = "<group>"; };
 		F0EF429C363C7A90D155EF12 /* WatchOSAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchOSAppUITests.swift; sourceTree = "<group>"; };
 		F2D04B5DF261C990F96B0874 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -3572,48 +3488,48 @@
 			isa = PBXGroup;
 			children = (
 				15F57637E2C1CE4D34AE2DDD /* AppClip.6.link.params */,
-				E8DE3185C606D11DED30A8EB /* AppClip.65.link.params */,
-				A01FBA83FDF75601A1E1F2DE /* CommandLineTool.46.link.params */,
-				7D182804BD392C80A1517D00 /* CommandLineToolTests.__internal__.__test_bundle.63.link.params */,
+				42CB3EA7ABABC532EDC4C574 /* AppClip.59.link.params */,
+				3D2EBA508702A4270C6E2672 /* CommandLineTool.44.link.params */,
+				47C8E68B02CF872CF3984683 /* CommandLineToolTests.__internal__.__test_bundle.57.link.params */,
 				498EE205CFEE32FE9E4312E1 /* FrameworkCoreUtilsObjC.10.link.params */,
-				EFAD776B5053CF5778A71192 /* FrameworkCoreUtilsObjC.69.link.params */,
+				DFE44827EE40E1F6AB75CA85 /* FrameworkCoreUtilsObjC.63.link.params */,
 				0A56FD71419AECE55E623E1D /* iMessageAppExtension.30.link.params */,
 				5FE1C6543976DD3FB260CE3F /* iOS.19.link.params */,
-				06167684945CCD09029DB464 /* iOS.78.link.params */,
+				B6FD1BC83BD35E03F890E91F /* iOS.72.link.params */,
 				7F8A0C902A4B221092E73C06 /* iOSApp.18.link.params */,
-				BAA205E6177C9428E614479D /* iOSApp.77.link.params */,
+				3477D6885393A6D539B41A1B /* iOSApp.71.link.params */,
 				56D640323DD1350772317174 /* iOSAppObjCUnitTests.__internal__.__test_bundle.29.link.params */,
 				CB8D368FF9F61A75AD23B4A9 /* iOSAppSwiftUnitTests.__internal__.__test_bundle.32.link.params */,
 				01DD2D8423D766C6804C7322 /* LibFramework.iOS.11.link.params */,
-				0690AA6C776008C5D258EE58 /* LibFramework.iOS.70.link.params */,
+				A4A817481E6A2DFC72022FF7 /* LibFramework.iOS.64.link.params */,
 				1A1F31FDD0500E63F33B1506 /* LibFramework.tvOS.23.link.params */,
-				BE87DDF1B9AB50962DE2D694 /* LibFramework.tvOS.82.link.params */,
+				ECB87A5996AE6B25054E509E /* LibFramework.tvOS.76.link.params */,
 				3D17756CBC2C2C7F24BCF617 /* LibFramework.watchOS.14.link.params */,
-				E242991AA330F0842CE4C329 /* LibFramework.watchOS.73.link.params */,
+				0147CF232ECA32FA8F1EF2F3 /* LibFramework.watchOS.67.link.params */,
 				EEBC00D12331D1F42136FA62 /* macOSApp.33.link.params */,
 				A9C850636A467769FB95E294 /* macOSAppUITests.__internal__.__test_bundle.34.link.params */,
-				DE6A0B78C0DC54160B2DF177 /* tool.binary.54.link.params */,
-				7F748ECB55E22B13BDB63190 /* tool.binary.62.link.params */,
+				85D685971A87BFE0B68CD16B /* tool.binary.50.link.params */,
+				652BA0ACA89C16E0080B3CFF /* tool.binary.56.link.params */,
 				4DE8C06AC77D3D1DDB6B9135 /* tvOS.21.link.params */,
-				9DDC8B56F04F149065E44EAC /* tvOS.80.link.params */,
+				A948B65A9C0EECFA413229EB /* tvOS.74.link.params */,
 				C82DF589C5729B77EC5DF37B /* tvOSApp.25.link.params */,
-				D854ACC9B4FE4BCE0DDA049E /* tvOSApp.84.link.params */,
+				2EEE88F66E9E38B5E6259EEE /* tvOSApp.78.link.params */,
 				A1E70C26B36D2217147E9D69 /* tvOSAppUITests.__internal__.__test_bundle.35.link.params */,
 				291E523D45EA1E10CE4EE31C /* tvOSAppUnitTests.__internal__.__test_bundle.36.link.params */,
 				12BE100E79F8F812E9A0AA56 /* UIFramework.iOS.12.link.params */,
-				3FDF92641DF054BD26A2E8F3 /* UIFramework.iOS.71.link.params */,
+				24DE3541825B9914D0938DF8 /* UIFramework.iOS.65.link.params */,
 				A064660271C9A418C9AC2853 /* UIFramework.tvOS.24.link.params */,
-				1CE0E78A81E9A033576B6FAE /* UIFramework.tvOS.83.link.params */,
+				53D3C6CB48DFBB632D7F4AA4 /* UIFramework.tvOS.77.link.params */,
 				D83941D078E948D985372EC7 /* UIFramework.watchOS.15.link.params */,
-				B64982FFAD95C5B99ADF7C16 /* UIFramework.watchOS.74.link.params */,
+				EB67D93967E29EA7B0E51EB6 /* UIFramework.watchOS.68.link.params */,
 				703FC867537100F79C2FCEE4 /* watchOS.22.link.params */,
-				8A96FC0F923AD8F0D7A7E0B7 /* watchOS.81.link.params */,
+				3535D370E66576D7B3FB0BAA /* watchOS.75.link.params */,
 				67AC6D1E29A5CB571B6C8B10 /* watchOSAppExtension.16.link.params */,
-				AC96FF968BA5A93640745975 /* watchOSAppExtension.75.link.params */,
+				A2E40329FB7CCCBA650C532F /* watchOSAppExtension.69.link.params */,
 				079BC96B2EEA2028181E169C /* watchOSAppExtensionUnitTests.__internal__.__test_bundle.38.link.params */,
 				64504842BEF8E32A994F8224 /* watchOSAppUITests.__internal__.__test_bundle.37.link.params */,
 				7E988FAD93140F189CCB6BDA /* WidgetExtension.9.link.params */,
-				217B6CF13FAE266080BB316D /* WidgetExtension.68.link.params */,
+				86E1463A14E60FDB7B433E4B /* WidgetExtension.62.link.params */,
 			);
 			path = "xcodeproj_bwx.generator-params";
 			sourceTree = "<group>";
@@ -4413,7 +4329,7 @@
 			);
 			dependencies = (
 				A848B5560CC322091A22F6CE /* PBXTargetDependency */,
-				57AD4D39D2365C6B8436EC51 /* PBXTargetDependency */,
+				7155D3EE26C27C90C73BE320 /* PBXTargetDependency */,
 			);
 			name = "UniversalCommandLineTool (arm64)";
 			productName = tool.binary;
@@ -4521,7 +4437,6 @@
 			);
 			dependencies = (
 				73D2B40B9D7AF65CC048E50E /* PBXTargetDependency */,
-				AA783B4518ED2322A864F6A3 /* PBXTargetDependency */,
 			);
 			name = "lib_impl (70419)";
 			productName = lib_impl;
@@ -4845,20 +4760,6 @@
 			productReference = 273ED34283627367087A2DE0 /* CommandLineToolTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		9662E3C5739C614E2A31959B /* lib_defines (70419) */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = FB0B698B142A4718966DF81C /* Build configuration list for PBXNativeTarget "lib_defines (70419)" */;
-			buildPhases = (
-			);
-			buildRules = (
-			);
-			dependencies = (
-				64A52BF36D97ABDAA0A5422F /* PBXTargetDependency */,
-			);
-			name = "lib_defines (70419)";
-			productName = lib_defines;
-			productType = "com.apple.product-type.library.static";
-		};
 		967BEB9EDFB3230C10A206A8 /* ExampleNestedResources */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0D0D01AECAE898BE73B3AE02 /* Build configuration list for PBXNativeTarget "ExampleNestedResources" */;
@@ -4894,21 +4795,6 @@
 			productReference = DE01342B818329303E981F98 /* Lib.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		96C7A8A4E3BE0C47D1D2E018 /* lib_headers (arm64) */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 9156498812B7F889E284EE7E /* Build configuration list for PBXNativeTarget "lib_headers (arm64)" */;
-			buildPhases = (
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A6AA56529C6E9114D6B9A07B /* PBXTargetDependency */,
-				7EBC8735BE7D575245671734 /* PBXTargetDependency */,
-			);
-			name = "lib_headers (arm64)";
-			productName = lib_headers;
-			productType = "com.apple.product-type.library.static";
-		};
 		9A63A40F4548616B6FC99E1D /* LibFramework.iOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 03AE913C17EEF71D6B5750C0 /* Build configuration list for PBXNativeTarget "LibFramework.iOS" */;
@@ -4940,7 +4826,7 @@
 			);
 			dependencies = (
 				6D862D3B79A09124312600DB /* PBXTargetDependency */,
-				649471B394013996BBCA2931 /* PBXTargetDependency */,
+				28BD8DFBAE58098FAA062CA2 /* PBXTargetDependency */,
 			);
 			name = "UniversalCommandLineTool (x86_64)";
 			productName = tool.binary;
@@ -4977,7 +4863,6 @@
 			);
 			dependencies = (
 				D3F0681A40D7C335758B2EEE /* PBXTargetDependency */,
-				309863022D02ECEB9D02DE5A /* PBXTargetDependency */,
 			);
 			name = "lib_impl (c7049)";
 			productName = lib_impl;
@@ -5002,20 +4887,6 @@
 			productName = UIFramework.watchOS;
 			productReference = B93E97B994939406F03CCD10 /* UIFramework.watchOS.framework */;
 			productType = "com.apple.product-type.framework";
-		};
-		A5EACAE40D41F5B733F8BDE1 /* lib_defines (arm64) */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A81589D6B66F6A26EDA93958 /* Build configuration list for PBXNativeTarget "lib_defines (arm64)" */;
-			buildPhases = (
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D7B56FD809B411760B6B8E4F /* PBXTargetDependency */,
-			);
-			name = "lib_defines (arm64)";
-			productName = lib_defines;
-			productType = "com.apple.product-type.library.static";
 		};
 		A6969986F4330BE56701A5EC /* iOSApp */ = {
 			isa = PBXNativeTarget;
@@ -5048,35 +4919,6 @@
 			productReference = 8E205A52812E240195D79B15 /* iOSApp.app */;
 			productType = "com.apple.product-type.application";
 		};
-		B7ABA540A466EB4DBBC135D8 /* lib_defines (c7049) */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 1EBA3F183786344EE5F0F054 /* Build configuration list for PBXNativeTarget "lib_defines (c7049)" */;
-			buildPhases = (
-			);
-			buildRules = (
-			);
-			dependencies = (
-				8CE9EF3B764994645BA04AAE /* PBXTargetDependency */,
-			);
-			name = "lib_defines (c7049)";
-			productName = lib_defines;
-			productType = "com.apple.product-type.library.static";
-		};
-		B8BB8941D8B4790065DB0C13 /* lib_headers (70419) */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = B96D3C48888A6BBB0818D15C /* Build configuration list for PBXNativeTarget "lib_headers (70419)" */;
-			buildPhases = (
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A361933AD496DB6ECEFB448B /* PBXTargetDependency */,
-				53FA2A57593E98E5F5B91F72 /* PBXTargetDependency */,
-			);
-			name = "lib_headers (70419)";
-			productName = lib_headers;
-			productType = "com.apple.product-type.library.static";
-		};
 		C2146B07C477F3A0DBE35CF0 /* lib_impl (arm64) */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 45E3A2B7B62C7DE74553D29E /* Build configuration list for PBXNativeTarget "lib_impl (arm64)" */;
@@ -5088,7 +4930,6 @@
 			);
 			dependencies = (
 				ED9B3B3B9505236585E321C3 /* PBXTargetDependency */,
-				FD8F5072DD8167653EDF2779 /* PBXTargetDependency */,
 			);
 			name = "lib_impl (arm64)";
 			productName = lib_impl;
@@ -5127,21 +4968,6 @@
 			);
 			name = "private_swift_lib (c7049)";
 			productName = private_swift_lib;
-			productType = "com.apple.product-type.library.static";
-		};
-		C8E947DCBD3E1E36A899C25B /* lib_headers (c7049) */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 535AE76265252034FF1380A3 /* Build configuration list for PBXNativeTarget "lib_headers (c7049)" */;
-			buildPhases = (
-			);
-			buildRules = (
-			);
-			dependencies = (
-				7811A7CD47FA8BABD6F34035 /* PBXTargetDependency */,
-				BBB67F985D9F6A67CB2E31EC /* PBXTargetDependency */,
-			);
-			name = "lib_headers (c7049)";
-			productName = lib_headers;
 			productType = "com.apple.product-type.library.static";
 		};
 		C93619DEF86AEE901BCD284F /* MixedAnswerLib_Swift */ = {
@@ -5269,7 +5095,7 @@
 			);
 			dependencies = (
 				5BE620DBCA4D9D3D7F686A59 /* PBXTargetDependency */,
-				A9E8BDD0E7B235FC93AFC1ED /* PBXTargetDependency */,
+				58DB60F48809BC2120894F5B /* PBXTargetDependency */,
 			);
 			name = CommandLineTool;
 			productName = CommandLineTool;
@@ -5602,19 +5428,11 @@
 						CreatedOnToolsVersion = 13.0.0;
 						LastSwiftMigration = 9999;
 					};
-					9662E3C5739C614E2A31959B = {
-						CreatedOnToolsVersion = 13.0.0;
-						LastSwiftMigration = 9999;
-					};
 					967BEB9EDFB3230C10A206A8 = {
 						CreatedOnToolsVersion = 13.0.0;
 						LastSwiftMigration = 9999;
 					};
 					968ED3A3E2AF230BDF6BAAA0 = {
-						CreatedOnToolsVersion = 13.0.0;
-						LastSwiftMigration = 9999;
-					};
-					96C7A8A4E3BE0C47D1D2E018 = {
 						CreatedOnToolsVersion = 13.0.0;
 						LastSwiftMigration = 9999;
 					};
@@ -5638,19 +5456,7 @@
 						CreatedOnToolsVersion = 13.0.0;
 						LastSwiftMigration = 9999;
 					};
-					A5EACAE40D41F5B733F8BDE1 = {
-						CreatedOnToolsVersion = 13.0.0;
-						LastSwiftMigration = 9999;
-					};
 					A6969986F4330BE56701A5EC = {
-						CreatedOnToolsVersion = 13.0.0;
-						LastSwiftMigration = 9999;
-					};
-					B7ABA540A466EB4DBBC135D8 = {
-						CreatedOnToolsVersion = 13.0.0;
-						LastSwiftMigration = 9999;
-					};
-					B8BB8941D8B4790065DB0C13 = {
 						CreatedOnToolsVersion = 13.0.0;
 						LastSwiftMigration = 9999;
 					};
@@ -5663,10 +5469,6 @@
 						LastSwiftMigration = 9999;
 					};
 					C85A6D48FFB584AD923EF50E = {
-						CreatedOnToolsVersion = 13.0.0;
-						LastSwiftMigration = 9999;
-					};
-					C8E947DCBD3E1E36A899C25B = {
 						CreatedOnToolsVersion = 13.0.0;
 						LastSwiftMigration = 9999;
 					};
@@ -5787,12 +5589,6 @@
 				3BE6BBB59BF4F33150BA74CA /* iOSAppSwiftUnitTests */,
 				801E2436A69733A307109C9A /* Lib (iOS, tvOS) */,
 				D094AA317C2527FB0FCC5015 /* Lib (watchOS) */,
-				9662E3C5739C614E2A31959B /* lib_defines (70419) */,
-				A5EACAE40D41F5B733F8BDE1 /* lib_defines (arm64) */,
-				B7ABA540A466EB4DBBC135D8 /* lib_defines (c7049) */,
-				B8BB8941D8B4790065DB0C13 /* lib_headers (70419) */,
-				96C7A8A4E3BE0C47D1D2E018 /* lib_headers (arm64) */,
-				C8E947DCBD3E1E36A899C25B /* lib_headers (c7049) */,
 				227BF928025AAF3CC8DB0BD0 /* lib_impl (70419) */,
 				C2146B07C477F3A0DBE35CF0 /* lib_impl (arm64) */,
 				A5107D711D49B2D38F3E84FD /* lib_impl (c7049) */,
@@ -7758,6 +7554,12 @@
 			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
 			targetProxy = A8252B98C6EB8140BC626B35 /* PBXContainerItemProxy */;
 		};
+		28BD8DFBAE58098FAA062CA2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "lib_swift (70419)";
+			target = FF1172E397CBCB80994248D7 /* lib_swift (70419) */;
+			targetProxy = 99B7F6C4C88C82D0F5F0D09A /* PBXContainerItemProxy */;
+		};
 		2F3392E40FFA06B2AD811927 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = BazelDependencies;
@@ -7769,12 +7571,6 @@
 			name = FrameworkCoreUtilsObjC;
 			target = A2CE5EDCDDA5334B00B16BC9 /* FrameworkCoreUtilsObjC */;
 			targetProxy = 59AB901F8840A59BA8293207 /* PBXContainerItemProxy */;
-		};
-		309863022D02ECEB9D02DE5A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "lib_defines (c7049)";
-			target = B7ABA540A466EB4DBBC135D8 /* lib_defines (c7049) */;
-			targetProxy = BA21AC716B66D1C1C686E80D /* PBXContainerItemProxy */;
 		};
 		361C329FFCA21416793E6D21 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -7836,23 +7632,11 @@
 			target = 7F729945D22504E87B43A144 /* FXPageControl */;
 			targetProxy = 4499F1246E599A883600E175 /* PBXContainerItemProxy */;
 		};
-		53FA2A57593E98E5F5B91F72 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "lib_swift (70419)";
-			target = FF1172E397CBCB80994248D7 /* lib_swift (70419) */;
-			targetProxy = 517D980840A70453F943CA3E /* PBXContainerItemProxy */;
-		};
 		55097E60D346AE203C900EAE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = BazelDependencies;
 			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
 			targetProxy = EF98B399B1DB863E0BF1AE61 /* PBXContainerItemProxy */;
-		};
-		57AD4D39D2365C6B8436EC51 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "lib_headers (arm64)";
-			target = 96C7A8A4E3BE0C47D1D2E018 /* lib_headers (arm64) */;
-			targetProxy = E3E17BA8252E0EA0F5F61E2F /* PBXContainerItemProxy */;
 		};
 		57E14AC1DDD3ED3D0624109D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -7865,6 +7649,12 @@
 			name = "c_lib (c7049)";
 			target = E21657FB8AADA58674E2A294 /* c_lib (c7049) */;
 			targetProxy = 8CEF5E6A7BFEBF56698C0988 /* PBXContainerItemProxy */;
+		};
+		58DB60F48809BC2120894F5B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "lib_swift (c7049)";
+			target = FDAAB6F4BD24E6EF4C524280 /* lib_swift (c7049) */;
+			targetProxy = 8A56F633AA7EAFCC858E5955 /* PBXContainerItemProxy */;
 		};
 		5AA122149E62238287E3D240 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -7889,18 +7679,6 @@
 			name = BazelDependencies;
 			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
 			targetProxy = C37307928B40A32049D194CC /* PBXContainerItemProxy */;
-		};
-		649471B394013996BBCA2931 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "lib_headers (70419)";
-			target = B8BB8941D8B4790065DB0C13 /* lib_headers (70419) */;
-			targetProxy = B3BCE5CCB9E00DAE0FEA8CAC /* PBXContainerItemProxy */;
-		};
-		64A52BF36D97ABDAA0A5422F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = BazelDependencies;
-			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
-			targetProxy = 3E58AA2A4924222D22A3EC50 /* PBXContainerItemProxy */;
 		};
 		650B55299AA80184B219A19B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -7950,6 +7728,12 @@
 			target = 225701F2BB3EA192424F07FE /* ExampleResources */;
 			targetProxy = C0FAC89FE69446153FC65500 /* PBXContainerItemProxy */;
 		};
+		7155D3EE26C27C90C73BE320 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "lib_swift (arm64)";
+			target = 4D0BA3037D9626451A75ADA8 /* lib_swift (arm64) */;
+			targetProxy = 91A25D5004BC3FDF72FC3B47 /* PBXContainerItemProxy */;
+		};
 		731366B1E9F1A54113C49E5B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = BazelDependencies;
@@ -7974,12 +7758,6 @@
 			target = D094AA317C2527FB0FCC5015 /* Lib (watchOS) */;
 			targetProxy = 081E2FB24812936174E4E220 /* PBXContainerItemProxy */;
 		};
-		7811A7CD47FA8BABD6F34035 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = BazelDependencies;
-			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
-			targetProxy = 0066589288D0D5F00F84878E /* PBXContainerItemProxy */;
-		};
 		7914042115E68CF0AFFA1312 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "private_swift_lib (70419)";
@@ -7997,12 +7775,6 @@
 			name = BazelDependencies;
 			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
 			targetProxy = 7670463AC6A280936CFCC92A /* PBXContainerItemProxy */;
-		};
-		7EBC8735BE7D575245671734 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "lib_swift (arm64)";
-			target = 4D0BA3037D9626451A75ADA8 /* lib_swift (arm64) */;
-			targetProxy = FD8A25E3B51FA3918C6A8489 /* PBXContainerItemProxy */;
 		};
 		80DD47C4C2E914BFFD90FC73 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -8039,12 +7811,6 @@
 			name = BazelDependencies;
 			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
 			targetProxy = 72FBC93C36DD0FED23B6D0C4 /* PBXContainerItemProxy */;
-		};
-		8CE9EF3B764994645BA04AAE /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = BazelDependencies;
-			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
-			targetProxy = 65DC6B2AE2CABA799A1472CF /* PBXContainerItemProxy */;
 		};
 		92F31B60D724ABC9232F2E22 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -8112,12 +7878,6 @@
 			target = 967BEB9EDFB3230C10A206A8 /* ExampleNestedResources */;
 			targetProxy = 787834EC8E2B3EB8275F62AA /* PBXContainerItemProxy */;
 		};
-		A361933AD496DB6ECEFB448B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = BazelDependencies;
-			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
-			targetProxy = 924225D19A2C19B80ED0DDA7 /* PBXContainerItemProxy */;
-		};
 		A3C731D79150E414F04099C5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Lib (iOS, tvOS)";
@@ -8130,12 +7890,6 @@
 			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
 			targetProxy = FC9C3A55176997E6D7891EC0 /* PBXContainerItemProxy */;
 		};
-		A6AA56529C6E9114D6B9A07B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = BazelDependencies;
-			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
-			targetProxy = 73346DF7B5FAACF281C99023 /* PBXContainerItemProxy */;
-		};
 		A848B5560CC322091A22F6CE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = BazelDependencies;
@@ -8147,18 +7901,6 @@
 			name = BazelDependencies;
 			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
 			targetProxy = 802904D3BC7B73ACCD2F47BE /* PBXContainerItemProxy */;
-		};
-		A9E8BDD0E7B235FC93AFC1ED /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "lib_headers (c7049)";
-			target = C8E947DCBD3E1E36A899C25B /* lib_headers (c7049) */;
-			targetProxy = B6058C57ABCBE20996580D51 /* PBXContainerItemProxy */;
-		};
-		AA783B4518ED2322A864F6A3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "lib_defines (70419)";
-			target = 9662E3C5739C614E2A31959B /* lib_defines (70419) */;
-			targetProxy = FC5F2B23A91FD7F47A3B8CFE /* PBXContainerItemProxy */;
 		};
 		ADD15F8AECF92876427A65F3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -8183,12 +7925,6 @@
 			name = BazelDependencies;
 			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
 			targetProxy = 4CCF9F788AC4A1B84D4C9BB3 /* PBXContainerItemProxy */;
-		};
-		BBB67F985D9F6A67CB2E31EC /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "lib_swift (c7049)";
-			target = FDAAB6F4BD24E6EF4C524280 /* lib_swift (c7049) */;
-			targetProxy = 65E5F6F26CB13848A6402832 /* PBXContainerItemProxy */;
 		};
 		BD021B76CADF1D7DE1A2034D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -8291,12 +8027,6 @@
 			name = "Lib (watchOS)";
 			target = D094AA317C2527FB0FCC5015 /* Lib (watchOS) */;
 			targetProxy = B9CC8EC919C2E74B3CAB0222 /* PBXContainerItemProxy */;
-		};
-		D7B56FD809B411760B6B8E4F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = BazelDependencies;
-			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
-			targetProxy = 6B6847F78151236D660C0F38 /* PBXContainerItemProxy */;
 		};
 		D8784C7B176B790E6096D635 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -8406,12 +8136,6 @@
 			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
 			targetProxy = D3FFFE846E724924CA2600C8 /* PBXContainerItemProxy */;
 		};
-		FD8F5072DD8167653EDF2779 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "lib_defines (arm64)";
-			target = A5EACAE40D41F5B733F8BDE1 /* lib_defines (arm64) */;
-			targetProxy = C9D2B7002AA21699BD7E1BC7 /* PBXContainerItemProxy */;
-		};
 		FFBB45A95367974EE3849F59 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Lib (iOS, tvOS)";
@@ -8485,30 +8209,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = TestingUtils;
-			};
-			name = Debug;
-		};
-		02D3BE62CFB30E3C38ED9CD4 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = arm64;
-				BAZEL_LABEL = "@//CommandLine/CommandLineToolLib:lib_defines";
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18/bin/CommandLine/CommandLineToolLib";
-				BAZEL_TARGET_ID = "//CommandLine/CommandLineToolLib:lib_defines macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18";
-				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
-				COMPILE_TARGET_NAME = lib_defines;
-				ENABLE_BITCODE = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				EXECUTABLE_EXTENSION = "";
-				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_NAME = lib_defines;
-				SDKROOT = macosx;
-				SUPPORTED_PLATFORMS = macosx;
-				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGET_NAME = lib_defines;
 			};
 			name = Debug;
 		};
@@ -8587,7 +8287,7 @@
 				EXECUTABLE_EXTENSION = binary;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GENERATE_INFOPLIST_FILE = YES;
-				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/tool.binary.54.link.params";
+				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/tool.binary.50.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
@@ -8599,54 +8299,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = UniversalCommandLineTool;
-			};
-			name = Debug;
-		};
-		0E796EF2A7101C04177BDD8F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = x86_64;
-				BAZEL_LABEL = "@//CommandLine/CommandLineToolLib:lib_headers";
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-19/bin/CommandLine/CommandLineToolLib";
-				BAZEL_TARGET_ID = "//CommandLine/CommandLineToolLib:lib_headers macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-19";
-				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
-				COMPILE_TARGET_NAME = lib_headers;
-				ENABLE_BITCODE = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				EXECUTABLE_EXTENSION = "";
-				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_NAME = lib_headers;
-				SDKROOT = macosx;
-				SUPPORTED_PLATFORMS = macosx;
-				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGET_NAME = lib_headers;
-			};
-			name = Debug;
-		};
-		0FD7A6F4A1BCF2423BB3F12F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = x86_64;
-				BAZEL_LABEL = "@//CommandLine/CommandLineToolLib:lib_defines";
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-19/bin/CommandLine/CommandLineToolLib";
-				BAZEL_TARGET_ID = "//CommandLine/CommandLineToolLib:lib_defines macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-19";
-				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
-				COMPILE_TARGET_NAME = lib_defines;
-				ENABLE_BITCODE = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				EXECUTABLE_EXTENSION = "";
-				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_NAME = lib_defines;
-				SDKROOT = macosx;
-				SUPPORTED_PLATFORMS = macosx;
-				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGET_NAME = lib_defines;
 			};
 			name = Debug;
 		};
@@ -8763,7 +8415,7 @@
 				"INFOPLIST_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/applebin_ios-ios_arm64-dbg-STABLE-8/bin/iOSApp/Source/CoreUtilsObjC/rules_xcodeproj/FrameworkCoreUtilsObjC/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/FrameworkCoreUtilsObjC.10.link.params";
-				"LINK_PARAMS_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/FrameworkCoreUtilsObjC.69.link.params";
+				"LINK_PARAMS_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/FrameworkCoreUtilsObjC.63.link.params";
 				OTHER_CPLUSPLUSFLAGS = "$(ASAN_OTHER_CPLUSPLUSFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				PRODUCT_BUNDLE_IDENTIFIER = io.budilebuddy.CoreUtilsObjC;
@@ -8954,7 +8606,7 @@
 				IPHONEOS_FILES = "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework";
 				IPHONESIMULATOR_FILES = "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework";
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/LibFramework.iOS.11.link.params";
-				"LINK_PARAMS_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/LibFramework.iOS.70.link.params";
+				"LINK_PARAMS_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/LibFramework.iOS.64.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				PRODUCT_BUNDLE_IDENTIFIER = io.budilebuddy.LibFramework;
 				PRODUCT_NAME = LibFramework.iOS;
@@ -9055,7 +8707,7 @@
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-dbg-STABLE-9/bin/Lib/dist/dynamic/rules_xcodeproj/watchOS/Info.plist";
 				"INFOPLIST_FILE[sdk=watchos*]" = "$(BAZEL_OUT)/applebin_watchos-watchos_arm64_32-dbg-STABLE-10/bin/Lib/dist/dynamic/rules_xcodeproj/watchOS/Info.plist";
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/watchOS.22.link.params";
-				"LINK_PARAMS_FILE[sdk=watchos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/watchOS.81.link.params";
+				"LINK_PARAMS_FILE[sdk=watchos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/watchOS.75.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				PRODUCT_BUNDLE_IDENTIFIER = io.budilebuddy.LibFramework;
 				PRODUCT_NAME = Lib;
@@ -9122,30 +8774,6 @@
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				TARGET_NAME = ExampleNestedResources;
-			};
-			name = Debug;
-		};
-		40D1DC87942812B67285E4F1 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = x86_64;
-				BAZEL_LABEL = "@//CommandLine/CommandLineToolLib:lib_defines";
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17/bin/CommandLine/CommandLineToolLib";
-				BAZEL_TARGET_ID = "//CommandLine/CommandLineToolLib:lib_defines macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17";
-				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
-				COMPILE_TARGET_NAME = lib_defines;
-				ENABLE_BITCODE = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				EXECUTABLE_EXTENSION = "";
-				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_NAME = lib_defines;
-				SDKROOT = macosx;
-				SUPPORTED_PLATFORMS = macosx;
-				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGET_NAME = lib_defines;
 			};
 			name = Debug;
 		};
@@ -9329,7 +8957,7 @@
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-dbg-STABLE-13/bin/Lib/rules_xcodeproj/LibFramework.tvOS/Info.plist";
 				"INFOPLIST_FILE[sdk=appletvos*]" = "$(BAZEL_OUT)/applebin_tvos-tvos_arm64-dbg-STABLE-14/bin/Lib/rules_xcodeproj/LibFramework.tvOS/Info.plist";
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/LibFramework.tvOS.23.link.params";
-				"LINK_PARAMS_FILE[sdk=appletvos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/LibFramework.tvOS.82.link.params";
+				"LINK_PARAMS_FILE[sdk=appletvos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/LibFramework.tvOS.76.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				PRODUCT_BUNDLE_IDENTIFIER = io.budilebuddy.LibFramework;
 				PRODUCT_NAME = LibFramework.tvOS;
@@ -9516,7 +9144,7 @@
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-dbg-STABLE-13/bin/UI/rules_xcodeproj/UIFramework.tvOS/Info.plist";
 				"INFOPLIST_FILE[sdk=appletvos*]" = "$(BAZEL_OUT)/applebin_tvos-tvos_arm64-dbg-STABLE-14/bin/UI/rules_xcodeproj/UIFramework.tvOS/Info.plist";
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/UIFramework.tvOS.24.link.params";
-				"LINK_PARAMS_FILE[sdk=appletvos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/UIFramework.tvOS.83.link.params";
+				"LINK_PARAMS_FILE[sdk=appletvos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/UIFramework.tvOS.77.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(DERIVED_FILE_DIR)/xcode-overlay.yaml -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -DDEBUG -I$(PROJECT_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/Lib -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator -Xcc -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator -Xcc -iquote$(PROJECT_DIR)/external/com_github_krzyzanowskim_cryptoswift -Xcc -iquote$(PROJECT_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/external/com_github_krzyzanowskim_cryptoswift -Xcc -iquote$(PROJECT_DIR) -Xcc -iquote$(PROJECT_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin -Xcc -fmodule-map-file=$(PROJECT_DIR)/external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -application-extension -static -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all";
 				"OTHER_SWIFT_FLAGS[sdk=appletvos*]" = "-Xcc -ivfsoverlay -Xcc $(DERIVED_FILE_DIR)/xcode-overlay.yaml -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -DDEBUG -I$(PROJECT_DIR)/bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-6/bin/Lib -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64 -Xcc -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64 -Xcc -iquote$(PROJECT_DIR)/external/com_github_krzyzanowskim_cryptoswift -Xcc -iquote$(PROJECT_DIR)/bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-6/bin/external/com_github_krzyzanowskim_cryptoswift -Xcc -iquote$(PROJECT_DIR) -Xcc -iquote$(PROJECT_DIR)/bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-6/bin -Xcc -fmodule-map-file=$(PROJECT_DIR)/external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework/Modules/module.modulemap -application-extension -static -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all";
@@ -9619,7 +9247,7 @@
 				IPHONEOS_FILES = "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework $(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMaps.xcframework/ios-arm64/GoogleMaps.framework/Resources/GoogleMaps.bundle $(SRCROOT)/iOSApp/Source/launch_images_ios.xcassets";
 				IPHONESIMULATOR_FILES = "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework $(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator/GoogleMaps.framework/Resources/GoogleMaps.bundle $(SRCROOT)/iOSApp/Source/Launch.storyboard";
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/iOSApp.18.link.params";
-				"LINK_PARAMS_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/iOSApp.77.link.params";
+				"LINK_PARAMS_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/iOSApp.71.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(DERIVED_FILE_DIR)/xcode-overlay.yaml -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -DDEBUG -I$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/Lib -I$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/UI -I$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Fexternal/com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator -Fexternal/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator -Xcc -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Xcc -Fexternal/com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator -Xcc -Fexternal/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator -Xcc -I$(PROJECT_DIR)/iOSApp/Source/CoreUtilsObjC -Xcc -I$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsObjC -Xcc -iquote$(PROJECT_DIR)/external/com_github_krzyzanowskim_cryptoswift -Xcc -iquote$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/external/com_github_krzyzanowskim_cryptoswift -Xcc -iquote$(PROJECT_DIR) -Xcc -iquote$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin -Xcc -iquote$(PROJECT_DIR)/external/com_google_google_maps -Xcc -iquote$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/external/com_google_google_maps -Xcc -fmodule-map-file=$(PROJECT_DIR)/external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap-module.modulemap -Xcc -fmodule-map-file=$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap -Xcc -fmodule-map-file=$(PROJECT_DIR)/external/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator/GoogleMapsBase.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(PROJECT_DIR)/external/com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator/GoogleMapsCore.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(PROJECT_DIR)/external/com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator/GoogleMaps.framework/Modules/module.modulemap -static -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all";
 				"OTHER_SWIFT_FLAGS[sdk=iphoneos*]" = "-Xcc -ivfsoverlay -Xcc $(DERIVED_FILE_DIR)/xcode-overlay.yaml -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -DDEBUG -I$(PROJECT_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/Lib -I$(PROJECT_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/UI -I$(PROJECT_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -Fexternal/com_google_google_maps/GoogleMaps.xcframework/ios-arm64 -Fexternal/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64 -Xcc -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -Xcc -Fexternal/com_google_google_maps/GoogleMaps.xcframework/ios-arm64 -Xcc -Fexternal/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64 -Xcc -I$(PROJECT_DIR)/iOSApp/Source/CoreUtilsObjC -Xcc -I$(PROJECT_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/iOSApp/Source/CoreUtilsObjC -Xcc -iquote$(PROJECT_DIR)/external/com_github_krzyzanowskim_cryptoswift -Xcc -iquote$(PROJECT_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/external/com_github_krzyzanowskim_cryptoswift -Xcc -iquote$(PROJECT_DIR) -Xcc -iquote$(PROJECT_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin -Xcc -iquote$(PROJECT_DIR)/external/com_google_google_maps -Xcc -iquote$(PROJECT_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/external/com_google_google_maps -Xcc -fmodule-map-file=$(PROJECT_DIR)/external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(PROJECT_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(PROJECT_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_modulemap.swift.modulemap -Xcc -fmodule-map-file=$(PROJECT_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap-module.modulemap -Xcc -fmodule-map-file=$(PROJECT_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap -Xcc -fmodule-map-file=$(PROJECT_DIR)/external/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64/GoogleMapsBase.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(PROJECT_DIR)/external/com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64/GoogleMapsCore.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(PROJECT_DIR)/external/com_google_google_maps/GoogleMaps.xcframework/ios-arm64/GoogleMaps.framework/Modules/module.modulemap -static -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all";
@@ -9727,7 +9355,7 @@
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-dbg-STABLE-13/bin/Lib/dist/dynamic/rules_xcodeproj/tvOS/Info.plist";
 				"INFOPLIST_FILE[sdk=appletvos*]" = "$(BAZEL_OUT)/applebin_tvos-tvos_arm64-dbg-STABLE-14/bin/Lib/dist/dynamic/rules_xcodeproj/tvOS/Info.plist";
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/tvOS.21.link.params";
-				"LINK_PARAMS_FILE[sdk=appletvos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/tvOS.80.link.params";
+				"LINK_PARAMS_FILE[sdk=appletvos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/tvOS.74.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				PRODUCT_BUNDLE_IDENTIFIER = io.budilebuddy.LibFramework;
 				PRODUCT_NAME = Lib;
@@ -9947,7 +9575,7 @@
 				IPHONEOS_FILES = "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework $(BAZEL_OUT)/applebin_ios-ios_arm64-dbg-STABLE-8/bin/AppClip/Entitlements.withbundleid.plist";
 				IPHONESIMULATOR_FILES = "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework $(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-7/bin/AppClip/Entitlements.withbundleid.plist";
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/AppClip.6.link.params";
-				"LINK_PARAMS_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/AppClip.65.link.params";
+				"LINK_PARAMS_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/AppClip.59.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(DERIVED_FILE_DIR)/xcode-overlay.yaml -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -DDEBUG -I$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/Lib -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Xcc -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Xcc -iquote$(PROJECT_DIR)/external/com_github_krzyzanowskim_cryptoswift -Xcc -iquote$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/external/com_github_krzyzanowskim_cryptoswift -Xcc -iquote$(PROJECT_DIR) -Xcc -iquote$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin -Xcc -fmodule-map-file=$(PROJECT_DIR)/external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -static -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all";
 				"OTHER_SWIFT_FLAGS[sdk=iphoneos*]" = "-Xcc -ivfsoverlay -Xcc $(DERIVED_FILE_DIR)/xcode-overlay.yaml -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -DDEBUG -I$(PROJECT_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/Lib -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -Xcc -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -Xcc -iquote$(PROJECT_DIR)/external/com_github_krzyzanowskim_cryptoswift -Xcc -iquote$(PROJECT_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/external/com_github_krzyzanowskim_cryptoswift -Xcc -iquote$(PROJECT_DIR) -Xcc -iquote$(PROJECT_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin -Xcc -fmodule-map-file=$(PROJECT_DIR)/external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap -static -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all";
@@ -10004,7 +9632,7 @@
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-dbg-STABLE-13/bin/tvOSApp/Source/rules_xcodeproj/tvOSApp/Info.plist";
 				"INFOPLIST_FILE[sdk=appletvos*]" = "$(BAZEL_OUT)/applebin_tvos-tvos_arm64-dbg-STABLE-14/bin/tvOSApp/Source/rules_xcodeproj/tvOSApp/Info.plist";
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/tvOSApp.25.link.params";
-				"LINK_PARAMS_FILE[sdk=appletvos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/tvOSApp.84.link.params";
+				"LINK_PARAMS_FILE[sdk=appletvos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/tvOSApp.78.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(DERIVED_FILE_DIR)/xcode-overlay.yaml -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -DDEBUG -I$(PROJECT_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/Lib -I$(PROJECT_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/UI -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator -Xcc -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator -Xcc -iquote$(PROJECT_DIR)/external/com_github_krzyzanowskim_cryptoswift -Xcc -iquote$(PROJECT_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/external/com_github_krzyzanowskim_cryptoswift -Xcc -iquote$(PROJECT_DIR) -Xcc -iquote$(PROJECT_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin -Xcc -fmodule-map-file=$(PROJECT_DIR)/external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -static -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all";
 				"OTHER_SWIFT_FLAGS[sdk=appletvos*]" = "-Xcc -ivfsoverlay -Xcc $(DERIVED_FILE_DIR)/xcode-overlay.yaml -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -DDEBUG -I$(PROJECT_DIR)/bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-6/bin/Lib -I$(PROJECT_DIR)/bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-6/bin/UI -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64 -Xcc -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64 -Xcc -iquote$(PROJECT_DIR)/external/com_github_krzyzanowskim_cryptoswift -Xcc -iquote$(PROJECT_DIR)/bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-6/bin/external/com_github_krzyzanowskim_cryptoswift -Xcc -iquote$(PROJECT_DIR) -Xcc -iquote$(PROJECT_DIR)/bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-6/bin -Xcc -fmodule-map-file=$(PROJECT_DIR)/external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework/Modules/module.modulemap -static -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all";
@@ -10024,30 +9652,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = tvOSApp;
 				TVOS_DEPLOYMENT_TARGET = 15.0;
-			};
-			name = Debug;
-		};
-		8CBABAFFBFEEAF4BDF46EEFD /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = x86_64;
-				BAZEL_LABEL = "@//CommandLine/CommandLineToolLib:lib_headers";
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17/bin/CommandLine/CommandLineToolLib";
-				BAZEL_TARGET_ID = "//CommandLine/CommandLineToolLib:lib_headers macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17";
-				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
-				COMPILE_TARGET_NAME = lib_headers;
-				ENABLE_BITCODE = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				EXECUTABLE_EXTENSION = "";
-				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_NAME = lib_headers;
-				SDKROOT = macosx;
-				SUPPORTED_PLATFORMS = macosx;
-				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGET_NAME = lib_headers;
 			};
 			name = Debug;
 		};
@@ -10120,7 +9724,7 @@
 				IPHONEOS_FILES = "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework";
 				IPHONESIMULATOR_FILES = "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework";
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/iOS.19.link.params";
-				"LINK_PARAMS_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/iOS.78.link.params";
+				"LINK_PARAMS_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/iOS.72.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				PRODUCT_BUNDLE_IDENTIFIER = io.budilebuddy.LibFramework;
 				PRODUCT_NAME = Lib;
@@ -10316,7 +9920,7 @@
 				EXECUTABLE_EXTENSION = binary;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GENERATE_INFOPLIST_FILE = YES;
-				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/tool.binary.62.link.params";
+				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/tool.binary.56.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
@@ -10386,7 +9990,7 @@
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-dbg-STABLE-9/bin/UI/rules_xcodeproj/UIFramework.watchOS/Info.plist";
 				"INFOPLIST_FILE[sdk=watchos*]" = "$(BAZEL_OUT)/applebin_watchos-watchos_arm64_32-dbg-STABLE-10/bin/UI/rules_xcodeproj/UIFramework.watchOS/Info.plist";
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/UIFramework.watchOS.15.link.params";
-				"LINK_PARAMS_FILE[sdk=watchos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/UIFramework.watchOS.74.link.params";
+				"LINK_PARAMS_FILE[sdk=watchos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/UIFramework.watchOS.68.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(DERIVED_FILE_DIR)/xcode-overlay.yaml -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -DDEBUG -I$(PROJECT_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/Lib -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator -Xcc -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator -Xcc -iquote$(PROJECT_DIR)/external/com_github_krzyzanowskim_cryptoswift -Xcc -iquote$(PROJECT_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/external/com_github_krzyzanowskim_cryptoswift -Xcc -iquote$(PROJECT_DIR) -Xcc -iquote$(PROJECT_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin -Xcc -fmodule-map-file=$(PROJECT_DIR)/external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -application-extension -static -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all";
 				"OTHER_SWIFT_FLAGS[sdk=watchos*]" = "-Xcc -ivfsoverlay -Xcc $(DERIVED_FILE_DIR)/xcode-overlay.yaml -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -DDEBUG -I$(PROJECT_DIR)/bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-5/bin/Lib -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k -Xcc -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k -Xcc -iquote$(PROJECT_DIR)/external/com_github_krzyzanowskim_cryptoswift -Xcc -iquote$(PROJECT_DIR)/bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-5/bin/external/com_github_krzyzanowskim_cryptoswift -Xcc -iquote$(PROJECT_DIR) -Xcc -iquote$(PROJECT_DIR)/bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-5/bin -Xcc -fmodule-map-file=$(PROJECT_DIR)/external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework/Modules/module.modulemap -application-extension -static -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all";
@@ -10650,7 +10254,7 @@
 				EXECUTABLE_EXTENSION = "";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-STABLE-20/bin/CommandLine/CommandLineTool/rules_xcodeproj/CommandLineTool/Info.plist";
-				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/CommandLineTool.46.link.params";
+				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/CommandLineTool.44.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				OTHER_CODE_SIGN_FLAGS = "-v";
@@ -10773,7 +10377,7 @@
 				ENABLE_TESTABILITY = YES;
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-STABLE-20/bin/CommandLine/Tests/rules_xcodeproj/CommandLineToolTests.__internal__.__test_bundle/Info.plist";
-				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/CommandLineToolTests.__internal__.__test_bundle.63.link.params";
+				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/CommandLineToolTests.__internal__.__test_bundle.57.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(DERIVED_FILE_DIR)/xcode-overlay.yaml -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -DDEBUG -I$(PROJECT_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17/bin/CommandLine/CommandLineToolLib -Fexternal/examples_command_line_external -Xcc -Fexternal/examples_command_line_external -Xcc -I$(PROJECT_DIR)/$(SDKROOT)/usr/include/uuid -Xcc -iquote$(PROJECT_DIR) -Xcc -iquote$(PROJECT_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17/bin -Xcc -iquote$(PROJECT_DIR)/external/examples_command_line_external -Xcc -iquote$(PROJECT_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17/bin/external/examples_command_line_external -Xcc -DSECRET_3=\\\"Hello\\\" -Xcc -DSECRET_2=\\\"World!\\\" -Xcc -fmodule-map-file=$(PROJECT_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17/bin/CommandLine/CommandLineToolLib/lib_impl.swift.modulemap -Xcc -fmodule-map-file=$(PROJECT_DIR)/CommandLine/swift_c_module/c_lib.modulemap -Xcc -fmodule-map-file=$(PROJECT_DIR)/external/examples_command_line_external/ExternalFramework.framework/Modules/module.modulemap -Xcc -fmodule-map-file=$(PROJECT_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17/bin/external/examples_command_line_external/Library.swift.modulemap -Xcc -fmodule-map-file=$(PROJECT_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17/bin/CommandLine/CommandLineToolLib/lib_swift.swift.modulemap -static -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all";
@@ -10887,7 +10491,7 @@
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-dbg-STABLE-9/bin/Lib/rules_xcodeproj/LibFramework.watchOS/Info.plist";
 				"INFOPLIST_FILE[sdk=watchos*]" = "$(BAZEL_OUT)/applebin_watchos-watchos_arm64_32-dbg-STABLE-10/bin/Lib/rules_xcodeproj/LibFramework.watchOS/Info.plist";
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/LibFramework.watchOS.14.link.params";
-				"LINK_PARAMS_FILE[sdk=watchos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/LibFramework.watchOS.73.link.params";
+				"LINK_PARAMS_FILE[sdk=watchos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/LibFramework.watchOS.67.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				PRODUCT_BUNDLE_IDENTIFIER = io.budilebuddy.LibFramework;
 				PRODUCT_NAME = LibFramework.watchOS;
@@ -10959,30 +10563,6 @@
 			};
 			name = Debug;
 		};
-		DA9B9AD3B45F41902A2666DC /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = arm64;
-				BAZEL_LABEL = "@//CommandLine/CommandLineToolLib:lib_headers";
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18/bin/CommandLine/CommandLineToolLib";
-				BAZEL_TARGET_ID = "//CommandLine/CommandLineToolLib:lib_headers macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18";
-				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
-				COMPILE_TARGET_NAME = lib_headers;
-				ENABLE_BITCODE = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				EXECUTABLE_EXTENSION = "";
-				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_NAME = lib_headers;
-				SDKROOT = macosx;
-				SUPPORTED_PLATFORMS = macosx;
-				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGET_NAME = lib_headers;
-			};
-			name = Debug;
-		};
 		E24D61DAE8AAF7A0E7388B78 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -11018,7 +10598,7 @@
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-dbg-STABLE-9/bin/watchOSAppExtension/rules_xcodeproj/watchOSAppExtension/Info.plist";
 				"INFOPLIST_FILE[sdk=watchos*]" = "$(BAZEL_OUT)/applebin_watchos-watchos_arm64_32-dbg-STABLE-10/bin/watchOSAppExtension/rules_xcodeproj/watchOSAppExtension/Info.plist";
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/watchOSAppExtension.16.link.params";
-				"LINK_PARAMS_FILE[sdk=watchos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/watchOSAppExtension.75.link.params";
+				"LINK_PARAMS_FILE[sdk=watchos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/watchOSAppExtension.69.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(DERIVED_FILE_DIR)/xcode-overlay.yaml -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -DDEBUG -I$(PROJECT_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/Lib -I$(PROJECT_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/UI -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator -Xcc -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator -Xcc -iquote$(PROJECT_DIR)/external/com_github_krzyzanowskim_cryptoswift -Xcc -iquote$(PROJECT_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/external/com_github_krzyzanowskim_cryptoswift -Xcc -iquote$(PROJECT_DIR) -Xcc -iquote$(PROJECT_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin -Xcc -fmodule-map-file=$(PROJECT_DIR)/external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -application-extension -static -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all";
 				"OTHER_SWIFT_FLAGS[sdk=watchos*]" = "-Xcc -ivfsoverlay -Xcc $(DERIVED_FILE_DIR)/xcode-overlay.yaml -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -DDEBUG -I$(PROJECT_DIR)/bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-5/bin/Lib -I$(PROJECT_DIR)/bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-5/bin/UI -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k -Xcc -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k -Xcc -iquote$(PROJECT_DIR)/external/com_github_krzyzanowskim_cryptoswift -Xcc -iquote$(PROJECT_DIR)/bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-5/bin/external/com_github_krzyzanowskim_cryptoswift -Xcc -iquote$(PROJECT_DIR) -Xcc -iquote$(PROJECT_DIR)/bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-5/bin -Xcc -fmodule-map-file=$(PROJECT_DIR)/external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework/Modules/module.modulemap -application-extension -static -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all";
@@ -11125,7 +10705,7 @@
 				IPHONEOS_FILES = "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework $(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/WidgetExtension/Intents.swift";
 				IPHONESIMULATOR_FILES = "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework $(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/WidgetExtension/Intents.swift";
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/WidgetExtension.9.link.params";
-				"LINK_PARAMS_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/WidgetExtension.68.link.params";
+				"LINK_PARAMS_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/WidgetExtension.62.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(DERIVED_FILE_DIR)/xcode-overlay.yaml -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -DDEBUG -I$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/Lib -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Xcc -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Xcc -iquote$(PROJECT_DIR)/external/com_github_krzyzanowskim_cryptoswift -Xcc -iquote$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/external/com_github_krzyzanowskim_cryptoswift -Xcc -iquote$(PROJECT_DIR) -Xcc -iquote$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin -Xcc -fmodule-map-file=$(PROJECT_DIR)/external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -static -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all";
 				"OTHER_SWIFT_FLAGS[sdk=iphoneos*]" = "-Xcc -ivfsoverlay -Xcc $(DERIVED_FILE_DIR)/xcode-overlay.yaml -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -DDEBUG -I$(PROJECT_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/Lib -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -Xcc -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -Xcc -iquote$(PROJECT_DIR)/external/com_github_krzyzanowskim_cryptoswift -Xcc -iquote$(PROJECT_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/external/com_github_krzyzanowskim_cryptoswift -Xcc -iquote$(PROJECT_DIR) -Xcc -iquote$(PROJECT_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin -Xcc -fmodule-map-file=$(PROJECT_DIR)/external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap -static -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all";
@@ -11499,7 +11079,7 @@
 				IPHONEOS_FILES = "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework";
 				IPHONESIMULATOR_FILES = "$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework";
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/UIFramework.iOS.12.link.params";
-				"LINK_PARAMS_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/UIFramework.iOS.71.link.params";
+				"LINK_PARAMS_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/UIFramework.iOS.65.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(DERIVED_FILE_DIR)/xcode-overlay.yaml -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -DDEBUG -I$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/Lib -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Xcc -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Xcc -iquote$(PROJECT_DIR)/external/com_github_krzyzanowskim_cryptoswift -Xcc -iquote$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/external/com_github_krzyzanowskim_cryptoswift -Xcc -iquote$(PROJECT_DIR) -Xcc -iquote$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin -Xcc -fmodule-map-file=$(PROJECT_DIR)/external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -application-extension -static -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all";
 				"OTHER_SWIFT_FLAGS[sdk=iphoneos*]" = "-Xcc -ivfsoverlay -Xcc $(DERIVED_FILE_DIR)/xcode-overlay.yaml -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -DDEBUG -I$(PROJECT_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/Lib -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -Xcc -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -Xcc -iquote$(PROJECT_DIR)/external/com_github_krzyzanowskim_cryptoswift -Xcc -iquote$(PROJECT_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/external/com_github_krzyzanowskim_cryptoswift -Xcc -iquote$(PROJECT_DIR) -Xcc -iquote$(PROJECT_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin -Xcc -fmodule-map-file=$(PROJECT_DIR)/external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap -application-extension -static -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all";
@@ -11562,14 +11142,6 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C89D8EB557463CCBFDDD0C4D /* Debug */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
-		1EBA3F183786344EE5F0F054 /* Build configuration list for PBXNativeTarget "lib_defines (c7049)" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				40D1DC87942812B67285E4F1 /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
@@ -11710,14 +11282,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		535AE76265252034FF1380A3 /* Build configuration list for PBXNativeTarget "lib_headers (c7049)" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8CBABAFFBFEEAF4BDF46EEFD /* Debug */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
 		5C2809BDC9E86ED82DEC3B06 /* Build configuration list for PBXNativeTarget "private_swift_lib (arm64)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -11790,14 +11354,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		9156498812B7F889E284EE7E /* Build configuration list for PBXNativeTarget "lib_headers (arm64)" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				DA9B9AD3B45F41902A2666DC /* Debug */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
 		9AEA6F92C4DB724D2A2A56CB /* Build configuration list for PBXNativeTarget "macOSApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -11810,14 +11366,6 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				67F44AB65FA7A2E38A56F5FB /* Debug */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
-		A81589D6B66F6A26EDA93958 /* Build configuration list for PBXNativeTarget "lib_defines (arm64)" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				02D3BE62CFB30E3C38ED9CD4 /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
@@ -11858,14 +11406,6 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EB0411C63F997F3E94FA8A47 /* Debug */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
-		B96D3C48888A6BBB0818D15C /* Build configuration list for PBXNativeTarget "lib_headers (70419)" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				0E796EF2A7101C04177BDD8F /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
@@ -12010,14 +11550,6 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				629A27B7ABDA4F965E3952BE /* Debug */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
-		FB0B698B142A4718966DF81C /* Build configuration list for PBXNativeTarget "lib_defines (70419)" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				0FD7A6F4A1BCF2423BB3F12F /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
