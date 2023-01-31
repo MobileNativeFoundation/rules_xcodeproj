@@ -67,14 +67,15 @@ to include it in the list above.
 
 ## Compatibility
 
-- macOS 12.0-13.1
-- Xcode 13.3-14.2
-- Bazel 5.3.0-6.0.0
-- rules_swift 1.0.0-1.5.0
-- rules_apple 1.0.1-2.0.0
+| Versions | Bazel | [rules_apple][1] | [rules_swift][2] | Xcode | macOS | Branch |
+| :------: | :---: | :--------------: | :--------------: | :---: | :---: | :----: |
+| 1.x | 5.3–6.x  | 1.0.1–2.x | 1.x | 13.3–14.x | 12–13.x | `main` |
 
 More versions of these tools and rulesets might be supported, but these are the
 ones we've officially tested with.
+
+[1]: https://github.com/bazelbuild/rules_apple
+[2]: https://github.com/bazelbuild/rules_swift
 
 ## Installation
 
