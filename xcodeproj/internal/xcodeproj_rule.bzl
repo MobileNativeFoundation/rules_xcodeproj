@@ -470,11 +470,6 @@ actual targets: {}
     for src, dests in target_merges.items():
         src_target = focused_targets[src]
 
-        if not src_target.is_swift:
-            # Only swiftmodule search paths are an issue for target merging.
-            # If the target isn't Swift, merge away!
-            continue
-
         for dest in dests:
             dest_target = focused_targets[dest]
 
