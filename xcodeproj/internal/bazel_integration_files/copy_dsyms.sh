@@ -2,10 +2,11 @@
 
 set -euo pipefail
 
-if [[ -n ${BAZEL_OUTPUTS_DSYM:-} ]]; then
-    cd "$BAZEL_OUT"
-    cd ..
-    rsync \
+if [[ -n "${BAZEL_OUTPUTS_DSYM:-}" ]]; then
+  cd "${BAZEL_OUT%/*}"
+
+  # shellcheck disable=SC2046
+  rsync \
     --copy-links \
     --recursive \
     --times \
