@@ -38,7 +38,7 @@ need help, reach out to us.
 
 ## What is `CompileStub.m`?
 
-If you have a top level target, such as `ios_application`, and it's primary
+If you have a top level target, such as `ios_application`, and its primary
 library dependency is also directly depended on by another top level target,
 such as `ios_unit_test`, then we can't merge that library into the first top
 level target. When that happens, the first top level target doesn't have any
