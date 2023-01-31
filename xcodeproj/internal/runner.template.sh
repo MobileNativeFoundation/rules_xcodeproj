@@ -78,7 +78,14 @@ cd "$BUILD_WORKSPACE_DIRECTORY"
 
 # Resolve path to bazel before changing the env variable. This allows bazelisk
 # downloaded bazel to be found.
-bazel_path=$(which "%bazel_path%")
+bazel_path=$(which "%bazel_path%" || true)
+
+if [[ -z "$bazel_path" ]]; then
+  echo "Failed to find \"%bazel_path%\" in PATH. Please make sure the" \
+    "'bazel' attribute on %runner_label% is correct." >&2
+  exit 1
+fi
+
 installer_flags+=(--bazel_path "$bazel_path")
 
 if [[ %is_fixture% -eq 1 && %is_bazel_6% -eq 1 ]]; then
