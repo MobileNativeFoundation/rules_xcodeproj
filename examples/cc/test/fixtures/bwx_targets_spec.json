@@ -58,62 +58,6 @@
         },
         "s": false
     },
-    "//lib:lib_defines darwin_x86_64-dbg-STABLE-1",
-    {
-        "1": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib",
-        "2": {
-            "a": "x86_64",
-            "m": "12.0",
-            "o": "macos",
-            "v": "macosx"
-        },
-        "b": {
-            "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
-            "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
-            "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-            "SWIFT_VERSION": "5.0"
-        },
-        "c": "darwin_x86_64-dbg-STABLE-1",
-        "d": [
-            "//lib:lib_impl darwin_x86_64-dbg-STABLE-1"
-        ],
-        "l": "//lib:lib_defines",
-        "n": "lib_defines",
-        "p": {
-            "n": "lib_defines",
-            "t": "com.apple.product-type.library.static"
-        },
-        "s": false
-    },
-    "//lib:lib_headers darwin_x86_64-dbg-STABLE-1",
-    {
-        "1": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib",
-        "2": {
-            "a": "x86_64",
-            "m": "12.0",
-            "o": "macos",
-            "v": "macosx"
-        },
-        "b": {
-            "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
-            "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
-            "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-            "SWIFT_VERSION": "5.0"
-        },
-        "c": "darwin_x86_64-dbg-STABLE-1",
-        "d": [
-            "//lib:lib_defines darwin_x86_64-dbg-STABLE-1"
-        ],
-        "l": "//lib:lib_headers",
-        "n": "lib_headers",
-        "p": {
-            "n": "lib_headers",
-            "t": "com.apple.product-type.library.static"
-        },
-        "s": false
-    },
     "//lib:lib_impl darwin_x86_64-dbg-STABLE-1",
     {
         "1": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib",
@@ -182,7 +126,7 @@
             "v": "macosx"
         },
         "6": {
-            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/tool.7.link.params",
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/tool.3.link.params",
             "t": "g"
         },
         "b": {
@@ -229,9 +173,9 @@
         },
         "c": "darwin_x86_64-dbg-STABLE-1",
         "d": [
-            "//lib:lib_headers darwin_x86_64-dbg-STABLE-1",
-            "//lib2:lib_impl darwin_x86_64-dbg-STABLE-1",
-            "@examples_cc_external//:lib_headers darwin_x86_64-dbg-STABLE-1"
+            "//lib:lib_impl darwin_x86_64-dbg-STABLE-1",
+            "@examples_cc_external//:lib_impl darwin_x86_64-dbg-STABLE-1",
+            "//lib2:lib_impl darwin_x86_64-dbg-STABLE-1"
         ],
         "i": {
             "s": [
@@ -251,62 +195,6 @@
                 "t": "g"
             },
             "t": "com.apple.product-type.tool"
-        },
-        "s": false
-    },
-    "@examples_cc_external//:lib_defines darwin_x86_64-dbg-STABLE-1",
-    {
-        "1": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external",
-        "2": {
-            "a": "x86_64",
-            "m": "12.0",
-            "o": "macos",
-            "v": "macosx"
-        },
-        "b": {
-            "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
-            "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
-            "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-            "SWIFT_VERSION": "5.0"
-        },
-        "c": "darwin_x86_64-dbg-STABLE-1",
-        "d": [
-            "@examples_cc_external//:lib_impl darwin_x86_64-dbg-STABLE-1"
-        ],
-        "l": "@examples_cc_external//:lib_defines",
-        "n": "lib_defines",
-        "p": {
-            "n": "lib_defines",
-            "t": "com.apple.product-type.library.static"
-        },
-        "s": false
-    },
-    "@examples_cc_external//:lib_headers darwin_x86_64-dbg-STABLE-1",
-    {
-        "1": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external",
-        "2": {
-            "a": "x86_64",
-            "m": "12.0",
-            "o": "macos",
-            "v": "macosx"
-        },
-        "b": {
-            "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
-            "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
-            "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-            "SWIFT_VERSION": "5.0"
-        },
-        "c": "darwin_x86_64-dbg-STABLE-1",
-        "d": [
-            "@examples_cc_external//:lib_defines darwin_x86_64-dbg-STABLE-1"
-        ],
-        "l": "@examples_cc_external//:lib_headers",
-        "n": "lib_headers",
-        "p": {
-            "n": "lib_headers",
-            "t": "com.apple.product-type.library.static"
         },
         "s": false
     },

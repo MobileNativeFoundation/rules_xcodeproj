@@ -304,6 +304,9 @@ targets.
             unfocused_targets[xcode_target.id] = xcode_target
             continue
 
+        if not xcode_target.should_create_xcode_target:
+            continue
+
         if xcode_target.product.is_resource_bundle and exclude_resource_bundles:
             # Don't create targets for resource bundles in BwB mode, but still
             # include their files if they aren't unfocused

@@ -182,5 +182,6 @@ def process_library_target(
             dependencies = dependencies,
             transitive_dependencies = transitive_dependencies,
             outputs = outputs,
+            should_create_xcode_target = target.files != depset(),
         ),
     )

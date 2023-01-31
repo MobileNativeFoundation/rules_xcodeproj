@@ -29,20 +29,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		1530FE4B983FF83EF171320D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
-			remoteInfo = BazelDependencies;
-		};
-		2EF3C555524E237AC36F6CD9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E48E9FEBBB9A5F8F1FE1B1CD;
-			remoteInfo = "@//lib:lib_impl";
-		};
 		42025A1CD8FA6A1FEB112EA2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
@@ -57,40 +43,12 @@
 			remoteGlobalIDString = 1674813229B44E631726DF6E;
 			remoteInfo = "@//lib2:lib_impl";
 		};
-		4FD282A469F17ACBB55287B5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
-			remoteInfo = BazelDependencies;
-		};
-		618D31D1E3C76BD49B0DC8B5 /* PBXContainerItemProxy */ = {
+		59511478AA09290DC3C73AC2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 9DF8EA4260F38FC7243F6241;
 			remoteInfo = "@examples_cc_external//:lib_impl";
-		};
-		741EFDDCC49C98BF599EA3FF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F5888B7C4A1664A1C60133AA;
-			remoteInfo = "@//lib:lib_defines";
-		};
-		79D313A1A9C5BB15A6117D26 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 49D5AEB977C23BD7F20AC337;
-			remoteInfo = "@examples_cc_external//:lib_defines";
-		};
-		7FE71A6EA59B8D4F290B5C07 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
-			remoteInfo = BazelDependencies;
 		};
 		880FFE0FA4EE63FB2C4847F8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -106,27 +64,6 @@
 			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
 			remoteInfo = BazelDependencies;
 		};
-		D62532E75F0995F6931607AD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 79B2BB5ED6907F8C6C6E8896;
-			remoteInfo = "@examples_cc_external//:lib_headers";
-		};
-		E02DE9E65CD4ADCC0488ABD5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
-			remoteInfo = BazelDependencies;
-		};
-		E7134F8EF9A9A7E8E747875E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = CF80CDB6431DA5E5A47AC869;
-			remoteInfo = "@//lib:lib_headers";
-		};
 		EBE081DB069A4BF46046FE21 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
@@ -134,17 +71,24 @@
 			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
 			remoteInfo = BazelDependencies;
 		};
+		F9D69D94708B6ED5E45131FC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E48E9FEBBB9A5F8F1FE1B1CD;
+			remoteInfo = "@//lib:lib_impl";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		10D21E69D7E12FFDA82B1273 /* lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib.h; sourceTree = "<group>"; };
 		18DF90BBBA2BA8D2AF06D94F /* lib2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib2.h; sourceTree = "<group>"; };
 		1F8D330113018E003269E782 /* liblib_impl.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_impl.a; path = "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external/liblib_impl.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		50EE84464C0D09BEA535AD55 /* tool.7.link.params */ = {isa = PBXFileReference; path = tool.7.link.params; sourceTree = "<group>"; };
 		655197F36E3561F5EBB2B456 /* lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib.h; sourceTree = "<group>"; };
 		68571FA99BB8CAC9AA027C16 /* lib2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib2.h; sourceTree = "<group>"; };
 		82E1AC498ACAE9E123276B7A /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		9EA769DDCBCA01C4A4A674AF /* lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = lib.c; sourceTree = "<group>"; };
+		AC23F8116CF7E3956F5FFAC5 /* tool.3.link.params */ = {isa = PBXFileReference; path = tool.3.link.params; sourceTree = "<group>"; };
 		AE0CF9E68A28C21F8DDA2623 /* lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = lib.c; sourceTree = "<group>"; };
 		B13DA8B967470B62463A7C36 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		B2DBE3AAD7A0F87B677A8325 /* lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = lib.c; sourceTree = "<group>"; };
@@ -279,7 +223,7 @@
 		BE534ACECD6842E3D0C7EDA6 /* xcodeproj_bwx.generator-params */ = {
 			isa = PBXGroup;
 			children = (
-				50EE84464C0D09BEA535AD55 /* tool.7.link.params */,
+				AC23F8116CF7E3956F5FFAC5 /* tool.3.link.params */,
 			);
 			path = "xcodeproj_bwx.generator-params";
 			sourceTree = "<group>";
@@ -399,36 +343,6 @@
 			productName = lib_impl;
 			productType = "com.apple.product-type.library.static";
 		};
-		49D5AEB977C23BD7F20AC337 /* @examples_cc_external//:lib_defines */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 2216884D5BAEF8F6D2DC37F8 /* Build configuration list for PBXNativeTarget "@examples_cc_external//:lib_defines" */;
-			buildPhases = (
-			);
-			buildRules = (
-			);
-			dependencies = (
-				08B1339141E697DDDF6F906E /* PBXTargetDependency */,
-				440DC1AB003CF3EFBF661A1C /* PBXTargetDependency */,
-			);
-			name = "@examples_cc_external//:lib_defines";
-			productName = lib_defines;
-			productType = "com.apple.product-type.library.static";
-		};
-		79B2BB5ED6907F8C6C6E8896 /* @examples_cc_external//:lib_headers */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 57B722DF39AD4059390DC937 /* Build configuration list for PBXNativeTarget "@examples_cc_external//:lib_headers" */;
-			buildPhases = (
-			);
-			buildRules = (
-			);
-			dependencies = (
-				3C8027255F66182CED89C6E9 /* PBXTargetDependency */,
-				5B13FD230356929B64980A8D /* PBXTargetDependency */,
-			);
-			name = "@examples_cc_external//:lib_headers";
-			productName = lib_headers;
-			productType = "com.apple.product-type.library.static";
-		};
 		9DF8EA4260F38FC7243F6241 /* @examples_cc_external//:lib_impl */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = FA7CA526EED1582756E3E941 /* Build configuration list for PBXNativeTarget "@examples_cc_external//:lib_impl" */;
@@ -443,21 +357,6 @@
 			);
 			name = "@examples_cc_external//:lib_impl";
 			productName = lib_impl;
-			productType = "com.apple.product-type.library.static";
-		};
-		CF80CDB6431DA5E5A47AC869 /* @//lib:lib_headers */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 613DBB46757C69BEBB8C0A8B /* Build configuration list for PBXNativeTarget "@//lib:lib_headers" */;
-			buildPhases = (
-			);
-			buildRules = (
-			);
-			dependencies = (
-				F325C38C904FE1CEE9BCB5FF /* PBXTargetDependency */,
-				47EE226EE51CBFDFEC711A5E /* PBXTargetDependency */,
-			);
-			name = "@//lib:lib_headers";
-			productName = lib_headers;
 			productType = "com.apple.product-type.library.static";
 		};
 		E48E9FEBBB9A5F8F1FE1B1CD /* @//lib:lib_impl */ = {
@@ -488,29 +387,14 @@
 			);
 			dependencies = (
 				C7CE0C2F304E0B02B1E4E5A4 /* PBXTargetDependency */,
-				0109E576AC174DF717DD57F7 /* PBXTargetDependency */,
+				352DFDCEE489902F858A718F /* PBXTargetDependency */,
 				33BE6091D980E6CC430D61CC /* PBXTargetDependency */,
-				21FD4BF1EC0A577104CD3F91 /* PBXTargetDependency */,
+				59AC8FC7ED45C65DBD76BA41 /* PBXTargetDependency */,
 			);
 			name = tool;
 			productName = tool;
 			productReference = B6393A8054CC3DB8C2683C2E /* tool */;
 			productType = "com.apple.product-type.tool";
-		};
-		F5888B7C4A1664A1C60133AA /* @//lib:lib_defines */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D9FAE6E2B5FC5DEBADA0C20A /* Build configuration list for PBXNativeTarget "@//lib:lib_defines" */;
-			buildPhases = (
-			);
-			buildRules = (
-			);
-			dependencies = (
-				0DB6BFBDC544CF2C3009F54B /* PBXTargetDependency */,
-				0DA4D8F76E24C0A6CFC8154A /* PBXTargetDependency */,
-			);
-			name = "@//lib:lib_defines";
-			productName = lib_defines;
-			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
 
@@ -526,19 +410,7 @@
 						CreatedOnToolsVersion = 13.0.0;
 						LastSwiftMigration = 9999;
 					};
-					49D5AEB977C23BD7F20AC337 = {
-						CreatedOnToolsVersion = 13.0.0;
-						LastSwiftMigration = 9999;
-					};
-					79B2BB5ED6907F8C6C6E8896 = {
-						CreatedOnToolsVersion = 13.0.0;
-						LastSwiftMigration = 9999;
-					};
 					9DF8EA4260F38FC7243F6241 = {
-						CreatedOnToolsVersion = 13.0.0;
-						LastSwiftMigration = 9999;
-					};
-					CF80CDB6431DA5E5A47AC869 = {
 						CreatedOnToolsVersion = 13.0.0;
 						LastSwiftMigration = 9999;
 					};
@@ -547,10 +419,6 @@
 						LastSwiftMigration = 9999;
 					};
 					EC6A68AC956C60AA25485960 = {
-						CreatedOnToolsVersion = 13.0.0;
-						LastSwiftMigration = 9999;
-					};
-					F5888B7C4A1664A1C60133AA = {
 						CreatedOnToolsVersion = 13.0.0;
 						LastSwiftMigration = 9999;
 					};
@@ -573,12 +441,8 @@
 			projectRoot = "";
 			targets = (
 				FE59281FE487F27A37DC2EE7 /* BazelDependencies */,
-				F5888B7C4A1664A1C60133AA /* @//lib:lib_defines */,
-				CF80CDB6431DA5E5A47AC869 /* @//lib:lib_headers */,
 				E48E9FEBBB9A5F8F1FE1B1CD /* @//lib:lib_impl */,
 				1674813229B44E631726DF6E /* @//lib2:lib_impl */,
-				49D5AEB977C23BD7F20AC337 /* @examples_cc_external//:lib_defines */,
-				79B2BB5ED6907F8C6C6E8896 /* @examples_cc_external//:lib_headers */,
 				9DF8EA4260F38FC7243F6241 /* @examples_cc_external//:lib_impl */,
 				EC6A68AC956C60AA25485960 /* tool */,
 			);
@@ -746,36 +610,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		0109E576AC174DF717DD57F7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "@//lib:lib_headers";
-			target = CF80CDB6431DA5E5A47AC869 /* @//lib:lib_headers */;
-			targetProxy = E7134F8EF9A9A7E8E747875E /* PBXContainerItemProxy */;
-		};
-		08B1339141E697DDDF6F906E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = BazelDependencies;
-			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
-			targetProxy = 4FD282A469F17ACBB55287B5 /* PBXContainerItemProxy */;
-		};
-		0DA4D8F76E24C0A6CFC8154A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "@//lib:lib_impl";
-			target = E48E9FEBBB9A5F8F1FE1B1CD /* @//lib:lib_impl */;
-			targetProxy = 2EF3C555524E237AC36F6CD9 /* PBXContainerItemProxy */;
-		};
-		0DB6BFBDC544CF2C3009F54B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = BazelDependencies;
-			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
-			targetProxy = 1530FE4B983FF83EF171320D /* PBXContainerItemProxy */;
-		};
-		21FD4BF1EC0A577104CD3F91 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "@examples_cc_external//:lib_headers";
-			target = 79B2BB5ED6907F8C6C6E8896 /* @examples_cc_external//:lib_headers */;
-			targetProxy = D62532E75F0995F6931607AD /* PBXContainerItemProxy */;
-		};
 		22C38633AA1187EC6099A753 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = BazelDependencies;
@@ -794,29 +628,17 @@
 			target = 1674813229B44E631726DF6E /* @//lib2:lib_impl */;
 			targetProxy = 4DAEA7EC6CB13136037C9ABB /* PBXContainerItemProxy */;
 		};
-		3C8027255F66182CED89C6E9 /* PBXTargetDependency */ = {
+		352DFDCEE489902F858A718F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = BazelDependencies;
-			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
-			targetProxy = 7FE71A6EA59B8D4F290B5C07 /* PBXContainerItemProxy */;
+			name = "@//lib:lib_impl";
+			target = E48E9FEBBB9A5F8F1FE1B1CD /* @//lib:lib_impl */;
+			targetProxy = F9D69D94708B6ED5E45131FC /* PBXContainerItemProxy */;
 		};
-		440DC1AB003CF3EFBF661A1C /* PBXTargetDependency */ = {
+		59AC8FC7ED45C65DBD76BA41 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "@examples_cc_external//:lib_impl";
 			target = 9DF8EA4260F38FC7243F6241 /* @examples_cc_external//:lib_impl */;
-			targetProxy = 618D31D1E3C76BD49B0DC8B5 /* PBXContainerItemProxy */;
-		};
-		47EE226EE51CBFDFEC711A5E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "@//lib:lib_defines";
-			target = F5888B7C4A1664A1C60133AA /* @//lib:lib_defines */;
-			targetProxy = 741EFDDCC49C98BF599EA3FF /* PBXContainerItemProxy */;
-		};
-		5B13FD230356929B64980A8D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "@examples_cc_external//:lib_defines";
-			target = 49D5AEB977C23BD7F20AC337 /* @examples_cc_external//:lib_defines */;
-			targetProxy = 79D313A1A9C5BB15A6117D26 /* PBXContainerItemProxy */;
+			targetProxy = 59511478AA09290DC3C73AC2 /* PBXContainerItemProxy */;
 		};
 		8714A281BD8DEB70EFAA3A22 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -829,12 +651,6 @@
 			name = BazelDependencies;
 			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
 			targetProxy = 880FFE0FA4EE63FB2C4847F8 /* PBXContainerItemProxy */;
-		};
-		F325C38C904FE1CEE9BCB5FF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = BazelDependencies;
-			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
-			targetProxy = E02DE9E65CD4ADCC0488ABD5 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -895,54 +711,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = lib_impl;
-			};
-			name = Debug;
-		};
-		16799184331883C7BF3BCF6C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = x86_64;
-				BAZEL_LABEL = "@//lib:lib_defines";
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib";
-				BAZEL_TARGET_ID = "//lib:lib_defines darwin_x86_64-dbg-STABLE-1";
-				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
-				COMPILE_TARGET_NAME = lib_defines;
-				ENABLE_BITCODE = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				EXECUTABLE_EXTENSION = "";
-				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				PRODUCT_NAME = lib_defines;
-				SDKROOT = macosx;
-				SUPPORTED_PLATFORMS = macosx;
-				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGET_NAME = lib_defines;
-			};
-			name = Debug;
-		};
-		1747A747511AC5C4C482113E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = x86_64;
-				BAZEL_LABEL = "@//lib:lib_headers";
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib";
-				BAZEL_TARGET_ID = "//lib:lib_headers darwin_x86_64-dbg-STABLE-1";
-				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
-				COMPILE_TARGET_NAME = lib_headers;
-				ENABLE_BITCODE = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				EXECUTABLE_EXTENSION = "";
-				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				PRODUCT_NAME = lib_headers;
-				SDKROOT = macosx;
-				SUPPORTED_PLATFORMS = macosx;
-				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGET_NAME = lib_headers;
 			};
 			name = Debug;
 		};
@@ -1070,54 +838,6 @@
 			};
 			name = Debug;
 		};
-		C7F56363682C2F420E7651C8 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = x86_64;
-				BAZEL_LABEL = "@examples_cc_external//:lib_defines";
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external";
-				BAZEL_TARGET_ID = "@examples_cc_external//:lib_defines darwin_x86_64-dbg-STABLE-1";
-				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
-				COMPILE_TARGET_NAME = lib_defines;
-				ENABLE_BITCODE = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				EXECUTABLE_EXTENSION = "";
-				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				PRODUCT_NAME = lib_defines;
-				SDKROOT = macosx;
-				SUPPORTED_PLATFORMS = macosx;
-				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGET_NAME = lib_defines;
-			};
-			name = Debug;
-		};
-		D5FCC12F6A1A3101191D52BE /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = x86_64;
-				BAZEL_LABEL = "@examples_cc_external//:lib_headers";
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external";
-				BAZEL_TARGET_ID = "@examples_cc_external//:lib_headers darwin_x86_64-dbg-STABLE-1";
-				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
-				COMPILE_TARGET_NAME = lib_headers;
-				ENABLE_BITCODE = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				EXECUTABLE_EXTENSION = "";
-				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				PRODUCT_NAME = lib_headers;
-				SDKROOT = macosx;
-				SUPPORTED_PLATFORMS = macosx;
-				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGET_NAME = lib_headers;
-			};
-			name = Debug;
-		};
 		DE39562D4492E281F18A3205 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1179,7 +899,7 @@
 				EXECUTABLE_EXTENSION = "";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GENERATE_INFOPLIST_FILE = YES;
-				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/tool.7.link.params";
+				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/tool.3.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
@@ -1262,34 +982,10 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		2216884D5BAEF8F6D2DC37F8 /* Build configuration list for PBXNativeTarget "@examples_cc_external//:lib_defines" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C7F56363682C2F420E7651C8 /* Debug */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
 		4193581FD52824B6B27A38B9 /* Build configuration list for PBXNativeTarget "@//lib:lib_impl" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00E49FEAD01BA87C74959D6D /* Debug */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
-		57B722DF39AD4059390DC937 /* Build configuration list for PBXNativeTarget "@examples_cc_external//:lib_headers" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D5FCC12F6A1A3101191D52BE /* Debug */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
-		613DBB46757C69BEBB8C0A8B /* Build configuration list for PBXNativeTarget "@//lib:lib_headers" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				1747A747511AC5C4C482113E /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
@@ -1314,14 +1010,6 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				67F44AB65FA7A2E38A56F5FB /* Debug */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
-		D9FAE6E2B5FC5DEBADA0C20A /* Build configuration list for PBXNativeTarget "@//lib:lib_defines" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				16799184331883C7BF3BCF6C /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
