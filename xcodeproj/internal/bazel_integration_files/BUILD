@@ -1,6 +1,7 @@
 _BASE_FILES = [
     "bazel_build.sh",
     "calculate_output_groups.py",
+    "copy_dsyms.sh",
     "create_lldbinit.sh",
     "generate_bazel_dependencies.sh",
     "import_indexstores.sh",

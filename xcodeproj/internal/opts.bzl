@@ -798,12 +798,12 @@ def _process_compiler_opts(
     has_debug_infos = has_debug_info.keys()
 
     if len(has_debug_infos) == 1:
-        # We don't set "DEBUG_INFORMATION_FORMAT" for "dwarf"-with-dsym",
-        # as that's Xcode's default
+        # We don't set "DEBUG_INFORMATION_FORMAT" for "dwarf", as we set that at
+        # the project level.
         if not has_debug_infos[0]:
             build_settings["DEBUG_INFORMATION_FORMAT"] = ""
-        elif not cpp_fragment.apple_generate_dsym:
-            build_settings["DEBUG_INFORMATION_FORMAT"] = "dwarf"
+        elif cpp_fragment.apple_generate_dsym:
+            build_settings["DEBUG_INFORMATION_FORMAT"] = "dwarf-with-dsym"
     elif has_debug_infos:
         build_settings["DEBUG_INFORMATION_FORMAT"] = ""
         if has_conlyopts and c_has_debug_info:

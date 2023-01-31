@@ -7205,6 +7205,14 @@
 				"BAZEL_COMPILE_TARGET_ID[sdk=watchos*]" = "//UI:UI watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-5";
 				"BAZEL_COMPILE_TARGET_ID[sdk=watchsimulator*]" = "$(BAZEL_COMPILE_TARGET_ID)";
 				BAZEL_LABEL = "@//UI:UIFramework.watchOS";
+				BAZEL_OUTPUTS_DSYM = (
+					"\"bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-9/bin/Lib/LibFramework.watchOS.framework.dSYM\"",
+					"\"bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-9/bin/UI/UIFramework.watchOS.framework.dSYM\"",
+				);
+				"BAZEL_OUTPUTS_DSYM[sdk=watchos*]" = (
+					"\"bazel-out/applebin_watchos-watchos_arm64_32-dbg-STABLE-10/bin/Lib/LibFramework.watchOS.framework.dSYM\"",
+					"\"bazel-out/applebin_watchos-watchos_arm64_32-dbg-STABLE-10/bin/UI/UIFramework.watchOS.framework.dSYM\"",
+				);
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-9/bin/UI/UIFramework.watchOS.framework";
 				"BAZEL_OUTPUTS_PRODUCT[sdk=watchos*]" = "bazel-out/applebin_watchos-watchos_arm64_32-dbg-STABLE-10/bin/UI/UIFramework.watchOS.framework";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-9/bin/UI";
@@ -7214,7 +7222,7 @@
 				"BAZEL_TARGET_ID[sdk=watchsimulator*]" = "$(BAZEL_TARGET_ID)";
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = UI;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -7291,7 +7299,7 @@
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = iOS;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-7/bin/Lib/dist/dynamic/rules_xcodeproj/iOS/Info.plist";
@@ -7325,6 +7333,28 @@
 				"BAZEL_COMPILE_TARGET_ID[sdk=iphoneos*]" = "//iOSApp/Source:iOSApp.library ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4";
 				"BAZEL_COMPILE_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_ID)";
 				BAZEL_LABEL = "@//iOSApp/Source:iOSApp";
+				BAZEL_OUTPUTS_DSYM = (
+					"\"bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-7/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.framework.dSYM\"",
+					"\"bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-7/bin/Lib/LibFramework.iOS.framework.dSYM\"",
+					"\"bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-7/bin/UI/UIFramework.iOS.framework.dSYM\"",
+					"\"bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-7/bin/WidgetExtension/WidgetExtension.appex.dSYM\"",
+					"\"bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-7/bin/AppClip/AppClip.app.dSYM\"",
+					"\"bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-9/bin/Lib/LibFramework.watchOS.framework.dSYM\"",
+					"\"bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-9/bin/UI/UIFramework.watchOS.framework.dSYM\"",
+					"\"bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-9/bin/watchOSAppExtension/watchOSAppExtension.appex.dSYM\"",
+					"\"bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-7/bin/iOSApp/Source/iOSApp.app.dSYM\"",
+				);
+				"BAZEL_OUTPUTS_DSYM[sdk=iphoneos*]" = (
+					"\"bazel-out/applebin_ios-ios_arm64-dbg-STABLE-8/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.framework.dSYM\"",
+					"\"bazel-out/applebin_ios-ios_arm64-dbg-STABLE-8/bin/Lib/LibFramework.iOS.framework.dSYM\"",
+					"\"bazel-out/applebin_ios-ios_arm64-dbg-STABLE-8/bin/UI/UIFramework.iOS.framework.dSYM\"",
+					"\"bazel-out/applebin_ios-ios_arm64-dbg-STABLE-8/bin/WidgetExtension/WidgetExtension.appex.dSYM\"",
+					"\"bazel-out/applebin_ios-ios_arm64-dbg-STABLE-8/bin/AppClip/AppClip.app.dSYM\"",
+					"\"bazel-out/applebin_watchos-watchos_arm64_32-dbg-STABLE-10/bin/Lib/LibFramework.watchOS.framework.dSYM\"",
+					"\"bazel-out/applebin_watchos-watchos_arm64_32-dbg-STABLE-10/bin/UI/UIFramework.watchOS.framework.dSYM\"",
+					"\"bazel-out/applebin_watchos-watchos_arm64_32-dbg-STABLE-10/bin/watchOSAppExtension/watchOSAppExtension.appex.dSYM\"",
+					"\"bazel-out/applebin_ios-ios_arm64-dbg-STABLE-8/bin/iOSApp/Source/iOSApp.app.dSYM\"",
+				);
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-7/bin/iOSApp/Source/iOSApp.app";
 				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/applebin_ios-ios_arm64-dbg-STABLE-8/bin/iOSApp/Source/iOSApp.app";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-7/bin/iOSApp/Source";
@@ -7337,7 +7367,7 @@
 				CODE_SIGN_STYLE = Manual;
 				"CODE_SIGN_STYLE[sdk=iphoneos*]" = Automatic;
 				COMPILE_TARGET_NAME = iOSApp.library;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
 				DEVELOPMENT_TEAM = V82V4GQZXM;
 				ENABLE_BITCODE = NO;
@@ -7417,7 +7447,7 @@
 				BAZEL_TARGET_ID = "//CommandLine/CommandLineToolLib:private_lib macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = private_lib;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -7465,7 +7495,7 @@
 				BAZEL_TARGET_ID = "//iOSApp/Test/TestingUtils:TestingUtils ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = TestingUtils;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -7494,6 +7524,14 @@
 				"BAZEL_COMPILE_TARGET_ID[sdk=appletvos*]" = "//UI:UI tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-6";
 				"BAZEL_COMPILE_TARGET_ID[sdk=appletvsimulator*]" = "$(BAZEL_COMPILE_TARGET_ID)";
 				BAZEL_LABEL = "@//UI:UIFramework.tvOS";
+				BAZEL_OUTPUTS_DSYM = (
+					"\"bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-13/bin/Lib/LibFramework.tvOS.framework.dSYM\"",
+					"\"bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-13/bin/UI/UIFramework.tvOS.framework.dSYM\"",
+				);
+				"BAZEL_OUTPUTS_DSYM[sdk=appletvos*]" = (
+					"\"bazel-out/applebin_tvos-tvos_arm64-dbg-STABLE-14/bin/Lib/LibFramework.tvOS.framework.dSYM\"",
+					"\"bazel-out/applebin_tvos-tvos_arm64-dbg-STABLE-14/bin/UI/UIFramework.tvOS.framework.dSYM\"",
+				);
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-13/bin/UI/UIFramework.tvOS.framework";
 				"BAZEL_OUTPUTS_PRODUCT[sdk=appletvos*]" = "bazel-out/applebin_tvos-tvos_arm64-dbg-STABLE-14/bin/UI/UIFramework.tvOS.framework";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-13/bin/UI";
@@ -7503,7 +7541,7 @@
 				"BAZEL_TARGET_ID[sdk=appletvsimulator*]" = "$(BAZEL_TARGET_ID)";
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = UI;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -7601,6 +7639,7 @@
 				BAZEL_COMPILE_TARGET_ID = "//CommandLine/CommandLineTool:tool.library macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17";
 				"BAZEL_COMPILE_TARGET_ID[sdk=macosx*]" = "$(BAZEL_COMPILE_TARGET_ID)";
 				BAZEL_LABEL = "@//CommandLine/CommandLineTool:CommandLineTool";
+				BAZEL_OUTPUTS_DSYM = "\"bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-20/bin/CommandLine/CommandLineTool/CommandLineTool.dSYM\"";
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-20/bin/CommandLine/CommandLineTool/rules_xcodeproj/CommandLineTool/CommandLineTool";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-20/bin/CommandLine/CommandLineTool";
 				BAZEL_TARGET_ID = "//CommandLine/CommandLineTool:CommandLineTool applebin_macos-darwin_x86_64-dbg-STABLE-20";
@@ -7608,7 +7647,7 @@
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CLANG_ENABLE_MODULES = YES;
 				COMPILE_TARGET_NAME = tool.library;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -7642,7 +7681,7 @@
 				"BAZEL_TARGET_ID[sdk=watchos*]" = "//Lib:Lib watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-5";
 				"BAZEL_TARGET_ID[sdk=watchsimulator*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = Lib;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -7673,6 +7712,7 @@
 				BAZEL_COMPILE_TARGET_ID = "//watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2";
 				"BAZEL_COMPILE_TARGET_ID[sdk=watchsimulator*]" = "$(BAZEL_COMPILE_TARGET_ID)";
 				BAZEL_LABEL = "@//watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests";
+				BAZEL_OUTPUTS_DSYM = "\"bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-9/bin/watchOSAppExtension/Test/UnitTests/watchOSAppExtensionUnitTests.xctest.dSYM\"";
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-9/bin/watchOSAppExtension/Test/UnitTests/watchOSAppExtensionUnitTests.xctest";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-9/bin/watchOSAppExtension/Test/UnitTests";
 				BAZEL_TARGET_ID = "//watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests.__internal__.__test_bundle applebin_watchos-watchos_x86_64-dbg-STABLE-9";
@@ -7680,7 +7720,7 @@
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = watchOSAppExtensionUnitTests.library;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -7746,7 +7786,7 @@
 				"BAZEL_TARGET_ID[sdk=appletvsimulator*]" = "$(BAZEL_TARGET_ID)";
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = tvOS;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-dbg-STABLE-13/bin/Lib/dist/dynamic/rules_xcodeproj/tvOS/Info.plist";
@@ -7805,7 +7845,7 @@
 				BAZEL_TARGET_ID = "//CommandLine/swift_c_module:c_lib macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = c_lib;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -7834,6 +7874,16 @@
 				BAZEL_HOST_TARGET_ID_0 = "//watchOSApp:watchOSApp applebin_watchos-watchos_x86_64-dbg-STABLE-11";
 				"BAZEL_HOST_TARGET_ID_0[sdk=watchos*]" = "//watchOSApp:watchOSApp applebin_watchos-watchos_arm64_32-dbg-STABLE-12";
 				BAZEL_LABEL = "@//watchOSAppExtension:watchOSAppExtension";
+				BAZEL_OUTPUTS_DSYM = (
+					"\"bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-9/bin/Lib/LibFramework.watchOS.framework.dSYM\"",
+					"\"bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-9/bin/UI/UIFramework.watchOS.framework.dSYM\"",
+					"\"bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-9/bin/watchOSAppExtension/watchOSAppExtension.appex.dSYM\"",
+				);
+				"BAZEL_OUTPUTS_DSYM[sdk=watchos*]" = (
+					"\"bazel-out/applebin_watchos-watchos_arm64_32-dbg-STABLE-10/bin/Lib/LibFramework.watchOS.framework.dSYM\"",
+					"\"bazel-out/applebin_watchos-watchos_arm64_32-dbg-STABLE-10/bin/UI/UIFramework.watchOS.framework.dSYM\"",
+					"\"bazel-out/applebin_watchos-watchos_arm64_32-dbg-STABLE-10/bin/watchOSAppExtension/watchOSAppExtension.appex.dSYM\"",
+				);
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-9/bin/watchOSAppExtension/watchOSAppExtension.appex";
 				"BAZEL_OUTPUTS_PRODUCT[sdk=watchos*]" = "bazel-out/applebin_watchos-watchos_arm64_32-dbg-STABLE-10/bin/watchOSAppExtension/watchOSAppExtension.appex";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-9/bin/watchOSAppExtension";
@@ -7845,7 +7895,7 @@
 				CODE_SIGN_STYLE = Manual;
 				"CODE_SIGN_STYLE[sdk=watchos*]" = Automatic;
 				COMPILE_TARGET_NAME = watchOSAppExtension.library;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
 				DEVELOPMENT_TEAM = V82V4GQZXM;
 				ENABLE_BITCODE = NO;
@@ -7884,6 +7934,12 @@
 				BAZEL_COMPILE_TARGET_ID = "//tvOSApp/Test/UnitTests:tvOSAppUnitTests.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3";
 				"BAZEL_COMPILE_TARGET_ID[sdk=appletvsimulator*]" = "$(BAZEL_COMPILE_TARGET_ID)";
 				BAZEL_LABEL = "@//tvOSApp/Test/UnitTests:tvOSAppUnitTests";
+				BAZEL_OUTPUTS_DSYM = (
+					"\"bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-13/bin/Lib/LibFramework.tvOS.framework.dSYM\"",
+					"\"bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-13/bin/UI/UIFramework.tvOS.framework.dSYM\"",
+					"\"bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-13/bin/tvOSApp/Source/tvOSApp.app.dSYM\"",
+					"\"bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-13/bin/tvOSApp/Test/UnitTests/tvOSAppUnitTests.xctest.dSYM\"",
+				);
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-13/bin/tvOSApp/Test/UnitTests/tvOSAppUnitTests.xctest";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-13/bin/tvOSApp/Test/UnitTests";
 				BAZEL_TARGET_ID = "//tvOSApp/Test/UnitTests:tvOSAppUnitTests.__internal__.__test_bundle applebin_tvos-tvos_x86_64-dbg-STABLE-13";
@@ -7891,7 +7947,7 @@
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = tvOSAppUnitTests.library;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -7950,6 +8006,8 @@
 				ARCHS = x86_64;
 				"ARCHS[sdk=appletvos*]" = arm64;
 				BAZEL_LABEL = "@//Lib:LibFramework.tvOS";
+				BAZEL_OUTPUTS_DSYM = "\"bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-13/bin/Lib/LibFramework.tvOS.framework.dSYM\"";
+				"BAZEL_OUTPUTS_DSYM[sdk=appletvos*]" = "\"bazel-out/applebin_tvos-tvos_arm64-dbg-STABLE-14/bin/Lib/LibFramework.tvOS.framework.dSYM\"";
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-13/bin/Lib/LibFramework.tvOS.framework";
 				"BAZEL_OUTPUTS_PRODUCT[sdk=appletvos*]" = "bazel-out/applebin_tvos-tvos_arm64-dbg-STABLE-14/bin/Lib/LibFramework.tvOS.framework";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-13/bin/Lib";
@@ -7959,7 +8017,7 @@
 				"BAZEL_TARGET_ID[sdk=appletvsimulator*]" = "$(BAZEL_TARGET_ID)";
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = LibFramework.tvOS;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-dbg-STABLE-13/bin/Lib/rules_xcodeproj/LibFramework.tvOS/Info.plist";
@@ -8048,7 +8106,7 @@
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CLANG_ENABLE_MODULES = YES;
 				COMPILE_TARGET_NAME = tool.library;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -8078,7 +8136,7 @@
 				BAZEL_TARGET_ID = "//CommandLine/CommandLineToolLib:private_swift_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-19";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = private_swift_lib;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -8162,7 +8220,7 @@
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CLANG_ENABLE_MODULES = YES;
 				COMPILE_TARGET_NAME = tool.library;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -8192,6 +8250,16 @@
 				"BAZEL_COMPILE_TARGET_ID[sdk=appletvos*]" = "//tvOSApp/Source:tvOSApp.library tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-6";
 				"BAZEL_COMPILE_TARGET_ID[sdk=appletvsimulator*]" = "$(BAZEL_COMPILE_TARGET_ID)";
 				BAZEL_LABEL = "@//tvOSApp/Source:tvOSApp";
+				BAZEL_OUTPUTS_DSYM = (
+					"\"bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-13/bin/Lib/LibFramework.tvOS.framework.dSYM\"",
+					"\"bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-13/bin/UI/UIFramework.tvOS.framework.dSYM\"",
+					"\"bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-13/bin/tvOSApp/Source/tvOSApp.app.dSYM\"",
+				);
+				"BAZEL_OUTPUTS_DSYM[sdk=appletvos*]" = (
+					"\"bazel-out/applebin_tvos-tvos_arm64-dbg-STABLE-14/bin/Lib/LibFramework.tvOS.framework.dSYM\"",
+					"\"bazel-out/applebin_tvos-tvos_arm64-dbg-STABLE-14/bin/UI/UIFramework.tvOS.framework.dSYM\"",
+					"\"bazel-out/applebin_tvos-tvos_arm64-dbg-STABLE-14/bin/tvOSApp/Source/tvOSApp.app.dSYM\"",
+				);
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-13/bin/tvOSApp/Source/tvOSApp.app";
 				"BAZEL_OUTPUTS_PRODUCT[sdk=appletvos*]" = "bazel-out/applebin_tvos-tvos_arm64-dbg-STABLE-14/bin/tvOSApp/Source/tvOSApp.app";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-13/bin/tvOSApp/Source";
@@ -8203,7 +8271,7 @@
 				CODE_SIGN_STYLE = Manual;
 				"CODE_SIGN_STYLE[sdk=appletvos*]" = Automatic;
 				COMPILE_TARGET_NAME = tvOSApp.library;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
 				DEVELOPMENT_TEAM = V82V4GQZXM;
 				ENABLE_BITCODE = NO;
@@ -8268,6 +8336,14 @@
 				"BAZEL_COMPILE_TARGET_ID[sdk=iphoneos*]" = "//UI:UI ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4";
 				"BAZEL_COMPILE_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_ID)";
 				BAZEL_LABEL = "@//UI:UIFramework.iOS";
+				BAZEL_OUTPUTS_DSYM = (
+					"\"bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-7/bin/Lib/LibFramework.iOS.framework.dSYM\"",
+					"\"bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-7/bin/UI/UIFramework.iOS.framework.dSYM\"",
+				);
+				"BAZEL_OUTPUTS_DSYM[sdk=iphoneos*]" = (
+					"\"bazel-out/applebin_ios-ios_arm64-dbg-STABLE-8/bin/Lib/LibFramework.iOS.framework.dSYM\"",
+					"\"bazel-out/applebin_ios-ios_arm64-dbg-STABLE-8/bin/UI/UIFramework.iOS.framework.dSYM\"",
+				);
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-7/bin/UI/UIFramework.iOS.framework";
 				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/applebin_ios-ios_arm64-dbg-STABLE-8/bin/UI/UIFramework.iOS.framework";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-7/bin/UI";
@@ -8277,7 +8353,7 @@
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = UI;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -8326,7 +8402,7 @@
 				BAZEL_TARGET_ID = "//CommandLine/CommandLineToolLib:lib_swift macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = lib_swift;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -8353,7 +8429,7 @@
 				BAZEL_TARGET_ID = "//CommandLine/CommandLineToolLib:private_swift_lib macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = private_swift_lib;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -8391,6 +8467,18 @@
 				BAZEL_COMPILE_TARGET_ID = "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1";
 				"BAZEL_COMPILE_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_ID)";
 				BAZEL_LABEL = "@//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests";
+				BAZEL_OUTPUTS_DSYM = (
+					"\"bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-7/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.framework.dSYM\"",
+					"\"bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-7/bin/Lib/LibFramework.iOS.framework.dSYM\"",
+					"\"bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-7/bin/UI/UIFramework.iOS.framework.dSYM\"",
+					"\"bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-7/bin/WidgetExtension/WidgetExtension.appex.dSYM\"",
+					"\"bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-7/bin/AppClip/AppClip.app.dSYM\"",
+					"\"bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-9/bin/Lib/LibFramework.watchOS.framework.dSYM\"",
+					"\"bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-9/bin/UI/UIFramework.watchOS.framework.dSYM\"",
+					"\"bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-9/bin/watchOSAppExtension/watchOSAppExtension.appex.dSYM\"",
+					"\"bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-7/bin/iOSApp/Source/iOSApp.app.dSYM\"",
+					"\"bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-7/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTests.xctest.dSYM\"",
+				);
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-7/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTests.xctest";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-7/bin/iOSApp/Test/SwiftUnitTests";
 				BAZEL_TARGET_ID = "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-7";
@@ -8398,7 +8486,7 @@
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = iOSAppSwiftUnitTests.library;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -8468,7 +8556,7 @@
 				BAZEL_TARGET_ID = "//CommandLine/CommandLineToolLib:private_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-19";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = private_lib;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -8500,7 +8588,7 @@
 				"BAZEL_TARGET_ID[sdk=watchsimulator*]" = "$(BAZEL_TARGET_ID)";
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = watchOS;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-dbg-STABLE-9/bin/Lib/dist/dynamic/rules_xcodeproj/watchOS/Info.plist";
@@ -8592,6 +8680,18 @@
 				BAZEL_COMPILE_TARGET_ID = "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1";
 				"BAZEL_COMPILE_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_ID)";
 				BAZEL_LABEL = "@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests";
+				BAZEL_OUTPUTS_DSYM = (
+					"\"bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-7/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.framework.dSYM\"",
+					"\"bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-7/bin/Lib/LibFramework.iOS.framework.dSYM\"",
+					"\"bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-7/bin/UI/UIFramework.iOS.framework.dSYM\"",
+					"\"bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-7/bin/WidgetExtension/WidgetExtension.appex.dSYM\"",
+					"\"bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-7/bin/AppClip/AppClip.app.dSYM\"",
+					"\"bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-9/bin/Lib/LibFramework.watchOS.framework.dSYM\"",
+					"\"bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-9/bin/UI/UIFramework.watchOS.framework.dSYM\"",
+					"\"bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-9/bin/watchOSAppExtension/watchOSAppExtension.appex.dSYM\"",
+					"\"bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-7/bin/iOSApp/Source/iOSApp.app.dSYM\"",
+					"\"bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-7/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests.xctest.dSYM\"",
+				);
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-7/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests.xctest";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-7/bin/iOSApp/Test/ObjCUnitTests";
 				BAZEL_TARGET_ID = "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-7";
@@ -8600,7 +8700,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = iOSAppObjCUnitTests.library;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -8637,6 +8737,8 @@
 				"BAZEL_COMPILE_TARGET_ID[sdk=iphoneos*]" = "//AppClip:AppClip.library ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4";
 				"BAZEL_COMPILE_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_ID)";
 				BAZEL_LABEL = "@//AppClip:AppClip";
+				BAZEL_OUTPUTS_DSYM = "\"bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-7/bin/AppClip/AppClip.app.dSYM\"";
+				"BAZEL_OUTPUTS_DSYM[sdk=iphoneos*]" = "\"bazel-out/applebin_ios-ios_arm64-dbg-STABLE-8/bin/AppClip/AppClip.app.dSYM\"";
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-7/bin/AppClip/AppClip.app";
 				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/applebin_ios-ios_arm64-dbg-STABLE-8/bin/AppClip/AppClip.app";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-7/bin/AppClip";
@@ -8650,7 +8752,7 @@
 				CODE_SIGN_STYLE = Manual;
 				"CODE_SIGN_STYLE[sdk=iphoneos*]" = Automatic;
 				COMPILE_TARGET_NAME = AppClip.library;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
 				DEVELOPMENT_TEAM = V82V4GQZXM;
 				ENABLE_BITCODE = NO;
@@ -8699,7 +8801,7 @@
 				BAZEL_TARGET_ID = "//CommandLine/CommandLineToolLib:lib_swift macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-19";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = lib_swift;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -8759,7 +8861,7 @@
 				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "//Lib:Lib ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = Lib;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -8796,6 +8898,8 @@
 				ARCHS = x86_64;
 				"ARCHS[sdk=watchos*]" = arm64_32;
 				BAZEL_LABEL = "@//Lib:LibFramework.watchOS";
+				BAZEL_OUTPUTS_DSYM = "\"bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-9/bin/Lib/LibFramework.watchOS.framework.dSYM\"";
+				"BAZEL_OUTPUTS_DSYM[sdk=watchos*]" = "\"bazel-out/applebin_watchos-watchos_arm64_32-dbg-STABLE-10/bin/Lib/LibFramework.watchOS.framework.dSYM\"";
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-9/bin/Lib/LibFramework.watchOS.framework";
 				"BAZEL_OUTPUTS_PRODUCT[sdk=watchos*]" = "bazel-out/applebin_watchos-watchos_arm64_32-dbg-STABLE-10/bin/Lib/LibFramework.watchOS.framework";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-9/bin/Lib";
@@ -8805,7 +8909,7 @@
 				"BAZEL_TARGET_ID[sdk=watchsimulator*]" = "$(BAZEL_TARGET_ID)";
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = LibFramework.watchOS;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-dbg-STABLE-9/bin/Lib/rules_xcodeproj/LibFramework.watchOS/Info.plist";
@@ -8834,6 +8938,10 @@
 				BAZEL_COMPILE_TARGET_ID = "//macOSApp/Test/UITests:macOSAppUITests.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-15";
 				"BAZEL_COMPILE_TARGET_ID[sdk=macosx*]" = "$(BAZEL_COMPILE_TARGET_ID)";
 				BAZEL_LABEL = "@//macOSApp/Test/UITests:macOSAppUITests";
+				BAZEL_OUTPUTS_DSYM = (
+					"\"bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-16/bin/macOSApp/Source/macOSApp.app.dSYM\"",
+					"\"bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-16/bin/macOSApp/Test/UITests/macOSAppUITests.xctest.dSYM\"",
+				);
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-16/bin/macOSApp/Test/UITests/macOSAppUITests.xctest";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-16/bin/macOSApp/Test/UITests";
 				BAZEL_TARGET_ID = "//macOSApp/Test/UITests:macOSAppUITests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-STABLE-16";
@@ -8842,7 +8950,7 @@
 				CODE_SIGNING_ALLOWED = YES;
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = macOSAppUITests.library;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -8880,6 +8988,7 @@
 				BAZEL_HOST_LABEL_0 = "@//iMessageApp:iMessageApp";
 				BAZEL_HOST_TARGET_ID_0 = "//iMessageApp:iMessageApp applebin_ios-ios_x86_64-dbg-STABLE-7";
 				BAZEL_LABEL = "@//iMessageApp:iMessageAppExtension";
+				BAZEL_OUTPUTS_DSYM = "\"bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-7/bin/iMessageApp/iMessageAppExtension.appex.dSYM\"";
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-7/bin/iMessageApp/iMessageAppExtension.appex";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-7/bin/iMessageApp";
 				BAZEL_TARGET_ID = "//iMessageApp:iMessageAppExtension applebin_ios-ios_x86_64-dbg-STABLE-7";
@@ -8887,7 +8996,7 @@
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = iMessageAppExtension.library;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -8954,7 +9063,7 @@
 				BAZEL_TARGET_ID = "//CommandLine/CommandLineToolLib:private_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = private_lib;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -8979,7 +9088,7 @@
 				BAZEL_TARGET_ID = "//CommandLine/CommandLineToolLib:private_swift_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = private_swift_lib;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -9033,7 +9142,7 @@
 				BAZEL_TARGET_ID = "//CommandLine/swift_c_module:c_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-19";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = c_lib;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -9107,7 +9216,7 @@
 				BAZEL_TARGET_ID = "//iOSApp/Source/Utils:Utils ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = Utils;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -9176,7 +9285,7 @@
 				BAZEL_TARGET_ID = "//CommandLine/CommandLineToolLib:lib_impl macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = lib_impl;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -9205,7 +9314,7 @@
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = iMessageApp;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -9275,7 +9384,7 @@
 				BAZEL_TARGET_ID = "//CommandLine/CommandLineToolLib:lib_impl macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-19";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = lib_impl;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -9313,6 +9422,7 @@
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(BAZEL_PACKAGE_BIN_DIR)";
 				COPY_PHASE_STRIP = NO;
 				CXX = "$(BAZEL_INTEGRATION_DIR)/clang.sh";
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEPLOYMENT_LOCATION = "$(INDEXING_DEPLOYMENT_LOCATION__$(INDEX_ENABLE_BUILD_ARENA)),";
 				DSTROOT = "$(PROJECT_TEMP_DIR)";
 				ENABLE_DEFAULT_SEARCH_PATHS = NO;
@@ -9400,7 +9510,7 @@
 				BAZEL_TARGET_ID = "//CommandLine/CommandLineToolLib:lib_impl macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = lib_impl;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -9423,6 +9533,12 @@
 				BAZEL_COMPILE_TARGET_ID = "//watchOSApp/Test/UITests:watchOSAppUITests.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2";
 				"BAZEL_COMPILE_TARGET_ID[sdk=watchsimulator*]" = "$(BAZEL_COMPILE_TARGET_ID)";
 				BAZEL_LABEL = "@//watchOSApp/Test/UITests:watchOSAppUITests";
+				BAZEL_OUTPUTS_DSYM = (
+					"\"bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-9/bin/Lib/LibFramework.watchOS.framework.dSYM\"",
+					"\"bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-9/bin/UI/UIFramework.watchOS.framework.dSYM\"",
+					"\"bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-9/bin/watchOSAppExtension/watchOSAppExtension.appex.dSYM\"",
+					"\"bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-9/bin/watchOSApp/Test/UITests/watchOSAppUITests.xctest.dSYM\"",
+				);
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-9/bin/watchOSApp/Test/UITests/watchOSAppUITests.xctest";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-9/bin/watchOSApp/Test/UITests";
 				BAZEL_TARGET_ID = "//watchOSApp/Test/UITests:watchOSAppUITests.__internal__.__test_bundle applebin_watchos-watchos_x86_64-dbg-STABLE-9";
@@ -9431,7 +9547,7 @@
 				CODE_SIGNING_ALLOWED = YES;
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = watchOSAppUITests.library;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -9511,7 +9627,7 @@
 				BAZEL_TARGET_ID = "@FXPageControl//:FXPageControl ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = FXPageControl;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -9542,6 +9658,8 @@
 				BAZEL_HOST_TARGET_ID_0 = "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-dbg-STABLE-7";
 				"BAZEL_HOST_TARGET_ID_0[sdk=iphoneos*]" = "//iOSApp/Source:iOSApp applebin_ios-ios_arm64-dbg-STABLE-8";
 				BAZEL_LABEL = "@//WidgetExtension:WidgetExtension";
+				BAZEL_OUTPUTS_DSYM = "\"bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-7/bin/WidgetExtension/WidgetExtension.appex.dSYM\"";
+				"BAZEL_OUTPUTS_DSYM[sdk=iphoneos*]" = "\"bazel-out/applebin_ios-ios_arm64-dbg-STABLE-8/bin/WidgetExtension/WidgetExtension.appex.dSYM\"";
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-7/bin/WidgetExtension/WidgetExtension.appex";
 				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/applebin_ios-ios_arm64-dbg-STABLE-8/bin/WidgetExtension/WidgetExtension.appex";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-7/bin/WidgetExtension";
@@ -9553,7 +9671,7 @@
 				CODE_SIGN_STYLE = Manual;
 				"CODE_SIGN_STYLE[sdk=iphoneos*]" = Automatic;
 				COMPILE_TARGET_NAME = WidgetExtension.library;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
 				DEVELOPMENT_TEAM = V82V4GQZXM;
 				ENABLE_BITCODE = NO;
@@ -9602,7 +9720,7 @@
 				BAZEL_TARGET_ID = "//CommandLine/CommandLineToolLib:lib_swift macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = lib_swift;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -9710,7 +9828,7 @@
 				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswer ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = MixedAnswer;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -9734,6 +9852,12 @@
 				BAZEL_COMPILE_TARGET_ID = "//tvOSApp/Test/UITests:tvOSAppUITests.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3";
 				"BAZEL_COMPILE_TARGET_ID[sdk=appletvsimulator*]" = "$(BAZEL_COMPILE_TARGET_ID)";
 				BAZEL_LABEL = "@//tvOSApp/Test/UITests:tvOSAppUITests";
+				BAZEL_OUTPUTS_DSYM = (
+					"\"bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-13/bin/Lib/LibFramework.tvOS.framework.dSYM\"",
+					"\"bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-13/bin/UI/UIFramework.tvOS.framework.dSYM\"",
+					"\"bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-13/bin/tvOSApp/Source/tvOSApp.app.dSYM\"",
+					"\"bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-13/bin/tvOSApp/Test/UITests/tvOSAppUITests.xctest.dSYM\"",
+				);
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-13/bin/tvOSApp/Test/UITests/tvOSAppUITests.xctest";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-13/bin/tvOSApp/Test/UITests";
 				BAZEL_TARGET_ID = "//tvOSApp/Test/UITests:tvOSAppUITests.__internal__.__test_bundle applebin_tvos-tvos_x86_64-dbg-STABLE-13";
@@ -9742,7 +9866,7 @@
 				CODE_SIGNING_ALLOWED = YES;
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = tvOSAppUITests.library;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -9777,6 +9901,7 @@
 				BAZEL_COMPILE_TARGET_ID = "//CommandLine/Tests:CommandLineLibSwiftTestsLib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17";
 				"BAZEL_COMPILE_TARGET_ID[sdk=macosx*]" = "$(BAZEL_COMPILE_TARGET_ID)";
 				BAZEL_LABEL = "@//CommandLine/Tests:CommandLineToolTests";
+				BAZEL_OUTPUTS_DSYM = "\"bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-20/bin/CommandLine/Tests/CommandLineToolTests.xctest.dSYM\"";
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-20/bin/CommandLine/Tests/CommandLineToolTests.xctest";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-20/bin/CommandLine/Tests";
 				BAZEL_TARGET_ID = "//CommandLine/Tests:CommandLineToolTests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-STABLE-20";
@@ -9784,7 +9909,7 @@
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = CommandLineLibSwiftTestsLib;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -9848,7 +9973,7 @@
 				BAZEL_TARGET_ID = "//CommandLine/swift_c_module:c_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = c_lib;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -9872,6 +9997,7 @@
 				BAZEL_COMPILE_TARGET_ID = "//macOSApp/Source:macOSApp.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-15";
 				"BAZEL_COMPILE_TARGET_ID[sdk=macosx*]" = "$(BAZEL_COMPILE_TARGET_ID)";
 				BAZEL_LABEL = "@//macOSApp/Source:macOSApp";
+				BAZEL_OUTPUTS_DSYM = "\"bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-16/bin/macOSApp/Source/macOSApp.app.dSYM\"";
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-16/bin/macOSApp/Source/macOSApp.app";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-16/bin/macOSApp/Source";
 				BAZEL_TARGET_ID = "//macOSApp/Source:macOSApp applebin_macos-darwin_x86_64-dbg-STABLE-16";
@@ -9879,7 +10005,7 @@
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = macOSApp.library;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -9923,7 +10049,7 @@
 				CODE_SIGN_STYLE = Manual;
 				"CODE_SIGN_STYLE[sdk=watchos*]" = Automatic;
 				COMPILE_TARGET_NAME = watchOSApp;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
 				DEVELOPMENT_TEAM = V82V4GQZXM;
 				ENABLE_BITCODE = NO;
@@ -9954,7 +10080,7 @@
 				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswerLib_Swift ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = MixedAnswerLib_Swift;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -10066,6 +10192,8 @@
 				"BAZEL_COMPILE_TARGET_ID[sdk=iphoneos*]" = "//iOSApp/Source/CoreUtilsObjC:CoreUtilsObjC ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4";
 				"BAZEL_COMPILE_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_ID)";
 				BAZEL_LABEL = "@//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC";
+				BAZEL_OUTPUTS_DSYM = "\"bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-7/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.framework.dSYM\"";
+				"BAZEL_OUTPUTS_DSYM[sdk=iphoneos*]" = "\"bazel-out/applebin_ios-ios_arm64-dbg-STABLE-8/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.framework.dSYM\"";
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-7/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.framework";
 				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/applebin_ios-ios_arm64-dbg-STABLE-8/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.framework";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-7/bin/iOSApp/Source/CoreUtilsObjC";
@@ -10075,7 +10203,7 @@
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = CoreUtilsObjC;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;

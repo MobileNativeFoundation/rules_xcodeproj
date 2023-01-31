@@ -80,7 +80,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Update .lldbinit"
-               scriptText = "&quot;$BAZEL_INTEGRATION_DIR/create_lldbinit.sh&quot;">
+               scriptText = "&quot;$BAZEL_INTEGRATION_DIR/create_lldbinit.sh&quot;&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
@@ -115,7 +115,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Update .lldbinit"
-               scriptText = "&quot;$BAZEL_INTEGRATION_DIR/create_lldbinit.sh&quot;">
+               scriptText = "&quot;$BAZEL_INTEGRATION_DIR/create_lldbinit.sh&quot;&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"

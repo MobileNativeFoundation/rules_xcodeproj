@@ -62,7 +62,9 @@ extension XCScheme {
                 .first
             {
                 otherPreActions.append(
-                    .createLLDBInit(
+                    .createPreActionScript(
+                        title: "Update .lldbinit",
+                        scriptText: ExecutionAction.createLLDBInitScript,
                         buildableReference: aTargetInfo.buildableReference
                     )
                 )
@@ -84,7 +86,9 @@ extension XCScheme {
             // TODO: Make this similar to `initBazelBuildOutputGroupsFile()`,
             // instead of `otherPreActions`
             let otherPreActions: [XCScheme.ExecutionAction] = [
-                .createLLDBInit(
+                .createPreActionScript(
+                    title: "Update .lldbinit",
+                    scriptText: ExecutionAction.createLLDBInitScript,
                     buildableReference: launchActionInfo
                         .targetInfo.buildableReference
                 )
@@ -103,10 +107,23 @@ extension XCScheme {
 
         let profileAction: XCScheme.ProfileAction?
         if let profileActionInfo = schemeInfo.profileActionInfo {
+            let scriptTitle: String
+            let scriptText: String
+            if buildMode == .xcode {
+                scriptTitle = "Update .lldbinit"
+                scriptText = XCScheme.ExecutionAction.createLLDBInitScript
+            } else {
+                scriptTitle = "Update .lldbinit and copy dSYMs"
+                scriptText = XCScheme.ExecutionAction.createLLDBInitScript +
+                    "\n" + XCScheme.ExecutionAction.copyDSYMsScript
+            }
+
             // TODO: Make this similar to `initBazelBuildOutputGroupsFile()`,
             // instead of `otherPreActions`
             let otherPreActions: [XCScheme.ExecutionAction] = [
-                .createLLDBInit(
+                .createPreActionScript(
+                    title: scriptTitle,
+                    scriptText: scriptText,
                     buildableReference: profileActionInfo
                         .targetInfo.buildableReference
                 )
@@ -227,14 +244,22 @@ fi
         )
     }
 
-    static func createLLDBInit(
+    static let createLLDBInitScript = #"""
+"$BAZEL_INTEGRATION_DIR/create_lldbinit.sh"
+"""#
+
+    static let copyDSYMsScript = #"""
+"$BAZEL_INTEGRATION_DIR/copy_dsyms.sh"
+"""#
+
+    static func createPreActionScript(
+        title: String,
+        scriptText: String,
         buildableReference: XCScheme.BuildableReference
     ) -> XCScheme.ExecutionAction {
         return .init(
-            scriptText: #"""
-"$BAZEL_INTEGRATION_DIR/create_lldbinit.sh"
-"""#,
-            title: "Update .lldbinit",
+            scriptText: scriptText + "\n",
+            title: title,
             environmentBuildable: buildableReference
         )
     }

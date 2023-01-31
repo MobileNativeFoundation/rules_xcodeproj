@@ -111,10 +111,14 @@ def process_library_target(
         modulemaps = modulemaps,
         transitive_infos = transitive_infos,
     )
+    debug_outputs = target[apple_common.AppleDebugOutputs] if apple_common.AppleDebugOutputs in target else None
+    output_group_info = target[OutputGroupInfo] if OutputGroupInfo in target else None
     outputs = output_files.collect(
         ctx = ctx,
+        debug_outputs = debug_outputs,
         id = id,
         inputs = inputs,
+        output_group_info = output_group_info,
         swift_info = swift_info,
         transitive_infos = transitive_infos,
     )

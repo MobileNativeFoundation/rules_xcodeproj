@@ -385,10 +385,14 @@ def process_top_level_target(
         transitive_infos = transitive_infos,
         avoid_deps = avoid_deps,
     )
+    debug_outputs = target[apple_common.AppleDebugOutputs] if apple_common.AppleDebugOutputs in target else None
+    output_group_info = target[OutputGroupInfo] if OutputGroupInfo in target else None
     outputs = output_files.collect(
         ctx = ctx,
+        debug_outputs = debug_outputs,
         id = id,
         inputs = inputs,
+        output_group_info = output_group_info,
         swift_info = swift_info,
         top_level_product = product,
         infoplist = infoplist,
@@ -444,12 +448,12 @@ def process_top_level_target(
 
     # We don't have access to `CcInfo`/`SwiftInfo` here, so we have to make
     # a best guess at `-g` being used
-    # We don't set "DEBUG_INFORMATION_FORMAT" for "dwarf"-with-dsym",
-    # as that's Xcode's default
+    # We don't set "DEBUG_INFORMATION_FORMAT" for "dwarf", as we set that at
+    # the project level.
     if not ctx.var["COMPILATION_MODE"] == "dbg":
         build_settings["DEBUG_INFORMATION_FORMAT"] = ""
-    elif not cpp.apple_generate_dsym:
-        build_settings["DEBUG_INFORMATION_FORMAT"] = "dwarf"
+    elif cpp.apple_generate_dsym:
+        build_settings["DEBUG_INFORMATION_FORMAT"] = "dwarf-with-dsym"
 
     set_if_true(
         build_settings,

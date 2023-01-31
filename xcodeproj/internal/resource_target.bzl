@@ -42,7 +42,9 @@ def _process_resource_bundle(bundle, *, information):
 
     outputs = output_files.collect(
         ctx = None,
+        debug_outputs = None,
         id = id,
+        output_group_info = None,
         swift_info = None,
         transitive_infos = [],
         should_produce_dto = False,
