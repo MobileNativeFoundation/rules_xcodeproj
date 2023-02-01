@@ -3,6 +3,21 @@
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load(":providers.bzl", "XcodeProjRunnerOutputInfo")
 
+def _get_xcode_product_version(*, xcode_config):
+    raw_version = str(xcode_config.xcode_version())
+    if not raw_version:
+        fail("""\
+`xcode_config.xcode_version` was not set. This is a bazel bug. Try again.
+""")
+
+    version_components = raw_version.split(".")
+    if len(version_components) < 4:
+        # This will result in analysis cache misses, but it's better than
+        # failing
+        return raw_version
+
+    return version_components[3]
+
 def _process_extra_flags(*, attr, content, setting, config, config_suffix):
     extra_flags = getattr(attr, setting)[BuildSettingInfo].value
     if extra_flags:
@@ -132,8 +147,9 @@ def _xcodeproj_runner_impl(ctx):
     config = ctx.attr.config
     project_name = ctx.attr.project_name
 
-    xcode_config = ctx.attr._xcode_config[apple_common.XcodeVersionConfig]
-    xcode_version = str(xcode_config.xcode_version()).split(".")[3]
+    xcode_version = _get_xcode_product_version(
+        xcode_config = ctx.attr._xcode_config[apple_common.XcodeVersionConfig],
+    )
 
     xcodeproj_bazelrc = _write_xcodeproj_bazelrc(
         name = ctx.attr.name,
