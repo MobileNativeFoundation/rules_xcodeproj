@@ -16,17 +16,12 @@ on it, or [file a new issue][file-an-issue]!
 
 ## Features
 
-- [x] Multiple ways of building your project in Xcode
-  - [x] Build your Bazel targets with Xcode, _not_ Bazel
-    (a.k.a. Build with Xcode or BwX mode)
-  - [x] Build your Bazel targets with Bazel (a.k.a Build with Bazel or BwB mode)
 - [x] Full support for Xcode features:
-  - [x] Indexing (i.e. autocomplete, syntax highlighting, jump to
-    definition)
+  - [x] Indexing (i.e. autocomplete, syntax highlighting, jump to definition)
   - [x] Debugging
   - [x] Runtime sanitizers
   - [x] Inline warnings and errors
-  - [x] Fix-its (currently only BwX)
+  - [x] Fix-its (currently only in BwX mode)
   - [x] Test selection and running
   - [x] Embedded Targets (App Clips, App Extensions, and Watch Apps)
   - [X] Dynamic frameworks
@@ -35,19 +30,19 @@ on it, or [file a new issue][file-an-issue]!
   - [x] Include a subset of your targets in Xcode
   - [x] Unfocused targets are built with Bazel
   - [x] Works in BwX mode as well!
+- [x] Multiple ways of building your project in Xcode
+  - [x] Build your Bazel targets with Bazel (a.k.a Build with Bazel or BwB mode)
+  - [x] Build your Bazel targets with Xcode, _not_ Bazel
+    (a.k.a. Build with Xcode or BwX mode)[^bwx_warning]
 
-**Note:** Not all rules are supported yet, and the rules that are supported
-don't have full support yet. See the
-[1.0 Project](https://github.com/orgs/buildbuddy-io/projects/2/views/3)
-for details on progress towards the 1.0 release. Here are a few of the remaining
-planned high level features:
-
-- [ ] [Supporting all Core C/C++/Obj-C, rules_apple, and rules_swift rules](https://github.com/buildbuddy-io/rules_xcodeproj/milestone/4)
-- [ ] [Distribution rules](https://github.com/buildbuddy-io/rules_xcodeproj/milestone/18)
-- [ ] [Multiple Xcode configurations](https://github.com/buildbuddy-io/rules_xcodeproj/milestone/17)
+[^bwx_warning]: Build with Bazel mode is the build mode with first class
+  support. We will try to make Build with Xcode mode work with every project, but
+  there are limitations that can
+  [make the experience subpar](/docs/faq.md#why-do-some-of-my-swift_librarys-compile-twice-in-bwx-mode),
+  or not work at all. We recommend using BwB mode if possible.
 
 We've also documented the [high level design](/docs/design/high-level.md) of the
-rules.
+ruleset.
 
 ## Projects using rules_xcodeproj
 
