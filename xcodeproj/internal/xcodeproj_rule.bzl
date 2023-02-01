@@ -1142,6 +1142,7 @@ echo "${{execution_root#$workspace_dir/}}" >> "{out_full}"
 def _write_xcodeproj(
         *,
         ctx,
+        install_directory,
         project_name,
         spec_files,
         root_dirs_file,
@@ -1154,7 +1155,7 @@ def _write_xcodeproj(
     )
 
     install_path = paths.join(
-        paths.dirname(xcodeproj.short_path),
+        install_directory,
         "{}.xcodeproj".format(project_name),
     )
 
@@ -1488,6 +1489,7 @@ done
 
     xcodeproj, install_path = _write_xcodeproj(
         ctx = ctx,
+        install_directory = ctx.attr.install_directory,
         project_name = project_name,
         spec_files = spec_files,
         root_dirs_file = root_dirs_file,
@@ -1613,6 +1615,13 @@ labels must match transitive dependencies of the targets specified in the
 """,
             default = [],
         ),
+        "install_directory": attr.string(
+            doc = """\
+The directory where the generated project will be written to. The path is
+relative to the workspace root.
+""",
+            mandatory = True,
+        ),
         "minimum_xcode_version": attr.string(
             doc = """\
 The minimum Xcode version that the generated project supports. Newer Xcode
@@ -1620,7 +1629,7 @@ versions can support newer features, so setting this to the highest value you
 can will enable the most features. The value is the dot separated version
 number (e.g. "13.4.1", "14", "14.1"). Defaults to whichever version of Xcode
 that Bazel uses during project generation.
-        """,
+""",
         ),
         "owned_extra_files": attr.label_keyed_string_dict(
             allow_files = True,
