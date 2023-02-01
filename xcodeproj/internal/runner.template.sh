@@ -167,7 +167,6 @@ else
   while IFS='' read -r arg; do cmd_args+=("$arg"); done < <(xargs -n1 <<< "$1")
   cmd="${cmd_args[0]}"
 
-  post_config_flags=("${cmd_args[@]:1}")
   if [[ $cmd == "build" && -n "${generator_output_groups:-}" ]]; then
     # `--experimental_remote_download_regex`
     readonly base_outputs_regex='.*\.a$|.*\.swiftdoc$|.*\.swiftmodule$|.*\.swiftsourceinfo$'
