@@ -100,7 +100,12 @@ def _calculate_swiftui_preview_targets(
 
 def _get_minimum_xcode_version(*, ctx):
     xcode_config = ctx.attr._xcode_config[apple_common.XcodeVersionConfig]
-    return ".".join(str(xcode_config.xcode_version()).split(".")[0:3])
+    version = str(xcode_config.xcode_version())
+    if not version:
+        fail("""\
+`xcode_config.xcode_version` was not set. This is a bazel bug. Try again.
+""")
+    return ".".join(version.split(".")[0:3])
 
 def _is_same_platform_swiftui_preview_target(*, platform, xcode_target):
     if not xcode_target:
