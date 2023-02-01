@@ -256,7 +256,7 @@
                 "-DOS_MACOSX",
                 "-fno-autolink",
                 "--config",
-                "$(PROJECT_DIR)/CommandLine/CommandLineTool/verbose.cfg",
+                "$(CURRENT_EXECUTION_ROOT)/CommandLine/CommandLineTool/verbose.cfg",
                 "-DDEBUG=1",
                 "-fstack-protector",
                 "-fstack-protector-all"
@@ -361,7 +361,7 @@
                 "-DOS_MACOSX",
                 "-fno-autolink",
                 "--config",
-                "$(PROJECT_DIR)/CommandLine/CommandLineTool/verbose.cfg",
+                "$(CURRENT_EXECUTION_ROOT)/CommandLine/CommandLineTool/verbose.cfg",
                 "-DDEBUG=1",
                 "-fstack-protector",
                 "-fstack-protector-all"
@@ -464,7 +464,7 @@
                 "-DOS_MACOSX",
                 "-fno-autolink",
                 "--config",
-                "$(PROJECT_DIR)/CommandLine/CommandLineTool/verbose.cfg",
+                "$(CURRENT_EXECUTION_ROOT)/CommandLine/CommandLineTool/verbose.cfg",
                 "-DDEBUG=1",
                 "-fstack-protector",
                 "-fstack-protector-all"

@@ -54,6 +54,9 @@ $(INDEXING_BUILT_PRODUCTS_DIR__$(INDEX_ENABLE_BUILD_ARENA))
 $(BUILD_DIR)/$(BAZEL_PACKAGE_BIN_DIR)
 """,
                 "COPY_PHASE_STRIP": false,
+                "CURRENT_EXECUTION_ROOT": """
+$(INDEXING_PROJECT_DIR__$(INDEX_ENABLE_BUILD_ARENA))
+""",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "DEPLOYMENT_LOCATION": """
 $(INDEXING_DEPLOYMENT_LOCATION__$(INDEX_ENABLE_BUILD_ARENA)),
@@ -74,6 +77,11 @@ $(INDEXING_DEPLOYMENT_LOCATION__NO)
 """,
                 "INDEXING_DEPLOYMENT_LOCATION__NO": true,
                 "INDEXING_DEPLOYMENT_LOCATION__YES": false,
+                "INDEXING_PROJECT_DIR__": "$(INDEXING_PROJECT_DIR__NO)",
+                "INDEXING_PROJECT_DIR__NO": "$(PROJECT_DIR)",
+                "INDEXING_PROJECT_DIR__YES": """
+/tmp/bazel-output-base/rules_xcodeproj/indexbuild_output_base/execroot/com_github_buildbuddy_io_rules_xcodeproj
+""",
                 "INSTALL_PATH": "$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)/bin",
                 "INTERNAL_DIR": "$(PROJECT_FILE_PATH)/r_xcp",
                 "LD_OBJC_ABI_VERSION": "",
@@ -187,6 +195,9 @@ $(INDEXING_BUILT_PRODUCTS_DIR__$(INDEX_ENABLE_BUILD_ARENA))
 $(BUILD_DIR)/$(BAZEL_PACKAGE_BIN_DIR)
 """,
                 "COPY_PHASE_STRIP": false,
+                "CURRENT_EXECUTION_ROOT": """
+$(INDEXING_PROJECT_DIR__$(INDEX_ENABLE_BUILD_ARENA))
+""",
                 "DEBUG_INFORMATION_FORMAT": "dwarf",
                 "DEPLOYMENT_LOCATION": """
 $(INDEXING_DEPLOYMENT_LOCATION__$(INDEX_ENABLE_BUILD_ARENA)),
@@ -210,6 +221,11 @@ $(INDEXING_DEPLOYMENT_LOCATION__NO)
 """,
                 "INDEXING_DEPLOYMENT_LOCATION__NO": true,
                 "INDEXING_DEPLOYMENT_LOCATION__YES": false,
+                "INDEXING_PROJECT_DIR__": "$(INDEXING_PROJECT_DIR__NO)",
+                "INDEXING_PROJECT_DIR__NO": "$(PROJECT_DIR)",
+                "INDEXING_PROJECT_DIR__YES": """
+/tmp/bazel-output-base/rules_xcodeproj/indexbuild_output_base/execroot/com_github_buildbuddy_io_rules_xcodeproj
+""",
                 "INSTALL_PATH": "$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)/bin",
                 "INTERNAL_DIR": "$(PROJECT_FILE_PATH)/r_xcp",
                 "LD_OBJC_ABI_VERSION": "",

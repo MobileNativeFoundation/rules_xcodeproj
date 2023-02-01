@@ -16,13 +16,6 @@ extension Generator {
 
         let nonRelativeProjectDir = directories.executionRoot
 
-        let projectDir: Path
-        if nonRelativeProjectDir.isRelative {
-            projectDir = directories.projectRoot + nonRelativeProjectDir
-        } else {
-            projectDir = nonRelativeProjectDir
-        }
-
         let srcRoot: String
         if forFixtures {
             srcRoot = (0 ..< nonRelativeProjectDir.components.count)
@@ -32,11 +25,40 @@ extension Generator {
             srcRoot = directories.workspace.string
         }
 
+        let absoluteProjectDir: String
+        let projectDir: Path
+        if nonRelativeProjectDir.isRelative {
+            projectDir = directories.projectRoot + nonRelativeProjectDir
+            absoluteProjectDir = "\(srcRoot)/\(nonRelativeProjectDir)"
+        } else {
+            projectDir = nonRelativeProjectDir
+            absoluteProjectDir = nonRelativeProjectDir.string
+        }
+
         let mainGroup = PBXGroup(
             sourceTree: forFixtures ? .group : .absolute,
             path: srcRoot
         )
         pbxProj.add(object: mainGroup)
+
+        let absoluteProjectDirPath: String
+        let projectDirPath: String
+        if projectDir.string.hasPrefix("/private/") {
+            projectDirPath = String(projectDir.string.dropFirst(8))
+            absoluteProjectDirPath = projectDirPath
+        } else {
+            projectDirPath = projectDir.string
+            absoluteProjectDirPath = absoluteProjectDir
+        }
+
+        let projectDirComponents = absoluteProjectDirPath
+            .split(separator: "/", omittingEmptySubsequences: false)
+
+        // build_output_base/execroot/_main -> indexbuild_output_base/execroot/_main
+        let indexingProjectDirPath =
+            (projectDirComponents.prefix(upTo: projectDirComponents.count - 3) +
+             ["indexbuild_output_base"] +
+             projectDirComponents.suffix(2)).joined(separator: "/")
 
         var buildSettings: [String: Any] = [
             "ALWAYS_SEARCH_USER_PATHS": false,
@@ -63,6 +85,9 @@ $(INDEXING_BUILT_PRODUCTS_DIR__$(INDEX_ENABLE_BUILD_ARENA))
             "CLANG_MODULES_AUTOLINK": false,
             "CONFIGURATION_BUILD_DIR": "$(BUILD_DIR)/$(BAZEL_PACKAGE_BIN_DIR)",
             "COPY_PHASE_STRIP": false,
+            "CURRENT_EXECUTION_ROOT": """
+$(INDEXING_PROJECT_DIR__$(INDEX_ENABLE_BUILD_ARENA))
+""",
             "DEBUG_INFORMATION_FORMAT": "dwarf",
             "DEPLOYMENT_LOCATION": """
 $(INDEXING_DEPLOYMENT_LOCATION__$(INDEX_ENABLE_BUILD_ARENA)),
@@ -83,6 +108,9 @@ $(INDEXING_DEPLOYMENT_LOCATION__NO)
 """,
             "INDEXING_DEPLOYMENT_LOCATION__NO": true,
             "INDEXING_DEPLOYMENT_LOCATION__YES": false,
+            "INDEXING_PROJECT_DIR__": "$(INDEXING_PROJECT_DIR__NO)",
+            "INDEXING_PROJECT_DIR__NO": "$(PROJECT_DIR)",
+            "INDEXING_PROJECT_DIR__YES": indexingProjectDirPath,
             "INSTALL_PATH": "$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)/bin",
             "INTERNAL_DIR": """
 $(PROJECT_FILE_PATH)/\(directories.internalDirectoryName)
@@ -139,13 +167,6 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
             "LastSwiftUpdateCheck": 9999,
             "LastUpgradeCheck": 9999,
         ]
-
-        let projectDirPath: String
-        if projectDir.string.hasPrefix("/private/") {
-            projectDirPath = String(projectDir.string.dropFirst(8))
-        } else {
-            projectDirPath = projectDir.string
-        }
 
         let pbxProject = PBXProject(
             name: project.name,
