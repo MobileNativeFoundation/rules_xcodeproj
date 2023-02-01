@@ -1002,6 +1002,36 @@ def _write_spec(
 
     return [project_spec_output, custom_schemes_output] + target_shards
 
+def _write_specs_archive(*, ctx, spec_files):
+    output = ctx.actions.declare_file("{}_specs.tar.gz".format(ctx.attr.name))
+
+    ctx.actions.run_shell(
+        inputs = spec_files,
+        outputs = [output],
+        command = """\
+readonly spec_paths={spec_paths}
+COPYFILE_DISABLE=1 tar czfh "{output}" "${{spec_paths[@]}}"
+
+if [[ -f /tmp/rules_xcodeproj-specs.tar.gz ]]; then
+  rm /tmp/rules_xcodeproj-specs.tar.gz
+fi
+
+cp "{output}" /tmp/rules_xcodeproj-specs.tar.gz
+""".format(
+            output = output.path,
+            spec_paths = shell.array_literal([f.path for f in spec_files]),
+        ),
+        mnemonic = "XcodeProjSpecsArchive",
+        # This has to run locally
+        execution_requirements = {
+            "local": "1",
+            "no-remote": "1",
+            "no-sandbox": "1",
+        },
+    )
+
+    return output
+
 def _write_xccurrentversions(*, ctx, xccurrentversion_files):
     containers_file = ctx.actions.declare_file(
         "{}_xccurrentversion_containers".format(ctx.attr.name),
@@ -1498,6 +1528,10 @@ done
         build_mode = build_mode,
         is_fixture = is_fixture,
     )
+    specs_archive = _write_specs_archive(
+        ctx = ctx,
+        spec_files = spec_files,
+    )
     installer = _write_installer(
         ctx = ctx,
         bazel_integration_files = bazel_integration_files,
@@ -1545,6 +1579,7 @@ done
             all_targets = depset(
                 transitive = all_targets_files,
             ),
+            specs_archive = depset([specs_archive]),
             **dicts.add(
                 input_files_output_groups,
                 output_files_output_groups,

@@ -44,10 +44,6 @@ while (("$#")); do
       extra_flags_bazelrc="${2}"
       shift 2
       ;;
-    "--collect_specs")
-      specs_archive_path="${2}"
-      shift 2
-      ;;
     *)
       fail "Unrecognized argument: ${1}"
       ;;
@@ -107,14 +103,6 @@ if [[ $for_fixture -eq 1 ]]; then
   targets_spec_src="$PWD/${spec_paths[2]}"
   readonly targets_spec_dest="${mode_prefix}_targets_spec.json"
   python3 -m json.tool "$targets_spec_src" > "$targets_spec_dest"
-elif [[ -n "${specs_archive_path:-}" ]]; then
-  rm -f "$specs_archive_path"
-  COPYFILE_DISABLE=1 tar czfh "$specs_archive_path" "${spec_paths[@]}"
-
-  echo
-  echo "Collected specs into \"$specs_archive_path\""
-
-  exit 0
 fi
 
 # Sync over the project, changing the permissions to be writable

@@ -26,6 +26,7 @@ installer_flags=(
   --extra_flags_bazelrc "$extra_flags_bazelrc"
 )
 
+collect_specs=0
 config="build"
 original_arg_count=$#
 verbose=0
@@ -43,8 +44,8 @@ while (("$#")); do
       config="${1#*=}"
       shift 1
       ;;
-    --collect_specs=*)
-      specs_archive_path="${1#*=}"
+    --collect_specs)
+      collect_specs=1
       shift 1
       ;;
     -v|--verbose)
@@ -61,12 +62,7 @@ while (("$#")); do
   esac
 done
 
-if [[ -n "${specs_archive_path:-}" ]]; then
-  installer_flags+=(--collect_specs "$specs_archive_path")
-  original_arg_count=0
-fi
-
-if [[ $original_arg_count -gt 0 ]]; then
+if [[ $original_arg_count -gt 0 && $collect_specs -eq 0 ]]; then
   if [[ $# -eq 0 ]]; then
     fail "ERROR: A bazel command must be provided (e.g. build, clean, etc.)"
   elif [[ $# -gt 1 ]]; then
@@ -164,10 +160,19 @@ else
     bazel_config="%config%_$config"
   fi
 
-  while IFS='' read -r arg; do cmd_args+=("$arg"); done < <(xargs -n1 <<< "$1")
-  cmd="${cmd_args[0]}"
+  if [[ $collect_specs -eq 1 ]]; then
+    cmd=build
+  else
+    while IFS='' read -r arg; do cmd_args+=("$arg"); done < <(xargs -n1 <<< "$1")
+    cmd="${cmd_args[0]}"
+  fi
 
-  if [[ $cmd == "build" && -n "${generator_output_groups:-}" ]]; then
+  if [[ $collect_specs -eq 1 ]]; then
+    post_config_flags=(
+      --output_groups="specs_archive"
+      "%generator_label%"
+    )
+  elif [[ $cmd == "build" && -n "${generator_output_groups:-}" ]]; then
     # `--experimental_remote_download_regex`
     readonly base_outputs_regex='.*\.a$|.*\.swiftdoc$|.*\.swiftmodule$|.*\.swiftsourceinfo$'
 
@@ -202,4 +207,9 @@ else
     "${pre_config_flags[@]}" \
     "--config=$bazel_config" \
     ${post_config_flags:+"${post_config_flags[@]}"}
+
+  if [[ $collect_specs -eq 1 ]]; then
+    echo
+    echo "Collected specs into \"/tmp/rules_xcodeproj-specs.tar.gz\""
+  fi
 fi
