@@ -70,10 +70,18 @@ echo "command script import \"$OBJROOT/swift_debug_settings.py\""
 
 } > "$BAZEL_LLDB_INIT"
 
-touch "$HOME/.lldbinit"
+if  [[ -f "$HOME/.lldbinit-Xcode" ]]; then
+  readonly lldbinit="$HOME/.lldbinit-Xcode"
+elif [[ -f "$HOME/.lldbinit" ]]; then
+  readonly lldbinit="$HOME/.lldbinit"
+else
+  readonly lldbinit="$HOME/.lldbinit-Xcode"
+fi
+
+touch "$lldbinit"
 
 readonly required_source='command source ~/.lldbinit-rules_xcodeproj'
-if ! grep -m 1 -q "$required_source" "$HOME/.lldbinit"; then
-  # Update `~/.lldbinit` to source `~/.lldbinit-rules_xcodeproj`
-  echo "$required_source" >> "$HOME/.lldbinit"
+if ! grep -m 1 -q "$required_source" "$lldbinit"; then
+  # Update `$lldbinit to source `~/.lldbinit-rules_xcodeproj`
+  echo "$required_source" >> "$lldbinit"
 fi
