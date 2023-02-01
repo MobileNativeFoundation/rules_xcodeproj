@@ -456,7 +456,7 @@ weird \
 -vfsoverlay \
 /Some/Path.yaml \
 -vfsoverlay \
-$(PROJECT_DIR)/relative/Path.yaml \
+$(CURRENT_EXECUTION_ROOT)/relative/Path.yaml \
 -passthrough \
 -passthrough \
 -I__BAZEL_XCODE_SOMETHING_/path \
@@ -470,12 +470,12 @@ $(PROJECT_DIR)/relative/Path.yaml \
 -Xfrontend \
 -vfsoverlay \
 -Xfrontend \
-$(PROJECT_DIR)/relative/Path.yaml \
+$(CURRENT_EXECUTION_ROOT)/relative/Path.yaml \
 -keep-me=something.swift \
 -Xfrontend \
 -vfsoverlay/Some/Path.yaml \
 -Xfrontend \
--vfsoverlay$(PROJECT_DIR)/relative/Path.yaml \
+-vfsoverlay$(CURRENT_EXECUTION_ROOT)/relative/Path.yaml \
 -Xcc \
 -weird \
 -Xcc \
