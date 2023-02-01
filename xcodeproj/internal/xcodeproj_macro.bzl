@@ -19,6 +19,7 @@ def xcodeproj(
         config = "rules_xcodeproj",
         extra_files = [],
         focused_targets = [],
+        install_directory = None,
         ios_device_cpus = "arm64",
         ios_simulator_cpus = None,
         minimum_xcode_version = None,
@@ -108,6 +109,12 @@ def xcodeproj(
             listed explicitly in the `unfocused_targets` argument. The labels
             must match transitive dependencies of the targets specified in the
             `top_level_targets` argument.
+        install_directory: Optional. The directory where the generated project
+            will be written to. The path is relative to the workspace root.
+            Defaults to the directory that the `xcodeproj` target is declared
+            in (e.g. if the `xcodeproj` target is declared in `//foo/bar:BUILD`
+            then the default value is `"foo/bar"`). Use `""` to have the project
+            generated in the workspace root.
         ios_device_cpus: Optional. The value to use for `--ios_multi_cpus` when
             building the transitive dependencies of the targets specified in the
             `top_level_targets` argument with the `"device"`
@@ -234,6 +241,8 @@ in your `.bazelrc` or `xcodeproj.bazelrc` file.""")
         bazel_path = "bazel"
     if not build_mode:
         build_mode = "xcode"
+    if install_directory == None:
+        install_directory = native.package_name()
     if not project_name:
         project_name = name
 
@@ -316,6 +325,7 @@ in your `.bazelrc` or `xcodeproj.bazelrc` file.""")
         bazel_path = bazel_path,
         config = config,
         focused_targets = focused_targets,
+        install_directory = install_directory,
         ios_device_cpus = ios_device_cpus,
         ios_simulator_cpus = ios_simulator_cpus,
         minimum_xcode_version = minimum_xcode_version,
