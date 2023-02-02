@@ -4,8 +4,8 @@ load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
 macos_build_test(
     name = "macos_TestingUtils",
     minimum_os_version = "12.0",
-    targets = [":TestingUtils"],
     tags = ["manual"],
+    targets = [":TestingUtils"],
     visibility = ["//visibility:public"],
 )
 

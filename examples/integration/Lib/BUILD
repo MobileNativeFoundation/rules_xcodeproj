@@ -17,8 +17,8 @@ exports_files(
 ios_build_test(
     name = "ios_Lib",
     minimum_os_version = "15.0",
-    targets = [":Lib"],
     tags = ["manual"],
+    targets = [":Lib"],
     visibility = ["//visibility:public"],
 )
 
