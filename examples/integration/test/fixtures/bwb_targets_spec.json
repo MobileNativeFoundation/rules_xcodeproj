@@ -267,6 +267,8 @@
                 "-Fexternal/examples_command_line_external",
                 "-DOS_MACOSX",
                 "-fno-autolink",
+                "-F$(SDKROOT)/System/Library/Frameworks",
+                "-F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks",
                 "--config",
                 "$(CURRENT_EXECUTION_ROOT)/CommandLine/CommandLineTool/verbose.cfg",
                 "-DDEBUG=1",
@@ -373,6 +375,8 @@
                 "-Fexternal/examples_command_line_external",
                 "-DOS_MACOSX",
                 "-fno-autolink",
+                "-F$(SDKROOT)/System/Library/Frameworks",
+                "-F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks",
                 "--config",
                 "$(CURRENT_EXECUTION_ROOT)/CommandLine/CommandLineTool/verbose.cfg",
                 "-DDEBUG=1",
@@ -477,6 +481,8 @@
                 "-Fexternal/examples_command_line_external",
                 "-DOS_MACOSX",
                 "-fno-autolink",
+                "-F$(SDKROOT)/System/Library/Frameworks",
+                "-F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks",
                 "--config",
                 "$(CURRENT_EXECUTION_ROOT)/CommandLine/CommandLineTool/verbose.cfg",
                 "-DDEBUG=1",
@@ -562,6 +568,8 @@
                 "-DSECRET_2=\\\"World!\\\"",
                 "-DOS_MACOSX",
                 "-fno-autolink",
+                "-F$(SDKROOT)/System/Library/Frameworks",
+                "-F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks",
                 "-DDEBUG=1",
                 "-fstack-protector",
                 "-fstack-protector-all"
@@ -632,6 +640,8 @@
                 "-DSECRET_2=\\\"World!\\\"",
                 "-DOS_MACOSX",
                 "-fno-autolink",
+                "-F$(SDKROOT)/System/Library/Frameworks",
+                "-F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks",
                 "-DDEBUG=1",
                 "-fstack-protector",
                 "-fstack-protector-all"
@@ -702,6 +712,8 @@
                 "-DSECRET_2=\\\"World!\\\"",
                 "-DOS_MACOSX",
                 "-fno-autolink",
+                "-F$(SDKROOT)/System/Library/Frameworks",
+                "-F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks",
                 "-DDEBUG=1",
                 "-fstack-protector",
                 "-fstack-protector-all"
@@ -925,6 +937,8 @@
                 ".",
                 "-iquote",
                 "bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18/bin",
+                "-F$(SDKROOT)/System/Library/Frameworks",
+                "-F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks",
                 "-no-canonical-prefixes",
                 "-pthread",
                 "-no-canonical-prefixes",
@@ -982,6 +996,8 @@
                 ".",
                 "-iquote",
                 "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17/bin",
+                "-F$(SDKROOT)/System/Library/Frameworks",
+                "-F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks",
                 "-no-canonical-prefixes",
                 "-pthread",
                 "-no-canonical-prefixes",
@@ -1039,6 +1055,8 @@
                 ".",
                 "-iquote",
                 "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-19/bin",
+                "-F$(SDKROOT)/System/Library/Frameworks",
+                "-F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks",
                 "-no-canonical-prefixes",
                 "-pthread",
                 "-no-canonical-prefixes",
@@ -1237,7 +1255,7 @@
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
             "ENABLE_TESTABILITY": true,
-            "OTHER_SWIFT_FLAGS": "-DDEBUG -Ibazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17/bin/CommandLine/CommandLineToolLib -Fexternal/examples_command_line_external -Xcc -Fexternal/examples_command_line_external -Xcc -I$(SDKROOT)/usr/include/uuid -Xcc -iquote. -Xcc -iquotebazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17/bin -Xcc -iquoteexternal/examples_command_line_external -Xcc -iquotebazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17/bin/external/examples_command_line_external -Xcc -DSECRET_3=\\\"Hello\\\" -Xcc -DSECRET_2=\\\"World!\\\" -Xcc -fmodule-map-file=bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17/bin/CommandLine/CommandLineToolLib/lib_impl.swift.modulemap -Xcc -fmodule-map-file=CommandLine/swift_c_module/c_lib.modulemap -Xcc -fmodule-map-file=external/examples_command_line_external/ExternalFramework.framework/Modules/module.modulemap -Xcc -fmodule-map-file=bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17/bin/external/examples_command_line_external/Library.swift.modulemap -Xcc -fmodule-map-file=bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17/bin/CommandLine/CommandLineToolLib/lib_swift.swift.modulemap -static -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
+            "OTHER_SWIFT_FLAGS": "-DDEBUG -F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/usr/lib -Ibazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17/bin/CommandLine/CommandLineToolLib -Fexternal/examples_command_line_external -Xcc -Fexternal/examples_command_line_external -Xcc -I$(SDKROOT)/usr/include/uuid -Xcc -iquote. -Xcc -iquotebazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17/bin -Xcc -iquoteexternal/examples_command_line_external -Xcc -iquotebazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17/bin/external/examples_command_line_external -Xcc -DSECRET_3=\\\"Hello\\\" -Xcc -DSECRET_2=\\\"World!\\\" -Xcc -fmodule-map-file=bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17/bin/CommandLine/CommandLineToolLib/lib_impl.swift.modulemap -Xcc -fmodule-map-file=CommandLine/swift_c_module/c_lib.modulemap -Xcc -fmodule-map-file=external/examples_command_line_external/ExternalFramework.framework/Modules/module.modulemap -Xcc -fmodule-map-file=bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17/bin/external/examples_command_line_external/Library.swift.modulemap -Xcc -fmodule-map-file=bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17/bin/CommandLine/CommandLineToolLib/lib_swift.swift.modulemap -static -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
             "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
             "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17/bin/CommandLine/Tests",
@@ -1283,8 +1301,7 @@
                 "t": "g"
             },
             "t": "com.apple.product-type.bundle.unit-test"
-        },
-        "t": true
+        }
     },
     "//CommandLine/swift_c_module:c_lib macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18",
     {
@@ -1311,6 +1328,8 @@
                 ".",
                 "-iquote",
                 "bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18/bin",
+                "-F$(SDKROOT)/System/Library/Frameworks",
+                "-F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks",
                 "-no-canonical-prefixes",
                 "-pthread",
                 "-no-canonical-prefixes",
@@ -1366,6 +1385,8 @@
                 ".",
                 "-iquote",
                 "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-17/bin",
+                "-F$(SDKROOT)/System/Library/Frameworks",
+                "-F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks",
                 "-no-canonical-prefixes",
                 "-pthread",
                 "-no-canonical-prefixes",
@@ -1421,6 +1442,8 @@
                 ".",
                 "-iquote",
                 "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-19/bin",
+                "-F$(SDKROOT)/System/Library/Frameworks",
+                "-F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks",
                 "-no-canonical-prefixes",
                 "-pthread",
                 "-no-canonical-prefixes",
@@ -3488,6 +3511,8 @@
                 "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin",
                 "-DOS_IOS",
                 "-fno-autolink",
+                "-F$(SDKROOT)/System/Library/Frameworks",
+                "-F$(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/Library/Frameworks",
                 "-Ibazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/iOSApp/CoreUtilsMixed",
                 "-DDEBUG=1",
                 "-fstack-protector",
@@ -3558,6 +3583,8 @@
                 "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin",
                 "-DOS_IOS",
                 "-fno-autolink",
+                "-F$(SDKROOT)/System/Library/Frameworks",
+                "-F$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks",
                 "-fexceptions",
                 "-fasm-blocks",
                 "-fobjc-abi-version=2",
@@ -3751,6 +3778,8 @@
                 "-Ibazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/iOSApp/Source/CoreUtilsObjC",
                 "-DOS_IOS",
                 "-fno-autolink",
+                "-F$(SDKROOT)/System/Library/Frameworks",
+                "-F$(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/Library/Frameworks",
                 "-DDEBUG=1",
                 "-fstack-protector",
                 "-fstack-protector-all"
@@ -3862,6 +3891,8 @@
                 "-Ibazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsObjC",
                 "-DOS_IOS",
                 "-fno-autolink",
+                "-F$(SDKROOT)/System/Library/Frameworks",
+                "-F$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks",
                 "-fexceptions",
                 "-fasm-blocks",
                 "-fobjc-abi-version=2",
@@ -3962,6 +3993,8 @@
                 "-Ibazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsObjC",
                 "-DOS_IOS",
                 "-fno-autolink",
+                "-F$(SDKROOT)/System/Library/Frameworks",
+                "-F$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks",
                 "-fexceptions",
                 "-fasm-blocks",
                 "-fobjc-abi-version=2",
@@ -4417,6 +4450,8 @@
                 "-Fexternal/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator",
                 "-DOS_IOS",
                 "-fno-autolink",
+                "-F$(SDKROOT)/System/Library/Frameworks",
+                "-F$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks",
                 "-fexceptions",
                 "-fasm-blocks",
                 "-fobjc-abi-version=2",
@@ -4473,8 +4508,7 @@
             },
             "t": "com.apple.product-type.bundle.unit-test"
         },
-        "s": false,
-        "t": true
+        "s": false
     },
     "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-7",
     {
@@ -4542,7 +4576,7 @@
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
             "ENABLE_TESTABILITY": true,
-            "OTHER_SWIFT_FLAGS": "-DDEBUG -Ibazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/Lib -Ibazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/UI -Ibazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer -Ibazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source -Ibazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/TestingUtils -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Fexternal/com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator -Fexternal/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator -Xcc -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Xcc -Fexternal/com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator -Xcc -Fexternal/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator -Xcc -IiOSApp/Source/CoreUtilsObjC -Xcc -Ibazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsObjC -Xcc -iquoteexternal/com_github_krzyzanowskim_cryptoswift -Xcc -iquotebazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/external/com_github_krzyzanowskim_cryptoswift -Xcc -iquote. -Xcc -iquotebazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin -Xcc -iquoteexternal/com_google_google_maps -Xcc -iquotebazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/external/com_google_google_maps -Xcc -iquoteexternal/FXPageControl -Xcc -iquotebazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/external/FXPageControl -Xcc -DAWESOME -Xcc -fmodule-map-file=external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -fmodule-map-file=bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap.swift.modulemap -Xcc -fmodule-map-file=bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_modulemap.swift.modulemap -Xcc -fmodule-map-file=bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap-module.modulemap -Xcc -fmodule-map-file=bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap -Xcc -fmodule-map-file=external/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator/GoogleMapsBase.framework/Modules/module.modulemap -Xcc -fmodule-map-file=external/com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator/GoogleMapsCore.framework/Modules/module.modulemap -Xcc -fmodule-map-file=external/com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator/GoogleMaps.framework/Modules/module.modulemap -Xcc -fmodule-map-file=bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/external/FXPageControl/FXPageControl.swift.modulemap -Xcc -fmodule-map-file=bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/Utils/Utils.swift.modulemap -Xcc -fmodule-map-file=bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/TestingUtils/TestingUtils.swift.modulemap -DAWESOME -static -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
+            "OTHER_SWIFT_FLAGS": "-DDEBUG -F$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F$(SDKROOT)/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib -Ibazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/Lib -Ibazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/UI -Ibazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer -Ibazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source -Ibazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/TestingUtils -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Fexternal/com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator -Fexternal/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator -Xcc -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Xcc -Fexternal/com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator -Xcc -Fexternal/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator -Xcc -IiOSApp/Source/CoreUtilsObjC -Xcc -Ibazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsObjC -Xcc -iquoteexternal/com_github_krzyzanowskim_cryptoswift -Xcc -iquotebazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/external/com_github_krzyzanowskim_cryptoswift -Xcc -iquote. -Xcc -iquotebazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin -Xcc -iquoteexternal/com_google_google_maps -Xcc -iquotebazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/external/com_google_google_maps -Xcc -iquoteexternal/FXPageControl -Xcc -iquotebazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/external/FXPageControl -Xcc -DAWESOME -Xcc -fmodule-map-file=external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -fmodule-map-file=bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap.swift.modulemap -Xcc -fmodule-map-file=bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_modulemap.swift.modulemap -Xcc -fmodule-map-file=bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc_modulemap-module.modulemap -Xcc -fmodule-map-file=bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.swift.modulemap -Xcc -fmodule-map-file=external/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator/GoogleMapsBase.framework/Modules/module.modulemap -Xcc -fmodule-map-file=external/com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator/GoogleMapsCore.framework/Modules/module.modulemap -Xcc -fmodule-map-file=external/com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator/GoogleMaps.framework/Modules/module.modulemap -Xcc -fmodule-map-file=bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/external/FXPageControl/FXPageControl.swift.modulemap -Xcc -fmodule-map-file=bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/Utils/Utils.swift.modulemap -Xcc -fmodule-map-file=bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/TestingUtils/TestingUtils.swift.modulemap -DAWESOME -static -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
             "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
             "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/SwiftUnitTests",
@@ -4602,8 +4636,7 @@
                 "t": "g"
             },
             "t": "com.apple.product-type.bundle.unit-test"
-        },
-        "t": true
+        }
     },
     "//iOSApp/Test/TestingUtils:TestingUtils ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
     {
@@ -4619,7 +4652,7 @@
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
             "ENABLE_TESTABILITY": true,
-            "OTHER_SWIFT_FLAGS": "-DDEBUG -Xcc -iquote. -Xcc -iquotebazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin -DAWESOME -static -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
+            "OTHER_SWIFT_FLAGS": "-DDEBUG -F$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F$(SDKROOT)/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib -Xcc -iquote. -Xcc -iquotebazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin -DAWESOME -static -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PRODUCT_MODULE_NAME": "TestingUtils",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "SwiftAPI/TestingUtils-Swift.h",
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
@@ -4655,8 +4688,7 @@
                 "t": "g"
             },
             "t": "com.apple.product-type.library.static"
-        },
-        "t": true
+        }
     },
     "//iOSApp/Test/TestingUtils:TestingUtils macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-15",
     {
@@ -4672,7 +4704,7 @@
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
             "ENABLE_TESTABILITY": true,
-            "OTHER_SWIFT_FLAGS": "-DDEBUG -Xcc -iquote. -Xcc -iquotebazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-15/bin -DAWESOME -static -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
+            "OTHER_SWIFT_FLAGS": "-DDEBUG -F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/usr/lib -Xcc -iquote. -Xcc -iquotebazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-15/bin -DAWESOME -static -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PRODUCT_MODULE_NAME": "TestingUtils",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "SwiftAPI/TestingUtils-Swift.h",
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
@@ -4708,8 +4740,7 @@
                 "t": "g"
             },
             "t": "com.apple.product-type.library.static"
-        },
-        "t": true
+        }
     },
     "//macOSApp/Source:macOSApp applebin_macos-darwin_x86_64-dbg-STABLE-16",
     {
@@ -4833,7 +4864,7 @@
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
             "ENABLE_TESTABILITY": true,
-            "OTHER_SWIFT_FLAGS": "-DDEBUG -Xcc -iquote. -Xcc -iquotebazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-15/bin -static -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
+            "OTHER_SWIFT_FLAGS": "-DDEBUG -F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/usr/lib -Xcc -iquote. -Xcc -iquotebazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-15/bin -static -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
             "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
             "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-15/bin/macOSApp/Test/UITests",
@@ -4880,8 +4911,7 @@
                 "t": "g"
             },
             "t": "com.apple.product-type.bundle.ui-testing"
-        },
-        "t": true
+        }
     },
     "//tvOSApp/Source:tvOSApp applebin_tvos-tvos_arm64-dbg-STABLE-14",
     {
@@ -5135,7 +5165,7 @@
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
             "ENABLE_TESTABILITY": true,
-            "OTHER_SWIFT_FLAGS": "-DDEBUG -Xcc -iquote. -Xcc -iquotebazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin -static -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
+            "OTHER_SWIFT_FLAGS": "-DDEBUG -F$(DEVELOPER_DIR)/Platforms/AppleTVSimulator.platform/Developer/Library/Frameworks -F$(SDKROOT)/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/AppleTVSimulator.platform/Developer/usr/lib -Xcc -iquote. -Xcc -iquotebazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin -static -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
             "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
             "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/tvOSApp/Test/UITests",
@@ -5182,8 +5212,7 @@
                 "t": "g"
             },
             "t": "com.apple.product-type.bundle.ui-testing"
-        },
-        "t": true
+        }
     },
     "//tvOSApp/Test/UnitTests:tvOSAppUnitTests.__internal__.__test_bundle applebin_tvos-tvos_x86_64-dbg-STABLE-13",
     {
@@ -5240,7 +5269,7 @@
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
             "ENABLE_TESTABILITY": true,
-            "OTHER_SWIFT_FLAGS": "-DDEBUG -Ibazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/Lib -Ibazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/UI -Ibazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/tvOSApp/Source -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator -Xcc -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator -Xcc -iquoteexternal/com_github_krzyzanowskim_cryptoswift -Xcc -iquotebazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/external/com_github_krzyzanowskim_cryptoswift -Xcc -iquote. -Xcc -iquotebazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin -Xcc -fmodule-map-file=external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -static -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
+            "OTHER_SWIFT_FLAGS": "-DDEBUG -F$(DEVELOPER_DIR)/Platforms/AppleTVSimulator.platform/Developer/Library/Frameworks -F$(SDKROOT)/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/AppleTVSimulator.platform/Developer/usr/lib -Ibazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/Lib -Ibazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/UI -Ibazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/tvOSApp/Source -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator -Xcc -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator -Xcc -iquoteexternal/com_github_krzyzanowskim_cryptoswift -Xcc -iquotebazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/external/com_github_krzyzanowskim_cryptoswift -Xcc -iquote. -Xcc -iquotebazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin -Xcc -fmodule-map-file=external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -static -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
             "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
             "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/tvOSApp/Test/UnitTests",
@@ -5288,8 +5317,7 @@
                 "t": "g"
             },
             "t": "com.apple.product-type.bundle.unit-test"
-        },
-        "t": true
+        }
     },
     "//watchOSApp/Test/UITests:watchOSAppUITests.__internal__.__test_bundle applebin_watchos-watchos_x86_64-dbg-STABLE-9",
     {
@@ -5329,7 +5357,7 @@
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
             "ENABLE_TESTABILITY": true,
-            "OTHER_SWIFT_FLAGS": "-DDEBUG -Xcc -iquote. -Xcc -iquotebazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin -static -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
+            "OTHER_SWIFT_FLAGS": "-DDEBUG -F$(DEVELOPER_DIR)/Platforms/WatchSimulator.platform/Developer/Library/Frameworks -F$(SDKROOT)/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/WatchSimulator.platform/Developer/usr/lib -Xcc -iquote. -Xcc -iquotebazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin -static -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
             "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
             "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/watchOSApp/Test/UITests",
@@ -5376,8 +5404,7 @@
                 "t": "g"
             },
             "t": "com.apple.product-type.bundle.ui-testing"
-        },
-        "t": true
+        }
     },
     "//watchOSApp:watchOSApp applebin_watchos-watchos_arm64_32-dbg-STABLE-12",
     {
@@ -5545,7 +5572,7 @@
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
             "ENABLE_TESTABILITY": true,
-            "OTHER_SWIFT_FLAGS": "-DDEBUG -Ibazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/Lib -Ibazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/UI -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator -Xcc -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator -Xcc -iquoteexternal/com_github_krzyzanowskim_cryptoswift -Xcc -iquotebazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/external/com_github_krzyzanowskim_cryptoswift -Xcc -iquote. -Xcc -iquotebazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin -Xcc -fmodule-map-file=external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -static -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
+            "OTHER_SWIFT_FLAGS": "-DDEBUG -F$(DEVELOPER_DIR)/Platforms/WatchSimulator.platform/Developer/Library/Frameworks -F$(SDKROOT)/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/WatchSimulator.platform/Developer/usr/lib -Ibazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/Lib -Ibazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/UI -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator -Xcc -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator -Xcc -iquoteexternal/com_github_krzyzanowskim_cryptoswift -Xcc -iquotebazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/external/com_github_krzyzanowskim_cryptoswift -Xcc -iquote. -Xcc -iquotebazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin -Xcc -fmodule-map-file=external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -static -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
             "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
             "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/watchOSAppExtension/Test/UnitTests",
@@ -5592,8 +5619,7 @@
                 "t": "g"
             },
             "t": "com.apple.product-type.bundle.unit-test"
-        },
-        "t": true
+        }
     },
     "//watchOSAppExtension:watchOSAppExtension applebin_watchos-watchos_arm64_32-dbg-STABLE-10",
     {
@@ -5848,6 +5874,8 @@
                 "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/external/FXPageControl",
                 "-DOS_IOS",
                 "-fno-autolink",
+                "-F$(SDKROOT)/System/Library/Frameworks",
+                "-F$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks",
                 "-fexceptions",
                 "-fasm-blocks",
                 "-fobjc-abi-version=2",

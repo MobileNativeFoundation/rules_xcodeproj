@@ -171,7 +171,6 @@ def process_library_target(
             package_bin_dir = package_bin_dir,
             platform = platform,
             product = product,
-            is_testonly = getattr(ctx.rule.attr, "testonly", False),
             is_swift = is_swift,
             build_settings = build_settings,
             search_paths = search_paths,
