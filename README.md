@@ -55,14 +55,14 @@ the ruleset.
 ## Projects using rules_xcodeproj
 
 - Cash App
-- [Envoy Mobile](https://github.com/envoyproxy/envoy/tree/main/mobile)
+- Envoy Mobile
 - Ergatta
 - Lyft
 - [Mercari](https://engineering.mercari.com/blog/entry/20221215-16cdd59909/)
 - Robinhood
 - [Slack](https://www.youtube.com/watch?v=wy3Q38VJ5uQ)
 - Spotify
-- [SwiftLint](https://github.com/realm/SwiftLint)
+- SwiftLint
 - Ten Ten
 - Tinder
 
