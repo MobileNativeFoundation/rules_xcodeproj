@@ -16,6 +16,13 @@ on it, or [file a new issue][file-an-issue]!
 
 ## Features
 
+<a href="https://user-images.githubusercontent.com/158658/216383453-9f6385c6-0935-4eca-b150-9bc9b821de51.png">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://user-images.githubusercontent.com/158658/216383462-50c05573-6fd0-45e0-8e65-d501bb39208f.png">
+    <img alt="Screenshot of a rules_xcodeproj generated project open in Xcode" src="https://user-images.githubusercontent.com/158658/216383453-9f6385c6-0935-4eca-b150-9bc9b821de51.png" width="720">
+  </picture>
+</a>
+
 - Full support for Xcode features:
   - Indexing (i.e. autocomplete, syntax highlighting, jump to definition)
   - Debugging
