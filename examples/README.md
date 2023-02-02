@@ -13,8 +13,10 @@ This directory holds several examples using rules_xcodeproj. To open an example,
 
 ## External
 
-Here are some examples outside of this repository that show how to use
-rules_xcodeproj in various ways:
+Below are some examples outside of this repository that show how to use
+rules_xcodeproj in various ways. Since these are permalinks, they might not be
+up-to-date with the latest version of rules_xcodeproj. Please check the
+latest version on each respective repository.
 
 - [Envoy Mobile](https://github.com/envoyproxy/envoy/blob/f6cb005211c389df0dc17d71b6819912e083b5cd/mobile/BUILD#L103-L173)
 - [SwiftLint](https://github.com/realm/SwiftLint/blob/325d0ee1e44a87fc82afeb874b83ceb82f6728cf/BUILD#L113-L142)
