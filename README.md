@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/158658/161647598-223361dc-030d-431a-b4fe-d92592ed5530.png" height="255">
+  <img src="https://user-images.githubusercontent.com/158658/161647598-223361dc-030d-431a-b4fe-d92592ed5530.png" width="255">
 </p>
 
 # rules_xcodeproj
@@ -94,7 +94,7 @@ examples in the [examples](examples/README.md) directory.
 
 ### BazelCon 2022
 
-<a href="https://youtu.be/B__SHnz3K3c" title="YouTube - How to integrate Bazel with Xcode using rules_xcodeproj"><img src="https://img.youtube.com/vi/B__SHnz3K3c/maxresdefault.jpg" alt="YouTube - How to integrate Bazel with Xcode using rules_xcodeproj" height="360"></a>
+<a href="https://youtu.be/B__SHnz3K3c" title="YouTube - How to integrate Bazel with Xcode using rules_xcodeproj"><img src="https://img.youtube.com/vi/B__SHnz3K3c/maxresdefault.jpg" alt="YouTube - How to integrate Bazel with Xcode using rules_xcodeproj" width="640"></a>
 
 ### Simple iOS example
 
