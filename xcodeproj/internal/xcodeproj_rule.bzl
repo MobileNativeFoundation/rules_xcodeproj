@@ -204,6 +204,41 @@ def _process_extra_files(
 
     return extra_files
 
+def _process_xccurrentversions(
+        *,
+        focused_labels,
+        unfocused_labels,
+        replacement_labels_by_label,
+        inputs):
+    xccurrentversions_files = inputs.xccurrentversions.to_list()
+
+    # Apply replacement labels
+    xccurrentversions_files = [
+        (
+            bazel_labels.normalize(
+                replacement_labels_by_label.get(label, label),
+            ),
+            files,
+        )
+        for label, files in xccurrentversions_files
+    ]
+
+    # Filter out unfocused labels
+    has_focused_labels = sets.length(focused_labels) > 0
+    xccurrentversions_files = [
+        file
+        for label, files in xccurrentversions_files
+        for file in files
+        if not label or not (
+            sets.contains(unfocused_labels, label) or
+            (has_focused_labels and not sets.contains(focused_labels, label))
+        )
+    ]
+
+    xccurrentversions_files = uniq(xccurrentversions_files)
+
+    return xccurrentversions_files
+
 def _process_targets(
         *,
         ctx,
@@ -1386,6 +1421,12 @@ def _xcodeproj_impl(ctx):
         inputs = inputs,
         focused_targets_extra_files = focused_targets_extra_files,
     )
+    xccurrentversion_files = _process_xccurrentversions(
+        focused_labels = focused_labels,
+        unfocused_labels = unfocused_labels,
+        replacement_labels_by_label = replacement_labels_by_label,
+        inputs = inputs,
+    )
 
     extension_infoplists = [
         s
@@ -1417,7 +1458,7 @@ def _xcodeproj_impl(ctx):
     root_dirs_file = _write_root_dirs(ctx = ctx)
     xccurrentversions_file = _write_xccurrentversions(
         ctx = ctx,
-        xccurrentversion_files = inputs.xccurrentversions.to_list(),
+        xccurrentversion_files = xccurrentversion_files,
     )
     extensionpointidentifiers_file = _write_extensionpointidentifiers(
         ctx = ctx,
