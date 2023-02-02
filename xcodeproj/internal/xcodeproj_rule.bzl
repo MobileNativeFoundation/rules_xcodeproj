@@ -897,7 +897,6 @@ def _write_spec(
         envs,
         project_name,
         target_dtos,
-        targets,
         has_unfocused_targets,
         replacement_labels,
         inputs,
@@ -910,7 +909,7 @@ def _write_spec(
     ).to_list()
     target_hosts = {}
     for s in hosted_targets:
-        if s.host not in targets or s.hosted not in targets:
+        if s.host not in target_dtos or s.hosted not in target_dtos:
             continue
         target_hosts.setdefault(s.hosted, []).append(s.host)
 
@@ -983,7 +982,7 @@ def _write_spec(
             {
                 id: bazel_labels.normalize(label)
                 for id, label in replacement_labels.items()
-                if id in targets
+                if id in target_dtos
             },
             sort = is_fixture,
         ),
@@ -1401,14 +1400,14 @@ def _xcodeproj_impl(ctx):
         for s in depset(
             transitive = [info.args for info in infos],
         ).to_list()
-        if s.args and s.id in targets
+        if s.args and s.id in target_dtos
     }
     envs = {
         s.id: s.env
         for s in depset(
             transitive = [info.envs for info in infos],
         ).to_list()
-        if s.env and s.id in targets
+        if s.env and s.id in target_dtos
     }
 
     extra_files = _process_extra_files(
@@ -1446,7 +1445,6 @@ def _xcodeproj_impl(ctx):
         project_name = project_name,
         config = config,
         envs = envs,
-        targets = targets,
         target_dtos = target_dtos,
         has_unfocused_targets = has_unfocused_targets,
         replacement_labels = replacement_labels,
