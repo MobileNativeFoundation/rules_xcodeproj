@@ -60,6 +60,13 @@ def _should_create_provider(*, ctx, target):
         return False
     return True
 
+_BUILD_TEST_RULES = {
+    "ios_build_test": None,
+    "macos_build_test": None,
+    "tvos_build_test": None,
+    "watchos_build_test": None,
+}
+
 def _should_skip_target(*, ctx, target):
     """Determines if the given target should be skipped for target generation.
 
@@ -73,6 +80,9 @@ def _should_skip_target(*, ctx, target):
     Returns:
         `True` if `target` should be skipped for target generation.
     """
+    if ctx.rule.kind in _BUILD_TEST_RULES:
+        return True
+
     if AppleBinaryInfo in target and not hasattr(ctx.rule.attr, "deps"):
         return True
 
