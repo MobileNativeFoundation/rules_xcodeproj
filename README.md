@@ -36,10 +36,12 @@ on it, or [file a new issue][file-an-issue]!
   - [x] rules_apple
   - [x] rules_ios
   - [x] Most likely your custom rules as well!
+- [x] Minimal configuration needed (see the [usage](#usage) section below)
 - [x] Multiple ways of building your project in Xcode
   - [x] Build your Bazel targets with Bazel (a.k.a Build with Bazel or BwB mode)
   - [x] Build your Bazel targets with Xcode, _not_ Bazel
     (a.k.a. Build with Xcode or BwX mode)[^bwx_warning]
+- [x] It "just works"
 
 [^bwx_warning]: Build with Bazel mode is the build mode with first class
   support. We will try to make Build with Xcode mode work with every project, but
