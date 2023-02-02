@@ -1333,20 +1333,6 @@ def _xcodeproj_impl(ctx):
             transitive = [info.replacement_labels for info in infos],
         ).to_list()
     }
-    args = {
-        s.id: s.args
-        for s in depset(
-            transitive = [info.args for info in infos],
-        ).to_list()
-        if s.args
-    }
-    envs = {
-        s.id: s.env
-        for s in depset(
-            transitive = [info.envs for info in infos],
-        ).to_list()
-        if s.env
-    }
 
     (
         targets,
@@ -1374,6 +1360,21 @@ def _xcodeproj_impl(ctx):
             ctx.attr.adjust_schemes_for_swiftui_previews
         ),
     )
+
+    args = {
+        s.id: s.args
+        for s in depset(
+            transitive = [info.args for info in infos],
+        ).to_list()
+        if s.args and s.id in targets
+    }
+    envs = {
+        s.id: s.env
+        for s in depset(
+            transitive = [info.envs for info in infos],
+        ).to_list()
+        if s.env and s.id in targets
+    }
 
     extra_files = _process_extra_files(
         ctx = ctx,
