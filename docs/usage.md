@@ -18,12 +18,12 @@ can be customized with configs in `.bazelrc` files.
 ### `rules_xcodeproj`
 
 The `rules_xcodeproj` config is used when building the project inside of Xcode.
-It's also inherited by all of the other `rules_xcodeproj_*` configs.
+It’s also inherited by all of the other `rules_xcodeproj_*` configs.
 
 > **Warning**
 >
 > Build affecting flags need to be the same between all `rules_xcodeproj{_*}`
-> configs, so it's usually better to adjust this config (`rules_xcodeproj`) over
+> configs, so it’s usually better to adjust this config (`rules_xcodeproj`) over
 > the other ones, unless you actually need to target them specifically.
 
 ### `rules_xcodeproj_generator`
@@ -37,7 +37,7 @@ affecting, like adjusting build log output.
 ### `rules_xcodeproj_indexbuild`
 
 The `rules_xcodeproj_indexbuild` config is used when Xcode performs an Index
-Build (also known as "Index Prebuilding"), where it builds the project in the
+Build (also known as “Prepare for Indexing”), where it builds the project in the
 background to a separate output directory, to ensure that it has the required
 artifacts to perform per-file indexing based compiles.
 
@@ -51,7 +51,7 @@ related (and the default config disables BES upload for this reason).
 The `rules_xcodeproj_swiftuipreviews` config is used when Xcode performs a
 SwiftUI Preview build.
 
-You shouldn't need to adjust this config. The default config applies the needed
+You shouldn’t need to adjust this config. The default config applies the needed
 build adjusting flags.
 
 ## Project-level configs
@@ -88,7 +88,7 @@ project-level configs, these flags adjust those instead of the base configs.
 ### Project `xcodeproj.bazelrc`
 
 A project `xcodeproj.bazelrc` file is loaded before the workspace `.bazelrc`.
-It's created from a
+It’s created from a
 [template](../xcodeproj/internal/xcodeproj.template.bazelrc), which contains the
 default configs mentioned above, and will also contain stubs for the
 project-level configs if they are used.
@@ -97,7 +97,7 @@ project-level configs if they are used.
 
 At the end of the project `xcodeproj.bazelrc` file is a conditional import of a
 workspace level `xcodeproj.bazelrc` file. Since startup flags (e.g.
-`--host_jvm_args`) can't be applied to configs, they can instead be set in this
+`--host_jvm_args`) can’t be applied to configs, they can instead be set in this
 file, and they will only apply to rules_xcodeproj `bazel` invocations. If you
 have to generate all or part of your rules_xcodeproj configs, this is a
 convenient file to use for that.
@@ -129,13 +129,13 @@ rules_xcodeproj builds targets in its own
 [output base](https://docs.bazel.build/versions/main/guide.html#choosing-the-output-base).
 It does this to ensure that the
 [analysis cache](https://sluongng.hashnode.dev/bazel-caching-explained-pt-2-bazel-in-memory-cache#heading-in-memory-caching)
-isn't affected by other Bazel commands, including project generation itself.
-In addition, rules_xcodeproj sets one of the project's
+isn’t affected by other Bazel commands, including project generation itself.
+In addition, rules_xcodeproj sets one of the project’s
 [Bazel configs](#bazel-configs). Because of this, normal Bazel commands, such
-as `bazel build` or `bazel clean`, won't be the same as what is performed in
+as `bazel build` or `bazel clean`, won’t be the same as what is performed in
 Xcode.
 
-To enable you to perform Bazel commands in the same "environment" that
+To enable you to perform Bazel commands in the same “environment” that
 rules_xcodeproj itself uses, we provide a command-line API. Assuming your
 `xcodeproj` target is defined at `//:xcodeproj`, this is how you can call this
 API:
@@ -180,7 +180,7 @@ that have different cache keys.
 
 rules_xcodeproj uses
 [output groups](https://bazel.build/extending/rules#requesting_output_files)
-to "address" these correctly configured targets. It uses a set of private
+to “address” these correctly configured targets. It uses a set of private
 output groups, but it also exposes some [public ones](#output-groups).
 
 To build these output groups with this API you would have to craft a call like
@@ -191,10 +191,11 @@ the future, continue reading after the example for the recommended way):
 bazel run //:xcodeproj -- 'build --remote_download_minimal --output_groups=all_targets //:xcodeproj.generator'
 ```
 
-This requires knowing the internal name of the generator target (`//:xcodeproj.generator` in this example), and it also doesn't apply some flags that Xcode
-`bazel build` command applies (e.g. `--experimental_remote_download_regex`).
-Instead, it's recommended that you use the
-[`--generator_output_groups` option](#--generator_output_groups):
+This requires knowing the internal name of the generator target
+(`//:xcodeproj.generator` in this example), and it also doesn’t apply some flags
+that Xcode `bazel build` command applies (e.g.
+`--experimental_remote_download_regex`). Instead, it’s recommended that you use
+the [`--generator_output_groups` option](#--generator_output_groups):
 
 ```
 bazel run //:xcodeproj -- --generator_output_groups=all_targets build --remote_download_minimal
@@ -202,7 +203,7 @@ bazel run //:xcodeproj -- --generator_output_groups=all_targets build --remote_d
 
 ### `clean`
 
-When you run `bazel clean` normally (i.e. not using this API), it won't affect
+When you run `bazel clean` normally (i.e. not using this API), it won’t affect
 the rules_xcodeproj output base the way you expect. `bazel clean --expunge`
 will though, as it will blow away both environments. To clean the
 rules_xcodeproj output base use the API instead:
@@ -275,7 +276,7 @@ INFO: Starting clean.
 Changes the [Bazel config](#bazel-configs) that is used. Valid values are:
 
 - `build`: [`rules_xcodeproj`](#rules_xcodeproj) or the project-level
-  equivalent. This is the default if `--config` isn't specified.
+  equivalent. This is the default if `--config` isn’t specified.
 - `indexbuild`: [`rules_xcodeproj_indexbuild`](#rules_xcodeproj_indexbuild) or
   the project-level equivalent.
 - `swiftuipreviews`: [`rules_xcodeproj_swiftuipreviews`](#rules_xcodeproj_swiftuipreviews)
@@ -292,13 +293,13 @@ bazel run //:xcodeproj -- --config=swiftuipreviews --generator_output_groups=all
 
 If the Bazel command is `build`, then this builds the specified generator
 outputs groups, potentially adding additional flags to match the behavior of
-Xcode's `bazel build` (e.g. `--experimental_remote_download_regex`).
+Xcode’s `bazel build` (e.g. `--experimental_remote_download_regex`).
 
 <a id="output-groups"></a>
 These are the available output groups to use:
 
 - `all_targets`: This will build every target specified by `top_level_targets`.
-  This is useful to build in "cache warming" jobs.
+  This is useful to build in “cache warming” jobs.
 
 For example, this will build all targets the same way that Xcode does:
 
@@ -314,7 +315,7 @@ used to communicate information from the analysis (Starlark) half of the
 generator to the execution (Swift) half of the generator. They contain file
 paths and build settings.
 
-Since the location and number of these files can be hard to determine, we've
+Since the location and number of these files can be hard to determine, we’ve
 added a command to be able to easily collect them:
 
 ```
