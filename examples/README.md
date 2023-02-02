@@ -10,3 +10,14 @@ This directory holds several examples using rules_xcodeproj. To open an example,
 
 * **sanitizers**
     <br> Contains targets to test Sanitizers in BwB mode. The main purpose is to make sure sanitizers in BwB mode work and give UI feedback the same way sanitizers do in BwX builds.
+
+## External
+
+Below are some examples outside of this repository that show how to use
+rules_xcodeproj in various ways. Since these are permalinks, they might not be
+up-to-date with the latest version of rules_xcodeproj. Please check the
+latest version on each respective repository.
+
+- [Envoy Mobile](https://github.com/envoyproxy/envoy/blob/f6cb005211c389df0dc17d71b6819912e083b5cd/mobile/BUILD#L103-L173)
+- [SwiftLint](https://github.com/realm/SwiftLint/blob/325d0ee1e44a87fc82afeb874b83ceb82f6728cf/BUILD#L113-L142)
+- [SwiftUI iOS App with Bazel template](https://github.com/mattrobmattrob/bazel-ios-swiftui-template/blob/666640b796f347b62b8e5878e00c2d2f44c247cc/BUILD.bazel#L9-L18)
