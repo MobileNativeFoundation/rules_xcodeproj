@@ -16,32 +16,32 @@ on it, or [file a new issue][file-an-issue]!
 
 ## Features
 
-- [x] Full support for Xcode features:
-  - [x] Indexing (i.e. autocomplete, syntax highlighting, jump to definition)
-  - [x] Debugging
-  - [x] Runtime sanitizers
-  - [x] Inline warnings and errors
-  - [x] Fix-its (currently only in BwX mode)
-  - [x] Test selection and running
-  - [x] Embedded Targets (App Clips, App Extensions, and Watch Apps)
-  - [X] Dynamic frameworks
-  - [x] SwiftUI Previews
-- [x] Focused Projects
-  - [x] Include a subset of your targets in Xcode
-  - [x] Unfocused targets are built with Bazel
-  - [x] Works in BwX mode as well!
-- [x] Comprehensive Bazel rules support
-  - [x] Core Bazel C/C++/Objective-C
-  - [x] rules_swift
-  - [x] rules_apple
-  - [x] rules_ios
-  - [x] Most likely your custom rules as well!
-- [x] Minimal configuration needed (see the [usage](#usage) section below)
-- [x] Multiple ways of building your project in Xcode
-  - [x] Build your Bazel targets with Bazel (a.k.a Build with Bazel or BwB mode)
-  - [x] Build your Bazel targets with Xcode, _not_ Bazel
+- Full support for Xcode features:
+  - Indexing (i.e. autocomplete, syntax highlighting, jump to definition)
+  - Debugging
+  - Runtime sanitizers
+  - Inline warnings and errors
+  - Fix-its (currently only in BwX mode)
+  - Test selection and running
+  - Embedded Targets (App Clips, App Extensions, and Watch Apps)
+  - Dynamic frameworks
+  - SwiftUI Previews
+- Focused Projects
+  - Include a subset of your targets in Xcode
+  - Unfocused targets are built with Bazel
+  - Works in BwX mode as well!
+- Comprehensive Bazel rules support
+  - Core Bazel C/C++/Objective-C
+  - rules_swift
+  - rules_apple
+  - rules_ios
+  - Most likely your custom rules as well!
+- Minimal configuration needed (see the [usage](#usage) section below)
+- Multiple ways of building your project in Xcode
+  - Build your Bazel targets with Bazel (a.k.a Build with Bazel or BwB mode)
+  - Build your Bazel targets with Xcode, _not_ Bazel
     (a.k.a. Build with Xcode or BwX mode)[^bwx_warning]
-- [x] It “just works”
+- It “just works”
 
 [^bwx_warning]: Build with Bazel mode is the build mode with first class
   support. We will try to make Build with Xcode mode work with every project, but
