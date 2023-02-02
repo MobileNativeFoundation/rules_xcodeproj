@@ -38,6 +38,7 @@ XCODEPROJ_TARGETS = [
     top_level_targets(
         labels = [
             "//iOSApp",
+            "//Lib:ios_Lib",
             "//Lib/dist/dynamic:iOS",
             "//Lib/dist/dynamic:tvOS",
             "//Lib/dist/dynamic:watchOS",
@@ -46,6 +47,7 @@ XCODEPROJ_TARGETS = [
         target_environments = ["device", "simulator"],
     ),
     "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests",
+    "//iOSApp/Test/TestingUtils:macos_TestingUtils",
     "//iMessageApp",
     "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests",
     "//macOSApp/Source:macOSApp",

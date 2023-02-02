@@ -1,4 +1,8 @@
-load("@build_bazel_rules_apple//apple:ios.bzl", "ios_framework")
+load(
+    "@build_bazel_rules_apple//apple:ios.bzl",
+    "ios_build_test",
+    "ios_framework",
+)
 load("@build_bazel_rules_apple//apple:tvos.bzl", "tvos_framework")
 load("@build_bazel_rules_apple//apple:watchos.bzl", "watchos_framework")
 load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
@@ -8,6 +12,14 @@ exports_files(["README.md"])
 exports_files(
     ["Info.plist"],
     visibility = ["//Lib:__subpackages__"],
+)
+
+ios_build_test(
+    name = "ios_Lib",
+    minimum_os_version = "15.0",
+    targets = [":Lib"],
+    tags = ["manual"],
+    visibility = ["//visibility:public"],
 )
 
 swift_library(
