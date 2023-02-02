@@ -30,6 +30,12 @@ on it, or [file a new issue][file-an-issue]!
   - [x] Include a subset of your targets in Xcode
   - [x] Unfocused targets are built with Bazel
   - [x] Works in BwX mode as well!
+- [x] Comprehensive Bazel rules support
+  - [x] Core Bazel C/C++/Objective-C
+  - [x] rules_swift
+  - [x] rules_apple
+  - [x] rules_ios
+  - [x] Most likely your custom rules as well!
 - [x] Multiple ways of building your project in Xcode
   - [x] Build your Bazel targets with Bazel (a.k.a Build with Bazel or BwB mode)
   - [x] Build your Bazel targets with Xcode, _not_ Bazel
