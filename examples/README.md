@@ -19,5 +19,6 @@ up-to-date with the latest version of rules_xcodeproj. Please check the
 latest version on each respective repository.
 
 - [Envoy Mobile](https://github.com/envoyproxy/envoy/blob/f6cb005211c389df0dc17d71b6819912e083b5cd/mobile/BUILD#L103-L173)
+- [rules_apple iOS app tutorial](https://github.com/bazelbuild/rules_apple/blob/master/doc/tutorials/ios-app.md)
 - [SwiftLint](https://github.com/realm/SwiftLint/blob/325d0ee1e44a87fc82afeb874b83ceb82f6728cf/BUILD#L113-L142)
 - [SwiftUI iOS App with Bazel template](https://github.com/mattrobmattrob/bazel-ios-swiftui-template/blob/666640b796f347b62b8e5878e00c2d2f44c247cc/BUILD.bazel#L9-L18)
