@@ -651,7 +651,7 @@ def _collect_input_files(
         ),
         entitlements = entitlements[0] if entitlements else None,
         xccurrentversions = depset(
-            xccurrentversions,
+            [(label, tuple(xccurrentversions))] if xccurrentversions else None,
             transitive = [
                 info.inputs.xccurrentversions
                 for attr, info in transitive_infos
