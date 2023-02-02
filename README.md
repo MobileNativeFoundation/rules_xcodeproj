@@ -41,7 +41,7 @@ on it, or [file a new issue][file-an-issue]!
   - [x] Build your Bazel targets with Bazel (a.k.a Build with Bazel or BwB mode)
   - [x] Build your Bazel targets with Xcode, _not_ Bazel
     (a.k.a. Build with Xcode or BwX mode)[^bwx_warning]
-- [x] It "just works"
+- [x] It “just works”
 
 [^bwx_warning]: Build with Bazel mode is the build mode with first class
   support. We will try to make Build with Xcode mode work with every project, but
@@ -49,7 +49,7 @@ on it, or [file a new issue][file-an-issue]!
   [make the experience subpar](/docs/faq.md#why-do-some-of-my-swift_librarys-compile-twice-in-bwx-mode),
   or not work at all. We recommend using BwB mode if possible.
 
-We've also documented the [high-level design goals](/docs/design-goals.md) of
+We’ve also documented the [high-level design goals](/docs/design-goals.md) of
 the ruleset.
 
 ## Projects using rules_xcodeproj
@@ -76,7 +76,7 @@ to include it in the list above.
 | 1.x | 5.3–6.x  | 1.0.1–2.x | 1.x | 13.3–14.x | 12–13.x | `main` |
 
 More versions of these tools and rulesets might be supported, but these are the
-ones we've officially tested with.
+ones we’ve officially tested with.
 
 [1]: https://github.com/bazelbuild/rules_apple
 [2]: https://github.com/bazelbuild/rules_swift

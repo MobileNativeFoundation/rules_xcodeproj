@@ -9,7 +9,7 @@ referred to as Build with Bazel (BwB) and Build with Xcode (BwX).
 ## Does the Archive action work?
 
 Currently no effort is put into making the Archive action work correctly.
-rules_xcodeproj's primary goal is to support running and debugging of
+rules_xcodeproj’s primary goal is to support running and debugging of
 targets, and might make optimizations that break the generated `.xcarchive` that
 the Archive action produces.
 
@@ -25,7 +25,7 @@ If the transitive closure of dependencies of targets specified by
 will be included in the project with those various configurations. This can be
 useful/expected, for example having multiple platform versions of a given
 `swift_library`. When possible the generated project will have these various
-versions of a target consolidated into a single Xcode target. When targets can't
+versions of a target consolidated into a single Xcode target. When targets can’t
 be consolidated, usually because they are functionally equivalent from the point
 of view of Xcode, they will be separate Xcode targets.
 
@@ -40,16 +40,16 @@ need help, reach out to us.
 
 If you have a top level target, such as `ios_application`, and its primary
 library dependency is also directly depended on by another top level target,
-such as `ios_unit_test`, then we can't merge that library into the first top
-level target. When that happens, the first top level target doesn't have any
+such as `ios_unit_test`, then we can’t merge that library into the first top
+level target. When that happens, the first top level target doesn’t have any
 source files, so we need to add a stub one to allow Xcode to link to the proper
 library target.
 
-If this setup isn't desired (e.g. wanting to have the target merged to enable
+If this setup isn’t desired (e.g. wanting to have the target merged to enable
 SwiftUI Previews), there are a couple ways to fix it. For tests, setting the
 first top level target as the `test_host` will allow for the library to merge.
 In other cases, refactor the build graph to have the shared code in its own
-library separate from the top level target's primary library.
+library separate from the top level target’s primary library.
 
 ## Why do some of my `swift_library`s compile twice in BwX mode?
 
@@ -62,7 +62,7 @@ Possible solutions are:
 
 - Refactoring mixed-language targets to single language targets, removing the
   need for the custom modulemap that references the Swift generated header
-- Remove the use of header maps (hmaps), or don't include Swift generated
+- Remove the use of header maps (hmaps), or don’t include Swift generated
   headers in them
 - Use BwB mode instead
 
@@ -93,16 +93,16 @@ or inline with their `xcodeproj` target. Wrapping the declarations in a function
 is only necessary when sharing a set of custom schemes as is done with the
 fixture tests in this repository.
 
-## Why does "X" happen when switching between build modes?
+## Why does “X” happen when switching between build modes?
 
 The different build modes configure the project in different ways. Because of
 this, if you switch the build mode of a project that has already built
-something, the artifacts in Xcode's Derived Data might cause warnings or errors
-on subsequent builds. rules_xcodeproj thus doesn't officially support this use
+something, the artifacts in Xcode’s Derived Data might cause warnings or errors
+on subsequent builds. rules_xcodeproj thus doesn’t officially support this use
 case, and recommends declaring a different [`xcodeproj`](bazel.md#xcodeproj)
 target for each build mode if needed.
 
-## Why do I get an error like "Provisioning profile "PROFILE_NAME" is Xcode managed, but signing settings require a manually managed profile"?
+## Why do I get an error like “Provisioning profile "PROFILE_NAME" is Xcode managed, but signing settings require a manually managed profile”?
 
 This error should only occur if `build_mode = "xcode"`. If you are using another
 `build_mode`, please report this as a bug.
@@ -132,14 +132,14 @@ Also, the `:provisioning_profile` target needs to be a rule that returns the
 and the `team_id` attribute on that provider needs to be set, or `team_id` needs
 to be set on the `:xcode_profile` target.
 
-## Why do I get an error like "Xcode couldn't find any provisioning profiles matching 'TEAM_ID/PROFILE_NAME'"?
+## Why do I get an error like “Xcode couldn't find any provisioning profiles matching 'TEAM_ID/PROFILE_NAME'”?
 
 This error should only occur if `build_mode = "xcode"`. If you are using another
 `build_mode`, please report this as a bug.
 
 The `provisioning_profile` you have set on your top level target (i.e
 `ios_application` and the like) is resolving to a provisioning profile that
-hasn't yet been installed to `~/Library/MobileDevice/Provisioning Profiles`.
+hasn’t yet been installed to `~/Library/MobileDevice/Provisioning Profiles`.
 This is common if you use the `local_provisioning_profile` rule and specify
 fallback profiles, or if you use specify a profile in the workspace.
 
