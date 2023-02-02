@@ -256,12 +256,6 @@ def _process_base_compiler_opts(
         if skip_next:
             skip_next -= 1
             continue
-        if (opt == "-F__BAZEL_XCODE_SDKROOT__/Developer/Library/Frameworks" or
-            opt == "-F__BAZEL_XCODE_SDKROOT__/System/Library/Frameworks" or
-            opt.startswith("-F__BAZEL_XCODE_DEVELOPER_DIR__/Platforms/") or
-            opt.startswith("-I__BAZEL_XCODE_DEVELOPER_DIR__/Platforms/")):
-            # Theses options are already handled by Xcode
-            continue
         root_opt = opt.split("=")[0]
 
         skip_next = skip_opts.get(root_opt, 0)
@@ -594,7 +588,8 @@ def _process_swiftcopts(
         if opt.startswith("-isystem"):
             path = opt[8:]
             if (previous_opt == "-Xcc" or
-                (build_mode == "xcode" and not path.startswith("/"))):
+                (build_mode == "xcode" and not path.startswith("/") and
+                 not path.startswith("$("))):
                 if path == ".":
                     bwx_opt = "-isystem$(PROJECT_DIR)"
                 else:
@@ -607,7 +602,8 @@ def _process_swiftcopts(
         if opt.startswith("-iquote"):
             path = opt[7:]
             if (previous_opt == "-Xcc" or
-                (build_mode == "xcode" and not path.startswith("/"))):
+                (build_mode == "xcode" and not path.startswith("/") and
+                 not path.startswith("$("))):
                 if path == ".":
                     bwx_opt = "-iquote$(PROJECT_DIR)"
                 else:
@@ -620,7 +616,8 @@ def _process_swiftcopts(
         if opt.startswith("-I"):
             path = opt[2:]
             if (previous_opt == "-Xcc" or
-                (build_mode == "xcode" and not path.startswith("/"))):
+                (build_mode == "xcode" and not path.startswith("/") and
+                 not path.startswith("$("))):
                 if path == ".":
                     bwx_opt = "-I$(PROJECT_DIR)"
                 else:
@@ -633,7 +630,8 @@ def _process_swiftcopts(
         if opt.startswith("-fmodule-map-file="):
             path = opt[18:]
             if (previous_opt == "-Xcc" or
-                (build_mode == "xcode" and not path.startswith("/"))):
+                (build_mode == "xcode" and not path.startswith("/") and
+                 not path.startswith("$("))):
                 if path == ".":
                     bwx_opt = "-fmodule-map-file=$(PROJECT_DIR)"
                 else:
@@ -648,8 +646,10 @@ def _process_swiftcopts(
             if previous_opt == "-Xcc":
                 if path == ".":
                     bwx_opt = "-F$(PROJECT_DIR)"
-                else:
+                elif not path.startswith("/") and not path.startswith("$("):
                     bwx_opt = "-F$(PROJECT_DIR)/" + path
+                else:
+                    bwx_opt = opt
                 clang_opts.append(bwx_opt)
             return opt
         if previous_opt == "-Xcc":

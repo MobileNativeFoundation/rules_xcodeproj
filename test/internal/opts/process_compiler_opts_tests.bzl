@@ -188,6 +188,9 @@ def process_compiler_opts_test_suite(name):
         expected_build_settings = {
             "ENABLE_TESTABILITY": "True",
             "OTHER_SWIFT_FLAGS": """\
+-F$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks \
+-F$(SDKROOT)/Developer/Library/Frameworks \
+-I$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib \
 -DDEBUG \
 -application-extension \
 weird \
@@ -213,6 +216,8 @@ weird \
         ],
         expected_search_paths = {
             "framework_includes": [
+                "$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks",
+                "$(SDKROOT)/Developer/Library/Frameworks",
                 "somewhere",
             ],
         },
@@ -269,6 +274,9 @@ weird \
         expected_build_settings = {
             "ENABLE_TESTABILITY": "True",
             "OTHER_SWIFT_FLAGS": """\
+-F$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks \
+-F$(SDKROOT)/Developer/Library/Frameworks \
+-I$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib \
 -DDEBUG \
 -application-extension \
 weird \
@@ -294,6 +302,8 @@ weird \
         ],
         expected_search_paths = {
             "framework_includes": [
+                "$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks",
+                "$(SDKROOT)/Developer/Library/Frameworks",
                 "somewhere",
             ],
         },

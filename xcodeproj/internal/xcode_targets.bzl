@@ -23,7 +23,6 @@ def _make_xcode_target(
         package_bin_dir,
         platform,
         product,
-        is_testonly = False,
         is_swift,
         test_host = None,
         build_settings,
@@ -58,7 +57,6 @@ def _make_xcode_target(
             `ctx.bin_dir`.
         platform: The value returned from `process_platform`.
         product: The value returned from `process_product`.
-        is_testonly: Whether the `Target` has `testonly = True` set.
         is_swift: Whether the target compiles Swift code.
         test_host: The `id` of the target that is the test host for this
             target, or `None` if this target does not have a test host.
@@ -99,7 +97,6 @@ def _make_xcode_target(
     return struct(
         _compile_target = compile_target,
         _package_bin_dir = package_bin_dir,
-        _is_testonly = is_testonly,
         _test_host = test_host,
         _build_settings = struct(**build_settings),
         _search_paths = search_paths,
@@ -289,7 +286,6 @@ def _merge_xcode_target(*, src, dest):
             src = src.product,
             dest = dest.product,
         ),
-        is_testonly = dest._is_testonly,
         is_swift = src.is_swift,
         test_host = dest._test_host,
         build_settings = build_settings,
@@ -537,9 +533,6 @@ def _xcode_target_to_dto(
             "i": xcode_target._compile_target.id,
             "n": xcode_target._compile_target.name,
         }
-
-    if xcode_target._is_testonly:
-        dto["t"] = True
 
     if not xcode_target.is_swift:
         dto["s"] = False

@@ -578,7 +578,6 @@ actual targets: {}
                 xcode_target.lldb_context_key,
                 lldb_contexts.to_dto(
                     xcode_target.lldb_context,
-                    is_testonly = xcode_target._is_testonly,
                     xcode_generated_paths = xcode_generated_paths,
                 ),
             )

@@ -202,10 +202,6 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
             to: target.platform.minimumOsVersion.pretty
         )
 
-        if target.isTestonly {
-            buildSettings["ENABLE_TESTING_SEARCH_PATHS"] = true
-        }
-
         let executableExtension = target.product.path?.path.extension ?? ""
         if executableExtension != target.product.type.fileExtension {
             buildSettings.set(

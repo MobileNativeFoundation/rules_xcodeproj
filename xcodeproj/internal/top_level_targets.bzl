@@ -510,7 +510,6 @@ def process_top_level_target(
             package_bin_dir = package_bin_dir,
             platform = platform,
             product = product,
-            is_testonly = getattr(ctx.rule.attr, "testonly", False),
             is_swift = is_swift,
             test_host = test_host,
             build_settings = build_settings,
