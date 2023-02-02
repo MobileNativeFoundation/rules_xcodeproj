@@ -92,6 +92,10 @@ copy the Bzlmod or WORKSPACE snippet into your repository.
 Please see the documentation in the [docs](docs/README.md) directory and
 examples in the [examples](examples/README.md) directory.
 
+### BazelCon 2022
+
+<a href="https://youtu.be/B__SHnz3K3c" title="YouTube - How to integrate Bazel with Xcode using rules_xcodeproj"><img src="https://img.youtube.com/vi/B__SHnz3K3c/maxresdefault.jpg" alt="YouTube - How to integrate Bazel with Xcode using rules_xcodeproj" height="360"></a>
+
 ### Simple iOS example
 
 Given a root level `BUILD` file:
