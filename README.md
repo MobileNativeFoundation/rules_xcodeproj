@@ -55,7 +55,7 @@ the ruleset.
 ## Projects using rules_xcodeproj
 
 - Cash App
-- [Envoy Mobile](https://github.com/envoyproxy/envoy-mobile)
+- [Envoy Mobile](https://github.com/envoyproxy/envoy/tree/main/mobile)
 - Ergatta
 - Lyft
 - [Mercari](https://engineering.mercari.com/blog/entry/20221215-16cdd59909/)
