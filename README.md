@@ -49,8 +49,8 @@ on it, or [file a new issue][file-an-issue]!
   [make the experience subpar](/docs/faq.md#why-do-some-of-my-swift_librarys-compile-twice-in-bwx-mode),
   or not work at all. We recommend using BwB mode if possible.
 
-We've also documented the [high level design](/docs/design/high-level.md) of the
-ruleset.
+We've also documented the [high-level design goals](/docs/design-goals.md) of
+the ruleset.
 
 ## Projects using rules_xcodeproj
 
