@@ -97,7 +97,14 @@ genrule(
     srcs = ["//tools/swiftc_stub:universal_swiftc_stub"],
     outs = ["swiftc"],
     # Make the swiftc_stub have the right name
-    cmd = "cp -c $< $@",
+    cmd = """\
+readonly output="$@"
+if [[ $$(stat -f '%d' "$<") == $$(stat -f '%d' "$${output%/*}") ]]; then
+  cp -c "$<" "$@"
+else
+  cp "$<" "$@"
+fi
+""",
     message = "Renaming swiftc stub",
     tags = [
         "manual",

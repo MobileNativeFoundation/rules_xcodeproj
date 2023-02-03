@@ -134,17 +134,24 @@ rsync \
 mkdir -p "$dest/rules_xcodeproj/bazel"
 
 readonly bazel_integration_files=%bazel_integration_files%
+
+if [[ $(stat -f '%d' "${bazel_integration_files[0]}") == $(stat -f '%d' "$dest/rules_xcodeproj/bazel") ]]; then
+  readonly cp_cmd="cp -c"
+else
+  readonly cp_cmd="cp"
+fi
+
 if [[ $for_fixture -eq 1 ]]; then
   # Create empty static files for fixtures
   for file in "${bazel_integration_files[@]}"; do
     if [[ "${file##*/}" == "swift_debug_settings.py" ]]; then
-      cp -c "$file" "$dest/rules_xcodeproj/bazel"
+    $cp_cmd "$file" "$dest/rules_xcodeproj/bazel"
     else
       :>"$dest/rules_xcodeproj/bazel/${file##*/}"
     fi
   done
 else
-  cp -c "${bazel_integration_files[@]}" "$dest/rules_xcodeproj/bazel"
+  $cp_cmd "${bazel_integration_files[@]}" "$dest/rules_xcodeproj/bazel"
 fi
 
 cp "$xcodeproj_bazelrc" "$dest/rules_xcodeproj/bazel/xcodeproj.bazelrc"
