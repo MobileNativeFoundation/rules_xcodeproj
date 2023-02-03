@@ -33,20 +33,26 @@ EOF
 """.format(entitlements = entitlements.path),
     )
 
+    args = ctx.actions.args()
+    args.add(executable)
+    args.add(output)
+    args.add(entitlements)
+
     ctx.actions.run_shell(
         inputs = [executable, entitlements],
         outputs = [output],
         command = """\
-cp -c "{input}" "{output}"
-chmod u+w "{output}"
+if [[ $(stat -f '%d' "$1") == $(stat -f '%d' "${2%/*}") ]]; then
+  cp -c "$1" "$2"
+else
+  cp "$1" "$2"
+fi
+chmod u+w "$2"
 
-/usr/bin/codesign --force --sign - --entitlements "{entitlements}" --timestamp=none --generate-entitlement-der "{output}" 2>&1 | grep -v "replacing existing signature"
-exit ${{PIPESTATUS[0]}}
-""".format(
-            entitlements = entitlements.path,
-            input = executable.path,
-            output = output.path,
-        ),
+/usr/bin/codesign --force --sign - --entitlements "$3" --timestamp=none --generate-entitlement-der "$2" 2>&1 | grep -v "replacing existing signature"
+exit ${PIPESTATUS[0]}
+""",
+        arguments = [args],
         # Share mnemonic with rules_apple's codesigning, so if
         # `--modify_execution_info` is used to adjust code signing, it applies
         # to this as well

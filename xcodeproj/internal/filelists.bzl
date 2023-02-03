@@ -14,11 +14,11 @@ def _write(*, ctx, rule_name, name, files):
     output_args.add(output)
 
     ctx.actions.run_shell(
-        command = """
-if [[ $OSTYPE == darwin* ]]; then
-  cp -c \"$1\" \"$2\"
+        command = """\
+if [[ $(stat -f '%d' "$1") == $(stat -f '%d' "${2%/*}") ]]; then
+  cp -c "$1" "$2"
 else
-  cp \"$1\" \"$2\"
+  cp "$1" "$2"
 fi
 """,
         arguments = [
