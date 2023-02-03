@@ -17,10 +17,10 @@ on it, or [file a new issue][file-an-issue]!
 ## Features
 
 <p align="center">
-  <a href="https://user-images.githubusercontent.com/158658/216383453-9f6385c6-0935-4eca-b150-9bc9b821de51.png">
+  <a href="https://user-images.githubusercontent.com/158658/216620284-6a3cb6ff-f5cd-42f2-8e2b-7ef2a70c8da5.png">
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="https://user-images.githubusercontent.com/158658/216383462-50c05573-6fd0-45e0-8e65-d501bb39208f.png">
-      <img alt="Screenshot of a rules_xcodeproj generated project open in Xcode" src="https://user-images.githubusercontent.com/158658/216383453-9f6385c6-0935-4eca-b150-9bc9b821de51.png" width="720">
+      <img alt="Screenshot of a rules_xcodeproj generated project open in Xcode" src="https://user-images.githubusercontent.com/158658/216620253-507bbf10-a692-4dcd-bd74-736c9717e53e.png" width="1245">
     </picture>
   </a>
 </p>
