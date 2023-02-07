@@ -866,7 +866,7 @@ def _process_xcode_generated_paths(
     return xcode_generated_paths, xcode_generated_paths_file
 
 def should_include_outputs(build_mode):
-    return build_mode != "bazel_via_proxy"
+    return build_mode != "bazel_with_proxy"
 
 # Actions
 

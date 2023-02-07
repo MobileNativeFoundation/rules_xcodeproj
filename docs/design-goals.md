@@ -95,8 +95,7 @@ is used.
 When that isn’t the case, and there needs to be a deviation (mainly to [satisfy
 other constraints](#attempts-to-match-the-outputs-of-bazel-build)), then the
 generated project should deviate as little as possible. A [different build
-mode](#build-with-bazel-via-proxy) might be required to make the project feel
-more native.
+mode](#build-with-proxy) might be required to make the project feel more native.
 
 ## Defined in `BUILD` files
 
@@ -163,10 +162,10 @@ between builds, but also clear when they are supposed to.
 
 This will be the default build mode by the 1.0 release.
 
-### Build with Bazel via Proxy
+### Build with Proxy
 
-rules_xcodeproj will support one more build mode called “Build with Bazel via
-Proxy”. In this mode the generated project will rely on Xcode using an
+rules_xcodeproj will support one more build mode called “Build with Proxy”. In
+this mode the generated project will rely on Xcode using an
 [XCBBuildServiceProxy](https://github.com/MobileNativeFoundation/XCBBuildServiceProxyKit).
 This takes the Xcode build system entirely out of the equation, allowing Bazel
 to fully control the build.
@@ -180,11 +179,12 @@ Here are some benefits that the proxy provides over “Build with Bazel”:
   expected
 - Fully functional progress bar (though there is hope that we can get it to
   partially work with “Build with Bazel”)
+- Detailed build report
 - Less overhead
 
 With all of these benefits, you may be wondering why “Build with Bazel” will be
-the default build mode instead of “Build with Bazel via Proxy”. There are two
-main reasons:
+the default build mode instead of “Build with Proxy”. There are two main
+reasons:
 
 - The proxy relies on a private API that Xcode uses to communicate with
   XCBBuildService. This can have, and has had, breaking changes between Xcode
