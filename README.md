@@ -74,6 +74,7 @@ the ruleset.
 - SwiftLint
 - Ten Ten
 - Tinder
+- Tokopedia
 
 If you are also using rules_xcodeproj for your project, feel free to open a PR
 to include it in the list above.
