@@ -2,6 +2,7 @@
 
 load("@bazel_tools//tools/cpp:toolchain_utils.bzl", "find_cpp_toolchain")
 load(":collections.bzl", "set_if_true", "uniq")
+load(":files.bzl", "is_relative_path")
 
 # C and C++ compiler flags that we don't want to propagate to Xcode.
 # The values are the number of flags to skip, 1 being the flag itself, 2 being
@@ -588,8 +589,7 @@ def _process_swiftcopts(
         if opt.startswith("-isystem"):
             path = opt[8:]
             if (previous_opt == "-Xcc" or
-                (build_mode == "xcode" and not path.startswith("/") and
-                 not path.startswith("$("))):
+                (build_mode == "xcode" and is_relative_path(path))):
                 if path == ".":
                     bwx_opt = "-isystem$(PROJECT_DIR)"
                 else:
@@ -602,8 +602,7 @@ def _process_swiftcopts(
         if opt.startswith("-iquote"):
             path = opt[7:]
             if (previous_opt == "-Xcc" or
-                (build_mode == "xcode" and not path.startswith("/") and
-                 not path.startswith("$("))):
+                (build_mode == "xcode" and is_relative_path(path))):
                 if path == ".":
                     bwx_opt = "-iquote$(PROJECT_DIR)"
                 else:
@@ -616,8 +615,7 @@ def _process_swiftcopts(
         if opt.startswith("-I"):
             path = opt[2:]
             if (previous_opt == "-Xcc" or
-                (build_mode == "xcode" and not path.startswith("/") and
-                 not path.startswith("$("))):
+                (build_mode == "xcode" and is_relative_path(path))):
                 if path == ".":
                     bwx_opt = "-I$(PROJECT_DIR)"
                 else:
@@ -630,8 +628,7 @@ def _process_swiftcopts(
         if opt.startswith("-fmodule-map-file="):
             path = opt[18:]
             if (previous_opt == "-Xcc" or
-                (build_mode == "xcode" and not path.startswith("/") and
-                 not path.startswith("$("))):
+                (build_mode == "xcode" and is_relative_path(path))):
                 if path == ".":
                     bwx_opt = "-fmodule-map-file=$(PROJECT_DIR)"
                 else:
