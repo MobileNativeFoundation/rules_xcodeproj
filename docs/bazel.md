@@ -164,7 +164,7 @@ A `list` of values returned from `top_level_target`.
 ## project_options
 
 <pre>
-project_options(<a href="#project_options-development_language">development_language</a>, <a href="#project_options-indent_width">indent_width</a>, <a href="#project_options-tab_width">tab_width</a>, <a href="#project_options-uses_tabs">uses_tabs</a>)
+project_options(<a href="#project_options-development_region">development_region</a>, <a href="#project_options-indent_width">indent_width</a>, <a href="#project_options-tab_width">tab_width</a>, <a href="#project_options-uses_tabs">uses_tabs</a>)
 </pre>
 
 Project options for use in `xcodeproj.project_options`.
@@ -174,7 +174,7 @@ Project options for use in `xcodeproj.project_options`.
 
 | Name  | Description | Default Value |
 | :------------- | :------------- | :------------- |
-| <a id="project_options-development_language"></a>development_language |  Optional. The development language for the project. Defaults to <code>"en"</code>.   |  <code>"en"</code> |
+| <a id="project_options-development_region"></a>development_region |  Optional. The development region for the project. Defaults to <code>"en"</code>.   |  <code>"en"</code> |
 | <a id="project_options-indent_width"></a>indent_width |  Optional. The number of spaces to use for indentation.   |  <code>None</code> |
 | <a id="project_options-tab_width"></a>tab_width |  Optional. The number of spaces to use for tabs.   |  <code>None</code> |
 | <a id="project_options-uses_tabs"></a>uses_tabs |  Optional. Whether to use tabs for indentation.   |  <code>None</code> |
