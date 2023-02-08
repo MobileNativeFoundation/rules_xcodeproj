@@ -7,6 +7,12 @@ import XcodeProj
 enum Fixtures {
     static let project = Project(
         name: "Bazel",
+        options: Project.Options(
+            developmentRegion: "es",
+            indentWidth: 3,
+            tabWidth: 2,
+            usesTabs: true
+        ),
         bazel: "bazelisk",
         bazelConfig: "rules_xcodeproj_fixtures",
         generatorLabel: "@//:xcodeproj.generator",

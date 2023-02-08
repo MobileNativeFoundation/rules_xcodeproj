@@ -11,6 +11,12 @@ final class GeneratorTests: XCTestCase {
 
         let project = Project(
             name: "P",
+            options: Project.Options(
+                developmentRegion: "enGB",
+                indentWidth: 5,
+                tabWidth: 3,
+                usesTabs: false
+            ),
             bazel: "bz",
             bazelConfig: "rules_xcodeproj_test",
             generatorLabel: "@//a/P:xcodeproj.gen",

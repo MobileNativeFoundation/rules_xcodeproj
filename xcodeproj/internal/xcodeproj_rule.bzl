@@ -20,6 +20,7 @@ load(":input_files.bzl", "input_files")
 load(":lldb_contexts.bzl", "lldb_contexts")
 load(":output_files.bzl", "output_files")
 load(":platform.bzl", "platform_info")
+load(":project_options.bzl", "project_options_to_dto")
 load(":providers.bzl", "XcodeProjInfo")
 load(":resource_target.bzl", "process_resource_bundles")
 load(":xcode_targets.bzl", "xcode_targets")
@@ -895,6 +896,7 @@ def _write_spec(
         is_fixture,
         envs,
         project_name,
+        project_options,
         target_dtos,
         has_unfocused_targets,
         replacement_labels,
@@ -935,6 +937,10 @@ def _write_spec(
         "n": project_name,
         "R": ctx.attr.runner_label,
     }
+
+    project_options_dto = project_options_to_dto(project_options)
+    if project_options_dto:
+        spec_dto["o"] = project_options_dto
 
     bazel_path = ctx.attr.bazel_path
     if bazel_path != "bazel":
@@ -1442,6 +1448,7 @@ def _xcodeproj_impl(ctx):
         args = args,
         is_fixture = is_fixture,
         project_name = project_name,
+        project_options = ctx.attr.project_options,
         config = config,
         envs = envs,
         target_dtos = target_dtos,
@@ -1692,6 +1699,10 @@ The text of a script that will be run before the build. For example:
         ),
         "project_name": attr.string(
             doc = "The name to use for the `.xcodeproj` file.",
+            mandatory = True,
+        ),
+        "project_options": attr.string_dict(
+            doc = "A dictionary of global project options.",
             mandatory = True,
         ),
         "runner_label": attr.string(doc = "The label of the runner target."),

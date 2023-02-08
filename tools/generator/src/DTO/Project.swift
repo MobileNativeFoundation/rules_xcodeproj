@@ -1,5 +1,25 @@
 struct Project: Equatable {
+    struct Options: Equatable {
+        let developmentRegion: String
+        let indentWidth: UInt?
+        let tabWidth: UInt?
+        let usesTabs: Bool?
+
+        init(
+            developmentRegion: String = "en",
+            indentWidth: UInt? = nil,
+            tabWidth: UInt? = nil,
+            usesTabs: Bool? = nil
+        ) {
+            self.developmentRegion = developmentRegion
+            self.indentWidth = indentWidth
+            self.tabWidth = tabWidth
+            self.usesTabs = usesTabs
+        }
+    }
+
     let name: String
+    let options: Options
     let bazel: String
     let bazelConfig: String
     let generatorLabel: BazelLabel
@@ -22,6 +42,7 @@ struct Project: Equatable {
 extension Project: Decodable {
     enum CodingKeys: String, CodingKey {
         case name = "n"
+        case options = "o"
         case bazel = "b"
         case bazelConfig = "B"
         case generatorLabel = "g"
@@ -43,6 +64,8 @@ extension Project: Decodable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
         name = try container.decode(String.self, forKey: .name)
+        options = try container.decodeIfPresent(Options.self, forKey: .options)
+            ?? Options()
         bazel = try container
             .decodeIfPresent(String.self, forKey: .bazel) ?? "bazel"
         bazelConfig = try container.decode(String.self, forKey: .bazelConfig)
@@ -80,5 +103,25 @@ extension Project: Decodable {
             .decodeIfPresent(String.self, forKey: .preBuildScript)
         postBuildScript = try container
             .decodeIfPresent(String.self, forKey: .postBuildScript)
+    }
+}
+
+extension Project.Options: Decodable {
+    enum CodingKeys: String, CodingKey {
+        case developmentRegion = "d"
+        case indentWidth = "i"
+        case tabWidth = "t"
+        case usesTabs = "u"
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        developmentRegion = try container
+            .decodeIfPresent(String.self, forKey: .developmentRegion) ?? "en"
+        indentWidth = try container
+            .decodeIfPresent(UInt.self, forKey: .indentWidth)
+        tabWidth = try container.decodeIfPresent(UInt.self, forKey: .tabWidth)
+        usesTabs = try container.decodeIfPresent(Bool.self, forKey: .usesTabs)
     }
 }

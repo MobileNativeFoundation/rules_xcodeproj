@@ -1,6 +1,10 @@
 """Public rules, macros, and libraries."""
 
 load(
+    "//xcodeproj/internal:project_options.bzl",
+    _project_options = "project_options",
+)
+load(
     "//xcodeproj/internal:top_level_target.bzl",
     _top_level_target = "top_level_target",
     _top_level_targets = "top_level_targets",
@@ -25,6 +29,7 @@ XcodeProjAutomaticTargetProcessingInfo = _XcodeProjAutomaticTargetProcessingInfo
 XcodeProjInfo = _XcodeProjInfo
 
 # Re-exporting rules
+project_options = _project_options
 top_level_target = _top_level_target
 top_level_targets = _top_level_targets
 xcodeproj = _xcodeproj
