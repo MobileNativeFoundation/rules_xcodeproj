@@ -24,7 +24,10 @@ final class CreateProjectTests: XCTestCase {
 
         let expectedMainGroup = PBXGroup(
             sourceTree: .absolute,
-            path: directories.workspace.string
+            path: directories.workspace.string,
+            usesTabs: true,
+            indentWidth: 3,
+            tabWidth: 2
         )
         expectedPBXProj.add(object: expectedMainGroup)
 
@@ -120,7 +123,7 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
             buildConfigurationList: expectedBuildConfigurationList,
             compatibilityVersion: "Xcode 14.0",
             mainGroup: expectedMainGroup,
-            developmentRegion: "en",
+            developmentRegion: "es",
             projectDirPath: directories.executionRoot.string,
             attributes: attributes
         )
@@ -162,7 +165,10 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
 
         let expectedMainGroup = PBXGroup(
             sourceTree: .absolute,
-            path: directories.workspace.string
+            path: directories.workspace.string,
+            usesTabs: true,
+            indentWidth: 3,
+            tabWidth: 2
         )
         expectedPBXProj.add(object: expectedMainGroup)
 
@@ -266,7 +272,7 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
             buildConfigurationList: expectedBuildConfigurationList,
             compatibilityVersion: "Xcode 14.0",
             mainGroup: expectedMainGroup,
-            developmentRegion: "en",
+            developmentRegion: "es",
             projectDirPath: directories.executionRoot.string,
             attributes: attributes
         )

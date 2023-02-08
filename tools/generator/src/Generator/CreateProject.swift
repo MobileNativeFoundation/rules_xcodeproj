@@ -15,6 +15,7 @@ extension Generator {
         let pbxProj = PBXProj()
 
         let nonRelativeProjectDir = directories.executionRoot
+        let options = project.options
 
         let srcRoot: String
         if forFixtures {
@@ -37,7 +38,10 @@ extension Generator {
 
         let mainGroup = PBXGroup(
             sourceTree: forFixtures ? .group : .absolute,
-            path: srcRoot
+            path: srcRoot,
+            usesTabs: options.usesTabs,
+            indentWidth: options.indentWidth,
+            tabWidth: options.tabWidth
         )
         pbxProj.add(object: mainGroup)
 
@@ -175,8 +179,7 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
 Xcode \(min(project.minimumXcodeVersion.major, 14)).0
 """,
             mainGroup: mainGroup,
-            // TODO: Make developmentRegion configurable?
-            developmentRegion: "en",
+            developmentRegion: options.developmentRegion,
             projectDirPath: projectDirPath,
             attributes: attributes
         )

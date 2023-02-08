@@ -3,6 +3,7 @@
 load("@bazel_skylib//lib:sets.bzl", "sets")
 load(":bazel_labels.bzl", "bazel_labels")
 load(":logging.bzl", "warn")
+load(":project_options.bzl", _default_project_options = "project_options")
 load(":top_level_target.bzl", "top_level_target")
 load(":xcode_schemes.bzl", "focus_schemes", "unfocus_schemes")
 load(":xcodeproj_rule.bzl", "bwb_xcodeproj", "bwx_xcodeproj")
@@ -26,6 +27,7 @@ def xcodeproj(
         post_build = None,
         pre_build = None,
         project_name = None,
+        project_options = None,
         scheme_autogeneration_mode = "auto",
         schemes = [],
         top_level_targets,
@@ -163,6 +165,7 @@ def xcodeproj(
             to ensure `$ACTION == build`.
         project_name: Optional. The name to use for the `.xcodeproj` file. If
             not specified, the value of the `name` argument is used.
+        project_options: Optional. A value returned by `project_options`.
         scheme_autogeneration_mode: Optional. Specifies how Xcode schemes are
             automatically generated.
 
@@ -254,6 +257,8 @@ in your `.bazelrc` or `xcodeproj.bazelrc` file.""")
         install_directory = native.package_name()
     if not project_name:
         project_name = name
+    if not project_options:
+        project_options = _default_project_options()
 
     if not top_level_targets:
         fail("`top_level_targets` cannot be empty.")
@@ -342,6 +347,7 @@ in your `.bazelrc` or `xcodeproj.bazelrc` file.""")
         post_build = post_build,
         pre_build = pre_build,
         project_name = project_name,
+        project_options = project_options,
         runner_label = bazel_labels.normalize(name),
         scheme_autogeneration_mode = scheme_autogeneration_mode,
         schemes_json = schemes_json,

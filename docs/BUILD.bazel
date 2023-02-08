@@ -5,6 +5,7 @@ load("@io_bazel_stardoc//stardoc:stardoc.bzl", "stardoc")
 # Generating
 
 _DOC_COMPONENTS = [
+    "project_options",
     "providers",
     "top_level_target",
     "xcode_build_settings",
@@ -29,6 +30,7 @@ genrule(
         "//xcodeproj/internal/docs:bazel.header.md",
         ":xcodeproj",
         ":top_level_target",
+        ":project_options",
         ":xcode_schemes",
         ":xcode_build_settings",
         ":providers",

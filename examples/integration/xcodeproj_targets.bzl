@@ -2,12 +2,20 @@
 
 load(
     "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:defs.bzl",
+    "project_options",
     "top_level_target",
     "top_level_targets",
     "xcode_schemes",
 )
 
 CONFIG = "rules_xcodeproj_integration"
+
+PROJECT_OPTIONS = project_options(
+    development_region = "es",
+    indent_width = 3,
+    tab_width = 2,
+    uses_tabs = True,
+)
 
 EXTRA_FILES = [
     "//:README.md",
