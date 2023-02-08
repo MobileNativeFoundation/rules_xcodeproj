@@ -17,6 +17,10 @@ bazel_dep(
     repo_name = "build_bazel_rules_apple",
 )
 bazel_dep(
+    name = "xcbbuildserviceproxykit",
+    version = "0.0.0",
+)
+bazel_dep(
     name = "buildifier_prebuilt",
     version = "6.0.0.1",
     dev_dependency = True,

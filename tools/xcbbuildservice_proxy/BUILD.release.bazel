@@ -1,0 +1,8 @@
+load("@bazel_skylib//rules:native_binary.bzl", "native_binary")
+
+native_binary(
+    name = "universal_xcbbuildservice_proxy",
+    src = "prebuilt_universal_xcbbuildservice_proxy",
+    out = "universal_xcbbuildservice_proxy",
+    visibility = ["//visibility:public"],
+)

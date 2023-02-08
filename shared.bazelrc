@@ -51,3 +51,8 @@ build:workflows --@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:extra_gen
 
 # Show detailed errors for test failures
 test --test_output=errors --test_summary=detailed
+
+
+
+
+build --override_module=xcbbuildserviceproxykit=/Users/brentley/Developer/XCBBuildServiceProxyKit

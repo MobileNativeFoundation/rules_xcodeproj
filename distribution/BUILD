@@ -43,6 +43,7 @@ pkg_tar(
     remap_paths = {
         "tools/generator/BUILD.release.bazel": "tools/generator/BUILD",
         "tools/generator/universal_generator": "tools/generator/prebuilt_universal_generator",
+        "tools/xcbbuildservice_proxy/universal_xcbbuildservice_proxy": "tools/xcbbuildservice_proxy/prebuilt_universal_xcbbuildservice_proxy",
         "tools/swiftc_stub/BUILD.release.bazel": "tools/swiftc_stub/BUILD",
     },
     strip_prefix = "/",
