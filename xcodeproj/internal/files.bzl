@@ -116,7 +116,7 @@ def build_setting_path(
             build_setting = path
     else:
         # Project or absolute
-        if absolute_path and not path.startswith("/"):
+        if absolute_path and is_relative_path(path):
             build_setting = "$(SRCROOT)/{}".format(path)
         else:
             build_setting = path
@@ -255,6 +255,9 @@ def is_generated_path(path):
 
 def is_generated_file_path(fp):
     return fp.type == "g"
+
+def is_relative_path(path):
+    return not path.startswith("/") and not path.startswith("$(")
 
 def project_file_path(
         path,
