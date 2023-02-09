@@ -26,13 +26,13 @@ config_setting(
 ios_application(
     name = "iOSApp",
     alternate_icons = glob(["AltIcons/AltIcon-60.alticon/**"]),
-    app_clips = ["//AppClip"],
+    # app_clips = ["//AppClip"],
     app_icons = glob(["Assets.xcassets/AppIcon.appiconset/**"]),
     bundle_id = IOS_BUNDLE_ID,
     bundle_name = "iOSApp",
     entitlements = "ios app.entitlements",
     executable_name = "iOSApp_ExecutableName",
-    extensions = ["//WidgetExtension"],
+    # extensions = ["//WidgetExtension"],
     families = ["iphone"],
     # frameworks = [
     #     "//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC",
@@ -66,10 +66,10 @@ ios_application(
         "//iOSApp:__pkg__",
         "@rules_xcodeproj//xcodeproj:generated",
     ],
-    watch_application = "//watchOSApp",
+    # watch_application = "//watchOSApp",
     deps = [
         ":iOSApp.library",
-        "@rules_apple_linker//:lld",
+        # "@rules_apple_linker//:lld",
     ],
 )
 
@@ -118,6 +118,8 @@ swift_library(
         "//iOSApp/Source/CoreUtilsMixed/MixedAnswer",
         "//iOSApp/Source/CoreUtilsObjC",
         "@com_google_google_maps//:GoogleMaps",
+        "@firebase//:FirebaseCrashlytics",
+        "@firebase//:FirebaseAnalyticsSwift",
     ],
 )
 

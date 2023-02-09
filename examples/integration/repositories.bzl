@@ -74,6 +74,151 @@ apple_dynamic_xcframework_import(
     )
 
     http_archive(
+        name = "firebase",
+        build_file_content = """\
+load(
+    "@build_bazel_rules_apple//apple:apple.bzl",
+    "apple_static_xcframework_import",
+)
+
+apple_static_xcframework_import(
+    name = "FirebaseAnalyticsSwift",
+    xcframework_imports = glob(
+        ["FirebaseAnalytics/FirebaseAnalyticsSwift.xcframework/**"],
+        exclude = ["**/.*"],
+    ),
+    deps = [":FirebaseAnalytics"],
+    visibility = ["//visibility:public"],
+)
+
+apple_static_xcframework_import(
+    name = "FirebaseAnalytics",
+    xcframework_imports = glob(
+        ["FirebaseAnalytics/FirebaseAnalytics.xcframework/**"],
+        exclude = ["**/.*"],
+    ),
+    deps = [":FirebaseCore", ":GoogleAppMeasurement", ":GoogleAppMeasurementIdentitySupport", ":FirebaseInstallations"],
+)
+
+apple_static_xcframework_import(
+    name = "FirebaseCore",
+    xcframework_imports = glob(
+        ["FirebaseAnalytics/FirebaseCore.xcframework/**"],
+        exclude = ["**/.*"],
+    ),
+    deps = [
+        ":GoogleUtilities",
+        ":FirebaseCoreInternal",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+apple_static_xcframework_import(
+    name = "GoogleAppMeasurement",
+    xcframework_imports = glob(
+        ["FirebaseAnalytics/GoogleAppMeasurement.xcframework/**"],
+        exclude = ["**/.*"],
+    ),
+    deps = [
+        ":nanopb",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+apple_static_xcframework_import(
+    name = "GoogleAppMeasurementIdentitySupport",
+    xcframework_imports = glob(
+        ["FirebaseAnalytics/GoogleAppMeasurementIdentitySupport.xcframework/**"],
+        exclude = ["**/.*"],
+    ),
+    deps = [
+        ":nanopb",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+apple_static_xcframework_import(
+    name = "FirebaseCoreInternal",
+    xcframework_imports = glob(
+        ["FirebaseAnalytics/FirebaseCoreInternal.xcframework/**"],
+        exclude = ["**/.*"],
+    ),
+)
+
+apple_static_xcframework_import(
+    name = "FirebaseCrashlytics",
+    xcframework_imports = glob(
+        ["FirebaseCrashlytics/FirebaseCrashlytics.xcframework/**"],
+        exclude = ["**/.*"],
+    ),
+    deps = [
+        ":FBLPromises",
+        ":FirebaseCore",
+        ":FirebaseInstallations",
+        ":GoogleDataTransport",
+        ":GoogleUtilities",
+        ":nanopb",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+apple_static_xcframework_import(
+    name = "FirebaseInstallations",
+    xcframework_imports = glob(
+        ["FirebaseAnalytics/FirebaseInstallations.xcframework/**"],
+        exclude = ["**/.*"],
+    ),
+    deps = [
+        ":FBLPromises",
+        ":FirebaseCore",
+        ":GoogleUtilities",
+    ],
+)
+
+apple_static_xcframework_import(
+    name = "GoogleDataTransport",
+    xcframework_imports = glob(
+        ["FirebaseCrashlytics/GoogleDataTransport.xcframework/**"],
+        exclude = ["**/.*"],
+    ),
+    deps = [
+        ":FBLPromises",
+        ":GoogleUtilities",
+        ":nanopb",
+    ],
+)
+
+apple_static_xcframework_import(
+    name = "GoogleUtilities",
+    xcframework_imports = glob(
+        ["FirebaseAnalytics/GoogleUtilities.xcframework/**"],
+        exclude = ["**/.*"],
+    ),
+    deps = [":FBLPromises"],
+)
+
+apple_static_xcframework_import(
+    name = "nanopb",
+    xcframework_imports = glob(
+        ["FirebaseAnalytics/nanopb.xcframework/**"],
+        exclude = ["**/.*"],
+    ),
+)
+
+apple_static_xcframework_import(
+    name = "FBLPromises",
+    xcframework_imports = glob(
+        ["FirebaseAnalytics/FBLPromises.xcframework/**"],
+        exclude = ["**/.*"],
+    ),
+)
+""",
+        sha256 = "ebc5cbdda13ffa7f711176b4f936445c3484892a98e491e49443abc5fce98393",
+        strip_prefix = "Firebase",
+        url = "https://github.com/firebase/firebase-ios-sdk/releases/download/10.5.0/Firebase.zip",
+    )
+
+    http_archive(
         name = "FXPageControl",
         build_file_content = """
 objc_library(
