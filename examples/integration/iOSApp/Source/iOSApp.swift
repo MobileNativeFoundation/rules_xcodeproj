@@ -8,7 +8,7 @@ struct iOSApp: App { // swiftlint:disable:this type_name
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .print(Answers().answer())
+                .print(strings)
         }
     }
 }
