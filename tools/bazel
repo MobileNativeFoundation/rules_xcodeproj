@@ -3,6 +3,9 @@
 set -euo pipefail
 
 bazel_version=$("$BAZEL_REAL" info release | cut -d ' ' -f 2 | cut -d '.' -f 1)
+if [[ -n "$bazel_version" ]]; then
+  bazel_version=7
+fi
 
 tool_abs_location="$(perl -MCwd -e 'print Cwd::abs_path shift' "${BASH_SOURCE[0]}";)"
 readonly root_dir="${tool_abs_location%/*/*}"
