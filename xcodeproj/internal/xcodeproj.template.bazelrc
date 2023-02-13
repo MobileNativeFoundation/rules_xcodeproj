@@ -38,6 +38,10 @@ build:rules_xcodeproj --features=relative_ast_path
 # this in `swift_debug_settings.py`, so debugging still works.
 build:rules_xcodeproj --features=swift.cacheable_swiftmodules
 
+# `swift.file_prefix_map` is a more complete version of `swift.debug_prefix_map`
+# that also makes index store data reproducible.
+build:rules_xcodeproj --features=swift.file_prefix_map
+
 # `swift.index-while-building` passes `-index-store-path` to `swiftc`, which
 # generates index store data. We enable this globally, and don't disable it in
 # `rules_xcodeproj_indexbuild`, even though we only need it for the normal
