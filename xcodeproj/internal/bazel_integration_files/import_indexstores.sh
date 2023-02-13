@@ -68,7 +68,7 @@ remaps=(
   # When we add support for C-based index imports we will have to use another
   # pattern:
   # https://github.com/bazelbuild/bazel/blob/c4a1ab8b6577c4376aaaa5c3c2d4ef07d524175c/src/main/java/com/google/devtools/build/lib/rules/cpp/CcCompilationHelper.java#L1358
-  -remap "^(?:$execution_root_regex/)?(bazel-out/[^/]+/bin/)(?:_swift_incremental/)?(.*?)([^/]+)_objs/.*?([^/]+?)(?:\.swift)?\.o\$=$object_file_prefix/\$1\$2\$3/Objects-normal/$ARCHS/\$4.o"
+  -remap "^(?:$execution_root_regex/|\./)?(bazel-out/[^/]+/bin/)(?:_swift_incremental/)?(.*?)([^/]+)_objs/.*?([^/]+?)(?:\.swift)?\.o\$=$object_file_prefix/\$1\$2\$3/Objects-normal/$ARCHS/\$4.o"
 
   # Generated sources and swiftmodules
   #
@@ -80,13 +80,13 @@ remaps=(
   # paths are returned as absolute, but a future change might make them
   # relative, similar to the object files, so we have the execution_root as an
   # optional prefix.
-  -remap "^(?:$execution_root_regex/)?bazel-out/=$xcode_execution_root/bazel-out/"
+  -remap "^(?:$execution_root_regex/|\./)?bazel-out/=$xcode_execution_root/bazel-out/"
 
   # External sources
   #
   # External sources need to be handled differently, since we use the
   # non-symlinked version in Xcode.
-  -remap "^(?:$execution_root_regex/)?external/=${xcode_execution_root%/*/*}/external/"
+  -remap "^(?:$execution_root_regex/|\./)?external/=${xcode_execution_root%/*/*}/external/"
 
   # Project sources
   #
