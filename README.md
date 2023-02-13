@@ -8,7 +8,7 @@ This repository contains rules for [Bazel](https://bazel.build) that can be
 used to generate Xcode projects from targets in your workspace.
 
 If you run into any problems with these rules, please check our
-[FAQ](/docs/faq.md), check if [another issue already exists][issues] and comment
+[FAQ](docs/faq.md), check if [another issue already exists][issues] and comment
 on it, or [file a new issue][file-an-issue]!
 
 [issues]: https://github.com/buildbuddy-io/rules_xcodeproj/issues
@@ -55,10 +55,10 @@ on it, or [file a new issue][file-an-issue]!
 [^bwx_warning]: Build with Bazel mode is the build mode with first class
   support. We will try to make Build with Xcode mode work with every project, but
   there are limitations that can
-  [make the experience subpar](/docs/faq.md#why-do-some-of-my-swift_librarys-compile-twice-in-bwx-mode),
+  [make the experience subpar](docs/faq.md#why-do-some-of-my-swift_librarys-compile-twice-in-bwx-mode),
   or not work at all. We recommend using BwB mode if possible.
 
-We’ve also documented the [high-level design goals](/docs/design-goals.md) of
+We’ve also documented the [high-level design goals](docs/design-goals.md) of
 the ruleset.
 
 ## Projects using rules_xcodeproj
