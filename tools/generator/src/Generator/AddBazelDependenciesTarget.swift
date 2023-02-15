@@ -49,6 +49,11 @@ extension Generator {
                     .forEach { platforms.insert($0.platform) }
             }
 
+        let supportedPlatforms = projectPlatforms
+            .sorted()
+            .map { $0.variant.rawValue }
+            .uniqued()
+
         var buildSettings: BuildSettings = [
             "BAZEL_PACKAGE_BIN_DIR": "rules_xcodeproj",
             "CALCULATE_OUTPUT_GROUPS_SCRIPT": """
@@ -56,12 +61,19 @@ $(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py
 """,
             "INDEX_DATA_STORE_DIR": "$(INDEX_DATA_STORE_DIR)",
             "INDEX_IMPORT": indexImport,
+            "INDEXING_SUPPORTED_PLATFORMS__": """
+$(INDEXING_SUPPORTED_PLATFORMS__NO)
+""",
+            "INDEXING_SUPPORTED_PLATFORMS__NO": supportedPlatforms
+                .joined(separator: " "),
             // We have to support only a single platform to prevent issues
             // with duplicated outputs during Index Build, but it also
             // has to be a platform that one of the targets uses, otherwise
             // it's not invoked at all. Index Build is so weird...
-            "SUPPORTED_PLATFORMS": projectPlatforms.sorted()
-                .first!.variant.rawValue,
+            "INDEXING_SUPPORTED_PLATFORMS__YES": supportedPlatforms.first!,
+            "SUPPORTED_PLATFORMS": """
+$(INDEXING_SUPPORTED_PLATFORMS__$(INDEX_ENABLE_BUILD_ARENA))
+""",
             "SUPPORTS_MACCATALYST": true,
             "TARGET_NAME": "BazelDependencies",
         ]
