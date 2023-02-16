@@ -101,7 +101,7 @@ def xcodeproj_rules_dependencies(
     # also need to use `index-import`, so we could declare the same dependency
     # here in order to reuse it, and in case `rules_swift` stops depending on it
     # in the future. We don't though, because we need 5.5.3.1 or higher, and the
-    # currently lowest version of rules_swift we support uses 5.3.2.6.
+    # current lowest version of rules_swift we support uses 5.3.2.6.
     _maybe(
         http_archive,
         name = "rules_xcodeproj_index_import",
@@ -115,8 +115,8 @@ native_binary(
     visibility = ["//visibility:public"],
 )
 """,
-        sha256 = "802f33638b996abe76285d1e0246e661919c0c3222877681e66c519f78145511",
-        url = "https://github.com/MobileNativeFoundation/index-import/releases/download/5.7/index-import.tar.gz",
+        sha256 = "9e26765efd7cda24dbe91965dfb1ff8abcaa9ac7bafc3afa7fc1d081dea47d7f",
+        url = "https://github.com/MobileNativeFoundation/index-import/releases/download/5.7.0.1/index-import.tar.gz",
         ignore_version_differences = ignore_version_differences,
     )
 
