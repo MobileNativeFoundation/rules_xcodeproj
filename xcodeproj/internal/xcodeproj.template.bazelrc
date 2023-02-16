@@ -6,6 +6,10 @@
 
 common:rules_xcodeproj --verbose_failures
 
+# Increase the default file digest cache size to 500k entries, as 50k (the
+# default) is too small for large projects.
+common:rules_xcodeproj --cache_computed_file_digests=500000
+
 # We default to `dbg` since debugging is broken otherwise
 build:rules_xcodeproj --compilation_mode=dbg
 
