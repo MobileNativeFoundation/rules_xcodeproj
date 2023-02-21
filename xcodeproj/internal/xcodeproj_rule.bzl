@@ -480,20 +480,19 @@ actual targets: {}
                 )
 
     # Filter `target_merge_dests` after processing focused targets
-    if has_unfocused_targets:
-        for dest, src_ids in target_merge_dests.items():
-            if dest not in focused_targets:
-                target_merge_dests.pop(dest)
-                continue
-            new_srcs_ids = [
-                id
-                for id in src_ids
-                if id in focused_targets
-            ]
-            if not new_srcs_ids:
-                target_merge_dests.pop(dest)
-                continue
-            target_merge_dests[dest] = new_srcs_ids
+    for dest, src_ids in target_merge_dests.items():
+        if dest not in focused_targets:
+            target_merge_dests.pop(dest)
+            continue
+        new_srcs_ids = [
+            id
+            for id in src_ids
+            if id in focused_targets
+        ]
+        if not new_srcs_ids:
+            target_merge_dests.pop(dest)
+            continue
+        target_merge_dests[dest] = new_srcs_ids
 
     target_merges = {}
     target_merge_srcs_by_label = {}
