@@ -20,6 +20,7 @@ def _create_label_parts(repository_name, package, name):
         name = name,
     )
 
+# buildifier: disable=unnamed-macro
 def make_bazel_labels(workspace_name_resolvers = workspace_name_resolvers):
     """Creates a `bazel_labels` module using the specified name resolver.
 
