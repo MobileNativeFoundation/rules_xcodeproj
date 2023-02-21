@@ -501,7 +501,7 @@ actual targets: {}
         focused_src_targets = [src_target for src_target in src_targets if focused_targets.get(src_target.id)]
 
         if len(focused_src_targets) > 1:
-            # We can only merge targets with a single library dependency
+            # We can only merge targets with a single Xcode-target library dependency
             continue
 
         src_target = focused_src_targets[0]
