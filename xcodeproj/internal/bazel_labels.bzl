@@ -20,6 +20,7 @@ def _create_label_parts(repository_name, package, name):
         name = name,
     )
 
+# buildifier: disable=unnamed-macro
 def make_bazel_labels(workspace_name_resolvers = workspace_name_resolvers):
     """Creates a `bazel_labels` module using the specified name resolver.
 
@@ -90,15 +91,16 @@ def make_bazel_labels(workspace_name_resolvers = workspace_name_resolvers):
         if type(value) == "Label":
             return str(value)
         else:
+            if hasattr(native, "package_relative_label"):
+                return str(native.package_relative_label(value))
+
             parts = _parse(value)
 
-            label = Label("{repo_name}//{package}:{name}".format(
+            return str(Label("{repo_name}//{package}:{name}".format(
                 repo_name = parts.repository_name,
                 package = parts.package,
                 name = parts.name,
-            ))
-
-        return str(label)
+            )))
 
     return struct(
         create = _create_label_parts,
