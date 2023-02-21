@@ -498,13 +498,11 @@ actual targets: {}
     target_merges = {}
     target_merge_srcs_by_label = {}
     for dest, src_targets in target_merge_dests.items():
-        focused_src_targets = [src_target for src_target in src_targets if focused_targets.get(src_target.id)]
-
-        if len(focused_src_targets) > 1:
+        if len(src_targets) > 1:
             # We can only merge targets with a single Xcode-target library dependency
             continue
 
-        src_target = focused_src_targets[0]
+        src_target = src_targets[0]
         target_merges.setdefault(src_target.id, []).append(dest)
         target_merge_srcs_by_label.setdefault(src_target.target.label, []).append(src_target.id)
 
