@@ -131,6 +131,10 @@ if [[ %is_fixture% -eq 1 && %is_bazel_6% -eq 1 ]]; then
     # bzlmod adjust labels in a way that we can't account for yet
     "--noenable_bzlmod"
   )
+
+  if [[ "${BUILD_WORKSPACE_DIRECTORY##*/}" == "integration" ]]; then
+    pre_config_flags+=("--platform_mappings=platform_mappings")
+  fi
 fi
 
 readonly bazel_cmd=(
