@@ -131,7 +131,7 @@ actions:
     bazel_commands:
       - *validate_integration
       - *test_all
-  - name: Integration Test - "examples/integration" - Bzlmod
+  - name: Integration Test - "examples/integration"
     <<: *arm64
     <<: *action_base
     <<: *normal_resources
