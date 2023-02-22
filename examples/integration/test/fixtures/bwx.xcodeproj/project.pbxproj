@@ -1260,6 +1260,7 @@
 		31E3C6A8F9858634B7B6FA6E /* CommandLineToolTests.__internal__.__test_bundle.58.link.params */ = {isa = PBXFileReference; path = CommandLineToolTests.__internal__.__test_bundle.58.link.params; sourceTree = "<group>"; };
 		31E3D6F06983030936AF5737 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		31EBAA302BF21712CB52AF4A /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = "<group>"; };
+		334335CCE60C90764827E4B1 /* exported-symbols.lds */ = {isa = PBXFileReference; path = "exported-symbols.lds"; sourceTree = "<group>"; };
 		33ADD8EBAB43E8270162F9DC /* tool.binary.57.link.params */ = {isa = PBXFileReference; path = tool.binary.57.link.params; sourceTree = "<group>"; };
 		33F88ADEDB7809198F344595 /* liblib_swift.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_swift.a; path = "bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-18/bin/CommandLine/CommandLineToolLib/liblib_swift.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		377BB3CE77D26BF4FC27696B /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = "<group>"; };
@@ -1439,6 +1440,7 @@
 		C85BD205586AA00838254725 /* MixedAnswer-Swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MixedAnswer-Swift.h"; sourceTree = "<group>"; };
 		CA21FC409B2526105AF42299 /* watchOSAppExtension.70.link.params */ = {isa = PBXFileReference; path = watchOSAppExtension.70.link.params; sourceTree = "<group>"; };
 		CA4B849D45BE52A44401D569 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		CA947B313940F1452B368067 /* exported-symbols.lds */ = {isa = PBXFileReference; path = "exported-symbols.lds"; sourceTree = "<group>"; };
 		CA95EEF3FAE24FBB77E2EF38 /* Launchd.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Launchd.plist; sourceTree = "<group>"; };
 		CB4A0FB26B6A160C6B667828 /* Nested */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Nested; sourceTree = "<group>"; };
 		CC017E2E345368072FC2D726 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
@@ -2371,6 +2373,7 @@
 			children = (
 				ED7AF36034C0D4EF0A2F3ABF /* dist */,
 				51F8402F9ECE8ACE48627C6E /* rules_xcodeproj */,
+				334335CCE60C90764827E4B1 /* exported-symbols.lds */,
 			);
 			path = Lib;
 			sourceTree = "<group>";
@@ -3128,6 +3131,7 @@
 			children = (
 				CA57FB748A60A622856ED2CD /* dist */,
 				9A6B3E7E863AFB1E6C66DDD1 /* rules_xcodeproj */,
+				CA947B313940F1452B368067 /* exported-symbols.lds */,
 			);
 			path = Lib;
 			sourceTree = "<group>";
