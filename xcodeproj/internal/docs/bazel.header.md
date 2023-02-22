@@ -21,6 +21,7 @@ load(
   - [`xcodeproj`](#xcodeproj)
   - [`top_level_target`](#top_level_target)
   - [`top_level_targets`](#top_level_targets)
+  - [`project_options`](#project_options)
 - [Custom Xcode schemes](#custom-xcode-schemes)
   - [`xcode_schemes.scheme`](#xcode_schemes.scheme)
   - [`xcode_schemes.build_action`](#xcode_schemes.build_action)
