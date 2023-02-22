@@ -126,6 +126,8 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
             codesignopts = "codesignopts"
         if "entitlements" in attrs:
             entitlements = "entitlements"
+        if "exported_symbols_lists" in attrs:
+            exported_symbols_lists = ["exported_symbols_lists"]
         if "extension" in attrs:
             xcode_targets["extension"] = [target_type.compile]
         if "extensions" in attrs:

@@ -558,6 +558,7 @@
 		1D9A0A5ED747A10C0A54D1AF /* tool.binary.51.link.params */ = {isa = PBXFileReference; path = tool.binary.51.link.params; sourceTree = "<group>"; };
 		1DC15ADEF46CAB9AC4326F59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		1E84E717BC47B0961159FC23 /* tvOSAppUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = tvOSAppUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1F69218E6937EDB946998FFA /* exported-symbols.lds */ = {isa = PBXFileReference; path = "exported-symbols.lds"; sourceTree = "<group>"; };
 		211F5D02396A5F7F21B372C0 /* CommandLineToolTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CommandLineToolTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		222CF04F551342682A2DEA9D /* LibFramework.watchOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LibFramework.watchOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2389FC2E3790FF01911CDBCC /* iOSAppObjCUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSAppObjCUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -764,6 +765,7 @@
 		C454C50B0428F3DA857A8F1E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C57ADE0D252CBF7D79E887FC /* Entitlements.withbundleid.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Entitlements.withbundleid.plist; sourceTree = "<group>"; };
 		C7D6E9EA886ACE2FD42D136F /* lib.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = lib.m; sourceTree = "<group>"; };
+		C8B77765BE405F34A6889358 /* exported-symbols.lds */ = {isa = PBXFileReference; path = "exported-symbols.lds"; sourceTree = "<group>"; };
 		C8DD100EC3FA656AEFE5A00B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C9C5A40EB514C4EC147C976B /* watchOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = watchOSApp.swift; sourceTree = "<group>"; };
 		CA0FA7E1E16CCBCAC217F4F3 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
@@ -2780,6 +2782,7 @@
 			children = (
 				A7AEEC0C76D97936DF8827FA /* dist */,
 				DECD57D0F6706821FCFDB3E1 /* rules_xcodeproj */,
+				1F69218E6937EDB946998FFA /* exported-symbols.lds */,
 			);
 			path = Lib;
 			sourceTree = "<group>";
@@ -3569,6 +3572,7 @@
 			children = (
 				0B4454C1A15431967BD283D4 /* dist */,
 				9E521FFBA17A1B14112C2011 /* rules_xcodeproj */,
+				C8B77765BE405F34A6889358 /* exported-symbols.lds */,
 			);
 			path = Lib;
 			sourceTree = "<group>";

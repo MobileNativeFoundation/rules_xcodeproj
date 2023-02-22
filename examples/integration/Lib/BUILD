@@ -48,6 +48,16 @@ genrule(
     cmd = "echo 'public let greeting = \"Hello, world!\"' > $@",
 )
 
+genrule(
+    name = "gen-exported-symbols-list",
+    outs = ["exported-symbols.lds"],
+    cmd = """\
+echo '_$$s3Lib8greetingSSvau' > $@
+echo '_$$s3Lib18libResourcesStringSSvau' >> $@
+echo '_$$sSo8NSBundleC3LibE12libResourcesABvau' >> $@
+""",
+)
+
 ios_framework(
     name = "LibFramework.iOS",
     bundle_id = "io.budilebuddy.LibFramework",
@@ -63,6 +73,9 @@ ios_framework(
 tvos_framework(
     name = "LibFramework.tvOS",
     bundle_id = "io.budilebuddy.LibFramework",
+    exported_symbols_lists = [
+        ":gen-exported-symbols-list",
+    ],
     extension_safe = True,
     infoplists = ["Info.plist"],
     minimum_os_version = "15.0",
