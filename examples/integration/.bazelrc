@@ -20,5 +20,10 @@ build --test_env=INTEGRATION_TEST_ENV_VAR=TRUE
 
 build --platform_mappings=platform_mappings-bzlmod
 
+build:workflows_non_bzlmod --config=workflows
+build:workflows_non_bzlmod --noexperimental_enable_bzlmod
+build:workflows_non_bzlmod --platform_mappings=platform_mappings-non-bzlmod
+build:workflows_non_bzlmod --@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:extra_generator_flags='--config=workflows_non_bzlmod --bes_backend= --bes_results_url='
+
 # Use a user.bazelrc if it exists
 try-import %workspace%/user.bazelrc
