@@ -429,9 +429,11 @@ targets.
         # Remove from unfocused (to support `xcode_required_targets`)
         unfocused_targets.pop(src, None)
 
-        # Adjust `unfocused_labels` for `extra_files` logic later
+        # Adjust `{un,}focused_labels` for `extra_files` logic later
         if sets.contains(unfocused_labels, src_label):
             sets.remove(unfocused_labels, src_label)
+        if sets.length(focused_labels) > 0:
+            sets.insert(focused_labels, src_label)
 
     unfocused_dependencies = _calculate_unfocused_dependencies(
         build_mode = build_mode,
