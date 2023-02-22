@@ -1,0 +1,5 @@
+new_local_repository(
+    name = "examples_command_line_external",
+    build_file = "CommandLine/external/BUILD.tpl",
+    path = "CommandLine/external",
+)

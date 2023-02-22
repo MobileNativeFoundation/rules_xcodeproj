@@ -1,0 +1,120 @@
+platforms:
+  @@apple_support~1.4.1//platforms:macos_x86_64
+    --cpu=darwin_x86_64
+
+  @@apple_support~1.4.1//platforms:macos_arm64
+    --cpu=darwin_arm64
+
+  @@apple_support~1.4.1//platforms:macos_arm64e
+    --cpu=darwin_arm64e
+
+  @@apple_support~1.4.1//platforms:ios_i386
+    --cpu=ios_i386
+
+  @@apple_support~1.4.1//platforms:ios_x86_64
+    --cpu=ios_x86_64
+
+  @@apple_support~1.4.1//platforms:ios_sim_arm64
+    --cpu=ios_sim_arm64
+
+  @@apple_support~1.4.1//platforms:ios_armv7
+    --cpu=ios_armv7
+
+  @@apple_support~1.4.1//platforms:ios_arm64
+    --cpu=ios_arm64
+
+  @@apple_support~1.4.1//platforms:ios_arm64e
+    --cpu=ios_arm64e
+
+  @@apple_support~1.4.1//platforms:tvos_x86_64
+    --cpu=tvos_x86_64
+
+  @@apple_support~1.4.1//platforms:tvos_sim_arm64
+    --cpu=tvos_sim_arm64
+
+  @@apple_support~1.4.1//platforms:tvos_arm64
+    --cpu=tvos_arm64
+
+  @@apple_support~1.4.1//platforms:watchos_i386
+    --cpu=watchos_i386
+
+  @@apple_support~1.4.1//platforms:watchos_x86_64
+    --cpu=watchos_x86_64
+
+  @@apple_support~1.4.1//platforms:watchos_arm64
+    --cpu=watchos_arm64
+
+  @@apple_support~1.4.1//platforms:watchos_armv7k
+    --cpu=watchos_armv7k
+
+  @@apple_support~1.4.1//platforms:watchos_arm64_32
+    --cpu=watchos_arm64_32
+
+flags:
+  --cpu=darwin_x86_64
+  --apple_platform_type=macos
+    @@apple_support~1.4.1//platforms:macos_x86_64
+
+  --cpu=darwin_arm64
+  --apple_platform_type=macos
+    @@apple_support~1.4.1//platforms:macos_arm64
+
+  --cpu=darwin_arm64e
+  --apple_platform_type=macos
+    @@apple_support~1.4.1//platforms:macos_arm64e
+
+  --cpu=ios_i386
+  --apple_platform_type=ios
+    @@apple_support~1.4.1//platforms:ios_i386
+
+  --cpu=ios_x86_64
+  --apple_platform_type=ios
+    @@apple_support~1.4.1//platforms:ios_x86_64
+
+  --cpu=ios_sim_arm64
+  --apple_platform_type=ios
+    @@apple_support~1.4.1//platforms:ios_sim_arm64
+
+  --cpu=ios_armv7
+  --apple_platform_type=ios
+    @@apple_support~1.4.1//platforms:ios_armv7
+
+  --cpu=ios_arm64
+  --apple_platform_type=ios
+    @@apple_support~1.4.1//platforms:ios_arm64
+
+  --cpu=ios_arm64e
+  --apple_platform_type=ios
+    @@apple_support~1.4.1//platforms:ios_arm64e
+
+  --cpu=tvos_x86_64
+  --apple_platform_type=tvos
+    @@apple_support~1.4.1//platforms:tvos_x86_64
+
+  --cpu=tvos_sim_arm64
+  --apple_platform_type=tvos
+    @@apple_support~1.4.1//platforms:tvos_sim_arm64
+
+  --cpu=tvos_arm64
+  --apple_platform_type=tvos
+    @@apple_support~1.4.1//platforms:tvos_arm64
+
+  --cpu=watchos_i386
+  --apple_platform_type=watchos
+    @@apple_support~1.4.1//platforms:watchos_i386
+
+  --cpu=watchos_x86_64
+  --apple_platform_type=watchos
+    @@apple_support~1.4.1//platforms:watchos_x86_64
+
+  --cpu=watchos_arm64
+  --apple_platform_type=watchos
+    @@apple_support~1.4.1//platforms:watchos_arm64
+
+  --cpu=watchos_armv7k
+  --apple_platform_type=watchos
+    @@apple_support~1.4.1//platforms:watchos_armv7k
+
+  --cpu=watchos_arm64_32
+  --apple_platform_type=watchos
+    @@apple_support~1.4.1//platforms:watchos_arm64_32

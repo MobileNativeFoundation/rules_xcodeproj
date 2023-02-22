@@ -48,6 +48,7 @@ x_templates:
   commands:
     - &set_release_archive_override "--output_base=setup-bazel-output-base run --config=workflows @com_github_buildbuddy_io_rules_xcodeproj//tools:set_release_archive_override"
     - &validate_integration "run --config=workflows --noexperimental_enable_bzlmod //test/fixtures:validate"
+    - &validate_integration_platform_mappings "run --config=workflows --noenable_bzlmod --platform_mappings=platform_mappings-non-bzlmod //test/fixtures:validate"
     - &build_all "build --config=workflows --noexperimental_enable_bzlmod //..."
     - &test_all "test --config=workflows --noexperimental_enable_bzlmod //..."
     - &bzlmod_generate_integration "run --config=workflows //test/fixtures:update"
@@ -129,7 +130,7 @@ actions:
     <<: *normal_resources
     <<: *examples_integration_workspace
     bazel_commands:
-      - *validate_integration
+      - *validate_integration_platform_mappings
       - *test_all
   - name: Integration Test - "examples/integration" - Bazel 5
     <<: *bazel_5
@@ -137,8 +138,16 @@ actions:
     <<: *normal_resources
     <<: *examples_integration_workspace
     bazel_commands:
-      - *validate_integration
+      - *validate_integration_platform_mappings
       - *test_all
+  - name: Integration Test - "examples/integration" - Bzlmod
+    <<: *arm64
+    <<: *action_base
+    <<: *normal_resources
+    <<: *examples_integration_workspace
+    bazel_commands:
+      - *bzlmod_generate_integration
+      - *bzlmod_build_all
 
   - name: Integration Test - "examples/sanitizers"
     <<: *arm64
