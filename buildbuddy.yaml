@@ -51,6 +51,7 @@ x_templates:
     - &validate_integration_platform_mappings "run --config=workflows_non_bzlmod //test/fixtures:validate"
     - &build_all "build --config=workflows --noexperimental_enable_bzlmod //..."
     - &test_all "test --config=workflows --noexperimental_enable_bzlmod //..."
+    - &test_all_platform_mappings "test --config=workflows_non_bzlmod //..."
     - &bzlmod_generate_integration "run --config=workflows //test/fixtures:update"
     - &bzlmod_build_all "build --config=workflows //..."
     - &bzlmod_test_all "test --config=workflows //test/..."
