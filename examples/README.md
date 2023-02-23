@@ -23,3 +23,4 @@ latest version on each respective repository.
 - [rules_apple iOS app tutorial](https://github.com/bazelbuild/rules_apple/blob/master/doc/tutorials/ios-app.md)
 - [SwiftLint](https://github.com/realm/SwiftLint/blob/325d0ee1e44a87fc82afeb874b83ceb82f6728cf/BUILD#L113-L142)
 - [SwiftUI iOS App with Bazel template](https://github.com/mattrobmattrob/bazel-ios-swiftui-template/blob/666640b796f347b62b8e5878e00c2d2f44c247cc/BUILD.bazel#L9-L18)
+- [BazelPods](https://github.com/sergeykhliustin/BazelPods/blob/main/xcodeproj/BUILD)
