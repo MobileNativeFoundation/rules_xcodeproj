@@ -63,6 +63,7 @@ the ruleset.
 
 ## Projects using rules_xcodeproj
 
+- BazelPods
 - Cash App
 - Envoy Mobile
 - Ergatta
