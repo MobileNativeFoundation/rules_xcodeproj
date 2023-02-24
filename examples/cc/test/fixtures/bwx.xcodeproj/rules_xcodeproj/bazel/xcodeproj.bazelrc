@@ -59,6 +59,10 @@ build:rules_xcodeproj --features=swift.use_global_module_cache
 # Removes potentially large unneeded event from the BEP
 build:rules_xcodeproj --nolegacy_important_outputs
 
+# Allow sandbox directories to be reused, speeding up builds, especially if
+# other processed (e.g. endpoint security) are watching the directories.
+common:rules_xcodeproj --experimental_reuse_sandbox_directories
+
 # `--show_result=0` prevents showing the spec.json and intermediate `.xcodeproj`
 # in the logs when generating, and all of the many outputs when building
 build:rules_xcodeproj --show_result=0
