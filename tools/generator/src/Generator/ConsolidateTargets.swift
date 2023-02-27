@@ -353,19 +353,16 @@ extension ConsolidatedTarget {
                 || (!target.isSwift && target.inputs.containsSourceFiles)
         }
 
-        var allExcludableFiles: [TargetID: Set<FilePath>] = [:]
-        for (id, target) in targets {
-            allExcludableFiles[id] = target.allExcludableFiles(
+        let allExcludableFiles = targets.mapValues { target in
+            target.allExcludableFiles(
                 xcodeGeneratedFiles: xcodeGeneratedFiles
             )
         }
-
-        let baselineFiles: Set<FilePath> = allExcludableFiles.values.reduce(
+        let baselineFiles = allExcludableFiles.values.reduce(
             into: allExcludableFiles.first!.value
         ) { baselineFiles, targetAllExcludableFiles in
             baselineFiles.formIntersection(targetAllExcludableFiles)
         }
-
         uniqueFiles = allExcludableFiles
             .mapValues { $0.subtracting(baselineFiles) }
 
