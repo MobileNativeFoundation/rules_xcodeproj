@@ -121,6 +121,8 @@ class Generator {
             buildMode,
             project.forceBazelDependencies,
             project.minimumXcodeVersion,
+            project.xcodeConfigurations,
+            project.defaultXcodeConfiguration,
             project.indexImport,
             files,
             project.bazelConfig,
@@ -143,6 +145,7 @@ class Generator {
             targets,
             buildMode,
             project.minimumXcodeVersion,
+            project.defaultXcodeConfiguration,
             pbxTargets,
             project.targetHosts,
             bazelDependencies != nil
@@ -164,7 +167,7 @@ class Generator {
         var schemes = try environment.createCustomXCSchemes(
             project.customXcodeSchemes,
             buildMode,
-            "Debug",
+            project.defaultXcodeConfiguration,
             targetResolver,
             project.runnerLabel,
             project.args,

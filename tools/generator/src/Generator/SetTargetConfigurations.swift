@@ -15,6 +15,7 @@ extension Generator {
         targets: [TargetID: Target],
         buildMode: BuildMode,
         minimumXcodeVersion: SemanticVersion,
+        defaultXcodeConfiguration: String,
         pbxTargets: [ConsolidatedTarget.Key: PBXTarget],
         hostIDs: [TargetID: [TargetID]],
         hasBazelDependencies: Bool
@@ -50,14 +51,27 @@ Target "\(key)" not found in `pbxTargets`
                 buildSettings: &buildSettings
             )
 
-            let debugConfiguration = XCBuildConfiguration(
-                name: "Debug",
-                buildSettings: try buildSettings.asBuildSettingDictionary()
-            )
-            pbxProj.add(object: debugConfiguration)
+            var buildConfigurations: [XCBuildConfiguration] = []
+            for (name, buildSettings) in buildSettings {
+                let buildConfiguration = XCBuildConfiguration(
+                    name: name,
+                    buildSettings: try buildSettings.asBuildSettingDictionary()
+                )
+                pbxProj.add(object: buildConfiguration)
+                buildConfigurations.append(buildConfiguration)
+            }
+
+            guard buildSettings.keys.contains(defaultXcodeConfiguration) else {
+                throw PreconditionError(message: """
+`xcodeproj.default_xcode_configuration` "\(defaultXcodeConfiguration)" not one \
+of the configurations of "\(key)".
+""")
+            }
+
             let configurationList = XCConfigurationList(
-                buildConfigurations: [debugConfiguration],
-                defaultConfigurationName: debugConfiguration.name
+                buildConfigurations: buildConfigurations
+                    .sorted { $0.name < $1.name },
+                defaultConfigurationName: defaultXcodeConfiguration
             )
             pbxProj.add(object: configurationList)
             pbxTarget.buildConfigurationList = configurationList
@@ -73,11 +87,12 @@ Target "\(key)" not found in `pbxTargets`
         targets: [TargetID: Target],
         hostIDs: [TargetID: [TargetID]],
         hasBazelDependencies: Bool
-    ) throws -> [BuildSettingConditional: [String: BuildSetting]] {
-        var anyBuildSettings: [String: BuildSetting] = [:]
-        var buildSettings: [BuildSettingConditional: [String: BuildSetting]] =
-            [:]
-        var conditionalFileNames: [String: String] = [:]
+    ) throws -> [String: [BuildSettingConditional: [String: BuildSetting]]] {
+        var buildSettings:
+            [String: [BuildSettingConditional: [String: BuildSetting]]] = [:]
+        var conditionalFileNames:[String: [String: String]] = [:]
+        var allUniqueFiles: Set<FilePath> = []
+        var configurationUniqueFiles: [String: Set<FilePath>] = [:]
 
         for (id, target) in consolidatedTarget.targets {
             var targetBuildSettings = try calculateBuildSettings(
@@ -89,6 +104,8 @@ Target "\(key)" not found in `pbxTargets`
                 hasBazelDependencies: hasBazelDependencies
             )
 
+            let xcodeConfiguration = target.xcodeConfiguration
+
             // Calculate "INCLUDED_SOURCE_FILE_NAMES"
             guard let uniqueFiles = consolidatedTarget.uniqueFiles[id] else {
                 throw PreconditionError(message: """
@@ -96,13 +113,19 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
 """)
             }
             if !uniqueFiles.isEmpty {
+                allUniqueFiles.formUnion(uniqueFiles)
+                configurationUniqueFiles[xcodeConfiguration, default: []]
+                    .formUnion(uniqueFiles)
+
                 // This key needs to not have `-` in it
                 // TODO: If we ever add support for Universal targets this needs
                 //   to include more than just the platform name
                 let key = """
 \(target.platform.variant.rawValue.uppercased())_FILES
 """
-                conditionalFileNames[key] = uniqueFiles
+                conditionalFileNames[
+                    xcodeConfiguration, default: [:]
+                ][key] = uniqueFiles
                     .map { FilePathResolver.resolve($0).quoted }
                     .sorted()
                     .joined(separator: " ")
@@ -112,26 +135,45 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
                 )
             }
 
-            buildSettings[target.buildSettingConditional] = targetBuildSettings
+            buildSettings[
+                xcodeConfiguration, default: [:]
+            ][target.buildSettingConditional] = targetBuildSettings
         }
 
         // Calculate "EXCLUDED_SOURCE_FILE_NAMES"
         var excludedSourceFileNames: [String] = []
-        for (key, fileNames) in conditionalFileNames
-            .sorted(by: { $0.key < $1.key })
-        {
-            anyBuildSettings[key] = .string(fileNames)
-            excludedSourceFileNames.append("$(\(key))")
-        }
-        if !excludedSourceFileNames.isEmpty {
-            anyBuildSettings["EXCLUDED_SOURCE_FILE_NAMES"] =
-                .string(excludedSourceFileNames.joined(separator: " "))
-            anyBuildSettings["INCLUDED_SOURCE_FILE_NAMES"] = ""
-        }
+        for (
+            xcodeConfiguration,
+            configurationConditionalFileNames
+        ) in conditionalFileNames {
+            var anyBuildSettings: [String: BuildSetting] = [:]
+            for (key, fileNames) in configurationConditionalFileNames
+                .sorted(by: { $0.key < $1.key })
+            {
+                anyBuildSettings[key] = .string(fileNames)
+                excludedSourceFileNames.append("$(\(key))")
+            }
 
-        // Set an `.any` configuration if needed
-        if !anyBuildSettings.isEmpty {
-            buildSettings[.any] = anyBuildSettings
+            // Exclude other Xcode configuration unique files as well
+            excludedSourceFileNames.append(
+                contentsOf: allUniqueFiles
+                    .subtracting(configurationUniqueFiles[xcodeConfiguration]!)
+                    .map { FilePathResolver.resolve($0).quoted }
+                    .sorted()
+            )
+
+            if !excludedSourceFileNames.isEmpty {
+                anyBuildSettings["EXCLUDED_SOURCE_FILE_NAMES"] =
+                    .string(excludedSourceFileNames.joined(separator: " "))
+                anyBuildSettings["INCLUDED_SOURCE_FILE_NAMES"] = ""
+            }
+
+            // Set an `.any` configuration if needed
+            if !anyBuildSettings.isEmpty {
+                buildSettings[
+                    xcodeConfiguration, default: [:]
+                ][.any] = anyBuildSettings
+            }
         }
 
         return buildSettings
@@ -399,7 +441,8 @@ $(CONFIGURATION_BUILD_DIR)
         disambiguatedTargets: DisambiguatedTargets,
         pbxTargets: [ConsolidatedTarget.Key: PBXTarget],
         attributes: inout [String: Any],
-        buildSettings: inout [BuildSettingConditional: [String: BuildSetting]]
+        buildSettings:
+            inout [String: [BuildSettingConditional: [String: BuildSetting]]]
     ) throws {
         let targets = target.targets.values
 
@@ -432,19 +475,26 @@ Test host target with key "\(testHostKey)" not found in \
 """)
         }
 
-        guard target.product.type != .uiTestBundle else {
-            buildSettings[.any, default: [:]].set(
-                "TEST_TARGET_NAME",
-                to: pbxTestHost.name
-            )
-
-            // UI test bundles need to be code signed to launch
-            buildSettings[.any, default: [:]]["CODE_SIGNING_ALLOWED"] = true
-
-            return
-        }
-
         for target in targets {
+            let xcodeConfiguration = target.xcodeConfiguration
+
+            // FIXME: Only do this once per Xcode configuration...
+            guard target.product.type != .uiTestBundle else {
+                buildSettings[
+                    xcodeConfiguration, default: [:]
+                ][.any, default: [:]].set(
+                    "TEST_TARGET_NAME",
+                    to: pbxTestHost.name
+                )
+
+                // UI test bundles need to be code signed to launch
+                buildSettings[
+                    xcodeConfiguration, default: [:]
+                ][.any, default: [:]]["CODE_SIGNING_ALLOWED"] = true
+
+                return
+            }
+
             guard let testHostID = target.testHost else {
                 continue
             }
@@ -466,13 +516,17 @@ Test host target with id "\(testHostID)" not found in \
                 testHost.product.name
 
             let conditional = target.buildSettingConditional
-            buildSettings[conditional, default: [:]].set(
+            buildSettings[
+                xcodeConfiguration, default: [:]
+            ][conditional, default: [:]].set(
                 "TARGET_BUILD_DIR",
                 to: """
 $(BUILD_DIR)/\(testHost.packageBinDir)$(TARGET_BUILD_SUBPATH)
 """
             )
-            buildSettings[conditional, default: [:]].set(
+            buildSettings[
+                xcodeConfiguration, default: [:]
+            ][conditional, default: [:]].set(
                 "TEST_HOST",
                 to: """
 $(BUILD_DIR)/\(testHost.packageBinDir)/\(productPath)/\(executableName)

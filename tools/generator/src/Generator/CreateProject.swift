@@ -154,14 +154,19 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
             ], uniquingKeysWith: { _, r in r })
         }
 
-        let debugConfiguration = XCBuildConfiguration(
-            name: "Debug",
-            buildSettings: buildSettings
-        )
-        pbxProj.add(object: debugConfiguration)
+        var buildConfigurations: [XCBuildConfiguration] = []
+        for xcodeConfiguration in project.xcodeConfigurations {
+            let buildConfiguration = XCBuildConfiguration(
+                name: xcodeConfiguration,
+                buildSettings: buildSettings
+            )
+            buildConfigurations.append(buildConfiguration)
+            pbxProj.add(object: buildConfiguration)
+        }
+        
         let buildConfigurationList = XCConfigurationList(
-            buildConfigurations: [debugConfiguration],
-            defaultConfigurationName: debugConfiguration.name
+            buildConfigurations: buildConfigurations,
+            defaultConfigurationName: project.defaultXcodeConfiguration
         )
         pbxProj.add(object: buildConfigurationList)
 

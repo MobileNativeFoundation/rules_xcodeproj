@@ -67,6 +67,8 @@ struct Environment {
         _ buildMode: BuildMode,
         _ forceBazelDependencies: Bool,
         _ minimumXcodeVersion: SemanticVersion,
+        _ xcodeConfigurations: [String],
+        _ defaultXcodeConfiguration: String,
         _ indexImport: String,
         _ files: [FilePath: File],
         _ bazelConfig: String,
@@ -91,6 +93,7 @@ struct Environment {
         _ targets: [TargetID: Target],
         _ buildMode: BuildMode,
         _ minimumXcodeVersion: SemanticVersion,
+        _ defaultXcodeConfiguration: String,
         _ pbxTargets: [ConsolidatedTarget.Key: PBXTarget],
         _ hostIDs: [TargetID: [TargetID]],
         _ hasBazelDependencies: Bool
