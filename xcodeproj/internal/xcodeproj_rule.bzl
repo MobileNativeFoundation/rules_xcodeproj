@@ -396,7 +396,7 @@ targets.
         transitive = [info.potential_target_merges for info in infos],
     ).to_list()
 
-    target_merge_dests = {}
+    raw_target_merge_dests = {}
     for merge in potential_target_merges:
         src_target = unprocessed_targets[merge.src.id]
         src_label = bazel_labels.normalize(src_target.label)
@@ -405,9 +405,10 @@ targets.
         if (sets.contains(unfocused_labels, src_label) or
             sets.contains(unfocused_labels, dest_label)):
             continue
-        target_merge_dests.setdefault(merge.dest, []).append(merge.src.id)
+        raw_target_merge_dests.setdefault(merge.dest, []).append(merge.src.id)
 
-    for dest, src_ids in target_merge_dests.items():
+    target_merge_dests = {}
+    for dest, src_ids in raw_target_merge_dests.items():
         if len(src_ids) > 1:
             # We can only merge targets with a single library dependency
             continue
@@ -415,19 +416,26 @@ targets.
         dest_label = bazel_labels.normalize(
             replacement_labels.get(dest, dest_target.label),
         )
+
+        src = src_ids[0]
+        target_merge_dests[dest] = src
+
         if not sets.contains(focused_labels, dest_label):
             continue
-        src = src_ids[0]
+
         src_target = unprocessed_targets[src]
-        src_label = bazel_labels.normalize(
-            replacement_labels.get(src, src_target.label),
-        )
 
         # Always include src of target merge if dest is included
         focused_targets[src] = src_target
 
         # Remove from unfocused (to support `xcode_required_targets`)
         unfocused_targets.pop(src, None)
+
+    for src in target_merge_dests.values():
+        src_target = unprocessed_targets[src]
+        src_label = bazel_labels.normalize(
+            replacement_labels.get(src, src_target.label),
+        )
 
         # Adjust `{un,}focused_labels` for `extra_files` logic later
         if sets.contains(unfocused_labels, src_label):
@@ -482,27 +490,17 @@ actual targets: {}
                 )
 
     # Filter `target_merge_dests` after processing focused targets
-    for dest, src_ids in target_merge_dests.items():
+    for dest, src in target_merge_dests.items():
         if dest not in focused_targets:
             target_merge_dests.pop(dest)
             continue
-        new_srcs_ids = [
-            id
-            for id in src_ids
-            if id in focused_targets
-        ]
-        if not new_srcs_ids:
+        if src not in focused_targets:
             target_merge_dests.pop(dest)
             continue
-        target_merge_dests[dest] = new_srcs_ids
 
     target_merges = {}
     target_merge_srcs_by_label = {}
-    for dest, src_ids in target_merge_dests.items():
-        if len(src_ids) > 1:
-            # We can only merge targets with a single library dependency
-            continue
-        src = src_ids[0]
+    for dest, src in target_merge_dests.items():
         src_target = focused_targets[src]
         target_merges.setdefault(src, []).append(dest)
         target_merge_srcs_by_label.setdefault(src_target.label, []).append(src)
