@@ -82,7 +82,7 @@ def process_resource_bundles(bundles, *, resource_bundle_informations):
         A list of `xcode_target` `struct`s.
     """
     if not bundles:
-        return None
+        return []
 
     informations = {}
     for information in resource_bundle_informations:
