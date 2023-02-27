@@ -366,11 +366,8 @@ extension ConsolidatedTarget {
             baselineFiles.formIntersection(targetAllExcludableFiles)
         }
 
-        var uniqueFiles: [TargetID: Set<FilePath>] = [:]
-        for id in targets.keys {
-            uniqueFiles[id] = allExcludableFiles[id]!.subtracting(baselineFiles)
-        }
-        self.uniqueFiles = uniqueFiles
+        uniqueFiles = allExcludableFiles
+            .mapValues { $0.subtracting(baselineFiles) }
 
         resourceBundleDependencies = aTarget.resourceBundleDependencies
         watchApplication = aTarget.watchApplication
