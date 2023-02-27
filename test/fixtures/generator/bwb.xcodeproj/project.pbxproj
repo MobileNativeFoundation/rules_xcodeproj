@@ -182,6 +182,7 @@
 		83BE81C6EC2B61C4006D829C /* PBXShellScriptBuildPhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6A598E6BD4D6632DD9A22A /* PBXShellScriptBuildPhase.swift */; };
 		85BCCA168DC69F15359EE331 /* XCScheme+Runnable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93637B9256E4CB6F83F9828D /* XCScheme+Runnable.swift */; };
 		863ED3A71D675E209D13491E /* OrderedSet+Partial SetAlgebra+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D650F25B90824B86103C0B /* OrderedSet+Partial SetAlgebra+Operations.swift */; };
+		896021CBDF1067F2C6680C9E /* ConsolidateTargetsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1AD646F676F07910B661BBD /* ConsolidateTargetsTests.swift */; };
 		8A0EEAB6BEE80EF9007250CE /* CoreLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7224E567F903C4F23FAE8B82 /* CoreLocation.swift */; };
 		8A14E9AED9EE5BDA8678B657 /* OrderedDictionary+CustomReflectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F454DD7F11FBF23F982A2C9F /* OrderedDictionary+CustomReflectable.swift */; };
 		8A2C35FEBA8A75103CE2F4D1 /* BazelLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8BDDB4B63025579A22E4BC /* BazelLabel.swift */; };
@@ -240,7 +241,6 @@
 		BA4EFFA978E478A3BC07C794 /* XCBreakpointList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE3F0F986AB17A8E2C68DC7 /* XCBreakpointList.swift */; };
 		BA9BAF805C79B490F731BC2D /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1819CEC3382AC3F2E30ED6C2 /* Box.swift */; };
 		BB35221EF3C582F47D92C5F7 /* XCScheme+ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1260ABD80DD850561AFC4D4C /* XCScheme+ExtensionsTests.swift */; };
-		BBC59431E653D69809F53A3C /* ConsolidateTargetsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45366C3E49B3B1600B1DBE9A /* ConsolidateTargetsTest.swift */; };
 		BC6E75F478CF9BC40F41ECAD /* PBXNativeTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13178D86152EA5DB53397E9B /* PBXNativeTarget.swift */; };
 		BECD01BA300E00331FACF49C /* _Hashtable+Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A5223CE3ED58001C49FE15 /* _Hashtable+Header.swift */; };
 		BFCCE08B291B40F8BCD53410 /* JSONSerialization.mm in Sources */ = {isa = PBXBuildFile; fileRef = 26A9188E264AA8D418D49A8D /* JSONSerialization.mm */; };
@@ -492,7 +492,6 @@
 		4490F64144050A8E9D55B02C /* XCScheme+CommandLineArguments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCScheme+CommandLineArguments.swift"; sourceTree = "<group>"; };
 		449F5316BC33FFF5163F9191 /* CreateXCSharedDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateXCSharedDataTests.swift; sourceTree = "<group>"; };
 		450C20470294CD4D9A298752 /* private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = private.h; sourceTree = "<group>"; };
-		45366C3E49B3B1600B1DBE9A /* ConsolidateTargetsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsolidateTargetsTest.swift; sourceTree = "<group>"; };
 		4571EBCBE529D1092CE07F0F /* OrderedSet+CustomStringConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedSet+CustomStringConvertible.swift"; sourceTree = "<group>"; };
 		457E4F02FE952FFC72E9E42C /* XCVersionGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCVersionGroup.swift; sourceTree = "<group>"; };
 		463A34E839973731BB7CF8C2 /* PBXAggregateTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBXAggregateTarget.swift; sourceTree = "<group>"; };
@@ -628,6 +627,7 @@
 		A03CA4FC9BDFBD20CFC523B5 /* CreateFilesAndGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFilesAndGroups.swift; sourceTree = "<group>"; };
 		A0635FC654548ECB0B7921A0 /* generator.7.link.params */ = {isa = PBXFileReference; path = generator.7.link.params; sourceTree = "<group>"; };
 		A096F0CCE996C0B0240E2E61 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		A1AD646F676F07910B661BBD /* ConsolidateTargetsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsolidateTargetsTests.swift; sourceTree = "<group>"; };
 		A1F1B6A25F58F192264CBF34 /* String+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Utils.swift"; sourceTree = "<group>"; };
 		A2F3DECD44D6641668E3EEC0 /* localtime.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = localtime.c; sourceTree = "<group>"; };
 		A360977902D77B4835C533C1 /* LinkerInputs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkerInputs.swift; sourceTree = "<group>"; };
@@ -1503,7 +1503,7 @@
 				11EAB6000DBDCCDFDAEAB73D /* BuildSettingConditionalTests.swift */,
 				3452291D97B2C104718ABCA2 /* ConsolidatedTargetExtensionsTests.swift */,
 				9C58E0D5A116C17644DC721A /* ConsolidatedTargetTests.swift */,
-				45366C3E49B3B1600B1DBE9A /* ConsolidateTargetsTest.swift */,
+				A1AD646F676F07910B661BBD /* ConsolidateTargetsTests.swift */,
 				868A37AA755DE5F0C25CF74F /* CreateAutogeneratedXCSchemesTests.swift */,
 				6A216CC7747737D97C1D7C13 /* CreateCustomXCSchemesTests.swift */,
 				C6F82FE65257E38B82381882 /* CreateFilesAndGroupsTests.swift */,
@@ -2438,7 +2438,7 @@
 				F0EE5EB7F5A4F28EA351E256 /* BazelLabel+TestExtensions.swift in Sources */,
 				56779F966E55F87ECB44D47A /* BazelLabelTests.swift in Sources */,
 				A0189A5EB145913470BDB7B0 /* BuildSettingConditionalTests.swift in Sources */,
-				BBC59431E653D69809F53A3C /* ConsolidateTargetsTest.swift in Sources */,
+				896021CBDF1067F2C6680C9E /* ConsolidateTargetsTests.swift in Sources */,
 				1462CAC560A69C9B7477B465 /* ConsolidatedTargetExtensionsTests.swift in Sources */,
 				C92C304821B54A06D37CA13F /* ConsolidatedTargetTests.swift in Sources */,
 				2C531085826212CA00777F03 /* CreateAutogeneratedXCSchemesTests.swift in Sources */,
