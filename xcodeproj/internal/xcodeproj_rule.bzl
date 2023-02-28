@@ -251,22 +251,41 @@ def _process_targets(
         replacement_labels,
         inputs,
         infos,
+        infos_per_xcode_configuration,
         owned_extra_files,
         include_swiftui_previews_scheme_targets):
-    resource_bundle_xcode_targets = process_resource_bundles(
-        bundles = inputs.resource_bundles.to_list(),
-        resource_bundle_informations = depset(
-            transitive = [info.resource_bundle_informations for info in infos],
-        ).to_list(),
-    )
+    resource_bundle_xcode_targets = []
+    unprocessed_targets = {}
+    xcode_configurations = {}
+    for xcode_configuration, i in infos_per_xcode_configuration.items():
+        configuration_inputs = input_files.merge(
+            transitive_infos = [(None, info) for info in i],
+        )
+        configuration_resource_bundle_xcode_targets = process_resource_bundles(
+            bundles = configuration_inputs.resource_bundles.to_list(),
+            resource_bundle_informations = depset(
+                transitive = [
+                    info.resource_bundle_informations
+                    for info in i
+                ],
+            ).to_list(),
+        )
+        resource_bundle_xcode_targets.extend(
+            configuration_resource_bundle_xcode_targets,
+        )
 
-    unprocessed_targets = {
-        xcode_target.id: xcode_target
-        for xcode_target in depset(
-            resource_bundle_xcode_targets,
-            transitive = [info.xcode_targets for info in infos],
-        ).to_list()
-    }
+        configuration_unprocessed_targets = {
+            xcode_target.id: xcode_target
+            for xcode_target in depset(
+                configuration_resource_bundle_xcode_targets,
+                transitive = [info.xcode_targets for info in i],
+            ).to_list()
+        }
+        unprocessed_targets.update(configuration_unprocessed_targets)
+
+        xcode_configurations.update({
+            id: xcode_configuration for id in configuration_unprocessed_targets
+        })
 
     configurations_map = {}
     if is_fixture:
@@ -588,6 +607,7 @@ actual targets: {}
             is_fixture = is_fixture,
             additional_scheme_target_ids = additional_scheme_target_ids,
             build_mode = build_mode,
+            xcode_configuration = xcode_configurations[xcode_target.id],
             is_unfocused_dependency = xcode_target.id in unfocused_dependencies,
             link_params_processor = ctx.executable._link_params_processor,
             linker_products_map = linker_products_map,
@@ -893,6 +913,8 @@ def _write_spec(
         config,
         ctx,
         is_fixture,
+        xcode_configurations,
+        default_xcode_configuration,
         envs,
         project_name,
         project_options,
@@ -936,6 +958,12 @@ def _write_spec(
         "n": project_name,
         "R": ctx.attr.runner_label,
     }
+
+    if xcode_configurations != ["Debug"]:
+        spec_dto["x"] = xcode_configurations
+
+    if default_xcode_configuration != "Debug":
+        spec_dto["d"] = default_xcode_configuration
 
     project_options_dto = project_options_to_dto(project_options)
     if project_options_dto:
@@ -1273,9 +1301,11 @@ def _write_installer(
 
 def _device_transition_impl(_settings, attr):
     outputs = {
-        "//command_line_option:ios_multi_cpus": attr.ios_device_cpus,
-        "//command_line_option:tvos_cpus": attr.tvos_device_cpus,
-        "//command_line_option:watchos_cpus": attr.watchos_device_cpus,
+        "Debug": {
+            "//command_line_option:ios_multi_cpus": attr.ios_device_cpus,
+            "//command_line_option:tvos_cpus": attr.tvos_device_cpus,
+            "//command_line_option:watchos_cpus": attr.watchos_device_cpus,
+        },
     }
 
     return outputs
@@ -1306,9 +1336,11 @@ def _simulator_transition_impl(settings, attr):
             watchos_cpus = "x86_64"
 
     outputs = {
-        "//command_line_option:ios_multi_cpus": ios_cpus,
-        "//command_line_option:tvos_cpus": tvos_cpus,
-        "//command_line_option:watchos_cpus": watchos_cpus,
+        "Debug":{
+            "//command_line_option:ios_multi_cpus": ios_cpus,
+            "//command_line_option:tvos_cpus": tvos_cpus,
+            "//command_line_option:watchos_cpus": watchos_cpus,
+        },
     }
 
     return outputs
@@ -1339,17 +1371,37 @@ _device_transition = transition(
 # Rule
 
 def _xcodeproj_impl(ctx):
+    infos = []
+    infos_per_xcode_configuration = {}
+    for xcode_configuration in ctx.split_attr.top_level_simulator_targets:
+        targets = []
+        if ctx.split_attr.top_level_simulator_targets:
+            targets.extend(
+                ctx.split_attr.top_level_simulator_targets[xcode_configuration],
+            )
+        if ctx.split_attr.top_level_device_targets:
+            targets.extend(
+                ctx.split_attr.top_level_device_targets[xcode_configuration],
+            )
+
+        i = [_process_dep(dep) for dep in targets]
+        infos.extend(i)
+        infos_per_xcode_configuration[xcode_configuration] = i
+
+    xcode_configurations = sorted(infos_per_xcode_configuration.keys())
+    default_xcode_configuration = (
+        ctx.attr.default_xcode_configuration or
+        xcode_configurations[0]
+    )
+    if default_xcode_configuration not in infos_per_xcode_configuration:
+        fail("""\
+`default_xcode_configuration` must be `None`, or one of the defined \
+configurations: {}""".format(", ".join(xcode_configurations)))
+
     build_mode = ctx.attr.build_mode
     config = ctx.attr.config
     is_fixture = ctx.attr._is_fixture
     project_name = ctx.attr.project_name
-    infos = [
-        _process_dep(dep)
-        for dep in (
-            ctx.attr.top_level_simulator_targets +
-            ctx.attr.top_level_device_targets
-        )
-    ]
     configuration = get_configuration(ctx = ctx)
     minimum_xcode_version = (ctx.attr.minimum_xcode_version or
                              _get_minimum_xcode_version(ctx = ctx))
@@ -1392,6 +1444,7 @@ def _xcodeproj_impl(ctx):
         replacement_labels = replacement_labels,
         inputs = inputs,
         infos = infos,
+        infos_per_xcode_configuration = infos_per_xcode_configuration,
         owned_extra_files = ctx.attr.owned_extra_files,
         include_swiftui_previews_scheme_targets = (
             build_mode == "bazel" and
@@ -1449,6 +1502,8 @@ def _xcodeproj_impl(ctx):
         project_name = project_name,
         project_options = ctx.attr.project_options,
         config = config,
+        xcode_configurations = xcode_configurations,
+        default_xcode_configuration = default_xcode_configuration,
         envs = envs,
         target_dtos = target_dtos,
         has_unfocused_targets = has_unfocused_targets,
@@ -1650,6 +1705,7 @@ high level.
         "config": attr.string(
             mandatory = True,
         ),
+        "default_xcode_configuration": attr.string(),
         "focused_targets": attr.string_list(
             doc = """\
 A `list` of target labels as `string` values. If specified, only these targets

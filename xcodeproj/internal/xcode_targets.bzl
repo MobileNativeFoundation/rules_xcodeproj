@@ -515,6 +515,7 @@ def _xcode_target_to_dto(
         should_include_outputs,
         excluded_targets = {},
         target_merges = {},
+        xcode_configuration,
         xcode_generated_paths,
         xcode_generated_paths_file):
     inputs = xcode_target.inputs
@@ -527,6 +528,9 @@ def _xcode_target_to_dto(
         "2": platform_info.to_dto(xcode_target.platform),
         "p": _product_to_dto(xcode_target.product),
     }
+
+    if xcode_configuration != "Debug":
+        dto["x"] = xcode_configuration
 
     if xcode_target._compile_target:
         dto["3"] = {
