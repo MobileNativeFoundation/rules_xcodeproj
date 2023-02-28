@@ -74,7 +74,8 @@ extension Project: Decodable {
             .decodeIfPresent(String.self, forKey: .bazel) ?? "bazel"
         bazelConfig = try container.decode(String.self, forKey: .bazelConfig)
         xcodeConfigurations = try container
-            .decode([String].self, forKey: .xcodeConfigurations)
+            .decodeIfPresent([String].self, forKey: .xcodeConfigurations) ??
+            ["Debug"]
         defaultXcodeConfiguration = try container
             .decodeIfPresent(String.self, forKey: .defaultXcodeConfiguration) ??
             "Debug"
