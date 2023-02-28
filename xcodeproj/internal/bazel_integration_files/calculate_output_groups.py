@@ -87,6 +87,7 @@ note: ({now}) "{build_request_file}" created after {wait_counter} seconds.""",
         platform = (
             build_request["parameters"]["activeRunDestination"]["platform"]
         )
+        configuration_name = build_request["configurationName"]
 
         labels_and_target_ids = []
         for target in build_request["configuredTargets"]:
@@ -101,7 +102,10 @@ note: ({now}) "{build_request_file}" created after {wait_counter} seconds.""",
                 # isn't a different compile target id
                 full_target_target_ids["build"]
             )
-            target_id = _select_target_id(target_target_ids, platform)
+            target_id = _select_target_id(
+                target_target_ids[configuration_name],
+                platform,
+            )
             labels_and_target_ids.append((label, target_id))
     except Exception as error:
         print(
@@ -146,7 +150,7 @@ https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md""",
 
     guid_payload_parent = f"{base_objroot}/guid_payload"
     guid_payload_path = f"""\
-{guid_payload_parent}/{os.path.basename(project_pif)}.json"""
+{guid_payload_parent}/{os.path.basename(project_pif)}_v2.json"""
 
     if os.path.exists(guid_payload_path):
         with open(guid_payload_path, encoding = "utf-8") as f:
@@ -166,16 +170,23 @@ https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md""",
             target_pif = json.load(f)
 
         label = None
-        build_target_ids = {"key": "BAZEL_TARGET_ID"}
-        compile_target_ids = {"key": "BAZEL_COMPILE_TARGET_ID"}
         for configuration in target_pif["buildConfigurations"]:
+            config_build_target_ids = {"key": "BAZEL_TARGET_ID"}
+            config_compile_target_ids = {"key": "BAZEL_COMPILE_TARGET_ID"}
             for key, value in configuration["buildSettings"].items():
                 if key.startswith("BAZEL_TARGET_ID"):
-                    build_target_ids[_platform_from_build_key(key)] = value
+                    config_build_target_ids[_platform_from_build_key(key)] = (
+                        value
+                    )
                 elif key.startswith("BAZEL_COMPILE_TARGET_ID"):
-                    compile_target_ids[_platform_from_compile_key(key)] = value
+                    config_compile_target_ids[_platform_from_compile_key(key)] = (
+                        value
+                    )
                 elif key == "BAZEL_LABEL":
                     label = value
+            configuration_name = configuration["name"]
+            build_target_ids[configuration_name] = config_build_target_ids
+            compile_target_ids[configuration_name] = config_compile_target_ids
 
         if not label:
             # `BazelDependency` and the like
