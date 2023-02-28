@@ -121,8 +121,10 @@ Expected at least one target in `TestAction.targets`
                 for (key, newValue) in testActionTargetEnv {
                     if let existingValue: String = env[key], existingValue != newValue {
                         let errorMessage: String = """
-                        ERROR: '\(testActionLabel)' defines a value for '\(key)' ('\(newValue)') that doesn't match the existing value of '\(existingValue)' from another target in the same scheme.
-                        """
+ERROR: '\(testActionLabel)' defines a value for '\(key)' ('\(newValue)') that \
+doesn't match the existing value of '\(existingValue)' from another target in \
+the same scheme.
+"""
                         throw UsageError(message: errorMessage)
                     }
                     env[key] = newValue
@@ -130,16 +132,21 @@ Expected at least one target in `TestAction.targets`
             }
         }
 
-        try self.init(
-            buildConfigurationName: testAction.buildConfigurationName,
-            targetInfos: try testAction.targets.map { label in
-                return try targetResolver.targetInfo(
-                    targetID: try targetIDsByLabel.value(
-                        for: label,
-                        context: "creating a `TestActionInfo`"
-                    )
+        let targetInfos = try testAction.targets.map { label in
+            return try targetResolver.targetInfo(
+                targetID: try targetIDsByLabel.value(
+                    for: label,
+                    context: "creating a `TestActionInfo`"
                 )
-            },
+            )
+        }
+
+        try self.init(
+            buildConfigurationName: try testAction.buildConfigurationName ??
+                targetInfos.first
+                .orThrow("Expected at least one target in `TestAction.targets`")
+                .pbxTarget.defaultBuildConfigurationName,
+            targetInfos: targetInfos,
             args: testAction.args.extractCommandLineArguments(),
             diagnostics: XCSchemeInfo.DiagnosticsInfo(
                 diagnostics: testAction.diagnostics

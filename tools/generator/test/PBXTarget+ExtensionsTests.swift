@@ -13,12 +13,21 @@ class PBXTargetExtensionsTests: XCTestCase {
     )
     lazy var pbxTarget = PBXTarget(
         name: "chicken",
+        buildConfigurationList: buildConfigurationList,
         productName: "MyChicken",
         product: productFileReference
     )
 
-    let pbxTargetWithoutProduct = PBXTarget(
+    let buildConfiguration = XCBuildConfiguration(name: "Foo")
+
+    lazy var buildConfigurationList = XCConfigurationList(
+        buildConfigurations: [buildConfiguration],
+        defaultConfigurationName: buildConfiguration.name
+    )
+
+    lazy var pbxTargetWithoutProduct = PBXTarget(
         name: "chicken",
+        buildConfigurationList: buildConfigurationList,
         productName: "MyChicken"
     )
 
@@ -73,17 +82,7 @@ class PBXTargetExtensionsTests: XCTestCase {
         XCTAssertFalse(pbxTarget.isLaunchable)
     }
 
-    func test_defaultBuildConfigurationName_withBuildConfigurationList() throws {
-        let configurationName = "Foo"
-        let xcBuildConfig = XCBuildConfiguration(name: configurationName)
-        let xcConfigList = XCConfigurationList(
-            buildConfigurations: [xcBuildConfig]
-        )
-        pbxTarget.buildConfigurationList = xcConfigList
-        XCTAssertEqual(pbxTarget.defaultBuildConfigurationName, configurationName)
-    }
-
-    func test_defaultBuildConfigurationName_withoutBuildConfigurationList() throws {
-        XCTAssertEqual(pbxTarget.defaultBuildConfigurationName, "Debug")
+    func test_defaultBuildConfigurationName() throws {
+        XCTAssertEqual(pbxTarget.defaultBuildConfigurationName, "Foo")
     }
 }

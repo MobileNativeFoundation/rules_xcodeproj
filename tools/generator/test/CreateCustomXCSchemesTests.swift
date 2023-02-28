@@ -8,6 +8,7 @@ extension CreateCustomXCSchemesTests {
         let actual = try Generator.createCustomXCSchemes(
             schemes: [],
             buildMode: .bazel,
+            defaultBuildConfigurationName: "AppStore",
             targetResolver: targetResolver,
             runnerLabel: runnerLabel,
             args: [:],
@@ -20,6 +21,7 @@ extension CreateCustomXCSchemesTests {
         let actual = try Generator.createCustomXCSchemes(
             schemes: [schemeA, schemeB],
             buildMode: .bazel,
+            defaultBuildConfigurationName: "AppStore",
             targetResolver: targetResolver,
             runnerLabel: runnerLabel,
             args: [:],
@@ -34,6 +36,7 @@ extension CreateCustomXCSchemesTests {
             try Generator.createCustomXCSchemes(
                 schemes: [schemeC],
                 buildMode: .bazel,
+                defaultBuildConfigurationName: "AppStore",
                 targetResolver: targetResolver,
                 runnerLabel: runnerLabel,
                 args: [:],
@@ -58,7 +61,12 @@ class CreateCustomXCSchemesTests: XCTestCase {
         workspaceOutput: "examples/foo/Foo.xcodeproj"
     )
 
+    // We must retain in order to retain some sub-objects (like
+    // `XCConfigurationList`)
+    private let pbxProj = Fixtures.pbxProj()
+
     lazy var targetResolver = Fixtures.targetResolver(
+        pbxProj: pbxProj,
         directories: directories,
         referencedContainer: directories.containerReference
     )

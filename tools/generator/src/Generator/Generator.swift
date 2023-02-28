@@ -164,6 +164,7 @@ class Generator {
         var schemes = try environment.createCustomXCSchemes(
             project.customXcodeSchemes,
             buildMode,
+            "Debug",
             targetResolver,
             project.runnerLabel,
             project.args,

@@ -28,7 +28,12 @@ class XCSchemeInfoBuildTargetInfoTests: XCTestCase {
         workspaceOutput: "examples/foo/Foo.xcodeproj"
     )
 
+    // We must retain in order to retain some sub-objects (like
+    // `XCConfigurationList`)
+    private let pbxProj = Fixtures.pbxProj()
+
     lazy var targetResolver = Fixtures.targetResolver(
+        pbxProj: pbxProj,
         directories: directories,
         referencedContainer: directories.containerReference
     )

@@ -76,7 +76,7 @@ extension XCScheme {
             )
         } else {
             testAction = .init(
-                buildConfiguration: .defaultBuildConfigurationName,
+                buildConfiguration: schemeInfo.defaultBuildConfigurationName,
                 macroExpansion: nil
             )
         }
@@ -101,7 +101,7 @@ extension XCScheme {
         } else {
             launchAction = .init(
                 runnable: nil,
-                buildConfiguration: .defaultBuildConfigurationName
+                buildConfiguration: schemeInfo.defaultBuildConfigurationName
             )
         }
 
@@ -135,7 +135,7 @@ extension XCScheme {
         } else {
             profileAction = .init(
                 buildableProductRunnable: nil,
-                buildConfiguration: .defaultBuildConfigurationName
+                buildConfiguration: schemeInfo.defaultBuildConfigurationName
             )
         }
 

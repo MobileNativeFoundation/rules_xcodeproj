@@ -64,14 +64,16 @@ extension XCSchemeInfo.ProfileActionInfo {
         guard let profileAction = profileAction else {
           return nil
         }
+        let targetInfo = try targetResolver.targetInfo(
+            targetID: try targetIDsByLabel.value(
+                for: profileAction.target,
+                context: "creating a `ProfileActionInfo`"
+            )
+        )
         self.init(
-            buildConfigurationName: profileAction.buildConfigurationName,
-            targetInfo: try targetResolver.targetInfo(
-                targetID: try targetIDsByLabel.value(
-                    for: profileAction.target,
-                    context: "creating a `ProfileActionInfo`"
-                )
-            ),
+            buildConfigurationName: profileAction.buildConfigurationName ??
+                targetInfo.pbxTarget.defaultBuildConfigurationName,
+            targetInfo: targetInfo,
             workingDirectory: profileAction.workingDirectory
         )
     }

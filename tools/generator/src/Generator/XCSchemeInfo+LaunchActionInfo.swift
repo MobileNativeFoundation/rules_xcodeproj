@@ -142,14 +142,16 @@ extension XCSchemeInfo.LaunchActionInfo {
         guard let launchAction = launchAction else {
           return nil
         }
+        let targetInfo = try targetResolver.targetInfo(
+            targetID: try targetIDsByLabel.value(
+                for: launchAction.target,
+                context: "creating a `LaunchActionInfo`"
+            )
+        )
         try self.init(
-            buildConfigurationName: launchAction.buildConfigurationName,
-            targetInfo: try targetResolver.targetInfo(
-                targetID: try targetIDsByLabel.value(
-                    for: launchAction.target,
-                    context: "creating a `LaunchActionInfo`"
-                )
-            ),
+            buildConfigurationName: launchAction.buildConfigurationName ??
+                targetInfo.pbxTarget.defaultBuildConfigurationName,
+            targetInfo: targetInfo,
             args: launchAction.args,
             diagnostics: XCSchemeInfo.DiagnosticsInfo(
                 diagnostics: launchAction.diagnostics

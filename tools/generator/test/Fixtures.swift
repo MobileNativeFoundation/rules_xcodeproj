@@ -2373,9 +2373,10 @@ $(MACOSX_FILES)
     }
 
     static func targetResolver(
+        pbxProj: PBXProj,
         directories: Directories,
         referencedContainer: String
-    ) -> TargetResolver {
+    ) -> (TargetResolver) {
         // swiftlint:disable:next force_try
         return try! .init(
             referencedContainer: referencedContainer,
@@ -2383,11 +2384,11 @@ $(MACOSX_FILES)
             targetHosts: Fixtures.project.targetHosts,
             extensionPointIdentifiers: Fixtures.extensionPointIdentifiers,
             consolidatedTargetKeys: Fixtures.consolidatedTargets.keys,
-            pbxTargets: Fixtures.pbxTargets(
-                in: Fixtures.pbxProj(),
+            pbxTargets: Fixtures.pbxTargetsWithConfigurations(
+                in: pbxProj,
                 directories: directories,
                 consolidatedTargets: Fixtures.consolidatedTargets
-            ).0
+            )
         )
     }
 }
