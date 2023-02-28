@@ -84,10 +84,11 @@ note: ({now}) "{build_request_file}" created after {wait_counter} seconds.""",
         #     build_request.get("_buildCommand2", {}).get("command", "build")
         # )
         command = "build"
+        parameters = build_request["parameters"]
         platform = (
-            build_request["parameters"]["activeRunDestination"]["platform"]
+            parameters["activeRunDestination"]["platform"]
         )
-        configuration_name = build_request["configurationName"]
+        configuration_name = parameters["configurationName"]
 
         labels_and_target_ids = []
         for target in build_request["configuredTargets"]:
@@ -170,6 +171,8 @@ https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md""",
             target_pif = json.load(f)
 
         label = None
+        build_target_ids = {}
+        compile_target_ids = {}
         for configuration in target_pif["buildConfigurations"]:
             config_build_target_ids = {"key": "BAZEL_TARGET_ID"}
             config_compile_target_ids = {"key": "BAZEL_COMPILE_TARGET_ID"}
