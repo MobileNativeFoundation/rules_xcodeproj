@@ -143,9 +143,10 @@ fi
 
 if [[ $for_fixture -eq 1 ]]; then
   # Create empty static files for fixtures
+  rm -f "$dest/rules_xcodeproj/bazel"/*swift_debug_settings.py
   for file in "${bazel_integration_files[@]}"; do
-    if [[ "${file##*/}" == "swift_debug_settings.py" ]]; then
-    $cp_cmd "$file" "$dest/rules_xcodeproj/bazel"
+    if [[ "${file##*/}" == *-swift_debug_settings.py ]]; then
+      $cp_cmd "$file" "$dest/rules_xcodeproj/bazel"
     else
       :>"$dest/rules_xcodeproj/bazel/${file##*/}"
     fi

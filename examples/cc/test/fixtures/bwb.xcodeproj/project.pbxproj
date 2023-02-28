@@ -448,11 +448,11 @@
 			files = (
 			);
 			inputPaths = (
-				"$(BAZEL_INTEGRATION_DIR)/swift_debug_settings.py",
+				"$(BAZEL_INTEGRATION_DIR)/$(CONFIGURATION)-swift_debug_settings.py",
 			);
 			name = "Create swift_debug_settings.py";
 			outputPaths = (
-				"$(OBJROOT)/swift_debug_settings.py",
+				"$(OBJROOT)/$(CONFIGURATION)/swift_debug_settings.py",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

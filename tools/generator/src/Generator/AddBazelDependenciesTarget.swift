@@ -204,8 +204,8 @@ $(INDEXING_SUPPORTED_PLATFORMS__$(INDEX_ENABLE_BUILD_ARENA))
     ) -> PBXShellScriptBuildPhase {
         let script = PBXShellScriptBuildPhase(
             name: "Create swift_debug_settings.py",
-            inputPaths: ["$(BAZEL_INTEGRATION_DIR)/swift_debug_settings.py"],
-            outputPaths: ["$(OBJROOT)/swift_debug_settings.py"],
+            inputPaths: ["$(BAZEL_INTEGRATION_DIR)/$(CONFIGURATION)-swift_debug_settings.py"],
+            outputPaths: ["$(OBJROOT)/$(CONFIGURATION)/swift_debug_settings.py"],
             shellScript: #"""
 perl -pe 's/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$ENV{$2}/g' \
   "$SCRIPT_INPUT_FILE_0" > "$SCRIPT_OUTPUT_FILE_0"
