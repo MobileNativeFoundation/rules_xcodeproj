@@ -66,7 +66,7 @@ fi
 # This Python module sets a stop hook, that when hit, sets the Swift debug
 # settings (i.e. `target.swift-*``) for the module of the current frame. This
 # fixes debugging when using `-serialize-debugging-options`.
-echo "command script import \"$OBJROOT/swift_debug_settings.py\""
+echo "command script import \"$OBJROOT/$CONFIGURATION/swift_debug_settings.py\""
 
 } > "$BAZEL_LLDB_INIT"
 
