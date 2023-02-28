@@ -2,6 +2,7 @@ import XcodeProj
 
 struct XCSchemeInfo: Equatable {
     let name: String
+    let defaultBuildConfigurationName: String
     let buildActionInfo: XCSchemeInfo.BuildActionInfo?
     let testActionInfo: XCSchemeInfo.TestActionInfo?
     let launchActionInfo: XCSchemeInfo.LaunchActionInfo?
@@ -18,6 +19,7 @@ struct XCSchemeInfo: Equatable {
 
     init(
         name: String? = nil,
+        defaultBuildConfigurationName: String,
         buildActionInfo: XCSchemeInfo.BuildActionInfo? = nil,
         testActionInfo: XCSchemeInfo.TestActionInfo? = nil,
         launchActionInfo: XCSchemeInfo.LaunchActionInfo? = nil,
@@ -59,10 +61,10 @@ An `XCSchemeInfo` (\(schemeName)) should have at least one of the following: `bu
             topLevelTargetInfos: topLevelTargetInfos
         )
         self.analyzeActionInfo = analyzeActionInfo ?? .init(
-            buildConfigurationName: .defaultBuildConfigurationName
+            buildConfigurationName: defaultBuildConfigurationName
         )
         self.archiveActionInfo = archiveActionInfo ?? .init(
-            buildConfigurationName: .defaultBuildConfigurationName
+            buildConfigurationName: defaultBuildConfigurationName
         )
 
         let schemeName: String
@@ -81,6 +83,7 @@ An `XCSchemeInfo` should have at least one of the following: `name` or `nameClos
 """)
         }
         self.name = schemeName
+        self.defaultBuildConfigurationName = defaultBuildConfigurationName
     }
 }
 
@@ -118,6 +121,7 @@ extension XCSchemeInfo {
 extension XCSchemeInfo {
     init(
         scheme: XcodeScheme,
+        defaultBuildConfigurationName: String,
         targetResolver: TargetResolver,
         runnerLabel: BazelLabel,
         args: [TargetID: [String]],
@@ -130,6 +134,7 @@ extension XCSchemeInfo {
         let schemeWithDefaults = try scheme.withDefaults
         try self.init(
             name: schemeWithDefaults.name,
+            defaultBuildConfigurationName: defaultBuildConfigurationName,
             buildActionInfo: .init(
                 buildAction: schemeWithDefaults.buildAction,
                 targetResolver: targetResolver,
@@ -153,10 +158,10 @@ extension XCSchemeInfo {
                 targetIDsByLabel: targetIDsByLabel
             ),
             analyzeActionInfo: .init(
-                buildConfigurationName: .defaultBuildConfigurationName
+                buildConfigurationName: defaultBuildConfigurationName
             ),
             archiveActionInfo: .init(
-                buildConfigurationName: .defaultBuildConfigurationName
+                buildConfigurationName: defaultBuildConfigurationName
             )
         )
     }

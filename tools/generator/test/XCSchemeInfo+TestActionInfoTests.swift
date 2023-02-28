@@ -105,7 +105,8 @@ extension XCSchemeInfoTestActionInfoTests {
         ).orThrow("Expected a `TestActionInfo`")
         let testTargetInfo = try targetResolver.targetInfo(targetID: "B 2")
         let expected = try XCSchemeInfo.TestActionInfo(
-            buildConfigurationName: .defaultBuildConfigurationName,
+            buildConfigurationName: testTargetInfo.pbxTarget
+                .defaultBuildConfigurationName,
             targetInfos: [testTargetInfo],
             expandVariablesBasedOn: testTargetInfo
         )
@@ -145,7 +146,12 @@ class XCSchemeInfoTestActionInfoTests: XCTestCase {
         workspaceOutput: "examples/foo/Foo.xcodeproj"
     )
 
+    // We must retain in order to retain some sub-objects (like
+    // `XCConfigurationList`)
+    private let pbxProj = Fixtures.pbxProj()
+
     lazy var targetResolver = Fixtures.targetResolver(
+        pbxProj: pbxProj,
         directories: directories,
         referencedContainer: directories.containerReference
     )

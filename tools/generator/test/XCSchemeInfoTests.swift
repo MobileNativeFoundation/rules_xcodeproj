@@ -8,7 +8,12 @@ import XCTest
 extension XCSchemeInfoTests {
     func test_init_noActionInfos() throws {
         var thrown: Error?
-        XCTAssertThrowsError(try XCSchemeInfo(name: schemeName)) {
+        XCTAssertThrowsError(
+            try XCSchemeInfo(
+                name: schemeName,
+                defaultBuildConfigurationName: "Indy"
+            )
+        ) {
             thrown = $0
         }
         guard let preconditionError = thrown as? PreconditionError else {
@@ -24,6 +29,7 @@ An `XCSchemeInfo` (\(schemeName)) should have at least one of the following: `bu
     func test_init_noName() throws {
         var thrown: Error?
         XCTAssertThrowsError(try XCSchemeInfo(
+            defaultBuildConfigurationName: "Mike",
             buildActionInfo: .init(
                 targets: [libraryTargetInfo].map { .init(targetInfo: $0, buildFor: .allEnabled) }
             )
@@ -42,6 +48,7 @@ An `XCSchemeInfo` should have at least one of the following: `name` or `nameClos
     func test_init_withActionInfos() throws {
         let schemeInfo = try XCSchemeInfo(
             name: schemeName,
+            defaultBuildConfigurationName: "Marcus",
             buildActionInfo: .init(
                 targets: [libraryTargetInfo].map { .init(targetInfo: $0, buildFor: .allEnabled) }
             ),
@@ -75,6 +82,7 @@ An `XCSchemeInfo` should have at least one of the following: `name` or `nameClos
     func test_init_withNameClosure() throws {
         let customName = "Sally"
         let schemeInfo = try XCSchemeInfo(
+            defaultBuildConfigurationName: "Sue",
             buildActionInfo: .init(
                 targets: [libraryTargetInfo].map { .init(targetInfo: $0, buildFor: .allEnabled) }
             )
@@ -91,6 +99,7 @@ extension XCSchemeInfoTests {
     func test_allPBXTargets() throws {
         let schemeInfo = try XCSchemeInfo(
             name: schemeName,
+            defaultBuildConfigurationName: "Joe",
             buildActionInfo: .init(
                 targets: [libraryTargetInfo].map { .init(targetInfo: $0, buildFor: .allEnabled) }
             ),
@@ -129,6 +138,7 @@ extension XCSchemeInfoTests {
     func test_wasCreatedForAppExtension_withoutExtension() throws {
         let schemeInfo = try XCSchemeInfo(
             name: schemeName,
+            defaultBuildConfigurationName: "Larry",
             buildActionInfo: .init(
                 targets: [libraryTargetInfo].map { .init(targetInfo: $0, buildFor: .allEnabled) }
             )
@@ -139,6 +149,7 @@ extension XCSchemeInfoTests {
     func test_wasCreatedForAppExtension_withExtension() throws {
         let schemeInfo = try XCSchemeInfo(
             name: schemeName,
+            defaultBuildConfigurationName: "Marry",
             buildActionInfo: .init(
                 targets: [libraryTargetInfo].map { .init(targetInfo: $0, buildFor: .allEnabled) }
             ),
@@ -157,13 +168,20 @@ extension XCSchemeInfoTests {
     func test_customSchemeInit() throws {
         let actual = try XCSchemeInfo(
             scheme: try xcodeScheme.withDefaults,
+            defaultBuildConfigurationName: "DeepThought",
             targetResolver: targetResolver,
             runnerLabel: runnerLabel,
             args: [:],
             envs: [:]
         )
+        let expectedTestTargetInfo = try targetResolver
+            .targetInfo(targetID: "B 2")
+        let expectedLaunchTargetInfo = try targetResolver
+            .targetInfo(targetID: "A 2")
+        let expectedProfileTargetInfo = expectedLaunchTargetInfo
         let expected = try XCSchemeInfo(
             name: schemeName,
+            defaultBuildConfigurationName: "DeepThought",
             buildActionInfo: try .init(
                 targets: [
                     .init(
@@ -186,17 +204,20 @@ extension XCSchemeInfoTests {
                 ]
             ),
             testActionInfo: try .init(
-                buildConfigurationName: .defaultBuildConfigurationName,
-                targetInfos: [try targetResolver.targetInfo(targetID: "B 2")],
+                buildConfigurationName: expectedTestTargetInfo.pbxTarget
+                    .defaultBuildConfigurationName,
+                targetInfos: [expectedTestTargetInfo],
                 expandVariablesBasedOn: try targetResolver.targetInfo(targetID: "B 2")
             ),
             launchActionInfo: try .init(
-                buildConfigurationName: .defaultBuildConfigurationName,
-                targetInfo: try targetResolver.targetInfo(targetID: "A 2")
+                buildConfigurationName: expectedLaunchTargetInfo.pbxTarget
+                    .defaultBuildConfigurationName,
+                targetInfo: expectedLaunchTargetInfo
             ),
             profileActionInfo: .init(
-                buildConfigurationName: .defaultBuildConfigurationName,
-                targetInfo: try targetResolver.targetInfo(targetID: "A 2")
+                buildConfigurationName: expectedProfileTargetInfo.pbxTarget
+                    .defaultBuildConfigurationName,
+                targetInfo: expectedProfileTargetInfo
             )
         )
         XCTAssertEqual(actual, expected)
@@ -219,7 +240,12 @@ class XCSchemeInfoTests: XCTestCase {
         workspaceOutput: "examples/foo/Foo.xcodeproj"
     )
 
+    // We must retain in order to retain some sub-objects (like
+    // `XCConfigurationList`)
+    private let pbxProj = Fixtures.pbxProj()
+
     lazy var targetResolver = Fixtures.targetResolver(
+        pbxProj: pbxProj,
         directories: directories,
         referencedContainer: directories.containerReference
     )

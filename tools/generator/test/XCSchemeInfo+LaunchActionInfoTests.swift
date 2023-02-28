@@ -231,9 +231,11 @@ extension XCSchemeInfoLaunchActionInfoTests {
                 runnerLabel: runnerLabel
             )
         )
+        let expectedTargetInfo = try targetResolver.targetInfo(targetID: "A 2")
         let expected = try XCSchemeInfo.LaunchActionInfo(
-            buildConfigurationName: .defaultBuildConfigurationName,
-            targetInfo: try targetResolver.targetInfo(targetID: "A 2"),
+            buildConfigurationName: expectedTargetInfo.pbxTarget
+                .defaultBuildConfigurationName,
+            targetInfo: expectedTargetInfo,
             args: customArgs,
             env: customEnv,
             workingDirectory: customWorkingDirectory
@@ -257,7 +259,12 @@ class XCSchemeInfoLaunchActionInfoTests: XCTestCase {
         workspaceOutput: "examples/foo/Foo.xcodeproj"
     )
 
+    // We must retain in order to retain some sub-objects (like
+    // `XCConfigurationList`)
+    private let pbxProj = Fixtures.pbxProj()
+
     lazy var targetResolver = Fixtures.targetResolver(
+        pbxProj: pbxProj,
         directories: directories,
         referencedContainer: directories.containerReference
     )

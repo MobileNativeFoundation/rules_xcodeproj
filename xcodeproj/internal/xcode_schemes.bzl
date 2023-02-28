@@ -4,8 +4,6 @@ load("@bazel_skylib//lib:sets.bzl", "sets")
 load(":bazel_labels.bzl", _bazel_labels = "bazel_labels")
 load(":xcode_schemes_internal.bzl", "xcode_schemes_internal")
 
-_DEFAULT_BUILD_CONFIGURATION_NAME = "Debug"
-
 def focus_schemes(schemes, focused_targets):
     """Filter/adjust a `sequence` of schemes to only include focused targets.
 
@@ -383,7 +381,7 @@ def make_xcode_schemes(bazel_labels):
             A `struct` representing a launch action.
         """
         return xcode_schemes_internal.launch_action(
-            build_configuration_name = _DEFAULT_BUILD_CONFIGURATION_NAME,
+            build_configuration_name = None,
             target = bazel_labels.normalize(target),
             args = args,
             diagnostics = diagnostics,
@@ -436,7 +434,7 @@ def make_xcode_schemes(bazel_labels):
                 bazel_labels.normalize(t)
                 for t in targets
             ],
-            build_configuration_name = _DEFAULT_BUILD_CONFIGURATION_NAME,
+            build_configuration_name = None,
             args = args,
             diagnostics = diagnostics,
             env = env,
@@ -456,7 +454,6 @@ def make_xcode_schemes(bazel_labels):
         diagnostics = _diagnostics,
         sanitizers = _sanitizers,
         pre_post_action = _pre_post_action,
-        DEFAULT_BUILD_CONFIGURATION_NAME = _DEFAULT_BUILD_CONFIGURATION_NAME,
         BUILD_FOR_ALL_ENABLED = xcode_schemes_internal.BUILD_FOR_ALL_ENABLED,
     )
 

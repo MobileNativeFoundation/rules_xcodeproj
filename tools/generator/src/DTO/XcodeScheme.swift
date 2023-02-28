@@ -198,7 +198,7 @@ Found a duplicate label \(label) in provided `XcodeScheme.BuildTarget` values.
 
 extension XcodeScheme {
     struct TestAction: Equatable {
-        let buildConfigurationName: String
+        let buildConfigurationName: String?
         let targets: Set<BazelLabel>
         let args: [String]
         let diagnostics: Diagnostics
@@ -209,7 +209,7 @@ extension XcodeScheme {
 
         init<Targets: Sequence>(
             targets: Targets,
-            buildConfigurationName: String = .defaultBuildConfigurationName,
+            buildConfigurationName: String? = nil,
             args: [String] = [],
             diagnostics: Diagnostics = .init(),
             env: [String: String] = [:],
@@ -251,8 +251,7 @@ extension XcodeScheme.TestAction: Decodable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
         buildConfigurationName = try container
-            .decodeIfPresent(String.self, forKey: .buildConfigurationName) ??
-            .defaultBuildConfigurationName
+            .decodeIfPresent(String.self, forKey: .buildConfigurationName)
         targets = try container
             .decodeIfPresent(Set<BazelLabel>.self, forKey: .targets) ?? []
         args = try container
@@ -345,7 +344,7 @@ extension XcodeScheme.Diagnostics.Sanitizers: Decodable {
 
 extension XcodeScheme {
     struct LaunchAction: Equatable {
-        let buildConfigurationName: String
+        let buildConfigurationName: String?
         let target: BazelLabel
         let args: [String]
         let diagnostics: Diagnostics
@@ -354,7 +353,7 @@ extension XcodeScheme {
 
         init(
             target: BazelLabel,
-            buildConfigurationName: String = .defaultBuildConfigurationName,
+            buildConfigurationName: String? = nil,
             args: [String] = [],
             diagnostics: Diagnostics = .init(),
             env: [String: String] = [:],
@@ -384,8 +383,7 @@ extension XcodeScheme.LaunchAction: Decodable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
         buildConfigurationName = try container
-            .decodeIfPresent(String.self, forKey: .buildConfigurationName) ??
-            .defaultBuildConfigurationName
+            .decodeIfPresent(String.self, forKey: .buildConfigurationName)
         target = try container.decode(BazelLabel.self, forKey: .target)
         args = try container
             .decodeIfPresent([String].self, forKey: .args) ?? []
@@ -405,13 +403,13 @@ extension XcodeScheme.LaunchAction: Decodable {
 
 extension XcodeScheme {
     struct ProfileAction: Equatable, Decodable {
-        let buildConfigurationName: String
+        let buildConfigurationName: String?
         let target: BazelLabel
         let workingDirectory: String?
 
         init(
             target: BazelLabel,
-            buildConfigurationName: String = .defaultBuildConfigurationName,
+            buildConfigurationName: String? = nil,
             workingDirectory: String? = nil
         ) {
             self.target = target
