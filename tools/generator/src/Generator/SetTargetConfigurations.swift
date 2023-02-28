@@ -141,12 +141,12 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
         }
 
         // Calculate "EXCLUDED_SOURCE_FILE_NAMES"
-        var excludedSourceFileNames: [String] = []
         for (
             xcodeConfiguration,
             configurationConditionalFileNames
         ) in conditionalFileNames {
             var anyBuildSettings: [String: BuildSetting] = [:]
+            var excludedSourceFileNames: [String] = []
             for (key, fileNames) in configurationConditionalFileNames
                 .sorted(by: { $0.key < $1.key })
             {
