@@ -29,17 +29,21 @@ extension Generator {
         var consolidateGroups: [Set<TargetID>] = []
         for ids in consolidatable.values {
             var configurations: [
-                Platform.Variant: [PlatformAndConfiguration: TargetID]
+                XcodeConfigurationAndPlatformVariant:
+                    [PlatformAndConfiguration: TargetID]
             ] = [:]
             for id in ids {
                 let target = targets[id]!
                 let platform = target.platform
+                let distinguisher = XcodeConfigurationAndPlatformVariant(
+                    xcodeConfiguration: target.xcodeConfiguration,
+                    platformVariant: platform.variant
+                )
                 let configuration = PlatformAndConfiguration(
                     platform: platform,
                     configuration: target.configuration
                 )
-                configurations[platform.variant, default: [:]][configuration] =
-                    id
+                configurations[distinguisher, default: [:]][configuration] = id
             }
 
             var buckets: [Int: Set<TargetID>] = [:]
@@ -225,6 +229,11 @@ extension ConsolidatableKey {
     }
 }
 
+private struct XcodeConfigurationAndPlatformVariant: Equatable, Hashable {
+    let xcodeConfiguration: String
+    let platformVariant: Platform.Variant
+}
+
 private struct PlatformAndConfiguration: Equatable, Hashable {
     let platform: Platform
     let configuration: String
@@ -340,8 +349,16 @@ extension ConsolidatedTarget {
 
         sortedTargets = targets
             .sorted { lhs, rhs in
-                return lhs.value.buildSettingConditional <
-                    rhs.value.buildSettingConditional
+                let lhsTarget = lhs.value
+                let rhsTarget = rhs.value
+                guard
+                    lhsTarget.xcodeConfiguration == rhsTarget.xcodeConfiguration
+                else {
+                    return lhsTarget.xcodeConfiguration <
+                        rhsTarget.xcodeConfiguration
+                }
+                return lhsTarget.buildSettingConditional <
+                    rhsTarget.buildSettingConditional
             }
             .map { $1 }
         inputs = Self.consolidateInputs(targets: sortedTargets)

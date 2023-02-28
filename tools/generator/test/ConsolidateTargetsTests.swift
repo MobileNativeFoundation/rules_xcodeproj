@@ -40,6 +40,44 @@ final class ConsolidateTargetsTests: XCTestCase {
         XCTAssertNoDifference(logger.messagesLogged, expectedMessagesLogged)
     }
 
+    func test_differentXcodeConfiguration() throws {
+        // Arrange
+
+        let targets: [TargetID: Target] = [
+            "Debug": .mock(
+                xcodeConfiguration: "Debug",
+                platform: .simulator(),
+                product: .init(type: .staticLibrary, name: "T", path: "A/T")
+            ),
+            "Release": .mock(
+                xcodeConfiguration: "Release",
+                platform: .simulator(),
+                product: .init(type: .staticLibrary, name: "T", path: "A/T")
+            ),
+        ]
+        let expectedConsolidatedTargets = ConsolidatedTargets(
+            allTargets: targets,
+            keys: [
+                ["Debug", "Release"],
+            ]
+        )
+        let expectedMessagesLogged: [StubLogger.MessageLogged] = []
+
+        // Act
+
+        let logger = StubLogger()
+        let consolidatedTargets = try Generator.consolidateTargets(
+            targets,
+            [:],
+            logger: logger
+        )
+
+        // Assert
+
+        XCTAssertNoDifference(consolidatedTargets, expectedConsolidatedTargets)
+        XCTAssertNoDifference(logger.messagesLogged, expectedMessagesLogged)
+    }
+
     func test_not_different_enough() throws {
         // Arrange
 
