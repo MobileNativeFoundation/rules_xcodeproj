@@ -284,7 +284,8 @@ def _process_targets(
         unprocessed_targets.update(configuration_unprocessed_targets)
 
         xcode_configurations.update({
-            id: xcode_configuration for id in configuration_unprocessed_targets
+            id: xcode_configuration
+            for id in configuration_unprocessed_targets
         })
 
     configurations_map = {}
@@ -1336,7 +1337,7 @@ def _simulator_transition_impl(settings, attr):
             watchos_cpus = "x86_64"
 
     outputs = {
-        "Debug":{
+        "Debug": {
             "//command_line_option:ios_multi_cpus": ios_cpus,
             "//command_line_option:tvos_cpus": tvos_cpus,
             "//command_line_option:watchos_cpus": watchos_cpus,
