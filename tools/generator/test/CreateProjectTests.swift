@@ -31,84 +31,91 @@ final class CreateProjectTests: XCTestCase {
         )
         expectedPBXProj.add(object: expectedMainGroup)
 
-        let debugConfiguration = XCBuildConfiguration(
-            name: "Debug",
-            buildSettings: [
-                "ALWAYS_SEARCH_USER_PATHS": false,
-                "BAZEL_CONFIG": project.bazelConfig,
-                "BAZEL_EXTERNAL": "$(BAZEL_OUTPUT_BASE)/external",
-                "BAZEL_LLDB_INIT": "$(HOME)/.lldbinit-rules_xcodeproj",
-                "BAZEL_OUT": "$(PROJECT_DIR)/bazel-out",
-                "_BAZEL_OUTPUT_BASE": "$(PROJECT_DIR)/../..",
-                "BAZEL_OUTPUT_BASE": "$(_BAZEL_OUTPUT_BASE:standardizepath)",
-                "BAZEL_PATH": "bazelisk",
-                "BAZEL_WORKSPACE_ROOT": "$(SRCROOT)",
-                "BAZEL_INTEGRATION_DIR": "$(INTERNAL_DIR)/bazel",
-                "BUILD_WORKSPACE_DIRECTORY": "$(SRCROOT)",
-                "BUILD_DIR": """
+        let buildSettings: [String: Any] = [
+            "ALWAYS_SEARCH_USER_PATHS": false,
+            "BAZEL_CONFIG": project.bazelConfig,
+            "BAZEL_EXTERNAL": "$(BAZEL_OUTPUT_BASE)/external",
+            "BAZEL_LLDB_INIT": "$(HOME)/.lldbinit-rules_xcodeproj",
+            "BAZEL_OUT": "$(PROJECT_DIR)/bazel-out",
+            "_BAZEL_OUTPUT_BASE": "$(PROJECT_DIR)/../..",
+            "BAZEL_OUTPUT_BASE": "$(_BAZEL_OUTPUT_BASE:standardizepath)",
+            "BAZEL_PATH": "bazelisk",
+            "BAZEL_WORKSPACE_ROOT": "$(SRCROOT)",
+            "BAZEL_INTEGRATION_DIR": "$(INTERNAL_DIR)/bazel",
+            "BUILD_WORKSPACE_DIRECTORY": "$(SRCROOT)",
+            "BUILD_DIR": """
 $(SYMROOT)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
 """,
-                "BUILT_PRODUCTS_DIR": """
+            "BUILT_PRODUCTS_DIR": """
 $(INDEXING_BUILT_PRODUCTS_DIR__$(INDEX_ENABLE_BUILD_ARENA))
 """,
-                "CLANG_ENABLE_OBJC_ARC": true,
-                "CLANG_MODULES_AUTOLINK": false,
-                "CONFIGURATION_BUILD_DIR": """
+            "CLANG_ENABLE_OBJC_ARC": true,
+            "CLANG_MODULES_AUTOLINK": false,
+            "CONFIGURATION_BUILD_DIR": """
 $(BUILD_DIR)/$(BAZEL_PACKAGE_BIN_DIR)
 """,
-                "COPY_PHASE_STRIP": false,
-                "CURRENT_EXECUTION_ROOT": """
+            "COPY_PHASE_STRIP": false,
+            "CURRENT_EXECUTION_ROOT": """
 $(INDEXING_PROJECT_DIR__$(INDEX_ENABLE_BUILD_ARENA))
 """,
-                "DEBUG_INFORMATION_FORMAT": "dwarf",
-                "DEPLOYMENT_LOCATION": """
+            "DEBUG_INFORMATION_FORMAT": "dwarf",
+            "DEPLOYMENT_LOCATION": """
 $(INDEXING_DEPLOYMENT_LOCATION__$(INDEX_ENABLE_BUILD_ARENA)),
 """,
-                "DSTROOT": "$(PROJECT_TEMP_DIR)",
-                "ENABLE_DEFAULT_SEARCH_PATHS": "NO",
-                "GENERATOR_LABEL": project.generatorLabel,
-                "INDEX_FORCE_SCRIPT_EXECUTION": true,
-                "INDEXING_BUILT_PRODUCTS_DIR__": """
+            "DSTROOT": "$(PROJECT_TEMP_DIR)",
+            "ENABLE_DEFAULT_SEARCH_PATHS": "NO",
+            "GENERATOR_LABEL": project.generatorLabel,
+            "INDEX_FORCE_SCRIPT_EXECUTION": true,
+            "INDEXING_BUILT_PRODUCTS_DIR__": """
 $(INDEXING_BUILT_PRODUCTS_DIR__NO)
 """,
-                "INDEXING_BUILT_PRODUCTS_DIR__NO": "$(BUILD_DIR)",
-                "INDEXING_BUILT_PRODUCTS_DIR__YES": """
+            "INDEXING_BUILT_PRODUCTS_DIR__NO": "$(BUILD_DIR)",
+            "INDEXING_BUILT_PRODUCTS_DIR__YES": """
 $(CONFIGURATION_BUILD_DIR)
 """,
-                "INDEXING_DEPLOYMENT_LOCATION__": """
+            "INDEXING_DEPLOYMENT_LOCATION__": """
 $(INDEXING_DEPLOYMENT_LOCATION__NO)
 """,
-                "INDEXING_DEPLOYMENT_LOCATION__NO": true,
-                "INDEXING_DEPLOYMENT_LOCATION__YES": false,
-                "INDEXING_PROJECT_DIR__": "$(INDEXING_PROJECT_DIR__NO)",
-                "INDEXING_PROJECT_DIR__NO": "$(PROJECT_DIR)",
-                "INDEXING_PROJECT_DIR__YES": """
+            "INDEXING_DEPLOYMENT_LOCATION__NO": true,
+            "INDEXING_DEPLOYMENT_LOCATION__YES": false,
+            "INDEXING_PROJECT_DIR__": "$(INDEXING_PROJECT_DIR__NO)",
+            "INDEXING_PROJECT_DIR__NO": "$(PROJECT_DIR)",
+            "INDEXING_PROJECT_DIR__YES": """
 /tmp/bazel-output-base/rules_xcodeproj/indexbuild_output_base/execroot/com_github_buildbuddy_io_rules_xcodeproj
 """,
-                "INSTALL_PATH": "$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)/bin",
-                "INTERNAL_DIR": "$(PROJECT_FILE_PATH)/r_xcp",
-                "LD_OBJC_ABI_VERSION": "",
-                "LD_DYLIB_INSTALL_NAME": "",
-                "LD_RUNPATH_SEARCH_PATHS": [],
-                "ONLY_ACTIVE_ARCH": true,
-                "RULES_XCODEPROJ_BUILD_MODE": "xcode",
-                "SCHEME_TARGET_IDS_FILE": """
+            "INSTALL_PATH": "$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)/bin",
+            "INTERNAL_DIR": "$(PROJECT_FILE_PATH)/r_xcp",
+            "LD_OBJC_ABI_VERSION": "",
+            "LD_DYLIB_INSTALL_NAME": "",
+            "LD_RUNPATH_SEARCH_PATHS": [],
+            "ONLY_ACTIVE_ARCH": true,
+            "RULES_XCODEPROJ_BUILD_MODE": "xcode",
+            "SCHEME_TARGET_IDS_FILE": """
 $(OBJROOT)/scheme_target_ids
 """,
-                "SRCROOT": directories.workspace.string,
-                "SUPPORTS_MACCATALYST": false,
-                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-                "TARGET_TEMP_DIR": """
+            "SRCROOT": directories.workspace.string,
+            "SUPPORTS_MACCATALYST": false,
+            "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+            "TARGET_TEMP_DIR": """
 $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
 """,
-                "USE_HEADERMAP": false,
-                "VALIDATE_WORKSPACE": false,
-            ]
+            "USE_HEADERMAP": false,
+            "VALIDATE_WORKSPACE": false,
+        ]
+
+        let releaseConfiguration = XCBuildConfiguration(
+            name: "Release",
+            buildSettings: buildSettings
         )
-        expectedPBXProj.add(object: debugConfiguration)
+        expectedPBXProj.add(object: releaseConfiguration)
+        let profileConfiguration = XCBuildConfiguration(
+            name: "Profile",
+            buildSettings: buildSettings
+        )
+        expectedPBXProj.add(object: profileConfiguration)
         let expectedBuildConfigurationList = XCConfigurationList(
-            buildConfigurations: [debugConfiguration],
-            defaultConfigurationName: debugConfiguration.name
+            buildConfigurations: [releaseConfiguration, profileConfiguration],
+            defaultConfigurationName: "Profile"
         )
         expectedPBXProj.add(object: expectedBuildConfigurationList)
 
@@ -172,92 +179,99 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
         )
         expectedPBXProj.add(object: expectedMainGroup)
 
-        let debugConfiguration = XCBuildConfiguration(
-            name: "Debug",
-            buildSettings: [
-                "ALWAYS_SEARCH_USER_PATHS": false,
-                "BAZEL_CONFIG": "rules_xcodeproj_fixtures",
-                "BAZEL_EXTERNAL": "$(BAZEL_OUTPUT_BASE)/external",
-                "BAZEL_LLDB_INIT": "$(HOME)/.lldbinit-rules_xcodeproj",
-                "BAZEL_OUT": "$(PROJECT_DIR)/bazel-out",
-                "_BAZEL_OUTPUT_BASE": "$(PROJECT_DIR)/../..",
-                "BAZEL_OUTPUT_BASE": "$(_BAZEL_OUTPUT_BASE:standardizepath)",
-                "BAZEL_PATH": "bazelisk",
-                "BAZEL_WORKSPACE_ROOT": "$(SRCROOT)",
-                "BUILD_DIR": """
+        let buildSettings: [String: Any] = [
+            "ALWAYS_SEARCH_USER_PATHS": false,
+            "BAZEL_CONFIG": "rules_xcodeproj_fixtures",
+            "BAZEL_EXTERNAL": "$(BAZEL_OUTPUT_BASE)/external",
+            "BAZEL_LLDB_INIT": "$(HOME)/.lldbinit-rules_xcodeproj",
+            "BAZEL_OUT": "$(PROJECT_DIR)/bazel-out",
+            "_BAZEL_OUTPUT_BASE": "$(PROJECT_DIR)/../..",
+            "BAZEL_OUTPUT_BASE": "$(_BAZEL_OUTPUT_BASE:standardizepath)",
+            "BAZEL_PATH": "bazelisk",
+            "BAZEL_WORKSPACE_ROOT": "$(SRCROOT)",
+            "BUILD_DIR": """
 $(SYMROOT)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
 """,
-                "BUILD_WORKSPACE_DIRECTORY": "$(SRCROOT)",
-                "BAZEL_INTEGRATION_DIR": "$(INTERNAL_DIR)/bazel",
-                "BUILT_PRODUCTS_DIR": """
+            "BUILD_WORKSPACE_DIRECTORY": "$(SRCROOT)",
+            "BAZEL_INTEGRATION_DIR": "$(INTERNAL_DIR)/bazel",
+            "BUILT_PRODUCTS_DIR": """
 $(INDEXING_BUILT_PRODUCTS_DIR__$(INDEX_ENABLE_BUILD_ARENA))
 """,
-                "CC": "$(BAZEL_INTEGRATION_DIR)/clang.sh",
-                "CXX": "$(BAZEL_INTEGRATION_DIR)/clang.sh",
-                "CLANG_ENABLE_OBJC_ARC": true,
-                "CLANG_MODULES_AUTOLINK": false,
-                "CODE_SIGNING_ALLOWED": false,
-                "CONFIGURATION_BUILD_DIR": """
+            "CC": "$(BAZEL_INTEGRATION_DIR)/clang.sh",
+            "CXX": "$(BAZEL_INTEGRATION_DIR)/clang.sh",
+            "CLANG_ENABLE_OBJC_ARC": true,
+            "CLANG_MODULES_AUTOLINK": false,
+            "CODE_SIGNING_ALLOWED": false,
+            "CONFIGURATION_BUILD_DIR": """
 $(BUILD_DIR)/$(BAZEL_PACKAGE_BIN_DIR)
 """,
-                "COPY_PHASE_STRIP": false,
-                "CURRENT_EXECUTION_ROOT": """
+            "COPY_PHASE_STRIP": false,
+            "CURRENT_EXECUTION_ROOT": """
 $(INDEXING_PROJECT_DIR__$(INDEX_ENABLE_BUILD_ARENA))
 """,
-                "DEBUG_INFORMATION_FORMAT": "dwarf",
-                "DEPLOYMENT_LOCATION": """
+            "DEBUG_INFORMATION_FORMAT": "dwarf",
+            "DEPLOYMENT_LOCATION": """
 $(INDEXING_DEPLOYMENT_LOCATION__$(INDEX_ENABLE_BUILD_ARENA)),
 """,
-                "DSTROOT": "$(PROJECT_TEMP_DIR)",
-                "ENABLE_DEFAULT_SEARCH_PATHS": "NO",
-                "GENERATOR_LABEL": project.generatorLabel,
-                "LD": "$(BAZEL_INTEGRATION_DIR)/ld.sh",
-                "LDPLUSPLUS": "$(BAZEL_INTEGRATION_DIR)/ld.sh",
-                "LIBTOOL": "$(BAZEL_INTEGRATION_DIR)/libtool.sh",
-                "INDEX_FORCE_SCRIPT_EXECUTION": true,
-                "INDEXING_BUILT_PRODUCTS_DIR__": """
+            "DSTROOT": "$(PROJECT_TEMP_DIR)",
+            "ENABLE_DEFAULT_SEARCH_PATHS": "NO",
+            "GENERATOR_LABEL": project.generatorLabel,
+            "LD": "$(BAZEL_INTEGRATION_DIR)/ld.sh",
+            "LDPLUSPLUS": "$(BAZEL_INTEGRATION_DIR)/ld.sh",
+            "LIBTOOL": "$(BAZEL_INTEGRATION_DIR)/libtool.sh",
+            "INDEX_FORCE_SCRIPT_EXECUTION": true,
+            "INDEXING_BUILT_PRODUCTS_DIR__": """
 $(INDEXING_BUILT_PRODUCTS_DIR__NO)
 """,
-                "INDEXING_BUILT_PRODUCTS_DIR__NO": "$(BUILD_DIR)",
-                "INDEXING_BUILT_PRODUCTS_DIR__YES": """
+            "INDEXING_BUILT_PRODUCTS_DIR__NO": "$(BUILD_DIR)",
+            "INDEXING_BUILT_PRODUCTS_DIR__YES": """
 $(CONFIGURATION_BUILD_DIR)
 """,
-                "INDEXING_DEPLOYMENT_LOCATION__": """
+            "INDEXING_DEPLOYMENT_LOCATION__": """
 $(INDEXING_DEPLOYMENT_LOCATION__NO)
 """,
-                "INDEXING_DEPLOYMENT_LOCATION__NO": true,
-                "INDEXING_DEPLOYMENT_LOCATION__YES": false,
-                "INDEXING_PROJECT_DIR__": "$(INDEXING_PROJECT_DIR__NO)",
-                "INDEXING_PROJECT_DIR__NO": "$(PROJECT_DIR)",
-                "INDEXING_PROJECT_DIR__YES": """
+            "INDEXING_DEPLOYMENT_LOCATION__NO": true,
+            "INDEXING_DEPLOYMENT_LOCATION__YES": false,
+            "INDEXING_PROJECT_DIR__": "$(INDEXING_PROJECT_DIR__NO)",
+            "INDEXING_PROJECT_DIR__NO": "$(PROJECT_DIR)",
+            "INDEXING_PROJECT_DIR__YES": """
 /tmp/bazel-output-base/rules_xcodeproj/indexbuild_output_base/execroot/com_github_buildbuddy_io_rules_xcodeproj
 """,
-                "INSTALL_PATH": "$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)/bin",
-                "INTERNAL_DIR": "$(PROJECT_FILE_PATH)/r_xcp",
-                "LD_OBJC_ABI_VERSION": "",
-                "LD_DYLIB_INSTALL_NAME": "",
-                "LD_RUNPATH_SEARCH_PATHS": [],
-                "ONLY_ACTIVE_ARCH": true,
-                "RULES_XCODEPROJ_BUILD_MODE": "bazel",
-                "SCHEME_TARGET_IDS_FILE": """
+            "INSTALL_PATH": "$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)/bin",
+            "INTERNAL_DIR": "$(PROJECT_FILE_PATH)/r_xcp",
+            "LD_OBJC_ABI_VERSION": "",
+            "LD_DYLIB_INSTALL_NAME": "",
+            "LD_RUNPATH_SEARCH_PATHS": [],
+            "ONLY_ACTIVE_ARCH": true,
+            "RULES_XCODEPROJ_BUILD_MODE": "bazel",
+            "SCHEME_TARGET_IDS_FILE": """
 $(OBJROOT)/scheme_target_ids
 """,
-                "SRCROOT": directories.workspace.string,
-                "SUPPORTS_MACCATALYST": false,
-                "SWIFT_EXEC": "$(BAZEL_INTEGRATION_DIR)/swiftc",
-                "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-                "SWIFT_USE_INTEGRATED_DRIVER": false,
-                "TARGET_TEMP_DIR": """
+            "SRCROOT": directories.workspace.string,
+            "SUPPORTS_MACCATALYST": false,
+            "SWIFT_EXEC": "$(BAZEL_INTEGRATION_DIR)/swiftc",
+            "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+            "SWIFT_USE_INTEGRATED_DRIVER": false,
+            "TARGET_TEMP_DIR": """
 $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
 """,
-                "USE_HEADERMAP": false,
-                "VALIDATE_WORKSPACE": false,
-            ]
+            "USE_HEADERMAP": false,
+            "VALIDATE_WORKSPACE": false,
+        ]
+
+        let releaseConfiguration = XCBuildConfiguration(
+            name: "Release",
+            buildSettings: buildSettings
         )
-        expectedPBXProj.add(object: debugConfiguration)
+        expectedPBXProj.add(object: releaseConfiguration)
+        let profileConfiguration = XCBuildConfiguration(
+            name: "Profile",
+            buildSettings: buildSettings
+        )
+        expectedPBXProj.add(object: profileConfiguration)
         let expectedBuildConfigurationList = XCConfigurationList(
-            buildConfigurations: [debugConfiguration],
-            defaultConfigurationName: debugConfiguration.name
+            buildConfigurations: [releaseConfiguration, profileConfiguration],
+            defaultConfigurationName: "Profile"
         )
         expectedPBXProj.add(object: expectedBuildConfigurationList)
 

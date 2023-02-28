@@ -22,6 +22,8 @@ struct Project: Equatable {
     let options: Options
     let bazel: String
     let bazelConfig: String
+    let xcodeConfigurations: [String]
+    let defaultXcodeConfiguration: String
     let generatorLabel: BazelLabel
     let runnerLabel: BazelLabel
     let minimumXcodeVersion: SemanticVersion
@@ -45,6 +47,8 @@ extension Project: Decodable {
         case options = "o"
         case bazel = "b"
         case bazelConfig = "B"
+        case xcodeConfigurations = "x"
+        case defaultXcodeConfiguration = "d"
         case generatorLabel = "g"
         case runnerLabel = "R"
         case minimumXcodeVersion = "m"
@@ -69,6 +73,12 @@ extension Project: Decodable {
         bazel = try container
             .decodeIfPresent(String.self, forKey: .bazel) ?? "bazel"
         bazelConfig = try container.decode(String.self, forKey: .bazelConfig)
+        xcodeConfigurations = try container
+            .decodeIfPresent([String].self, forKey: .xcodeConfigurations) ??
+            ["Debug"]
+        defaultXcodeConfiguration = try container
+            .decodeIfPresent(String.self, forKey: .defaultXcodeConfiguration) ??
+            "Debug"
         generatorLabel = try container
             .decode(BazelLabel.self, forKey: .generatorLabel)
         runnerLabel = try container

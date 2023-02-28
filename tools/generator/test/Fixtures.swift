@@ -15,6 +15,8 @@ enum Fixtures {
         ),
         bazel: "bazelisk",
         bazelConfig: "rules_xcodeproj_fixtures",
+        xcodeConfigurations: ["Release", "Profile"],
+        defaultXcodeConfiguration: "Profile",
         generatorLabel: "@//:xcodeproj.generator",
         runnerLabel: "@//:xcodeproj",
         minimumXcodeVersion: "14.0.1",
@@ -1323,7 +1325,7 @@ appletvos
 """
 
         let debugConfiguration = XCBuildConfiguration(
-            name: "Debug",
+            name: "Profile",
             buildSettings: [
                 "ALLOW_TARGET_PLATFORM_SPECIALIZATION": true,
                 "BAZEL_PACKAGE_BIN_DIR": "rules_xcodeproj",
@@ -2311,7 +2313,7 @@ $(MACOSX_FILES)
         ]
         for (key, buildSettings) in buildSettings {
             let debugConfiguration = XCBuildConfiguration(
-                name: "Debug",
+                name: "Profile",
                 buildSettings: buildSettings
             )
             pbxProj.add(object: debugConfiguration)

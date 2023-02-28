@@ -45,6 +45,7 @@ final class SetTargetConfigurationsTests: XCTestCase {
             targets: Fixtures.targets,
             buildMode: .xcode,
             minimumXcodeVersion: "13.4.1",
+            defaultXcodeConfiguration: "Profile",
             pbxTargets: pbxTargets,
             hostIDs: Fixtures.project.targetHosts,
             hasBazelDependencies: true
@@ -95,6 +96,7 @@ final class SetTargetConfigurationsTests: XCTestCase {
             targets: [:],
             buildMode: .xcode,
             minimumXcodeVersion: "13.4.1",
+            defaultXcodeConfiguration: "Profile",
             pbxTargets: pbxTargets,
             hostIDs: [:],
             hasBazelDependencies: false
@@ -149,6 +151,7 @@ final class SetTargetConfigurationsTests: XCTestCase {
             targets: [:],
             buildMode: .xcode,
             minimumXcodeVersion: "13.4.1",
+            defaultXcodeConfiguration: "Profile",
             pbxTargets: pbxTargets,
             hostIDs: [:],
             hasBazelDependencies: false
@@ -274,6 +277,7 @@ final class SetTargetConfigurationsTests: XCTestCase {
             targets: [:],
             buildMode: .xcode,
             minimumXcodeVersion: "13.4.1",
+            defaultXcodeConfiguration: "Profile",
             pbxTargets: pbxTargets,
             hostIDs: [:],
             hasBazelDependencies: false

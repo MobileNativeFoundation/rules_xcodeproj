@@ -19,6 +19,8 @@ final class GeneratorTests: XCTestCase {
             ),
             bazel: "bz",
             bazelConfig: "rules_xcodeproj_test",
+            xcodeConfigurations: ["Debug", "Release", "AppStore"],
+            defaultXcodeConfiguration: "Release",
             generatorLabel: "@//a/P:xcodeproj.gen",
             runnerLabel: "@//a/P:xcodeproj",
             minimumXcodeVersion: "13.2.0",
@@ -451,6 +453,8 @@ final class GeneratorTests: XCTestCase {
             let buildMode: BuildMode
             let forceBazelDependencies: Bool
             let minimumXcodeVersion: SemanticVersion
+            let xcodeConfigurations: [String]
+            let defaultXcodeConfiguration: String
             let indexImport: String
             let files: [FilePath: File]
             let bazelConfig: String
@@ -467,6 +471,8 @@ final class GeneratorTests: XCTestCase {
             buildMode: BuildMode,
             forceBazelDependencies: Bool,
             minimumXcodeVersion: SemanticVersion,
+            xcodeConfigurations: [String],
+            defaultXcodeConfiguration: String,
             indexImport: String,
             files: [FilePath: File],
             bazelConfig: String,
@@ -480,6 +486,8 @@ final class GeneratorTests: XCTestCase {
                 buildMode: buildMode,
                 forceBazelDependencies: forceBazelDependencies,
                 minimumXcodeVersion: minimumXcodeVersion,
+                xcodeConfigurations: xcodeConfigurations,
+                defaultXcodeConfiguration: defaultXcodeConfiguration,
                 indexImport: indexImport,
                 files: files,
                 bazelConfig: bazelConfig,
@@ -497,6 +505,8 @@ final class GeneratorTests: XCTestCase {
                 buildMode: buildMode,
                 forceBazelDependencies: project.forceBazelDependencies,
                 minimumXcodeVersion: project.minimumXcodeVersion,
+                xcodeConfigurations: project.xcodeConfigurations,
+                defaultXcodeConfiguration: project.defaultXcodeConfiguration,
                 indexImport: project.indexImport,
                 files: files,
                 bazelConfig: project.bazelConfig,
@@ -555,6 +565,7 @@ final class GeneratorTests: XCTestCase {
             let targets: [TargetID: Target]
             let buildMode: BuildMode
             let minimumXcodeVersion: SemanticVersion
+            let defaultXcodeConfiguration: String
             let pbxTargets: [ConsolidatedTarget.Key: PBXTarget]
             let hostIDs: [TargetID: [TargetID]]
             let hasBazelDependencies: Bool
@@ -567,6 +578,7 @@ final class GeneratorTests: XCTestCase {
             targets: [TargetID: Target],
             buildMode: BuildMode,
             minimumXcodeVersion: SemanticVersion,
+            defaultXcodeConfiguration: String,
             pbxTargets: [ConsolidatedTarget.Key: PBXTarget],
             hostIDs: [TargetID: [TargetID]],
             hasBazelDependencies: Bool
@@ -577,6 +589,7 @@ final class GeneratorTests: XCTestCase {
                 targets: targets,
                 buildMode: buildMode,
                 minimumXcodeVersion: minimumXcodeVersion,
+                defaultXcodeConfiguration: defaultXcodeConfiguration,
                 pbxTargets: pbxTargets,
                 hostIDs: hostIDs,
                 hasBazelDependencies: hasBazelDependencies
@@ -590,6 +603,7 @@ final class GeneratorTests: XCTestCase {
                 targets: replacedLabelsTargets,
                 buildMode: buildMode,
                 minimumXcodeVersion: project.minimumXcodeVersion,
+                defaultXcodeConfiguration: project.defaultXcodeConfiguration,
                 pbxTargets: pbxTargets,
                 hostIDs: project.targetHosts,
                 hasBazelDependencies: true
@@ -660,7 +674,7 @@ final class GeneratorTests: XCTestCase {
         let expectedCreateCustomXCSchemesCalled = [CreateCustomXCSchemesCalled(
             schemes: customXcodeSchemes,
             buildMode: buildMode,
-            defaultBuildConfigurationName: "Debug",
+            defaultBuildConfigurationName: project.defaultXcodeConfiguration,
             targetResolver: targetResolver,
             runnerLabel: project.runnerLabel,
             args: schemeArgs,

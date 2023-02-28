@@ -24,6 +24,8 @@ extension Generator {
         buildMode: BuildMode,
         forceBazelDependencies: Bool,
         minimumXcodeVersion: SemanticVersion,
+        xcodeConfigurations: [String],
+        defaultXcodeConfiguration: String,
         indexImport: String,
         files: [FilePath: File],
         bazelConfig: String,
@@ -82,14 +84,19 @@ $(INDEXING_SUPPORTED_PLATFORMS__$(INDEX_ENABLE_BUILD_ARENA))
             buildSettings["INDEX_DISABLE_SCRIPT_EXECUTION"] = true
         }
 
-        let debugConfiguration = XCBuildConfiguration(
-            name: "Debug",
-            buildSettings: buildSettings
-        )
-        pbxProj.add(object: debugConfiguration)
+        var buildConfigurations: [XCBuildConfiguration] = []
+        for xcodeConfiguration in xcodeConfigurations {
+            let buildConfiguration = XCBuildConfiguration(
+                name: xcodeConfiguration,
+                buildSettings: buildSettings
+            )
+            buildConfigurations.append(buildConfiguration)
+            pbxProj.add(object: buildConfiguration)
+        }
+        
         let configurationList = XCConfigurationList(
-            buildConfigurations: [debugConfiguration],
-            defaultConfigurationName: debugConfiguration.name
+            buildConfigurations: buildConfigurations,
+            defaultConfigurationName: defaultXcodeConfiguration
         )
         pbxProj.add(object: configurationList)
 
