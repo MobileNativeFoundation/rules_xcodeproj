@@ -68,7 +68,7 @@ the ruleset.
 - Envoy Mobile
 - Ergatta
 - Lyft
-- [Mercari](https://engineering.mercari.com/blog/entry/20221215-16cdd59909/)
+- [Mercari](https://engineering.mercari.com/en/blog/entry/20221215-16cdd59909/)
 - Robinhood
 - [Slack](https://www.youtube.com/watch?v=wy3Q38VJ5uQ)
 - Spotify
