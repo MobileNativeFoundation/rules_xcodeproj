@@ -5,7 +5,8 @@ def project_options(
         development_region = "en",
         indent_width = None,
         tab_width = None,
-        uses_tabs = None):
+        uses_tabs = None,
+        organization_name = None):
     """Project options for use in `xcodeproj.project_options`.
 
     Args:
@@ -14,6 +15,7 @@ def project_options(
         indent_width: Optional. The number of spaces to use for indentation.
         tab_width: Optional. The number of spaces to use for tabs.
         uses_tabs: Optional. Whether to use tabs for indentation.
+        organization_name: Optional. Populates the ORGANIZATIONNAME attribute for the project.
 
     Returns:
         A `struct` containing fields for the provided arguments.
@@ -31,6 +33,8 @@ def project_options(
         d["tab_width"] = str(tab_width)
     if uses_tabs != None:
         d["uses_tabs"] = "1" if uses_tabs else "0"
+    if organization_name != None:
+        d["organization_name"] = organization_name
 
     return d
 
@@ -60,5 +64,9 @@ def project_options_to_dto(project_options):
     uses_tabs = project_options.get("uses_tabs")
     if uses_tabs:
         dto["u"] = uses_tabs == "1"
+
+    organization_name = project_options.get("organization_name")
+    if organization_name:
+        dto["o"] = organization_name
 
     return dto

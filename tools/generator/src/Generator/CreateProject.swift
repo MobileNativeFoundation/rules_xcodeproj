@@ -170,12 +170,16 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
         )
         pbxProj.add(object: buildConfigurationList)
 
-        let attributes = [
+        var attributes: [String:Any] = [
             "BuildIndependentTargetsInParallel": 1,
             // TODO: Make these an option? Hardcoded to never warn for now.
             "LastSwiftUpdateCheck": 9999,
             "LastUpgradeCheck": 9999,
         ]
+
+        if let organizationName = options.organizationName {
+            attributes["ORGANIZATIONNAME"] = organizationName
+        }
 
         let pbxProject = PBXProject(
             name: project.name,

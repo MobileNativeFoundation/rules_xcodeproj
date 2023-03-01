@@ -15,6 +15,7 @@ PROJECT_OPTIONS = project_options(
     indent_width = 3,
     tab_width = 2,
     uses_tabs = True,
+    organization_name = "BB",
 )
 
 EXTRA_FILES = [
