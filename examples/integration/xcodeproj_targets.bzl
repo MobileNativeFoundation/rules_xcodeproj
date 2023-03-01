@@ -13,9 +13,9 @@ CONFIG = "rules_xcodeproj_integration"
 PROJECT_OPTIONS = project_options(
     development_region = "es",
     indent_width = 3,
+    organization_name = "BB",
     tab_width = 2,
     uses_tabs = True,
-    organization_name = "BB",
 )
 
 EXTRA_FILES = [
