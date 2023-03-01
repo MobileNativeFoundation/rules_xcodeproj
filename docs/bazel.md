@@ -177,7 +177,7 @@ Project options for use in `xcodeproj.project_options`.
 | :------------- | :------------- | :------------- |
 | <a id="project_options-development_region"></a>development_region |  Optional. The development region for the project. Defaults to <code>"en"</code>.   |  <code>"en"</code> |
 | <a id="project_options-indent_width"></a>indent_width |  Optional. The number of spaces to use for indentation.   |  <code>None</code> |
-| <a id="project_options-organization_name"></a>organization_name |  Optional. Populates the ORGANIZATIONNAME attribute for the project.   |  <code>None</code> |
+| <a id="project_options-organization_name"></a>organization_name |  Optional. Populates the <code>ORGANIZATIONNAME</code> attribute for the project.   |  <code>None</code> |
 | <a id="project_options-tab_width"></a>tab_width |  Optional. The number of spaces to use for tabs.   |  <code>None</code> |
 | <a id="project_options-uses_tabs"></a>uses_tabs |  Optional. Whether to use tabs for indentation.   |  <code>None</code> |
 
