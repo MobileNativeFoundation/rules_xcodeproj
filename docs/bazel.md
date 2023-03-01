@@ -165,7 +165,7 @@ A `list` of values returned from `top_level_target`.
 ## project_options
 
 <pre>
-project_options(<a href="#project_options-development_region">development_region</a>, <a href="#project_options-indent_width">indent_width</a>, <a href="#project_options-tab_width">tab_width</a>, <a href="#project_options-uses_tabs">uses_tabs</a>)
+project_options(<a href="#project_options-development_region">development_region</a>, <a href="#project_options-indent_width">indent_width</a>, <a href="#project_options-tab_width">tab_width</a>, <a href="#project_options-uses_tabs">uses_tabs</a>, <a href="#project_options-organization_name">organization_name</a>)
 </pre>
 
 Project options for use in `xcodeproj.project_options`.
@@ -179,6 +179,7 @@ Project options for use in `xcodeproj.project_options`.
 | <a id="project_options-indent_width"></a>indent_width |  Optional. The number of spaces to use for indentation.   |  <code>None</code> |
 | <a id="project_options-tab_width"></a>tab_width |  Optional. The number of spaces to use for tabs.   |  <code>None</code> |
 | <a id="project_options-uses_tabs"></a>uses_tabs |  Optional. Whether to use tabs for indentation.   |  <code>None</code> |
+| <a id="project_options-organization_name"></a>organization_name |  Optional. Populates the ORGANIZATIONNAME attribute for the project.   |  <code>None</code> |
 
 **RETURNS**
 
