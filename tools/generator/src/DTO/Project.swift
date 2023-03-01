@@ -135,7 +135,8 @@ extension Project.Options: Decodable {
             .decodeIfPresent(String.self, forKey: .developmentRegion) ?? "en"
         indentWidth = try container
             .decodeIfPresent(UInt.self, forKey: .indentWidth)
-        organizationName = try container.decodeIfPresent(String.self, forKey: .organizationName)
+        organizationName = try container
+            .decodeIfPresent(String.self, forKey: .organizationName)
         tabWidth = try container.decodeIfPresent(UInt.self, forKey: .tabWidth)
         usesTabs = try container.decodeIfPresent(Bool.self, forKey: .usesTabs)
     }
