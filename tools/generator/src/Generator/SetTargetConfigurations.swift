@@ -492,7 +492,7 @@ Test host target with key "\(testHostKey)" not found in \
                     xcodeConfiguration, default: [:]
                 ][.any, default: [:]]["CODE_SIGNING_ALLOWED"] = true
 
-                return
+                continue
             }
 
             guard let testHostID = target.testHost else {
