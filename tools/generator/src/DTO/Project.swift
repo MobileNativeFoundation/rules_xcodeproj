@@ -2,17 +2,20 @@ struct Project: Equatable {
     struct Options: Equatable {
         let developmentRegion: String
         let indentWidth: UInt?
+        let organizationName: String?
         let tabWidth: UInt?
         let usesTabs: Bool?
 
         init(
             developmentRegion: String = "en",
             indentWidth: UInt? = nil,
+            organizationName: String? = nil,
             tabWidth: UInt? = nil,
             usesTabs: Bool? = nil
         ) {
             self.developmentRegion = developmentRegion
             self.indentWidth = indentWidth
+            self.organizationName = organizationName
             self.tabWidth = tabWidth
             self.usesTabs = usesTabs
         }
@@ -120,6 +123,7 @@ extension Project.Options: Decodable {
     enum CodingKeys: String, CodingKey {
         case developmentRegion = "d"
         case indentWidth = "i"
+        case organizationName = "o"
         case tabWidth = "t"
         case usesTabs = "u"
     }
@@ -131,6 +135,8 @@ extension Project.Options: Decodable {
             .decodeIfPresent(String.self, forKey: .developmentRegion) ?? "en"
         indentWidth = try container
             .decodeIfPresent(UInt.self, forKey: .indentWidth)
+        organizationName = try container
+            .decodeIfPresent(String.self, forKey: .organizationName)
         tabWidth = try container.decodeIfPresent(UInt.self, forKey: .tabWidth)
         usesTabs = try container.decodeIfPresent(Bool.self, forKey: .usesTabs)
     }

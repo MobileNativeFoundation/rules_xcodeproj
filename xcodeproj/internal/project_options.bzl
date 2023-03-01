@@ -4,6 +4,7 @@ def project_options(
         *,
         development_region = "en",
         indent_width = None,
+        organization_name = None,
         tab_width = None,
         uses_tabs = None):
     """Project options for use in `xcodeproj.project_options`.
@@ -12,6 +13,8 @@ def project_options(
         development_region: Optional. The development region for the project.
             Defaults to `"en"`.
         indent_width: Optional. The number of spaces to use for indentation.
+        organization_name: Optional. Populates the `ORGANIZATIONNAME` attribute
+            for the project.
         tab_width: Optional. The number of spaces to use for tabs.
         uses_tabs: Optional. Whether to use tabs for indentation.
 
@@ -27,6 +30,8 @@ def project_options(
 
     if indent_width:
         d["indent_width"] = str(indent_width)
+    if organization_name:
+        d["organization_name"] = organization_name
     if tab_width:
         d["tab_width"] = str(tab_width)
     if uses_tabs != None:
@@ -52,6 +57,10 @@ def project_options_to_dto(project_options):
     indent_width = project_options.get("indent_width")
     if indent_width:
         dto["i"] = int(indent_width)
+
+    organization_name = project_options.get("organization_name")
+    if organization_name:
+        dto["o"] = organization_name
 
     tab_width = project_options.get("tab_width")
     if tab_width:
