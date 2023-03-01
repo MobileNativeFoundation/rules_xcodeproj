@@ -13,7 +13,8 @@ def project_options(
         development_region: Optional. The development region for the project.
             Defaults to `"en"`.
         indent_width: Optional. The number of spaces to use for indentation.
-        organization_name: Optional. Populates the ORGANIZATIONNAME attribute for the project.
+        organization_name: Optional. Populates the `ORGANIZATIONNAME` attribute
+            for the project.
         tab_width: Optional. The number of spaces to use for tabs.
         uses_tabs: Optional. Whether to use tabs for indentation.
 
