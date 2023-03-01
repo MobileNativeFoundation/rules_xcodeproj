@@ -170,7 +170,7 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
         )
         pbxProj.add(object: buildConfigurationList)
 
-        var attributes: [String:Any] = [
+        var attributes: [String: Any] = [
             "BuildIndependentTargetsInParallel": 1,
             // TODO: Make these an option? Hardcoded to never warn for now.
             "LastSwiftUpdateCheck": 9999,
