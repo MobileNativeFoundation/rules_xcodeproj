@@ -23,7 +23,7 @@ final class ConsolidateTargetsTests: XCTestCase {
                 ["A", "B"],
             ]
         )
-        let expectedMessagesLogged: [StubLogger.MessageLogged] = []
+        let expectedMessagesLogged: Set<StubLogger.MessageLogged> = []
 
         // Act
 
@@ -36,32 +36,53 @@ final class ConsolidateTargetsTests: XCTestCase {
 
         // Assert
 
-        XCTAssertNoDifference(consolidatedTargets, expectedConsolidatedTargets)
-        XCTAssertNoDifference(logger.messagesLogged, expectedMessagesLogged)
+        XCTAssertNoDifference(
+            consolidatedTargets.keys,
+            expectedConsolidatedTargets.keys
+        )
+        XCTAssertNoDifference(
+            Set(logger.messagesLogged),
+            expectedMessagesLogged
+        )
     }
 
     func test_differentXcodeConfiguration() throws {
         // Arrange
 
         let targets: [TargetID: Target] = [
-            "Debug": .mock(
+            "A-Simulator-Debug": .mock(
                 xcodeConfiguration: "Debug",
                 platform: .simulator(),
-                product: .init(type: .staticLibrary, name: "T", path: "A/T")
+                product: .init(type: .staticLibrary, name: "A", path: "A/T")
             ),
-            "Release": .mock(
+            "A-Simulator-Release": .mock(
                 xcodeConfiguration: "Release",
                 platform: .simulator(),
-                product: .init(type: .staticLibrary, name: "T", path: "A/T")
+                product: .init(type: .staticLibrary, name: "A", path: "A/T")
+            ),
+            "A-Device-Debug": .mock(
+                xcodeConfiguration: "Debug",
+                platform: .device(),
+                product: .init(type: .staticLibrary, name: "A", path: "A/T")
+            ),
+            "A-Device-Release": .mock(
+                xcodeConfiguration: "Release",
+                platform: .device(),
+                product: .init(type: .staticLibrary, name: "A", path: "A/T")
             ),
         ]
         let expectedConsolidatedTargets = ConsolidatedTargets(
             allTargets: targets,
             keys: [
-                ["Debug", "Release"],
+                [
+                    "A-Simulator-Debug",
+                    "A-Simulator-Release",
+                    "A-Device-Debug",
+                    "A-Device-Release",
+                ],
             ]
         )
-        let expectedMessagesLogged: [StubLogger.MessageLogged] = []
+        let expectedMessagesLogged: Set<StubLogger.MessageLogged> = []
 
         // Act
 
@@ -74,8 +95,103 @@ final class ConsolidateTargetsTests: XCTestCase {
 
         // Assert
 
-        XCTAssertNoDifference(consolidatedTargets, expectedConsolidatedTargets)
-        XCTAssertNoDifference(logger.messagesLogged, expectedMessagesLogged)
+        XCTAssertNoDifference(
+            consolidatedTargets.keys,
+            expectedConsolidatedTargets.keys
+        )
+        XCTAssertNoDifference(
+            Set(logger.messagesLogged),
+            expectedMessagesLogged
+        )
+    }
+
+    func test_differentXcodeConfiguration_differentDeps() throws {
+        // Arrange
+
+        let targets: [TargetID: Target] = [
+            "A-Simulator-Debug": .mock(
+                xcodeConfiguration: "Debug",
+                platform: .simulator(),
+                product: .init(type: .staticLibrary, name: "A", path: "A1/T"),
+                dependencies: ["B-Simulator-Debug"]
+            ),
+            "A-Simulator-Release": .mock(
+                xcodeConfiguration: "Release",
+                platform: .simulator(),
+                product: .init(type: .staticLibrary, name: "A", path: "A2/T"),
+                dependencies: ["B-Simulator-Release"]
+            ),
+            "A-Device-Debug": .mock(
+                xcodeConfiguration: "Debug",
+                platform: .device(),
+                product: .init(type: .staticLibrary, name: "A", path: "A3/T"),
+                dependencies: ["C-Device-Debug"]
+            ),
+            "A-Device-Release": .mock(
+                xcodeConfiguration: "Release",
+                platform: .device(),
+                product: .init(type: .staticLibrary, name: "A", path: "A4/T"),
+                dependencies: ["C-Device-Release"]
+            ),
+            "B-Simulator-Debug": .mock(
+                xcodeConfiguration: "Debug",
+                platform: .simulator(),
+                product: .init(type: .staticLibrary, name: "B", path: "B1/T")
+            ),
+            "B-Simulator-Release": .mock(
+                xcodeConfiguration: "Release",
+                platform: .simulator(),
+                product: .init(type: .staticLibrary, name: "B", path: "B2/T")
+            ),
+            "C-Device-Debug": .mock(
+                xcodeConfiguration: "Debug",
+                platform: .device(),
+                product: .init(type: .staticLibrary, name: "C", path: "C1/T")
+            ),
+            "C-Device-Release": .mock(
+                xcodeConfiguration: "Release",
+                platform: .device(),
+                product: .init(type: .staticLibrary, name: "C", path: "C2/T")
+            ),
+        ]
+        let expectedConsolidatedTargets = ConsolidatedTargets(
+            allTargets: targets,
+            keys: [
+                ["A-Simulator-Debug", "A-Simulator-Release"],
+                ["A-Device-Debug", "A-Device-Release"],
+                ["B-Simulator-Debug", "B-Simulator-Release"],
+                ["C-Device-Debug", "C-Device-Release"],
+            ]
+        )
+        let expectedMessagesLogged: Set<StubLogger.MessageLogged> = [
+            .init(.warning, """
+Was unable to consolidate target groupings \
+"[A-Device-Debug, A-Device-Release], [A-Simulator-Debug, A-Simulator-Release]" \
+since they have conditional dependencies (e.g. `deps`, `test_host`, \
+`watch_application`, etc.)
+"""),
+        ]
+
+        // Act
+
+        let logger = StubLogger()
+        let consolidatedTargets = try Generator.consolidateTargets(
+            targets,
+            [:],
+            logger: logger
+        )
+
+        // Assert
+
+
+        XCTAssertNoDifference(
+            consolidatedTargets.keys,
+            expectedConsolidatedTargets.keys
+        )
+        XCTAssertNoDifference(
+            Set(logger.messagesLogged),
+            expectedMessagesLogged
+        )
     }
 
     func test_not_different_enough() throws {
@@ -100,7 +216,7 @@ final class ConsolidateTargetsTests: XCTestCase {
                 ["B"],
             ]
         )
-        let expectedMessagesLogged: [StubLogger.MessageLogged] = []
+        let expectedMessagesLogged: Set<StubLogger.MessageLogged> = []
 
         // Act
 
@@ -113,8 +229,14 @@ final class ConsolidateTargetsTests: XCTestCase {
 
         // Assert
 
-        XCTAssertNoDifference(consolidatedTargets, expectedConsolidatedTargets)
-        XCTAssertNoDifference(logger.messagesLogged, expectedMessagesLogged)
+        XCTAssertNoDifference(
+            consolidatedTargets.keys,
+            expectedConsolidatedTargets.keys
+        )
+        XCTAssertNoDifference(
+            Set(logger.messagesLogged),
+            expectedMessagesLogged
+        )
     }
 
     func test_multiple_archs() throws {
@@ -162,7 +284,7 @@ final class ConsolidateTargetsTests: XCTestCase {
                 ["C-AppleSilicon"],
             ]
         )
-        let expectedMessagesLogged: [StubLogger.MessageLogged] = []
+        let expectedMessagesLogged: Set<StubLogger.MessageLogged> = []
 
         // Act
 
@@ -175,8 +297,14 @@ final class ConsolidateTargetsTests: XCTestCase {
 
         // Assert
 
-        XCTAssertNoDifference(consolidatedTargets, expectedConsolidatedTargets)
-        XCTAssertNoDifference(logger.messagesLogged, expectedMessagesLogged)
+        XCTAssertNoDifference(
+            consolidatedTargets.keys,
+            expectedConsolidatedTargets.keys
+        )
+        XCTAssertNoDifference(
+            Set(logger.messagesLogged),
+            expectedMessagesLogged
+        )
     }
 
     func test_different_label() throws {
@@ -203,7 +331,7 @@ final class ConsolidateTargetsTests: XCTestCase {
                 ["B", "C"],
             ]
         )
-        let expectedMessagesLogged: [StubLogger.MessageLogged] = []
+        let expectedMessagesLogged: Set<StubLogger.MessageLogged> = []
 
         // Act
 
@@ -216,8 +344,14 @@ final class ConsolidateTargetsTests: XCTestCase {
 
         // Assert
 
-        XCTAssertNoDifference(consolidatedTargets, expectedConsolidatedTargets)
-        XCTAssertNoDifference(logger.messagesLogged, expectedMessagesLogged)
+        XCTAssertNoDifference(
+            consolidatedTargets.keys,
+            expectedConsolidatedTargets.keys
+        )
+        XCTAssertNoDifference(
+            Set(logger.messagesLogged),
+            expectedMessagesLogged
+        )
     }
 
     func test_different_type() throws {
@@ -240,7 +374,7 @@ final class ConsolidateTargetsTests: XCTestCase {
                 ["B"],
             ]
         )
-        let expectedMessagesLogged: [StubLogger.MessageLogged] = []
+        let expectedMessagesLogged: Set<StubLogger.MessageLogged> = []
 
         // Act
 
@@ -253,8 +387,14 @@ final class ConsolidateTargetsTests: XCTestCase {
 
         // Assert
 
-        XCTAssertNoDifference(consolidatedTargets, expectedConsolidatedTargets)
-        XCTAssertNoDifference(logger.messagesLogged, expectedMessagesLogged)
+        XCTAssertNoDifference(
+            consolidatedTargets.keys,
+            expectedConsolidatedTargets.keys
+        )
+        XCTAssertNoDifference(
+            Set(logger.messagesLogged),
+            expectedMessagesLogged
+        )
     }
 
     func test_different_minimumOS() throws {
@@ -294,7 +434,7 @@ final class ConsolidateTargetsTests: XCTestCase {
                 ["B3", "B4"],
             ]
         )
-        let expectedMessagesLogged: [StubLogger.MessageLogged] = []
+        let expectedMessagesLogged: Set<StubLogger.MessageLogged> = []
 
         // Act
 
@@ -307,8 +447,14 @@ final class ConsolidateTargetsTests: XCTestCase {
 
         // Assert
 
-        XCTAssertNoDifference(consolidatedTargets, expectedConsolidatedTargets)
-        XCTAssertNoDifference(logger.messagesLogged, expectedMessagesLogged)
+        XCTAssertNoDifference(
+            consolidatedTargets.keys,
+            expectedConsolidatedTargets.keys
+        )
+        XCTAssertNoDifference(
+            Set(logger.messagesLogged),
+            expectedMessagesLogged
+        )
     }
 
     func test_different_os() throws {
@@ -360,7 +506,7 @@ final class ConsolidateTargetsTests: XCTestCase {
                 ],
             ]
         )
-        let expectedMessagesLogged: [StubLogger.MessageLogged] = []
+        let expectedMessagesLogged: Set<StubLogger.MessageLogged> = []
 
         // Act
 
@@ -373,8 +519,14 @@ final class ConsolidateTargetsTests: XCTestCase {
 
         // Assert
 
-        XCTAssertNoDifference(consolidatedTargets, expectedConsolidatedTargets)
-        XCTAssertNoDifference(logger.messagesLogged, expectedMessagesLogged)
+        XCTAssertNoDifference(
+            consolidatedTargets.keys,
+            expectedConsolidatedTargets.keys
+        )
+        XCTAssertNoDifference(
+            Set(logger.messagesLogged),
+            expectedMessagesLogged
+        )
     }
 
     func test_different_dependencies() throws {
@@ -463,10 +615,21 @@ final class ConsolidateTargetsTests: XCTestCase {
                 ["A-Device"],
             ]
         )
-        let expectedMessagesLogged: [StubLogger.MessageLogged] = [
+        let expectedMessagesLogged: Set<StubLogger.MessageLogged> = [
             .init(.warning, """
-Was unable to consolidate targets [C-Device, C-Simulator] since they have a \
-conditional `deps`
+Was unable to consolidate target groupings "[C-Device], [C-Simulator]" since \
+they have conditional dependencies (e.g. `deps`, `test_host`, \
+`watch_application`, etc.)
+"""),
+            .init(.warning, """
+Was unable to consolidate target groupings "[B-Device], [B-Simulator]" since \
+they have conditional dependencies (e.g. `deps`, `test_host`, \
+`watch_application`, etc.)
+"""),
+            .init(.warning, """
+Was unable to consolidate target groupings "[A-Device], [A-Simulator]" since \
+they have conditional dependencies (e.g. `deps`, `test_host`, \
+`watch_application`, etc.)
 """),
         ]
 
@@ -481,8 +644,14 @@ conditional `deps`
 
         // Assert
 
-        XCTAssertNoDifference(consolidatedTargets, expectedConsolidatedTargets)
-        XCTAssertNoDifference(logger.messagesLogged, expectedMessagesLogged)
+        XCTAssertNoDifference(
+            consolidatedTargets.keys,
+            expectedConsolidatedTargets.keys
+        )
+        XCTAssertNoDifference(
+            Set(logger.messagesLogged),
+            expectedMessagesLogged
+        )
     }
 
     func test_different_testHost() throws {
@@ -583,12 +752,24 @@ conditional `deps`
         )
         let expectedMessagesLogged: Set<StubLogger.MessageLogged> = [
             .init(.warning, """
-Was unable to consolidate targets [C-Device, C-Simulator] since they have a \
-conditional `deps`
+Was unable to consolidate target groupings "[C-Device], [C-Simulator]" since \
+they have conditional dependencies (e.g. `deps`, `test_host`, \
+`watch_application`, etc.)
 """),
             .init(.warning, """
-Was unable to consolidate targets [A2-Device, A2-Simulator] since they have a \
-conditional `test_host`
+Was unable to consolidate target groupings "[A2-Device], [A2-Simulator]" since \
+they have conditional dependencies (e.g. `deps`, `test_host`, \
+`watch_application`, etc.)
+"""),
+            .init(.warning, """
+Was unable to consolidate target groupings "[A1-Device], [A1-Simulator]" since \
+they have conditional dependencies (e.g. `deps`, `test_host`, \
+`watch_application`, etc.)
+"""),
+            .init(.warning, """
+Was unable to consolidate target groupings "[B1-Device], [B1-Simulator]" since \
+they have conditional dependencies (e.g. `deps`, `test_host`, \
+`watch_application`, etc.)
 """),
         ]
 
@@ -603,7 +784,10 @@ conditional `test_host`
 
         // Assert
 
-        XCTAssertNoDifference(consolidatedTargets, expectedConsolidatedTargets)
+        XCTAssertNoDifference(
+            consolidatedTargets.keys,
+            expectedConsolidatedTargets.keys
+        )
         XCTAssertNoDifference(
             Set(logger.messagesLogged),
             expectedMessagesLogged

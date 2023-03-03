@@ -90,91 +90,99 @@ Target "\(id)" dependency on "\(depID)" not found in \
             return dependencyKey
         }
 
-        var testHostMap: [TargetID: ConsolidatedTarget.Key] = [:]
-        var watchAppMap: [TargetID: ConsolidatedTarget.Key] = [:]
         var depsMap: [TargetID: Set<ConsolidatedTarget.Key>] = [:]
         var rdepsMap: [ConsolidatedTarget.Key: Set<ConsolidatedTarget.Key>] =
             [:]
-        for key in keys {
-            for id in key.targetIDs {
-                guard let target = targets[id] else {
-                    throw PreconditionError(message: """
+        func updateDependencies(
+            for id: TargetID,
+            key: ConsolidatedTarget.Key
+        ) throws {
+            guard let target = targets[id] else {
+                throw PreconditionError(message: """
 Target "\(id)" not found in `consolidateTargets().targets`
 """)
-                }
+            }
 
-                var dependencies = Set<ConsolidatedTarget.Key>(
-                    try target.allDependencies.map { depID in
-                        return try resolveDependency(depID, for: id)
-                    }
-                )
-                depsMap[id] = dependencies
+            var dependencies = Set<ConsolidatedTarget.Key>(
+                try target.allDependencies.map { depID in
+                    return try resolveDependency(depID, for: id)
+                }
+            )
 
-                if let testHost = target.testHost {
-                    let depKey = try resolveDependency(testHost, for: id)
-                    testHostMap[id] = depKey
-                    dependencies.insert(depKey)
-                }
-                if let watchApp = target.watchApplication {
-                    let depKey = try resolveDependency(watchApp, for: id)
-                    watchAppMap[id] = depKey
-                    dependencies.insert(depKey)
-                }
+            // Currently test hosts are also included in `allDependencies`, but
+            // we do this just in case that changes in the future.
+            if let testHost = target.testHost {
+                let depKey = try resolveDependency(testHost, for: id)
+                dependencies.insert(depKey)
+            }
 
-                for dependencyKey in dependencies {
-                    rdepsMap[dependencyKey, default: []].insert(key)
-                }
+            // Currently watch applications are also included in
+            // `allDependencies`, but we do this just in case that changes in
+            // the future.
+            if let watchApp = target.watchApplication {
+                let depKey = try resolveDependency(watchApp, for: id)
+                dependencies.insert(depKey)
+            }
+
+            depsMap[id] = dependencies
+            for dependencyKey in dependencies {
+                rdepsMap[dependencyKey, default: []].insert(key)
             }
         }
+
+        func updateDependencies(for key: ConsolidatedTarget.Key) throws {
+            try key.targetIDs.forEach { id in
+                try updateDependencies(for: id, key: key)
+            }
+        }
+
+        try keys.forEach { try updateDependencies(for: $0) }
+
+        var keysToEvaluate = keys.filter({ $0.targetIDs.count > 1 })
 
         // Account for conditional dependencies
-        func deconsolidateKey(_ key: ConsolidatedTarget.Key) {
+        func deconsolidateKey(
+            _ key: ConsolidatedTarget.Key,
+            into targetIDsForKeys: [Set<TargetID>]
+        ) throws {
             keys.remove(key)
-            // TODO: Use `depsGrouping` to be more specific with what
-            // needs to be reevaluated. As it stands, we just blow away all
-            // dependent targets ability to be consolidated.
             for id in key.targetIDs {
-                let newKey = ConsolidatedTarget.Key([id])
-                keys.insert(newKey)
-                targetIDMapping[id] = newKey
+                targetIDMapping.removeValue(forKey: id)
             }
+
+            for targetIDs in targetIDsForKeys {
+                let newKey = ConsolidatedTarget.Key(targetIDs)
+                keys.insert(newKey)
+                for id in targetIDs {
+                    targetIDMapping[id] = newKey
+                }
+            }
+
+            // Reevaluate dependent targets
             if let rdeps = rdepsMap.removeValue(forKey: key) {
-                rdeps.forEach { deconsolidateKey($0) }
+                for rdep in rdeps {
+                    try updateDependencies(for: rdep)
+                    keysToEvaluate.insert(rdep)
+                }
             }
         }
 
-        for key in keys.filter({ $0.targetIDs.count > 1 }) {
-            var testHostGrouping: [ConsolidatedTarget.Key?: Set<TargetID>] =
-                [:]
-            var watchAppGrouping: [ConsolidatedTarget.Key?: Set<TargetID>] =
-                [:]
+        while !keysToEvaluate.isEmpty {
+            let key = keysToEvaluate.popFirst()!
             var depsGrouping: [Set<ConsolidatedTarget.Key>: Set<TargetID>] = [:]
             for id in key.targetIDs {
-                testHostGrouping[testHostMap[id], default: []].insert(id)
-                watchAppGrouping[watchAppMap[id], default: []].insert(id)
                 depsGrouping[depsMap[id] ?? [], default: []].insert(id)
             }
 
-            if testHostGrouping.count != 1 {
+            guard depsGrouping.count == 1 else {
                 logger.logWarning("""
-Was unable to consolidate targets \(key.targetIDs.sorted()) since they have a \
-conditional `test_host`
+Was unable to consolidate target groupings \
+"\(depsGrouping.values.map { "\($0.sorted())" }.sorted().joined(separator: ", "))" \
+since they have conditional dependencies (e.g. `deps`, `test_host`, \
+`watch_application`, etc.)
 """)
-                deconsolidateKey(key)
-            }
-            if watchAppGrouping.count != 1 {
-                logger.logWarning("""
-Was unable to consolidate targets \(key.targetIDs.sorted()) since they have a \
-conditional `watch_application`
-""")
-                deconsolidateKey(key)
-            }
-            if depsGrouping.count != 1 {
-                logger.logWarning("""
-Was unable to consolidate targets \(key.targetIDs.sorted()) since they have a \
-conditional `deps`
-""")
-                deconsolidateKey(key)
+                try deconsolidateKey(key, into: Array(depsGrouping.values))
+                continue
             }
         }
 
