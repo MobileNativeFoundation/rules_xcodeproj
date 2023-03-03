@@ -295,6 +295,68 @@ final class DisambiguateTargetsTests: XCTestCase {
         )
     }
 
+    func test_environment_multipleXcodeConfigurations() throws {
+        // Arrange
+
+        let targets: [TargetID: Target] = [
+            "A 1 - R": Target.mock(
+                xcodeConfiguration: "Release",
+                platform: .device(arch: "arm64"),
+                product: .init(type: .staticLibrary, name: "A", path: "")
+            ),
+            "A 1 - D": Target.mock(
+                xcodeConfiguration: "Debug",
+                platform: .device(arch: "arm64"),
+                product: .init(type: .staticLibrary, name: "A", path: "")
+            ),
+            "A 2 - R": Target.mock(
+                xcodeConfiguration: "Release",
+                platform: .simulator(arch: "x86_64"),
+                product: .init(type: .staticLibrary, name: "A", path: "")
+            ),
+            "A 2 - D": Target.mock(
+                xcodeConfiguration: "Debug",
+                platform: .simulator(arch: "x86_64"),
+                product: .init(type: .staticLibrary, name: "A", path: "")
+            ),
+            "B": Target.mock(
+                product: .init(type: .staticLibrary, name: "B", path: "")
+            ),
+        ]
+        let consolidatedTargets = ConsolidatedTargets(
+            allTargets: targets,
+            keys: [
+                ["A 1 - R", "A 1 - D"],
+                ["A 2 - R", "A 2 - D"],
+                ["B"],
+            ]
+        )
+        let expectedTargetNames: [ConsolidatedTarget.Key: String] = [
+            ["A 1 - R", "A 1 - D"]: "A (Device)",
+            ["A 2 - R", "A 2 - D"]: "A (Simulator)",
+            "B": "B",
+        ]
+
+        // Act
+
+        let disambiguatedTargets = Generator.disambiguateTargets(
+            consolidatedTargets
+        )
+
+        // Assert
+
+        XCTAssertNoDifference(
+            disambiguatedTargets.targets.mapValues(\.name)
+                .map(KeyAndValue.init).sorted(),
+            expectedTargetNames.map(KeyAndValue.init).sorted()
+        )
+        XCTAssertNoDifference(
+            disambiguatedTargets.targets.mapValues(\.target)
+                .map(KeyAndValue.init).sorted(),
+            consolidatedTargets.targets.map(KeyAndValue.init).sorted()
+        )
+    }
+
     // MARK: - Operating System
 
     func test_operatingSystem() throws {

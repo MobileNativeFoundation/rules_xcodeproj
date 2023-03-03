@@ -142,14 +142,14 @@ struct ProductTypeComponents {
     /// If the count for a `distinguisherKey` is greater than one, then targets
     /// that have that key will have their configuration returned from
     /// `distinguisher()` instead of a string containing architecture, OS, etc.
-    private var distinguisherKeys: [String: Int] = [:]
+    private var distinguisherKeys: [String: Set<ConsolidatedTarget.Key>] = [:]
 
     /// Adds another `Target` into consideration for `distinguishers()`.
     mutating func add(target: ConsolidatedTarget, key: ConsolidatedTarget.Key) {
         for target in target.targets.values {
             oses[target.platform.os, default: .init()]
                 .add(target: target, consolidatedKey: key)
-            distinguisherKeys[target.distinguisherKey, default: 0] += 1
+            distinguisherKeys[target.distinguisherKey, default: []].insert(key)
         }
     }
 
@@ -221,7 +221,7 @@ struct ProductTypeComponents {
         target: ConsolidatedTarget
     ) -> Bool {
         return target.sortedTargets
-            .contains { distinguisherKeys[$0.distinguisherKey]! > 1 }
+            .contains { distinguisherKeys[$0.distinguisherKey]!.count > 1 }
     }
 
     /// Returns a user-facing string for the configurations of a given set of
