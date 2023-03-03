@@ -173,7 +173,7 @@ def _process_extra_files(
     ]
 
     # Add unowned extra files
-    extra_files.append(parsed_file_path(ctx.build_file_path))
+    extra_files.append(parsed_file_path(ctx.attr.runner_build_file))
     for target in ctx.attr.unowned_extra_files:
         extra_files.extend([
             file_path(file)
@@ -942,17 +942,6 @@ def _write_spec(
             continue
         target_hosts.setdefault(s.hosted, []).append(s.host)
 
-    # `custom_xcode_schemes`
-    if ctx.attr.schemes_json == "":
-        custom_xcode_schemes_json = "[]"
-    else:
-        custom_xcode_schemes_json = ctx.attr.schemes_json
-
-    custom_schemes_output = ctx.actions.declare_file(
-        "{}-custom_xcode_schemes.json".format(ctx.attr.name),
-    )
-    ctx.actions.write(custom_schemes_output, custom_xcode_schemes_json)
-
     # TODO: Strip fat frameworks instead of setting `VALIDATE_WORKSPACE`
 
     spec_dto = {
@@ -1073,7 +1062,7 @@ def _write_spec(
     )
     ctx.actions.write(project_spec_output, project_spec_json)
 
-    return [project_spec_output, custom_schemes_output] + target_shards
+    return [project_spec_output, ctx.file.schemes_json] + target_shards
 
 def _write_xccurrentversions(*, ctx, xccurrentversion_files):
     containers_file = ctx.actions.declare_file(
@@ -1684,7 +1673,6 @@ def make_xcodeproj_rule(
 
     attrs = {
         "adjust_schemes_for_swiftui_previews": attr.bool(
-            default = False,
             doc = """\
 Whether to adjust schemes in BwB mode to explicitly include transitive
 dependencies that are able to run SwiftUI Previews. For example, this changes a
@@ -1716,7 +1704,6 @@ of Xcode. The Xcode build system still unavoidably orchestrates some things at a
 high level.
 """,
             mandatory = True,
-            values = ["xcode", "bazel"],
         ),
         "config": attr.string(
             mandatory = True,
@@ -1730,7 +1717,7 @@ as if they were listed explicitly in the `unfocused_targets` attribute. The
 labels must match transitive dependencies of the targets specified in the
 `top_level_targets` attribute.
 """,
-            default = [],
+            mandatory = True,
         ),
         "install_directory": attr.string(
             doc = """\
@@ -1747,6 +1734,7 @@ can will enable the most features. The value is the dot separated version
 number (e.g. "13.4.1", "14", "14.1"). Defaults to whichever version of Xcode
 that Bazel uses during project generation.
 """,
+            mandatory = True,
         ),
         "owned_extra_files": attr.label_keyed_string_dict(
             allow_files = True,
@@ -1755,18 +1743,21 @@ An optional dictionary of files to be added to the project. The key represents
 the file and the value is the label of the target it should be associated with.
 These files won't be added to the project if the target is unfocused.
 """,
+            mandatory = True,
         ),
         "post_build": attr.string(
             doc = """\
 The text of a script that will be run after the build. For example:
 `./post-build.sh`, `"$PROJECT_DIR/post-build.sh"`.
 """,
+            mandatory = True,
         ),
         "pre_build": attr.string(
             doc = """\
 The text of a script that will be run before the build. For example:
 `./pre-build.sh`, `"$PROJECT_DIR/pre-build.sh"`.
 """,
+            mandatory = True,
         ),
         "project_name": attr.string(
             doc = "The name to use for the `.xcodeproj` file.",
@@ -1776,16 +1767,24 @@ The text of a script that will be run before the build. For example:
             doc = "A dictionary of global project options.",
             mandatory = True,
         ),
-        "runner_label": attr.string(doc = "The label of the runner target."),
+        "runner_build_file": attr.string(
+            doc = "The path to the runner's BUILD file.",
+            mandatory = True,
+        ),
+        "runner_label": attr.string(
+            doc = "The label of the runner target.",
+            mandatory = True,
+        ),
         "scheme_autogeneration_mode": attr.string(
             doc = "Specifies how Xcode schemes are automatically generated.",
-            default = "auto",
-            values = ["auto", "none", "all"],
+            mandatory = True,
         ),
-        "schemes_json": attr.string(
+        "schemes_json": attr.label(
+            allow_single_file = True,
             doc = """\
-A JSON string representing a list of Xcode schemes to create.
+A JSON file representing a list of Xcode schemes to create.
 """,
+            mandatory = True,
         ),
         "top_level_device_targets": attr.label_list(
             doc = """\
@@ -1810,6 +1809,7 @@ Xcode targets.
             cfg = _device_transition,
             aspects = [xcodeproj_aspect],
             providers = [XcodeProjInfo],
+            mandatory = True,
         ),
         "top_level_simulator_targets": attr.label_list(
             doc = """\
@@ -1830,6 +1830,7 @@ as two separate but similar Xcode targets.
             cfg = _simulator_transition,
             aspects = [xcodeproj_aspect],
             providers = [XcodeProjInfo],
+            mandatory = True,
         ),
         "unfocused_targets": attr.string_list(
             doc = """\
@@ -1838,7 +1839,7 @@ dependencies of the targets specified in the `top_level_targets` attribute with
 a matching label will be excluded from the generated project. This overrides any
 targets specified in the `focused_targets` attribute.
 """,
-            default = [],
+            mandatory = True,
         ),
         "unowned_extra_files": attr.label_list(
             allow_files = True,
@@ -1846,6 +1847,7 @@ targets specified in the `focused_targets` attribute.
 An optional list of files to be added to the project but not associated with any
 targets.
 """,
+            mandatory = True,
         ),
         "ios_device_cpus": attr.string(
             doc = """\
@@ -1872,6 +1874,7 @@ If no value is specified, it defaults to the simulator cpu that goes with
 transitive dependencies of the targets specified in the
 `top_level_simulator_targets` attribute, even if they aren't iOS targets.
 """,
+            mandatory = True,
         ),
         "tvos_device_cpus": attr.string(
             doc = """\
@@ -1896,6 +1899,7 @@ If no value is specified, it defaults to the simulator cpu that goes with
 transitive dependencies of the targets specified in the
 `top_level_simulator_targets` attribute, even if they aren't tvOS targets.
 """,
+            mandatory = True,
         ),
         "watchos_device_cpus": attr.string(
             doc = """\
@@ -1920,6 +1924,7 @@ If no value is specified, it defaults to the simulator cpu that goes with
 transitive dependencies of the targets specified in the
 `top_level_simulator_targets` attribute, even if they aren't watchOS targets.
 """,
+            mandatory = True,
         ),
         "_allowlist_function_transition": attr.label(
             default = Label(
@@ -1995,6 +2000,3 @@ transitive dependencies of the targets specified in the
         attrs = attrs,
         executable = True,
     )
-
-bwx_xcodeproj = make_xcodeproj_rule(build_mode = "xcode")
-bwb_xcodeproj = make_xcodeproj_rule(build_mode = "bazel")

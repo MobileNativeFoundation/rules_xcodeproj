@@ -15,7 +15,7 @@
         "tools/generator/test/BUILD",
         "tools/swiftc_stub/BUILD"
     ],
-    "g": "//test/fixtures/generator:xcodeproj_bwb.generator",
+    "g": "//.rules_xcodeproj/test_fixtures_generator_xcodeproj_bwb:xcodeproj_bwb",
     "i": "fixture-index-import-path",
     "m": "13.0",
     "n": "bwb",

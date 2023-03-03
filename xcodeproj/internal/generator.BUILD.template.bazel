@@ -1,0 +1,37 @@
+load(":defs.bzl", "xcodeproj")
+
+# DO NOT INVOKE THIS TARGET YOURSELF.
+#
+# This target is generated and invoked by `xcodeproj_runner`.
+xcodeproj(
+    name = "%name%",
+    adjust_schemes_for_swiftui_previews = %adjust_schemes_for_swiftui_previews%,
+    build_mode = "%build_mode%",
+    bazel_path = "%bazel_path%",
+    config = "%config%",
+    default_xcode_configuration = %default_xcode_configuration%,
+    focused_targets = %focused_targets%,
+    install_directory = "%install_directory%",
+    ios_device_cpus = "%ios_device_cpus%",
+    ios_simulator_cpus = "%ios_simulator_cpus%",
+    minimum_xcode_version = "%minimum_xcode_version%",
+    owned_extra_files = %owned_extra_files%,
+    post_build = "%post_build%",
+    pre_build = "%pre_build%",
+    project_name = "%project_name%",
+    project_options = %project_options%,
+    runner_build_file = "%runner_build_file%",
+    runner_label = "%runner_label%",
+    scheme_autogeneration_mode = "%scheme_autogeneration_mode%",
+    schemes_json = ":custom_xcode_schemes.json",
+    tags = %tags%,
+    testonly = %testonly%,
+    top_level_device_targets = %top_level_device_targets%,
+    top_level_simulator_targets = %top_level_simulator_targets%,
+    tvos_device_cpus = "%tvos_device_cpus%",
+    tvos_simulator_cpus = "%tvos_simulator_cpus%",
+    unfocused_targets = %unfocused_targets%,
+    unowned_extra_files = %unowned_extra_files%,
+    watchos_device_cpus = "%watchos_device_cpus%",
+    watchos_simulator_cpus = "%watchos_simulator_cpus%",
+)

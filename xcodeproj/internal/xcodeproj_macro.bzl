@@ -6,7 +6,6 @@ load(":logging.bzl", "warn")
 load(":project_options.bzl", _default_project_options = "project_options")
 load(":top_level_target.bzl", "top_level_target")
 load(":xcode_schemes.bzl", "focus_schemes", "unfocus_schemes")
-load(":xcodeproj_rule.bzl", "bwb_xcodeproj", "bwx_xcodeproj")
 load(":xcodeproj_runner.bzl", "xcodeproj_runner")
 
 def xcodeproj(
@@ -239,6 +238,7 @@ def xcodeproj(
         **kwargs: Additional arguments to pass to the underlying `xcodeproj`
             rule specified by `xcodeproj_rule`.
     """
+    is_fixture = kwargs.pop("is_fixture", False)
     testonly = kwargs.pop("testonly", True)
 
     if archived_bundles_allowed != None:
@@ -273,12 +273,12 @@ in your `.bazelrc` or `xcodeproj.bazelrc` file.""")
             actual_top_level_targets.append(target)
 
     top_level_device_targets = [
-        top_level_target.label
+        bazel_labels.normalize(top_level_target.label)
         for top_level_target in actual_top_level_targets
         if sets.contains(top_level_target.target_environments, "device")
     ]
     top_level_simulator_targets = [
-        top_level_target.label
+        bazel_labels.normalize(top_level_target.label)
         for top_level_target in actual_top_level_targets
         if sets.contains(top_level_target.target_environments, "simulator")
     ]
@@ -311,27 +311,8 @@ in your `.bazelrc` or `xcodeproj.bazelrc` file.""")
             )
         schemes_json = json.encode(schemes)
 
-    generator_name = "{}.generator".format(name)
-
-    is_fixture = kwargs.pop("is_fixture", False)
-
-    xcodeproj_rule = kwargs.pop("xcodeproj_rule", None)
-    if not xcodeproj_rule:
-        if build_mode == "bazel":
-            xcodeproj_rule = bwb_xcodeproj
-        else:
-            xcodeproj_rule = bwx_xcodeproj
-
-    tags = kwargs.pop("tags", [])
-
-    # The generator should always have its config applied, so add `manual` to
-    # the tag to prevent accidental building with `//...`
-    generator_tags = list(tags)
-    if "manual" not in generator_tags:
-        generator_tags.append("manual")
-
-    xcodeproj_rule(
-        name = generator_name,
+    xcodeproj_runner(
+        name = name,
         adjust_schemes_for_swiftui_previews = (
             adjust_schemes_for_swiftui_previews
         ),
@@ -342,6 +323,7 @@ in your `.bazelrc` or `xcodeproj.bazelrc` file.""")
         install_directory = install_directory,
         ios_device_cpus = ios_device_cpus,
         ios_simulator_cpus = ios_simulator_cpus,
+        is_fixture = is_fixture,
         minimum_xcode_version = minimum_xcode_version,
         owned_extra_files = owned_extra_files,
         post_build = post_build,
@@ -351,7 +333,6 @@ in your `.bazelrc` or `xcodeproj.bazelrc` file.""")
         runner_label = bazel_labels.normalize(name),
         scheme_autogeneration_mode = scheme_autogeneration_mode,
         schemes_json = schemes_json,
-        tags = generator_tags,
         testonly = testonly,
         top_level_device_targets = top_level_device_targets,
         top_level_simulator_targets = top_level_simulator_targets,
@@ -362,16 +343,4 @@ in your `.bazelrc` or `xcodeproj.bazelrc` file.""")
         watchos_device_cpus = watchos_device_cpus,
         watchos_simulator_cpus = watchos_simulator_cpus,
         **kwargs
-    )
-
-    xcodeproj_runner(
-        name = name,
-        bazel_path = bazel_path,
-        config = config,
-        is_fixture = is_fixture,
-        project_name = project_name,
-        tags = tags,
-        testonly = testonly,
-        xcodeproj_target = bazel_labels.normalize(generator_name),
-        visibility = kwargs.get("visibility"),
     )

@@ -18,8 +18,11 @@ fail() {
 
 # Process Args
 
-readonly xcodeproj_bazelrc="$PWD/%xcodeproj_bazelrc%"
 readonly extra_flags_bazelrc="$PWD/%extra_flags_bazelrc%"
+readonly generator_build_file="$PWD/%generator_build_file%"
+readonly generator_defs_bzl="$PWD/%generator_defs_bzl%"
+readonly schemes_json="$PWD/%schemes_json%"
+readonly xcodeproj_bazelrc="$PWD/%xcodeproj_bazelrc%"
 
 installer_flags=(
   --xcodeproj_bazelrc "$xcodeproj_bazelrc"
@@ -75,6 +78,16 @@ if [[ $original_arg_count -gt 0 ]]; then
 fi
 
 cd "$BUILD_WORKSPACE_DIRECTORY"
+
+# Create files for the generator target
+mkdir -p "%generator_package_directory%"
+touch ".rules_xcodeproj/BUILD"
+cp "$generator_build_file" "%generator_package_directory%/BUILD"
+chmod u+w "%generator_package_directory%/BUILD"
+cp "$generator_defs_bzl" "%generator_package_directory%/defs.bzl"
+chmod u+w "%generator_package_directory%/defs.bzl"
+cp "$schemes_json" "%generator_package_directory%/custom_xcode_schemes.json"
+chmod u+w "%generator_package_directory%/custom_xcode_schemes.json"
 
 # Resolve path to bazel before changing the env variable. This allows bazelisk
 # downloaded bazel to be found.

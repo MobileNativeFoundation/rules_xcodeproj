@@ -58,8 +58,6 @@
 
 /* Begin PBXFileReference section */
 		12A43BC80D3E4C61AB58E2AF /* ThreadSanitizerApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThreadSanitizerApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		324A50D469C6A74C3E7DD112 /* UndefinedBehaviorSanitizerApp.2.link.params */ = {isa = PBXFileReference; path = UndefinedBehaviorSanitizerApp.2.link.params; sourceTree = "<group>"; };
-		36ED036AD66E94FB8E31DEE4 /* ThreadSanitizerApp.1.link.params */ = {isa = PBXFileReference; path = ThreadSanitizerApp.1.link.params; sourceTree = "<group>"; };
 		3D138464FD12E1724C7054EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		4195E3FCF5965D3361B7221A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		42D05B47CBB12FAFED02EEA1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -67,11 +65,11 @@
 		4B707F3004B5D81715541360 /* ThreadSanitizerExamples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadSanitizerExamples.swift; sourceTree = "<group>"; };
 		4E3C458CAE3A6831911E48C4 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		5BDDA499768773F519FE7FDB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		62A1A299B7EF4BAF5EE00F11 /* UndefinedBehaviorSanitizerApp.2.link.params */ = {isa = PBXFileReference; path = UndefinedBehaviorSanitizerApp.2.link.params; sourceTree = "<group>"; };
 		6F0378E14B30A6C24A82B94D /* AddressSanitizerExamples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressSanitizerExamples.swift; sourceTree = "<group>"; };
 		82CFC27FB62DEEBC9FA12225 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		87EC9513C5736899DDC15D52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8D2E20CAACB0741A21554C9E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		9959E6A17B7B8F1560025674 /* AddressSanitizerApp.0.link.params */ = {isa = PBXFileReference; path = AddressSanitizerApp.0.link.params; sourceTree = "<group>"; };
 		A378148853AE0BF93324A91C /* AddressSanitizerApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AddressSanitizerApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACC05503F29B0D40BB15C84F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		B13DA8B967470B62463A7C36 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
@@ -79,8 +77,10 @@
 		C201FC7F617E4F1760351975 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C2417F59DA4B470E5F2B4758 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		C396B37F37B8EB330A87ECB8 /* UndefinedBehaviorSanitizerApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UndefinedBehaviorSanitizerApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C729A568FE92DCCA1FD03136 /* ThreadSanitizerApp.1.link.params */ = {isa = PBXFileReference; path = ThreadSanitizerApp.1.link.params; sourceTree = "<group>"; };
 		E0DBD7463D7C478A28AD8E88 /* ThreadSanitizerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadSanitizerApp.swift; sourceTree = "<group>"; };
 		E7F3CDED7F407D09250C834F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		FA4824870DA150B81CAB9166 /* AddressSanitizerApp.0.link.params */ = {isa = PBXFileReference; path = AddressSanitizerApp.0.link.params; sourceTree = "<group>"; };
 		FDEBD4ECD7FFB60EE16ECB2B /* AddressSanitizerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressSanitizerApp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -102,7 +102,7 @@
 		2A74A0BABCA13EF4011BFD00 /* bin */ = {
 			isa = PBXGroup;
 			children = (
-				9401D751AA6B1781111B8489 /* test */,
+				6CD2C9D31F9478257FC90527 /* .rules_xcodeproj */,
 			);
 			path = bin;
 			sourceTree = "<group>";
@@ -130,14 +130,6 @@
 				82CFC27FB62DEEBC9FA12225 /* main.m */,
 			);
 			path = Sources;
-			sourceTree = "<group>";
-		};
-		362DEFEF499FD1FCF27C95D3 /* fixtures */ = {
-			isa = PBXGroup;
-			children = (
-				BE534ACECD6842E3D0C7EDA6 /* xcodeproj_bwx.generator-params */,
-			);
-			path = fixtures;
 			sourceTree = "<group>";
 		};
 		59D9F3B170BC4ECD9B49A46D /* AddressSanitizerApp */ = {
@@ -172,6 +164,14 @@
 			path = UndefinedBehaviorSanitizerApp;
 			sourceTree = "<group>";
 		};
+		6CD2C9D31F9478257FC90527 /* .rules_xcodeproj */ = {
+			isa = PBXGroup;
+			children = (
+				C57EC6F4EDC377CB4F0E8B89 /* test_fixtures_xcodeproj_bwx */,
+			);
+			path = .rules_xcodeproj;
+			sourceTree = "<group>";
+		};
 		6DEE7775A87F3AD8AD281743 /* Bazel Generated Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -200,14 +200,6 @@
 			path = bin;
 			sourceTree = "<group>";
 		};
-		9401D751AA6B1781111B8489 /* test */ = {
-			isa = PBXGroup;
-			children = (
-				362DEFEF499FD1FCF27C95D3 /* fixtures */,
-			);
-			path = test;
-			sourceTree = "<group>";
-		};
 		978B64846E4015CBBB29A213 /* AddressSanitizerApp */ = {
 			isa = PBXGroup;
 			children = (
@@ -232,6 +224,16 @@
 			path = "applebin_ios-ios_x86_64-dbg-STABLE-2";
 			sourceTree = "<group>";
 		};
+		AC137266523C95E18EC6DC29 /* xcodeproj_bwx-params */ = {
+			isa = PBXGroup;
+			children = (
+				FA4824870DA150B81CAB9166 /* AddressSanitizerApp.0.link.params */,
+				C729A568FE92DCCA1FD03136 /* ThreadSanitizerApp.1.link.params */,
+				62A1A299B7EF4BAF5EE00F11 /* UndefinedBehaviorSanitizerApp.2.link.params */,
+			);
+			path = "xcodeproj_bwx-params";
+			sourceTree = "<group>";
+		};
 		B20A9FBC94A745F2B2C6D966 /* UndefinedBehaviorSanitizerApp */ = {
 			isa = PBXGroup;
 			children = (
@@ -242,14 +244,12 @@
 			path = UndefinedBehaviorSanitizerApp;
 			sourceTree = "<group>";
 		};
-		BE534ACECD6842E3D0C7EDA6 /* xcodeproj_bwx.generator-params */ = {
+		C57EC6F4EDC377CB4F0E8B89 /* test_fixtures_xcodeproj_bwx */ = {
 			isa = PBXGroup;
 			children = (
-				9959E6A17B7B8F1560025674 /* AddressSanitizerApp.0.link.params */,
-				36ED036AD66E94FB8E31DEE4 /* ThreadSanitizerApp.1.link.params */,
-				324A50D469C6A74C3E7DD112 /* UndefinedBehaviorSanitizerApp.2.link.params */,
+				AC137266523C95E18EC6DC29 /* xcodeproj_bwx-params */,
 			);
-			path = "xcodeproj_bwx.generator-params";
+			path = test_fixtures_xcodeproj_bwx;
 			sourceTree = "<group>";
 		};
 		C5DA04B2480EBE8D895B5826 /* Products */ = {
@@ -617,7 +617,7 @@
 				ENABLE_TESTABILITY = YES;
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/AddressSanitizerApp/rules_xcodeproj/AddressSanitizerApp/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/AddressSanitizerApp.0.link.params";
+				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/.rules_xcodeproj/test_fixtures_xcodeproj_bwx/xcodeproj_bwx-params/AddressSanitizerApp.0.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -DDEBUG -Xcc -iquote$(PROJECT_DIR) -Xcc -iquote$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin -static -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all";
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
@@ -704,7 +704,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/UndefinedBehaviorSanitizerApp/rules_xcodeproj/UndefinedBehaviorSanitizerApp/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/UndefinedBehaviorSanitizerApp.2.link.params";
+				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/.rules_xcodeproj/test_fixtures_xcodeproj_bwx/xcodeproj_bwx-params/UndefinedBehaviorSanitizerApp.2.link.params";
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example;
@@ -744,7 +744,7 @@
 				DEPLOYMENT_LOCATION = "$(INDEXING_DEPLOYMENT_LOCATION__$(INDEX_ENABLE_BUILD_ARENA)),";
 				DSTROOT = "$(PROJECT_TEMP_DIR)";
 				ENABLE_DEFAULT_SEARCH_PATHS = NO;
-				GENERATOR_LABEL = "@//test/fixtures:xcodeproj_bwx.generator";
+				GENERATOR_LABEL = "@//.rules_xcodeproj/test_fixtures_xcodeproj_bwx:xcodeproj_bwx";
 				INDEXING_BUILT_PRODUCTS_DIR__ = "$(INDEXING_BUILT_PRODUCTS_DIR__NO)";
 				INDEXING_BUILT_PRODUCTS_DIR__NO = "$(BUILD_DIR)";
 				INDEXING_BUILT_PRODUCTS_DIR__YES = "$(CONFIGURATION_BUILD_DIR)";
@@ -794,7 +794,7 @@
 				ENABLE_TESTABILITY = YES;
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/ThreadSanitizerApp/rules_xcodeproj/ThreadSanitizerApp/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwx.generator-params/ThreadSanitizerApp.1.link.params";
+				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/.rules_xcodeproj/test_fixtures_xcodeproj_bwx/xcodeproj_bwx-params/ThreadSanitizerApp.1.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -DDEBUG -Xcc -iquote$(PROJECT_DIR) -Xcc -iquote$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin -static -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all";
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";

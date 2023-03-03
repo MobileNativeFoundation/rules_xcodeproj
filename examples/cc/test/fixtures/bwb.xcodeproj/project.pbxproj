@@ -61,7 +61,7 @@
 
 /* Begin PBXFileReference section */
 		09466FF029E11E89738CB1A4 /* lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = lib.c; sourceTree = "<group>"; };
-		099E73CEC69798988C2B2839 /* tool.3.link.params */ = {isa = PBXFileReference; path = tool.3.link.params; sourceTree = "<group>"; };
+		11D7F6227E8A54C7FFC4AE69 /* tool.3.link.params */ = {isa = PBXFileReference; path = tool.3.link.params; sourceTree = "<group>"; };
 		1275B9959F6B83551E10A8A7 /* lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib.h; sourceTree = "<group>"; };
 		1900009A79549C461F0C7AE2 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		2225C6CEB4DCA8C7A5BF3CE1 /* lib2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib2.h; sourceTree = "<group>"; };
@@ -82,30 +82,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
-		0AA83B642ECA8286582764C1 /* fixtures */ = {
-			isa = PBXGroup;
-			children = (
-				1D48CBCAC6B7EE027B759A78 /* xcodeproj_bwb.generator-params */,
-			);
-			path = fixtures;
-			sourceTree = "<group>";
-		};
-		1BEF0788635BF32C08EDB7E2 /* test */ = {
-			isa = PBXGroup;
-			children = (
-				0AA83B642ECA8286582764C1 /* fixtures */,
-			);
-			path = test;
-			sourceTree = "<group>";
-		};
-		1D48CBCAC6B7EE027B759A78 /* xcodeproj_bwb.generator-params */ = {
-			isa = PBXGroup;
-			children = (
-				099E73CEC69798988C2B2839 /* tool.3.link.params */,
-			);
-			path = "xcodeproj_bwb.generator-params";
-			sourceTree = "<group>";
-		};
 		37E3120547BEDCC42886C663 /* lib2 */ = {
 			isa = PBXGroup;
 			children = (
@@ -159,6 +135,22 @@
 			path = tool;
 			sourceTree = "<group>";
 		};
+		673D0ED09435E1B4A35EB85A /* test_fixtures_xcodeproj_bwb */ = {
+			isa = PBXGroup;
+			children = (
+				9574C09DF4E1769AC056EB2B /* xcodeproj_bwb-params */,
+			);
+			path = test_fixtures_xcodeproj_bwb;
+			sourceTree = "<group>";
+		};
+		7CE5369E9366BCA99A515279 /* .rules_xcodeproj */ = {
+			isa = PBXGroup;
+			children = (
+				673D0ED09435E1B4A35EB85A /* test_fixtures_xcodeproj_bwb */,
+			);
+			path = .rules_xcodeproj;
+			sourceTree = "<group>";
+		};
 		891FF4EFB55BD0CCB8B61ED5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -168,6 +160,14 @@
 				592EEFBB1B45D1BF7E0E5BEB /* tool */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		9574C09DF4E1769AC056EB2B /* xcodeproj_bwb-params */ = {
+			isa = PBXGroup;
+			children = (
+				11D7F6227E8A54C7FFC4AE69 /* tool.3.link.params */,
+			);
+			path = "xcodeproj_bwb-params";
 			sourceTree = "<group>";
 		};
 		9613A9E6C994C5EBC5B7D9B2 /* lib */ = {
@@ -223,7 +223,7 @@
 		C1030DAB4E164A910DF09385 /* bin */ = {
 			isa = PBXGroup;
 			children = (
-				1BEF0788635BF32C08EDB7E2 /* test */,
+				7CE5369E9366BCA99A515279 /* .rules_xcodeproj */,
 			);
 			path = bin;
 			sourceTree = "<group>";
@@ -803,7 +803,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				EXECUTABLE_EXTENSION = "";
 				GCC_OPTIMIZATION_LEVEL = 0;
-				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/test/fixtures/xcodeproj_bwb.generator-params/tool.3.link.params";
+				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/.rules_xcodeproj/test_fixtures_xcodeproj_bwb/xcodeproj_bwb-params/tool.3.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
@@ -844,7 +844,7 @@
 				DEPLOYMENT_LOCATION = "$(INDEXING_DEPLOYMENT_LOCATION__$(INDEX_ENABLE_BUILD_ARENA)),";
 				DSTROOT = "$(PROJECT_TEMP_DIR)";
 				ENABLE_DEFAULT_SEARCH_PATHS = NO;
-				GENERATOR_LABEL = "@//test/fixtures:xcodeproj_bwb.generator";
+				GENERATOR_LABEL = "@//.rules_xcodeproj/test_fixtures_xcodeproj_bwb:xcodeproj_bwb";
 				INDEXING_BUILT_PRODUCTS_DIR__ = "$(INDEXING_BUILT_PRODUCTS_DIR__NO)";
 				INDEXING_BUILT_PRODUCTS_DIR__NO = "$(BUILD_DIR)";
 				INDEXING_BUILT_PRODUCTS_DIR__YES = "$(CONFIGURATION_BUILD_DIR)";

@@ -18,7 +18,9 @@ filegroup(
 
 _BUILDIFIER_EXCLUDE_PATTERNS = [
     "./.git/*",
+    "./xcodeproj/internal/*.template.*",
     "**/bazel-output-base/*",
+    "**/.rules_xcodeproj/*",
     "**/*.xcodeproj/*",
 ]
 
