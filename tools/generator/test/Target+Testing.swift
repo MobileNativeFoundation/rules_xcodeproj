@@ -178,6 +178,14 @@ extension ConsolidatedTarget.Key: Comparable {
     }
 }
 
+// MARK: ExpressibleByArrayLiteral
+
+extension ConsolidatedTarget.Key: ExpressibleByArrayLiteral {
+    public init(arrayLiteral elements: String...) {
+        self.init(Set(elements.map { TargetID($0) }))
+    }
+}
+
 // MARK: StringLiteralConvertible
 
 extension ConsolidatedTarget.Key: ExpressibleByStringLiteral {
