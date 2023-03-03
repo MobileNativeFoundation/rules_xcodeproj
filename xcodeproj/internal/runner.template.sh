@@ -123,18 +123,8 @@ pre_config_flags=(
   "--repo_env=USE_CLANG_CL=%xcode_version%"
 )
 
-if [[ %is_fixture% -eq 1 && %is_bazel_6% -eq 1 ]]; then
-  pre_config_flags+=(
-    # Until we stop testing Bazel 5, we want the strings to format the same
-    "--incompatible_unambiguous_label_stringification=false"
-
-    # bzlmod adjust labels in a way that we can't account for yet
-    "--noenable_bzlmod"
-  )
-
-  if [[ "${BUILD_WORKSPACE_DIRECTORY##*/}" == "integration" ]]; then
-    pre_config_flags+=("--platform_mappings=platform_mappings")
-  fi
+if [[ %is_fixture% -eq 1 ]]; then
+  pre_config_flags+=("--config=fixtures")
 fi
 
 readonly bazel_cmd=(

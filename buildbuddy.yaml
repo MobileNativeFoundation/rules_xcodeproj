@@ -47,10 +47,10 @@ x_templates:
 
   commands:
     - &set_release_archive_override "--output_base=setup-bazel-output-base run --config=workflows @com_github_buildbuddy_io_rules_xcodeproj//tools:set_release_archive_override"
-    - &validate_integration "run --config=workflows --noexperimental_enable_bzlmod //test/fixtures:validate"
+    - &validate_integration "run --config=workflows --config=fixtures //test/fixtures:validate"
     - &build_all "build --config=workflows --noexperimental_enable_bzlmod //..."
     - &test_all "test --config=workflows --noexperimental_enable_bzlmod //..."
-    - &bzlmod_generate_integration "run --config=workflows //test/fixtures:update"
+    - &bzlmod_generate_integration "run --config=workflows --config=fixtures //test/fixtures:update"
     - &bzlmod_build_all "build --config=workflows //..."
     - &bzlmod_test_all "test --config=workflows //test/..."
 
