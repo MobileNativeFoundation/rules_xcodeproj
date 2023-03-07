@@ -81,7 +81,7 @@ cd "$BUILD_WORKSPACE_DIRECTORY"
 
 # Create files for the generator target
 mkdir -p "%generator_package_directory%"
-touch ".rules_xcodeproj/BUILD"
+touch "%temp_package_directory%/BUILD"
 cp "$generator_build_file" "%generator_package_directory%/BUILD"
 chmod u+w "%generator_package_directory%/BUILD"
 cp "$generator_defs_bzl" "%generator_package_directory%/defs.bzl"

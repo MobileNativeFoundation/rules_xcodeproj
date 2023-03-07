@@ -29,6 +29,7 @@ def xcodeproj(
         project_options = None,
         scheme_autogeneration_mode = "auto",
         schemes = [],
+        temporary_directory = ".rules_xcodeproj",
         top_level_targets,
         tvos_device_cpus = "arm64",
         tvos_simulator_cpus = None,
@@ -182,6 +183,9 @@ def xcodeproj(
             `top_level_targets` argument. This and the
             `scheme_autogeneration_mode` argument together customize how
             schemes for those targets are generated.
+        temporary_directory: Optional. The directory where rules_xcodeproj will
+            write some temporary files. The path is relative to the workspace
+            root. Defaults to `.rules_xcodeproj`.
         top_level_targets: A `list` of a list of top-level targets. Each target
             can be specified as either a `Label` (or label-like `string`), a
             value returned by `top_level_target`, or a value returned by
@@ -333,6 +337,7 @@ in your `.bazelrc` or `xcodeproj.bazelrc` file.""")
         runner_label = bazel_labels.normalize(name),
         scheme_autogeneration_mode = scheme_autogeneration_mode,
         schemes_json = schemes_json,
+        temporary_directory = temporary_directory,
         testonly = testonly,
         top_level_device_targets = top_level_device_targets,
         top_level_simulator_targets = top_level_simulator_targets,

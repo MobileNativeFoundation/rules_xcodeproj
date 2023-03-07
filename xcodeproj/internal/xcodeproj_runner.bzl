@@ -227,14 +227,16 @@ def _write_runner(
         runner_label,
         schemes_json,
         template,
+        temporary_directory,
         xcode_version,
         xcodeproj_bazelrc):
     output = actions.declare_file("{}-runner.sh".format(name))
 
     is_bazel_6 = hasattr(apple_common, "link_multi_arch_static_library")
 
-    generator_package_directory = (
-        ".rules_xcodeproj/" +
+    temp_package_directory = temporary_directory
+    generator_package_directory = paths.join(
+        temp_package_directory,
         paths.join(
             paths.dirname(generator_build_file.short_path),
             name,
@@ -260,6 +262,7 @@ def _write_runner(
             "%project_name%": project_name,
             "%schemes_json%": schemes_json.short_path,
             "%runner_label%": runner_label,
+            "%temp_package_directory%": temp_package_directory,
             "%xcode_version%": xcode_version,
             "%xcodeproj_bazelrc%": xcodeproj_bazelrc.short_path,
         },
@@ -327,6 +330,7 @@ def _xcodeproj_runner_impl(ctx):
         runner_label = str(ctx.label),
         schemes_json = schemes_json,
         template = ctx.file._runner_template,
+        temporary_directory = ctx.attr.temporary_directory,
         xcode_version = xcode_version,
         xcodeproj_bazelrc = xcodeproj_bazelrc,
     )
@@ -393,6 +397,9 @@ xcodeproj_runner = rule(
             values = ["auto", "none", "all"],
         ),
         "schemes_json": attr.string(),
+        "temporary_directory": attr.string(
+            mandatory = True,
+        ),
         "top_level_device_targets": attr.string_list(),
         "top_level_simulator_targets": attr.string_list(),
         "unfocused_targets": attr.string_list(
