@@ -138,35 +138,6 @@ def _get_unprocessed_compiler_opts(
         compilation_context = cc_info.compilation_context
         cc_toolchain = find_cpp_toolchain(ctx)
 
-        feature_configuration = cc_common.configure_features(
-            ctx = ctx,
-            cc_toolchain = cc_toolchain,
-            requested_features = (
-                # `CcCommon.ALL_COMPILE_ACTIONS` doesn't include objc...
-                ctx.features + ["objc-compile", "objc++-compile"]
-            ),
-            unsupported_features = (
-                ctx.disabled_features + _UNSUPPORTED_CC_FEATURES
-            ),
-        )
-        variables = cc_common.create_compile_variables(
-            feature_configuration = feature_configuration,
-            cc_toolchain = cc_toolchain,
-            user_compile_flags = [],
-            include_directories = compilation_context.includes,
-            quote_include_directories = compilation_context.quote_includes,
-            system_include_directories = compilation_context.system_includes,
-            framework_include_directories = (
-                compilation_context.framework_includes
-            ),
-            preprocessor_defines = depset(
-                transitive = [
-                    compilation_context.local_defines,
-                    compilation_context.defines,
-                ],
-            ),
-        )
-
         user_copts = getattr(ctx.rule.attr, "copts", [])
         user_copts = _expand_locations(
             ctx = ctx,
@@ -188,6 +159,35 @@ def _get_unprocessed_compiler_opts(
                 objc.copts_for_current_compilation_mode
             )
 
+        feature_configuration = cc_common.configure_features(
+            ctx = ctx,
+            cc_toolchain = cc_toolchain,
+            requested_features = (
+                # `CcCommon.ALL_COMPILE_ACTIONS` doesn't include objc...
+                ctx.features + ["objc-compile", "objc++-compile"]
+            ),
+            unsupported_features = (
+                ctx.disabled_features + _UNSUPPORTED_CC_FEATURES
+            ),
+        )
+        variables = cc_common.create_compile_variables(
+            feature_configuration = feature_configuration,
+            cc_toolchain = cc_toolchain,
+            user_compile_flags = user_copts,
+            include_directories = compilation_context.includes,
+            quote_include_directories = compilation_context.quote_includes,
+            system_include_directories = compilation_context.system_includes,
+            framework_include_directories = (
+                compilation_context.framework_includes
+            ),
+            preprocessor_defines = depset(
+                transitive = [
+                    compilation_context.local_defines,
+                    compilation_context.defines,
+                ],
+            ),
+        )
+
         cpp = ctx.fragments.cpp
 
         if has_c_sources:
@@ -196,7 +196,7 @@ def _get_unprocessed_compiler_opts(
                 action_name = "objc-compile" if is_objc else "c-compile",
                 variables = variables,
             )
-            conlyopts = base_copts + cpp.copts + cpp.conlyopts + user_copts
+            conlyopts = base_copts + cpp.copts + cpp.conlyopts
         else:
             conlyopts = []
 
@@ -206,7 +206,7 @@ def _get_unprocessed_compiler_opts(
                 action_name = "objc++-compile" if is_objc else "c++-compile",
                 variables = variables,
             )
-            cxxopts = base_cxxopts + cpp.copts + cpp.cxxopts + user_copts
+            cxxopts = base_cxxopts + cpp.copts + cpp.cxxopts
         else:
             cxxopts = []
 
