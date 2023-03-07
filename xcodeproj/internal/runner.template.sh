@@ -88,8 +88,8 @@ fi
 
 installer_flags+=(--bazel_path "$bazel_path")
 
-if [[ %is_fixture% -eq 1 && %is_bazel_6% -eq 1 ]]; then
-  execution_root=$("$bazel_path" info --noenable_bzlmod execution_root)
+if [[ %is_fixture% -eq 1 ]]; then
+  execution_root=$("$bazel_path" info --config=fixtures execution_root)
 else
   execution_root=$("$bazel_path" info execution_root)
 fi
