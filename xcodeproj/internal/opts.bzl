@@ -917,8 +917,10 @@ def _expand_make_variables(*, ctx, values, attribute_name):
         A `list` of strings with Make variables placeholders filled in.
     """
     return [
-        ctx.expand_make_variables(attribute_name, value, {})
+        ctx.expand_make_variables(attribute_name, token, {})
         for value in values
+        # TODO: Handle `no_copts_tokenization`
+        for token in ctx.tokenize(value)
     ]
 
 # API
