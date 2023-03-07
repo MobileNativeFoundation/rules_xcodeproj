@@ -240,7 +240,7 @@ def _write_runner(
         paths.join(
             paths.dirname(generator_build_file.short_path),
             name,
-        ).replace("/", "_")
+        ).replace("/", "_"),
     )
     generator_label = "//{}:{}".format(generator_package_directory, name)
 
