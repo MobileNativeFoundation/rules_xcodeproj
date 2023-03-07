@@ -89,13 +89,13 @@
                 "-F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks",
                 "-no-canonical-prefixes",
                 "-pthread",
+                "-Ilib/private",
+                "-Ibazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib/private",
                 "-no-canonical-prefixes",
                 "-Wno-builtin-macro-redefined",
                 "-D__DATE__=\\\"redacted\\\"",
                 "-D__TIMESTAMP__=\\\"redacted\\\"",
-                "-D__TIME__=\\\"redacted\\\"",
-                "-Ilib/private",
-                "-Ibazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib/private"
+                "-D__TIME__=\\\"redacted\\\""
             ],
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
@@ -234,13 +234,13 @@
                 "-F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks",
                 "-no-canonical-prefixes",
                 "-pthread",
+                "-Iexternal/examples_cc_external/private",
+                "-Ibazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external/private",
                 "-no-canonical-prefixes",
                 "-Wno-builtin-macro-redefined",
                 "-D__DATE__=\\\"redacted\\\"",
                 "-D__TIMESTAMP__=\\\"redacted\\\"",
-                "-D__TIME__=\\\"redacted\\\"",
-                "-Iexternal/examples_cc_external/private",
-                "-Ibazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external/private"
+                "-D__TIME__=\\\"redacted\\\""
             ],
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",

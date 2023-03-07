@@ -8872,13 +8872,13 @@
 					"-F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks",
 					"-no-canonical-prefixes",
 					"-pthread",
+					"-Ibazel-out",
+					"-Iexternal",
 					"-no-canonical-prefixes",
 					"-Wno-builtin-macro-redefined",
 					"-D__DATE__=\\\"redacted\\\"",
 					"-D__TIMESTAMP__=\\\"redacted\\\"",
 					"-D__TIME__=\\\"redacted\\\"",
-					"-Ibazel-out",
-					"-Iexternal",
 				);
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
@@ -9374,13 +9374,13 @@
 					"-F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks",
 					"-no-canonical-prefixes",
 					"-pthread",
+					"-Ibazel-out",
+					"-Iexternal",
 					"-no-canonical-prefixes",
 					"-Wno-builtin-macro-redefined",
 					"-D__DATE__=\\\"redacted\\\"",
 					"-D__TIMESTAMP__=\\\"redacted\\\"",
 					"-D__TIME__=\\\"redacted\\\"",
-					"-Ibazel-out",
-					"-Iexternal",
 				);
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
@@ -10125,13 +10125,13 @@
 					"-F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks",
 					"-no-canonical-prefixes",
 					"-pthread",
+					"-Ibazel-out",
+					"-Iexternal",
 					"-no-canonical-prefixes",
 					"-Wno-builtin-macro-redefined",
 					"-D__DATE__=\\\"redacted\\\"",
 					"-D__TIMESTAMP__=\\\"redacted\\\"",
 					"-D__TIME__=\\\"redacted\\\"",
-					"-Ibazel-out",
-					"-Iexternal",
 				);
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
