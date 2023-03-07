@@ -6,6 +6,29 @@ The `xcodeproj` rule supports two different
 [build modes](bazel.md#xcodeproj-build_mode), `"bazel"` and `"xcode"`, commonly
 referred to as Build with Bazel (BwB) and Build with Xcode (BwX).
 
+## Why do I get a visibility error with `xcodeproj`?
+
+Even though you might have your `xcodeproj` target declared in the same package
+as your `top_level_targets`, internally rules_xcodeproj creates another target
+in a sub-package under the
+[`temporary_directory`](bazel.md#xcodeproj-temporary_directory) package. So, if
+`temporary_directory` is set to `.rules_xcodeproj` (the default), you'll need
+to adjust your `visibility`/`package_group` to include
+`"//.rules_xcodeproj:__subpackages__"`.
+
+## What is the `.rules_xcodeproj` directory?
+
+rules_xcodeproj creates a
+[temporary directory](bazel.md#xcodeproj-temporary_directory) inside your
+workspace. It does this in order to dynamically generate `BUILD` and `.bzl`
+files needed for your project. You should add this directory to your source
+control ignore files. For example, if you use git, you should add something like
+this to your `.gitignore` file:
+
+```ignore-list
+**/.rules_xcodeproj
+```
+
 ## Does the Archive action work?
 
 Currently no effort is put into making the Archive action work correctly.

@@ -184,7 +184,10 @@ def xcodeproj(
             `scheme_autogeneration_mode` argument together customize how
             schemes for those targets are generated.
         temporary_directory: Optional. The directory where rules_xcodeproj will
-            write some temporary files. The path is relative to the workspace
+            write some temporary files. You will want to add this directory to
+            your source control ignore files (e.g. `.gitignore`). A Bazel
+            package will be created at this path, so you can use the path in
+            `visibility`/`package_group`s. The path is relative to the workspace
             root. Defaults to `.rules_xcodeproj`.
         top_level_targets: A `list` of a list of top-level targets. Each target
             can be specified as either a `Label` (or label-like `string`), a
