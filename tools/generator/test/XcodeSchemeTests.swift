@@ -49,8 +49,8 @@ No `BazelLabel` values were provided to `XcodeScheme.TestAction`.
             targets: [unitTestLabel, uiTestLabel]
         )
         XCTAssertEqual(actual.targets, [unitTestLabel, uiTestLabel])
-        XCTAssertEqual(actual.args, [])
-        XCTAssertEqual(actual.env, [:])
+        XCTAssertNil(actual.args)
+        XCTAssertNil(actual.env)
     }
 
     func test_TestAction_init_withTargets_withCustomValues() throws {
