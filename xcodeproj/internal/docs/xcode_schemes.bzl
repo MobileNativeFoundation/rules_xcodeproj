@@ -4,10 +4,7 @@ To use these functions, `load` the `xcode_schemes` module from
 `xcodeproj/defs.bzl`:
 
 ```starlark
-load(
-    "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:defs.bzl",
-    "xcode_schemes",
-)
+load("@rules_xcodeproj//xcodeproj:defs.bzl", "xcode_schemes")
 ```
 """
 

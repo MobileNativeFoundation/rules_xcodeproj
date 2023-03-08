@@ -9,10 +9,7 @@ For example, to use the [`xcodeproj`](#xcodeproj) rule, you would need to use
 this `load` statement:
 
 ```starlark
-load(
-    "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:defs.bzl",
-    "xcodeproj",
-)
+load("@rules_xcodeproj//xcodeproj:defs.bzl", "xcodeproj")
 ```
 
 ### Index

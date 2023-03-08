@@ -15,7 +15,7 @@ final class CreateProjectTests: XCTestCase {
         let directories = Directories(
             workspace: "/Users/TimApple/app",
             projectRoot: projectRootDirectory,
-            executionRoot: "/tmp/bazel-output-base/rules_xcodeproj/build_output_base/execroot/com_github_buildbuddy_io_rules_xcodeproj",
+            executionRoot: "/tmp/bazel-output-base/rules_xcodeproj/build_output_base/execroot/rules_xcodeproj",
             internalDirectoryName: "r_xcp",
             workspaceOutput: "X.xcodeproj"
         )
@@ -81,7 +81,7 @@ $(INDEXING_DEPLOYMENT_LOCATION__NO)
             "INDEXING_PROJECT_DIR__": "$(INDEXING_PROJECT_DIR__NO)",
             "INDEXING_PROJECT_DIR__NO": "$(PROJECT_DIR)",
             "INDEXING_PROJECT_DIR__YES": """
-/tmp/bazel-output-base/rules_xcodeproj/indexbuild_output_base/execroot/com_github_buildbuddy_io_rules_xcodeproj
+/tmp/bazel-output-base/rules_xcodeproj/indexbuild_output_base/execroot/rules_xcodeproj
 """,
             "INSTALL_PATH": "$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)/bin",
             "INTERNAL_DIR": "$(PROJECT_FILE_PATH)/r_xcp",
@@ -163,7 +163,7 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
         let directories = Directories(
             workspace: "/Users/TimApple/app",
             projectRoot: projectRootDirectory,
-            executionRoot: "/tmp/bazel-output-base/rules_xcodeproj/build_output_base/execroot/com_github_buildbuddy_io_rules_xcodeproj",
+            executionRoot: "/tmp/bazel-output-base/rules_xcodeproj/build_output_base/execroot/rules_xcodeproj",
             internalDirectoryName: "r_xcp",
             workspaceOutput: "X.xcodeproj"
         )
@@ -235,7 +235,7 @@ $(INDEXING_DEPLOYMENT_LOCATION__NO)
             "INDEXING_PROJECT_DIR__": "$(INDEXING_PROJECT_DIR__NO)",
             "INDEXING_PROJECT_DIR__NO": "$(PROJECT_DIR)",
             "INDEXING_PROJECT_DIR__YES": """
-/tmp/bazel-output-base/rules_xcodeproj/indexbuild_output_base/execroot/com_github_buildbuddy_io_rules_xcodeproj
+/tmp/bazel-output-base/rules_xcodeproj/indexbuild_output_base/execroot/rules_xcodeproj
 """,
             "INSTALL_PATH": "$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)/bin",
             "INTERNAL_DIR": "$(PROJECT_FILE_PATH)/r_xcp",

@@ -70,7 +70,7 @@ have project-specific configurations you need to apply.
 ## Extra config flags
 
 Finally, there is one last way to adjust the Bazel configs, through the use of
-the `--@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:extra_*_flags`
+the `--@rules_xcodeproj//xcodeproj:extra_*_flags`
 family of build flags. These flags apply changes to the configs after all other
 sources, and work when calling `bazel run` to generate the project. If using
 project-level configs, these flags adjust those instead of the base configs.
@@ -117,7 +117,7 @@ configs further.
 ### Project `xcodeproj_extra_flags.bazelrc`
 
 Finally, if any
-`--@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:extra_*_flags` build
+`--@rules_xcodeproj//xcodeproj:extra_*_flags` build
 flags were used during project generation, then those adjustments are made in
 a project `xcodeproj_extra_flags.bazelrc` file, which is loaded after the
 workspace `.bazelrc` file. This ensures that they override any flags set
@@ -241,10 +241,10 @@ INFO: Invocation ID: e4be5bb9-1823-4ca9-a3fd-6066f936460a
 INFO: Analyzed target //:xcodeproj (0 packages loaded, 0 targets configured).
 INFO: Found 1 target...
 Target //:xcodeproj up-to-date:
-  /Users/brentley/Developer/rules_xcodeproj/bazel-output-base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out/darwin_arm64-fastbuild/bin/xcodeproj-runner.sh
+  /Users/brentley/Developer/rules_xcodeproj/bazel-output-base/execroot/rules_xcodeproj/bazel-out/darwin_arm64-fastbuild/bin/xcodeproj-runner.sh
 INFO: Elapsed time: 0.285s, Critical Path: 0.00s
 INFO: 1 process: 1 internal.
-INFO: Running command line: /Users/brentley/Developer/rules_xcodeproj/bazel-output-base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out/darwin_arm64-fastbuild/bin/xcodeproj-runner.sh -v clean
+INFO: Running command line: /Users/brentley/Developer/rules_xcodeproj/bazel-output-base/execroot/rules_xcodeproj/bazel-out/darwin_arm64-fastbuild/bin/xcodeproj-runner.sh -v clean
 INFO: Build completed successfully, 1 total action
 
 INFO: Invocation ID: 84c53471-73a4-4267-9289-0ad076ee94fb
@@ -259,14 +259,14 @@ INFO: Invocation ID: e4be5bb9-1823-4ca9-a3fd-6066f936460a
 INFO: Analyzed target //:xcodeproj (0 packages loaded, 0 targets configured).
 INFO: Found 1 target...
 Target //:xcodeproj up-to-date:
-  /Users/brentley/Developer/rules_xcodeproj/bazel-output-base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out/darwin_arm64-fastbuild/bin/xcodeproj-runner.sh
+  /Users/brentley/Developer/rules_xcodeproj/bazel-output-base/execroot/rules_xcodeproj/bazel-out/darwin_arm64-fastbuild/bin/xcodeproj-runner.sh
 INFO: Elapsed time: 0.285s, Critical Path: 0.00s
 INFO: 1 process: 1 internal.
-INFO: Running command line: /Users/brentley/Developer/rules_xcodeproj/bazel-output-base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out/darwin_arm64-fastbuild/bin/xcodeproj-runner.sh -v clean
+INFO: Running command line: /Users/brentley/Developer/rules_xcodeproj/bazel-output-base/execroot/rules_xcodeproj/bazel-out/darwin_arm64-fastbuild/bin/xcodeproj-runner.sh -v clean
 INFO: Build completed successfully, 1 total action
 
 Running Bazel command:
-+ env PATH=/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin /Users/brentley/Library/Caches/bazelisk/downloads/bazelbuild/bazel-5.3.0-darwin-arm64/bin/bazel --host_jvm_args=-Xdock:name=/Applications/Xcode-14.0.1.app/Contents/Developer --noworkspace_rc --bazelrc=/Users/brentley/Developer/rules_xcodeproj/bazel-output-base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out/darwin_arm64-fastbuild/bin/xcodeproj-runner.sh.runfiles/com_github_buildbuddy_io_rules_xcodeproj/xcodeproj.bazelrc --bazelrc=.bazelrc --bazelrc=/Users/brentley/Developer/rules_xcodeproj/bazel-output-base/execroot/com_github_buildbuddy_io_rules_xcodeproj/bazel-out/darwin_arm64-fastbuild/bin/xcodeproj-runner.sh.runfiles/com_github_buildbuddy_io_rules_xcodeproj/xcodeproj-extra-flags.bazelrc --output_base /Users/brentley/Developer/rules_xcodeproj/bazel-output-base/execroot/_rules_xcodeproj/build_output_base clean --repo_env=DEVELOPER_DIR=/Applications/Xcode-14.0.1.app/Contents/Developer --repo_env=USE_CLANG_CL=14A400 --config=_rules_xcodeproj_build
++ env PATH=/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin /Users/brentley/Library/Caches/bazelisk/downloads/bazelbuild/bazel-5.3.0-darwin-arm64/bin/bazel --host_jvm_args=-Xdock:name=/Applications/Xcode-14.0.1.app/Contents/Developer --noworkspace_rc --bazelrc=/Users/brentley/Developer/rules_xcodeproj/bazel-output-base/execroot/rules_xcodeproj/bazel-out/darwin_arm64-fastbuild/bin/xcodeproj-runner.sh.runfiles/rules_xcodeproj/xcodeproj.bazelrc --bazelrc=.bazelrc --bazelrc=/Users/brentley/Developer/rules_xcodeproj/bazel-output-base/execroot/rules_xcodeproj/bazel-out/darwin_arm64-fastbuild/bin/xcodeproj-runner.sh.runfiles/rules_xcodeproj/xcodeproj-extra-flags.bazelrc --output_base /Users/brentley/Developer/rules_xcodeproj/bazel-output-base/execroot/_rules_xcodeproj/build_output_base clean --repo_env=DEVELOPER_DIR=/Applications/Xcode-14.0.1.app/Contents/Developer --repo_env=USE_CLANG_CL=14A400 --config=_rules_xcodeproj_build
 INFO: Invocation ID: 84c53471-73a4-4267-9289-0ad076ee94fb
 INFO: Starting clean.
 ```

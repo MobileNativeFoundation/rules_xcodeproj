@@ -1,9 +1,6 @@
 """Exposes targets used by `xcodeproj` to allow use in fixture tests."""
 
-load(
-    "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:defs.bzl",
-    "xcode_schemes",
-)
+load("@rules_xcodeproj//xcodeproj:defs.bzl", "xcode_schemes")
 
 SCHEME_AUTOGENERATION_MODE = "none"
 

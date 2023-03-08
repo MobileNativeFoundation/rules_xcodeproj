@@ -34,7 +34,7 @@ into the directory if the example app is in a separate `WORKSPACE` with
 You can even test your changes in a separate project living outside this
 repo by overriding the repository in your `.bazelrc`.
 ```
-build --override_repository=com_github_buildbuddy_io_rules_xcodeproj=/Users/username/rules_xcodeproj
+build --override_repository=rules_xcodeproj=/Users/username/rules_xcodeproj
 ```
 It's important to add it to the `.bazelrc` instead of passing it as a
 flag to ensure all invocations will use the same configuration.

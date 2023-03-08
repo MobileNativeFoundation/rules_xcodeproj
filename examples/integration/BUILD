@@ -1,7 +1,4 @@
-load(
-    "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:defs.bzl",
-    "xcodeproj",
-)
+load("@rules_xcodeproj//xcodeproj:defs.bzl", "xcodeproj")
 load(
     ":xcodeproj_targets.bzl",
     "ASSOCIATED_EXTRA_FILES",

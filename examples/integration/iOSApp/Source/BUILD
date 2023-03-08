@@ -2,10 +2,7 @@ load("@build_bazel_rules_apple//apple:apple.bzl", "local_provisioning_profile")
 load("@build_bazel_rules_apple//apple:ios.bzl", "ios_application")
 load("@build_bazel_rules_apple//apple:resources.bzl", "apple_resource_group")
 load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
-load(
-    "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:defs.bzl",
-    "xcode_provisioning_profile",
-)
+load("@rules_xcodeproj//xcodeproj:defs.bzl", "xcode_provisioning_profile")
 load(
     "//:xcodeproj_targets.bzl",
     "IOS_BUNDLE_ID",

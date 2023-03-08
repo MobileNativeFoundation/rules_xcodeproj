@@ -1,9 +1,6 @@
 load("@build_bazel_rules_apple//apple:apple.bzl", "local_provisioning_profile")
 load("@build_bazel_rules_apple//apple:watchos.bzl", "watchos_application")
-load(
-    "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:defs.bzl",
-    "xcode_provisioning_profile",
-)
+load("@rules_xcodeproj//xcodeproj:defs.bzl", "xcode_provisioning_profile")
 load(
     "//:xcodeproj_targets.bzl",
     "IOS_BUNDLE_ID",
