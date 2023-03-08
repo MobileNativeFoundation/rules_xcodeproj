@@ -37,8 +37,8 @@ extension Generator {
 
                 let shouldCreateTestAction = pbxTarget.isTestable
                 let shouldCreateLaunchAction = pbxTarget.isLaunchable
-                var env: [String: String] = [:]
-                var targetArgs: [String] = []
+                var env: [String: String]?
+                var targetArgs: [String]?
                 if shouldCreateTestAction {
                     env = try envs.first(where: { testEnv in
                         let testEnvTargetInfo: XCSchemeInfo.TargetInfo = try targetResolver.targetInfo(targetID: testEnv.key)
@@ -46,14 +46,14 @@ extension Generator {
                             return true
                         }
                         return false
-                    })?.value ?? [:]
+                    })?.value
                     targetArgs = try args.first(where: { passedArgs in
                         let passedArgsTargetInfo: XCSchemeInfo.TargetInfo = try targetResolver.targetInfo(targetID: passedArgs.key)
                         if passedArgsTargetInfo == targetInfo {
                             return true
                         }
                         return false
-                    })?.value.extractCommandLineArguments() ?? []
+                    })?.value.extractCommandLineArguments()
                 }
 
                 let schemeInfo = try XCSchemeInfo(

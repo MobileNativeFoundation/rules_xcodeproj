@@ -200,9 +200,9 @@ extension XcodeScheme {
     struct TestAction: Equatable {
         let buildConfigurationName: String?
         let targets: Set<BazelLabel>
-        let args: [String]
+        let args: [String]?
         let diagnostics: Diagnostics
-        let env: [String: String]
+        let env: [String: String]?
         let expandVariablesBasedOn: BazelLabel?
         let preActions: [PrePostAction]
         let postActions: [PrePostAction]
@@ -210,9 +210,9 @@ extension XcodeScheme {
         init<Targets: Sequence>(
             targets: Targets,
             buildConfigurationName: String? = nil,
-            args: [String] = [],
+            args: [String]? = nil,
             diagnostics: Diagnostics = .init(),
-            env: [String: String] = [:],
+            env: [String: String]? = nil,
             expandVariablesBasedOn: BazelLabel? = nil,
             preActions: [PrePostAction] = [],
             postActions: [PrePostAction] = []
@@ -255,14 +255,14 @@ extension XcodeScheme.TestAction: Decodable {
         targets = try container
             .decodeIfPresent(Set<BazelLabel>.self, forKey: .targets) ?? []
         args = try container
-            .decodeIfPresent([String].self, forKey: .args) ?? []
+            .decodeIfPresent([String].self, forKey: .args)
         diagnostics = try container
             .decodeIfPresent(
                 XcodeScheme.Diagnostics.self,
                 forKey: .diagnostics
             ) ?? .init()
         env = try container
-            .decodeIfPresent([String: String].self, forKey: .env) ?? [:]
+            .decodeIfPresent([String: String].self, forKey: .env)
         expandVariablesBasedOn = try container
             .decodeIfPresent(
                 BazelLabel.self,

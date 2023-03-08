@@ -130,11 +130,15 @@ def _test_action(
         targets: A `sequence` of target labels as `string` values.
         build_configuration_name: The name of the build configuration as a
             `string` value.
-        args: Optional. A `list` of `string` arguments that should be passed to
-            the target when executed.
+        args: Optional. A `list` of `string` arguments that should be passed
+            to the target when executed. If both this and `env` are `None`
+            (not just empty), then the launch action's arguments will be
+            inherited.
         diagnostics: Optional. A value returned by `xcode_schemes.diagnostics`.
         env: Optional. A `dict` of `string` values that will be set as
-            environment variables when the target is executed.
+            environment variables when the target is executed. If both this
+            and `args` are `None` (not just empty), then the launch action's
+            environment variables will be inherited.
         expand_variables_based_on: Optional. One of the specified test target labels.
             If no value is provided, one of the test targets will be selected.
             If no expansion context is desired, use the `string` value `none`.
@@ -161,9 +165,9 @@ or one of the test targets.
     return struct(
         targets = targets,
         build_configuration_name = build_configuration_name,
-        args = args if args != None else [],
+        args = args,
         diagnostics = diagnostics,
-        env = env if env != None else {},
+        env = env,
         expand_variables_based_on = expand_variables_based_on,
         pre_actions = pre_actions,
         post_actions = post_actions,

@@ -4,9 +4,9 @@ extension XCSchemeInfo {
     struct TestActionInfo: Equatable {
         let buildConfigurationName: String
         let targetInfos: Set<XCSchemeInfo.TargetInfo>
-        let args: [String]
+        let args: [String]?
         let diagnostics: DiagnosticsInfo
-        let env: [String: String]
+        let env: [String: String]?
         let expandVariablesBasedOn: TargetInfo?
         let preActions: [PrePostActionInfo]
         let postActions: [PrePostActionInfo]
@@ -15,9 +15,9 @@ extension XCSchemeInfo {
         init<TargetInfos: Sequence>(
             buildConfigurationName: String,
             targetInfos: TargetInfos,
-            args: [String] = [],
+            args: [String]? = nil,
             diagnostics: DiagnosticsInfo = .init(diagnostics: .init()),
-            env: [String: String] = [:],
+            env: [String: String]? = nil,
             expandVariablesBasedOn: TargetInfo? = nil,
             preActions: [PrePostActionInfo] = [],
             postActions: [PrePostActionInfo] = []
@@ -106,7 +106,7 @@ extension XCSchemeInfo.TestActionInfo {
 Expected at least one target in `TestAction.targets`
 """)
 
-        var env: [String: String] = testAction.env
+        var env: [String: String] = testAction.env ?? [:]
         let testActionTargetIdsLabels: [(TargetID, BazelLabel)] = testAction.targets.compactMap { label in
             guard let targetId: TargetID = targetIDsByLabel[label]
             else {
@@ -147,11 +147,11 @@ the same scheme.
                 .orThrow("Expected at least one target in `TestAction.targets`")
                 .pbxTarget.defaultBuildConfigurationName,
             targetInfos: targetInfos,
-            args: testAction.args.extractCommandLineArguments(),
+            args: testAction.args?.extractCommandLineArguments(),
             diagnostics: XCSchemeInfo.DiagnosticsInfo(
                 diagnostics: testAction.diagnostics
             ),
-            env: env,
+            env: env.isEmpty ? testAction.env : env,
             expandVariablesBasedOn: try targetResolver.targetInfo(
                 targetID: try targetIDsByLabel.value(
                     for: expandVariablesBasedOn,
