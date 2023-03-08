@@ -44,11 +44,12 @@ load("@rules_xcodeproj//xcodeproj:defs.bzl", "xcodeproj")
 
 <pre>
 xcodeproj(<a href="#xcodeproj-name">name</a>, <a href="#xcodeproj-adjust_schemes_for_swiftui_previews">adjust_schemes_for_swiftui_previews</a>, <a href="#xcodeproj-archived_bundles_allowed">archived_bundles_allowed</a>,
-          <a href="#xcodeproj-associated_extra_files">associated_extra_files</a>, <a href="#xcodeproj-bazel_path">bazel_path</a>, <a href="#xcodeproj-build_mode">build_mode</a>, <a href="#xcodeproj-config">config</a>, <a href="#xcodeproj-extra_files">extra_files</a>, <a href="#xcodeproj-focused_targets">focused_targets</a>,
-          <a href="#xcodeproj-install_directory">install_directory</a>, <a href="#xcodeproj-ios_device_cpus">ios_device_cpus</a>, <a href="#xcodeproj-ios_simulator_cpus">ios_simulator_cpus</a>, <a href="#xcodeproj-minimum_xcode_version">minimum_xcode_version</a>, <a href="#xcodeproj-post_build">post_build</a>,
-          <a href="#xcodeproj-pre_build">pre_build</a>, <a href="#xcodeproj-project_name">project_name</a>, <a href="#xcodeproj-project_options">project_options</a>, <a href="#xcodeproj-scheme_autogeneration_mode">scheme_autogeneration_mode</a>, <a href="#xcodeproj-schemes">schemes</a>,
-          <a href="#xcodeproj-temporary_directory">temporary_directory</a>, <a href="#xcodeproj-top_level_targets">top_level_targets</a>, <a href="#xcodeproj-tvos_device_cpus">tvos_device_cpus</a>, <a href="#xcodeproj-tvos_simulator_cpus">tvos_simulator_cpus</a>,
-          <a href="#xcodeproj-unfocused_targets">unfocused_targets</a>, <a href="#xcodeproj-watchos_device_cpus">watchos_device_cpus</a>, <a href="#xcodeproj-watchos_simulator_cpus">watchos_simulator_cpus</a>, <a href="#xcodeproj-kwargs">kwargs</a>)
+          <a href="#xcodeproj-associated_extra_files">associated_extra_files</a>, <a href="#xcodeproj-bazel_path">bazel_path</a>, <a href="#xcodeproj-build_mode">build_mode</a>, <a href="#xcodeproj-config">config</a>, <a href="#xcodeproj-default_xcode_configuration">default_xcode_configuration</a>,
+          <a href="#xcodeproj-extra_files">extra_files</a>, <a href="#xcodeproj-focused_targets">focused_targets</a>, <a href="#xcodeproj-install_directory">install_directory</a>, <a href="#xcodeproj-ios_device_cpus">ios_device_cpus</a>, <a href="#xcodeproj-ios_simulator_cpus">ios_simulator_cpus</a>,
+          <a href="#xcodeproj-minimum_xcode_version">minimum_xcode_version</a>, <a href="#xcodeproj-post_build">post_build</a>, <a href="#xcodeproj-pre_build">pre_build</a>, <a href="#xcodeproj-project_name">project_name</a>, <a href="#xcodeproj-project_options">project_options</a>,
+          <a href="#xcodeproj-scheme_autogeneration_mode">scheme_autogeneration_mode</a>, <a href="#xcodeproj-schemes">schemes</a>, <a href="#xcodeproj-temporary_directory">temporary_directory</a>, <a href="#xcodeproj-top_level_targets">top_level_targets</a>,
+          <a href="#xcodeproj-tvos_device_cpus">tvos_device_cpus</a>, <a href="#xcodeproj-tvos_simulator_cpus">tvos_simulator_cpus</a>, <a href="#xcodeproj-unfocused_targets">unfocused_targets</a>, <a href="#xcodeproj-watchos_device_cpus">watchos_device_cpus</a>,
+          <a href="#xcodeproj-watchos_simulator_cpus">watchos_simulator_cpus</a>, <a href="#xcodeproj-xcode_configurations">xcode_configurations</a>, <a href="#xcodeproj-kwargs">kwargs</a>)
 </pre>
 
 Creates an `.xcodeproj` file in the workspace when run.
@@ -86,6 +87,7 @@ xcodeproj(
 | <a id="xcodeproj-bazel_path"></a>bazel_path |  Optional. The path the <code>bazel</code> binary or wrapper script. If the path is relative it will be resolved using the <code>PATH</code> environment variable (which is set to <code>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</code> in Xcode). If you want to specify a path to a workspace-relative binary, you must prepend the path with <code>./</code> (e.g. <code>"./bazelw"</code>).   |  <code>"bazel"</code> |
 | <a id="xcodeproj-build_mode"></a>build_mode |  Optional. The build mode the generated project should use.<br><br>If this is set to <code>"xcode"</code>, the project will use the Xcode build system to build targets. Generated files and unfocused targets (see the <code>focused_targets</code> and <code>unfocused_targets</code> arguments) will be built with Bazel.<br><br>If this is set to <code>"bazel"</code>, the project will use Bazel to build targets, inside of Xcode. The Xcode build system still unavoidably orchestrates some things at a high level.   |  <code>"bazel"</code> |
 | <a id="xcodeproj-config"></a>config |  Optional. The Bazel config to use when generating the project or invoking <code>bazel</code> inside of Xcode. This is the basename of multiple configs. For example, if this is set to <code>"projectx_xcodeproj"</code>, then the following configs will be available for you to adjust in your <code>.bazelrc</code> file: <code>projectx_xcodeproj</code>, <code>projectx_xcodeproj_generator</code>, <code>projectx_xcodeproj_indexbuild</code>, and <code>projectx_xcodeproj_swiftuipreviews</code>.<br><br>See the [usage guide](usage.md#bazel-configs) for more information on adjusting Bazel configs.   |  <code>"rules_xcodeproj"</code> |
+| <a id="xcodeproj-default_xcode_configuration"></a>default_xcode_configuration |  Optional. The name of the the Xcode configuration to use when building, if not overridden by custom schemes. If not set, the first Xcode configuration alphabetically will be used. Use [<code>xcode_configurations</code>](#xcodeproj-xcode_configurations) to adjust Xcode configurations.   |  <code>None</code> |
 | <a id="xcodeproj-extra_files"></a>extra_files |  Optional. A <code>list</code> of extra <code>File</code>s to be added to the project.   |  <code>[]</code> |
 | <a id="xcodeproj-focused_targets"></a>focused_targets |  Optional. A <code>list</code> of target labels as <code>string</code> values. If specified, only these targets will be included in the generated project; all other targets will be excluded, as if they were listed explicitly in the <code>unfocused_targets</code> argument. The labels must match transitive dependencies of the targets specified in the <code>top_level_targets</code> argument.   |  <code>[]</code> |
 | <a id="xcodeproj-install_directory"></a>install_directory |  Optional. The directory where the generated project will be written to. The path is relative to the workspace root. Defaults to the directory that the <code>xcodeproj</code> target is declared in (e.g. if the <code>xcodeproj</code> target is declared in <code>//foo/bar:BUILD</code> then the default value is <code>"foo/bar"</code>). Use <code>""</code> to have the project generated in the workspace root.   |  <code>None</code> |
@@ -105,6 +107,7 @@ xcodeproj(
 | <a id="xcodeproj-unfocused_targets"></a>unfocused_targets |  Optional. A <code>list</code> of target labels as <code>string</code> values. Any targets in the transitive dependencies of the targets specified in the <code>top_level_targets</code> argument with a matching label will be excluded from the generated project. This overrides any targets specified in the <code>focused_targets</code> argument.   |  <code>[]</code> |
 | <a id="xcodeproj-watchos_device_cpus"></a>watchos_device_cpus |  Optional. The value to use for <code>--watchos_cpus</code> when building the transitive dependencies of the targets specified in the <code>top_level_targets</code> argument with the <code>"device"</code> <code>target_environment</code>.<br><br>**Warning:** Changing this value will affect the Starlark transition hash of all transitive dependencies of the targets specified in the <code>top_level_targets</code> argument with the <code>"device"</code> <code>target_environment</code>, even if they aren't watchOS targets.   |  <code>"arm64_32"</code> |
 | <a id="xcodeproj-watchos_simulator_cpus"></a>watchos_simulator_cpus |  Optional. The value to use for <code>--watchos_cpus</code> when building the transitive dependencies of the targets specified in the <code>top_level_targets</code> argument with the <code>"simulator"</code> <code>target_environment</code>.<br><br>If no value is specified, it defaults to the simulator cpu that goes with <code>--host_cpu</code> (i.e. <code>arm64</code> on Apple Silicon and <code>x86_64</code> on Intel).<br><br>**Warning:** Changing this value will affect the Starlark transition hash of all transitive dependencies of the targets specified in the <code>top_level_targets</code> argument with the <code>"simulator"</code> <code>target_environment</code>, even if they aren't watchOS targets.   |  <code>None</code> |
+| <a id="xcodeproj-xcode_configurations"></a>xcode_configurations |  Optional. A <code>dict</code> mapping Xcode configuration names to transition settings dictionaries. For example, <code>{"Dev": {"//command_line_option:compilation_mode": "dbg"}, "AppStore": {"//command_line_option:compilation_mode": "opt"}}</code>, would create the "Dev" and "AppStore" configurations, setting <code>--compilation_mode</code> to <code>dbg</code> and <code>opt</code> respectively.<br><br>Refer to the [bazel documentation](https://bazel.build/extending/config#defining) on how to define the transition settings dictionary.   |  <code>{"Debug": {}}</code> |
 | <a id="xcodeproj-kwargs"></a>kwargs |  Additional arguments to pass to the underlying <code>xcodeproj</code> rule specified by <code>xcodeproj_rule</code>.   |  none |
 
 
@@ -298,7 +301,7 @@ A `struct`.
 ## xcode_schemes.launch_action
 
 <pre>
-xcode_schemes.launch_action(<a href="#xcode_schemes.launch_action-target">target</a>, <a href="#xcode_schemes.launch_action-args">args</a>, <a href="#xcode_schemes.launch_action-diagnostics">diagnostics</a>, <a href="#xcode_schemes.launch_action-env">env</a>, <a href="#xcode_schemes.launch_action-working_directory">working_directory</a>)
+xcode_schemes.launch_action(<a href="#xcode_schemes.launch_action-target">target</a>, <a href="#xcode_schemes.launch_action-args">args</a>, <a href="#xcode_schemes.launch_action-build_configuration">build_configuration</a>, <a href="#xcode_schemes.launch_action-diagnostics">diagnostics</a>, <a href="#xcode_schemes.launch_action-env">env</a>, <a href="#xcode_schemes.launch_action-working_directory">working_directory</a>)
 </pre>
 
 Constructs a launch action for an Xcode scheme.
@@ -310,6 +313,7 @@ Constructs a launch action for an Xcode scheme.
 | :------------- | :------------- | :------------- |
 | <a id="xcode_schemes.launch_action-target"></a>target |  A target label as a <code>string</code> value.   |  none |
 | <a id="xcode_schemes.launch_action-args"></a>args |  Optional. A <code>list</code> of <code>string</code> arguments that should be passed to the target when executed.   |  <code>None</code> |
+| <a id="xcode_schemes.launch_action-build_configuration"></a>build_configuration |  Optional. The name of the Xcode configuration to use for this action. If not set, then the configuration determined by <code>xcodeproj.default_xcode_configuration</code> will be used.   |  <code>None</code> |
 | <a id="xcode_schemes.launch_action-diagnostics"></a>diagnostics |  Optional. A value returned by <code>xcode_schemes.diagnostics</code>.   |  <code>None</code> |
 | <a id="xcode_schemes.launch_action-env"></a>env |  Optional. A <code>dict</code> of <code>string</code> values that will be set as environment variables when the target is executed.   |  <code>None</code> |
 | <a id="xcode_schemes.launch_action-working_directory"></a>working_directory |  Optional. A <code>string</code> that will be set as the custom working directory in the Xcode scheme's launch action. Relative paths will be relative to the value of <code>target</code>'s <code>BUILT_PRODUCTS_DIR</code>, which is unique to it.   |  <code>None</code> |
@@ -324,7 +328,7 @@ A `struct` representing a launch action.
 ## xcode_schemes.profile_action
 
 <pre>
-xcode_schemes.profile_action(<a href="#xcode_schemes.profile_action-target">target</a>, <a href="#xcode_schemes.profile_action-args">args</a>, <a href="#xcode_schemes.profile_action-env">env</a>, <a href="#xcode_schemes.profile_action-working_directory">working_directory</a>)
+xcode_schemes.profile_action(<a href="#xcode_schemes.profile_action-target">target</a>, <a href="#xcode_schemes.profile_action-args">args</a>, <a href="#xcode_schemes.profile_action-build_configuration">build_configuration</a>, <a href="#xcode_schemes.profile_action-env">env</a>, <a href="#xcode_schemes.profile_action-working_directory">working_directory</a>)
 </pre>
 
 Constructs a profile action for an Xcode scheme.
@@ -336,6 +340,7 @@ Constructs a profile action for an Xcode scheme.
 | :------------- | :------------- | :------------- |
 | <a id="xcode_schemes.profile_action-target"></a>target |  A target label as a <code>string</code> value.   |  none |
 | <a id="xcode_schemes.profile_action-args"></a>args |  Optional. A <code>list</code> of <code>string</code> arguments that should be passed to the target when executed. If both this and <code>env</code> are <code>None</code> (not just empty), then the launch action's arguments will be inherited.   |  <code>None</code> |
+| <a id="xcode_schemes.profile_action-build_configuration"></a>build_configuration |  Optional. The name of the Xcode configuration to use for this action. If not set, then the configuration determined by <code>xcodeproj.default_xcode_configuration</code> will be used.   |  <code>None</code> |
 | <a id="xcode_schemes.profile_action-env"></a>env |  Optional. A <code>dict</code> of <code>string</code> values that will be set as environment variables when the target is executed. If both this and <code>args</code> are <code>None</code> (not just empty), then the launch action's environment variables will be inherited.   |  <code>None</code> |
 | <a id="xcode_schemes.profile_action-working_directory"></a>working_directory |  Optional. A <code>string</code> that will be set as the custom working directory in the Xcode scheme's launch action. Relative paths will be relative to the value of <code>target</code>'s <code>BUILT_PRODUCTS_DIR</code>, which is unique to it.   |  <code>None</code> |
 
@@ -349,8 +354,8 @@ A `struct` representing a profile action.
 ## xcode_schemes.test_action
 
 <pre>
-xcode_schemes.test_action(<a href="#xcode_schemes.test_action-targets">targets</a>, <a href="#xcode_schemes.test_action-args">args</a>, <a href="#xcode_schemes.test_action-diagnostics">diagnostics</a>, <a href="#xcode_schemes.test_action-env">env</a>, <a href="#xcode_schemes.test_action-expand_variables_based_on">expand_variables_based_on</a>, <a href="#xcode_schemes.test_action-pre_actions">pre_actions</a>,
-                          <a href="#xcode_schemes.test_action-post_actions">post_actions</a>)
+xcode_schemes.test_action(<a href="#xcode_schemes.test_action-targets">targets</a>, <a href="#xcode_schemes.test_action-args">args</a>, <a href="#xcode_schemes.test_action-build_configuration">build_configuration</a>, <a href="#xcode_schemes.test_action-diagnostics">diagnostics</a>, <a href="#xcode_schemes.test_action-env">env</a>,
+                          <a href="#xcode_schemes.test_action-expand_variables_based_on">expand_variables_based_on</a>, <a href="#xcode_schemes.test_action-pre_actions">pre_actions</a>, <a href="#xcode_schemes.test_action-post_actions">post_actions</a>)
 </pre>
 
 Constructs a test action for an Xcode scheme.
@@ -362,6 +367,7 @@ Constructs a test action for an Xcode scheme.
 | :------------- | :------------- | :------------- |
 | <a id="xcode_schemes.test_action-targets"></a>targets |  A <code>sequence</code> of target labels as <code>string</code> values.   |  none |
 | <a id="xcode_schemes.test_action-args"></a>args |  Optional. A <code>list</code> of <code>string</code> arguments that should be passed to the target when executed. If both this and <code>env</code> are <code>None</code> (not just empty), then the launch action's arguments will be inherited.   |  <code>None</code> |
+| <a id="xcode_schemes.test_action-build_configuration"></a>build_configuration |  Optional. The name of the Xcode configuration to use for this action. If not set, then the configuration determined by <code>xcodeproj.default_xcode_configuration</code> will be used.   |  <code>None</code> |
 | <a id="xcode_schemes.test_action-diagnostics"></a>diagnostics |  Optional. A value returned by <code>xcode_schemes.diagnostics</code>.   |  <code>None</code> |
 | <a id="xcode_schemes.test_action-env"></a>env |  Optional. A <code>dict</code> of <code>string</code> values that will be set as environment variables when the target is executed. If both this and <code>args</code> are <code>None</code> (not just empty), then the launch action's environment variables will be inherited.   |  <code>None</code> |
 | <a id="xcode_schemes.test_action-expand_variables_based_on"></a>expand_variables_based_on |  Optional. One of the specified test target labels. If no value is provided, one of the test targets will be selected. If no expansion context is desired, use the <code>string</code> value <code>none</code>.   |  <code>None</code> |
