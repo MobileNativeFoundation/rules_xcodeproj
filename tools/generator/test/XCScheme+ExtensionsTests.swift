@@ -185,7 +185,7 @@ extension XCSchemeExtensionsTests {
                 .init(skipped: false, buildableReference: unitTestTargetInfo.buildableReference),
                 .init(skipped: false, buildableReference: uiTestTargetInfo.buildableReference),
             ],
-            shouldUseLaunchSchemeArgsEnv: false,
+            shouldUseLaunchSchemeArgsEnv: true,
             environmentVariables: .bazelLaunchEnvironmentVariables
         )
         XCTAssertEqual(actual, expected)
