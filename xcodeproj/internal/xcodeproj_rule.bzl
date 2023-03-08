@@ -173,7 +173,7 @@ def _process_extra_files(
     ]
 
     # Add unowned extra files
-    extra_files.append(parsed_file_path(ctx.build_file_path))
+    extra_files.append(parsed_file_path(ctx.attr.runner_build_file))
     for target in ctx.attr.unowned_extra_files:
         extra_files.extend([
             file_path(file)
@@ -942,17 +942,6 @@ def _write_spec(
             continue
         target_hosts.setdefault(s.hosted, []).append(s.host)
 
-    # `custom_xcode_schemes`
-    if ctx.attr.schemes_json == "":
-        custom_xcode_schemes_json = "[]"
-    else:
-        custom_xcode_schemes_json = ctx.attr.schemes_json
-
-    custom_schemes_output = ctx.actions.declare_file(
-        "{}-custom_xcode_schemes.json".format(ctx.attr.name),
-    )
-    ctx.actions.write(custom_schemes_output, custom_xcode_schemes_json)
-
     # TODO: Strip fat frameworks instead of setting `VALIDATE_WORKSPACE`
 
     spec_dto = {
@@ -1073,7 +1062,7 @@ def _write_spec(
     )
     ctx.actions.write(project_spec_output, project_spec_json)
 
-    return [project_spec_output, custom_schemes_output] + target_shards
+    return [project_spec_output, ctx.file.schemes_json] + target_shards
 
 def _write_xccurrentversions(*, ctx, xccurrentversion_files):
     containers_file = ctx.actions.declare_file(
@@ -1684,242 +1673,92 @@ def make_xcodeproj_rule(
 
     attrs = {
         "adjust_schemes_for_swiftui_previews": attr.bool(
-            default = False,
-            doc = """\
-Whether to adjust schemes in BwB mode to explicitly include transitive
-dependencies that are able to run SwiftUI Previews. For example, this changes a
-scheme for an single application target to also include any app clip, app
-extension, framework, or watchOS app dependencies.
-""",
             mandatory = True,
         ),
         "bazel_path": attr.string(
-            doc = """\
-The path to the `bazel` binary or wrapper script. If the path is relative it
-will be resolved using the `PATH` environment variable (which is set to
-`/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin` in Xcode). If
-you wan to specify a path to a workspace-relative binary, you must prepend the
-path with `./` (e.g. `"./bazelw"`).
-""",
             mandatory = True,
         ),
         "build_mode": attr.string(
-            doc = """\
-The build mode the generated project should use.
-
-If this is set to `"xcode"`, the project will use the Xcode build system to
-build targets. Generated files and unfocused targets (see the `focused_targets`
-and `unfocused_targets` attributes) will be built with Bazel.
-
-If this is set to `"bazel"`, the project will use Bazel to build targets, inside
-of Xcode. The Xcode build system still unavoidably orchestrates some things at a
-high level.
-""",
             mandatory = True,
-            values = ["xcode", "bazel"],
         ),
         "config": attr.string(
             mandatory = True,
         ),
         "default_xcode_configuration": attr.string(),
         "focused_targets": attr.string_list(
-            doc = """\
-A `list` of target labels as `string` values. If specified, only these targets
-will be included in the generated project; all other targets will be excluded,
-as if they were listed explicitly in the `unfocused_targets` attribute. The
-labels must match transitive dependencies of the targets specified in the
-`top_level_targets` attribute.
-""",
-            default = [],
+            mandatory = True,
         ),
         "install_directory": attr.string(
-            doc = """\
-The directory where the generated project will be written to. The path is
-relative to the workspace root.
-""",
             mandatory = True,
         ),
         "minimum_xcode_version": attr.string(
-            doc = """\
-The minimum Xcode version that the generated project supports. Newer Xcode
-versions can support newer features, so setting this to the highest value you
-can will enable the most features. The value is the dot separated version
-number (e.g. "13.4.1", "14", "14.1"). Defaults to whichever version of Xcode
-that Bazel uses during project generation.
-""",
+            mandatory = True,
         ),
         "owned_extra_files": attr.label_keyed_string_dict(
             allow_files = True,
-            doc = """\
-An optional dictionary of files to be added to the project. The key represents
-the file and the value is the label of the target it should be associated with.
-These files won't be added to the project if the target is unfocused.
-""",
+            mandatory = True,
         ),
         "post_build": attr.string(
-            doc = """\
-The text of a script that will be run after the build. For example:
-`./post-build.sh`, `"$PROJECT_DIR/post-build.sh"`.
-""",
+            mandatory = True,
         ),
         "pre_build": attr.string(
-            doc = """\
-The text of a script that will be run before the build. For example:
-`./pre-build.sh`, `"$PROJECT_DIR/pre-build.sh"`.
-""",
+            mandatory = True,
         ),
         "project_name": attr.string(
-            doc = "The name to use for the `.xcodeproj` file.",
             mandatory = True,
         ),
         "project_options": attr.string_dict(
-            doc = "A dictionary of global project options.",
             mandatory = True,
         ),
-        "runner_label": attr.string(doc = "The label of the runner target."),
-        "scheme_autogeneration_mode": attr.string(
-            doc = "Specifies how Xcode schemes are automatically generated.",
-            default = "auto",
-            values = ["auto", "none", "all"],
+        "runner_build_file": attr.string(
+            mandatory = True,
         ),
-        "schemes_json": attr.string(
-            doc = """\
-A JSON string representing a list of Xcode schemes to create.
-""",
+        "runner_label": attr.string(
+            mandatory = True,
+        ),
+        "scheme_autogeneration_mode": attr.string(
+            mandatory = True,
+        ),
+        "schemes_json": attr.label(
+            allow_single_file = True,
+            mandatory = True,
         ),
         "top_level_device_targets": attr.label_list(
-            doc = """\
-A list of top-level targets that should have Xcode targets, with device
-target environments, generated for them and their transitive dependencies.
-
-Only targets that you want to build for device and be code signed should be
-listed here.
-
-If a target listed here has different device and simulator deployment targets
-(e.g. iOS targets), then the Xcode target generated will target devices,
-otherwise it will be unaffected (i.e. macOS targets). To have a simulator
-deployment target, list the target in the `top_level_simulator_targets`
-attribute instead. Listing a target both here and in the
-`top_level_simulator_targets` attribute will result in a single Xcode target
-that can be built for both device and simulator. Targets that don't have
-different device and simulator deployment targets (i.e. macOS targets) should
-only be listed in one of `top_level_device_targets` or
-`top_level_simulator_targets`, or they will appear as two separate but similar
-Xcode targets.
-""",
             cfg = _device_transition,
             aspects = [xcodeproj_aspect],
             providers = [XcodeProjInfo],
+            mandatory = True,
         ),
         "top_level_simulator_targets": attr.label_list(
-            doc = """\
-A list of top-level targets that should have Xcode targets, with simulator
-target environments, generated for them and their transitive dependencies.
-
-If a target listed here has different device and simulator deployment targets
-(e.g. iOS targets), then the Xcode target generated will target the simulator,
-otherwise it will be unaffected (i.e. macOS targets). To have a device
-deployment target, list the target in the `top_level_device_targets` attribute
-instead. Listing a target both here and in the `top_level_device_targets`
-attribute will result in a single Xcode target that can be built for both device
-and simulator. Targets that don't have different device and simulator deployment
-targets (i.e. macOS targets) should only be listed in one of
-`top_level_device_targets` or `top_level_simulator_targets`, or they will appear
-as two separate but similar Xcode targets.
-""",
             cfg = _simulator_transition,
             aspects = [xcodeproj_aspect],
             providers = [XcodeProjInfo],
+            mandatory = True,
         ),
         "unfocused_targets": attr.string_list(
-            doc = """\
-A `list` of target labels as `string` values. Any targets in the transitive
-dependencies of the targets specified in the `top_level_targets` attribute with
-a matching label will be excluded from the generated project. This overrides any
-targets specified in the `focused_targets` attribute.
-""",
-            default = [],
+            mandatory = True,
         ),
         "unowned_extra_files": attr.label_list(
             allow_files = True,
-            doc = """\
-An optional list of files to be added to the project but not associated with any
-targets.
-""",
+            mandatory = True,
         ),
         "ios_device_cpus": attr.string(
-            doc = """\
-The value to use for `--ios_multi_cpus` when building the transitive
-dependencies of the targets specified in the `top_level_device_targets`
-attribute.
-
-**Warning:** Changing this value will affect the Starlark transition hash of all
-transitive dependencies of the targets specified in the
-`top_level_device_targets` attribute, even if they aren't iOS targets.
-""",
             mandatory = True,
         ),
         "ios_simulator_cpus": attr.string(
-            doc = """\
-The value to use for `--ios_multi_cpus` when building the transitive
-dependencies of the targets specified in the `top_level_simulator_targets`
-attribute.
-
-If no value is specified, it defaults to the simulator cpu that goes with
-`--host_cpu` (i.e. `sim_arm64` on Apple Silicon and `x86_64` on Intel).
-
-**Warning:** Changing this value will affect the Starlark transition hash of all
-transitive dependencies of the targets specified in the
-`top_level_simulator_targets` attribute, even if they aren't iOS targets.
-""",
+            mandatory = True,
         ),
         "tvos_device_cpus": attr.string(
-            doc = """\
-The value to use for `--tvos_cpus` when building the transitive dependencies of
-the targets specified in the `top_level_device_targets` attribute.
-
-**Warning:** Changing this value will affect the Starlark transition hash of all
-transitive dependencies of the targets specified in the
-`top_level_device_targets` attribute, even if they aren't tvOS targets.
-""",
             mandatory = True,
         ),
         "tvos_simulator_cpus": attr.string(
-            doc = """\
-The value to use for `--tvos_cpus` when building the transitive dependencies of
-the targets specified in the `top_level_simulator_targets` attribute.
-
-If no value is specified, it defaults to the simulator cpu that goes with
-`--host_cpu` (i.e. `sim_arm64` on Apple Silicon and `x86_64` on Intel).
-
-**Warning:** Changing this value will affect the Starlark transition hash of all
-transitive dependencies of the targets specified in the
-`top_level_simulator_targets` attribute, even if they aren't tvOS targets.
-""",
+            mandatory = True,
         ),
         "watchos_device_cpus": attr.string(
-            doc = """\
-The value to use for `--watchos_cpus` when building the transitive dependencies
-of the targets specified in the `top_level_device_targets` attribute.
-
-**Warning:** Changing this value will affect the Starlark transition hash of all
-transitive dependencies of the targets specified in the
-`top_level_device_targets` attribute, even if they aren't watchOS targets.
-""",
             mandatory = True,
         ),
         "watchos_simulator_cpus": attr.string(
-            doc = """\
-The value to use for `--watchos_cpus` when building the transitive dependencies
-of the targets specified in the `top_level_simulator_targets` attribute.
-
-If no value is specified, it defaults to the simulator cpu that goes with
-`--host_cpu` (i.e. `arm64` on Apple Silicon and `x86_64` on Intel).
-
-**Warning:** Changing this value will affect the Starlark transition hash of all
-transitive dependencies of the targets specified in the
-`top_level_simulator_targets` attribute, even if they aren't watchOS targets.
-""",
+            mandatory = True,
         ),
         "_allowlist_function_transition": attr.label(
             default = Label(
@@ -1995,6 +1834,3 @@ transitive dependencies of the targets specified in the
         attrs = attrs,
         executable = True,
     )
-
-bwx_xcodeproj = make_xcodeproj_rule(build_mode = "xcode")
-bwb_xcodeproj = make_xcodeproj_rule(build_mode = "bazel")

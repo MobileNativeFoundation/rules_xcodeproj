@@ -2,7 +2,6 @@
 
 load(":providers.bzl", "XcodeProjRunnerOutputInfo")
 load(":xcodeproj_macro.bzl", "xcodeproj")
-load(":xcodeproj_rule.bzl", "make_xcodeproj_rule")
 
 _MINIMUM_XCODE_VERSION = "13.0"
 
@@ -20,7 +19,8 @@ def _fixtures_transition_impl(_settings, _attr):
         "//command_line_option:watchos_minimum_os": "7.6.2",
     }
 
-_fixtures_transition = transition(
+# For use in fixture `xcodeproj_runner` generated `defs.bzl` files
+fixtures_transition = transition(
     implementation = _fixtures_transition_impl,
     inputs = [],
     outputs = [
@@ -132,17 +132,6 @@ def validate_fixtures(**kwargs):
         **kwargs
     )
 
-_bwx_fixture_xcodeproj = make_xcodeproj_rule(
-    build_mode = "xcode",
-    is_fixture = True,
-    xcodeproj_transition = _fixtures_transition,
-)
-_bwb_fixture_xcodeproj = make_xcodeproj_rule(
-    build_mode = "bazel",
-    is_fixture = True,
-    xcodeproj_transition = _fixtures_transition,
-)
-
 def fixture_output_name(fixture_name):
     return "{}_output".format(fixture_name)
 
@@ -201,11 +190,6 @@ def xcodeproj_fixture(
             visibility = ["//test:__subpackages__"],
         )
 
-        if mode == "bazel":
-            xcodeproj_rule = _bwb_fixture_xcodeproj
-        else:
-            xcodeproj_rule = _bwx_fixture_xcodeproj
-
         xcodeproj(
             name = fixture_name,
             associated_extra_files = associated_extra_files,
@@ -224,7 +208,6 @@ def xcodeproj_fixture(
             scheme_autogeneration_mode = scheme_autogeneration_mode,
             schemes = schemes,
             unfocused_targets = unfocused_targets,
-            xcodeproj_rule = xcodeproj_rule,
             visibility = ["//test:__subpackages__"],
         )
 
