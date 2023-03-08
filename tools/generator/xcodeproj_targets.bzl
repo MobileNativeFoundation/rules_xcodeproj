@@ -90,6 +90,28 @@ def get_xcode_schemes():
                 ),
                 working_directory = "$(BUILD_WORKSPACE_DIRECTORY)",
             ),
+            profile_action = xcode_schemes.profile_action(
+                _APP_TARGET,
+                args = [
+                    "bazel-output-base/rules_xcodeproj/build_output_base/execroot/rules_xcodeproj/bazel-out/darwin_arm64-opt/bin/tools/generator/xcodeproj.generator_root_dirs",
+                    "bazel-output-base/rules_xcodeproj/build_output_base/execroot/rules_xcodeproj/bazel-out/darwin_arm64-opt/bin/tools/generator/xcodeproj.generator_xccurrentversions",
+                    "bazel-output-base/rules_xcodeproj/build_output_base/execroot/rules_xcodeproj/bazel-out/darwin_arm64-opt/bin/tools/generator/xcodeproj.generator_extensionpointidentifiers",
+                    "/tmp/out.xcodeproj",
+                    "/tmp/out.final.xcodeproj",
+                    "bazel",
+                    "0",
+                    "/tmp/specs/xcodeproj.generator-project_spec.json",
+                    "/tmp/specs/xcodeproj.generator-targets_spec.0.json",
+                    "/tmp/specs/xcodeproj.generator-targets_spec.1.json",
+                    "/tmp/specs/xcodeproj.generator-targets_spec.2.json",
+                    "/tmp/specs/xcodeproj.generator-targets_spec.3.json",
+                    "/tmp/specs/xcodeproj.generator-targets_spec.4.json",
+                    "/tmp/specs/xcodeproj.generator-targets_spec.5.json",
+                    "/tmp/specs/xcodeproj.generator-targets_spec.6.json",
+                    "/tmp/specs/xcodeproj.generator-targets_spec.7.json",
+                ],
+                working_directory = "$(BUILD_WORKSPACE_DIRECTORY)",
+            ),
             test_action = xcode_schemes.test_action(
                 [_TEST_TARGET],
                 # This is not necessary for the generator tests. It is here to help

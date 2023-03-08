@@ -129,6 +129,7 @@ extension XCScheme {
                 )
             ]
             profileAction = try .init(
+                buildMode: buildMode,
                 profileActionInfo: profileActionInfo,
                 otherPreActions: otherPreActions
             )
@@ -363,15 +364,38 @@ extension XCScheme.LaunchAction {
 
 extension XCScheme.ProfileAction {
     convenience init(
+        buildMode: BuildMode,
         profileActionInfo: XCSchemeInfo.ProfileActionInfo,
         otherPreActions: [XCScheme.ExecutionAction]
     ) throws {
+        let commandlineArguments = XCScheme.CommandLineArguments(
+            xcSchemeInfoArgs: profileActionInfo.args
+        )
+        let shouldUseLaunchSchemeArgsEnv = commandlineArguments == nil &&
+            profileActionInfo.env == nil
+
+        let environmentVariables: [XCScheme.EnvironmentVariable]?
+        if shouldUseLaunchSchemeArgsEnv {
+            environmentVariables = nil
+        } else {
+            environmentVariables = buildMode.launchEnvironmentVariables.merged(
+                with: (profileActionInfo.env ?? [:])
+                    .asLaunchEnvironmentVariables()
+            )
+        }
+
         self.init(
             buildableProductRunnable: profileActionInfo.runnable,
             buildConfiguration: profileActionInfo.buildConfigurationName,
             preActions: otherPreActions,
-            macroExpansion: try profileActionInfo.macroExpansion,            customWorkingDirectory: profileActionInfo.workingDirectory,
-            useCustomWorkingDirectory: profileActionInfo.workingDirectory != nil
+            macroExpansion: try profileActionInfo.macroExpansion,
+            shouldUseLaunchSchemeArgsEnv: shouldUseLaunchSchemeArgsEnv,
+            customWorkingDirectory: profileActionInfo.workingDirectory,
+            useCustomWorkingDirectory:
+                profileActionInfo.workingDirectory != nil,
+            commandlineArguments: commandlineArguments,
+            environmentVariables: (environmentVariables?.isEmpty ?? true) ?
+                nil : environmentVariables
         )
     }
 }

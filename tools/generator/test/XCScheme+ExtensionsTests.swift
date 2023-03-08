@@ -329,6 +329,109 @@ extension XCSchemeExtensionsTests {
     }
 }
 
+// MARK: XCScheme.ProfileAction Initializer Tests
+
+extension XCSchemeExtensionsTests {
+    func test_ProfileAction_init_noCustomEnvArgsWorkingDir_xcode() throws {
+        let profileActionInfo = XCSchemeInfo.ProfileActionInfo(
+            resolveHostsFor: .init(
+                buildConfigurationName: "Foo",
+                targetInfo: appTargetInfo
+            ),
+            topLevelTargetInfos: []
+        )
+        guard let profileActionInfo = profileActionInfo else {
+            XCTFail("Expected a `ProfileActionInfo`")
+            return
+        }
+
+        let productType = profileActionInfo.targetInfo.productType
+        let profileAction = try XCScheme.ProfileAction(
+            buildMode: .xcode,
+            profileActionInfo: profileActionInfo,
+            otherPreActions: []
+        )
+        let expected = XCScheme.ProfileAction(
+            runnable: profileActionInfo.runnable,
+            buildConfiguration: profileActionInfo.buildConfigurationName,
+            macroExpansion: try profileActionInfo.macroExpansion,
+            askForAppToLaunch: nil,
+            environmentVariables: nil,
+            launchAutomaticallySubstyle: productType.launchAutomaticallySubstyle
+        )
+        XCTAssertNoDifference(profileAction, expected)
+    }
+
+    func test_ProfileAction_init_noCustomEnvArgsWorkingDir_bazel() throws {
+        let profileActionInfo = XCSchemeInfo.ProfileActionInfo(
+            resolveHostsFor: .init(
+                buildConfigurationName: "Foo",
+                targetInfo: appTargetInfo
+            ),
+            topLevelTargetInfos: []
+        )
+        guard let profileActionInfo = profileActionInfo else {
+            XCTFail("Expected a `ProfileActionInfo`")
+            return
+        }
+
+        let productType = profileActionInfo.targetInfo.productType
+        let profileAction = try XCScheme.ProfileAction(
+            buildMode: .bazel,
+            profileActionInfo: profileActionInfo,
+            otherPreActions: []
+        )
+        let expected = XCScheme.ProfileAction(
+            runnable: profileActionInfo.runnable,
+            buildConfiguration: profileActionInfo.buildConfigurationName,
+            macroExpansion: try profileActionInfo.macroExpansion,
+            askForAppToLaunch: nil,
+            environmentVariables: nil,
+            launchAutomaticallySubstyle: productType.launchAutomaticallySubstyle
+        )
+        XCTAssertNoDifference(profileAction, expected)
+    }
+
+    func test_ProfileAction_init_customEnvArgsWorkingDir_bazel() throws {
+        let args = ["--hello"]
+        let env = ["CUSTOM_ENV_VAR": "goodbye"]
+        let profileActionInfo = XCSchemeInfo.ProfileActionInfo(
+            resolveHostsFor: .init(
+                buildConfigurationName: "Foo",
+                targetInfo: appTargetInfo,
+                args: args,
+                env: env
+            ),
+            topLevelTargetInfos: []
+        )
+        guard let profileActionInfo = profileActionInfo else {
+            XCTFail("Expected a `LaunchActionInfo`")
+            return
+        }
+
+        let productType = profileActionInfo.targetInfo.productType
+        let profileAction = try XCScheme.ProfileAction(
+            buildMode: .bazel,
+            profileActionInfo: profileActionInfo,
+            otherPreActions: []
+        )
+        let expected = XCScheme.ProfileAction(
+            runnable: profileActionInfo.runnable,
+            buildConfiguration: profileActionInfo.buildConfigurationName,
+            macroExpansion: try profileActionInfo.macroExpansion,
+            shouldUseLaunchSchemeArgsEnv: false,
+            askForAppToLaunch: nil,
+            commandlineArguments: .init(arguments: [.init(name: args[0], enabled: true)]),
+            environmentVariables: (
+                [.init(variable: "CUSTOM_ENV_VAR", value: env["CUSTOM_ENV_VAR"]!, enabled: true)] +
+                    .bazelLaunchEnvironmentVariables
+            ).sortedLocalizedStandard(),
+            launchAutomaticallySubstyle: productType.launchAutomaticallySubstyle
+        )
+        XCTAssertNoDifference(profileAction, expected)
+    }
+}
+
 // MARK: - XCScheme.ExecutionAction Initializer Tests
 
 extension XCSchemeExtensionsTests {

@@ -199,7 +199,7 @@ load("@rules_xcodeproj//xcodeproj:defs.bzl", "xcode_schemes")
 ## xcode_schemes.scheme
 
 <pre>
-xcode_schemes.scheme(<a href="#xcode_schemes.scheme-name">name</a>, <a href="#xcode_schemes.scheme-build_action">build_action</a>, <a href="#xcode_schemes.scheme-test_action">test_action</a>, <a href="#xcode_schemes.scheme-launch_action">launch_action</a>)
+xcode_schemes.scheme(<a href="#xcode_schemes.scheme-name">name</a>, <a href="#xcode_schemes.scheme-build_action">build_action</a>, <a href="#xcode_schemes.scheme-launch_action">launch_action</a>, <a href="#xcode_schemes.scheme-profile_action">profile_action</a>, <a href="#xcode_schemes.scheme-test_action">test_action</a>)
 </pre>
 
 Returns a `struct` representing an Xcode scheme.
@@ -211,8 +211,9 @@ Returns a `struct` representing an Xcode scheme.
 | :------------- | :------------- | :------------- |
 | <a id="xcode_schemes.scheme-name"></a>name |  The user-visible name for the scheme as a <code>string</code>.   |  none |
 | <a id="xcode_schemes.scheme-build_action"></a>build_action |  Optional. A value returned by <code>xcode_schemes.build_action</code>.   |  <code>None</code> |
-| <a id="xcode_schemes.scheme-test_action"></a>test_action |  Optional. A value returned by <code>xcode_schemes.test_action</code>.   |  <code>None</code> |
 | <a id="xcode_schemes.scheme-launch_action"></a>launch_action |  Optional. A value returned by <code>xcode_schemes.launch_action</code>.   |  <code>None</code> |
+| <a id="xcode_schemes.scheme-profile_action"></a>profile_action |  Optional. A value returned by <code>xcode_schemes.profile_action</code>.   |  <code>None</code> |
+| <a id="xcode_schemes.scheme-test_action"></a>test_action |  Optional. A value returned by <code>xcode_schemes.test_action</code>.   |  <code>None</code> |
 
 **RETURNS**
 
@@ -316,6 +317,31 @@ Constructs a launch action for an Xcode scheme.
 **RETURNS**
 
 A `struct` representing a launch action.
+
+
+<a id="xcode_schemes.profile_action"></a>
+
+## xcode_schemes.profile_action
+
+<pre>
+xcode_schemes.profile_action(<a href="#xcode_schemes.profile_action-target">target</a>, <a href="#xcode_schemes.profile_action-args">args</a>, <a href="#xcode_schemes.profile_action-env">env</a>, <a href="#xcode_schemes.profile_action-working_directory">working_directory</a>)
+</pre>
+
+Constructs a profile action for an Xcode scheme.
+
+**PARAMETERS**
+
+
+| Name  | Description | Default Value |
+| :------------- | :------------- | :------------- |
+| <a id="xcode_schemes.profile_action-target"></a>target |  A target label as a <code>string</code> value.   |  none |
+| <a id="xcode_schemes.profile_action-args"></a>args |  Optional. A <code>list</code> of <code>string</code> arguments that should be passed to the target when executed. If both this and <code>env</code> are <code>None</code> (not just empty), then the launch action's arguments will be inherited.   |  <code>None</code> |
+| <a id="xcode_schemes.profile_action-env"></a>env |  Optional. A <code>dict</code> of <code>string</code> values that will be set as environment variables when the target is executed. If both this and <code>args</code> are <code>None</code> (not just empty), then the launch action's environment variables will be inherited.   |  <code>None</code> |
+| <a id="xcode_schemes.profile_action-working_directory"></a>working_directory |  Optional. A <code>string</code> that will be set as the custom working directory in the Xcode scheme's launch action. Relative paths will be relative to the value of <code>target</code>'s <code>BUILT_PRODUCTS_DIR</code>, which is unique to it.   |  <code>None</code> |
+
+**RETURNS**
+
+A `struct` representing a profile action.
 
 
 <a id="xcode_schemes.test_action"></a>
