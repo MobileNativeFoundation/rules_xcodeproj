@@ -3,10 +3,10 @@ import %workspace%/../../shared.bazelrc
 
 # Exercise the extra flags feature
 
-build:rules_xcodeproj --@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:extra_common_flags='--verbose_failures'
-build:rules_xcodeproj --@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:extra_generator_flags='--noverbose_failures'
-build:rules_xcodeproj --@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:extra_indexbuild_flags='--noverbose_failures'
-build:rules_xcodeproj --@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:extra_swiftuipreviews_flags='--noverbose_failures'
+build:rules_xcodeproj --@rules_xcodeproj//xcodeproj:extra_common_flags='--verbose_failures'
+build:rules_xcodeproj --@rules_xcodeproj//xcodeproj:extra_generator_flags='--noverbose_failures'
+build:rules_xcodeproj --@rules_xcodeproj//xcodeproj:extra_indexbuild_flags='--noverbose_failures'
+build:rules_xcodeproj --@rules_xcodeproj//xcodeproj:extra_swiftuipreviews_flags='--noverbose_failures'
 
 build:rules_xcodeproj_integration --define=foo=bar
 

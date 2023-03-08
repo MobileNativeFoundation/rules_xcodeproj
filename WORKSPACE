@@ -1,4 +1,4 @@
-workspace(name = "com_github_buildbuddy_io_rules_xcodeproj")
+workspace(name = "rules_xcodeproj")
 
 load(
     "//xcodeproj:repositories.bzl",

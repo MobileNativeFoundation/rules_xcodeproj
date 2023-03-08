@@ -46,7 +46,7 @@ x_templates:
         - examples/sanitizers/setup-bazel-output-base
 
   commands:
-    - &set_release_archive_override "--output_base=setup-bazel-output-base run --config=workflows @com_github_buildbuddy_io_rules_xcodeproj//tools:set_release_archive_override"
+    - &set_release_archive_override "--output_base=setup-bazel-output-base run --config=workflows @rules_xcodeproj//tools:set_release_archive_override"
     - &validate_integration "run --config=workflows --config=fixtures //test/fixtures:validate"
     - &build_all "build --config=workflows --noexperimental_enable_bzlmod //..."
     - &test_all "test --config=workflows --noexperimental_enable_bzlmod //..."

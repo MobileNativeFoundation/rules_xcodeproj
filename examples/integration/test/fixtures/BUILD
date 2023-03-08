@@ -1,5 +1,5 @@
 load(
-    "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:testing.bzl",
+    "@rules_xcodeproj//xcodeproj:testing.bzl",
     "update_fixtures",
     "validate_fixtures",
     "xcodeproj_fixture",
