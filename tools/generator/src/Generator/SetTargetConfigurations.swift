@@ -478,7 +478,6 @@ Test host target with key "\(testHostKey)" not found in \
         for target in targets {
             let xcodeConfiguration = target.xcodeConfiguration
 
-            // FIXME: Only do this once per Xcode configuration...
             guard target.product.type != .uiTestBundle else {
                 buildSettings[
                     xcodeConfiguration, default: [:]
