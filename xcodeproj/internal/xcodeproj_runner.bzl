@@ -117,7 +117,14 @@ def _write_schemes_json(*, actions, name, schemes_json):
     actions.write(output, schemes_json if schemes_json else "[]")
     return output
 
-def _write_generator_defz_bzl(*, actions, attr, is_fixture, name, template):
+def _write_generator_defz_bzl(
+        *,
+        actions,
+        attr,
+        is_fixture,
+        name,
+        repo,
+        template):
     output = actions.declare_file("{}.generator.defs.bzl".format(name))
 
     build_mode = attr.build_mode
@@ -126,19 +133,17 @@ def _write_generator_defz_bzl(*, actions, attr, is_fixture, name, template):
         """\
 # buildifier: disable=bzl-visibility
 load(
-    # FIXME: Make this path work with any bzlmod repo name
-    "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj/internal:xcodeproj_rule.bzl",
+    "{repo}//xcodeproj/internal:xcodeproj_rule.bzl",
     "make_xcodeproj_rule",
-)""",
+)""".format(repo = repo),
     ]
     if is_fixture:
         loads.append("""\
 # buildifier: disable=bzl-visibility
 load(
-    # FIXME: Make this path work with any bzlmod repo name
-    "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj/internal:fixtures.bzl",
+    "{repo}//xcodeproj/internal:fixtures.bzl",
     "fixtures_transition",
-)""")
+)""".format(repo = repo))
 
     actions.expand_template(
         template = template,
@@ -277,6 +282,7 @@ def _xcodeproj_runner_impl(ctx):
     is_fixture = ctx.attr.is_fixture
     name = ctx.attr.name
     project_name = ctx.attr.project_name
+    repo = str(ctx.attr._generator_defs_bzl_template.label).split("//", 1)[0]
 
     xcode_version = _get_xcode_product_version(
         xcode_config = ctx.attr._xcode_config[apple_common.XcodeVersionConfig],
@@ -311,6 +317,7 @@ def _xcodeproj_runner_impl(ctx):
         attr = attr,
         is_fixture = is_fixture,
         name = name,
+        repo = repo,
         template = ctx.file._generator_defs_bzl_template,
     )
 
