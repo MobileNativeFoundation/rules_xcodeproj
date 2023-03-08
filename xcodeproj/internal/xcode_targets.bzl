@@ -522,7 +522,7 @@ def _xcode_target_to_dto(
         excluded_targets = {},
         target_merges = {},
         unfocused_dependencies,
-        xcode_configuration,
+        xcode_configurations,
         xcode_generated_paths,
         xcode_generated_paths_file):
     inputs = xcode_target.inputs
@@ -538,8 +538,8 @@ def _xcode_target_to_dto(
         "p": _product_to_dto(xcode_target.product),
     }
 
-    if xcode_configuration != "Debug":
-        dto["x"] = xcode_configuration
+    if xcode_configurations != ["Debug"]:
+        dto["x"] = xcode_configurations
 
     if xcode_target._compile_target:
         dto["3"] = {

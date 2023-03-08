@@ -300,22 +300,22 @@ final class DisambiguateTargetsTests: XCTestCase {
 
         let targets: [TargetID: Target] = [
             "A 1 - R": Target.mock(
-                xcodeConfiguration: "Release",
+                xcodeConfigurations: ["Release"],
                 platform: .device(arch: "arm64"),
                 product: .init(type: .staticLibrary, name: "A", path: "")
             ),
             "A 1 - D": Target.mock(
-                xcodeConfiguration: "Debug",
+                xcodeConfigurations: ["Debug"],
                 platform: .device(arch: "arm64"),
                 product: .init(type: .staticLibrary, name: "A", path: "")
             ),
             "A 2 - R": Target.mock(
-                xcodeConfiguration: "Release",
+                xcodeConfigurations: ["Release"],
                 platform: .simulator(arch: "x86_64"),
                 product: .init(type: .staticLibrary, name: "A", path: "")
             ),
             "A 2 - D": Target.mock(
-                xcodeConfiguration: "Debug",
+                xcodeConfigurations: ["Debug"],
                 platform: .simulator(arch: "x86_64"),
                 product: .init(type: .staticLibrary, name: "A", path: "")
             ),
