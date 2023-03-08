@@ -289,7 +289,7 @@ extension XCScheme.TestAction {
             with: testActionInfo.env.asLaunchEnvironmentVariables()
         )
         let shouldUseLaunchSchemeArgsEnv = (
-            commandlineArguments == nil && environmentVariables.isEmpty
+            commandlineArguments == nil && testActionInfo.env.isEmpty
         )
 
         self.init(
