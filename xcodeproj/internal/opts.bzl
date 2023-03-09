@@ -377,7 +377,7 @@ def _process_conlyopts(opts, *, build_settings):
     framework_includes = []
     has_debug_info = {}
 
-    def process(opt, _):
+    def _inner_process_conlyopts(opt, _):
         if opt.startswith("-O"):
             optimizations.append(opt)
             return None
@@ -406,7 +406,7 @@ def _process_conlyopts(opts, *, build_settings):
     processed_opts = _process_base_compiler_opts(
         opts = opts,
         skip_opts = _CC_SKIP_OPTS,
-        extra_processing = process,
+        extra_processing = _inner_process_conlyopts,
     )
 
     has_debug_info = bool(has_debug_info)
@@ -438,7 +438,7 @@ def _process_cxxopts(opts, *, build_settings):
     framework_includes = []
     has_debug_info = {}
 
-    def process(opt, _):
+    def _inner_process_cxxopts(opt, _):
         if opt.startswith("-O"):
             optimizations.append(opt)
             return None
@@ -467,7 +467,7 @@ def _process_cxxopts(opts, *, build_settings):
     processed_opts = _process_base_compiler_opts(
         opts = opts,
         skip_opts = _CC_SKIP_OPTS,
-        extra_processing = process,
+        extra_processing = _inner_process_cxxopts,
     )
 
     has_debug_info = bool(has_debug_info)
@@ -584,7 +584,7 @@ def _process_swiftcopts(
     clang_opts = []
     has_debug_info = {}
 
-    def process(opt, previous_opt):
+    def _inner_process_swiftcopts(opt, previous_opt):
         # TODO: handle the format "-Xcc -iquote -Xcc path"
         if opt.startswith("-isystem"):
             path = opt[8:]
@@ -710,7 +710,7 @@ Using VFS overlays with `build_mode = "xcode"` is unsupported.
         opts = opts,
         skip_opts = _SWIFTC_SKIP_OPTS,
         compound_skip_opts = _SWIFTC_SKIP_COMPOUND_OPTS,
-        extra_processing = process,
+        extra_processing = _inner_process_swiftcopts,
     )
 
     has_debug_info = bool(has_debug_info)
