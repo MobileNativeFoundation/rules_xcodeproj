@@ -8171,7 +8171,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "perl -pe 's/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
+			shellScript = "perl -pe 's/__BAZEL_XCODE_DEVELOPER_DIR__/\\$(DEVELOPER_DIR)/g; s/__BAZEL_XCODE_SDKROOT__/\\$(SDKROOT)/g; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
 		38D23D8B1AAFCDF9FFBB24FF /* Create linking dependencies */ = {

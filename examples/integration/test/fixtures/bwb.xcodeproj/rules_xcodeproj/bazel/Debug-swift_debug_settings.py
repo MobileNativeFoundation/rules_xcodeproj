@@ -64,7 +64,7 @@ _SETTINGS = {
 		]
 	},
 	"arm64-apple-macosx tool.binary": {
-		"c": "-F$(PROJECT_DIR)/external/examples_command_line_external -I$(SDKROOT)/usr/include/uuid -iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34/bin -iquote$(PROJECT_DIR)/external/examples_command_line_external -iquote$(PROJECT_DIR)/bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34/bin/external/examples_command_line_external -DSECRET_3=\"Hello\" -DSECRET_2=\"World!\" -fmodule-map-file=$(PROJECT_DIR)/bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34/bin/CommandLine/CommandLineToolLib/lib_impl.swift.modulemap -fmodule-map-file=$(PROJECT_DIR)/CommandLine/swift_c_module/c_lib.modulemap -fmodule-map-file=$(PROJECT_DIR)/external/examples_command_line_external/ExternalFramework.framework/Modules/module.modulemap -fmodule-map-file=$(PROJECT_DIR)/bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34/bin/external/examples_command_line_external/Library.swift.modulemap -fmodule-map-file=$(PROJECT_DIR)/bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34/bin/CommandLine/CommandLineToolLib/private_lib.swift.modulemap -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all -iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34/bin -O0 -fstack-protector -fstack-protector-all",
+		"c": "-F$(PROJECT_DIR)/external/examples_command_line_external -I__BAZEL_XCODE_SDKROOT__/usr/include/uuid -iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34/bin -iquote$(PROJECT_DIR)/external/examples_command_line_external -iquote$(PROJECT_DIR)/bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34/bin/external/examples_command_line_external -DSECRET_3=\"Hello\" -DSECRET_2=\"World!\" -fmodule-map-file=$(PROJECT_DIR)/bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34/bin/CommandLine/CommandLineToolLib/lib_impl.swift.modulemap -fmodule-map-file=$(PROJECT_DIR)/CommandLine/swift_c_module/c_lib.modulemap -fmodule-map-file=$(PROJECT_DIR)/external/examples_command_line_external/ExternalFramework.framework/Modules/module.modulemap -fmodule-map-file=$(PROJECT_DIR)/bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34/bin/external/examples_command_line_external/Library.swift.modulemap -fmodule-map-file=$(PROJECT_DIR)/bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34/bin/CommandLine/CommandLineToolLib/private_lib.swift.modulemap -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all -iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34/bin -O0 -fstack-protector -fstack-protector-all",
 		"f": [
 			"$(BAZEL_EXTERNAL)/examples_command_line_external"
 		],
@@ -195,8 +195,8 @@ _SETTINGS = {
 			"$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator",
 			"$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator",
 			"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator",
-			"$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks",
-			"$(SDKROOT)/Developer/Library/Frameworks"
+			"__BAZEL_XCODE_DEVELOPER_DIR__/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks",
+			"__BAZEL_XCODE_SDKROOT__/Developer/Library/Frameworks"
 		],
 		"s": [
 			"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/UI",
@@ -210,8 +210,8 @@ _SETTINGS = {
 			"$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator",
 			"$(BAZEL_EXTERNAL)/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator",
 			"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator",
-			"$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks",
-			"$(SDKROOT)/Developer/Library/Frameworks"
+			"__BAZEL_XCODE_DEVELOPER_DIR__/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks",
+			"__BAZEL_XCODE_SDKROOT__/Developer/Library/Frameworks"
 		],
 		"s": [
 			"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source",
@@ -222,7 +222,7 @@ _SETTINGS = {
 		]
 	},
 	"x86_64-apple-macosx CommandLineTool": {
-		"c": "-F$(PROJECT_DIR)/external/examples_command_line_external -I$(SDKROOT)/usr/include/uuid -iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin -iquote$(PROJECT_DIR)/external/examples_command_line_external -iquote$(PROJECT_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/examples_command_line_external -DSECRET_3=\"Hello\" -DSECRET_2=\"World!\" -fmodule-map-file=$(PROJECT_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/CommandLine/CommandLineToolLib/lib_impl.swift.modulemap -fmodule-map-file=$(PROJECT_DIR)/CommandLine/swift_c_module/c_lib.modulemap -fmodule-map-file=$(PROJECT_DIR)/external/examples_command_line_external/ExternalFramework.framework/Modules/module.modulemap -fmodule-map-file=$(PROJECT_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/examples_command_line_external/Library.swift.modulemap -fmodule-map-file=$(PROJECT_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/CommandLine/CommandLineToolLib/private_lib.swift.modulemap -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all -iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin -O0 -fstack-protector -fstack-protector-all",
+		"c": "-F$(PROJECT_DIR)/external/examples_command_line_external -I__BAZEL_XCODE_SDKROOT__/usr/include/uuid -iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin -iquote$(PROJECT_DIR)/external/examples_command_line_external -iquote$(PROJECT_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/examples_command_line_external -DSECRET_3=\"Hello\" -DSECRET_2=\"World!\" -fmodule-map-file=$(PROJECT_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/CommandLine/CommandLineToolLib/lib_impl.swift.modulemap -fmodule-map-file=$(PROJECT_DIR)/CommandLine/swift_c_module/c_lib.modulemap -fmodule-map-file=$(PROJECT_DIR)/external/examples_command_line_external/ExternalFramework.framework/Modules/module.modulemap -fmodule-map-file=$(PROJECT_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/examples_command_line_external/Library.swift.modulemap -fmodule-map-file=$(PROJECT_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/CommandLine/CommandLineToolLib/private_lib.swift.modulemap -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all -iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin -O0 -fstack-protector -fstack-protector-all",
 		"f": [
 			"$(BAZEL_EXTERNAL)/examples_command_line_external"
 		],
@@ -231,9 +231,9 @@ _SETTINGS = {
 		]
 	},
 	"x86_64-apple-macosx CommandLineToolTests.xctest/Contents/MacOS/CommandLineToolTests": {
-		"c": "-F$(PROJECT_DIR)/external/examples_command_line_external -I$(SDKROOT)/usr/include/uuid -iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin -iquote$(PROJECT_DIR)/external/examples_command_line_external -iquote$(PROJECT_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/examples_command_line_external -DSECRET_3=\"Hello\" -DSECRET_2=\"World!\" -fmodule-map-file=$(PROJECT_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/CommandLine/CommandLineToolLib/lib_impl.swift.modulemap -fmodule-map-file=$(PROJECT_DIR)/CommandLine/swift_c_module/c_lib.modulemap -fmodule-map-file=$(PROJECT_DIR)/external/examples_command_line_external/ExternalFramework.framework/Modules/module.modulemap -fmodule-map-file=$(PROJECT_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/examples_command_line_external/Library.swift.modulemap -fmodule-map-file=$(PROJECT_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/CommandLine/CommandLineToolLib/lib_swift.swift.modulemap -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all -iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin -iquote$(PROJECT_DIR)/external/examples_command_line_external -iquote$(PROJECT_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/examples_command_line_external -fmodule-map-file=$(PROJECT_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/CommandLine/CommandLineToolLib/private_lib.swift.modulemap -O0 -fstack-protector -fstack-protector-all -iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin -O0 -fstack-protector -fstack-protector-all",
+		"c": "-F$(PROJECT_DIR)/external/examples_command_line_external -I__BAZEL_XCODE_SDKROOT__/usr/include/uuid -iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin -iquote$(PROJECT_DIR)/external/examples_command_line_external -iquote$(PROJECT_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/examples_command_line_external -DSECRET_3=\"Hello\" -DSECRET_2=\"World!\" -fmodule-map-file=$(PROJECT_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/CommandLine/CommandLineToolLib/lib_impl.swift.modulemap -fmodule-map-file=$(PROJECT_DIR)/CommandLine/swift_c_module/c_lib.modulemap -fmodule-map-file=$(PROJECT_DIR)/external/examples_command_line_external/ExternalFramework.framework/Modules/module.modulemap -fmodule-map-file=$(PROJECT_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/examples_command_line_external/Library.swift.modulemap -fmodule-map-file=$(PROJECT_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/CommandLine/CommandLineToolLib/lib_swift.swift.modulemap -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all -iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin -iquote$(PROJECT_DIR)/external/examples_command_line_external -iquote$(PROJECT_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/examples_command_line_external -fmodule-map-file=$(PROJECT_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/CommandLine/CommandLineToolLib/private_lib.swift.modulemap -O0 -fstack-protector -fstack-protector-all -iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin -O0 -fstack-protector -fstack-protector-all",
 		"f": [
-			"$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+			"__BAZEL_XCODE_DEVELOPER_DIR__/Platforms/MacOSX.platform/Developer/Library/Frameworks",
 			"$(BAZEL_EXTERNAL)/examples_command_line_external"
 		],
 		"s": [
@@ -249,11 +249,11 @@ _SETTINGS = {
 	"x86_64-apple-macosx macOSAppUITests.xctest/Contents/MacOS/macOSAppUITests": {
 		"c": "-iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-29/bin -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all",
 		"f": [
-			"$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks"
+			"__BAZEL_XCODE_DEVELOPER_DIR__/Platforms/MacOSX.platform/Developer/Library/Frameworks"
 		]
 	},
 	"x86_64-apple-macosx tool.binary": {
-		"c": "-F$(PROJECT_DIR)/external/examples_command_line_external -I$(SDKROOT)/usr/include/uuid -iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35/bin -iquote$(PROJECT_DIR)/external/examples_command_line_external -iquote$(PROJECT_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35/bin/external/examples_command_line_external -DSECRET_3=\"Hello\" -DSECRET_2=\"World!\" -fmodule-map-file=$(PROJECT_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35/bin/CommandLine/CommandLineToolLib/lib_impl.swift.modulemap -fmodule-map-file=$(PROJECT_DIR)/CommandLine/swift_c_module/c_lib.modulemap -fmodule-map-file=$(PROJECT_DIR)/external/examples_command_line_external/ExternalFramework.framework/Modules/module.modulemap -fmodule-map-file=$(PROJECT_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35/bin/external/examples_command_line_external/Library.swift.modulemap -fmodule-map-file=$(PROJECT_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35/bin/CommandLine/CommandLineToolLib/private_lib.swift.modulemap -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all -iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35/bin -O0 -fstack-protector -fstack-protector-all",
+		"c": "-F$(PROJECT_DIR)/external/examples_command_line_external -I__BAZEL_XCODE_SDKROOT__/usr/include/uuid -iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35/bin -iquote$(PROJECT_DIR)/external/examples_command_line_external -iquote$(PROJECT_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35/bin/external/examples_command_line_external -DSECRET_3=\"Hello\" -DSECRET_2=\"World!\" -fmodule-map-file=$(PROJECT_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35/bin/CommandLine/CommandLineToolLib/lib_impl.swift.modulemap -fmodule-map-file=$(PROJECT_DIR)/CommandLine/swift_c_module/c_lib.modulemap -fmodule-map-file=$(PROJECT_DIR)/external/examples_command_line_external/ExternalFramework.framework/Modules/module.modulemap -fmodule-map-file=$(PROJECT_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35/bin/external/examples_command_line_external/Library.swift.modulemap -fmodule-map-file=$(PROJECT_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35/bin/CommandLine/CommandLineToolLib/private_lib.swift.modulemap -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all -iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35/bin -O0 -fstack-protector -fstack-protector-all",
 		"f": [
 			"$(BAZEL_EXTERNAL)/examples_command_line_external"
 		],
@@ -295,15 +295,15 @@ _SETTINGS = {
 	"x86_64-apple-tvos-simulator tvOSAppUITests.xctest/tvOSAppUITests": {
 		"c": "-iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all",
 		"f": [
-			"$(DEVELOPER_DIR)/Platforms/AppleTVSimulator.platform/Developer/Library/Frameworks",
-			"$(SDKROOT)/Developer/Library/Frameworks"
+			"__BAZEL_XCODE_DEVELOPER_DIR__/Platforms/AppleTVSimulator.platform/Developer/Library/Frameworks",
+			"__BAZEL_XCODE_SDKROOT__/Developer/Library/Frameworks"
 		]
 	},
 	"x86_64-apple-tvos-simulator tvOSAppUnitTests.xctest/tvOSAppUnitTests": {
 		"c": "-F$(PROJECT_DIR)/external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator -iquote$(PROJECT_DIR)/external/com_github_krzyzanowskim_cryptoswift -iquote$(PROJECT_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/external/com_github_krzyzanowskim_cryptoswift -iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin -fmodule-map-file=$(PROJECT_DIR)/external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all -iquote$(PROJECT_DIR)/external/com_github_krzyzanowskim_cryptoswift -iquote$(PROJECT_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/external/com_github_krzyzanowskim_cryptoswift -iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin -O0 -fstack-protector -fstack-protector-all -iquote$(PROJECT_DIR)/external/com_github_krzyzanowskim_cryptoswift -iquote$(PROJECT_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/external/com_github_krzyzanowskim_cryptoswift -iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin -O0 -fstack-protector -fstack-protector-all -iquote$(PROJECT_DIR)/external/com_github_krzyzanowskim_cryptoswift -iquote$(PROJECT_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/external/com_github_krzyzanowskim_cryptoswift -iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin -O0 -fstack-protector -fstack-protector-all",
 		"f": [
-			"$(DEVELOPER_DIR)/Platforms/AppleTVSimulator.platform/Developer/Library/Frameworks",
-			"$(SDKROOT)/Developer/Library/Frameworks",
+			"__BAZEL_XCODE_DEVELOPER_DIR__/Platforms/AppleTVSimulator.platform/Developer/Library/Frameworks",
+			"__BAZEL_XCODE_SDKROOT__/Developer/Library/Frameworks",
 			"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator"
 		],
 		"s": [
@@ -346,8 +346,8 @@ _SETTINGS = {
 	"x86_64-apple-watchos-simulator watchOSAppExtensionUnitTests.xctest/watchOSAppExtensionUnitTests": {
 		"c": "-F$(PROJECT_DIR)/external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator -iquote$(PROJECT_DIR)/external/com_github_krzyzanowskim_cryptoswift -iquote$(PROJECT_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/external/com_github_krzyzanowskim_cryptoswift -iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin -fmodule-map-file=$(PROJECT_DIR)/external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all -iquote$(PROJECT_DIR)/external/com_github_krzyzanowskim_cryptoswift -iquote$(PROJECT_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/external/com_github_krzyzanowskim_cryptoswift -iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin -O0 -fstack-protector -fstack-protector-all -iquote$(PROJECT_DIR)/external/com_github_krzyzanowskim_cryptoswift -iquote$(PROJECT_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/external/com_github_krzyzanowskim_cryptoswift -iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin -O0 -fstack-protector -fstack-protector-all",
 		"f": [
-			"$(DEVELOPER_DIR)/Platforms/WatchSimulator.platform/Developer/Library/Frameworks",
-			"$(SDKROOT)/Developer/Library/Frameworks",
+			"__BAZEL_XCODE_DEVELOPER_DIR__/Platforms/WatchSimulator.platform/Developer/Library/Frameworks",
+			"__BAZEL_XCODE_SDKROOT__/Developer/Library/Frameworks",
 			"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator"
 		],
 		"s": [
@@ -358,8 +358,8 @@ _SETTINGS = {
 	"x86_64-apple-watchos-simulator watchOSAppUITests.xctest/watchOSAppUITests": {
 		"c": "-iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all",
 		"f": [
-			"$(DEVELOPER_DIR)/Platforms/WatchSimulator.platform/Developer/Library/Frameworks",
-			"$(SDKROOT)/Developer/Library/Frameworks"
+			"__BAZEL_XCODE_DEVELOPER_DIR__/Platforms/WatchSimulator.platform/Developer/Library/Frameworks",
+			"__BAZEL_XCODE_SDKROOT__/Developer/Library/Frameworks"
 		]
 	}
 }

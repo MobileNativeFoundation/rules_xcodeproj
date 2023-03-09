@@ -271,12 +271,6 @@ def _process_base_compiler_opts(
                 # No need to decrement 1, since we need to skip the first opt
                 continue
 
-        # Use Xcode set `DEVELOPER_DIR`
-        opt = opt.replace("__BAZEL_XCODE_DEVELOPER_DIR__", "$(DEVELOPER_DIR)")
-
-        # Use Xcode set `SDKROOT`
-        opt = opt.replace("__BAZEL_XCODE_SDKROOT__", "$(SDKROOT)")
-
         if opt != "-Xfrontend":
             previous_vfsoverlay_opt = previous_frontend_opt or previous_opt
 
