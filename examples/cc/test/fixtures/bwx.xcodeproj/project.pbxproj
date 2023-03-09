@@ -660,35 +660,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = (
-					"-working-directory=$(PROJECT_DIR)",
-					"-ivfsoverlay",
-					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
-					"-ivfsoverlay",
-					"$(OBJROOT)/bazel-out-overlay.yaml",
-					"-D_FORTIFY_SOURCE=1",
-					"-fstack-protector",
-					"-Wall",
-					"-Wthread-safety",
-					"-Wself-assign",
-					"-fno-omit-frame-pointer",
-					"-iquote",
-					.,
-					"-iquote",
-					"bazel-out/darwin_x86_64-dbg-STABLE-1/bin",
-					"-DSECRET_3=\\\"Hello\\\"",
-					"-F$(SDKROOT)/System/Library/Frameworks",
-					"-F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks",
-					"-no-canonical-prefixes",
-					"-pthread",
-					"-Ilib/private",
-					"-Ibazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib/private",
-					"-no-canonical-prefixes",
-					"-Wno-builtin-macro-redefined",
-					"-D__DATE__=\\\"redacted\\\"",
-					"-D__TIMESTAMP__=\\\"redacted\\\"",
-					"-D__TIME__=\\\"redacted\\\"",
-				);
+				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -D_FORTIFY_SOURCE=1 -fstack-protector -Wall -Wthread-safety -Wself-assign -fno-omit-frame-pointer -iquote . -iquote bazel-out/darwin_x86_64-dbg-STABLE-1/bin -DSECRET_3=\\\"Hello\\\" -F$(SDKROOT)/System/Library/Frameworks -F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks -no-canonical-prefixes -pthread -Ilib/private -Ibazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib/private -no-canonical-prefixes -Wno-builtin-macro-redefined -D__DATE__=\\\"redacted\\\" -D__TIMESTAMP__=\\\"redacted\\\" -D__TIME__=\\\"redacted\\\"";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -721,37 +693,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = (
-					"-working-directory=$(PROJECT_DIR)",
-					"-ivfsoverlay",
-					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
-					"-ivfsoverlay",
-					"$(OBJROOT)/bazel-out-overlay.yaml",
-					"-D_FORTIFY_SOURCE=1",
-					"-fstack-protector",
-					"-Wall",
-					"-Wthread-safety",
-					"-Wself-assign",
-					"-fno-omit-frame-pointer",
-					"-iquote",
-					.,
-					"-iquote",
-					"bazel-out/darwin_x86_64-dbg-STABLE-1/bin",
-					"-Ibazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib2/_virtual_includes/lib_impl",
-					"-isystem",
-					lib2/includes,
-					"-isystem",
-					"bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib2/includes",
-					"-F$(SDKROOT)/System/Library/Frameworks",
-					"-F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks",
-					"-no-canonical-prefixes",
-					"-pthread",
-					"-no-canonical-prefixes",
-					"-Wno-builtin-macro-redefined",
-					"-D__DATE__=\\\"redacted\\\"",
-					"-D__TIMESTAMP__=\\\"redacted\\\"",
-					"-D__TIME__=\\\"redacted\\\"",
-				);
+				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -D_FORTIFY_SOURCE=1 -fstack-protector -Wall -Wthread-safety -Wself-assign -fno-omit-frame-pointer -iquote . -iquote bazel-out/darwin_x86_64-dbg-STABLE-1/bin -Ibazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib2/_virtual_includes/lib_impl -isystem lib2/includes -isystem bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib2/includes -F$(SDKROOT)/System/Library/Frameworks -F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks -no-canonical-prefixes -pthread -no-canonical-prefixes -Wno-builtin-macro-redefined -D__DATE__=\\\"redacted\\\" -D__TIMESTAMP__=\\\"redacted\\\" -D__TIME__=\\\"redacted\\\"";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -854,47 +796,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = (
-					"-working-directory=$(PROJECT_DIR)",
-					"-ivfsoverlay",
-					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
-					"-ivfsoverlay",
-					"$(OBJROOT)/bazel-out-overlay.yaml",
-					"-D_FORTIFY_SOURCE=1",
-					"-fstack-protector",
-					"-Wall",
-					"-Wthread-safety",
-					"-Wself-assign",
-					"-fno-omit-frame-pointer",
-					"-iquote",
-					.,
-					"-iquote",
-					"bazel-out/darwin_x86_64-dbg-STABLE-1/bin",
-					"-iquote",
-					external/examples_cc_external,
-					"-iquote",
-					"bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external",
-					"-iquote",
-					external/bazel_tools,
-					"-iquote",
-					"bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/bazel_tools",
-					"-Ibazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib2/_virtual_includes/lib_impl",
-					"-isystem",
-					lib2/includes,
-					"-isystem",
-					"bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib2/includes",
-					"-DSECRET_2=\\\"World!\\\"",
-					"-DEXTERNAL_SECRET_2=\\\"World?\\\"",
-					"-F$(SDKROOT)/System/Library/Frameworks",
-					"-F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks",
-					"-no-canonical-prefixes",
-					"-pthread",
-					"-no-canonical-prefixes",
-					"-Wno-builtin-macro-redefined",
-					"-D__DATE__=\\\"redacted\\\"",
-					"-D__TIMESTAMP__=\\\"redacted\\\"",
-					"-D__TIME__=\\\"redacted\\\"",
-				);
+				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -D_FORTIFY_SOURCE=1 -fstack-protector -Wall -Wthread-safety -Wself-assign -fno-omit-frame-pointer -iquote . -iquote bazel-out/darwin_x86_64-dbg-STABLE-1/bin -iquote external/examples_cc_external -iquote bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external -iquote external/bazel_tools -iquote bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/bazel_tools -Ibazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib2/_virtual_includes/lib_impl -isystem lib2/includes -isystem bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib2/includes -DSECRET_2=\\\"World!\\\" -DEXTERNAL_SECRET_2=\\\"World?\\\" -F$(SDKROOT)/System/Library/Frameworks -F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks -no-canonical-prefixes -pthread -no-canonical-prefixes -Wno-builtin-macro-redefined -D__DATE__=\\\"redacted\\\" -D__TIMESTAMP__=\\\"redacted\\\" -D__TIME__=\\\"redacted\\\"";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -931,35 +833,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = (
-					"-working-directory=$(PROJECT_DIR)",
-					"-ivfsoverlay",
-					"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
-					"-ivfsoverlay",
-					"$(OBJROOT)/bazel-out-overlay.yaml",
-					"-D_FORTIFY_SOURCE=1",
-					"-fstack-protector",
-					"-Wall",
-					"-Wthread-safety",
-					"-Wself-assign",
-					"-fno-omit-frame-pointer",
-					"-iquote",
-					external/examples_cc_external,
-					"-iquote",
-					"bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external",
-					"-DEXTERNAL_SECRET_3=\\\"Goodbye\\\"",
-					"-F$(SDKROOT)/System/Library/Frameworks",
-					"-F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks",
-					"-no-canonical-prefixes",
-					"-pthread",
-					"-Iexternal/examples_cc_external/private",
-					"-Ibazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external/private",
-					"-no-canonical-prefixes",
-					"-Wno-builtin-macro-redefined",
-					"-D__DATE__=\\\"redacted\\\"",
-					"-D__TIMESTAMP__=\\\"redacted\\\"",
-					"-D__TIME__=\\\"redacted\\\"",
-				);
+				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -D_FORTIFY_SOURCE=1 -fstack-protector -Wall -Wthread-safety -Wself-assign -fno-omit-frame-pointer -iquote external/examples_cc_external -iquote bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external -DEXTERNAL_SECRET_3=\\\"Goodbye\\\" -F$(SDKROOT)/System/Library/Frameworks -F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks -no-canonical-prefixes -pthread -Iexternal/examples_cc_external/private -Ibazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external/private -no-canonical-prefixes -Wno-builtin-macro-redefined -D__DATE__=\\\"redacted\\\" -D__TIMESTAMP__=\\\"redacted\\\" -D__TIME__=\\\"redacted\\\"";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",

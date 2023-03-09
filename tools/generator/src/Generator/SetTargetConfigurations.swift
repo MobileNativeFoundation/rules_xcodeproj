@@ -320,9 +320,9 @@ $(CONFIGURATION_BUILD_DIR)
 
         // Set VFS overlays
 
-        var cFlags = target.cFlags
-        var cxxFlags = target.cxxFlags
-        var swiftFlags = target.swiftFlags
+        let cFlags = target.cFlags
+        let cxxFlags = target.cxxFlags
+        let swiftFlags = target.swiftFlags
 
         var cFlagsPrefix: [String] = []
         var cxxFlagsPrefix: [String] = []
@@ -408,47 +408,49 @@ $(CONFIGURATION_BUILD_DIR)
             }
         }
 
-        cFlags.insert(contentsOf: cFlagsPrefix, at: 0)
-        cxxFlags.insert(contentsOf: cxxFlagsPrefix, at: 0)
-        swiftFlags.insert(contentsOf: swiftFlagsPrefix, at: 0)
+        var cFlagsString = (cFlagsPrefix + cFlags).joined(separator: " ")
+        var cxxFlagsString = (cxxFlagsPrefix + cxxFlags).joined(separator: " ")
+        let swiftFlagsString = (swiftFlagsPrefix + swiftFlags)
+            .joined(separator: " ")
 
         // Append settings when using ASAN
         if cFlags.contains("-D_FORTIFY_SOURCE=1")
         {
             buildSettings["ASAN_OTHER_CFLAGS__"] = "$(ASAN_OTHER_CFLAGS__NO)"
-            buildSettings.set("ASAN_OTHER_CFLAGS__NO", to: cFlags)
+            buildSettings.set("ASAN_OTHER_CFLAGS__NO", to: cFlagsString)
             buildSettings["ASAN_OTHER_CFLAGS__YES"] = [
                 "$(ASAN_OTHER_CFLAGS__NO)",
                 "-Wno-macro-redefined",
                 "-D_FORTIFY_SOURCE=0",
             ]
-            cFlags = ["$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))"]
+            cFlagsString = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))"
         }
         if cxxFlags.contains("-D_FORTIFY_SOURCE=1")
         {
             buildSettings["ASAN_OTHER_CPLUSPLUSFLAGS__"] =
                 "$(ASAN_OTHER_CPLUSPLUSFLAGS__NO)"
-            buildSettings.set("ASAN_OTHER_CPLUSPLUSFLAGS__NO", to: cxxFlags)
+            buildSettings.set(
+                "ASAN_OTHER_CPLUSPLUSFLAGS__NO",
+                to: cxxFlagsString
+            )
             buildSettings["ASAN_OTHER_CPLUSPLUSFLAGS__YES"] = [
                 "$(ASAN_OTHER_CPLUSPLUSFLAGS__NO)",
                 "-Wno-macro-redefined",
                 "-D_FORTIFY_SOURCE=0",
             ]
-            cxxFlags =
-                ["$(ASAN_OTHER_CPLUSPLUSFLAGS__$(CLANG_ADDRESS_SANITIZER))"]
+            cxxFlagsString = """
+$(ASAN_OTHER_CPLUSPLUSFLAGS__$(CLANG_ADDRESS_SANITIZER))
+"""
         }
 
-        if !swiftFlags.isEmpty {
-            buildSettings.set(
-                "OTHER_SWIFT_FLAGS",
-                to: swiftFlags.joined(separator: " ")
-            )
+        if !swiftFlagsString.isEmpty {
+            buildSettings.set("OTHER_SWIFT_FLAGS", to: swiftFlagsString)
         }
-        if !cFlags.isEmpty {
-            buildSettings.set("OTHER_CFLAGS", to: cFlags)
+        if !cFlagsString.isEmpty {
+            buildSettings.set("OTHER_CFLAGS", to: cFlagsString)
         }
-        if !cxxFlags.isEmpty {
-            buildSettings.set("OTHER_CPLUSPLUSFLAGS", to: cxxFlags)
+        if !cxxFlagsString.isEmpty {
+            buildSettings.set("OTHER_CPLUSPLUSFLAGS", to: cxxFlagsString)
         }
 
         return buildSettings
