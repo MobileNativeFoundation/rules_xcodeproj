@@ -356,81 +356,19 @@ def merge_search_paths(search_paths):
         framework_includes = uniq(framework_includes),
     )
 
-def _process_conlyopts(opts, *, build_settings):
-    """Processes C compiler options.
+def _process_cc_opts(opts, *, build_settings):
+    """Processes C/C++ compiler options.
 
     Args:
-        opts: A `list` of C compiler options.
-        build_settings: A mutable `dict` that will be updated with build
-            settings that are parsed from `opts`.
-
-    Returns:
-        A `tuple` containing four elements:
-
-        *   A `list` of unhandled C compiler options.
-        *   A `list` of C compiler optimization levels parsed.
-        *   A value returned by `create_search_paths` with the parsed search
-            paths.
-        *   A `bool` indicting if the target has debug info enabled.
-    """
-    optimizations = []
-    framework_includes = []
-    has_debug_info = {}
-
-    def _inner_process_conlyopts(opt, _):
-        if opt.startswith("-O"):
-            optimizations.append(opt)
-            return None
-        if opt == "-g":
-            # We use a `dict` instead of setting a single value because
-            # assigning to `has_debug_info` creates a new local variable instead
-            # of assigning to the existing variable
-            has_debug_info[True] = None
-            return None
-        if opt == "-F":
-            return opt
-        if opt.startswith("-F"):
-            framework_includes.append(opt[2:])
-            return opt
-        if opt.startswith("-D"):
-            value = opt[2:]
-            if value.startswith("OBJC_OLD_DISPATCH_PROTOTYPES"):
-                suffix = value[-2:]
-                if suffix == "=1":
-                    build_settings["ENABLE_STRICT_OBJC_MSGSEND"] = False
-                elif suffix == "=0":
-                    build_settings["ENABLE_STRICT_OBJC_MSGSEND"] = True
-                return None
-            return opt
-        return opt
-
-    processed_opts = _process_base_compiler_opts(
-        opts = opts,
-        skip_opts = _CC_SKIP_OPTS,
-        extra_processing = _inner_process_conlyopts,
-    )
-
-    has_debug_info = bool(has_debug_info)
-
-    search_paths = create_search_paths(
-        framework_includes = uniq(framework_includes),
-    )
-
-    return processed_opts, optimizations, search_paths, has_debug_info
-
-def _process_cxxopts(opts, *, build_settings):
-    """Processes C++ compiler options.
-
-    Args:
-        opts: A `list` of C++ compiler options.
+        opts: A `list` of C/C++ compiler options.
         build_settings: A mutable `dict` that will be updated with build
             settings that are parsed from `opts`.
 
     Returns:
         A `tuple` containing five elements:
 
-        *   A `list` of unhandled C++ compiler options.
-        *   A `list` of C++ compiler optimization levels parsed.
+        *   A `list` of unhandled C/C++ compiler options.
+        *   A `list` of C/C++ compiler optimization levels parsed.
         *   A value returned by `create_search_paths` with the parsed search
             paths.
         *   A `bool` indicting if the target has debug info enabled.
@@ -510,13 +448,13 @@ def _process_copts(
         conly_optimizations,
         conly_search_paths,
         c_has_debug_info,
-    ) = _process_conlyopts(conlyopts, build_settings = build_settings)
+    ) = _process_cc_opts(conlyopts, build_settings = build_settings)
     (
         cxxopts,
         cxx_optimizations,
         cxx_search_paths,
         cxx_has_debug_info,
-    ) = _process_cxxopts(cxxopts, build_settings = build_settings)
+    ) = _process_cc_opts(cxxopts, build_settings = build_settings)
 
     if has_copts:
         # Calculate GCC_OPTIMIZATION_LEVEL, preserving C/C++ specific settings
