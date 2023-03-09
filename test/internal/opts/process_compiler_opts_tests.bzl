@@ -233,9 +233,9 @@ def process_compiler_opts_test_suite(name):
             "ENABLE_TESTABILITY": "True",
         },
         expected_swiftcopts = [
-            "-F$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks",
-            "-F$(SDKROOT)/Developer/Library/Frameworks",
-            "-I$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib",
+            "-F__BAZEL_XCODE_DEVELOPER_DIR__/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks",
+            "-F__BAZEL_XCODE_SDKROOT__/Developer/Library/Frameworks",
+            "-I__BAZEL_XCODE_DEVELOPER_DIR__/Platforms/iPhoneSimulator.platform/Developer/usr/lib",
             "-DDEBUG",
             "-application-extension",
             "weird",
@@ -272,8 +272,8 @@ def process_compiler_opts_test_suite(name):
         ],
         expected_search_paths = {
             "framework_includes": [
-                "$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks",
-                "$(SDKROOT)/Developer/Library/Frameworks",
+                "__BAZEL_XCODE_DEVELOPER_DIR__/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks",
+                "__BAZEL_XCODE_SDKROOT__/Developer/Library/Frameworks",
                 "somewhere",
             ],
         },
@@ -339,9 +339,9 @@ def process_compiler_opts_test_suite(name):
             "ENABLE_TESTABILITY": "True",
         },
         expected_swiftcopts = [
-            "-F$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks",
-            "-F$(SDKROOT)/Developer/Library/Frameworks",
-            "-I$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib",
+            "-F__BAZEL_XCODE_DEVELOPER_DIR__/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks",
+            "-F__BAZEL_XCODE_SDKROOT__/Developer/Library/Frameworks",
+            "-I__BAZEL_XCODE_DEVELOPER_DIR__/Platforms/iPhoneSimulator.platform/Developer/usr/lib",
             "-DDEBUG",
             "-application-extension",
             "weird",
@@ -378,8 +378,8 @@ def process_compiler_opts_test_suite(name):
         ],
         expected_search_paths = {
             "framework_includes": [
-                "$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks",
-                "$(SDKROOT)/Developer/Library/Frameworks",
+                "__BAZEL_XCODE_DEVELOPER_DIR__/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks",
+                "__BAZEL_XCODE_SDKROOT__/Developer/Library/Frameworks",
                 "somewhere",
             ],
         },
@@ -677,7 +677,7 @@ def process_compiler_opts_test_suite(name):
             "-import-underlying-module",
             "-passthrough",
             "-passthrough",
-            "-I$(PROJECT_DIR)/__BAZEL_XCODE_SOMETHING_/path",
+            "-I__BAZEL_XCODE_SOMETHING_/path",
             "-passthrough",
             "-I$(PROJECT_DIR)/bazel-out/...",
             "-passthrough",

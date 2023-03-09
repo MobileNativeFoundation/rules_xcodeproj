@@ -257,7 +257,7 @@ def is_generated_file_path(fp):
     return fp.type == "g"
 
 def is_relative_path(path):
-    return not path.startswith("/") and not path.startswith("$(")
+    return not path.startswith("/") and not path.startswith("__BAZEL_")
 
 def project_file_path(
         path,

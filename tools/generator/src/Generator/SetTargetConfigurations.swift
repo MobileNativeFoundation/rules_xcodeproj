@@ -408,10 +408,15 @@ $(CONFIGURATION_BUILD_DIR)
             }
         }
 
-        var cFlagsString = (cFlagsPrefix + cFlags).joined(separator: " ")
-        var cxxFlagsString = (cxxFlagsPrefix + cxxFlags).joined(separator: " ")
-        let swiftFlagsString = (swiftFlagsPrefix + swiftFlags)
-            .joined(separator: " ")
+        var cFlagsString = processFlagsString(
+            (cFlagsPrefix + cFlags).joined(separator: " ")
+        )
+        var cxxFlagsString = processFlagsString(
+            (cxxFlagsPrefix + cxxFlags).joined(separator: " ")
+        )
+        let swiftFlagsString = processFlagsString(
+            (swiftFlagsPrefix + swiftFlags).joined(separator: " ")
+        )
 
         // Append settings when using ASAN
         if cFlags.contains("-D_FORTIFY_SOURCE=1")
@@ -553,6 +558,22 @@ $(BUILD_DIR)/\(testHost.packageBinDir)/\(productPath)/\(executableName)
             )
         }
     }
+}
+
+private func processFlagsString(_ string: String) -> String {
+    // Use Xcode set `DEVELOPER_DIR`
+    var ret = string.replacingOccurrences(
+        of: "__BAZEL_XCODE_DEVELOPER_DIR__",
+        with: "$(DEVELOPER_DIR)"
+    )
+
+    // Use Xcode set `SDKROOT`
+    ret = ret.replacingOccurrences(
+        of: "__BAZEL_XCODE_SDKROOT__",
+        with: "$(SDKROOT)"
+    )
+
+    return ret
 }
 
 private extension Dictionary where Value == BuildSetting {
