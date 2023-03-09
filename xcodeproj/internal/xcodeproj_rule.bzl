@@ -319,9 +319,9 @@ def _process_targets(
     }
 
     invalid_focused_targets = [
-        k
-        for k in focused_labels
-        if k not in targets_labels
+        label
+        for label in focused_labels
+        if label not in targets_labels
     ]
     if invalid_focused_targets:
         fail("""\
