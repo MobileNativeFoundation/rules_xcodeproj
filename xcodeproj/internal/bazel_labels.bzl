@@ -91,8 +91,11 @@ def make_bazel_labels(workspace_name_resolvers = workspace_name_resolvers):
         if type(value) == "Label":
             return str(value)
         else:
-            if hasattr(native, "package_relative_label"):
-                return str(native.package_relative_label(value))
+            package_relative_label = (
+                workspace_name_resolvers.package_relative_label(value)
+            )
+            if package_relative_label:
+                return str(package_relative_label)
 
             parts = _parse(value)
 
@@ -108,4 +111,6 @@ def make_bazel_labels(workspace_name_resolvers = workspace_name_resolvers):
         normalize = _normalize,
     )
 
-bazel_labels = make_bazel_labels(workspace_name_resolvers = workspace_name_resolvers)
+bazel_labels = make_bazel_labels(
+    workspace_name_resolvers = workspace_name_resolvers,
+)
