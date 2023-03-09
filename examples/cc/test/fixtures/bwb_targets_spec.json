@@ -30,9 +30,9 @@
             "-pthread",
             "-no-canonical-prefixes",
             "-Wno-builtin-macro-redefined",
-            "-D__DATE__=\\\"redacted\\\"",
-            "-D__TIMESTAMP__=\\\"redacted\\\"",
-            "-D__TIME__=\\\"redacted\\\""
+            "-D__DATE__=\"redacted\"",
+            "-D__TIMESTAMP__=\"redacted\"",
+            "-D__TIME__=\"redacted\""
         ],
         "b": {
             "ENABLE_BITCODE": false,
@@ -80,7 +80,7 @@
             ".",
             "-iquote",
             "bazel-out/darwin_x86_64-dbg-STABLE-1/bin",
-            "-DSECRET_3=\\\"Hello\\\"",
+            "-DSECRET_3=\"Hello\"",
             "-F__BAZEL_XCODE_SDKROOT__/System/Library/Frameworks",
             "-F__BAZEL_XCODE_DEVELOPER_DIR__/Platforms/MacOSX.platform/Developer/Library/Frameworks",
             "-no-canonical-prefixes",
@@ -89,9 +89,9 @@
             "-Ibazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib/private",
             "-no-canonical-prefixes",
             "-Wno-builtin-macro-redefined",
-            "-D__DATE__=\\\"redacted\\\"",
-            "-D__TIMESTAMP__=\\\"redacted\\\"",
-            "-D__TIME__=\\\"redacted\\\""
+            "-D__DATE__=\"redacted\"",
+            "-D__TIMESTAMP__=\"redacted\"",
+            "-D__TIME__=\"redacted\""
         ],
         "b": {
             "ENABLE_BITCODE": false,
@@ -157,17 +157,17 @@
             "lib2/includes",
             "-isystem",
             "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib2/includes",
-            "-DSECRET_2=\\\"World!\\\"",
-            "-DEXTERNAL_SECRET_2=\\\"World?\\\"",
+            "-DSECRET_2=\"World!\"",
+            "-DEXTERNAL_SECRET_2=\"World?\"",
             "-F__BAZEL_XCODE_SDKROOT__/System/Library/Frameworks",
             "-F__BAZEL_XCODE_DEVELOPER_DIR__/Platforms/MacOSX.platform/Developer/Library/Frameworks",
             "-no-canonical-prefixes",
             "-pthread",
             "-no-canonical-prefixes",
             "-Wno-builtin-macro-redefined",
-            "-D__DATE__=\\\"redacted\\\"",
-            "-D__TIMESTAMP__=\\\"redacted\\\"",
-            "-D__TIME__=\\\"redacted\\\""
+            "-D__DATE__=\"redacted\"",
+            "-D__TIMESTAMP__=\"redacted\"",
+            "-D__TIME__=\"redacted\""
         ],
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/tool/rules_xcodeproj/tool/tool",
@@ -225,7 +225,7 @@
             "external/examples_cc_external",
             "-iquote",
             "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external",
-            "-DEXTERNAL_SECRET_3=\\\"Goodbye\\\"",
+            "-DEXTERNAL_SECRET_3=\"Goodbye\"",
             "-F__BAZEL_XCODE_SDKROOT__/System/Library/Frameworks",
             "-F__BAZEL_XCODE_DEVELOPER_DIR__/Platforms/MacOSX.platform/Developer/Library/Frameworks",
             "-no-canonical-prefixes",
@@ -234,9 +234,9 @@
             "-Ibazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external/private",
             "-no-canonical-prefixes",
             "-Wno-builtin-macro-redefined",
-            "-D__DATE__=\\\"redacted\\\"",
-            "-D__TIMESTAMP__=\\\"redacted\\\"",
-            "-D__TIME__=\\\"redacted\\\""
+            "-D__DATE__=\"redacted\"",
+            "-D__TIMESTAMP__=\"redacted\"",
+            "-D__TIME__=\"redacted\""
         ],
         "b": {
             "ENABLE_BITCODE": false,
