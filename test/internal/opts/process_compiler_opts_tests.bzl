@@ -16,7 +16,13 @@ def _process_compiler_opts_test_impl(ctx):
     swiftcopts = ctx.attr.swiftcopts
 
     build_settings = {}
-    search_paths, clang_opts = process_compiler_opts(
+    (
+        search_paths,
+        processed_conlyopts,
+        processed_cxxopts,
+        processed_swiftcopts,
+        clang_opts,
+    ) = process_compiler_opts(
         conlyopts = conlyopts,
         cxxopts = cxxopts,
         swiftcopts = swiftcopts,
@@ -61,6 +67,27 @@ def _process_compiler_opts_test_impl(ctx):
 
     asserts.equals(
         env,
+        ctx.attr.expected_conlyopts,
+        processed_conlyopts,
+        "conlyopts",
+    )
+
+    asserts.equals(
+        env,
+        ctx.attr.expected_cxxopts,
+        processed_cxxopts,
+        "cxxopts",
+    )
+
+    asserts.equals(
+        env,
+        ctx.attr.expected_swiftcopts,
+        processed_swiftcopts,
+        "swiftcopts",
+    )
+
+    asserts.equals(
+        env,
         ctx.attr.expected_clang_opts,
         clang_opts,
         "clang_opts",
@@ -75,6 +102,9 @@ process_compiler_opts_test = unittest.make(
         "conlyopts": attr.string_list(mandatory = True),
         "cxxopts": attr.string_list(mandatory = True),
         "expected_build_settings": attr.string_dict(mandatory = True),
+        "expected_conlyopts": attr.string_list(mandatory = True),
+        "expected_cxxopts": attr.string_list(mandatory = True),
+        "expected_swiftcopts": attr.string_list(mandatory = True),
         "expected_clang_opts": attr.string_list(mandatory = True),
         "expected_search_paths": attr.string(mandatory = True),
         "cpp_fragment": attr.string_dict(mandatory = False),
@@ -109,7 +139,10 @@ def process_compiler_opts_test_suite(name):
     def _add_test(
             *,
             name,
-            expected_build_settings,
+            expected_build_settings = {},
+            expected_conlyopts = [],
+            expected_cxxopts = [],
+            expected_swiftcopts = [],
             expected_clang_opts = [],
             expected_search_paths = {
                 "framework_includes": [],
@@ -130,6 +163,9 @@ def process_compiler_opts_test_suite(name):
             cpp_fragment = cpp_fragment,
             package_bin_dir = package_bin_dir,
             expected_build_settings = stringify_dict(expected_build_settings),
+            expected_conlyopts = expected_conlyopts,
+            expected_cxxopts = expected_cxxopts,
+            expected_swiftcopts = expected_swiftcopts,
             expected_clang_opts = expected_clang_opts,
             expected_search_paths = json.encode(expected_search_paths),
             timeout = "short",
@@ -195,34 +231,34 @@ def process_compiler_opts_test_suite(name):
         ],
         expected_build_settings = {
             "ENABLE_TESTABILITY": "True",
-            "OTHER_SWIFT_FLAGS": """\
--F$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks \
--F$(SDKROOT)/Developer/Library/Frameworks \
--I$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib \
--DDEBUG \
--application-extension \
-weird \
--Xcc \
--iquote. \
--Xcc \
--iquotebazel-out/ios-sim_arm64-min15.0-applebin_ios-ios_sim_arm64-fastbuild-ST-4e6c2a19403f/bin \
--unhandled \
--Xcc \
--fmodule-map-file=/abs/path \
--Xcc \
--I/abs/path \
--Xcc \
--iquote/abs/path \
--Xcc \
--isystem/abs/path \
--Xcc \
--O0 \
--Xcc \
--DDEBUG=1 \
--Xcc \
--Fsomewhere\
-""",
         },
+        expected_swiftcopts = [
+            "-F$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks",
+            "-F$(SDKROOT)/Developer/Library/Frameworks",
+            "-I$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib",
+            "-DDEBUG",
+            "-application-extension",
+            "weird",
+            "-Xcc",
+            "-iquote.",
+            "-Xcc",
+            "-iquotebazel-out/ios-sim_arm64-min15.0-applebin_ios-ios_sim_arm64-fastbuild-ST-4e6c2a19403f/bin",
+            "-unhandled",
+            "-Xcc",
+            "-fmodule-map-file=/abs/path",
+            "-Xcc",
+            "-I/abs/path",
+            "-Xcc",
+            "-iquote/abs/path",
+            "-Xcc",
+            "-isystem/abs/path",
+            "-Xcc",
+            "-O0",
+            "-Xcc",
+            "-DDEBUG=1",
+            "-Xcc",
+            "-Fsomewhere",
+        ],
         expected_clang_opts = [
             "-iquote$(PROJECT_DIR)",
             "-iquote$(PROJECT_DIR)/bazel-out/ios-sim_arm64-min15.0-applebin_ios-ios_sim_arm64-fastbuild-ST-4e6c2a19403f/bin",
@@ -301,34 +337,34 @@ weird \
         ],
         expected_build_settings = {
             "ENABLE_TESTABILITY": "True",
-            "OTHER_SWIFT_FLAGS": """\
--F$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks \
--F$(SDKROOT)/Developer/Library/Frameworks \
--I$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib \
--DDEBUG \
--application-extension \
-weird \
--Xcc \
--iquote$(PROJECT_DIR) \
--Xcc \
--iquote$(PROJECT_DIR)/bazel-out/ios-sim_arm64-min15.0-applebin_ios-ios_sim_arm64-fastbuild-ST-4e6c2a19403f/bin \
--unhandled \
--Xcc \
--fmodule-map-file=/abs/path \
--Xcc \
--I/abs/path \
--Xcc \
--iquote/abs/path \
--Xcc \
--isystem/abs/path \
--Xcc \
--O0 \
--Xcc \
--DDEBUG=1 \
--Xcc \
--Fsomewhere\
-""",
         },
+        expected_swiftcopts = [
+            "-F$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks",
+            "-F$(SDKROOT)/Developer/Library/Frameworks",
+            "-I$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib",
+            "-DDEBUG",
+            "-application-extension",
+            "weird",
+            "-Xcc",
+            "-iquote$(PROJECT_DIR)",
+            "-Xcc",
+            "-iquote$(PROJECT_DIR)/bazel-out/ios-sim_arm64-min15.0-applebin_ios-ios_sim_arm64-fastbuild-ST-4e6c2a19403f/bin",
+            "-unhandled",
+            "-Xcc",
+            "-fmodule-map-file=/abs/path",
+            "-Xcc",
+            "-I/abs/path",
+            "-Xcc",
+            "-iquote/abs/path",
+            "-Xcc",
+            "-isystem/abs/path",
+            "-Xcc",
+            "-O0",
+            "-Xcc",
+            "-DDEBUG=1",
+            "-Xcc",
+            "-Fsomewhere",
+        ],
         expected_clang_opts = [
             "-iquote$(PROJECT_DIR)",
             "-iquote$(PROJECT_DIR)/bazel-out/ios-sim_arm64-min15.0-applebin_ios-ios_sim_arm64-fastbuild-ST-4e6c2a19403f/bin",
@@ -484,55 +520,53 @@ weird \
             "-Xwrapped-swift",
             "-passthrough",
         ],
-        expected_build_settings = {
-            "OTHER_CFLAGS": [
-                "-passthrough",
-                "-passthrough",
-                "-I__BAZEL_XCODE_SOMETHING_/path",
-                "-passthrough",
-                "-passthrough",
-            ],
-            "OTHER_CPLUSPLUSFLAGS": [
-                "-passthrough",
-                "-passthrough",
-                "-I__BAZEL_XCODE_BOSS_",
-                "-passthrough",
-            ],
-            "OTHER_SWIFT_FLAGS": """\
--passthrough \
--passthrough \
--Xfrontend \
--import-underlying-module \
--vfsoverlay \
-/Some/Path.yaml \
--vfsoverlay \
-$(CURRENT_EXECUTION_ROOT)/relative/Path.yaml \
--passthrough \
--passthrough \
--I__BAZEL_XCODE_SOMETHING_/path \
--passthrough \
--Ibazel-out/... \
--passthrough \
--Xfrontend \
--vfsoverlay \
--Xfrontend \
-/Some/Path.yaml \
--Xfrontend \
--vfsoverlay \
--Xfrontend \
-$(CURRENT_EXECUTION_ROOT)/relative/Path.yaml \
--keep-me=something.swift \
--Xfrontend \
--vfsoverlay/Some/Path.yaml \
--Xfrontend \
--vfsoverlay$(CURRENT_EXECUTION_ROOT)/relative/Path.yaml \
--Xcc \
--weird \
--Xcc \
--a=bazel-out/hi \
--passthrough\
-""",
-        },
+        expected_conlyopts = [
+            "-passthrough",
+            "-passthrough",
+            "-I__BAZEL_XCODE_SOMETHING_/path",
+            "-passthrough",
+            "-passthrough",
+        ],
+        expected_cxxopts = [
+            "-passthrough",
+            "-passthrough",
+            "-I__BAZEL_XCODE_BOSS_",
+            "-passthrough",
+        ],
+        expected_swiftcopts = [
+            "-passthrough",
+            "-passthrough",
+            "-Xfrontend",
+            "-import-underlying-module",
+            "-vfsoverlay",
+            "/Some/Path.yaml",
+            "-vfsoverlay",
+            "$(CURRENT_EXECUTION_ROOT)/relative/Path.yaml",
+            "-passthrough",
+            "-passthrough",
+            "-I__BAZEL_XCODE_SOMETHING_/path",
+            "-passthrough",
+            "-Ibazel-out/...",
+            "-passthrough",
+            "-Xfrontend",
+            "-vfsoverlay",
+            "-Xfrontend",
+            "/Some/Path.yaml",
+            "-Xfrontend",
+            "-vfsoverlay",
+            "-Xfrontend",
+            "$(CURRENT_EXECUTION_ROOT)/relative/Path.yaml",
+            "-keep-me=something.swift",
+            "-Xfrontend",
+            "-vfsoverlay/Some/Path.yaml",
+            "-Xfrontend",
+            "-vfsoverlay$(CURRENT_EXECUTION_ROOT)/relative/Path.yaml",
+            "-Xcc",
+            "-weird",
+            "-Xcc",
+            "-a=bazel-out/hi",
+            "-passthrough",
+        ],
         expected_clang_opts = [
             "-weird",
             "-a=bazel-out/hi",
@@ -623,39 +657,37 @@ $(CURRENT_EXECUTION_ROOT)/relative/Path.yaml \
             "-Xwrapped-swift",
             "-passthrough",
         ],
-        expected_build_settings = {
-            "OTHER_CFLAGS": [
-                "-passthrough",
-                "-passthrough",
-                "-I__BAZEL_XCODE_SOMETHING_/path",
-                "-passthrough",
-                "-passthrough",
-            ],
-            "OTHER_CPLUSPLUSFLAGS": [
-                "-passthrough",
-                "-passthrough",
-                "-I__BAZEL_XCODE_BOSS_",
-                "-passthrough",
-            ],
-            "OTHER_SWIFT_FLAGS": """\
--passthrough \
--passthrough \
--Xfrontend \
--import-underlying-module \
--passthrough \
--passthrough \
--I$(PROJECT_DIR)/__BAZEL_XCODE_SOMETHING_/path \
--passthrough \
--I$(PROJECT_DIR)/bazel-out/... \
--passthrough \
--keep-me=something.swift \
--Xcc \
--weird \
--Xcc \
--a=bazel-out/hi \
--passthrough\
-""",
-        },
+        expected_conlyopts = [
+            "-passthrough",
+            "-passthrough",
+            "-I__BAZEL_XCODE_SOMETHING_/path",
+            "-passthrough",
+            "-passthrough",
+        ],
+        expected_cxxopts = [
+            "-passthrough",
+            "-passthrough",
+            "-I__BAZEL_XCODE_BOSS_",
+            "-passthrough",
+        ],
+        expected_swiftcopts = [
+            "-passthrough",
+            "-passthrough",
+            "-Xfrontend",
+            "-import-underlying-module",
+            "-passthrough",
+            "-passthrough",
+            "-I$(PROJECT_DIR)/__BAZEL_XCODE_SOMETHING_/path",
+            "-passthrough",
+            "-I$(PROJECT_DIR)/bazel-out/...",
+            "-passthrough",
+            "-keep-me=something.swift",
+            "-Xcc",
+            "-weird",
+            "-Xcc",
+            "-a=bazel-out/hi",
+            "-passthrough",
+        ],
         expected_clang_opts = [
             "-weird",
             "-a=bazel-out/hi",
@@ -795,10 +827,8 @@ $(CURRENT_EXECUTION_ROOT)/relative/Path.yaml \
         name = "{}_differing_gcc_optimization_level".format(name),
         conlyopts = ["-O0"],
         cxxopts = ["-O1"],
-        expected_build_settings = {
-            "OTHER_CFLAGS": ["-O0"],
-            "OTHER_CPLUSPLUSFLAGS": ["-O1"],
-        },
+        expected_conlyopts = ["-O0"],
+        expected_cxxopts = ["-O1"],
     )
 
     _add_test(
@@ -807,19 +837,17 @@ $(CURRENT_EXECUTION_ROOT)/relative/Path.yaml \
         cxxopts = ["-O1", "-O2"],
         expected_build_settings = {
             "GCC_OPTIMIZATION_LEVEL": "1",
-            "OTHER_CFLAGS": ["-O0"],
-            "OTHER_CPLUSPLUSFLAGS": ["-O2"],
         },
+        expected_conlyopts = ["-O0"],
+        expected_cxxopts = ["-O2"],
     )
 
     _add_test(
         name = "{}_multiple_gcc_optimization_levels".format(name),
         conlyopts = ["-O1", "-O0"],
         cxxopts = ["-O0", "-O1"],
-        expected_build_settings = {
-            "OTHER_CFLAGS": ["-O1", "-O0"],
-            "OTHER_CPLUSPLUSFLAGS": ["-O0", "-O1"],
-        },
+        expected_conlyopts = ["-O1", "-O0"],
+        expected_cxxopts = ["-O0", "-O1"],
     )
 
     _add_test(
@@ -984,33 +1012,38 @@ $(CURRENT_EXECUTION_ROOT)/relative/Path.yaml \
             "-Xcc",
             "-isystems5/s6",
         ],
-        expected_build_settings = {
-            "OTHER_CFLAGS": [
-                "-iquote",
-                "a/b/c",
-                "-iquotea/b/c/d",
-                "-Ix/y/z",
-                "-I",
-                "1/2/3",
-                "-iquote",
-                "0/9",
-                "-isystem",
-                "s1/s2",
-                "-isystems1/s2/s3",
-            ],
-            "OTHER_CPLUSPLUSFLAGS": [
-                "-iquote",
-                "y/z",
-                "-iquotey/z/1",
-                "-Ix/y/z",
-                "-I",
-                "aa/bb",
-                "-isystem",
-                "s3/s4",
-                "-isystems3/s4/s5",
-            ],
-            "OTHER_SWIFT_FLAGS": "-Xcc -Ic/d/e -Xcc -iquote4/5 -Xcc -isystems5/s6",
-        },
+        expected_conlyopts = [
+            "-iquote",
+            "a/b/c",
+            "-iquotea/b/c/d",
+            "-Ix/y/z",
+            "-I",
+            "1/2/3",
+            "-iquote",
+            "0/9",
+            "-isystem",
+            "s1/s2",
+            "-isystems1/s2/s3",
+        ],
+        expected_cxxopts = [
+            "-iquote",
+            "y/z",
+            "-iquotey/z/1",
+            "-Ix/y/z",
+            "-I",
+            "aa/bb",
+            "-isystem",
+            "s3/s4",
+            "-isystems3/s4/s5",
+        ],
+        expected_swiftcopts = [
+            "-Xcc",
+            "-Ic/d/e",
+            "-Xcc",
+            "-iquote4/5",
+            "-Xcc",
+            "-isystems5/s6",
+        ],
         expected_clang_opts = [
             "-I$(PROJECT_DIR)/c/d/e",
             "-iquote$(PROJECT_DIR)/4/5",

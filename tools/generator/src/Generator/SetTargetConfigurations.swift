@@ -317,66 +317,91 @@ $(CONFIGURATION_BUILD_DIR)
                 to: FilePathResolver.resolve(pch)
             )
         }
-        
+
         // Set VFS overlays
+
+        var cFlags = target.cFlags
+        var cxxFlags = target.cxxFlags
+        var swiftFlags = target.swiftFlags
 
         if hasBazelDependencies {
             if target.isSwift {
-                try buildSettings.prepend(
-                    onKey: "OTHER_SWIFT_FLAGS",
-                    "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml"
+                swiftFlags.insert(
+                    contentsOf: [
+                        "-vfsoverlay",
+                        "$(OBJROOT)/bazel-out-overlay.yaml",
+                    ],
+                    at: 0
                 )
             } else {
-                try buildSettings.prepend(
-                    onKey: "OTHER_CFLAGS",
-                    onlyIfSet: true,
-                    ["-ivfsoverlay", "$(OBJROOT)/bazel-out-overlay.yaml"]
-                )
-                try buildSettings.prepend(
-                    onKey: "OTHER_CPLUSPLUSFLAGS",
-                    onlyIfSet: true,
-                    ["-ivfsoverlay", "$(OBJROOT)/bazel-out-overlay.yaml"]
-                )
+                if !cFlags.isEmpty {
+                    cFlags.insert(
+                        contentsOf: [
+                            "-ivfsoverlay",
+                            "$(OBJROOT)/bazel-out-overlay.yaml",
+                        ],
+                        at: 0
+                    )
+                }
+                if !cxxFlags.isEmpty {
+                    cxxFlags.insert(
+                        contentsOf: [
+                            "-ivfsoverlay",
+                            "$(OBJROOT)/bazel-out-overlay.yaml",
+                        ],
+                        at: 0
+                    )
+                }
             }
 
             switch buildMode {
             case .xcode:
                 if target.hasModulemaps {
-                    try buildSettings.prepend(
-                        onKey: "OTHER_SWIFT_FLAGS",
-                        #"""
--Xcc -ivfsoverlay -Xcc $(DERIVED_FILE_DIR)/xcode-overlay.yaml \#
--Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml
-"""#
+                    swiftFlags.insert(
+                        contentsOf: [
+                            "-Xcc",
+                            "-ivfsoverlay",
+                            "-Xcc",
+                            "$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
+                            "-Xcc",
+                            "-ivfsoverlay",
+                            "-Xcc",
+                            "$(OBJROOT)/bazel-out-overlay.yaml",
+                        ],
+                        at: 0
                     )
                 }
 
-                if !target.isSwift && target.inputs.containsSourceFiles
-                {
-                    try buildSettings.prepend(
-                        onKey: "OTHER_CFLAGS",
-                        onlyIfSet: true,
-                        [
-                            "-ivfsoverlay",
-                            "$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
-                        ]
-                    )
-                    try buildSettings.prepend(
-                        onKey: "OTHER_CPLUSPLUSFLAGS",
-                        onlyIfSet: true,
-                        [
-                            "-ivfsoverlay",
-                            "$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
-                        ]
-                    )
+                if !target.isSwift && target.inputs.containsSourceFiles {
+                    if !cFlags.isEmpty {
+                        cFlags.insert(
+                            contentsOf: [
+                                "-ivfsoverlay",
+                                "$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
+                            ],
+                            at: 0
+                        )
+                    }
+                    if !cxxFlags.isEmpty {
+                        cxxFlags.insert(
+                            contentsOf: [
+                                "-ivfsoverlay",
+                                "$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
+                            ],
+                            at: 0
+                        )
+                    }
                 }
             case .bazel:
                 if target.hasModulemaps {
-                    try buildSettings.prepend(
-                        onKey: "OTHER_SWIFT_FLAGS",
-                        #"""
--Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml
-"""#
+                    swiftFlags.insert(
+                        contentsOf: [
+                            "-Xcc",
+                            "-ivfsoverlay",
+                            "-Xcc",
+                            "$(OBJROOT)/bazel-out-overlay.yaml",
+                        ],
+                        at: 0
                     )
                 }
             }
@@ -384,53 +409,62 @@ $(CONFIGURATION_BUILD_DIR)
             // Work around stubbed swiftc messing with Indexing setting of
             // `-working-directory` incorrectly
             if buildMode == .bazel {
-                try buildSettings.prepend(
-                    onKey: "OTHER_SWIFT_FLAGS",
-                    onlyIfSet: true,
-                    """
--Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR)
-"""
-                )
+                if !swiftFlags.isEmpty {
+                    swiftFlags.insert(
+                        contentsOf: [
+                            "-Xcc",
+                            "-working-directory=$(PROJECT_DIR)",
+                            "-working-directory=$(PROJECT_DIR)",
+                        ],
+                        at: 0
+                    )
+                }
             }
-            try buildSettings.prepend(
-                onKey: "OTHER_CFLAGS",
-                onlyIfSet: true,
-                ["-working-directory=$(PROJECT_DIR)"]
-            )
-            try buildSettings.prepend(
-                onKey: "OTHER_CPLUSPLUSFLAGS",
-                onlyIfSet: true,
-                ["-working-directory=$(PROJECT_DIR)"]
-            )
+            if !cFlags.isEmpty {
+                cFlags.insert("-working-directory=$(PROJECT_DIR)", at: 0)
+            }
+            if !cxxFlags.isEmpty {
+                cxxFlags.insert("-working-directory=$(PROJECT_DIR)", at: 0)
+            }
         }
 
         // Append settings when using ASAN
-        if let cFlags = buildSettings["OTHER_CFLAGS"],
-            cFlags.contains("-D_FORTIFY_SOURCE=1")
+        if cFlags.contains("-D_FORTIFY_SOURCE=1")
         {
             buildSettings["ASAN_OTHER_CFLAGS__"] = "$(ASAN_OTHER_CFLAGS__NO)"
-            buildSettings["ASAN_OTHER_CFLAGS__NO"] = cFlags
+            buildSettings.set("ASAN_OTHER_CFLAGS__NO", to: cFlags)
             buildSettings["ASAN_OTHER_CFLAGS__YES"] = [
                 "$(ASAN_OTHER_CFLAGS__NO)",
                 "-Wno-macro-redefined",
                 "-D_FORTIFY_SOURCE=0",
             ]
-            buildSettings["OTHER_CFLAGS"] =
-                "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))"
+            cFlags = ["$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))"]
         }
-        if let cxxFlags = buildSettings["OTHER_CPLUSPLUSFLAGS"],
-            cxxFlags.contains("-D_FORTIFY_SOURCE=1")
+        if cxxFlags.contains("-D_FORTIFY_SOURCE=1")
         {
             buildSettings["ASAN_OTHER_CPLUSPLUSFLAGS__"] =
                 "$(ASAN_OTHER_CPLUSPLUSFLAGS__NO)"
-            buildSettings["ASAN_OTHER_CPLUSPLUSFLAGS__NO"] = cxxFlags
+            buildSettings.set("ASAN_OTHER_CPLUSPLUSFLAGS__NO", to: cxxFlags)
             buildSettings["ASAN_OTHER_CPLUSPLUSFLAGS__YES"] = [
                 "$(ASAN_OTHER_CPLUSPLUSFLAGS__NO)",
                 "-Wno-macro-redefined",
                 "-D_FORTIFY_SOURCE=0",
             ]
-            buildSettings["OTHER_CPLUSPLUSFLAGS"] =
-                "$(ASAN_OTHER_CPLUSPLUSFLAGS__$(CLANG_ADDRESS_SANITIZER))"
+            cxxFlags =
+                ["$(ASAN_OTHER_CPLUSPLUSFLAGS__$(CLANG_ADDRESS_SANITIZER))"]
+        }
+
+        if !swiftFlags.isEmpty {
+            buildSettings.set(
+                "OTHER_SWIFT_FLAGS",
+                to: swiftFlags.joined(separator: " ")
+            )
+        }
+        if !cFlags.isEmpty {
+            buildSettings.set("OTHER_CFLAGS", to: cFlags)
+        }
+        if !cxxFlags.isEmpty {
+            buildSettings.set("OTHER_CPLUSPLUSFLAGS", to: cxxFlags)
         }
 
         return buildSettings
