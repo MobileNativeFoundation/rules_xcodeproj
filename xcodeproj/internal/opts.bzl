@@ -584,76 +584,98 @@ def _process_swiftcopts(
     clang_opts = []
     has_debug_info = {}
 
-    def _inner_process_swiftcopts(opt, previous_opt):
-        # TODO: handle the format "-Xcc -iquote -Xcc path"
-        if opt.startswith("-isystem"):
-            path = opt[8:]
-            if (previous_opt == "-Xcc" or
-                (build_mode == "xcode" and is_relative_path(path))):
+    def _process_clang_opt(opt, previous_opt):
+        is_clang_opt = previous_opt == "-Xcc"
+
+        if opt.startswith("-F"):
+            path = opt[2:]
+            framework_includes.append(path)
+            if is_clang_opt:
                 if path == ".":
-                    bwx_opt = "-isystem$(PROJECT_DIR)"
+                    clang_opt = "-F$(PROJECT_DIR)"
+                elif is_relative_path(path):
+                    clang_opt = "-F$(PROJECT_DIR)/" + path
                 else:
-                    bwx_opt = "-isystem$(PROJECT_DIR)/" + path
-                if build_mode == "xcode":
+                    clang_opt = opt
+                clang_opts.append(clang_opt)
+            return opt
+
+        is_bwx = build_mode == "xcode"
+        if not (is_clang_opt or is_bwx):
+            return None
+
+        # TODO: handle the format "-Xcc -iquote -Xcc path"
+        if opt.startswith("-fmodule-map-file="):
+            path = opt[18:]
+            is_relative = is_relative_path(path)
+            if is_clang_opt or is_relative:
+                if path == ".":
+                    bwx_opt = "-fmodule-map-file=$(PROJECT_DIR)"
+                elif is_relative:
+                    bwx_opt = "-fmodule-map-file=$(PROJECT_DIR)/" + path
+                else:
+                    bwx_opt = opt
+                if is_bwx:
                     opt = bwx_opt
-                if previous_opt == "-Xcc":
-                    clang_opts.append(bwx_opt)
+                clang_opts.append(bwx_opt)
             return opt
         if opt.startswith("-iquote"):
             path = opt[7:]
-            if (previous_opt == "-Xcc" or
-                (build_mode == "xcode" and is_relative_path(path))):
+            is_relative = is_relative_path(path)
+            if is_clang_opt or is_relative:
                 if path == ".":
                     bwx_opt = "-iquote$(PROJECT_DIR)"
-                else:
+                elif is_relative:
                     bwx_opt = "-iquote$(PROJECT_DIR)/" + path
-                if build_mode == "xcode":
+                else:
+                    bwx_opt = opt
+                if is_bwx:
                     opt = bwx_opt
-                if previous_opt == "-Xcc":
+                if is_clang_opt:
                     clang_opts.append(bwx_opt)
             return opt
         if opt.startswith("-I"):
             path = opt[2:]
-            if (previous_opt == "-Xcc" or
-                (build_mode == "xcode" and is_relative_path(path))):
+            is_relative = is_relative_path(path)
+            if is_clang_opt or is_relative:
                 if path == ".":
                     bwx_opt = "-I$(PROJECT_DIR)"
-                else:
+                elif is_relative:
                     bwx_opt = "-I$(PROJECT_DIR)/" + path
-                if build_mode == "xcode":
-                    opt = bwx_opt
-                if previous_opt == "-Xcc":
-                    clang_opts.append(bwx_opt)
-            return opt
-        if opt.startswith("-fmodule-map-file="):
-            path = opt[18:]
-            if (previous_opt == "-Xcc" or
-                (build_mode == "xcode" and is_relative_path(path))):
-                if path == ".":
-                    bwx_opt = "-fmodule-map-file=$(PROJECT_DIR)"
-                else:
-                    bwx_opt = "-fmodule-map-file=$(PROJECT_DIR)/" + path
-                if build_mode == "xcode":
-                    opt = bwx_opt
-                clang_opts.append(bwx_opt)
-            return opt
-        if opt.startswith("-F"):
-            path = opt[2:]
-            framework_includes.append(path)
-            if previous_opt == "-Xcc":
-                if path == ".":
-                    bwx_opt = "-F$(PROJECT_DIR)"
-                elif not path.startswith("/") and not path.startswith("$("):
-                    bwx_opt = "-F$(PROJECT_DIR)/" + path
                 else:
                     bwx_opt = opt
-                clang_opts.append(bwx_opt)
+                if is_bwx:
+                    opt = bwx_opt
+                if is_clang_opt:
+                    clang_opts.append(bwx_opt)
             return opt
-        if previous_opt == "-Xcc":
+        if opt.startswith("-isystem"):
+            path = opt[8:]
+            is_relative = is_relative_path(path)
+            if is_clang_opt or is_relative:
+                if path == ".":
+                    bwx_opt = "-isystem$(PROJECT_DIR)"
+                elif is_relative:
+                    bwx_opt = "-isystem$(PROJECT_DIR)/" + path
+                else:
+                    bwx_opt = opt
+                if is_bwx:
+                    opt = bwx_opt
+                if is_clang_opt:
+                    clang_opts.append(bwx_opt)
+            return opt
+        if is_clang_opt:
             # We do this check here, to prevent the `-O` logic below
             # from incorrectly detecting this situation
             clang_opts.append(opt)
             return opt
+
+        return None
+
+    def _inner_process_swiftcopts(opt, previous_opt):
+        clang_opt = _process_clang_opt(opt, previous_opt)
+        if clang_opt:
+            return clang_opt
 
         if previous_opt == "-emit-objc-header-path":
             if not opt.startswith(package_bin_dir):
