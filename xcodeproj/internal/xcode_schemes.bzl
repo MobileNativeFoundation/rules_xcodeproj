@@ -183,7 +183,7 @@ def unfocus_schemes(schemes, unfocused_targets):
                         for pre_action in test_action.pre_actions
                         if (
                             not pre_action.expand_variables_based_on or
-                            pre_action.expand_variables_based_on not  in unfocused_targets
+                            pre_action.expand_variables_based_on not in unfocused_targets
                         )
                     ],
                     post_actions = [

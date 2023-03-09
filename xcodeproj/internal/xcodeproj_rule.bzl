@@ -66,7 +66,7 @@ def _calculate_unfocused_dependencies(
         focused_dependencies = {
             d: None
             for d in depset(
-                transitive = transitive_focused_dependencies
+                transitive = transitive_focused_dependencies,
             ).to_list()
         }
         for xcode_target in unfocused_targets.values():
@@ -319,7 +319,9 @@ def _process_targets(
     }
 
     invalid_focused_targets = [
-        k for k in focused_labels if k not in targets_labels
+        k
+        for k in focused_labels
+        if k not in targets_labels
     ]
     if invalid_focused_targets:
         fail("""\
@@ -331,7 +333,8 @@ targets.
 """.format(invalid_focused_targets))
 
     unfocused_libraries = {
-        library: None for library in inputs.unfocused_libraries.to_list()
+        library: None
+        for library in inputs.unfocused_libraries.to_list()
     }
     has_focused_labels = bool(focused_labels)
 
