@@ -1,7 +1,5 @@
 """Internal API for creating and manipulating Xcode schemes."""
 
-load("@bazel_skylib//lib:sets.bzl", "sets")
-
 def _scheme(
         name,
         build_action = None,
@@ -159,8 +157,8 @@ def _test_action(
         fail("At least one test target must be specified for a test action.")
 
     if expand_variables_based_on and expand_variables_based_on != "none":
-        test_target_labels = sets.make(targets)
-        if not sets.contains(test_target_labels, expand_variables_based_on):
+        test_target_labels = {label: None for label in targets}
+        if expand_variables_based_on not in test_target_labels:
             fail("""\
 The `expand_variables_based_on` value must be `None`, the string value 'none', \
 or one of the test targets.

@@ -1,6 +1,5 @@
 """API for defining custom Xcode schemes"""
 
-load("@bazel_skylib//lib:sets.bzl", "sets")
 load(":bazel_labels.bzl", _bazel_labels = "bazel_labels")
 load(":xcode_schemes_internal.bzl", "xcode_schemes_internal")
 
@@ -18,7 +17,7 @@ def focus_schemes(schemes, focused_targets):
         `focused_targets`. Some actions might be removed if they reference
         unfocused targets.
     """
-    focused_targets = sets.make(focused_targets)
+    focused_targets = {label: None for label in focused_targets}
 
     focused_schemes = []
     for scheme in schemes:
@@ -27,7 +26,7 @@ def focus_schemes(schemes, focused_targets):
             build_targets = [
                 build_target
                 for build_target in build_action.targets
-                if sets.contains(focused_targets, build_target.label)
+                if build_target.label in focused_targets
             ]
             if build_targets:
                 build_action = xcode_schemes_internal.build_action(
@@ -37,10 +36,7 @@ def focus_schemes(schemes, focused_targets):
                         for pre_action in build_action.pre_actions
                         if (
                             not pre_action.expand_variables_based_on or
-                            sets.contains(
-                                focused_targets,
-                                pre_action.expand_variables_based_on,
-                            )
+                            pre_action.expand_variables_based_on in focused_targets
                         )
                     ],
                     post_actions = [
@@ -48,10 +44,7 @@ def focus_schemes(schemes, focused_targets):
                         for post_action in build_action.post_actions
                         if (
                             not post_action.expand_variables_based_on or
-                            sets.contains(
-                                focused_targets,
-                                post_action.expand_variables_based_on,
-                            )
+                            post_action.expand_variables_based_on in focused_targets
                         )
                     ],
                 )
@@ -65,7 +58,7 @@ def focus_schemes(schemes, focused_targets):
             test_targets = [
                 label
                 for label in test_action.targets
-                if sets.contains(focused_targets, label)
+                if label in focused_targets
             ]
             if test_targets:
                 build_configuration_name = test_action.build_configuration_name
@@ -80,10 +73,7 @@ def focus_schemes(schemes, focused_targets):
                         for pre_action in test_action.pre_actions
                         if (
                             not pre_action.expand_variables_based_on or
-                            sets.contains(
-                                focused_targets,
-                                pre_action.expand_variables_based_on,
-                            )
+                            pre_action.expand_variables_based_on in focused_targets
                         )
                     ],
                     post_actions = [
@@ -91,10 +81,7 @@ def focus_schemes(schemes, focused_targets):
                         for post_action in test_action.post_actions
                         if (
                             not post_action.expand_variables_based_on or
-                            sets.contains(
-                                focused_targets,
-                                post_action.expand_variables_based_on,
-                            )
+                            post_action.expand_variables_based_on in focused_targets
                         )
                     ],
                 )
@@ -104,15 +91,13 @@ def focus_schemes(schemes, focused_targets):
             test_action = None
 
         launch_action = scheme.launch_action
-        if (launch_action and
-            sets.contains(focused_targets, launch_action.target)):
+        if launch_action and launch_action.target in focused_targets:
             launch_action = scheme.launch_action
         else:
             launch_action = None
 
         profile_action = scheme.profile_action
-        if (profile_action and
-            sets.contains(focused_targets, profile_action.target)):
+        if profile_action and profile_action.target in focused_targets:
             profile_action = scheme.profile_action
         else:
             profile_action = None
@@ -142,7 +127,7 @@ def unfocus_schemes(schemes, unfocused_targets):
         `unfocused_targets`. Some actions might be removed if they reference
         unfocused targets.
     """
-    unfocused_targets = sets.make(unfocused_targets)
+    unfocused_targets = {label: None for label in unfocused_targets}
 
     focused_schemes = []
     for scheme in schemes:
@@ -151,7 +136,7 @@ def unfocus_schemes(schemes, unfocused_targets):
             build_targets = [
                 build_target
                 for build_target in build_action.targets
-                if not sets.contains(unfocused_targets, build_target.label)
+                if build_target.label not in unfocused_targets
             ]
             if build_targets:
                 build_action = xcode_schemes_internal.build_action(
@@ -161,10 +146,7 @@ def unfocus_schemes(schemes, unfocused_targets):
                         for pre_action in build_action.pre_actions
                         if (
                             not pre_action.expand_variables_based_on or
-                            not sets.contains(
-                                unfocused_targets,
-                                pre_action.expand_variables_based_on,
-                            )
+                            pre_action.expand_variables_based_on not in unfocused_targets
                         )
                     ],
                     post_actions = [
@@ -172,10 +154,7 @@ def unfocus_schemes(schemes, unfocused_targets):
                         for post_action in build_action.post_actions
                         if (
                             not post_action.expand_variables_based_on or
-                            not sets.contains(
-                                unfocused_targets,
-                                post_action.expand_variables_based_on,
-                            )
+                            post_action.expand_variables_based_on not in unfocused_targets
                         )
                     ],
                 )
@@ -189,7 +168,7 @@ def unfocus_schemes(schemes, unfocused_targets):
             test_targets = [
                 label
                 for label in test_action.targets
-                if not sets.contains(unfocused_targets, label)
+                if label not in unfocused_targets
             ]
             if test_targets:
                 build_configuration_name = test_action.build_configuration_name
@@ -204,10 +183,7 @@ def unfocus_schemes(schemes, unfocused_targets):
                         for pre_action in test_action.pre_actions
                         if (
                             not pre_action.expand_variables_based_on or
-                            not sets.contains(
-                                unfocused_targets,
-                                pre_action.expand_variables_based_on,
-                            )
+                            pre_action.expand_variables_based_on not  in unfocused_targets
                         )
                     ],
                     post_actions = [
@@ -215,10 +191,7 @@ def unfocus_schemes(schemes, unfocused_targets):
                         for post_action in test_action.post_actions
                         if (
                             not post_action.expand_variables_based_on or
-                            not sets.contains(
-                                unfocused_targets,
-                                post_action.expand_variables_based_on,
-                            )
+                            post_action.expand_variables_based_on not in unfocused_targets
                         )
                     ],
                 )
@@ -228,15 +201,13 @@ def unfocus_schemes(schemes, unfocused_targets):
             test_action = None
 
         launch_action = scheme.launch_action
-        if (launch_action and
-            not sets.contains(unfocused_targets, launch_action.target)):
+        if launch_action and launch_action.target not in unfocused_targets:
             launch_action = scheme.launch_action
         else:
             launch_action = None
 
         profile_action = scheme.profile_action
-        if (profile_action and
-            not sets.contains(unfocused_targets, profile_action.target)):
+        if profile_action and profile_action.target not in unfocused_targets:
             profile_action = scheme.profile_action
         else:
             profile_action = None

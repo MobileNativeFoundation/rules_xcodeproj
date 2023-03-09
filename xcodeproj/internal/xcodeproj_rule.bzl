@@ -2,7 +2,6 @@
 
 load("@bazel_skylib//lib:dicts.bzl", "dicts")
 load("@bazel_skylib//lib:paths.bzl", "paths")
-load("@bazel_skylib//lib:sets.bzl", "sets")
 load("@bazel_skylib//lib:shell.bzl", "shell")
 load(":bazel_labels.bzl", "bazel_labels")
 load(":collections.bzl", "set_if_true", "uniq")
@@ -54,25 +53,25 @@ def _calculate_unfocused_dependencies(
 
     automatic_unfocused_dependencies = []
     transitive_focused_dependencies = []
-    if unfocused_targets or sets.length(unfocused_libraries) > 0:
+    if unfocused_targets or unfocused_libraries:
         for xcode_target in focused_targets:
             transitive_focused_dependencies.append(
                 xcode_target.transitive_dependencies,
             )
-            if sets.contains(
-                unfocused_libraries,
-                xcode_target.product.file_path,
-            ):
+            if xcode_target.product.file_path in unfocused_libraries:
                 automatic_unfocused_dependencies.append(xcode_target.id)
 
     transitive_dependencies = []
     if unfocused_targets:
-        focused_dependencies = sets.make(
-            depset(transitive = transitive_focused_dependencies).to_list(),
-        )
+        focused_dependencies = {
+            d: None
+            for d in depset(
+                transitive = transitive_focused_dependencies
+            ).to_list()
+        }
         for xcode_target in unfocused_targets.values():
             automatic_unfocused_dependencies.append(xcode_target.id)
-            if sets.contains(focused_dependencies, xcode_target.id):
+            if xcode_target.id in focused_dependencies:
                 transitive_dependencies.append(
                     xcode_target.transitive_dependencies,
                 )
@@ -161,14 +160,14 @@ def _process_extra_files(
     ]
 
     # Filter out unfocused labels
-    has_focused_labels = sets.length(focused_labels) > 0
+    has_focused_labels = bool(focused_labels)
     extra_files = [
         file
         for label, files in extra_files
         for file in files
         if not label or not (
-            sets.contains(unfocused_labels, label) or
-            (has_focused_labels and not sets.contains(focused_labels, label))
+            label in unfocused_labels or
+            (has_focused_labels and label not in focused_labels)
         )
     ]
 
@@ -225,14 +224,14 @@ def _process_xccurrentversions(
     ]
 
     # Filter out unfocused labels
-    has_focused_labels = sets.length(focused_labels) > 0
+    has_focused_labels = bool(focused_labels)
     xccurrentversions_files = [
         file
         for label, files in xccurrentversions_files
         for file in files
         if not label or not (
-            sets.contains(unfocused_labels, label) or
-            (has_focused_labels and not sets.contains(focused_labels, label))
+            label in unfocused_labels or
+            (has_focused_labels and label not in focused_labels)
         )
     ]
 
@@ -314,14 +313,14 @@ def _process_targets(
         for id, label in replacement_labels.items()
     }
 
-    targets_labels = sets.make([
-        bazel_labels.normalize(replacement_labels.get(t.id, t.label))
+    targets_labels = {
+        bazel_labels.normalize(replacement_labels.get(t.id, t.label)): None
         for t in unprocessed_targets.values()
-    ])
+    }
 
-    invalid_focused_targets = sets.to_list(
-        sets.difference(focused_labels, targets_labels),
-    )
+    invalid_focused_targets = [
+        k for k in focused_labels if k not in targets_labels
+    ]
     if invalid_focused_targets:
         fail("""\
 `focused_targets` contains target(s) that are not transitive dependencies of \
@@ -331,8 +330,10 @@ Are you using an `alias`? `focused_targets` requires labels of the actual \
 targets.
 """.format(invalid_focused_targets))
 
-    unfocused_libraries = sets.make(inputs.unfocused_libraries.to_list())
-    has_focused_labels = sets.length(focused_labels) > 0
+    unfocused_libraries = {
+        library: None for library in inputs.unfocused_libraries.to_list()
+    }
+    has_focused_labels = bool(focused_labels)
 
     if build_mode == "xcode":
         transitive_focused_targets = [depset(resource_bundle_xcode_targets)]
@@ -359,9 +360,8 @@ targets.
             xcode_target.label,
         )
         label_str = bazel_labels.normalize(label)
-        if (sets.contains(unfocused_labels, label_str) or
-            (has_focused_labels and
-             not sets.contains(focused_labels, label_str))):
+        if (label_str in unfocused_labels or
+            (has_focused_labels and label_str not in focused_labels)):
             unfocused_targets[xcode_target.id] = xcode_target
             continue
 
@@ -405,8 +405,8 @@ targets.
         unfocused_targets.pop(xcode_target.id, None)
 
         # Adjust `unfocused_labels` for `extra_files` logic later
-        if sets.contains(unfocused_labels, label_str):
-            sets.remove(unfocused_labels, label_str)
+        if label_str in unfocused_labels:
+            unfocused_labels.pop(label_str, None)
 
         infoplist = xcode_target.outputs.transitive_infoplists
         if infoplist:
@@ -422,8 +422,7 @@ targets.
         src_label = bazel_labels.normalize(src_target.label)
         dest_target = unprocessed_targets[merge.dest]
         dest_label = bazel_labels.normalize(dest_target.label)
-        if (sets.contains(unfocused_labels, src_label) or
-            sets.contains(unfocused_labels, dest_label)):
+        if src_label in unfocused_labels or dest_label in unfocused_labels:
             continue
         raw_target_merge_dests.setdefault(merge.dest, []).append(merge.src.id)
 
@@ -440,7 +439,7 @@ targets.
         src = src_ids[0]
         target_merge_dests[dest] = src
 
-        if not sets.contains(focused_labels, dest_label):
+        if dest_label not in focused_labels:
             continue
 
         src_target = unprocessed_targets[src]
@@ -458,10 +457,10 @@ targets.
         )
 
         # Adjust `{un,}focused_labels` for `extra_files` logic later
-        if sets.contains(unfocused_labels, src_label):
-            sets.remove(unfocused_labels, src_label)
-        if sets.length(focused_labels) > 0:
-            sets.insert(focused_labels, src_label)
+        if src_label in unfocused_labels:
+            unfocused_labels.pop(src_label, None)
+        if focused_labels:
+            focused_labels.pop(src_label, None)
 
     unfocused_dependencies = _calculate_unfocused_dependencies(
         build_mode = build_mode,
@@ -471,7 +470,7 @@ targets.
         unfocused_targets = unfocused_targets,
     )
 
-    has_automatic_unfocused_targets = sets.length(unfocused_libraries) > 0
+    has_automatic_unfocused_targets = bool(unfocused_libraries)
     has_unfocused_targets = bool(unfocused_targets)
     include_lldb_context = (
         has_unfocused_targets or
@@ -487,12 +486,11 @@ targets.
             xcode_target.label,
         )
 
-        invalid_extra_files_targets = sets.to_list(
-            sets.difference(
-                sets.make(owned_extra_files.values()),
-                targets_labels,
-            ),
-        )
+        invalid_extra_files_targets = [
+            label
+            for label in owned_extra_files.values()
+            if label not in targets_labels
+        ]
         if invalid_extra_files_targets:
             fail("""\
 Are you using an `alias`? `associated_extra_files` requires labels of the \
@@ -525,7 +523,7 @@ actual targets: {}
         target_merges.setdefault(src, []).append(dest)
         target_merge_srcs_by_label.setdefault(src_target.label, []).append(src)
 
-    non_mergable_targets = sets.make()
+    non_mergable_targets = {}
     non_terminal_dests = {}
     for src, dests in target_merges.items():
         src_target = focused_targets[src]
@@ -544,12 +542,12 @@ actual targets: {}
 
                 # Other libraries that are not being merged into `dest_target`
                 # can't merge into other targets
-                sets.insert(non_mergable_targets, file_path(library))
+                non_mergable_targets[file_path(library)] = None
 
     for src in target_merges.keys():
         src_target = focused_targets[src]
         if (len(non_terminal_dests.get(src, [])) > 1 or
-            sets.contains(non_mergable_targets, src_target.product.file_path)):
+            src_target.product.file_path in non_mergable_targets):
             # Prevent any version of `src` from merging, to prevent odd
             # target consolidation issues
             for id in target_merge_srcs_by_label[src_target.label]:
@@ -1411,8 +1409,8 @@ configurations: {}""".format(", ".join(xcode_configurations)))
     inputs = input_files.merge(
         transitive_infos = [(None, info) for info in infos],
     )
-    focused_labels = sets.make(ctx.attr.focused_targets)
-    unfocused_labels = sets.make(ctx.attr.unfocused_targets)
+    focused_labels = {label: None for label in ctx.attr.focused_targets}
+    unfocused_labels = {label: None for label in ctx.attr.unfocused_targets}
     replacement_labels = {
         r.id: r.label
         for r in depset(
@@ -1547,7 +1545,7 @@ configurations: {}""".format(", ".join(xcode_configurations)))
                     xcode_configuration,
                 ),
             )
-            for xcode_configuration in lldb_contexts_dtos.keys()
+            for xcode_configuration in lldb_contexts_dtos
         ]
 
         unstable_files = (

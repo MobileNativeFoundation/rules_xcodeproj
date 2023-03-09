@@ -6,7 +6,6 @@ load(
     "AppleResourceInfo",
 )
 load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo")
-load("@bazel_skylib//lib:sets.bzl", "sets")
 load(":compilation_providers.bzl", comp_providers = "compilation_providers")
 load(":filelists.bzl", "filelists")
 load(
@@ -298,11 +297,11 @@ def _collect_input_files(
         linker_inputs,
     )
     if linker_input_additional_files:
-        framework_files = sets.make(product_framework_files.to_list())
+        framework_files = {f: None for f in product_framework_files.to_list()}
         linker_input_additional_files = [
             file
             for file in linker_input_additional_files
-            if not sets.contains(framework_files, file)
+            if file not in framework_files
         ]
     additional_files = additional_files + linker_input_additional_files
 
@@ -342,7 +341,10 @@ def _collect_input_files(
                 for dep in avoid_deps
             ],
         )
-        bundle_labels = sets.make(resource_bundle_labels.to_list())
+        bundle_labels = {
+            label: None
+            for label in resource_bundle_labels.to_list()
+        }
 
         extra_files.extend([
             file
@@ -355,7 +357,7 @@ def _collect_input_files(
                 ],
             ).to_list()
             for file in files
-            if not sets.contains(bundle_labels, label)
+            if label not in bundle_labels
         ])
 
         extra_files.extend(resources_result.extra_files)

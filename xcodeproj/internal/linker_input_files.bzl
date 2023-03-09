@@ -1,6 +1,5 @@
 """Module containing functions dealing with target linker input files."""
 
-load("@bazel_skylib//lib:sets.bzl", "sets")
 load(":collections.bzl", "flatten", "uniq")
 
 _SKIP_INPUT_EXTENSIONS = {
@@ -138,30 +137,31 @@ def _extract_top_level_values(
 `avoid_compilation_providers` doesn't have `ObjcProvider`, but \
 `compilation_providers` does
 """)
-            avoid_static_framework_files = sets.make(
-                avoid_objc.static_framework_file.to_list(),
-            )
-            avoid_static_libraries = sets.make(
-                depset(transitive = [
+            avoid_static_framework_files = {
+                file: None
+                for file in avoid_objc.static_framework_file.to_list()
+            }
+            avoid_static_libraries = {
+                file: None
+                for file in depset(transitive = [
                     avoid_objc.library,
                     avoid_objc.imported_library,
-                ]).to_list(),
-            )
+                ]).to_list()
+            }
         else:
-            avoid_static_framework_files = sets.make()
-            avoid_static_libraries = sets.make()
+            avoid_static_framework_files = {}
+            avoid_static_libraries = {}
 
         dynamic_frameworks = objc.dynamic_framework_file.to_list()
         static_frameworks = [
             file
             for file in objc.static_framework_file.to_list()
-            if (file.is_source and
-                not sets.contains(avoid_static_framework_files, file))
+            if file.is_source and file not in avoid_static_framework_files
         ]
         static_libraries = [
             file
             for file in objc_libraries
-            if not sets.contains(avoid_static_libraries, file)
+            if file not in avoid_static_libraries
         ]
 
         additional_input_files = _process_additional_inputs(
@@ -176,12 +176,15 @@ def _extract_top_level_values(
 `compilation_providers` does
 """)
             avoid_linking_context = avoid_cc_info.linking_context
-            avoid_libraries = sets.make(flatten([
-                input.libraries
-                for input in avoid_linking_context.linker_inputs.to_list()
-            ]))
+            avoid_libraries = {
+                file: None
+                for file in flatten([
+                    input.libraries
+                    for input in avoid_linking_context.linker_inputs.to_list()
+                ])
+            }
         else:
-            avoid_libraries = sets.make()
+            avoid_libraries = {}
 
         dynamic_frameworks = []
         static_frameworks = []
@@ -193,7 +196,7 @@ def _extract_top_level_values(
                 input.additional_inputs,
             ))
             for library in input.libraries:
-                if sets.contains(avoid_libraries, library):
+                if library in avoid_libraries:
                     continue
                 static_libraries.append(library.static_library)
 
@@ -263,22 +266,26 @@ def _get_library_static_libraries(linker_inputs, *, dep_compilation_providers):
     dep_objc_libraries, dep_cc_linker_inputs = _extract_libraries(
         compilation_providers = dep_compilation_providers,
     )
-    non_direct_libraries = sets.make(_collect_libraries(
-        compilation_providers = dep_compilation_providers,
-        objc_libraries = dep_objc_libraries,
-        cc_linker_inputs = dep_cc_linker_inputs,
-    ))
 
     transitive = _collect_libraries(
         compilation_providers = linker_inputs._compilation_providers,
         objc_libraries = linker_inputs._objc_libraries,
         cc_linker_inputs = linker_inputs._cc_linker_inputs,
     )
-    libraries = sets.make(transitive)
 
-    direct = sets.to_list(
-        sets.difference(libraries, non_direct_libraries),
-    )
+    non_direct_libraries = {
+        file: None
+        for file in _collect_libraries(
+            compilation_providers = dep_compilation_providers,
+            objc_libraries = dep_objc_libraries,
+            cc_linker_inputs = dep_cc_linker_inputs,
+        )
+    }
+    direct = [
+        file
+        for file in transitive
+        if file not in non_direct_libraries
+    ]
 
     return (direct, transitive)
 
