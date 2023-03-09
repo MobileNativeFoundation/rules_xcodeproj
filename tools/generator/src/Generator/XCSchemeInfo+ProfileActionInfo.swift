@@ -53,6 +53,16 @@ extension XCSchemeInfo.ProfileActionInfo {
     }
 }
 
+// MARK: `macroExpansion`
+
+extension XCSchemeInfo.ProfileActionInfo {
+    var macroExpansion: XCScheme.BuildableReference? {
+        get throws {
+            try targetInfo.macroExpansion
+        }
+    }
+}
+
 // MARK: Custom Scheme Initializer
 
 extension XCSchemeInfo.ProfileActionInfo {
