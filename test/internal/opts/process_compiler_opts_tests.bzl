@@ -177,6 +177,14 @@ def process_compiler_opts_test_suite(name):
             "ExampleUITests",
             "-parse-as-library",
             "-Xcc",
+            "-fmodule-map-file=/abs/path",
+            "-Xcc",
+            "-I/abs/path",
+            "-Xcc",
+            "-iquote/abs/path",
+            "-Xcc",
+            "-isystem/abs/path",
+            "-Xcc",
             "-O0",
             "-Xcc",
             "-DDEBUG=1",
@@ -200,6 +208,14 @@ weird \
 -iquotebazel-out/ios-sim_arm64-min15.0-applebin_ios-ios_sim_arm64-fastbuild-ST-4e6c2a19403f/bin \
 -unhandled \
 -Xcc \
+-fmodule-map-file=/abs/path \
+-Xcc \
+-I/abs/path \
+-Xcc \
+-iquote/abs/path \
+-Xcc \
+-isystem/abs/path \
+-Xcc \
 -O0 \
 -Xcc \
 -DDEBUG=1 \
@@ -210,6 +226,10 @@ weird \
         expected_clang_opts = [
             "-iquote$(PROJECT_DIR)",
             "-iquote$(PROJECT_DIR)/bazel-out/ios-sim_arm64-min15.0-applebin_ios-ios_sim_arm64-fastbuild-ST-4e6c2a19403f/bin",
+            "-fmodule-map-file=/abs/path",
+            "-I/abs/path",
+            "-iquote/abs/path",
+            "-isystem/abs/path",
             "-O0",
             "-DDEBUG=1",
             "-F$(PROJECT_DIR)/somewhere",
@@ -263,6 +283,14 @@ weird \
             "ExampleUITests",
             "-parse-as-library",
             "-Xcc",
+            "-fmodule-map-file=/abs/path",
+            "-Xcc",
+            "-I/abs/path",
+            "-Xcc",
+            "-iquote/abs/path",
+            "-Xcc",
+            "-isystem/abs/path",
+            "-Xcc",
             "-O0",
             "-Xcc",
             "-DDEBUG=1",
@@ -286,6 +314,14 @@ weird \
 -iquote$(PROJECT_DIR)/bazel-out/ios-sim_arm64-min15.0-applebin_ios-ios_sim_arm64-fastbuild-ST-4e6c2a19403f/bin \
 -unhandled \
 -Xcc \
+-fmodule-map-file=/abs/path \
+-Xcc \
+-I/abs/path \
+-Xcc \
+-iquote/abs/path \
+-Xcc \
+-isystem/abs/path \
+-Xcc \
 -O0 \
 -Xcc \
 -DDEBUG=1 \
@@ -296,6 +332,10 @@ weird \
         expected_clang_opts = [
             "-iquote$(PROJECT_DIR)",
             "-iquote$(PROJECT_DIR)/bazel-out/ios-sim_arm64-min15.0-applebin_ios-ios_sim_arm64-fastbuild-ST-4e6c2a19403f/bin",
+            "-fmodule-map-file=/abs/path",
+            "-I/abs/path",
+            "-iquote/abs/path",
+            "-isystem/abs/path",
             "-O0",
             "-DDEBUG=1",
             "-F$(PROJECT_DIR)/somewhere",
