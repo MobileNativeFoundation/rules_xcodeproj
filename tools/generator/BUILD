@@ -14,7 +14,6 @@ load(
     "SCHEME_AUTOGENERATION_MODE",
     "TOP_LEVEL_TARGETS",
     "UNFOCUSED_TARGETS",
-    "XCODE_CONFIGURATIONS",
     "get_xcode_schemes",
 )
 
@@ -70,7 +69,6 @@ xcodeproj(
     tags = ["manual"],
     top_level_targets = TOP_LEVEL_TARGETS,
     unfocused_targets = UNFOCUSED_TARGETS,
-    xcode_configurations = XCODE_CONFIGURATIONS,
 )
 
 # Release

@@ -237,7 +237,7 @@ No `BazelLabel` values were provided to `XcodeScheme.TestAction`.
 
 extension XcodeScheme.TestAction: Decodable {
     enum CodingKeys: String, CodingKey {
-        case buildConfigurationName = "buildConfiguration"
+        case buildConfigurationName
         case targets
         case args
         case diagnostics
@@ -371,7 +371,7 @@ extension XcodeScheme {
 
 extension XcodeScheme.LaunchAction: Decodable {
     enum CodingKeys: String, CodingKey {
-        case buildConfigurationName = "buildConfiguration"
+        case buildConfigurationName
         case target
         case args
         case diagnostics
@@ -427,7 +427,7 @@ extension XcodeScheme {
 
 extension XcodeScheme.ProfileAction: Decodable {
     enum CodingKeys: String, CodingKey {
-        case buildConfigurationName = "buildConfiguration"
+        case buildConfigurationName
         case target
         case args
         case env

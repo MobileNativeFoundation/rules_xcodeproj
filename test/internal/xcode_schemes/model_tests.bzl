@@ -159,7 +159,7 @@ def _test_action_test(ctx):
 
     actual = xcode_schemes.test_action(targets)
     expected = struct(
-        build_configuration = None,
+        build_configuration_name = None,
         targets = [bazel_labels.normalize(t) for t in targets],
         args = None,
         diagnostics = None,
@@ -174,7 +174,7 @@ def _test_action_test(ctx):
     custom_env = {"CUSTOM_ENV_VAR": "goodbye"}
     actual = xcode_schemes.test_action(targets, args = args, env = custom_env)
     expected = struct(
-        build_configuration = None,
+        build_configuration_name = None,
         targets = [bazel_labels.normalize(t) for t in targets],
         args = args,
         diagnostics = None,
@@ -192,7 +192,7 @@ def _test_action_test(ctx):
         expand_variables_based_on = "None",
     )
     expected = struct(
-        build_configuration = None,
+        build_configuration_name = None,
         targets = [bazel_labels.normalize(t) for t in targets],
         args = [],
         diagnostics = None,
@@ -213,7 +213,7 @@ def _test_action_test(ctx):
         expand_variables_based_on = targets[0],
     )
     expected = struct(
-        build_configuration = None,
+        build_configuration_name = None,
         targets = [bazel_labels.normalize(t) for t in targets],
         args = None,
         diagnostics = None,
@@ -246,7 +246,7 @@ def _launch_action_test(ctx):
         env = env,
     )
     expected = struct(
-        build_configuration = None,
+        build_configuration_name = None,
         target = bazel_labels.normalize(target),
         args = args,
         diagnostics = None,

@@ -144,7 +144,6 @@ def xcodeproj_fixture(
         modes_and_suffixes = [("xcode", "bwx"), ("bazel", "bwb")],
         associated_extra_files = {},
         config = "rules_xcodeproj",
-        default_xcode_configuration = None,
         extra_files = [],
         top_level_targets = [],
         focused_targets = [],
@@ -153,8 +152,7 @@ def xcodeproj_fixture(
         pre_build = None,
         project_options = None,
         schemes = None,
-        scheme_autogeneration_mode = None,
-        xcode_configurations = None):
+        scheme_autogeneration_mode = None):
     """Creates the fixture for an existing `xcodeproj` target.
 
     This will create an `xcodeproj` target for each `build_mode` option.
@@ -167,8 +165,6 @@ def xcodeproj_fixture(
             `suffix` will be used as the suffix of the project and spec files.
         associated_extra_files: Maps to `xcodeproj.associated_extra_files`.
         config: Maps to `xcodeproj.config`.
-        default_xcode_configuration: Maps to
-            `xcodeproj.default_xcode_configuration`.
         extra_files: Maps to `xcodeproj.extra_files`.
         post_build: Maps to `xcodeproj.post_build`.
         pre_build: Maps to `xcodeproj.pre_build`.
@@ -176,10 +172,10 @@ def xcodeproj_fixture(
         top_level_targets: Maps to `xcodeproj.top_level_targets`.
         focused_targets: Maps to `xcodeproj.focused_targets`.
         unfocused_targets: Maps to `xcodeproj.unfocused_targets`.
-        schemes: Maps to `xcodeproj.schemes`.
-        scheme_autogeneration_mode: Maps to
-            `xcodeproj.scheme_autogeneration_mode`.
-        xcode_configurations: Maps to `xcodeproj.xcode_configurations`.
+        schemes: Optional. A `list` of values returned by
+            `xcode_schemes.scheme`.
+        scheme_autogeneration_mode: Optional. The scheme autogeneration mode for
+            the project.
     """
     for mode, suffix in modes_and_suffixes:
         fixture_name = "{}_{}".format(name, suffix)
@@ -199,7 +195,6 @@ def xcodeproj_fixture(
             associated_extra_files = associated_extra_files,
             build_mode = mode,
             config = config,
-            default_xcode_configuration = default_xcode_configuration,
             extra_files = extra_files,
             focused_targets = focused_targets,
             is_fixture = True,
@@ -213,7 +208,6 @@ def xcodeproj_fixture(
             scheme_autogeneration_mode = scheme_autogeneration_mode,
             schemes = schemes,
             unfocused_targets = unfocused_targets,
-            xcode_configurations = xcode_configurations,
             visibility = ["//test:__subpackages__"],
         )
 

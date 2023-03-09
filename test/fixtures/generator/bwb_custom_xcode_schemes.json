@@ -47,7 +47,7 @@
                 "/tmp/specs/xcodeproj.generator-targets_spec.6.json",
                 "/tmp/specs/xcodeproj.generator-targets_spec.7.json"
             ],
-            "build_configuration": null,
+            "build_configuration_name": null,
             "diagnostics": {
                 "sanitizers": {
                     "address": true,
@@ -81,14 +81,14 @@
                 "/tmp/specs/xcodeproj.generator-targets_spec.6.json",
                 "/tmp/specs/xcodeproj.generator-targets_spec.7.json"
             ],
-            "build_configuration": "Profile",
+            "build_configuration": null,
             "env": null,
             "target": "//tools/generator:generator",
             "working_directory": "$(BUILD_WORKSPACE_DIRECTORY)"
         },
         "test_action": {
             "args": null,
-            "build_configuration": null,
+            "build_configuration_name": null,
             "diagnostics": {
                 "sanitizers": {
                     "address": true,
@@ -126,7 +126,7 @@
         },
         "launch_action": {
             "args": [],
-            "build_configuration": null,
+            "build_configuration_name": null,
             "diagnostics": {
                 "sanitizers": {
                     "address": true,

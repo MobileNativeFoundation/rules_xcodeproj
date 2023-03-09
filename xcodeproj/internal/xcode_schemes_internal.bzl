@@ -121,7 +121,7 @@ def _build_for(
 
 def _test_action(
         targets,
-        build_configuration,
+        build_configuration_name,
         args = None,
         diagnostics = None,
         env = None,
@@ -132,8 +132,8 @@ def _test_action(
 
     Args:
         targets: A `sequence` of target labels as `string` values.
-        build_configuration: The name of the build configuration as a `string`
-            value.
+        build_configuration_name: The name of the build configuration as a
+            `string` value.
         args: Optional. A `list` of `string` arguments that should be passed
             to the target when executed. If both this and `env` are `None`
             (not just empty), then the launch action's arguments will be
@@ -168,7 +168,7 @@ or one of the test targets.
 
     return struct(
         targets = targets,
-        build_configuration = build_configuration,
+        build_configuration_name = build_configuration_name,
         args = args,
         diagnostics = diagnostics,
         env = env,
@@ -179,7 +179,7 @@ or one of the test targets.
 
 def _launch_action(
         target,
-        build_configuration,
+        build_configuration_name,
         args = None,
         diagnostics = None,
         env = None,
@@ -188,8 +188,8 @@ def _launch_action(
 
     Args:
         target: A target label as a `string` value.
-        build_configuration: The name of the build configuration as a `string`
-            value.
+        build_configuration_name: The name of the build configuration as a
+            `string` value.
         args: Optional. A `list` of `string` arguments that should be passed to
             the target when executed.
         diagnostics: Optional. A value returned by `xcode_schemes.diagnostics`.
@@ -203,7 +203,7 @@ def _launch_action(
     """
     return struct(
         target = target,
-        build_configuration = build_configuration,
+        build_configuration_name = build_configuration_name,
         args = args if args != None else [],
         diagnostics = diagnostics,
         env = env if env != None else {},

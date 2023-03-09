@@ -68,10 +68,10 @@ def focus_schemes(schemes, focused_targets):
                 if sets.contains(focused_targets, label)
             ]
             if test_targets:
-                build_configuration = test_action.build_configuration
+                build_configuration_name = test_action.build_configuration_name
                 test_action = xcode_schemes_internal.test_action(
                     targets = test_targets,
-                    build_configuration = build_configuration,
+                    build_configuration_name = build_configuration_name,
                     args = test_action.args,
                     diagnostics = test_action.diagnostics,
                     env = test_action.env,
@@ -192,10 +192,10 @@ def unfocus_schemes(schemes, unfocused_targets):
                 if not sets.contains(unfocused_targets, label)
             ]
             if test_targets:
-                build_configuration = test_action.build_configuration
+                build_configuration_name = test_action.build_configuration_name
                 test_action = xcode_schemes_internal.test_action(
                     targets = test_targets,
-                    build_configuration = build_configuration,
+                    build_configuration_name = build_configuration_name,
                     args = test_action.args,
                     diagnostics = test_action.diagnostics,
                     env = test_action.env,
@@ -375,7 +375,6 @@ def make_xcode_schemes(bazel_labels):
     def _launch_action(
             target,
             args = None,
-            build_configuration = None,
             diagnostics = None,
             env = None,
             working_directory = None):
@@ -385,10 +384,6 @@ def make_xcode_schemes(bazel_labels):
             target: A target label as a `string` value.
             args: Optional. A `list` of `string` arguments that should be passed
                 to the target when executed.
-            build_configuration: Optional. The name of the Xcode configuration
-                to use for this action. If not set, then the configuration
-                determined by `xcodeproj.default_xcode_configuration` will be
-                used.
             diagnostics: Optional. A value returned by
                 `xcode_schemes.diagnostics`.
             env: Optional. A `dict` of `string` values that will be set as
@@ -402,7 +397,7 @@ def make_xcode_schemes(bazel_labels):
             A `struct` representing a launch action.
         """
         return xcode_schemes_internal.launch_action(
-            build_configuration = build_configuration,
+            build_configuration_name = None,
             target = bazel_labels.normalize(target),
             args = args,
             diagnostics = diagnostics,
@@ -413,7 +408,6 @@ def make_xcode_schemes(bazel_labels):
     def _profile_action(
             target,
             args = None,
-            build_configuration = None,
             env = None,
             working_directory = None):
         """Constructs a profile action for an Xcode scheme.
@@ -424,10 +418,6 @@ def make_xcode_schemes(bazel_labels):
                 to the target when executed. If both this and `env` are `None`
                 (not just empty), then the launch action's arguments will be
                 inherited.
-            build_configuration: Optional. The name of the Xcode configuration
-                to use for this action. If not set, then the configuration
-                determined by `xcodeproj.default_xcode_configuration` will be
-                used.
             env: Optional. A `dict` of `string` values that will be set as
                 environment variables when the target is executed. If both this
                 and `args` are `None` (not just empty), then the launch action's
@@ -441,7 +431,7 @@ def make_xcode_schemes(bazel_labels):
             A `struct` representing a profile action.
         """
         return xcode_schemes_internal.profile_action(
-            build_configuration = build_configuration,
+            build_configuration = None,
             target = bazel_labels.normalize(target),
             args = args,
             env = env,
@@ -451,7 +441,6 @@ def make_xcode_schemes(bazel_labels):
     def _test_action(
             targets,
             args = None,
-            build_configuration = None,
             diagnostics = None,
             env = None,
             expand_variables_based_on = None,
@@ -465,10 +454,6 @@ def make_xcode_schemes(bazel_labels):
                 to the target when executed. If both this and `env` are `None`
                 (not just empty), then the launch action's arguments will be
                 inherited.
-            build_configuration: Optional. The name of the Xcode configuration
-                to use for this action. If not set, then the configuration
-                determined by `xcodeproj.default_xcode_configuration` will be
-                used.
             diagnostics: Optional. A value returned by
                 `xcode_schemes.diagnostics`.
             env: Optional. A `dict` of `string` values that will be set as
@@ -502,7 +487,7 @@ def make_xcode_schemes(bazel_labels):
                 bazel_labels.normalize(t)
                 for t in targets
             ],
-            build_configuration = build_configuration,
+            build_configuration_name = None,
             args = args,
             diagnostics = diagnostics,
             env = env,

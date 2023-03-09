@@ -1,9 +1,7 @@
 {
     "B": "rules_xcodeproj",
     "E": [
-        "//tools/generator/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-STABLE-3",
-        {},
-        "//tools/generator/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-opt-STABLE-4",
+        "//tools/generator/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-STABLE-2",
         {}
     ],
     "R": "//test/fixtures/generator:xcodeproj_bwx",
@@ -22,14 +20,8 @@
     "m": "13.0",
     "n": "bwx",
     "r": [
-        "//tools/generator/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-STABLE-3",
-        "//tools/generator/test:tests",
-        "//tools/generator/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-opt-STABLE-4",
+        "//tools/generator/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-STABLE-2",
         "//tools/generator/test:tests"
     ],
-    "s": "none",
-    "x": [
-        "Debug",
-        "Profile"
-    ]
+    "s": "none"
 }

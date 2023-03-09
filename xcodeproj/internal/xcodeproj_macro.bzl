@@ -17,7 +17,6 @@ def xcodeproj(
         bazel_path = "bazel",
         build_mode = "bazel",
         config = "rules_xcodeproj",
-        default_xcode_configuration = None,
         extra_files = [],
         focused_targets = [],
         install_directory = None,
@@ -37,7 +36,6 @@ def xcodeproj(
         unfocused_targets = [],
         watchos_device_cpus = "arm64_32",
         watchos_simulator_cpus = None,
-        xcode_configurations = {"Debug": {}},
         **kwargs):
     """Creates an `.xcodeproj` file in the workspace when run.
 
@@ -105,12 +103,6 @@ def xcodeproj(
 
             See the [usage guide](usage.md#bazel-configs) for more information
             on adjusting Bazel configs.
-        default_xcode_configuration: Optional. The name of the the Xcode
-            configuration to use when building, if not overridden by custom
-            schemes. If not set, the first Xcode configuration alphabetically
-            will be used. Use
-            [`xcode_configurations`](#xcodeproj-xcode_configurations)
-            to adjust Xcode configurations.
         extra_files: Optional. A `list` of extra `File`s to be added to the
             project.
         focused_targets: Optional. A `list` of target labels as `string` values.
@@ -250,15 +242,6 @@ def xcodeproj(
             hash of all transitive dependencies of the targets specified in the
             `top_level_targets` argument with the `"simulator"`
             `target_environment`, even if they aren't watchOS targets.
-        xcode_configurations: Optional. A `dict` mapping Xcode configuration
-            names to transition settings dictionaries. For example,
-            `{"Dev": {"//command_line_option:compilation_mode": "dbg"}, "AppStore": {"//command_line_option:compilation_mode": "opt"}}`,
-            would create the "Dev" and "AppStore" configurations, setting
-            `--compilation_mode` to `dbg` and `opt` respectively.
-
-            Refer to the
-            [bazel documentation](https://bazel.build/extending/config#defining)
-            on how to define the transition settings dictionary.
         **kwargs: Additional arguments to pass to the underlying `xcodeproj`
             rule specified by `xcodeproj_rule`.
     """
@@ -283,20 +266,6 @@ in your `.bazelrc` or `xcodeproj.bazelrc` file.""")
         project_name = name
     if not project_options:
         project_options = _default_project_options()
-    if not xcode_configurations:
-        xcode_configurations = {"Debug": {}}
-
-    if default_xcode_configuration and default_xcode_configuration not in xcode_configurations:
-        keys = sorted(xcode_configurations.keys())
-        fail("""
-`default_xcode_configuration` ("{configuration}") must be one of the keys in \
-`xcode_configurations` ({keys}), or `None` to select the first configuration \
-alphabetically ("{default}").
-""".format(
-            configuration = default_xcode_configuration,
-            default = keys[0],
-            keys = keys,
-        ))
 
     if not top_level_targets:
         fail("`top_level_targets` cannot be empty.")
@@ -349,27 +318,6 @@ alphabetically ("{default}").
             )
         schemes_json = json.encode(schemes)
 
-    xcode_configuration_flags = None
-    for configuration, flags in xcode_configurations.items():
-        if type(flags) != "dict":
-            fail("""\
-All values in `xcode_configurations` must be transition settings dictionaries.
-Please refer to https://bazel.build/extending/config#defining) on how to them.
-""")
-        keys = sorted(flags.keys())
-        if xcode_configuration_flags == None:
-            xcode_configuration_flags = keys
-        elif xcode_configuration_flags != keys:
-            fail("""\
-`xcode_configurations`: Keys of the transition settings dictionary for \
-{configuration} ({new_keys}) do not match keys of other configurations \
-({old_keys}). All transition settings dictionaries must have the same keys.
-""".format(
-                configuration = configuration,
-                new_keys = keys,
-                old_keys = xcode_configuration_flags,
-            ))
-
     xcodeproj_runner(
         name = name,
         adjust_schemes_for_swiftui_previews = (
@@ -378,7 +326,6 @@ Please refer to https://bazel.build/extending/config#defining) on how to them.
         build_mode = build_mode,
         bazel_path = bazel_path,
         config = config,
-        default_xcode_configuration = default_xcode_configuration,
         focused_targets = focused_targets,
         install_directory = install_directory,
         ios_device_cpus = ios_device_cpus,
@@ -403,7 +350,5 @@ Please refer to https://bazel.build/extending/config#defining) on how to them.
         unowned_extra_files = extra_files,
         watchos_device_cpus = watchos_device_cpus,
         watchos_simulator_cpus = watchos_simulator_cpus,
-        xcode_configuration_flags = xcode_configuration_flags,
-        xcode_configurations = str(xcode_configurations),
         **kwargs
     )

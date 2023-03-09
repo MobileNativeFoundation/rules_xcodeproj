@@ -5,7 +5,6 @@ build --experimental_convenience_symlinks=ignore
 # Work around https://github.com/bazelbuild/bazel/issues/13912
 build --experimental_action_cache_store_output_metadata
 
-build --modify_execution_info=^(BitcodeSymbolsCopy|BundleApp|BundleTreeApp|DsymDwarf|DsymLipo|GenerateAppleSymbolsFile|ObjcBinarySymbolStrip|CppLink|ObjcLink|ProcessAndSign|SignBinary|SwiftArchive|SwiftStdlibCopy)$=+no-remote,^(BundleResources|ImportedDynamicFrameworkProcessor)$=+no-remote-exec
 build --remote_default_exec_properties=OSFamily=darwin
 build --remote_default_exec_properties=cache_bust=macOS_12.0/4
 
@@ -32,6 +31,7 @@ build:cache --bes_results_url=https://app.buildbuddy.io/invocation/
 build:cache --experimental_remote_cache_async
 build:cache --experimental_remote_cache_compression
 build:cache --jobs=100
+build:cache --modify_execution_info=^(BitcodeSymbolsCopy|BundleApp|BundleTreeApp|DsymDwarf|DsymLipo|GenerateAppleSymbolsFile|ObjcBinarySymbolStrip|CppLink|ObjcLink|ProcessAndSign|SignBinary|SwiftArchive|SwiftStdlibCopy)$=+no-remote,^(BundleResources|ImportedDynamicFrameworkProcessor)$=+no-remote-exec
 build:cache --remote_cache=grpcs://remote.buildbuddy.io
 build:cache --@rules_xcodeproj//xcodeproj:extra_common_flags='--config=cache'
 build:cache --@rules_xcodeproj//xcodeproj:extra_indexbuild_flags='--bes_backend= --bes_results_url='

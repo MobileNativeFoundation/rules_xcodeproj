@@ -135,7 +135,6 @@ def _write_generator_defz_bzl(
 load(
     "{repo}//xcodeproj/internal:xcodeproj_rule.bzl",
     "make_xcodeproj_rule",
-    "make_xcodeproj_target_transitions",
 )""".format(repo = repo),
     ]
     if is_fixture:
@@ -146,18 +145,6 @@ load(
     "fixtures_transition",
 )""".format(repo = repo))
 
-    target_transitions = """\
-def _target_transition_implementation(_settings, _attr):
-    return {xcode_configurations}
-
-_target_transitions = make_xcodeproj_target_transitions(
-    implementation = _target_transition_implementation,
-    outputs = {flags},
-)""".format(
-        flags = attr.xcode_configuration_flags,
-        xcode_configurations = attr.xcode_configurations,
-    )
-
     actions.expand_template(
         template = template,
         output = output,
@@ -165,7 +152,6 @@ _target_transitions = make_xcodeproj_target_transitions(
             "%build_mode%": build_mode,
             "%is_fixture%": str(is_fixture),
             "%loads%": "\n".join(loads),
-            "%target_transitions%": target_transitions,
             "%xcodeproj_transitions%": (
                 "fixtures_transition" if is_fixture else "None"
             ),
@@ -427,12 +413,6 @@ xcodeproj_runner = rule(
             default = [],
         ),
         "unowned_extra_files": attr.string_list(),
-        "xcode_configuration_flags": attr.string_list(
-            mandatory = True,
-        ),
-        "xcode_configurations": attr.string(
-            mandatory = True,
-        ),
         "ios_device_cpus": attr.string(
             mandatory = True,
         ),
