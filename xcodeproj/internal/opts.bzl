@@ -395,9 +395,10 @@ def _process_conlyopts(opts, *, build_settings):
         if opt.startswith("-D"):
             value = opt[2:]
             if value.startswith("OBJC_OLD_DISPATCH_PROTOTYPES"):
-                if value.endswith("=1"):
+                suffix = value[-2:]
+                if suffix == "=1":
                     build_settings["ENABLE_STRICT_OBJC_MSGSEND"] = False
-                elif value.endswith("=0"):
+                elif suffix == "=0":
                     build_settings["ENABLE_STRICT_OBJC_MSGSEND"] = True
                 return None
             return opt
@@ -456,9 +457,10 @@ def _process_cxxopts(opts, *, build_settings):
         if opt.startswith("-D"):
             value = opt[2:]
             if value.startswith("OBJC_OLD_DISPATCH_PROTOTYPES"):
-                if value.endswith("=1"):
+                suffix = value[-2:]
+                if suffix == "=1":
                     build_settings["ENABLE_STRICT_OBJC_MSGSEND"] = False
-                elif value.endswith("=0"):
+                elif suffix == "=0":
                     build_settings["ENABLE_STRICT_OBJC_MSGSEND"] = True
                 return None
             return opt
