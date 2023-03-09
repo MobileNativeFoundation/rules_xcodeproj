@@ -409,13 +409,16 @@ $(CONFIGURATION_BUILD_DIR)
         }
 
         var cFlagsString = processFlagsString(
-            (cFlagsPrefix + cFlags).joined(separator: " ")
+            flagsPrefix: cFlagsPrefix,
+            flags: cFlags
         )
         var cxxFlagsString = processFlagsString(
-            (cxxFlagsPrefix + cxxFlags).joined(separator: " ")
+            flagsPrefix: cxxFlagsPrefix,
+            flags: cxxFlags
         )
         let swiftFlagsString = processFlagsString(
-            (swiftFlagsPrefix + swiftFlags).joined(separator: " ")
+            flagsPrefix: swiftFlagsPrefix,
+            flags: swiftFlags
         )
 
         // Append settings when using ASAN
@@ -560,20 +563,36 @@ $(BUILD_DIR)/\(testHost.packageBinDir)/\(productPath)/\(executableName)
     }
 }
 
-private func processFlagsString(_ string: String) -> String {
-    // Use Xcode set `DEVELOPER_DIR`
-    var ret = string.replacingOccurrences(
-        of: "__BAZEL_XCODE_DEVELOPER_DIR__",
-        with: "$(DEVELOPER_DIR)"
-    )
+private func processFlagsString(
+    flagsPrefix: [String],
+    flags: [String]
+) -> String {
+    // `flagsPrefix` doesn't need whitespace handling, as we make sure to have
+    // it in the correct form before this function is called.
+    let flags = flags
+        .map { flag in
+            guard !flag.contains(" ") else {
+                // We use the NUL character to prevent escaping it later
+                return "\0\(flag)\0"
+            }
+            return flag
+        }
 
-    // Use Xcode set `SDKROOT`
-    ret = ret.replacingOccurrences(
-        of: "__BAZEL_XCODE_SDKROOT__",
-        with: "$(SDKROOT)"
-    )
-
-    return ret
+    return (flagsPrefix + flags).joined(separator: " ")
+        // Use Xcode set `DEVELOPER_DIR`
+        .replacingOccurrences(
+            of: "__BAZEL_XCODE_DEVELOPER_DIR__",
+            with: "$(DEVELOPER_DIR)"
+        )
+        // Use Xcode set `SDKROOT`
+        .replacingOccurrences(
+            of: "__BAZEL_XCODE_SDKROOT__",
+            with: "$(SDKROOT)"
+        )
+        // Escape quotes
+        .replacingOccurrences(of: #"""#, with: #"\""#)
+        // Convert NUL characters into quotes
+        .replacingOccurrences(of: "\0", with: #"""#)
 }
 
 private extension Dictionary where Value == BuildSetting {
