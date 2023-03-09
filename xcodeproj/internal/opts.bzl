@@ -312,9 +312,8 @@ def _process_base_compiler_opts(
         # Fix quotes for Xcode build settings
         opt = opt.replace('"', '\\"')
 
-        if opt.find(" ") != -1:
-            # Fix spaces for Xcode build settings
-            opt = '"{}"'.format(opt)
+        # Fix handling of spaces for Xcode build settings
+        opt = '"{}"'.format(opt)
 
         processed_opts.append(opt)
 
