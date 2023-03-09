@@ -5,18 +5,21 @@ load("@bazel_skylib//lib:sets.bzl", "sets")
 def _scheme(
         name,
         build_action = None,
-        test_action = None,
-        launch_action = None):
+        launch_action = None,
+        profile_action = None,
+        test_action = None):
     """Returns a `struct` representing an Xcode scheme.
 
     Args:
         name: The user-visible name for the scheme as a `string`.
         build_action: Optional. A value returned by
             `xcode_schemes.build_action`.
-        test_action: Optional. A value returned by
-            `xcode_schemes.test_action`.
         launch_action: Optional. A value returned by
             `xcode_schemes.launch_action`.
+        profile_action: Optional. A value returned by
+            `xcode_schemes.profile_action`.
+        test_action: Optional. A value returned by
+            `xcode_schemes.test_action`.
 
     Returns:
         A `struct` representing an Xcode scheme.
@@ -24,8 +27,9 @@ def _scheme(
     return struct(
         name = name,
         build_action = build_action,
-        test_action = test_action,
         launch_action = launch_action,
+        profile_action = profile_action,
+        test_action = test_action,
     )
 
 def _build_action(targets, pre_actions, post_actions):
@@ -206,6 +210,36 @@ def _launch_action(
         working_directory = working_directory,
     )
 
+def _profile_action(
+        target,
+        build_configuration,
+        args = None,
+        env = None,
+        working_directory = None):
+    """Constructs a launch action for an Xcode scheme.
+
+    Args:
+        target: A target label as a `string` value.
+        build_configuration: The name of the build configuration as a `string`
+            value.
+        args: Optional. A `list` of `string` arguments that should be passed to
+            the target when executed.
+        env: Optional. A `dict` of `string` values that will be set as
+            environment variables when the target is executed.
+        working_directory: Optional. A `string` that will be set as the custom
+            working directory in the Xcode scheme's launch action.
+
+    Returns:
+        A `struct` representing a profile action.
+    """
+    return struct(
+        target = target,
+        build_configuration = build_configuration,
+        args = args,
+        env = env,
+        working_directory = working_directory,
+    )
+
 build_for_values = struct(
     UNSPECIFIED = "unspecified",
     ENABLED = "enabled",
@@ -220,6 +254,7 @@ xcode_schemes_internal = struct(
     build_for_values = build_for_values,
     test_action = _test_action,
     launch_action = _launch_action,
+    profile_action = _profile_action,
     BUILD_FOR_ALL_ENABLED = _build_for(
         running = True,
         testing = True,

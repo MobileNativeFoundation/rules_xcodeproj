@@ -32,20 +32,23 @@ def _scheme_test(ctx):
 
     name = "Foo"
     build_action = xcode_schemes.build_action(["//Sources/Foo"])
-    test_action = xcode_schemes.test_action(["//Tests/FooTests"])
     launch_action = xcode_schemes.launch_action("//Sources/App")
+    profile_action = xcode_schemes.launch_action("//Sources/App")
+    test_action = xcode_schemes.test_action(["//Tests/FooTests"])
 
     actual = xcode_schemes.scheme(
         name = name,
         build_action = build_action,
-        test_action = test_action,
         launch_action = launch_action,
+        profile_action = profile_action,
+        test_action = test_action,
     )
     expected = struct(
         name = name,
         build_action = build_action,
-        test_action = test_action,
         launch_action = launch_action,
+        profile_action = profile_action,
+        test_action = test_action,
     )
     asserts.equals(env, expected, actual)
 

@@ -289,7 +289,7 @@
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Debug"
-      shouldUseLaunchSchemeArgsEnv = "YES"
+      shouldUseLaunchSchemeArgsEnv = "NO"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "YES"
       customWorkingDirectory = "$(BUILD_WORKSPACE_DIRECTORY)"
@@ -322,6 +322,72 @@
             ReferencedContainer = "container:../../../../../test/fixtures/generator/bwx.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <CommandLineArguments>
+         <CommandLineArgument
+            argument = "bazel-output-base/rules_xcodeproj/build_output_base/execroot/rules_xcodeproj/bazel-out/darwin_arm64-opt/bin/tools/generator/xcodeproj.generator_root_dirs"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "bazel-output-base/rules_xcodeproj/build_output_base/execroot/rules_xcodeproj/bazel-out/darwin_arm64-opt/bin/tools/generator/xcodeproj.generator_xccurrentversions"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "bazel-output-base/rules_xcodeproj/build_output_base/execroot/rules_xcodeproj/bazel-out/darwin_arm64-opt/bin/tools/generator/xcodeproj.generator_extensionpointidentifiers"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "/tmp/out.xcodeproj"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "/tmp/out.final.xcodeproj"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "bazel"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "0"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "/tmp/specs/xcodeproj.generator-project_spec.json"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "/tmp/specs/xcodeproj.generator-targets_spec.0.json"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "/tmp/specs/xcodeproj.generator-targets_spec.1.json"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "/tmp/specs/xcodeproj.generator-targets_spec.2.json"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "/tmp/specs/xcodeproj.generator-targets_spec.3.json"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "/tmp/specs/xcodeproj.generator-targets_spec.4.json"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "/tmp/specs/xcodeproj.generator-targets_spec.5.json"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "/tmp/specs/xcodeproj.generator-targets_spec.6.json"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "/tmp/specs/xcodeproj.generator-targets_spec.7.json"
+            isEnabled = "YES">
+         </CommandLineArgument>
+      </CommandLineArguments>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

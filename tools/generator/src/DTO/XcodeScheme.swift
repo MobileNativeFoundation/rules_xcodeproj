@@ -402,19 +402,49 @@ extension XcodeScheme.LaunchAction: Decodable {
 // MARK: ProfileAction
 
 extension XcodeScheme {
-    struct ProfileAction: Equatable, Decodable {
+    struct ProfileAction: Equatable {
         let buildConfigurationName: String?
         let target: BazelLabel
+        let args: [String]?
+        let env: [String: String]?
         let workingDirectory: String?
 
         init(
             target: BazelLabel,
             buildConfigurationName: String? = nil,
+            args: [String]? = nil,
+            env: [String: String]? = nil,
             workingDirectory: String? = nil
         ) {
             self.target = target
             self.buildConfigurationName = buildConfigurationName
+            self.args = args
+            self.env = env
             self.workingDirectory = workingDirectory
         }
+    }
+}
+
+extension XcodeScheme.ProfileAction: Decodable {
+    enum CodingKeys: String, CodingKey {
+        case buildConfigurationName
+        case target
+        case args
+        case env
+        case workingDirectory
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        buildConfigurationName = try container
+            .decodeIfPresent(String.self, forKey: .buildConfigurationName)
+        target = try container.decode(BazelLabel.self, forKey: .target)
+        args = try container
+            .decodeIfPresent([String].self, forKey: .args)
+        env = try container
+            .decodeIfPresent([String: String].self, forKey: .env)
+        workingDirectory = try container
+            .decodeIfPresent(String.self, forKey: .workingDirectory)
     }
 }

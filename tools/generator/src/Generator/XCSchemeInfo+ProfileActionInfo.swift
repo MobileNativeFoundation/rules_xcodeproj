@@ -4,15 +4,21 @@ extension XCSchemeInfo {
     struct ProfileActionInfo: Equatable {
         let buildConfigurationName: String
         let targetInfo: XCSchemeInfo.TargetInfo
+        let args: [String]?
+        let env: [String: String]?
         let workingDirectory: String?
 
         init(
             buildConfigurationName: String,
             targetInfo: XCSchemeInfo.TargetInfo,
+            args: [String]? = nil,
+            env: [String: String]? = nil,
             workingDirectory: String? = nil
         ) {
             self.buildConfigurationName = buildConfigurationName
             self.targetInfo = targetInfo
+            self.args = args
+            self.env = env
             self.workingDirectory = workingDirectory
         }
     }
@@ -35,6 +41,8 @@ extension XCSchemeInfo.ProfileActionInfo {
                 resolveHostFor: original.targetInfo,
                 topLevelTargetInfos: topLevelTargetInfos
             ),
+            args: original.args,
+            env: original.env,
             workingDirectory: original.workingDirectory
         )
     }
@@ -84,6 +92,8 @@ extension XCSchemeInfo.ProfileActionInfo {
             buildConfigurationName: profileAction.buildConfigurationName ??
                 targetInfo.pbxTarget.defaultBuildConfigurationName,
             targetInfo: targetInfo,
+            args: profileAction.args,
+            env: profileAction.env,
             workingDirectory: profileAction.workingDirectory
         )
     }
