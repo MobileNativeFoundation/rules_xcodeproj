@@ -26,6 +26,9 @@ def _make_xcode_target(
         is_swift,
         test_host = None,
         build_settings,
+        conlyopts = [],
+        cxxopts = [],
+        swiftcopts = [],
         search_paths = None,
         modulemaps,
         swiftmodules,
@@ -62,6 +65,9 @@ def _make_xcode_target(
             target, or `None` if this target does not have a test host.
         build_settings: A `dict` of Xcode build settings for the target.
         search_paths: A value returned from `process_opts`, or `None`.
+        conlyopts: A `list` of processed C compiler options.
+        cxxopts: A `list` of processed C++ compiler options.
+        swiftcopts: A `list` of processed Swift compiler options.
         modulemaps: The value returned from `process_modulemaps`.
         swiftmodules: The value returned from `process_swiftmodules`.
         inputs: The value returned from `input_files.collect`.
@@ -99,6 +105,9 @@ def _make_xcode_target(
         _package_bin_dir = package_bin_dir,
         _test_host = test_host,
         _build_settings = struct(**build_settings),
+        _conlyopts = tuple(conlyopts),
+        _cxxopts = tuple(cxxopts),
+        _swiftcopts = tuple(swiftcopts),
         _search_paths = search_paths,
         _modulemaps = modulemaps,
         _swiftmodules = tuple(swiftmodules),
@@ -289,6 +298,9 @@ def _merge_xcode_target(*, src, dest):
         is_swift = src.is_swift,
         test_host = dest._test_host,
         build_settings = build_settings,
+        conlyopts = src._conlyopts or dest._conlyopts,
+        cxxopts = src._cxxopts or dest._cxxopts,
+        swiftcopts = src._swiftcopts or dest._swiftcopts,
         search_paths = dest._search_paths,
         modulemaps = src._modulemaps,
         swiftmodules = src._swiftmodules,
@@ -577,12 +589,34 @@ def _xcode_target_to_dto(
         "b",
         _build_settings_to_dto(
             build_mode = build_mode,
-            is_fixture = is_fixture,
             linker_products_map = linker_products_map,
             xcode_generated_paths = xcode_generated_paths,
             xcode_target = xcode_target,
         ),
     )
+
+    conlyopts = xcode_target._conlyopts
+    cxxopts = xcode_target._cxxopts
+    if is_fixture:
+        # Until we no longer support Bazel 5, we need to remove the
+        # `BAZEL_CURRENT_REPOSITORY` define so Bazel 5 and 6 have the same
+        # fixture
+        new_conlyopts = []
+        new_cxxopts = []
+        for opt in conlyopts:
+            if opt.startswith("-DBAZEL_CURRENT_REPOSITORY="):
+                continue
+            new_conlyopts.append(opt)
+        for opt in cxxopts:
+            if opt.startswith("-DBAZEL_CURRENT_REPOSITORY="):
+                continue
+            new_cxxopts.append(opt)
+        conlyopts = new_conlyopts
+        cxxopts = new_cxxopts
+
+    set_if_true(dto, "8", conlyopts)
+    set_if_true(dto, "9", cxxopts)
+    set_if_true(dto, "0", xcode_target._swiftcopts)
 
     set_if_true(
         dto,
@@ -671,7 +705,6 @@ def _xcode_target_to_dto(
 def _build_settings_to_dto(
         *,
         build_mode,
-        is_fixture,
         linker_products_map,
         xcode_generated_paths,
         xcode_target):
@@ -692,37 +725,6 @@ def _build_settings_to_dto(
         xcode_generated_paths = xcode_generated_paths,
         xcode_target = xcode_target,
     )
-
-    if is_fixture:
-        # Until we no longer support Bazel 5, we need to remove the
-        # `BAZEL_CURRENT_REPOSITORY` define so Bazel 5 and 6 have the same
-        # fixture
-        copts = []
-        cxxopts = []
-        for opt in build_settings.pop(
-            "OTHER_CFLAGS",
-            [],
-        ):
-            if opt.startswith("-DBAZEL_CURRENT_REPOSITORY="):
-                continue
-            copts.append(opt)
-        for opt in build_settings.pop(
-            "OTHER_CPLUSPLUSFLAGS",
-            [],
-        ):
-            if opt.startswith("-DBAZEL_CURRENT_REPOSITORY="):
-                continue
-            cxxopts.append(opt)
-        set_if_true(
-            build_settings,
-            "OTHER_CFLAGS",
-            copts,
-        )
-        set_if_true(
-            build_settings,
-            "OTHER_CPLUSPLUSFLAGS",
-            cxxopts,
-        )
 
     return build_settings
 

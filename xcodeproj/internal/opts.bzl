@@ -707,10 +707,13 @@ def _process_compiler_opts(
             `swiftcopts` lists.
 
     Returns:
-        A `tuple` containing two elements:
+        A `tuple` containing five elements:
 
         *   A value returned by `create_search_paths` with the parsed search
             paths.
+        *   A `list` of C compiler options.
+        *   A `list` of C++ compiler options.
+        *   A `list` of Swift compiler options.
         *   A `list` of Swift PCM (clang) compiler options.
     """
 
@@ -772,31 +775,13 @@ def _process_compiler_opts(
         if has_swiftcop and swift_has_debug_info:
             swiftcopts = ["-g"] + swiftcopts
 
-    # TODO: Split out `WARNING_CFLAGS`? (Must maintain order, and only ones that apply to both c and cxx)
-
-    set_if_true(
-        build_settings,
-        "OTHER_CFLAGS",
-        tuple(conlyopts),
-    )
-    set_if_true(
-        build_settings,
-        "OTHER_CPLUSPLUSFLAGS",
-        tuple(cxxopts),
-    )
-    set_if_true(
-        build_settings,
-        "OTHER_SWIFT_FLAGS",
-        " ".join(swiftcopts),
-    )
-
     search_paths = merge_search_paths([
         conly_search_paths,
         cxx_search_paths,
         swift_search_paths,
     ])
 
-    return search_paths, clang_opts
+    return search_paths, conlyopts, cxxopts, swiftcopts, clang_opts
 
 def _process_target_compiler_opts(
         *,
@@ -821,10 +806,13 @@ def _process_target_compiler_opts(
             settings that are parsed from the target's compiler options.
 
     Returns:
-        A `tuple` containing two elements:
+        A `tuple` containing five elements:
 
         *   A value returned by `create_search_paths` with the parsed search
             paths.
+        *   A `list` of C compiler options.
+        *   A `list` of C++ compiler options.
+        *   A `list` of Swift compiler options.
         *   A `list` of Swift PCM (clang) compiler options.
     """
     (
@@ -915,6 +903,9 @@ def process_opts(
 
         *   A value returned by `create_search_paths` with the parsed search
             paths.
+        *   A `list` of C compiler options.
+        *   A `list` of C++ compiler options.
+        *   A `list` of Swift compiler options.
         *   A `list` of Swift PCM (clang) compiler options.
     """
     return _process_target_compiler_opts(

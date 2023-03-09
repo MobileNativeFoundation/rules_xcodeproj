@@ -404,7 +404,7 @@ def process_top_level_target(
         label.workspace_root,
         label.package,
     )
-    search_paths, clang_opts = process_opts(
+    search_paths, conlyopts, cxxopts, swiftcopts, clang_opts = process_opts(
         ctx = ctx,
         build_mode = build_mode,
         has_c_sources = inputs.has_c_sources,
@@ -513,6 +513,9 @@ def process_top_level_target(
             is_swift = is_swift,
             test_host = test_host,
             build_settings = build_settings,
+            conlyopts = conlyopts,
+            cxxopts = cxxopts,
+            swiftcopts = swiftcopts,
             search_paths = search_paths,
             modulemaps = modulemaps,
             swiftmodules = swiftmodules,
