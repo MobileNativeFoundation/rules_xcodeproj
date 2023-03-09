@@ -296,7 +296,10 @@ def _process_targets(
         label_configurations = {}
         for xcode_target in unprocessed_targets.values():
             # Make it stable over labels
-            label_configurations.setdefault(xcode_target.label, {})[xcode_target.configuration] = xcode_target
+            label_configurations.setdefault(
+                xcode_target.label,
+                {},
+            )[xcode_target.configuration] = xcode_target
 
         configurations = {}
         for label_configs in label_configurations.values():
@@ -306,7 +309,10 @@ def _process_targets(
         for idx, configuration in enumerate(configurations):
             prefix, sep, _ = configuration.partition("-ST-")
             if sep:
-                configurations_map[configuration] = "{}-STABLE-{}".format(prefix, idx + 1)
+                configurations_map[configuration] = "{}-STABLE-{}".format(
+                    prefix,
+                    idx + 1,
+                )
 
     replacement_labels_by_label = {
         unprocessed_targets[id].label: label
@@ -565,7 +571,10 @@ actual targets: {}
                 dest = focused_targets[dest],
             )
 
-    xcode_generated_paths, xcode_generated_paths_file = _process_xcode_generated_paths(
+    (
+        xcode_generated_paths,
+        xcode_generated_paths_file,
+    ) = _process_xcode_generated_paths(
         ctx = ctx,
         build_mode = build_mode,
         focused_targets = focused_targets,
@@ -1573,7 +1582,9 @@ sed {flags} ${{inputs[$i]}} > ${{outputs[$i]}}
 done
 """.format(
                 inputs = shell.array_literal([f.path for f in unstable_files]),
-                outputs = shell.array_literal([f.path for f in normalized_files]),
+                outputs = shell.array_literal(
+                    [f.path for f in normalized_files],
+                ),
                 flags = flags,
             ),
         )
