@@ -14,25 +14,25 @@ load(
     "make_stub_workspace_name_resolvers",
 )
 
-bazel_labels = make_bazel_labels(
-    workspace_name_resolvers = make_stub_workspace_name_resolvers(
-        repo_name = "@",
-        pkg_name = "Sources/Foo",
-    ),
-)
-
-def _main_repo_prefix():
+def _repo_prefix():
     return str(Label("@//:BUILD")).partition("//")[0]
 
 def _external_repo_prefix():
-    return str(Label("@_repo//:BUILD")).partition("_")[0]
+    return _repo_prefix() or "@"
+
+bazel_labels = make_bazel_labels(
+    workspace_name_resolvers = make_stub_workspace_name_resolvers(
+        repo_name = _repo_prefix() or "@",
+        pkg_name = "Sources/Foo",
+    ),
+)
 
 def _relative_label_test(ctx):
     env = unittest.begin(ctx)
 
     value = ":chicken"
     actual = bazel_labels.normalize(value)
-    expected = _main_repo_prefix() + "//Sources/Foo:chicken"
+    expected = _repo_prefix() + "//Sources/Foo:chicken"
     asserts.equals(env, expected, actual)
 
     return unittest.end(env)
@@ -56,7 +56,7 @@ def _absolute_label_without_repo_name_test(ctx):
 
     value = "//Sources/Foo:chicken"
     actual = bazel_labels.normalize(value)
-    expected = _main_repo_prefix() + "//Sources/Foo:chicken"
+    expected = _repo_prefix() + "//Sources/Foo:chicken"
     asserts.equals(env, expected, actual)
 
     return unittest.end(env)
