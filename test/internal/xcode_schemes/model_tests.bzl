@@ -158,9 +158,9 @@ def _test_action_test(ctx):
     expected = struct(
         build_configuration_name = None,
         targets = [bazel_labels.normalize(t) for t in targets],
-        args = [],
+        args = None,
         diagnostics = None,
-        env = {},
+        env = None,
         expand_variables_based_on = None,
         pre_actions = [],
         post_actions = [],
@@ -184,6 +184,8 @@ def _test_action_test(ctx):
 
     actual = xcode_schemes.test_action(
         targets,
+        args = [],
+        env = {},
         expand_variables_based_on = "None",
     )
     expected = struct(
@@ -210,9 +212,9 @@ def _test_action_test(ctx):
     expected = struct(
         build_configuration_name = None,
         targets = [bazel_labels.normalize(t) for t in targets],
-        args = [],
+        args = None,
         diagnostics = None,
-        env = {},
+        env = None,
         expand_variables_based_on = bazel_labels.normalize(targets[0]),
         pre_actions = [],
         post_actions = [],
