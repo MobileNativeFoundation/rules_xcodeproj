@@ -266,7 +266,10 @@ fi
 }
 
 extension XCScheme.CommandLineArguments {
-    convenience init?(xcSchemeInfoArgs args: [String]) {
+    convenience init?(xcSchemeInfoArgs args: [String]?) {
+        guard let args = args else {
+            return nil
+        }
         guard !args.isEmpty else {
             return nil
         }
@@ -285,12 +288,17 @@ extension XCScheme.TestAction {
         let commandlineArguments = XCScheme.CommandLineArguments(
             xcSchemeInfoArgs: testActionInfo.args
         )
-        let environmentVariables = buildMode.launchEnvironmentVariables.merged(
-            with: testActionInfo.env.asLaunchEnvironmentVariables()
-        )
-        let shouldUseLaunchSchemeArgsEnv = (
-            commandlineArguments == nil && testActionInfo.env.isEmpty
-        )
+        let shouldUseLaunchSchemeArgsEnv = commandlineArguments == nil &&
+            testActionInfo.env == nil
+
+        let environmentVariables: [XCScheme.EnvironmentVariable]?
+        if shouldUseLaunchSchemeArgsEnv {
+            environmentVariables = nil
+        } else {
+            environmentVariables = buildMode.launchEnvironmentVariables.merged(
+                with: (testActionInfo.env ?? [:]).asLaunchEnvironmentVariables()
+            )
+        }
 
         self.init(
             buildConfiguration: testActionInfo.buildConfigurationName,
@@ -310,7 +318,8 @@ extension XCScheme.TestAction {
             enableUBSanitizer: testActionInfo.diagnostics.sanitizers
                 .undefinedBehavior,
             commandlineArguments: commandlineArguments,
-            environmentVariables: environmentVariables.isEmpty ? nil : environmentVariables
+            environmentVariables: (environmentVariables?.isEmpty ?? true) ?
+                nil : environmentVariables
         )
     }
 }

@@ -18,7 +18,7 @@ extension XCSchemeExtensionsTests {
             buildableName: libraryPBXTarget.buildableName,
             blueprintName: libraryPBXTarget.name
         )
-        XCTAssertEqual(buildableReference, expected)
+        XCTAssertNoDifference(buildableReference, expected)
     }
 }
 
@@ -33,7 +33,7 @@ extension XCSchemeExtensionsTests {
             parallelizeBuild: true,
             buildImplicitDependencies: false
         )
-        XCTAssertEqual(buildAction, expected)
+        XCTAssertNoDifference(buildAction, expected)
     }
 
     func test_BuildAction_init_preActions_postActions() throws {
@@ -70,7 +70,7 @@ extension XCSchemeExtensionsTests {
             parallelizeBuild: true,
             buildImplicitDependencies: false
         )
-        XCTAssertEqual(buildAction, expected)
+        XCTAssertNoDifference(buildAction, expected)
     }
 
     func test_BuildAction_init_buildModeXcode() throws {
@@ -81,7 +81,7 @@ extension XCSchemeExtensionsTests {
             parallelizeBuild: true,
             buildImplicitDependencies: false
         )
-        XCTAssertEqual(buildAction, expected)
+        XCTAssertNoDifference(buildAction, expected)
     }
 }
 
@@ -103,7 +103,7 @@ extension XCSchemeExtensionsTests {
                 .analyzing,
             ]
         )
-        XCTAssertEqual(entry, expected)
+        XCTAssertNoDifference(entry, expected)
     }
 }
 
@@ -137,7 +137,7 @@ extension XCSchemeExtensionsTests {
             ],
             shouldUseLaunchSchemeArgsEnv: true
         )
-        XCTAssertEqual(actual, expected)
+        XCTAssertNoDifference(actual, expected)
     }
 
     func test_TestAction_init_withCustomEnvArgs_xcode() throws {
@@ -165,7 +165,7 @@ extension XCSchemeExtensionsTests {
                 .init(variable: "CUSTOM_ENV_VAR", value: "goodbye", enabled: true),
             ]
         )
-        XCTAssertEqual(actual, expected)
+        XCTAssertNoDifference(actual, expected)
     }
 
     func test_TestAction_init_noCustomEnvArgs_bazel() throws {
@@ -186,9 +186,9 @@ extension XCSchemeExtensionsTests {
                 .init(skipped: false, buildableReference: uiTestTargetInfo.buildableReference),
             ],
             shouldUseLaunchSchemeArgsEnv: true,
-            environmentVariables: .bazelLaunchEnvironmentVariables
+            environmentVariables: nil
         )
-        XCTAssertEqual(actual, expected)
+        XCTAssertNoDifference(actual, expected)
     }
 
     func test_TestAction_init_withCustomEnvArgs_bazel() throws {
@@ -217,7 +217,7 @@ extension XCSchemeExtensionsTests {
                     .bazelLaunchEnvironmentVariables
             ).sortedLocalizedStandard()
         )
-        XCTAssertEqual(actual, expected)
+        XCTAssertNoDifference(actual, expected)
     }
 }
 
@@ -253,7 +253,7 @@ extension XCSchemeExtensionsTests {
             environmentVariables: nil,
             launchAutomaticallySubstyle: productType.launchAutomaticallySubstyle
         )
-        XCTAssertEqual(launchAction, expected)
+        XCTAssertNoDifference(launchAction, expected)
     }
 
     func test_LaunchAction_init_noCustomEnvArgsWorkingDir_bazel() throws {
@@ -285,7 +285,7 @@ extension XCSchemeExtensionsTests {
             environmentVariables: .bazelLaunchEnvironmentVariables,
             launchAutomaticallySubstyle: productType.launchAutomaticallySubstyle
         )
-        XCTAssertEqual(launchAction, expected)
+        XCTAssertNoDifference(launchAction, expected)
     }
 
     func test_LaunchAction_init_customEnvArgsWorkingDir_bazel() throws {
@@ -325,7 +325,7 @@ extension XCSchemeExtensionsTests {
             ).sortedLocalizedStandard(),
             launchAutomaticallySubstyle: productType.launchAutomaticallySubstyle
         )
-        XCTAssertEqual(launchAction, expected)
+        XCTAssertNoDifference(launchAction, expected)
     }
 }
 
@@ -342,7 +342,10 @@ extension XCSchemeExtensionsTests {
             action.title,
             "Set Bazel Build Output Groups for \(libraryTargetInfo.pbxTarget.name)"
         )
-        XCTAssertEqual(action.environmentBuildable, libraryTargetInfo.buildableReference)
+        XCTAssertNoDifference(
+            action.environmentBuildable,
+            libraryTargetInfo.buildableReference
+        )
         XCTAssertTrue(action.scriptText.contains("$BAZEL_TARGET_ID"))
         XCTAssertFalse(action.scriptText.contains("$BAZEL_HOST_TARGET_ID_"))
     }
@@ -358,7 +361,10 @@ extension XCSchemeExtensionsTests {
             action.title,
             "Set Bazel Build Output Groups for \(libraryTargetInfo.pbxTarget.name)"
         )
-        XCTAssertEqual(action.environmentBuildable, libraryTargetInfo.buildableReference)
+        XCTAssertNoDifference(
+            action.environmentBuildable,
+            libraryTargetInfo.buildableReference
+        )
         XCTAssertTrue(action.scriptText.contains("$BAZEL_TARGET_ID"))
         XCTAssertTrue(action.scriptText.contains("$BAZEL_HOST_TARGET_ID_\(hostIndex)"))
     }
@@ -389,7 +395,10 @@ extension XCSchemeExtensionsTests {
             action.title,
             "Set Bazel Build Output Groups for \(libraryTargetInfo.pbxTarget.name)"
         )
-        XCTAssertEqual(action.environmentBuildable, libraryTargetInfo.buildableReference)
+        XCTAssertNoDifference(
+            action.environmentBuildable,
+            libraryTargetInfo.buildableReference
+        )
         XCTAssertTrue(action.scriptText.contains("$BAZEL_TARGET_ID"))
         XCTAssertTrue(action.scriptText.contains("$BAZEL_HOST_TARGET_ID_\(hostIndex)"))
     }
@@ -410,7 +419,10 @@ extension XCSchemeExtensionsTests {
             blueprintName: "b"
         )
         let buildableReferences = [buildRefB, buildRefA]
-        XCTAssertEqual(buildableReferences.inStableOrder, [buildRefA, buildRefB])
+        XCTAssertNoDifference(
+            buildableReferences.inStableOrder,
+            [buildRefA, buildRefB]
+        )
     }
 }
 
