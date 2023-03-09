@@ -324,109 +324,93 @@ $(CONFIGURATION_BUILD_DIR)
         var cxxFlags = target.cxxFlags
         var swiftFlags = target.swiftFlags
 
+        var cFlagsPrefix: [String] = []
+        var cxxFlagsPrefix: [String] = []
+        var swiftFlagsPrefix: [String] = []
+
         if hasBazelDependencies {
-            if target.isSwift {
-                swiftFlags.insert(
-                    contentsOf: [
-                        "-vfsoverlay",
-                        "$(OBJROOT)/bazel-out-overlay.yaml",
-                    ],
-                    at: 0
-                )
-            } else {
-                if !cFlags.isEmpty {
-                    cFlags.insert(
-                        contentsOf: [
-                            "-ivfsoverlay",
-                            "$(OBJROOT)/bazel-out-overlay.yaml",
-                        ],
-                        at: 0
-                    )
+            // Work around stubbed swiftc messing with Indexing setting of
+            // `-working-directory` incorrectly
+            if buildMode == .bazel {
+                if !swiftFlags.isEmpty {
+                    swiftFlagsPrefix.append(contentsOf: [
+                        "-Xcc",
+                        "-working-directory=$(PROJECT_DIR)",
+                        "-working-directory=$(PROJECT_DIR)",
+                    ])
                 }
-                if !cxxFlags.isEmpty {
-                    cxxFlags.insert(
-                        contentsOf: [
-                            "-ivfsoverlay",
-                            "$(OBJROOT)/bazel-out-overlay.yaml",
-                        ],
-                        at: 0
-                    )
-                }
+            }
+            if !cFlags.isEmpty {
+                cFlagsPrefix.append("-working-directory=$(PROJECT_DIR)")
+            }
+            if !cxxFlags.isEmpty {
+                cxxFlagsPrefix.append("-working-directory=$(PROJECT_DIR)")
             }
 
             switch buildMode {
             case .xcode:
                 if target.hasModulemaps {
-                    swiftFlags.insert(
-                        contentsOf: [
-                            "-Xcc",
-                            "-ivfsoverlay",
-                            "-Xcc",
-                            "$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
-                            "-Xcc",
-                            "-ivfsoverlay",
-                            "-Xcc",
-                            "$(OBJROOT)/bazel-out-overlay.yaml",
-                        ],
-                        at: 0
-                    )
+                    swiftFlagsPrefix.append(contentsOf: [
+                        "-Xcc",
+                        "-ivfsoverlay",
+                        "-Xcc",
+                        "$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
+                        "-Xcc",
+                        "-ivfsoverlay",
+                        "-Xcc",
+                        "$(OBJROOT)/bazel-out-overlay.yaml",
+                    ])
                 }
 
                 if !target.isSwift && target.inputs.containsSourceFiles {
                     if !cFlags.isEmpty {
-                        cFlags.insert(
-                            contentsOf: [
-                                "-ivfsoverlay",
-                                "$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
-                            ],
-                            at: 0
-                        )
+                        cFlagsPrefix.append(contentsOf: [
+                            "-ivfsoverlay",
+                            "$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
+                        ])
                     }
                     if !cxxFlags.isEmpty {
-                        cxxFlags.insert(
-                            contentsOf: [
-                                "-ivfsoverlay",
-                                "$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
-                            ],
-                            at: 0
-                        )
+                        cxxFlagsPrefix.append(contentsOf: [
+                            "-ivfsoverlay",
+                            "$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
+                        ])
                     }
                 }
             case .bazel:
                 if target.hasModulemaps {
-                    swiftFlags.insert(
-                        contentsOf: [
-                            "-Xcc",
-                            "-ivfsoverlay",
-                            "-Xcc",
-                            "$(OBJROOT)/bazel-out-overlay.yaml",
-                        ],
-                        at: 0
-                    )
+                    swiftFlagsPrefix.append(contentsOf: [
+                        "-Xcc",
+                        "-ivfsoverlay",
+                        "-Xcc",
+                        "$(OBJROOT)/bazel-out-overlay.yaml",
+                    ])
                 }
             }
 
-            // Work around stubbed swiftc messing with Indexing setting of
-            // `-working-directory` incorrectly
-            if buildMode == .bazel {
-                if !swiftFlags.isEmpty {
-                    swiftFlags.insert(
-                        contentsOf: [
-                            "-Xcc",
-                            "-working-directory=$(PROJECT_DIR)",
-                            "-working-directory=$(PROJECT_DIR)",
-                        ],
-                        at: 0
-                    )
+            if target.isSwift {
+                swiftFlagsPrefix.append(contentsOf: [
+                    "-vfsoverlay",
+                    "$(OBJROOT)/bazel-out-overlay.yaml",
+                ])
+            } else {
+                if !cFlags.isEmpty {
+                    cFlagsPrefix.append(contentsOf: [
+                        "-ivfsoverlay",
+                        "$(OBJROOT)/bazel-out-overlay.yaml",
+                    ])
+                }
+                if !cxxFlags.isEmpty {
+                    cxxFlagsPrefix.append(contentsOf: [
+                        "-ivfsoverlay",
+                        "$(OBJROOT)/bazel-out-overlay.yaml",
+                    ])
                 }
             }
-            if !cFlags.isEmpty {
-                cFlags.insert("-working-directory=$(PROJECT_DIR)", at: 0)
-            }
-            if !cxxFlags.isEmpty {
-                cxxFlags.insert("-working-directory=$(PROJECT_DIR)", at: 0)
-            }
         }
+
+        cFlags.insert(contentsOf: cFlagsPrefix, at: 0)
+        cxxFlags.insert(contentsOf: cxxFlagsPrefix, at: 0)
+        swiftFlags.insert(contentsOf: swiftFlagsPrefix, at: 0)
 
         // Append settings when using ASAN
         if cFlags.contains("-D_FORTIFY_SOURCE=1")
