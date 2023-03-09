@@ -3,11 +3,13 @@ load(
     ":xcodeproj_targets.bzl",
     "ASSOCIATED_EXTRA_FILES",
     "CONFIG",
+    "DEFAULT_XCODE_CONFIGURATION",
     "EXTRA_FILES",
     "PROJECT_OPTIONS",
     "SCHEME_AUTOGENERATION_MODE",
     "UNFOCUSED_TARGETS",
     "XCODEPROJ_TARGETS",
+    "XCODE_CONFIGURATIONS",
     "get_xcode_schemes",
 )
 
@@ -47,6 +49,7 @@ exports_files(["README.md"])
         associated_extra_files = ASSOCIATED_EXTRA_FILES,
         build_mode = "xcode",
         config = CONFIG,
+        default_xcode_configuration = DEFAULT_XCODE_CONFIGURATION,
         extra_files = EXTRA_FILES,
         ios_simulator_cpus = simulator_cpu,
         project_name = "Integration",
@@ -59,6 +62,7 @@ exports_files(["README.md"])
         unfocused_targets = UNFOCUSED_TARGETS,
         # watchOS Simulator CPU on Apple silicon doesn't have 'sim_' prefix
         watchos_simulator_cpus = simulator_cpu.removeprefix("sim_"),
+        xcode_configurations = XCODE_CONFIGURATIONS,
     )
     for simulator_cpu in [
         "sim_arm64",

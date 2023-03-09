@@ -18,6 +18,17 @@ PROJECT_OPTIONS = project_options(
     uses_tabs = True,
 )
 
+XCODE_CONFIGURATIONS = {
+    "AppStore": {
+        "//command_line_option:compilation_mode": "opt",
+    },
+    "Debug": {
+        "//command_line_option:compilation_mode": "dbg",
+    },
+}
+
+DEFAULT_XCODE_CONFIGURATION = "Debug"
+
 EXTRA_FILES = [
     "//:README.md",
 ]
@@ -100,6 +111,7 @@ def get_xcode_schemes():
         xcode_schemes.scheme(
             name = "iOSAppSwiftUnitTests_CommandLineArgs_Scheme",
             test_action = xcode_schemes.test_action(
+                build_configuration = "AppStore",
                 env = {
                     "IOSAPPSWIFTUNITTESTS_CUSTOMSCHEMEVAR": "TRUE",
                 },

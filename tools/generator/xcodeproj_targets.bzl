@@ -12,6 +12,15 @@ _TOOL_TARGET = "//tools/swiftc_stub:swiftc"
 
 TOP_LEVEL_TARGETS = [_APP_TARGET, _TEST_TARGET, _TOOL_TARGET]
 
+XCODE_CONFIGURATIONS = {
+    "Debug": {
+        "//command_line_option:compilation_mode": "dbg",
+    },
+    "Profile": {
+        "//command_line_option:compilation_mode": "opt",
+    },
+}
+
 SCHEME_AUTOGENERATION_MODE = "none"
 
 # tl;dr The `tools/generator` custom Xcode schemes are wrapped in a function
@@ -110,6 +119,7 @@ def get_xcode_schemes():
                     "/tmp/specs/xcodeproj.generator-targets_spec.6.json",
                     "/tmp/specs/xcodeproj.generator-targets_spec.7.json",
                 ],
+                build_configuration = "Profile",
                 working_directory = "$(BUILD_WORKSPACE_DIRECTORY)",
             ),
             test_action = xcode_schemes.test_action(
