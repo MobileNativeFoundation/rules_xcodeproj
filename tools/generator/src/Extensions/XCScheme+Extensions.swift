@@ -128,7 +128,7 @@ extension XCScheme {
                         .targetInfo.buildableReference
                 )
             ]
-            profileAction = .init(
+            profileAction = try .init(
                 profileActionInfo: profileActionInfo,
                 otherPreActions: otherPreActions
             )
@@ -365,12 +365,12 @@ extension XCScheme.ProfileAction {
     convenience init(
         profileActionInfo: XCSchemeInfo.ProfileActionInfo,
         otherPreActions: [XCScheme.ExecutionAction]
-    ) {
+    ) throws {
         self.init(
             buildableProductRunnable: profileActionInfo.runnable,
             buildConfiguration: profileActionInfo.buildConfigurationName,
             preActions: otherPreActions,
-            customWorkingDirectory: profileActionInfo.workingDirectory,
+            macroExpansion: try profileActionInfo.macroExpansion,            customWorkingDirectory: profileActionInfo.workingDirectory,
             useCustomWorkingDirectory: profileActionInfo.workingDirectory != nil
         )
     }
