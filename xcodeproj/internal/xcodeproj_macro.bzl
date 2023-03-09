@@ -1,6 +1,5 @@
 """Macro wrapper for the `xcodeproj` rule."""
 
-load("@bazel_skylib//lib:sets.bzl", "sets")
 load(":bazel_labels.bzl", "bazel_labels")
 load(":logging.bzl", "warn")
 load(":project_options.bzl", _default_project_options = "project_options")
@@ -282,12 +281,12 @@ in your `.bazelrc` or `xcodeproj.bazelrc` file.""")
     top_level_device_targets = [
         bazel_labels.normalize(top_level_target.label)
         for top_level_target in actual_top_level_targets
-        if sets.contains(top_level_target.target_environments, "device")
+        if "device" in top_level_target.target_environments
     ]
     top_level_simulator_targets = [
         bazel_labels.normalize(top_level_target.label)
         for top_level_target in actual_top_level_targets
-        if sets.contains(top_level_target.target_environments, "simulator")
+        if "simulator" in top_level_target.target_environments
     ]
 
     focused_targets = [

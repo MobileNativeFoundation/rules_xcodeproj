@@ -1,9 +1,10 @@
 """Functions for specifying top-level targets to use with the `xcodeproj`
 macro."""
 
-load("@bazel_skylib//lib:sets.bzl", "sets")
-
-_VALID_TARGET_ENVIRONMENTS = sets.make(["device", "simulator"])
+_VALID_TARGET_ENVIRONMENTS = {
+    "device": None,
+    "simulator": None,
+}
 
 def top_level_target(label, *, target_environments = ["simulator"]):
     """Constructs a top-level target for use in `xcodeproj.top_level_targets`.
@@ -28,11 +29,13 @@ def top_level_target(label, *, target_environments = ["simulator"]):
     if not target_environments:
         target_environments = ["simulator"]
 
-    target_environments = sets.make(target_environments)
+    target_environments = {e: None for e in target_environments}
 
-    invalid_target_environments = sets.to_list(
-        sets.difference(target_environments, _VALID_TARGET_ENVIRONMENTS),
-    )
+    invalid_target_environments = [
+        env
+        for env in target_environments
+        if env not in _VALID_TARGET_ENVIRONMENTS
+    ]
     if invalid_target_environments:
         fail("`target_environments` contains invalid elements: {}".format(
             invalid_target_environments,

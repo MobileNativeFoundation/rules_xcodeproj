@@ -1,7 +1,6 @@
 """Module for retrieving application icon information"""
 
 load("@bazel_skylib//lib:paths.bzl", "paths")
-load("@bazel_skylib//lib:sets.bzl", "sets")
 
 def _get_resource_set_name(path, suffix):
     suffix_idx = path.find(suffix)
@@ -30,7 +29,11 @@ def _find_resource_set(app_icon_files):
 def _should_find_default_icon_path(ctx):
     return ctx.attr._build_mode != "xcode"
 
-_IMAGE_EXTS = sets.make([".png", ".jpg", ".jpeg"])
+_IMAGE_EXTS = {
+    ".png": None,
+    ".jpg": None,
+    ".jpeg": None,
+}
 
 def _find_default_icon_path(set_path, app_icon_files):
     # GH949: Update the file selection logic to use the contents of the resource
@@ -40,7 +43,7 @@ def _find_default_icon_path(set_path, app_icon_files):
         if not file_path.startswith(set_path):
             continue
         _, ext = paths.split_extension(file_path)
-        if not sets.contains(_IMAGE_EXTS, ext):
+        if ext not in _IMAGE_EXTS:
             continue
         return file_path
 
