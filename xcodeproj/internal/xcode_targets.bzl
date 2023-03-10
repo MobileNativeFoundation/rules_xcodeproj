@@ -16,7 +16,6 @@ load(":platform.bzl", "platform_info")
 def _make_xcode_target(
         *,
         id,
-        name,
         label,
         configuration,
         compile_target = None,
@@ -50,9 +49,6 @@ def _make_xcode_target(
         id: A unique identifier. No two Xcode targets will have the same `id`.
             This won't be user facing, the generator will use other fields to
             generate a unique name for a target.
-        name: The base name that the Xcode target should use. Multiple
-            Xcode targets can have the same name; the generator will
-            disambiguate them.
         label: The `Label` of the `Target`.
         configuration: The configuration of the `Target`.
         compile_target: The `xcode_target` that was merged into this target.
@@ -116,7 +112,6 @@ def _make_xcode_target(
         _app_clips = tuple(app_clips),
         _dependencies = dependencies,
         id = id,
-        name = name,
         label = label,
         configuration = configuration,
         platform = platform,
@@ -285,7 +280,6 @@ def _merge_xcode_target(*, src, dest):
 
     return _make_xcode_target(
         id = dest.id,
-        name = dest.name,
         label = dest.label,
         configuration = dest.configuration,
         compile_target = src,
@@ -521,6 +515,7 @@ def _xcode_target_to_dto(
         ctx,
         is_fixture,
         is_unfocused_dependency = False,
+        label,
         link_params_processor,
         linker_products_map,
         params_index,
@@ -531,10 +526,11 @@ def _xcode_target_to_dto(
         xcode_generated_paths,
         xcode_generated_paths_file):
     inputs = xcode_target.inputs
+    name = label.name
 
     dto = {
-        "n": xcode_target.name,
-        "l": str(xcode_target.label),
+        "n": name,
+        "l": str(label),
         "c": xcode_target.configuration,
         "1": xcode_target._package_bin_dir,
         "2": platform_info.to_dto(xcode_target.platform),
@@ -547,7 +543,7 @@ def _xcode_target_to_dto(
     if xcode_target._compile_target:
         dto["3"] = {
             "i": xcode_target._compile_target.id,
-            "n": xcode_target._compile_target.name,
+            "n": xcode_target._compile_target.label.name,
         }
 
     if not xcode_target.is_swift:
@@ -577,7 +573,7 @@ def _xcode_target_to_dto(
         ),
         link_params_processor = link_params_processor,
         linker_inputs = xcode_target.linker_inputs,
-        name = xcode_target.name,
+        name = name,
         params_index = params_index,
         platform = xcode_target.platform,
         product = xcode_target.product,

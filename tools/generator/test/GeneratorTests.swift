@@ -9,6 +9,38 @@ final class GeneratorTests: XCTestCase {
     func test_generate() async throws {
         // Arrange
 
+        let targets: [TargetID: Target] = [
+            "I 1": Target.mock(
+                label: "@//:I1",
+                configuration: "1a2b3",
+                product: .init(type: .application, name: "I 1", path: "")
+            ),
+            "I 2": Target.mock(
+                label: "@//:I2",
+                configuration: "1a2b3",
+                product: .init(type: .application, name: "I 2", path: "")
+            ),
+            "WKE": Target.mock(
+                label: "@//:WKE",
+                platform: .device(os: .watchOS),
+                product: .init(
+                    type: .watch2Extension,
+                    name: "WKE",
+                    path: .generated("z/WK.appex")
+                )
+            ),
+            "Y": Target.mock(
+                label: "@//:Y",
+                configuration: "a1b2c",
+                product: .init(type: .staticLibrary, name: "Y", path: "")
+            ),
+            "Z": Target.mock(
+                label: "@//:Z",
+                configuration: "1a2b3",
+                product: .init(type: .application, name: "Z", path: "")
+            ),
+        ]
+
         let project = Project(
             name: "P",
             options: Project.Options(
@@ -24,8 +56,7 @@ final class GeneratorTests: XCTestCase {
             generatorLabel: "@//a/P:xcodeproj.gen",
             runnerLabel: "@//a/P:xcodeproj",
             minimumXcodeVersion: "13.2.0",
-            targets: Fixtures.targets,
-            replacementLabels: [:],
+            targets: targets,
             targetHosts: [
                 "WKE": ["I 1", "I 2"],
             ],
@@ -69,37 +100,6 @@ final class GeneratorTests: XCTestCase {
             workspaceOutput: workspaceOutputPath
         )
 
-        let replacedLabelsTargets: [TargetID: Target] = [
-            "I 1": Target.mock(
-                label: "@//:I1",
-                configuration: "1a2b3",
-                product: .init(type: .application, name: "I 1", path: "")
-            ),
-            "I 2": Target.mock(
-                label: "@//:I2",
-                configuration: "1a2b3",
-                product: .init(type: .application, name: "I 2", path: "")
-            ),
-            "WKE": Target.mock(
-                label: "@//:WKE",
-                platform: .device(os: .watchOS),
-                product: .init(
-                    type: .watch2Extension,
-                    name: "WKE",
-                    path: .generated("z/WK.appex")
-                )
-            ),
-            "Y": Target.mock(
-                label: "@//:Y",
-                configuration: "a1b2c",
-                product: .init(type: .staticLibrary, name: "Y", path: "")
-            ),
-            "Z": Target.mock(
-                label: "@//:Z",
-                configuration: "1a2b3",
-                product: .init(type: .application, name: "Z", path: "")
-            ),
-        ]
         let consolidatedTargets = ConsolidatedTargets(
             keys: [
                 "I 1": "I 1",
@@ -110,19 +110,19 @@ final class GeneratorTests: XCTestCase {
             ],
             targets: [
                 "I 1": .init(
-                    targets: ["I 1": replacedLabelsTargets["I 1"]!]
+                    targets: ["I 1": targets["I 1"]!]
                 ),
                 "I 2": .init(
-                    targets: ["I 2": replacedLabelsTargets["I 2"]!]
+                    targets: ["I 2": targets["I 2"]!]
                 ),
                 "WKE": .init(
-                    targets: ["WKE": replacedLabelsTargets["WKE"]!]
+                    targets: ["WKE": targets["WKE"]!]
                 ),
                 "Y": .init(
-                    targets: ["Y": replacedLabelsTargets["Y"]!]
+                    targets: ["Y": targets["Y"]!]
                 ),
                 "Z": .init(
-                    targets: ["Z": replacedLabelsTargets["Z"]!]
+                    targets: ["Z": targets["Z"]!]
                 ),
             ]
         )
@@ -182,7 +182,7 @@ final class GeneratorTests: XCTestCase {
         ]
         let targetResolver = try TargetResolver(
             referencedContainer: directories.containerReference,
-            targets: replacedLabelsTargets,
+            targets: targets,
             targetHosts: project.targetHosts,
             extensionPointIdentifiers: extensionPointIdentifiers,
             consolidatedTargetKeys: disambiguatedTargets.keys,
@@ -241,33 +241,6 @@ final class GeneratorTests: XCTestCase {
             directories: directories
         )]
 
-        // MARK: processReplacementLabels()
-
-        struct ProcessReplacementLabelsCalled: Equatable {
-            let targets: [TargetID: Target]
-            let replacementLabels: [TargetID: BazelLabel]
-        }
-
-        var processReplacementLabelsCalled: [ProcessReplacementLabelsCalled] =
-            []
-        func processReplacementLabels(
-            targets: inout [TargetID: Target],
-            replacementLabels: [TargetID: BazelLabel]
-        ) throws {
-            processReplacementLabelsCalled.append(.init(
-                targets: targets,
-                replacementLabels: replacementLabels
-            ))
-            targets = replacedLabelsTargets
-        }
-
-        let expectedProcessReplacementLabelsCalled = [
-            ProcessReplacementLabelsCalled(
-                targets: project.targets,
-                replacementLabels: project.replacementLabels
-            )
-        ]
-
         // MARK: calculateXcodeGeneratedFiles()
 
         struct CalculateXcodeGeneratedFilesCalled: Equatable {
@@ -291,7 +264,7 @@ final class GeneratorTests: XCTestCase {
         let expectedCalculateXcodeGeneratedFilesCalled = [
             CalculateXcodeGeneratedFilesCalled(
                 buildMode: buildMode,
-                targets: replacedLabelsTargets
+                targets: targets
             )
         ]
 
@@ -343,7 +316,7 @@ final class GeneratorTests: XCTestCase {
             pbxProj: pbxProj,
             buildMode: buildMode,
             forceBazelDependencies: project.forceBazelDependencies,
-            targets: replacedLabelsTargets,
+            targets: targets,
             extraFiles: project.extraFiles,
             xccurrentversions: xccurrentversions,
             directories: directories
@@ -393,7 +366,7 @@ final class GeneratorTests: XCTestCase {
         }
 
         let expectedConsolidateTargetsCalled = [ConsolidateTargetsCalled(
-            targets: replacedLabelsTargets,
+            targets: targets,
             xcodeGeneratedFiles: xcodeGeneratedFiles
         )]
 
@@ -626,7 +599,7 @@ final class GeneratorTests: XCTestCase {
             SetTargetConfigurationsCalled(
                 pbxProj: pbxProj,
                 disambiguatedTargets: disambiguatedTargets,
-                targets: replacedLabelsTargets,
+                targets: targets,
                 buildMode: buildMode,
                 minimumXcodeVersion: project.minimumXcodeVersion,
                 defaultXcodeConfiguration: project.defaultXcodeConfiguration,
@@ -823,7 +796,6 @@ final class GeneratorTests: XCTestCase {
         let logger = StubLogger()
         let environment = Environment(
             createProject: createProject,
-            processReplacementLabels: processReplacementLabels,
             calculateXcodeGeneratedFiles: calculateXcodeGeneratedFiles,
             consolidateTargets: consolidateTargets,
             createFilesAndGroups: createFilesAndGroups,
@@ -866,10 +838,6 @@ final class GeneratorTests: XCTestCase {
         XCTAssertNoDifference(
             createProjectCalled,
             expectedCreateProjectCalled
-        )
-        XCTAssertNoDifference(
-            processReplacementLabelsCalled,
-            expectedProcessReplacementLabelsCalled
         )
         XCTAssertNoDifference(
             calculateXcodeGeneratedFilesCalled,

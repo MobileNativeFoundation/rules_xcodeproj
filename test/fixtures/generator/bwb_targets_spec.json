@@ -63,7 +63,7 @@
             "t": "g"
         },
         "6": {
-            "_": "darwin_x86_64-dbg-STABLE-0/bin/.rules_xcodeproj/test_fixtures_generator_xcodeproj_bwb/xcodeproj_bwb-params/tests.__internal__.__test_bundle.10.link.params",
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/.rules_xcodeproj/test_fixtures_generator_xcodeproj_bwb/xcodeproj_bwb-params/tests.10.link.params",
             "t": "g"
         },
         "b": {
@@ -140,9 +140,9 @@
                 "tools/generator/test/XcodeSchemeTests.swift"
             ]
         },
-        "l": "//tools/generator/test:tests.__internal__.__test_bundle",
+        "l": "//tools/generator/test:tests",
         "m": true,
-        "n": "tests.__internal__.__test_bundle",
+        "n": "tests",
         "o": {
             "p": true,
             "s": {
@@ -328,7 +328,6 @@
                 "tools/generator/src/Generator/Generator.swift",
                 "tools/generator/src/Generator/Main.swift",
                 "tools/generator/src/Generator/PopulateMainGroup.swift",
-                "tools/generator/src/Generator/ProcessReplacementLabels.swift",
                 "tools/generator/src/Generator/SemanticVersion.swift",
                 "tools/generator/src/Generator/SetAdditionalProjectConfiguration.swift",
                 "tools/generator/src/Generator/SetTargetConfigurations.swift",

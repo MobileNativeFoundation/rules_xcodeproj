@@ -31,7 +31,6 @@ struct Project: Equatable {
     let runnerLabel: BazelLabel
     let minimumXcodeVersion: SemanticVersion
     var targets: [TargetID: Target] = [:]
-    let replacementLabels: [TargetID: BazelLabel]
     let targetHosts: [TargetID: [TargetID]]
     let args: [TargetID: [String]]
     let envs: [TargetID: [String: String]]
@@ -55,7 +54,6 @@ extension Project: Decodable {
         case generatorLabel = "g"
         case runnerLabel = "R"
         case minimumXcodeVersion = "m"
-        case replacementLabels = "r"
         case targetHosts = "t"
         case envs = "E"
         case args = "a"
@@ -88,11 +86,6 @@ extension Project: Decodable {
             .decode(BazelLabel.self, forKey: .runnerLabel)
         minimumXcodeVersion = try container
             .decode(SemanticVersion.self, forKey: .minimumXcodeVersion)
-        replacementLabels = try container
-            .decodeIfPresent(
-                [TargetID: BazelLabel].self,
-                forKey: .replacementLabels
-            ) ?? [:]
         targetHosts = try container
             .decodeIfPresent([TargetID: [TargetID]].self, forKey: .targetHosts)
             ?? [:]

@@ -305,7 +305,6 @@
 		F1BA70F566FDCFB50707E994 /* CoreImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6FCEFD85DE96F23F23F0251 /* CoreImage.swift */; };
 		F3A1357C4E7D7BBD42432395 /* XcodeScheme+ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE17FB22568407A03773476A /* XcodeScheme+ExtensionsTests.swift */; };
 		F4330A2A7D0CF7BCFB700420 /* PBXBuildRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E057085334DA3605226D9A5 /* PBXBuildRule.swift */; };
-		F46DB512C166E7638F56E3FD /* ProcessReplacementLabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854528EA9A693DC32507798D /* ProcessReplacementLabels.swift */; };
 		F5DA39656313BAD7813339DE /* Speech.swift in Sources */ = {isa = PBXBuildFile; fileRef = C882DB95AAADF328BED39BAA /* Speech.swift */; };
 		F6B4FF6B24514AB57A1DB996 /* _CompileStub_.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD403D59FD279723BD9B059 /* _CompileStub_.m */; };
 		F7360C622958E993DA812795 /* CustomDumpReflectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C69B356D16F917BFC873CE7 /* CustomDumpReflectable.swift */; };
@@ -513,7 +512,6 @@
 		12A91AD205DC323FCB2A0774 /* XCSchemeInfo+BuildTargetInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCSchemeInfo+BuildTargetInfo.swift"; sourceTree = "<group>"; };
 		12E1BEFAFC02867456ACEB55 /* XCSchemeInfo+HostInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCSchemeInfo+HostInfo.swift"; sourceTree = "<group>"; };
 		14A75DC60772D49EF46C7FB2 /* DefaultTestBundle.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = DefaultTestBundle.plist; sourceTree = "<group>"; };
-		17244F145F46B23BF654FE5D /* tests.__internal__.__test_bundle.10.link.params */ = {isa = PBXFileReference; path = tests.__internal__.__test_bundle.10.link.params; sourceTree = "<group>"; };
 		180BD33CC2B059C25C7DEC95 /* XCSchemeInfo+TargetInfoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCSchemeInfo+TargetInfoTests.swift"; sourceTree = "<group>"; };
 		1816D6C1555BE759DA08EF5F /* JJLISO8601DateFormatter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJLISO8601DateFormatter.h; sourceTree = "<group>"; };
 		1A7F43821B2652307FBDD75C /* XCSchemeInfo+LaunchActionInfoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCSchemeInfo+LaunchActionInfoTests.swift"; sourceTree = "<group>"; };
@@ -644,7 +642,6 @@
 		82B779C12444EFA24BCB64F7 /* PBXGroup+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PBXGroup+Extensions.swift"; sourceTree = "<group>"; };
 		83CA9477A912C560D9DE85B3 /* PBXSourceTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBXSourceTree.swift; sourceTree = "<group>"; };
 		85147C8CD7E56F10606BA0FE /* Umbrella.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Umbrella.h; sourceTree = "<group>"; };
-		854528EA9A693DC32507798D /* ProcessReplacementLabels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessReplacementLabels.swift; sourceTree = "<group>"; };
 		8546B70BAF3E65BE75D5D25A /* _Hashtable+Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "_Hashtable+Header.swift"; sourceTree = "<group>"; };
 		857247662303073899E904A2 /* SwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI.swift; sourceTree = "<group>"; };
 		862DAE34CC9597720F7656D8 /* Dump.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dump.swift; sourceTree = "<group>"; };
@@ -731,6 +728,7 @@
 		C882DB95AAADF328BED39BAA /* Speech.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Speech.swift; sourceTree = "<group>"; };
 		C957E206736133601C464294 /* Optional+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+Extensions.swift"; sourceTree = "<group>"; };
 		C9B95A37DFEC65673A542D08 /* _HashTable+Bucket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "_HashTable+Bucket.swift"; sourceTree = "<group>"; };
+		C9EE80368FCC66B0295D1160 /* tests.10.link.params */ = {isa = PBXFileReference; path = tests.10.link.params; sourceTree = "<group>"; };
 		CAAE622AC64E790F7FFBD154 /* OrderedDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderedDictionary.swift; sourceTree = "<group>"; };
 		CAE007F0FCFE813CC51C7A32 /* XCSchemeInfo+TargetInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCSchemeInfo+TargetInfo.swift"; sourceTree = "<group>"; };
 		CCA45916E3D163DABE70B124 /* swiftc */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = swiftc; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1128,7 +1126,7 @@
 			children = (
 				5DC4046525EE231A54DBA381 /* generator.7.link.params */,
 				DDEAD57297244CD988DE8A23 /* swiftc.11.link.params */,
-				17244F145F46B23BF654FE5D /* tests.__internal__.__test_bundle.10.link.params */,
+				C9EE80368FCC66B0295D1160 /* tests.10.link.params */,
 			);
 			path = "xcodeproj_bwx-params";
 			sourceTree = "<group>";
@@ -1607,7 +1605,6 @@
 				C3A42B86355F1EED7834EBE8 /* Generator.swift */,
 				9294691CE95B8DC58F163AFE /* Main.swift */,
 				73F38515E87488039D5ED0EC /* PopulateMainGroup.swift */,
-				854528EA9A693DC32507798D /* ProcessReplacementLabels.swift */,
 				282A3E83DE16BD17AB4671BF /* SemanticVersion.swift */,
 				95E94BCF4475CEF19121E416 /* SetAdditionalProjectConfiguration.swift */,
 				10B1FC780D4BE80D1438FF83 /* SetTargetConfigurations.swift */,
@@ -2459,7 +2456,6 @@
 				558D177E11377CEA496816B8 /* Generator.swift in Sources */,
 				CA31CFE5ADCC11A071455567 /* Main.swift in Sources */,
 				EF6ED16BF041EA93A6117492 /* PopulateMainGroup.swift in Sources */,
-				F46DB512C166E7638F56E3FD /* ProcessReplacementLabels.swift in Sources */,
 				E66723DA3F69574220B61475 /* SemanticVersion.swift in Sources */,
 				7B0123E90D4E3D2D8A228FED /* SetAdditionalProjectConfiguration.swift in Sources */,
 				545AB8476A28E55F4E259413 /* SetTargetConfigurations.swift in Sources */,
@@ -3052,7 +3048,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-STABLE-2/bin/tools/generator/test/rules_xcodeproj/tests.__internal__.__test_bundle/Info.plist";
-				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/.rules_xcodeproj/test_fixtures_generator_xcodeproj_bwx/xcodeproj_bwx-params/tests.__internal__.__test_bundle.10.link.params";
+				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/.rules_xcodeproj/test_fixtures_generator_xcodeproj_bwx/xcodeproj_bwx-params/tests.10.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(DERIVED_FILE_DIR)/xcode-overlay.yaml -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -DDEBUG -F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/usr/lib -I$(PROJECT_DIR)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_apple_swift_collections -I$(PROJECT_DIR)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_kylef_pathkit -I$(PROJECT_DIR)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_zippyjson -I$(PROJECT_DIR)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_tadija_aexml -I$(PROJECT_DIR)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_tuist_xcodeproj -I$(PROJECT_DIR)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/tools/generator -I$(PROJECT_DIR)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_pointfreeco_xctest_dynamic_overlay -I$(PROJECT_DIR)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_pointfreeco_swift_custom_dump -Xcc -I$(PROJECT_DIR)/external/com_github_michaeleisel_jjliso8601dateformatter/Sources/JJLISO8601DateFormatter/include -Xcc -I$(PROJECT_DIR)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_jjliso8601dateformatter/Sources/JJLISO8601DateFormatter/include -Xcc -I$(PROJECT_DIR)/external/com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/include -Xcc -I$(PROJECT_DIR)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/include -Xcc -iquote$(PROJECT_DIR)/external/com_github_michaeleisel_jjliso8601dateformatter -Xcc -iquote$(PROJECT_DIR)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_jjliso8601dateformatter -Xcc -iquote$(PROJECT_DIR)/external/com_github_michaeleisel_zippyjsoncfamily -Xcc -iquote$(PROJECT_DIR)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_zippyjsoncfamily -Xcc -iquote$(PROJECT_DIR) -Xcc -iquote$(PROJECT_DIR)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin -Xcc -fmodule-map-file=$(PROJECT_DIR)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_jjliso8601dateformatter/JJLISO8601DateFormatter.swift.modulemap -Xcc -fmodule-map-file=$(PROJECT_DIR)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_zippyjsoncfamily/ZippyJSONCFamily.swift.modulemap -static -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all";
