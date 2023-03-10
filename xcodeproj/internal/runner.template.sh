@@ -96,7 +96,6 @@ un_bazelisked_path=$(echo "$PATH" | sed -E 's|/[^:]+/bazelisk/downloads/[^:]+:||
 # Unset `BAZELISK_SKIP_WRAPPER` to allow the wrapper to be run again for our
 # commands
 unset BAZELISK_SKIP_WRAPPER
-unset BAZELISK_SKIP_WRAPPER
 
 # Resolve path to bazel before changing the env variable. This allows bazelisk
 # downloaded bazel to be found
