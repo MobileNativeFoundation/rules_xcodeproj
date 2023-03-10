@@ -64,52 +64,52 @@ class Generator {
 
         let targets = project.targets
 
+        async let (
+            files,
+            rootElements,
+            resolvedRepositories
+        ) = Task {
+            try environment.createFilesAndGroups(
+                pbxProj,
+                buildMode,
+                forFixtures,
+                project.forceBazelDependencies,
+                targets,
+                project.extraFiles,
+                xccurrentversions,
+                directories,
+                logger
+            )
+        }.value
+
         let xcodeGeneratedFiles = try environment.calculateXcodeGeneratedFiles(
             buildMode,
             targets
         )
-
-        let (
-            files,
-            rootElements,
-            resolvedRepositories
-        ) = try environment.createFilesAndGroups(
-            pbxProj,
-            buildMode,
-            forFixtures,
-            project.forceBazelDependencies,
-            targets,
-            project.extraFiles,
-            xccurrentversions,
-            directories,
-            logger
-        )
-
-        environment.setAdditionalProjectConfiguration(
-            pbxProj,
-            resolvedRepositories
-        )
-
         let consolidatedTargets = try environment.consolidateTargets(
             targets,
             xcodeGeneratedFiles,
             logger
         )
+        let disambiguatedTargets = environment.disambiguateTargets(
+            consolidatedTargets
+        )
         let (products, productsGroup) = environment.createProducts(
             pbxProj,
             consolidatedTargets
         )
-        environment.populateMainGroup(
+
+        try await environment.setAdditionalProjectConfiguration(
+            pbxProj,
+            resolvedRepositories
+        )
+        try await environment.populateMainGroup(
             mainGroup,
             pbxProj,
             rootElements,
             productsGroup
         )
-
-        let disambiguatedTargets = environment.disambiguateTargets(
-            consolidatedTargets
-        )
-        let bazelDependencies = try environment.addBazelDependenciesTarget(
+        let bazelDependencies = try await environment.addBazelDependenciesTarget(
             pbxProj,
             buildMode,
             project.forceBazelDependencies,
@@ -124,7 +124,7 @@ class Generator {
             project.postBuildScript,
             consolidatedTargets
         )
-        let pbxTargets = try environment.addTargets(
+        let pbxTargets = try await environment.addTargets(
             pbxProj,
             disambiguatedTargets,
             buildMode,
@@ -178,7 +178,7 @@ class Generator {
         let sharedData = environment.createXCSharedData(schemes)
 
         let xcodeProj = environment.createXcodeProj(pbxProj, sharedData)
-        try environment.writeXcodeProj(
+        try await environment.writeXcodeProj(
             xcodeProj,
             directories,
             files,
