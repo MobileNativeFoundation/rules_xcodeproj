@@ -24,8 +24,7 @@ final class SetTargetConfigurationsTests: XCTestCase {
 
         let (
             pbxTargets,
-            disambiguatedTargets,
-            _
+            disambiguatedTargets
         ) = Fixtures.pbxTargets(
             in: pbxProj,
             directories: Self.directories,

@@ -428,7 +428,6 @@ enum Fixtures {
     ) -> (
         files: [FilePath: File],
         elements: [FilePath: PBXFileElement],
-        xcodeGeneratedFiles: [FilePath: FilePath],
         resolvedRepositories: [(Path, Path)]
     ) {
         var elements: [FilePath: PBXFileElement] = [:]
@@ -1067,12 +1066,15 @@ $(BAZEL_OUT)/z/A.link.params
 
 """)
 
-        // `xcodeGeneratedfiles`
+        return (files, elements, [])
+    }
 
-        let xcodeGeneratedFiles: [FilePath: FilePath]
+    static func xcodeGeneratedFiles(
+        buildMode: BuildMode
+    ) -> [FilePath: FilePath] {
         switch buildMode {
         case .xcode:
-            xcodeGeneratedFiles = [
+            return [
                 .generated("z/A.a"): .generated("z/A.a"),
                 .generated("x/A.swiftmodule"): .generated("z/A.swiftmodule"),
                 .generated("x/y.swiftmodule"): .generated("z/y.swiftmodule"),
@@ -1098,10 +1100,8 @@ $(BAZEL_OUT)/z/A.link.params
                 .generated("z/WK.appex"): .generated("z/WK.appex"),
             ]
         case .bazel:
-            xcodeGeneratedFiles = [:]
+            return [:]
         }
-
-        return (files, elements, xcodeGeneratedFiles, [])
     }
 
     static func products(
@@ -1894,8 +1894,7 @@ touch "$SCRIPT_OUTPUT_FILE_1"
         consolidatedTargets: ConsolidatedTargets
     ) -> (
         pbxTargets: [ConsolidatedTarget.Key: PBXTarget],
-        disambiguatedTargets: DisambiguatedTargets,
-        xcodeGeneratedFiles: [FilePath: FilePath]
+        disambiguatedTargets: DisambiguatedTargets
     ) {
         let pbxProject = pbxProj.rootObject!
         let mainGroup = pbxProject.mainGroup!
@@ -1903,7 +1902,6 @@ touch "$SCRIPT_OUTPUT_FILE_1"
         let (
             files,
             _,
-            xcodeGeneratedFiles,
             _
         ) = Fixtures.files(
             in: pbxProj,
@@ -1931,8 +1929,7 @@ touch "$SCRIPT_OUTPUT_FILE_1"
 
         return (
             pbxTargets,
-            disambiguatedTargets,
-            xcodeGeneratedFiles
+            disambiguatedTargets
         )
     }
 
@@ -1942,7 +1939,7 @@ touch "$SCRIPT_OUTPUT_FILE_1"
         directories: Directories,
         consolidatedTargets: ConsolidatedTargets
     ) -> [ConsolidatedTarget.Key: PBXTarget] {
-        let (pbxTargets, _, _) = Fixtures.pbxTargets(
+        let (pbxTargets, _) = Fixtures.pbxTargets(
             in: pbxProj,
             buildMode: buildMode,
             directories: directories,
@@ -2333,7 +2330,7 @@ $(MACOSX_FILES)
         directories: Directories,
         consolidatedTargets: ConsolidatedTargets
     ) -> [ConsolidatedTarget.Key: PBXTarget] {
-        let (pbxTargets, _, _) = Fixtures.pbxTargets(
+        let (pbxTargets, _) = Fixtures.pbxTargets(
             in: pbxProj,
             directories: directories,
             consolidatedTargets: consolidatedTargets

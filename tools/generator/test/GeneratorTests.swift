@@ -157,10 +157,11 @@ final class GeneratorTests: XCTestCase {
                 ),
             ]
         )
+        let xcodeGeneratedFiles = Fixtures
+            .xcodeGeneratedFiles(buildMode: buildMode)
         let (
             files,
             filesAndGroups,
-            xcodeGeneratedFiles,
             resolvedRepositories
         ) = Fixtures.files(
             in: pbxProj,
@@ -267,6 +268,33 @@ final class GeneratorTests: XCTestCase {
             )
         ]
 
+        // MARK: calculateXcodeGeneratedFiles()
+
+        struct CalculateXcodeGeneratedFilesCalled: Equatable {
+            let buildMode: BuildMode
+            let targets: [TargetID: Target]
+        }
+
+        var calculateXcodeGeneratedFilesCalled:
+            [CalculateXcodeGeneratedFilesCalled] = []
+        func calculateXcodeGeneratedFiles(
+            buildMode: BuildMode,
+            targets: [TargetID: Target]
+        ) throws -> [FilePath: FilePath] {
+            calculateXcodeGeneratedFilesCalled.append(.init(
+                buildMode: buildMode,
+                targets: targets
+            ))
+            return xcodeGeneratedFiles
+        }
+
+        let expectedCalculateXcodeGeneratedFilesCalled = [
+            CalculateXcodeGeneratedFilesCalled(
+                buildMode: buildMode,
+                targets: replacedLabelsTargets
+            )
+        ]
+
         // MARK: createFilesAndGroups()
 
         struct CreateFilesAndGroupsCalled: Equatable {
@@ -293,7 +321,6 @@ final class GeneratorTests: XCTestCase {
         ) -> (
             files: [FilePath: File],
             rootElements: [PBXFileElement],
-            xcodeGeneratedFiles: [FilePath: FilePath],
             resolvedRepositories: [(Path, Path)]
         ) {
             createFilesAndGroupsCalled.append(.init(
@@ -308,7 +335,6 @@ final class GeneratorTests: XCTestCase {
             return (
                 files,
                 rootElements,
-                xcodeGeneratedFiles,
                 resolvedRepositories
             )
         }
@@ -798,6 +824,7 @@ final class GeneratorTests: XCTestCase {
         let environment = Environment(
             createProject: createProject,
             processReplacementLabels: processReplacementLabels,
+            calculateXcodeGeneratedFiles: calculateXcodeGeneratedFiles,
             consolidateTargets: consolidateTargets,
             createFilesAndGroups: createFilesAndGroups,
             setAdditionalProjectConfiguration:
@@ -843,6 +870,10 @@ final class GeneratorTests: XCTestCase {
         XCTAssertNoDifference(
             processReplacementLabelsCalled,
             expectedProcessReplacementLabelsCalled
+        )
+        XCTAssertNoDifference(
+            calculateXcodeGeneratedFilesCalled,
+            expectedCalculateXcodeGeneratedFilesCalled
         )
         XCTAssertNoDifference(
             consolidateTargetsCalled,

@@ -57,7 +57,6 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         let (
             createdFiles,
             createdRootElements,
-            _,
             _
         ) = try Generator.createFilesAndGroups(
             in: pbxProj,
@@ -114,7 +113,6 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         let (
             expectedFiles,
             expectedElements,
-            expectedXcodeGeneratedFiles,
             _
         ) = Fixtures.files(
             in: expectedPBXProj,
@@ -155,7 +153,6 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         let (
             createdFiles,
             createdRootElements,
-            xcodeGeneratedFiles,
             _
         ) = try Generator.createFilesAndGroups(
             in: pbxProj,
@@ -182,10 +179,6 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         XCTAssertNoDifference(
             createdFiles.map(KeyAndValue.init).sorted(),
             expectedFiles.map(KeyAndValue.init).sorted()
-        )
-        XCTAssertNoDifference(
-            xcodeGeneratedFiles.map(KeyAndValue.init).sorted(),
-            expectedXcodeGeneratedFiles.map(KeyAndValue.init).sorted()
         )
 
         XCTAssertNoDifference(pbxProj, expectedPBXProj)
@@ -219,7 +212,6 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         let (
             expectedFiles,
             expectedElements,
-            expectedXcodeGeneratedFiles,
             _
         ) = Fixtures.files(
             in: expectedPBXProj,
@@ -260,7 +252,6 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         let (
             createdFiles,
             createdRootElements,
-            xcodeGeneratedFiles,
             _
         ) = try Generator.createFilesAndGroups(
             in: pbxProj,
@@ -287,10 +278,6 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         XCTAssertNoDifference(
             createdFiles.map(KeyAndValue.init).sorted(),
             expectedFiles.map(KeyAndValue.init).sorted()
-        )
-        XCTAssertNoDifference(
-            xcodeGeneratedFiles.map(KeyAndValue.init).sorted(),
-            expectedXcodeGeneratedFiles.map(KeyAndValue.init).sorted()
         )
 
         XCTAssertNoDifference(pbxProj, expectedPBXProj)

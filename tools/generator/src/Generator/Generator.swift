@@ -10,6 +10,7 @@ class Generator {
     static let defaultEnvironment = Environment(
         createProject: Generator.createProject,
         processReplacementLabels: Generator.processReplacementLabels,
+        calculateXcodeGeneratedFiles: Generator.calculateXcodeGeneratedFiles,
         consolidateTargets: Generator.consolidateTargets,
         createFilesAndGroups: Generator.createFilesAndGroups,
         setAdditionalProjectConfiguration:
@@ -68,6 +69,11 @@ class Generator {
             project.replacementLabels
         )
 
+        let xcodeGeneratedFiles = try environment.calculateXcodeGeneratedFiles(
+            buildMode,
+            targets
+        )
+
         let isUnfocusedDependencyTargetIDs = Set(
             targets.filter(\.value.isUnfocusedDependency).keys
         )
@@ -78,7 +84,6 @@ class Generator {
         let (
             files,
             rootElements,
-            xcodeGeneratedFiles,
             resolvedRepositories
         ) = try environment.createFilesAndGroups(
             pbxProj,
