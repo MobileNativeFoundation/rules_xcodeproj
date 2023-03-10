@@ -280,7 +280,7 @@ def make_xcode_schemes(bazel_labels):
             _pre_post_action(
                 script = action.script,
                 expand_variables_based_on = (
-                    bazel_labels.normalize(
+                    bazel_labels.normalize_string(
                         action.expand_variables_based_on,
                     ) if action.expand_variables_based_on else None
                 ),
@@ -303,7 +303,7 @@ def make_xcode_schemes(bazel_labels):
         if not build_for:
             build_for = xcode_schemes_internal.BUILD_FOR_ALL_ENABLED
         return xcode_schemes_internal.build_target(
-            label = bazel_labels.normalize(label),
+            label = bazel_labels.normalize_string(label),
             build_for = build_for,
         )
 
@@ -369,7 +369,7 @@ def make_xcode_schemes(bazel_labels):
         """
         return xcode_schemes_internal.launch_action(
             build_configuration_name = None,
-            target = bazel_labels.normalize(target),
+            target = bazel_labels.normalize_string(target),
             args = args,
             diagnostics = diagnostics,
             env = env,
@@ -403,7 +403,7 @@ def make_xcode_schemes(bazel_labels):
         """
         return xcode_schemes_internal.profile_action(
             build_configuration = None,
-            target = bazel_labels.normalize(target),
+            target = bazel_labels.normalize_string(target),
             args = args,
             env = env,
             working_directory = working_directory,
@@ -449,13 +449,13 @@ def make_xcode_schemes(bazel_labels):
             if expand_variables_based_on.lower() == "none":
                 expand_variables_based_on = "none"
             else:
-                expand_variables_based_on = bazel_labels.normalize(
+                expand_variables_based_on = bazel_labels.normalize_string(
                     expand_variables_based_on,
                 )
 
         return xcode_schemes_internal.test_action(
             targets = [
-                bazel_labels.normalize(t)
+                bazel_labels.normalize_string(t)
                 for t in targets
             ],
             build_configuration_name = None,

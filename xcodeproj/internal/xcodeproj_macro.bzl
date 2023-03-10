@@ -279,29 +279,29 @@ in your `.bazelrc` or `xcodeproj.bazelrc` file.""")
             actual_top_level_targets.append(target)
 
     top_level_device_targets = [
-        bazel_labels.normalize(top_level_target.label)
+        bazel_labels.normalize_string(top_level_target.label)
         for top_level_target in actual_top_level_targets
         if "device" in top_level_target.target_environments
     ]
     top_level_simulator_targets = [
-        bazel_labels.normalize(top_level_target.label)
+        bazel_labels.normalize_string(top_level_target.label)
         for top_level_target in actual_top_level_targets
         if "simulator" in top_level_target.target_environments
     ]
 
     focused_targets = [
-        bazel_labels.normalize(t)
+        bazel_labels.normalize_string(t)
         for t in focused_targets
     ]
     unfocused_targets = [
-        bazel_labels.normalize(t)
+        bazel_labels.normalize_string(t)
         for t in unfocused_targets
     ]
 
     owned_extra_files = {}
     for label, files in associated_extra_files.items():
         for f in files:
-            owned_extra_files[f] = bazel_labels.normalize(label)
+            owned_extra_files[f] = bazel_labels.normalize_string(label)
 
     schemes_json = None
     if schemes:
@@ -336,7 +336,7 @@ in your `.bazelrc` or `xcodeproj.bazelrc` file.""")
         pre_build = pre_build,
         project_name = project_name,
         project_options = project_options,
-        runner_label = bazel_labels.normalize(name),
+        runner_label = bazel_labels.normalize_string(name),
         scheme_autogeneration_mode = scheme_autogeneration_mode,
         schemes_json = schemes_json,
         temporary_directory = temporary_directory,
