@@ -114,7 +114,7 @@ load(
 )
 load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
 load(
-    "@rules_xcodeproj//xcodeproj:defs.bzl",
+    "@com_github_buildbuddy_io_rules_xcodeproj//xcodeproj:defs.bzl",
     "top_level_target",
     "xcodeproj",
 )
@@ -147,7 +147,7 @@ ios_unit_test(
     name = "Tests",
     bundle_id = "com.example.tests",
     minimum_os_version = "15.0",
-    test_host = "//App",
+    test_host = ":App",
     visibility = ["//visibility:public"],
     deps = [":TestLib"],
 )
