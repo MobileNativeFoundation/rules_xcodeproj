@@ -20,6 +20,15 @@ final class SetTargetDependenciesTests: XCTestCase {
 
         let consolidatedTargets = Fixtures.consolidatedTargets
 
+        let bazelDependenciesTarget = Fixtures.bazelDependenciesTarget(
+            in: pbxProj,
+            generatorLabel: "@//gen:gen"
+        )
+        let expectedBazelDependenciesTarget = Fixtures.bazelDependenciesTarget(
+            in: expectedPBXProj,
+            generatorLabel: "@//gen:gen"
+        )
+
         let (pbxTargets, disambiguatedTargets) = Fixtures.pbxTargets(
             in: pbxProj,
             directories: directories,
@@ -28,7 +37,8 @@ final class SetTargetDependenciesTests: XCTestCase {
         let expectedPBXTargets = Fixtures.pbxTargetsWithDependencies(
             in: expectedPBXProj,
             directories: directories,
-            consolidatedTargets: consolidatedTargets
+            consolidatedTargets: consolidatedTargets,
+            bazelDependenciesTarget: expectedBazelDependenciesTarget
         )
 
         // Act
@@ -36,7 +46,8 @@ final class SetTargetDependenciesTests: XCTestCase {
         try Generator.setTargetDependencies(
             buildMode: .xcode,
             disambiguatedTargets: disambiguatedTargets,
-            pbxTargets: pbxTargets
+            pbxTargets: pbxTargets,
+            bazelDependenciesTarget: bazelDependenciesTarget
         )
 
         try pbxProj.fixReferences()

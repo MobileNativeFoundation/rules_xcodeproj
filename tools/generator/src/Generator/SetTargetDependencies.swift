@@ -9,13 +9,19 @@ extension Generator {
     static func setTargetDependencies(
         buildMode: BuildMode,
         disambiguatedTargets: DisambiguatedTargets,
-        pbxTargets: [ConsolidatedTarget.Key: PBXTarget]
+        pbxTargets: [ConsolidatedTarget.Key: PBXNativeTarget],
+        bazelDependenciesTarget: PBXAggregateTarget?
     ) throws {
         for (key, disambiguatedTarget) in disambiguatedTargets.targets {
-            guard let pbxTarget = pbxTargets.nativeTarget(key) else {
+            guard let pbxTarget = pbxTargets[key] else {
                 throw PreconditionError(message: """
 Target \(key) not found in `pbxTargets`
 """)
+            }
+
+            if let bazelDependenciesTarget = bazelDependenciesTarget {
+                _ = try pbxTarget
+                    .addDependency(target: bazelDependenciesTarget)
             }
 
             try disambiguatedTarget.target
@@ -23,7 +29,7 @@ Target \(key) not found in `pbxTargets`
                 // Find the `PBXNativeTarget`s for the dependencies
                 .compactMap { dependencyKey -> PBXNativeTarget? in
                     guard
-                        let dependency = pbxTargets.nativeTarget(dependencyKey)
+                        let dependency = pbxTargets[dependencyKey]
                     else {
                         throw PreconditionError(message: """
 Target \(key)'s dependency on \(dependencyKey) not found in `pbxTargets`

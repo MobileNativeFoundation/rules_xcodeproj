@@ -540,7 +540,7 @@ class XCSchemeExtensionsTests: XCTestCase {
         workspaceOutput: "examples/foo/Foo.xcodeproj"
     )
 
-    lazy var pbxTargetsDict: [ConsolidatedTarget.Key: PBXTarget] =
+    lazy var pbxTargetsDict: [ConsolidatedTarget.Key: PBXNativeTarget] =
         Fixtures.pbxTargets(
             in: Fixtures.pbxProj(),
             directories: directories,
@@ -645,14 +645,14 @@ extension XCSchemeExtensionsTests {
         }
 
         let productType = launchActionInfo.targetInfo.productType
-        
+
         // when
         let launchAction = try XCScheme.LaunchAction(
             buildMode: .xcode,
             launchActionInfo: launchActionInfo,
             otherPreActions: []
         )
-        
+
         // then
         let expected = XCScheme.LaunchAction(
             runnable: launchActionInfo.runnable,
@@ -702,7 +702,7 @@ extension XCSchemeExtensionsTests {
             buildMode: .xcode,
             testActionInfo: testActionInfo
         )
-        
+
         // then
         let expected = XCScheme.TestAction(
             buildConfiguration: buildConfigurationName,

@@ -49,15 +49,6 @@ final class AddTargetsTests: XCTestCase {
             parentGroup: expectedMainGroup
         )
 
-        let bazelDependenciesTarget = Fixtures.bazelDependenciesTarget(
-            in: pbxProj,
-            generatorLabel: generatorLabel
-        )
-        let expectedBazelDependenciesTarget = Fixtures.bazelDependenciesTarget(
-            in: expectedPBXProj,
-            generatorLabel: generatorLabel
-        )
-
         let disambiguatedTargets = Fixtures.disambiguatedTargets(
             consolidatedTargets
         )
@@ -65,8 +56,7 @@ final class AddTargetsTests: XCTestCase {
             in: expectedPBXProj,
             disambiguatedTargets: disambiguatedTargets,
             files: expectedFiles,
-            products: expectedProducts,
-            bazelDependenciesTarget: expectedBazelDependenciesTarget
+            products: expectedProducts
         )
 
         // Act
@@ -76,8 +66,7 @@ final class AddTargetsTests: XCTestCase {
             for: disambiguatedTargets,
             buildMode: .xcode,
             products: products,
-            files: files,
-            bazelDependenciesTarget: bazelDependenciesTarget
+            files: files
         )
 
         try pbxProj.fixReferences()

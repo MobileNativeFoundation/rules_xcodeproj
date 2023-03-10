@@ -2,14 +2,14 @@ import XcodeProj
 
 extension XCSchemeInfo {
     struct HostInfo: Equatable, Hashable {
-        let pbxTarget: PBXTarget
+        let pbxTarget: PBXNativeTarget
         // The platforms property is a sorted list of unique platforms.
         let platforms: [Platform]
         let buildableReference: XCScheme.BuildableReference
         let index: Int
 
         init<Platforms: Sequence>(
-            pbxTarget: PBXTarget,
+            pbxTarget: PBXNativeTarget,
             platforms: Platforms,
             buildableReference: XCScheme.BuildableReference,
             index: Int
@@ -26,7 +26,7 @@ extension XCSchemeInfo {
 
 extension XCSchemeInfo.HostInfo {
     init<Platforms: Sequence>(
-        pbxTarget: PBXTarget,
+        pbxTarget: PBXNativeTarget,
         platforms: Platforms,
         referencedContainer: String,
         index: Int

@@ -11,7 +11,7 @@ extension XCSchemeInfo {
     }
 
     struct TargetInfo: Equatable, Hashable {
-        let pbxTarget: PBXTarget
+        let pbxTarget: PBXNativeTarget
         // The platforms property is a sorted list of unique platforms.
         let platforms: [Platform]
         let buildableReference: XCScheme.BuildableReference
@@ -23,7 +23,7 @@ extension XCSchemeInfo {
         let additionalBuildableReferences: [XCScheme.BuildableReference]
 
         private init<HIs: Sequence, EPIs: Sequence, Platforms: Sequence>(
-            pbxTarget: PBXTarget,
+            pbxTarget: PBXNativeTarget,
             platforms: Platforms,
             buildableReference: XCScheme.BuildableReference,
             hostInfos: HIs,
@@ -48,7 +48,7 @@ extension XCSchemeInfo {
 
 extension XCSchemeInfo.TargetInfo {
     init<HIs: Sequence, EPIs: Sequence, Platforms: Sequence>(
-        pbxTarget: PBXTarget,
+        pbxTarget: PBXNativeTarget,
         platforms: Platforms,
         referencedContainer: String,
         hostInfos: HIs,
@@ -148,10 +148,7 @@ extension XCSchemeInfo.TargetInfo {
 // MARK: `bazelBuildPreActions`
 
 extension XCSchemeInfo.TargetInfo {
-    func buildPreAction() throws -> XCScheme.ExecutionAction? {
-        guard pbxTarget is PBXNativeTarget else {
-            return nil
-        }
+    func buildPreAction() throws -> XCScheme.ExecutionAction {
         return .init(
             buildFor: buildableReference,
             name: pbxTarget.name,

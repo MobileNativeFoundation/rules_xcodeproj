@@ -8,7 +8,7 @@ enum XCSchemeConstants {
 }
 
 extension XCScheme.BuildableReference {
-    convenience init(pbxTarget: PBXTarget, referencedContainer: String) {
+    convenience init(pbxTarget: PBXNativeTarget, referencedContainer: String) {
         self.init(
             referencedContainer: referencedContainer,
             blueprint: pbxTarget,
@@ -43,7 +43,7 @@ extension XCScheme {
                 buildActionInfo: buildActionInfo,
                 otherPreActions: otherPreActions
             )
-            
+
         } else {
             buildAction = .init(
                 parallelizeBuild: true,
@@ -162,7 +162,7 @@ extension XCScheme.BuildAction {
     ) throws {
         self.init(
             buildActionEntries: try buildActionInfo.targets.buildActionEntries,
-            preActions:  try buildActionInfo.preActions.map(\.executionAction) + 
+            preActions:  try buildActionInfo.preActions.map(\.executionAction) +
                 buildActionInfo.targets.map(\.targetInfo).buildPreActions() +
                 otherPreActions,
             postActions: buildActionInfo.postActions.map(\.executionAction),
@@ -220,7 +220,7 @@ echo "$BAZEL_LABEL,$BAZEL_TARGET_ID" >> "$SCHEME_TARGET_IDS_FILE"
             environmentBuildable: buildableReference
         )
     }
-    
+
     /// Symlinks `$DEVELOPER_DIR/Toolchains/XcodeDefault.xctoolchain/usr/lib` to
     /// `$(BAZEL_INTEGRATION_DIR)/../lib` so that Xcode can copy sanitizers'
     /// dylibs.

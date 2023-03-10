@@ -7,8 +7,7 @@ extension Generator {
         for disambiguatedTargets: DisambiguatedTargets,
         buildMode: BuildMode,
         products: Products,
-        files: [FilePath: File],
-        bazelDependenciesTarget: PBXAggregateTarget?
+        files: [FilePath: File]
     ) async throws -> [ConsolidatedTarget.Key: PBXNativeTarget] {
         return try await withThrowingTaskGroup(
             of: (ConsolidatedTarget.Key, PBXNativeTarget).self
@@ -27,8 +26,7 @@ extension Generator {
                                 targetKeys: disambiguatedTargets.keys,
                                 buildMode: buildMode,
                                 products: products,
-                                files: files,
-                                bazelDependenciesTarget: bazelDependenciesTarget
+                                files: files
                             )
                         }.value
                     )
@@ -39,13 +37,6 @@ extension Generator {
                 minimumCapacity: targets.count
             )
             for try await (key, pbxTarget) in group {
-                // This doesn't seem to be thread safe, so we need to do it
-                // serially
-                if let bazelDependenciesTarget = bazelDependenciesTarget {
-                    _ = try pbxTarget
-                        .addDependency(target: bazelDependenciesTarget)
-                }
-
                 pbxTargets[key] = pbxTarget
             }
 
@@ -64,8 +55,7 @@ extension Generator {
         targetKeys: [TargetID: ConsolidatedTarget.Key],
         buildMode: BuildMode,
         products: Products,
-        files: [FilePath: File],
-        bazelDependenciesTarget: PBXAggregateTarget?
+        files: [FilePath: File]
     ) throws -> PBXNativeTarget {
         let target = disambiguatedTarget.target
         let inputs = target.inputs
