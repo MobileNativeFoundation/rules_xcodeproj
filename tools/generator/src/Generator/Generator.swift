@@ -82,27 +82,36 @@ class Generator {
             )
         }.value
 
-        let xcodeGeneratedFiles = try environment.calculateXcodeGeneratedFiles(
-            buildMode,
-            targets
-        )
-        let consolidatedTargets = try environment.consolidateTargets(
-            targets,
-            xcodeGeneratedFiles,
-            logger
-        )
-        let disambiguatedTargets = environment.disambiguateTargets(
-            consolidatedTargets
-        )
-        let (products, productsGroup) = environment.createProducts(
-            pbxProj,
-            consolidatedTargets
-        )
+        let consolidatedTargetsTask = Task {
+            let xcodeGeneratedFiles = try environment
+                .calculateXcodeGeneratedFiles(
+                    buildMode,
+                    targets
+                )
+            return try environment.consolidateTargets(
+                targets,
+                xcodeGeneratedFiles,
+                logger
+            )
+        }
+
+        async let disambiguatedTargets = Task {
+            try await environment.disambiguateTargets(
+                consolidatedTargetsTask.value
+            )
+        }.value
+        let createdProductsTask = Task {
+            try await environment.createProducts(
+                pbxProj,
+                consolidatedTargetsTask.value
+            )
+        }
 
         try await environment.setAdditionalProjectConfiguration(
             pbxProj,
             resolvedRepositories
         )
+        let (products, productsGroup) = try await createdProductsTask.value
         try await environment.populateMainGroup(
             mainGroup,
             pbxProj,
@@ -122,7 +131,7 @@ class Generator {
             project.generatorLabel,
             project.preBuildScript,
             project.postBuildScript,
-            consolidatedTargets
+            consolidatedTargetsTask.value
         )
         let pbxTargets = try await environment.addTargets(
             pbxProj,
@@ -143,13 +152,13 @@ class Generator {
             project.targetHosts,
             bazelDependencies != nil
         )
-        try environment.setTargetDependencies(
+        try await environment.setTargetDependencies(
             buildMode,
             disambiguatedTargets,
             pbxTargets
         )
 
-        let targetResolver = try TargetResolver(
+        let targetResolver = try await TargetResolver(
             referencedContainer: directories.containerReference,
             targets: targets,
             targetHosts: project.targetHosts,
