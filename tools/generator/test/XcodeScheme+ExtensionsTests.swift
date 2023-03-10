@@ -479,7 +479,7 @@ class XcodeSchemeExtensionsTests: XCTestCase {
         watchOSAppwatchOSx8664TargetID: watchOSAppConsolidatedTargetKey,
     ]
 
-    lazy var pbxTargets: [ConsolidatedTarget.Key: PBXTarget] = [
+    lazy var pbxTargets: [ConsolidatedTarget.Key: PBXNativeTarget] = [
         iOSAppConsolidatedTargetKey:
             .init(name: "iOSApp", productType: .application),
         libTestsConsolidatedTargetKey:

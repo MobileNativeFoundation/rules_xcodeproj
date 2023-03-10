@@ -1380,9 +1380,8 @@ appletvos
         in pbxProj: PBXProj,
         disambiguatedTargets: DisambiguatedTargets,
         files: [FilePath: File],
-        products: Products,
-        bazelDependenciesTarget: PBXAggregateTarget
-    ) -> [ConsolidatedTarget.Key: PBXTarget] {
+        products: Products
+    ) -> [ConsolidatedTarget.Key: PBXNativeTarget] {
         // Build phases
 
         func createGeneratedHeaderShellScript() -> PBXShellScriptBuildPhase {
@@ -1822,55 +1821,6 @@ touch "$SCRIPT_OUTPUT_FILE_1"
             ),
         ]
 
-        _ = try! pbxNativeTargets["A 1"]!.addDependency(
-            target: bazelDependenciesTarget
-        )
-        _ = try! pbxNativeTargets["A 2"]!.addDependency(
-            target: bazelDependenciesTarget
-        )
-        _ = try! pbxNativeTargets["AC"]!.addDependency(
-            target: bazelDependenciesTarget
-        )
-        _ = try! pbxNativeTargets["B 1"]!.addDependency(
-            target: bazelDependenciesTarget
-        )
-        _ = try! pbxNativeTargets["B 2"]!.addDependency(
-            target: bazelDependenciesTarget
-        )
-        _ = try! pbxNativeTargets["B 3"]!.addDependency(
-            target: bazelDependenciesTarget
-        )
-        _ = try! pbxNativeTargets["C 1"]!.addDependency(
-            target: bazelDependenciesTarget
-        )
-        _ = try! pbxNativeTargets["C 2"]!.addDependency(
-            target: bazelDependenciesTarget
-        )
-        _ = try! pbxNativeTargets["E1"]!.addDependency(
-            target: bazelDependenciesTarget
-        )
-        _ = try! pbxNativeTargets["E2"]!.addDependency(
-            target: bazelDependenciesTarget
-        )
-        _ = try! pbxNativeTargets["I"]!.addDependency(
-            target: bazelDependenciesTarget
-        )
-        _ = try! pbxNativeTargets["R 1"]!.addDependency(
-            target: bazelDependenciesTarget
-        )
-        _ = try! pbxNativeTargets[.init(["T 1", "T 2", "T 3"])]!.addDependency(
-            target: bazelDependenciesTarget
-        )
-        _ = try! pbxNativeTargets["W"]!.addDependency(
-            target: bazelDependenciesTarget
-        )
-        _ = try! pbxNativeTargets["WDKE"]!.addDependency(
-            target: bazelDependenciesTarget
-        )
-        _ = try! pbxNativeTargets["WKE"]!.addDependency(
-            target: bazelDependenciesTarget
-        )
-
         // The order target are added to `PBXProject`s matter for uuid fixing
         for pbxTarget in pbxNativeTargets.values
             .sortedLocalizedStandard(\.name)
@@ -1879,7 +1829,7 @@ touch "$SCRIPT_OUTPUT_FILE_1"
             pbxProj.rootObject!.targets.append(pbxTarget)
         }
 
-        let pbxTargets = [ConsolidatedTarget.Key: PBXTarget](
+        let pbxTargets = [ConsolidatedTarget.Key: PBXNativeTarget](
             uniqueKeysWithValues: pbxNativeTargets.map { $0 }
         )
 
@@ -1892,7 +1842,7 @@ touch "$SCRIPT_OUTPUT_FILE_1"
         directories: Directories,
         consolidatedTargets: ConsolidatedTargets
     ) -> (
-        pbxTargets: [ConsolidatedTarget.Key: PBXTarget],
+        pbxTargets: [ConsolidatedTarget.Key: PBXNativeTarget],
         disambiguatedTargets: DisambiguatedTargets
     ) {
         let pbxProject = pbxProj.rootObject!
@@ -1910,11 +1860,6 @@ touch "$SCRIPT_OUTPUT_FILE_1"
         )
         let products = Fixtures.products(in: pbxProj, parentGroup: mainGroup)
 
-        let bazelDependenciesTarget = Fixtures.bazelDependenciesTarget(
-            in: pbxProj,
-            generatorLabel: "@//:xcodeproj"
-        )
-
         let disambiguatedTargets = Fixtures.disambiguatedTargets(
             consolidatedTargets
         )
@@ -1922,8 +1867,7 @@ touch "$SCRIPT_OUTPUT_FILE_1"
             in: pbxProj,
             disambiguatedTargets: disambiguatedTargets,
             files: files,
-            products: products,
-            bazelDependenciesTarget: bazelDependenciesTarget
+            products: products
         )
 
         return (
@@ -1937,7 +1881,7 @@ touch "$SCRIPT_OUTPUT_FILE_1"
         buildMode: BuildMode = .xcode,
         directories: Directories,
         consolidatedTargets: ConsolidatedTargets
-    ) -> [ConsolidatedTarget.Key: PBXTarget] {
+    ) -> [ConsolidatedTarget.Key: PBXNativeTarget] {
         let (pbxTargets, _) = Fixtures.pbxTargets(
             in: pbxProj,
             buildMode: buildMode,
@@ -2327,35 +2271,43 @@ $(MACOSX_FILES)
     static func pbxTargetsWithDependencies(
         in pbxProj: PBXProj,
         directories: Directories,
-        consolidatedTargets: ConsolidatedTargets
-    ) -> [ConsolidatedTarget.Key: PBXTarget] {
+        consolidatedTargets: ConsolidatedTargets,
+        bazelDependenciesTarget: PBXAggregateTarget?
+    ) -> [ConsolidatedTarget.Key: PBXNativeTarget] {
         let (pbxTargets, _) = Fixtures.pbxTargets(
             in: pbxProj,
             directories: directories,
             consolidatedTargets: consolidatedTargets
         )
 
-        _ = try! pbxTargets.nativeTarget("A 2")!
+        if let bazelDependenciesTarget = bazelDependenciesTarget {
+            for pbxTarget in pbxTargets.values {
+                _ = try! pbxTarget
+                    .addDependency(target: bazelDependenciesTarget)
+            }
+        }
+
+        _ = try! pbxTargets["A 2"]!
             .addDependency(target: pbxTargets["A 1"]!)
-        _ = try! pbxTargets.nativeTarget("A 2")!
+        _ = try! pbxTargets["A 2"]!
             .addDependency(target: pbxTargets["C 1"]!)
-        _ = try! pbxTargets.nativeTarget("A 2")!
+        _ = try! pbxTargets["A 2"]!
             .addDependency(target: pbxTargets["R 1"]!)
-        _ = try! pbxTargets.nativeTarget("B 1")!
+        _ = try! pbxTargets["B 1"]!
             .addDependency(target: pbxTargets["A 1"]!)
-        _ = try! pbxTargets.nativeTarget("B 2")!
+        _ = try! pbxTargets["B 2"]!
             .addDependency(target: pbxTargets["A 2"]!)
-        _ = try! pbxTargets.nativeTarget("B 2")!
+        _ = try! pbxTargets["B 2"]!
             .addDependency(target: pbxTargets["B 1"]!)
-        _ = try! pbxTargets.nativeTarget("B 3")!
+        _ = try! pbxTargets["B 3"]!
             .addDependency(target: pbxTargets["A 2"]!)
-        _ = try! pbxTargets.nativeTarget("B 3")!
+        _ = try! pbxTargets["B 3"]!
             .addDependency(target: pbxTargets["B 1"]!)
-        _ = try! pbxTargets.nativeTarget("C 2")!
+        _ = try! pbxTargets["C 2"]!
             .addDependency(target: pbxTargets["C 1"]!)
-        _ = try! pbxTargets.nativeTarget("I")!
+        _ = try! pbxTargets["I"]!
             .addDependency(target: pbxTargets["AC"]!)
-        _ = try! pbxTargets.nativeTarget("I")!
+        _ = try! pbxTargets["I"]!
             .addDependency(target: pbxTargets["W"]!)
 
         return pbxTargets

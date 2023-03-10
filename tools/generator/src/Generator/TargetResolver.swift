@@ -7,7 +7,7 @@ struct TargetResolver: Equatable {
     let targetHosts: [TargetID: [TargetID]]
     let extensionPointIdentifiers: [TargetID: ExtensionPointIdentifier]
     let consolidatedTargetKeys: [TargetID: ConsolidatedTarget.Key]
-    let pbxTargets: [ConsolidatedTarget.Key: PBXTarget]
+    let pbxTargets: [ConsolidatedTarget.Key: PBXNativeTarget]
     let pbxTargetInfos: [ConsolidatedTarget.Key: PBXTargetInfo]
 
     init(
@@ -16,7 +16,7 @@ struct TargetResolver: Equatable {
         targetHosts: [TargetID: [TargetID]],
         extensionPointIdentifiers: [TargetID: ExtensionPointIdentifier],
         consolidatedTargetKeys: [TargetID: ConsolidatedTarget.Key],
-        pbxTargets: [ConsolidatedTarget.Key: PBXTarget]
+        pbxTargets: [ConsolidatedTarget.Key: PBXNativeTarget]
     ) throws {
         self.referencedContainer = referencedContainer
         self.targets = targets
@@ -129,7 +129,7 @@ extension TargetResolver {
 extension TargetResolver {
     struct PBXTargetInfo: Equatable, Hashable {
         let key: ConsolidatedTarget.Key
-        let pbxTarget: PBXTarget
+        let pbxTarget: PBXNativeTarget
         let platforms: Set<Platform>
         let extensionPointIdentifiers: Set<ExtensionPointIdentifier>
         let buildableReference: XCScheme.BuildableReference

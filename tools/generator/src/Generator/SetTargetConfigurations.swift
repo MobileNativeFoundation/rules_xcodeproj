@@ -16,12 +16,12 @@ extension Generator {
         buildMode: BuildMode,
         minimumXcodeVersion: SemanticVersion,
         defaultXcodeConfiguration: String,
-        pbxTargets: [ConsolidatedTarget.Key: PBXTarget],
+        pbxTargets: [ConsolidatedTarget.Key: PBXNativeTarget],
         hostIDs: [TargetID: [TargetID]],
         hasBazelDependencies: Bool
     ) async throws {
         try await withThrowingTaskGroup(
-            of: (pbxTarget: PBXTarget, attributes: [String: Any]).self
+            of: (pbxTarget: PBXNativeTarget, attributes: [String: Any]).self
         ) { group in
             for (key, disambiguatedTarget) in disambiguatedTargets.targets {
                 group.addTask {
@@ -62,10 +62,10 @@ extension Generator {
         buildMode: BuildMode,
         minimumXcodeVersion: SemanticVersion,
         defaultXcodeConfiguration: String,
-        pbxTargets: [ConsolidatedTarget.Key: PBXTarget],
+        pbxTargets: [ConsolidatedTarget.Key: PBXNativeTarget],
         hostIDs: [TargetID: [TargetID]],
         hasBazelDependencies: Bool
-    ) throws -> (pbxTarget: PBXTarget, attributes: [String: Any]) {
+    ) throws -> (pbxTarget: PBXNativeTarget, attributes: [String: Any]) {
         guard let pbxTarget = pbxTargets[key] else {
             throw PreconditionError(message: """
 Target "\(key)" not found in `pbxTargets`
@@ -510,7 +510,7 @@ $(ASAN_OTHER_CPLUSPLUSFLAGS__$(CLANG_ADDRESS_SANITIZER))
     private static func handleTestHost(
         for target: ConsolidatedTarget,
         disambiguatedTargets: DisambiguatedTargets,
-        pbxTargets: [ConsolidatedTarget.Key: PBXTarget],
+        pbxTargets: [ConsolidatedTarget.Key: PBXNativeTarget],
         attributes: inout [String: Any],
         buildSettings:
             inout [String: [BuildSettingConditional: [String: BuildSetting]]]

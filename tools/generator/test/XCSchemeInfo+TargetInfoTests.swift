@@ -158,26 +158,6 @@ extension XCSchemeInfoTargetInfoTests {
 // MARK: - `bazelBuildPreAction` Tests
 
 extension XCSchemeInfoTargetInfoTests {
-    func test_bazelBuildPreAction_nonNativeTarget() throws {
-        let productFileReference = PBXFileReference(
-            path: "MyChicken.app"
-        )
-        let pbxTarget = PBXTarget(
-            name: "chicken",
-            productName: "MyChicken",
-            product: productFileReference
-        )
-        let targetInfo = XCSchemeInfo.TargetInfo(
-            pbxTarget: pbxTarget,
-            platforms: [.device(os: .iOS)],
-            referencedContainer: directories.containerReference,
-            hostInfos: [],
-            extensionPointIdentifiers: []
-        )
-        let preAction = try targetInfo.buildPreAction()
-        XCTAssertNil(preAction)
-    }
-
     func test_bazelBuildPreAction_nativeTarget_noHost() throws {
         let preAction = try libraryTargetInfo.buildPreAction()
         XCTAssertEqual(preAction, .init(
@@ -228,8 +208,8 @@ extension XCSchemeInfoTargetInfoTests {
             .initBazelBuildOutputGroupsFile(
                 buildableReference: libraryTargetInfo.buildableReference
             ),
-            try libraryTargetInfo.buildPreAction()!,
-            try appTargetInfo.buildPreAction()!,
+            try libraryTargetInfo.buildPreAction(),
+            try appTargetInfo.buildPreAction(),
         ]
         XCTAssertEqual(try targetInfos.buildPreActions(), expected)
     }
@@ -246,7 +226,7 @@ class XCSchemeInfoTargetInfoTests: XCTestCase {
         workspaceOutput: "examples/foo/Foo.xcodeproj"
     )
 
-    lazy var pbxTargetsDict: [ConsolidatedTarget.Key: PBXTarget] =
+    lazy var pbxTargetsDict: [ConsolidatedTarget.Key: PBXNativeTarget] =
         Fixtures.pbxTargets(
             in: Fixtures.pbxProj(),
             directories: directories,

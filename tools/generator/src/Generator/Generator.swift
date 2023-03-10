@@ -118,7 +118,7 @@ class Generator {
             rootElements,
             productsGroup
         )
-        let bazelDependencies = try await environment.addBazelDependenciesTarget(
+        let bazelDependencies = try environment.addBazelDependenciesTarget(
             pbxProj,
             buildMode,
             project.forceBazelDependencies,
@@ -126,20 +126,19 @@ class Generator {
             project.xcodeConfigurations,
             project.defaultXcodeConfiguration,
             project.indexImport,
-            files,
+            await files,
             project.bazelConfig,
             project.generatorLabel,
             project.preBuildScript,
             project.postBuildScript,
-            consolidatedTargetsTask.value
+            await consolidatedTargetsTask.value
         )
         let pbxTargets = try await environment.addTargets(
             pbxProj,
             disambiguatedTargets,
             buildMode,
             products,
-            files,
-            bazelDependencies
+            files
         )
         try await environment.setTargetConfigurations(
             pbxProj,
@@ -155,7 +154,8 @@ class Generator {
         try await environment.setTargetDependencies(
             buildMode,
             disambiguatedTargets,
-            pbxTargets
+            pbxTargets,
+            bazelDependencies
         )
 
         let targetResolver = try await TargetResolver(

@@ -82,8 +82,7 @@ struct Environment {
         _ disambiguatedTargets: DisambiguatedTargets,
         _ buildMode: BuildMode,
         _ products: Products,
-        _ files: [FilePath: File],
-        _ bazelDependenciesTarget: PBXAggregateTarget?
+        _ files: [FilePath: File]
     ) async throws -> [ConsolidatedTarget.Key: PBXNativeTarget]
 
     let setTargetConfigurations: (
@@ -93,7 +92,7 @@ struct Environment {
         _ buildMode: BuildMode,
         _ minimumXcodeVersion: SemanticVersion,
         _ defaultXcodeConfiguration: String,
-        _ pbxTargets: [ConsolidatedTarget.Key: PBXTarget],
+        _ pbxTargets: [ConsolidatedTarget.Key: PBXNativeTarget],
         _ hostIDs: [TargetID: [TargetID]],
         _ hasBazelDependencies: Bool
     ) async throws -> Void
@@ -101,7 +100,8 @@ struct Environment {
     let setTargetDependencies: (
         _ buildMode: BuildMode,
         _ disambiguatedTargets: DisambiguatedTargets,
-        _ pbxTargets: [ConsolidatedTarget.Key: PBXTarget]
+        _ pbxTargets: [ConsolidatedTarget.Key: PBXNativeTarget],
+        _ bazelDependenciesTarget: PBXAggregateTarget?
     ) throws -> Void
 
     let createCustomXCSchemes: (
