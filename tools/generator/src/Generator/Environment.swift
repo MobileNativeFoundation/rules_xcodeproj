@@ -97,7 +97,7 @@ struct Environment {
         _ pbxTargets: [ConsolidatedTarget.Key: PBXTarget],
         _ hostIDs: [TargetID: [TargetID]],
         _ hasBazelDependencies: Bool
-    ) throws -> Void
+    ) async throws -> Void
 
     let setTargetDependencies: (
         _ buildMode: BuildMode,

@@ -48,7 +48,7 @@ class Generator {
         extensionPointIdentifiers: [TargetID: ExtensionPointIdentifier],
         directories: Directories,
         outputPath: Path
-    ) throws {
+    ) async throws {
         let pbxProj = environment.createProject(
             buildMode,
             forFixtures,
@@ -139,7 +139,7 @@ class Generator {
             files,
             bazelDependencies
         )
-        try environment.setTargetConfigurations(
+        try await environment.setTargetConfigurations(
             pbxProj,
             disambiguatedTargets,
             targets,
