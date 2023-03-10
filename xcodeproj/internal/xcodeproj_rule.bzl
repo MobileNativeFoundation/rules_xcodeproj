@@ -151,7 +151,7 @@ def _process_extra_files(
     # Apply replacement labels
     extra_files = [
         (
-            bazel_labels.normalize(
+            bazel_labels.normalize_label(
                 replacement_labels_by_label.get(label, label),
             ),
             files,
@@ -215,7 +215,7 @@ def _process_xccurrentversions(
     # Apply replacement labels
     xccurrentversions_files = [
         (
-            bazel_labels.normalize(
+            bazel_labels.normalize_label(
                 replacement_labels_by_label.get(label, label),
             ),
             files,
@@ -320,7 +320,9 @@ def _process_targets(
     }
 
     targets_labels = {
-        bazel_labels.normalize(replacement_labels.get(t.id, t.label)): None
+        bazel_labels.normalize_label(
+            replacement_labels.get(t.id, t.label),
+        ): None
         for t in unprocessed_targets.values()
     }
 
@@ -368,7 +370,7 @@ targets.
             xcode_target.id,
             xcode_target.label,
         )
-        label_str = bazel_labels.normalize(label)
+        label_str = bazel_labels.normalize_label(label)
         if (label_str in unfocused_labels or
             (has_focused_labels and label_str not in focused_labels)):
             unfocused_targets[xcode_target.id] = xcode_target
@@ -408,7 +410,7 @@ targets.
             xcode_target.id,
             xcode_target.label,
         )
-        label_str = bazel_labels.normalize(label)
+        label_str = bazel_labels.normalize_label(label)
 
         # Remove from unfocused (to support `xcode_required_targets`)
         unfocused_targets.pop(xcode_target.id, None)
@@ -428,9 +430,9 @@ targets.
     raw_target_merge_dests = {}
     for merge in potential_target_merges:
         src_target = unprocessed_targets[merge.src.id]
-        src_label = bazel_labels.normalize(src_target.label)
+        src_label = bazel_labels.normalize_label(src_target.label)
         dest_target = unprocessed_targets[merge.dest]
-        dest_label = bazel_labels.normalize(dest_target.label)
+        dest_label = bazel_labels.normalize_label(dest_target.label)
         if src_label in unfocused_labels or dest_label in unfocused_labels:
             continue
         raw_target_merge_dests.setdefault(merge.dest, []).append(merge.src.id)
@@ -441,7 +443,7 @@ targets.
             # We can only merge targets with a single library dependency
             continue
         dest_target = unprocessed_targets[dest]
-        dest_label = bazel_labels.normalize(
+        dest_label = bazel_labels.normalize_label(
             replacement_labels.get(dest, dest_target.label),
         )
 
@@ -461,7 +463,7 @@ targets.
 
     for src in target_merge_dests.values():
         src_target = unprocessed_targets[src]
-        src_label = bazel_labels.normalize(
+        src_label = bazel_labels.normalize_label(
             replacement_labels.get(src, src_target.label),
         )
 
@@ -506,7 +508,7 @@ Are you using an `alias`? `associated_extra_files` requires labels of the \
 actual targets: {}
 """.format(invalid_extra_files_targets))
 
-        label_str = bazel_labels.normalize(label)
+        label_str = bazel_labels.normalize_label(label)
         for file, owner_label in owned_extra_files.items():
             if label_str == owner_label:
                 focused_targets_extra_files.append(

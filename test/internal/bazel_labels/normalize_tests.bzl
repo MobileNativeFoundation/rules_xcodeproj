@@ -1,4 +1,4 @@
-"""Tests for `bazel_labels.normalize`"""
+"""Tests for `bazel_labels.normalize_string`"""
 
 load("@bazel_skylib//lib:unittest.bzl", "asserts", "unittest")
 
@@ -31,7 +31,7 @@ def _relative_label_test(ctx):
     env = unittest.begin(ctx)
 
     value = ":chicken"
-    actual = bazel_labels.normalize(value)
+    actual = bazel_labels.normalize_string(value)
     expected = _repo_prefix() + "//Sources/Foo:chicken"
     asserts.equals(env, expected, actual)
 
@@ -43,7 +43,7 @@ def _absolute_label_with_repo_name_test(ctx):
     env = unittest.begin(ctx)
 
     value = "@my_dep//Sources/Foo:chicken"
-    actual = bazel_labels.normalize(value)
+    actual = bazel_labels.normalize_string(value)
     expected = _external_repo_prefix() + "my_dep//Sources/Foo:chicken"
     asserts.equals(env, expected, actual)
 
@@ -55,7 +55,7 @@ def _absolute_label_without_repo_name_test(ctx):
     env = unittest.begin(ctx)
 
     value = "//Sources/Foo:chicken"
-    actual = bazel_labels.normalize(value)
+    actual = bazel_labels.normalize_string(value)
     expected = _repo_prefix() + "//Sources/Foo:chicken"
     asserts.equals(env, expected, actual)
 

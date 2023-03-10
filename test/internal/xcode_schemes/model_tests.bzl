@@ -61,7 +61,7 @@ def _build_target_test(ctx):
 
     actual = xcode_schemes.build_target("//Sources/Foo")
     expected = struct(
-        label = bazel_labels.normalize("//Sources/Foo"),
+        label = bazel_labels.normalize_string("//Sources/Foo"),
         build_for = xcode_schemes.BUILD_FOR_ALL_ENABLED,
     )
     asserts.equals(env, expected, actual, "no build_for")
@@ -71,7 +71,7 @@ def _build_target_test(ctx):
         xcode_schemes.build_for(),
     )
     expected = struct(
-        label = bazel_labels.normalize("//Sources/Foo"),
+        label = bazel_labels.normalize_string("//Sources/Foo"),
         build_for = xcode_schemes.build_for(),
     )
     asserts.equals(env, expected, actual, "with build_for")
@@ -140,8 +140,8 @@ def _build_action_test(ctx):
 
     expected = struct(
         targets = [
-            xcode_schemes.build_target(bazel_labels.normalize("//Sources/Bar")),
-            xcode_schemes.build_target(bazel_labels.normalize("//Sources/Foo")),
+            xcode_schemes.build_target(bazel_labels.normalize_string("//Sources/Bar")),
+            xcode_schemes.build_target(bazel_labels.normalize_string("//Sources/Foo")),
         ],
         pre_actions = [],
         post_actions = [],
@@ -160,7 +160,7 @@ def _test_action_test(ctx):
     actual = xcode_schemes.test_action(targets)
     expected = struct(
         build_configuration_name = None,
-        targets = [bazel_labels.normalize(t) for t in targets],
+        targets = [bazel_labels.normalize_string(t) for t in targets],
         args = None,
         diagnostics = None,
         env = None,
@@ -175,7 +175,7 @@ def _test_action_test(ctx):
     actual = xcode_schemes.test_action(targets, args = args, env = custom_env)
     expected = struct(
         build_configuration_name = None,
-        targets = [bazel_labels.normalize(t) for t in targets],
+        targets = [bazel_labels.normalize_string(t) for t in targets],
         args = args,
         diagnostics = None,
         env = custom_env,
@@ -193,7 +193,7 @@ def _test_action_test(ctx):
     )
     expected = struct(
         build_configuration_name = None,
-        targets = [bazel_labels.normalize(t) for t in targets],
+        targets = [bazel_labels.normalize_string(t) for t in targets],
         args = [],
         diagnostics = None,
         env = {},
@@ -214,11 +214,11 @@ def _test_action_test(ctx):
     )
     expected = struct(
         build_configuration_name = None,
-        targets = [bazel_labels.normalize(t) for t in targets],
+        targets = [bazel_labels.normalize_string(t) for t in targets],
         args = None,
         diagnostics = None,
         env = None,
-        expand_variables_based_on = bazel_labels.normalize(targets[0]),
+        expand_variables_based_on = bazel_labels.normalize_string(targets[0]),
         pre_actions = [],
         post_actions = [],
     )
@@ -247,7 +247,7 @@ def _launch_action_test(ctx):
     )
     expected = struct(
         build_configuration_name = None,
-        target = bazel_labels.normalize(target),
+        target = bazel_labels.normalize_string(target),
         args = args,
         diagnostics = None,
         env = env,

@@ -87,28 +87,29 @@ def make_bazel_labels(workspace_name_resolvers = workspace_name_resolvers):
             name = name,
         )
 
-    def _normalize(value):
-        if type(value) == "Label":
-            return str(value)
-        else:
-            package_relative_label = (
-                workspace_name_resolvers.package_relative_label(value)
-            )
-            if package_relative_label:
-                return str(package_relative_label)
+    def _normalize_label(value):
+        return str(value)
 
-            parts = _parse(value)
+    def _normalize_string(value):
+        package_relative_label = (
+            workspace_name_resolvers.package_relative_label(value)
+        )
+        if package_relative_label:
+            return str(package_relative_label)
 
-            return str(Label("{repo_name}//{package}:{name}".format(
-                repo_name = parts.repository_name,
-                package = parts.package,
-                name = parts.name,
-            )))
+        parts = _parse(value)
+
+        return str(Label("{repo_name}//{package}:{name}".format(
+            repo_name = parts.repository_name,
+            package = parts.package,
+            name = parts.name,
+        )))
 
     return struct(
         create = _create_label_parts,
         parse = _parse,
-        normalize = _normalize,
+        normalize_label = _normalize_label,
+        normalize_string = _normalize_string,
     )
 
 bazel_labels = make_bazel_labels(
