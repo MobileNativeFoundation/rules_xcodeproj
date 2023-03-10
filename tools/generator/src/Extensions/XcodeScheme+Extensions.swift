@@ -185,6 +185,9 @@ extension XcodeScheme {
         if let launchAction = launchAction {
             labels.update(with: launchAction.target)
         }
+        if let profileAction = profileAction {
+            labels.update(with: profileAction.target)
+        }
         return labels
     }
 }
