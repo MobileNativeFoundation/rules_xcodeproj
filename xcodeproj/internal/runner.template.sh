@@ -89,13 +89,24 @@ chmod u+w "%generator_package_directory%/defs.bzl"
 cp "$schemes_json" "%generator_package_directory%/custom_xcode_schemes.json"
 chmod u+w "%generator_package_directory%/custom_xcode_schemes.json"
 
+# Remove bazelisk's path adjustment, so we find the `tools/wrapper`, or bazelisk
+# itself
+un_bazelisked_path=$(echo "$PATH" | sed -E 's|/[^:]+/bazelisk/downloads/[^:]+:||')
+
+# Unset `BAZELISK_SKIP_WRAPPER` to allow the wrapper to be run again for our
+# commands
+unset BAZELISK_SKIP_WRAPPER
+unset BAZELISK_SKIP_WRAPPER
+
 # Resolve path to bazel before changing the env variable. This allows bazelisk
-# downloaded bazel to be found.
-bazel_path=$(which "%bazel_path%" || true)
+# downloaded bazel to be found
+bazel_path=$(PATH="$un_bazelisked_path" which "%bazel_path%" || true)
 
 if [[ -z "$bazel_path" ]]; then
-  echo "Failed to find \"%bazel_path%\" in PATH. Please make sure the" \
-    "'bazel' attribute on %runner_label% is correct." >&2
+  echo "Failed to find \"%bazel_path%\" in \$PATH (\"$un_bazelisked_path\")." \
+    "Please make sure the 'bazel' attribute on %runner_label% is correct, or" \
+    "if you are filtering your \$PATH in a bazel wrapper, that the \$PATH" \
+    "includes where bazelisk is installed." >&2
   exit 1
 fi
 
