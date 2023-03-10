@@ -30,13 +30,13 @@ final class AddTargetsTests: XCTestCase {
             workspaceOutput: workspaceOutputPath
         )
 
-        let (files, _, _, _) = Fixtures.files(
+        let (files, _, _) = Fixtures.files(
             in: pbxProj,
             buildMode: .xcode,
             directories: directories,
             parentGroup: mainGroup
         )
-        let (expectedFiles, _, _, _) = Fixtures.files(
+        let (expectedFiles, _, _) = Fixtures.files(
             in: expectedPBXProj,
             buildMode: .xcode,
             directories: directories,

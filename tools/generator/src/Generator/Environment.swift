@@ -18,6 +18,11 @@ struct Environment {
         _ replacementLabels: [TargetID: BazelLabel]
     ) throws -> Void
 
+    let calculateXcodeGeneratedFiles: (
+        _ buildMode: BuildMode,
+        _ targets: [TargetID: Target]
+    ) throws -> [FilePath: FilePath]
+
     let consolidateTargets: (
         _ targets: [TargetID: Target],
         _ xcodeGeneratedFiles: [FilePath: FilePath],
@@ -37,7 +42,6 @@ struct Environment {
     ) throws -> (
         files: [FilePath: File],
         rootElements: [PBXFileElement],
-        xcodeGeneratedFiles: [FilePath: FilePath],
         resolvedRepositories: [(Path, Path)]
     )
 
