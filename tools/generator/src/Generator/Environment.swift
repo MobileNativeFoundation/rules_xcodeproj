@@ -84,7 +84,7 @@ struct Environment {
         _ products: Products,
         _ files: [FilePath: File],
         _ bazelDependenciesTarget: PBXAggregateTarget?
-    ) throws -> [ConsolidatedTarget.Key: PBXTarget]
+    ) async throws -> [ConsolidatedTarget.Key: PBXNativeTarget]
 
     let setTargetConfigurations: (
         _ pbxProj: PBXProj,

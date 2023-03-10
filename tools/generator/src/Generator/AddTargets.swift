@@ -9,139 +9,181 @@ extension Generator {
         products: Products,
         files: [FilePath: File],
         bazelDependenciesTarget: PBXAggregateTarget?
-    ) throws -> [ConsolidatedTarget.Key: PBXTarget] {
-        let pbxProject = pbxProj.rootObject!
+    ) async throws -> [ConsolidatedTarget.Key: PBXNativeTarget] {
+        return try await withThrowingTaskGroup(
+            of: (ConsolidatedTarget.Key, PBXNativeTarget).self
+        ) { group in
+            let targets = disambiguatedTargets.targets
 
-        let sortedDisambiguatedTargets = disambiguatedTargets.targets
-            .sortedLocalizedStandard(\.value.name)
-        var pbxTargets = [ConsolidatedTarget.Key: PBXTarget](
-            minimumCapacity: sortedDisambiguatedTargets.count
-        )
-        for (key, disambiguatedTarget) in sortedDisambiguatedTargets {
-            let target = disambiguatedTarget.target
-            let inputs = target.inputs
-            let outputs = target.outputs
-            let productBasename = target.product.basename
-            let productType = target.product.type
-
-            let compileSources: (phase: PBXSourcesBuildPhase, hasCompileStub: Bool)?
-            let product: PBXFileReference?
-            if productBasename != nil {
-                guard let actualProduct = products.byTarget[key] else {
-                    throw PreconditionError(message: """
-    Product for target "\(key)" not found in `products`
-    """)
+            for (key, disambiguatedTarget) in targets {
+                group.addTask {
+                    return (
+                        key,
+                        try await Task {
+                            try addTarget(
+                                in: pbxProj,
+                                for: disambiguatedTarget,
+                                key: key,
+                                targetKeys: disambiguatedTargets.keys,
+                                buildMode: buildMode,
+                                products: products,
+                                files: files,
+                                bazelDependenciesTarget: bazelDependenciesTarget
+                            )
+                        }.value
+                    )
                 }
-                product = actualProduct
-                compileSources = try createCompileSourcesPhase(
-                    in: pbxProj,
-                    buildMode: buildMode,
-                    productType: productType,
-                    inputs: inputs,
-                    outputs: outputs,
-                    files: files
-                )
-            } else {
-                product = nil
-                compileSources = nil
             }
 
-            let buildPhases = [
-                try createBazelDependenciesScript(
-                    in: pbxProj,
-                    buildMode: buildMode,
-                    productType: productType,
-                    isResourceBundle: target.product.isResourceBundle,
-                    productBasename: productBasename,
-                    outputs: outputs
-                ),
-                try createCompilingDependenciesScript(
-                    in: pbxProj,
-                    buildMode: buildMode,
-                    hasClangSearchPaths: target.hasClangSearchPaths,
-                    files: files
-                ),
-                try createLinkingDependenciesScript(
-                    in: pbxProj,
-                    buildMode: buildMode,
-                    hasCompileStub: compileSources?.hasCompileStub == true,
-                    hasLinkParams: target.hasLinkParams
-                ),
-                try createHeadersPhase(
-                    in: pbxProj,
-                    productType: productType,
-                    inputs: inputs,
-                    files: files
-                ),
-                compileSources?.phase,
-                try createCopyGeneratedHeaderScript(
-                    in: pbxProj,
-                    buildMode: buildMode,
-                    generatesSwiftHeader: target.generatesSwiftHeader
-                ),
-                try createResourcesPhase(
-                    in: pbxProj,
-                    buildMode: buildMode,
-                    productType: productType,
-                    resourceBundleDependencies:
-                        target.resourceBundleDependencies,
-                    inputs: target.inputs,
-                    products: products,
-                    files: files,
-                    targetKeys: disambiguatedTargets.keys
-                ),
-                try createEmbedFrameworksPhase(
-                    in: pbxProj,
-                    buildMode: buildMode,
-                    productType: productType,
-                    frameworks: target.linkerInputs.embeddable,
-                    products: products,
-                    files: files
-                ),
-                try createEmbedWatchContentPhase(
-                    in: pbxProj,
-                    buildMode: buildMode,
-                    productType: productType,
-                    watchApplication: target.watchApplication,
-                    products: products,
-                    targetKeys: disambiguatedTargets.keys
-                ),
-                try createEmbedAppExtensionsPhase(
-                    in: pbxProj,
-                    buildMode: buildMode,
-                    productType: productType,
-                    extensions: target.extensions,
-                    products: products,
-                    targetKeys: disambiguatedTargets.keys
-                ),
-                try createEmbedAppClipsPhase(
-                    in: pbxProj,
-                    buildMode: buildMode,
-                    productType: productType,
-                    appClips: target.appClips,
-                    products: products,
-                    targetKeys: disambiguatedTargets.keys
-                ),
-            ]
-
-            let pbxTarget = PBXNativeTarget(
-                name: disambiguatedTarget.name,
-                buildPhases: buildPhases.compactMap { $0 },
-                productName: target.product.name,
-                product: productType.setsAssociatedProduct ?
-                    product : nil,
-                productType: productType.forXcode
+            var pbxTargets = [ConsolidatedTarget.Key: PBXNativeTarget](
+                minimumCapacity: targets.count
             )
-            pbxProj.add(object: pbxTarget)
-            pbxProject.targets.append(pbxTarget)
-            pbxTargets[key] = pbxTarget
+            for try await (key, pbxTarget) in group {
+                // This doesn't seem to be thread safe, so we need to do it
+                // serially
+                if let bazelDependenciesTarget = bazelDependenciesTarget {
+                    _ = try pbxTarget
+                        .addDependency(target: bazelDependenciesTarget)
+                }
 
-            if let bazelDependenciesTarget = bazelDependenciesTarget {
-                _ = try pbxTarget.addDependency(target: bazelDependenciesTarget)
+                pbxTargets[key] = pbxTarget
             }
+
+            pbxProj.rootObject!.targets.append(
+                contentsOf: pbxTargets.values.sortedLocalizedStandard(\.name)
+            )
+
+            return pbxTargets
+        }
+    }
+
+    private static func addTarget(
+        in pbxProj: PBXProj,
+        for disambiguatedTarget: DisambiguatedTarget,
+        key: ConsolidatedTarget.Key,
+        targetKeys: [TargetID: ConsolidatedTarget.Key],
+        buildMode: BuildMode,
+        products: Products,
+        files: [FilePath: File],
+        bazelDependenciesTarget: PBXAggregateTarget?
+    ) throws -> PBXNativeTarget {
+        let target = disambiguatedTarget.target
+        let inputs = target.inputs
+        let outputs = target.outputs
+        let productBasename = target.product.basename
+        let productType = target.product.type
+
+        let compileSources: (phase: PBXSourcesBuildPhase, hasCompileStub: Bool)?
+        let product: PBXFileReference?
+        if productBasename != nil {
+            guard let actualProduct = products.byTarget[key] else {
+                throw PreconditionError(message: """
+Product for target "\(key)" not found in `products`
+""")
+            }
+            product = actualProduct
+            compileSources = try createCompileSourcesPhase(
+                in: pbxProj,
+                buildMode: buildMode,
+                productType: productType,
+                inputs: inputs,
+                outputs: outputs,
+                files: files
+            )
+        } else {
+            product = nil
+            compileSources = nil
         }
 
-        return pbxTargets
+        let buildPhases = [
+            try createBazelDependenciesScript(
+                in: pbxProj,
+                buildMode: buildMode,
+                productType: productType,
+                isResourceBundle: target.product.isResourceBundle,
+                productBasename: productBasename,
+                outputs: outputs
+            ),
+            try createCompilingDependenciesScript(
+                in: pbxProj,
+                buildMode: buildMode,
+                hasClangSearchPaths: target.hasClangSearchPaths,
+                files: files
+            ),
+            try createLinkingDependenciesScript(
+                in: pbxProj,
+                buildMode: buildMode,
+                hasCompileStub: compileSources?.hasCompileStub == true,
+                hasLinkParams: target.hasLinkParams
+            ),
+            try createHeadersPhase(
+                in: pbxProj,
+                productType: productType,
+                inputs: inputs,
+                files: files
+            ),
+            compileSources?.phase,
+            try createCopyGeneratedHeaderScript(
+                in: pbxProj,
+                buildMode: buildMode,
+                generatesSwiftHeader: target.generatesSwiftHeader
+            ),
+            try createResourcesPhase(
+                in: pbxProj,
+                buildMode: buildMode,
+                productType: productType,
+                resourceBundleDependencies:
+                    target.resourceBundleDependencies,
+                inputs: target.inputs,
+                products: products,
+                files: files,
+                targetKeys: targetKeys
+            ),
+            try createEmbedFrameworksPhase(
+                in: pbxProj,
+                buildMode: buildMode,
+                productType: productType,
+                frameworks: target.linkerInputs.embeddable,
+                products: products,
+                files: files
+            ),
+            try createEmbedWatchContentPhase(
+                in: pbxProj,
+                buildMode: buildMode,
+                productType: productType,
+                watchApplication: target.watchApplication,
+                products: products,
+                targetKeys: targetKeys
+            ),
+            try createEmbedAppExtensionsPhase(
+                in: pbxProj,
+                buildMode: buildMode,
+                productType: productType,
+                extensions: target.extensions,
+                products: products,
+                targetKeys: targetKeys
+            ),
+            try createEmbedAppClipsPhase(
+                in: pbxProj,
+                buildMode: buildMode,
+                productType: productType,
+                appClips: target.appClips,
+                products: products,
+                targetKeys: targetKeys
+            ),
+        ]
+
+        let pbxTarget = PBXNativeTarget(
+            name: disambiguatedTarget.name,
+            buildPhases: buildPhases.compactMap { $0 },
+            productName: target.product.name,
+            product: productType.setsAssociatedProduct ?
+                product : nil,
+            productType: productType.forXcode
+        )
+        pbxProj.add(object: pbxTarget)
+
+        return pbxTarget
     }
 
     private static func createBazelDependenciesScript(
