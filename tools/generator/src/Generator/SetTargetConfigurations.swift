@@ -25,7 +25,7 @@ extension Generator {
         ) { group in
             for (key, disambiguatedTarget) in disambiguatedTargets.targets {
                 group.addTask {
-                    return try await Task {
+                    try await Task {
                         try setTargetConfiguration(
                             in: pbxProj,
                             for: disambiguatedTarget,
