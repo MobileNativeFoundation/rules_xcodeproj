@@ -62,19 +62,12 @@ class Generator {
         }
         let mainGroup: PBXGroup = pbxProject.mainGroup
 
-        var targets = project.targets
+        let targets = project.targets
 
         let xcodeGeneratedFiles = try environment.calculateXcodeGeneratedFiles(
             buildMode,
             targets
         )
-
-        let isUnfocusedDependencyTargetIDs = Set(
-            targets.filter(\.value.isUnfocusedDependency).keys
-        )
-        for id in targets.keys {
-            targets[id]!.dependencies.subtract(isUnfocusedDependencyTargetIDs)
-        }
 
         let (
             files,

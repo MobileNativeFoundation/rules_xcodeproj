@@ -514,7 +514,6 @@ def _xcode_target_to_dto(
         build_mode,
         ctx,
         is_fixture,
-        is_unfocused_dependency = False,
         label,
         link_params_processor,
         linker_products_map,
@@ -522,11 +521,13 @@ def _xcode_target_to_dto(
         should_include_outputs,
         excluded_targets = {},
         target_merges = {},
+        unfocused_dependencies,
         xcode_configuration,
         xcode_generated_paths,
         xcode_generated_paths_file):
     inputs = xcode_target.inputs
     name = label.name
+    is_unfocused_dependency = xcode_target.id in unfocused_dependencies
 
     dto = {
         "n": name,
@@ -683,17 +684,19 @@ def _xcode_target_to_dto(
             dependency = id
         return dependency
 
+    dependencies = [
+        _handle_dependency(id)
+        for id in xcode_target._dependencies.to_list()
+        if (id not in excluded_targets and
+            # TODO: Move dependency filtering here (out of the generator)
+            # In BwX mode there can only be one merge destination
+            target_merges.get(id, [id])[0] != xcode_target.id)
+    ]
+
     set_if_true(
         dto,
         "d",
-        [
-            _handle_dependency(id)
-            for id in xcode_target._dependencies.to_list()
-            if (id not in excluded_targets and
-                # TODO: Move dependency filtering here (out of the generator)
-                # In BwX mode there can only be one merge destination
-                target_merges.get(id, [id])[0] != xcode_target.id)
-        ],
+        [id for id in dependencies if id not in unfocused_dependencies],
     )
 
     return dto, replaced_dependencies, link_params
