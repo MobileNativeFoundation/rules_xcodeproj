@@ -19,66 +19,109 @@ extension Generator {
         pbxTargets: [ConsolidatedTarget.Key: PBXTarget],
         hostIDs: [TargetID: [TargetID]],
         hasBazelDependencies: Bool
-    ) throws {
-        for (key, disambiguatedTarget) in disambiguatedTargets.targets {
-            guard let pbxTarget = pbxTargets[key] else {
-                throw PreconditionError(message: """
+    ) async throws {
+        try await withThrowingTaskGroup(
+            of: (pbxTarget: PBXTarget, attributes: [String: Any]).self
+        ) { group in
+            for (key, disambiguatedTarget) in disambiguatedTargets.targets {
+                group.addTask {
+                    return try await Task {
+                        try setTargetConfiguration(
+                            in: pbxProj,
+                            for: disambiguatedTarget,
+                            key: key,
+                            in: disambiguatedTargets,
+                            targets: targets,
+                            buildMode: buildMode,
+                            minimumXcodeVersion: minimumXcodeVersion,
+                            defaultXcodeConfiguration: defaultXcodeConfiguration,
+                            pbxTargets: pbxTargets,
+                            hostIDs: hostIDs,
+                            hasBazelDependencies: hasBazelDependencies
+                        )
+                    }.value
+                }
+            }
+
+            let pbxProject = pbxProj.rootObject!
+
+            for try await (pbxTarget, attributes) in group {
+                // `PBXProject` currently isn't thread safe, so we do this
+                // serially
+                pbxProject.setTargetAttributes(attributes, target: pbxTarget)
+            }
+        }
+    }
+
+    static func setTargetConfiguration(
+        in pbxProj: PBXProj,
+        for disambiguatedTarget: DisambiguatedTarget,
+        key: ConsolidatedTarget.Key,
+        in disambiguatedTargets: DisambiguatedTargets,
+        targets: [TargetID: Target],
+        buildMode: BuildMode,
+        minimumXcodeVersion: SemanticVersion,
+        defaultXcodeConfiguration: String,
+        pbxTargets: [ConsolidatedTarget.Key: PBXTarget],
+        hostIDs: [TargetID: [TargetID]],
+        hasBazelDependencies: Bool
+    ) throws -> (pbxTarget: PBXTarget, attributes: [String: Any]) {
+        guard let pbxTarget = pbxTargets[key] else {
+            throw PreconditionError(message: """
 Target "\(key)" not found in `pbxTargets`
 """)
-            }
+        }
 
-            let target = disambiguatedTarget.target
+        let target = disambiguatedTarget.target
 
-            var attributes: [String: Any] = [
-                "CreatedOnToolsVersion": minimumXcodeVersion.full,
-                // TODO: Only include properties that make sense for the target
-                "LastSwiftMigration": 9999,
-            ]
+        var attributes: [String: Any] = [
+            "CreatedOnToolsVersion": minimumXcodeVersion.full,
+            // TODO: Only include properties that make sense for the target
+            "LastSwiftMigration": 9999,
+        ]
 
-            var buildSettings = try calculateBuildSettings(
-                for: target,
-                buildMode: buildMode,
-                targets: targets,
-                hostIDs: hostIDs,
-                hasBazelDependencies: hasBazelDependencies
+        var buildSettings = try calculateBuildSettings(
+            for: target,
+            buildMode: buildMode,
+            targets: targets,
+            hostIDs: hostIDs,
+            hasBazelDependencies: hasBazelDependencies
+        )
+
+        try handleTestHost(
+            for: target,
+            disambiguatedTargets: disambiguatedTargets,
+            pbxTargets: pbxTargets,
+            attributes: &attributes,
+            buildSettings: &buildSettings
+        )
+
+        var buildConfigurations: [XCBuildConfiguration] = []
+        for (name, buildSettings) in buildSettings {
+            let buildConfiguration = XCBuildConfiguration(
+                name: name,
+                buildSettings: try buildSettings.asBuildSettingDictionary()
             )
+            pbxProj.add(object: buildConfiguration)
+            buildConfigurations.append(buildConfiguration)
+        }
 
-            try handleTestHost(
-                for: target,
-                disambiguatedTargets: disambiguatedTargets,
-                pbxTargets: pbxTargets,
-                attributes: &attributes,
-                buildSettings: &buildSettings
-            )
-
-            var buildConfigurations: [XCBuildConfiguration] = []
-            for (name, buildSettings) in buildSettings {
-                let buildConfiguration = XCBuildConfiguration(
-                    name: name,
-                    buildSettings: try buildSettings.asBuildSettingDictionary()
-                )
-                pbxProj.add(object: buildConfiguration)
-                buildConfigurations.append(buildConfiguration)
-            }
-
-            guard buildSettings.keys.contains(defaultXcodeConfiguration) else {
-                throw PreconditionError(message: """
+        guard buildSettings.keys.contains(defaultXcodeConfiguration) else {
+            throw PreconditionError(message: """
 `xcodeproj.default_xcode_configuration` "\(defaultXcodeConfiguration)" not one \
 of the configurations of "\(key)".
 """)
-            }
-
-            let configurationList = XCConfigurationList(
-                buildConfigurations: buildConfigurations
-                    .sorted { $0.name < $1.name },
-                defaultConfigurationName: defaultXcodeConfiguration
-            )
-            pbxProj.add(object: configurationList)
-            pbxTarget.buildConfigurationList = configurationList
-
-            let pbxProject = pbxProj.rootObject!
-            pbxProject.setTargetAttributes(attributes, target: pbxTarget)
         }
+
+        let configurationList = XCConfigurationList(
+            buildConfigurations: buildConfigurations
+                .sorted { $0.name < $1.name },
+            defaultConfigurationName: defaultXcodeConfiguration
+        )
+        pbxProj.add(object: configurationList)
+        pbxTarget.buildConfigurationList = configurationList
+
+        return (pbxTarget, attributes)
     }
 
     private static func calculateBuildSettings(

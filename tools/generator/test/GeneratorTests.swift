@@ -6,7 +6,7 @@ import XCTest
 @testable import XcodeProj
 
 final class GeneratorTests: XCTestCase {
-    func test_generate() throws {
+    func test_generate() async throws {
         // Arrange
 
         let project = Project(
@@ -822,7 +822,7 @@ final class GeneratorTests: XCTestCase {
 
         // Act
 
-        try generator.generate(
+        try await generator.generate(
             buildMode: buildMode,
             forFixtures: false,
             project: project,

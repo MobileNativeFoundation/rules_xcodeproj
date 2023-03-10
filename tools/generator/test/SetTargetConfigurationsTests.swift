@@ -14,7 +14,7 @@ final class SetTargetConfigurationsTests: XCTestCase {
         workspaceOutput: "out/p.xcodeproj"
     )
 
-    func test_integration() throws {
+    func test_integration() async throws {
         // Arrange
 
         let pbxProj = Fixtures.pbxProj()
@@ -39,7 +39,7 @@ final class SetTargetConfigurationsTests: XCTestCase {
 
         // Act
 
-        try Generator.setTargetConfigurations(
+        try await Generator.setTargetConfigurations(
             in: pbxProj,
             for: disambiguatedTargets,
             targets: Fixtures.targets,
@@ -60,7 +60,7 @@ final class SetTargetConfigurationsTests: XCTestCase {
         XCTAssertNoDifference(pbxProj, expectedPBXProj)
     }
 
-    func test_sdkroot() throws {
+    func test_sdkroot() async throws {
         // Arrange
 
         let key = "SDKROOT"
@@ -90,7 +90,7 @@ final class SetTargetConfigurationsTests: XCTestCase {
 
         // Act
 
-        try Generator.setTargetConfigurations(
+        try await Generator.setTargetConfigurations(
             in: pbxProj,
             for: disambiguatedTargets,
             targets: [:],
@@ -113,7 +113,7 @@ final class SetTargetConfigurationsTests: XCTestCase {
         )
     }
 
-    func test_supportedPlatforms() throws {
+    func test_supportedPlatforms() async throws {
         // Arrange
 
         let key = "SUPPORTED_PLATFORMS"
@@ -145,7 +145,7 @@ final class SetTargetConfigurationsTests: XCTestCase {
 
         // Act
 
-        try Generator.setTargetConfigurations(
+        try await Generator.setTargetConfigurations(
             in: pbxProj,
             for: disambiguatedTargets,
             targets: [:],
@@ -168,7 +168,7 @@ final class SetTargetConfigurationsTests: XCTestCase {
         )
     }
 
-    func test_conditionals() throws {
+    func test_conditionals() async throws {
         // Arrange
 
         let targetIDKey = "BAZEL_TARGET_ID"
@@ -271,7 +271,7 @@ final class SetTargetConfigurationsTests: XCTestCase {
 
         // Act
 
-        try Generator.setTargetConfigurations(
+        try await Generator.setTargetConfigurations(
             in: pbxProj,
             for: disambiguatedTargets,
             targets: [:],
