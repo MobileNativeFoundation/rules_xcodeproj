@@ -1,8 +1,9 @@
+import Foundation
 import XcodeProj
 
 private extension PBXFileElement {
-    // TODO: Make thread-safe
     private static var cache: [String: String] = [:]
+    private static let cacheLock = NSRecursiveLock()
 
     var sortOrder: Int {
         switch self {
@@ -25,6 +26,10 @@ private extension PBXFileElement {
     }
 
     var namePathSortString: String {
+        Self.cacheLock.lock()
+        defer {
+            Self.cacheLock.unlock()
+        }
         if let cached = Self.cache[uuid] {
             return cached
         }
