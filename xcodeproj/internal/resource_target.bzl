@@ -53,7 +53,6 @@ def _process_resource_bundle(bundle, *, information):
 
     return xcode_targets.make(
         id = id,
-        name = name,
         label = bundle.label,
         configuration = bundle.configuration,
         package_bin_dir = package_bin_dir,

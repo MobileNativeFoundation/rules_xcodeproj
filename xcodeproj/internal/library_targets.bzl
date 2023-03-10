@@ -165,7 +165,6 @@ def process_library_target(
         transitive_dependencies = transitive_dependencies,
         xcode_target = xcode_targets.make(
             id = id,
-            name = ctx.rule.attr.name,
             label = label,
             configuration = configuration,
             package_bin_dir = package_bin_dir,

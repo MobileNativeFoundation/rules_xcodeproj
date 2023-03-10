@@ -13,11 +13,6 @@ struct Environment {
         _ directories: Directories
     ) -> PBXProj
 
-    let processReplacementLabels: (
-        _ targets: inout [TargetID: Target],
-        _ replacementLabels: [TargetID: BazelLabel]
-    ) throws -> Void
-
     let calculateXcodeGeneratedFiles: (
         _ buildMode: BuildMode,
         _ targets: [TargetID: Target]

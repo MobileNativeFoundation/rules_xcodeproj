@@ -9,7 +9,6 @@ import XcodeProj
 class Generator {
     static let defaultEnvironment = Environment(
         createProject: Generator.createProject,
-        processReplacementLabels: Generator.processReplacementLabels,
         calculateXcodeGeneratedFiles: Generator.calculateXcodeGeneratedFiles,
         consolidateTargets: Generator.consolidateTargets,
         createFilesAndGroups: Generator.createFilesAndGroups,
@@ -64,10 +63,6 @@ class Generator {
         let mainGroup: PBXGroup = pbxProject.mainGroup
 
         var targets = project.targets
-        try environment.processReplacementLabels(
-            &targets,
-            project.replacementLabels
-        )
 
         let xcodeGeneratedFiles = try environment.calculateXcodeGeneratedFiles(
             buildMode,

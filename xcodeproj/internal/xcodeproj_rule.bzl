@@ -614,9 +614,15 @@ actual targets: {}
                 ),
             )
 
+        label = replacement_labels.get(
+            xcode_target.id,
+            xcode_target.label,
+        )
+
         dto, replaced_dependencies, link_params = xcode_targets.to_dto(
             ctx = ctx,
             xcode_target = xcode_target,
+            label = label,
             is_fixture = is_fixture,
             additional_scheme_target_ids = additional_scheme_target_ids,
             build_mode = build_mode,
@@ -937,7 +943,6 @@ def _write_spec(
         project_options,
         target_dtos,
         has_unfocused_targets,
-        replacement_labels,
         inputs,
         extra_files,
         infos,
@@ -1012,18 +1017,6 @@ def _write_spec(
         spec_dto,
         "p",
         ctx.attr.pre_build,
-    )
-    set_if_true(
-        spec_dto,
-        "r",
-        flattened_key_values.to_list(
-            {
-                id: bazel_labels.normalize(label)
-                for id, label in replacement_labels.items()
-                if id in target_dtos
-            },
-            sort = is_fixture,
-        ),
     )
     set_if_true(
         spec_dto,
@@ -1513,7 +1506,6 @@ configurations: {}""".format(", ".join(xcode_configurations)))
         envs = envs,
         target_dtos = target_dtos,
         has_unfocused_targets = has_unfocused_targets,
-        replacement_labels = replacement_labels,
         inputs = inputs,
         extra_files = extra_files,
         infos = infos,

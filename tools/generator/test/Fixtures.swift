@@ -21,7 +21,6 @@ enum Fixtures {
         runnerLabel: "@//:xcodeproj",
         minimumXcodeVersion: "14.0.1",
         targets: targets,
-        replacementLabels: [:],
         targetHosts: [
             "W": ["I"],
             "WDKE": ["I"],
