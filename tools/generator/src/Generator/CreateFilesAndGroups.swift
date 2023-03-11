@@ -66,7 +66,9 @@ extension Generator {
         resolvedRepositories: [(Path, Path)]
     ) {
         var fileReferences: [FilePath: PBXFileReference] = [:]
-        var groups: [FilePath: PBXGroup] = [:]
+        var normalGroups: [FilePath: PBXGroup] = [:]
+        var variantGroups: [FilePath: PBXVariantGroup] = [:]
+        var xcVersionGroups: [FilePath: XCVersionGroup] = [:]
         var knownRegions: Set<String> = []
         var resolvedRepositories: [(Path, Path)] = [
             ("", forFixtures ? "$(SRCROOT)" : directories.workspace),
@@ -149,13 +151,13 @@ extension Generator {
                 return nil
             } else if parentIsLocalizedContainer {
                 // Localized file (e.g. /path/to/en.lproj/foo.png)
-                if let group = groups[filePath] {
-                    return (group, false)
+                if let variantGroup = variantGroups[filePath] {
+                    return (variantGroup, false)
                 }
                 return addLocalizedFile(filePath: filePath)
             } else if filePath.path.isCoreDataContainer {
-                if let group = groups[filePath] {
-                    return (group, false)
+                if let xcVersionGroup = xcVersionGroups[filePath] {
+                    return (xcVersionGroup, false)
                 }
 
                 let (sourceTree, name, path) = resolveFilePath(
@@ -164,19 +166,19 @@ extension Generator {
                     isGroup: true
                 )
 
-                let group = XCVersionGroup(
+                let xcVersionGroup = XCVersionGroup(
                     path: path,
                     name: name,
                     sourceTree: sourceTree,
                     versionGroupType: filePath.path.versionGroupType
                 )
-                pbxProj.add(object: group)
+                pbxProj.add(object: xcVersionGroup)
 
-                groups[filePath] = group
+                xcVersionGroups[filePath] = xcVersionGroup
 
-                return (group, true)
+                return (xcVersionGroup, true)
             } else if !isLeaf, forceGroupCreation || !filePath.path.isFolderTypeFileSource {
-                if let group = groups[filePath] {
+                if let group = normalGroups[filePath] {
                     return (group, false)
                 }
 
@@ -233,7 +235,7 @@ extension Generator {
                 path: path
             )
             pbxProj.add(object: group)
-            groups[filePath] = group
+            normalGroups[filePath] = group
 
             return group
         }
@@ -251,11 +253,11 @@ extension Generator {
             // TODO: Use `resolveFilePath`?
 
             // Variant group
-            let group: PBXVariantGroup
+            let variantGroup: PBXVariantGroup
             let isNew: Bool
             if let existingGroup = existingVariantGroup(containing: filePath) {
                 isNew = false
-                group = existingGroup.group
+                variantGroup = existingGroup.group
                 // For variant groups formed by Interface Builder files (".xib"
                 // or ".storyboard") and corresponding ".strings" files, name
                 // and path of the group must have the extension of the
@@ -263,21 +265,21 @@ extension Generator {
                 // are formed is not deterministic, we must change the name and
                 // path here as necessary.
                 if ["xib", "storyboard"].contains(filePath.path.extension),
-                   !group.name!.hasSuffix(fileName)
+                   !variantGroup.name!.hasSuffix(fileName)
                 {
-                    group.name = fileName
-                    groups[existingGroup.filePath] = nil
-                    groups[groupFilePath] = group
+                    variantGroup.name = fileName
+                    variantGroups[existingGroup.filePath] = nil
+                    variantGroups[groupFilePath] = variantGroup
                 }
             } else {
                 isNew = true
-                group = PBXVariantGroup(
+                variantGroup = PBXVariantGroup(
                     children: [],
                     sourceTree: .group,
                     name: fileName
                 )
-                pbxProj.add(object: group)
-                groups[groupFilePath] = group
+                pbxProj.add(object: variantGroup)
+                variantGroups[groupFilePath] = variantGroup
             }
 
             // Localized element
@@ -297,14 +299,14 @@ extension Generator {
                 path: containedPath.string
             )
             pbxProj.add(object: fileReference)
-            group.addChild(fileReference)
+            variantGroup.addChild(fileReference)
 
             // When a localized file is copied, we should grab the group instead
-            groups[filePath] = group
+            variantGroups[filePath] = variantGroup
 
             knownRegions.insert(language)
 
-            return (group, isNew)
+            return (variantGroup, isNew)
         }
 
         func existingVariantGroup(
@@ -327,18 +329,18 @@ extension Generator {
                     let groupFilePath = groupBaseFilePath + """
 \(filePath.path.lastComponentWithoutExtension).\(groupExtension)
 """
-                    if let group = groups[groupFilePath] as? PBXVariantGroup {
-                        return (group, groupFilePath)
+                    if let variantGroup = variantGroups[groupFilePath] {
+                        return (variantGroup, groupFilePath)
                     }
                 }
             }
 
             let groupFilePath = groupBaseFilePath + filePath.path.lastComponent
-            guard let group = groups[groupFilePath] as? PBXVariantGroup else {
+            guard let variantGroup = variantGroups[groupFilePath] else {
                 return nil
             }
 
-            return (group, groupFilePath)
+            return (variantGroup, groupFilePath)
         }
 
         var externalGroup: PBXGroup?
@@ -353,7 +355,7 @@ extension Generator {
                 path: "../../external"
             )
             pbxProj.add(object: group)
-            groups[.external("")] = group
+            normalGroups[.external("")] = group
             externalGroup = group
 
             return group
@@ -371,7 +373,7 @@ extension Generator {
                 path: "bazel-out"
             )
             pbxProj.add(object: group)
-            groups[.generated("")] = group
+            normalGroups[.generated("")] = group
             generatedGroup = group
 
             return group
@@ -389,7 +391,7 @@ extension Generator {
                 path: directories.internal.string
             )
             pbxProj.add(object: group)
-            groups[.internal("")] = group
+            normalGroups[.internal("")] = group
             internalGroup = group
 
             return group
@@ -479,7 +481,7 @@ extension Generator {
                         if let coreDataContainer = coreDataContainer {
                             // When a model file is copied, we should grab
                             // the group instead
-                            groups[filePath] = coreDataContainer
+                            xcVersionGroups[filePath] = coreDataContainer
                         }
                     }
 
@@ -501,7 +503,7 @@ extension Generator {
             if let coreDataContainer = coreDataContainer {
                 // When a model file is copied, we should grab
                 // the group instead
-                groups[fullFilePath] = coreDataContainer
+                xcVersionGroups[fullFilePath] = coreDataContainer
             } else if fullFilePath != filePath {
                 // We need to add extra entries for file-like folders, to allow
                 // easy copying of resources
@@ -524,7 +526,7 @@ extension Generator {
         }
 
         try setXCCurrentVersions(
-            groups: groups,
+            xcVersionGroups: xcVersionGroups,
             xccurrentversions: xccurrentversions,
             logger: logger
         )
@@ -533,12 +535,11 @@ extension Generator {
         for (filePath, fileReference) in fileReferences {
             files[filePath] = .reference(fileReference)
         }
-        for (filePath, group) in groups {
-            if let variantGroup = group as? PBXVariantGroup {
-                files[filePath] = .variantGroup(variantGroup)
-            } else if let xcVersionGroup = group as? XCVersionGroup {
-                files[filePath] = .xcVersionGroup(xcVersionGroup)
-            }
+        for (filePath, variantGroup) in variantGroups {
+            files[filePath] = .variantGroup(variantGroup)
+        }
+        for (filePath, xcVersionGroup) in xcVersionGroups {
+            files[filePath] = .xcVersionGroup(xcVersionGroup)
         }
 
         // Write xcfilelists
@@ -603,25 +604,21 @@ extension Generator {
     }
 
     private static func setXCCurrentVersions(
-        groups: [FilePath: PBXGroup],
+        xcVersionGroups: [FilePath: XCVersionGroup],
         xccurrentversions: [XCCurrentVersion],
         logger: Logger
     ) throws {
         for xccurrentversion in xccurrentversions {
-            guard let group = groups[xccurrentversion.container] else {
+            guard
+                let xcVerisonGroup = xcVersionGroups[xccurrentversion.container]
+            else {
                 throw PreconditionError(message: """
 "\(xccurrentversion.container.path)" `XCVersionGroup` not found in `elements`
 """)
             }
 
-            guard let container = group as? XCVersionGroup else {
-                throw PreconditionError(message: """
-"\(xccurrentversion.container.path)" isn't an `XCVersionGroup`
-""")
-            }
-
             guard
-                let versionChild = container.children
+                let versionChild = xcVerisonGroup.children
                     .first(where: { $0.path == xccurrentversion.version })
             else {
                 logger.logWarning("""
@@ -637,7 +634,7 @@ extension Generator {
 """)
             }
 
-            container.currentVersion = versionFile
+            xcVerisonGroup.currentVersion = versionFile
         }
     }
 }
