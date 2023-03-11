@@ -25,21 +25,19 @@ extension Generator {
         ) { group in
             for (key, disambiguatedTarget) in disambiguatedTargets.targets {
                 group.addTask {
-                    try await Task {
-                        try setTargetConfiguration(
-                            in: pbxProj,
-                            for: disambiguatedTarget,
-                            key: key,
-                            in: disambiguatedTargets,
-                            targets: targets,
-                            buildMode: buildMode,
-                            minimumXcodeVersion: minimumXcodeVersion,
-                            defaultXcodeConfiguration: defaultXcodeConfiguration,
-                            pbxTargets: pbxTargets,
-                            hostIDs: hostIDs,
-                            hasBazelDependencies: hasBazelDependencies
-                        )
-                    }.value
+                    try setTargetConfiguration(
+                        in: pbxProj,
+                        for: disambiguatedTarget,
+                        key: key,
+                        in: disambiguatedTargets,
+                        targets: targets,
+                        buildMode: buildMode,
+                        minimumXcodeVersion: minimumXcodeVersion,
+                        defaultXcodeConfiguration: defaultXcodeConfiguration,
+                        pbxTargets: pbxTargets,
+                        hostIDs: hostIDs,
+                        hasBazelDependencies: hasBazelDependencies
+                    )
                 }
             }
 
