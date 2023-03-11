@@ -134,7 +134,7 @@ ERROR: build_mode wasn't one of the supported values: xcode, bazel
 
             for path in targetsPaths {
                 group.addTask {
-                    return try await decodeJSON(
+                    try await decodeJSON(
                         [TargetID: Target].self,
                         from: path
                     )

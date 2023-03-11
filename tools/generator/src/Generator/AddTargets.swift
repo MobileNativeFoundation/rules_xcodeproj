@@ -18,17 +18,15 @@ extension Generator {
                 group.addTask {
                     return (
                         key,
-                        try await Task {
-                            try addTarget(
+                        try addTarget(
                                 in: pbxProj,
-                                for: disambiguatedTarget,
-                                key: key,
-                                targetKeys: disambiguatedTargets.keys,
-                                buildMode: buildMode,
-                                products: products,
-                                files: files
-                            )
-                        }.value
+                            for: disambiguatedTarget,
+                            key: key,
+                            targetKeys: disambiguatedTargets.keys,
+                            buildMode: buildMode,
+                            products: products,
+                            files: files
+                        )
                     )
                 }
             }
