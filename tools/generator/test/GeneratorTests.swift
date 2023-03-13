@@ -452,7 +452,7 @@ final class GeneratorTests: XCTestCase {
             let buildMode: BuildMode
             let forceBazelDependencies: Bool
             let minimumXcodeVersion: SemanticVersion
-            let xcodeConfigurations: [String]
+            let xcodeConfigurations: Set<String>
             let defaultXcodeConfiguration: String
             let indexImport: String
             let files: [FilePath: File]
@@ -470,7 +470,7 @@ final class GeneratorTests: XCTestCase {
             buildMode: BuildMode,
             forceBazelDependencies: Bool,
             minimumXcodeVersion: SemanticVersion,
-            xcodeConfigurations: [String],
+            xcodeConfigurations: Set<String>,
             defaultXcodeConfiguration: String,
             indexImport: String,
             files: [FilePath: File],
@@ -560,6 +560,7 @@ final class GeneratorTests: XCTestCase {
             let targets: [TargetID: Target]
             let buildMode: BuildMode
             let minimumXcodeVersion: SemanticVersion
+            let xcodeConfigurations: Set<String>
             let defaultXcodeConfiguration: String
             let pbxTargets: [ConsolidatedTarget.Key: PBXNativeTarget]
             let hostIDs: [TargetID: [TargetID]]
@@ -573,6 +574,7 @@ final class GeneratorTests: XCTestCase {
             targets: [TargetID: Target],
             buildMode: BuildMode,
             minimumXcodeVersion: SemanticVersion,
+            xcodeConfigurations: Set<String>,
             defaultXcodeConfiguration: String,
             pbxTargets: [ConsolidatedTarget.Key: PBXNativeTarget],
             hostIDs: [TargetID: [TargetID]],
@@ -584,6 +586,7 @@ final class GeneratorTests: XCTestCase {
                 targets: targets,
                 buildMode: buildMode,
                 minimumXcodeVersion: minimumXcodeVersion,
+                xcodeConfigurations: xcodeConfigurations,
                 defaultXcodeConfiguration: defaultXcodeConfiguration,
                 pbxTargets: pbxTargets,
                 hostIDs: hostIDs,
@@ -598,6 +601,7 @@ final class GeneratorTests: XCTestCase {
                 targets: targets,
                 buildMode: buildMode,
                 minimumXcodeVersion: project.minimumXcodeVersion,
+                xcodeConfigurations: project.xcodeConfigurations,
                 defaultXcodeConfiguration: project.defaultXcodeConfiguration,
                 pbxTargets: pbxTargets,
                 hostIDs: project.targetHosts,
