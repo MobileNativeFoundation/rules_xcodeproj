@@ -146,6 +146,7 @@ class Generator {
             targets,
             buildMode,
             project.minimumXcodeVersion,
+            project.xcodeConfigurations,
             project.defaultXcodeConfiguration,
             pbxTargets,
             project.targetHosts,

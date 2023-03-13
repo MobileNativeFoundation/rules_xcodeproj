@@ -24,7 +24,7 @@ extension Generator {
         buildMode: BuildMode,
         forceBazelDependencies: Bool,
         minimumXcodeVersion: SemanticVersion,
-        xcodeConfigurations: [String],
+        xcodeConfigurations: Set<String>,
         defaultXcodeConfiguration: String,
         indexImport: String,
         files: [FilePath: File],
@@ -85,7 +85,7 @@ $(INDEXING_SUPPORTED_PLATFORMS__$(INDEX_ENABLE_BUILD_ARENA))
         }
 
         var buildConfigurations: [XCBuildConfiguration] = []
-        for xcodeConfiguration in xcodeConfigurations {
+        for xcodeConfiguration in xcodeConfigurations.sorted() {
             let buildConfiguration = XCBuildConfiguration(
                 name: xcodeConfiguration,
                 buildSettings: buildSettings

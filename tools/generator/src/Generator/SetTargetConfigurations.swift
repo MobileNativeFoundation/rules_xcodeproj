@@ -15,6 +15,7 @@ extension Generator {
         targets: [TargetID: Target],
         buildMode: BuildMode,
         minimumXcodeVersion: SemanticVersion,
+        xcodeConfigurations: Set<String>,
         defaultXcodeConfiguration: String,
         pbxTargets: [ConsolidatedTarget.Key: PBXNativeTarget],
         hostIDs: [TargetID: [TargetID]],
@@ -33,6 +34,7 @@ extension Generator {
                         targets: targets,
                         buildMode: buildMode,
                         minimumXcodeVersion: minimumXcodeVersion,
+                        xcodeConfigurations: xcodeConfigurations,
                         defaultXcodeConfiguration: defaultXcodeConfiguration,
                         pbxTargets: pbxTargets,
                         hostIDs: hostIDs,
@@ -59,6 +61,7 @@ extension Generator {
         targets: [TargetID: Target],
         buildMode: BuildMode,
         minimumXcodeVersion: SemanticVersion,
+        xcodeConfigurations: Set<String>,
         defaultXcodeConfiguration: String,
         pbxTargets: [ConsolidatedTarget.Key: PBXNativeTarget],
         hostIDs: [TargetID: [TargetID]],
@@ -94,8 +97,27 @@ Target "\(key)" not found in `pbxTargets`
             buildSettings: &buildSettings
         )
 
+        // For any missing configurations, have them equal to the default,
+        // and if the default is one of the missing ones, choose the first
+        // alphabetically
+        let missingConfigurations = xcodeConfigurations.subtracting(
+            Set(buildSettings.keys)
+        )
+
+        if !missingConfigurations.isEmpty {
+            let configurationToCopy = missingConfigurations
+                .contains(defaultXcodeConfiguration) ?
+                buildSettings.keys.sorted().first! : defaultXcodeConfiguration
+            let buildSettingsToCopy = buildSettings[configurationToCopy]!
+            for xcodeConfiguration in missingConfigurations {
+                buildSettings[xcodeConfiguration] = buildSettingsToCopy
+            }
+        }
+
         var buildConfigurations: [XCBuildConfiguration] = []
-        for (name, buildSettings) in buildSettings {
+        for (name, buildSettings) in buildSettings
+            .sorted(by: { $0.key < $1.key })
+        {
             let buildConfiguration = XCBuildConfiguration(
                 name: name,
                 buildSettings: try buildSettings.asBuildSettingDictionary()
@@ -104,16 +126,16 @@ Target "\(key)" not found in `pbxTargets`
             buildConfigurations.append(buildConfiguration)
         }
 
-        let sortedBuildConfigurations = buildConfigurations
-            .sorted { $0.name < $1.name }
-
-        let defaultConfigurationName =
-            buildSettings.keys.contains(defaultXcodeConfiguration) ?
-            defaultXcodeConfiguration : sortedBuildConfigurations.first!.name
+        guard buildSettings.keys.contains(defaultXcodeConfiguration) else {
+            throw PreconditionError(message: """
+`xcodeproj.default_xcode_configuration` "\(defaultXcodeConfiguration)" not one \
+of the configurations of "\(key)".
+""")
+        }
 
         let configurationList = XCConfigurationList(
-            buildConfigurations: sortedBuildConfigurations,
-            defaultConfigurationName: defaultConfigurationName
+            buildConfigurations: buildConfigurations,
+            defaultConfigurationName: defaultXcodeConfiguration
         )
         pbxProj.add(object: configurationList)
         pbxTarget.buildConfigurationList = configurationList
