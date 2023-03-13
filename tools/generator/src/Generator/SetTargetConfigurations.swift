@@ -104,12 +104,12 @@ Target "\(key)" not found in `pbxTargets`
             buildConfigurations.append(buildConfiguration)
         }
 
-        guard buildSettings.keys.contains(defaultXcodeConfiguration) else {
-            throw PreconditionError(message: """
-`xcodeproj.default_xcode_configuration` "\(defaultXcodeConfiguration)" not one \
-of the configurations of "\(key)".
-""")
-        }
+//         guard buildSettings.keys.contains(defaultXcodeConfiguration) else {
+//             throw PreconditionError(message: """
+// `xcodeproj.default_xcode_configuration` "\(defaultXcodeConfiguration)" not one \
+// of the configurations of "\(key)".
+// """)
+//         }
 
         let configurationList = XCConfigurationList(
             buildConfigurations: buildConfigurations
