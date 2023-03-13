@@ -179,8 +179,6 @@
             "-Ibazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_tadija_aexml",
             "-Ibazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_tuist_xcodeproj",
             "-Ibazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/tools/generator",
-            "-Ibazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_pointfreeco_xctest_dynamic_overlay",
-            "-Ibazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_pointfreeco_swift_custom_dump",
             "-Xcc",
             "-Iexternal/com_github_michaeleisel_jjliso8601dateformatter/Sources/JJLISO8601DateFormatter/include",
             "-Xcc",
@@ -233,7 +231,7 @@
             "t": "g"
         },
         "6": {
-            "_": "darwin_x86_64-dbg-STABLE-0/bin/.rules_xcodeproj/test_fixtures_generator_xcodeproj_bwb/xcodeproj_bwb-params/tests.22.link.params",
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/.rules_xcodeproj/test_fixtures_generator_xcodeproj_bwb/xcodeproj_bwb-params/tests.20.link.params",
             "t": "g"
         },
         "b": {
@@ -248,15 +246,14 @@
             "PRODUCT_BUNDLE_IDENTIFIER": "com.bazelbuild.rulesapple.Tests",
             "PRODUCT_MODULE_NAME": "tests",
             "SWIFT_COMPILATION_MODE": "wholemodule",
-            "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_apple_swift_collections bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_kylef_pathkit bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_michaeleisel_zippyjson bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_tadija_aexml bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_tuist_xcodeproj bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/tools/generator bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_pointfreeco_xctest_dynamic_overlay bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_pointfreeco_swift_custom_dump",
+            "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_apple_swift_collections bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_kylef_pathkit bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_michaeleisel_zippyjson bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_tadija_aexml bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_tuist_xcodeproj bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/tools/generator",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
             "SWIFT_OPTIMIZATION_LEVEL": "-O",
             "SWIFT_VERSION": "5.0"
         },
         "c": "applebin_macos-darwin_x86_64-opt-STABLE-4",
         "d": [
-            "//tools/generator:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2",
-            "@com_github_pointfreeco_swift_custom_dump//:CustomDump macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2"
+            "//tools/generator:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2"
         ],
         "i": {
             "s": [
@@ -864,7 +861,7 @@
             "n": "swiftc_stub.library"
         },
         "6": {
-            "_": "darwin_x86_64-dbg-STABLE-0/bin/.rules_xcodeproj/test_fixtures_generator_xcodeproj_bwb/xcodeproj_bwb-params/swiftc.23.link.params",
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/.rules_xcodeproj/test_fixtures_generator_xcodeproj_bwb/xcodeproj_bwb-params/swiftc.21.link.params",
             "t": "g"
         },
         "b": {
@@ -2329,176 +2326,6 @@
             "t": "com.apple.product-type.library.static"
         }
     },
-    "@com_github_pointfreeco_swift_custom_dump//:CustomDump macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2",
-    {
-        "0": [
-            "-DNDEBUG",
-            "-Ibazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_pointfreeco_xctest_dynamic_overlay",
-            "-Xcc",
-            "-iquote.",
-            "-Xcc",
-            "-iquotebazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin",
-            "-static",
-            "-Xcc",
-            "-Os",
-            "-Xcc",
-            "-DNDEBUG=1",
-            "-Xcc",
-            "-Wno-unused-variable",
-            "-Xcc",
-            "-Winit-self",
-            "-Xcc",
-            "-Wno-extra"
-        ],
-        "1": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_pointfreeco_swift_custom_dump",
-        "2": {
-            "a": "x86_64",
-            "m": "12.0",
-            "o": "macos",
-            "v": "macosx"
-        },
-        "b": {
-            "DEBUG_INFORMATION_FORMAT": "",
-            "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
-            "PRODUCT_MODULE_NAME": "CustomDump",
-            "SWIFT_COMPILATION_MODE": "wholemodule",
-            "SWIFT_INCLUDE_PATHS": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_pointfreeco_xctest_dynamic_overlay",
-            "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
-            "SWIFT_OPTIMIZATION_LEVEL": "-O",
-            "SWIFT_VERSION": "5.0"
-        },
-        "c": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2",
-        "d": [
-            "@com_github_pointfreeco_xctest_dynamic_overlay//:XCTestDynamicOverlay macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2"
-        ],
-        "i": {
-            "s": [
-                {
-                    "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Conformances/CoreImage.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Conformances/CoreLocation.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Conformances/CoreMotion.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Conformances/Foundation.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Conformances/GameKit.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Conformances/KeyPath.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Conformances/Photos.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Conformances/Speech.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Conformances/StoreKit.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Conformances/Swift.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Conformances/SwiftUI.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Conformances/UIKit.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Conformances/UserNotifications.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Conformances/UserNotificationsUI.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/CustomDumpReflectable.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/CustomDumpRepresentable.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/CustomDumpStringConvertible.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Diff.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Dump.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Internal/AnyType.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Internal/Box.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Internal/CollectionDifference.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Internal/Mirror.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/Internal/String.swift",
-                    "t": "e"
-                },
-                {
-                    "_": "com_github_pointfreeco_swift_custom_dump/Sources/CustomDump/XCTAssertNoDifference.swift",
-                    "t": "e"
-                }
-            ]
-        },
-        "l": "@com_github_pointfreeco_swift_custom_dump//:CustomDump",
-        "n": "CustomDump",
-        "o": {
-            "s": {
-                "m": {
-                    "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_pointfreeco_swift_custom_dump/CustomDump.swiftmodule",
-                    "t": "g"
-                }
-            }
-        },
-        "p": {
-            "n": "CustomDump",
-            "p": {
-                "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_pointfreeco_swift_custom_dump/libCustomDump.a",
-                "t": "g"
-            },
-            "t": "com.apple.product-type.library.static"
-        },
-        "x": [
-            "Profile",
-            "Release"
-        ]
-    },
     "@com_github_pointfreeco_xctest_dynamic_overlay//:XCTestDynamicOverlay macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
     {
         "0": [
@@ -2560,75 +2387,6 @@
             },
             "t": "com.apple.product-type.library.static"
         }
-    },
-    "@com_github_pointfreeco_xctest_dynamic_overlay//:XCTestDynamicOverlay macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2",
-    {
-        "0": [
-            "-DNDEBUG",
-            "-Xcc",
-            "-iquote.",
-            "-Xcc",
-            "-iquotebazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin",
-            "-static",
-            "-Xcc",
-            "-Os",
-            "-Xcc",
-            "-DNDEBUG=1",
-            "-Xcc",
-            "-Wno-unused-variable",
-            "-Xcc",
-            "-Winit-self",
-            "-Xcc",
-            "-Wno-extra"
-        ],
-        "1": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_pointfreeco_xctest_dynamic_overlay",
-        "2": {
-            "a": "x86_64",
-            "m": "12.0",
-            "o": "macos",
-            "v": "macosx"
-        },
-        "b": {
-            "DEBUG_INFORMATION_FORMAT": "",
-            "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
-            "PRODUCT_MODULE_NAME": "XCTestDynamicOverlay",
-            "SWIFT_COMPILATION_MODE": "wholemodule",
-            "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
-            "SWIFT_OPTIMIZATION_LEVEL": "-O",
-            "SWIFT_VERSION": "5.0"
-        },
-        "c": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2",
-        "i": {
-            "s": [
-                {
-                    "_": "com_github_pointfreeco_xctest_dynamic_overlay/Sources/XCTestDynamicOverlay/XCTFail.swift",
-                    "t": "e"
-                }
-            ]
-        },
-        "l": "@com_github_pointfreeco_xctest_dynamic_overlay//:XCTestDynamicOverlay",
-        "n": "XCTestDynamicOverlay",
-        "o": {
-            "s": {
-                "m": {
-                    "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/XCTestDynamicOverlay.swiftmodule",
-                    "t": "g"
-                }
-            }
-        },
-        "p": {
-            "n": "XCTestDynamicOverlay",
-            "p": {
-                "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/libXCTestDynamicOverlay.a",
-                "t": "g"
-            },
-            "t": "com.apple.product-type.library.static"
-        },
-        "x": [
-            "Profile",
-            "Release"
-        ]
     },
     "@com_github_tuist_xcodeproj//:XcodeProj macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
     {
