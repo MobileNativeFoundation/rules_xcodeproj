@@ -1,3 +1,4 @@
+import CustomDump
 import XcodeProj
 import XCTest
 
@@ -19,7 +20,8 @@ extension XCSchemeInfoTestActionInfoTests {
             return
         }
         XCTAssertEqual(preconditionError.message, """
-An `XCSchemeInfo.TestActionInfo` should have at least one `XCSchemeInfo.TargetInfo`.
+An `XCSchemeInfo.TestActionInfo` should have at least one \
+`XCSchemeInfo.TargetInfo`.
 """)
     }
 
@@ -36,7 +38,8 @@ An `XCSchemeInfo.TestActionInfo` should have at least one `XCSchemeInfo.TargetIn
             return
         }
         XCTAssertEqual(preconditionError.message, """
-An `XCSchemeInfo.TestActionInfo` should only contain testable `XCSchemeInfo.TargetInfo` values.
+An `XCSchemeInfo.TestActionInfo` should only contain testable \
+`XCSchemeInfo.TargetInfo` values.
 """)
     }
 
@@ -49,7 +52,10 @@ An `XCSchemeInfo.TestActionInfo` should only contain testable `XCSchemeInfo.Targ
             args: args,
             env: env
         )
-        XCTAssertEqual(testActionInfo.buildConfigurationName, buildConfigurationName)
+        XCTAssertEqual(
+            testActionInfo.buildConfigurationName,
+            buildConfigurationName
+        )
         XCTAssertEqual(testActionInfo.targetInfos, [unitTestTargetInfo])
         XCTAssertEqual(testActionInfo.args, args)
         XCTAssertEqual(testActionInfo.env, env)
@@ -71,7 +77,10 @@ extension XCSchemeInfoTestActionInfoTests {
             XCTFail("Expected a `TestActionInfo`")
             return
         }
-        XCTAssertEqual(testActionInfo.buildConfigurationName, buildConfigurationName)
+        XCTAssertEqual(
+            testActionInfo.buildConfigurationName,
+            buildConfigurationName
+        )
         for targetInfo in testActionInfo.targetInfos {
             XCTAssertNotEqual(targetInfo.hostResolution, .unresolved)
         }
@@ -84,8 +93,9 @@ extension XCSchemeInfoTestActionInfoTests {
     func test_customSchemeInit_noTestAction() throws {
         let actual = try XCSchemeInfo.TestActionInfo(
             testAction: nil,
+            defaultBuildConfigurationName: "Random",
             targetResolver: targetResolver,
-            targetIDsByLabel: [:],
+            targetIDsByLabelAndConfiguration: [:],
             args: [:],
             envs: [:]
         )
@@ -95,8 +105,10 @@ extension XCSchemeInfoTestActionInfoTests {
     func test_customSchemeInit_withTestAction() throws {
         let actual = try XCSchemeInfo.TestActionInfo(
             testAction: xcodeScheme.testAction,
+            defaultBuildConfigurationName: unitTestPBXTarget
+                .defaultBuildConfigurationName,
             targetResolver: targetResolver,
-            targetIDsByLabel: try xcodeScheme.resolveTargetIDs(
+            targetIDsByLabelAndConfiguration: try xcodeScheme.resolveTargetIDs(
                 targetResolver: targetResolver,
                 runnerLabel: runnerLabel
             ),
@@ -110,7 +122,7 @@ extension XCSchemeInfoTestActionInfoTests {
             targetInfos: [testTargetInfo],
             expandVariablesBasedOn: testTargetInfo
         )
-        XCTAssertEqual(actual, expected)
+        XCTAssertNoDifference(actual, expected)
     }
 }
 
@@ -127,7 +139,10 @@ extension XCSchemeInfoTestActionInfoTests {
         ).orThrow("Expected `testActionInfo`")
         let macroExpansion = try testActionInfo.macroExpansion
             .orThrow("Expected `macroExpansion`")
-        XCTAssertEqual(macroExpansion, unitTestTargetInfo.buildableReference)
+        XCTAssertNoDifference(
+            macroExpansion,
+            unitTestTargetInfo.buildableReference
+        )
     }
 }
 

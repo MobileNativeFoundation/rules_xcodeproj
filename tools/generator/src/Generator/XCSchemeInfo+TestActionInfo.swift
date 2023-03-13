@@ -93,27 +93,35 @@ extension XCSchemeInfo.TestActionInfo {
 extension XCSchemeInfo.TestActionInfo {
     init?(
         testAction: XcodeScheme.TestAction?,
+        defaultBuildConfigurationName: String,
         targetResolver: TargetResolver,
-        targetIDsByLabel: [BazelLabel: TargetID],
+        targetIDsByLabelAndConfiguration:
+            [XcodeScheme.LabelAndConfiguration: TargetID],
         args: [TargetID: [String]],
         envs: [TargetID: [String: String]]
     ) throws {
         guard let testAction = testAction else {
           return nil
         }
+
         let expandVariablesBasedOn = try testAction.expandVariablesBasedOn ??
             testAction.targets.sortedLocalizedStandard().first.orThrow("""
 Expected at least one target in `TestAction.targets`
 """)
 
+        let buildConfigurationName = testAction.buildConfigurationName ??
+            defaultBuildConfigurationName
+
         var env: [String: String] = testAction.env ?? [:]
-        let testActionTargetIdsLabels: [(TargetID, BazelLabel)] = testAction.targets.compactMap { label in
-            guard let targetId: TargetID = targetIDsByLabel[label]
-            else {
-                return nil
+        let testActionTargetIdsLabels: [(TargetID, BazelLabel)] =
+            testAction.targets.compactMap { label in
+                guard let targetId: TargetID =
+                        targetIDsByLabelAndConfiguration[.init(label, buildConfigurationName)]
+                else {
+                    return nil
+                }
+                return (targetId, label)
             }
-            return (targetId, label)
-        }
         for tuple in testActionTargetIdsLabels {
             let testActionTargetId: TargetID = tuple.0
             let testActionLabel: BazelLabel = tuple.1
@@ -134,18 +142,15 @@ the same scheme.
 
         let targetInfos = try testAction.targets.map { label in
             return try targetResolver.targetInfo(
-                targetID: try targetIDsByLabel.value(
-                    for: label,
+                targetID: try targetIDsByLabelAndConfiguration.value(
+                    for: .init(label, buildConfigurationName),
                     context: "creating a `TestActionInfo`"
                 )
             )
         }
 
         try self.init(
-            buildConfigurationName: try testAction.buildConfigurationName ??
-                targetInfos.first
-                .orThrow("Expected at least one target in `TestAction.targets`")
-                .pbxTarget.defaultBuildConfigurationName,
+            buildConfigurationName: buildConfigurationName,
             targetInfos: targetInfos,
             args: testAction.args?.extractCommandLineArguments(),
             diagnostics: XCSchemeInfo.DiagnosticsInfo(
@@ -153,19 +158,23 @@ the same scheme.
             ),
             env: env.isEmpty ? testAction.env : env,
             expandVariablesBasedOn: try targetResolver.targetInfo(
-                targetID: try targetIDsByLabel.value(
-                    for: expandVariablesBasedOn,
+                targetID: try targetIDsByLabelAndConfiguration.value(
+                    for: .init(expandVariablesBasedOn, buildConfigurationName),
                     context: "creating a `VariableExpansionContextInfo`"
                 )
             ),
             preActions: testAction.preActions.prePostActionInfos(
+                buildConfigurationName: buildConfigurationName,
                 targetResolver: targetResolver,
-                targetIDsByLabel: targetIDsByLabel,
+                targetIDsByLabelAndConfiguration:
+                    targetIDsByLabelAndConfiguration,
                 context: "creating a pre-action `PrePostActionInfo`"
             ),
             postActions: testAction.postActions.prePostActionInfos(
+                buildConfigurationName: buildConfigurationName,
                 targetResolver: targetResolver,
-                targetIDsByLabel: targetIDsByLabel,
+                targetIDsByLabelAndConfiguration:
+                    targetIDsByLabelAndConfiguration,
                 context: "creating a post-action `PrePostActionInfo`"
             )
         )

@@ -17,6 +17,9 @@ final class XCSchemeInfoPrePostActionInfoTests: XCTestCase {
         ]),
         launchAction: .init(target: targetResolver.targets["A 2"]!.label)
     )
+
+    lazy var buildConfigurationName = targetResolver.targets["A 2"]!
+            .xcodeConfigurations.first!
     
     let directories = Directories(
         workspace: "/Users/TimApple/app",
@@ -128,8 +131,9 @@ extension XCSchemeInfoPrePostActionInfoTests {
         // when
         let prePostActionInfo = try XCSchemeInfo.PrePostActionInfo(
             prePostAction: prePostAction,
+            buildConfigurationName: buildConfigurationName,
             targetResolver: targetResolver,
-            targetIDsByLabel: [:],
+            targetIDsByLabelAndConfiguration: [:],
             context: "Building PrePostAction Info"
         )
 
@@ -154,8 +158,9 @@ extension XCSchemeInfoPrePostActionInfoTests {
         // when
         let prePostActionInfo = try XCSchemeInfo.PrePostActionInfo(
             prePostAction: prePostAction,
+            buildConfigurationName: buildConfigurationName,
             targetResolver: targetResolver,
-            targetIDsByLabel: try xcodeScheme.resolveTargetIDs(
+            targetIDsByLabelAndConfiguration: try xcodeScheme.resolveTargetIDs(
                 targetResolver: targetResolver,
                 runnerLabel: runnerLabel
             ),
@@ -185,8 +190,9 @@ extension XCSchemeInfoPrePostActionInfoTests {
         let prePostActionInfo = {
             try XCSchemeInfo.PrePostActionInfo(
                 prePostAction: prePostAction,
+                buildConfigurationName: self.buildConfigurationName,
                 targetResolver: self.targetResolver,
-                targetIDsByLabel: try self.xcodeScheme.resolveTargetIDs(
+                targetIDsByLabelAndConfiguration: try self.xcodeScheme.resolveTargetIDs(
                     targetResolver: self.targetResolver,
                     runnerLabel: self.runnerLabel
                 ),
@@ -211,8 +217,9 @@ extension XCSchemeInfoPrePostActionInfoTests {
         )
         let prePostActionInfo = try XCSchemeInfo.PrePostActionInfo(
             prePostAction: prePostAction,
+            buildConfigurationName: buildConfigurationName,
             targetResolver: targetResolver,
-            targetIDsByLabel: try xcodeScheme.resolveTargetIDs(
+            targetIDsByLabelAndConfiguration: try xcodeScheme.resolveTargetIDs(
                 targetResolver: targetResolver,
                 runnerLabel: runnerLabel
             ),
@@ -237,8 +244,9 @@ extension XCSchemeInfoPrePostActionInfoTests {
         )
         let prePostActionInfo = try XCSchemeInfo.PrePostActionInfo(
             prePostAction: prePostAction,
+            buildConfigurationName: buildConfigurationName,
             targetResolver: targetResolver,
-            targetIDsByLabel: try xcodeScheme.resolveTargetIDs(
+            targetIDsByLabelAndConfiguration: try xcodeScheme.resolveTargetIDs(
                 targetResolver: targetResolver,
                 runnerLabel: runnerLabel
             ),
@@ -289,8 +297,9 @@ extension XCSchemeInfoPrePostActionInfoTests {
         )
         let prePostActionInfo = try XCSchemeInfo.PrePostActionInfo(
             prePostAction: prePostAction,
+            buildConfigurationName: buildConfigurationName,
             targetResolver: targetResolver,
-            targetIDsByLabel: try xcodeScheme.resolveTargetIDs(
+            targetIDsByLabelAndConfiguration: try xcodeScheme.resolveTargetIDs(
                 targetResolver: targetResolver,
                 runnerLabel: runnerLabel
             ),

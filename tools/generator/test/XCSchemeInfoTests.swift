@@ -1,3 +1,4 @@
+import CustomDump
 import XcodeProj
 import XCTest
 
@@ -123,7 +124,7 @@ extension XCSchemeInfoTests {
             )
         )
         let pbxTargets = schemeInfo.allPBXTargets
-        XCTAssertEqual(pbxTargets, .init([
+        XCTAssertNoDifference(pbxTargets, .init([
             libraryTargetInfo.pbxTarget,
             unitTestTargetInfo.pbxTarget,
             appTargetInfo.pbxTarget,
@@ -168,7 +169,7 @@ extension XCSchemeInfoTests {
     func test_customSchemeInit() throws {
         let actual = try XCSchemeInfo(
             scheme: try xcodeScheme.withDefaults,
-            defaultBuildConfigurationName: "DeepThought",
+            defaultBuildConfigurationName: "Profile",
             targetResolver: targetResolver,
             runnerLabel: runnerLabel,
             args: [:],
@@ -181,7 +182,7 @@ extension XCSchemeInfoTests {
         let expectedProfileTargetInfo = expectedLaunchTargetInfo
         let expected = try XCSchemeInfo(
             name: schemeName,
-            defaultBuildConfigurationName: "DeepThought",
+            defaultBuildConfigurationName: "Profile",
             buildActionInfo: try .init(
                 targets: [
                     .init(
@@ -220,7 +221,7 @@ extension XCSchemeInfoTests {
                 targetInfo: expectedProfileTargetInfo
             )
         )
-        XCTAssertEqual(actual, expected)
+        XCTAssertNoDifference(actual, expected)
     }
 }
 

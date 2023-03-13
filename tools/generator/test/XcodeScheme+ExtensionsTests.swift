@@ -1,3 +1,4 @@
+import CustomDump
 import XcodeProj
 import XCTest
 
@@ -44,10 +45,16 @@ extension XcodeSchemeExtensionsTests {
             runnerLabel: runnerLabel
         )
         let expected = [
-            libLabel: libmacOSx8664TargetID,
-            toolLabel: toolmacOSx8664TargetID,
+            XcodeScheme.LabelAndConfiguration(
+                libLabel,
+                libmacOSx8664Target.xcodeConfigurations.first!
+            ): libmacOSx8664TargetID,
+            XcodeScheme.LabelAndConfiguration(
+                toolLabel,
+                toolmacOSx8664Target.xcodeConfigurations.first!
+            ): toolmacOSx8664TargetID,
         ]
-        XCTAssertEqual(expected, actual)
+        XCTAssertNoDifference(actual, expected)
     }
 
     func test_resolveTargetIDs_withIOSAppScheme() throws {
@@ -61,11 +68,20 @@ extension XcodeSchemeExtensionsTests {
             runnerLabel: runnerLabel
         )
         let expected = [
-            libLabel: libiOSx8664TargetID,
-            libTestsLabel: libTestsiOSx8664TargetID,
-            iOSAppLabel: iOSAppiOSx8664TargetID,
+            XcodeScheme.LabelAndConfiguration(
+                libLabel,
+                libiOSx8664Target.xcodeConfigurations.first!
+            ): libiOSx8664TargetID,
+            XcodeScheme.LabelAndConfiguration(
+                libTestsLabel,
+                libTestsiOSx8664Target.xcodeConfigurations.first!
+            ): libTestsiOSx8664TargetID,
+            XcodeScheme.LabelAndConfiguration(
+                iOSAppLabel,
+                iOSAppiOSx8664Target.xcodeConfigurations.first!
+            ): iOSAppiOSx8664TargetID,
         ]
-        XCTAssertEqual(expected, actual)
+        XCTAssertNoDifference(actual, expected)
     }
 
     func test_resolveTargetIDs_withTVOSAppScheme() throws {
@@ -76,24 +92,30 @@ extension XcodeSchemeExtensionsTests {
             runnerLabel: runnerLabel
         )
         let expected = [
-            libLabel: libtvOSx8664TargetID,
-            tvOSAppLabel: tvOSApptvOSx8664TargetID,
+            XcodeScheme.LabelAndConfiguration(
+                libLabel,
+                libtvOSx8664Target.xcodeConfigurations.first!
+            ): libtvOSx8664TargetID,
+            XcodeScheme.LabelAndConfiguration(
+                tvOSAppLabel,
+                tvOSApptvOSx8664Target.xcodeConfigurations.first!
+            ): tvOSApptvOSx8664TargetID,
         ]
-        XCTAssertEqual(expected, actual)
+        XCTAssertNoDifference(actual, expected)
     }
 }
 
 // MARK: `LabelTargetInfo` Tests
 
 extension XcodeSchemeExtensionsTests {
-    func test_LabelTargetInfo_best_noTargets() throws {
+    func test_LabelTargetInfo_bestPerConfiguration_noTargets() throws {
         let targetInfo = XcodeScheme.LabelTargetInfo(
             label: "@//foo",
             isTopLevel: false
         )
 
         var thrown: Error?
-        XCTAssertThrowsError(try targetInfo.best) {
+        XCTAssertThrowsError(try targetInfo.bestPerConfiguration) {
             thrown = $0
         }
         guard let preconditionError = thrown as? PreconditionError else {
@@ -105,10 +127,13 @@ Unable to find the best `TargetWithID` for "@//foo:foo"
 """)
     }
 
-    func test_LabelTargetInfo_best_withTargets() throws {
-        XCTAssertEqual(
-            try iOSAppLabelTargetInfo.best,
-            iOSAppiOSx8664TargetWithID
+    func test_LabelTargetInfo_bestPerConfiguration_withTargets() throws {
+        XCTAssertNoDifference(
+            try iOSAppLabelTargetInfo.bestPerConfiguration,
+            [
+                iOSAppiOSarm64Target.xcodeConfigurations.first!:
+                    iOSAppiOSx8664TargetWithID,
+            ]
         )
     }
 }
@@ -117,13 +142,19 @@ extension XcodeSchemeExtensionsTests {
     func test_LabelTargetInfo_firstCompatibleWith_withCompatibleTarget() throws {
         let actual = iOSAppLabelTargetInfo
             .firstCompatibleWith(anyOf: [iphoneOSPlatform])
-        XCTAssertEqual(actual, iOSAppiOSarm64TargetWithID)
+        XCTAssertNoDifference(
+            actual,
+            [
+                iOSAppiOSarm64Target.xcodeConfigurations.first!:
+                    iOSAppiOSarm64TargetWithID,
+            ]
+        )
     }
 
     func test_LabelTargetInfo_firstCompatibleWith_noCompatibleTarget() throws {
         let actual = iOSAppLabelTargetInfo
             .firstCompatibleWith(anyOf: [appletvOSPlatform])
-        XCTAssertNil(actual)
+        XCTAssertNoDifference(actual, [:])
     }
 }
 

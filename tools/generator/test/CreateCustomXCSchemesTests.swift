@@ -21,7 +21,8 @@ extension CreateCustomXCSchemesTests {
         let actual = try Generator.createCustomXCSchemes(
             schemes: [schemeA, schemeB],
             buildMode: .bazel,
-            defaultBuildConfigurationName: "AppStore",
+            defaultBuildConfigurationName: targetResolver
+                .targets["B 2"]!.xcodeConfigurations.first!,
             targetResolver: targetResolver,
             runnerLabel: runnerLabel,
             args: [:],
@@ -36,7 +37,8 @@ extension CreateCustomXCSchemesTests {
             try Generator.createCustomXCSchemes(
                 schemes: [schemeC],
                 buildMode: .bazel,
-                defaultBuildConfigurationName: "AppStore",
+                defaultBuildConfigurationName: targetResolver
+                    .targets["B 2"]!.xcodeConfigurations.first!,
                 targetResolver: targetResolver,
                 runnerLabel: runnerLabel,
                 args: [:],

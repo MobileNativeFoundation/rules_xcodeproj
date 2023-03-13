@@ -136,21 +136,27 @@ extension XCSchemeInfo.LaunchActionInfo {
 extension XCSchemeInfo.LaunchActionInfo {
     init?(
         launchAction: XcodeScheme.LaunchAction?,
+        defaultBuildConfigurationName: String,
         targetResolver: TargetResolver,
-        targetIDsByLabel: [BazelLabel: TargetID]
+        targetIDsByLabelAndConfiguration:
+            [XcodeScheme.LabelAndConfiguration: TargetID]
     ) throws {
         guard let launchAction = launchAction else {
           return nil
         }
+
+        let buildConfigurationName = launchAction.buildConfigurationName ??
+            defaultBuildConfigurationName
+
         let targetInfo = try targetResolver.targetInfo(
-            targetID: try targetIDsByLabel.value(
-                for: launchAction.target,
+            targetID: try targetIDsByLabelAndConfiguration.value(
+                for: .init(launchAction.target, buildConfigurationName),
                 context: "creating a `LaunchActionInfo`"
             )
         )
+
         try self.init(
-            buildConfigurationName: launchAction.buildConfigurationName ??
-                targetInfo.pbxTarget.defaultBuildConfigurationName,
+            buildConfigurationName: buildConfigurationName,
             targetInfo: targetInfo,
             args: launchAction.args,
             diagnostics: XCSchemeInfo.DiagnosticsInfo(

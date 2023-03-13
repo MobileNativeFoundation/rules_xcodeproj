@@ -131,15 +131,19 @@ extension XcodeScheme {
 
 extension Sequence where Element == XcodeScheme.PrePostAction {
     func prePostActionInfos(
+        buildConfigurationName: String,
         targetResolver: TargetResolver,
-        targetIDsByLabel: [BazelLabel: TargetID],
+        targetIDsByLabelAndConfiguration:
+            [XcodeScheme.LabelAndConfiguration: TargetID],
         context: String
     ) throws -> [XCSchemeInfo.PrePostActionInfo] {
         try map {
             try XCSchemeInfo.PrePostActionInfo(
                 prePostAction: $0,
+                buildConfigurationName: buildConfigurationName,
                 targetResolver: targetResolver,
-                targetIDsByLabel: targetIDsByLabel,
+                targetIDsByLabelAndConfiguration:
+                    targetIDsByLabelAndConfiguration,
                 context: context
             )
         }

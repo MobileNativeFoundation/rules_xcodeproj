@@ -76,21 +76,26 @@ extension XCSchemeInfo.ProfileActionInfo {
 extension XCSchemeInfo.ProfileActionInfo {
     init?(
         profileAction: XcodeScheme.ProfileAction?,
+        defaultBuildConfigurationName: String,
         targetResolver: TargetResolver,
-        targetIDsByLabel: [BazelLabel: TargetID]
+        targetIDsByLabelAndConfiguration:
+            [XcodeScheme.LabelAndConfiguration: TargetID]
     ) throws {
         guard let profileAction = profileAction else {
           return nil
         }
+
+        let buildConfigurationName = profileAction.buildConfigurationName ??
+            defaultBuildConfigurationName
+
         let targetInfo = try targetResolver.targetInfo(
-            targetID: try targetIDsByLabel.value(
-                for: profileAction.target,
+            targetID: try targetIDsByLabelAndConfiguration.value(
+                for: .init(profileAction.target, buildConfigurationName),
                 context: "creating a `ProfileActionInfo`"
             )
         )
         self.init(
-            buildConfigurationName: profileAction.buildConfigurationName ??
-                targetInfo.pbxTarget.defaultBuildConfigurationName,
+            buildConfigurationName: buildConfigurationName,
             targetInfo: targetInfo,
             args: profileAction.args,
             env: profileAction.env,
