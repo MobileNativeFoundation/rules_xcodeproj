@@ -135,6 +135,7 @@ ios_application(
     families = ["iphone", "ipad"],
     infoplists = [":Info.plist"],
     minimum_os_version = "15.0",
+    visibility = ["//visibility:public"],
     deps = [":Lib"],
 )
 
@@ -147,7 +148,7 @@ ios_unit_test(
     name = "Tests",
     bundle_id = "com.example.tests",
     minimum_os_version = "15.0",
-    test_host = "//App",
+    test_host = ":App",
     visibility = ["//visibility:public"],
     deps = [":TestLib"],
 )
