@@ -45,6 +45,22 @@ add it or a target that depends on it to \(runnerLabel)'s `top_level_targets` at
 """
     }
 
+    private struct TopLevelInfo {
+        var labels: Set<BazelLabel> = []
+        var targetIDs: Set<TargetID> = []
+        var platforms: Set<Platform> = []
+
+        mutating func insert(
+            label: BazelLabel,
+            targetID: TargetID,
+            platforms: Set<Platform>
+        ) {
+            labels.insert(label)
+            targetIDs.insert(targetID)
+            self.platforms.formUnion(platforms)
+        }
+    }
+
     /// Determines the mapping of `BazelLabel` to the `TargetID` values based
     /// upon the scheme's configuration.
     func resolveTargetIDs(
@@ -59,9 +75,7 @@ add it or a target that depends on it to \(runnerLabel)'s `top_level_targets` at
         let allBazelLabels = allBazelLabels
 
         // Identify the top-level targets
-        var topLevelLabels: Set<BazelLabel> = []
-        var topLevelTargetIDs: Set<TargetID> = []
-        var topLevelPlatforms: Set<Platform> = []
+        var topLevelInfos: [String: TopLevelInfo] = [:]
         for label in allBazelLabels {
             let labelTargetInfo = try labelTargetInfos.value(
                 for: label,
@@ -74,53 +88,59 @@ add it or a target that depends on it to \(runnerLabel)'s `top_level_targets` at
                 continue
             }
 
-            topLevelLabels.insert(label)
-            topLevelPlatforms.formUnion(labelTargetInfo.platforms)
-
             for (configuration, best) in try labelTargetInfo
                 .bestPerConfiguration
             {
                 let targetID = best.id
-                topLevelTargetIDs.insert(targetID)
                 resolvedTargetIDs[.init(label, configuration)] = targetID
+
+                topLevelInfos[configuration, default: .init()].insert(
+                    label: label,
+                    targetID: targetID,
+                    platforms: best.platforms
+                )
             }
         }
 
-        let otherLabels = allBazelLabels.subtracting(topLevelLabels)
-        for label in otherLabels {
-            let labelTargetInfo = try labelTargetInfos.value(
-                for: label,
-                message: aliasErrorMessage(
-                    runnerLabel: runnerLabel,
-                    missingLabel: label
+        for topLevelInfo in topLevelInfos.values {
+            let otherLabels = allBazelLabels.subtracting(topLevelInfo.labels)
+            for label in otherLabels {
+                let labelTargetInfo = try labelTargetInfos.value(
+                    for: label,
+                    message: aliasErrorMessage(
+                        runnerLabel: runnerLabel,
+                        missingLabel: label
+                    )
                 )
-            )
 
-            // Check for dependency of a top-level target that matches the
-            // label. Check for target that has a matching top-level platform.
-            // Pick the default "best" target.
-            if let targetID = targets.firstTargetID(
-                under: topLevelTargetIDs,
-                where: { $0.label == label }
-            ) {
-                let target = targets[targetID]!
-                for configuration in target.xcodeConfigurations {
-                    resolvedTargetIDs[.init(label, configuration)] = targetID
-                }
-            } else {
-                let targetWithIDs = labelTargetInfo.firstCompatibleWith(
-                    anyOf: topLevelPlatforms
-                )
-                if !targetWithIDs.isEmpty {
-                    for (configuration, targetWithID) in targetWithIDs {
+                // Check for dependency of a top-level target that matches the
+                // label. Or check for a target that has a matching top-level
+                // platform. Or finally pick the default "best" target.
+                if let targetID = targets.firstTargetID(
+                    under: topLevelInfo.targetIDs,
+                    where: { $0.label == label }
+                ) {
+                    let target = targets[targetID]!
+                    for configuration in target.xcodeConfigurations {
                         resolvedTargetIDs[.init(label, configuration)] =
-                        targetWithID.id
+                            targetID
                     }
                 } else {
-                    for (configuration, best) in try labelTargetInfo
-                        .bestPerConfiguration
-                    {
-                        resolvedTargetIDs[.init(label, configuration)] = best.id
+                    let targetWithIDs = labelTargetInfo.firstCompatibleWith(
+                        anyOf: topLevelInfo.platforms
+                    )
+                    if !targetWithIDs.isEmpty {
+                        for (configuration, targetWithID) in targetWithIDs {
+                            resolvedTargetIDs[.init(label, configuration)] =
+                                targetWithID.id
+                        }
+                    } else {
+                        for (configuration, best) in try labelTargetInfo
+                            .bestPerConfiguration
+                        {
+                            resolvedTargetIDs[.init(label, configuration)] =
+                                best.id
+                        }
                     }
                 }
             }
@@ -157,38 +177,54 @@ extension TargetResolver {
 extension XcodeScheme {
     /// Collects Target information for a BazelLabel.
     struct LabelTargetInfo {
+        struct ConfigurationInfo {
+            var targetsInPlatformOrder: [TargetWithID] = []
+            var platforms: Set<Platform> = []
+        }
+
         let label: BazelLabel
         let isTopLevel: Bool
-        var inPlatformOrder: [String: [TargetWithID]] = [:]
-        var platforms = Set<Platform>()
+        var configurationInfos: [String: ConfigurationInfo] = [:]
     }
 }
 
 extension XcodeScheme.LabelTargetInfo {
     mutating func add(_ targetWithID: XcodeScheme.TargetWithID) {
         for configuration in targetWithID.target.xcodeConfigurations {
-            var configurationInPlatformOrder =
-                inPlatformOrder[configuration, default: []]
-            configurationInPlatformOrder.append(targetWithID)
-            configurationInPlatformOrder.sort()
-            inPlatformOrder[configuration] = configurationInPlatformOrder
+            var configurationInfo =
+                configurationInfos[configuration, default: .init()]
+            configurationInfo.targetsInPlatformOrder.append(targetWithID)
+            configurationInfo.targetsInPlatformOrder.sort()
+            configurationInfo.platforms
+                .update(with: targetWithID.target.platform)
+            configurationInfos[configuration] = configurationInfo
         }
-        platforms.update(with: targetWithID.target.platform)
     }
 }
 
 extension XcodeScheme.LabelTargetInfo {
-    var bestPerConfiguration: [String: XcodeScheme.TargetWithID] {
+    struct ConfigurationWithBest: Equatable {
+        let id: TargetID
+        let platforms: Set<Platform>
+    }
+
+    var bestPerConfiguration: [String: ConfigurationWithBest] {
         get throws {
-            guard !inPlatformOrder.isEmpty else {
+            guard !configurationInfos.isEmpty else {
                 throw PreconditionError(message: """
 Unable to find the best `TargetWithID` for "\(label)"
 """)
             }
-            return try inPlatformOrder.mapValues { configurationInPlatformOrder in
-                try configurationInPlatformOrder.first.orThrow("""
+            return try configurationInfos.mapValues { configurationInfo in
+                return ConfigurationWithBest(
+                    id: try configurationInfo.targetsInPlatformOrder
+                        .first.orThrow("""
 Unable to find the best `TargetWithID` for "\(label)"
 """)
+                        .id,
+                    platforms: configurationInfo.platforms
+                )
+
             }
         }
     }
@@ -200,8 +236,8 @@ extension XcodeScheme.LabelTargetInfo {
     ) -> [String: XcodeScheme.TargetWithID]
     where Platforms.Element == Platform {
         var result: [String: XcodeScheme.TargetWithID] = [:]
-        for (configuration, configurationInPlatformOrder) in inPlatformOrder {
-            guard let targetWithID = configurationInPlatformOrder
+        for (configuration, configurationInfo) in configurationInfos {
+            guard let targetWithID = configurationInfo.targetsInPlatformOrder
                 .first(where: { targetWithID in
                     targetWithID.target.platform.compatibleWith(
                         anyOf: platforms

@@ -131,8 +131,10 @@ Unable to find the best `TargetWithID` for "@//foo:foo"
         XCTAssertNoDifference(
             try iOSAppLabelTargetInfo.bestPerConfiguration,
             [
-                iOSAppiOSarm64Target.xcodeConfigurations.first!:
-                    iOSAppiOSx8664TargetWithID,
+                iOSAppiOSarm64Target.xcodeConfigurations.first!: .init(
+                    id: iOSAppiOSx8664TargetID,
+                    platforms: [iphoneOSPlatform, iphoneSimulatorPlatform]
+                )
             ]
         )
     }
