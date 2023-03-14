@@ -110,6 +110,8 @@ extension XCSchemeInfoTestActionInfoTests {
             targetResolver: targetResolver,
             targetIDsByLabelAndConfiguration: try xcodeScheme.resolveTargetIDs(
                 targetResolver: targetResolver,
+                xcodeConfigurations: targetResolver.targets["B 2"]!
+                    .xcodeConfigurations,
                 runnerLabel: runnerLabel
             ),
             args: [:],

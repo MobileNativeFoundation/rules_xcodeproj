@@ -42,17 +42,14 @@ extension XcodeSchemeExtensionsTests {
     func test_resolveTargetIDs_withToolScheme() throws {
         let actual = try toolScheme.resolveTargetIDs(
             targetResolver: targetResolver,
+            xcodeConfigurations: libmacOSx8664Target.xcodeConfigurations,
             runnerLabel: runnerLabel
         )
         let expected = [
-            XcodeScheme.LabelAndConfiguration(
-                libLabel,
-                libmacOSx8664Target.xcodeConfigurations.first!
-            ): libmacOSx8664TargetID,
-            XcodeScheme.LabelAndConfiguration(
-                toolLabel,
-                toolmacOSx8664Target.xcodeConfigurations.first!
-            ): toolmacOSx8664TargetID,
+            libmacOSx8664Target.xcodeConfigurations.first!: [
+                libLabel: libmacOSx8664TargetID,
+                toolLabel: toolmacOSx8664TargetID,
+            ],
         ]
         XCTAssertNoDifference(actual, expected)
     }
@@ -65,21 +62,15 @@ extension XcodeSchemeExtensionsTests {
         // this iOS app is not selected.
         let actual = try iOSAppScheme.resolveTargetIDs(
             targetResolver: targetResolver,
+            xcodeConfigurations: libiOSx8664Target.xcodeConfigurations,
             runnerLabel: runnerLabel
         )
         let expected = [
-            XcodeScheme.LabelAndConfiguration(
-                libLabel,
-                libiOSx8664Target.xcodeConfigurations.first!
-            ): libiOSx8664TargetID,
-            XcodeScheme.LabelAndConfiguration(
-                libTestsLabel,
-                libTestsiOSx8664Target.xcodeConfigurations.first!
-            ): libTestsiOSx8664TargetID,
-            XcodeScheme.LabelAndConfiguration(
-                iOSAppLabel,
-                iOSAppiOSx8664Target.xcodeConfigurations.first!
-            ): iOSAppiOSx8664TargetID,
+            libiOSx8664Target.xcodeConfigurations.first!: [
+                libLabel: libiOSx8664TargetID,
+                libTestsLabel: libTestsiOSx8664TargetID,
+                iOSAppLabel: iOSAppiOSx8664TargetID,
+            ]
         ]
         XCTAssertNoDifference(actual, expected)
     }
@@ -89,17 +80,14 @@ extension XcodeSchemeExtensionsTests {
         // Prefer the TargetID values for the simulator.
         let actual = try tvOSAppScheme.resolveTargetIDs(
             targetResolver: targetResolver,
+            xcodeConfigurations: libtvOSx8664Target.xcodeConfigurations,
             runnerLabel: runnerLabel
         )
         let expected = [
-            XcodeScheme.LabelAndConfiguration(
-                libLabel,
-                libtvOSx8664Target.xcodeConfigurations.first!
-            ): libtvOSx8664TargetID,
-            XcodeScheme.LabelAndConfiguration(
-                tvOSAppLabel,
-                tvOSApptvOSx8664Target.xcodeConfigurations.first!
-            ): tvOSApptvOSx8664TargetID,
+            libtvOSx8664Target.xcodeConfigurations.first!: [
+                libLabel: libtvOSx8664TargetID,
+                tvOSAppLabel: tvOSApptvOSx8664TargetID,
+            ]
         ]
         XCTAssertNoDifference(actual, expected)
     }
@@ -142,21 +130,19 @@ Unable to find the best `TargetWithID` for "@//foo:foo"
 
 extension XcodeSchemeExtensionsTests {
     func test_LabelTargetInfo_firstCompatibleWith_withCompatibleTarget() throws {
-        let actual = iOSAppLabelTargetInfo
-            .firstCompatibleWith(anyOf: [iphoneOSPlatform])
-        XCTAssertNoDifference(
-            actual,
-            [
-                iOSAppiOSarm64Target.xcodeConfigurations.first!:
-                    iOSAppiOSarm64TargetWithID,
-            ]
+        let actual = iOSAppLabelTargetInfo.firstCompatibleWith(
+            anyOf: [iphoneOSPlatform],
+            configuration: iOSAppiOSarm64Target.xcodeConfigurations.first!
         )
+        XCTAssertEqual(actual, iOSAppiOSarm64TargetWithID)
     }
 
     func test_LabelTargetInfo_firstCompatibleWith_noCompatibleTarget() throws {
-        let actual = iOSAppLabelTargetInfo
-            .firstCompatibleWith(anyOf: [appletvOSPlatform])
-        XCTAssertNoDifference(actual, [:])
+        let actual = iOSAppLabelTargetInfo.firstCompatibleWith(
+            anyOf: [appletvOSPlatform],
+            configuration: tvOSApptvOSarm64Target.xcodeConfigurations.first!
+        )
+        XCTAssertNil(actual)
     }
 }
 

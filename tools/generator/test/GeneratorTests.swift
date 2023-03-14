@@ -645,6 +645,7 @@ final class GeneratorTests: XCTestCase {
         struct CreateCustomXCSchemesCalled: Equatable {
             let schemes: [XcodeScheme]
             let buildMode: BuildMode
+            let xcodeConfigurations: Set<String>
             let defaultBuildConfigurationName: String
             let targetResolver: TargetResolver
             let runnerLabel: BazelLabel
@@ -656,6 +657,7 @@ final class GeneratorTests: XCTestCase {
         func createCustomXCSchemes(
             schemes: [XcodeScheme],
             buildMode: BuildMode,
+            xcodeConfigurations: Set<String>,
             defaultBuildConfigurationName: String,
             targetResolver: TargetResolver,
             runnerLabel: BazelLabel,
@@ -665,6 +667,7 @@ final class GeneratorTests: XCTestCase {
             createCustomXCSchemesCalled.append(.init(
                 schemes: schemes,
                 buildMode: buildMode,
+                xcodeConfigurations: xcodeConfigurations,
                 defaultBuildConfigurationName: defaultBuildConfigurationName,
                 targetResolver: targetResolver,
                 runnerLabel: runnerLabel,
@@ -677,6 +680,7 @@ final class GeneratorTests: XCTestCase {
         let expectedCreateCustomXCSchemesCalled = [CreateCustomXCSchemesCalled(
             schemes: customXcodeSchemes,
             buildMode: buildMode,
+            xcodeConfigurations: project.xcodeConfigurations,
             defaultBuildConfigurationName: project.defaultXcodeConfiguration,
             targetResolver: targetResolver,
             runnerLabel: project.runnerLabel,

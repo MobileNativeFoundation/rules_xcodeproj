@@ -231,6 +231,8 @@ extension XCSchemeInfoLaunchActionInfoTests {
             targetResolver: targetResolver,
             targetIDsByLabelAndConfiguration: try xcodeScheme.resolveTargetIDs(
                 targetResolver: targetResolver,
+                xcodeConfigurations: targetResolver.targets["A 2"]!
+                    .xcodeConfigurations,
                 runnerLabel: runnerLabel
             )
         )
