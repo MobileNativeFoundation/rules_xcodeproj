@@ -131,15 +131,18 @@ extension XcodeScheme {
 
 extension Sequence where Element == XcodeScheme.PrePostAction {
     func prePostActionInfos(
+        buildConfigurationName: String,
         targetResolver: TargetResolver,
-        targetIDsByLabel: [BazelLabel: TargetID],
+        targetIDsByLabelAndConfiguration: [String: [BazelLabel: TargetID]],
         context: String
     ) throws -> [XCSchemeInfo.PrePostActionInfo] {
         try map {
             try XCSchemeInfo.PrePostActionInfo(
                 prePostAction: $0,
+                buildConfigurationName: buildConfigurationName,
                 targetResolver: targetResolver,
-                targetIDsByLabel: targetIDsByLabel,
+                targetIDsByLabelAndConfiguration:
+                    targetIDsByLabelAndConfiguration,
                 context: context
             )
         }
@@ -237,7 +240,7 @@ No `BazelLabel` values were provided to `XcodeScheme.TestAction`.
 
 extension XcodeScheme.TestAction: Decodable {
     enum CodingKeys: String, CodingKey {
-        case buildConfigurationName
+        case buildConfigurationName = "buildConfiguration"
         case targets
         case args
         case diagnostics
@@ -371,7 +374,7 @@ extension XcodeScheme {
 
 extension XcodeScheme.LaunchAction: Decodable {
     enum CodingKeys: String, CodingKey {
-        case buildConfigurationName
+        case buildConfigurationName = "buildConfiguration"
         case target
         case args
         case diagnostics
@@ -427,7 +430,7 @@ extension XcodeScheme {
 
 extension XcodeScheme.ProfileAction: Decodable {
     enum CodingKeys: String, CodingKey {
-        case buildConfigurationName
+        case buildConfigurationName = "buildConfiguration"
         case target
         case args
         case env

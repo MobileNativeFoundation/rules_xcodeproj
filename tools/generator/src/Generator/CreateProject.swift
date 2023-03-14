@@ -155,7 +155,7 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
         }
 
         var buildConfigurations: [XCBuildConfiguration] = []
-        for xcodeConfiguration in project.xcodeConfigurations {
+        for xcodeConfiguration in project.xcodeConfigurations.sorted() {
             let buildConfiguration = XCBuildConfiguration(
                 name: xcodeConfiguration,
                 buildSettings: buildSettings
@@ -163,7 +163,7 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
             buildConfigurations.append(buildConfiguration)
             pbxProj.add(object: buildConfiguration)
         }
-        
+
         let buildConfigurationList = XCConfigurationList(
             buildConfigurations: buildConfigurations,
             defaultConfigurationName: project.defaultXcodeConfiguration

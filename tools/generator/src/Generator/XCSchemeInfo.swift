@@ -121,14 +121,16 @@ extension XCSchemeInfo {
 extension XCSchemeInfo {
     init(
         scheme: XcodeScheme,
+        xcodeConfigurations: Set<String>,
         defaultBuildConfigurationName: String,
         targetResolver: TargetResolver,
         runnerLabel: BazelLabel,
         args: [TargetID: [String]],
         envs: [TargetID: [String: String]]
     ) throws {
-        let targetIDsByLabel = try scheme.resolveTargetIDs(
+        let targetIDsByLabelAndConfiguration = try scheme.resolveTargetIDs(
             targetResolver: targetResolver,
+            xcodeConfigurations: xcodeConfigurations,
             runnerLabel: runnerLabel
         )
         let schemeWithDefaults = try scheme.withDefaults
@@ -137,25 +139,33 @@ extension XCSchemeInfo {
             defaultBuildConfigurationName: defaultBuildConfigurationName,
             buildActionInfo: .init(
                 buildAction: schemeWithDefaults.buildAction,
+                buildConfigurationName: defaultBuildConfigurationName,
                 targetResolver: targetResolver,
-                targetIDsByLabel: targetIDsByLabel
+                targetIDsByLabelAndConfiguration:
+                    targetIDsByLabelAndConfiguration
             ),
             testActionInfo: .init(
                 testAction: schemeWithDefaults.testAction,
+                defaultBuildConfigurationName: defaultBuildConfigurationName,
                 targetResolver: targetResolver,
-                targetIDsByLabel: targetIDsByLabel,
+                targetIDsByLabelAndConfiguration:
+                    targetIDsByLabelAndConfiguration,
                 args: args,
                 envs: envs
             ),
             launchActionInfo: .init(
                 launchAction: schemeWithDefaults.launchAction,
+                defaultBuildConfigurationName: defaultBuildConfigurationName,
                 targetResolver: targetResolver,
-                targetIDsByLabel: targetIDsByLabel
+                targetIDsByLabelAndConfiguration:
+                    targetIDsByLabelAndConfiguration
             ),
             profileActionInfo: .init(
                 profileAction: schemeWithDefaults.profileAction,
+                defaultBuildConfigurationName: defaultBuildConfigurationName,
                 targetResolver: targetResolver,
-                targetIDsByLabel: targetIDsByLabel
+                targetIDsByLabelAndConfiguration:
+                    targetIDsByLabelAndConfiguration
             ),
             analyzeActionInfo: .init(
                 buildConfigurationName: defaultBuildConfigurationName

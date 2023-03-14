@@ -1,3 +1,4 @@
+import CustomDump
 import XcodeProj
 import XCTest
 
@@ -17,6 +18,9 @@ final class XCSchemeInfoPrePostActionInfoTests: XCTestCase {
         ]),
         launchAction: .init(target: targetResolver.targets["A 2"]!.label)
     )
+
+    lazy var buildConfigurationName = targetResolver.targets["A 2"]!
+            .xcodeConfigurations.first!
     
     let directories = Directories(
         workspace: "/Users/TimApple/app",
@@ -128,8 +132,9 @@ extension XCSchemeInfoPrePostActionInfoTests {
         // when
         let prePostActionInfo = try XCSchemeInfo.PrePostActionInfo(
             prePostAction: prePostAction,
+            buildConfigurationName: buildConfigurationName,
             targetResolver: targetResolver,
-            targetIDsByLabel: [:],
+            targetIDsByLabelAndConfiguration: [:],
             context: "Building PrePostAction Info"
         )
 
@@ -154,12 +159,15 @@ extension XCSchemeInfoPrePostActionInfoTests {
         // when
         let prePostActionInfo = try XCSchemeInfo.PrePostActionInfo(
             prePostAction: prePostAction,
+            buildConfigurationName: buildConfigurationName,
             targetResolver: targetResolver,
-            targetIDsByLabel: try xcodeScheme.resolveTargetIDs(
+            targetIDsByLabelAndConfiguration: try xcodeScheme.resolveTargetIDs(
                 targetResolver: targetResolver,
+                xcodeConfigurations: targetResolver.targets["A 2"]!
+                    .xcodeConfigurations,
                 runnerLabel: runnerLabel
             ),
-            context: "Building PrePostAction Info"
+            context: "building `PrePostActionInfo`"
         )
 
         // then
@@ -185,12 +193,15 @@ extension XCSchemeInfoPrePostActionInfoTests {
         let prePostActionInfo = {
             try XCSchemeInfo.PrePostActionInfo(
                 prePostAction: prePostAction,
+                buildConfigurationName: self.buildConfigurationName,
                 targetResolver: self.targetResolver,
-                targetIDsByLabel: try self.xcodeScheme.resolveTargetIDs(
+                targetIDsByLabelAndConfiguration: try self.xcodeScheme.resolveTargetIDs(
                     targetResolver: self.targetResolver,
+                    xcodeConfigurations: self.targetResolver.targets["A 2"]!
+                        .xcodeConfigurations,
                     runnerLabel: self.runnerLabel
                 ),
-                context: "Building PrePostAction Info"
+                context: "building `PrePostActionInfo`"
             )
         }
 
@@ -211,12 +222,15 @@ extension XCSchemeInfoPrePostActionInfoTests {
         )
         let prePostActionInfo = try XCSchemeInfo.PrePostActionInfo(
             prePostAction: prePostAction,
+            buildConfigurationName: buildConfigurationName,
             targetResolver: targetResolver,
-            targetIDsByLabel: try xcodeScheme.resolveTargetIDs(
+            targetIDsByLabelAndConfiguration: try xcodeScheme.resolveTargetIDs(
                 targetResolver: targetResolver,
+                xcodeConfigurations: targetResolver.targets["A 2"]!
+                    .xcodeConfigurations,
                 runnerLabel: runnerLabel
             ),
-            context: "Building PrePostAction Info"
+            context: "building `PrePostActionInfo`"
         )
 
         // when
@@ -224,7 +238,7 @@ extension XCSchemeInfoPrePostActionInfoTests {
             .resolveHosts(topLevelTargetInfos: [])
 
         // then
-        XCTAssertEqual(resolvedPrePostActionInfos, [prePostActionInfo])
+        XCTAssertNoDifference(resolvedPrePostActionInfos, [prePostActionInfo])
     }
 
     func test_resolveHosts_validActionTargetInfo_withTopLevelTargetInfos() throws {
@@ -237,12 +251,15 @@ extension XCSchemeInfoPrePostActionInfoTests {
         )
         let prePostActionInfo = try XCSchemeInfo.PrePostActionInfo(
             prePostAction: prePostAction,
+            buildConfigurationName: buildConfigurationName,
             targetResolver: targetResolver,
-            targetIDsByLabel: try xcodeScheme.resolveTargetIDs(
+            targetIDsByLabelAndConfiguration: try xcodeScheme.resolveTargetIDs(
                 targetResolver: targetResolver,
+                xcodeConfigurations: targetResolver.targets["A 2"]!
+                    .xcodeConfigurations,
                 runnerLabel: runnerLabel
             ),
-            context: "Building PrePostAction Info"
+            context: "building `PrePostActionInfo`"
         )
         let topLevelTargetInfos: [XCSchemeInfo.TargetInfo] = [
             .init(
@@ -276,7 +293,7 @@ extension XCSchemeInfoPrePostActionInfoTests {
             expandVariablesBasedOn: resolvedVariableExpansion,
             script: "script text"
         )
-        XCTAssertEqual(resolvedPrePostActionInfos, [expectedActionInfo])
+        XCTAssertNoDifference(resolvedPrePostActionInfos, [expectedActionInfo])
     }
 
     func test_resolveHosts_validActionTargetInfo_withoutHostInfos_withoutTopLevelTargetInfos() throws {
@@ -289,12 +306,15 @@ extension XCSchemeInfoPrePostActionInfoTests {
         )
         let prePostActionInfo = try XCSchemeInfo.PrePostActionInfo(
             prePostAction: prePostAction,
+            buildConfigurationName: buildConfigurationName,
             targetResolver: targetResolver,
-            targetIDsByLabel: try xcodeScheme.resolveTargetIDs(
+            targetIDsByLabelAndConfiguration: try xcodeScheme.resolveTargetIDs(
                 targetResolver: targetResolver,
+                xcodeConfigurations: targetResolver.targets["A 2"]!
+                    .xcodeConfigurations,
                 runnerLabel: runnerLabel
             ),
-            context: "Building PrePostAction Info"
+            context: "building `PrePostActionInfo`"
         )
 
         // when

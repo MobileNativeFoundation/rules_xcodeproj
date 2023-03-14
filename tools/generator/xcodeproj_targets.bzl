@@ -12,6 +12,20 @@ _TOOL_TARGET = "//tools/swiftc_stub:swiftc"
 
 TOP_LEVEL_TARGETS = [_APP_TARGET, _TEST_TARGET, _TOOL_TARGET]
 
+XCODE_CONFIGURATIONS = {
+    "Debug": {
+        "//command_line_option:compilation_mode": "dbg",
+    },
+    # Profile and Release are identical to exercise identical configuration
+    # handling (which includes code paths in both Starlark and the generator)
+    "Profile": {
+        "//command_line_option:compilation_mode": "opt",
+    },
+    "Release": {
+        "//command_line_option:compilation_mode": "opt",
+    },
+}
+
 SCHEME_AUTOGENERATION_MODE = "none"
 
 # tl;dr The `tools/generator` custom Xcode schemes are wrapped in a function
@@ -80,6 +94,7 @@ def get_xcode_schemes():
                     "/tmp/specs/xcodeproj.generator-targets_spec.6.json",
                     "/tmp/specs/xcodeproj.generator-targets_spec.7.json",
                 ],
+                build_configuration = "Release",
                 # This is not necessary for the generator. It is here to help
                 # verify that custom environment variables are passed along.
                 env = {"CUSTOM_ENV_VAR": "hello"},
@@ -110,6 +125,7 @@ def get_xcode_schemes():
                     "/tmp/specs/xcodeproj.generator-targets_spec.6.json",
                     "/tmp/specs/xcodeproj.generator-targets_spec.7.json",
                 ],
+                build_configuration = "Profile",
                 working_directory = "$(BUILD_WORKSPACE_DIRECTORY)",
             ),
             test_action = xcode_schemes.test_action(

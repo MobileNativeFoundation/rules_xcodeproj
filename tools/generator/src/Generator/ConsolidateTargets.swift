@@ -35,15 +35,18 @@ extension Generator {
             for id in ids {
                 let target = targets[id]!
                 let platform = target.platform
-                let distinguisher = XcodeConfigurationAndPlatformVariant(
-                    xcodeConfiguration: target.xcodeConfiguration,
-                    platformVariant: platform.variant
-                )
                 let configuration = PlatformAndConfiguration(
                     platform: platform,
                     configuration: target.configuration
                 )
-                configurations[distinguisher, default: [:]][configuration] = id
+                for xcodeConfiguration in target.xcodeConfigurations {
+                    let distinguisher = XcodeConfigurationAndPlatformVariant(
+                        xcodeConfiguration: xcodeConfiguration,
+                        platformVariant: platform.variant
+                    )
+                    configurations[distinguisher, default: [:]][configuration] =
+                        id
+                }
             }
 
             var buckets: [Int: Set<TargetID>] = [:]
@@ -360,10 +363,19 @@ extension ConsolidatedTarget {
                 let lhsTarget = lhs.value
                 let rhsTarget = rhs.value
                 guard
-                    lhsTarget.xcodeConfiguration == rhsTarget.xcodeConfiguration
+                    lhsTarget.xcodeConfigurations ==
+                        rhsTarget.xcodeConfigurations
                 else {
-                    return lhsTarget.xcodeConfiguration <
-                        rhsTarget.xcodeConfiguration
+                    for (lhsConfig, rhsConfig) in zip(
+                        lhsTarget.xcodeConfigurations,
+                        rhsTarget.xcodeConfigurations
+                    ) {
+                        guard lhsConfig == rhsConfig else {
+                            return lhsConfig < rhsConfig
+                        }
+                    }
+                    return lhsTarget.xcodeConfigurations.count <
+                        rhsTarget.xcodeConfigurations.count
                 }
                 return lhsTarget.buildSettingConditional <
                     rhsTarget.buildSettingConditional

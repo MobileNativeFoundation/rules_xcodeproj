@@ -146,6 +146,7 @@ class Generator {
             targets,
             buildMode,
             project.minimumXcodeVersion,
+            project.xcodeConfigurations,
             project.defaultXcodeConfiguration,
             pbxTargets,
             project.targetHosts,
@@ -169,6 +170,7 @@ class Generator {
         var schemes = try environment.createCustomXCSchemes(
             project.customXcodeSchemes,
             buildMode,
+            project.xcodeConfigurations,
             project.defaultXcodeConfiguration,
             targetResolver,
             project.runnerLabel,

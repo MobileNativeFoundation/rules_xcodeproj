@@ -47,9 +47,12 @@ extension XCSchemeInfoBuildActionInfoTests {
         // Hence, the "A 2" target from the scheme will not appear in the `BuildAction`.
         let actual = try XCSchemeInfo.BuildActionInfo(
             buildAction: xcodeScheme.buildAction,
+            buildConfigurationName: buildConfigurationName,
             targetResolver: targetResolver,
-            targetIDsByLabel: try xcodeScheme.resolveTargetIDs(
+            targetIDsByLabelAndConfiguration: try xcodeScheme.resolveTargetIDs(
                 targetResolver: targetResolver,
+                xcodeConfigurations: targetResolver.targets["A 1"]!
+                    .xcodeConfigurations,
                 runnerLabel: runnerLabel
             )
         )
@@ -87,6 +90,9 @@ class XCSchemeInfoBuildActionInfoTests: XCTestCase {
         directories: directories,
         referencedContainer: directories.containerReference
     )
+
+    lazy var buildConfigurationName = targetResolver.targets["A 1"]!
+            .xcodeConfigurations.first!
 
     lazy var pbxTargetsDict = targetResolver.pbxTargets
 

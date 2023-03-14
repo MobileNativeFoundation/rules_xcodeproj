@@ -51,22 +51,27 @@ final class ConsolidateTargetsTests: XCTestCase {
 
         let targets: [TargetID: Target] = [
             "A-Simulator-Debug": .mock(
-                xcodeConfiguration: "Debug",
+                xcodeConfigurations: ["Debug"],
                 platform: .simulator(),
                 product: .init(type: .staticLibrary, name: "A", path: "A/T")
             ),
             "A-Simulator-Release": .mock(
-                xcodeConfiguration: "Release",
+                xcodeConfigurations: ["Release"],
+                platform: .simulator(),
+                product: .init(type: .staticLibrary, name: "A", path: "A/T")
+            ),
+            "A-Simulator-Profile": .mock(
+                xcodeConfigurations: ["Profile"],
                 platform: .simulator(),
                 product: .init(type: .staticLibrary, name: "A", path: "A/T")
             ),
             "A-Device-Debug": .mock(
-                xcodeConfiguration: "Debug",
+                xcodeConfigurations: ["Debug"],
                 platform: .device(),
                 product: .init(type: .staticLibrary, name: "A", path: "A/T")
             ),
-            "A-Device-Release": .mock(
-                xcodeConfiguration: "Release",
+            "A-Device-ReleaseProfile": .mock(
+                xcodeConfigurations: ["Release", "Profile"],
                 platform: .device(),
                 product: .init(type: .staticLibrary, name: "A", path: "A/T")
             ),
@@ -77,8 +82,9 @@ final class ConsolidateTargetsTests: XCTestCase {
                 [
                     "A-Simulator-Debug",
                     "A-Simulator-Release",
+                    "A-Simulator-Profile",
                     "A-Device-Debug",
-                    "A-Device-Release",
+                    "A-Device-ReleaseProfile",
                 ],
             ]
         )
@@ -110,46 +116,46 @@ final class ConsolidateTargetsTests: XCTestCase {
 
         let targets: [TargetID: Target] = [
             "A-Simulator-Debug": .mock(
-                xcodeConfiguration: "Debug",
+                xcodeConfigurations: ["Debug"],
                 platform: .simulator(),
                 product: .init(type: .staticLibrary, name: "A", path: "A1/T"),
                 dependencies: ["B-Simulator-Debug"]
             ),
             "A-Simulator-Release": .mock(
-                xcodeConfiguration: "Release",
+                xcodeConfigurations: ["Release"],
                 platform: .simulator(),
                 product: .init(type: .staticLibrary, name: "A", path: "A2/T"),
                 dependencies: ["B-Simulator-Release"]
             ),
             "A-Device-Debug": .mock(
-                xcodeConfiguration: "Debug",
+                xcodeConfigurations: ["Debug"],
                 platform: .device(),
                 product: .init(type: .staticLibrary, name: "A", path: "A3/T"),
                 dependencies: ["C-Device-Debug"]
             ),
             "A-Device-Release": .mock(
-                xcodeConfiguration: "Release",
+                xcodeConfigurations: ["Release"],
                 platform: .device(),
                 product: .init(type: .staticLibrary, name: "A", path: "A4/T"),
                 dependencies: ["C-Device-Release"]
             ),
             "B-Simulator-Debug": .mock(
-                xcodeConfiguration: "Debug",
+                xcodeConfigurations: ["Debug"],
                 platform: .simulator(),
                 product: .init(type: .staticLibrary, name: "B", path: "B1/T")
             ),
             "B-Simulator-Release": .mock(
-                xcodeConfiguration: "Release",
+                xcodeConfigurations: ["Release"],
                 platform: .simulator(),
                 product: .init(type: .staticLibrary, name: "B", path: "B2/T")
             ),
             "C-Device-Debug": .mock(
-                xcodeConfiguration: "Debug",
+                xcodeConfigurations: ["Debug"],
                 platform: .device(),
                 product: .init(type: .staticLibrary, name: "C", path: "C1/T")
             ),
             "C-Device-Release": .mock(
-                xcodeConfiguration: "Release",
+                xcodeConfigurations: ["Release"],
                 platform: .device(),
                 product: .init(type: .staticLibrary, name: "C", path: "C2/T")
             ),

@@ -103,18 +103,18 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
             "VALIDATE_WORKSPACE": false,
         ]
 
-        let releaseConfiguration = XCBuildConfiguration(
-            name: "Release",
-            buildSettings: buildSettings
-        )
-        expectedPBXProj.add(object: releaseConfiguration)
         let profileConfiguration = XCBuildConfiguration(
             name: "Profile",
             buildSettings: buildSettings
         )
         expectedPBXProj.add(object: profileConfiguration)
+        let releaseConfiguration = XCBuildConfiguration(
+            name: "Release",
+            buildSettings: buildSettings
+        )
+        expectedPBXProj.add(object: releaseConfiguration)
         let expectedBuildConfigurationList = XCConfigurationList(
-            buildConfigurations: [releaseConfiguration, profileConfiguration],
+            buildConfigurations: [profileConfiguration, releaseConfiguration],
             defaultConfigurationName: "Profile"
         )
         expectedPBXProj.add(object: expectedBuildConfigurationList)
@@ -259,18 +259,18 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
             "VALIDATE_WORKSPACE": false,
         ]
 
+        let profileConfiguration = XCBuildConfiguration(
+            name: "Profile",
+            buildSettings: buildSettings
+        )
         let releaseConfiguration = XCBuildConfiguration(
             name: "Release",
             buildSettings: buildSettings
         )
         expectedPBXProj.add(object: releaseConfiguration)
-        let profileConfiguration = XCBuildConfiguration(
-            name: "Profile",
-            buildSettings: buildSettings
-        )
         expectedPBXProj.add(object: profileConfiguration)
         let expectedBuildConfigurationList = XCConfigurationList(
-            buildConfigurations: [releaseConfiguration, profileConfiguration],
+            buildConfigurations: [profileConfiguration, releaseConfiguration],
             defaultConfigurationName: "Profile"
         )
         expectedPBXProj.add(object: expectedBuildConfigurationList)

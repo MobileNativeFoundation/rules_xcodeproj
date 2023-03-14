@@ -58,20 +58,27 @@ extension XCSchemeInfo.BuildActionInfo {
 extension XCSchemeInfo.BuildActionInfo {
     init?(
         buildAction: XcodeScheme.BuildAction?,
+        buildConfigurationName: String,
         targetResolver: TargetResolver,
-        targetIDsByLabel: [BazelLabel: TargetID]
+        targetIDsByLabelAndConfiguration: [String: [BazelLabel: TargetID]]
     ) throws {
         guard let buildAction = buildAction else {
             return nil
         }
-        let buildTargetInfos: [XCSchemeInfo.BuildTargetInfo] = try buildAction.targets
+
+        let buildTargetInfos: [XCSchemeInfo.BuildTargetInfo] = try buildAction
+            .targets
             .map { buildTarget in
-                let targetID = try targetIDsByLabel.value(
+                let targetID = try targetIDsByLabelAndConfiguration.targetID(
                     for: buildTarget.label,
-                    context: "creating a `BuildActionInfo`"
-                )
+                    preferredConfiguration: buildConfigurationName
+                ).orThrow("""
+Failed to find a `TargetID` for "\(buildTarget.label)" while creating a \
+`BuildActionInfo`
+""")
                 return XCSchemeInfo.BuildTargetInfo(
-                    targetInfo: try targetResolver.targetInfo(targetID: targetID),
+                    targetInfo: try targetResolver
+                        .targetInfo(targetID: targetID),
                     buildFor: buildTarget.buildFor
                 )
             }
@@ -79,13 +86,17 @@ extension XCSchemeInfo.BuildActionInfo {
         try self.init(
             targets: buildTargetInfos,
             preActions: buildAction.preActions.prePostActionInfos(
+                buildConfigurationName: buildConfigurationName,
                 targetResolver: targetResolver,
-                targetIDsByLabel: targetIDsByLabel,
+                targetIDsByLabelAndConfiguration:
+                    targetIDsByLabelAndConfiguration,
                 context: "creating a pre-action `PrePostActionInfo`"
             ),
             postActions: buildAction.postActions.prePostActionInfos(
+                buildConfigurationName: buildConfigurationName,
                 targetResolver: targetResolver,
-                targetIDsByLabel: targetIDsByLabel,
+                targetIDsByLabelAndConfiguration:
+                    targetIDsByLabelAndConfiguration,
                 context: "creating a post-action `PrePostActionInfo`"
             )
         )

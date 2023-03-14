@@ -58,8 +58,9 @@ extension XCSchemeInfoProfileActionInfoTests {
     func test_customSchemeInit_noProfileAction() throws {
         let actual = try XCSchemeInfo.ProfileActionInfo(
             profileAction: nil,
+            defaultBuildConfigurationName: "Random",
             targetResolver: targetResolver,
-            targetIDsByLabel: [:]
+            targetIDsByLabelAndConfiguration: [:]
         )
         XCTAssertNil(actual)
     }
@@ -67,9 +68,13 @@ extension XCSchemeInfoProfileActionInfoTests {
     func test_customSchemeInit_withProfileAction() throws {
         let actual = try XCSchemeInfo.ProfileActionInfo(
             profileAction: xcodeScheme.profileAction,
+            defaultBuildConfigurationName: appTarget
+                .defaultBuildConfigurationName,
             targetResolver: targetResolver,
-            targetIDsByLabel: try xcodeScheme.resolveTargetIDs(
+            targetIDsByLabelAndConfiguration: try xcodeScheme.resolveTargetIDs(
                 targetResolver: targetResolver,
+                xcodeConfigurations: targetResolver.targets["A 2"]!
+                    .xcodeConfigurations,
                 runnerLabel: runnerLabel
             )
         )

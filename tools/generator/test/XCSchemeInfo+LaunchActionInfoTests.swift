@@ -216,8 +216,9 @@ extension XCSchemeInfoLaunchActionInfoTests {
     func test_customSchemeInit_noLaunchAction() throws {
         let actual = try XCSchemeInfo.LaunchActionInfo(
             launchAction: nil,
+            defaultBuildConfigurationName: "Random",
             targetResolver: targetResolver,
-            targetIDsByLabel: [:]
+            targetIDsByLabelAndConfiguration: [:]
         )
         XCTAssertNil(actual)
     }
@@ -225,9 +226,13 @@ extension XCSchemeInfoLaunchActionInfoTests {
     func test_customSchemeInit_withLaunchAction() throws {
         let actual = try XCSchemeInfo.LaunchActionInfo(
             launchAction: xcodeScheme.launchAction,
+            defaultBuildConfigurationName: appPBXTarget
+                .defaultBuildConfigurationName,
             targetResolver: targetResolver,
-            targetIDsByLabel: try xcodeScheme.resolveTargetIDs(
+            targetIDsByLabelAndConfiguration: try xcodeScheme.resolveTargetIDs(
                 targetResolver: targetResolver,
+                xcodeConfigurations: targetResolver.targets["A 2"]!
+                    .xcodeConfigurations,
                 runnerLabel: runnerLabel
             )
         )

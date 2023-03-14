@@ -72,9 +72,11 @@ final class DisambiguateTargetsTests: XCTestCase {
 
         let targets: [TargetID: Target] = [
             "A 1": Target.mock(
+                xcodeConfigurations: ["Debug"], // No effect
                 product: .init(type: .staticLibrary, name: "A", path: "")
             ),
             "A 2": Target.mock(
+                xcodeConfigurations: ["Release"], // No effect
                 product: .init(type: .application, name: "A", path: "")
             ),
             "B": Target.mock(
@@ -167,10 +169,12 @@ final class DisambiguateTargetsTests: XCTestCase {
 
         let targets: [TargetID: Target] = [
             "A 1": Target.mock(
+                xcodeConfigurations: ["Debug"], // No effect
                 platform: .macOS(arch: "arm64"),
                 product: .init(type: .staticLibrary, name: "A", path: "")
             ),
             "A 2": Target.mock(
+                xcodeConfigurations: ["Release"], // No effect
                 platform: .macOS(arch: "x86_64"),
                 product: .init(type: .staticLibrary, name: "A", path: "")
             ),
@@ -212,10 +216,12 @@ final class DisambiguateTargetsTests: XCTestCase {
 
         let targets: [TargetID: Target] = [
             "A 1": Target.mock(
+                xcodeConfigurations: ["Debug"], // No effect
                 platform: .device(arch: "arm64", minimumOsVersion: "15.1"),
                 product: .init(type: .staticLibrary, name: "A", path: "")
             ),
             "A 2": Target.mock(
+                xcodeConfigurations: ["Release"], // No effect
                 platform: .simulator(arch: "x86_64", minimumOsVersion: "13.2"),
                 product: .init(type: .staticLibrary, name: "A", path: "")
             ),
@@ -257,10 +263,12 @@ final class DisambiguateTargetsTests: XCTestCase {
 
         let targets: [TargetID: Target] = [
             "A 1": Target.mock(
+                xcodeConfigurations: ["Debug"], // No effect
                 platform: .device(arch: "arm64"),
                 product: .init(type: .staticLibrary, name: "A", path: "")
             ),
             "A 2": Target.mock(
+                xcodeConfigurations: ["Release"], // No effect
                 platform: .simulator(arch: "x86_64"),
                 product: .init(type: .staticLibrary, name: "A", path: "")
             ),
@@ -300,22 +308,22 @@ final class DisambiguateTargetsTests: XCTestCase {
 
         let targets: [TargetID: Target] = [
             "A 1 - R": Target.mock(
-                xcodeConfiguration: "Release",
+                xcodeConfigurations: ["Release"],
                 platform: .device(arch: "arm64"),
                 product: .init(type: .staticLibrary, name: "A", path: "")
             ),
             "A 1 - D": Target.mock(
-                xcodeConfiguration: "Debug",
+                xcodeConfigurations: ["Debug"],
                 platform: .device(arch: "arm64"),
                 product: .init(type: .staticLibrary, name: "A", path: "")
             ),
             "A 2 - R": Target.mock(
-                xcodeConfiguration: "Release",
+                xcodeConfigurations: ["Release"],
                 platform: .simulator(arch: "x86_64"),
                 product: .init(type: .staticLibrary, name: "A", path: "")
             ),
             "A 2 - D": Target.mock(
-                xcodeConfiguration: "Debug",
+                xcodeConfigurations: ["Debug"],
                 platform: .simulator(arch: "x86_64"),
                 product: .init(type: .staticLibrary, name: "A", path: "")
             ),
@@ -364,10 +372,12 @@ final class DisambiguateTargetsTests: XCTestCase {
 
         let targets: [TargetID: Target] = [
             "A 1": Target.mock(
+                xcodeConfigurations: ["Debug"], // No effect
                 platform: .device(arch: "arm64", minimumOsVersion: "15.1"),
                 product: .init(type: .staticLibrary, name: "A", path: "")
             ),
             "A 2": Target.mock(
+                xcodeConfigurations: ["Release"], // No effect
                 platform: .macOS(arch: "x86_64", minimumOsVersion: "12.0"),
                 product: .init(type: .staticLibrary, name: "A", path: "")
             ),
@@ -428,6 +438,51 @@ final class DisambiguateTargetsTests: XCTestCase {
             "A 1": "A (Library) (iOS)",
             "A 2": "A (Library) (macOS)",
             "A 3": "A (App)",
+            "B": "B",
+        ]
+
+        // Act
+
+        let disambiguatedTargets = Generator.disambiguateTargets(
+            consolidatedTargets
+        )
+
+        // Assert
+
+        XCTAssertNoDifference(
+            disambiguatedTargets.targets.mapValues(\.name)
+                .map(KeyAndValue.init).sorted(),
+            expectedTargetNames.map(KeyAndValue.init).sorted()
+        )
+        XCTAssertNoDifference(
+            disambiguatedTargets.targets.mapValues(\.target)
+                .map(KeyAndValue.init).sorted(),
+            consolidatedTargets.targets.map(KeyAndValue.init).sorted()
+        )
+    }
+
+    // MARK: - Xcode Configuration
+
+    func test_xcodeConfiguration() throws {
+        // Arrange
+
+        let targets: [TargetID: Target] = [
+            "A 1": Target.mock(
+                xcodeConfigurations: ["Debug"],
+                product: .init(type: .staticLibrary, name: "A", path: "")
+            ),
+            "A 2": Target.mock(
+                xcodeConfigurations: ["Release", "Profile"],
+                product: .init(type: .staticLibrary, name: "A", path: "")
+            ),
+            "B": Target.mock(
+                product: .init(type: .staticLibrary, name: "B", path: "")
+            ),
+        ]
+        let consolidatedTargets = ConsolidatedTargets(targets: targets)
+        let expectedTargetNames: [ConsolidatedTarget.Key: String] = [
+            "A 1": "A (Debug)",
+            "A 2": "A (Profile, Release)",
             "B": "B",
         ]
 

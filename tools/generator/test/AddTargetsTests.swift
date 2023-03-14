@@ -14,7 +14,6 @@ final class AddTargetsTests: XCTestCase {
         let expectedPBXProj = Fixtures.pbxProj()
         let expectedMainGroup = expectedPBXProj.rootObject!.mainGroup!
 
-        let generatorLabel = "@//:project"
         let consolidatedTargets = Fixtures.consolidatedTargets
         let workspaceDirectory: Path = "/app-project"
         let projectRootDirectory: Path = "~/Developer/project"

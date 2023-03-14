@@ -426,3 +426,25 @@ extension Sequence where Element == XCScheme.BuildAction.Entry.BuildFor {
         return [.running, .testing, .profiling, .archiving, .analyzing]
     }
 }
+
+extension Dictionary where Key == String, Value == [BazelLabel: TargetID] {
+    /// Tries to find a `TargetID` for `label` with `preferredConfiguration`,
+    /// and if that fails, find the first one alphabetically. Throw if none are
+    /// found.
+    func targetID(
+        for label: BazelLabel,
+        preferredConfiguration: String
+    ) -> TargetID? {
+        if let targetID = self[preferredConfiguration]?[label] {
+            return targetID
+        }
+
+        for (_, targetIDsByLabel) in sorted(by: { $0.key < $1.key }) {
+            if let targetID = targetIDsByLabel[label] {
+                return targetID
+            }
+        }
+
+        return nil
+    }
+}

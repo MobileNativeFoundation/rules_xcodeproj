@@ -4,14 +4,14 @@ import XCTest
 
 extension DictionaryExtensionTests {
     func test_value_keyExists() throws {
-        let actual = try targetIDsByLabel.value(for: labelA)
+        let actual = try targetIDsByLabelAndConfiguration.value(for: labelA)
         XCTAssertEqual(actual, targetA)
     }
 
     func test_value_keyDoesNotExist_noContext() throws {
         var thrown: Error?
         XCTAssertThrowsError(
-            try targetIDsByLabel.value(for: "@//:does_not_exist")
+            try targetIDsByLabelAndConfiguration.value(for: "@//:does_not_exist")
         ) {
             thrown = $0
         }
@@ -32,7 +32,7 @@ function: test_value_keyDoesNotExist_noContext()
     func test_value_keyDoesNotExist_withContext() throws {
         var thrown: Error?
         XCTAssertThrowsError(
-            try targetIDsByLabel.value(
+            try targetIDsByLabelAndConfiguration.value(
                 for: "@//:does_not_exist",
                 context: "performing a test"
             )
@@ -53,7 +53,7 @@ while performing a test.
         let customErrorMessage = "Custom error message."
         var thrown: Error?
         XCTAssertThrowsError(
-            try targetIDsByLabel.value(
+            try targetIDsByLabelAndConfiguration.value(
                 for: "@//:does_not_exist",
                 message: customErrorMessage
             )
@@ -72,5 +72,5 @@ class DictionaryExtensionTests: XCTestCase {
     let labelA: BazelLabel = "@//:A"
     let targetA: TargetID = "targetA"
 
-    lazy var targetIDsByLabel: [BazelLabel: TargetID] = [labelA: targetA]
+    lazy var targetIDsByLabelAndConfiguration: [BazelLabel: TargetID] = [labelA: targetA]
 }

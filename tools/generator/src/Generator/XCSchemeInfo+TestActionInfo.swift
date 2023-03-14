@@ -93,33 +93,43 @@ extension XCSchemeInfo.TestActionInfo {
 extension XCSchemeInfo.TestActionInfo {
     init?(
         testAction: XcodeScheme.TestAction?,
+        defaultBuildConfigurationName: String,
         targetResolver: TargetResolver,
-        targetIDsByLabel: [BazelLabel: TargetID],
+        targetIDsByLabelAndConfiguration: [String: [BazelLabel: TargetID]],
         args: [TargetID: [String]],
         envs: [TargetID: [String: String]]
     ) throws {
         guard let testAction = testAction else {
           return nil
         }
+
         let expandVariablesBasedOn = try testAction.expandVariablesBasedOn ??
             testAction.targets.sortedLocalizedStandard().first.orThrow("""
 Expected at least one target in `TestAction.targets`
 """)
 
+        let buildConfigurationName = testAction.buildConfigurationName ??
+            defaultBuildConfigurationName
+
         var env: [String: String] = testAction.env ?? [:]
-        let testActionTargetIdsLabels: [(TargetID, BazelLabel)] = testAction.targets.compactMap { label in
-            guard let targetId: TargetID = targetIDsByLabel[label]
-            else {
-                return nil
+        let testActionTargetIdsLabels: [(TargetID, BazelLabel)] =
+            testAction.targets.compactMap { label in
+                guard let targetId = targetIDsByLabelAndConfiguration.targetID(
+                    for: label,
+                    preferredConfiguration: buildConfigurationName
+                ) else {
+                    return nil
+                }
+                return (targetId, label)
             }
-            return (targetId, label)
-        }
         for tuple in testActionTargetIdsLabels {
             let testActionTargetId: TargetID = tuple.0
             let testActionLabel: BazelLabel = tuple.1
             if let testActionTargetEnv: [String: String] = envs[testActionTargetId] {
                 for (key, newValue) in testActionTargetEnv {
-                    if let existingValue: String = env[key], existingValue != newValue {
+                    if let existingValue: String = env[key],
+                       existingValue != newValue
+                    {
                         let errorMessage: String = """
 ERROR: '\(testActionLabel)' defines a value for '\(key)' ('\(newValue)') that \
 doesn't match the existing value of '\(existingValue)' from another target in \
@@ -134,18 +144,17 @@ the same scheme.
 
         let targetInfos = try testAction.targets.map { label in
             return try targetResolver.targetInfo(
-                targetID: try targetIDsByLabel.value(
+                targetID: try targetIDsByLabelAndConfiguration.targetID(
                     for: label,
-                    context: "creating a `TestActionInfo`"
-                )
+                    preferredConfiguration: buildConfigurationName
+                ).orThrow("""
+Failed to find a `TargetID` for "\(label)" while creating a `TestActionInfo`
+""")
             )
         }
 
         try self.init(
-            buildConfigurationName: try testAction.buildConfigurationName ??
-                targetInfos.first
-                .orThrow("Expected at least one target in `TestAction.targets`")
-                .pbxTarget.defaultBuildConfigurationName,
+            buildConfigurationName: buildConfigurationName,
             targetInfos: targetInfos,
             args: testAction.args?.extractCommandLineArguments(),
             diagnostics: XCSchemeInfo.DiagnosticsInfo(
@@ -153,19 +162,26 @@ the same scheme.
             ),
             env: env.isEmpty ? testAction.env : env,
             expandVariablesBasedOn: try targetResolver.targetInfo(
-                targetID: try targetIDsByLabel.value(
+                targetID: try targetIDsByLabelAndConfiguration.targetID(
                     for: expandVariablesBasedOn,
-                    context: "creating a `VariableExpansionContextInfo`"
-                )
+                    preferredConfiguration: buildConfigurationName
+                ).orThrow("""
+Failed to find a `TargetID` for "\(expandVariablesBasedOn)" while creating a \
+`VariableExpansionContextInfo`
+""")
             ),
             preActions: testAction.preActions.prePostActionInfos(
+                buildConfigurationName: buildConfigurationName,
                 targetResolver: targetResolver,
-                targetIDsByLabel: targetIDsByLabel,
+                targetIDsByLabelAndConfiguration:
+                    targetIDsByLabelAndConfiguration,
                 context: "creating a pre-action `PrePostActionInfo`"
             ),
             postActions: testAction.postActions.prePostActionInfos(
+                buildConfigurationName: buildConfigurationName,
                 targetResolver: targetResolver,
-                targetIDsByLabel: targetIDsByLabel,
+                targetIDsByLabelAndConfiguration:
+                    targetIDsByLabelAndConfiguration,
                 context: "creating a post-action `PrePostActionInfo`"
             )
         )

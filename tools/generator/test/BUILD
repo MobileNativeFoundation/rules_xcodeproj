@@ -1,6 +1,13 @@
 load("@build_bazel_rules_apple//apple:macos.bzl", "macos_unit_test")
 load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
 
+config_setting(
+    name = "release_build",
+    values = {
+        "compilation_mode": "opt",
+    },
+)
+
 swift_library(
     name = "tests.library",
     testonly = True,
@@ -8,8 +15,14 @@ swift_library(
     module_name = "tests",
     deps = [
         "//tools/generator:generator.library",
-        "@com_github_pointfreeco_swift_custom_dump//:CustomDump",
-    ],
+    ] + select({
+        ":release_build": [],
+        # This conditional dependency is to exercise how the Xcode configuration
+        # logic handles conditional dependencies
+        "//conditions:default": [
+            "@com_github_pointfreeco_swift_custom_dump//:CustomDump",
+        ],
+    }),
 )
 
 macos_unit_test(

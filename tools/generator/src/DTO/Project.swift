@@ -25,7 +25,7 @@ struct Project: Equatable {
     let options: Options
     let bazel: String
     let bazelConfig: String
-    let xcodeConfigurations: [String]
+    let xcodeConfigurations: Set<String>
     let defaultXcodeConfiguration: String
     let generatorLabel: BazelLabel
     let runnerLabel: BazelLabel
@@ -75,7 +75,7 @@ extension Project: Decodable {
             .decodeIfPresent(String.self, forKey: .bazel) ?? "bazel"
         bazelConfig = try container.decode(String.self, forKey: .bazelConfig)
         xcodeConfigurations = try container
-            .decodeIfPresent([String].self, forKey: .xcodeConfigurations) ??
+            .decodeIfPresent(Set<String>.self, forKey: .xcodeConfigurations) ??
             ["Debug"]
         defaultXcodeConfiguration = try container
             .decodeIfPresent(String.self, forKey: .defaultXcodeConfiguration) ??

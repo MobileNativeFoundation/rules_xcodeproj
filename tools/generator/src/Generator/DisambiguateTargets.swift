@@ -172,6 +172,7 @@ struct ProductTypeComponents {
     ) -> [String] {
         var distinguishers: [String] = []
         var consolidatedDistinguishers: OrderedSet<String> = []
+        var xcodeConfigurations: Set<String> = []
         let targets = target.sortedTargets
 
         if includeProductType {
@@ -199,18 +200,30 @@ struct ProductTypeComponents {
         }
 
         for target in targets {
-            if let osDistinguisher = oses[target.platform.os]!.distinguisher(
+            let osDistinguisher = oses[target.platform.os]!.distinguisher(
                 target: target,
                 consolidatedKey: key,
                 includeOS: includeOS
-            ) {
-                consolidatedDistinguishers.append(osDistinguisher)
+            )
+
+            if !osDistinguisher.components.isEmpty  {
+                consolidatedDistinguishers.append(
+                    osDistinguisher.components.joined(separator: " ")
+                )
             }
+
+            xcodeConfigurations.formUnion(osDistinguisher.xcodeConfigurations)
         }
 
         if !consolidatedDistinguishers.isEmpty {
             distinguishers.append(
                 consolidatedDistinguishers.joined(separator: ", ")
+            )
+        }
+
+        if !xcodeConfigurations.isEmpty {
+            distinguishers.append(
+                xcodeConfigurations.sorted().joined(separator: ", ")
             )
         }
 
@@ -249,6 +262,11 @@ struct ProductTypeComponents {
 /// operating system name and provides the capability to generate a
 /// distinguisher string for any of the `Target`s it collected properties from.
 struct OperatingSystemComponents {
+    struct Distinguisher {
+        let components: [String]
+        let xcodeConfigurations: Set<String>
+    }
+
     /// Collects which minimum versions each `ConsolidatedTarget` contains.
     private var minimumVersionsByKeys: [
         ConsolidatedTarget.Key: Set<SemanticVersion>
@@ -289,13 +307,11 @@ struct OperatingSystemComponents {
     ///     `ConsolidatedTarget` that `target` is a part of.
     ///   - includeOS: If `true`, the operating system name will be
     ///     part of the string returned.
-    ///
-    /// - Returns: `nil` if no distinguisher is needed.
     func distinguisher(
         target: Target,
         consolidatedKey: ConsolidatedTarget.Key,
         includeOS: Bool
-    ) -> String? {
+    ) -> Distinguisher {
         var components: [String] = []
         let platform = target.platform
         let os = platform.os
@@ -333,7 +349,10 @@ struct OperatingSystemComponents {
             components.append(contentsOf: suffix)
         }
 
-        return components.isEmpty ? nil : components.joined(separator: " ")
+        return Distinguisher(
+            components: components,
+            xcodeConfigurations: versionDistinguisher?.xcodeConfigurations ?? []
+        )
     }
 }
 
@@ -344,6 +363,7 @@ struct VersionedOperatingSystemComponents {
     struct Distinguisher {
         let prefix: String?
         let suffix: [String]
+        let xcodeConfigurations: Set<String>
     }
 
     /// The set of `ConsolidatedTarget.Key`s among the targets passed to
@@ -416,7 +436,12 @@ struct VersionedOperatingSystemComponents {
             suffix.append(environmentSuffix)
         }
 
-        return Distinguisher(prefix: prefix, suffix: suffix)
+        return Distinguisher(
+            prefix: prefix,
+            suffix: suffix,
+            xcodeConfigurations: environmentDistinguisher?
+                .xcodeConfigurations ?? []
+        )
     }
 }
 
@@ -427,22 +452,25 @@ struct EnvironmentSystemComponents {
     struct Distinguisher {
         let prefix: String?
         let suffix: String?
+        let xcodeConfigurations: Set<String>
     }
 
     /// The set of `ConsolidatedTarget.Key`s among the targets passed to
     /// `add(target:consolidatedKey:)`.
     private var consolidatedKeys: Set<ConsolidatedTarget.Key> = []
 
-    /// The set of architectures among the targets passed to
-    /// `add(target:consolidatedKey:)`.
-    private var archs: Set<String> = []
+    /// For architectures among the `Target`s passed to
+    /// `add(target:consolidatedKey:)`, there will be an entry in
+    /// `archs`.
+    /// `ArchitectureComponents.add(target:consolidatedKey:)` will have
+    /// been called for each `Target`.
+    private var archs: [String: ArchitectureComponents] = [:]
 
     /// Adds another `Target` into consideration for `distinguisher()`.
     mutating func add(target: Target, consolidatedKey: ConsolidatedTarget.Key) {
-        let platform = target.platform
-
         consolidatedKeys.insert(consolidatedKey)
-        archs.insert(platform.arch)
+        archs[target.platform.arch, default: .init()]
+            .add(target: target, consolidatedKey: consolidatedKey)
     }
 
     /// Potentially generates user-facing strings that, along with a target
@@ -454,22 +482,90 @@ struct EnvironmentSystemComponents {
     ///
     /// - Parameters:
     ///   - target: The `Target` to generate a distinguisher for.
-    ///   - includeEnvironment: If `true`, the operating system version will be
-    ///     part of the `Distinguisher` returned.
+    ///   - includeEnvironment: If `true`, the platform environment will be part
+    ///     of the `Distinguisher` returned.
     func distinguisher(
         target: Target,
         includeEnvironment: Bool
     ) -> Distinguisher {
         let platform = target.platform
 
-        // We hide all but the OS version if the differences are within a
-        // consolidated target
+        // We hide all but the platform environment if the differences are
+        // within a consolidated target
         let needsSubcomponents = consolidatedKeys.count > 1
 
-        let prefix = needsSubcomponents && archs.count > 1 ? platform.arch : nil
+        let archDistinguisher: ArchitectureComponents.Distinguisher?
+        if needsSubcomponents {
+            archDistinguisher = archs[platform.arch]!.distinguisher(
+                target: target,
+                includeArch: archs.count > 1
+            )
+        } else {
+            archDistinguisher = nil
+        }
+
         let suffix = includeEnvironment ? platform.variant.environment : nil
 
-        return Distinguisher(prefix: prefix, suffix: suffix)
+        return Distinguisher(
+            prefix: archDistinguisher?.arch,
+            suffix: suffix,
+            xcodeConfigurations: archDistinguisher?.xcodeConfigurations ?? []
+        )
+    }
+}
+
+/// `ArchitectureComponents` collects properties of `Target`s for a
+/// given architecture and provides the capability to generate a distinguisher
+/// string for any of the `Target`s it collected properties from.
+struct ArchitectureComponents {
+    struct Distinguisher {
+        let arch: String?
+        let xcodeConfigurations: Set<String>
+    }
+
+    /// The set of `ConsolidatedTarget.Key`s among the targets passed to
+    /// `add(target:consolidatedKey:)`.
+    private var consolidatedKeys: Set<ConsolidatedTarget.Key> = []
+
+    /// The set of xcodeConfigurations among the targets passed to
+    /// `add(target:consolidatedKey:)`.
+    private var xcodeConfigurations: Set<String> = []
+
+    /// Adds another `Target` into consideration for `distinguisher()`.
+    mutating func add(target: Target, consolidatedKey: ConsolidatedTarget.Key) {
+        consolidatedKeys.insert(consolidatedKey)
+        xcodeConfigurations.formUnion(target.xcodeConfigurations)
+    }
+
+    /// Potentially generates user-facing strings that, along with a target
+    /// name and previous component distinguishers, uniquely distinguishes it
+    /// from targets with the same non-distinguished name.
+    ///
+    /// - Precondition: All targets have been added with
+    ///   `add(target:consolidatedKey:)` before this is called.
+    ///
+    /// - Parameters:
+    ///   - target: The `Target` to generate a distinguisher for.
+    ///   - includeArch: If `true`, the archiecture will be part of the
+    ///     `Distinguisher` returned.
+    func distinguisher(
+        target: Target,
+        includeArch: Bool
+    ) -> Distinguisher {
+        let platform = target.platform
+
+        // We hide all but the Xcode configuration if the differences are
+        // within a consolidated target
+        let needsSubcomponents = consolidatedKeys.count > 1
+
+        let xcodeConfigurations = needsSubcomponents &&
+            xcodeConfigurations.count > 1 ? target.xcodeConfigurations : []
+        let arch = includeArch ? platform.arch : nil
+
+        return Distinguisher(
+            arch: arch,
+            xcodeConfigurations: xcodeConfigurations
+        )
     }
 }
 
@@ -492,12 +588,12 @@ private extension Target {
     /// `ProductTypeComponents.distinguisher()` can return for this
     /// `Target`.
     var distinguisherKey: String {
-        return [
+        return ([
             platform.arch,
             platform.os.rawValue,
             platform.minimumOsVersion.pretty,
             platform.variant.environment,
-        ].joined(separator: "-")
+        ] + xcodeConfigurations).joined(separator: "-")
     }
 }
 
