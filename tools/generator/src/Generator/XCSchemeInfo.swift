@@ -121,6 +121,7 @@ extension XCSchemeInfo {
 extension XCSchemeInfo {
     init(
         scheme: XcodeScheme,
+        xcodeConfigurations: Set<String>,
         defaultBuildConfigurationName: String,
         targetResolver: TargetResolver,
         runnerLabel: BazelLabel,
@@ -129,6 +130,7 @@ extension XCSchemeInfo {
     ) throws {
         let targetIDsByLabelAndConfiguration = try scheme.resolveTargetIDs(
             targetResolver: targetResolver,
+            xcodeConfigurations: xcodeConfigurations,
             runnerLabel: runnerLabel
         )
         let schemeWithDefaults = try scheme.withDefaults

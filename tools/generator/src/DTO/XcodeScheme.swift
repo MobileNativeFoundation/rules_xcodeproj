@@ -133,8 +133,7 @@ extension Sequence where Element == XcodeScheme.PrePostAction {
     func prePostActionInfos(
         buildConfigurationName: String,
         targetResolver: TargetResolver,
-        targetIDsByLabelAndConfiguration:
-            [XcodeScheme.LabelAndConfiguration: TargetID],
+        targetIDsByLabelAndConfiguration: [String: [BazelLabel: TargetID]],
         context: String
     ) throws -> [XCSchemeInfo.PrePostActionInfo] {
         try map {

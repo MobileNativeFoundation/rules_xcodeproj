@@ -60,19 +60,22 @@ extension XCSchemeInfo.BuildActionInfo {
         buildAction: XcodeScheme.BuildAction?,
         buildConfigurationName: String,
         targetResolver: TargetResolver,
-        targetIDsByLabelAndConfiguration:
-            [XcodeScheme.LabelAndConfiguration: TargetID]
+        targetIDsByLabelAndConfiguration: [String: [BazelLabel: TargetID]]
     ) throws {
         guard let buildAction = buildAction else {
             return nil
         }
+
         let buildTargetInfos: [XCSchemeInfo.BuildTargetInfo] = try buildAction
             .targets
             .map { buildTarget in
-                let targetID = try targetIDsByLabelAndConfiguration.value(
-                    for: .init(buildTarget.label, buildConfigurationName),
-                    context: "creating a `BuildActionInfo`"
-                )
+                let targetID = try targetIDsByLabelAndConfiguration.targetID(
+                    for: buildTarget.label,
+                    preferredConfiguration: buildConfigurationName
+                ).orThrow("""
+Failed to find a `TargetID` for "\(buildTarget.label)" while creating a \
+`BuildActionInfo`
+""")
                 return XCSchemeInfo.BuildTargetInfo(
                     targetInfo: try targetResolver
                         .targetInfo(targetID: targetID),

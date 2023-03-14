@@ -108,6 +108,7 @@ struct Environment {
     let createCustomXCSchemes: (
         _ schemes: [XcodeScheme],
         _ buildMode: BuildMode,
+        _ xcodeConfigurations: Set<String>,
         _ defaultBuildConfigurationName: String,
         _ targetResolver: TargetResolver,
         _ xcodeprojLabel: BazelLabel,

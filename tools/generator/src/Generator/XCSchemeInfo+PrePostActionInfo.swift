@@ -23,8 +23,7 @@ extension XCSchemeInfo.PrePostActionInfo {
         prePostAction: XcodeScheme.PrePostAction,
         buildConfigurationName: String,
         targetResolver: TargetResolver,
-        targetIDsByLabelAndConfiguration:
-            [XcodeScheme.LabelAndConfiguration: TargetID],
+        targetIDsByLabelAndConfiguration: [String: [BazelLabel: TargetID]],
         context: String
     ) throws {
         guard let originalTargetLabel =
@@ -37,11 +36,17 @@ extension XCSchemeInfo.PrePostActionInfo {
             )
             return
         }
-        let targetID = try targetIDsByLabelAndConfiguration.value(
-            for: .init(originalTargetLabel, buildConfigurationName),
-            context: context
-        )
-        let expandVariablesBasedOn = try targetResolver.targetInfo(targetID: targetID)
+
+        let targetID = try targetIDsByLabelAndConfiguration.targetID(
+            for: originalTargetLabel,
+            preferredConfiguration: buildConfigurationName
+        ).orThrow("""
+Failed to find a `TargetID` for "\(originalTargetLabel)" while \(context)
+""")
+
+        let expandVariablesBasedOn = try targetResolver
+            .targetInfo(targetID: targetID)
+
         self.init(
             name: prePostAction.name,
             expandVariablesBasedOn: expandVariablesBasedOn,

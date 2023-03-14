@@ -138,8 +138,7 @@ extension XCSchemeInfo.LaunchActionInfo {
         launchAction: XcodeScheme.LaunchAction?,
         defaultBuildConfigurationName: String,
         targetResolver: TargetResolver,
-        targetIDsByLabelAndConfiguration:
-            [XcodeScheme.LabelAndConfiguration: TargetID]
+        targetIDsByLabelAndConfiguration: [String: [BazelLabel: TargetID]]
     ) throws {
         guard let launchAction = launchAction else {
           return nil
@@ -148,16 +147,17 @@ extension XCSchemeInfo.LaunchActionInfo {
         let buildConfigurationName = launchAction.buildConfigurationName ??
             defaultBuildConfigurationName
 
-        let targetInfo = try targetResolver.targetInfo(
-            targetID: try targetIDsByLabelAndConfiguration.value(
-                for: .init(launchAction.target, buildConfigurationName),
-                context: "creating a `LaunchActionInfo`"
-            )
-        )
+        let targetID = try targetIDsByLabelAndConfiguration.targetID(
+            for: launchAction.target,
+            preferredConfiguration: buildConfigurationName
+        ).orThrow("""
+Failed to find a `TargetID` for "\(launchAction.target)" while creating a \
+`LaunchActionInfo`
+""")
 
         try self.init(
             buildConfigurationName: buildConfigurationName,
-            targetInfo: targetInfo,
+            targetInfo: try targetResolver.targetInfo(targetID: targetID),
             args: launchAction.args,
             diagnostics: XCSchemeInfo.DiagnosticsInfo(
                 diagnostics: launchAction.diagnostics

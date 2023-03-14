@@ -95,8 +95,7 @@ extension XCSchemeInfo.TestActionInfo {
         testAction: XcodeScheme.TestAction?,
         defaultBuildConfigurationName: String,
         targetResolver: TargetResolver,
-        targetIDsByLabelAndConfiguration:
-            [XcodeScheme.LabelAndConfiguration: TargetID],
+        targetIDsByLabelAndConfiguration: [String: [BazelLabel: TargetID]],
         args: [TargetID: [String]],
         envs: [TargetID: [String: String]]
     ) throws {
@@ -115,9 +114,10 @@ Expected at least one target in `TestAction.targets`
         var env: [String: String] = testAction.env ?? [:]
         let testActionTargetIdsLabels: [(TargetID, BazelLabel)] =
             testAction.targets.compactMap { label in
-                guard let targetId: TargetID =
-                        targetIDsByLabelAndConfiguration[.init(label, buildConfigurationName)]
-                else {
+                guard let targetId = targetIDsByLabelAndConfiguration.targetID(
+                    for: label,
+                    preferredConfiguration: buildConfigurationName
+                ) else {
                     return nil
                 }
                 return (targetId, label)
@@ -127,7 +127,9 @@ Expected at least one target in `TestAction.targets`
             let testActionLabel: BazelLabel = tuple.1
             if let testActionTargetEnv: [String: String] = envs[testActionTargetId] {
                 for (key, newValue) in testActionTargetEnv {
-                    if let existingValue: String = env[key], existingValue != newValue {
+                    if let existingValue: String = env[key],
+                       existingValue != newValue
+                    {
                         let errorMessage: String = """
 ERROR: '\(testActionLabel)' defines a value for '\(key)' ('\(newValue)') that \
 doesn't match the existing value of '\(existingValue)' from another target in \
@@ -142,10 +144,12 @@ the same scheme.
 
         let targetInfos = try testAction.targets.map { label in
             return try targetResolver.targetInfo(
-                targetID: try targetIDsByLabelAndConfiguration.value(
-                    for: .init(label, buildConfigurationName),
-                    context: "creating a `TestActionInfo`"
-                )
+                targetID: try targetIDsByLabelAndConfiguration.targetID(
+                    for: label,
+                    preferredConfiguration: buildConfigurationName
+                ).orThrow("""
+Failed to find a `TargetID` for "\(label)" while creating a `TestActionInfo`
+""")
             )
         }
 
@@ -158,10 +162,13 @@ the same scheme.
             ),
             env: env.isEmpty ? testAction.env : env,
             expandVariablesBasedOn: try targetResolver.targetInfo(
-                targetID: try targetIDsByLabelAndConfiguration.value(
-                    for: .init(expandVariablesBasedOn, buildConfigurationName),
-                    context: "creating a `VariableExpansionContextInfo`"
-                )
+                targetID: try targetIDsByLabelAndConfiguration.targetID(
+                    for: expandVariablesBasedOn,
+                    preferredConfiguration: buildConfigurationName
+                ).orThrow("""
+Failed to find a `TargetID` for "\(expandVariablesBasedOn)" while creating a \
+`VariableExpansionContextInfo`
+""")
             ),
             preActions: testAction.preActions.prePostActionInfos(
                 buildConfigurationName: buildConfigurationName,

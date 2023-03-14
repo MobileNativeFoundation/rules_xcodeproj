@@ -78,8 +78,7 @@ extension XCSchemeInfo.ProfileActionInfo {
         profileAction: XcodeScheme.ProfileAction?,
         defaultBuildConfigurationName: String,
         targetResolver: TargetResolver,
-        targetIDsByLabelAndConfiguration:
-            [XcodeScheme.LabelAndConfiguration: TargetID]
+        targetIDsByLabelAndConfiguration: [String: [BazelLabel: TargetID]]
     ) throws {
         guard let profileAction = profileAction else {
           return nil
@@ -88,15 +87,17 @@ extension XCSchemeInfo.ProfileActionInfo {
         let buildConfigurationName = profileAction.buildConfigurationName ??
             defaultBuildConfigurationName
 
-        let targetInfo = try targetResolver.targetInfo(
-            targetID: try targetIDsByLabelAndConfiguration.value(
-                for: .init(profileAction.target, buildConfigurationName),
-                context: "creating a `ProfileActionInfo`"
-            )
-        )
+        let targetID = try targetIDsByLabelAndConfiguration.targetID(
+            for: profileAction.target,
+            preferredConfiguration: buildConfigurationName
+        ).orThrow("""
+Failed to find a `TargetID` for "\(profileAction.target)" while creating a \
+`ProfileActionInfo`
+""")
+
         self.init(
             buildConfigurationName: buildConfigurationName,
-            targetInfo: targetInfo,
+            targetInfo: try targetResolver.targetInfo(targetID: targetID),
             args: profileAction.args,
             env: profileAction.env,
             workingDirectory: profileAction.workingDirectory

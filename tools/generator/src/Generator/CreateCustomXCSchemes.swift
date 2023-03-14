@@ -6,6 +6,7 @@ extension Generator {
     static func createCustomXCSchemes(
         schemes: [XcodeScheme],
         buildMode: BuildMode,
+        xcodeConfigurations: Set<String>,
         defaultBuildConfigurationName: String,
         targetResolver: TargetResolver,
         runnerLabel: BazelLabel,
@@ -15,6 +16,7 @@ extension Generator {
         return try schemes.map { scheme in
             let schemeInfo = try XCSchemeInfo(
                 scheme: scheme,
+                xcodeConfigurations: xcodeConfigurations,
                 defaultBuildConfigurationName: defaultBuildConfigurationName,
                 targetResolver: targetResolver,
                 runnerLabel: runnerLabel,
