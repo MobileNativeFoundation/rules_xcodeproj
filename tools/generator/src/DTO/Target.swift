@@ -148,7 +148,6 @@ extension CompileTarget: Decodable {
     }
 }
 
-
 private extension KeyedDecodingContainer where K == Target.CodingKeys {
     func decodeTargetIDs(_ key: K) throws -> Set<TargetID> {
         return try decodeIfPresent(Set<TargetID>.self, forKey: key) ?? []

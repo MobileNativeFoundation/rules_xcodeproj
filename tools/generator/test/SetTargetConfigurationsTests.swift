@@ -184,15 +184,15 @@ final class SetTargetConfigurationsTests: XCTestCase {
         ) = Self.createFixtures([
             ([.macOS, .iOS, .tvOS, .watchOS], .staticLibrary,
              [
-                targetIDKey: "macOS-staticLibrary",
-                "\(targetIDKey)[sdk=iphoneos*]": "iOS-staticLibrary",
-                "\(targetIDKey)[sdk=appletvos*]": "tvOS-staticLibrary",
-                "\(targetIDKey)[sdk=macosx*]": "$(BAZEL_TARGET_ID)",
-                "\(targetIDKey)[sdk=watchos*]": "watchOS-staticLibrary",
-                packageBinDirKey: "b/macOS-staticLibrary",
-                "\(packageBinDirKey)[sdk=iphoneos*]": "b/iOS-staticLibrary",
-                "\(packageBinDirKey)[sdk=appletvos*]": "b/tvOS-staticLibrary",
-                "\(packageBinDirKey)[sdk=watchos*]": "b/watchOS-staticLibrary",
+                 targetIDKey: "macOS-staticLibrary",
+                 "\(targetIDKey)[sdk=iphoneos*]": "iOS-staticLibrary",
+                 "\(targetIDKey)[sdk=appletvos*]": "tvOS-staticLibrary",
+                 "\(targetIDKey)[sdk=macosx*]": "$(BAZEL_TARGET_ID)",
+                 "\(targetIDKey)[sdk=watchos*]": "watchOS-staticLibrary",
+                 packageBinDirKey: "b/macOS-staticLibrary",
+                 "\(packageBinDirKey)[sdk=iphoneos*]": "b/iOS-staticLibrary",
+                 "\(packageBinDirKey)[sdk=appletvos*]": "b/tvOS-staticLibrary",
+                 "\(packageBinDirKey)[sdk=watchos*]": "b/watchOS-staticLibrary",
              ]),
             ([.macOS, .iOS], .staticLibrary, [
                 targetIDKey: "macOS-staticLibrary",
@@ -223,11 +223,11 @@ final class SetTargetConfigurationsTests: XCTestCase {
 
             ([.iOS, .tvOS, .watchOS], .staticLibrary,
              [
-                targetIDKey: "iOS-staticLibrary",
+                 targetIDKey: "iOS-staticLibrary",
                  "\(targetIDKey)[sdk=appletvos*]": "tvOS-staticLibrary",
-                "\(targetIDKey)[sdk=iphoneos*]": "$(BAZEL_TARGET_ID)",
+                 "\(targetIDKey)[sdk=iphoneos*]": "$(BAZEL_TARGET_ID)",
                  "\(targetIDKey)[sdk=watchos*]": "watchOS-staticLibrary",
-                packageBinDirKey: "b/iOS-staticLibrary",
+                 packageBinDirKey: "b/iOS-staticLibrary",
                  "\(packageBinDirKey)[sdk=appletvos*]": "b/tvOS-staticLibrary",
                  "\(packageBinDirKey)[sdk=watchos*]": "b/watchOS-staticLibrary",
              ]),
@@ -287,11 +287,11 @@ final class SetTargetConfigurationsTests: XCTestCase {
         )
 
         var buildSettings: [ConsolidatedTarget.Key: [String: String]] = [:]
-        buildSettings.merge(
-            try Self.getBuildSettings(targetIDKey, from: pbxTargets)
+        try buildSettings.merge(
+            Self.getBuildSettings(targetIDKey, from: pbxTargets)
         ) { old, new in old.merging(new) { _, new in new } }
-        buildSettings.merge(
-            try Self.getBuildSettings(packageBinDirKey, from: pbxTargets)
+        try buildSettings.merge(
+            Self.getBuildSettings(packageBinDirKey, from: pbxTargets)
         ) { old, new in old.merging(new) { _, new in new } }
 
         // Assert
@@ -440,7 +440,6 @@ final class SetTargetConfigurationsTests: XCTestCase {
             selectedBuildSettings[key] = try buildSettings
                 .filter { key, _ in key.hasPrefix(keyPrefix) }
                 .mapValues { buildSetting in
-
 
                     return try XCTUnwrap(
                         buildSetting as? BuildSettingType,

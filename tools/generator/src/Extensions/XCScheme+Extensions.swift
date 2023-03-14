@@ -91,7 +91,7 @@ extension XCScheme {
                     scriptText: ExecutionAction.createLLDBInitScript,
                     buildableReference: launchActionInfo
                         .targetInfo.buildableReference
-                )
+                ),
             ]
             launchAction = try .init(
                 buildMode: buildMode,
@@ -126,7 +126,7 @@ extension XCScheme {
                     scriptText: scriptText,
                     buildableReference: profileActionInfo
                         .targetInfo.buildableReference
-                )
+                ),
             ]
             profileAction = try .init(
                 buildMode: buildMode,
@@ -160,9 +160,9 @@ extension XCScheme.BuildAction {
         buildActionInfo: XCSchemeInfo.BuildActionInfo,
         otherPreActions: [XCScheme.ExecutionAction] = []
     ) throws {
-        self.init(
-            buildActionEntries: try buildActionInfo.targets.buildActionEntries,
-            preActions:  try buildActionInfo.preActions.map(\.executionAction) +
+        try self.init(
+            buildActionEntries: buildActionInfo.targets.buildActionEntries,
+            preActions: buildActionInfo.preActions.map(\.executionAction) +
                 buildActionInfo.targets.map(\.targetInfo).buildPreActions() +
                 otherPreActions,
             postActions: buildActionInfo.postActions.map(\.executionAction),
@@ -301,9 +301,9 @@ extension XCScheme.TestAction {
             )
         }
 
-        self.init(
+        try self.init(
             buildConfiguration: testActionInfo.buildConfigurationName,
-            macroExpansion: try testActionInfo.macroExpansion,
+            macroExpansion: testActionInfo.macroExpansion,
             testables: testActionInfo.targetInfos
                 .filter(\.pbxTarget.isTestable)
                 .sortedLocalizedStandard(\.pbxTarget.name)
@@ -338,11 +338,11 @@ extension XCScheme.LaunchAction {
             with: launchActionInfo.env.asLaunchEnvironmentVariables()
         )
 
-        self.init(
+        try self.init(
             runnable: launchActionInfo.runnable,
             buildConfiguration: launchActionInfo.buildConfigurationName,
             preActions: otherPreActions,
-            macroExpansion: try launchActionInfo.macroExpansion,
+            macroExpansion: launchActionInfo.macroExpansion,
             selectedDebuggerIdentifier: launchActionInfo.debugger,
             selectedLauncherIdentifier: launchActionInfo.launcher,
             askForAppToLaunch: launchActionInfo.askForAppToLaunch ? true : nil,
@@ -384,11 +384,11 @@ extension XCScheme.ProfileAction {
             )
         }
 
-        self.init(
+        try self.init(
             buildableProductRunnable: profileActionInfo.runnable,
             buildConfiguration: profileActionInfo.buildConfigurationName,
             preActions: otherPreActions,
-            macroExpansion: try profileActionInfo.macroExpansion,
+            macroExpansion: profileActionInfo.macroExpansion,
             shouldUseLaunchSchemeArgsEnv: shouldUseLaunchSchemeArgsEnv,
             customWorkingDirectory: profileActionInfo.workingDirectory,
             useCustomWorkingDirectory:

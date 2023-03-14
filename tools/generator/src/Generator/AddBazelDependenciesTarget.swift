@@ -28,7 +28,7 @@ extension Generator {
         defaultXcodeConfiguration: String,
         indexImport: String,
         files: [FilePath: File],
-        bazelConfig: String,
+        bazelConfig _: String,
         generatorLabel: BazelLabel,
         preBuildScript: String?,
         postBuildScript: String?,
@@ -53,7 +53,7 @@ extension Generator {
 
         let supportedPlatforms = projectPlatforms
             .sorted()
-            .map { $0.variant.rawValue }
+            .map(\.variant.rawValue)
             .uniqued()
 
         var buildSettings: BuildSettings = [
@@ -104,7 +104,7 @@ $(INDEXING_SUPPORTED_PLATFORMS__$(INDEX_ENABLE_BUILD_ARENA))
             in: pbxProj,
             buildMode: buildMode,
             targets: consolidatedTargets.targets.values
-                .flatMap { $0.sortedTargets },
+                .flatMap(\.sortedTargets),
             files: files,
             generatorLabel: generatorLabel
         )
@@ -157,9 +157,9 @@ $(INDEXING_SUPPORTED_PLATFORMS__$(INDEX_ENABLE_BUILD_ARENA))
     private static func createBazelBuildScript(
         in pbxProj: PBXProj,
         buildMode: BuildMode,
-        targets: [Target],
+        targets _: [Target],
         files: [FilePath: File],
-        generatorLabel: BazelLabel
+        generatorLabel _: BazelLabel
     ) -> PBXShellScriptBuildPhase {
         let hasGeneratedFiles = files.containsGeneratedFiles
 

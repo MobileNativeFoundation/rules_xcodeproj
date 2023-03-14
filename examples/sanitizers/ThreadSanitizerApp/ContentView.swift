@@ -4,7 +4,7 @@ struct ContentView: View {
     init() {
         ThreadSanitizerExamples().run()
     }
-    
+
     var body: some View {
         Text("""
         Application to demonstrate Thread Sanitizer reporting data races in BwB mode.

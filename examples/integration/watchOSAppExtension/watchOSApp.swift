@@ -1,5 +1,5 @@
-import UI
 import SwiftUI
+import UI
 
 @main
 struct watchOSApp: App { // swiftlint:disable:this type_name

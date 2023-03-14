@@ -27,9 +27,9 @@ extension XCSchemeExtensionsTests {
 extension XCSchemeExtensionsTests {
     func test_BuildAction_init_buildModeBazel() throws {
         let buildAction = try XCScheme.BuildAction(buildActionInfo: buildActionInfo)
-        let expected = XCScheme.BuildAction(
-            buildActionEntries: try buildActionInfo.targets.buildActionEntries,
-            preActions: try buildActionInfo.targets.map(\.targetInfo).buildPreActions(),
+        let expected = try XCScheme.BuildAction(
+            buildActionEntries: buildActionInfo.targets.buildActionEntries,
+            preActions: buildActionInfo.targets.map(\.targetInfo).buildPreActions(),
             parallelizeBuild: true,
             buildImplicitDependencies: false
         )
@@ -62,9 +62,9 @@ extension XCSchemeExtensionsTests {
         let buildAction = try XCScheme.BuildAction(buildActionInfo: buildActionInfo)
 
         // then
-        let expected = XCScheme.BuildAction(
-            buildActionEntries: try buildActionInfo.targets.buildActionEntries,
-            preActions: try preActions.map(\.executionAction) +
+        let expected = try XCScheme.BuildAction(
+            buildActionEntries: buildActionInfo.targets.buildActionEntries,
+            preActions: preActions.map(\.executionAction) +
                 buildActionInfo.targets.map(\.targetInfo).buildPreActions(),
             postActions: postActions.map(\.executionAction),
             parallelizeBuild: true,
@@ -75,9 +75,9 @@ extension XCSchemeExtensionsTests {
 
     func test_BuildAction_init_buildModeXcode() throws {
         let buildAction = try XCScheme.BuildAction(buildActionInfo: buildActionInfo)
-        let expected = XCScheme.BuildAction(
-            buildActionEntries: try buildActionInfo.targets.buildActionEntries,
-            preActions: try buildActionInfo.targets.map(\.targetInfo).buildPreActions(),
+        let expected = try XCScheme.BuildAction(
+            buildActionEntries: buildActionInfo.targets.buildActionEntries,
+            preActions: buildActionInfo.targets.map(\.targetInfo).buildPreActions(),
             parallelizeBuild: true,
             buildImplicitDependencies: false
         )
@@ -130,10 +130,10 @@ extension XCSchemeExtensionsTests {
                 .init(skipped: false, buildableReference: uiTestTargetInfo.buildableReference),
             ],
             preActions: [
-                .init(scriptText: "exit 0", title: "Custom Pre Script", environmentBuildable: nil)
+                .init(scriptText: "exit 0", title: "Custom Pre Script", environmentBuildable: nil),
             ],
             postActions: [
-                .init(scriptText: "exit 1", title: "Custom Post Script", environmentBuildable: libraryTargetInfo.buildableReference)
+                .init(scriptText: "exit 1", title: "Custom Post Script", environmentBuildable: libraryTargetInfo.buildableReference),
             ],
             shouldUseLaunchSchemeArgsEnv: true
         )
@@ -243,10 +243,10 @@ extension XCSchemeExtensionsTests {
             launchActionInfo: launchActionInfo,
             otherPreActions: []
         )
-        let expected = XCScheme.LaunchAction(
+        let expected = try XCScheme.LaunchAction(
             runnable: launchActionInfo.runnable,
             buildConfiguration: launchActionInfo.buildConfigurationName,
-            macroExpansion: try launchActionInfo.macroExpansion,
+            macroExpansion: launchActionInfo.macroExpansion,
             selectedDebuggerIdentifier: launchActionInfo.debugger,
             selectedLauncherIdentifier: launchActionInfo.launcher,
             askForAppToLaunch: nil,
@@ -275,10 +275,10 @@ extension XCSchemeExtensionsTests {
             launchActionInfo: launchActionInfo,
             otherPreActions: []
         )
-        let expected = XCScheme.LaunchAction(
+        let expected = try XCScheme.LaunchAction(
             runnable: launchActionInfo.runnable,
             buildConfiguration: launchActionInfo.buildConfigurationName,
-            macroExpansion: try launchActionInfo.macroExpansion,
+            macroExpansion: launchActionInfo.macroExpansion,
             selectedDebuggerIdentifier: launchActionInfo.debugger,
             selectedLauncherIdentifier: launchActionInfo.launcher,
             askForAppToLaunch: nil,
@@ -311,10 +311,10 @@ extension XCSchemeExtensionsTests {
             launchActionInfo: launchActionInfo,
             otherPreActions: []
         )
-        let expected = XCScheme.LaunchAction(
+        let expected = try XCScheme.LaunchAction(
             runnable: launchActionInfo.runnable,
             buildConfiguration: launchActionInfo.buildConfigurationName,
-            macroExpansion: try launchActionInfo.macroExpansion,
+            macroExpansion: launchActionInfo.macroExpansion,
             selectedDebuggerIdentifier: launchActionInfo.debugger,
             selectedLauncherIdentifier: launchActionInfo.launcher,
             askForAppToLaunch: nil,
@@ -351,10 +351,10 @@ extension XCSchemeExtensionsTests {
             profileActionInfo: profileActionInfo,
             otherPreActions: []
         )
-        let expected = XCScheme.ProfileAction(
+        let expected = try XCScheme.ProfileAction(
             runnable: profileActionInfo.runnable,
             buildConfiguration: profileActionInfo.buildConfigurationName,
-            macroExpansion: try profileActionInfo.macroExpansion,
+            macroExpansion: profileActionInfo.macroExpansion,
             askForAppToLaunch: nil,
             environmentVariables: nil,
             launchAutomaticallySubstyle: productType.launchAutomaticallySubstyle
@@ -381,10 +381,10 @@ extension XCSchemeExtensionsTests {
             profileActionInfo: profileActionInfo,
             otherPreActions: []
         )
-        let expected = XCScheme.ProfileAction(
+        let expected = try XCScheme.ProfileAction(
             runnable: profileActionInfo.runnable,
             buildConfiguration: profileActionInfo.buildConfigurationName,
-            macroExpansion: try profileActionInfo.macroExpansion,
+            macroExpansion: profileActionInfo.macroExpansion,
             askForAppToLaunch: nil,
             environmentVariables: nil,
             launchAutomaticallySubstyle: productType.launchAutomaticallySubstyle
@@ -415,10 +415,10 @@ extension XCSchemeExtensionsTests {
             profileActionInfo: profileActionInfo,
             otherPreActions: []
         )
-        let expected = XCScheme.ProfileAction(
+        let expected = try XCScheme.ProfileAction(
             runnable: profileActionInfo.runnable,
             buildConfiguration: profileActionInfo.buildConfigurationName,
-            macroExpansion: try profileActionInfo.macroExpansion,
+            macroExpansion: profileActionInfo.macroExpansion,
             shouldUseLaunchSchemeArgsEnv: false,
             askForAppToLaunch: nil,
             commandlineArguments: .init(arguments: [.init(name: args[0], enabled: true)]),
@@ -654,10 +654,10 @@ extension XCSchemeExtensionsTests {
         )
 
         // then
-        let expected = XCScheme.LaunchAction(
+        let expected = try XCScheme.LaunchAction(
             runnable: launchActionInfo.runnable,
             buildConfiguration: launchActionInfo.buildConfigurationName,
-            macroExpansion: try launchActionInfo.macroExpansion,
+            macroExpansion: launchActionInfo.macroExpansion,
             selectedDebuggerIdentifier: launchActionInfo.debugger,
             selectedLauncherIdentifier: launchActionInfo.launcher,
             askForAppToLaunch: nil,

@@ -1,7 +1,7 @@
 import CoreUtils
-import UI
-import SwiftUI
 import MixedAnswer
+import SwiftUI
+import UI
 
 @main
 struct iOSApp: App { // swiftlint:disable:this type_name

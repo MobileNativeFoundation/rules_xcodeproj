@@ -1,7 +1,7 @@
 import Darwin
 import Foundation
-import ZippyJSON
 import PathKit
+import ZippyJSON
 
 @main
 extension Generator {
@@ -114,7 +114,7 @@ ERROR: build_mode wasn't one of the supported values: xcode, bazel
             do {
                 let decoder = ZippyJSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
-                return try decoder.decode(type, from: try path.read())
+                return try decoder.decode(type, from: path.read())
             } catch let error as DecodingError {
                 // Return a more detailed error message
                 throw PreconditionError(message: error.message)
@@ -151,7 +151,7 @@ Duplicate target (\(new.label) \(new.configuration) in target specs
 
             return targets
         }
-        
+
         async let customXcodeSchemes = decodeJSON(
             [XcodeScheme].self,
             from: customXcodeSchemesPath

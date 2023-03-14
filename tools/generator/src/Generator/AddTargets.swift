@@ -16,10 +16,10 @@ extension Generator {
 
             for (key, disambiguatedTarget) in targets {
                 group.addTask {
-                    return (
+                    return try (
                         key,
-                        try addTarget(
-                                in: pbxProj,
+                        addTarget(
+                            in: pbxProj,
                             for: disambiguatedTarget,
                             key: key,
                             targetKeys: disambiguatedTargets.keys,
@@ -182,7 +182,7 @@ Product for target "\(key)" not found in `products`
         productBasename: String?,
         outputs: ConsolidatedTargetOutputs
     ) throws -> PBXShellScriptBuildPhase? {
-        guard buildMode.usesBazelModeBuildScripts && !isResourceBundle else {
+        guard buildMode.usesBazelModeBuildScripts, !isResourceBundle else {
             return nil
         }
 
@@ -237,10 +237,10 @@ Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)
         in pbxProj: PBXProj,
         buildMode: BuildMode,
         hasClangSearchPaths: Bool,
-        files: [FilePath: File]
+        files _: [FilePath: File]
     ) throws -> PBXShellScriptBuildPhase? {
         guard buildMode == .xcode, hasClangSearchPaths else {
-            return  nil
+            return nil
         }
 
         let script = PBXShellScriptBuildPhase(
@@ -348,8 +348,8 @@ File "\(headerFile.filePath)" not found in `files`
             return pbxBuildFile
         }
 
-        let buildPhase = PBXHeadersBuildPhase(
-            files: try headerFiles.map(buildFile).sortedLocalizedStandard()
+        let buildPhase = try PBXHeadersBuildPhase(
+            files: headerFiles.map(buildFile).sortedLocalizedStandard()
         )
         pbxProj.add(object: buildPhase)
 
@@ -402,8 +402,8 @@ File "\(sourceFile.filePath)" not found in `files`
             sourceFiles = sources
         }
 
-        let buildPhase = PBXSourcesBuildPhase(
-            files: try sourceFiles.map(buildFile)
+        let buildPhase = try PBXSourcesBuildPhase(
+            files: sourceFiles.map(buildFile)
         )
         pbxProj.add(object: buildPhase)
 
@@ -415,7 +415,7 @@ File "\(sourceFile.filePath)" not found in `files`
         buildMode: BuildMode,
         generatesSwiftHeader: Bool
     ) throws -> PBXShellScriptBuildPhase? {
-        guard buildMode == .xcode && generatesSwiftHeader else {
+        guard buildMode == .xcode, generatesSwiftHeader else {
             return nil
         }
 
@@ -551,11 +551,11 @@ Framework with file path "\(filePath)" had nil `PBXFileElement` in `files`
             return pbxBuildFile
         }
 
-        let buildPhase = PBXCopyFilesBuildPhase(
+        let buildPhase = try PBXCopyFilesBuildPhase(
             dstPath: "",
             dstSubfolderSpec: .frameworks,
             name: "Embed Frameworks",
-            files: try frameworks.map(fileElement).uniqued().map(buildFile)
+            files: frameworks.map(fileElement).uniqued().map(buildFile)
         )
         pbxProj.add(object: buildPhase)
 
@@ -647,11 +647,11 @@ App extension product reference with key \(key) not found in `products`
             return pbxBuildFile
         }
 
-        let buildPhase = PBXCopyFilesBuildPhase(
+        let buildPhase = try PBXCopyFilesBuildPhase(
             dstPath: "",
             dstSubfolderSpec: .plugins,
             name: "Embed App Extensions",
-            files: try extensions.map(buildFile)
+            files: extensions.map(buildFile)
         )
         pbxProj.add(object: buildPhase)
 
@@ -695,11 +695,11 @@ App clip product reference with key \(key) not found in `products`
             return pbxBuildFile
         }
 
-        let buildPhase = PBXCopyFilesBuildPhase(
+        let buildPhase = try PBXCopyFilesBuildPhase(
             dstPath: "$(CONTENTS_FOLDER_PATH)/AppClips",
             dstSubfolderSpec: .productsDirectory,
             name: "Embed App Clips",
-            files: try appClips.map(buildFile)
+            files: appClips.map(buildFile)
         )
         pbxProj.add(object: buildPhase)
 
@@ -796,7 +796,7 @@ private extension ConsolidatedTargetLinkerInputs {
 }
 
 private extension ConsolidatedTargetOutputs {
-    func forcedBazelCompileFiles(buildMode: BuildMode) -> Set<FilePath> {
+    func forcedBazelCompileFiles(buildMode _: BuildMode) -> Set<FilePath> {
         // TODO: Re-enable for Swift diagnostics replay
 //        if buildMode.usesBazelModeBuildScripts, hasSwiftOutputs {
 //            return [.internal(Generator.bazelForcedSwiftCompilePath)]

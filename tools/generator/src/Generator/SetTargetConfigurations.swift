@@ -118,9 +118,9 @@ Target "\(key)" not found in `pbxTargets`
         for (name, buildSettings) in buildSettings
             .sorted(by: { $0.key < $1.key })
         {
-            let buildConfiguration = XCBuildConfiguration(
+            let buildConfiguration = try XCBuildConfiguration(
                 name: name,
-                buildSettings: try buildSettings.asBuildSettingDictionary()
+                buildSettings: buildSettings.asBuildSettingDictionary()
             )
             pbxProj.add(object: buildConfiguration)
             buildConfigurations.append(buildConfiguration)
@@ -152,7 +152,7 @@ of the configurations of "\(key)".
     ) throws -> [String: [BuildSettingConditional: [String: BuildSetting]]] {
         var buildSettings:
             [String: [BuildSettingConditional: [String: BuildSetting]]] = [:]
-        var conditionalFileNames:[String: [String: String]] = [:]
+        var conditionalFileNames: [String: [String: String]] = [:]
         var allUniqueFiles: Set<FilePath> = []
         var configurationUniqueFiles: [String: Set<FilePath>] = [:]
 
@@ -317,7 +317,8 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
         }
 
         if let executableName = target.product.executableName,
-           executableName != target.product.name {
+           executableName != target.product.name
+        {
             buildSettings.set("EXECUTABLE_NAME", to: executableName)
         }
 
@@ -370,7 +371,7 @@ $(CONFIGURATION_BUILD_DIR)
             }
         }
 
-        if buildMode == .xcode && target.product.isResourceBundle {
+        if buildMode == .xcode, target.product.isResourceBundle {
             // Used to work around CODE_SIGNING_ENABLED = YES in Xcode 14
             buildSettings["CODE_SIGNING_ALLOWED"] = false
         }
@@ -426,7 +427,7 @@ $(CONFIGURATION_BUILD_DIR)
                     ])
                 }
 
-                if !target.isSwift && target.inputs.containsSourceFiles {
+                if !target.isSwift, target.inputs.containsSourceFiles {
                     if !cFlags.isEmpty {
                         cFlagsPrefix.append(contentsOf: [
                             "-ivfsoverlay",
@@ -486,8 +487,7 @@ $(CONFIGURATION_BUILD_DIR)
         )
 
         // Append settings when using ASAN
-        if cFlags.contains("-D_FORTIFY_SOURCE=1")
-        {
+        if cFlags.contains("-D_FORTIFY_SOURCE=1") {
             buildSettings["ASAN_OTHER_CFLAGS__"] = "$(ASAN_OTHER_CFLAGS__NO)"
             buildSettings.set("ASAN_OTHER_CFLAGS__NO", to: cFlagsString)
             buildSettings["ASAN_OTHER_CFLAGS__YES"] = [
@@ -497,8 +497,7 @@ $(CONFIGURATION_BUILD_DIR)
             ]
             cFlagsString = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))"
         }
-        if cxxFlags.contains("-D_FORTIFY_SOURCE=1")
-        {
+        if cxxFlags.contains("-D_FORTIFY_SOURCE=1") {
             buildSettings["ASAN_OTHER_CPLUSPLUSFLAGS__"] =
                 "$(ASAN_OTHER_CPLUSPLUSFLAGS__NO)"
             buildSettings.set(
@@ -806,8 +805,8 @@ where Key == BuildSettingConditional, Value == [String: BuildSetting] {
         if let supportedPlatformsBuildSettings = conditionalBuildSettings
             .removeValue(forKey: "SUPPORTED_PLATFORMS")
         {
-            let platforms = Set(
-                try supportedPlatformsBuildSettings.values
+            let platforms = try Set(
+                supportedPlatformsBuildSettings.values
                     .map { try $0.toString(key: "SUPPORTED_PLATFORMS") }
             )
 

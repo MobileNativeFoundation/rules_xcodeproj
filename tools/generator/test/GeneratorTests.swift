@@ -189,10 +189,10 @@ final class GeneratorTests: XCTestCase {
             pbxTargets: pbxTargets
         )
         let schemeArgs: [TargetID: [String]] = [
-            "I 1": ["--command_line_args=-AppleLanguages,(en)"]
+            "I 1": ["--command_line_args=-AppleLanguages,(en)"],
         ]
         let schemeEnvs: [TargetID: [String: String]] = [
-            "I 1": ["I_1_TESTENVS_ENVVAR": "TRUE"]
+            "I 1": ["I_1_TESTENVS_ENVVAR": "TRUE"],
         ]
         let customXcodeSchemes = [XcodeScheme]()
         let customXCSchemes: [XCScheme] = [
@@ -223,7 +223,7 @@ final class GeneratorTests: XCTestCase {
         var createProjectCalled: [CreateProjectCalled] = []
         func createProject(
             buildMode: BuildMode,
-            _forFixtures: Bool,
+            _forFixtures _: Bool,
             project: Project,
             directories: Directories
         ) -> PBXProj {
@@ -265,7 +265,7 @@ final class GeneratorTests: XCTestCase {
             CalculateXcodeGeneratedFilesCalled(
                 buildMode: buildMode,
                 targets: targets
-            )
+            ),
         ]
 
         // MARK: createFilesAndGroups()
@@ -284,7 +284,7 @@ final class GeneratorTests: XCTestCase {
         func createFilesAndGroups(
             in pbxProj: PBXProj,
             buildMode: BuildMode,
-            _forFixtures: Bool,
+            _forFixtures _: Bool,
             forceBazelDependencies: Bool,
             targets: [TargetID: Target],
             extraFiles: Set<FilePath>,
@@ -332,7 +332,7 @@ final class GeneratorTests: XCTestCase {
             [SetAdditionalProjectConfigurationCalled] = []
         func setAdditionalProjectConfiguration(
             in pbxProj: PBXProj,
-            resolvedRepositories: [(Path, Path)]
+            resolvedRepositories _: [(Path, Path)]
         ) {
             setAdditionalProjectConfigurationCalled.append(.init(
                 pbxProj: pbxProj

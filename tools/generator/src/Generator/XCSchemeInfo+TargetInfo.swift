@@ -149,10 +149,10 @@ extension XCSchemeInfo.TargetInfo {
 
 extension XCSchemeInfo.TargetInfo {
     func buildPreAction() throws -> XCScheme.ExecutionAction {
-        return .init(
+        return try .init(
             buildFor: buildableReference,
             name: pbxTarget.name,
-            hostIndex: try selectedHostInfo?.index
+            hostIndex: selectedHostInfo?.index
         )
     }
 }

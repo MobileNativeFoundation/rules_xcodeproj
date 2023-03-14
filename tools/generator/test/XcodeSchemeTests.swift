@@ -12,8 +12,8 @@ extension XcodeSchemeTests {
     }
 
     func test_BuildAction_init_withDuplicateLabels() throws {
-        assertPreconditionError(
-            try XcodeScheme.BuildAction(
+        try assertPreconditionError(
+            XcodeScheme.BuildAction(
                 targets: [.init(label: "@//foo"), .init(label: "@//foo")]
             ),
             expectedMessage: """
@@ -23,8 +23,8 @@ Found a duplicate label @//foo:foo in provided `XcodeScheme.BuildTarget` values.
     }
 
     func test_BuildAction_init_noTargets() throws {
-        assertPreconditionError(
-            try XcodeScheme.BuildAction(targets: []),
+        try assertPreconditionError(
+            XcodeScheme.BuildAction(targets: []),
             expectedMessage: """
 No `XcodeScheme.BuildTarget` values were provided to `XcodeScheme.BuildAction`.
 """
@@ -36,8 +36,8 @@ No `XcodeScheme.BuildTarget` values were provided to `XcodeScheme.BuildAction`.
 
 extension XcodeSchemeTests {
     func test_TestAction_init_noTargets() throws {
-        assertPreconditionError(
-            try XcodeScheme.TestAction(targets: []),
+        try assertPreconditionError(
+            XcodeScheme.TestAction(targets: []),
             expectedMessage: """
 No `BazelLabel` values were provided to `XcodeScheme.TestAction`.
 """
@@ -71,8 +71,8 @@ No `BazelLabel` values were provided to `XcodeScheme.TestAction`.
 
 extension XcodeSchemeTests {
     func test_XcodeScheme_init_noActions() throws {
-        assertPreconditionError(
-            try XcodeScheme(name: "Foo"),
+        try assertPreconditionError(
+            XcodeScheme(name: "Foo"),
             expectedMessage: """
 No actions were provided for the scheme "Foo".
 """
@@ -91,7 +91,7 @@ extension XcodeSchemeTests {
         let actual = try xcodeScheme.withDefaults
         let expected = try XcodeScheme(
             name: schemeName,
-            buildAction: try .init(
+            buildAction: .init(
                 targets: [
                     .init(
                         label: macOSAppLabel,
@@ -119,7 +119,7 @@ extension XcodeSchemeTests {
         let actual = try xcodeScheme.withDefaults
         let expected = try XcodeScheme(
             name: schemeName,
-            buildAction: try .init(
+            buildAction: .init(
                 targets: [
                     .init(
                         label: macOSAppLabel,
@@ -148,7 +148,7 @@ extension XcodeSchemeTests {
         // Ensure that we respect manually specified profiling setting
         let xcodeScheme = try XcodeScheme(
             name: schemeName,
-            buildAction: try .init(targets: [
+            buildAction: .init(targets: [
                 // Purposefully not using .allEnabled as it is a default.
                 .init(label: macOSAppLabel, buildFor: .init(
                     running: .enabled, profiling: .enabled, archiving: .enabled
@@ -159,7 +159,7 @@ extension XcodeSchemeTests {
         let actual = try xcodeScheme.withDefaults
         let expected = try XcodeScheme(
             name: schemeName,
-            buildAction: try .init(targets: [
+            buildAction: .init(targets: [
                 .init(
                     label: macOSAppLabel,
                     buildFor: .init(
@@ -180,7 +180,7 @@ extension XcodeSchemeTests {
         // Ensure that we respect manually specified profiling setting
         let xcodeScheme = try XcodeScheme(
             name: schemeName,
-            buildAction: try .init(targets: [
+            buildAction: .init(targets: [
                 .init(label: macOSAppLabel, buildFor: .init(
                     running: .enabled, profiling: .disabled
                 )),
@@ -190,7 +190,7 @@ extension XcodeSchemeTests {
         let actual = try xcodeScheme.withDefaults
         let expected = try XcodeScheme(
             name: schemeName,
-            buildAction: try .init(targets: [
+            buildAction: .init(targets: [
                 .init(label: macOSAppLabel, buildFor: .init(
                     running: .enabled,
                     profiling: .disabled,
@@ -206,7 +206,7 @@ extension XcodeSchemeTests {
     func test_XcodeScheme_withDefaults_withBuild_withLaunch_runningDisabled() throws {
         let xcodeScheme = try XcodeScheme(
             name: schemeName,
-            buildAction: try .init(targets: [
+            buildAction: .init(targets: [
                 .init(
                     label: macOSAppLabel,
                     buildFor: .init(running: .disabled)
@@ -214,8 +214,8 @@ extension XcodeSchemeTests {
             ]),
             launchAction: .init(target: macOSAppLabel)
         )
-        assertUsageError(
-            try xcodeScheme.withDefaults,
+        try assertUsageError(
+            xcodeScheme.withDefaults,
             expectedMessage: """
 The `build_for` value, "running", for "\(macOSAppLabel)" in the \
 "\(schemeName)" Xcode scheme was disabled, but the target is referenced in the \
@@ -227,7 +227,7 @@ scheme's launch action.
     func test_XcodeScheme_withDefaults_withBuild_withProifle_profilingDisabled() throws {
         let xcodeScheme = try XcodeScheme(
             name: schemeName,
-            buildAction: try .init(targets: [
+            buildAction: .init(targets: [
                 .init(
                     label: macOSAppLabel,
                     buildFor: .init(profiling: .disabled)
@@ -235,8 +235,8 @@ scheme's launch action.
             ]),
             profileAction: .init(target: macOSAppLabel)
         )
-        assertUsageError(
-            try xcodeScheme.withDefaults,
+        try assertUsageError(
+            xcodeScheme.withDefaults,
             expectedMessage: """
 The `build_for` value, "profiling", for "\(macOSAppLabel)" in the \
 "\(schemeName)" Xcode scheme was disabled, but the target is referenced in the \
@@ -248,7 +248,7 @@ scheme's profile action.
     func test_XcodeScheme_withDefaults_withBuild_withTest_testingDisabled() throws {
         let xcodeScheme = try XcodeScheme(
             name: schemeName,
-            buildAction: try .init(targets: [
+            buildAction: .init(targets: [
                 .init(
                     label: unitTestLabel,
                     buildFor: .init(testing: .disabled)
@@ -256,8 +256,8 @@ scheme's profile action.
             ]),
             testAction: .init(targets: [unitTestLabel])
         )
-        assertUsageError(
-            try xcodeScheme.withDefaults,
+        try assertUsageError(
+            xcodeScheme.withDefaults,
             expectedMessage: """
 The `build_for` value, "testing", for "\(unitTestLabel)" in the \
 "\(schemeName)" Xcode scheme was disabled, but the target is referenced in the \
@@ -274,7 +274,7 @@ scheme's test action.
         let actual = try xcodeScheme.withDefaults
         let expected = try XcodeScheme(
             name: schemeName,
-            buildAction: try .init(targets: [
+            buildAction: .init(targets: [
                 .init(
                     label: unitTestLabel,
                     buildFor: .init(

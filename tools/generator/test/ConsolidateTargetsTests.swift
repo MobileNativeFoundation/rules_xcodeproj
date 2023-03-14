@@ -189,7 +189,6 @@ since they have conditional dependencies (e.g. `deps`, `test_host`, \
 
         // Assert
 
-
         XCTAssertNoDifference(
             consolidatedTargets.keys,
             expectedConsolidatedTargets.keys

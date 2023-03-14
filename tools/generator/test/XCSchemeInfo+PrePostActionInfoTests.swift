@@ -21,7 +21,7 @@ final class XCSchemeInfoPrePostActionInfoTests: XCTestCase {
 
     lazy var buildConfigurationName = targetResolver.targets["A 2"]!
             .xcodeConfigurations.first!
-    
+
     let directories = Directories(
         workspace: "/Users/TimApple/app",
         projectRoot: "/Users/TimApple",
@@ -29,7 +29,7 @@ final class XCSchemeInfoPrePostActionInfoTests: XCTestCase {
         internalDirectoryName: "rules_xcodeproj",
         workspaceOutput: "examples/foo/Foo.xcodeproj"
     )
-    
+
     lazy var appTargetInfo = XCSchemeInfo.TargetInfo(
         resolveHostFor: .init(
             pbxTargetInfo: targetResolver.pbxTargetInfos["A 2"]!,
@@ -38,11 +38,11 @@ final class XCSchemeInfoPrePostActionInfoTests: XCTestCase {
         topLevelTargetInfos: []
     )
     lazy var pbxTargetsDict = targetResolver.pbxTargets
-    
+
     lazy var libraryPlatform = Fixtures.targets["A 2"]!.platform
-    
+
     lazy var libraryPBXTarget = pbxTargetsDict["A 2"]!
-    
+
     lazy var unresolvedLibraryTargetInfo = XCSchemeInfo.TargetInfo(
         pbxTarget: libraryPBXTarget,
         platforms: [libraryPlatform],
@@ -62,9 +62,9 @@ final class XCSchemeInfoPrePostActionInfoTests: XCTestCase {
     )
 
     lazy var anotherAppPBXTarget = pbxTargetsDict["I"]!
-    
+
     lazy var anotherAppPlatform = Fixtures.targets["I"]!.platform
-    
+
     lazy var appHostInfo = XCSchemeInfo.HostInfo(
         pbxTarget: anotherAppPBXTarget,
         platforms: [anotherAppPlatform],
@@ -161,7 +161,7 @@ extension XCSchemeInfoPrePostActionInfoTests {
             prePostAction: prePostAction,
             buildConfigurationName: buildConfigurationName,
             targetResolver: targetResolver,
-            targetIDsByLabelAndConfiguration: try xcodeScheme.resolveTargetIDs(
+            targetIDsByLabelAndConfiguration: xcodeScheme.resolveTargetIDs(
                 targetResolver: targetResolver,
                 xcodeConfigurations: targetResolver.targets["A 2"]!
                     .xcodeConfigurations,
@@ -195,7 +195,7 @@ extension XCSchemeInfoPrePostActionInfoTests {
                 prePostAction: prePostAction,
                 buildConfigurationName: self.buildConfigurationName,
                 targetResolver: self.targetResolver,
-                targetIDsByLabelAndConfiguration: try self.xcodeScheme.resolveTargetIDs(
+                targetIDsByLabelAndConfiguration: self.xcodeScheme.resolveTargetIDs(
                     targetResolver: self.targetResolver,
                     xcodeConfigurations: self.targetResolver.targets["A 2"]!
                         .xcodeConfigurations,
@@ -224,7 +224,7 @@ extension XCSchemeInfoPrePostActionInfoTests {
             prePostAction: prePostAction,
             buildConfigurationName: buildConfigurationName,
             targetResolver: targetResolver,
-            targetIDsByLabelAndConfiguration: try xcodeScheme.resolveTargetIDs(
+            targetIDsByLabelAndConfiguration: xcodeScheme.resolveTargetIDs(
                 targetResolver: targetResolver,
                 xcodeConfigurations: targetResolver.targets["A 2"]!
                     .xcodeConfigurations,
@@ -253,7 +253,7 @@ extension XCSchemeInfoPrePostActionInfoTests {
             prePostAction: prePostAction,
             buildConfigurationName: buildConfigurationName,
             targetResolver: targetResolver,
-            targetIDsByLabelAndConfiguration: try xcodeScheme.resolveTargetIDs(
+            targetIDsByLabelAndConfiguration: xcodeScheme.resolveTargetIDs(
                 targetResolver: targetResolver,
                 xcodeConfigurations: targetResolver.targets["A 2"]!
                     .xcodeConfigurations,
@@ -308,7 +308,7 @@ extension XCSchemeInfoPrePostActionInfoTests {
             prePostAction: prePostAction,
             buildConfigurationName: buildConfigurationName,
             targetResolver: targetResolver,
-            targetIDsByLabelAndConfiguration: try xcodeScheme.resolveTargetIDs(
+            targetIDsByLabelAndConfiguration: xcodeScheme.resolveTargetIDs(
                 targetResolver: targetResolver,
                 xcodeConfigurations: targetResolver.targets["A 2"]!
                     .xcodeConfigurations,

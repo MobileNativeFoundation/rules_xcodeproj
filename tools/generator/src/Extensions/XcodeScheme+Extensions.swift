@@ -82,7 +82,7 @@ add it or a target that depends on it to \(runnerLabel)'s `top_level_targets` at
                 runnerLabel: runnerLabel
             )
         }
-        
+
         return resolvedTargetIDs
     }
 
@@ -228,15 +228,14 @@ Unable to find the best `TargetWithID` for "\(label)"
 """)
             }
             return try configurationInfos.mapValues { configurationInfo in
-                return ConfigurationWithBest(
-                    id: try configurationInfo.targetsInPlatformOrder
+                return try ConfigurationWithBest(
+                    id: configurationInfo.targetsInPlatformOrder
                         .first.orThrow("""
 Unable to find the best `TargetWithID` for "\(label)"
 """)
                         .id,
                     platforms: configurationInfo.platforms
                 )
-
             }
         }
     }

@@ -80,9 +80,9 @@ extension XCSchemeInfo.TestActionInfo {
             diagnostics: original.diagnostics,
             env: original.env,
             expandVariablesBasedOn: expandVariablesBasedOn,
-            preActions: try original.preActions
+            preActions: original.preActions
                 .resolveHosts(topLevelTargetInfos: topLevelTargetInfos),
-            postActions: try original.postActions
+            postActions: original.postActions
                 .resolveHosts(topLevelTargetInfos: topLevelTargetInfos)
         )
     }
@@ -96,7 +96,7 @@ extension XCSchemeInfo.TestActionInfo {
         defaultBuildConfigurationName: String,
         targetResolver: TargetResolver,
         targetIDsByLabelAndConfiguration: [String: [BazelLabel: TargetID]],
-        args: [TargetID: [String]],
+        args _: [TargetID: [String]],
         envs: [TargetID: [String: String]]
     ) throws {
         guard let testAction = testAction else {
@@ -130,7 +130,7 @@ Expected at least one target in `TestAction.targets`
                     if let existingValue: String = env[key],
                        existingValue != newValue
                     {
-                        let errorMessage: String = """
+                        let errorMessage = """
 ERROR: '\(testActionLabel)' defines a value for '\(key)' ('\(newValue)') that \
 doesn't match the existing value of '\(existingValue)' from another target in \
 the same scheme.
@@ -144,7 +144,7 @@ the same scheme.
 
         let targetInfos = try testAction.targets.map { label in
             return try targetResolver.targetInfo(
-                targetID: try targetIDsByLabelAndConfiguration.targetID(
+                targetID: targetIDsByLabelAndConfiguration.targetID(
                     for: label,
                     preferredConfiguration: buildConfigurationName
                 ).orThrow("""
@@ -161,8 +161,8 @@ Failed to find a `TargetID` for "\(label)" while creating a `TestActionInfo`
                 diagnostics: testAction.diagnostics
             ),
             env: env.isEmpty ? testAction.env : env,
-            expandVariablesBasedOn: try targetResolver.targetInfo(
-                targetID: try targetIDsByLabelAndConfiguration.targetID(
+            expandVariablesBasedOn: targetResolver.targetInfo(
+                targetID: targetIDsByLabelAndConfiguration.targetID(
                     for: expandVariablesBasedOn,
                     preferredConfiguration: buildConfigurationName
                 ).orThrow("""

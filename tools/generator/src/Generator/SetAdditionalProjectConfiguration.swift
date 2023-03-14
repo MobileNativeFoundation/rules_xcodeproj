@@ -2,7 +2,7 @@ import PathKit
 import XcodeProj
 
 extension Generator {
-    static func setAdditionalProjectConfiguration (
+    static func setAdditionalProjectConfiguration(
         _ pbxProj: PBXProj,
         _ resolvedRepositories: [(Path, Path)]
     ) {

@@ -4,7 +4,7 @@ struct ContentView: View {
     init() {
         AddressSanitizerExamples().run()
     }
-    
+
     var body: some View {
         Text("""
         Application to demonstrate Address Sanitizer reporting heap buffer overflows in BwB mode.

@@ -30,9 +30,9 @@ extension Sequence where Element == XCSchemeInfo.BuildTargetInfo {
             // sort the result.
             return try Dictionary(grouping: buildRefAndBuildFors, by: { $0.0 })
                 .map { buildableReference, buildRefAndBuildFors in
-                    return XCScheme.BuildAction.Entry(
+                    return try XCScheme.BuildAction.Entry(
                         buildableReference: buildableReference,
-                        buildFor: try buildRefAndBuildFors.map(\.1).merged().xcSchemeValue
+                        buildFor: buildRefAndBuildFors.map(\.1).merged().xcSchemeValue
                     )
                 }
                 // Sort by in stable order by blueprint name

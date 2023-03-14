@@ -27,8 +27,8 @@ struct TargetResolver: Equatable {
 
         let hostKeys: [
             ConsolidatedTarget.Key: Set<ConsolidatedTarget.Key>
-        ] = Dictionary(
-            try targetHosts.map { targetID, hostIDs in
+        ] = try Dictionary(
+            targetHosts.map { targetID, hostIDs in
                 let key = try consolidatedTargetKeys.value(for: targetID)
                 let hostKeys = try hostIDs
                     .map { try consolidatedTargetKeys.value(for: $0) }
@@ -40,8 +40,8 @@ struct TargetResolver: Equatable {
 
         let additionalKeys: [
             ConsolidatedTarget.Key: Set<ConsolidatedTarget.Key>
-        ] = Dictionary(
-            try targets.map { targetID, target in
+        ] = try Dictionary(
+            targets.map { targetID, target in
                 let key = try consolidatedTargetKeys.value(for: targetID)
                 let additionalKeys = try target.additionalSchemeTargets
                     .map { try consolidatedTargetKeys.value(for: $0) }
@@ -65,10 +65,10 @@ struct TargetResolver: Equatable {
         }
 
         let pbxTargetInfoList: [PBXTargetInfo] = try pbxTargets.map { key, pbxTarget in
-            PBXTargetInfo(
+            try PBXTargetInfo(
                 key: key,
                 pbxTarget: pbxTarget,
-                platforms: try platformsByKey.value(for: key),
+                platforms: platformsByKey.value(for: key),
                 extensionPointIdentifiers: keyedExtensionPointIdentifiers[key, default: []],
                 buildableReference: .init(
                     pbxTarget: pbxTarget,
@@ -95,17 +95,17 @@ extension TargetResolver {
 
 extension TargetResolver {
     private func targetInfo(pbxTargetInfo: PBXTargetInfo) throws -> XCSchemeInfo.TargetInfo {
-        return .init(
+        return try .init(
             pbxTargetInfo: pbxTargetInfo,
-            hostInfos: try pbxTargetInfo.hostKeys
+            hostInfos: pbxTargetInfo.hostKeys
                 .enumerated()
                 .map { hostIndex, hostKey in
-                    .init(
-                        pbxTargetInfo: try pbxTargetInfos.value(for: hostKey),
+                    try .init(
+                        pbxTargetInfo: pbxTargetInfos.value(for: hostKey),
                         index: hostIndex
                     )
                 },
-            additionalBuildableReferences: try pbxTargetInfo.additionalKeys
+            additionalBuildableReferences: pbxTargetInfo.additionalKeys
                 .map { try pbxTargetInfos.value(for: $0).buildableReference }
         )
     }
