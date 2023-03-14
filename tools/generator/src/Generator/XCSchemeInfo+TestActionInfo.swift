@@ -60,7 +60,7 @@ extension XCSchemeInfo.TestActionInfo {
             return nil
         }
 
-        var expandVariablesBasedOn: XCSchemeInfo.TargetInfo? = nil
+        var expandVariablesBasedOn: XCSchemeInfo.TargetInfo?
         if let originalExpandVariablesBasedOn = original.expandVariablesBasedOn {
             expandVariablesBasedOn = XCSchemeInfo.TargetInfo(
                 resolveHostFor: originalExpandVariablesBasedOn,
