@@ -48,7 +48,7 @@ already was set to `\(existingValue)`.
                 }
             }
         default:
-            break;
+            break
         }
 
         return xcodeGeneratedFiles
@@ -68,7 +68,7 @@ private extension Target {
         #if DEBUG
         guard filePath.path.components[1] == "bin" else {
             // Handle weird test fixtures
-            let components = productPath.path.components[0..<1] +
+            let components = productPath.path.components[0 ..< 1] +
                 filePath.path.components[1...]
             var filePath = filePath
             filePath.path = Path(components: components)
@@ -76,7 +76,7 @@ private extension Target {
         }
         #endif
 
-        let components = productPath.path.components[0..<2] +
+        let components = productPath.path.components[0 ..< 2] +
             filePath.path.components[2...]
         var filePath = filePath
         filePath.path = Path(components: components)

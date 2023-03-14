@@ -229,7 +229,7 @@ extension XCSchemeInfoLaunchActionInfoTests {
             defaultBuildConfigurationName: appPBXTarget
                 .defaultBuildConfigurationName,
             targetResolver: targetResolver,
-            targetIDsByLabelAndConfiguration: try xcodeScheme.resolveTargetIDs(
+            targetIDsByLabelAndConfiguration: xcodeScheme.resolveTargetIDs(
                 targetResolver: targetResolver,
                 xcodeConfigurations: targetResolver.targets["A 2"]!
                     .xcodeConfigurations,

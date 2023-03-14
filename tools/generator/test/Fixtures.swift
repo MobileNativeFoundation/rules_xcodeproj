@@ -421,7 +421,7 @@ enum Fixtures {
 
     static func files(
         in pbxProj: PBXProj,
-        buildMode: BuildMode,
+        buildMode _: BuildMode,
         directories: Directories,
         parentGroup group: PBXGroup? = nil
     ) -> (
@@ -1310,7 +1310,7 @@ $(BAZEL_OUT)/z/A.link.params
 
     static func bazelDependenciesTarget(
         in pbxProj: PBXProj,
-        generatorLabel: String
+        generatorLabel _: String
     ) -> PBXAggregateTarget {
         let allPlatforms = """
 watchsimulator \

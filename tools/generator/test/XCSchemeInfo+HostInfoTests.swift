@@ -6,8 +6,8 @@ import XCTest
 
 extension XCSchemeInfoHostInfoTests {
     func test_init_storesUniqSortedPlatforms() throws {
-        let hostInfo = XCSchemeInfo.HostInfo(
-            pbxTarget: try targetResolver.pbxTargetInfos.value(for: "I").pbxTarget,
+        let hostInfo = try XCSchemeInfo.HostInfo(
+            pbxTarget: targetResolver.pbxTargetInfos.value(for: "I").pbxTarget,
             // This is purposely not sorted.
             platforms: [iOSDevicePlatform, iOSSimulatorPlatform],
             referencedContainer: directories.containerReference,
@@ -21,12 +21,12 @@ extension XCSchemeInfoHostInfoTests {
 
 extension XCSchemeInfoHostInfoTests {
     func test_Comparable() throws {
-        let iOSApp = XCSchemeInfo.HostInfo(
-            pbxTargetInfo: try targetResolver.pbxTargetInfos.value(for: "I"),
+        let iOSApp = try XCSchemeInfo.HostInfo(
+            pbxTargetInfo: targetResolver.pbxTargetInfos.value(for: "I"),
             index: 0
         )
-        let macApp = XCSchemeInfo.HostInfo(
-            pbxTargetInfo: try targetResolver.pbxTargetInfos.value(for: "A 2"),
+        let macApp = try XCSchemeInfo.HostInfo(
+            pbxTargetInfo: targetResolver.pbxTargetInfos.value(for: "A 2"),
             index: 1
         )
         XCTAssertFalse(iOSApp < macApp, "iOSApp should not be less than macApp")

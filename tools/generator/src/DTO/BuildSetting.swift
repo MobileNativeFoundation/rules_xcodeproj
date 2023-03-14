@@ -101,9 +101,9 @@ extension BuildSetting: ExpressibleByArrayLiteral {
 extension BuildSetting {
     func contains(_ value: String) -> Bool {
         switch self {
-        case .array(let array):
+        case let .array(array):
             return array.contains(value)
-        case .string(let string):
+        case let .string(string):
             return string == value
         case .bool:
             return false

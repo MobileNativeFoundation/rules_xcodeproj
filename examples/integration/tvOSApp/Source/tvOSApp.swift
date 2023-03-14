@@ -1,5 +1,5 @@
-import UI
 import SwiftUI
+import UI
 
 @main
 struct tvOSApp: App { // swiftlint:disable:this type_name

@@ -49,7 +49,7 @@ extension XCSchemeInfoBuildActionInfoTests {
             buildAction: xcodeScheme.buildAction,
             buildConfigurationName: buildConfigurationName,
             targetResolver: targetResolver,
-            targetIDsByLabelAndConfiguration: try xcodeScheme.resolveTargetIDs(
+            targetIDsByLabelAndConfiguration: xcodeScheme.resolveTargetIDs(
                 targetResolver: targetResolver,
                 xcodeConfigurations: targetResolver.targets["A 1"]!
                     .xcodeConfigurations,
@@ -58,8 +58,8 @@ extension XCSchemeInfoBuildActionInfoTests {
         )
         let expected = try XCSchemeInfo.BuildActionInfo(
             targets: [
-                .init(
-                    targetInfo: try targetResolver.targetInfo(targetID: "A 1"),
+                try .init(
+                    targetInfo: targetResolver.targetInfo(targetID: "A 1"),
                     buildFor: .allEnabled
                 ),
             ]
@@ -124,7 +124,7 @@ class XCSchemeInfoBuildActionInfoTests: XCTestCase {
         hostInfos: [appHostInfo, unitTestHostInfo],
         extensionPointIdentifiers: []
     )
-    
+
     lazy var applicationTargetInfo = XCSchemeInfo.TargetInfo(
         pbxTarget: appPBXTarget,
         platforms: [appPlatform],
@@ -154,7 +154,6 @@ class XCSchemeInfoBuildActionInfoTests: XCTestCase {
 // MARK: - Launchable Targets Tests
 
 extension XCSchemeInfoBuildActionInfoTests {
-    
     func test_launchableTargets_actionInfoForLibTargets() throws {
         // given
         let actionInfo = try XCSchemeInfo.BuildActionInfo(
@@ -175,16 +174,15 @@ extension XCSchemeInfoBuildActionInfoTests {
 
         // then
         XCTAssertEqual(launchableTargets, [])
-
     }
-    
+
     func test_launchableTargets_actionInfoForAppTargets() throws {
         // given
         let actionInfo = try XCSchemeInfo.BuildActionInfo(
             resolveHostsFor: .init(
                 targets: [
                     applicationTargetInfo,
-                    unresolvedLibraryTargetInfoWithHosts
+                    unresolvedLibraryTargetInfoWithHosts,
                 ].map {
                     .init(targetInfo: $0, buildFor: .allEnabled)
                 }
@@ -195,12 +193,12 @@ extension XCSchemeInfoBuildActionInfoTests {
             XCTFail("Expected a `BuildActionInfo`")
             return
         }
-        
-        let resolvedTargetInfo = XCSchemeInfo.TargetInfo(
-            resolveHostFor: try targetResolver.targetInfo(targetID: "A 2"),
+
+        let resolvedTargetInfo = try XCSchemeInfo.TargetInfo(
+            resolveHostFor: targetResolver.targetInfo(targetID: "A 2"),
             topLevelTargetInfos: []
         )
-        
+
         let buildTargetInfos = [resolvedTargetInfo]
             .map { XCSchemeInfo.BuildTargetInfo(targetInfo: $0, buildFor: .allEnabled) }
 
@@ -209,6 +207,5 @@ extension XCSchemeInfoBuildActionInfoTests {
 
         // then
         XCTAssertEqual(launchableTargets, buildTargetInfos)
-
     }
 }

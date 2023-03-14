@@ -9,6 +9,7 @@ extension XCSchemeInfo {
             let thread: Bool
             let undefinedBehavior: Bool
         }
+
         let sanitizers: Sanitizers
     }
 }

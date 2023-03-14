@@ -1,5 +1,5 @@
-import XCTest
 import XcodeProj
+import XCTest
 
 @testable import generator
 
@@ -36,8 +36,8 @@ extension CreateCustomXCSchemesTests {
     }
 
     func test_createCustomXCSchemes_withCustomSchemes_testEnvOverrides() throws {
-        assertUsageError(
-            try Generator.createCustomXCSchemes(
+        try assertUsageError(
+            Generator.createCustomXCSchemes(
                 schemes: [schemeC],
                 buildMode: .bazel,
                 xcodeConfigurations: targetResolver.targets["B 2"]!
@@ -49,7 +49,7 @@ extension CreateCustomXCSchemesTests {
                 args: [:],
                 envs: ["B 2": [
                     "B_2_SCHEME_VAR": "INITIAL",
-                    "OTHER_ENV_VAR": "INITIAL"
+                    "OTHER_ENV_VAR": "INITIAL",
                 ]]
             ),
             expectedMessage: "ERROR: '@//some/package:B' defines a value for 'B_2_SCHEME_VAR' ('INITIAL') that doesn't match the existing value of 'OVERRIDE' from another target in the same scheme."

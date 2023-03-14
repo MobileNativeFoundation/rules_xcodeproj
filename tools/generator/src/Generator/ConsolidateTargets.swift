@@ -13,7 +13,7 @@ extension Generator {
     static func consolidateTargets(
         // swiftlint:disable:previous cyclomatic_complexity
         _ targets: [TargetID: Target],
-        _ xcodeGeneratedFiles: [FilePath : FilePath],
+        _ xcodeGeneratedFiles: [FilePath: FilePath],
         logger: Logger
     ) throws -> ConsolidatedTargets {
         // First pass
@@ -106,8 +106,8 @@ Target "\(id)" not found in `consolidateTargets().targets`
 """)
             }
 
-            var dependencies = Set<ConsolidatedTarget.Key>(
-                try target.allDependencies.map { depID in
+            var dependencies: Set<ConsolidatedTarget.Key> = try .init(
+                target.allDependencies.map { depID in
                     return try resolveDependency(depID, for: id)
                 }
             )
@@ -141,7 +141,7 @@ Target "\(id)" not found in `consolidateTargets().targets`
 
         try keys.forEach { try updateDependencies(for: $0) }
 
-        var keysToEvaluate = keys.filter({ $0.targetIDs.count > 1 })
+        var keysToEvaluate = keys.filter { $0.targetIDs.count > 1 }
 
         // Account for conditional dependencies
         func deconsolidateKey(
@@ -323,8 +323,8 @@ extension ConsolidatedTarget {
         key: ConsolidatedTarget.Key,
         keys: [TargetID: ConsolidatedTarget.Key]
     ) throws -> Set<ConsolidatedTarget.Key> {
-        return Set(
-            try allDependencies.map { targetID in
+        return try Set(
+            allDependencies.map { targetID in
                 guard let dependencyKey = keys[targetID] else {
                     throw PreconditionError(message: """
 Target \(key)'s dependency on "\(targetID)" not found in `keys`

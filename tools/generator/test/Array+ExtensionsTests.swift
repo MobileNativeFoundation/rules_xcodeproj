@@ -6,7 +6,7 @@ final class ArrayExtenstionsTests: XCTestCase {
     func test_extractCommandLineArguments() {
         let result: [String] = [
             "--command_line_args=-AppleLanguages,(en)",
-            "--someOtherFlag"
+            "--someOtherFlag",
         ].extractCommandLineArguments()
         XCTAssertEqual(result, ["-AppleLanguages", "(en)"])
     }

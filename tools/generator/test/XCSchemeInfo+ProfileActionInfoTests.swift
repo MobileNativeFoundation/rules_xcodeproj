@@ -71,7 +71,7 @@ extension XCSchemeInfoProfileActionInfoTests {
             defaultBuildConfigurationName: appTarget
                 .defaultBuildConfigurationName,
             targetResolver: targetResolver,
-            targetIDsByLabelAndConfiguration: try xcodeScheme.resolveTargetIDs(
+            targetIDsByLabelAndConfiguration: xcodeScheme.resolveTargetIDs(
                 targetResolver: targetResolver,
                 xcodeConfigurations: targetResolver.targets["A 2"]!
                     .xcodeConfigurations,

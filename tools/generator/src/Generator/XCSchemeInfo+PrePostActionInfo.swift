@@ -64,7 +64,7 @@ extension Sequence where Element == XCSchemeInfo.PrePostActionInfo {
             guard let resolveHostFor = action.expandVariablesBasedOn else {
                 return action
             }
-            
+
             return XCSchemeInfo.PrePostActionInfo(
                 name: action.name,
                 expandVariablesBasedOn: .init(

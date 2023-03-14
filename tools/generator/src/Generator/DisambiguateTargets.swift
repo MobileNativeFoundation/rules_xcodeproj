@@ -206,7 +206,7 @@ struct ProductTypeComponents {
                 includeOS: includeOS
             )
 
-            if !osDistinguisher.components.isEmpty  {
+            if !osDistinguisher.components.isEmpty {
                 consolidatedDistinguishers.append(
                     osDistinguisher.components.joined(separator: " ")
                 )

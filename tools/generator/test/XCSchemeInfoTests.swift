@@ -168,7 +168,7 @@ extension XCSchemeInfoTests {
 extension XCSchemeInfoTests {
     func test_customSchemeInit() throws {
         let actual = try XCSchemeInfo(
-            scheme: try xcodeScheme.withDefaults,
+            scheme: xcodeScheme.withDefaults,
             xcodeConfigurations: targetResolver.targets["A 1"]!
                 .xcodeConfigurations,
             defaultBuildConfigurationName: "Profile",
@@ -185,14 +185,14 @@ extension XCSchemeInfoTests {
         let expected = try XCSchemeInfo(
             name: schemeName,
             defaultBuildConfigurationName: "Profile",
-            buildActionInfo: try .init(
+            buildActionInfo: .init(
                 targets: [
-                    .init(
-                        targetInfo: try targetResolver.targetInfo(targetID: "A 1"),
+                    try .init(
+                        targetInfo: targetResolver.targetInfo(targetID: "A 1"),
                         buildFor: .allEnabled
                     ),
-                    .init(
-                        targetInfo: try targetResolver.targetInfo(targetID: "A 2"),
+                    try .init(
+                        targetInfo: targetResolver.targetInfo(targetID: "A 2"),
                         buildFor: .init(
                             running: .enabled,
                             profiling: .enabled,
@@ -200,19 +200,19 @@ extension XCSchemeInfoTests {
                             analyzing: .enabled
                         )
                     ),
-                    .init(
-                        targetInfo: try targetResolver.targetInfo(targetID: "B 2"),
+                    try .init(
+                        targetInfo: targetResolver.targetInfo(targetID: "B 2"),
                         buildFor: .init(testing: .enabled, analyzing: .enabled)
                     ),
                 ]
             ),
-            testActionInfo: try .init(
+            testActionInfo: .init(
                 buildConfigurationName: expectedTestTargetInfo.pbxTarget
                     .defaultBuildConfigurationName,
                 targetInfos: [expectedTestTargetInfo],
-                expandVariablesBasedOn: try targetResolver.targetInfo(targetID: "B 2")
+                expandVariablesBasedOn: targetResolver.targetInfo(targetID: "B 2")
             ),
-            launchActionInfo: try .init(
+            launchActionInfo: .init(
                 buildConfigurationName: expectedLaunchTargetInfo.pbxTarget
                     .defaultBuildConfigurationName,
                 targetInfo: expectedLaunchTargetInfo

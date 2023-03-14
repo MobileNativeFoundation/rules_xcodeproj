@@ -303,6 +303,7 @@ extension XcodeScheme {
                 self.undefinedBehavior = undefinedBehavior
             }
         }
+
         let sanitizers: Sanitizers
 
         init(sanitizers: Sanitizers = .init()) {

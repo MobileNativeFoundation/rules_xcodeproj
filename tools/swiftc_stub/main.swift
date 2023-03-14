@@ -102,7 +102,7 @@ func handleSwiftUIPreviewThunk(_ args: [String]) throws {
     guard let sdkPath = findPath(key: "-sdk", from: args)?.path
     else {
         print("warning: No such argument '-sdk'")
-        exit(try runSubProcess(
+        try exit(runSubProcess(
             executable: "swiftc",
             args: Array(args.dropFirst())
         ))
@@ -118,14 +118,14 @@ func handleSwiftUIPreviewThunk(_ args: [String]) throws {
         let range = Range(match.range(at: 1), in: sdkPath)
     else {
         print("warning: Failed to parse DEVELOPER_DIR from '-sdk'")
-        exit(try runSubProcess(
+        try exit(runSubProcess(
             executable: "swiftc",
             args: Array(args.dropFirst())
         ))
     }
     let developerDir = sdkPath[range]
 
-    exit(try runSubProcess(
+    try exit(runSubProcess(
         executable: """
 \(developerDir)/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc
 """,
@@ -139,7 +139,7 @@ let args = CommandLine.arguments
 let argsSet = Set(args)
 
 if args.count == 2, args.last == "-v" {
-    exit(try runSubProcess(executable: "swiftc", args: ["-v"]))
+    try exit(runSubProcess(executable: "swiftc", args: ["-v"]))
 }
 
 for arg in args {

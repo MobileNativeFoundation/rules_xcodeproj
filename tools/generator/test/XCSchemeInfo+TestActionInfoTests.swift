@@ -108,7 +108,7 @@ extension XCSchemeInfoTestActionInfoTests {
             defaultBuildConfigurationName: unitTestPBXTarget
                 .defaultBuildConfigurationName,
             targetResolver: targetResolver,
-            targetIDsByLabelAndConfiguration: try xcodeScheme.resolveTargetIDs(
+            targetIDsByLabelAndConfiguration: xcodeScheme.resolveTargetIDs(
                 targetResolver: targetResolver,
                 xcodeConfigurations: targetResolver.targets["B 2"]!
                     .xcodeConfigurations,

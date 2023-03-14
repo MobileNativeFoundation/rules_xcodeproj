@@ -12,7 +12,7 @@ extension XcodeSchemeExtensionsTests {
         // specified in build action as well.
         let scheme = try XcodeScheme(
             name: "Foo",
-            buildAction: try .init(targets: [libLabel, toolLabel].map {
+            buildAction: .init(targets: [libLabel, toolLabel].map {
                 XcodeScheme.BuildTarget(label: $0)
             }),
             testAction: nil,
@@ -70,7 +70,7 @@ extension XcodeSchemeExtensionsTests {
                 libLabel: libiOSx8664TargetID,
                 libTestsLabel: libTestsiOSx8664TargetID,
                 iOSAppLabel: iOSAppiOSx8664TargetID,
-            ]
+            ],
         ]
         XCTAssertNoDifference(actual, expected)
     }
@@ -87,7 +87,7 @@ extension XcodeSchemeExtensionsTests {
             libtvOSx8664Target.xcodeConfigurations.first!: [
                 libLabel: libtvOSx8664TargetID,
                 tvOSAppLabel: tvOSApptvOSx8664TargetID,
-            ]
+            ],
         ]
         XCTAssertNoDifference(actual, expected)
     }
@@ -122,7 +122,7 @@ Unable to find the best `TargetWithID` for "@//foo:foo"
                 iOSAppiOSarm64Target.xcodeConfigurations.first!: .init(
                     id: iOSAppiOSx8664TargetID,
                     platforms: [iphoneOSPlatform, iphoneSimulatorPlatform]
-                )
+                ),
             ]
         )
     }

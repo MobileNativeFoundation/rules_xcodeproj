@@ -45,9 +45,9 @@ extension XCSchemeInfo.BuildActionInfo {
                     buildFor: buildTarget.buildFor
                 )
             },
-            preActions: try original.preActions
+            preActions: original.preActions
                 .resolveHosts(topLevelTargetInfos: topLevelTargetInfos),
-            postActions: try original.postActions
+            postActions: original.postActions
                 .resolveHosts(topLevelTargetInfos: topLevelTargetInfos)
         )
     }
@@ -76,8 +76,8 @@ extension XCSchemeInfo.BuildActionInfo {
 Failed to find a `TargetID` for "\(buildTarget.label)" while creating a \
 `BuildActionInfo`
 """)
-                return XCSchemeInfo.BuildTargetInfo(
-                    targetInfo: try targetResolver
+                return try XCSchemeInfo.BuildTargetInfo(
+                    targetInfo: targetResolver
                         .targetInfo(targetID: targetID),
                     buildFor: buildTarget.buildFor
                 )
@@ -105,6 +105,6 @@ Failed to find a `TargetID` for "\(buildTarget.label)" while creating a \
 
 extension XCSchemeInfo.BuildActionInfo {
     var launchableTargets: Set<XCSchemeInfo.BuildTargetInfo> {
-        targets.filter { $0.targetInfo.productType.isLaunchable }
+        targets.filter(\.targetInfo.productType.isLaunchable)
     }
 }

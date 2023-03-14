@@ -95,9 +95,9 @@ Failed to find a `TargetID` for "\(profileAction.target)" while creating a \
 `ProfileActionInfo`
 """)
 
-        self.init(
+        try self.init(
             buildConfigurationName: buildConfigurationName,
-            targetInfo: try targetResolver.targetInfo(targetID: targetID),
+            targetInfo: targetResolver.targetInfo(targetID: targetID),
             args: profileAction.args,
             env: profileAction.env,
             workingDirectory: profileAction.workingDirectory

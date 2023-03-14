@@ -54,7 +54,7 @@ extension Generator {
         in pbxProj: PBXProj,
         buildMode: BuildMode,
         forFixtures: Bool,
-        forceBazelDependencies: Bool,
+        forceBazelDependencies _: Bool,
         targets: [TargetID: Target],
         extraFiles: Set<FilePath>,
         xccurrentversions: [XCCurrentVersion],
@@ -83,7 +83,7 @@ extension Generator {
             name: String?,
             path: String
         ) {
-            if filePath.type == .external &&
+            if filePath.type == .external,
                 filePath.path.components.count <= 2,
                let symlinkDest = try? (
                 directories.absoluteExternal + filePath.path
@@ -92,7 +92,7 @@ extension Generator {
                 let workspaceDirectoryComponents = directories
                     .workspaceComponents
                 let symlinkComponents = symlinkDest.components
-                if forFixtures && symlinkComponents.starts(
+                if forFixtures, symlinkComponents.starts(
                     with: directories.workspaceComponents
                 ) {
                     let relativeComponents = symlinkComponents.suffix(
@@ -646,7 +646,7 @@ private extension Inputs {
 }
 
 private extension Outputs {
-    func forcedBazelCompileFiles(buildMode: BuildMode) -> Set<FilePath> {
+    func forcedBazelCompileFiles(buildMode _: BuildMode) -> Set<FilePath> {
         // TODO: Re-enable for Swift diagnostics replay
 //        if buildMode.usesBazelModeBuildScripts, swift != nil {
 //            return [.internal(Generator.bazelForcedSwiftCompilePath)]

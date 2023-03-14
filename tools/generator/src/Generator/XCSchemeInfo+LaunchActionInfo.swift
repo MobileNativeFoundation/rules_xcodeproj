@@ -157,7 +157,7 @@ Failed to find a `TargetID` for "\(launchAction.target)" while creating a \
 
         try self.init(
             buildConfigurationName: buildConfigurationName,
-            targetInfo: try targetResolver.targetInfo(targetID: targetID),
+            targetInfo: targetResolver.targetInfo(targetID: targetID),
             args: launchAction.args,
             diagnostics: XCSchemeInfo.DiagnosticsInfo(
                 diagnostics: launchAction.diagnostics
