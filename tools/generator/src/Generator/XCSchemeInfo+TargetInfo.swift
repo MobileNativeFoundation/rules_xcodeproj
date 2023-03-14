@@ -214,8 +214,10 @@ extension Sequence where Element == XCSchemeInfo.TargetInfo {
 
         let preActions = try targetInfos.compactMap { try $0.buildPreAction() }
 
-        return [.initBazelBuildOutputGroupsFile(
-            buildableReference: buildableReference
-        )] + preActions
+        return [
+            .initBazelBuildOutputGroupsFile(
+                buildableReference: buildableReference
+            ),
+        ] + preActions
     }
 }

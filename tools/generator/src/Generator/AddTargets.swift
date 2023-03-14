@@ -271,14 +271,17 @@ perl -pe 's/^("?)(.*\$\(.*\).*?)("?)$/"$2"/ ; s/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$E
 """#
         var shellScriptComponents: [String]
         if buildMode == .xcode {
-            shellScriptComponents = [#"""
+            shellScriptComponents = [
+                #"""
 set -euo pipefail
 
 \#(action)
 
-"""#]
+"""#,
+            ]
         } else {
-            shellScriptComponents = [#"""
+            shellScriptComponents = [
+                #"""
 set -euo pipefail
 
 if [[ "${ENABLE_PREVIEWS:-}" == "YES" ]]; then
@@ -287,7 +290,8 @@ else
   touch "$SCRIPT_OUTPUT_FILE_0"
 fi
 
-"""#]
+"""#,
+            ]
         }
 
         var outputsPaths = ["$(DERIVED_FILE_DIR)/link.params"]
