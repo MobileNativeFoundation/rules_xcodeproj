@@ -83,12 +83,22 @@ extension XCScheme {
 
         let launchAction: XCScheme.LaunchAction
         if let launchActionInfo = schemeInfo.launchActionInfo {
+            let scriptTitle: String
+            let scriptText: String
+            if buildMode == .xcode {
+                scriptTitle = "Update .lldbinit"
+                scriptText = XCScheme.ExecutionAction.createLLDBInitScript
+            } else {
+                scriptTitle = "Update .lldbinit and copy dSYMs"
+                scriptText = XCScheme.ExecutionAction.createLLDBInitScript +
+                    "\n" + XCScheme.ExecutionAction.copyDSYMsScript
+            }
             // TODO: Make this similar to `initBazelBuildOutputGroupsFile()`,
             // instead of `otherPreActions`
             let otherPreActions: [XCScheme.ExecutionAction] = [
                 .createPreActionScript(
-                    title: "Update .lldbinit",
-                    scriptText: ExecutionAction.createLLDBInitScript,
+                    title: scriptTitle,
+                    scriptText: scriptText,
                     buildableReference: launchActionInfo
                         .targetInfo.buildableReference
                 ),
