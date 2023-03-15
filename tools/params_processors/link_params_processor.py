@@ -13,7 +13,8 @@ def _main(
         self_linked_path: str,
         swift_triple: str,
         output_path: str,
-        args: List[str]
+        # args: List[str],
+        argfile_path: str,
     ) -> None:
     with open(xcode_generated_paths_path, encoding = "utf-8") as fp:
         xcode_generated_paths = json.load(fp)
@@ -21,9 +22,12 @@ def _main(
     with open(generated_framework_search_paths_path, encoding = "utf-8") as fp:
         generated_framework_search_paths = json.load(fp)
 
+    print("_process_linkopts : ")
+
     linkopts = _process_linkopts(
-        # First argument is the tool name
-        linkopts = _parse_args(args)[1:],
+        # # First argument is the tool name
+        # linkopts = _parse_args(args)[1:],
+        linkopts = _parse_args(argfile_path),
         xcode_generated_paths = xcode_generated_paths,
         generated_framework_search_paths = generated_framework_search_paths,
         is_framework = is_framework,
@@ -36,11 +40,22 @@ def _main(
         fp.write(f'{result}\n')
 
 
-def _parse_args(args: List[str]) -> List[str]:
-    if args[0].startswith("@"):
-        with open(args[0][1:], encoding = "utf-8") as fp:
-            return fp.read().splitlines()
-    return args
+def _parse_args(argfile_path: str) -> List[str]:
+    with open(argfile_path, encoding = "utf-8") as fp:
+        lines = fp.read().splitlines() 
+        if lines[0].startswith("@"):
+            with open(lines[0][1:], encoding = "utf-8") as f:
+                return f.read().splitlines()
+
+    # First argument is the tool name
+    return lines[1:]
+
+
+# def _parse_args(args: List[str]) -> List[str]:
+#     if args[0].startswith("@"):
+#         with open(args[0][1:], encoding = "utf-8") as fp:
+#             return fp.read().splitlines()
+#     return args
 
 
 # linker flags that we don't want to propagate to Xcode.
@@ -214,5 +229,5 @@ Usage: {sys.argv[0]} <xcode_generated_paths.json> \
         sys.argv[4],
         sys.argv[5],
         sys.argv[6],
-        sys.argv[7:],
+        sys.argv[7],
     )

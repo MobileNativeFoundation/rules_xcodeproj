@@ -828,6 +828,13 @@ def _linker_inputs_to_dto(
             ),
         )
 
+        test_file = ctx.actions.declare_file("{}-test_file.txt".format(params_index))
+        
+        ctx.actions.write(
+            output = test_file,
+            content = linker_inputs.link_args[0],
+        )
+
         args = ctx.actions.args()
         args.add(xcode_generated_paths_file)
         args.add(generated_framework_search_paths_file)
@@ -835,16 +842,22 @@ def _linker_inputs_to_dto(
         args.add(self_product_path)
         args.add(platform_info.to_swift_triple(platform))
         args.add(link_params)
+        args.add(test_file)
+        print(test_file.path)
+        # print("linker_inputs.link_args_inputs : ", linker_inputs.link_args_inputs.path)
+        print(link_params.path)
 
         ctx.actions.run(
             executable = link_params_processor,
-            arguments = [args] + linker_inputs.link_args,
+            # arguments = [args] + linker_inputs.link_args,
+            arguments = [args],
             mnemonic = "ProcessLinkParams",
             progress_message = "Generating %{output}",
             inputs = (
                 [
                     xcode_generated_paths_file,
                     generated_framework_search_paths_file,
+                    test_file,
                 ] + list(linker_inputs.link_args_inputs)
             ),
             outputs = [link_params],
