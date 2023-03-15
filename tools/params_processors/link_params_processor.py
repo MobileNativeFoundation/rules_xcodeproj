@@ -13,7 +13,6 @@ def _main(
         self_linked_path: str,
         swift_triple: str,
         output_path: str,
-        # args: List[str],
         argfile_path: str,
     ) -> None:
     with open(xcode_generated_paths_path, encoding = "utf-8") as fp:
@@ -25,8 +24,6 @@ def _main(
     print("_process_linkopts : ")
 
     linkopts = _process_linkopts(
-        # # First argument is the tool name
-        # linkopts = _parse_args(args)[1:],
         linkopts = _parse_args(argfile_path),
         xcode_generated_paths = xcode_generated_paths,
         generated_framework_search_paths = generated_framework_search_paths,
@@ -49,13 +46,6 @@ def _parse_args(argfile_path: str) -> List[str]:
 
     # First argument is the tool name
     return lines[1:]
-
-
-# def _parse_args(args: List[str]) -> List[str]:
-#     if args[0].startswith("@"):
-#         with open(args[0][1:], encoding = "utf-8") as fp:
-#             return fp.read().splitlines()
-#     return args
 
 
 # linker flags that we don't want to propagate to Xcode.
