@@ -24,12 +24,13 @@ struct Inputs: Equatable {
 }
 
 extension Inputs {
-    var all: Set<FilePath> {
+    var all: Set<FilePath> { nonResources.union(resources) }
+
+    var nonResources: Set<FilePath> {
         return Set(srcs)
             .union(Set(nonArcSrcs))
             .union(Set(hdrs))
             .union(pchSet)
-            .union(resources)
             .union(entitlementsSet)
     }
 
