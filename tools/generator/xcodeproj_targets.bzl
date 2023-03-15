@@ -14,18 +14,21 @@ TOP_LEVEL_TARGETS = [_APP_TARGET, _TEST_TARGET, _TOOL_TARGET]
 
 XCODE_CONFIGURATIONS = {
     "Debug": {
+        "//command_line_option:apple_generate_dsym": False,
         "//command_line_option:compilation_mode": "dbg",
         "//command_line_option:features": [],
     },
     # Profile and Release are identical to exercise identical configuration
     # handling (which includes code paths in both Starlark and the generator)
     "Profile": {
+        "//command_line_option:apple_generate_dsym": True,
         "//command_line_option:compilation_mode": "opt",
         # Until we have a solution for Instruments.app handling relative paths,
         # we need the debug info to include absolute source paths
         "//command_line_option:features": ["-swift.debug_prefix_map"],
     },
     "Release": {
+        "//command_line_option:apple_generate_dsym": True,
         "//command_line_option:compilation_mode": "opt",
         "//command_line_option:features": ["-swift.debug_prefix_map"],
     },

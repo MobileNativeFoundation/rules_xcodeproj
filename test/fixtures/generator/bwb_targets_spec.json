@@ -235,9 +235,12 @@
             "t": "g"
         },
         "b": {
+            "BAZEL_OUTPUTS_DSYM": [
+                "\"bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-4/bin/tools/generator/test/tests.xctest.dSYM\""
+            ],
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-4/bin/tools/generator/test/tests.__internal__.__test_bundle.zip",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "",
+            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
             "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
@@ -394,6 +397,9 @@
             "t": "g"
         },
         "b": {
+            "BAZEL_OUTPUTS_DSYM": [
+                "\"bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-4/bin/tools/generator/generator.dSYM\""
+            ],
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-4/bin/tools/generator/rules_xcodeproj/generator/generator",
             "DEBUG_INFORMATION_FORMAT": "",
             "ENABLE_BITCODE": false,
@@ -639,7 +645,7 @@
             "v": "macosx"
         },
         "b": {
-            "DEBUG_INFORMATION_FORMAT": "",
+            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
             "PRODUCT_MODULE_NAME": "generator",
@@ -865,8 +871,11 @@
             "t": "g"
         },
         "b": {
+            "BAZEL_OUTPUTS_DSYM": [
+                "\"bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-4/bin/tools/swiftc_stub/swiftc.dSYM\""
+            ],
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-4/bin/tools/swiftc_stub/rules_xcodeproj/swiftc/swiftc",
-            "DEBUG_INFORMATION_FORMAT": "",
+            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
             "PRODUCT_MODULE_NAME": "tools_swiftc_stub_swiftc_stub_library",
@@ -1198,7 +1207,7 @@
             "v": "macosx"
         },
         "b": {
-            "DEBUG_INFORMATION_FORMAT": "",
+            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
             "PRODUCT_MODULE_NAME": "OrderedCollections",
@@ -1525,7 +1534,7 @@
             "v": "macosx"
         },
         "b": {
-            "DEBUG_INFORMATION_FORMAT": "",
+            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
             "PRODUCT_MODULE_NAME": "PathKit",
@@ -1727,7 +1736,7 @@
             "-O0"
         ],
         "b": {
-            "DEBUG_INFORMATION_FORMAT": "",
+            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
             "GCC_OPTIMIZATION_LEVEL": "0",
@@ -1919,7 +1928,7 @@
             "v": "macosx"
         },
         "b": {
-            "DEBUG_INFORMATION_FORMAT": "",
+            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
             "PRODUCT_MODULE_NAME": "ZippyJSON",
@@ -2118,7 +2127,7 @@
             "-Wno-extra"
         ],
         "b": {
-            "DEBUG_INFORMATION_FORMAT": "",
+            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
             "GCC_OPTIMIZATION_LEVEL": "0",
@@ -2862,7 +2871,7 @@
             "v": "macosx"
         },
         "b": {
-            "DEBUG_INFORMATION_FORMAT": "",
+            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
             "PRODUCT_MODULE_NAME": "XcodeProj",
