@@ -21,6 +21,8 @@ XCODE_CONFIGURATIONS = {
     # handling (which includes code paths in both Starlark and the generator)
     "Profile": {
         "//command_line_option:compilation_mode": "opt",
+        # Until we have a solution for Instruments.app handling relative paths,
+        # we need the debug info to include absolute source paths
         "//command_line_option:features": ["-swift.debug_prefix_map"],
     },
     "Release": {
