@@ -280,12 +280,12 @@ def _process_base_compiler_opts(
             if not opt_prefix:
                 _, opt_prefix, suffix = opt.partition("-ivfsoverlay")
             if suffix:
-                if not suffix.startswith("/"):
+                if suffix[0] != "/":
                     opt = opt_prefix + "$(CURRENT_EXECUTION_ROOT)/" + suffix
             elif (previous_opt == "--config" or
                   previous_vfsoverlay_opt == "-vfsoverlay" or
                   previous_vfsoverlay_opt == "-ivfsoverlay"):
-                if not opt.startswith("/"):
+                if opt[0] != "/":
                     opt = "$(CURRENT_EXECUTION_ROOT)/" + opt
 
         processed_opt = (
