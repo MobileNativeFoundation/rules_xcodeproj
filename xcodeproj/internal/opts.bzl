@@ -226,76 +226,6 @@ Using VFS overlays with `build_mode = "xcode"` is unsupported.
         swiftcopts,
     )
 
-def _process_base_compiler_opts(
-        *,
-        opts,
-        skip_opts,
-        compound_skip_opts = {},
-        extra_processing = None):
-    """Process compiler options, skipping options that should be skipped.
-
-    Args:
-        opts: A `list` of compiler options.
-        skip_opts: A `dict` of options to skip. The values are the number of
-            arguments to skip.
-        compound_skip_opts: A `dict` of options that we might skip if further
-            options match. The values are `dict`s of options to skip, where the
-            keys and values are handled the same as `skip_opts`, except 1 is
-            added to whatever is returned for the skip number.
-        extra_processing: An optional function that provides further processing
-            of an option. Returns the processed opt, or `None` if it as handled
-            another way (like being added to build settings).
-
-    Returns:
-        A `list` of unhandled options.
-    """
-    processed_opts = []
-    skip_next = 0
-    previous_opt = None
-    previous_frontend_opt = None
-    previous_clang_opt = None
-    for idx, opt in enumerate(opts):
-        if skip_next:
-            skip_next -= 1
-            continue
-        root_opt = opt.split("=")[0]
-
-        skip_next = skip_opts.get(root_opt, 0)
-        if skip_next:
-            skip_next -= 1
-            continue
-
-        compound_skip_next = compound_skip_opts.get(root_opt)
-        if compound_skip_next:
-            skip_next = compound_skip_next.get(opts[idx + 1], 0)
-            if skip_next:
-                # No need to decrement 1, since we need to skip the first opt
-                continue
-
-        processed_opt = (
-            extra_processing and
-            extra_processing(opt, previous_opt, previous_frontend_opt, previous_clang_opt)
-        )
-
-        if previous_opt == "-Xcc":
-            previous_clang_opt = opt
-            previous_frontend_opt = None
-        elif opt != "-Xcc":
-            previous_clang_opt = None
-            if previous_opt == "-Xfrontend":
-                previous_frontend_opt = opt
-            elif opt != "-Xfrontend":
-                previous_frontend_opt = None
-        previous_opt = opt
-
-        opt = processed_opt
-        if not opt:
-            continue
-
-        processed_opts.append(opt)
-
-    return processed_opts
-
 def create_search_paths(*, framework_includes):
     """Creates a value representing search paths of a target.
 
@@ -353,7 +283,7 @@ def _process_cc_opts(opts, *, build_settings):
     framework_includes = []
     has_debug_info = {}
 
-    def _inner_process_cc_opts(opt, previous_opt, _previous_frontend_opt, _previous_clang_opt):
+    def _inner_process_cc_opts(opt, previous_opt):
         # Short-circuit opts that are too short for our checks
         if len(opt) < 2:
             return opt
@@ -369,12 +299,6 @@ def _process_cc_opts(opts, *, build_settings):
 
         if opt_character == "O":
             optimizations.append(opt)
-            return None
-        if opt == "-g":
-            # We use a `dict` instead of setting a single value because
-            # assigning to `has_debug_info` creates a new local variable instead
-            # of assigning to the existing variable
-            has_debug_info[True] = None
             return None
         if opt == "-F":
             return opt
@@ -402,13 +326,34 @@ def _process_cc_opts(opts, *, build_settings):
 
         return opt
 
-    processed_opts = _process_base_compiler_opts(
-        opts = opts,
-        skip_opts = _CC_SKIP_OPTS,
-        extra_processing = _inner_process_cc_opts,
-    )
+    processed_opts = []
+    has_debug_info = False
+    skip_next = 0
+    outer_previous_opt = None
+    for outer_opt in opts:
+        if skip_next:
+            skip_next -= 1
+            continue
+        root_opt = outer_opt.split("=")[0]
 
-    has_debug_info = bool(has_debug_info)
+        skip_next = _CC_SKIP_OPTS.get(root_opt, 0)
+        if skip_next:
+            skip_next -= 1
+            continue
+
+        if outer_opt == "-g":
+            has_debug_info = True
+            continue
+
+        processed_opt = _inner_process_cc_opts(outer_opt, outer_previous_opt)
+
+        outer_previous_opt = outer_opt
+
+        outer_opt = processed_opt
+        if not outer_opt:
+            continue
+
+        processed_opts.append(outer_opt)
 
     search_paths = create_search_paths(
         framework_includes = uniq(framework_includes),
@@ -518,9 +463,12 @@ def _process_swiftcopts(
     # Default to not creating the Swift generated header.
     build_settings["SWIFT_OBJC_INTERFACE_HEADER_NAME"] = ""
 
+    # Xcode's default is `-O` when not set, so minimally set it to `-Onone`,
+    # which matches swiftc's default.
+    build_settings["SWIFT_OPTIMIZATION_LEVEL"] = "-Onone"
+
     framework_includes = []
     clang_opts = []
-    has_debug_info = {}
 
     def _process_clang_opt(opt, previous_opt, previous_clang_opt):
         is_clang_opt = previous_opt == "-Xcc"
@@ -641,12 +589,6 @@ under {}""".format(opt, package_bin_dir))
             fail("""\
 Using VFS overlays with `build_mode = "xcode"` is unsupported.
 """)
-        if opt == "-g":
-            # We use a `dict` instead of setting a single value because
-            # assigning to `has_debug_info` creates a new local variable instead
-            # of assigning to the existing variable
-            has_debug_info[True] = None
-            return None
         if opt == "-enable-testing":
             build_settings["ENABLE_TESTABILITY"] = True
             return None
@@ -689,18 +631,57 @@ Using VFS overlays with `build_mode = "xcode"` is unsupported.
 
         return opt
 
-    # Xcode's default is `-O` when not set, so minimally set it to `-Onone`,
-    # which matches swiftc's default.
-    build_settings["SWIFT_OPTIMIZATION_LEVEL"] = "-Onone"
+    processed_opts = []
+    has_debug_info = False
+    skip_next = 0
+    outer_previous_opt = None
+    outer_previous_frontend_opt = None
+    outer_previous_clang_opt = None
+    for idx, outer_opt in enumerate(opts):
+        if skip_next:
+            skip_next -= 1
+            continue
+        root_opt = outer_opt.split("=")[0]
 
-    processed_opts = _process_base_compiler_opts(
-        opts = opts,
-        skip_opts = _SWIFTC_SKIP_OPTS,
-        compound_skip_opts = _SWIFTC_SKIP_COMPOUND_OPTS,
-        extra_processing = _inner_process_swiftcopts,
-    )
+        skip_next = _SWIFTC_SKIP_OPTS.get(root_opt, 0)
+        if skip_next:
+            skip_next -= 1
+            continue
 
-    has_debug_info = bool(has_debug_info)
+        compound_skip_next = _SWIFTC_SKIP_COMPOUND_OPTS.get(root_opt)
+        if compound_skip_next:
+            skip_next = compound_skip_next.get(opts[idx + 1], 0)
+            if skip_next:
+                # No need to decrement 1, since we need to skip the first opt
+                continue
+
+        if outer_opt == "-g":
+            has_debug_info = True
+            continue
+
+        processed_opt = _inner_process_swiftcopts(
+            outer_opt,
+            outer_previous_opt,
+            outer_previous_frontend_opt,
+            outer_previous_clang_opt,
+        )
+
+        if outer_previous_opt == "-Xcc":
+            outer_previous_clang_opt = outer_opt
+            outer_previous_frontend_opt = None
+        elif outer_opt != "-Xcc":
+            outer_previous_clang_opt = None
+            if outer_previous_opt == "-Xfrontend":
+                outer_previous_frontend_opt = outer_opt
+            elif outer_opt != "-Xfrontend":
+                outer_previous_frontend_opt = None
+        outer_previous_opt = outer_opt
+
+        outer_opt = processed_opt
+        if not outer_opt:
+            continue
+
+        processed_opts.append(outer_opt)
 
     search_paths = create_search_paths(
         framework_includes = uniq(framework_includes),
