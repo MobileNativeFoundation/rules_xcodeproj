@@ -1,2 +1,5 @@
 # Enabling archived bundles for fixture coverage
 build:rules_xcodeproj --define=apple.experimental.tree_artifact_outputs=0
+
+# Collect Starlark profiling data
+build:rules_xcodeproj_generator --starlark_cpu_profile=/tmp/starlark.pprof.gz
