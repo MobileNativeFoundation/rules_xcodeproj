@@ -357,6 +357,12 @@ def _process_cc_opts(opts, *, build_settings):
         # Short-circuit opts that are too short for our checks
         if len(opt) < 2:
             return opt
+
+        if previous_opt == "-ivfsoverlay" or previous_opt == "--config":
+            if opt[0] != "/":
+                return "$(CURRENT_EXECUTION_ROOT)/" + opt
+            return opt
+
         if opt[0] != "-":
             return opt
         opt_character = opt[1]
@@ -392,10 +398,6 @@ def _process_cc_opts(opts, *, build_settings):
             value = opt[12:]
             if not value.startswith("/"):
                 return "-ivfsoverlay" + "$(CURRENT_EXECUTION_ROOT)/" + value
-            return opt
-        if previous_opt == "-ivfsoverlay" or previous_opt == "--config":
-            if opt[0] != "/":
-                return "$(CURRENT_EXECUTION_ROOT)/" + opt
             return opt
 
         return opt

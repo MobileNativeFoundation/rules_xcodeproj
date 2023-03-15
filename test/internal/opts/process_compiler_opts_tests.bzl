@@ -443,6 +443,8 @@ def process_compiler_opts_test_suite(name):
             "ios",
             "-mmacosx-version-min=12.0",
             "-passthrough",
+            "--config",
+            "relative/Path.yaml",
         ],
         cxxopts = [
             "-isysroot",
@@ -460,6 +462,8 @@ def process_compiler_opts_test_suite(name):
             "macos",
             "-passthrough",
             "-mios-simulator-version-min=14.0",
+            "--config",
+            "relative/Path.yaml",
         ],
         swiftcopts = [
             "-output-file-map",
@@ -526,12 +530,16 @@ def process_compiler_opts_test_suite(name):
             "-I__BAZEL_XCODE_SOMETHING_/path",
             "-passthrough",
             "-passthrough",
+            "--config",
+            "$(CURRENT_EXECUTION_ROOT)/relative/Path.yaml",
         ],
         expected_cxxopts = [
             "-passthrough",
             "-passthrough",
             "-I__BAZEL_XCODE_BOSS_",
             "-passthrough",
+            "--config",
+            "$(CURRENT_EXECUTION_ROOT)/relative/Path.yaml",
         ],
         expected_swiftcopts = [
             "-passthrough",
@@ -596,6 +604,8 @@ def process_compiler_opts_test_suite(name):
             "ios",
             "-mmacosx-version-min=12.0",
             "-passthrough",
+            "--config",
+            "relative/Path.yaml",
         ],
         cxxopts = [
             "-isysroot",
@@ -613,6 +623,8 @@ def process_compiler_opts_test_suite(name):
             "macos",
             "-passthrough",
             "-mios-simulator-version-min=14.0",
+            "--config",
+            "relative/Path.yaml",
         ],
         swiftcopts = [
             "-output-file-map",
@@ -663,12 +675,16 @@ def process_compiler_opts_test_suite(name):
             "-I__BAZEL_XCODE_SOMETHING_/path",
             "-passthrough",
             "-passthrough",
+            "--config",
+            "$(CURRENT_EXECUTION_ROOT)/relative/Path.yaml",
         ],
         expected_cxxopts = [
             "-passthrough",
             "-passthrough",
             "-I__BAZEL_XCODE_BOSS_",
             "-passthrough",
+            "--config",
+            "$(CURRENT_EXECUTION_ROOT)/relative/Path.yaml",
         ],
         expected_swiftcopts = [
             "-passthrough",
