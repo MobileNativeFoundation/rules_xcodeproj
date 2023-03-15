@@ -642,7 +642,7 @@ Using VFS overlays with `build_mode = "xcode"` is unsupported.
         if opt.startswith("-strict-concurrency="):
             build_settings["SWIFT_STRICT_CONCURRENCY"] = opt[20:]
             return None
-        if not opt.startswith("-") and opt.endswith(".swift"):
+        if opt[0] != "-" and opt.endswith(".swift"):
             # These are the files to compile, not options. They are seen here
             # because of the way we collect Swift compiler options. Ideally in
             # the future we could collect Swift compiler options similar to how
