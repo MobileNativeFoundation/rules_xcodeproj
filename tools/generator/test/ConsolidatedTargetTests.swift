@@ -122,8 +122,8 @@ final class ConsolidatedTargetTests: XCTestCase {
         let targets = Self.targets
         let expectedUniqueFiles: [TargetID: Set<FilePath>] = [
             "A": ["0", "123"],
-            "B": ["1", "456", "cc", "aaa"],
-            "C": ["2", "789", "bb", "ccc"],
+            "B": ["1", "456", "cc"],
+            "C": ["2", "789", "bb"],
         ]
 
         // Act

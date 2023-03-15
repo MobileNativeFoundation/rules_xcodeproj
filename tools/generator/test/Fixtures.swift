@@ -2177,14 +2177,14 @@ $(MACOSX_FILES)
 """,
                 "IPHONEOS_DEPLOYMENT_TARGET": "11.0",
                 "IPHONEOS_FILES": """
-"$(SRCROOT)/T/T 1/Ta.c" "$(SRCROOT)/T/T 1/Ta.png" "$(SRCROOT)/T/T 1/Ta.swift"
+"$(SRCROOT)/T/T 1/Ta.c" "$(SRCROOT)/T/T 1/Ta.swift"
 """,
                 "IPHONESIMULATOR_FILES": """
-"$(SRCROOT)/T/T 2/Ta.c" "$(SRCROOT)/T/T 2/Ta.png" "$(SRCROOT)/T/T 2/Ta.swift"
+"$(SRCROOT)/T/T 2/Ta.c" "$(SRCROOT)/T/T 2/Ta.swift"
 """,
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "MACOSX_FILES": """
-"$(SRCROOT)/T/T 3/Ta.c" "$(SRCROOT)/T/T 3/Ta.png" "$(SRCROOT)/T/T 3/Ta.swift"
+"$(SRCROOT)/T/T 3/Ta.c" "$(SRCROOT)/T/T 3/Ta.swift"
 """,
                 "OTHER_SWIFT_FLAGS": #"""
 -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml
