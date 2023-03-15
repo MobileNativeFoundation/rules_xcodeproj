@@ -117,6 +117,10 @@ def _write_schemes_json(*, actions, name, schemes_json):
     actions.write(output, schemes_json if schemes_json else "[]")
     return output
 
+_APPEND_TRANSITION_FLAGS = {
+    "//command_line_option:features": None,
+}
+
 def _write_generator_defz_bzl(
         *,
         actions,
@@ -128,6 +132,13 @@ def _write_generator_defz_bzl(
     output = actions.declare_file("{}.generator.defs.bzl".format(name))
 
     build_mode = attr.build_mode
+    outputs = attr.xcode_configuration_flags
+
+    inputs = {
+        flag: None
+        for flag in outputs
+        if flag in _APPEND_TRANSITION_FLAGS
+    }
 
     loads = [
         """\
@@ -147,14 +158,31 @@ load(
 )""".format(repo = repo))
 
     target_transitions = """\
-def _target_transition_implementation(_settings, _attr):
-    return {xcode_configurations}
+_INPUTS = {inputs}
+
+_XCODE_CONFIGURATIONS = {xcode_configurations}
+
+def _target_transition_implementation(settings, _attr):
+    outputs = {{}}
+    for configuration, flags in _XCODE_CONFIGURATIONS.items():
+        config_outputs = {{}}
+        for key, value in flags.items():
+            if key in _INPUTS:
+                # Only array settings, like "//command_line_option:features"
+                # will hit this path, and we want to append instead of replace
+                config_outputs[key] = settings[key] + value
+            else:
+                config_outputs[key] = value
+        outputs[configuration] = config_outputs
+    return outputs
 
 _target_transitions = make_xcodeproj_target_transitions(
     implementation = _target_transition_implementation,
-    outputs = {flags},
+    inputs = _INPUTS.keys(),
+    outputs = {outputs},
 )""".format(
-        flags = attr.xcode_configuration_flags,
+        inputs = str(inputs),
+        outputs = outputs,
         xcode_configurations = attr.xcode_configurations,
     )
 
