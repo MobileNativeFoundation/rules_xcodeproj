@@ -530,7 +530,14 @@ private extension Target {
     func allExcludableFiles(
         xcodeGeneratedFiles: [FilePath: FilePath]
     ) -> Set<FilePath> {
-        var files = inputs.all
+        var files = inputs.nonResources
+
+        if !xcodeGeneratedFiles.isEmpty {
+            // Proxy for `buildMode == .xcode`. In BwB mode we don't need to
+            // list any resources, since we aren't embedding them.
+            files.formUnion(inputs.resources)
+        }
+
         files.formUnion(
             linkerInputs
                 .allExcludableFiles(xcodeGeneratedFiles: xcodeGeneratedFiles)
