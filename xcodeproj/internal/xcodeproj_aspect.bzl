@@ -41,11 +41,15 @@ def _transitive_infos(*, ctx, automatic_target_info):
             continue
 
         dep = getattr(ctx.rule.attr, attr)
-        if type(dep) == "list":
-            for dep in dep:
-                if type(dep) == "Target" and XcodeProjInfo in dep:
-                    transitive_infos.append((attr, dep[XcodeProjInfo]))
-        elif type(dep) == "Target" and XcodeProjInfo in dep:
+
+        dep_type = type(dep)
+        if dep_type == "list":
+            if not dep or type(dep[0]) != "Target":
+                continue
+            for list_dep in dep:
+                if XcodeProjInfo in list_dep:
+                    transitive_infos.append((attr, list_dep[XcodeProjInfo]))
+        elif dep_type == "Target" and XcodeProjInfo in dep:
             transitive_infos.append((attr, dep[XcodeProjInfo]))
 
     return transitive_infos
