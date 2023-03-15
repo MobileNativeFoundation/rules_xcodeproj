@@ -13,7 +13,7 @@ def _main(
         self_linked_path: str,
         swift_triple: str,
         output_path: str,
-        args: List[str]
+        args_files: List[str]
     ) -> None:
     with open(xcode_generated_paths_path, encoding = "utf-8") as fp:
         xcode_generated_paths = json.load(fp)
@@ -23,7 +23,7 @@ def _main(
 
     linkopts = _process_linkopts(
         # First argument is the tool name
-        linkopts = _parse_args(args)[1:],
+        linkopts = _parse_args(args_files),
         xcode_generated_paths = xcode_generated_paths,
         generated_framework_search_paths = generated_framework_search_paths,
         is_framework = is_framework,
@@ -36,10 +36,22 @@ def _main(
         fp.write(f'{result}\n')
 
 
-def _parse_args(args: List[str]) -> List[str]:
-    if args[0].startswith("@"):
-        with open(args[0][1:], encoding = "utf-8") as fp:
-            return fp.read().splitlines()
+def _parse_args(args_files: List[str]) -> List[str]:
+    args = []
+    for args_path in args_files:
+        # Each argument is a path to a file containing the actual arguments
+        with open(args_path, encoding = "utf-8") as fp:
+            lines = fp.read().splitlines()
+            if lines[0].startswith("@"):
+                # Sometimes those arguments might be also be a redirect
+                with open(lines[0][1:], encoding = "utf-8") as f:
+                    args.extend(f.read().splitlines())
+            else:
+                # First argument is the tool name
+                args.extend(lines[1:])
+
+    print(args)
+
     return args
 
 
@@ -201,7 +213,7 @@ if __name__ == "__main__":
             f"""
 Usage: {sys.argv[0]} <xcode_generated_paths.json> \
 <generated_framework_search_paths.json> <is_framework> <self_linked_output> \
-<swift_triple> <output> <args...>\
+<swift_triple> <output> <args_files...>\
 """,
             file = sys.stderr,
         )

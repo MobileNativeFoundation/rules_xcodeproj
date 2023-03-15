@@ -820,6 +820,26 @@ def _linker_inputs_to_dto(
             content = json.encode(generated_framework_search_paths),
         )
 
+        def _create_link_sub_params(idx, link_args):
+            output = ctx.actions.declare_file(
+                "{}-params/{}.{}.link.sub-{}.params".format(
+                    ctx.attr.name,
+                    name,
+                    params_index,
+                    idx,
+                ),
+            )
+            ctx.actions.write(
+                output = output,
+                content = link_args,
+            )
+            return output
+
+        link_sub_params = [
+            _create_link_sub_params(idx, link_args)
+            for idx, link_args in enumerate(linker_inputs.link_args)
+        ]
+
         link_params = ctx.actions.declare_file(
             "{}-params/{}.{}.link.params".format(
                 ctx.attr.name,
@@ -835,17 +855,18 @@ def _linker_inputs_to_dto(
         args.add(self_product_path)
         args.add(platform_info.to_swift_triple(platform))
         args.add(link_params)
+        args.add_all(link_sub_params)
 
         ctx.actions.run(
             executable = link_params_processor,
-            arguments = [args] + linker_inputs.link_args,
+            arguments = [args],
             mnemonic = "ProcessLinkParams",
             progress_message = "Generating %{output}",
             inputs = (
                 [
                     xcode_generated_paths_file,
                     generated_framework_search_paths_file,
-                ] + list(linker_inputs.link_args_inputs)
+                ] + link_sub_params + list(linker_inputs.link_args_inputs)
             ),
             outputs = [link_params],
         )
