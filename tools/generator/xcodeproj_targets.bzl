@@ -82,9 +82,9 @@ def get_xcode_schemes():
             launch_action = xcode_schemes.launch_action(
                 _APP_TARGET,
                 args = [
-                    "bazel-output-base/rules_xcodeproj/build_output_base/execroot/rules_xcodeproj/bazel-out/darwin_arm64-dbg/bin/tools/generator/xcodeproj.generator_root_dirs",
-                    "bazel-output-base/rules_xcodeproj/build_output_base/execroot/rules_xcodeproj/bazel-out/darwin_arm64-dbg/bin/tools/generator/xcodeproj.generator_xccurrentversions",
-                    "bazel-output-base/rules_xcodeproj/build_output_base/execroot/rules_xcodeproj/bazel-out/darwin_arm64-dbg/bin/tools/generator/xcodeproj.generator_extensionpointidentifiers",
+                    "bazel-output-base/rules_xcodeproj/build_output_base/execroot/_main/bazel-out/darwin_arm64-dbg/bin/.rules_xcodeproj/tools_generator_xcodeproj/xcodeproj_root_dirs",
+                    "bazel-output-base/rules_xcodeproj/build_output_base/execroot/_main/bazel-out/darwin_arm64-dbg/bin/.rules_xcodeproj/tools_generator_xcodeproj/xcodeproj_xccurrentversions",
+                    "bazel-output-base/rules_xcodeproj/build_output_base/execroot/_main/bazel-out/darwin_arm64-dbg/bin/.rules_xcodeproj/tools_generator_xcodeproj/xcodeproj_extensionpointidentifiers",
                     "/tmp/out.xcodeproj",
                     "/tmp/out.final.xcodeproj",
                     "bazel",
@@ -113,9 +113,9 @@ def get_xcode_schemes():
             profile_action = xcode_schemes.profile_action(
                 _APP_TARGET,
                 args = [
-                    "bazel-output-base/rules_xcodeproj/build_output_base/execroot/rules_xcodeproj/bazel-out/darwin_arm64-opt/bin/tools/generator/xcodeproj.generator_root_dirs",
-                    "bazel-output-base/rules_xcodeproj/build_output_base/execroot/rules_xcodeproj/bazel-out/darwin_arm64-opt/bin/tools/generator/xcodeproj.generator_xccurrentversions",
-                    "bazel-output-base/rules_xcodeproj/build_output_base/execroot/rules_xcodeproj/bazel-out/darwin_arm64-opt/bin/tools/generator/xcodeproj.generator_extensionpointidentifiers",
+                    "bazel-output-base/rules_xcodeproj/build_output_base/execroot/_main/bazel-out/darwin_arm64-dbg/bin/.rules_xcodeproj/tools_generator_xcodeproj/xcodeproj_root_dirs",
+                    "bazel-output-base/rules_xcodeproj/build_output_base/execroot/_main/bazel-out/darwin_arm64-dbg/bin/.rules_xcodeproj/tools_generator_xcodeproj/xcodeproj_xccurrentversions",
+                    "bazel-output-base/rules_xcodeproj/build_output_base/execroot/_main/bazel-out/darwin_arm64-dbg/bin/.rules_xcodeproj/tools_generator_xcodeproj/xcodeproj_extensionpointidentifiers",
                     "/tmp/out.xcodeproj",
                     "/tmp/out.final.xcodeproj",
                     "bazel",
