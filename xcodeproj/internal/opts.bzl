@@ -364,8 +364,15 @@ def _process_cc_opts(opts, *, build_settings):
     framework_includes = []
     has_debug_info = {}
 
-    def _inner_process_cxxopts(opt, _):
-        if opt.startswith("-O"):
+    def _inner_process_cc_opts(opt, _):
+        # Short-circuit opts that are too short for our checks
+        if len(opt) < 2:
+            return opt
+        if opt[0] != "-":
+            return opt
+        opt_character = opt[1]
+
+        if opt_character == "O":
             optimizations.append(opt)
             return None
         if opt == "-g":
@@ -376,10 +383,10 @@ def _process_cc_opts(opts, *, build_settings):
             return None
         if opt == "-F":
             return opt
-        if opt.startswith("-F"):
+        if opt_character == "F":
             framework_includes.append(opt[2:])
             return opt
-        if opt.startswith("-D"):
+        if opt_character == "D":
             value = opt[2:]
             if value.startswith("OBJC_OLD_DISPATCH_PROTOTYPES"):
                 suffix = value[-2:]
@@ -394,7 +401,7 @@ def _process_cc_opts(opts, *, build_settings):
     processed_opts = _process_base_compiler_opts(
         opts = opts,
         skip_opts = _CC_SKIP_OPTS,
-        extra_processing = _inner_process_cxxopts,
+        extra_processing = _inner_process_cc_opts,
     )
 
     has_debug_info = bool(has_debug_info)
