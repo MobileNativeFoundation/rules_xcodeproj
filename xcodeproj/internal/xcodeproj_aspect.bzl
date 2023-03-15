@@ -16,12 +16,17 @@ load(":xcodeprojinfo.bzl", "create_xcodeprojinfo")
 
 # Utility
 
+_IGNORE_ATTR = {
+    "to_json": None,
+    "to_proto": None,
+}
+
 def _should_ignore_attr(attr):
     return (
         # We don't want to include implicit dependencies
-        attr.startswith("_") or
+        attr[0] == "_" or
         # These are actually Starklark methods, so ignore them
-        attr in ("to_json", "to_proto")
+        attr in _IGNORE_ATTR
     )
 
 def _transitive_infos(*, ctx, automatic_target_info):
