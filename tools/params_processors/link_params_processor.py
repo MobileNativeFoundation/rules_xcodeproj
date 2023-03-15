@@ -21,8 +21,6 @@ def _main(
     with open(generated_framework_search_paths_path, encoding = "utf-8") as fp:
         generated_framework_search_paths = json.load(fp)
 
-    print("_process_linkopts : ")
-
     linkopts = _process_linkopts(
         linkopts = _parse_args(argfile_path),
         xcode_generated_paths = xcode_generated_paths,
