@@ -429,6 +429,12 @@ def _process_copts(
         cxx_has_debug_info,
     )
 
+_CLANG_SEARCH_PATHS = {
+    "-iquote": None,
+    "-isystem": None,
+    "-I": None,
+}
+
 def _process_swiftcopts(
         opts,
         *,
@@ -471,6 +477,9 @@ def _process_swiftcopts(
     clang_opts = []
 
     def _process_clang_opt(opt, previous_opt, previous_clang_opt):
+        if opt == "-Xcc":
+            return opt
+
         is_clang_opt = previous_opt == "-Xcc"
 
         if opt.startswith("-F"):
@@ -490,7 +499,6 @@ def _process_swiftcopts(
         if not (is_clang_opt or is_bwx):
             return None
 
-        # TODO: handle the format "-Xcc -iquote -Xcc path"
         if opt.startswith("-fmodule-map-file="):
             path = opt[18:]
             is_relative = is_relative_path(path)
@@ -507,6 +515,10 @@ def _process_swiftcopts(
             return opt
         if opt.startswith("-iquote"):
             path = opt[7:]
+            if not path:
+                if is_clang_opt:
+                    clang_opts.append(opt)
+                return opt
             is_relative = is_relative_path(path)
             if is_clang_opt or is_relative:
                 if path == ".":
@@ -522,6 +534,10 @@ def _process_swiftcopts(
             return opt
         if opt.startswith("-I"):
             path = opt[2:]
+            if not path:
+                if is_clang_opt:
+                    clang_opts.append(opt)
+                return opt
             is_relative = is_relative_path(path)
             if is_clang_opt or is_relative:
                 if path == ".":
@@ -537,6 +553,10 @@ def _process_swiftcopts(
             return opt
         if opt.startswith("-isystem"):
             path = opt[8:]
+            if not path:
+                if is_clang_opt:
+                    clang_opts.append(opt)
+                return opt
             is_relative = is_relative_path(path)
             if is_clang_opt or is_relative:
                 if path == ".":
@@ -549,6 +569,13 @@ def _process_swiftcopts(
                     opt = bwx_opt
                 if is_clang_opt:
                     clang_opts.append(bwx_opt)
+            return opt
+        if previous_clang_opt in _CLANG_SEARCH_PATHS:
+            if opt == ".":
+                opt = "$(PROJECT_DIR)"
+            elif is_relative_path(opt):
+                opt = "$(PROJECT_DIR)/" + opt
+            clang_opts.append(opt)
             return opt
         if is_clang_opt:
             # -vfsoverlay doesn't apply `-working_directory=`, so we need to
