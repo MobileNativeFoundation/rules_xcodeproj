@@ -50,8 +50,6 @@ def _parse_args(args_files: List[str]) -> List[str]:
                 # First argument is the tool name
                 args.extend(lines[1:])
 
-    print(args)
-
     return args
 
 
