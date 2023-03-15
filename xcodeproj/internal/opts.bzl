@@ -253,6 +253,7 @@ def _process_base_compiler_opts(
     skip_next = 0
     previous_opt = None
     previous_frontend_opt = None
+    previous_clang_opt = None
     for idx, opt in enumerate(opts):
         if skip_next:
             skip_next -= 1
@@ -271,32 +272,20 @@ def _process_base_compiler_opts(
                 # No need to decrement 1, since we need to skip the first opt
                 continue
 
-        if opt != "-Xfrontend":
-            previous_vfsoverlay_opt = previous_frontend_opt or previous_opt
-
-            # -vfsoverlay doesn't apply `-working_directory=`, so we need to
-            # prefix it ourselves
-            _, opt_prefix, suffix = opt.partition("-vfsoverlay")
-            if not opt_prefix:
-                _, opt_prefix, suffix = opt.partition("-ivfsoverlay")
-            if suffix:
-                if suffix[0] != "/":
-                    opt = opt_prefix + "$(CURRENT_EXECUTION_ROOT)/" + suffix
-            elif (previous_opt == "--config" or
-                  previous_vfsoverlay_opt == "-vfsoverlay" or
-                  previous_vfsoverlay_opt == "-ivfsoverlay"):
-                if opt[0] != "/":
-                    opt = "$(CURRENT_EXECUTION_ROOT)/" + opt
-
         processed_opt = (
             extra_processing and
-            extra_processing(opt, previous_opt)
+            extra_processing(opt, previous_opt, previous_frontend_opt, previous_clang_opt)
         )
 
-        if previous_opt == "-Xfrontend":
-            previous_frontend_opt = opt
-        elif opt != "-Xfrontend":
+        if previous_opt == "-Xcc":
+            previous_clang_opt = opt
             previous_frontend_opt = None
+        elif opt != "-Xcc":
+            previous_clang_opt = None
+            if previous_opt == "-Xfrontend":
+                previous_frontend_opt = opt
+            elif opt != "-Xfrontend":
+                previous_frontend_opt = None
         previous_opt = opt
 
         opt = processed_opt
@@ -364,10 +353,16 @@ def _process_cc_opts(opts, *, build_settings):
     framework_includes = []
     has_debug_info = {}
 
-    def _inner_process_cc_opts(opt, _):
+    def _inner_process_cc_opts(opt, previous_opt, _previous_frontend_opt, _previous_clang_opt):
         # Short-circuit opts that are too short for our checks
         if len(opt) < 2:
             return opt
+
+        if previous_opt == "-ivfsoverlay" or previous_opt == "--config":
+            if opt[0] != "/":
+                return "$(CURRENT_EXECUTION_ROOT)/" + opt
+            return opt
+
         if opt[0] != "-":
             return opt
         opt_character = opt[1]
@@ -396,6 +391,15 @@ def _process_cc_opts(opts, *, build_settings):
                     build_settings["ENABLE_STRICT_OBJC_MSGSEND"] = True
                 return None
             return opt
+
+        # -ivfsoverlay and --config doesn't apply `-working_directory=`, so we
+        # need to prefix it ourselves
+        if opt.startswith("-ivfsoverlay"):
+            value = opt[12:]
+            if not value.startswith("/"):
+                return "-ivfsoverlay" + "$(CURRENT_EXECUTION_ROOT)/" + value
+            return opt
+
         return opt
 
     processed_opts = _process_base_compiler_opts(
@@ -518,7 +522,7 @@ def _process_swiftcopts(
     clang_opts = []
     has_debug_info = {}
 
-    def _process_clang_opt(opt, previous_opt):
+    def _process_clang_opt(opt, previous_opt, previous_clang_opt):
         is_clang_opt = previous_opt == "-Xcc"
 
         if opt.startswith("-F"):
@@ -599,6 +603,16 @@ def _process_swiftcopts(
                     clang_opts.append(bwx_opt)
             return opt
         if is_clang_opt:
+            # -vfsoverlay doesn't apply `-working_directory=`, so we need to
+            # prefix it ourselves
+            if previous_clang_opt == "-ivfsoverlay":
+                if opt[0] != "/":
+                    opt = "$(CURRENT_EXECUTION_ROOT)/" + opt
+            elif opt.startswith("-ivfsoverlay"):
+                value = opt[12:]
+                if not value.startswith("/"):
+                    opt = "-ivfsoverlay$(CURRENT_EXECUTION_ROOT)/" + value
+
             # We do this check here, to prevent the `-O` logic below
             # from incorrectly detecting this situation
             clang_opts.append(opt)
@@ -606,8 +620,8 @@ def _process_swiftcopts(
 
         return None
 
-    def _inner_process_swiftcopts(opt, previous_opt):
-        clang_opt = _process_clang_opt(opt, previous_opt)
+    def _inner_process_swiftcopts(opt, previous_opt, previous_frontend_opt, previous_clang_opt):
+        clang_opt = _process_clang_opt(opt, previous_opt, previous_clang_opt)
         if clang_opt:
             return clang_opt
 
@@ -655,6 +669,23 @@ Using VFS overlays with `build_mode = "xcode"` is unsupported.
             # the future we could collect Swift compiler options similar to how
             # we collect C and C++ compiler options.
             return None
+
+        if opt == "-Xfrontend":
+            # We return early to prevent issues with the checks below
+            return opt
+
+        # -vfsoverlay doesn't apply `-working_directory=`, so we need to
+        # prefix it ourselves
+        previous_vfsoverlay_opt = previous_frontend_opt or previous_opt
+        if previous_vfsoverlay_opt == "-vfsoverlay":
+            if opt[0] != "/":
+                return "$(CURRENT_EXECUTION_ROOT)/" + opt
+            return opt
+        if opt.startswith("-vfsoverlay"):
+            value = opt[11:]
+            if value and value[0] != "/":
+                return "-vfsoverlay$(CURRENT_EXECUTION_ROOT)/" + value
+            return opt
 
         return opt
 
