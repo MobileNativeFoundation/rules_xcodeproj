@@ -147,7 +147,9 @@ def _process_linkopts(
 
         # These flags are for wrapped_clang only
         if (opt.startswith("DSYM_HINT_DSYM_PATH=") or
-            opt.startswith("DSYM_HINT_LINKED_BINARY=")):
+            opt.startswith("'DSYM_HINT_DSYM_PATH=") or
+            opt.startswith("DSYM_HINT_LINKED_BINARY=") or
+            opt.startswith("'DSYM_HINT_LINKED_BINARY=")):
             return
 
         # Use Xcode set `DEVELOPER_DIR`
