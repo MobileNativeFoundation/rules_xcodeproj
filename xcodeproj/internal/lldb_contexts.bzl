@@ -67,6 +67,12 @@ def _collect_lldb_context(
         ),
     )
 
+_ONCE_FLAGS = {
+    "-D": None,
+    "-F": None,
+    "-I": None,
+}
+
 def _lldb_context_to_dto(lldb_context, *, xcode_generated_paths):
     if not lldb_context:
         return {}
@@ -108,8 +114,7 @@ def _lldb_context_to_dto(lldb_context, *, xcode_generated_paths):
         for opt in opts:
             if opt in once_flags:
                 continue
-            if (opt.startswith("-D") or opt.startswith("-I") or
-                opt.startswith("-fmodule-map-file=") or opt.startswith("-F")):
+            if (opt[0:2] in _ONCE_FLAGS) or opt.startswith("-fmodule-map-file="):
                 # This can lead to correctness issues if the value of a define
                 # is specified multiple times, and different on different
                 # targets, but it's how lldb currently handles it. Ideally it
