@@ -29,7 +29,7 @@ def xcodeproj(
         project_options = None,
         scheme_autogeneration_mode = "auto",
         schemes = [],
-        temporary_directory = ".rules_xcodeproj",
+        temporary_directory = None,
         top_level_targets,
         tvos_device_cpus = "arm64",
         tvos_simulator_cpus = None,
@@ -190,12 +190,8 @@ def xcodeproj(
             `top_level_targets` argument. This and the
             `scheme_autogeneration_mode` argument together customize how
             schemes for those targets are generated.
-        temporary_directory: Optional. The directory where rules_xcodeproj will
-            write some temporary files. You will want to add this directory to
-            your source control ignore files (e.g. `.gitignore`). A Bazel
-            package will be created at this path, so you can use the path in
-            `visibility`/`package_group`s. The path is relative to the workspace
-            root. Defaults to `.rules_xcodeproj`.
+        temporary_directory: This argument is deprecated and is now a no-op. It
+            will be removed in a future release.
         top_level_targets: A `list` of a list of top-level targets. Each target
             can be specified as either a `Label` (or label-like `string`), a
             value returned by `top_level_target`, or a value returned by
@@ -271,6 +267,11 @@ removed in a future release. Adjust the setting of \
 `--define=apple.experimental.tree_artifact_outputs` on `build:rules_xcodeproj` \
 in your `.bazelrc` or `xcodeproj.bazelrc` file.""")
 
+    if temporary_directory != None:
+        warn("""\
+`temporary_directory` is deprecated and is now a no-op. It will be \
+removed in a future release.""")
+
     # Apply defaults
     if not bazel_path:
         bazel_path = "bazel"
@@ -332,7 +333,14 @@ alphabetically ("{default}").
     owned_extra_files = {}
     for label, files in associated_extra_files.items():
         for f in files:
-            owned_extra_files[f] = bazel_labels.normalize_string(label)
+            owned_extra_files[bazel_labels.normalize_string(f)] = (
+                bazel_labels.normalize_string(label)
+            )
+
+    unowned_extra_files = [
+        bazel_labels.normalize_string(f)
+        for f in extra_files
+    ]
 
     schemes_json = None
     if schemes:
@@ -415,7 +423,7 @@ Please refer to https://bazel.build/extending/config#defining) on how to them.
         tvos_device_cpus = tvos_device_cpus,
         tvos_simulator_cpus = tvos_simulator_cpus,
         unfocused_targets = unfocused_targets,
-        unowned_extra_files = extra_files,
+        unowned_extra_files = unowned_extra_files,
         watchos_device_cpus = watchos_device_cpus,
         watchos_simulator_cpus = watchos_simulator_cpus,
         xcode_configuration_flags = xcode_configuration_flags,

@@ -95,15 +95,21 @@ def make_bazel_labels(workspace_name_resolvers = workspace_name_resolvers):
             workspace_name_resolvers.package_relative_label(value)
         )
         if package_relative_label:
-            return str(package_relative_label)
+            label_str = str(package_relative_label)
+            if label_str[0] == "@":
+                return label_str
+            return "@" + label_str
 
         parts = _parse(value)
 
-        return str(Label("{repo_name}//{package}:{name}".format(
+        label_str = str(Label("{repo_name}//{package}:{name}".format(
             repo_name = parts.repository_name,
             package = parts.package,
             name = parts.name,
         )))
+        if label_str[0] == "@":
+            return label_str
+        return "@" + label_str
 
     return struct(
         create = _create_label_parts,

@@ -16,8 +16,8 @@ extension Generator {
                 customXcodeSchemesPath: arguments.customXcodeSchemesPath,
                 targetsPaths: arguments.targetsSpecPaths
             )
-            async let rootDirs = readRootDirectories(
-                path: arguments.rootDirsPath
+            async let executionRootDirectory = readExecutionRootDirectory(
+                path: arguments.executionRootFilePath
             )
             async let xccurrentversions = readXCCurrentVersions(
                 path: arguments.xccurrentversionsPath
@@ -26,9 +26,9 @@ extension Generator {
                 path: arguments.extensionPointIdentifiersPath
             )
             let directories = try await Directories(
-                workspace: rootDirs.workspaceDirectory,
+                workspace: arguments.workspaceDirectory,
                 projectRoot: arguments.projectRootDirectory,
-                executionRoot: rootDirs.executionRootDirectory,
+                executionRoot: executionRootDirectory,
                 internalDirectoryName: "rules_xcodeproj",
                 workspaceOutput: arguments.workspaceOutputPath
             )
@@ -52,7 +52,8 @@ extension Generator {
         let projectSpecPath: Path
         let customXcodeSchemesPath: Path
         let targetsSpecPaths: [Path]
-        let rootDirsPath: Path
+        let executionRootFilePath: Path
+        let workspaceDirectory: Path
         let xccurrentversionsPath: Path
         let extensionPointIdentifiersPath: Path
         let outputPath: Path
@@ -63,9 +64,9 @@ extension Generator {
     }
 
     static func parseArguments(_ arguments: [String]) throws -> Arguments {
-        guard arguments.count >= 11 else {
+        guard arguments.count >= 12 else {
             throw UsageError(message: """
-Usage: \(arguments[0]) <path/to/root_dirs> \
+Usage: \(arguments[0]) <path/to/execution_root_file> <workspace_directory> \
 <path/to/xccurrentversions.json> <path/to/extensionPointIdentifiers.json> \
 <path/to/output/project.xcodeproj> <workspace/relative/output/path> \
 (xcode|bazel) <1 is for fixtures, otherwise 0> <path/to/project_spec.json> \
@@ -73,7 +74,7 @@ Usage: \(arguments[0]) <path/to/root_dirs> \
 """)
         }
 
-        let workspaceOutput = arguments[5]
+        let workspaceOutput = arguments[6]
         let workspaceOutputComponents = workspaceOutput.split(separator: "/")
 
         // Generate a relative path to the project root
@@ -84,7 +85,7 @@ Usage: \(arguments[0]) <path/to/root_dirs> \
             .joined(separator: "/")
 
         guard
-            let buildMode = BuildMode(rawValue: arguments[6])
+            let buildMode = BuildMode(rawValue: arguments[7])
         else {
             throw UsageError(message: """
 ERROR: build_mode wasn't one of the supported values: xcode, bazel
@@ -92,17 +93,18 @@ ERROR: build_mode wasn't one of the supported values: xcode, bazel
         }
 
         return Arguments(
-            projectSpecPath: Path(arguments[8]),
-            customXcodeSchemesPath: Path(arguments[9]),
-            targetsSpecPaths: arguments.suffix(from: 10).map { Path($0) },
-            rootDirsPath: Path(arguments[1]),
-            xccurrentversionsPath: Path(arguments[2]),
-            extensionPointIdentifiersPath: Path(arguments[3]),
-            outputPath: Path(arguments[4]),
+            projectSpecPath: Path(arguments[9]),
+            customXcodeSchemesPath: Path(arguments[10]),
+            targetsSpecPaths: arguments.suffix(from: 11).map { Path($0) },
+            executionRootFilePath: Path(arguments[1]),
+            workspaceDirectory: Path(arguments[2]),
+            xccurrentversionsPath: Path(arguments[3]),
+            extensionPointIdentifiersPath: Path(arguments[4]),
+            outputPath: Path(arguments[5]),
             workspaceOutputPath: Path(workspaceOutput),
             projectRootDirectory: Path(projectRoot),
             buildMode: buildMode,
-            forFixtures: arguments[7] == "1"
+            forFixtures: arguments[8] == "1"
         )
     }
 
@@ -163,30 +165,19 @@ Duplicate target (\(new.label) \(new.configuration) in target specs
         return project
     }
 
-    struct RootDirectories {
-        let workspaceDirectory: Path
-        let executionRootDirectory: Path
-    }
-
-    static func readRootDirectories(
-        path: Path
-    ) async throws -> RootDirectories {
+    static func readExecutionRootDirectory(path: Path) async throws -> Path {
         return try await Task {
-            let rootDirs = try path.read(.utf8)
+            let executionRoot = try path.read(.utf8)
                 .split(separator: "\n")
                 .map(String.init)
 
-            guard rootDirs.count == 2 else {
-                throw UsageError(message: """
-The root_dirs_file must contain three lines: one for the workspace directory \
-and one for the execution root directory.
+            guard executionRoot.count == 1 else {
+                throw PreconditionError(message: """
+The execution_root_file must contain one line: the execution root directory.
 """)
             }
 
-            return RootDirectories(
-                workspaceDirectory: Path(rootDirs[0]),
-                executionRootDirectory: Path(rootDirs[1])
-            )
+            return Path(executionRoot[0])
         }.value
     }
 

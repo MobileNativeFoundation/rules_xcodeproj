@@ -48,6 +48,28 @@ pass `ignore_version_differences = True` to `xcodeproj_rules_dependencies()`.
 
     repo_rule(name = name, **kwargs)
 
+def _generated_files_repo_impl(repository_ctx):
+    output_base_hash_result = repository_ctx.execute(
+        ["bash", "-c", '/sbin/md5 -q -s "${PWD%/*/*}"'],
+    )
+    if output_base_hash_result.return_code != 0:
+        fail("Failed to calculate output base hash: {}".format(
+            output_base_hash_result.stderr,
+        ))
+
+    repository_ctx.file("BUILD")
+
+    # Ensure that this repository is unique per output base
+    output_base_hash = output_base_hash_result.stdout.strip()
+    repository_ctx.symlink(
+        "/tmp/rules_xcodeproj/generated/{}/generator".format(output_base_hash),
+        "generator",
+    )
+
+generated_files_repo = repository_rule(
+    implementation = _generated_files_repo_impl,
+)
+
 # buildifier: disable=unnamed-macro
 def xcodeproj_rules_dependencies(
         ignore_version_differences = False,
@@ -284,6 +306,9 @@ swift_library(
         url = "https://github.com/apple/swift-collections/archive/refs/tags/1.0.2.tar.gz",
         ignore_version_differences = ignore_version_differences,
     )
+
+    # Used to house generated files
+    generated_files_repo(name = "rules_xcodeproj_generated")
 
 # buildifier: disable=unnamed-macro
 def xcodeproj_rules_dev_dependencies(ignore_version_differences = False):

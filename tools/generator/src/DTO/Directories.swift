@@ -32,9 +32,18 @@ struct Directories: Equatable {
         `internal` = workspaceOutput + internalDirectoryName
 
         self.projectRoot = projectRoot
-        self.executionRoot = executionRoot
 
-        let external = executionRoot.parent().parent() + "external"
+        let executionRootString = executionRoot.string
+        let workspacePrefixString = workspace.string + "/"
+        if executionRootString.hasPrefix(workspacePrefixString) {
+            self.executionRoot = Path(String(
+                executionRootString.dropFirst(workspacePrefixString.count)
+            ))
+        } else {
+            self.executionRoot = executionRoot
+        }
+
+        let external = self.executionRoot.parent().parent() + "external"
         if external.isRelative {
             absoluteExternal = workspace + external
         } else {
@@ -42,9 +51,9 @@ struct Directories: Equatable {
         }
 
         let containerWorkspace: Path
-        if executionRoot.isRelative {
+        if self.executionRoot.isRelative {
             containerWorkspace = Path(
-                components: (0 ..< executionRoot.components.count)
+                components: (0 ..< self.executionRoot.components.count)
                     .map { _ in ".." }
             )
         } else {

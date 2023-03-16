@@ -1,6 +1,5 @@
 """Implementation of the `xcodeproj_runner` rule."""
 
-load("@bazel_skylib//lib:paths.bzl", "paths")
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load(":collections.bzl", "uniq")
 load(":providers.bzl", "XcodeProjRunnerOutputInfo")
@@ -233,7 +232,6 @@ def _write_generator_build_file(
             "%ios_device_cpus%": attr.ios_device_cpus,
             "%ios_simulator_cpus%": attr.ios_simulator_cpus,
             "%minimum_xcode_version%": attr.minimum_xcode_version,
-            "%name%": name,
             "%owned_extra_files%": str(attr.owned_extra_files),
             "%post_build%": attr.post_build,
             "%pre_build%": attr.pre_build,
@@ -275,22 +273,11 @@ def _write_runner(
         runner_label,
         schemes_json,
         template,
-        temporary_directory,
         xcode_version,
         xcodeproj_bazelrc):
     output = actions.declare_file("{}-runner.sh".format(name))
 
     is_bazel_6 = hasattr(apple_common, "link_multi_arch_static_library")
-
-    temp_package_directory = temporary_directory
-    generator_package_directory = paths.join(
-        temp_package_directory,
-        paths.join(
-            paths.dirname(generator_build_file.short_path),
-            name,
-        ).replace("/", "_"),
-    )
-    generator_label = "//{}:{}".format(generator_package_directory, name)
 
     actions.expand_template(
         template = template,
@@ -301,16 +288,16 @@ def _write_runner(
             "%config%": config,
             "%extra_flags_bazelrc%": extra_flags_bazelrc.short_path,
             "%extra_generator_flags%": extra_generator_flags,
-            "%generator_label%": generator_label,
+            "%generator_label%": (
+                "@rules_xcodeproj//xcodeproj:generated_generator"
+            ),
             "%generator_build_file%": generator_build_file.short_path,
             "%generator_defs_bzl%": generator_defs_bzl.short_path,
-            "%generator_package_directory%": generator_package_directory,
             "%is_bazel_6%": "1" if is_bazel_6 else "0",
             "%is_fixture%": "1" if is_fixture else "0",
             "%project_name%": project_name,
-            "%schemes_json%": schemes_json.short_path,
             "%runner_label%": runner_label,
-            "%temp_package_directory%": temp_package_directory,
+            "%schemes_json%": schemes_json.short_path,
             "%xcode_version%": xcode_version,
             "%xcodeproj_bazelrc%": xcodeproj_bazelrc.short_path,
         },
@@ -325,7 +312,7 @@ def _xcodeproj_runner_impl(ctx):
     is_fixture = ctx.attr.is_fixture
     name = ctx.attr.name
     project_name = ctx.attr.project_name
-    repo = str(ctx.attr._generator_defs_bzl_template.label).split("//", 1)[0]
+    repo = str(ctx.attr._generator_defs_bzl_template.label).split("//", 1)[0] or "@"
 
     xcode_version = _get_xcode_product_version(
         xcode_config = ctx.attr._xcode_config[apple_common.XcodeVersionConfig],
@@ -380,7 +367,6 @@ def _xcodeproj_runner_impl(ctx):
         runner_label = str(ctx.label),
         schemes_json = schemes_json,
         template = ctx.file._runner_template,
-        temporary_directory = ctx.attr.temporary_directory,
         xcode_version = xcode_version,
         xcodeproj_bazelrc = xcodeproj_bazelrc,
     )
@@ -447,9 +433,6 @@ xcodeproj_runner = rule(
             values = ["auto", "none", "all"],
         ),
         "schemes_json": attr.string(),
-        "temporary_directory": attr.string(
-            mandatory = True,
-        ),
         "top_level_device_targets": attr.string_list(),
         "top_level_simulator_targets": attr.string_list(),
         "unfocused_targets": attr.string_list(
