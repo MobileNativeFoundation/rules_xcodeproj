@@ -67,26 +67,6 @@ def _should_ignore_input_attr(attr):
         attr in _IGNORE_ATTR
     )
 
-def _is_categorized_attr(attr, *, automatic_target_info):
-    if attr in automatic_target_info.srcs:
-        return True
-    elif attr in automatic_target_info.non_arc_srcs:
-        return True
-    elif attr in automatic_target_info.hdrs:
-        return True
-    elif attr == automatic_target_info.pch:
-        return True
-    elif attr in automatic_target_info.infoplists:
-        return True
-    elif attr == automatic_target_info.entitlements:
-        return True
-    elif attr in automatic_target_info.exported_symbols_lists:
-        return True
-    elif attr in automatic_target_info.launchdplists:
-        return True
-    else:
-        return False
-
 def _process_cc_info_headers(headers, *, exclude_headers, pch, srcs, generated):
     def _process_header(header):
         if not header.is_source:
@@ -286,14 +266,10 @@ def _collect_input_files(
     transitive_extra_files = []
 
     # buildifier: disable=uninitialized
-    def _handle_dep(dep, *, attr):
+    def _handle_dep(dep):
         # This allows the transitive uncategorized files for target of a
         # categorized attribute to be included in the project
-        if (XcodeProjInfo not in dep or
-            not _is_categorized_attr(
-                attr,
-                automatic_target_info = automatic_target_info,
-            )):
+        if XcodeProjInfo not in dep:
             return
         transitive_extra_files.append(dep[XcodeProjInfo].inputs.uncategorized)
 
@@ -314,16 +290,20 @@ def _collect_input_files(
         if _should_ignore_input_attr(attr):
             continue
 
+        if attr not in file_handlers:
+            # Only attributes in `file_handlers` are categorized
+            continue
+
         dep = getattr(ctx.rule.attr, attr, None)
 
         dep_type = type(dep)
         if dep_type == "Target":
-            _handle_dep(dep, attr = attr)
+            _handle_dep(dep)
         elif dep_type == "list":
             if not dep or type(dep[0]) != "Target":
                 continue
             for list_dep in dep:
-                _handle_dep(list_dep, attr = attr)
+                _handle_dep(list_dep)
 
     product_framework_files = depset(
         transitive = [
