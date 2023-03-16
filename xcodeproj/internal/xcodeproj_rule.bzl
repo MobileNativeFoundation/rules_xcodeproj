@@ -1393,7 +1393,10 @@ def _xcodeproj_impl(ctx):
     xcode_configuration_map = ctx.attr.xcode_configuration_map
     infos = []
     infos_per_xcode_configuration = {}
-    for transition_key in ctx.split_attr.top_level_simulator_targets:
+    for transition_key in (
+        ctx.split_attr.top_level_simulator_targets.keys() +
+        ctx.split_attr.top_level_device_targets.keys()
+    ):
         targets = []
         if ctx.split_attr.top_level_simulator_targets:
             targets.extend(
