@@ -313,13 +313,17 @@ def _collect_input_files(
     for attr in automatic_target_info.all_attrs:
         if _should_ignore_input_attr(attr):
             continue
+
         dep = getattr(ctx.rule.attr, attr, None)
-        if type(dep) == "Target":
+
+        dep_type = type(dep)
+        if dep_type == "Target":
             _handle_dep(dep, attr = attr)
-        elif type(dep) == "list":
-            for dep in dep:
-                if type(dep) == "Target":
-                    _handle_dep(dep, attr = attr)
+        elif dep_type == "list":
+            if not dep or type(dep[0]) != "Target":
+                continue
+            for list_dep in dep:
+                _handle_dep(list_dep, attr = attr)
 
     product_framework_files = depset(
         transitive = [
