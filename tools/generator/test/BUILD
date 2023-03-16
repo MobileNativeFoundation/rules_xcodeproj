@@ -29,8 +29,8 @@ macos_unit_test(
     name = "tests",
     minimum_os_version = "12.0",
     visibility = [
-        "//.rules_xcodeproj:__subpackages__",
         "//test:__subpackages__",
+        "@rules_xcodeproj_generated//:__subpackages__",
     ],
     deps = [
         ":tests.library",

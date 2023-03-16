@@ -1,6 +1,6 @@
 {
     "B": "rules_xcodeproj",
-    "R": "//test/fixtures:xcodeproj_bwx",
+    "R": "@//test/fixtures:xcodeproj_bwx",
     "e": [
         {
             "_": "examples_cc_external/lib.h",
@@ -17,7 +17,7 @@
         "test/fixtures/BUILD",
         "tool/BUILD"
     ],
-    "g": "//.rules_xcodeproj/test_fixtures_xcodeproj_bwx:xcodeproj_bwx",
+    "g": "@rules_xcodeproj_generated//generator:generator",
     "i": "fixture-index-import-path",
     "m": "13.0",
     "n": "bwx",

@@ -79,16 +79,6 @@ fi
 
 cd "$BUILD_WORKSPACE_DIRECTORY"
 
-# Create files for the generator target
-mkdir -p "%generator_package_directory%"
-touch "%temp_package_directory%/BUILD"
-cp "$generator_build_file" "%generator_package_directory%/BUILD"
-chmod u+w "%generator_package_directory%/BUILD"
-cp "$generator_defs_bzl" "%generator_package_directory%/defs.bzl"
-chmod u+w "%generator_package_directory%/defs.bzl"
-cp "$schemes_json" "%generator_package_directory%/custom_xcode_schemes.json"
-chmod u+w "%generator_package_directory%/custom_xcode_schemes.json"
-
 # Remove bazelisk's path adjustment, so we find the `tools/wrapper`, or bazelisk
 # itself
 un_bazelisked_path=$(echo "$PATH" | sed -E 's|/[^:]+/bazelisk/downloads/[^:]+:||')
@@ -120,6 +110,21 @@ installer_flags+=(--execution_root "$execution_root")
 
 readonly output_base="${execution_root%/*/*}"
 readonly nested_output_base="$output_base/rules_xcodeproj/build_output_base"
+
+# Create files for the generator target
+nested_output_base_hash=$(/sbin/md5 -q -s "$nested_output_base")
+readonly generator_package_directory="/tmp/rules_xcodeproj/generated/$nested_output_base_hash/generator"
+
+mkdir -p "$generator_package_directory"
+cp "$generator_build_file" "$generator_package_directory/BUILD"
+chmod u+w "$generator_package_directory/BUILD"
+cp "$generator_defs_bzl" "$generator_package_directory/defs.bzl"
+chmod u+w "$generator_package_directory/defs.bzl"
+cp "$schemes_json" "$generator_package_directory/custom_xcode_schemes.json"
+chmod u+w "$generator_package_directory/custom_xcode_schemes.json"
+
+echo "WORKSPACE_DIRECTORY = \"$BUILD_WORKSPACE_DIRECTORY\"" \
+  >> "$generator_package_directory/defs.bzl"
 
 bazelrcs=(
   --noworkspace_rc

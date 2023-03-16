@@ -70,7 +70,7 @@
             "INTEGRATION_TEST_ENV_VAR": "TRUE"
         }
     ],
-    "R": "//test/fixtures:xcodeproj_bwx",
+    "R": "@//test/fixtures:xcodeproj_bwx",
     "a": [
         "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-13",
         [
@@ -368,7 +368,7 @@
         "watchOSAppExtension/Info.plist",
         "watchOSAppExtension/Test/UnitTests/BUILD"
     ],
-    "g": "//.rules_xcodeproj/test_fixtures_xcodeproj_bwx:xcodeproj_bwx",
+    "g": "@rules_xcodeproj_generated//generator:generator",
     "i": "fixture-index-import-path",
     "m": "13.0",
     "n": "bwx",

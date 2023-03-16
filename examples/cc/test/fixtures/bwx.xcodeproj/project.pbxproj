@@ -88,8 +88,8 @@
 		68571FA99BB8CAC9AA027C16 /* lib2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib2.h; sourceTree = "<group>"; };
 		82E1AC498ACAE9E123276B7A /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		9EA769DDCBCA01C4A4A674AF /* lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = lib.c; sourceTree = "<group>"; };
+		9F7E4D4095E7BF2EE167B320 /* tool.3.link.params */ = {isa = PBXFileReference; path = tool.3.link.params; sourceTree = "<group>"; };
 		AE0CF9E68A28C21F8DDA2623 /* lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = lib.c; sourceTree = "<group>"; };
-		AFC6CCEE7DF3B7460FA573A1 /* tool.3.link.params */ = {isa = PBXFileReference; path = tool.3.link.params; sourceTree = "<group>"; };
 		B13DA8B967470B62463A7C36 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		B2DBE3AAD7A0F87B677A8325 /* lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = lib.c; sourceTree = "<group>"; };
 		B6393A8054CC3DB8C2683C2E /* tool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tool; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -138,7 +138,7 @@
 		2A74A0BABCA13EF4011BFD00 /* bin */ = {
 			isa = PBXGroup;
 			children = (
-				6CD2C9D31F9478257FC90527 /* .rules_xcodeproj */,
+				41C1CE77343EA334178D06F7 /* external */,
 			);
 			path = bin;
 			sourceTree = "<group>";
@@ -150,6 +150,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		41C1CE77343EA334178D06F7 /* external */ = {
+			isa = PBXGroup;
+			children = (
+				6943E9B08F3DD92EACE0E378 /* rules_xcodeproj_generated */,
+			);
+			path = external;
+			sourceTree = "<group>";
+		};
 		6033DA143D6CA2B97C1808E7 /* private */ = {
 			isa = PBXGroup;
 			children = (
@@ -158,12 +166,12 @@
 			path = private;
 			sourceTree = "<group>";
 		};
-		6CD2C9D31F9478257FC90527 /* .rules_xcodeproj */ = {
+		6943E9B08F3DD92EACE0E378 /* rules_xcodeproj_generated */ = {
 			isa = PBXGroup;
 			children = (
-				C57EC6F4EDC377CB4F0E8B89 /* test_fixtures_xcodeproj_bwx */,
+				9AC493BBC1DEC135D929E523 /* generator */,
 			);
-			path = .rules_xcodeproj;
+			path = rules_xcodeproj_generated;
 			sourceTree = "<group>";
 		};
 		6DEE7775A87F3AD8AD281743 /* Bazel Generated Files */ = {
@@ -193,6 +201,14 @@
 			path = tool;
 			sourceTree = "<group>";
 		};
+		9AC493BBC1DEC135D929E523 /* generator */ = {
+			isa = PBXGroup;
+			children = (
+				A201E7A0CFC9CC956948BA70 /* generator-params */,
+			);
+			path = generator;
+			sourceTree = "<group>";
+		};
 		9D98A980AB9AC7DD60FFD42E /* lib2_prefix */ = {
 			isa = PBXGroup;
 			children = (
@@ -201,12 +217,12 @@
 			path = lib2_prefix;
 			sourceTree = "<group>";
 		};
-		AC137266523C95E18EC6DC29 /* xcodeproj_bwx-params */ = {
+		A201E7A0CFC9CC956948BA70 /* generator-params */ = {
 			isa = PBXGroup;
 			children = (
-				AFC6CCEE7DF3B7460FA573A1 /* tool.3.link.params */,
+				9F7E4D4095E7BF2EE167B320 /* tool.3.link.params */,
 			);
-			path = "xcodeproj_bwx-params";
+			path = "generator-params";
 			sourceTree = "<group>";
 		};
 		B93A94C580A3732A5B346592 /* examples_cc_external */ = {
@@ -226,14 +242,6 @@
 				EBEDC2FF6549759CC50554EA /* lib_impl */,
 			);
 			path = _virtual_includes;
-			sourceTree = "<group>";
-		};
-		C57EC6F4EDC377CB4F0E8B89 /* test_fixtures_xcodeproj_bwx */ = {
-			isa = PBXGroup;
-			children = (
-				AC137266523C95E18EC6DC29 /* xcodeproj_bwx-params */,
-			);
-			path = test_fixtures_xcodeproj_bwx;
 			sourceTree = "<group>";
 		};
 		C5DA04B2480EBE8D895B5826 /* Products */ = {
@@ -760,7 +768,7 @@
 				DEPLOYMENT_LOCATION = "$(INDEXING_DEPLOYMENT_LOCATION__$(INDEX_ENABLE_BUILD_ARENA)),";
 				DSTROOT = "$(PROJECT_TEMP_DIR)";
 				ENABLE_DEFAULT_SEARCH_PATHS = NO;
-				GENERATOR_LABEL = "@//.rules_xcodeproj/test_fixtures_xcodeproj_bwx:xcodeproj_bwx";
+				GENERATOR_LABEL = "@rules_xcodeproj_generated//generator:generator";
 				INDEXING_BUILT_PRODUCTS_DIR__ = "$(INDEXING_BUILT_PRODUCTS_DIR__NO)";
 				INDEXING_BUILT_PRODUCTS_DIR__NO = "$(BUILD_DIR)";
 				INDEXING_BUILT_PRODUCTS_DIR__YES = "$(CONFIGURATION_BUILD_DIR)";
@@ -814,7 +822,7 @@
 				EXECUTABLE_EXTENSION = "";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GENERATE_INFOPLIST_FILE = YES;
-				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/.rules_xcodeproj/test_fixtures_xcodeproj_bwx/xcodeproj_bwx-params/tool.3.link.params";
+				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/generator-params/tool.3.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";

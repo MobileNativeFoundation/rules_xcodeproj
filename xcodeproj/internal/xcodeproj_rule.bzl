@@ -344,6 +344,11 @@ Are you using an `alias`? `focused_targets` requires labels of the actual \
 targets.
 """.format(invalid_focused_targets))
 
+    owned_extra_files = {
+        key: bazel_labels.normalize_label(Label(label_str))
+        for key, label_str in owned_extra_files.items()
+    }
+
     invalid_extra_files_targets = [
         label
         for label in owned_extra_files.values()
@@ -1149,36 +1154,21 @@ def _write_create_xcode_overlay_script(*, ctx, targets):
 
     return output
 
-def _write_root_dirs(*, ctx):
-    if ctx.label.workspace_root:
-        fail("""\
-Can't generate a project into an external repository: {}\
-""".format(ctx.label.workspace_root))
-
-    output = ctx.actions.declare_file("{}_root_dirs".format(ctx.attr.name))
+def _write_execution_root_file(*, ctx):
+    output = ctx.actions.declare_file("{}_execution_root_file".format(ctx.attr.name))
 
     ctx.actions.run_shell(
         outputs = [output],
         command = """\
-project_full="{project_full}"
-remove_suffix="/${{project_full#*/*}}"
-workspace_root_element="${{project_full%$remove_suffix}}"
-
-execroot_workspace_dir="$(perl -MCwd -e 'print Cwd::abs_path' "{project_full}";)"
-resolved_workspace_root_element="$(readlink $execroot_workspace_dir/$workspace_root_element)"
-workspace_dir="${{resolved_workspace_root_element%/*}}"
-
 bin_dir_full_path="$(perl -MCwd -e 'print Cwd::abs_path shift' "{bin_dir_full}";)"
 execution_root="${{bin_dir_full_path%/{bin_dir_full}}}"
 
-echo "$workspace_dir" > "{out_full}"
-echo "${{execution_root#$workspace_dir/}}" >> "{out_full}"
+echo "$execution_root" > "{out_full}"
 """.format(
-            project_full = ctx.build_file_path,
             bin_dir_full = ctx.bin_dir.path,
             out_full = output.path,
         ),
-        mnemonic = "CalculateXcodeProjRootDirs",
+        mnemonic = "CalculateXcodeProjExecutionRoot",
         # This has to run locally
         execution_requirements = {
             "local": "1",
@@ -1192,14 +1182,15 @@ echo "${{execution_root#$workspace_dir/}}" >> "{out_full}"
 def _write_xcodeproj(
         *,
         ctx,
+        build_mode,
+        execution_root_file,
+        extensionpointidentifiers_file,
         install_directory,
+        is_fixture,
         project_name,
         spec_files,
-        root_dirs_file,
-        xccurrentversions_file,
-        extensionpointidentifiers_file,
-        build_mode,
-        is_fixture):
+        workspace_directory,
+        xccurrentversions_file):
     xcodeproj = ctx.actions.declare_directory(
         "{}.xcodeproj".format(ctx.attr.name),
     )
@@ -1210,7 +1201,8 @@ def _write_xcodeproj(
     )
 
     args = ctx.actions.args()
-    args.add(root_dirs_file.path)
+    args.add(execution_root_file.path)
+    args.add(workspace_directory)
     args.add(xccurrentversions_file.path)
     args.add(extensionpointidentifiers_file.path)
     args.add(xcodeproj.path)
@@ -1224,7 +1216,7 @@ def _write_xcodeproj(
         mnemonic = "GenerateXcodeProj",
         arguments = [args],
         inputs = spec_files + [
-            root_dirs_file,
+            execution_root_file,
             xccurrentversions_file,
             extensionpointidentifiers_file,
         ],
@@ -1520,7 +1512,7 @@ configurations: {}""".format(", ".join(xcode_configurations)))
         infos = infos,
         minimum_xcode_version = minimum_xcode_version,
     )
-    root_dirs_file = _write_root_dirs(ctx = ctx)
+    execution_root_file = _write_execution_root_file(ctx = ctx)
     xccurrentversions_file = _write_xccurrentversions(
         ctx = ctx,
         xccurrentversion_files = xccurrentversion_files,
@@ -1607,10 +1599,11 @@ done
 
     xcodeproj, install_path = _write_xcodeproj(
         ctx = ctx,
+        execution_root_file = execution_root_file,
         install_directory = ctx.attr.install_directory,
+        workspace_directory = ctx.attr.workspace_directory,
         project_name = project_name,
         spec_files = spec_files,
-        root_dirs_file = root_dirs_file,
         xccurrentversions_file = xccurrentversions_file,
         extensionpointidentifiers_file = extensionpointidentifiers_file,
         build_mode = build_mode,
@@ -1754,6 +1747,9 @@ def make_xcodeproj_rule(
         ),
         "unowned_extra_files": attr.label_list(
             allow_files = True,
+            mandatory = True,
+        ),
+        "workspace_directory": attr.string(
             mandatory = True,
         ),
         "xcode_configuration_map": attr.string_list_dict(

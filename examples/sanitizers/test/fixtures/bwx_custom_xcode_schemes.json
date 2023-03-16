@@ -12,7 +12,7 @@
                 }
             },
             "env": {},
-            "target": "//AddressSanitizerApp:AddressSanitizerApp",
+            "target": "@//AddressSanitizerApp:AddressSanitizerApp",
             "working_directory": null
         },
         "name": "AddressSanitizer",
@@ -32,7 +32,7 @@
                 }
             },
             "env": {},
-            "target": "//ThreadSanitizerApp:ThreadSanitizerApp",
+            "target": "@//ThreadSanitizerApp:ThreadSanitizerApp",
             "working_directory": null
         },
         "name": "ThreadSanitizer",
@@ -52,7 +52,7 @@
                 }
             },
             "env": {},
-            "target": "//UndefinedBehaviorSanitizerApp:UndefinedBehaviorSanitizerApp",
+            "target": "@//UndefinedBehaviorSanitizerApp:UndefinedBehaviorSanitizerApp",
             "working_directory": null
         },
         "name": "UndefinedBehaviorSanitizer",
