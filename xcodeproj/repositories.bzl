@@ -50,7 +50,7 @@ pass `ignore_version_differences = True` to `xcodeproj_rules_dependencies()`.
 
 def _generated_files_repo_impl(repository_ctx):
     output_base_hash_result = repository_ctx.execute(
-        ["bash", "-c", '/sbin/md5 -q -s "${PWD%/*/*}"'],
+        ["bash", "-c", '/sbin/md5 -q -s "${PWD%/*/*/*/*}"'],
     )
     if output_base_hash_result.return_code != 0:
         fail("Failed to calculate output base hash: {}".format(
