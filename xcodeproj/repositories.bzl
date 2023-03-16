@@ -73,7 +73,8 @@ generated_files_repo = repository_rule(
 # buildifier: disable=unnamed-macro
 def xcodeproj_rules_dependencies(
         ignore_version_differences = False,
-        include_bzlmod_ready_dependencies = True):
+        include_bzlmod_ready_dependencies = True,
+        internal_only = False):
     """Fetches repositories that are dependencies of `rules_xcodeproj`.
 
     Users should call this macro in their `WORKSPACE` to ensure that all of the
@@ -85,7 +86,16 @@ def xcodeproj_rules_dependencies(
             incompatible versions of dependency repositories will be silenced.
         include_bzlmod_ready_dependencies: Whether or not bzlmod-ready
             dependencies should be included.
+        internal_only: If `True`, only internal dependencies will be included.
+            Should only be called from `extensions.bzl`.
     """
+    if internal_only or include_bzlmod_ready_dependencies:
+        # Used to house generated files
+        generated_files_repo(name = "rules_xcodeproj_generated")
+
+    if internal_only:
+        return
+
     if include_bzlmod_ready_dependencies:
         _maybe(
             http_archive,
@@ -306,9 +316,6 @@ swift_library(
         url = "https://github.com/apple/swift-collections/archive/refs/tags/1.0.2.tar.gz",
         ignore_version_differences = ignore_version_differences,
     )
-
-    # Used to house generated files
-    generated_files_repo(name = "rules_xcodeproj_generated")
 
 # buildifier: disable=unnamed-macro
 def xcodeproj_rules_dev_dependencies(ignore_version_differences = False):
