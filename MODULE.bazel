@@ -27,6 +27,9 @@ bazel_dep(
     dev_dependency = True,
 )
 
+internal = use_extension("//xcodeproj:extensions.bzl", "internal")
+use_repo(internal, "rules_xcodeproj_generated")
+
 non_module_deps = use_extension("//xcodeproj:extensions.bzl", "non_module_deps")
 use_repo(
     non_module_deps,
@@ -37,7 +40,6 @@ use_repo(
     "com_github_michaeleisel_zippyjsoncfamily",
     "com_github_tadija_aexml",
     "com_github_tuist_xcodeproj",
-    "rules_xcodeproj_generated",
     "rules_xcodeproj_index_import",
 )
 
