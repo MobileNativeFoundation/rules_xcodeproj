@@ -207,43 +207,73 @@ def _collect_input_files(
         extra_files.append(parsed_file_path(ctx.build_file_path))
 
     # buildifier: disable=uninitialized
-    def _handle_file(file, *, attr):
+    def _handle_srcs_file(file):
+        srcs.append(file)
+        extension = file.extension
+        if extension in _C_EXTENSIONS:
+            c_srcs.append(file)
+        elif extension in _CXX_EXTENSIONS:
+            cxx_srcs.append(file)
+
+    # buildifier: disable=uninitialized
+    def _handle_non_arc_srcs_file(file):
+        non_arc_srcs.append(file)
+        extension = file.extension
+        if extension in _C_EXTENSIONS:
+            c_srcs.append(file)
+        elif extension in _CXX_EXTENSIONS:
+            cxx_srcs.append(file)
+
+    # buildifier: disable=uninitialized
+    def _handle_hdrs_file(file):
+        hdrs.append(file)
+
+    # buildifier: disable=uninitialized
+    def _handle_pch_file(file):
+        # We use `append` instead of setting a single value because
+        # assigning to `pch` creates a new local variable instead of
+        # assigning to the existing variable
+        pch.append(file)
+
+    # buildifier: disable=uninitialized
+    def _handle_entitlements_file(file):
+        # We use `append` instead of setting a single value because
+        # assigning to `entitlements` creates a new local variable instead
+        # of assigning to the existing variable
+        entitlements.append(file)
+
+    # buildifier: disable=uninitialized
+    def _handle_extrafiles_file(file):
+        extra_files.append(file_path(file))
+
+    file_handlers = {}
+    for attr in automatic_target_info.srcs:
+        file_handlers[attr] = _handle_srcs_file
+    for attr in automatic_target_info.non_arc_srcs:
+        file_handlers[attr] = _handle_non_arc_srcs_file
+    for attr in automatic_target_info.hdrs:
+        file_handlers[attr] = _handle_hdrs_file
+    if automatic_target_info.pch:
+        file_handlers[automatic_target_info.pch] = _handle_pch_file
+    for attr in automatic_target_info.infoplists:
+        file_handlers[attr] = _handle_extrafiles_file
+    for attr in automatic_target_info.launchdplists:
+        file_handlers[attr] = _handle_extrafiles_file
+    if automatic_target_info.entitlements:
+        file_handlers[automatic_target_info.entitlements] = (
+            _handle_entitlements_file
+        )
+    for attr in automatic_target_info.exported_symbols_lists:
+        file_handlers[attr] = _handle_extrafiles_file
+
+    # buildifier: disable=uninitialized
+    def _handle_file(file, *, handler):
         if file == None:
             return
 
-        categorized = True
-        if attr in automatic_target_info.srcs:
-            srcs.append(file)
-            extension = file.extension
-            if extension in _C_EXTENSIONS:
-                c_srcs.append(file)
-            elif extension in _CXX_EXTENSIONS:
-                cxx_srcs.append(file)
-        elif attr in automatic_target_info.non_arc_srcs:
-            non_arc_srcs.append(file)
-            extension = file.extension
-            if extension in _C_EXTENSIONS:
-                c_srcs.append(file)
-            elif extension in _CXX_EXTENSIONS:
-                cxx_srcs.append(file)
-        elif attr in automatic_target_info.hdrs:
-            hdrs.append(file)
-        elif attr == automatic_target_info.pch:
-            # We use `append` instead of setting a single value because
-            # assigning to `pch` creates a new local variable instead of
-            # assigning to the existing variable
-            pch.append(file)
-        elif attr in automatic_target_info.infoplists:
-            extra_files.append(file_path(file))
-        elif attr in automatic_target_info.launchdplists:
-            extra_files.append(file_path(file))
-        elif attr == automatic_target_info.entitlements:
-            # We use `append` instead of setting a single value because
-            # assigning to `entitlements` creates a new local variable instead
-            # of assigning to the existing variable
-            entitlements.append(file)
-        elif attr in automatic_target_info.exported_symbols_lists:
-            extra_files.append(file_path(file))
+        if handler:
+            handler(file)
+            categorized = True
         else:
             categorized = False
 
@@ -270,13 +300,15 @@ def _collect_input_files(
     for attr in dir(ctx.rule.files):
         if _should_ignore_input_attr(attr):
             continue
+        handler = file_handlers.get(attr, None)
         for file in getattr(ctx.rule.files, attr):
-            _handle_file(file, attr = attr)
+            _handle_file(file, handler = handler)
 
     for attr in dir(ctx.rule.file):
         if _should_ignore_input_attr(attr):
             continue
-        _handle_file(getattr(ctx.rule.file, attr), attr = attr)
+        handler = file_handlers.get(attr, None)
+        _handle_file(getattr(ctx.rule.file, attr), handler = handler)
 
     for attr in automatic_target_info.all_attrs:
         if _should_ignore_input_attr(attr):
