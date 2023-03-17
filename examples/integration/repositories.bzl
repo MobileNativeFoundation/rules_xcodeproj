@@ -82,9 +82,7 @@ objc_library(
     hdrs = ["FXPageControl/FXPageControl.h"],
     sdk_frameworks = ["CoreGraphics"],
     srcs = ["FXPageControl/FXPageControl.m"],
-    visibility = [
-        "//visibility:public",
-    ]
+    visibility = ["//visibility:public"],
 )
 """,
         sha256 = "1610603d6ccfbc80b17aa2944c2587f4800c06a4e229303f431091e4e2e7a6d1",

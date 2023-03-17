@@ -36,7 +36,7 @@ watchos_extension(
     }),
     resources = [":ResourceGroup"],
     version = "//iOSApp:Version",
-    visibility = ["//visibility:public"],
+    visibility = ["//watchOSApp:__subpackages__"],
     deps = [":watchOSAppExtension.library"],
 )
 

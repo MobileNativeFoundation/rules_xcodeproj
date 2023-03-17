@@ -26,7 +26,10 @@ macos_application(
     minimum_os_version = "12.0",
     resources = [":ResourceGroup"],
     version = ":Version",
-    visibility = ["//visibility:public"],
+    visibility = [
+        "//macOSApp/Test:__subpackages__",
+        "@rules_xcodeproj_generated//:__subpackages__",
+    ],
     deps = [":macOSApp.library"],
 )
 

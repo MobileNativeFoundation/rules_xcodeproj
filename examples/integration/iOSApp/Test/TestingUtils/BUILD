@@ -6,7 +6,7 @@ macos_build_test(
     minimum_os_version = "12.0",
     tags = ["manual"],
     targets = [":TestingUtils"],
-    visibility = ["//visibility:public"],
+    visibility = ["@rules_xcodeproj_generated//:__subpackages__"],
 )
 
 swift_library(
@@ -18,7 +18,7 @@ swift_library(
     generates_header = True,
     module_name = "TestingUtils",
     tags = ["manual"],
-    visibility = ["//visibility:public"],
+    visibility = ["//iOSApp/Test:__subpackages__"],
 )
 
 genrule(

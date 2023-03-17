@@ -32,7 +32,7 @@ ios_extension(
     }),
     resources = [":ResourceGroup"],
     version = "//iOSApp:Version",
-    visibility = ["//visibility:public"],
+    visibility = ["//iOSApp:__subpackages__"],
     deps = [":WidgetExtension.library"],
 )
 

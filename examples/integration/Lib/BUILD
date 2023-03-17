@@ -19,7 +19,7 @@ ios_build_test(
     minimum_os_version = "15.0",
     tags = ["manual"],
     targets = [":Lib"],
-    visibility = ["//visibility:public"],
+    visibility = ["@rules_xcodeproj_generated//:__subpackages__"],
 )
 
 swift_library(
@@ -35,7 +35,13 @@ swift_library(
     ),
     module_name = "Lib",
     tags = ["manual"],
-    visibility = ["//visibility:public"],
+    visibility = [
+        "//AppClip:__subpackages__",
+        "//iMessageApp:__subpackages__",
+        "//Lib:__subpackages__",
+        "//UI:__subpackages__",
+        "//WidgetExtension:__subpackages__",
+    ],
     deps = [
         "@com_github_krzyzanowskim_cryptoswift//:CryptoSwift",
     ],
@@ -66,7 +72,7 @@ ios_framework(
     infoplists = ["Info.plist"],
     minimum_os_version = "15.0",
     version = "//iOSApp:Version",
-    visibility = ["//visibility:public"],
+    visibility = ["//UI:__pkg__"],
     deps = [":Lib"],
 )
 
@@ -80,7 +86,7 @@ tvos_framework(
     infoplists = ["Info.plist"],
     minimum_os_version = "15.0",
     version = "//iOSApp:Version",
-    visibility = ["//visibility:public"],
+    visibility = ["//UI:__pkg__"],
     deps = [":Lib"],
 )
 
@@ -91,6 +97,6 @@ watchos_framework(
     infoplists = ["Info.plist"],
     minimum_os_version = "7.0",
     version = "//iOSApp:Version",
-    visibility = ["//visibility:public"],
+    visibility = ["//UI:__pkg__"],
     deps = [":Lib"],
 )

@@ -14,7 +14,7 @@ swift_c_module(
     name = "swift_c_module",
     module_map = "c_lib.modulemap",
     module_name = "SwiftCModule",
-    visibility = ["//visibility:public"],
+    visibility = ["//CommandLine:__subpackages__"],
     deps = [
         ":c_lib",
     ],

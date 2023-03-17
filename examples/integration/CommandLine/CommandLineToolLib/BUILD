@@ -74,5 +74,5 @@ objc_library(
 alias(
     name = "CommandLineToolLib",
     actual = ":lib_headers",
-    visibility = ["//visibility:public"],
+    visibility = ["//CommandLine/CommandLineTool:__subpackages__"],
 )

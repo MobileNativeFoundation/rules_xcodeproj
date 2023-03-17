@@ -17,7 +17,7 @@ objc_library(
     pch = "CoreUtils/CoreUtils.pch",
     sdk_dylibs = ["c++"],
     tags = ["manual"],
-    visibility = ["//visibility:public"],
+    visibility = ["//iOSApp:__subpackages__"],
 )
 
 ios_framework(
@@ -28,6 +28,6 @@ ios_framework(
     families = ["iphone"],
     infoplists = ["Info.plist"],
     minimum_os_version = "15.0",
-    visibility = ["//visibility:public"],
+    visibility = ["//iOSApp:__subpackages__"],
     deps = [":CoreUtilsObjC"],
 )

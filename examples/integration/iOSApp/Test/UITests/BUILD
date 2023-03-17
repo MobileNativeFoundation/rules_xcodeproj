@@ -6,7 +6,7 @@ ios_ui_test(
     bundle_id = "io.buildbuddy.example.uitests",
     minimum_os_version = "15.0",
     test_host = "//iOSApp",
-    visibility = ["//visibility:public"],
+    visibility = ["@rules_xcodeproj_generated//:__subpackages__"],
     deps = [":iOSAppUITests.library"],
 )
 

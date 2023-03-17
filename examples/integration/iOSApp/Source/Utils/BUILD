@@ -9,7 +9,7 @@ objc_library(
     data = ["@examples_ios_app_external//:ExternalImportedBundle"],
     module_name = "Utils",
     tags = ["manual"],
-    visibility = ["//visibility:public"],
+    visibility = ["//iOSApp:__subpackages__"],
     deps = [
         "//iOSApp/Source/CoreUtilsObjC",
         "@FXPageControl",

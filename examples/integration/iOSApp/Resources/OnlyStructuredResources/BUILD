@@ -6,5 +6,5 @@ apple_resource_bundle(
     bundle_name = "OnlyStructuredResources",
     infoplists = ["Info.plist"],
     structured_resources = glob(["Nested/*.json"]),
-    visibility = ["//visibility:public"],
+    visibility = ["//iOSApp:__subpackages__"],
 )
