@@ -6,7 +6,7 @@ watchos_unit_test(
     frameworks = ["//UI:UIFramework.watchOS"],
     minimum_os_version = "7.0",
     tags = ["manual"],
-    visibility = ["//visibility:public"],
+    visibility = ["@rules_xcodeproj_generated//:__subpackages__"],
     deps = [":watchOSAppExtensionUnitTests.library"],
 )
 

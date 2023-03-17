@@ -10,7 +10,7 @@ apple_resource_bundle(
         ":deps_txt",
     ],
     structured_resources = ["nested/hello.txt"],
-    visibility = ["//visibility:public"],
+    visibility = ["//iOSApp:__subpackages__"],
 )
 
 dep_resources_collector(
@@ -21,5 +21,5 @@ dep_resources_collector(
 filegroup(
     name = "exported_resources",
     srcs = glob(["Assets.xcassets/**"]),
-    visibility = ["//visibility:public"],
+    visibility = ["//iOSApp:__subpackages__"],
 )

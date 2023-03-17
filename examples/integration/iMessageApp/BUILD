@@ -27,7 +27,7 @@ ios_imessage_application(
     infoplists = [":Info.plist"],
     minimum_os_version = "15.0",
     version = "//iOSApp:Version",
-    visibility = ["//visibility:public"],
+    visibility = ["@rules_xcodeproj_generated//:__subpackages__"],
 )
 
 ios_imessage_extension(
@@ -38,7 +38,6 @@ ios_imessage_extension(
     minimum_os_version = "15.0",
     resources = glob(["*.lproj/**"]),
     version = "//iOSApp:Version",
-    visibility = ["//visibility:public"],
     deps = [":iMessageAppExtension.library"],
 )
 

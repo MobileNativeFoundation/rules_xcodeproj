@@ -34,7 +34,10 @@ tvos_application(
         "//conditions:default": None,
     }),
     resources = ["//tvOSApp/Resources:ResourceGroup"],
-    visibility = ["//visibility:public"],
+    visibility = [
+        "//tvOSApp:__subpackages__",
+        "@rules_xcodeproj_generated//:__subpackages__",
+    ],
     deps = [":tvOSApp.library"],
 )
 
@@ -61,7 +64,7 @@ swift_library(
     }),
     module_name = "tvOSApp",
     tags = ["manual"],
-    visibility = ["//visibility:public"],
+    visibility = ["//tvOSApp:__subpackages__"],
     deps = [
         "//UI",
     ],

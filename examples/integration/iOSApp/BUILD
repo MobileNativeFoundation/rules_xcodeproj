@@ -5,7 +5,10 @@ exports_files(["ownership.yaml"])
 alias(
     name = "iOSApp",
     actual = "//iOSApp/Source:iOSApp",
-    visibility = ["//visibility:public"],
+    visibility = [
+        "//iOSApp/Test:__subpackages__",
+        "@rules_xcodeproj_generated//:__subpackages__",
+    ],
 )
 
 apple_bundle_version(

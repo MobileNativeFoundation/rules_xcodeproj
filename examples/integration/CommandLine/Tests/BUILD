@@ -6,9 +6,6 @@ swift_library(
     testonly = True,
     srcs = glob(["*.swift"]),
     module_name = "LibSwiftTestsLib",
-    visibility = [
-        "//visibility:public",
-    ],
     deps = [
         "//CommandLine/CommandLineToolLib:lib_swift",
     ],
@@ -17,9 +14,7 @@ swift_library(
 macos_unit_test(
     name = "CommandLineToolTests",
     minimum_os_version = "11.0",
-    visibility = [
-        "//visibility:public",
-    ],
+    visibility = ["@rules_xcodeproj_generated//:__subpackages__"],
     deps = [
         ":CommandLineLibSwiftTestsLib",
     ],

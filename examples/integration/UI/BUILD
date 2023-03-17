@@ -9,7 +9,11 @@ swift_library(
     copts = ["-application-extension"],
     module_name = "UI",
     tags = ["manual"],
-    visibility = ["//visibility:public"],
+    visibility = [
+        "//iOSApp:__subpackages__",
+        "//tvOSApp:__subpackages__",
+        "//watchOSAppExtension:__subpackages__",
+    ],
     deps = [
         "//Lib",
     ],
@@ -26,7 +30,10 @@ ios_framework(
     infoplists = ["Info.plist"],
     minimum_os_version = "15.0",
     version = "//iOSApp:Version",
-    visibility = ["//visibility:public"],
+    visibility = [
+        "//iOSApp:__subpackages__",
+        "@rules_xcodeproj_generated//:__subpackages__",
+    ],
     deps = [":UI"],
 )
 
@@ -38,7 +45,10 @@ tvos_framework(
     infoplists = ["Info.plist"],
     minimum_os_version = "15.0",
     version = "//iOSApp:Version",
-    visibility = ["//visibility:public"],
+    visibility = [
+        "//tvOSApp:__subpackages__",
+        "@rules_xcodeproj_generated//:__subpackages__",
+    ],
     deps = [":UI"],
 )
 
@@ -50,6 +60,9 @@ watchos_framework(
     infoplists = ["Info.plist"],
     minimum_os_version = "7.0",
     version = "//iOSApp:Version",
-    visibility = ["//visibility:public"],
+    visibility = [
+        "//watchOSAppExtension:__subpackages__",
+        "@rules_xcodeproj_generated//:__subpackages__",
+    ],
     deps = [":UI"],
 )

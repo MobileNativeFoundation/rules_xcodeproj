@@ -27,7 +27,10 @@ watchos_application(
         "//conditions:default": None,
     }),
     version = "//iOSApp:Version",
-    visibility = ["//visibility:public"],
+    visibility = [
+        "//iOSApp:__subpackages__",
+        "//watchOSApp:__subpackages__",
+    ],
 )
 
 genrule(

@@ -9,5 +9,5 @@ apple_resource_bundle(
         "*.lproj/**",
     ]) + ["@examples_ios_app_external//:ExternalImportedBundle"],
     structured_resources = glob(["dir/**"]),
-    visibility = ["//visibility:public"],
+    visibility = ["//iOSApp:__subpackages__"],
 )

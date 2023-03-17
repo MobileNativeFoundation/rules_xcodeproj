@@ -39,7 +39,7 @@ ios_app_clip(
     }),
     resources = [":ResourceGroup"],
     version = "//iOSApp:Version",
-    visibility = ["//visibility:public"],
+    visibility = ["//iOSApp:__subpackages__"],
     deps = [":AppClip.library"],
 )
 

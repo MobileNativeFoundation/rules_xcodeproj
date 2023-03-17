@@ -62,7 +62,10 @@ ios_application(
     ),
     strings = glob(["*.lproj/Localizable.strings"]),
     version = "//iOSApp:Version",
-    visibility = ["//visibility:public"],
+    visibility = [
+        "//iOSApp:__pkg__",
+        "@rules_xcodeproj_generated//:__subpackages__",
+    ],
     watch_application = "//watchOSApp",
     deps = [
         ":iOSApp.library",
