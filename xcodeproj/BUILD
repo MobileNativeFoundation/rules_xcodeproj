@@ -36,6 +36,7 @@ alias(
 package_group(
     name = "generated",
     includes = ["@rules_xcodeproj_generated//generator:package_group"],
+    tags = ["manual"],
 )
 
 # Release
