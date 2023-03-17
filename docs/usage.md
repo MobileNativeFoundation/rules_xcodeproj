@@ -48,7 +48,12 @@ related (and the default config disables BES upload for this reason). For
 example, if you set `--profile` globally or on the `rules_xcodeproj` config,
 you will want to set `--profile=` (clearing the value) on
 `rules_xcodeproj_indexbuild` to prevent Index Builds from overwriting the
-profile.
+profile:
+
+```
+build:rules_xcodeproj --profile=/tmp/profile.gz
+build:rules_xcodeproj_indexbuild --profile=
+```
 
 ### `rules_xcodeproj_swiftuipreviews`
 
