@@ -49,14 +49,6 @@ pass `ignore_version_differences = True` to `xcodeproj_rules_dependencies()`.
     repo_rule(name = name, **kwargs)
 
 def _generated_files_repo_impl(repository_ctx):
-    output_base_hash_result = repository_ctx.execute(
-        ["bash", "-c", '/sbin/md5 -q -s "${PWD%/*/*/*/*}"'],
-    )
-    if output_base_hash_result.return_code != 0:
-        fail("Failed to calculate output base hash: {}".format(
-            output_base_hash_result.stderr,
-        ))
-
     repository_ctx.file(
         "BUILD",
         content = """
@@ -66,6 +58,18 @@ package_group(
 )
 """,
     )
+
+    # Don't do anything on non-macOS platforms
+    if repository_ctx.execute(["uname"]).stdout.strip() != "Darwin":
+        return
+
+    output_base_hash_result = repository_ctx.execute(
+        ["bash", "-c", '/sbin/md5 -q -s "${PWD%/*/*/*/*}"'],
+    )
+    if output_base_hash_result.return_code != 0:
+        fail("Failed to calculate output base hash: {}".format(
+            output_base_hash_result.stderr,
+        ))
 
     # Ensure that this repository is unique per output base
     output_base_hash = output_base_hash_result.stdout.strip()
