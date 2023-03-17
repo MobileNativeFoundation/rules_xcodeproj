@@ -62,7 +62,7 @@ def _generated_files_repo_impl(repository_ctx):
         content = """
 package_group(
     name = "package_group",
-    includes = ["//generator:package_group"],
+    packages = ["//..."],
 )
 """,
     )
