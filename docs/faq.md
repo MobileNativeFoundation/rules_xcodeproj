@@ -6,13 +6,14 @@ The `xcodeproj` rule supports two different
 [build modes](bazel.md#xcodeproj-build_mode), `"bazel"` and `"xcode"`, commonly
 referred to as Build with Bazel (BwB) and Build with Xcode (BwX).
 
-## Why do I get a visibility error with `xcodeproj`?
+## Why do I get a visibility or unexported files error with `xcodeproj`?
 
 Even though you might have your `xcodeproj` target declared in the same package
 as your `top_level_targets`, internally rules_xcodeproj creates another target
 in a sub-package under the `@rules_xcodeproj_generated` repo. You'll need
 to adjust your `visibility`/`package_group` to include
-`"@rules_xcodeproj_generated//:__subpackages__"`.
+`"@rules_xcodeproj_generated//:__subpackages__"`, and export any files used in
+`xcodeproj.{associated_,}extra_files`.
 
 ## Does the Archive action work?
 
