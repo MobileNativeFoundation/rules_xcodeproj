@@ -36,7 +36,7 @@ tvos_application(
     resources = ["//tvOSApp/Resources:ResourceGroup"],
     visibility = [
         "//tvOSApp:__subpackages__",
-        "@rules_xcodeproj_generated//:__subpackages__",
+        "@rules_xcodeproj//xcodeproj:generated",
     ],
     deps = [":tvOSApp.library"],
 )

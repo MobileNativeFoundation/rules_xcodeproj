@@ -7,7 +7,7 @@ alias(
     actual = "//iOSApp/Source:iOSApp",
     visibility = [
         "//iOSApp/Test:__subpackages__",
-        "@rules_xcodeproj_generated//:__subpackages__",
+        "@rules_xcodeproj//xcodeproj:generated",
     ],
 )
 

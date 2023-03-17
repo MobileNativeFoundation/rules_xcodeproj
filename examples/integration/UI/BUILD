@@ -32,7 +32,7 @@ ios_framework(
     version = "//iOSApp:Version",
     visibility = [
         "//iOSApp:__subpackages__",
-        "@rules_xcodeproj_generated//:__subpackages__",
+        "@rules_xcodeproj//xcodeproj:generated",
     ],
     deps = [":UI"],
 )
@@ -47,7 +47,7 @@ tvos_framework(
     version = "//iOSApp:Version",
     visibility = [
         "//tvOSApp:__subpackages__",
-        "@rules_xcodeproj_generated//:__subpackages__",
+        "@rules_xcodeproj//xcodeproj:generated",
     ],
     deps = [":UI"],
 )
@@ -62,7 +62,7 @@ watchos_framework(
     version = "//iOSApp:Version",
     visibility = [
         "//watchOSAppExtension:__subpackages__",
-        "@rules_xcodeproj_generated//:__subpackages__",
+        "@rules_xcodeproj//xcodeproj:generated",
     ],
     deps = [":UI"],
 )

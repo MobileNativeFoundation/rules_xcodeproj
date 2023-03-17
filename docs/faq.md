@@ -12,7 +12,7 @@ Even though you might have your `xcodeproj` target declared in the same package
 as your `top_level_targets`, internally rules_xcodeproj creates another target
 in a sub-package under the `@rules_xcodeproj_generated` repo. You'll need
 to adjust your `visibility`/`package_group` to include
-`"@rules_xcodeproj_generated//:__subpackages__"`, and export any files used in
+`"@rules_xcodeproj//xcodeproj:generated"`, and export any files used in
 `xcodeproj.{associated_,}extra_files`.
 
 ## Does the Archive action work?

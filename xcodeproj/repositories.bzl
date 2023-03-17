@@ -57,7 +57,15 @@ def _generated_files_repo_impl(repository_ctx):
             output_base_hash_result.stderr,
         ))
 
-    repository_ctx.file("BUILD")
+    repository_ctx.file(
+        "BUILD",
+        content = """
+package_group(
+    name = "package_group",
+    packages = ["//..."],
+)
+""",
+    )
 
     # Ensure that this repository is unique per output base
     output_base_hash = output_base_hash_result.stdout.strip()

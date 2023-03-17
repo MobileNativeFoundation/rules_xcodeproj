@@ -8,7 +8,7 @@ tvos_ui_test(
     # xctestrunner does not support tvOS. So, don't try to run this.
     tags = ["manual"],
     test_host = "//tvOSApp/Source:tvOSApp",
-    visibility = ["@rules_xcodeproj_generated//:__subpackages__"],
+    visibility = ["@rules_xcodeproj//xcodeproj:generated"],
     deps = [":tvOSAppUITests.library"],
 )
 

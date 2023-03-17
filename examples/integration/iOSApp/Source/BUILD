@@ -64,7 +64,7 @@ ios_application(
     version = "//iOSApp:Version",
     visibility = [
         "//iOSApp:__pkg__",
-        "@rules_xcodeproj_generated//:__subpackages__",
+        "@rules_xcodeproj//xcodeproj:generated",
     ],
     watch_application = "//watchOSApp",
     deps = [

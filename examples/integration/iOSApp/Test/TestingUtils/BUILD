@@ -6,7 +6,7 @@ macos_build_test(
     minimum_os_version = "12.0",
     tags = ["manual"],
     targets = [":TestingUtils"],
-    visibility = ["@rules_xcodeproj_generated//:__subpackages__"],
+    visibility = ["@rules_xcodeproj//xcodeproj:generated"],
 )
 
 swift_library(
