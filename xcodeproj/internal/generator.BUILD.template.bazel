@@ -36,6 +36,5 @@ xcodeproj(
     watchos_simulator_cpus = "%watchos_simulator_cpus%",
     workspace_directory = WORKSPACE_DIRECTORY,
     xcode_configuration_map = %xcode_configuration_map%,
-    # FIXME: Limit to alias
-    visibility = ["//visibility:public"],
+    visibility = ["%visibility%"],
 )

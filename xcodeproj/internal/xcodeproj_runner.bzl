@@ -207,6 +207,7 @@ def _write_generator_build_file(
         attr,
         build_file_path,
         name,
+        repo,
         template):
     output = actions.declare_file("{}.generator.BUILD.bazel".format(name))
 
@@ -250,6 +251,7 @@ def _write_generator_build_file(
             "%tvos_simulator_cpus%": attr.tvos_simulator_cpus,
             "%unfocused_targets%": str(attr.unfocused_targets),
             "%unowned_extra_files%": str(attr.unowned_extra_files),
+            "%visibility%": "{repo}//xcodeproj:__pkg__".format(repo = repo),
             "%watchos_device_cpus%": attr.watchos_device_cpus,
             "%watchos_simulator_cpus%": attr.watchos_simulator_cpus,
             "%xcode_configuration_map%": str(attr.xcode_configuration_map),
@@ -312,7 +314,10 @@ def _xcodeproj_runner_impl(ctx):
     is_fixture = ctx.attr.is_fixture
     name = ctx.attr.name
     project_name = ctx.attr.project_name
-    repo = str(ctx.attr._generator_defs_bzl_template.label).split("//", 1)[0] or "@"
+    repo = (
+        str(ctx.attr._generator_defs_bzl_template.label).split("//", 1)[0] or
+        "@"
+    )
 
     xcode_version = _get_xcode_product_version(
         xcode_config = ctx.attr._xcode_config[apple_common.XcodeVersionConfig],
@@ -340,6 +345,7 @@ def _xcodeproj_runner_impl(ctx):
         attr = attr,
         build_file_path = ctx.build_file_path,
         name = name,
+        repo = repo,
         template = ctx.file._generator_package_contents_template,
     )
     generator_defs_bzl = _write_generator_defz_bzl(
