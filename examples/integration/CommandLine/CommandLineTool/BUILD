@@ -13,7 +13,7 @@ macos_command_line_application(
     launchdplists = ["Launchd.plist"],
     linkopts = ["-dead_strip"],
     minimum_os_version = "11.0",
-    visibility = ["@rules_xcodeproj_generated//:__subpackages__"],
+    visibility = ["@rules_xcodeproj//xcodeproj:generated"],
     deps = [":tool.library"],
 )
 
@@ -26,7 +26,7 @@ apple_universal_binary(
     ],
     minimum_os_version = "11.0",
     platform_type = "macos",
-    visibility = ["@rules_xcodeproj_generated//:__subpackages__"],
+    visibility = ["@rules_xcodeproj//xcodeproj:generated"],
 )
 
 swift_binary(

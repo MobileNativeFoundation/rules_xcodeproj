@@ -19,7 +19,7 @@ ios_build_test(
     minimum_os_version = "15.0",
     tags = ["manual"],
     targets = [":Lib"],
-    visibility = ["@rules_xcodeproj_generated//:__subpackages__"],
+    visibility = ["@rules_xcodeproj//xcodeproj:generated"],
 )
 
 swift_library(

@@ -11,7 +11,7 @@ ios_dynamic_framework(
     infoplists = ["//Lib:Info.plist"],
     minimum_os_version = "15.0",
     version = "//iOSApp:Version",
-    visibility = ["@rules_xcodeproj_generated//:__subpackages__"],
+    visibility = ["@rules_xcodeproj//xcodeproj:generated"],
     deps = ["//Lib"],
 )
 
@@ -23,7 +23,7 @@ tvos_dynamic_framework(
     infoplists = ["//Lib:Info.plist"],
     minimum_os_version = "15.0",
     version = "//iOSApp:Version",
-    visibility = ["@rules_xcodeproj_generated//:__subpackages__"],
+    visibility = ["@rules_xcodeproj//xcodeproj:generated"],
     deps = ["//Lib"],
 )
 
@@ -35,6 +35,6 @@ watchos_dynamic_framework(
     infoplists = ["//Lib:Info.plist"],
     minimum_os_version = "7.0",
     version = "//iOSApp:Version",
-    visibility = ["@rules_xcodeproj_generated//:__subpackages__"],
+    visibility = ["@rules_xcodeproj//xcodeproj:generated"],
     deps = ["//Lib"],
 )

@@ -30,7 +30,7 @@ macos_unit_test(
     minimum_os_version = "12.0",
     visibility = [
         "//test:__subpackages__",
-        "@rules_xcodeproj_generated//:__subpackages__",
+        "@rules_xcodeproj//xcodeproj:generated",
     ],
     deps = [
         ":tests.library",

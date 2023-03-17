@@ -1,5 +1,10 @@
 load(":defs.bzl", "xcodeproj", "WORKSPACE_DIRECTORY")
 
+package_group(
+    name = "package_group",
+    packages = ["//generator"],
+)
+
 # DO NOT INVOKE THIS TARGET YOURSELF.
 #
 # This target is generated and invoked by `xcodeproj_runner`.

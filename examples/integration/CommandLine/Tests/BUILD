@@ -14,7 +14,7 @@ swift_library(
 macos_unit_test(
     name = "CommandLineToolTests",
     minimum_os_version = "11.0",
-    visibility = ["@rules_xcodeproj_generated//:__subpackages__"],
+    visibility = ["@rules_xcodeproj//xcodeproj:generated"],
     deps = [
         ":CommandLineLibSwiftTestsLib",
     ],

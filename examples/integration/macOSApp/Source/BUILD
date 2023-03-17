@@ -28,7 +28,7 @@ macos_application(
     version = ":Version",
     visibility = [
         "//macOSApp/Test:__subpackages__",
-        "@rules_xcodeproj_generated//:__subpackages__",
+        "@rules_xcodeproj//xcodeproj:generated",
     ],
     deps = [":macOSApp.library"],
 )

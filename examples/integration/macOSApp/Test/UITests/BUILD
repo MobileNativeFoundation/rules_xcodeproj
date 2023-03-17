@@ -8,7 +8,7 @@ macos_ui_test(
     # xctestrunner does not support macOS. So, don't try to run this.
     tags = ["manual"],
     test_host = "//macOSApp/Source:macOSApp",
-    visibility = ["@rules_xcodeproj_generated//:__subpackages__"],
+    visibility = ["@rules_xcodeproj//xcodeproj:generated"],
     deps = [":macOSAppUITests.library"],
 )
 
