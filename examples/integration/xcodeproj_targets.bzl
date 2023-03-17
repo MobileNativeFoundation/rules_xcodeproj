@@ -29,6 +29,13 @@ XCODE_CONFIGURATIONS = {
 
 DEFAULT_XCODE_CONFIGURATION = "Debug"
 
+PRE_BUILD = """set -euo pipefail
+
+if [[ "$ACTION" == "build" ]]; then
+  cd "$SRCROOT"
+  echo "Hello from pre-build!"
+fi"""
+
 EXTRA_FILES = [
     "//:README.md",
 ]
