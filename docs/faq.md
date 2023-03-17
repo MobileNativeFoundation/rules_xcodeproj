@@ -29,6 +29,8 @@ and upload that.
 
 ## Why are there multiple versions of some of my targets?
 
+<img alt="Screenshot of an Xcode Targets list showing the 'FXPageControl (iOS 13.0)' and 'FXPageControl (iOS 15.0)' targets" src="https://user-images.githubusercontent.com/158658/225914670-4f9ebe5e-be18-4462-a551-b5886096c434.png" width="153" >
+
 If the transitive closure of dependencies of targets specified by
 `xcodeproj.top_level_targets` has targets with multiple configurations, they
 will be included in the project with those various configurations. This can be
@@ -38,11 +40,13 @@ versions of a target consolidated into a single Xcode target. When targets can�
 be consolidated, usually because they are functionally equivalent from the point
 of view of Xcode, they will be separate Xcode targets.
 
-<img src="https://user-images.githubusercontent.com/158658/189945581-6cf0908b-e8a3-4e97-9440-93f42b5e2767.png" height="86">
+<img alt="Screenshot of an Xcode Targets list showing the 'c_lib (8f0e2)', 'c_lib (56c24)', and 'с_lib (×86_64)' targets" src="https://user-images.githubusercontent.com/158658/225914621-8d8fd0b6-8268-4db5-9475-1d490a73998b.png" width="93">
 
 If you have multiple _unexpected_ versions of some targets, usually with a
 hash after their name, then this unexpected. Check to see if your build is
-adding multiple configurations of the same targets to the build graph. If you
+adding multiple configurations of the same targets to the build graph (e.g. app
+extensions or tests having different minimum OS versions than the app, which can
+possibly be fixed by using minimum deployment OS version instead). If you
 need help, reach out to us.
 
 ## What is `CompileStub.m`?
