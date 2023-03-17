@@ -44,7 +44,11 @@ artifacts to perform per-file indexing based compiles.
 Since Index Build runs in the background quite frequently, sometimes once per
 target in the project, and then once per saving of a file, the types of things
 you might want to adjust on this config are probably log output or telemetry
-related (and the default config disables BES upload for this reason).
+related (and the default config disables BES upload for this reason). For
+example, if you set `--profile` globally or on the `rules_xcodeproj` config,
+you will want to set `--profile=` (clearing the value) on
+`rules_xcodeproj_indexbuild` to prevent Index Builds from overwriting the
+profile.
 
 ### `rules_xcodeproj_swiftuipreviews`
 
