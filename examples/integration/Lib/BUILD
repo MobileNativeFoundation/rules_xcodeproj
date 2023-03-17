@@ -37,10 +37,10 @@ swift_library(
     tags = ["manual"],
     visibility = [
         "//AppClip:__subpackages__",
-        "//iMessageApp:__subpackages__",
         "//Lib:__subpackages__",
         "//UI:__subpackages__",
         "//WidgetExtension:__subpackages__",
+        "//iMessageApp:__subpackages__",
     ],
     deps = [
         "@com_github_krzyzanowskim_cryptoswift//:CryptoSwift",
