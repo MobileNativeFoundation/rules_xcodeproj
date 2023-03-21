@@ -9454,7 +9454,7 @@
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				OTHER_CPLUSPLUSFLAGS = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -O0";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example.objctests;
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.objctests";
 				PRODUCT_MODULE_NAME = iOSAppObjCUnitTests;
 				PRODUCT_NAME = iOSAppObjCUnitTests;
 				SDKROOT = iphoneos;
@@ -9533,7 +9533,7 @@
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source";
 				"PREVIEWS_SWIFT_INCLUDE_PATH__YES[sdk=iphoneos*]" = "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/iOSApp/Source";
-				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example;
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example";
 				PRODUCT_MODULE_NAME = iOSApp;
 				PRODUCT_NAME = iOSApp;
 				SDKROOT = iphoneos;
@@ -9723,7 +9723,7 @@
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Source";
 				"PREVIEWS_SWIFT_INCLUDE_PATH__YES[sdk=iphoneos*]" = "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/iOSApp/Source";
-				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example;
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example";
 				PRODUCT_MODULE_NAME = iOSApp;
 				PRODUCT_NAME = iOSApp;
 				SDKROOT = iphoneos;
@@ -10126,7 +10126,7 @@
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/watchOSAppExtension";
 				"PREVIEWS_SWIFT_INCLUDE_PATH__YES[sdk=watchos*]" = "bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-5/bin/watchOSAppExtension";
-				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example.watch.extension;
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.watch.extension";
 				PRODUCT_MODULE_NAME = watchOSAppExtension;
 				PRODUCT_NAME = watchOSAppExtension;
 				SDKROOT = watchos;
@@ -10173,7 +10173,7 @@
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/tvOSApp/Test/UnitTests";
-				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example.tests;
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.tests";
 				PRODUCT_MODULE_NAME = tvOSAppUnitTests;
 				PRODUCT_NAME = tvOSAppUnitTests;
 				SDKROOT = appletvos;
@@ -10343,7 +10343,7 @@
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9/bin/tvOSApp/Source";
 				"PREVIEWS_SWIFT_INCLUDE_PATH__YES[sdk=appletvos*]" = "bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-opt-STABLE-12/bin/tvOSApp/Source";
-				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example;
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example";
 				PRODUCT_MODULE_NAME = tvOSApp;
 				PRODUCT_NAME = tvOSApp;
 				SDKROOT = appletvos;
@@ -10391,7 +10391,7 @@
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8/bin/watchOSApp/Test/UITests";
-				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example.watchTests;
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.watchTests";
 				PRODUCT_MODULE_NAME = watchOSAppUITestsLibrary;
 				PRODUCT_NAME = watchOSAppUITests;
 				SDKROOT = watchos;
@@ -10445,7 +10445,7 @@
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Test/SwiftUnitTests";
-				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example.tests;
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.tests";
 				PRODUCT_MODULE_NAME = iOSAppSwiftUnitTests;
 				PRODUCT_NAME = iOSAppSwiftUnitTests;
 				SDKROOT = iphoneos;
@@ -10678,7 +10678,7 @@
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-30/bin/macOSApp/Source";
-				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.macOSApp;
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.macOSApp";
 				PRODUCT_MODULE_NAME = macOSApp;
 				PRODUCT_NAME = macOSApp;
 				SDKROOT = macosx;
@@ -10724,7 +10724,7 @@
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9/bin/tvOSApp/Test/UITests";
-				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example.uitests;
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.uitests";
 				PRODUCT_MODULE_NAME = tvOSAppUITests;
 				PRODUCT_NAME = tvOSAppUITests;
 				SDKROOT = appletvos;
@@ -10913,7 +10913,7 @@
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iMessageApp";
-				PRODUCT_BUNDLE_IDENTIFIER = "io.buildbuddy.example.imessage-app.extension";
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.imessage-app.extension";
 				PRODUCT_MODULE_NAME = iMessageAppExtension;
 				PRODUCT_NAME = iMessageAppExtension;
 				SDKROOT = iphoneos;
@@ -10976,7 +10976,7 @@
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/tvOSApp/Source";
 				"PREVIEWS_SWIFT_INCLUDE_PATH__YES[sdk=appletvos*]" = "bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-6/bin/tvOSApp/Source";
-				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example;
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example";
 				PRODUCT_MODULE_NAME = tvOSApp;
 				PRODUCT_NAME = tvOSApp;
 				SDKROOT = appletvos;
@@ -11175,7 +11175,7 @@
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/WidgetExtension";
 				"PREVIEWS_SWIFT_INCLUDE_PATH__YES[sdk=iphoneos*]" = "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/WidgetExtension";
-				PRODUCT_BUNDLE_IDENTIFIER = "io.buildbuddy.example.widget-extension";
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.widget-extension";
 				PRODUCT_MODULE_NAME = WidgetExtension;
 				PRODUCT_NAME = WidgetExtension;
 				SDKROOT = iphoneos;
@@ -11285,7 +11285,7 @@
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8/bin/watchOSAppExtension";
 				"PREVIEWS_SWIFT_INCLUDE_PATH__YES[sdk=watchos*]" = "bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-opt-STABLE-11/bin/watchOSAppExtension";
-				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example.watch.extension;
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.watch.extension";
 				PRODUCT_MODULE_NAME = watchOSAppExtension;
 				PRODUCT_NAME = watchOSAppExtension;
 				SDKROOT = watchos;
@@ -11340,7 +11340,7 @@
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/SwiftUnitTests";
-				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example.tests;
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.tests";
 				PRODUCT_MODULE_NAME = iOSAppSwiftUnitTests;
 				PRODUCT_NAME = iOSAppSwiftUnitTests;
 				SDKROOT = iphoneos;
@@ -11382,7 +11382,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-opt-STABLE-23/bin/watchOSApp/rules_xcodeproj/watchOSApp/Info.plist";
 				"INFOPLIST_FILE[sdk=watchos*]" = "$(BAZEL_OUT)/applebin_watchos-watchos_arm64_32-opt-STABLE-24/bin/watchOSApp/rules_xcodeproj/watchOSApp/Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example.watch;
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.watch";
 				PRODUCT_NAME = watchOSApp;
 				SDKROOT = watchos;
 				SUPPORTED_PLATFORMS = "watchsimulator watchos";
@@ -11413,7 +11413,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iMessageApp/rules_xcodeproj/iMessageApp/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "io.buildbuddy.example.imessage-app";
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.imessage-app";
 				PRODUCT_NAME = iMessageApp;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = iphonesimulator;
@@ -11474,7 +11474,7 @@
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/AppClip";
 				"PREVIEWS_SWIFT_INCLUDE_PATH__YES[sdk=iphoneos*]" = "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/AppClip";
-				PRODUCT_BUNDLE_IDENTIFIER = "io.buildbuddy.example.app-clip";
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.app-clip";
 				PRODUCT_MODULE_NAME = AppClip;
 				PRODUCT_NAME = AppClip;
 				SDKROOT = iphoneos;
@@ -11667,7 +11667,7 @@
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/generator-params/iOSAppObjCUnitTests.24.link.params";
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example.objctests;
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.objctests";
 				PRODUCT_MODULE_NAME = iOSAppObjCUnitTests;
 				PRODUCT_NAME = iOSAppObjCUnitTests;
 				SDKROOT = iphoneos;
@@ -11732,7 +11732,7 @@
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/AppClip";
 				"PREVIEWS_SWIFT_INCLUDE_PATH__YES[sdk=iphoneos*]" = "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/AppClip";
-				PRODUCT_BUNDLE_IDENTIFIER = "io.buildbuddy.example.app-clip";
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.app-clip";
 				PRODUCT_MODULE_NAME = AppClip;
 				PRODUCT_NAME = AppClip;
 				SDKROOT = iphoneos;
@@ -12056,7 +12056,7 @@
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-30/bin/macOSApp/Test/UITests";
-				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.macosapp.uitests;
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.macosapp.uitests";
 				PRODUCT_MODULE_NAME = macOSAppUITests;
 				PRODUCT_NAME = macOSAppUITests;
 				SDKROOT = macosx;
@@ -12137,7 +12137,7 @@
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9/bin/tvOSApp/Test/UnitTests";
-				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example.tests;
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.tests";
 				PRODUCT_MODULE_NAME = tvOSAppUnitTests;
 				PRODUCT_NAME = tvOSAppUnitTests;
 				SDKROOT = appletvos;
@@ -12307,7 +12307,7 @@
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-29/bin/macOSApp/Test/UITests";
-				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.macosapp.uitests;
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.macosapp.uitests";
 				PRODUCT_MODULE_NAME = macOSAppUITests;
 				PRODUCT_NAME = macOSAppUITests;
 				SDKROOT = macosx;
@@ -12411,7 +12411,7 @@
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iMessageApp";
-				PRODUCT_BUNDLE_IDENTIFIER = "io.buildbuddy.example.imessage-app.extension";
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.imessage-app.extension";
 				PRODUCT_MODULE_NAME = iMessageAppExtension;
 				PRODUCT_NAME = iMessageAppExtension;
 				SDKROOT = iphoneos;
@@ -12609,7 +12609,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iMessageApp/rules_xcodeproj/iMessageApp/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "io.buildbuddy.example.imessage-app";
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.imessage-app";
 				PRODUCT_NAME = iMessageApp;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = iphonesimulator;
@@ -12797,7 +12797,7 @@
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/watchOSApp/Test/UITests";
-				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example.watchTests;
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.watchTests";
 				PRODUCT_MODULE_NAME = watchOSAppUITestsLibrary;
 				PRODUCT_NAME = watchOSAppUITests;
 				SDKROOT = watchos;
@@ -12929,7 +12929,7 @@
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/WidgetExtension";
 				"PREVIEWS_SWIFT_INCLUDE_PATH__YES[sdk=iphoneos*]" = "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/WidgetExtension";
-				PRODUCT_BUNDLE_IDENTIFIER = "io.buildbuddy.example.widget-extension";
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.widget-extension";
 				PRODUCT_MODULE_NAME = WidgetExtension;
 				PRODUCT_NAME = WidgetExtension;
 				SDKROOT = iphoneos;
@@ -13042,7 +13042,7 @@
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/tvOSApp/Test/UITests";
-				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example.uitests;
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.uitests";
 				PRODUCT_MODULE_NAME = tvOSAppUITests;
 				PRODUCT_NAME = tvOSAppUITests;
 				SDKROOT = appletvos;
@@ -13285,7 +13285,7 @@
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-29/bin/macOSApp/Source";
-				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.macOSApp;
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.macOSApp";
 				PRODUCT_MODULE_NAME = macOSApp;
 				PRODUCT_NAME = macOSApp;
 				SDKROOT = macosx;
@@ -13340,7 +13340,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-dbg-STABLE-21/bin/watchOSApp/rules_xcodeproj/watchOSApp/Info.plist";
 				"INFOPLIST_FILE[sdk=watchos*]" = "$(BAZEL_OUT)/applebin_watchos-watchos_arm64_32-dbg-STABLE-22/bin/watchOSApp/rules_xcodeproj/watchOSApp/Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = io.buildbuddy.example.watch;
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.watch";
 				PRODUCT_NAME = watchOSApp;
 				SDKROOT = watchos;
 				SUPPORTED_PLATFORMS = "watchsimulator watchos";

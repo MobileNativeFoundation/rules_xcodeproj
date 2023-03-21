@@ -151,7 +151,7 @@ for output_group in "${output_groups[@]}"; do
   else
     echo "error: output group ($output_group) doesn't match regex. Please" \
 "file a bug report here:" \
-"https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md" \
+"https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bug.md" \
       >&2
     exit 1
   fi
@@ -160,7 +160,7 @@ for output_group in "${output_groups[@]}"; do
     echo "error: Bazel didn't create the indexstore filelist (\"$filelist\")." \
 "Please regenerate the project to fix this. If you are still getting this" \
 "error after regenerating your project, please file a bug report here:" \
-"https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md" \
+"https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bug.md" \
       >&2
     exit 1
   fi

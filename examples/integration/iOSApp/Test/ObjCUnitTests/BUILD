@@ -2,7 +2,7 @@ load("@build_bazel_rules_apple//apple:ios.bzl", "ios_unit_test")
 
 ios_unit_test(
     name = "iOSAppObjCUnitTests",
-    bundle_id = "io.buildbuddy.example.objctests",
+    bundle_id = "rules-xcodeproj.example.objctests",
     env = {
         "IOS_APP_UNIT_TESTS": "CUSTOM_ENV_VALUE",
     },

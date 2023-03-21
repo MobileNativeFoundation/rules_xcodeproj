@@ -20,7 +20,7 @@ apple_bundle_version(
 macos_application(
     name = "macOSApp",
     app_icons = glob(["Assets.xcassets/AppIcon.appiconset/**"]),
-    bundle_id = "io.buildbuddy.macOSApp",
+    bundle_id = "rules-xcodeproj.macOSApp",
     bundle_name = "macOSApp",
     infoplists = [":Info.plist"],
     minimum_os_version = "12.0",

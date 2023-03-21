@@ -24,7 +24,7 @@ extension PreconditionError: LocalizedError {
 Internal precondition failure:
 \(message)
 Please file a bug report at \
-https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md
+https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bug.md
 """
     }
 }

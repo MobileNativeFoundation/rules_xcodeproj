@@ -30,7 +30,7 @@ exports_files(["README.md"])
 #    support any of iOS, tvOS, or watchOS platforms, you still need to set all
 #    of the `ios_simulator_cpus`, `tvos_simulator_cpus`, and
 #    `watchos_simulator_cpus` to avoid Starlark transition effect. See
-#    https://github.com/buildbuddy-io/rules_xcodeproj/issues/1094.
+#    https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/1094.
 # 5. Run each of the following commands to produce a cache for each macOS host
 #    platform. This can be run from an Intel or Apple silicon Mac.
 #
