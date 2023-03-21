@@ -72,6 +72,7 @@ the ruleset.
 - Robinhood
 - [Slack](https://www.youtube.com/watch?v=wy3Q38VJ5uQ)
 - Spotify
+- Snap
 - SwiftLint
 - Ten Ten
 - Tinder
