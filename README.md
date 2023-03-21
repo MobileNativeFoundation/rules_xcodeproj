@@ -167,3 +167,13 @@ bazel run //:xcodeproj
 
 The generated project will be in the workspace next to the `BUILD` file at
 `App.xcodeproj`.
+
+## Acknowledgements
+
+- Inspired by [Tulsi][tulsi] and the custom project generators at Target and Lyft.
+- Made possible by [XcodeProj][XcodeProj].
+- Initial design and development by [@brentleyjones](https://github.com/brentleyjones).
+- Logo by [@pennig](https://github.com/pennig).
+
+[tulsi]: https://github.com/bazelbuild/tulsi
+[XcodeProj]: https://github.com/tuist/XcodeProj
