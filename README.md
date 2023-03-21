@@ -173,7 +173,8 @@ The generated project will be in the workspace next to the `BUILD` file at
 - Inspired by [Tulsi][tulsi] and the custom project generators at Target and Lyft.
 - Made possible by [XcodeProj][XcodeProj].
 - Initial design and development by [@brentleyjones](https://github.com/brentleyjones).
-- Logo by [@pennig](https://github.com/pennig).
+- [Logo][logo] by [@pennig](https://github.com/pennig).
 
+[logo]: https://user-images.githubusercontent.com/158658/161647598-223361dc-030d-431a-b4fe-d92592ed5530.png
 [tulsi]: https://github.com/bazelbuild/tulsi
 [XcodeProj]: https://github.com/tuist/XcodeProj
