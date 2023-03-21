@@ -578,23 +578,3 @@ def create_xcodeprojinfo(*, ctx, build_mode, target, transitive_infos):
         label = target.label,
         **info_fields
     )
-
-def merge_xcodeprojinfos(infos):
-    """Creates a merged `XcodeProjInfo` for the given `XcodeProjInfo`s.
-
-    Args:
-        infos: A `list` of `XcodeProjInfo`s to merge.
-
-    Returns:
-        An `XcodeProjInfo` populated with information from `infos`.
-    """
-    info_fields = _skip_target(
-        target = None,
-        deps = [],
-        deps_attrs = [],
-        transitive_infos = [(None, info) for info in infos],
-    )
-    return XcodeProjInfo(
-        label = None,
-        **info_fields
-    )
