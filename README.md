@@ -4,8 +4,6 @@
 
 # rules_xcodeproj
 
-_Donated to the Mobile Native Foundation by [BuildBuddy](https://buildbuddy.io)._
-
 This repository contains rules for [Bazel](https://bazel.build) that can be
 used to generate Xcode projects from targets in your workspace.
 
@@ -177,6 +175,7 @@ The generated project will be in the workspace next to the `BUILD` file at
 - Made possible by [XcodeProj][XcodeProj].
 - Initial design and development by [@brentleyjones](https://github.com/brentleyjones).
 - [Logo][logo] by [@pennig](https://github.com/pennig).
+- Donated to the Mobile Native Foundation by [BuildBuddy](https://buildbuddy.io).
 
 [logo]: https://user-images.githubusercontent.com/158658/161647598-223361dc-030d-431a-b4fe-d92592ed5530.png
 [tulsi]: https://github.com/bazelbuild/tulsi
