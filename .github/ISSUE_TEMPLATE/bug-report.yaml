@@ -1,0 +1,68 @@
+name: Bug Report
+description: Report a bug.
+title: "Bug: "
+labels: "bug"
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for taking the time to fill out this bug report!
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: Please describe the bug.
+      placeholder: A clear and concise description of what the bug is.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction steps
+      description: Please provides steps to reproduce the behavior, linking to a
+        reproduction if possible.
+      placeholder: Steps to reproduce the behavior.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: Please state what you expected to happen with the above
+        reproduction steps.
+      placeholder: A clear and concise description of what you expected to
+        happen.
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: "## Context"
+  - type: input
+    id: rules_xcodeproj-version
+    attributes:
+      label: rules_xcodeproj version
+      placeholder: e.g. 1.3.2 or 82daf8c8f71063c013aaf2c8f9de7f66a37d7e9e
+    validations:
+      required: true
+  - type: input
+    id: bazel-version
+    attributes:
+      label: Bazel version
+      placeholder: e.g. 6.1.1
+    validations:
+      required: true
+  - type: input
+    id: rules_apple-version
+    attributes:
+      label: rules_apple version
+      placeholder: e.g. 2.1.0 or 3d2469125bcc8aa8dabe9e5ded1f3090f3b116dc
+  - type: input
+    id: rules_swift-version
+    attributes:
+      label: rules_swift version
+      placeholder: e.g. 1.6.0 or f174ab8776c35bbd134c901062d568c8da2a66ea
+  - type: textarea
+    id: additional-information
+    attributes:
+      label: Additional information
+      description: Is there any other information you wish to share?
+      placeholder: Any other information about the bug.
