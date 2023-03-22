@@ -128,7 +128,7 @@ listed in `top_level_targets`, and don't need to be listed in \
 
 If you feel this is an error, and `{kind}` targets should be recognized as \
 top-level targets, file a bug report here: \
-https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md
+https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bug.md
 """.format(label = dep.label, kind = info.rule_kind))
 
     return info

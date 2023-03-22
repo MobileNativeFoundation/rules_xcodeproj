@@ -4,7 +4,7 @@ load("@build_bazel_rules_swift//swift:swift.bzl", "swift_binary")
 
 macos_command_line_application(
     name = "CommandLineTool",
-    bundle_id = "io.buildbuddy.example",
+    bundle_id = "rules-xcodeproj.example",
     codesignopts = ["-v"],
     exported_symbols_lists = [
         "export_symbol_list.exp",

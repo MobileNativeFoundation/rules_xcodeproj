@@ -4,6 +4,8 @@
 
 # rules_xcodeproj
 
+_Donated to the Mobile Native Foundation by [BuildBuddy](https://buildbuddy.io)._
+
 This repository contains rules for [Bazel](https://bazel.build) that can be
 used to generate Xcode projects from targets in your workspace.
 
@@ -11,8 +13,8 @@ If you run into any problems with these rules, please check our
 [FAQ](docs/faq.md), check if [another issue already exists][issues] and comment
 on it, or [file a new issue][file-an-issue]!
 
-[issues]: https://github.com/buildbuddy-io/rules_xcodeproj/issues
-[file-an-issue]: https://github.com/buildbuddy-io/rules_xcodeproj/issues/new/choose
+[issues]: https://github.com/MobileNativeFoundation/rules_xcodeproj/issues
+[file-an-issue]: https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new/choose
 
 ## Features
 
@@ -96,7 +98,7 @@ ones we’ve officially tested with.
 ## Installation
 
 From the
-[release you wish to use](https://github.com/buildbuddy-io/rules_xcodeproj/releases),
+[release you wish to use](https://github.com/MobileNativeFoundation/rules_xcodeproj/releases),
 copy the Bzlmod or WORKSPACE snippet into your repository.
 
 ## Usage

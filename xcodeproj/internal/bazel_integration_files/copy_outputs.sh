@@ -86,7 +86,7 @@ else
   fi
 fi
 
-# TODO: https://github.com/buildbuddy-io/rules_xcodeproj/issues/402
+# TODO: https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/402
 # Copy diagnostics, and on a change
 # `echo "private let touch = \"$(date +%s)\"" > $DERIVED_FILE_DIR/$forced_swift_compile_file"`
 # See git blame for this comment for an example

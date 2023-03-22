@@ -2,7 +2,7 @@ load("@build_bazel_rules_apple//apple:ios.bzl", "ios_application")
 
 ios_application(
     name = "UndefinedBehaviorSanitizerApp",
-    bundle_id = "io.buildbuddy.example",
+    bundle_id = "rules-xcodeproj.example",
     bundle_name = "UndefinedBehaviorSanitizerApp",
     families = ["iphone"],
     infoplists = [":Info.plist"],

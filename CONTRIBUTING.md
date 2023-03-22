@@ -6,7 +6,7 @@ merging `main` into your PR branch to update it and resolve conflicts.
 
 ## Building And Running Locally
 
-1. `git clone https://github.com/buildbuddy-io/rules_xcodeproj.git`
+1. `git clone https://github.com/MobileNativeFoundation/rules_xcodeproj.git`
 1. `cd rules_xcodeproj`
 1. `bazel run //tools/generator:xcodeproj` to generate an Xcode project
 and develop in Xcode, or just open the directory in your favourite text
@@ -21,7 +21,7 @@ editor.
 ## Developing
 
 Feel free to volunteer by picking up any bug from the list of
-[GitHub issues](https://github.com/buildbuddy-io/rules_xcodeproj/issues).
+[GitHub issues](https://github.com/MobileNativeFoundation/rules_xcodeproj/issues).
 If you find a new bug or would like to work on a new feature,
 create a new GitHub issue to better describe your intentions. We are happy
 to guide contributors with an implementation through discussions if needed.

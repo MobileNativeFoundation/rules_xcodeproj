@@ -3,7 +3,7 @@ load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
 
 tvos_ui_test(
     name = "tvOSAppUITests",
-    bundle_id = "io.buildbuddy.example.uitests",
+    bundle_id = "rules-xcodeproj.example.uitests",
     minimum_os_version = "15.0",
     # xctestrunner does not support tvOS. So, don't try to run this.
     tags = ["manual"],

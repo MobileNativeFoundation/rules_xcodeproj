@@ -15,7 +15,7 @@ if [ "$ACTION" == "indexbuild" ]; then
   else
     echo "error: \`BazelDependencies\` should not run during Index Build." \
 "Please file a bug report here:" \
-"https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md" \
+"https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bug.md" \
         >&2
     exit 1
   fi
@@ -152,7 +152,7 @@ for log in "$log_dir"/*.async.log; do
     echo "warning: Previous run of \"$command\" had output:" >&2
     sed "s|^|warning: |" "$log" >&2
     echo "warning: If you believe this is a bug, please file a report here:" \
-"https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md" \
+"https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bug.md" \
       >&2
   fi
 done

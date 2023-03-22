@@ -3,7 +3,7 @@ load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
 
 ios_ui_test(
     name = "iOSAppUITests",
-    bundle_id = "io.buildbuddy.example.uitests",
+    bundle_id = "rules-xcodeproj.example.uitests",
     minimum_os_version = "15.0",
     test_host = "//iOSApp",
     visibility = ["@rules_xcodeproj//xcodeproj:generated"],

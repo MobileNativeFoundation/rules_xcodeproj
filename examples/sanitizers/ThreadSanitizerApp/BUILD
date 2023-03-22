@@ -3,7 +3,7 @@ load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
 
 ios_application(
     name = "ThreadSanitizerApp",
-    bundle_id = "io.buildbuddy.example",
+    bundle_id = "rules-xcodeproj.example",
     bundle_name = "ThreadSanitizerApp",
     families = ["iphone"],
     infoplists = [":Info.plist"],

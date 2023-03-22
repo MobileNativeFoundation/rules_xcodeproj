@@ -58,7 +58,7 @@ created...""",
 warning: ({now}) "{build_request_file}" still doesn't exist after 10 seconds. \
 If happens frequently, or the cache is never created, please file a bug \
 report here: \
-https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md""",
+https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bug.md""",
                         file = sys.stderr,
                 )
             time.sleep(1)
@@ -116,7 +116,7 @@ warning: Failed to parse '{build_request_file}':
 
 warning: Using scheme labels and target ids as a fallback. Please file a bug \
 report here: \
-https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md""",
+https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bug.md""",
             file = sys.stderr,
         )
         return scheme_labels_and_target_ids
@@ -139,7 +139,7 @@ Data, you need to close and re-open the project for the PIFCache to be created \
 again. Using the "Clean Build Folder" command instead (⇧ ⌘ K) won't trigger \
 this error. If this error still happens after re-opening the project, please \
 file a bug report here: \
-https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md""",
+https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bug.md""",
             file = sys.stderr,
         )
         sys.exit(1)
@@ -279,7 +279,7 @@ warning: Failed to calculate labels and target ids from PIFCache:
 {traceback.format_exc()}
 warning: Using scheme labels and target ids as a fallback. Please file a bug \
 report here: \
-https://github.com/buildbuddy-io/rules_xcodeproj/issues/new?template=bug.md""",
+https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bug.md""",
                 file = sys.stderr,
             )
             labels_and_target_ids = scheme_label_and_target_ids

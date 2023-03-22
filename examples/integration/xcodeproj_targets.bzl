@@ -85,7 +85,7 @@ XCODEPROJ_TARGETS = [
     "//watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests",
 ]
 
-IOS_BUNDLE_ID = "io.buildbuddy.example"
+IOS_BUNDLE_ID = "rules-xcodeproj.example"
 TEAMID = "V82V4GQZXM"
 
 APP_CLIP_BUNDLE_ID = "{}.app-clip".format(IOS_BUNDLE_ID)
