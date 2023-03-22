@@ -103,6 +103,7 @@ def _target_info_fields(
         is_top_level_target,
         lldb_context,
         outputs,
+        mergable_xcode_library_targets,
         potential_target_merges,
         replacement_labels,
         resource_bundle_informations,
@@ -131,6 +132,8 @@ def _target_info_fields(
             field.
         lldb_context: Maps to the `XcodeProjInfo.lldb_context` field.
         outputs: Maps to the `XcodeProjInfo.outputs` field.
+        mergable_xcode_library_targets: Maps to the
+            `XcodeProjInfo.mergable_xcode_library_targets` field.
         potential_target_merges: Maps to the
             `XcodeProjInfo.potential_target_merges` field.
         replacement_labels: Maps to the `XcodeProjInfo.replacement_labels`
@@ -182,6 +185,7 @@ def _target_info_fields(
         "is_top_level_target": is_top_level_target,
         "lldb_context": lldb_context,
         "outputs": outputs,
+        "mergable_xcode_library_targets": mergable_xcode_library_targets,
         "potential_target_merges": potential_target_merges,
         "replacement_labels": replacement_labels,
         "resource_bundle_informations": resource_bundle_informations,
@@ -289,6 +293,12 @@ def _skip_target(
             ctx = ctx,
             automatic_target_info = None,
             transitive_infos = transitive_infos,
+        ),
+        mergable_xcode_library_targets = depset(
+            transitive = [
+                info.mergable_xcode_library_targets
+                for _, info in transitive_infos
+            ],
         ),
         potential_target_merges = depset(
             transitive = [
@@ -464,6 +474,7 @@ def _create_xcodeprojinfo(
         is_top_level_target = processed_target.is_top_level_target,
         lldb_context = processed_target.lldb_context,
         outputs = processed_target.outputs,
+        mergable_xcode_library_targets = depset(processed_target.mergable_xcode_library_targets),
         potential_target_merges = depset(
             processed_target.potential_target_merges,
             transitive = [

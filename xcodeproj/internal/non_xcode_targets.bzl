@@ -89,6 +89,18 @@ rules_xcodeproj requires {} to have `{}` set.
         transitive_infos = transitive_infos,
     )
 
+    mergable_xcode_library_targets = [
+        struct(
+            id = target.id,
+            product_path = target.product.file_path,
+        )
+        for target, providers in [
+            (info.xcode_target, info.compilation_providers)
+            for (attr, info) in transitive_infos
+        ]
+        if providers._is_xcode_library_target
+    ]
+
     return processed_target(
         automatic_target_info = automatic_target_info,
         compilation_providers = compilation_providers,
@@ -124,6 +136,7 @@ rules_xcodeproj requires {} to have `{}` set.
             transitive_infos = transitive_infos,
         ),
         resource_bundle_informations = resource_bundle_informations,
+        mergable_xcode_library_targets = mergable_xcode_library_targets,
         search_paths = None,
         transitive_dependencies = transitive_dependencies,
         xcode_target = None,

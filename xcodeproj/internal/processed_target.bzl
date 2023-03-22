@@ -15,6 +15,7 @@ def processed_target(
         library = None,
         lldb_context,
         outputs,
+        mergable_xcode_library_targets = None,
         potential_target_merges = None,
         resource_bundle_informations = None,
         search_paths,
@@ -42,6 +43,9 @@ def processed_target(
         lldb_context: A value as returned from `lldb_context.collect`.
         outputs: A value as returned from `output_files.collect` that will
             provide values for the `XcodeProjInfo.outputs` field.
+        mergable_xcode_library_targets: An optional `list` of `struct`s that
+            will be in the `XcodeProjInfo.mergable_xcode_library_targets`
+            `depset`.
         potential_target_merges: An optional `list` of `struct`s that will be in
             the `XcodeProjInfo.potential_target_merges` `depset`.
         resource_bundle_informations: An optional `list` of `struct`s that will
@@ -67,6 +71,7 @@ def processed_target(
         library = library,
         lldb_context = lldb_context,
         outputs = outputs,
+        mergable_xcode_library_targets = mergable_xcode_library_targets,
         potential_target_merges = potential_target_merges,
         resource_bundle_informations = resource_bundle_informations,
         search_paths = search_paths,
