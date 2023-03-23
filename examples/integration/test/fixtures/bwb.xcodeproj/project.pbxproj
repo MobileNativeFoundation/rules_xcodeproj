@@ -9202,7 +9202,7 @@
 					"\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework\"",
 					"\"$(BAZEL_OUT)/applebin_watchos-watchos_arm64_32-dbg-STABLE-18/bin/Lib/LibFramework.watchOS.framework\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.budilebuddy.UIFramework;
+				PRODUCT_BUNDLE_IDENTIFIER = rules-xcodeproj.UIFramework;
 				PRODUCT_MODULE_NAME = UI;
 				PRODUCT_NAME = UIFramework.watchOS;
 				SDKROOT = watchos;
@@ -9280,7 +9280,7 @@
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				PREVIEW_FRAMEWORK_PATHS = "\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework\"";
 				"PREVIEW_FRAMEWORK_PATHS[sdk=iphoneos*]" = "\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework\"";
-				PRODUCT_BUNDLE_IDENTIFIER = io.budilebuddy.LibFramework;
+				PRODUCT_BUNDLE_IDENTIFIER = rules-xcodeproj.LibFramework;
 				PRODUCT_NAME = Lib;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
@@ -9319,7 +9319,7 @@
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				PREVIEW_FRAMEWORK_PATHS = "\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework\"";
 				"PREVIEW_FRAMEWORK_PATHS[sdk=appletvos*]" = "\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework\"";
-				PRODUCT_BUNDLE_IDENTIFIER = io.budilebuddy.LibFramework;
+				PRODUCT_BUNDLE_IDENTIFIER = rules-xcodeproj.LibFramework;
 				PRODUCT_NAME = Lib;
 				SDKROOT = appletvos;
 				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
@@ -9358,7 +9358,7 @@
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				PREVIEW_FRAMEWORK_PATHS = "\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework\"";
 				"PREVIEW_FRAMEWORK_PATHS[sdk=iphoneos*]" = "\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework\"";
-				PRODUCT_BUNDLE_IDENTIFIER = io.budilebuddy.LibFramework;
+				PRODUCT_BUNDLE_IDENTIFIER = rules-xcodeproj.LibFramework;
 				PRODUCT_NAME = Lib;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
@@ -9397,7 +9397,7 @@
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				PREVIEW_FRAMEWORK_PATHS = "\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework\"";
 				"PREVIEW_FRAMEWORK_PATHS[sdk=watchos*]" = "\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework\"";
-				PRODUCT_BUNDLE_IDENTIFIER = io.budilebuddy.LibFramework;
+				PRODUCT_BUNDLE_IDENTIFIER = rules-xcodeproj.LibFramework;
 				PRODUCT_NAME = Lib;
 				SDKROOT = watchos;
 				SUPPORTED_PLATFORMS = "watchsimulator watchos";
@@ -9790,7 +9790,7 @@
 					"\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework\"",
 					"\"$(BAZEL_OUT)/applebin_tvos-tvos_arm64-dbg-STABLE-26/bin/Lib/LibFramework.tvOS.framework\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.budilebuddy.UIFramework;
+				PRODUCT_BUNDLE_IDENTIFIER = rules-xcodeproj.UIFramework;
 				PRODUCT_MODULE_NAME = UI;
 				PRODUCT_NAME = UIFramework.tvOS;
 				SDKROOT = appletvos;
@@ -9951,7 +9951,7 @@
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				PREVIEW_FRAMEWORK_PATHS = "\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework\"";
 				"PREVIEW_FRAMEWORK_PATHS[sdk=iphoneos*]" = "\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework\"";
-				PRODUCT_BUNDLE_IDENTIFIER = io.budilebuddy.LibFramework;
+				PRODUCT_BUNDLE_IDENTIFIER = rules-xcodeproj.LibFramework;
 				PRODUCT_NAME = LibFramework.iOS;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
@@ -10031,7 +10031,7 @@
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				PREVIEW_FRAMEWORK_PATHS = "\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework\"";
 				"PREVIEW_FRAMEWORK_PATHS[sdk=appletvos*]" = "\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework\"";
-				PRODUCT_BUNDLE_IDENTIFIER = io.budilebuddy.LibFramework;
+				PRODUCT_BUNDLE_IDENTIFIER = rules-xcodeproj.LibFramework;
 				PRODUCT_NAME = Lib;
 				SDKROOT = appletvos;
 				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
@@ -10532,7 +10532,7 @@
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				PREVIEW_FRAMEWORK_PATHS = "\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework\"";
 				"PREVIEW_FRAMEWORK_PATHS[sdk=appletvos*]" = "\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework\"";
-				PRODUCT_BUNDLE_IDENTIFIER = io.budilebuddy.LibFramework;
+				PRODUCT_BUNDLE_IDENTIFIER = rules-xcodeproj.LibFramework;
 				PRODUCT_NAME = LibFramework.tvOS;
 				SDKROOT = appletvos;
 				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
@@ -10638,7 +10638,7 @@
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				PREVIEW_FRAMEWORK_PATHS = "\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework\"";
 				"PREVIEW_FRAMEWORK_PATHS[sdk=appletvos*]" = "\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework\"";
-				PRODUCT_BUNDLE_IDENTIFIER = io.budilebuddy.LibFramework;
+				PRODUCT_BUNDLE_IDENTIFIER = rules-xcodeproj.LibFramework;
 				PRODUCT_NAME = LibFramework.tvOS;
 				SDKROOT = appletvos;
 				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
@@ -11075,7 +11075,7 @@
 					"\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework\"",
 					"\"$(BAZEL_OUT)/applebin_ios-ios_arm64-dbg-STABLE-14/bin/Lib/LibFramework.iOS.framework\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.budilebuddy.UIFramework;
+				PRODUCT_BUNDLE_IDENTIFIER = rules-xcodeproj.UIFramework;
 				PRODUCT_MODULE_NAME = UI;
 				PRODUCT_NAME = UIFramework.iOS;
 				SDKROOT = iphoneos;
@@ -11568,7 +11568,7 @@
 					"\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework\"",
 					"\"$(BAZEL_OUT)/applebin_ios-ios_arm64-opt-STABLE-16/bin/Lib/LibFramework.iOS.framework\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.budilebuddy.UIFramework;
+				PRODUCT_BUNDLE_IDENTIFIER = rules-xcodeproj.UIFramework;
 				PRODUCT_MODULE_NAME = UI;
 				PRODUCT_NAME = UIFramework.iOS;
 				SDKROOT = iphoneos;
@@ -11611,7 +11611,7 @@
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				PREVIEW_FRAMEWORK_PATHS = "\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework\"";
 				"PREVIEW_FRAMEWORK_PATHS[sdk=watchos*]" = "\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework\"";
-				PRODUCT_BUNDLE_IDENTIFIER = io.budilebuddy.LibFramework;
+				PRODUCT_BUNDLE_IDENTIFIER = rules-xcodeproj.LibFramework;
 				PRODUCT_NAME = Lib;
 				SDKROOT = watchos;
 				SUPPORTED_PLATFORMS = "watchsimulator watchos";
@@ -11906,7 +11906,7 @@
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				PREVIEW_FRAMEWORK_PATHS = "\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework\"";
 				"PREVIEW_FRAMEWORK_PATHS[sdk=watchos*]" = "\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework\"";
-				PRODUCT_BUNDLE_IDENTIFIER = io.budilebuddy.LibFramework;
+				PRODUCT_BUNDLE_IDENTIFIER = rules-xcodeproj.LibFramework;
 				PRODUCT_NAME = LibFramework.watchOS;
 				SDKROOT = watchos;
 				SUPPORTED_PLATFORMS = "watchsimulator watchos";
@@ -12231,7 +12231,7 @@
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				PREVIEW_FRAMEWORK_PATHS = "\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework\"";
 				"PREVIEW_FRAMEWORK_PATHS[sdk=watchos*]" = "\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework\"";
-				PRODUCT_BUNDLE_IDENTIFIER = io.budilebuddy.LibFramework;
+				PRODUCT_BUNDLE_IDENTIFIER = rules-xcodeproj.LibFramework;
 				PRODUCT_NAME = LibFramework.watchOS;
 				SDKROOT = watchos;
 				SUPPORTED_PLATFORMS = "watchsimulator watchos";
@@ -12574,7 +12574,7 @@
 					"\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework\"",
 					"\"$(BAZEL_OUT)/applebin_watchos-watchos_arm64_32-opt-STABLE-20/bin/Lib/LibFramework.watchOS.framework\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.budilebuddy.UIFramework;
+				PRODUCT_BUNDLE_IDENTIFIER = rules-xcodeproj.UIFramework;
 				PRODUCT_MODULE_NAME = UI;
 				PRODUCT_NAME = UIFramework.watchOS;
 				SDKROOT = watchos;
@@ -13243,7 +13243,7 @@
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				PREVIEW_FRAMEWORK_PATHS = "\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework\"";
 				"PREVIEW_FRAMEWORK_PATHS[sdk=iphoneos*]" = "\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework\"";
-				PRODUCT_BUNDLE_IDENTIFIER = io.budilebuddy.LibFramework;
+				PRODUCT_BUNDLE_IDENTIFIER = rules-xcodeproj.LibFramework;
 				PRODUCT_NAME = LibFramework.iOS;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
@@ -13498,7 +13498,7 @@
 					"\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework\"",
 					"\"$(BAZEL_OUT)/applebin_tvos-tvos_arm64-opt-STABLE-28/bin/Lib/LibFramework.tvOS.framework\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.budilebuddy.UIFramework;
+				PRODUCT_BUNDLE_IDENTIFIER = rules-xcodeproj.UIFramework;
 				PRODUCT_MODULE_NAME = UI;
 				PRODUCT_NAME = UIFramework.tvOS;
 				SDKROOT = appletvos;
@@ -13582,7 +13582,7 @@
 				OTHER_CPLUSPLUSFLAGS = "$(ASAN_OTHER_CPLUSPLUSFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				PREVIEW_FRAMEWORK_PATHS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = io.budilebuddy.CoreUtilsObjC;
+				PRODUCT_BUNDLE_IDENTIFIER = rules-xcodeproj.CoreUtilsObjC;
 				PRODUCT_MODULE_NAME = CoreUtils;
 				PRODUCT_NAME = CoreUtilsObjC;
 				SDKROOT = iphoneos;
@@ -13669,7 +13669,7 @@
 				OTHER_CPLUSPLUSFLAGS = "$(ASAN_OTHER_CPLUSPLUSFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				PREVIEW_FRAMEWORK_PATHS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = io.budilebuddy.CoreUtilsObjC;
+				PRODUCT_BUNDLE_IDENTIFIER = rules-xcodeproj.CoreUtilsObjC;
 				PRODUCT_MODULE_NAME = CoreUtils;
 				PRODUCT_NAME = CoreUtilsObjC;
 				SDKROOT = iphoneos;

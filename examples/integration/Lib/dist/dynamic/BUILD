@@ -4,7 +4,7 @@ load("@build_bazel_rules_apple//apple:watchos.bzl", "watchos_dynamic_framework")
 
 ios_dynamic_framework(
     name = "iOS",
-    bundle_id = "io.budilebuddy.LibFramework",
+    bundle_id = "rules-xcodeproj.LibFramework",
     bundle_name = "Lib",
     extension_safe = True,
     families = ["iphone"],
@@ -17,7 +17,7 @@ ios_dynamic_framework(
 
 tvos_dynamic_framework(
     name = "tvOS",
-    bundle_id = "io.budilebuddy.LibFramework",
+    bundle_id = "rules-xcodeproj.LibFramework",
     bundle_name = "Lib",
     extension_safe = True,
     infoplists = ["//Lib:Info.plist"],
@@ -29,7 +29,7 @@ tvos_dynamic_framework(
 
 watchos_dynamic_framework(
     name = "watchOS",
-    bundle_id = "io.budilebuddy.LibFramework",
+    bundle_id = "rules-xcodeproj.LibFramework",
     bundle_name = "Lib",
     extension_safe = True,
     infoplists = ["//Lib:Info.plist"],

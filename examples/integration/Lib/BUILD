@@ -66,7 +66,7 @@ echo '_$$sSo8NSBundleC3LibE12libResourcesABvau' >> $@
 
 ios_framework(
     name = "LibFramework.iOS",
-    bundle_id = "io.budilebuddy.LibFramework",
+    bundle_id = "rules-xcodeproj.LibFramework",
     extension_safe = True,
     families = ["iphone"],
     infoplists = ["Info.plist"],
@@ -78,7 +78,7 @@ ios_framework(
 
 tvos_framework(
     name = "LibFramework.tvOS",
-    bundle_id = "io.budilebuddy.LibFramework",
+    bundle_id = "rules-xcodeproj.LibFramework",
     exported_symbols_lists = [
         ":gen-exported-symbols-list",
     ],
@@ -92,7 +92,7 @@ tvos_framework(
 
 watchos_framework(
     name = "LibFramework.watchOS",
-    bundle_id = "io.budilebuddy.LibFramework",
+    bundle_id = "rules-xcodeproj.LibFramework",
     extension_safe = True,
     infoplists = ["Info.plist"],
     minimum_os_version = "7.0",
