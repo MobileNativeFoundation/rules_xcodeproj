@@ -50,7 +50,7 @@ done
 
 diff_test(
     name = "diff_test",
-    failure_message = "\nPlease update the docs by running\n    bazel run //docs:update",
+    failure_message = "\nPlease update the docs by running\n    bazel run --noenable_bzlmod //docs:update",
     file1 = "bazel.generated.md",
     file2 = "bazel.md",
     tags = ["manual"],
