@@ -203,7 +203,7 @@ def xcodeproj_fixture(
             extra_files = extra_files,
             focused_targets = focused_targets,
             is_fixture = True,
-            is_fixture = True,
+            colorize = True,
             minimum_xcode_version = _MINIMUM_XCODE_VERSION,
             post_build = post_build,
             pre_build = pre_build,

@@ -312,7 +312,6 @@ def _xcodeproj_runner_impl(ctx):
     attr = ctx.attr
     config = ctx.attr.config
     is_fixture = ctx.attr.is_fixture
-    colorize = ctx.attr.is_fixture
     name = ctx.attr.name
     project_name = ctx.attr.project_name
     repo = (
