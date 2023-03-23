@@ -19,20 +19,6 @@ extension XcodeScheme.TargetWithID: Comparable {
     }
 }
 
-// MARK: LabelAndConfiguration
-
-extension XcodeScheme {
-    struct LabelAndConfiguration: Equatable, Hashable {
-        let label: BazelLabel
-        let configuration: String
-
-        init(_ label: BazelLabel, _ configuration: String) {
-            self.label = label
-            self.configuration = configuration
-        }
-    }
-}
-
 // MARK: Resolve TargetIDs
 
 extension XcodeScheme {
@@ -43,22 +29,6 @@ Target \(missingLabel) was not found in the transitive dependencies of \(runnerL
 supported in Scheme definitions)? Check that \(missingLabel) is spelled correctly, and if it is, \
 add it or a target that depends on it to \(runnerLabel)'s `top_level_targets` attribute.
 """
-    }
-
-    private struct TopLevelInfo {
-        var labels: Set<BazelLabel> = []
-        var targetIDs: Set<TargetID> = []
-        var platforms: Set<Platform> = []
-
-        mutating func insert(
-            label: BazelLabel,
-            targetID: TargetID,
-            platforms: Set<Platform>
-        ) {
-            labels.insert(label)
-            targetIDs.insert(targetID)
-            self.platforms.formUnion(platforms)
-        }
     }
 
     /// Determines the mapping of `BazelLabel` to the `TargetID` values based
