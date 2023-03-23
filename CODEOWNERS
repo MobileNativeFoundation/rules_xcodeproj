@@ -1,1 +1,17 @@
 * @MobileNativeFoundation/rules_xcodeproj-maintainers
+
+# Release
+
+/.bcr/ @MobileNativeFoundation/rules_xcodeproj-maintainers-release
+/distribution/ @MobileNativeFoundation/rules_xcodeproj-maintainers-release
+/MODULE.bazel @MobileNativeFoundation/rules_xcodeproj-maintainers-release
+/xcodeproj/repositories.bzl @MobileNativeFoundation/rules_xcodeproj-maintainers-release
+
+# Admin
+
+*.bazelrc @MobileNativeFoundation/rules_xcodeproj-admins
+/buildbuddy.yaml @MobileNativeFoundation/rules_xcodeproj-admins
+/CONTRIBUTING.md @MobileNativeFoundation/rules_xcodeproj-admins
+/LICENSE @MobileNativeFoundation/rules_xcodeproj-admins
+/MAINTENANCE.md @MobileNativeFoundation/rules_xcodeproj-admins
+/README.md @MobileNativeFoundation/rules_xcodeproj-admins
