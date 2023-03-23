@@ -2,10 +2,10 @@ import Darwin
 
 /// Provides the capability to write log messages.
 protocol Logger {
-    func logDebug(_ message: @autoclosure () -> String)
-    func logInfo(_ message: @autoclosure () -> String)
-    func logWarning(_ message: @autoclosure () -> String)
-    func logError(_ message: @autoclosure () -> String)
+    func logDebug(_ message: String)
+    func logInfo(_ message: String)
+    func logWarning(_ message: String)
+    func logError(_ message: String)
 }
 
 /// A `TextOutputStream` that writes to standard error.
@@ -32,19 +32,19 @@ final class DefaultLogger<E: TextOutputStream, O: TextOutputStream>: Logger {
         self.standardOutput = standardOutput
     }
 
-    func logDebug(_ message: @autoclosure () -> String) {
+    func logDebug(_ message: String) {
         print("DEBUG: \(message())", to: &self.standardOutput)
     }
 
-    func logInfo(_ message: @autoclosure () -> String) {
+    func logInfo(_ message: String) {
         print("INFO: \(message())".blue, to: &self.standardOutput)
     }
 
-    func logWarning(_ message: @autoclosure () -> String) {
+    func logWarning(_ message: String) {
         print("WARNING: \(message())".yellow, to: &self.standardError)
     }
 
-    func logError(_ message: @autoclosure () -> String) {
+    func logError(_ message: String) {
         print("ERROR: \(message())".red, to: &self.standardError)
     }
 }
