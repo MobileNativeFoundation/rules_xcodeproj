@@ -10406,7 +10406,7 @@
 				"LINK_PARAMS_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/generator-params/FrameworkCoreUtilsObjC.69.link.params";
 				OTHER_CPLUSPLUSFLAGS = "$(ASAN_OTHER_CPLUSPLUSFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				PRODUCT_BUNDLE_IDENTIFIER = io.budilebuddy.CoreUtilsObjC;
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.CoreUtilsObjC";
 				PRODUCT_MODULE_NAME = CoreUtils;
 				PRODUCT_NAME = CoreUtilsObjC;
 				SDKROOT = iphoneos;
@@ -10571,7 +10571,7 @@
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/generator-params/LibFramework.tvOS.103.link.params";
 				"LINK_PARAMS_FILE[sdk=appletvos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/generator-params/LibFramework.tvOS.157.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				PRODUCT_BUNDLE_IDENTIFIER = io.budilebuddy.LibFramework;
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.LibFramework";
 				PRODUCT_NAME = LibFramework.tvOS;
 				SDKROOT = appletvos;
 				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
@@ -10612,7 +10612,7 @@
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/generator-params/LibFramework.iOS.16.link.params";
 				"LINK_PARAMS_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/generator-params/LibFramework.iOS.70.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				PRODUCT_BUNDLE_IDENTIFIER = io.budilebuddy.LibFramework;
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.LibFramework";
 				PRODUCT_NAME = LibFramework.iOS;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
@@ -10747,7 +10747,7 @@
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/UI/UIFramework.iOS.framework/Modules";
 				"PREVIEWS_SWIFT_INCLUDE_PATH__YES[sdk=iphoneos*]" = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_arm64-opt-STABLE-16/bin/UI/UIFramework.iOS.framework/Modules";
-				PRODUCT_BUNDLE_IDENTIFIER = io.budilebuddy.UIFramework;
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.UIFramework";
 				PRODUCT_MODULE_NAME = UI;
 				PRODUCT_NAME = UIFramework.iOS;
 				SDKROOT = iphoneos;
@@ -10851,7 +10851,7 @@
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/generator-params/watchOS.27.link.params";
 				"LINK_PARAMS_FILE[sdk=watchos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/generator-params/watchOS.81.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				PRODUCT_BUNDLE_IDENTIFIER = io.budilebuddy.LibFramework;
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.LibFramework";
 				PRODUCT_NAME = Lib;
 				SDKROOT = watchos;
 				SUPPORTED_PLATFORMS = "watchsimulator watchos";
@@ -11253,7 +11253,7 @@
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/generator-params/iOS.99.link.params";
 				"LINK_PARAMS_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/generator-params/iOS.153.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				PRODUCT_BUNDLE_IDENTIFIER = io.budilebuddy.LibFramework;
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.LibFramework";
 				PRODUCT_NAME = Lib;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
@@ -11294,7 +11294,7 @@
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/generator-params/LibFramework.tvOS.28.link.params";
 				"LINK_PARAMS_FILE[sdk=appletvos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/generator-params/LibFramework.tvOS.82.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				PRODUCT_BUNDLE_IDENTIFIER = io.budilebuddy.LibFramework;
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.LibFramework";
 				PRODUCT_NAME = LibFramework.tvOS;
 				SDKROOT = appletvos;
 				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
@@ -11539,7 +11539,7 @@
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "$(BUILD_DIR)/bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-25/bin/UI/UIFramework.tvOS.framework/Modules";
 				"PREVIEWS_SWIFT_INCLUDE_PATH__YES[sdk=appletvos*]" = "$(BUILD_DIR)/bazel-out/applebin_tvos-tvos_arm64-dbg-STABLE-26/bin/UI/UIFramework.tvOS.framework/Modules";
-				PRODUCT_BUNDLE_IDENTIFIER = io.budilebuddy.UIFramework;
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.UIFramework";
 				PRODUCT_MODULE_NAME = UI;
 				PRODUCT_NAME = UIFramework.tvOS;
 				SDKROOT = appletvos;
@@ -11609,7 +11609,7 @@
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/generator-params/LibFramework.watchOS.94.link.params";
 				"LINK_PARAMS_FILE[sdk=watchos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/generator-params/LibFramework.watchOS.148.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				PRODUCT_BUNDLE_IDENTIFIER = io.budilebuddy.LibFramework;
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.LibFramework";
 				PRODUCT_NAME = LibFramework.watchOS;
 				SDKROOT = watchos;
 				SUPPORTED_PLATFORMS = "watchsimulator watchos";
@@ -11729,7 +11729,7 @@
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/generator-params/tvOS.101.link.params";
 				"LINK_PARAMS_FILE[sdk=appletvos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/generator-params/tvOS.155.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				PRODUCT_BUNDLE_IDENTIFIER = io.budilebuddy.LibFramework;
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.LibFramework";
 				PRODUCT_NAME = Lib;
 				SDKROOT = appletvos;
 				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
@@ -11876,7 +11876,7 @@
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/generator-params/tvOS.26.link.params";
 				"LINK_PARAMS_FILE[sdk=appletvos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/generator-params/tvOS.80.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				PRODUCT_BUNDLE_IDENTIFIER = io.budilebuddy.LibFramework;
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.LibFramework";
 				PRODUCT_NAME = Lib;
 				SDKROOT = appletvos;
 				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
@@ -12502,7 +12502,7 @@
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/generator-params/watchOS.102.link.params";
 				"LINK_PARAMS_FILE[sdk=watchos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/generator-params/watchOS.156.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				PRODUCT_BUNDLE_IDENTIFIER = io.budilebuddy.LibFramework;
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.LibFramework";
 				PRODUCT_NAME = Lib;
 				SDKROOT = watchos;
 				SUPPORTED_PLATFORMS = "watchsimulator watchos";
@@ -12545,7 +12545,7 @@
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/generator-params/iOS.24.link.params";
 				"LINK_PARAMS_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/generator-params/iOS.78.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				PRODUCT_BUNDLE_IDENTIFIER = io.budilebuddy.LibFramework;
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.LibFramework";
 				PRODUCT_NAME = Lib;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
@@ -12752,7 +12752,7 @@
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "$(BUILD_DIR)/bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-17/bin/UI/UIFramework.watchOS.framework/Modules";
 				"PREVIEWS_SWIFT_INCLUDE_PATH__YES[sdk=watchos*]" = "$(BUILD_DIR)/bazel-out/applebin_watchos-watchos_arm64_32-dbg-STABLE-18/bin/UI/UIFramework.watchOS.framework/Modules";
-				PRODUCT_BUNDLE_IDENTIFIER = io.budilebuddy.UIFramework;
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.UIFramework";
 				PRODUCT_MODULE_NAME = UI;
 				PRODUCT_NAME = UIFramework.watchOS;
 				SDKROOT = watchos;
@@ -13289,7 +13289,7 @@
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "$(BUILD_DIR)/bazel-out/applebin_tvos-tvos_x86_64-opt-STABLE-27/bin/UI/UIFramework.tvOS.framework/Modules";
 				"PREVIEWS_SWIFT_INCLUDE_PATH__YES[sdk=appletvos*]" = "$(BUILD_DIR)/bazel-out/applebin_tvos-tvos_arm64-opt-STABLE-28/bin/UI/UIFramework.tvOS.framework/Modules";
-				PRODUCT_BUNDLE_IDENTIFIER = io.budilebuddy.UIFramework;
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.UIFramework";
 				PRODUCT_MODULE_NAME = UI;
 				PRODUCT_NAME = UIFramework.tvOS;
 				SDKROOT = appletvos;
@@ -13532,7 +13532,7 @@
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "$(BUILD_DIR)/bazel-out/applebin_watchos-watchos_x86_64-opt-STABLE-19/bin/UI/UIFramework.watchOS.framework/Modules";
 				"PREVIEWS_SWIFT_INCLUDE_PATH__YES[sdk=watchos*]" = "$(BUILD_DIR)/bazel-out/applebin_watchos-watchos_arm64_32-opt-STABLE-20/bin/UI/UIFramework.watchOS.framework/Modules";
-				PRODUCT_BUNDLE_IDENTIFIER = io.budilebuddy.UIFramework;
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.UIFramework";
 				PRODUCT_MODULE_NAME = UI;
 				PRODUCT_NAME = UIFramework.watchOS;
 				SDKROOT = watchos;
@@ -13658,7 +13658,7 @@
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/generator-params/LibFramework.watchOS.19.link.params";
 				"LINK_PARAMS_FILE[sdk=watchos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/generator-params/LibFramework.watchOS.73.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				PRODUCT_BUNDLE_IDENTIFIER = io.budilebuddy.LibFramework;
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.LibFramework";
 				PRODUCT_NAME = LibFramework.watchOS;
 				SDKROOT = watchos;
 				SUPPORTED_PLATFORMS = "watchsimulator watchos";
@@ -13937,7 +13937,7 @@
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/generator-params/LibFramework.iOS.91.link.params";
 				"LINK_PARAMS_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/generator-params/LibFramework.iOS.145.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				PRODUCT_BUNDLE_IDENTIFIER = io.budilebuddy.LibFramework;
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.LibFramework";
 				PRODUCT_NAME = LibFramework.iOS;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
@@ -14384,7 +14384,7 @@
 				OTHER_CFLAGS = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -O0";
 				OTHER_CPLUSPLUSFLAGS = "$(ASAN_OTHER_CPLUSPLUSFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				PRODUCT_BUNDLE_IDENTIFIER = io.budilebuddy.CoreUtilsObjC;
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.CoreUtilsObjC";
 				PRODUCT_MODULE_NAME = CoreUtils;
 				PRODUCT_NAME = CoreUtilsObjC;
 				SDKROOT = iphoneos;
@@ -14722,7 +14722,7 @@
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/UI/UIFramework.iOS.framework/Modules";
 				"PREVIEWS_SWIFT_INCLUDE_PATH__YES[sdk=iphoneos*]" = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_arm64-dbg-STABLE-14/bin/UI/UIFramework.iOS.framework/Modules";
-				PRODUCT_BUNDLE_IDENTIFIER = io.budilebuddy.UIFramework;
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.UIFramework";
 				PRODUCT_MODULE_NAME = UI;
 				PRODUCT_NAME = UIFramework.iOS;
 				SDKROOT = iphoneos;

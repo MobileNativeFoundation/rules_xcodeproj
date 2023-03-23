@@ -23,7 +23,7 @@ objc_library(
 ios_framework(
     name = "FrameworkCoreUtilsObjC",
     hdrs = ["CoreUtils/Answers.h"],
-    bundle_id = "io.budilebuddy.CoreUtilsObjC",
+    bundle_id = "rules-xcodeproj.CoreUtilsObjC",
     bundle_name = "CoreUtilsObjC",
     families = ["iphone"],
     infoplists = ["Info.plist"],

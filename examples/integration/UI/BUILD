@@ -23,7 +23,7 @@ swift_library(
 ios_framework(
     name = "UIFramework.iOS",
     hdrs = ["UI.h"],
-    bundle_id = "io.budilebuddy.UIFramework",
+    bundle_id = "rules-xcodeproj.UIFramework",
     extension_safe = True,
     families = ["iphone"],
     frameworks = ["//Lib:LibFramework.iOS"],
@@ -39,7 +39,7 @@ ios_framework(
 
 tvos_framework(
     name = "UIFramework.tvOS",
-    bundle_id = "io.budilebuddy.UIFramework",
+    bundle_id = "rules-xcodeproj.UIFramework",
     extension_safe = True,
     frameworks = ["//Lib:LibFramework.tvOS"],
     infoplists = ["Info.plist"],
@@ -54,7 +54,7 @@ tvos_framework(
 
 watchos_framework(
     name = "UIFramework.watchOS",
-    bundle_id = "io.budilebuddy.UIFramework",
+    bundle_id = "rules-xcodeproj.UIFramework",
     extension_safe = True,
     frameworks = ["//Lib:LibFramework.watchOS"],
     infoplists = ["Info.plist"],
