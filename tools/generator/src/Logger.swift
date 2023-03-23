@@ -39,8 +39,8 @@ final class DefaultLogger<E: TextOutputStream, O: TextOutputStream>: Logger {
     private var standardOutput: O
     private var colorize: Bool
 
-    func disableColors() {
-        self.colorize = false
+    func enableColors() {
+        self.colorize = true
     }
 
     init(standardError: E, standardOutput: O, colorize: Bool) {

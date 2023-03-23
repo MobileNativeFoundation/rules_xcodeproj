@@ -10,14 +10,17 @@ extension Generator {
         let logger = DefaultLogger(
             standardError: StderrOutputStream(),
             standardOutput: StdoutOutputStream(),
-            colorize: true
+            colorize: false
         )
 
         do {
-            let arguments = try parseArguments(CommandLine.arguments)
-            if !arguments.colorize {
-                logger.disableColors()
+            let rawArguments = CommandLine.arguments
+            try self.validateNumberOfArguments(rawArguments)
+            if self.shouldColorize(rawArguments) {
+                logger.enableColors()
             }
+
+            let arguments = try parseArguments(rawArguments)
             async let project = readProject(
                 path: arguments.projectSpecPath,
                 customXcodeSchemesPath: arguments.customXcodeSchemesPath,
@@ -68,11 +71,10 @@ extension Generator {
         let projectRootDirectory: Path
         let buildMode: BuildMode
         let forFixtures: Bool
-        let colorize: Bool
     }
 
-    static func parseArguments(_ arguments: [String]) throws -> Arguments {
-        guard arguments.count >= 13 else {
+    static func validateNumberOfArguments(_ arguments: [String]) throws {
+        if arguments.count < 13 {
             throw UsageError(message: """
 Usage: \(arguments[0]) <path/to/execution_root_file> <workspace_directory> \
 <path/to/xccurrentversions.json> <path/to/extensionPointIdentifiers.json> \
@@ -81,7 +83,13 @@ Usage: \(arguments[0]) <path/to/execution_root_file> <workspace_directory> \
 <path/to/project_spec.json> <path/to/custom_xcode_schemes.json> [<path/to/targets_spec.json>, ...]
 """)
         }
+    }
 
+    static func shouldColorize(_ arguments: [String]) -> Bool {
+        arguments[9] == "1"
+    }
+
+    static func parseArguments(_ arguments: [String]) throws -> Arguments {
         let workspaceOutput = arguments[6]
         let workspaceOutputComponents = workspaceOutput.split(separator: "/")
 
@@ -112,8 +120,7 @@ ERROR: build_mode wasn't one of the supported values: xcode, bazel
             workspaceOutputPath: Path(workspaceOutput),
             projectRootDirectory: Path(projectRoot),
             buildMode: buildMode,
-            forFixtures: arguments[8] == "1",
-            colorize: arguments[9] == "1"
+            forFixtures: arguments[8] == "1"
         )
     }
 
