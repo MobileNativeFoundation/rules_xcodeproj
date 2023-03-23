@@ -7,7 +7,11 @@ import ZippyJSON
 extension Generator {
     /// The entry point for the `generator` tool.
     static func main() async {
-        let logger = DefaultLogger(standardError: StderrOutputStream(), standardOutput: StdoutOutputStream())
+        let logger = DefaultLogger(
+            standardError: StderrOutputStream(),
+            standardOutput: StdoutOutputStream(),
+            colorize: true // TODO: Parse arguments
+        )
 
         do {
             let arguments = try parseArguments(CommandLine.arguments)
@@ -64,7 +68,7 @@ extension Generator {
     }
 
     static func parseArguments(_ arguments: [String]) throws -> Arguments {
-        guard arguments.count >= 12 else {
+        guard arguments.count >= 13 else {
             throw UsageError(message: """
 Usage: \(arguments[0]) <path/to/execution_root_file> <workspace_directory> \
 <path/to/xccurrentversions.json> <path/to/extensionPointIdentifiers.json> \

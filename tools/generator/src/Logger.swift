@@ -22,35 +22,62 @@ final class StdoutOutputStream: TextOutputStream {
     }
 }
 
+enum TerminalColor: Int {
+    case red = 31
+    case green = 32
+    case yellow = 33
+    case magenta = 35
+
+    func colorize(_ input: String) -> String {
+        return "\u{001B}[\(self.rawValue);1m\(input)\u{001B}[0m"
+    }
+}
+
 /// The logger that is used when not running tests.
 final class DefaultLogger<E: TextOutputStream, O: TextOutputStream>: Logger {
     private var standardError: E
     private var standardOutput: O
+    private let colorize: Bool
 
-    init(standardError: E, standardOutput: O) {
+    init(standardError: E, standardOutput: O, colorize: Bool) {
         self.standardError = standardError
         self.standardOutput = standardOutput
+        self.colorize = colorize
+    }
+
+    func format(color: TerminalColor, prefix: String, message: String) -> String {
+        if self.colorize {
+            return "\(color.colorize("\(prefix):")) \(message)"
+        } else {
+            return "\(prefix): \(message)"
+        }
     }
 
     func logDebug(_ message: String) {
-        print("DEBUG: \(message())", to: &self.standardOutput)
+        print(
+            self.format(color: .yellow, prefix: "DEBUG", message: message),
+            to: &self.standardOutput
+        )
     }
 
     func logInfo(_ message: String) {
-        print("INFO: \(message())".blue, to: &self.standardOutput)
+        print(
+            self.format(color: .green, prefix: "INFO", message: message),
+            to: &self.standardOutput
+        )
     }
 
     func logWarning(_ message: String) {
-        print("WARNING: \(message())".yellow, to: &self.standardError)
+        print(
+            self.format(color: .magenta, prefix: "WARNING", message: message),
+            to: &self.standardError
+        )
     }
 
     func logError(_ message: String) {
-        print("ERROR: \(message())".red, to: &self.standardError)
+        print(
+            self.format(color: .red, prefix: "ERROR", message: message),
+            to: &self.standardError
+        )
     }
-}
-
-private extension String {
-    var blue: String   { "\u{001B}[34m\(self)\u{001B}[0m" }
-    var yellow: String { "\u{001B}[33m\(self)\u{001B}[0m" }
-    var red: String    { "\u{001B}[31m\(self)\u{001B}[0m" }
 }
