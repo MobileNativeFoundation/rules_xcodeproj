@@ -33,22 +33,24 @@ final class DefaultLogger: Logger {
     }
 
     func logDebug(_ message: @autoclosure () -> String) {
-        // TODO: Colorize
         print("DEBUG: \(message())", to: &self.standardOutput)
     }
 
     func logInfo(_ message: @autoclosure () -> String) {
-        // TODO: Colorize
-        print("INFO: \(message())", to: &self.standardOutput)
+        print("INFO: \(message())".blue, to: &self.standardOutput)
     }
 
     func logWarning(_ message: @autoclosure () -> String) {
-        // TODO: Colorize
-        print("WARNING: \(message())", to: &self.standardError)
+        print("WARNING: \(message())".yellow, to: &self.standardError)
     }
 
     func logError(_ message: @autoclosure () -> String) {
-        // TODO: Colorize
-        print("ERROR: \(message())", to: &self.standardError)
+        print("ERROR: \(message())".red, to: &self.standardError)
     }
+}
+
+private extension String {
+    var blue: String   { "\u{001B}[34m\(self)\u{001B}[0m" }
+    var yellow: String { "\u{001B}[33m\(self)\u{001B}[0m" }
+    var red: String    { "\u{001B}[31m\(self)\u{001B}[0m" }
 }
