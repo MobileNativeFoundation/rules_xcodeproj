@@ -224,6 +224,7 @@ def _write_generator_build_file(
             ),
             "%build_mode%": attr.build_mode,
             "%bazel_path%": attr.bazel_path,
+            "%colorize%": str(attr._colorize[BuildSettingInfo].value),
             "%config%": attr.config,
             "%default_xcode_configuration%": (
                 _serialize_nullable_string(attr.default_xcode_configuration)
@@ -255,7 +256,6 @@ def _write_generator_build_file(
             "%watchos_device_cpus%": attr.watchos_device_cpus,
             "%watchos_simulator_cpus%": attr.watchos_simulator_cpus,
             "%xcode_configuration_map%": str(attr.xcode_configuration_map),
-            "%colorize%": str(attr._colorize[BuildSettingInfo].value),
         },
     )
 
@@ -471,6 +471,10 @@ xcodeproj_runner = rule(
             allow_single_file = True,
             default = Label("//xcodeproj/internal:xcodeproj.template.bazelrc"),
         ),
+        "_colorize": attr.label(
+            default = Label("//xcodeproj:color"),
+            providers = [BuildSettingInfo],
+        ),
         "_extra_common_flags": attr.label(
             default = Label("//xcodeproj:extra_common_flags"),
             providers = [BuildSettingInfo],
@@ -508,10 +512,6 @@ xcodeproj_runner = rule(
                 name = "xcode_config_label",
                 fragment = "apple",
             ),
-        ),
-        "_colorize": attr.label(
-            default = Label("//xcodeproj:color"),
-            providers = [BuildSettingInfo],
         ),
     },
     executable = True,
