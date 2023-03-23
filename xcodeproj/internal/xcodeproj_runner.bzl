@@ -511,7 +511,7 @@ xcodeproj_runner = rule(
         "_colorize": attr.label(
             default = Label("//xcodeproj:color"),
             providers = [BuildSettingInfo],
-        )
+        ),
     },
     executable = True,
 )
