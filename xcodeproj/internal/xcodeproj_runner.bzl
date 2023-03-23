@@ -255,6 +255,7 @@ def _write_generator_build_file(
             "%watchos_device_cpus%": attr.watchos_device_cpus,
             "%watchos_simulator_cpus%": attr.watchos_simulator_cpus,
             "%xcode_configuration_map%": str(attr.xcode_configuration_map),
+            "%colorize%": str(attr._colorize[BuildSettingInfo].value),
         },
     )
 

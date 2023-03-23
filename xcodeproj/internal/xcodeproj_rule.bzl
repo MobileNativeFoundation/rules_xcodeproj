@@ -1405,7 +1405,7 @@ configurations: {}""".format(", ".join(xcode_configurations)))
     build_mode = ctx.attr.build_mode
     config = ctx.attr.config
     is_fixture = ctx.attr._is_fixture
-    colorize = ctx.attr._colorize
+    colorize = ctx.attr.colorize
     project_name = ctx.attr.project_name
     configuration = get_configuration(ctx = ctx)
     minimum_xcode_version = (ctx.attr.minimum_xcode_version or
@@ -1677,7 +1677,6 @@ def make_xcodeproj_rule(
         *,
         build_mode,
         is_fixture = False,
-        colorize = True,
         target_transitions = None,
         xcodeproj_transition = None):
     if build_mode == "bazel":
@@ -1695,6 +1694,7 @@ def make_xcodeproj_rule(
         "build_mode": attr.string(
             mandatory = True,
         ),
+        "colorize": attr.bool(mandatory = True),
         "config": attr.string(
             mandatory = True,
         ),
@@ -1823,7 +1823,6 @@ def make_xcodeproj_rule(
             default = Label("//xcodeproj/internal:installer.template.sh"),
         ),
         "_is_fixture": attr.bool(default = is_fixture),
-        "_colorize": attr.bool(default = colorize),
         "_link_params_processor": attr.label(
             cfg = "exec",
             default = Label("//tools/params_processors:link_params_processor"),
