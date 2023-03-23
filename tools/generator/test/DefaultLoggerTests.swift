@@ -27,7 +27,7 @@ final class DefaultLoggerTests: XCTestCase {
         let logger = DefaultLogger(standardError: stderr, standardOutput: stdout)
         logger.logInfo("this is an info message")
         XCTAssertEqual(stderr.output, "")
-        XCTAssertEqual(stdout.output, "\u{001B}[34mINFO: this is an info message\u{001B}[0m\n")
+        XCTAssertEqual(stdout.output, "INFO: this is an info message\n")
     }
 
     func test_logWarning() {
@@ -35,7 +35,7 @@ final class DefaultLoggerTests: XCTestCase {
         let stdout = StringOutputStream()
         let logger = DefaultLogger(standardError: stderr, standardOutput: stdout)
         logger.logWarning("this is a warning message")
-        XCTAssertEqual(stderr.output, "\u{001B}[33mWARNING: this is a warning message\u{001B}[0m\n")
+        XCTAssertEqual(stderr.output, "WARNING: this is a warning message\n")
         XCTAssertEqual(stdout.output, "")
     }
 
@@ -44,7 +44,7 @@ final class DefaultLoggerTests: XCTestCase {
         let stdout = StringOutputStream()
         let logger = DefaultLogger(standardError: stderr, standardOutput: stdout)
         logger.logError("this is an error message")
-        XCTAssertEqual(stderr.output, "\u{001B}[31mERROR: this is an error message\u{001B}[0m\n")
+        XCTAssertEqual(stderr.output, "ERROR: this is an error message\n")
         XCTAssertEqual(stdout.output, "")
     }
 }
