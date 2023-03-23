@@ -7,10 +7,20 @@ import ZippyJSON
 extension Generator {
     /// The entry point for the `generator` tool.
     static func main() async {
-        let logger = DefaultLogger(standardError: StderrOutputStream(), standardOutput: StdoutOutputStream())
+        let logger = DefaultLogger(
+            standardError: StderrOutputStream(),
+            standardOutput: StdoutOutputStream(),
+            colorize: false
+        )
 
         do {
-            let arguments = try parseArguments(CommandLine.arguments)
+            let rawArguments = CommandLine.arguments
+            try self.validateNumberOfArguments(rawArguments)
+            if self.shouldColorize(rawArguments) {
+                logger.enableColors()
+            }
+
+            let arguments = try parseArguments(rawArguments)
             async let project = readProject(
                 path: arguments.projectSpecPath,
                 customXcodeSchemesPath: arguments.customXcodeSchemesPath,
@@ -63,17 +73,23 @@ extension Generator {
         let forFixtures: Bool
     }
 
-    static func parseArguments(_ arguments: [String]) throws -> Arguments {
-        guard arguments.count >= 12 else {
+    static func validateNumberOfArguments(_ arguments: [String]) throws {
+        if arguments.count < 13 {
             throw UsageError(message: """
 Usage: \(arguments[0]) <path/to/execution_root_file> <workspace_directory> \
 <path/to/xccurrentversions.json> <path/to/extensionPointIdentifiers.json> \
 <path/to/output/project.xcodeproj> <workspace/relative/output/path> \
-(xcode|bazel) <1 is for fixtures, otherwise 0> <path/to/project_spec.json> \
-<path/to/custom_xcode_schemes.json> [<path/to/targets_spec.json>, ...]
+(xcode|bazel) <1 is for fixtures, otherwise 0> <1 is to enable colors in logs, otherwise 0> \
+<path/to/project_spec.json> <path/to/custom_xcode_schemes.json> [<path/to/targets_spec.json>, ...]
 """)
         }
+    }
 
+    static func shouldColorize(_ arguments: [String]) -> Bool {
+        arguments[9] == "1"
+    }
+
+    static func parseArguments(_ arguments: [String]) throws -> Arguments {
         let workspaceOutput = arguments[6]
         let workspaceOutputComponents = workspaceOutput.split(separator: "/")
 
@@ -93,9 +109,9 @@ ERROR: build_mode wasn't one of the supported values: xcode, bazel
         }
 
         return Arguments(
-            projectSpecPath: Path(arguments[9]),
-            customXcodeSchemesPath: Path(arguments[10]),
-            targetsSpecPaths: arguments.suffix(from: 11).map { Path($0) },
+            projectSpecPath: Path(arguments[10]),
+            customXcodeSchemesPath: Path(arguments[11]),
+            targetsSpecPaths: arguments.suffix(from: 12).map { Path($0) },
             executionRootFilePath: Path(arguments[1]),
             workspaceDirectory: Path(arguments[2]),
             xccurrentversionsPath: Path(arguments[3]),

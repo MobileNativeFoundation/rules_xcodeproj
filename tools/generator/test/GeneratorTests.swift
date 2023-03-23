@@ -934,19 +934,19 @@ class StubLogger: Logger {
 
     var messagesLogged: [MessageLogged] = []
 
-    func logDebug(_ message: @autoclosure () -> String) {
-        messagesLogged.append(.init(.debug, message()))
+    func logDebug(_ message: String) {
+        messagesLogged.append(.init(.debug, message))
     }
 
-    func logInfo(_ message: @autoclosure () -> String) {
-        messagesLogged.append(.init(.info, message()))
+    func logInfo(_ message: String) {
+        messagesLogged.append(.init(.info, message))
     }
 
-    func logWarning(_ message: @autoclosure () -> String) {
-        messagesLogged.append(.init(.warning, message()))
+    func logWarning(_ message: String) {
+        messagesLogged.append(.init(.warning, message))
     }
 
-    func logError(_ message: @autoclosure () -> String) {
-        messagesLogged.append(.init(.error, message()))
+    func logError(_ message: String) {
+        messagesLogged.append(.init(.error, message))
     }
 }

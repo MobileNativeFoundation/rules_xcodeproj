@@ -1189,6 +1189,7 @@ def _write_xcodeproj(
         extensionpointidentifiers_file,
         install_directory,
         is_fixture,
+        colorize,
         project_name,
         spec_files,
         workspace_directory,
@@ -1211,6 +1212,7 @@ def _write_xcodeproj(
     args.add(install_path)
     args.add(build_mode)
     args.add("1" if is_fixture else "0")
+    args.add("1" if colorize else "0")
     args.add_all(spec_files)
 
     ctx.actions.run(
@@ -1403,6 +1405,7 @@ configurations: {}""".format(", ".join(xcode_configurations)))
     build_mode = ctx.attr.build_mode
     config = ctx.attr.config
     is_fixture = ctx.attr._is_fixture
+    colorize = ctx.attr.colorize
     project_name = ctx.attr.project_name
     configuration = get_configuration(ctx = ctx)
     minimum_xcode_version = (ctx.attr.minimum_xcode_version or
@@ -1610,6 +1613,7 @@ done
         extensionpointidentifiers_file = extensionpointidentifiers_file,
         build_mode = build_mode,
         is_fixture = is_fixture,
+        colorize = colorize,
     )
     installer = _write_installer(
         ctx = ctx,
@@ -1690,6 +1694,7 @@ def make_xcodeproj_rule(
         "build_mode": attr.string(
             mandatory = True,
         ),
+        "colorize": attr.bool(mandatory = True),
         "config": attr.string(
             mandatory = True,
         ),
