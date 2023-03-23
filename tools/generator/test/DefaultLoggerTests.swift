@@ -20,7 +20,7 @@ final class DefaultLoggerTests: XCTestCase {
         let logger = DefaultLogger(standardError: stderr, standardOutput: stdout, colorize: true)
         logger.logDebug("this is a debug message")
         XCTAssertEqual(stderr.output, "")
-        XCTAssertEqual(stdout.output, "\u{001B}[33;1mDEBUG:\u{001B}[0m this is a debug message\n")
+        XCTAssertEqual(stdout.output, "\u{001B}[33mDEBUG:\u{001B}[0m this is a debug message\n")
     }
 
     func test_logInfo_With_Colors() {
@@ -29,7 +29,7 @@ final class DefaultLoggerTests: XCTestCase {
         let logger = DefaultLogger(standardError: stderr, standardOutput: stdout, colorize: true)
         logger.logInfo("this is an info message")
         XCTAssertEqual(stderr.output, "")
-        XCTAssertEqual(stdout.output, "\u{001B}[32;1mINFO:\u{001B}[0m this is an info message\n")
+        XCTAssertEqual(stdout.output, "\u{001B}[32mINFO:\u{001B}[0m this is an info message\n")
     }
 
     func test_logWarning_With_Colors() {
@@ -37,7 +37,7 @@ final class DefaultLoggerTests: XCTestCase {
         let stdout = StringOutputStream()
         let logger = DefaultLogger(standardError: stderr, standardOutput: stdout, colorize: true)
         logger.logWarning("this is a warning message")
-        XCTAssertEqual(stderr.output, "\u{001B}[35;1mWARNING:\u{001B}[0m this is a warning message\n")
+        XCTAssertEqual(stderr.output, "\u{001B}[35mWARNING:\u{001B}[0m this is a warning message\n")
         XCTAssertEqual(stdout.output, "")
     }
 

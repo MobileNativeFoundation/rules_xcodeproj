@@ -29,7 +29,14 @@ enum TerminalColor: Int {
     case magenta = 35
 
     func colorize(_ input: String) -> String {
-        return "\u{001B}[\(self.rawValue);1m\(input)\u{001B}[0m"
+        let bold: Bool
+        switch self {
+        case .red:
+            bold = true
+        case .green, .yellow, .magenta:
+            bold = false
+        }
+        return "\u{001B}[\(self.rawValue)\(bold ? ";1" : "")m\(input)\u{001B}[0m"
     }
 }
 
