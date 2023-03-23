@@ -1,5 +1,4 @@
-import func Darwin.fputs
-import var Darwin.stderr
+import Darwin
 
 /// Provides the capability to write log messages.
 protocol Logger {
@@ -10,57 +9,46 @@ protocol Logger {
 }
 
 /// A `TextOutputStream` that writes to standard error.
-private final class StderrOutputStream: TextOutputStream {
+final class StderrOutputStream: TextOutputStream {
     func write(_ string: String) {
         fputs(string, stderr)
     }
 }
 
-/// A `TextOutputStream` that writes to a string.
-final class StringOutputStream: TextOutputStream {
-    private(set) var output = ""
-
+/// A `TextOutputStream` that writes to standard out.
+final class StdoutOutputStream: TextOutputStream {
     func write(_ string: String) {
-        output += string
+        fputs(string, stdout)
     }
 }
 
 /// The logger that is used when not running tests.
-final class DefaultLogger: Logger {
-    private var standardError = StderrOutputStream()
-    private var testOutputStream: StringOutputStream?
+final class DefaultLogger<E: TextOutputStream, O: TextOutputStream>: Logger {
+    private var standardError: E
+    private var standardOutput: O
 
-    func overrideOutputStreamForTests(_ outputStream: StringOutputStream) {
-        self.testOutputStream = outputStream
+    init(standardError: E, standardOutput: O) {
+        self.standardError = standardError
+        self.standardOutput = standardOutput
     }
 
     func logDebug(_ message: @autoclosure () -> String) {
         // TODO: Colorize
-        self.loggerPrint("DEBUG: \(message())", useStderr: false)
+        print("DEBUG: \(message())", to: &self.standardOutput)
     }
 
     func logInfo(_ message: @autoclosure () -> String) {
         // TODO: Colorize
-        self.loggerPrint("INFO: \(message())", useStderr: false)
+        print("INFO: \(message())", to: &self.standardOutput)
     }
 
     func logWarning(_ message: @autoclosure () -> String) {
         // TODO: Colorize
-        self.loggerPrint("WARNING: \(message())", useStderr: true)
+        print("WARNING: \(message())", to: &self.standardError)
     }
 
     func logError(_ message: @autoclosure () -> String) {
         // TODO: Colorize
-        self.loggerPrint("ERROR: \(message())", useStderr: true)
-    }
-
-    private func loggerPrint(_ message: String, useStderr: Bool) {
-        if var testOutputStream = self.testOutputStream {
-            print(message, to: &testOutputStream)
-        } else if useStderr {
-            print(message, to: &standardError)
-        } else {
-            print(message)
-        }
+        print("ERROR: \(message())", to: &self.standardError)
     }
 }
