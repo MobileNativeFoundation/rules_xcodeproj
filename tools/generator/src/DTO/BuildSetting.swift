@@ -98,19 +98,6 @@ extension BuildSetting: ExpressibleByArrayLiteral {
 
 // MARK: - Convenience
 
-extension BuildSetting {
-    func contains(_ value: String) -> Bool {
-        switch self {
-        case let .array(array):
-            return array.contains(value)
-        case let .string(string):
-            return string == value
-        case .bool:
-            return false
-        }
-    }
-}
-
 extension Dictionary where Value == BuildSetting {
     mutating func set(_ key: Key, to value: Bool) {
         self[key] = .bool(value)

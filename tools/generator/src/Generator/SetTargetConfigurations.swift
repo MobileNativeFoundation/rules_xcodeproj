@@ -664,44 +664,6 @@ private extension Dictionary where Value == BuildSetting {
     mutating func prepend(
         onKey key: Key,
         onlyIfSet: Bool = false,
-        _ content: String
-    ) throws {
-        let maybeBuildSetting = self[key]
-
-        let buildSetting: Value
-        if let maybeBuildSetting = maybeBuildSetting {
-            buildSetting = maybeBuildSetting
-        } else {
-            guard !onlyIfSet else {
-                return
-            }
-            buildSetting = .string("")
-        }
-
-        switch buildSetting {
-        case let .string(existing):
-            let new: String
-            if content.isEmpty {
-                new = existing
-            } else if existing.isEmpty {
-                new = content
-            } else {
-                new = "\(content) \(existing)"
-            }
-            guard !new.isEmpty else {
-                return
-            }
-            self[key] = .string(new)
-        default:
-            throw PreconditionError(message: """
-Build setting for \(key) is not a string: \(buildSetting)
-""")
-        }
-    }
-
-    mutating func prepend(
-        onKey key: Key,
-        onlyIfSet: Bool = false,
         _ content: [String]
     ) throws {
         let maybeBuildSetting = self[key]
