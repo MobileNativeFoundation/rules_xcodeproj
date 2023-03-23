@@ -13,7 +13,7 @@ def green(text):
     return _colorize(text, "32")
 
 def magenta(text):
-    """Applies the ANSI color code for yellow around the given text."""
+    """Applies the ANSI color code for magenta around the given text."""
     return _colorize(text, "35")
 
 def yellow(text):
