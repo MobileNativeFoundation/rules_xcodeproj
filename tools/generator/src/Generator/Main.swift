@@ -10,11 +10,14 @@ extension Generator {
         let logger = DefaultLogger(
             standardError: StderrOutputStream(),
             standardOutput: StdoutOutputStream(),
-            colorize: true // TODO: Parse arguments
+            colorize: true
         )
 
         do {
             let arguments = try parseArguments(CommandLine.arguments)
+            if !arguments.colorize {
+                logger.disableColors()
+            }
             async let project = readProject(
                 path: arguments.projectSpecPath,
                 customXcodeSchemesPath: arguments.customXcodeSchemesPath,
@@ -65,6 +68,7 @@ extension Generator {
         let projectRootDirectory: Path
         let buildMode: BuildMode
         let forFixtures: Bool
+        let colorize: Bool
     }
 
     static func parseArguments(_ arguments: [String]) throws -> Arguments {
@@ -73,8 +77,8 @@ extension Generator {
 Usage: \(arguments[0]) <path/to/execution_root_file> <workspace_directory> \
 <path/to/xccurrentversions.json> <path/to/extensionPointIdentifiers.json> \
 <path/to/output/project.xcodeproj> <workspace/relative/output/path> \
-(xcode|bazel) <1 is for fixtures, otherwise 0> <path/to/project_spec.json> \
-<path/to/custom_xcode_schemes.json> [<path/to/targets_spec.json>, ...]
+(xcode|bazel) <1 is for fixtures, otherwise 0> <1 is to enable colors in logs, otherwise 0> \
+<path/to/project_spec.json> <path/to/custom_xcode_schemes.json> [<path/to/targets_spec.json>, ...]
 """)
         }
 
@@ -97,9 +101,9 @@ ERROR: build_mode wasn't one of the supported values: xcode, bazel
         }
 
         return Arguments(
-            projectSpecPath: Path(arguments[9]),
-            customXcodeSchemesPath: Path(arguments[10]),
-            targetsSpecPaths: arguments.suffix(from: 11).map { Path($0) },
+            projectSpecPath: Path(arguments[10]),
+            customXcodeSchemesPath: Path(arguments[11]),
+            targetsSpecPaths: arguments.suffix(from: 12).map { Path($0) },
             executionRootFilePath: Path(arguments[1]),
             workspaceDirectory: Path(arguments[2]),
             xccurrentversionsPath: Path(arguments[3]),
@@ -108,7 +112,8 @@ ERROR: build_mode wasn't one of the supported values: xcode, bazel
             workspaceOutputPath: Path(workspaceOutput),
             projectRootDirectory: Path(projectRoot),
             buildMode: buildMode,
-            forFixtures: arguments[8] == "1"
+            forFixtures: arguments[8] == "1",
+            colorize: arguments[9] == "1"
         )
     }
 

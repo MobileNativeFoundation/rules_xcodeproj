@@ -37,7 +37,11 @@ enum TerminalColor: Int {
 final class DefaultLogger<E: TextOutputStream, O: TextOutputStream>: Logger {
     private var standardError: E
     private var standardOutput: O
-    private let colorize: Bool
+    private var colorize: Bool
+
+    func disableColors() {
+        self.colorize = false
+    }
 
     init(standardError: E, standardOutput: O, colorize: Bool) {
         self.standardError = standardError

@@ -37,6 +37,7 @@ def xcodeproj(
         watchos_device_cpus = "arm64_32",
         watchos_simulator_cpus = None,
         xcode_configurations = {"Debug": {}},
+        colorize = True,
         **kwargs):
     """Creates an `.xcodeproj` file in the workspace when run.
 
@@ -254,6 +255,8 @@ def xcodeproj(
             Refer to the
             [bazel documentation](https://bazel.build/extending/config#defining)
             on how to define the transition settings dictionary.
+        colorize: Optional. Whether to log generator output with terminal color
+            codes. Defaults to `True`.
         **kwargs: Additional arguments to pass to the underlying `xcodeproj`
             rule specified by `xcodeproj_rule`.
     """
@@ -407,6 +410,7 @@ Please refer to https://bazel.build/extending/config#defining) on how to them.
         ios_device_cpus = ios_device_cpus,
         ios_simulator_cpus = ios_simulator_cpus,
         is_fixture = is_fixture,
+        colorize = colorize,
         minimum_xcode_version = minimum_xcode_version,
         owned_extra_files = owned_extra_files,
         post_build = post_build,

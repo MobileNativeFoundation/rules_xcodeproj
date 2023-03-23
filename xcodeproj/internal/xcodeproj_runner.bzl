@@ -271,6 +271,7 @@ def _write_runner(
         generator_build_file,
         generator_defs_bzl,
         is_fixture,
+        colorize,
         project_name,
         runner_label,
         schemes_json,
@@ -312,6 +313,7 @@ def _xcodeproj_runner_impl(ctx):
     attr = ctx.attr
     config = ctx.attr.config
     is_fixture = ctx.attr.is_fixture
+    colorize = ctx.attr.is_fixture
     name = ctx.attr.name
     project_name = ctx.attr.project_name
     repo = (
@@ -369,6 +371,7 @@ def _xcodeproj_runner_impl(ctx):
         generator_build_file = generator_build_file,
         generator_defs_bzl = generator_defs_bzl,
         is_fixture = is_fixture,
+        colorize = colorize,
         project_name = project_name,
         runner_label = str(ctx.label),
         schemes_json = schemes_json,
@@ -421,6 +424,9 @@ xcodeproj_runner = rule(
             mandatory = True,
         ),
         "is_fixture": attr.bool(
+            mandatory = True,
+        ),
+        "colorize": attr.bool(
             mandatory = True,
         ),
         "minimum_xcode_version": attr.string(),
