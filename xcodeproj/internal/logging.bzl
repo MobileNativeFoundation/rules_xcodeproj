@@ -12,6 +12,10 @@ def green(text):
     """Applies the ANSI color code for green around the given text."""
     return _colorize(text, "32")
 
+def magenta(text):
+    """Applies the ANSI color code for yellow around the given text."""
+    return _colorize(text, "35")
+
 def yellow(text):
     """Applies the ANSI color code for yellow around the given text."""
     return _colorize(text, "33")
@@ -22,5 +26,5 @@ def warn(msg):
     # buildifier: disable=print
     print("\n{prefix} {msg}\n".format(
         msg = msg,
-        prefix = yellow("WARNING:"),
+        prefix = magenta("WARNING:"),
     ))
