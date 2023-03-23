@@ -423,9 +423,6 @@ xcodeproj_runner = rule(
         "is_fixture": attr.bool(
             mandatory = True,
         ),
-        "colorize": attr.bool(
-            mandatory = True,
-        ),
         "minimum_xcode_version": attr.string(),
         "owned_extra_files": attr.string_dict(),
         "post_build": attr.string(),
@@ -511,6 +508,10 @@ xcodeproj_runner = rule(
                 fragment = "apple",
             ),
         ),
+        "_colorize": attr.label(
+            default = Label("//xcodeproj:color"),
+            providers = [BuildSettingInfo],
+        )
     },
     executable = True,
 )

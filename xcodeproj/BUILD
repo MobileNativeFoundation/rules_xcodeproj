@@ -1,4 +1,4 @@
-load("@bazel_skylib//rules:common_settings.bzl", "string_flag")
+load("@bazel_skylib//rules:common_settings.bzl", "bool_flag", "string_flag")
 
 string_flag(
     name = "extra_common_flags",
@@ -21,6 +21,12 @@ string_flag(
 string_flag(
     name = "extra_swiftuipreviews_flags",
     build_setting_default = "",
+    visibility = ["//visibility:public"],
+)
+
+bool_flag(
+    name = "color",
+    build_setting_default = True,
     visibility = ["//visibility:public"],
 )
 
