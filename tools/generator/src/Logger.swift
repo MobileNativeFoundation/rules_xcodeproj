@@ -23,11 +23,11 @@ final class StdoutOutputStream: TextOutputStream {
 }
 
 /// The logger that is used when not running tests.
-final class DefaultLogger<E: TextOutputStream, O: TextOutputStream>: Logger {
-    private var standardError: E
-    private var standardOutput: O
+final class DefaultLogger: Logger {
+    private var standardError: any TextOutputStream
+    private var standardOutput: any TextOutputStream
 
-    init(standardError: E, standardOutput: O) {
+    init(standardError: TextOutputStream = StderrOutputStream(), standardOutput: TextOutputStream = StdoutOutputStream()) {
         self.standardError = standardError
         self.standardOutput = standardOutput
     }

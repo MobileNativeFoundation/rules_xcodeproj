@@ -7,7 +7,7 @@ import ZippyJSON
 extension Generator {
     /// The entry point for the `generator` tool.
     static func main() async {
-        let logger = DefaultLogger(standardError: StderrOutputStream(), standardOutput: StdoutOutputStream())
+        let logger = DefaultLogger()
 
         do {
             let arguments = try parseArguments(CommandLine.arguments)
