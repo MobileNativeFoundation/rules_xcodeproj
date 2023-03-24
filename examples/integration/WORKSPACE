@@ -3,16 +3,6 @@ local_repository(
     path = "../..",
 )
 
-# TODO: Remove when `repositories.bzl` bumps to include the below commit
-load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
-
-http_archive(
-    name = "build_bazel_rules_apple",
-    sha256 = "8686b2bf081e94f87da2d0238abbe728bff421a31d0fa666a63662facec52005",
-    strip_prefix = "rules_apple-564eecc4c159fb04ebc353fe9d75496b640ed03a",
-    url = "https://github.com/bazelbuild/rules_apple/archive/564eecc4c159fb04ebc353fe9d75496b640ed03a.tar.gz",
-)
-
 load(
     "@rules_xcodeproj//xcodeproj:repositories.bzl",
     "xcodeproj_rules_dependencies",
@@ -49,6 +39,8 @@ load(
 apple_support_dependencies()
 
 # rules_apple_linker used for testing using a different linker
+
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 http_archive(
     name = "rules_apple_linker",
