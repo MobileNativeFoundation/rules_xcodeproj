@@ -207,7 +207,7 @@ that Xcode `bazel build` command applies (e.g.
 the [`--generator_output_groups` option](#--generator_output_groups):
 
 ```
-bazel run //:xcodeproj -- --generator_output_groups=all_targets build --remote_download_minimal
+bazel run //:xcodeproj -- --generator_output_groups=all_targets 'build --remote_download_minimal'
 ```
 
 ### `clean`
