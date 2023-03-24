@@ -18,6 +18,7 @@ fail() {
 
 # Process Args
 
+readonly execution_root_file="$PWD/%execution_root_file%"
 readonly extra_flags_bazelrc="$PWD/%extra_flags_bazelrc%"
 readonly generator_build_file="$PWD/%generator_build_file%"
 readonly generator_defs_bzl="$PWD/%generator_defs_bzl%"
@@ -101,11 +102,7 @@ fi
 
 installer_flags+=(--bazel_path "$bazel_path")
 
-if [[ %is_fixture% -eq 1 ]]; then
-  execution_root=$("$bazel_path" info --config=fixtures execution_root)
-else
-  execution_root=$("$bazel_path" info execution_root)
-fi
+execution_root=$(<"$execution_root_file")
 installer_flags+=(--execution_root "$execution_root")
 
 readonly output_base="${execution_root%/*/*}"

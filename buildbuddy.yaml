@@ -47,12 +47,12 @@ x_templates:
 
   commands:
     - &set_release_archive_override "--output_base=setup-bazel-output-base run --config=workflows @rules_xcodeproj//tools:set_release_archive_override"
-    - &validate_integration "run --config=workflows --config=fixtures //test/fixtures:validate"
-    - &build_all "build --config=workflows --noexperimental_enable_bzlmod //..."
-    - &test_all "test --config=workflows --noexperimental_enable_bzlmod //..."
-    - &bzlmod_generate_integration "run --config=workflows --config=fixtures //test/fixtures:update"
-    - &bzlmod_build_all "build --config=workflows //..."
-    - &bzlmod_test_all "test --config=workflows //test/..."
+    - &validate_integration "--output_base=bazel-output-base run --config=workflows --config=fixtures //test/fixtures:validate"
+    - &build_all "--output_base=bazel-output-base build --config=workflows --noexperimental_enable_bzlmod //..."
+    - &test_all "--output_base=bazel-output-base test --config=workflows --noexperimental_enable_bzlmod //..."
+    - &bzlmod_generate_integration "--output_base=bazel-output-base run --config=workflows --config=fixtures //test/fixtures:update"
+    - &bzlmod_build_all "--output_base=bazel-output-base build --config=workflows //..."
+    - &bzlmod_test_all "--output_base=bazel-output-base test --config=workflows //test/..."
 
 actions:
   - name: Buildifier Lint
