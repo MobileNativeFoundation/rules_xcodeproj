@@ -109,6 +109,31 @@ def _write_extra_flags_bazelrc(name, actions, attr, config):
 
     return output
 
+def _write_execution_root_file(*, ctx):
+    output = ctx.actions.declare_file("{}_execution_root_file".format(ctx.attr.name))
+
+    ctx.actions.run_shell(
+        outputs = [output],
+        command = """\
+bin_dir_full_path="$(perl -MCwd -e 'print Cwd::abs_path shift' "{bin_dir_full}";)"
+execution_root="${{bin_dir_full_path%/{bin_dir_full}}}"
+
+echo "$execution_root" > "{out_full}"
+""".format(
+            bin_dir_full = ctx.bin_dir.path,
+            out_full = output.path,
+        ),
+        mnemonic = "CalculateXcodeProjExecutionRoot",
+        # This has to run locally
+        execution_requirements = {
+            "local": "1",
+            "no-remote": "1",
+            "no-sandbox": "1",
+        },
+    )
+
+    return output
+
 def _write_schemes_json(*, actions, name, schemes_json):
     output = actions.declare_file(
         "{}-custom_xcode_schemes.json".format(name),
@@ -267,6 +292,7 @@ def _write_runner(
         actions,
         bazel_path,
         config,
+        execution_root_file,
         extra_flags_bazelrc,
         extra_generator_flags,
         generator_build_file,
@@ -289,6 +315,7 @@ def _write_runner(
         substitutions = {
             "%bazel_path%": bazel_path,
             "%config%": config,
+            "%execution_root_file%": execution_root_file.short_path,
             "%extra_flags_bazelrc%": extra_flags_bazelrc.short_path,
             "%extra_generator_flags%": extra_generator_flags,
             "%generator_label%": (
@@ -336,6 +363,7 @@ def _xcodeproj_runner_impl(ctx):
         config = config,
         name = name,
     )
+    execution_root_file = _write_execution_root_file(ctx = ctx)
     schemes_json = _write_schemes_json(
         actions = actions,
         name = name,
@@ -363,6 +391,7 @@ def _xcodeproj_runner_impl(ctx):
         actions = actions,
         bazel_path = ctx.attr.bazel_path,
         config = config,
+        execution_root_file = execution_root_file,
         extra_flags_bazelrc = extra_flags_bazelrc,
         extra_generator_flags = (
             ctx.attr._extra_generator_flags[BuildSettingInfo].value
@@ -383,6 +412,7 @@ def _xcodeproj_runner_impl(ctx):
             executable = runner,
             runfiles = ctx.runfiles(
                 files = [
+                    execution_root_file,
                     extra_flags_bazelrc,
                     generator_build_file,
                     generator_defs_bzl,
