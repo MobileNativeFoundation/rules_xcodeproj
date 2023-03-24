@@ -30,7 +30,7 @@ xcode_schemes = make_xcode_schemes(
 def _scheme_test(ctx):
     env = unittest.begin(ctx)
 
-    name = "Foo"
+    name = "//Foo:Foo"
     build_action = xcode_schemes.build_action(["//Sources/Foo"])
     launch_action = xcode_schemes.launch_action("//Sources/App")
     profile_action = xcode_schemes.launch_action("//Sources/App")
@@ -44,7 +44,7 @@ def _scheme_test(ctx):
         test_action = test_action,
     )
     expected = struct(
-        name = name,
+        name = "__Foo_Foo",
         build_action = build_action,
         launch_action = launch_action,
         profile_action = profile_action,

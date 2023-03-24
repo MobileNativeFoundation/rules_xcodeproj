@@ -23,7 +23,7 @@ def _scheme(
         A `struct` representing an Xcode scheme.
     """
     return struct(
-        name = name,
+        name = name.replace("/", "_").replace(":", "_"),
         build_action = build_action,
         launch_action = launch_action,
         profile_action = profile_action,
