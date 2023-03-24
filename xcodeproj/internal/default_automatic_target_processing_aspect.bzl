@@ -90,6 +90,7 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
     elif ctx.rule.kind == "objc_library":
         xcode_targets = {
             "deps": [target_type.compile, None],
+            "implementation_deps": [target_type.compile],
             "runtime_deps": [target_type.compile],
         }
         non_arc_srcs = ["non_arc_srcs"]
