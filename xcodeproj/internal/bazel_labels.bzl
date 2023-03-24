@@ -88,7 +88,10 @@ def make_bazel_labels(workspace_name_resolvers = workspace_name_resolvers):
         )
 
     def _normalize_label(value):
-        return str(value)
+        label_str = str(value)
+        if label_str[0] == "@":
+            return label_str
+        return "@" + label_str
 
     def _normalize_string(value):
         package_relative_label = (

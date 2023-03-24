@@ -28,12 +28,14 @@ extension BazelLabel {
         }
 
         var repository = rootParts[0]
-        if repository == "" {
-            // Support for `--noincompatible_unambiguous_label_stringification`
-            repository = "@"
+        if !repository.starts(with: "@") {
+            // Support for `--noincompatible_unambiguous_label_stringification`,
+            // and Bazel 5
+            repository = "@\(repository)"
         }
 
-        let packageAndNameParts = rootParts[1].components(separatedBy: Self.nameSeparator)
+        let packageAndNameParts = rootParts[1]
+            .components(separatedBy: Self.nameSeparator)
 
         let package: String
         let name: String
@@ -45,7 +47,8 @@ extension BazelLabel {
             guard package != "" else {
                 throw ParseError.missingNameAndPackage
             }
-            let packageParts = package.components(separatedBy: Self.packageSeparator)
+            let packageParts = package
+                .components(separatedBy: Self.packageSeparator)
             guard let lastPart = packageParts.last else {
                 throw ParseError.missingNameAndPackage
             }
