@@ -448,8 +448,6 @@ actual targets: {}
         dest_label = bazel_labels.normalize_label(dest_target.label)
         if src_label in unfocused_labels or dest_label in unfocused_labels:
             continue
-        if not merge.src.id in focused_targets:
-            continue
         raw_target_merge_dests.setdefault(merge.dest, []).append(merge.src.id)
 
     target_merge_dests = {}
