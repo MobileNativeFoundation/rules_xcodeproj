@@ -44,3 +44,15 @@ use_repo(
     "com_github_krzyzanowskim_cryptoswift",
     "com_google_google_maps",
 )
+
+# TODO: Remove once this is in the BCR
+archive_override(
+    module_name = "swiftlint",
+    integrity = "sha256-++aCSWCuZYy0MoAgUPYv2rJDpUx54A4uDbB2hqGHPVk=",
+    strip_prefix = "SwiftLint-084ad9dfd4f8deec1c3ee02b18baf5f5dd746ea8",
+    urls = [
+        "https://github.com/realm/SwiftLint/archive/084ad9dfd4f8deec1c3ee02b18baf5f5dd746ea8.tar.gz",
+    ],
+)
+
+bazel_dep(name = "swiftlint", version = "0.50.3", repo_name = "SwiftLint")

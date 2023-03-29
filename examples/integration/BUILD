@@ -71,3 +71,14 @@ exports_files(["README.md"])
         "x86_64",
     ]
 ]
+
+xcodeproj(
+    name = "swiftlint_xcodeproj",
+    bazel_path = "./bazelisk",
+    project_name = "SwiftLint",
+    tags = ["manual"],
+    top_level_targets = [
+        "@SwiftLint//:swiftlint",
+        "@SwiftLint//Tests:ExtraRulesTests",
+    ],
+)
