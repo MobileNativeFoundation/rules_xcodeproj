@@ -130,13 +130,13 @@ rules_xcodeproj requires {} to have `{}` set.
                     automatic_target_info.xcode_targets.get(attr, [None]))
             ],
         ),
+        mergable_xcode_library_targets = mergable_xcode_library_targets,
         outputs = output_files.merge(
             ctx = ctx,
             automatic_target_info = automatic_target_info,
             transitive_infos = transitive_infos,
         ),
         resource_bundle_informations = resource_bundle_informations,
-        mergable_xcode_library_targets = mergable_xcode_library_targets,
         search_paths = None,
         transitive_dependencies = transitive_dependencies,
         xcode_target = None,

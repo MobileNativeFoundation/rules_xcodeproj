@@ -190,9 +190,9 @@ def process_library_target(
         inputs = inputs,
         library = product.file,
         lldb_context = lldb_context,
+        mergable_xcode_library_targets = mergable_xcode_library_targets,
         outputs = outputs,
         search_paths = search_paths,
-        mergable_xcode_library_targets = mergable_xcode_library_targets,
         transitive_dependencies = transitive_dependencies,
         xcode_target = xcode_target,
     )
