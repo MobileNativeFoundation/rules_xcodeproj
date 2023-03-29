@@ -449,9 +449,12 @@ actual targets: {}
         if src_label in unfocused_labels or dest_label in unfocused_labels:
             continue
 
-        # Exclude targets not in either focused or unfocused targets from
-        # potential merges since they're excluded from Xcode.
-        merge_src_is_xcode_target = merge.src.id in focused_targets or merge.src.id in unfocused_targets
+        # Exclude targets not in focused nor unfocused targets from
+        # potential merges since they're not possible Xcode targets.
+        merge_src_is_xcode_target = (
+            merge.src.id in focused_targets or
+            merge.src.id in unfocused_targets
+        )
         if not merge_src_is_xcode_target:
             continue
         raw_target_merge_dests.setdefault(merge.dest, []).append(merge.src.id)
