@@ -126,7 +126,7 @@ touch "$build_marker"
 
 # Collect indexstore filelists
 
-readonly outputgroup_regex='([^\ ]+) @?(.*)//(.*):(.*) ([^\ ]+)$'
+readonly outputgroup_regex='([^\ ]+) @{0,2}(.*)//(.*):(.*) ([^\ ]+)$'
 
 indexstores_filelists=()
 for output_group in "${output_groups[@]}"; do
