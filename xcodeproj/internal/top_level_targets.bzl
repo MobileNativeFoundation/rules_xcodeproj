@@ -415,15 +415,13 @@ def process_top_level_target(
     )
 
     if not inputs.srcs:
-        mergeable_targets = comp_providers.get_mergable_xcode_library_targets(
-            compilation_providers = compilation_providers,
-        )
         potential_target_merges = [
             struct(
                 src = mergeable_target,
                 dest = id,
             )
-            for mergeable_target in mergeable_targets
+            for info in deps_infos
+            for mergeable_target in info.mergable_xcode_library_targets.to_list()
         ]
     else:
         potential_target_merges = None
@@ -498,6 +496,7 @@ def process_top_level_target(
         is_top_level_target = True,
         is_xcode_required = True,
         lldb_context = lldb_context,
+        mergable_xcode_library_targets = [],
         outputs = outputs,
         potential_target_merges = potential_target_merges,
         search_paths = search_paths,
