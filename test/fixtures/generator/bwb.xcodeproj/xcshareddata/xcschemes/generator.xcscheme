@@ -241,7 +241,11 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "bazel-output-base/rules_xcodeproj/build_output_base/execroot/_main/bazel-out/darwin_arm64-dbg/bin/.rules_xcodeproj/tools_generator_xcodeproj/xcodeproj_root_dirs"
+            argument = "bazel-output-base/rules_xcodeproj/build_output_base/execroot/_main/bazel-out/darwin_arm64-dbg/bin/.rules_xcodeproj/tools_generator_xcodeproj/xcodeproj_execution_root_file"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "/tmp/workspace"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
@@ -266,6 +270,10 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "0"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "1"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
@@ -360,7 +368,11 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "bazel-output-base/rules_xcodeproj/build_output_base/execroot/_main/bazel-out/darwin_arm64-dbg/bin/.rules_xcodeproj/tools_generator_xcodeproj/xcodeproj_root_dirs"
+            argument = "bazel-output-base/rules_xcodeproj/build_output_base/execroot/_main/bazel-out/darwin_arm64-dbg/bin/.rules_xcodeproj/tools_generator_xcodeproj/xcodeproj_execution_root_file"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "/tmp/workspace"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
@@ -385,6 +397,10 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "0"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "1"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
