@@ -44,6 +44,13 @@ body:
     validations:
       required: true
   - type: input
+    id: xcode-version
+    attributes:
+      label: Xcode version
+      placeholder: e.g. 14.2 or 14E222b
+    validations:
+      required: true
+  - type: input
     id: bazel-version
     attributes:
       label: Bazel version
