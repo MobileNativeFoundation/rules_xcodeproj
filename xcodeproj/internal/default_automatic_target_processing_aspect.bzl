@@ -90,6 +90,10 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
     elif ctx.rule.kind == "objc_library":
         xcode_targets = {
             "deps": [target_type.compile, None],
+            # Issues like https://github.com/bazelbuild/bazel/issues/17646 made some Bazel users 
+            # to fork Bazel and add implementation_deps attribute for objc_library_rule.
+            # TODO: Add link to changes for more context
+            # handle case when objc_library rule has attribute implementation_deps
             "implementation_deps": [target_type.compile],
             "runtime_deps": [target_type.compile],
         }
