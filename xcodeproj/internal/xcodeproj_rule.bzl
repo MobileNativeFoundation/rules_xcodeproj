@@ -467,29 +467,30 @@ actual targets: {}
         dest_target = unprocessed_targets[dest]
         dest_label_str = label_strs[dest]
 
-        src = src_ids[0]
-        target_merge_dests[dest] = src
+        for src in src_ids:
+            target_merge_dests.setdefault(dest, []).append(src)
 
-        if dest_label_str not in focused_labels:
-            continue
+            if dest_label_str not in focused_labels:
+                continue
 
-        src_target = unprocessed_targets[src]
+            src_target = unprocessed_targets[src]
 
-        # Always include src of target merge if dest is included
-        focused_targets[src] = src_target
+            # Always include src of target merge if dest is included
+            focused_targets[src] = src_target
 
-        # Remove from unfocused (to support `xcode_required_targets`)
-        unfocused_targets.pop(src, None)
+            # Remove from unfocused (to support `xcode_required_targets`)
+            unfocused_targets.pop(src, None)
 
-    for src in target_merge_dests.values():
-        src_target = unprocessed_targets[src]
-        src_label_str = label_strs[src]
+    for srcs in target_merge_dests.values():
+        for src in srcs:
+            src_target = unprocessed_targets[src]
+            src_label_str = label_strs[src]
 
-        # Adjust `{un,}focused_labels` for `extra_files` logic later
-        if src_label_str in unfocused_labels:
-            unfocused_labels.pop(src_label_str, None)
-        if focused_labels:
-            focused_labels.pop(src_label_str, None)
+            # Adjust `{un,}focused_labels` for `extra_files` logic later
+            if src_label_str in unfocused_labels:
+                unfocused_labels.pop(src_label_str, None)
+            if focused_labels:
+                focused_labels.pop(src_label_str, None)
 
     unfocused_dependencies = _calculate_unfocused_dependencies(
         build_mode = build_mode,
@@ -523,20 +524,23 @@ actual targets: {}
                 )
 
     # Filter `target_merge_dests` after processing focused targets
-    for dest, src in target_merge_dests.items():
+    for dest, srcs in target_merge_dests.items():
         if dest not in focused_targets:
             target_merge_dests.pop(dest)
             continue
-        if src not in focused_targets:
-            target_merge_dests.pop(dest)
-            continue
+
+        for src in srcs:
+            if src not in focused_targets:
+                target_merge_dests.pop(dest)
+                break
 
     target_merges = {}
     target_merge_srcs_by_label = {}
-    for dest, src in target_merge_dests.items():
-        src_target = focused_targets[src]
-        target_merges.setdefault(src, []).append(dest)
-        target_merge_srcs_by_label.setdefault(src_target.label, []).append(src)
+    for dest, srcs in target_merge_dests.items():
+        for src in srcs:
+            src_target = focused_targets[src]
+            target_merges.setdefault(src, []).append(dest)
+            target_merge_srcs_by_label.setdefault(src_target.label, []).append(src)
 
     non_mergable_targets = {}
     non_terminal_dests = {}
