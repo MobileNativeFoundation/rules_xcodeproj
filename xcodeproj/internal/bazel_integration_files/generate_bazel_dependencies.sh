@@ -57,6 +57,7 @@ else
   IFS=$'\n' read -r -d '' -a labels_and_output_groups < \
     <( "$CALCULATE_OUTPUT_GROUPS_SCRIPT" \
         "$ACTION" \
+        "$XCODE_VERSION_ACTUAL" \
         "$non_preview_objroot" \
         "$base_objroot" \
         "$scheme_target_ids_file" \
