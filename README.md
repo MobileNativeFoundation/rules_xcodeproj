@@ -85,7 +85,8 @@ to include it in the list above.
 
 | rules_xcodeproj | Bazel | [rules_apple][1] | [rules_swift][2] | Xcode | macOS | Supporting Branch |
 | :-------------: | :---: | :--------------: | :--------------: | :---: | :---: | :---------------: |
-| 1.x | 5.3–6.x  | 1.0.1–2.x | 1.x | 13.3–14.x | 12–13.x | `main` |
+| 1.4.0+ | 5.3–6.x  | 1.0.1–2.x | 1.x | 13.3–14.x | 12–13.x | `main` |
+| 1.0-1.3.3 | 5.3–6.x  | 1.0.1–2.x | 1.x | 13.3–14.2 | 12–13.x | - |
 
 More versions of these tools and rulesets might be supported, but these are the
 ones we’ve officially tested with.
