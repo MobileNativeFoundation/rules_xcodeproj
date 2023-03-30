@@ -272,8 +272,7 @@ def _main(
     except ValueError:
         print(
             """
-warning: XCODE_VERSION_ACTUAL was not an integer. Please file a bug report \
-here: \
+warning: xcode_version was not an integer. Please file a bug report here: \
 https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bug.md
 """,
             file = sys.stderr,
