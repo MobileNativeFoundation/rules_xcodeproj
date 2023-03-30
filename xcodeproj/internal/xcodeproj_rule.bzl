@@ -573,7 +573,8 @@ actual targets: {}
                 target_merges.pop(id, None)
 
     for dest, srcs in target_merge_dests.items():
-        src_targets = [focused_targets.pop(src) for src in srcs]
+        # TODO: Clean up this parsing.
+        src_targets = [focused_targets.pop(src) for src in srcs if src in focused_targets]
         focused_targets[dest] = xcode_targets.merge(
             srcs = src_targets,
             dest = focused_targets[dest],
