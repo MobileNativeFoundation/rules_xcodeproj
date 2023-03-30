@@ -22,33 +22,6 @@ load(":target_properties.bzl", "should_include_non_xcode_outputs")
 
 # Utility
 
-def _transitive_extra_files(*, id, files):
-    return depset(
-        [(
-            id,
-            tuple([
-                normalized_file_path(file)
-                for file in files.to_list()
-            ]),
-        )],
-    )
-
-def _collect_transitive_extra_files(id, transitive_info):
-    inputs = transitive_info.inputs
-    transitive = [inputs.extra_files]
-    if not transitive_info.xcode_target:
-        transitive.append(
-            _transitive_extra_files(id = id, files = inputs.srcs),
-        )
-        transitive.append(
-            _transitive_extra_files(id = id, files = inputs.non_arc_srcs),
-        )
-        transitive.append(
-            _transitive_extra_files(id = id, files = inputs.hdrs),
-        )
-
-    return depset(transitive = transitive)
-
 def _collect_transitive_uncategorized(info):
     if info.xcode_target:
         return depset()
@@ -122,7 +95,8 @@ def _collect_input_files(
         unfocused: Whether the target is unfocused. If `None`, it will be
             determined automatically (this should only be the case for
             `non_xcode_target`s).
-        id: A unique identifier for the target.
+        id: A unique identifier for the target. Will be `None` for non-Xcode
+            targets.
         platform: A value returned from `platform_info.collect`.
         is_bundle: Whether `target` is a bundle.
         product: A value returned from `process_product`.
@@ -227,12 +201,23 @@ def _collect_input_files(
         extra_files.append(file_path(file))
 
     file_handlers = {}
-    for attr in automatic_target_info.srcs:
-        file_handlers[attr] = _handle_srcs_file
-    for attr in automatic_target_info.non_arc_srcs:
-        file_handlers[attr] = _handle_non_arc_srcs_file
-    for attr in automatic_target_info.hdrs:
-        file_handlers[attr] = _handle_hdrs_file
+
+    if id:
+        for attr in automatic_target_info.srcs:
+            file_handlers[attr] = _handle_srcs_file
+        for attr in automatic_target_info.non_arc_srcs:
+            file_handlers[attr] = _handle_non_arc_srcs_file
+        for attr in automatic_target_info.hdrs:
+            file_handlers[attr] = _handle_hdrs_file
+    else:
+        # Turn source files into extra files for non-Xcode targets
+        for attr in automatic_target_info.srcs:
+            file_handlers[attr] = _handle_extrafiles_file
+        for attr in automatic_target_info.non_arc_srcs:
+            file_handlers[attr] = _handle_extrafiles_file
+        for attr in automatic_target_info.hdrs:
+            file_handlers[attr] = _handle_extrafiles_file
+
     if automatic_target_info.pch:
         file_handlers[automatic_target_info.pch] = _handle_pch_file
     for attr in automatic_target_info.infoplists:
@@ -707,7 +692,7 @@ def _collect_input_files(
         extra_files = depset(
             [(label, tuple(extra_files))] if extra_files else None,
             transitive = [
-                _collect_transitive_extra_files(label, info)
+                depset(transitive = [info.inputs.extra_files])
                 for attr, info in transitive_infos
                 if (info.target_type in
                     automatic_target_info.xcode_targets.get(attr, [None]))
