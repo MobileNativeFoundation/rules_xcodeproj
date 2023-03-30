@@ -23,15 +23,23 @@ _SIMULATOR_PLATFORMS = {
     "macosx": None,
 }
 
-def _calculate_build_request_file(objroot):
-    build_description_cache = max(
-        glob.iglob(f"{objroot}/XCBuildData/BuildDescriptionCacheIndex-*"),
+def _calculate_build_request_file(xcode_version, objroot):
+    if xcode_version < 1430:
+        # Before Xcode 14.3
+        build_description_cache = max(
+            glob.iglob(f"{objroot}/XCBuildData/BuildDescriptionCacheIndex-*"),
+            key = os.path.getctime,
+        )
+        with open(build_description_cache, 'rb') as f:
+            f.seek(-32, os.SEEK_END)
+            build_request_id = f.read().decode('ASCII')
+        return f"{objroot}/XCBuildData/{build_request_id}-buildRequest.json"
+
+    xcbuilddata = max(
+        glob.iglob(f"{objroot}/XCBuildData/*.xcbuilddata"),
         key = os.path.getctime,
     )
-    with open(build_description_cache, 'rb') as f:
-        f.seek(-32, os.SEEK_END)
-        build_request_id = f.read().decode('ASCII')
-    return f"{objroot}/XCBuildData/{build_request_id}-buildRequest.json"
+    return f"{xcbuilddata}/build-request.json"
 
 def _calculate_label_and_target_ids(
         build_request_file,
@@ -249,9 +257,28 @@ def _similar_platforms(platform):
         return _SIMULATOR_PLATFORMS
     return _DEVICE_PLATFORMS
 
-def _main(action, objroot, base_objroot, scheme_target_id_file, prefixes_str):
+def _main(
+        action,
+        xcode_version,
+        objroot,
+        base_objroot,
+        scheme_target_id_file,
+        prefixes_str):
     if not os.path.exists(scheme_target_id_file):
         return
+
+    try:
+        xcode_version = int(xcode_version)
+    except ValueError:
+        print(
+            """
+warning: XCODE_VERSION_ACTUAL was not an integer. Please file a bug report \
+here: \
+https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bug.md
+""",
+            file = sys.stderr,
+        )
+        xcode_version = 9999
 
     with open(scheme_target_id_file, encoding = "utf-8") as f:
         scheme_label_and_target_ids = []
@@ -268,7 +295,10 @@ def _main(action, objroot, base_objroot, scheme_target_id_file, prefixes_str):
         labels_and_target_ids = scheme_label_and_target_ids
     else:
         try:
-            build_request_file = _calculate_build_request_file(objroot)
+            build_request_file = _calculate_build_request_file(
+                xcode_version,
+                objroot,
+            )
             guid_labels, guid_target_ids = (
                 _calculate_guid_labels_and_target_ids(base_objroot)
             )
@@ -301,4 +331,17 @@ https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bu
 
 
 if __name__ == "__main__":
-    _main(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5])
+    _main(
+        # ACTION
+        sys.argv[1],
+        # XCODE_VERSION_ACTUAL
+        sys.argv[2],
+        # non_preview_objroot
+        sys.argv[3],
+        # base_objroot
+        sys.argv[4],
+        # scheme_target_ids_file
+        sys.argv[5],
+        # output_group_prefixes
+        sys.argv[6],
+    )
