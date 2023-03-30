@@ -96,7 +96,7 @@ def _to_objc(objc, cc_info):
             # TODO: Account for all of the different linking strategies
             # here: https://github.com/bazelbuild/bazel/blob/986ef7b68d61b1573d9c2bb1200585d07ad24691/src/main/java/com/google/devtools/build/lib/rules/cpp/CcLinkingHelper.java#L951-L1009
             static_library = (library.static_library or
-                                library.pic_static_library)
+                              library.pic_static_library)
 
             libraries.append(static_library)
             link_inputs.extend(input.additional_inputs)

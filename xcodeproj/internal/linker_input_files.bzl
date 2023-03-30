@@ -202,6 +202,7 @@ def _extract_top_level_values(
             for library in input.libraries:
                 if library in avoid_libraries:
                     continue
+
                 # TODO: Account for all of the different linking strategies
                 # here: https://github.com/bazelbuild/bazel/blob/986ef7b68d61b1573d9c2bb1200585d07ad24691/src/main/java/com/google/devtools/build/lib/rules/cpp/CcLinkingHelper.java#L951-L1009
                 static_library = (library.static_library or
