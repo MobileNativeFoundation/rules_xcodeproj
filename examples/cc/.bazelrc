@@ -1,6 +1,8 @@
 # Import parent workspace settings
 import %workspace%/../../shared.bazelrc
 
+build --macos_minimum_os=12.0
+
 build --experimental_cc_implementation_deps
 
 # Use a user.bazelrc if it exists
