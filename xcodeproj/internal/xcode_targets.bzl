@@ -3,7 +3,7 @@
 load("@bazel_skylib//lib:dicts.bzl", "dicts")
 load("@bazel_skylib//lib:paths.bzl", "paths")
 load("@bazel_skylib//lib:structs.bzl", "structs")
-load(":collections.bzl", "set_if_true", "uniq")
+load(":collections.bzl", "flatten", "set_if_true", "uniq")
 load(
     ":files.bzl",
     "build_setting_path",
@@ -261,45 +261,59 @@ def _to_xcode_target_product(product):
         _additional_files = product.framework_files,
     )
 
-def _merge_xcode_target(*, src, dest):
-    """Creates a new `xcode_target` by merging the values of `src` into `dest`.
+def _merge_xcode_targets(*, srcs, dest):
+    """Creates a new `xcode_target` by merging the values of `srcs` into `dest`.
 
     Args:
-        src: The `xcode_target` to merge into `dest`.
+        srcs: The `xcode_target`s to merge into `dest`.
         dest: The `xcode_target` being merged into.
 
     Returns:
         A value as returned by `xcode_targets.make`.
     """
 
-    build_settings = dict(structs.to_dict(src._build_settings))
+    build_settings = {}
+    for src in srcs:
+        dicts.add(
+            structs.to_dict(src._build_settings),
+            build_settings,
+        )
     build_settings = dicts.add(
         structs.to_dict(dest._build_settings),
         build_settings,
     )
 
+    is_swift = False
+    for src in srcs:
+        if src.is_swift:
+            is_swift = True
+            break
+
     return _make_xcode_target(
         id = dest.id,
         label = dest.label,
         configuration = dest.configuration,
-        compile_target = src,
+        compile_target = srcs[0] if srcs else None,
         package_bin_dir = dest._package_bin_dir,
-        platform = src.platform,
-        product = _merge_xcode_target_product(
-            src = src.product,
+        platform = srcs[0].platform if srcs else None,
+        product = _merge_xcode_targets_product(
+            src_products = [src.product for src in srcs],
             dest = dest.product,
         ),
-        is_swift = src.is_swift,
+        is_swift = is_swift,
         test_host = dest._test_host,
         build_settings = build_settings,
-        conlyopts = src._conlyopts or dest._conlyopts,
-        cxxopts = src._cxxopts or dest._cxxopts,
-        swiftcopts = src._swiftcopts or dest._swiftcopts,
+        conlyopts = flatten([src._conlyopts for src in srcs]) or dest._conlyopts,
+        cxxopts = flatten([src._cxxopts for src in srcs]) or dest._cxxopts,
+        swiftcopts = flatten([src._swiftcopts for src in srcs]) or dest._swiftcopts,
         search_paths = dest._search_paths,
-        modulemaps = src._modulemaps,
-        swiftmodules = src._swiftmodules,
-        inputs = _merge_xcode_target_inputs(
-            src = src.inputs,
+        modulemaps = flatten([src._modulemaps for src in srcs]),
+        swiftmodules = flatten([src._swiftmodules for src in srcs]),
+        inputs = _merge_xcode_targets_inputs(
+            src_inputs = [
+                src.inputs
+                for src in srcs
+            ],
             dest = dest.inputs,
         ),
         linker_inputs = dest.linker_inputs,
@@ -308,26 +322,51 @@ def _merge_xcode_target(*, src, dest):
         extensions = dest._extensions,
         app_clips = dest._app_clips,
         dependencies = depset(
-            transitive = [dest._dependencies, src._dependencies],
+            transitive = [dest._dependencies] + [src._dependencies for src in srcs],
         ),
         transitive_dependencies = dest.transitive_dependencies,
-        outputs = _merge_xcode_target_outputs(
-            src = src.outputs,
+        outputs = _merge_xcode_targets_outputs(
+            src_outputs = [
+                src.outputs
+                for src in srcs
+            ],
             dest = dest.outputs,
         ),
         lldb_context = dest.lldb_context,
         xcode_required_targets = dest.xcode_required_targets,
     )
 
-def _merge_xcode_target_inputs(*, src, dest):
+def _merge_xcode_targets_inputs(*, src_inputs, dest):
+    pchs = [src.pch for src in src_inputs if src.pch]
+    if len(pchs) > 1:
+        fail("""\
+Multiple 'pchs' found, expected 0 or 1: '{}'\
+""".format(pchs))
+
+    has_c_sources = False
+    for src in src_inputs:
+        if src.has_c_sources:
+            has_c_sources = True
+            break
+
+    has_cxx_sources = False
+    for src in src_inputs:
+        if src.has_cxx_sources:
+            has_cxx_sources = True
+            break
+
     return struct(
-        srcs = src.srcs,
-        non_arc_srcs = src.non_arc_srcs,
+        srcs = depset(
+            transitive = [input.srcs for input in src_inputs],
+        ),
+        non_arc_srcs = depset(
+            transitive = [input.non_arc_srcs for input in src_inputs],
+        ),
         hdrs = dest.hdrs,
-        pch = src.pch,
+        pch = pchs[0] if pchs else None,
         entitlements = dest.entitlements,
-        has_c_sources = src.has_c_sources,
-        has_cxx_sources = src.has_cxx_sources,
+        has_c_sources = has_c_sources,
+        has_cxx_sources = has_cxx_sources,
         resources = dest.resources,
         resource_bundle_dependencies = dest.resource_bundle_dependencies,
         generated = dest.generated,
@@ -342,19 +381,30 @@ def _merge_xcode_target_inputs(*, src, dest):
         linking_output_group_name = dest.linking_output_group_name,
     )
 
-def _merge_xcode_target_outputs(*, src, dest):
+def _merge_xcode_targets_outputs(*, src_outputs, dest):
+    swiftmodules = [src.swiftmodule for src in src_outputs if src.swiftmodule]
+    if len(swiftmodules) > 1:
+        fail("""\
+Multiple 'swiftmodules' found, expected 0 or 1: '{}'\
+""".format(swiftmodules))
+    swift_generated_headers = [src.swift_generated_header for src in src_outputs if src.swift_generated_header]
+    if len(swift_generated_headers) > 1:
+        fail("""\
+Multiple 'swift_generated_headers' found, expected 0 or 1: '{}'\
+""".format(swift_generated_headers))
+
     return struct(
         dsym_files = dest.dsym_files,
         linking_output_group_name = dest.linking_output_group_name,
-        swiftmodule = src.swiftmodule,
-        swift_generated_header = src.swift_generated_header,
+        swiftmodule = swiftmodules[0] if swiftmodules else None,
+        swift_generated_header = swift_generated_headers[0] if swift_generated_headers else None,
         product_file = dest.product_file,
         product_path = dest.product_path,
         products_output_group_name = dest.products_output_group_name,
         transitive_infoplists = dest.transitive_infoplists,
     )
 
-def _merge_xcode_target_product(*, src, dest):
+def _merge_xcode_targets_product(*, src_products, dest):
     return struct(
         name = dest.name,
         type = dest.type,
@@ -364,13 +414,13 @@ def _merge_xcode_target_product(*, src, dest):
         executable_name = dest.executable_name,
         package_dir = dest.package_dir,
         framework_files = depset(
-            transitive = [dest.framework_files, src.framework_files],
+            transitive = [dest.framework_files] + [product.framework_files for product in src_products],
         ),
-        additional_product_files = tuple([src.file]),
+        additional_product_files = tuple([src.file for src in src_products]),
         is_resource_bundle = dest.is_resource_bundle,
         _additional_files = depset(
-            [src.file],
-            transitive = [dest._additional_files, src._additional_files],
+            [src.file for src in src_products],
+            transitive = [dest._additional_files] + [src._additional_files for src in src_products],
         ),
     )
 
@@ -935,6 +985,6 @@ Target '{}' requires `ObjcProvider` or `CcInfo`\
 xcode_targets = struct(
     get_top_level_static_libraries = _get_top_level_static_libraries,
     make = _make_xcode_target,
-    merge = _merge_xcode_target,
+    merge = _merge_xcode_targets,
     to_dto = _xcode_target_to_dto,
 )

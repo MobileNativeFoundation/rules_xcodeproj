@@ -572,14 +572,12 @@ actual targets: {}
             for id in target_merge_srcs_by_label[src_target.label]:
                 target_merges.pop(id, None)
 
-    for src, dests in target_merges.items():
-        src_target = focused_targets.pop(src)
-
-        for dest in dests:
-            focused_targets[dest] = xcode_targets.merge(
-                src = src_target,
-                dest = focused_targets[dest],
-            )
+    for dest, srcs in target_merge_dests.items():
+        src_targets = [focused_targets.pop(src) for src in srcs]
+        focused_targets[dest] = xcode_targets.merge(
+            srcs = src_targets,
+            dest = focused_targets[dest],
+        )
 
     (
         xcode_generated_paths,
