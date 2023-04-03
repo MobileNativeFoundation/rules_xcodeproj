@@ -6,11 +6,11 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 def non_bzlmod_dependencies():
     http_archive(
         name = "build_bazel_rules_ios",
-        sha256 = "a31cedb2a619f9b6190bb541993583c647afae47e74fbe6b819666640be4f3d0",
+        sha256 = "810e3b2270ec781a51807478d188e51f1a5aad2247367509f17486e62dc151ac",
         urls = [
-            "https://github.com/bazel-ios/rules_ios/archive/f0acba3dd9e947c9552d062ba7ccb4ca930bf631.tar.gz",
+            "https://github.com/bazel-ios/rules_ios/archive/050a6dbf24f4e5e14fefa12a132d579da3231640.tar.gz",
         ],
-        strip_prefix = "rules_ios-f0acba3dd9e947c9552d062ba7ccb4ca930bf631",
+        strip_prefix = "rules_ios-050a6dbf24f4e5e14fefa12a132d579da3231640",
     )
 
     http_archive(
