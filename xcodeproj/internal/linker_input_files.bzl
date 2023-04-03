@@ -96,6 +96,8 @@ def _compute_primary_static_library(
                 # here: https://github.com/bazelbuild/bazel/blob/986ef7b68d61b1573d9c2bb1200585d07ad24691/src/main/java/com/google/devtools/build/lib/rules/cpp/CcLinkingHelper.java#L951-L1009
                 static_library = (library.static_library or
                                   library.pic_static_library)
+                if not static_library:
+                    continue
                 if static_library.is_source:
                     continue
                 return static_library
@@ -207,6 +209,8 @@ def _extract_top_level_values(
                 # here: https://github.com/bazelbuild/bazel/blob/986ef7b68d61b1573d9c2bb1200585d07ad24691/src/main/java/com/google/devtools/build/lib/rules/cpp/CcLinkingHelper.java#L951-L1009
                 static_library = (library.static_library or
                                   library.pic_static_library)
+                if not static_library:
+                    continue
                 static_libraries.append(static_library)
 
         # Dedup libraries
@@ -263,6 +267,8 @@ def _collect_libraries(
                 # here: https://github.com/bazelbuild/bazel/blob/986ef7b68d61b1573d9c2bb1200585d07ad24691/src/main/java/com/google/devtools/build/lib/rules/cpp/CcLinkingHelper.java#L951-L1009
                 static_library = (library.static_library or
                                   library.pic_static_library)
+                if not static_library:
+                    continue
                 if static_library.is_source:
                     continue
                 libraries.append(static_library)
