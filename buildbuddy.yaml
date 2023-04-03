@@ -47,6 +47,7 @@ x_templates:
 
   commands:
     - &set_release_archive_override "--output_base=setup-bazel-output-base run --config=workflows @rules_xcodeproj//tools:set_release_archive_override"
+    - &generate_integration "--output_base=bazel-output-base run --config=workflows --config=fixtures //test/fixtures:update"
     - &validate_integration "--output_base=bazel-output-base run --config=workflows --config=fixtures //test/fixtures:validate"
     - &build_all "--output_base=bazel-output-base build --config=workflows --noexperimental_enable_bzlmod //..."
     - &test_all "--output_base=bazel-output-base test --config=workflows --noexperimental_enable_bzlmod //..."
@@ -137,7 +138,7 @@ actions:
     <<: *normal_resources
     <<: *examples_integration_workspace
     bazel_commands:
-      - *validate_integration
+      - *generate_integration
       - *test_all
 
   - name: Integration Test - "examples/sanitizers"
