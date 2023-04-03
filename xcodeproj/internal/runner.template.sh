@@ -81,11 +81,7 @@ fi
 cd "$BUILD_WORKSPACE_DIRECTORY"
 
 # Remove bazelisk's path adjustment, so we find bazelisk itself
-if [[ -z "${BAZEL_REAL:-}" ]]; then
-  un_bazelisked_path=$(echo "$PATH" | perl -p -e 's|/[^:]+/bazelisk/downloads/[^:]+:||i')
-else
-  un_bazelisked_path=$(echo "$PATH" | perl -p -e 's|/[^:]+/tools:||i')
-fi
+un_bazelisked_path=$(echo "$PATH" | perl -p -e 's|/[^:]+/bazelisk/downloads/[^:]+:||i')
 
 # Unset `BAZELISK_SKIP_WRAPPER` to allow the wrapper to be run again for our
 # commands
@@ -125,8 +121,10 @@ chmod u+w "$generator_package_directory/custom_xcode_schemes.json"
 
 if [[ %is_fixture% -eq 1 ]]; then
   readonly def_bazel_path="\$HOMEWBREW_BIN/${bazel_path##*/}"
+  readonly def_bazel_real="\$BAZELISK_DOWNLOAD"
 else
   readonly def_bazel_path="$bazel_path"
+  readonly def_bazel_real="${BAZEL_REAL:-}"
 fi
 
 cat >> "$generator_package_directory/defs.bzl" <<EOF
@@ -134,6 +132,7 @@ cat >> "$generator_package_directory/defs.bzl" <<EOF
 # Constants
 
 BAZEL_PATH = "$def_bazel_path"
+BAZEL_REAL = "$def_bazel_real"
 WORKSPACE_DIRECTORY = "$BUILD_WORKSPACE_DIRECTORY"
 EOF
 

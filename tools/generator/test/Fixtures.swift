@@ -14,6 +14,7 @@ enum Fixtures {
             usesTabs: true
         ),
         bazel: "bazelisk",
+        bazelReal: "",
         bazelConfig: "rules_xcodeproj_fixtures",
         xcodeConfigurations: ["Release", "Profile"],
         defaultXcodeConfiguration: "Profile",

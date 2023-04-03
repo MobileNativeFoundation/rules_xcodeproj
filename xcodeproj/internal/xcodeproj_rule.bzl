@@ -987,6 +987,10 @@ def _write_spec(
     if bazel_path != "bazel":
         spec_dto["b"] = bazel_path
 
+    bazel_real = ctx.attr.bazel_real
+    if bazel_real:
+        spec_dto["r"] = bazel_real
+
     force_bazel_dependencies = (
         has_unfocused_targets or inputs.has_generated_files
     )
@@ -1702,6 +1706,7 @@ def make_xcodeproj_rule(
         "bazel_path": attr.string(
             mandatory = True,
         ),
+        "bazel_real": attr.string(),
         "build_mode": attr.string(
             mandatory = True,
         ),

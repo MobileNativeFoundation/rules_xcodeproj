@@ -1,4 +1,10 @@
-load(":defs.bzl", "xcodeproj", "BAZEL_PATH", "WORKSPACE_DIRECTORY")
+load(
+    ":defs.bzl",
+    "BAZEL_PATH",
+    "BAZEL_REAL",
+    "WORKSPACE_DIRECTORY",
+    "xcodeproj",
+)
 
 # DO NOT INVOKE THIS TARGET YOURSELF.
 #
@@ -8,6 +14,7 @@ xcodeproj(
     adjust_schemes_for_swiftui_previews = %adjust_schemes_for_swiftui_previews%,
     build_mode = "%build_mode%",
     bazel_path = BAZEL_PATH,
+    bazel_real = BAZEL_REAL,
     colorize = %colorize%,
     config = "%config%",
     default_xcode_configuration = %default_xcode_configuration%,
