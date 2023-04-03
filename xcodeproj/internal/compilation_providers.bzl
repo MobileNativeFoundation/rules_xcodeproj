@@ -93,11 +93,16 @@ def _to_objc(objc, cc_info):
     linkopts = []
     for input in cc_info.linking_context.linker_inputs.to_list():
         for library in input.libraries:
-            libraries.append(library.static_library)
+            # TODO: Account for all of the different linking strategies
+            # here: https://github.com/bazelbuild/bazel/blob/986ef7b68d61b1573d9c2bb1200585d07ad24691/src/main/java/com/google/devtools/build/lib/rules/cpp/CcLinkingHelper.java#L951-L1009
+            static_library = (library.static_library or
+                              library.pic_static_library)
+
+            libraries.append(static_library)
             link_inputs.extend(input.additional_inputs)
             linkopts.extend(input.user_link_flags)
             if library.alwayslink:
-                force_load_libraries.append(library.static_library)
+                force_load_libraries.append(static_library)
 
     return apple_common.new_objc_provider(
         force_load_library = depset(

@@ -92,9 +92,13 @@ def _compute_primary_static_library(
     elif compilation_providers.cc_info:
         for input in cc_linker_inputs:
             for library in input.libraries:
-                if library.static_library.is_source:
+                # TODO: Account for all of the different linking strategies
+                # here: https://github.com/bazelbuild/bazel/blob/986ef7b68d61b1573d9c2bb1200585d07ad24691/src/main/java/com/google/devtools/build/lib/rules/cpp/CcLinkingHelper.java#L951-L1009
+                static_library = (library.static_library or
+                                  library.pic_static_library)
+                if static_library.is_source:
                     continue
-                return library.static_library
+                return static_library
     return None
 
 def _extract_libraries(compilation_providers):
@@ -198,7 +202,12 @@ def _extract_top_level_values(
             for library in input.libraries:
                 if library in avoid_libraries:
                     continue
-                static_libraries.append(library.static_library)
+
+                # TODO: Account for all of the different linking strategies
+                # here: https://github.com/bazelbuild/bazel/blob/986ef7b68d61b1573d9c2bb1200585d07ad24691/src/main/java/com/google/devtools/build/lib/rules/cpp/CcLinkingHelper.java#L951-L1009
+                static_library = (library.static_library or
+                                  library.pic_static_library)
+                static_libraries.append(static_library)
 
         # Dedup libraries
         static_libraries = uniq(static_libraries)
@@ -250,9 +259,13 @@ def _collect_libraries(
     elif compilation_providers.cc_info:
         for input in cc_linker_inputs:
             for library in input.libraries:
-                if library.static_library.is_source:
+                # TODO: Account for all of the different linking strategies
+                # here: https://github.com/bazelbuild/bazel/blob/986ef7b68d61b1573d9c2bb1200585d07ad24691/src/main/java/com/google/devtools/build/lib/rules/cpp/CcLinkingHelper.java#L951-L1009
+                static_library = (library.static_library or
+                                  library.pic_static_library)
+                if static_library.is_source:
                     continue
-                libraries.append(library.static_library)
+                libraries.append(static_library)
     return libraries
 
 def _get_transitive_static_libraries(linker_inputs):
