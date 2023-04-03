@@ -3,11 +3,11 @@ cc_library(
     srcs = [
         "lib.c",
     ],
-    deps = [
-        ":lib_headers",
-    ],
     linkopts = [
         "-Wl,-exported_symbol,_lib3Version",
+    ],
+    deps = [
+        ":lib_headers",
     ],
     alwayslink = True,
 )
@@ -32,10 +32,10 @@ cc_binary(
 
 cc_library(
     name = "lib3",
-    visibility = ["//visibility:public"],
     srcs = [
-        "libfoo.dylib"
+        "libfoo.dylib",
     ],
+    visibility = ["//visibility:public"],
     deps = [
         ":lib_headers",
     ],
