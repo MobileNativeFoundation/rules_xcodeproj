@@ -754,7 +754,7 @@
 				BAZEL_LLDB_INIT = "$(HOME)/.lldbinit-rules_xcodeproj";
 				BAZEL_OUT = "$(PROJECT_DIR)/bazel-out";
 				BAZEL_OUTPUT_BASE = "$(_BAZEL_OUTPUT_BASE:standardizepath)";
-				BAZEL_PATH = bazel;
+				BAZEL_PATH = $HOMEWBREW_BIN/bazel;
 				BAZEL_WORKSPACE_ROOT = "$(SRCROOT)";
 				BUILD_DIR = "$(SYMROOT)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
 				BUILD_WORKSPACE_DIRECTORY = "$(SRCROOT)";

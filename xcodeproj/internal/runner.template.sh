@@ -80,9 +80,12 @@ fi
 
 cd "$BUILD_WORKSPACE_DIRECTORY"
 
-# Remove bazelisk's path adjustment, so we find the `tools/wrapper`, or bazelisk
-# itself
-un_bazelisked_path=$(echo "$PATH" | sed -E 's|/[^:]+/bazelisk/downloads/[^:]+:||')
+# Remove bazelisk's path adjustment, so we find bazelisk itself
+if [[ -z "${BAZEL_REAL:-}" ]]; then
+  un_bazelisked_path=$(echo "$PATH" | perl -p -e 's|/[^:]+/bazelisk/downloads/[^:]+:||i')
+else
+  un_bazelisked_path=$(echo "$PATH" | perl -p -e 's|/[^:]+/tools:||i')
+fi
 
 # Unset `BAZELISK_SKIP_WRAPPER` to allow the wrapper to be run again for our
 # commands
@@ -120,8 +123,19 @@ chmod u+w "$generator_package_directory/defs.bzl"
 cp "$schemes_json" "$generator_package_directory/custom_xcode_schemes.json"
 chmod u+w "$generator_package_directory/custom_xcode_schemes.json"
 
-echo "WORKSPACE_DIRECTORY = \"$BUILD_WORKSPACE_DIRECTORY\"" \
-  >> "$generator_package_directory/defs.bzl"
+if [[ %is_fixture% -eq 1 ]]; then
+  readonly def_bazel_path="\$HOMEWBREW_BIN/${bazel_path##*/}"
+else
+  readonly def_bazel_path="$bazel_path"
+fi
+
+cat >> "$generator_package_directory/defs.bzl" <<EOF
+
+# Constants
+
+BAZEL_PATH = "$def_bazel_path"
+WORKSPACE_DIRECTORY = "$BUILD_WORKSPACE_DIRECTORY"
+EOF
 
 bazelrcs=(
   --noworkspace_rc
@@ -154,7 +168,7 @@ fi
 
 readonly bazel_cmd=(
   env
-  PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+  PATH="/usr/bin:/bin"
   "$bazel_path"
 
   # Restart Bazel server if `DEVELOPER_DIR` changes to clear `developerDirCache`
