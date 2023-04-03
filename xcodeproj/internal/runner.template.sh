@@ -80,7 +80,8 @@ fi
 
 cd "$BUILD_WORKSPACE_DIRECTORY"
 
-# Remove bazelisk's path adjustment, so we find bazelisk itself
+# Remove bazelisk's path adjustment, so we find the `tools/wrapper`, or bazelisk
+# itself
 un_bazelisked_path=$(echo "$PATH" | perl -p -e 's|/[^:]+/bazelisk/downloads/[^:]+:||i')
 
 # Unset `BAZELISK_SKIP_WRAPPER` to allow the wrapper to be run again for our
