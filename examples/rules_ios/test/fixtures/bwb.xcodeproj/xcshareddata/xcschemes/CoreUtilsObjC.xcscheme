@@ -14,9 +14,9 @@
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "A23C98B4BFB6C775689A2A7D"
-                     BuildableName = "UIFramework.tvOS.framework"
-                     BlueprintName = "UIFramework.tvOS"
+                     BlueprintIdentifier = "64AE6000A6317B9C077F3B1E"
+                     BuildableName = "CoreUtilsObjC"
+                     BlueprintName = "CoreUtilsObjC"
                      ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
@@ -25,14 +25,14 @@
          <ExecutionAction
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
-               title = "Set Bazel Build Output Groups for UIFramework.tvOS"
+               title = "Set Bazel Build Output Groups for CoreUtilsObjC"
                scriptText = "echo &quot;$BAZEL_LABEL,$BAZEL_TARGET_ID&quot; &gt;&gt; &quot;$SCHEME_TARGET_IDS_FILE&quot;&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "A23C98B4BFB6C775689A2A7D"
-                     BuildableName = "UIFramework.tvOS.framework"
-                     BlueprintName = "UIFramework.tvOS"
+                     BlueprintIdentifier = "64AE6000A6317B9C077F3B1E"
+                     BuildableName = "CoreUtilsObjC"
+                     BlueprintName = "CoreUtilsObjC"
                      ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
@@ -48,23 +48,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C03F5C0CA2104493AE9E52C9"
-               BuildableName = "LibFramework.tvOS.framework"
-               BlueprintName = "LibFramework.tvOS"
-               ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A23C98B4BFB6C775689A2A7D"
-               BuildableName = "UIFramework.tvOS.framework"
-               BlueprintName = "UIFramework.tvOS"
+               BlueprintIdentifier = "64AE6000A6317B9C077F3B1E"
+               BuildableName = "CoreUtilsObjC"
+               BlueprintName = "CoreUtilsObjC"
                ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

@@ -14,9 +14,9 @@
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "656BB6FF8F9415647D9307E7"
-                     BuildableName = "Lib.framework"
-                     BlueprintName = "watchOS"
+                     BlueprintIdentifier = "12DB4C040F56113D380794C3"
+                     BuildableName = "UI"
+                     BlueprintName = "UI"
                      ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
@@ -25,14 +25,14 @@
          <ExecutionAction
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
-               title = "Set Bazel Build Output Groups for watchOS"
+               title = "Set Bazel Build Output Groups for UI"
                scriptText = "echo &quot;$BAZEL_LABEL,$BAZEL_TARGET_ID&quot; &gt;&gt; &quot;$SCHEME_TARGET_IDS_FILE&quot;&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "656BB6FF8F9415647D9307E7"
-                     BuildableName = "Lib.framework"
-                     BlueprintName = "watchOS"
+                     BlueprintIdentifier = "12DB4C040F56113D380794C3"
+                     BuildableName = "UI"
+                     BlueprintName = "UI"
                      ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
@@ -48,9 +48,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "656BB6FF8F9415647D9307E7"
-               BuildableName = "Lib.framework"
-               BlueprintName = "watchOS"
+               BlueprintIdentifier = "12DB4C040F56113D380794C3"
+               BuildableName = "UI"
+               BlueprintName = "UI"
                ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
