@@ -2,17 +2,8 @@
 
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
+# buildifier: disable=function-docstring
 def non_bzlmod_dependencies():
-    # # Replace with `MODULE.bazel` reference to 2.2.0 or newer once `rules_ios` supports it.
-    # http_archive(
-    #     name = "build_bazel_rules_apple",
-    #     sha256 = "9dd8a85fb8fdb3fde1dc3c508a78651f2c8cd9b09efdb9aee092459e2dc5cf5d",
-    #     urls = [
-    #         "https://github.com/bazelbuild/rules_apple/archive/a55a5e3b8dd75557f6feded6a5a4ba929bcd8edb.tar.gz",
-    #     ],
-    #     strip_prefix = "rules_apple-a55a5e3b8dd75557f6feded6a5a4ba929bcd8edb",
-    # )
-
     http_archive(
         name = "build_bazel_rules_ios",
         sha256 = "a31cedb2a619f9b6190bb541993583c647afae47e74fbe6b819666640be4f3d0",
