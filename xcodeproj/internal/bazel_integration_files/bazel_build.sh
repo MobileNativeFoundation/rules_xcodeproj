@@ -4,6 +4,7 @@
 # - BAZEL_INTEGRATION_DIR
 # - BAZEL_OUT
 # - BAZEL_PATH
+# - BAZEL_REAL
 # - DEVELOPER_DIR
 # - GENERATOR_LABEL
 # - HOME
@@ -62,9 +63,15 @@ if [[ -s "$BAZEL_INTEGRATION_DIR/xcodeproj_extra_flags.bazelrc" ]]; then
 fi
 readonly bazelrcs
 
+envs=(PATH="/usr/bin:/bin")
+
+if [[ -n "${BAZEL_REAL:-}" ]]; then
+  envs+=(BAZEL_REAL="$BAZEL_REAL")
+fi
+
 readonly bazel_cmd=(
   env
-  PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+  "${envs[@]}"
   "$BAZEL_PATH"
 
   # Restart bazel server if `DEVELOPER_DIR` changes to clear `developerDirCache`

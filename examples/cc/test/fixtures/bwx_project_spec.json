@@ -1,6 +1,7 @@
 {
     "B": "rules_xcodeproj",
     "R": "@//test/fixtures:xcodeproj_bwx",
+    "b": "$HOMEWBREW_BIN/bazel",
     "e": [
         {
             "_": "examples_cc_external/lib.h",
@@ -21,5 +22,6 @@
     "i": "fixture-index-import-path",
     "m": "13.0",
     "n": "bwx",
+    "r": "$BAZELISK_DOWNLOAD",
     "s": "auto"
 }
