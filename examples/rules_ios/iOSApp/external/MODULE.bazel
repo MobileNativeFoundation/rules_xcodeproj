@@ -1,0 +1,11 @@
+module(
+    name = "examples_ios_app_external",
+    version = "0.0.1",
+    compatibility_level = 1,
+)
+
+bazel_dep(
+    name = "rules_apple",
+    version = "2.1.0",
+    repo_name = "build_bazel_rules_apple",
+)

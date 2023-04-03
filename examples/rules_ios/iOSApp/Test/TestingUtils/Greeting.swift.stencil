@@ -1,0 +1,6 @@
+import XCTest
+
+@objcMembers
+public class SwiftGreetings: NSObject {
+    public static let expectedGreeting = "{{ greeting }}"
+}

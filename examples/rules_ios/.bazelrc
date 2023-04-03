@@ -1,0 +1,29 @@
+# Import parent workspace settings
+import %workspace%/../../shared.bazelrc
+
+# https://github.com/bazel-ios/rules_ios/issues/672
+build --noexperimental_strict_conflict_checks
+
+# Exercise the extra flags feature
+
+build:rules_xcodeproj --@rules_xcodeproj//xcodeproj:extra_common_flags='--verbose_failures'
+build:rules_xcodeproj --@rules_xcodeproj//xcodeproj:extra_generator_flags='--noverbose_failures'
+build:rules_xcodeproj --@rules_xcodeproj//xcodeproj:extra_indexbuild_flags='--noverbose_failures'
+build:rules_xcodeproj --@rules_xcodeproj//xcodeproj:extra_swiftuipreviews_flags='--noverbose_failures'
+
+build:rules_xcodeproj_integration --define=foo=bar
+
+# Required for sharing cache between Intel and Apple silicon
+build:rules_xcodeproj --@build_bazel_rules_swift//swift:universal_tools
+
+# Enable dSYM generation
+build:rules_xcodeproj --apple_generate_dsym
+
+build --test_env=INTEGRATION_TEST_ENV_VAR=TRUE
+
+# rules_ios
+build --features apple.virtualize_frameworks
+build --features apple.arm64_simulator_use_device_deps
+
+# Use a user.bazelrc if it exists
+try-import %workspace%/user.bazelrc

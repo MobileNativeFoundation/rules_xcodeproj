@@ -1,0 +1,51 @@
+[
+    {
+        "build_action": null,
+        "launch_action": null,
+        "name": "iOSAppUnitTests_Scheme",
+        "profile_action": null,
+        "test_action": {
+            "args": null,
+            "build_configuration": null,
+            "diagnostics": null,
+            "env": {
+                "IOSAPPSWIFTUNITTESTS_CUSTOMSCHEMEVAR": "TRUE"
+            },
+            "expand_variables_based_on": null,
+            "post_actions": [
+                {
+                    "expand_variables_based_on": "@//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests",
+                    "name": "Run After Tests",
+                    "script": "echo \"Hi\""
+                }
+            ],
+            "pre_actions": [],
+            "targets": [
+                "@//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests",
+                "@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests"
+            ]
+        }
+    },
+    {
+        "build_action": null,
+        "launch_action": null,
+        "name": "iOSAppSwiftUnitTests_CommandLineArgs_Scheme",
+        "profile_action": null,
+        "test_action": {
+            "args": [
+                "--command_line_args=-AppleLanguages,(en)"
+            ],
+            "build_configuration": "AppStore",
+            "diagnostics": null,
+            "env": {
+                "IOSAPPSWIFTUNITTESTS_CUSTOMSCHEMEVAR": "TRUE"
+            },
+            "expand_variables_based_on": null,
+            "post_actions": [],
+            "pre_actions": [],
+            "targets": [
+                "@//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests"
+            ]
+        }
+    }
+]
