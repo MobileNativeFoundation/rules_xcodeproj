@@ -143,7 +143,7 @@
         "m": true,
         "n": "tests",
         "o": {
-            "p": true,
+            "p": "tests.xctest",
             "s": {
                 "m": {
                     "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/tools/generator/test/tests.swiftmodule",
@@ -311,7 +311,7 @@
         "m": true,
         "n": "tests",
         "o": {
-            "p": true,
+            "p": "tests.xctest",
             "s": {
                 "m": {
                     "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/tools/generator/test/tests.swiftmodule",
@@ -366,13 +366,13 @@
         "l": "//tools/generator:generator",
         "n": "generator",
         "o": {
-            "p": true
+            "p": "generator_codesigned"
         },
         "p": {
             "e": "generator",
             "n": "generator",
             "p": {
-                "_": "applebin_macos-darwin_x86_64-dbg-STABLE-3/bin/tools/generator/rules_xcodeproj/generator/generator",
+                "_": "applebin_macos-darwin_x86_64-dbg-STABLE-3/bin/tools/generator/generator",
                 "t": "g"
             },
             "t": "com.apple.product-type.tool"
@@ -407,13 +407,13 @@
         "l": "//tools/generator:generator",
         "n": "generator",
         "o": {
-            "p": true
+            "p": "generator_codesigned"
         },
         "p": {
             "e": "generator",
             "n": "generator",
             "p": {
-                "_": "applebin_macos-darwin_x86_64-opt-STABLE-4/bin/tools/generator/rules_xcodeproj/generator/generator",
+                "_": "applebin_macos-darwin_x86_64-opt-STABLE-4/bin/tools/generator/generator",
                 "t": "g"
             },
             "t": "com.apple.product-type.tool"
@@ -802,7 +802,7 @@
         "l": "//tools/swiftc_stub:swiftc",
         "n": "swiftc",
         "o": {
-            "p": true,
+            "p": "swiftc_codesigned",
             "s": {
                 "m": {
                     "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/tools/swiftc_stub/tools_swiftc_stub_swiftc_stub_library.swiftmodule",
@@ -820,7 +820,7 @@
             "e": "swiftc",
             "n": "swiftc",
             "p": {
-                "_": "applebin_macos-darwin_x86_64-dbg-STABLE-3/bin/tools/swiftc_stub/rules_xcodeproj/swiftc/swiftc",
+                "_": "applebin_macos-darwin_x86_64-dbg-STABLE-3/bin/tools/swiftc_stub/swiftc",
                 "t": "g"
             },
             "t": "com.apple.product-type.tool"
@@ -880,7 +880,7 @@
         "l": "//tools/swiftc_stub:swiftc",
         "n": "swiftc",
         "o": {
-            "p": true,
+            "p": "swiftc_codesigned",
             "s": {
                 "m": {
                     "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/tools/swiftc_stub/tools_swiftc_stub_swiftc_stub_library.swiftmodule",
@@ -898,7 +898,7 @@
             "e": "swiftc",
             "n": "swiftc",
             "p": {
-                "_": "applebin_macos-darwin_x86_64-opt-STABLE-4/bin/tools/swiftc_stub/rules_xcodeproj/swiftc/swiftc",
+                "_": "applebin_macos-darwin_x86_64-opt-STABLE-4/bin/tools/swiftc_stub/swiftc",
                 "t": "g"
             },
             "t": "com.apple.product-type.tool"

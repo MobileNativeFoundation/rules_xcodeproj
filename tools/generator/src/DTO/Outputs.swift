@@ -13,17 +13,17 @@ struct Outputs: Equatable {
     }
 
     var swift: Swift?
-    let hasProductOutput: Bool
+    let productBasename: String?
 
-    init(hasProductOutput: Bool = false, swift: Swift? = nil) {
-        self.hasProductOutput = hasProductOutput
+    init(productBasename: String? = nil, swift: Swift? = nil) {
+        self.productBasename = productBasename
         self.swift = swift
     }
 }
 
 extension Outputs {
     var hasOutputs: Bool {
-        return hasSwiftOutputs || hasProductOutput
+        return hasSwiftOutputs || productBasename != nil
     }
 
     var hasSwiftOutputs: Bool {
@@ -35,15 +35,15 @@ extension Outputs {
 
 extension Outputs: Decodable {
     enum CodingKeys: String, CodingKey {
-        case hasProductOutput = "p"
+        case productBasename = "p"
         case swift = "s"
     }
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        hasProductOutput = try container
-            .decodeIfPresent(Bool.self, forKey: .hasProductOutput) ?? false
+        productBasename = try container
+            .decodeIfPresent(String.self, forKey: .productBasename)
         swift = try container.decodeIfPresent(Swift.self, forKey: .swift)
     }
 }

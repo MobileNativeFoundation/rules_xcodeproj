@@ -104,7 +104,7 @@
         "m": true,
         "n": "AppClip",
         "o": {
-            "p": true,
+            "p": "AppClip.app",
             "s": {
                 "m": {
                     "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/AppClip/AppClip.swiftmodule",
@@ -234,7 +234,7 @@
         "m": true,
         "n": "AppClip",
         "o": {
-            "p": true,
+            "p": "AppClip.app",
             "s": {
                 "m": {
                     "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/AppClip/AppClip.swiftmodule",
@@ -365,7 +365,7 @@
         "m": true,
         "n": "AppClip",
         "o": {
-            "p": true,
+            "p": "AppClip.app",
             "s": {
                 "m": {
                     "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/AppClip/AppClip.swiftmodule",
@@ -494,7 +494,7 @@
         "m": true,
         "n": "AppClip",
         "o": {
-            "p": true,
+            "p": "AppClip.app",
             "s": {
                 "m": {
                     "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/AppClip/AppClip.swiftmodule",
@@ -592,7 +592,7 @@
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-39/bin/CommandLine/CommandLineTool/CommandLineTool.dSYM\""
             ],
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-39/bin/CommandLine/CommandLineTool/rules_xcodeproj/CommandLineTool/CommandLineTool",
+            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-39/bin/CommandLine/CommandLineTool/CommandLineTool_codesigned",
             "CLANG_ENABLE_MODULES": true,
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
@@ -617,7 +617,7 @@
         "l": "//CommandLine/CommandLineTool:CommandLineTool",
         "n": "CommandLineTool",
         "o": {
-            "p": true
+            "p": "CommandLineTool_codesigned"
         },
         "p": {
             "a": [
@@ -629,7 +629,7 @@
             "e": "CommandLineTool",
             "n": "CommandLineTool",
             "p": {
-                "_": "applebin_macos-darwin_x86_64-dbg-STABLE-39/bin/CommandLine/CommandLineTool/rules_xcodeproj/CommandLineTool/CommandLineTool",
+                "_": "applebin_macos-darwin_x86_64-dbg-STABLE-39/bin/CommandLine/CommandLineTool/CommandLineTool",
                 "t": "g"
             },
             "t": "com.apple.product-type.tool"
@@ -716,7 +716,7 @@
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-40/bin/CommandLine/CommandLineTool/CommandLineTool.dSYM\""
             ],
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-40/bin/CommandLine/CommandLineTool/rules_xcodeproj/CommandLineTool/CommandLineTool",
+            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-40/bin/CommandLine/CommandLineTool/CommandLineTool_codesigned",
             "CLANG_ENABLE_MODULES": true,
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
@@ -741,7 +741,7 @@
         "l": "//CommandLine/CommandLineTool:CommandLineTool",
         "n": "CommandLineTool",
         "o": {
-            "p": true
+            "p": "CommandLineTool_codesigned"
         },
         "p": {
             "a": [
@@ -753,7 +753,7 @@
             "e": "CommandLineTool",
             "n": "CommandLineTool",
             "p": {
-                "_": "applebin_macos-darwin_x86_64-opt-STABLE-40/bin/CommandLine/CommandLineTool/rules_xcodeproj/CommandLineTool/CommandLineTool",
+                "_": "applebin_macos-darwin_x86_64-opt-STABLE-40/bin/CommandLine/CommandLineTool/CommandLineTool",
                 "t": "g"
             },
             "t": "com.apple.product-type.tool"
@@ -827,7 +827,7 @@
             "-fstack-protector-all"
         ],
         "b": {
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34/bin/CommandLine/CommandLineTool/rules_xcodeproj/tool.binary/tool.binary",
+            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34/bin/CommandLine/CommandLineTool/tool.binary_codesigned",
             "CLANG_ENABLE_MODULES": true,
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
@@ -850,7 +850,7 @@
         "l": "//CommandLine/CommandLineTool:UniversalCommandLineTool",
         "n": "UniversalCommandLineTool",
         "o": {
-            "p": true
+            "p": "tool.binary_codesigned"
         },
         "p": {
             "a": [
@@ -862,7 +862,7 @@
             "e": "tool.binary",
             "n": "tool.binary",
             "p": {
-                "_": "macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34/bin/CommandLine/CommandLineTool/rules_xcodeproj/tool.binary/tool.binary",
+                "_": "macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34/bin/CommandLine/CommandLineTool/tool.binary",
                 "t": "g"
             },
             "t": "com.apple.product-type.tool"
@@ -942,7 +942,7 @@
             "-O0"
         ],
         "b": {
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37/bin/CommandLine/CommandLineTool/rules_xcodeproj/tool.binary/tool.binary",
+            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37/bin/CommandLine/CommandLineTool/tool.binary_codesigned",
             "CLANG_ENABLE_MODULES": true,
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
@@ -965,7 +965,7 @@
         "l": "//CommandLine/CommandLineTool:UniversalCommandLineTool",
         "n": "UniversalCommandLineTool",
         "o": {
-            "p": true
+            "p": "tool.binary_codesigned"
         },
         "p": {
             "a": [
@@ -977,7 +977,7 @@
             "e": "tool.binary",
             "n": "tool.binary",
             "p": {
-                "_": "macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37/bin/CommandLine/CommandLineTool/rules_xcodeproj/tool.binary/tool.binary",
+                "_": "macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37/bin/CommandLine/CommandLineTool/tool.binary",
                 "t": "g"
             },
             "t": "com.apple.product-type.tool"
@@ -1051,7 +1051,7 @@
             "-fstack-protector-all"
         ],
         "b": {
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35/bin/CommandLine/CommandLineTool/rules_xcodeproj/tool.binary/tool.binary",
+            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35/bin/CommandLine/CommandLineTool/tool.binary_codesigned",
             "CLANG_ENABLE_MODULES": true,
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
@@ -1074,7 +1074,7 @@
         "l": "//CommandLine/CommandLineTool:UniversalCommandLineTool",
         "n": "UniversalCommandLineTool",
         "o": {
-            "p": true
+            "p": "tool.binary_codesigned"
         },
         "p": {
             "a": [
@@ -1086,7 +1086,7 @@
             "e": "tool.binary",
             "n": "tool.binary",
             "p": {
-                "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35/bin/CommandLine/CommandLineTool/rules_xcodeproj/tool.binary/tool.binary",
+                "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35/bin/CommandLine/CommandLineTool/tool.binary",
                 "t": "g"
             },
             "t": "com.apple.product-type.tool"
@@ -1166,7 +1166,7 @@
             "-O0"
         ],
         "b": {
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38/bin/CommandLine/CommandLineTool/rules_xcodeproj/tool.binary/tool.binary",
+            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38/bin/CommandLine/CommandLineTool/tool.binary_codesigned",
             "CLANG_ENABLE_MODULES": true,
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
@@ -1189,7 +1189,7 @@
         "l": "//CommandLine/CommandLineTool:UniversalCommandLineTool",
         "n": "UniversalCommandLineTool",
         "o": {
-            "p": true
+            "p": "tool.binary_codesigned"
         },
         "p": {
             "a": [
@@ -1201,7 +1201,7 @@
             "e": "tool.binary",
             "n": "tool.binary",
             "p": {
-                "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38/bin/CommandLine/CommandLineTool/rules_xcodeproj/tool.binary/tool.binary",
+                "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38/bin/CommandLine/CommandLineTool/tool.binary",
                 "t": "g"
             },
             "t": "com.apple.product-type.tool"
@@ -1711,6 +1711,10 @@
             "-fmodule-map-file=bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34/bin/external/examples_command_line_external/Library.swift.modulemap",
             "-Xcc",
             "-fmodule-map-file=bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34/bin/CommandLine/CommandLineToolLib/private_lib.swift.modulemap",
+            "-Xfrontend",
+            "-disable-autolink-framework",
+            "-Xfrontend",
+            "ExternalFramework",
             "-static",
             "-Xcc",
             "-O0",
@@ -1807,6 +1811,10 @@
             "-fmodule-map-file=bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37/bin/external/examples_command_line_external/Library.swift.modulemap",
             "-Xcc",
             "-fmodule-map-file=bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37/bin/CommandLine/CommandLineToolLib/private_lib.swift.modulemap",
+            "-Xfrontend",
+            "-disable-autolink-framework",
+            "-Xfrontend",
+            "ExternalFramework",
             "-static",
             "-Xcc",
             "-Os",
@@ -1908,6 +1916,10 @@
             "-fmodule-map-file=bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/examples_command_line_external/Library.swift.modulemap",
             "-Xcc",
             "-fmodule-map-file=bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/CommandLine/CommandLineToolLib/private_lib.swift.modulemap",
+            "-Xfrontend",
+            "-disable-autolink-framework",
+            "-Xfrontend",
+            "ExternalFramework",
             "-static",
             "-Xcc",
             "-O0",
@@ -2004,6 +2016,10 @@
             "-fmodule-map-file=bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35/bin/external/examples_command_line_external/Library.swift.modulemap",
             "-Xcc",
             "-fmodule-map-file=bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35/bin/CommandLine/CommandLineToolLib/private_lib.swift.modulemap",
+            "-Xfrontend",
+            "-disable-autolink-framework",
+            "-Xfrontend",
+            "ExternalFramework",
             "-static",
             "-Xcc",
             "-O0",
@@ -2100,6 +2116,10 @@
             "-fmodule-map-file=bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/external/examples_command_line_external/Library.swift.modulemap",
             "-Xcc",
             "-fmodule-map-file=bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineToolLib/private_lib.swift.modulemap",
+            "-Xfrontend",
+            "-disable-autolink-framework",
+            "-Xfrontend",
+            "ExternalFramework",
             "-static",
             "-Xcc",
             "-Os",
@@ -2201,6 +2221,10 @@
             "-fmodule-map-file=bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38/bin/external/examples_command_line_external/Library.swift.modulemap",
             "-Xcc",
             "-fmodule-map-file=bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38/bin/CommandLine/CommandLineToolLib/private_lib.swift.modulemap",
+            "-Xfrontend",
+            "-disable-autolink-framework",
+            "-Xfrontend",
+            "ExternalFramework",
             "-static",
             "-Xcc",
             "-Os",
@@ -3063,6 +3087,10 @@
             "-fmodule-map-file=bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/examples_command_line_external/Library.swift.modulemap",
             "-Xcc",
             "-fmodule-map-file=bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/CommandLine/CommandLineToolLib/lib_swift.swift.modulemap",
+            "-Xfrontend",
+            "-disable-autolink-framework",
+            "-Xfrontend",
+            "ExternalFramework",
             "-static",
             "-Xcc",
             "-O0",
@@ -3125,7 +3153,7 @@
         "m": true,
         "n": "CommandLineToolTests",
         "o": {
-            "p": true,
+            "p": "CommandLineToolTests.xctest",
             "s": {
                 "m": {
                     "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/CommandLine/Tests/LibSwiftTestsLib.swiftmodule",
@@ -3183,6 +3211,10 @@
             "-fmodule-map-file=bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/external/examples_command_line_external/Library.swift.modulemap",
             "-Xcc",
             "-fmodule-map-file=bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineToolLib/lib_swift.swift.modulemap",
+            "-Xfrontend",
+            "-disable-autolink-framework",
+            "-Xfrontend",
+            "ExternalFramework",
             "-static",
             "-Xcc",
             "-Os",
@@ -3247,7 +3279,7 @@
         "m": true,
         "n": "CommandLineToolTests",
         "o": {
-            "p": true,
+            "p": "CommandLineToolTests.xctest",
             "s": {
                 "m": {
                     "_": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/Tests/LibSwiftTestsLib.swiftmodule",
@@ -3699,7 +3731,7 @@
         "l": "//Lib/dist/dynamic:iOS",
         "n": "iOS",
         "o": {
-            "p": true
+            "p": "Lib.framework"
         },
         "p": {
             "a": [
@@ -3771,7 +3803,7 @@
         "l": "//Lib/dist/dynamic:iOS",
         "n": "iOS",
         "o": {
-            "p": true
+            "p": "Lib.framework"
         },
         "p": {
             "a": [
@@ -3846,7 +3878,7 @@
         "l": "//Lib/dist/dynamic:iOS",
         "n": "iOS",
         "o": {
-            "p": true
+            "p": "Lib.framework"
         },
         "p": {
             "a": [
@@ -3918,7 +3950,7 @@
         "l": "//Lib/dist/dynamic:iOS",
         "n": "iOS",
         "o": {
-            "p": true
+            "p": "Lib.framework"
         },
         "p": {
             "a": [
@@ -3992,7 +4024,7 @@
         "l": "//Lib/dist/dynamic:tvOS",
         "n": "tvOS",
         "o": {
-            "p": true
+            "p": "Lib.framework"
         },
         "p": {
             "a": [
@@ -4063,7 +4095,7 @@
         "l": "//Lib/dist/dynamic:tvOS",
         "n": "tvOS",
         "o": {
-            "p": true
+            "p": "Lib.framework"
         },
         "p": {
             "a": [
@@ -4137,7 +4169,7 @@
         "l": "//Lib/dist/dynamic:tvOS",
         "n": "tvOS",
         "o": {
-            "p": true
+            "p": "Lib.framework"
         },
         "p": {
             "a": [
@@ -4208,7 +4240,7 @@
         "l": "//Lib/dist/dynamic:tvOS",
         "n": "tvOS",
         "o": {
-            "p": true
+            "p": "Lib.framework"
         },
         "p": {
             "a": [
@@ -4282,7 +4314,7 @@
         "l": "//Lib/dist/dynamic:watchOS",
         "n": "watchOS",
         "o": {
-            "p": true
+            "p": "Lib.framework"
         },
         "p": {
             "a": [
@@ -4353,7 +4385,7 @@
         "l": "//Lib/dist/dynamic:watchOS",
         "n": "watchOS",
         "o": {
-            "p": true
+            "p": "Lib.framework"
         },
         "p": {
             "a": [
@@ -4427,7 +4459,7 @@
         "l": "//Lib/dist/dynamic:watchOS",
         "n": "watchOS",
         "o": {
-            "p": true
+            "p": "Lib.framework"
         },
         "p": {
             "a": [
@@ -4498,7 +4530,7 @@
         "l": "//Lib/dist/dynamic:watchOS",
         "n": "watchOS",
         "o": {
-            "p": true
+            "p": "Lib.framework"
         },
         "p": {
             "a": [
@@ -5553,7 +5585,7 @@
         "l": "//Lib:LibFramework.tvOS",
         "n": "LibFramework.tvOS",
         "o": {
-            "p": true
+            "p": "LibFramework.tvOS.framework"
         },
         "p": {
             "a": [
@@ -5627,7 +5659,7 @@
         "l": "//Lib:LibFramework.tvOS",
         "n": "LibFramework.tvOS",
         "o": {
-            "p": true
+            "p": "LibFramework.tvOS.framework"
         },
         "p": {
             "a": [
@@ -5704,7 +5736,7 @@
         "l": "//Lib:LibFramework.tvOS",
         "n": "LibFramework.tvOS",
         "o": {
-            "p": true
+            "p": "LibFramework.tvOS.framework"
         },
         "p": {
             "a": [
@@ -5778,7 +5810,7 @@
         "l": "//Lib:LibFramework.tvOS",
         "n": "LibFramework.tvOS",
         "o": {
-            "p": true
+            "p": "LibFramework.tvOS.framework"
         },
         "p": {
             "a": [
@@ -5855,7 +5887,7 @@
         "l": "//Lib:LibFramework.watchOS",
         "n": "LibFramework.watchOS",
         "o": {
-            "p": true
+            "p": "LibFramework.watchOS.framework"
         },
         "p": {
             "a": [
@@ -5929,7 +5961,7 @@
         "l": "//Lib:LibFramework.watchOS",
         "n": "LibFramework.watchOS",
         "o": {
-            "p": true
+            "p": "LibFramework.watchOS.framework"
         },
         "p": {
             "a": [
@@ -6006,7 +6038,7 @@
         "l": "//Lib:LibFramework.watchOS",
         "n": "LibFramework.watchOS",
         "o": {
-            "p": true
+            "p": "LibFramework.watchOS.framework"
         },
         "p": {
             "a": [
@@ -6080,7 +6112,7 @@
         "l": "//Lib:LibFramework.watchOS",
         "n": "LibFramework.watchOS",
         "o": {
-            "p": true
+            "p": "LibFramework.watchOS.framework"
         },
         "p": {
             "a": [
@@ -6209,7 +6241,7 @@
         "m": true,
         "n": "UIFramework.iOS",
         "o": {
-            "p": true,
+            "p": "UIFramework.iOS.framework",
             "s": {
                 "m": {
                     "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/UI/UI.swiftmodule",
@@ -6346,7 +6378,7 @@
         "m": true,
         "n": "UIFramework.iOS",
         "o": {
-            "p": true,
+            "p": "UIFramework.iOS.framework",
             "s": {
                 "m": {
                     "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/UI/UI.swiftmodule",
@@ -6484,7 +6516,7 @@
         "m": true,
         "n": "UIFramework.iOS",
         "o": {
-            "p": true,
+            "p": "UIFramework.iOS.framework",
             "s": {
                 "m": {
                     "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/UI/UI.swiftmodule",
@@ -6621,7 +6653,7 @@
         "m": true,
         "n": "UIFramework.iOS",
         "o": {
-            "p": true,
+            "p": "UIFramework.iOS.framework",
             "s": {
                 "m": {
                     "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/UI/UI.swiftmodule",
@@ -6759,7 +6791,7 @@
         "m": true,
         "n": "UIFramework.tvOS",
         "o": {
-            "p": true,
+            "p": "UIFramework.tvOS.framework",
             "s": {
                 "m": {
                     "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-6/bin/UI/UI.swiftmodule",
@@ -6896,7 +6928,7 @@
         "m": true,
         "n": "UIFramework.tvOS",
         "o": {
-            "p": true,
+            "p": "UIFramework.tvOS.framework",
             "s": {
                 "m": {
                     "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-opt-STABLE-12/bin/UI/UI.swiftmodule",
@@ -7034,7 +7066,7 @@
         "m": true,
         "n": "UIFramework.tvOS",
         "o": {
-            "p": true,
+            "p": "UIFramework.tvOS.framework",
             "s": {
                 "m": {
                     "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/UI/UI.swiftmodule",
@@ -7171,7 +7203,7 @@
         "m": true,
         "n": "UIFramework.tvOS",
         "o": {
-            "p": true,
+            "p": "UIFramework.tvOS.framework",
             "s": {
                 "m": {
                     "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9/bin/UI/UI.swiftmodule",
@@ -7309,7 +7341,7 @@
         "m": true,
         "n": "UIFramework.watchOS",
         "o": {
-            "p": true,
+            "p": "UIFramework.watchOS.framework",
             "s": {
                 "m": {
                     "_": "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-5/bin/UI/UI.swiftmodule",
@@ -7446,7 +7478,7 @@
         "m": true,
         "n": "UIFramework.watchOS",
         "o": {
-            "p": true,
+            "p": "UIFramework.watchOS.framework",
             "s": {
                 "m": {
                     "_": "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-opt-STABLE-11/bin/UI/UI.swiftmodule",
@@ -7584,7 +7616,7 @@
         "m": true,
         "n": "UIFramework.watchOS",
         "o": {
-            "p": true,
+            "p": "UIFramework.watchOS.framework",
             "s": {
                 "m": {
                     "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/UI/UI.swiftmodule",
@@ -7721,7 +7753,7 @@
         "m": true,
         "n": "UIFramework.watchOS",
         "o": {
-            "p": true,
+            "p": "UIFramework.watchOS.framework",
             "s": {
                 "m": {
                     "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8/bin/UI/UI.swiftmodule",
@@ -7855,7 +7887,7 @@
         "m": true,
         "n": "WidgetExtension",
         "o": {
-            "p": true,
+            "p": "WidgetExtension.appex",
             "s": {
                 "m": {
                     "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/WidgetExtension/WidgetExtension.swiftmodule",
@@ -7984,7 +8016,7 @@
         "m": true,
         "n": "WidgetExtension",
         "o": {
-            "p": true,
+            "p": "WidgetExtension.appex",
             "s": {
                 "m": {
                     "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/WidgetExtension/WidgetExtension.swiftmodule",
@@ -8113,7 +8145,7 @@
         "m": true,
         "n": "WidgetExtension",
         "o": {
-            "p": true,
+            "p": "WidgetExtension.appex",
             "s": {
                 "m": {
                     "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/WidgetExtension/WidgetExtension.swiftmodule",
@@ -8241,7 +8273,7 @@
         "m": true,
         "n": "WidgetExtension",
         "o": {
-            "p": true,
+            "p": "WidgetExtension.appex",
             "s": {
                 "m": {
                     "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/WidgetExtension/WidgetExtension.swiftmodule",
@@ -8309,7 +8341,7 @@
         "l": "//iMessageApp:iMessageApp",
         "n": "iMessageApp",
         "o": {
-            "p": true
+            "p": "iMessageApp.app"
         },
         "p": {
             "e": "iMessageApp",
@@ -8363,7 +8395,7 @@
         "l": "//iMessageApp:iMessageApp",
         "n": "iMessageApp",
         "o": {
-            "p": true
+            "p": "iMessageApp.app"
         },
         "p": {
             "e": "iMessageApp",
@@ -8478,7 +8510,7 @@
         "m": true,
         "n": "iMessageAppExtension",
         "o": {
-            "p": true,
+            "p": "iMessageAppExtension.appex",
             "s": {
                 "m": {
                     "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iMessageApp/iMessageAppExtension.swiftmodule",
@@ -8603,7 +8635,7 @@
         "m": true,
         "n": "iMessageAppExtension",
         "o": {
-            "p": true,
+            "p": "iMessageAppExtension.appex",
             "s": {
                 "m": {
                     "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iMessageApp/iMessageAppExtension.swiftmodule",
@@ -9322,7 +9354,7 @@
         "l": "//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC",
         "n": "FrameworkCoreUtilsObjC",
         "o": {
-            "p": true
+            "p": "CoreUtilsObjC.framework"
         },
         "p": {
             "a": [
@@ -9444,7 +9476,7 @@
         "l": "//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC",
         "n": "FrameworkCoreUtilsObjC",
         "o": {
-            "p": true
+            "p": "CoreUtilsObjC.framework"
         },
         "p": {
             "a": [
@@ -9564,7 +9596,7 @@
         "l": "//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC",
         "n": "FrameworkCoreUtilsObjC",
         "o": {
-            "p": true
+            "p": "CoreUtilsObjC.framework"
         },
         "p": {
             "a": [
@@ -9690,7 +9722,7 @@
         "l": "//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC",
         "n": "FrameworkCoreUtilsObjC",
         "o": {
-            "p": true
+            "p": "CoreUtilsObjC.framework"
         },
         "p": {
             "a": [
@@ -9903,11 +9935,14 @@
             "-Ibazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer",
             "-Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7",
             "-Fexternal/com_google_google_maps/GoogleMaps.xcframework/ios-arm64",
+            "-Fexternal/com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64",
             "-Fexternal/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64",
             "-Xcc",
             "-Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7",
             "-Xcc",
             "-Fexternal/com_google_google_maps/GoogleMaps.xcframework/ios-arm64",
+            "-Xcc",
+            "-Fexternal/com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64",
             "-Xcc",
             "-Fexternal/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64",
             "-Xcc",
@@ -9942,6 +9977,18 @@
             "-fmodule-map-file=external/com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64/GoogleMapsCore.framework/Modules/module.modulemap",
             "-Xcc",
             "-fmodule-map-file=external/com_google_google_maps/GoogleMaps.xcframework/ios-arm64/GoogleMaps.framework/Modules/module.modulemap",
+            "-Xfrontend",
+            "-disable-autolink-framework",
+            "-Xfrontend",
+            "GoogleMaps",
+            "-Xfrontend",
+            "-disable-autolink-framework",
+            "-Xfrontend",
+            "GoogleMapsCore",
+            "-Xfrontend",
+            "-disable-autolink-framework",
+            "-Xfrontend",
+            "GoogleMapsBase",
             "-Xfrontend",
             "-disable-autolink-framework",
             "-Xfrontend",
@@ -10082,7 +10129,7 @@
         "m": true,
         "n": "iOSApp",
         "o": {
-            "p": true,
+            "p": "iOSApp.app",
             "s": {
                 "m": {
                     "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/iOSApp/Source/iOSApp.swiftmodule",
@@ -10116,11 +10163,14 @@
             "-Ibazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer",
             "-Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7",
             "-Fexternal/com_google_google_maps/GoogleMaps.xcframework/ios-arm64",
+            "-Fexternal/com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64",
             "-Fexternal/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64",
             "-Xcc",
             "-Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7",
             "-Xcc",
             "-Fexternal/com_google_google_maps/GoogleMaps.xcframework/ios-arm64",
+            "-Xcc",
+            "-Fexternal/com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64",
             "-Xcc",
             "-Fexternal/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64",
             "-Xcc",
@@ -10155,6 +10205,18 @@
             "-fmodule-map-file=external/com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64/GoogleMapsCore.framework/Modules/module.modulemap",
             "-Xcc",
             "-fmodule-map-file=external/com_google_google_maps/GoogleMaps.xcframework/ios-arm64/GoogleMaps.framework/Modules/module.modulemap",
+            "-Xfrontend",
+            "-disable-autolink-framework",
+            "-Xfrontend",
+            "GoogleMaps",
+            "-Xfrontend",
+            "-disable-autolink-framework",
+            "-Xfrontend",
+            "GoogleMapsCore",
+            "-Xfrontend",
+            "-disable-autolink-framework",
+            "-Xfrontend",
+            "GoogleMapsBase",
             "-Xfrontend",
             "-disable-autolink-framework",
             "-Xfrontend",
@@ -10296,7 +10358,7 @@
         "m": true,
         "n": "iOSApp",
         "o": {
-            "p": true,
+            "p": "iOSApp.app",
             "s": {
                 "m": {
                     "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/iOSApp/Source/iOSApp.swiftmodule",
@@ -10333,11 +10395,14 @@
             "-Ibazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer",
             "-Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator",
             "-Fexternal/com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator",
+            "-Fexternal/com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator",
             "-Fexternal/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator",
             "-Xcc",
             "-Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator",
             "-Xcc",
             "-Fexternal/com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator",
+            "-Xcc",
+            "-Fexternal/com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator",
             "-Xcc",
             "-Fexternal/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator",
             "-Xcc",
@@ -10372,6 +10437,18 @@
             "-fmodule-map-file=external/com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator/GoogleMapsCore.framework/Modules/module.modulemap",
             "-Xcc",
             "-fmodule-map-file=external/com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator/GoogleMaps.framework/Modules/module.modulemap",
+            "-Xfrontend",
+            "-disable-autolink-framework",
+            "-Xfrontend",
+            "GoogleMaps",
+            "-Xfrontend",
+            "-disable-autolink-framework",
+            "-Xfrontend",
+            "GoogleMapsCore",
+            "-Xfrontend",
+            "-disable-autolink-framework",
+            "-Xfrontend",
+            "GoogleMapsBase",
             "-Xfrontend",
             "-disable-autolink-framework",
             "-Xfrontend",
@@ -10511,7 +10588,7 @@
         "m": true,
         "n": "iOSApp",
         "o": {
-            "p": true,
+            "p": "iOSApp.app",
             "s": {
                 "m": {
                     "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/iOSApp.swiftmodule",
@@ -10545,11 +10622,14 @@
             "-Ibazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer",
             "-Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator",
             "-Fexternal/com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator",
+            "-Fexternal/com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator",
             "-Fexternal/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator",
             "-Xcc",
             "-Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator",
             "-Xcc",
             "-Fexternal/com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator",
+            "-Xcc",
+            "-Fexternal/com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator",
             "-Xcc",
             "-Fexternal/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator",
             "-Xcc",
@@ -10584,6 +10664,18 @@
             "-fmodule-map-file=external/com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator/GoogleMapsCore.framework/Modules/module.modulemap",
             "-Xcc",
             "-fmodule-map-file=external/com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator/GoogleMaps.framework/Modules/module.modulemap",
+            "-Xfrontend",
+            "-disable-autolink-framework",
+            "-Xfrontend",
+            "GoogleMaps",
+            "-Xfrontend",
+            "-disable-autolink-framework",
+            "-Xfrontend",
+            "GoogleMapsCore",
+            "-Xfrontend",
+            "-disable-autolink-framework",
+            "-Xfrontend",
+            "GoogleMapsBase",
             "-Xfrontend",
             "-disable-autolink-framework",
             "-Xfrontend",
@@ -10724,7 +10816,7 @@
         "m": true,
         "n": "iOSApp",
         "o": {
-            "p": true,
+            "p": "iOSApp.app",
             "s": {
                 "m": {
                     "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Source/iOSApp.swiftmodule",
@@ -10842,6 +10934,7 @@
             "-DAWESOME",
             "-Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator",
             "-Fexternal/com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator",
+            "-Fexternal/com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator",
             "-Fexternal/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator",
             "-DOS_IOS",
             "-fno-autolink",
@@ -10906,7 +10999,7 @@
         "l": "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests",
         "n": "iOSAppObjCUnitTests",
         "o": {
-            "p": true
+            "p": "iOSAppObjCUnitTests.xctest"
         },
         "p": {
             "a": [
@@ -11020,6 +11113,7 @@
             "-DAWESOME",
             "-Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator",
             "-Fexternal/com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator",
+            "-Fexternal/com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator",
             "-Fexternal/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator",
             "-DOS_IOS",
             "-fno-autolink",
@@ -11088,7 +11182,7 @@
         "l": "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests",
         "n": "iOSAppObjCUnitTests",
         "o": {
-            "p": true
+            "p": "iOSAppObjCUnitTests.xctest"
         },
         "p": {
             "a": [
@@ -11124,11 +11218,14 @@
             "-Ibazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/TestingUtils",
             "-Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator",
             "-Fexternal/com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator",
+            "-Fexternal/com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator",
             "-Fexternal/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator",
             "-Xcc",
             "-Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator",
             "-Xcc",
             "-Fexternal/com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator",
+            "-Xcc",
+            "-Fexternal/com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator",
             "-Xcc",
             "-Fexternal/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator",
             "-Xcc",
@@ -11176,6 +11273,18 @@
             "-Xcc",
             "-fmodule-map-file=bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/TestingUtils/TestingUtils.swift.modulemap",
             "-DAWESOME",
+            "-Xfrontend",
+            "-disable-autolink-framework",
+            "-Xfrontend",
+            "GoogleMaps",
+            "-Xfrontend",
+            "-disable-autolink-framework",
+            "-Xfrontend",
+            "GoogleMapsCore",
+            "-Xfrontend",
+            "-disable-autolink-framework",
+            "-Xfrontend",
+            "GoogleMapsBase",
             "-Xfrontend",
             "-disable-autolink-framework",
             "-Xfrontend",
@@ -11291,7 +11400,7 @@
         "m": true,
         "n": "iOSAppSwiftUnitTests",
         "o": {
-            "p": true,
+            "p": "iOSAppSwiftUnitTests.xctest",
             "s": {
                 "m": {
                     "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTests.swiftmodule",
@@ -11329,11 +11438,14 @@
             "-Ibazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Test/TestingUtils",
             "-Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator",
             "-Fexternal/com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator",
+            "-Fexternal/com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator",
             "-Fexternal/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator",
             "-Xcc",
             "-Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator",
             "-Xcc",
             "-Fexternal/com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator",
+            "-Xcc",
+            "-Fexternal/com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator",
             "-Xcc",
             "-Fexternal/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator",
             "-Xcc",
@@ -11381,6 +11493,18 @@
             "-Xcc",
             "-fmodule-map-file=bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Test/TestingUtils/TestingUtils.swift.modulemap",
             "-DAWESOME",
+            "-Xfrontend",
+            "-disable-autolink-framework",
+            "-Xfrontend",
+            "GoogleMaps",
+            "-Xfrontend",
+            "-disable-autolink-framework",
+            "-Xfrontend",
+            "GoogleMapsCore",
+            "-Xfrontend",
+            "-disable-autolink-framework",
+            "-Xfrontend",
+            "GoogleMapsBase",
             "-Xfrontend",
             "-disable-autolink-framework",
             "-Xfrontend",
@@ -11498,7 +11622,7 @@
         "m": true,
         "n": "iOSAppSwiftUnitTests",
         "o": {
-            "p": true,
+            "p": "iOSAppSwiftUnitTests.xctest",
             "s": {
                 "m": {
                     "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTests.swiftmodule",
@@ -11904,7 +12028,7 @@
         "m": true,
         "n": "macOSApp",
         "o": {
-            "p": true,
+            "p": "macOSApp.app",
             "s": {
                 "m": {
                     "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-29/bin/macOSApp/Source/macOSApp.swiftmodule",
@@ -12016,7 +12140,7 @@
         "m": true,
         "n": "macOSApp",
         "o": {
-            "p": true,
+            "p": "macOSApp.app",
             "s": {
                 "m": {
                     "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-30/bin/macOSApp/Source/macOSApp.swiftmodule",
@@ -12120,7 +12244,7 @@
         "l": "//macOSApp/Test/UITests:macOSAppUITests",
         "n": "macOSAppUITests",
         "o": {
-            "p": true,
+            "p": "macOSAppUITests.xctest",
             "s": {
                 "m": {
                     "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-29/bin/macOSApp/Test/UITests/macOSAppUITests.swiftmodule",
@@ -12223,7 +12347,7 @@
         "l": "//macOSApp/Test/UITests:macOSAppUITests",
         "n": "macOSAppUITests",
         "o": {
-            "p": true,
+            "p": "macOSAppUITests.xctest",
             "s": {
                 "m": {
                     "_": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-30/bin/macOSApp/Test/UITests/macOSAppUITests.swiftmodule",
@@ -12363,7 +12487,7 @@
         "m": true,
         "n": "tvOSApp",
         "o": {
-            "p": true,
+            "p": "tvOSApp.app",
             "s": {
                 "m": {
                     "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-6/bin/tvOSApp/Source/tvOSApp.swiftmodule",
@@ -12501,7 +12625,7 @@
         "m": true,
         "n": "tvOSApp",
         "o": {
-            "p": true,
+            "p": "tvOSApp.app",
             "s": {
                 "m": {
                     "_": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-opt-STABLE-12/bin/tvOSApp/Source/tvOSApp.swiftmodule",
@@ -12640,7 +12764,7 @@
         "m": true,
         "n": "tvOSApp",
         "o": {
-            "p": true,
+            "p": "tvOSApp.app",
             "s": {
                 "m": {
                     "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/tvOSApp/Source/tvOSApp.swiftmodule",
@@ -12777,7 +12901,7 @@
         "m": true,
         "n": "tvOSApp",
         "o": {
-            "p": true,
+            "p": "tvOSApp.app",
             "s": {
                 "m": {
                     "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9/bin/tvOSApp/Source/tvOSApp.swiftmodule",
@@ -12886,7 +13010,7 @@
         "l": "//tvOSApp/Test/UITests:tvOSAppUITests",
         "n": "tvOSAppUITests",
         "o": {
-            "p": true,
+            "p": "tvOSAppUITests.xctest",
             "s": {
                 "m": {
                     "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/tvOSApp/Test/UITests/tvOSAppUITests.swiftmodule",
@@ -12994,7 +13118,7 @@
         "l": "//tvOSApp/Test/UITests:tvOSAppUITests",
         "n": "tvOSAppUITests",
         "o": {
-            "p": true,
+            "p": "tvOSAppUITests.xctest",
             "s": {
                 "m": {
                     "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9/bin/tvOSApp/Test/UITests/tvOSAppUITests.swiftmodule",
@@ -13136,7 +13260,7 @@
         "m": true,
         "n": "tvOSAppUnitTests",
         "o": {
-            "p": true,
+            "p": "tvOSAppUnitTests.xctest",
             "s": {
                 "m": {
                     "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/tvOSApp/Test/UnitTests/tvOSAppUnitTests.swiftmodule",
@@ -13277,7 +13401,7 @@
         "m": true,
         "n": "tvOSAppUnitTests",
         "o": {
-            "p": true,
+            "p": "tvOSAppUnitTests.xctest",
             "s": {
                 "m": {
                     "_": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9/bin/tvOSApp/Test/UnitTests/tvOSAppUnitTests.swiftmodule",
@@ -13385,7 +13509,7 @@
         "l": "//watchOSApp/Test/UITests:watchOSAppUITests",
         "n": "watchOSAppUITests",
         "o": {
-            "p": true,
+            "p": "watchOSAppUITests.xctest",
             "s": {
                 "m": {
                     "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/watchOSApp/Test/UITests/watchOSAppUITestsLibrary.swiftmodule",
@@ -13492,7 +13616,7 @@
         "l": "//watchOSApp/Test/UITests:watchOSAppUITests",
         "n": "watchOSAppUITests",
         "o": {
-            "p": true,
+            "p": "watchOSAppUITests.xctest",
             "s": {
                 "m": {
                     "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8/bin/watchOSApp/Test/UITests/watchOSAppUITestsLibrary.swiftmodule",
@@ -13564,7 +13688,7 @@
         "l": "//watchOSApp:watchOSApp",
         "n": "watchOSApp",
         "o": {
-            "p": true
+            "p": "watchOSApp.app"
         },
         "p": {
             "e": "watchOSApp",
@@ -13622,7 +13746,7 @@
         "l": "//watchOSApp:watchOSApp",
         "n": "watchOSApp",
         "o": {
-            "p": true
+            "p": "watchOSApp.app"
         },
         "p": {
             "e": "watchOSApp",
@@ -13682,7 +13806,7 @@
         "l": "//watchOSApp:watchOSApp",
         "n": "watchOSApp",
         "o": {
-            "p": true
+            "p": "watchOSApp.app"
         },
         "p": {
             "e": "watchOSApp",
@@ -13739,7 +13863,7 @@
         "l": "//watchOSApp:watchOSApp",
         "n": "watchOSApp",
         "o": {
-            "p": true
+            "p": "watchOSApp.app"
         },
         "p": {
             "e": "watchOSApp",
@@ -13864,7 +13988,7 @@
         "m": true,
         "n": "watchOSAppExtensionUnitTests",
         "o": {
-            "p": true,
+            "p": "watchOSAppExtensionUnitTests.xctest",
             "s": {
                 "m": {
                     "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/watchOSAppExtension/Test/UnitTests/watchOSAppExtensionUnitTestsLibrary.swiftmodule",
@@ -13999,7 +14123,7 @@
         "m": true,
         "n": "watchOSAppExtensionUnitTests",
         "o": {
-            "p": true,
+            "p": "watchOSAppExtensionUnitTests.xctest",
             "s": {
                 "m": {
                     "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8/bin/watchOSAppExtension/Test/UnitTests/watchOSAppExtensionUnitTestsLibrary.swiftmodule",
@@ -14140,7 +14264,7 @@
         "m": true,
         "n": "watchOSAppExtension",
         "o": {
-            "p": true,
+            "p": "watchOSAppExtension.appex",
             "s": {
                 "m": {
                     "_": "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-5/bin/watchOSAppExtension/watchOSAppExtension.swiftmodule",
@@ -14280,7 +14404,7 @@
         "m": true,
         "n": "watchOSAppExtension",
         "o": {
-            "p": true,
+            "p": "watchOSAppExtension.appex",
             "s": {
                 "m": {
                     "_": "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-opt-STABLE-11/bin/watchOSAppExtension/watchOSAppExtension.swiftmodule",
@@ -14420,7 +14544,7 @@
         "m": true,
         "n": "watchOSAppExtension",
         "o": {
-            "p": true,
+            "p": "watchOSAppExtension.appex",
             "s": {
                 "m": {
                     "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/watchOSAppExtension/watchOSAppExtension.swiftmodule",
@@ -14559,7 +14683,7 @@
         "m": true,
         "n": "watchOSAppExtension",
         "o": {
-            "p": true,
+            "p": "watchOSAppExtension.appex",
             "s": {
                 "m": {
                     "_": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8/bin/watchOSAppExtension/watchOSAppExtension.swiftmodule",

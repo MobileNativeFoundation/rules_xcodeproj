@@ -170,7 +170,7 @@
             "-D__TIME__=\"redacted\""
         ],
         "b": {
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/tool/rules_xcodeproj/tool/tool",
+            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/tool/tool_codesigned",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
             "GCC_OPTIMIZATION_LEVEL": "0",
@@ -192,13 +192,13 @@
         "l": "//tool:tool",
         "n": "tool",
         "o": {
-            "p": true
+            "p": "tool_codesigned"
         },
         "p": {
             "e": "tool",
             "n": "tool",
             "p": {
-                "_": "darwin_x86_64-dbg-STABLE-1/bin/tool/rules_xcodeproj/tool/tool",
+                "_": "darwin_x86_64-dbg-STABLE-1/bin/tool/tool",
                 "t": "g"
             },
             "t": "com.apple.product-type.tool"

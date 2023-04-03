@@ -496,7 +496,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\nelse\n  \"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n    \"_BazelForcedCompile_.swift\" \\\n    \"tool\" \\\n    \"\"\nfi\n";
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\nelse\n  \"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n    \"_BazelForcedCompile_.swift\" \\\n    \"tool_codesigned\" \\\n    \"\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		87A14AD57BFE6E30F703140D /* Create linking dependencies */ = {
@@ -708,7 +708,7 @@
 					"-D_FORTIFY_SOURCE=0",
 				);
 				BAZEL_LABEL = "@//tool:tool";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/tool/rules_xcodeproj/tool/tool";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/tool/tool_codesigned";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/tool";
 				BAZEL_TARGET_ID = "//tool:tool darwin_x86_64-dbg-STABLE-1";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
