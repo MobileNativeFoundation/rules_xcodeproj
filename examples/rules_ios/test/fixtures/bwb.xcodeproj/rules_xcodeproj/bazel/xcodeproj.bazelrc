@@ -103,28 +103,5 @@ build:_rules_xcodeproj_build --config=rules_xcodeproj
 
 ### Project specific configs
 
-# Set `--verbose_failures` on `info` as the closest to a "no-op" config as
-# possible, until https://github.com/bazelbuild/bazel/issues/12844 is fixed
-info:rules_xcodeproj_integration --verbose_failures
-
-# Inherit from base configs
-build:rules_xcodeproj_integration_generator --config=rules_xcodeproj_generator
-build:rules_xcodeproj_integration_generator --config=rules_xcodeproj_integration
-build:rules_xcodeproj_integration_indexbuild --config=rules_xcodeproj_indexbuild
-build:rules_xcodeproj_integration_indexbuild --config=rules_xcodeproj_integration
-build:rules_xcodeproj_integration_swiftuipreviews --config=rules_xcodeproj_swiftuipreviews
-build:rules_xcodeproj_integration_swiftuipreviews --config=rules_xcodeproj_integration
-build:rules_xcodeproj_integration_asan --config=rules_xcodeproj_asan
-build:rules_xcodeproj_integration_asan --config=rules_xcodeproj_integration
-build:rules_xcodeproj_integration_tsan --config=rules_xcodeproj_tsan
-build:rules_xcodeproj_integration_tsan --config=rules_xcodeproj_integration
-build:rules_xcodeproj_integration_ubsan --config=rules_xcodeproj_ubsan
-build:rules_xcodeproj_integration_ubsan --config=rules_xcodeproj_integration
-
-# Private implementation detail. Don't adjust this config, adjust
-# `rules_xcodeproj_integration` instead.
-build:_rules_xcodeproj_integration_build --config=_rules_xcodeproj_build
-build:_rules_xcodeproj_integration_build --config=rules_xcodeproj_integration
-
 # Import `xcodeproj.bazelrc` if it exists
 try-import %workspace%/xcodeproj.bazelrc

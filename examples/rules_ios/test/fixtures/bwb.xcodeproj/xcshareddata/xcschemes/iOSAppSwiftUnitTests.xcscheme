@@ -165,16 +165,6 @@
             value = "$(BUILD_WORKSPACE_DIRECTORY)"
             isEnabled = "YES">
          </EnvironmentVariable>
-         <EnvironmentVariable
-            key = "INTEGRATION_TEST_ENV_VAR"
-            value = "TRUE"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-         <EnvironmentVariable
-            key = "IOS_APP_UNIT_TESTS"
-            value = "CUSTOM_ENV_VALUE"
-            isEnabled = "YES">
-         </EnvironmentVariable>
       </EnvironmentVariables>
    </TestAction>
    <LaunchAction

@@ -17,9 +17,6 @@ rules_ios_apple_framework(
         "//tvOSApp:__subpackages__",
         "//watchOSAppExtension:__subpackages__",
     ],
-    xcconfig = {
-        "APPLICATION_EXTENSION_API_ONLY": "YES",
-    },
     deps = [
         "//Lib",
     ],

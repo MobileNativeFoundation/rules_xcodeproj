@@ -6,9 +6,7 @@ public struct ContentView: View {
 
     public var body: some View {
         VStack {
-            Image("Logo", bundle: .libResources)
-            Text(greeting)
-            Text(libResourcesString)
+            Text("Hello world")
         }
             .padding(64)
             .multilineTextAlignment(.center)

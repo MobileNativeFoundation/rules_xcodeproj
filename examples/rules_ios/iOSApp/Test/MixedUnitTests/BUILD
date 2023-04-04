@@ -4,11 +4,11 @@ load(
 )
 
 rules_ios_ios_unit_test(
-    name = "iOSAppObjCUnitTests",
-    srcs = glob(["**/*.m"]),
-    bundle_id = "rules-xcodeproj.example.objctests",
+    name = "iOSAppMixedUnitTests",
+    srcs = glob(["**/*.m", "**/*.swift"]),
+    bundle_id = "rules-xcodeproj.example.mixedtests",
     minimum_os_version = "15.0",
-    module_name = "iOSAppObjCUnitTests",
+    module_name = "iOSAppMixedUnitTests",
     test_host = "//iOSApp",
     visibility = ["@rules_xcodeproj//xcodeproj:generated"],
     deps = [

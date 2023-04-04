@@ -8,5 +8,4 @@ rules_ios_ios_ui_test(
     module_name = "iOSAppUITests",
     test_host = "//iOSApp",
     visibility = ["@rules_xcodeproj//xcodeproj:generated"],
-    deps = ["@examples_ios_app_external//:ExternalResources"],
 )

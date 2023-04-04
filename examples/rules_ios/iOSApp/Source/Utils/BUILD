@@ -10,13 +10,14 @@ rules_ios_apple_framework(
         # Headers included here on purpose, to test `hdrs` collection logic
         ["**/*.h"],
     ),
-    data = ["@examples_ios_app_external//:ExternalImportedBundle"],
     module_name = "Utils",
+    platforms = {
+        "ios": "15.0",
+    },
     public_headers = glob(["**/*.h"]),
     tags = ["manual"],
     visibility = ["//iOSApp:__subpackages__"],
     deps = [
         "//iOSApp/Source/CoreUtilsObjC",
-        "@FXPageControl",
     ],
 )
