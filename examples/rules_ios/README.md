@@ -1,4 +1,3 @@
-# Integration Tests
+# rules_ios Tests
 
-This is an example of an extra file that is added to the Xcode project via
-`extra_files`.
+This directory contains an example using the [rules_ios](https://github.com/bazel-ios/rules_ios) ruleset.
