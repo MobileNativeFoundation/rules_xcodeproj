@@ -169,17 +169,17 @@ def parsed_file_path(path):
     else:
         return project_file_path(path)
 
-RESOURCES_FOLDER_TYPE_EXTENSIONS = {
-    ".bundle": None,
-    ".docc": None,
-    ".framework": None,
-    ".scnassets": None,
-    ".xcassets": None,
-}
+RESOURCES_FOLDER_TYPE_EXTENSIONS = [
+    ".bundle",
+    ".docc",
+    ".framework",
+    ".scnassets",
+    ".xcassets",
+]
 
-FRAMEWORK_EXTENSIONS = {
-    ".framework": None,
-}
+FRAMEWORK_EXTENSIONS = [
+    ".framework",
+]
 
 def normalized_file_path(file, *, folder_type_extensions):
     """Converts a `File` into a `FilePath` Swift DTO value, leaving off \
