@@ -17,7 +17,7 @@ xcodeproj_fixture(
 
 _FIXTURES = [
     ":xcodeproj_bwb",
-    # Disable since VFS is enabled by default for 'rules_ios' examples.
+    # Disabled since VFS is enabled by default for 'rules_ios' examples.
     # ":xcodeproj_bwx",
 ]
 

@@ -2506,7 +2506,7 @@
 				ARCHS = x86_64;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				BAZEL_LABEL = "@//iOSApp/Source:iOSApp";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/iOSApp/Source/iOSApp.app";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/iOSApp/Source/iOSApp.ipa";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/iOSApp/Source";
 				BAZEL_TARGET_ID = "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-dbg-STABLE-2";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
@@ -2677,7 +2677,7 @@
 				BAZEL_COMPILE_TARGET_ID = "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests_swift ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1";
 				"BAZEL_COMPILE_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_ID)";
 				BAZEL_LABEL = "@//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTests.xctest";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTests.__internal__.__test_bundle.zip";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/iOSApp/Test/SwiftUnitTests";
 				BAZEL_TARGET_ID = "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-2";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
@@ -2760,7 +2760,7 @@
 				BAZEL_COMPILE_TARGET_ID = "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests_objc ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1";
 				"BAZEL_COMPILE_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_ID)";
 				BAZEL_LABEL = "@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests.xctest";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests.__internal__.__test_bundle.zip";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/iOSApp/Test/ObjCUnitTests";
 				BAZEL_TARGET_ID = "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-2";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
@@ -2797,7 +2797,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				BAZEL_LABEL = "@//iOSApp/Test/MixedUnitTests:iOSAppMixedUnitTests";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/iOSApp/Test/MixedUnitTests/iOSAppMixedUnitTests.xctest";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/iOSApp/Test/MixedUnitTests/iOSAppMixedUnitTests.__internal__.__test_bundle.zip";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/iOSApp/Test/MixedUnitTests";
 				BAZEL_TARGET_ID = "//iOSApp/Test/MixedUnitTests:iOSAppMixedUnitTests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-2";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
@@ -2918,7 +2918,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				BAZEL_LABEL = "@//Lib:LibDynamic";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/Lib/LibDynamic.framework";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/Lib/LibDynamic.framework.zip";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/Lib";
 				BAZEL_TARGET_ID = "//Lib:LibDynamic applebin_ios-ios_x86_64-dbg-STABLE-2";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
@@ -3104,7 +3104,7 @@
 				BAZEL_HOST_LABEL_0 = "@//iOSApp/Source:iOSApp";
 				BAZEL_HOST_TARGET_ID_0 = "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-dbg-STABLE-2";
 				BAZEL_LABEL = "@//WidgetExtension:WidgetExtension";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/WidgetExtension/WidgetExtension.appex";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/WidgetExtension/WidgetExtension.zip";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/WidgetExtension";
 				BAZEL_TARGET_ID = "//WidgetExtension:WidgetExtension applebin_ios-ios_x86_64-dbg-STABLE-2";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";

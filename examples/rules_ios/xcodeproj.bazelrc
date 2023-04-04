@@ -1,5 +1,2 @@
 # Import parent workspace settings
 import %workspace%/../../xcodeproj.bazelrc
-
-# Disabling archived bundles for fixture coverage
-build:rules_xcodeproj --define=apple.experimental.tree_artifact_outputs=1

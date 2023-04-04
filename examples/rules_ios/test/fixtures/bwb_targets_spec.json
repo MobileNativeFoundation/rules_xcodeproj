@@ -61,7 +61,7 @@
             "t": "g"
         },
         "b": {
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/Lib/LibDynamic.framework",
+            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/Lib/LibDynamic.framework.zip",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework",
@@ -89,7 +89,7 @@
             "e": "LibDynamic",
             "n": "LibDynamic",
             "p": {
-                "_": "applebin_ios-ios_x86_64-dbg-STABLE-2/bin/Lib/LibDynamic.framework",
+                "_": "applebin_ios-ios_x86_64-dbg-STABLE-2/bin/Lib/LibDynamic.framework_archive-root/LibDynamic.framework",
                 "t": "g"
             },
             "t": "com.apple.product-type.framework.static"
@@ -343,7 +343,7 @@
         },
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/WidgetExtension/WidgetExtension.appex",
+            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/WidgetExtension/WidgetExtension.zip",
             "CODE_SIGN_STYLE": "Manual",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
@@ -372,7 +372,7 @@
             "e": "WidgetExtension",
             "n": "WidgetExtension",
             "p": {
-                "_": "applebin_ios-ios_x86_64-dbg-STABLE-2/bin/WidgetExtension/WidgetExtension.appex",
+                "_": "applebin_ios-ios_x86_64-dbg-STABLE-2/bin/WidgetExtension/WidgetExtension_archive-root/WidgetExtension.appex",
                 "t": "g"
             },
             "t": "com.apple.product-type.app-extension"
@@ -988,7 +988,7 @@
         ],
         "b": {
             "ASSETCATALOG_COMPILER_APPICON_NAME": "AppIcon",
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/iOSApp/Source/iOSApp.app",
+            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/iOSApp/Source/iOSApp.ipa",
             "CODE_SIGN_STYLE": "Manual",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
@@ -1026,7 +1026,7 @@
             "e": "iOSApp_ExecutableName",
             "n": "iOSApp",
             "p": {
-                "_": "applebin_ios-ios_x86_64-dbg-STABLE-2/bin/iOSApp/Source/iOSApp.app",
+                "_": "applebin_ios-ios_x86_64-dbg-STABLE-2/bin/iOSApp/Source/iOSApp_archive-root/Payload/iOSApp.app",
                 "t": "g"
             },
             "t": "com.apple.product-type.application"
@@ -1164,7 +1164,7 @@
             "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-dbg-STABLE-2"
         ],
         "b": {
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/iOSApp/Test/MixedUnitTests/iOSAppMixedUnitTests.xctest",
+            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/iOSApp/Test/MixedUnitTests/iOSAppMixedUnitTests.__internal__.__test_bundle.zip",
             "CODE_SIGN_STYLE": "Manual",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
@@ -1192,7 +1192,7 @@
             "e": "iOSAppMixedUnitTests",
             "n": "iOSAppMixedUnitTests",
             "p": {
-                "_": "applebin_ios-ios_x86_64-dbg-STABLE-2/bin/iOSApp/Test/MixedUnitTests/iOSAppMixedUnitTests.xctest",
+                "_": "applebin_ios-ios_x86_64-dbg-STABLE-2/bin/iOSApp/Test/MixedUnitTests/iOSAppMixedUnitTests.__internal__.__test_bundle_archive-root/iOSAppMixedUnitTests.xctest",
                 "t": "g"
             },
             "t": "com.apple.product-type.bundle.unit-test"
@@ -1462,7 +1462,7 @@
             "-fstack-protector-all"
         ],
         "b": {
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests.xctest",
+            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests.__internal__.__test_bundle.zip",
             "CODE_SIGN_STYLE": "Manual",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
@@ -1504,7 +1504,7 @@
             "e": "iOSAppObjCUnitTests",
             "n": "iOSAppObjCUnitTests",
             "p": {
-                "_": "applebin_ios-ios_x86_64-dbg-STABLE-2/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests.xctest",
+                "_": "applebin_ios-ios_x86_64-dbg-STABLE-2/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests.__internal__.__test_bundle_archive-root/iOSAppObjCUnitTests.xctest",
                 "t": "g"
             },
             "t": "com.apple.product-type.bundle.unit-test"
@@ -1582,7 +1582,7 @@
             "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-dbg-STABLE-2"
         ],
         "b": {
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTests.xctest",
+            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTests.__internal__.__test_bundle.zip",
             "CODE_SIGN_STYLE": "Manual",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
@@ -1635,7 +1635,7 @@
             "e": "iOSAppSwiftUnitTests",
             "n": "iOSAppSwiftUnitTests",
             "p": {
-                "_": "applebin_ios-ios_x86_64-dbg-STABLE-2/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTests.xctest",
+                "_": "applebin_ios-ios_x86_64-dbg-STABLE-2/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTests.__internal__.__test_bundle_archive-root/iOSAppSwiftUnitTests.xctest",
                 "t": "g"
             },
             "t": "com.apple.product-type.bundle.unit-test"
