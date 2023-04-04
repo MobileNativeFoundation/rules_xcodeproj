@@ -435,7 +435,7 @@ def _collect_input_files(
              compilation_context.direct_textual_headers),
             exclude_headers = exclude_headers,
             pch = pch,
-            srcs = srcs,
+            srcs = srcs + non_arc_srcs + hdrs,
             generated = generated,
         ))
 
