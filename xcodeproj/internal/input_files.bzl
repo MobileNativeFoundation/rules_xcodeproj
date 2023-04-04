@@ -10,6 +10,8 @@ load(":compilation_providers.bzl", comp_providers = "compilation_providers")
 load(":filelists.bzl", "filelists")
 load(
     ":files.bzl",
+    "FRAMEWORK_EXTENSIONS",
+    "RESOURCES_FOLDER_TYPE_EXTENSIONS",
     "file_path",
     "normalized_file_path",
     "parsed_file_path",
@@ -44,7 +46,10 @@ def _process_cc_info_headers(headers, *, exclude_headers, pch, srcs, generated):
     def _process_header(header):
         if not header.is_source:
             generated.append(header)
-        return normalized_file_path(header)
+        return normalized_file_path(
+            header,
+            folder_type_extensions = FRAMEWORK_EXTENSIONS,
+        )
 
     return [
         _process_header(header)
@@ -146,8 +151,6 @@ def _collect_input_files(
     output_files = target.files.to_list()
 
     entitlements = []
-    extra_files = []
-    generated = []
     c_srcs = []
     cxx_srcs = []
     hdrs = []
@@ -155,6 +158,9 @@ def _collect_input_files(
     pch = []
     srcs = []
     uncategorized = []
+
+    generated = [file for file in additional_files if not file.is_source]
+    extra_files = [file_path(file) for file in additional_files]
 
     # Include BUILD files for the project but not for external repos
     if not target.label.workspace_root:
@@ -244,7 +250,14 @@ def _collect_input_files(
 
         if file.is_source:
             if not categorized and file not in output_files:
-                uncategorized.append(normalized_file_path(file))
+                uncategorized.append(
+                    normalized_file_path(
+                        file,
+                        folder_type_extensions = (
+                            RESOURCES_FOLDER_TYPE_EXTENSIONS
+                        ),
+                    ),
+                )
         elif categorized:
             generated.append(file)
 
@@ -323,11 +336,18 @@ def _collect_input_files(
             for file in linker_input_additional_files
             if file not in framework_files
         ]
-    additional_files = additional_files + linker_input_additional_files
-
-    generated.extend([file for file in additional_files if not file.is_source])
-    for file in additional_files:
-        extra_files.append(normalized_file_path(file))
+        generated.extend([
+            file
+            for file in linker_input_additional_files
+            if not file.is_source
+        ])
+        for file in linker_input_additional_files:
+            extra_files.append(
+                normalized_file_path(
+                    file,
+                    folder_type_extensions = FRAMEWORK_EXTENSIONS,
+                ),
+            )
 
     is_resource_bundle_consuming = is_bundle and AppleResourceInfo in target
     label = target.label

@@ -6,6 +6,7 @@ load("@bazel_skylib//lib:structs.bzl", "structs")
 load(":collections.bzl", "set_if_true", "uniq")
 load(
     ":files.bzl",
+    "FRAMEWORK_EXTENSIONS",
     "build_setting_path",
     "file_path",
     "file_path_to_dto",
@@ -907,7 +908,12 @@ def _product_to_dto(product):
         dto,
         "a",
         [
-            file_path_to_dto(normalized_file_path(file))
+            file_path_to_dto(
+                normalized_file_path(
+                    file,
+                    folder_type_extensions = FRAMEWORK_EXTENSIONS,
+                ),
+            )
             for file in product._additional_files.to_list()
         ],
     )

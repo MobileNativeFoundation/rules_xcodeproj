@@ -5,6 +5,7 @@ load("@bazel_skylib//lib:paths.bzl", "paths")
 load(":configuration.bzl", "calculate_configuration")
 load(
     ":files.bzl",
+    "RESOURCES_FOLDER_TYPE_EXTENSIONS",
     "file_path",
     "join_paths_ignoring_empty",
     "normalized_file_path",
@@ -58,7 +59,10 @@ def _process_resource(
             #   Folder Type detection.
             return None
 
-    return normalized_file_path(file)
+    return normalized_file_path(
+        file,
+        folder_type_extensions = RESOURCES_FOLDER_TYPE_EXTENSIONS,
+    )
 
 def _add_resources_to_bundle(
         *,
