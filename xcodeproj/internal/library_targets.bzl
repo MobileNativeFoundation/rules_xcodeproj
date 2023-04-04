@@ -128,6 +128,7 @@ def process_library_target(
         label.workspace_root,
         label.package,
     )
+
     search_paths, conlyopts, cxxopts, swiftcopts, clang_opts = process_opts(
         ctx = ctx,
         build_mode = build_mode,
@@ -136,6 +137,7 @@ def process_library_target(
         target = target,
         package_bin_dir = package_bin_dir,
         build_settings = build_settings,
+        transitive_infos = transitive_infos,
     )
 
     swiftmodules = process_swiftmodules(swift_info = swift_info)

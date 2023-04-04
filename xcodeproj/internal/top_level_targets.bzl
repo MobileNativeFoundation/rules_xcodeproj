@@ -412,6 +412,7 @@ def process_top_level_target(
         target = target,
         package_bin_dir = package_bin_dir,
         build_settings = build_settings,
+        transitive_infos = transitive_infos,
     )
 
     if not inputs.srcs:

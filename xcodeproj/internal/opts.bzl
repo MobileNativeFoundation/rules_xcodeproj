@@ -106,7 +106,8 @@ def _get_unprocessed_compiler_opts(
         build_mode,
         has_c_sources,
         has_cxx_sources,
-        target):
+        target,
+        transitive_infos):
     """Returns the unprocessed compiler options for the given target.
 
     Args:
@@ -170,11 +171,16 @@ def _get_unprocessed_compiler_opts(
                 ctx.disabled_features + _UNSUPPORTED_CC_FEATURES
             ),
         )
+        include_directories = depset(
+            compilation_context.includes.to_list(), 
+            transitive = [info.compilation_providers.cc_info.compilation_context.includes for attr, info in transitive_infos if info.compilation_providers.cc_info]
+        )
+
         variables = cc_common.create_compile_variables(
             feature_configuration = feature_configuration,
             cc_toolchain = cc_toolchain,
             user_compile_flags = user_copts,
-            include_directories = compilation_context.includes,
+            include_directories = include_directories,
             quote_include_directories = compilation_context.quote_includes,
             system_include_directories = compilation_context.system_includes,
             framework_include_directories = (
@@ -824,7 +830,8 @@ def _process_target_compiler_opts(
         has_cxx_sources,
         target,
         package_bin_dir,
-        build_settings):
+        build_settings,
+        transitive_infos):
     """Processes the compiler options for a target.
 
     Args:
@@ -858,6 +865,7 @@ def _process_target_compiler_opts(
         has_c_sources = has_c_sources,
         has_cxx_sources = has_cxx_sources,
         target = target,
+        transitive_infos = transitive_infos,
     )
     return _process_compiler_opts(
         conlyopts = conlyopts,
@@ -916,7 +924,8 @@ def process_opts(
         has_cxx_sources,
         target,
         package_bin_dir,
-        build_settings):
+        build_settings,
+        transitive_infos):
     """Processes the compiler options for a target.
 
     Args:
@@ -949,6 +958,7 @@ def process_opts(
         target = target,
         package_bin_dir = package_bin_dir,
         build_settings = build_settings,
+        transitive_infos = transitive_infos,
     )
 
 # These functions are exposed only for access in unit tests.
