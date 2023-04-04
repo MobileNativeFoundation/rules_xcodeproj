@@ -77,6 +77,7 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
     non_arc_srcs = []
     pch = None
     provisioning_profile = None
+    collect_uncategorized_files = False
     should_generate_target = True
 
     attrs = dir(ctx.rule.attr)
@@ -144,6 +145,7 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
             xcode_targets["watch_application"] = [target_type.compile]
     elif AppleBundleInfo in target:
         should_generate_target = False
+        collect_uncategorized_files = ctx.rule.kind != "apple_bundle_import"
         xcode_targets = {
             "deps": [this_target_type, None],
         }
@@ -173,6 +175,7 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
 """.format(target.label)
 
         should_generate_target = False
+        collect_uncategorized_files = False
     else:
         xcode_targets = {
             "deps": [this_target_type, None],
@@ -183,6 +186,7 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
         is_executable = executable and not executable.is_source
 
         should_generate_target = is_executable
+        collect_uncategorized_files = not should_generate_target
         if is_executable and "srcs" in attrs:
             srcs = ["srcs"]
 
@@ -202,6 +206,7 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
             bazel_build_mode_error = bazel_build_mode_error,
             bundle_id = bundle_id,
             codesignopts = codesignopts,
+            collect_uncategorized_files = collect_uncategorized_files,
             deps = deps,
             entitlements = entitlements,
             env = env,

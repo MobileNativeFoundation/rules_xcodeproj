@@ -258,17 +258,31 @@ def _collect_input_files(
             return
         transitive_extra_files.append(dep[XcodeProjInfo].inputs.uncategorized)
 
+    collect_uncategorized_files = (
+        automatic_target_info.collect_uncategorized_files
+    )
+
     for attr in dir(ctx.rule.files):
         if _should_ignore_input_attr(attr):
             continue
+
         handler = file_handlers.get(attr, None)
+
+        if not collect_uncategorized_files and not handler:
+            continue
+
         for file in getattr(ctx.rule.files, attr):
             _handle_file(file, handler = handler)
 
     for attr in dir(ctx.rule.file):
         if _should_ignore_input_attr(attr):
             continue
+
         handler = file_handlers.get(attr, None)
+
+        if not collect_uncategorized_files and not handler:
+            continue
+
         _handle_file(getattr(ctx.rule.file, attr), handler = handler)
 
     for attr in automatic_target_info.all_attrs:

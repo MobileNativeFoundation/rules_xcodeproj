@@ -34,6 +34,9 @@ An attribute name (or `None`) to collect the bundle id string from.
         "codesignopts": """\
 An attribute name (or `None`) to collect the `codesignopts` `list` from.
 """,
+        "collect_uncategorized_files": """\
+Whether to collect files from uncategorized attributes.
+""",
         "deps": """\
 A sequence of attribute names to collect `Target`s from for `deps`-like
 attributes.
