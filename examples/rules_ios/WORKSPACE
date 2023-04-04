@@ -1,0 +1,66 @@
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+http_archive(
+    name = "build_bazel_rules_ios",
+    sha256 = "810e3b2270ec781a51807478d188e51f1a5aad2247367509f17486e62dc151ac",
+    strip_prefix = "rules_ios-050a6dbf24f4e5e14fefa12a132d579da3231640",
+    urls = [
+        "https://github.com/bazel-ios/rules_ios/archive/050a6dbf24f4e5e14fefa12a132d579da3231640.tar.gz",
+    ],
+)
+
+load(
+    "@build_bazel_rules_ios//rules:repositories.bzl",
+    "rules_ios_dependencies",
+)
+
+rules_ios_dependencies()
+
+local_repository(
+    name = "rules_xcodeproj",
+    path = "../..",
+)
+
+load(
+    "@rules_xcodeproj//xcodeproj:repositories.bzl",
+    "xcodeproj_rules_dependencies",
+)
+
+xcodeproj_rules_dependencies()
+
+load(
+    "@build_bazel_rules_apple//apple:repositories.bzl",
+    "apple_rules_dependencies",
+)
+
+apple_rules_dependencies()
+
+load(
+    "@build_bazel_rules_swift//swift:repositories.bzl",
+    "swift_rules_dependencies",
+)
+
+swift_rules_dependencies()
+
+load(
+    "@build_bazel_rules_swift//swift:extras.bzl",
+    "swift_rules_extra_dependencies",
+)
+
+swift_rules_extra_dependencies()
+
+load(
+    "@build_bazel_apple_support//lib:repositories.bzl",
+    "apple_support_dependencies",
+)
+
+apple_support_dependencies()
+
+load(
+    "@build_bazel_rules_apple//apple:apple.bzl",
+    "provisioning_profile_repository",
+)
+
+provisioning_profile_repository(
+    name = "local_provisioning_profiles",
+)
