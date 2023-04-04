@@ -110,7 +110,7 @@ extension XCSchemeExtensionsTests {
 // MARK: XCScheme.TestAction Initializer Tests
 
 extension XCSchemeExtensionsTests {
-    func test_TestAction_init_noCustomEnvArgs_xcode() throws {
+    func test_TestAction_init_noCustomEnvArgs_launchActionHasRunnable_xcode() throws {
         let buildConfigurationName = "Foo"
         let testActionInfo = try XCSchemeInfo.TestActionInfo(
             resolveHostsFor: .init(
@@ -121,7 +121,11 @@ extension XCSchemeExtensionsTests {
             ),
             topLevelTargetInfos: []
         ).orThrow()
-        let actual = try XCScheme.TestAction(buildMode: .xcode, testActionInfo: testActionInfo)
+        let actual = try XCScheme.TestAction(
+            buildMode: .xcode,
+            testActionInfo: testActionInfo,
+            launchActionHasRunnable: true
+        )
         let expected = XCScheme.TestAction(
             buildConfiguration: buildConfigurationName,
             macroExpansion: unitTestTargetInfo.buildableReference,
@@ -140,7 +144,41 @@ extension XCSchemeExtensionsTests {
         XCTAssertNoDifference(actual, expected)
     }
 
-    func test_TestAction_init_withCustomEnvArgs_xcode() throws {
+    func test_TestAction_init_noCustomEnvArgs_noLaunchActionHasRunnable_xcode() throws {
+        let buildConfigurationName = "Foo"
+        let testActionInfo = try XCSchemeInfo.TestActionInfo(
+            resolveHostsFor: .init(
+                buildConfigurationName: buildConfigurationName,
+                targetInfos: [unitTestTargetInfo, uiTestTargetInfo],
+                preActions: [.init(name: "Custom Pre Script", expandVariablesBasedOn: nil, script: "exit 0")],
+                postActions: [.init(name: "Custom Post Script", expandVariablesBasedOn: libraryTargetInfo, script: "exit 1")]
+            ),
+            topLevelTargetInfos: []
+        ).orThrow()
+        let actual = try XCScheme.TestAction(
+            buildMode: .xcode,
+            testActionInfo: testActionInfo,
+            launchActionHasRunnable: false
+        )
+        let expected = XCScheme.TestAction(
+            buildConfiguration: buildConfigurationName,
+            macroExpansion: unitTestTargetInfo.buildableReference,
+            testables: [
+                .init(skipped: false, buildableReference: unitTestTargetInfo.buildableReference),
+                .init(skipped: false, buildableReference: uiTestTargetInfo.buildableReference),
+            ],
+            preActions: [
+                .init(scriptText: "exit 0", title: "Custom Pre Script", environmentBuildable: nil),
+            ],
+            postActions: [
+                .init(scriptText: "exit 1", title: "Custom Post Script", environmentBuildable: libraryTargetInfo.buildableReference),
+            ],
+            shouldUseLaunchSchemeArgsEnv: false
+        )
+        XCTAssertNoDifference(actual, expected)
+    }
+
+    func test_TestAction_init_withCustomEnvArgs_launchActionHasRunnable_xcode() throws {
         let buildConfigurationName = "Foo"
         let testActionInfo = try XCSchemeInfo.TestActionInfo(
             resolveHostsFor: .init(
@@ -151,7 +189,11 @@ extension XCSchemeExtensionsTests {
             ),
             topLevelTargetInfos: []
         ).orThrow()
-        let actual = try XCScheme.TestAction(buildMode: .xcode, testActionInfo: testActionInfo)
+        let actual = try XCScheme.TestAction(
+            buildMode: .xcode,
+            testActionInfo: testActionInfo,
+            launchActionHasRunnable: true
+        )
         let expected = XCScheme.TestAction(
             buildConfiguration: buildConfigurationName,
             macroExpansion: unitTestTargetInfo.buildableReference,
@@ -168,7 +210,39 @@ extension XCSchemeExtensionsTests {
         XCTAssertNoDifference(actual, expected)
     }
 
-    func test_TestAction_init_noCustomEnvArgs_bazel() throws {
+    func test_TestAction_init_withCustomEnvArgs_noLaunchActionHasRunnable_xcode() throws {
+        let buildConfigurationName = "Foo"
+        let testActionInfo = try XCSchemeInfo.TestActionInfo(
+            resolveHostsFor: .init(
+                buildConfigurationName: buildConfigurationName,
+                targetInfos: [unitTestTargetInfo, uiTestTargetInfo],
+                args: ["--hello"],
+                env: ["CUSTOM_ENV_VAR": "goodbye"]
+            ),
+            topLevelTargetInfos: []
+        ).orThrow()
+        let actual = try XCScheme.TestAction(
+            buildMode: .xcode,
+            testActionInfo: testActionInfo,
+            launchActionHasRunnable: false
+        )
+        let expected = XCScheme.TestAction(
+            buildConfiguration: buildConfigurationName,
+            macroExpansion: unitTestTargetInfo.buildableReference,
+            testables: [
+                .init(skipped: false, buildableReference: unitTestTargetInfo.buildableReference),
+                .init(skipped: false, buildableReference: uiTestTargetInfo.buildableReference),
+            ],
+            shouldUseLaunchSchemeArgsEnv: false,
+            commandlineArguments: .init(arguments: [.init(name: "--hello", enabled: true)]),
+            environmentVariables: [
+                .init(variable: "CUSTOM_ENV_VAR", value: "goodbye", enabled: true),
+            ]
+        )
+        XCTAssertNoDifference(actual, expected)
+    }
+
+    func test_TestAction_init_noCustomEnvArgs_launchActionHasRunnable_bazel() throws {
         let buildConfigurationName = "Foo"
         let testActionInfo = try XCSchemeInfo.TestActionInfo(
             resolveHostsFor: .init(
@@ -177,7 +251,11 @@ extension XCSchemeExtensionsTests {
             ),
             topLevelTargetInfos: []
         ).orThrow()
-        let actual = try XCScheme.TestAction(buildMode: .bazel, testActionInfo: testActionInfo)
+        let actual = try XCScheme.TestAction(
+            buildMode: .bazel,
+            testActionInfo: testActionInfo,
+            launchActionHasRunnable: true
+        )
         let expected = XCScheme.TestAction(
             buildConfiguration: buildConfigurationName,
             macroExpansion: unitTestTargetInfo.buildableReference,
@@ -191,7 +269,34 @@ extension XCSchemeExtensionsTests {
         XCTAssertNoDifference(actual, expected)
     }
 
-    func test_TestAction_init_withCustomEnvArgs_bazel() throws {
+    func test_TestAction_init_noCustomEnvArgs_noLaunchActionHasRunnable_bazel() throws {
+        let buildConfigurationName = "Foo"
+        let testActionInfo = try XCSchemeInfo.TestActionInfo(
+            resolveHostsFor: .init(
+                buildConfigurationName: buildConfigurationName,
+                targetInfos: [unitTestTargetInfo, uiTestTargetInfo]
+            ),
+            topLevelTargetInfos: []
+        ).orThrow()
+        let actual = try XCScheme.TestAction(
+            buildMode: .bazel,
+            testActionInfo: testActionInfo,
+            launchActionHasRunnable: false
+        )
+        let expected = XCScheme.TestAction(
+            buildConfiguration: buildConfigurationName,
+            macroExpansion: unitTestTargetInfo.buildableReference,
+            testables: [
+                .init(skipped: false, buildableReference: unitTestTargetInfo.buildableReference),
+                .init(skipped: false, buildableReference: uiTestTargetInfo.buildableReference),
+            ],
+            shouldUseLaunchSchemeArgsEnv: false,
+            environmentVariables: .bazelLaunchEnvironmentVariables
+        )
+        XCTAssertNoDifference(actual, expected)
+    }
+
+    func test_TestAction_init_withCustomEnvArgs_launchActionHasRunnable_bazel() throws {
         let buildConfigurationName = "Foo"
         let testActionInfo = try XCSchemeInfo.TestActionInfo(
             resolveHostsFor: .init(
@@ -202,7 +307,44 @@ extension XCSchemeExtensionsTests {
             ),
             topLevelTargetInfos: []
         ).orThrow()
-        let actual = try XCScheme.TestAction(buildMode: .bazel, testActionInfo: testActionInfo)
+        let actual = try XCScheme.TestAction(
+            buildMode: .bazel,
+            testActionInfo: testActionInfo,
+            launchActionHasRunnable: true
+        )
+        let expected = XCScheme.TestAction(
+            buildConfiguration: buildConfigurationName,
+            macroExpansion: unitTestTargetInfo.buildableReference,
+            testables: [
+                .init(skipped: false, buildableReference: unitTestTargetInfo.buildableReference),
+                .init(skipped: false, buildableReference: uiTestTargetInfo.buildableReference),
+            ],
+            shouldUseLaunchSchemeArgsEnv: false,
+            commandlineArguments: .init(arguments: [.init(name: "--hello", enabled: true)]),
+            environmentVariables: (
+                [.init(variable: "CUSTOM_ENV_VAR", value: "goodbye", enabled: true)] +
+                    .bazelLaunchEnvironmentVariables
+            ).sortedLocalizedStandard()
+        )
+        XCTAssertNoDifference(actual, expected)
+    }
+
+    func test_TestAction_init_withCustomEnvArgs_noLaunchActionHasRunnable_bazel() throws {
+        let buildConfigurationName = "Foo"
+        let testActionInfo = try XCSchemeInfo.TestActionInfo(
+            resolveHostsFor: .init(
+                buildConfigurationName: buildConfigurationName,
+                targetInfos: [unitTestTargetInfo, uiTestTargetInfo],
+                args: ["--hello"],
+                env: ["CUSTOM_ENV_VAR": "goodbye"]
+            ),
+            topLevelTargetInfos: []
+        ).orThrow()
+        let actual = try XCScheme.TestAction(
+            buildMode: .bazel,
+            testActionInfo: testActionInfo,
+            launchActionHasRunnable: false
+        )
         let expected = XCScheme.TestAction(
             buildConfiguration: buildConfigurationName,
             macroExpansion: unitTestTargetInfo.buildableReference,
@@ -700,7 +842,8 @@ extension XCSchemeExtensionsTests {
         // when
         let testAction = try XCScheme.TestAction(
             buildMode: .xcode,
-            testActionInfo: testActionInfo
+            testActionInfo: testActionInfo,
+            launchActionHasRunnable: true
         )
 
         // then
