@@ -27,6 +27,7 @@
 		0BDF5B9AD82DB05AF5B3A0D0 /* _CompileStub_.m in Sources */ = {isa = PBXBuildFile; fileRef = E84DBAC32A7C151ED97289BA /* _CompileStub_.m */; };
 		12526811664DB5CCCB6E385D /* _CompileStub_.m in Sources */ = {isa = PBXBuildFile; fileRef = E84DBAC32A7C151ED97289BA /* _CompileStub_.m */; };
 		13A630BA73E1F9A2DDB06819 /* _CompileStub_.m in Sources */ = {isa = PBXBuildFile; fileRef = E84DBAC32A7C151ED97289BA /* _CompileStub_.m */; };
+		2A7C1646912F418A5274A1AF /* _CompileStub_.m in Sources */ = {isa = PBXBuildFile; fileRef = E84DBAC32A7C151ED97289BA /* _CompileStub_.m */; };
 		2EF9F2CD4E6C8726FDE09E03 /* SwiftUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5960C3F416397EFB313F138 /* SwiftUnitTests.swift */; };
 		381043979E9E346182A25067 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930A52F1C2814B98802A80A4 /* Resources.swift */; };
 		49D6063C48365EDFCA2BE320 /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF5E8B112A0F9856E6CB2D4 /* iOSApp.swift */; };
@@ -34,7 +35,6 @@
 		899593DDADC1C6E934C20F0F /* MixedAnswer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5943CDBFA4A38FDFF9113B4F /* MixedAnswer.m */; };
 		8BD39600399E346EF1480FC1 /* ObjCUnitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EFD33DA1BC7E7196649D05D /* ObjCUnitTests.m */; };
 		9711AD335537386189EB525C /* MixedAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3744E81974720C3D4AA9563D /* MixedAnswer.swift */; };
-		9F7F69679259E801761A5541 /* _CompileStub_.m in Sources */ = {isa = PBXBuildFile; fileRef = E84DBAC32A7C151ED97289BA /* _CompileStub_.m */; };
 		9FFB719E27A54EE3F45FDDD8 /* _CompileStub_.m in Sources */ = {isa = PBXBuildFile; fileRef = E84DBAC32A7C151ED97289BA /* _CompileStub_.m */; };
 		BC3EC272356403A49E2DAB11 /* Intents.Intent.output.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397F97935BDD6FC094D77A44 /* Intents.Intent.output.swift */; };
 		C8B76D1B97C60A7EFFE69E77 /* WidgetExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B40423341C5FE090E518F48 /* WidgetExtension.swift */; };
@@ -76,6 +76,13 @@
 			remoteInfo = BazelDependencies;
 		};
 		2E5C4E73B4371AC195D6D054 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0805833D09730531AD081697 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
+			remoteInfo = BazelDependencies;
+		};
+		3224F7C2FFA47F9FB5D7257E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0805833D09730531AD081697 /* Project object */;
 			proxyType = 1;
@@ -146,13 +153,6 @@
 			remoteInfo = BazelDependencies;
 		};
 		9640C65DAC8F88CB5F8B9AB6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
-			remoteInfo = BazelDependencies;
-		};
-		9DBF02CAC6C6AC4B7C3505BA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0805833D09730531AD081697 /* Project object */;
 			proxyType = 1;
@@ -238,16 +238,16 @@
 		2A465192CDE37BED1EB25DFD /* MixedAnswer */ = {isa = PBXFileReference; explicitFileType = wrapper.framework.static; includeInIndex = 0; path = MixedAnswer; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B40423341C5FE090E518F48 /* WidgetExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetExtension.swift; sourceTree = "<group>"; };
 		2B84C3492AA1F7731BE2634E /* ObjCUnitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObjCUnitTests.m; sourceTree = "<group>"; };
-		2B9D04A49191C62D44FBA381 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2BAE84C22F5988D476E8C115 /* Utils-umbrella.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Utils-umbrella.h"; sourceTree = "<group>"; };
-		2BFF667AAB015276A01954F7 /* iOS_swift_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = iOS_swift_vfs.yaml; sourceTree = "<group>"; };
-		304C21631E4FEFD72C2581AD /* iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework.static; includeInIndex = 0; path = iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2F6871335A2805169376FEE5 /* LibDynamic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework.static; includeInIndex = 0; path = LibDynamic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		30DD7BE468D6C0D1FAAB87AE /* libCoreUtilsObjC_objc.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libCoreUtilsObjC_objc.a; path = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsObjC/libCoreUtilsObjC_objc.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3218F18ACCD1B1603DB60240 /* WidgetExtension.library_private_angled_hmap.hmap */ = {isa = PBXFileReference; path = WidgetExtension.library_private_angled_hmap.hmap; sourceTree = "<group>"; };
 		3416E232421E6B9EF04BE1D4 /* Utils_private_angled_hmap.hmap */ = {isa = PBXFileReference; path = Utils_private_angled_hmap.hmap; sourceTree = "<group>"; };
 		3423B69557C97C31CE6F81A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		35E4BC681FCCDBDB1472E491 /* LibDynamic_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = LibDynamic_vfs.yaml; sourceTree = "<group>"; };
 		3744E81974720C3D4AA9563D /* MixedAnswer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixedAnswer.swift; sourceTree = "<group>"; };
 		37960139EC70CD0164A3E93D /* libMixedAnswer_swift.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libMixedAnswer_swift.a; path = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/libMixedAnswer_swift.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		38388F3FC2E2BC83EF7C6F2F /* LibDynamic_private_angled_hmap.hmap */ = {isa = PBXFileReference; path = LibDynamic_private_angled_hmap.hmap; sourceTree = "<group>"; };
 		38DF8C373C07F2CBB47A58AB /* iOSApp.library.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = iOSApp.library.modulemap; sourceTree = "<group>"; };
 		397F97935BDD6FC094D77A44 /* Intents.Intent.output.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intents.Intent.output.swift; sourceTree = "<group>"; };
 		399487B73A64195D5E0CEAF8 /* ios app.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ios app.entitlements"; sourceTree = "<group>"; };
@@ -258,10 +258,10 @@
 		416D76720FBE1552C15A5299 /* iOSApp_public_hmap.hmap */ = {isa = PBXFileReference; path = iOSApp_public_hmap.hmap; sourceTree = "<group>"; };
 		420E779F01854407C300E6F4 /* MixedAnswer_private_angled_hmap.hmap */ = {isa = PBXFileReference; path = MixedAnswer_private_angled_hmap.hmap; sourceTree = "<group>"; };
 		43483C0C029D669DC6D9079A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		44B8F7BAE258D3F4940E5E7D /* LibDynamic_swift_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = LibDynamic_swift_vfs.yaml; sourceTree = "<group>"; };
 		4585A41CF05E80EE92DC0683 /* iOSAppObjCUnitTests.19.link.params */ = {isa = PBXFileReference; path = iOSAppObjCUnitTests.19.link.params; sourceTree = "<group>"; };
 		462AF4564A57BCE54F8968B6 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		467F0223F1171A4691DBEDE7 /* iOSAppMixedUnitTests_public_hmap.hmap */ = {isa = PBXFileReference; path = iOSAppMixedUnitTests_public_hmap.hmap; sourceTree = "<group>"; };
-		47D5256449A702CF367072E1 /* iOS_private_angled_hmap.hmap */ = {isa = PBXFileReference; path = iOS_private_angled_hmap.hmap; sourceTree = "<group>"; };
 		4A020CABD604BEF062C9E023 /* iOSApp-Swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOSApp-Swift.h"; sourceTree = "<group>"; };
 		4DCE80D31F2E440F07E22C1D /* iOSAppSwiftUnitTests.20.link.params */ = {isa = PBXFileReference; path = iOSAppSwiftUnitTests.20.link.params; sourceTree = "<group>"; };
 		4E062A983101537AEDE2BEB0 /* WidgetExtension.library_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = WidgetExtension.library_vfs.yaml; sourceTree = "<group>"; };
@@ -269,7 +269,9 @@
 		4F3E9F4780E72AE58D6ECFD8 /* UI-Swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UI-Swift.h"; sourceTree = "<group>"; };
 		5196210160D0A0DF07363543 /* Lib-Swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Lib-Swift.h"; sourceTree = "<group>"; };
 		51AC817D31B5697A80934911 /* libMixedAnswer_objc.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libMixedAnswer_objc.a; path = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/libMixedAnswer_objc.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		56A5624976AA2E5CCC57F8F1 /* LibDynamic_private_hmap.hmap */ = {isa = PBXFileReference; path = LibDynamic_private_hmap.hmap; sourceTree = "<group>"; };
 		57BD345CD3D1409926BA80EA /* iOSAppObjCUnitTests_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = iOSAppObjCUnitTests_vfs.yaml; sourceTree = "<group>"; };
+		58A39E728A6A340BA9AB5FDE /* LibDynamic.13.link.params */ = {isa = PBXFileReference; path = LibDynamic.13.link.params; sourceTree = "<group>"; };
 		5943CDBFA4A38FDFF9113B4F /* MixedAnswer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MixedAnswer.m; sourceTree = "<group>"; };
 		59C26917FC1EA73251F8750A /* UI-umbrella.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UI-umbrella.h"; sourceTree = "<group>"; };
 		5B622FFED607D60BE0B6498D /* MixedAnswer.extended.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = MixedAnswer.extended.modulemap; sourceTree = "<group>"; };
@@ -280,14 +282,12 @@
 		62A6DC8C0E0B91CA7A026111 /* SwiftUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUnitTests.swift; sourceTree = "<group>"; };
 		64698C88EE29853EA7742DC5 /* CoreUtilsObjC-umbrella.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CoreUtilsObjC-umbrella.h"; sourceTree = "<group>"; };
 		691483DDBF1D73C70933EDD3 /* iOSApp_swift_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = iOSApp_swift_vfs.yaml; sourceTree = "<group>"; };
-		696F772213EAFB716E54A934 /* iOS_public_hmap.hmap */ = {isa = PBXFileReference; path = iOS_public_hmap.hmap; sourceTree = "<group>"; };
 		6E7755981C018738EEE3CCFC /* MixedAnswer-umbrella.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MixedAnswer-umbrella.h"; sourceTree = "<group>"; };
 		7012DFA199E3E0FCA0E6EEBF /* UI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UI.h; sourceTree = "<group>"; };
 		756A0E23358C541C338DAA79 /* Lib_swift_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = Lib_swift_vfs.yaml; sourceTree = "<group>"; };
 		75AC920891432FA806B7D500 /* libiOSAppMixedUnitTests_objc.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libiOSAppMixedUnitTests_objc.a; path = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/MixedUnitTests/libiOSAppMixedUnitTests_objc.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		763C3BF774CF6451F5932D42 /* libUI_swift.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libUI_swift.a; path = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/UI/libUI_swift.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		77189258B6ACB8750BA09BE3 /* Lib_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = Lib_vfs.yaml; sourceTree = "<group>"; };
-		77435B65670291FE3D05518C /* _iOS.0.info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = _iOS.0.info.plist; sourceTree = "<group>"; };
 		788FC887077E2ECEA09C1D7F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7ADDC628C4D7F94123AB1C72 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		7CF1512B8814803D87CAEC36 /* iOSAppMixedUnitTests_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = iOSAppMixedUnitTests_vfs.yaml; sourceTree = "<group>"; };
@@ -297,6 +297,7 @@
 		81CEB384343DA3EBC4532AA1 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		84F744B59E92115EBD29D194 /* WidgetExtension.library.extended.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = WidgetExtension.library.extended.modulemap; sourceTree = "<group>"; };
 		853443833B8165A279DBA93B /* Utils */ = {isa = PBXFileReference; explicitFileType = wrapper.framework.static; includeInIndex = 0; path = Utils; sourceTree = BUILT_PRODUCTS_DIR; };
+		8664DAADF2B09DB866186352 /* LibDynamic_public_hmap.hmap */ = {isa = PBXFileReference; path = LibDynamic_public_hmap.hmap; sourceTree = "<group>"; };
 		8C0F0608A16DA300348EFC65 /* iOSAppMixedUnitTests_private_hmap.hmap */ = {isa = PBXFileReference; path = iOSAppMixedUnitTests_private_hmap.hmap; sourceTree = "<group>"; };
 		8C5A7E4215F28D98C224A0EB /* iOSAppMixedUnitTests_swift_angle_bracket_hmap.hmap */ = {isa = PBXFileReference; path = iOSAppMixedUnitTests_swift_angle_bracket_hmap.hmap; sourceTree = "<group>"; };
 		8C623E825C8CC89C7A4388C4 /* UI_public_hmap.hmap */ = {isa = PBXFileReference; path = UI_public_hmap.hmap; sourceTree = "<group>"; };
@@ -316,7 +317,6 @@
 		9AE8081C8F1D6B75658972AB /* iOSApp.library_public_hmap.hmap */ = {isa = PBXFileReference; path = iOSApp.library_public_hmap.hmap; sourceTree = "<group>"; };
 		9B5F984F59AAD042E9D49081 /* Lib_private_hmap.hmap */ = {isa = PBXFileReference; path = Lib_private_hmap.hmap; sourceTree = "<group>"; };
 		9B9B00577F9503C23091539C /* Foo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Foo.h; sourceTree = "<group>"; };
-		9E923809FB87318622B6B801 /* iOS_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = iOS_vfs.yaml; sourceTree = "<group>"; };
 		9E9A34CF7D39ABC67B25D278 /* iOSAppSwiftUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSAppSwiftUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F3EE5E2077E93323CED2227 /* iOSAppSwiftUnitTests_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = iOSAppSwiftUnitTests_vfs.yaml; sourceTree = "<group>"; };
 		9FADC50F83228A0BC2F03239 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -324,10 +324,8 @@
 		A1E9CFFF7DCDCC47468FE3F7 /* iOSAppSwiftUnitTests_public_hmap.hmap */ = {isa = PBXFileReference; path = iOSAppSwiftUnitTests_public_hmap.hmap; sourceTree = "<group>"; };
 		A3A595070DB7ACD35D299A33 /* libiOSAppMixedUnitTests_swift.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libiOSAppMixedUnitTests_swift.a; path = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/MixedUnitTests/libiOSAppMixedUnitTests_swift.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3FF0AFAFE0363C79ED80B3E /* WidgetExtension */ = {isa = PBXFileReference; explicitFileType = wrapper.framework.static; includeInIndex = 0; path = WidgetExtension; sourceTree = BUILT_PRODUCTS_DIR; };
-		A755C138B3C37E7179D040B6 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		A8915ED45260B23EE5D60034 /* iOSApp_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = iOSApp_vfs.yaml; sourceTree = "<group>"; };
 		A8F6954916D66F96D0738631 /* Source */ = {isa = PBXFileReference; explicitFileType = wrapper.framework.static; includeInIndex = 0; path = Source; sourceTree = BUILT_PRODUCTS_DIR; };
-		A94493501455043D0ADA8037 /* iOS.13.link.params */ = {isa = PBXFileReference; path = iOS.13.link.params; sourceTree = "<group>"; };
 		A9CB354E5CC6D4E2FD17C60D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		A9D9FEBC0972D69FB407711D /* WidgetExtension.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = WidgetExtension.intentdefinition; sourceTree = "<group>"; };
 		AB71F75A8DF672BBBB0A6C69 /* WidgetExtension.library-umbrella.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WidgetExtension.library-umbrella.h"; sourceTree = "<group>"; };
@@ -367,7 +365,6 @@
 		DF383D624D29FBDCC0868518 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		E0418187A80C9532E8EBBCB4 /* Lib */ = {isa = PBXFileReference; explicitFileType = wrapper.framework.static; includeInIndex = 0; path = Lib; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0C1EC3A7AF4F92FF853ACAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		E2160103E4B0CF2D39598CAC /* iOS_private_hmap.hmap */ = {isa = PBXFileReference; path = iOS_private_hmap.hmap; sourceTree = "<group>"; };
 		E21BA5765628431074195C1B /* MixedAnswer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MixedAnswer.h; sourceTree = "<group>"; };
 		E22923C46B20505FE341D98E /* CoreUtilsObjC */ = {isa = PBXFileReference; explicitFileType = wrapper.framework.static; includeInIndex = 0; path = CoreUtilsObjC; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3D2D78513CF233233352408 /* MixedAnswer_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = MixedAnswer_vfs.yaml; sourceTree = "<group>"; };
@@ -379,12 +376,14 @@
 		E910F27700E5F3B686598F83 /* iOSAppObjCUnitTests_swift_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = iOSAppObjCUnitTests_swift_vfs.yaml; sourceTree = "<group>"; };
 		EA00EDAB4C803D1F002F35CA /* CoreUtilsObjC_public_hmap.hmap */ = {isa = PBXFileReference; path = CoreUtilsObjC_public_hmap.hmap; sourceTree = "<group>"; };
 		EA2392F14F1A5535FF9290E9 /* UI_private_hmap.hmap */ = {isa = PBXFileReference; path = UI_private_hmap.hmap; sourceTree = "<group>"; };
+		EB25D15869EDA5EA72D5F187 /* _LibDynamic.0.info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = _LibDynamic.0.info.plist; sourceTree = "<group>"; };
 		ECED4DE5F417CA764BAB56E1 /* MixedAnswer_public_hmap.hmap */ = {isa = PBXFileReference; path = MixedAnswer_public_hmap.hmap; sourceTree = "<group>"; };
 		EEE89561AED40481A73BDFC9 /* iOSAppSwiftUnitTests_private_angled_hmap.hmap */ = {isa = PBXFileReference; path = iOSAppSwiftUnitTests_private_angled_hmap.hmap; sourceTree = "<group>"; };
 		EF6FCBC93E7D353F5F221C92 /* iOSApp.library.extended.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = iOSApp.library.extended.modulemap; sourceTree = "<group>"; };
 		F0C00752106006E5B8A41B2B /* Utils.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = Utils.modulemap; sourceTree = "<group>"; };
 		F24599000424D358D575C1E0 /* iOSApp.12.link.params */ = {isa = PBXFileReference; path = iOSApp.12.link.params; sourceTree = "<group>"; };
 		F613A2682C35500BDA020DC4 /* Utils_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = Utils_vfs.yaml; sourceTree = "<group>"; };
+		F64310F2511A0923CB6E25A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		FB1BE4BEC7481255F1CECF19 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		FBF5E8B112A0F9856E6CB2D4 /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
 		FF2C0E0097B47906A19F51EB /* CoreUtilsObjC.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = CoreUtilsObjC.modulemap; sourceTree = "<group>"; };
@@ -404,7 +403,6 @@
 		0AA37BED13ECF1176D3894BA /* Lib */ = {
 			isa = PBXGroup;
 			children = (
-				5253CCC0EB95D711133E08AC /* dist */,
 				81CEB384343DA3EBC4532AA1 /* BUILD */,
 				9089BB0D5CC8008B36E4B995 /* Info.plist */,
 				930A52F1C2814B98802A80A4 /* Resources.swift */,
@@ -420,15 +418,6 @@
 				5DE7AF00D3B4EA3E8ED7D9C8 /* BUILD */,
 			);
 			path = iOSApp;
-			sourceTree = "<group>";
-		};
-		13D37761B8B5C40E28CF205D /* dynamic */ = {
-			isa = PBXGroup;
-			children = (
-				E576C203EEF70C4EB81FA484 /* rules_xcodeproj */,
-				77435B65670291FE3D05518C /* _iOS.0.info.plist */,
-			);
-			path = dynamic;
 			sourceTree = "<group>";
 		};
 		15168C02DFBEFDE100AF9141 /* iOSApp.library-modulemap */ = {
@@ -462,14 +451,6 @@
 				5BB04ED0ED00FB884EE4EC9C /* iOSAppSwiftUnitTests.__internal__.__test_bundle */,
 			);
 			path = rules_xcodeproj;
-			sourceTree = "<group>";
-		};
-		1CA913E04B649BA2936D47A1 /* dist */ = {
-			isa = PBXGroup;
-			children = (
-				13D37761B8B5C40E28CF205D /* dynamic */,
-			);
-			path = dist;
 			sourceTree = "<group>";
 		};
 		1CF2DB3720444D1B09A4FAB2 /* iOSApp */ = {
@@ -681,14 +662,6 @@
 			path = rules_xcodeproj;
 			sourceTree = "<group>";
 		};
-		5253CCC0EB95D711133E08AC /* dist */ = {
-			isa = PBXGroup;
-			children = (
-				A583D51E0EEFB1E0E1770687 /* dynamic */,
-			);
-			path = dist;
-			sourceTree = "<group>";
-		};
 		52A16C34EE13D5AB2FCD03E6 /* fixtures */ = {
 			isa = PBXGroup;
 			children = (
@@ -753,11 +726,11 @@
 		5BBCE0D88B978B77DAADCBB5 /* generator-params */ = {
 			isa = PBXGroup;
 			children = (
-				A94493501455043D0ADA8037 /* iOS.13.link.params */,
 				F24599000424D358D575C1E0 /* iOSApp.12.link.params */,
 				192691E9F07FE184C38C8A36 /* iOSAppMixedUnitTests.18.link.params */,
 				4585A41CF05E80EE92DC0683 /* iOSAppObjCUnitTests.19.link.params */,
 				4DCE80D31F2E440F07E22C1D /* iOSAppSwiftUnitTests.20.link.params */,
+				58A39E728A6A340BA9AB5FDE /* LibDynamic.13.link.params */,
 				3B33B2568D66547BCA272F9C /* WidgetExtension.11.link.params */,
 			);
 			path = "generator-params";
@@ -783,7 +756,8 @@
 		71622119D781A3393B657EBD /* Lib */ = {
 			isa = PBXGroup;
 			children = (
-				1CA913E04B649BA2936D47A1 /* dist */,
+				DFC742BD8B9E79BD6A6ABC1F /* rules_xcodeproj */,
+				EB25D15869EDA5EA72D5F187 /* _LibDynamic.0.info.plist */,
 			);
 			path = Lib;
 			sourceTree = "<group>";
@@ -859,13 +833,13 @@
 			isa = PBXGroup;
 			children = (
 				E22923C46B20505FE341D98E /* CoreUtilsObjC */,
-				304C21631E4FEFD72C2581AD /* iOS.framework */,
 				BC0D919D9C4954991E8C1FB8 /* iOSApp.app */,
 				5FBAE702AC09A964F519EB60 /* iOSAppMixedUnitTests.xctest */,
 				2389FC2E3790FF01911CDBCC /* iOSAppObjCUnitTests.xctest */,
 				9E9A34CF7D39ABC67B25D278 /* iOSAppSwiftUnitTests.xctest */,
 				E0418187A80C9532E8EBBCB4 /* Lib */,
 				30DD7BE468D6C0D1FAAB87AE /* libCoreUtilsObjC_objc.a */,
+				2F6871335A2805169376FEE5 /* LibDynamic.framework */,
 				75AC920891432FA806B7D500 /* libiOSAppMixedUnitTests_objc.a */,
 				A3A595070DB7ACD35D299A33 /* libiOSAppMixedUnitTests_swift.a */,
 				DCC947E0EAAB11C95DF30B48 /* libLib_swift.a */,
@@ -936,14 +910,6 @@
 			path = ../../../../..;
 			sourceTree = "<group>";
 		};
-		A583D51E0EEFB1E0E1770687 /* dynamic */ = {
-			isa = PBXGroup;
-			children = (
-				A755C138B3C37E7179D040B6 /* BUILD */,
-			);
-			path = dynamic;
-			sourceTree = "<group>";
-		};
 		A64A8FB36EB3FEA5FFE294CD /* CoreUtils */ = {
 			isa = PBXGroup;
 			children = (
@@ -960,6 +926,14 @@
 				5BBCE0D88B978B77DAADCBB5 /* generator-params */,
 			);
 			path = generator;
+			sourceTree = "<group>";
+		};
+		B6CD49024A1751F4AE0A443B /* LibDynamic */ = {
+			isa = PBXGroup;
+			children = (
+				F64310F2511A0923CB6E25A3 /* Info.plist */,
+			);
+			path = LibDynamic;
 			sourceTree = "<group>";
 		};
 		B7CBF82313EA63362D10C669 /* iOSApp */ = {
@@ -1000,18 +974,6 @@
 			path = SwiftUnitTests;
 			sourceTree = "<group>";
 		};
-		CAD05C1D89ADC5E5724A2420 /* dynamic */ = {
-			isa = PBXGroup;
-			children = (
-				47D5256449A702CF367072E1 /* iOS_private_angled_hmap.hmap */,
-				E2160103E4B0CF2D39598CAC /* iOS_private_hmap.hmap */,
-				696F772213EAFB716E54A934 /* iOS_public_hmap.hmap */,
-				2BFF667AAB015276A01954F7 /* iOS_swift_vfs.yaml */,
-				9E923809FB87318622B6B801 /* iOS_vfs.yaml */,
-			);
-			path = dynamic;
-			sourceTree = "<group>";
-		};
 		CB39800CED5CAC8178FD34E7 /* CoreUtilsObjC-modulemap */ = {
 			isa = PBXGroup;
 			children = (
@@ -1019,14 +981,6 @@
 				FF2C0E0097B47906A19F51EB /* CoreUtilsObjC.modulemap */,
 			);
 			path = "CoreUtilsObjC-modulemap";
-			sourceTree = "<group>";
-		};
-		D1CC3540240F14440EC12961 /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				2B9D04A49191C62D44FBA381 /* Info.plist */,
-			);
-			path = iOS;
 			sourceTree = "<group>";
 		};
 		D3519F08D5907B2FAC54F669 /* Lib-modulemap */ = {
@@ -1076,6 +1030,14 @@
 			path = MixedAnswer;
 			sourceTree = "<group>";
 		};
+		DFC742BD8B9E79BD6A6ABC1F /* rules_xcodeproj */ = {
+			isa = PBXGroup;
+			children = (
+				B6CD49024A1751F4AE0A443B /* LibDynamic */,
+			);
+			path = rules_xcodeproj;
+			sourceTree = "<group>";
+		};
 		E0404808B707779E609F813A /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -1112,7 +1074,6 @@
 		E21CF18EA50A2AF309B5322A /* Lib */ = {
 			isa = PBXGroup;
 			children = (
-				F38E5169E0527914333F3085 /* dist */,
 				D3519F08D5907B2FAC54F669 /* Lib-modulemap */,
 				8DF57F994CBA8FF402454F57 /* _Lib.0.info.plist */,
 				DBCA4993ADB4974559DB900F /* Lib_private_angled_hmap.hmap */,
@@ -1122,6 +1083,11 @@
 				77189258B6ACB8750BA09BE3 /* Lib_vfs.yaml */,
 				5196210160D0A0DF07363543 /* Lib-Swift.h */,
 				CE726A61DE8E60A34CBEAAD4 /* Lib.extended.modulemap */,
+				38388F3FC2E2BC83EF7C6F2F /* LibDynamic_private_angled_hmap.hmap */,
+				56A5624976AA2E5CCC57F8F1 /* LibDynamic_private_hmap.hmap */,
+				8664DAADF2B09DB866186352 /* LibDynamic_public_hmap.hmap */,
+				44B8F7BAE258D3F4940E5E7D /* LibDynamic_swift_vfs.yaml */,
+				35E4BC681FCCDBDB1472E491 /* LibDynamic_vfs.yaml */,
 			);
 			path = Lib;
 			sourceTree = "<group>";
@@ -1150,14 +1116,6 @@
 			children = (
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		E576C203EEF70C4EB81FA484 /* rules_xcodeproj */ = {
-			isa = PBXGroup;
-			children = (
-				D1CC3540240F14440EC12961 /* iOS */,
-			);
-			path = rules_xcodeproj;
 			sourceTree = "<group>";
 		};
 		EE019DDBE3F781D2A7604D56 /* UI */ = {
@@ -1194,14 +1152,6 @@
 			);
 			name = rules_xcodeproj;
 			path = test/fixtures/bwb.xcodeproj/rules_xcodeproj;
-			sourceTree = "<group>";
-		};
-		F38E5169E0527914333F3085 /* dist */ = {
-			isa = PBXGroup;
-			children = (
-				CAD05C1D89ADC5E5724A2420 /* dynamic */,
-			);
-			path = dist;
 			sourceTree = "<group>";
 		};
 		F4F988FE42B4A38226A6556F /* iOSAppMixedUnitTests.__internal__.__test_bundle */ = {
@@ -1275,24 +1225,6 @@
 			productName = iOSApp;
 			productReference = BC0D919D9C4954991E8C1FB8 /* iOSApp.app */;
 			productType = "com.apple.product-type.application";
-		};
-		252CA33FB4DD1F73A46CE0A6 /* iOS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 56C18FA55A61A93705739D11 /* Build configuration list for PBXNativeTarget "iOS" */;
-			buildPhases = (
-				7CBAC7861737F0A3E398797D /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
-				AF6FC712901312B294B4DFE2 /* Create linking dependencies */,
-				207FF11CBA150656B8BB8E61 /* Sources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				DFED98D401063B1474FD4B03 /* PBXTargetDependency */,
-			);
-			name = iOS;
-			productName = iOS;
-			productReference = 304C21631E4FEFD72C2581AD /* iOS.framework */;
-			productType = "com.apple.product-type.framework";
 		};
 		2E354F7510042D1DCCB8C84A /* WidgetExtension.library */ = {
 			isa = PBXNativeTarget;
@@ -1378,6 +1310,24 @@
 			name = Utils_objc;
 			productName = Utils_objc;
 			productType = "com.apple.product-type.library.static";
+		};
+		53946EBDBE4ACCD657FB2B21 /* LibDynamic */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 685C0B902C0D3B57E270AD60 /* Build configuration list for PBXNativeTarget "LibDynamic" */;
+			buildPhases = (
+				AB7CCD3A91622D287B90CA66 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
+				326B813A189626E6A9803857 /* Create linking dependencies */,
+				071E4E5DE716CEF2993CDEA3 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				739B2722AFBFFD1715CFEEDF /* PBXTargetDependency */,
+			);
+			name = LibDynamic;
+			productName = LibDynamic;
+			productReference = 2F6871335A2805169376FEE5 /* LibDynamic.framework */;
+			productType = "com.apple.product-type.framework";
 		};
 		5475A870C308B2BFA9D62783 /* MixedAnswer_objc */ = {
 			isa = PBXNativeTarget;
@@ -1603,10 +1553,6 @@
 						CreatedOnToolsVersion = 13.0.0;
 						LastSwiftMigration = 9999;
 					};
-					252CA33FB4DD1F73A46CE0A6 = {
-						CreatedOnToolsVersion = 13.0.0;
-						LastSwiftMigration = 9999;
-					};
 					2E354F7510042D1DCCB8C84A = {
 						CreatedOnToolsVersion = 13.0.0;
 						LastSwiftMigration = 9999;
@@ -1625,6 +1571,10 @@
 						TestTargetID = 1765D91CC168F25A5BC51603;
 					};
 					444B572E5394391A6C6F27AE = {
+						CreatedOnToolsVersion = 13.0.0;
+						LastSwiftMigration = 9999;
+					};
+					53946EBDBE4ACCD657FB2B21 = {
 						CreatedOnToolsVersion = 13.0.0;
 						LastSwiftMigration = 9999;
 					};
@@ -1700,7 +1650,6 @@
 				7E7D155EBCA520F35DEA3571 /* BazelDependencies */,
 				64AE6000A6317B9C077F3B1E /* CoreUtilsObjC */,
 				EE9C7DED8F647171101A62EE /* CoreUtilsObjC_objc */,
-				252CA33FB4DD1F73A46CE0A6 /* iOS */,
 				1765D91CC168F25A5BC51603 /* iOSApp */,
 				E5592BD7E8C542A892303B2D /* iOSApp.library */,
 				B25A16ED5B68231D785FFFC0 /* iOSAppMixedUnitTests */,
@@ -1710,6 +1659,7 @@
 				D2B147BDA8E8FC10D91B53BB /* iOSAppSwiftUnitTests */,
 				97C0B94AB8C957F2A520B819 /* Lib */,
 				7629B38F5FD7E62052372262 /* Lib_swift */,
+				53946EBDBE4ACCD657FB2B21 /* LibDynamic */,
 				A1593696756F76082BF2BE5E /* MixedAnswer */,
 				5475A870C308B2BFA9D62783 /* MixedAnswer_objc */,
 				AFD3F2A073A0D6DBB2D7F96D /* MixedAnswer_swift */,
@@ -1840,6 +1790,24 @@
 			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\nelse\n  \"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n    \"_BazelForcedCompile_.swift\" \\\n    \"CoreUtilsObjC\" \\\n    \"\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		326B813A189626E6A9803857 /* Create linking dependencies */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(LINK_PARAMS_FILE)",
+			);
+			name = "Create linking dependencies";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/link.params",
+				"$(DERIVED_FILE_DIR)/_CompileStub_.m",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nif [[ \"${ENABLE_PREVIEWS:-}\" == \"YES\" ]]; then\nperl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\nelse\n  touch \"$SCRIPT_OUTPUT_FILE_0\"\nfi\n\ntouch \"$SCRIPT_OUTPUT_FILE_1\"\n";
+			showEnvVarsInLog = 0;
+		};
 		3D629BD2B8CD5397165202CC /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -1941,23 +1909,6 @@
 			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\nelse\n  \"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n    \"_BazelForcedCompile_.swift\" \\\n    \"Lib\" \\\n    \"\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		7CBAC7861737F0A3E398797D /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
-			);
-			name = "Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\nelse\n  \"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n    \"_BazelForcedCompile_.swift\" \\\n    \"iOS.framework\" \\\n    \"\"\nfi\n";
-			showEnvVarsInLog = 0;
-		};
 		90C941C313C13FC0C36317CC /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -2045,22 +1996,21 @@
 			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\nelse\n  \"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n    \"_BazelForcedCompile_.swift\" \\\n    \"WidgetExtension\" \\\n    \"\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		AF6FC712901312B294B4DFE2 /* Create linking dependencies */ = {
+		AB7CCD3A91622D287B90CA66 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"$(LINK_PARAMS_FILE)",
+				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
 			);
-			name = "Create linking dependencies";
+			name = "Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/link.params",
-				"$(DERIVED_FILE_DIR)/_CompileStub_.m",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\nif [[ \"${ENABLE_PREVIEWS:-}\" == \"YES\" ]]; then\nperl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\nelse\n  touch \"$SCRIPT_OUTPUT_FILE_0\"\nfi\n\ntouch \"$SCRIPT_OUTPUT_FILE_1\"\n";
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\nelse\n  \"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n    \"_BazelForcedCompile_.swift\" \\\n    \"LibDynamic.framework\" \\\n    \"\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		C51B93E93AA415CF0998B1ED /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
@@ -2219,20 +2169,20 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		071E4E5DE716CEF2993CDEA3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A7C1646912F418A5274A1AF /* _CompileStub_.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1EBEF36A0ACB32B3462FC721 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				BC3EC272356403A49E2DAB11 /* Intents.Intent.output.swift in Sources */,
 				C8B76D1B97C60A7EFFE69E77 /* WidgetExtension.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		207FF11CBA150656B8BB8E61 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9F7F69679259E801761A5541 /* _CompileStub_.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2427,6 +2377,12 @@
 			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
 			targetProxy = F5E9D31D539D4E97AACBE385 /* PBXContainerItemProxy */;
 		};
+		739B2722AFBFFD1715CFEEDF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BazelDependencies;
+			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
+			targetProxy = 3224F7C2FFA47F9FB5D7257E /* PBXContainerItemProxy */;
+		};
 		77BF60CDE31960BB87D6E9B9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = BazelDependencies;
@@ -2523,12 +2479,6 @@
 			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
 			targetProxy = 8EE4776CD1B384A0D5A690CE /* PBXContainerItemProxy */;
 		};
-		DFED98D401063B1474FD4B03 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = BazelDependencies;
-			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
-			targetProxy = 9DBF02CAC6C6AC4B7C3505BA /* PBXContainerItemProxy */;
-		};
 		E9EA76FF3B2A70BE0469AFA5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = BazelDependencies;
@@ -2550,37 +2500,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		0938A42D8ABE33C5D8AD03BC /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = x86_64;
-				BAZEL_LABEL = "@//Lib/dist/dynamic:iOS";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/Lib/dist/dynamic/iOS.framework";
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/Lib/dist/dynamic";
-				BAZEL_TARGET_ID = "//Lib/dist/dynamic:iOS applebin_ios-ios_x86_64-dbg-STABLE-2";
-				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
-				COMPILE_TARGET_NAME = iOS;
-				ENABLE_BITCODE = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/Lib/dist/dynamic/rules_xcodeproj/iOS/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/generator-params/iOS.13.link.params";
-				MACH_O_TYPE = staticlib;
-				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml";
-				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.LibFramework";
-				PRODUCT_MODULE_NAME = Lib_dist_dynamic_iOS;
-				PRODUCT_NAME = iOS;
-				SDKROOT = iphoneos;
-				SUPPORTED_PLATFORMS = iphonesimulator;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGET_NAME = iOS;
-			};
-			name = Debug;
-		};
 		111C3642FF48431B6DC10483 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2994,6 +2913,37 @@
 			};
 			name = Debug;
 		};
+		9F7CEA8F5AE0FA696E7DC53A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = x86_64;
+				BAZEL_LABEL = "@//Lib:LibDynamic";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/Lib/LibDynamic.framework";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/Lib";
+				BAZEL_TARGET_ID = "//Lib:LibDynamic applebin_ios-ios_x86_64-dbg-STABLE-2";
+				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
+				COMPILE_TARGET_NAME = LibDynamic;
+				ENABLE_BITCODE = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/Lib/rules_xcodeproj/LibDynamic/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/generator-params/LibDynamic.13.link.params";
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
+				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml";
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.LibFramework";
+				PRODUCT_MODULE_NAME = Lib_LibDynamic;
+				PRODUCT_NAME = LibDynamic;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = iphonesimulator;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGET_NAME = LibDynamic;
+			};
+			name = Debug;
+		};
 		A56BEE637DA1B6A442624451 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -3351,14 +3301,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		56C18FA55A61A93705739D11 /* Build configuration list for PBXNativeTarget "iOS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				0938A42D8ABE33C5D8AD03BC /* Debug */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
 		669B787A5412989389D7BAD5 /* Build configuration list for PBXProject "bwb" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -3371,6 +3313,14 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E87ED2FB87DE4C11D17706BA /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		685C0B902C0D3B57E270AD60 /* Build configuration list for PBXNativeTarget "LibDynamic" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9F7CEA8F5AE0FA696E7DC53A /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

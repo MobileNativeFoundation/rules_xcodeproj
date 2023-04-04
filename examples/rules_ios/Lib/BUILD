@@ -1,8 +1,4 @@
 load(
-    "@build_bazel_rules_apple//apple:ios.bzl",
-    "ios_build_test",
-)
-load(
     "@build_bazel_rules_ios//rules:framework.bzl",
     rules_ios_apple_framework = "apple_framework",
 )
@@ -10,14 +6,6 @@ load(
 exports_files(
     ["Info.plist"],
     visibility = ["//Lib:__subpackages__"],
-)
-
-ios_build_test(
-    name = "ios_Lib",
-    minimum_os_version = "15.0",
-    tags = ["manual"],
-    targets = [":Lib"],
-    visibility = ["@rules_xcodeproj//xcodeproj:generated"],
 )
 
 rules_ios_apple_framework(
@@ -37,4 +25,20 @@ rules_ios_apple_framework(
     xcconfig = {
         "APPLICATION_EXTENSION_API_ONLY": "YES",
     },
+)
+
+rules_ios_apple_framework(
+    name = "LibDynamic",
+    bundle_id = "rules-xcodeproj.LibFramework",
+    infoplists = ["//Lib:Info.plist"],
+    link_dynamic = True,
+    module_name = "Lib",
+    platforms = {
+        "ios": "15.0",
+    },
+    visibility = ["@rules_xcodeproj//xcodeproj:generated"],
+    xcconfig = {
+        "APPLICATION_EXTENSION_API_ONLY": "YES",
+    },
+    deps = [":Lib"],
 )

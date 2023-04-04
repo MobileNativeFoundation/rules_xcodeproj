@@ -1,56 +1,4 @@
 [
-    "//Lib/dist/dynamic:iOS applebin_ios-ios_x86_64-dbg-STABLE-2",
-    {
-        "1": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/Lib/dist/dynamic",
-        "2": {
-            "a": "x86_64",
-            "m": "15.0",
-            "o": "ios",
-            "v": "iphonesimulator"
-        },
-        "4": {
-            "_": "applebin_ios-ios_x86_64-dbg-STABLE-2/bin/Lib/dist/dynamic/rules_xcodeproj/iOS/Info.plist",
-            "t": "g"
-        },
-        "6": {
-            "_": "darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/generator-params/iOS.13.link.params",
-            "t": "g"
-        },
-        "b": {
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/Lib/dist/dynamic/iOS.framework",
-            "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
-            "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework",
-            "PRODUCT_MODULE_NAME": "Lib_dist_dynamic_iOS",
-            "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
-            "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-            "SWIFT_VERSION": "5.0"
-        },
-        "c": "applebin_ios-ios_x86_64-dbg-STABLE-2",
-        "d": [
-            "//Lib:Lib ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1"
-        ],
-        "l": "//Lib/dist/dynamic:iOS",
-        "n": "iOS",
-        "o": {
-            "p": "iOS.framework"
-        },
-        "p": {
-            "a": [
-                {
-                    "_": "applebin_ios-ios_x86_64-dbg-STABLE-2/bin/Lib/dist/dynamic/frameworks/iOS.framework",
-                    "t": "g"
-                }
-            ],
-            "e": "iOS",
-            "n": "iOS",
-            "p": {
-                "_": "applebin_ios-ios_x86_64-dbg-STABLE-2/bin/Lib/dist/dynamic/iOS.framework",
-                "t": "g"
-            },
-            "t": "com.apple.product-type.framework.static"
-        }
-    },
     "//Lib:Lib ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
     {
         "1": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/Lib",
@@ -90,6 +38,58 @@
             "n": "Lib",
             "p": {
                 "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/Lib",
+                "t": "g"
+            },
+            "t": "com.apple.product-type.framework.static"
+        }
+    },
+    "//Lib:LibDynamic applebin_ios-ios_x86_64-dbg-STABLE-2",
+    {
+        "1": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/Lib",
+        "2": {
+            "a": "x86_64",
+            "m": "15.0",
+            "o": "ios",
+            "v": "iphonesimulator"
+        },
+        "4": {
+            "_": "applebin_ios-ios_x86_64-dbg-STABLE-2/bin/Lib/rules_xcodeproj/LibDynamic/Info.plist",
+            "t": "g"
+        },
+        "6": {
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/generator-params/LibDynamic.13.link.params",
+            "t": "g"
+        },
+        "b": {
+            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/Lib/LibDynamic.framework",
+            "ENABLE_BITCODE": false,
+            "ENABLE_STRICT_OBJC_MSGSEND": true,
+            "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework",
+            "PRODUCT_MODULE_NAME": "Lib_LibDynamic",
+            "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+            "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+            "SWIFT_VERSION": "5.0"
+        },
+        "c": "applebin_ios-ios_x86_64-dbg-STABLE-2",
+        "d": [
+            "//Lib:Lib ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1"
+        ],
+        "l": "//Lib:LibDynamic",
+        "n": "LibDynamic",
+        "o": {
+            "p": "LibDynamic.framework"
+        },
+        "p": {
+            "a": [
+                {
+                    "_": "applebin_ios-ios_x86_64-dbg-STABLE-2/bin/Lib/frameworks/LibDynamic.framework",
+                    "t": "g"
+                }
+            ],
+            "e": "LibDynamic",
+            "n": "LibDynamic",
+            "p": {
+                "_": "applebin_ios-ios_x86_64-dbg-STABLE-2/bin/Lib/LibDynamic.framework",
                 "t": "g"
             },
             "t": "com.apple.product-type.framework.static"

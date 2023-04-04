@@ -9,8 +9,7 @@ XCODEPROJ_TARGETS = [
     top_level_targets(
         labels = [
             "//iOSApp",
-            "//Lib:ios_Lib",
-            "//Lib/dist/dynamic:iOS",
+            "//Lib:LibDynamic",
         ],
         target_environments = ["simulator"],
     ),
