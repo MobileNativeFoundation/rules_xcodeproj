@@ -5,7 +5,10 @@ load(
 
 rules_ios_ios_unit_test(
     name = "iOSAppMixedUnitTests",
-    srcs = glob(["**/*.m", "**/*.swift"]),
+    srcs = glob([
+        "**/*.m",
+        "**/*.swift",
+    ]),
     bundle_id = "rules-xcodeproj.example.mixedtests",
     minimum_os_version = "15.0",
     module_name = "iOSAppMixedUnitTests",
