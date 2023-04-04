@@ -107,6 +107,9 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
         bundle_id = "bundle_id"
         infoplists = ["infoplists"]
         should_generate_target = False
+    elif ctx.rule.kind == "apple_resource_group":
+        xcode_targets = {}
+        should_generate_target = False
     elif AppleBundleInfo in target and target[AppleBundleInfo].binary:
         # Checking for `binary` being set is to work around a rules_ios issue
         xcode_targets = {
