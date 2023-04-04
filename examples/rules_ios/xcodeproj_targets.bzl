@@ -11,7 +11,7 @@ XCODEPROJ_TARGETS = [
             "//iOSApp",
             "//Lib:LibDynamic",
         ],
-        target_environments = ["simulator"],
+        target_environments = ["device", "simulator"],
     ),
     "//iOSApp/Test/MixedUnitTests:iOSAppMixedUnitTests",
     "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests",
@@ -19,5 +19,6 @@ XCODEPROJ_TARGETS = [
 ]
 
 IOS_BUNDLE_ID = "rules-xcodeproj.example"
+TEAMID = "V82V4GQZXM"
 
 SCHEME_AUTOGENERATION_MODE = "all"
