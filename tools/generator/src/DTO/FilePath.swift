@@ -30,16 +30,16 @@ struct FilePath: Hashable, Decodable {
     enum CodingKeys: String, CodingKey {
         case path = "_"
         case type = "t"
-        case isFolder = "f"
     }
 
     init(from decoder: Decoder) throws {
+        isFolder = false
+        forceGroupCreation = false
+
         // A plain string is interpreted as a source file
         if let path = try? decoder.singleValueContainer().decode(Path.self) {
             type = .project
             self.path = path
-            isFolder = false
-            forceGroupCreation = false
             return
         }
 
@@ -47,9 +47,6 @@ struct FilePath: Hashable, Decodable {
         path = try container.decode(Path.self, forKey: .path)
         type = try container.decodeIfPresent(PathType.self, forKey: .type)
             ?? .project
-        isFolder = try container.decodeIfPresent(Bool.self, forKey: .isFolder)
-            ?? false
-        forceGroupCreation = isFolder
     }
 }
 

@@ -8660,19 +8660,17 @@
         },
         "c": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4",
         "i": {
+            "f": [
+                "iOSApp/Resources/ExampleNestedResources/dir",
+                {
+                    "_": "examples_ios_app_external/bundles/Utils.bundle",
+                    "t": "e"
+                }
+            ],
             "r": [
                 "iOSApp/Resources/ExampleNestedResources/Assets.xcassets",
                 "iOSApp/Resources/ExampleNestedResources/en.lproj/Localizable.strings",
-                "iOSApp/Resources/ExampleNestedResources/es.lproj/Localizable.strings",
-                {
-                    "_": "iOSApp/Resources/ExampleNestedResources/dir",
-                    "f": true
-                },
-                {
-                    "_": "examples_ios_app_external/bundles/Utils.bundle",
-                    "f": true,
-                    "t": "e"
-                }
+                "iOSApp/Resources/ExampleNestedResources/es.lproj/Localizable.strings"
             ]
         },
         "l": "//iOSApp/Resources/ExampleNestedResources:ExampleNestedResources",
@@ -8702,20 +8700,18 @@
         },
         "c": "ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10",
         "i": {
+            "f": [
+                "iOSApp/Resources/ExampleNestedResources/dir",
+                {
+                    "_": "examples_ios_app_external/bundles/Utils.bundle",
+                    "t": "e"
+                }
+            ],
             "r": [
                 "iOSApp/Resources/ExampleNestedResources/Assets.xcassets",
                 {
                     "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/iOSApp/Resources/ExampleNestedResources/ExampleNestedResources-intermediates/ExampleNestedResources.bundle",
                     "t": "g"
-                },
-                {
-                    "_": "iOSApp/Resources/ExampleNestedResources/dir",
-                    "f": true
-                },
-                {
-                    "_": "examples_ios_app_external/bundles/Utils.bundle",
-                    "f": true,
-                    "t": "e"
                 }
             ]
         },
@@ -8749,19 +8745,17 @@
         },
         "c": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
         "i": {
+            "f": [
+                "iOSApp/Resources/ExampleNestedResources/dir",
+                {
+                    "_": "examples_ios_app_external/bundles/Utils.bundle",
+                    "t": "e"
+                }
+            ],
             "r": [
                 "iOSApp/Resources/ExampleNestedResources/Assets.xcassets",
                 "iOSApp/Resources/ExampleNestedResources/en.lproj/Localizable.strings",
-                "iOSApp/Resources/ExampleNestedResources/es.lproj/Localizable.strings",
-                {
-                    "_": "iOSApp/Resources/ExampleNestedResources/dir",
-                    "f": true
-                },
-                {
-                    "_": "examples_ios_app_external/bundles/Utils.bundle",
-                    "f": true,
-                    "t": "e"
-                }
+                "iOSApp/Resources/ExampleNestedResources/es.lproj/Localizable.strings"
             ]
         },
         "l": "//iOSApp/Resources/ExampleNestedResources:ExampleNestedResources",
@@ -8791,20 +8785,18 @@
         },
         "c": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7",
         "i": {
+            "f": [
+                "iOSApp/Resources/ExampleNestedResources/dir",
+                {
+                    "_": "examples_ios_app_external/bundles/Utils.bundle",
+                    "t": "e"
+                }
+            ],
             "r": [
                 "iOSApp/Resources/ExampleNestedResources/Assets.xcassets",
                 {
                     "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Resources/ExampleNestedResources/ExampleNestedResources-intermediates/ExampleNestedResources.bundle",
                     "t": "g"
-                },
-                {
-                    "_": "iOSApp/Resources/ExampleNestedResources/dir",
-                    "f": true
-                },
-                {
-                    "_": "examples_ios_app_external/bundles/Utils.bundle",
-                    "f": true,
-                    "t": "e"
                 }
             ]
         },
@@ -8841,17 +8833,15 @@
             "//iOSApp/Resources/ExampleNestedResources:ExampleNestedResources ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4"
         ],
         "i": {
-            "r": [
-                "iOSApp/Resources/ExampleResources/Assets.xcassets",
-                {
-                    "_": "iOSApp/Resources/ExampleResources/nested",
-                    "f": true
-                },
+            "f": [
+                "iOSApp/Resources/ExampleResources/nested",
                 {
                     "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/iOSApp/Resources/ExampleResources/bucket",
-                    "f": true,
                     "t": "g"
                 }
+            ],
+            "r": [
+                "iOSApp/Resources/ExampleResources/Assets.xcassets"
             ]
         },
         "l": "//iOSApp/Resources/ExampleResources:ExampleResources",
@@ -8887,17 +8877,15 @@
             "//iOSApp/Resources/ExampleNestedResources:ExampleNestedResources ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10"
         ],
         "i": {
-            "r": [
-                "iOSApp/Resources/ExampleResources/Assets.xcassets",
-                {
-                    "_": "iOSApp/Resources/ExampleResources/nested",
-                    "f": true
-                },
+            "f": [
+                "iOSApp/Resources/ExampleResources/nested",
                 {
                     "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/iOSApp/Resources/ExampleResources/bucket",
-                    "f": true,
                     "t": "g"
                 }
+            ],
+            "r": [
+                "iOSApp/Resources/ExampleResources/Assets.xcassets"
             ]
         },
         "l": "//iOSApp/Resources/ExampleResources:ExampleResources",
@@ -8936,17 +8924,15 @@
             "//iOSApp/Resources/ExampleNestedResources:ExampleNestedResources ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1"
         ],
         "i": {
-            "r": [
-                "iOSApp/Resources/ExampleResources/Assets.xcassets",
-                {
-                    "_": "iOSApp/Resources/ExampleResources/nested",
-                    "f": true
-                },
+            "f": [
+                "iOSApp/Resources/ExampleResources/nested",
                 {
                     "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Resources/ExampleResources/bucket",
-                    "f": true,
                     "t": "g"
                 }
+            ],
+            "r": [
+                "iOSApp/Resources/ExampleResources/Assets.xcassets"
             ]
         },
         "l": "//iOSApp/Resources/ExampleResources:ExampleResources",
@@ -8982,17 +8968,15 @@
             "//iOSApp/Resources/ExampleNestedResources:ExampleNestedResources ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7"
         ],
         "i": {
-            "r": [
-                "iOSApp/Resources/ExampleResources/Assets.xcassets",
-                {
-                    "_": "iOSApp/Resources/ExampleResources/nested",
-                    "f": true
-                },
+            "f": [
+                "iOSApp/Resources/ExampleResources/nested",
                 {
                     "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Resources/ExampleResources/bucket",
-                    "f": true,
                     "t": "g"
                 }
+            ],
+            "r": [
+                "iOSApp/Resources/ExampleResources/Assets.xcassets"
             ]
         },
         "l": "//iOSApp/Resources/ExampleResources:ExampleResources",
@@ -9028,11 +9012,8 @@
         },
         "c": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
         "i": {
-            "r": [
-                {
-                    "_": "iOSApp/Resources/OnlyStructuredResources/Nested",
-                    "f": true
-                }
+            "f": [
+                "iOSApp/Resources/OnlyStructuredResources/Nested"
             ]
         },
         "l": "//iOSApp/Resources/OnlyStructuredResources:OnlyStructuredResources",
@@ -9062,11 +9043,8 @@
         },
         "c": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7",
         "i": {
-            "r": [
-                {
-                    "_": "iOSApp/Resources/OnlyStructuredResources/Nested",
-                    "f": true
-                }
+            "f": [
+                "iOSApp/Resources/OnlyStructuredResources/Nested"
             ]
         },
         "l": "//iOSApp/Resources/OnlyStructuredResources:OnlyStructuredResources",
@@ -10483,6 +10461,13 @@
         ],
         "i": {
             "e": "iOSApp/Source/ios app.entitlements",
+            "f": [
+                {
+                    "_": "com_google_google_maps/GoogleMaps.xcframework/ios-arm64/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+                    "t": "e"
+                },
+                "iOSApp/Source/nested"
+            ],
             "r": [
                 "iOSApp/Source/PreviewContent/Preview Assets.xcassets",
                 "iOSApp/Source/AltIcons/AltIcon-60.alticon/AltIcon-60@2x.png",
@@ -10493,15 +10478,6 @@
                 "iOSApp/Source/Model.xcdatamodeld/Model2.xcdatamodel/contents",
                 "iOSApp/Source/en.lproj/Localizable.strings",
                 "iOSApp/Source/es.lproj/Localizable.strings",
-                {
-                    "_": "com_google_google_maps/GoogleMaps.xcframework/ios-arm64/GoogleMaps.framework/Resources/GoogleMaps.bundle",
-                    "f": true,
-                    "t": "e"
-                },
-                {
-                    "_": "iOSApp/Source/nested",
-                    "f": true
-                },
                 "iOSApp/Source/en.lproj/unprocessed.json",
                 "iOSApp/Source/es.lproj/unprocessed.json"
             ],
@@ -10698,6 +10674,13 @@
         ],
         "i": {
             "e": "iOSApp/Source/ios app.entitlements",
+            "f": [
+                {
+                    "_": "com_google_google_maps/GoogleMaps.xcframework/ios-arm64/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+                    "t": "e"
+                },
+                "iOSApp/Source/nested"
+            ],
             "r": [
                 "iOSApp/Source/AltIcons/AltIcon-60.alticon/AltIcon-60@2x.png",
                 "iOSApp/Source/AltIcons/AltIcon-60.alticon/AltIcon-60@3x.png",
@@ -10707,15 +10690,6 @@
                 "iOSApp/Source/Model.xcdatamodeld/Model2.xcdatamodel/contents",
                 "iOSApp/Source/en.lproj/Localizable.strings",
                 "iOSApp/Source/es.lproj/Localizable.strings",
-                {
-                    "_": "com_google_google_maps/GoogleMaps.xcframework/ios-arm64/GoogleMaps.framework/Resources/GoogleMaps.bundle",
-                    "f": true,
-                    "t": "e"
-                },
-                {
-                    "_": "iOSApp/Source/nested",
-                    "f": true
-                },
                 "iOSApp/Source/en.lproj/unprocessed.json",
                 "iOSApp/Source/es.lproj/unprocessed.json"
             ],
@@ -10912,6 +10886,13 @@
         ],
         "i": {
             "e": "iOSApp/Source/ios app.entitlements",
+            "f": [
+                {
+                    "_": "com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+                    "t": "e"
+                },
+                "iOSApp/Source/nested"
+            ],
             "r": [
                 "iOSApp/Source/PreviewContent/Preview Assets.xcassets",
                 "iOSApp/Source/AltIcons/AltIcon-60.alticon/AltIcon-60@2x.png",
@@ -10922,15 +10903,6 @@
                 "iOSApp/Source/Launch.storyboard",
                 "iOSApp/Source/en.lproj/Localizable.strings",
                 "iOSApp/Source/es.lproj/Localizable.strings",
-                {
-                    "_": "com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator/GoogleMaps.framework/Resources/GoogleMaps.bundle",
-                    "f": true,
-                    "t": "e"
-                },
-                {
-                    "_": "iOSApp/Source/nested",
-                    "f": true
-                },
                 "iOSApp/Source/en.lproj/unprocessed.json",
                 "iOSApp/Source/es.lproj/unprocessed.json"
             ],
@@ -11126,6 +11098,13 @@
         ],
         "i": {
             "e": "iOSApp/Source/ios app.entitlements",
+            "f": [
+                {
+                    "_": "com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+                    "t": "e"
+                },
+                "iOSApp/Source/nested"
+            ],
             "r": [
                 "iOSApp/Source/AltIcons/AltIcon-60.alticon/AltIcon-60@2x.png",
                 "iOSApp/Source/AltIcons/AltIcon-60.alticon/AltIcon-60@3x.png",
@@ -11135,15 +11114,6 @@
                 "iOSApp/Source/Launch.storyboard",
                 "iOSApp/Source/en.lproj/Localizable.strings",
                 "iOSApp/Source/es.lproj/Localizable.strings",
-                {
-                    "_": "com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator/GoogleMaps.framework/Resources/GoogleMaps.bundle",
-                    "f": true,
-                    "t": "e"
-                },
-                {
-                    "_": "iOSApp/Source/nested",
-                    "f": true
-                },
                 "iOSApp/Source/en.lproj/unprocessed.json",
                 "iOSApp/Source/es.lproj/unprocessed.json"
             ],
@@ -11308,10 +11278,9 @@
         ],
         "h": "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-dbg-STABLE-13",
         "i": {
-            "r": [
+            "f": [
                 {
                     "_": "examples_ios_app_external/bundles/Utils.bundle",
-                    "f": true,
                     "t": "e"
                 }
             ],
@@ -11474,10 +11443,9 @@
         ],
         "h": "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-opt-STABLE-15",
         "i": {
-            "r": [
+            "f": [
                 {
                     "_": "examples_ios_app_external/bundles/Utils.bundle",
-                    "f": true,
                     "t": "e"
                 }
             ],
@@ -11673,13 +11641,14 @@
         ],
         "h": "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-dbg-STABLE-13",
         "i": {
-            "r": [
-                "iOSApp/Resources/ExampleResources/Assets.xcassets",
+            "f": [
                 {
                     "_": "examples_ios_app_external/bundles/Utils.bundle",
-                    "f": true,
                     "t": "e"
                 }
+            ],
+            "r": [
+                "iOSApp/Resources/ExampleResources/Assets.xcassets"
             ],
             "s": [
                 "iOSApp/Test/SwiftUnitTests/SwiftUnitTests.swift"
@@ -11875,13 +11844,14 @@
         ],
         "h": "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-opt-STABLE-15",
         "i": {
-            "r": [
-                "iOSApp/Resources/ExampleResources/Assets.xcassets",
+            "f": [
                 {
                     "_": "examples_ios_app_external/bundles/Utils.bundle",
-                    "f": true,
                     "t": "e"
                 }
+            ],
+            "r": [
+                "iOSApp/Resources/ExampleResources/Assets.xcassets"
             ],
             "s": [
                 "iOSApp/Test/SwiftUnitTests/SwiftUnitTests.swift"

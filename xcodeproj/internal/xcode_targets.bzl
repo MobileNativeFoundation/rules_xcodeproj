@@ -191,6 +191,7 @@ def _to_xcode_target_inputs(inputs):
         has_c_sources = inputs.has_c_sources,
         has_cxx_sources = inputs.has_cxx_sources,
         resources = inputs.resources,
+        folder_resources = inputs.folder_resources,
         resource_bundle_dependencies = inputs.resource_bundle_dependencies,
         generated = inputs.generated,
         indexstores = inputs.indexstores,
@@ -332,6 +333,7 @@ def _merge_xcode_target_inputs(*, src, dest):
         has_c_sources = src.has_c_sources,
         has_cxx_sources = src.has_cxx_sources,
         resources = dest.resources,
+        folder_resources = dest.folder_resources,
         resource_bundle_dependencies = dest.resource_bundle_dependencies,
         generated = dest.generated,
         indexstores = dest.indexstores,
@@ -779,6 +781,13 @@ def _inputs_to_dto(inputs):
             ret,
             "r",
             [file_path_to_dto(fp) for fp in inputs.resources.to_list()],
+        )
+
+    if inputs.folder_resources:
+        set_if_true(
+            ret,
+            "f",
+            [file_path_to_dto(fp) for fp in inputs.folder_resources.to_list()],
         )
 
     return ret

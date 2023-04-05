@@ -62,6 +62,7 @@ extension Project: Decodable {
         case envs = "E"
         case args = "a"
         case extraFiles = "e"
+        case extraFolders = "F"
         case schemeAutogenerationMode = "s"
         case forceBazelDependencies = "f"
         case indexImport = "i"
@@ -103,8 +104,8 @@ extension Project: Decodable {
         envs = try container
             .decodeIfPresent([TargetID: [String: String]].self, forKey: .envs)
             ?? [:]
-        extraFiles = try container
-            .decodeIfPresent(Set<FilePath>.self, forKey: .extraFiles) ?? []
+        extraFiles = try container.decodeFilePaths(.extraFiles)
+            .union(try container.decodeFolderFilePaths(.extraFolders))
         schemeAutogenerationMode = try container
             .decodeIfPresent(
                 SchemeAutogenerationMode.self,
@@ -141,5 +142,20 @@ extension Project.Options: Decodable {
             .decodeIfPresent(String.self, forKey: .organizationName)
         tabWidth = try container.decodeIfPresent(UInt.self, forKey: .tabWidth)
         usesTabs = try container.decodeIfPresent(Bool.self, forKey: .usesTabs)
+    }
+}
+
+private extension KeyedDecodingContainer where K == Project.CodingKeys {
+    func decodeFilePaths(_ key: K) throws -> Set<FilePath> {
+        return try decodeIfPresent(Set<FilePath>.self, forKey: key) ?? []
+    }
+
+    func decodeFolderFilePaths(_ key: K) throws -> Set<FilePath> {
+        var folders = try decodeIfPresent([FilePath].self, forKey: key) ?? []
+        for i in folders.indices {
+            folders[i].isFolder = true
+            folders[i].forceGroupCreation = true
+        }
+        return Set(folders)
     }
 }

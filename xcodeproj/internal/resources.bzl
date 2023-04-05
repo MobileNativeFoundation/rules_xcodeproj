@@ -87,6 +87,7 @@ def _create_bundle(name = None):
     return struct(
         name = name,
         resources = [],
+        folder_resources = [],
         dependency_paths = [],
     )
 
@@ -125,9 +126,8 @@ def _add_structured_resources_to_bundle(
         fp = file_path(
             file,
             path = paths.join(dir[:-(1 + len(nested_path))], inner_dir),
-            is_folder = True,
         )
-        bundle.resources.append(fp)
+        bundle.folder_resources.append(fp)
 
 def _add_structured_resources(
         *,
@@ -140,7 +140,9 @@ def _add_structured_resources(
     bundle = resource_bundle_targets.get(bundle_path)
 
     if bundle:
-        if not bundle.resources and len(bundle_path.split(".bundle")) > 2:
+        if (not bundle.resources and
+            not bundle.folder_resources and
+            len(bundle_path.split(".bundle")) > 2):
             # This covers a deficiency in rules_apple's `_deduplicate` for
             # nested bundles that should be excluded
             return
@@ -327,7 +329,9 @@ def collect_resources(
 
     for child_bundle_path in parent_bundle_paths:
         bundle = resource_bundle_targets[child_bundle_path]
-        if not bundle.resources and not bundle.dependency_paths:
+        if (not bundle.resources and
+            not bundle.folder_resources and
+            not bundle.dependency_paths):
             resource_bundle_targets.pop(child_bundle_path, None)
             continue
 
@@ -354,6 +358,7 @@ def collect_resources(
                     package_bin_dir = metadata.package_bin_dir,
                     platform = platform,
                     resources = tuple(bundle.resources),
+                    folder_resources = tuple(bundle.folder_resources),
                     dependencies = depset([
                         bundle_metadata[bundle_path].id
                         for bundle_path in bundle.dependency_paths
@@ -372,6 +377,7 @@ def collect_resources(
             if bundle
         ],
         resources = root_bundle.resources,
+        folder_resources = root_bundle.folder_resources,
         generated = generated,
         xccurrentversions = xccurrentversions,
         extra_files = extra_files,

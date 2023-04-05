@@ -71,6 +71,31 @@
             "INTEGRATION_TEST_ENV_VAR": "TRUE"
         }
     ],
+    "F": [
+        {
+            "_": "examples_ios_app_external/bundles/Utils.bundle",
+            "t": "e"
+        },
+        {
+            "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/iOSApp/Resources/ExampleResources/bucket",
+            "t": "g"
+        },
+        {
+            "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/iOSApp/Resources/ExampleResources/bucket",
+            "t": "g"
+        },
+        {
+            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Resources/ExampleResources/bucket",
+            "t": "g"
+        },
+        {
+            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Resources/ExampleResources/bucket",
+            "t": "g"
+        },
+        "iOSApp/Resources/ExampleNestedResources/dir",
+        "iOSApp/Resources/ExampleResources/nested",
+        "iOSApp/Resources/OnlyStructuredResources/Nested"
+    ],
     "R": "@//test/fixtures:xcodeproj_bwb",
     "a": [
         "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-13",
@@ -153,11 +178,6 @@
             "t": "e"
         },
         {
-            "_": "examples_ios_app_external/bundles/Utils.bundle",
-            "f": true,
-            "t": "e"
-        },
-        {
             "_": "applebin_tvos-tvos_arm64-dbg-STABLE-26/bin/Lib/exported-symbols.lds",
             "t": "g"
         },
@@ -206,11 +226,6 @@
             "t": "g"
         },
         {
-            "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/iOSApp/Resources/ExampleResources/bucket",
-            "f": true,
-            "t": "g"
-        },
-        {
             "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer-Swift.h",
             "t": "g"
         },
@@ -231,11 +246,6 @@
             "t": "g"
         },
         {
-            "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/iOSApp/Resources/ExampleResources/bucket",
-            "f": true,
-            "t": "g"
-        },
-        {
             "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer-Swift.h",
             "t": "g"
         },
@@ -249,11 +259,6 @@
         },
         {
             "_": "ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_modulemap-module.modulemap",
-            "t": "g"
-        },
-        {
-            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Resources/ExampleResources/bucket",
-            "f": true,
             "t": "g"
         },
         {
@@ -274,11 +279,6 @@
         },
         {
             "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Resources/ExampleNestedResources/ExampleNestedResources-intermediates/ExampleNestedResources.bundle",
-            "t": "g"
-        },
-        {
-            "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Resources/ExampleResources/bucket",
-            "f": true,
             "t": "g"
         },
         {
@@ -344,25 +344,13 @@
         "iOSApp/Resources/ExampleNestedResources/Assets.xcassets",
         "iOSApp/Resources/ExampleNestedResources/BUILD",
         "iOSApp/Resources/ExampleNestedResources/Info.plist",
-        {
-            "_": "iOSApp/Resources/ExampleNestedResources/dir",
-            "f": true
-        },
         "iOSApp/Resources/ExampleNestedResources/en.lproj/Localizable.strings",
         "iOSApp/Resources/ExampleNestedResources/es.lproj/Localizable.strings",
         "iOSApp/Resources/ExampleResources/Assets.xcassets",
         "iOSApp/Resources/ExampleResources/BUILD",
         "iOSApp/Resources/ExampleResources/Info.plist",
-        {
-            "_": "iOSApp/Resources/ExampleResources/nested",
-            "f": true
-        },
         "iOSApp/Resources/OnlyStructuredResources/BUILD",
         "iOSApp/Resources/OnlyStructuredResources/Info.plist",
-        {
-            "_": "iOSApp/Resources/OnlyStructuredResources/Nested",
-            "f": true
-        },
         "iOSApp/Source/AltIcons/AltIcon-60.alticon/AltIcon-60@2x.png",
         "iOSApp/Source/AltIcons/AltIcon-60.alticon/AltIcon-60@3x.png",
         "iOSApp/Source/BUILD",

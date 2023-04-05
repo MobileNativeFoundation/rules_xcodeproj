@@ -58,6 +58,7 @@ extension Inputs: Decodable {
         case hdrs = "h"
         case pch = "p"
         case resources = "r"
+        case folderResources = "f"
         case entitlements = "e"
     }
 
@@ -69,6 +70,7 @@ extension Inputs: Decodable {
         hdrs = try container.decodeFilePaths(.hdrs)
         pch = try container.decodeIfPresent(FilePath.self, forKey: .pch)
         resources = try container.decodeFilePaths(.resources)
+            .union(try container.decodeFolderFilePaths(.folderResources))
         entitlements = try container
             .decodeIfPresent(FilePath.self, forKey: .entitlements)
     }
@@ -81,5 +83,14 @@ private extension KeyedDecodingContainer where K == Inputs.CodingKeys {
 
     func decodeFilePaths(_ key: K) throws -> Set<FilePath> {
         return try decodeIfPresent(Set<FilePath>.self, forKey: key) ?? []
+    }
+
+    func decodeFolderFilePaths(_ key: K) throws -> Set<FilePath> {
+        var folders = try decodeIfPresent([FilePath].self, forKey: key) ?? []
+        for i in folders.indices {
+            folders[i].isFolder = true
+            folders[i].forceGroupCreation = true
+        }
+        return Set(folders)
     }
 }

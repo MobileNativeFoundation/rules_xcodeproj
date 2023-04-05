@@ -2,23 +2,17 @@
 
 load("@bazel_skylib//lib:paths.bzl", "paths")
 
-def file_path(
-        file,
-        *,
-        path = None,
-        is_folder = False):
+def file_path(file, *, path = None):
     """Converts a `File` into a `FilePath` Swift DTO value.
 
     Args:
         file: A `File`.
         path: A path string to use instead of `file.path`.
-        is_folder: Whether the path is to a folder.
 
     Returns:
         A `struct` containing the following fields:
 
         *   `path`: The file path.
-        *   `is_folder`: `True` if the path is a folder.
         *   `type`: Maps to `FilePath.FileType`:
             *   "p" for `.project`
             *   "e" for `.external`
@@ -32,16 +26,13 @@ def file_path(
     if not file.is_source:
         return generated_file_path(
             path = path,
-            is_folder = is_folder,
         )
     if file.owner.workspace_name:
         return external_file_path(
             path = path,
-            is_folder = is_folder,
         )
     return project_file_path(
         path = path,
-        is_folder = is_folder,
     )
 
 def build_setting_path(
@@ -192,39 +183,26 @@ def normalized_file_path(file, *, folder_type_extensions):
 
     return file_path(file)
 
-def raw_file_path(
-        type,
-        *,
-        path,
-        is_folder):
+def raw_file_path(type, *, path):
     return struct(
         path = path,
         type = type,
-        is_folder = is_folder,
     )
 
-def external_file_path(
-        path,
-        *,
-        is_folder = False):
+def external_file_path(path):
     return raw_file_path(
         # Type: "e" == `.external`
         type = "e",
         # Path, removing `external/` prefix
         path = path[9:],
-        is_folder = is_folder,
     )
 
-def generated_file_path(
-        path,
-        *,
-        is_folder = False):
+def generated_file_path(path):
     return raw_file_path(
         # Type: "g" == `.generated`
         type = "g",
         # Path, removing `bazel-out/` prefix
         path = path[10:],
-        is_folder = is_folder,
     )
 
 def is_external_path(path):
@@ -239,15 +217,11 @@ def is_generated_file_path(fp):
 def is_relative_path(path):
     return not path.startswith("/") and not path.startswith("__BAZEL_")
 
-def project_file_path(
-        path,
-        *,
-        is_folder = False):
+def project_file_path(path):
     return raw_file_path(
         # Type: "p" == `.project`
         type = "p",
         path = path,
-        is_folder = is_folder,
     )
 
 # TODO: Refactor all of file_path stuff to a module
@@ -273,9 +247,6 @@ def file_path_to_dto(file_path):
         return None
 
     ret = {}
-
-    if file_path.is_folder:
-        ret["f"] = True
 
     if file_path.type != "p":
         ret["t"] = file_path.type
