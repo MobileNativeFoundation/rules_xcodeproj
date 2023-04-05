@@ -42,8 +42,9 @@ def _should_ignore_input_attr(attr):
         attr in _IGNORE_ATTR
     )
 
-def _process_cc_info_headers(headers, *, exclude_headers, pch, srcs, generated):
+def _process_cc_info_headers(headers, *, exclude_headers, generated):
     def _process_header(header):
+        exclude_headers[header] = None
         if not header.is_source:
             generated.append(header)
         return normalized_file_path(
@@ -54,9 +55,7 @@ def _process_cc_info_headers(headers, *, exclude_headers, pch, srcs, generated):
     return [
         _process_header(header)
         for header in headers
-        if (header not in pch and
-            header not in exclude_headers and
-            header not in srcs)
+        if header not in exclude_headers
     ]
 
 # API
@@ -237,14 +236,18 @@ def _collect_input_files(
     for attr in automatic_target_info.exported_symbols_lists:
         file_handlers[attr] = _handle_extrafiles_file
 
+    categorized_files = {}
+
     # buildifier: disable=uninitialized
     def _handle_file(file, *, handler):
         if file == None:
             return
 
+
         if handler:
             handler(file)
             categorized = True
+            categorized_files[file] = None
         else:
             categorized = False
 
@@ -416,7 +419,6 @@ def _collect_input_files(
 
     # Generically handle CcInfo providing rules. This allows us to pick up
     # headers from `objc_import` and the like.
-    exclude_headers = {}
     if SwiftInfo in target:
         swift_info = target[SwiftInfo]
         for module in swift_info.direct_modules:
@@ -424,18 +426,16 @@ def _collect_input_files(
             if not clang:
                 continue
             for header in clang.compilation_context.direct_public_headers:
-                # Exclude SWift generated header, because we don't use it in
+                # Exclude Swift generated header, because we don't use it in
                 # BwX mode
-                exclude_headers[header] = None
+                categorized_files[header] = None
     if CcInfo in target:
         compilation_context = target[CcInfo].compilation_context
         extra_files.extend(_process_cc_info_headers(
             (compilation_context.direct_private_headers +
              compilation_context.direct_public_headers +
              compilation_context.direct_textual_headers),
-            exclude_headers = exclude_headers,
-            pch = pch,
-            srcs = srcs + non_arc_srcs + hdrs,
+            exclude_headers = categorized_files,
             generated = generated,
         ))
 
