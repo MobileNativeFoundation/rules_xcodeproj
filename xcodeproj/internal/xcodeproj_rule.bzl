@@ -592,10 +592,15 @@ actual targets: {}
 
     excluded_targets = dicts.add(unfocused_targets, files_only_targets)
 
+    lldb_contexts_dtos = {
+        xcode_configuration: {}
+        for xcode_configuration in infos_per_xcode_configuration.keys()
+    }
+
     target_dtos = {}
-    lldb_contexts_dtos = {}
     target_dependencies = {}
     target_link_params = {}
+
     for index, xcode_target in enumerate(focused_targets.values()):
         transitive_dependencies = {
             id: None
@@ -616,7 +621,7 @@ actual targets: {}
         if include_lldb_context and xcode_target.lldb_context_key:
             for xcode_configuration in target_xcode_configurations:
                 set_if_true(
-                    lldb_contexts_dtos.setdefault(xcode_configuration, {}),
+                    lldb_contexts_dtos[xcode_configuration],
                     xcode_target.lldb_context_key,
                     lldb_contexts.to_dto(
                         xcode_target.lldb_context,
