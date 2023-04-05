@@ -243,7 +243,6 @@ def _collect_input_files(
         if file == None:
             return
 
-
         if handler:
             handler(file)
             categorized = True
