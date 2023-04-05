@@ -106,7 +106,8 @@ def _get_unprocessed_compiler_opts(
         build_mode,
         has_c_sources,
         has_cxx_sources,
-        target):
+        target,
+        implementation_compilation_context):
     """Returns the unprocessed compiler options for the given target.
 
     Args:
@@ -115,6 +116,8 @@ def _get_unprocessed_compiler_opts(
         has_c_sources: `True` if `target` has C sources.
         has_cxx_sources: `True` if `target` has C++ sources.
         target: The `Target` that the compiler options will be retrieved from.
+        implementation_compilation_context: The implementation deps aware
+            `CcCompilationContext` for `target`.
 
     Returns:
         A `tuple` containing three elements:
@@ -132,10 +135,8 @@ def _get_unprocessed_compiler_opts(
             # First two arguments are "worker" and "swiftc"
             swiftcopts = action.argv[2:]
 
-    if (not swiftcopts and CcInfo in target and
+    if (not swiftcopts and implementation_compilation_context and
         (has_c_sources or has_cxx_sources)):
-        cc_info = target[CcInfo]
-        compilation_context = cc_info.compilation_context
         cc_toolchain = find_cpp_toolchain(ctx)
 
         user_copts = getattr(ctx.rule.attr, "copts", [])
@@ -174,16 +175,16 @@ def _get_unprocessed_compiler_opts(
             feature_configuration = feature_configuration,
             cc_toolchain = cc_toolchain,
             user_compile_flags = user_copts,
-            include_directories = compilation_context.includes,
-            quote_include_directories = compilation_context.quote_includes,
-            system_include_directories = compilation_context.system_includes,
+            include_directories = implementation_compilation_context.includes,
+            quote_include_directories = implementation_compilation_context.quote_includes,
+            system_include_directories = implementation_compilation_context.system_includes,
             framework_include_directories = (
-                compilation_context.framework_includes
+                implementation_compilation_context.framework_includes
             ),
             preprocessor_defines = depset(
                 transitive = [
-                    compilation_context.local_defines,
-                    compilation_context.defines,
+                    implementation_compilation_context.local_defines,
+                    implementation_compilation_context.defines,
                 ],
             ),
         )
@@ -823,6 +824,7 @@ def _process_target_compiler_opts(
         has_c_sources,
         has_cxx_sources,
         target,
+        implementation_compilation_context,
         package_bin_dir,
         build_settings):
     """Processes the compiler options for a target.
@@ -833,6 +835,8 @@ def _process_target_compiler_opts(
         has_c_sources: `True` if `target` has C sources.
         has_cxx_sources: `True` if `target` has C++ sources.
         target: The `Target` that the compiler options will be retrieved from.
+        implementation_compilation_context: The implementation deps aware
+            `CcCompilationContext` for `target`.
         package_bin_dir: The package directory for `target` within
             `ctx.bin_dir`.
         build_settings: A mutable `dict` that will be updated with build
@@ -858,6 +862,7 @@ def _process_target_compiler_opts(
         has_c_sources = has_c_sources,
         has_cxx_sources = has_cxx_sources,
         target = target,
+        implementation_compilation_context = implementation_compilation_context,
     )
     return _process_compiler_opts(
         conlyopts = conlyopts,
@@ -915,6 +920,7 @@ def process_opts(
         has_c_sources,
         has_cxx_sources,
         target,
+        implementation_compilation_context,
         package_bin_dir,
         build_settings):
     """Processes the compiler options for a target.
@@ -926,6 +932,8 @@ def process_opts(
         has_cxx_sources: `True` if `target` has C++ sources.
         target: The `Target` that the compiler and linker options will be
             retrieved from.
+        implementation_compilation_context: The implementation deps aware
+            `CcCompilationContext` for `target`.
         package_bin_dir: The package directory for `target` within
             `ctx.bin_dir`.
         build_settings: A mutable `dict` that will be updated with build
@@ -947,6 +955,7 @@ def process_opts(
         has_c_sources = has_c_sources,
         has_cxx_sources = has_cxx_sources,
         target = target,
+        implementation_compilation_context = implementation_compilation_context,
         package_bin_dir = package_bin_dir,
         build_settings = build_settings,
     )

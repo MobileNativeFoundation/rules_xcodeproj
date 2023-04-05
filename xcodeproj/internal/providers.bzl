@@ -57,6 +57,10 @@ A sequence of attribute names to collect `File`s from for the
 A sequence of attribute names to collect `File`s from for `hdrs`-like
 attributes.
 """,
+        "implementation_deps": """\
+A sequence of attribute names to collect `Target`s from for
+`implementation_deps`-like attributes.
+""",
         "infoplists": """\
 A sequence of attribute names to collect `File`s from for the `infoplists`-like
 attributes.
