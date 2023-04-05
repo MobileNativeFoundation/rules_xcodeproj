@@ -14,9 +14,9 @@
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "E48E9FEBBB9A5F8F1FE1B1CD"
-                     BuildableName = "@//lib:lib_impl"
-                     BlueprintName = "@//lib:lib_impl"
+                     BlueprintIdentifier = "ED67D8E93A937C4514DCF45A"
+                     BuildableName = "@//lib/impl:lib_impl"
+                     BlueprintName = "@//lib/impl:lib_impl"
                      ReferencedContainer = "container:../../../../../test/fixtures/bwx.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
@@ -25,14 +25,14 @@
          <ExecutionAction
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
-               title = "Set Bazel Build Output Groups for @//lib:lib_impl"
+               title = "Set Bazel Build Output Groups for @//lib/impl:lib_impl"
                scriptText = "echo &quot;$BAZEL_LABEL,$BAZEL_TARGET_ID&quot; &gt;&gt; &quot;$SCHEME_TARGET_IDS_FILE&quot;&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "E48E9FEBBB9A5F8F1FE1B1CD"
-                     BuildableName = "@//lib:lib_impl"
-                     BlueprintName = "@//lib:lib_impl"
+                     BlueprintIdentifier = "ED67D8E93A937C4514DCF45A"
+                     BuildableName = "@//lib/impl:lib_impl"
+                     BlueprintName = "@//lib/impl:lib_impl"
                      ReferencedContainer = "container:../../../../../test/fixtures/bwx.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
@@ -48,9 +48,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E48E9FEBBB9A5F8F1FE1B1CD"
-               BuildableName = "@//lib:lib_impl"
-               BlueprintName = "@//lib:lib_impl"
+               BlueprintIdentifier = "ED67D8E93A937C4514DCF45A"
+               BuildableName = "@//lib/impl:lib_impl"
+               BlueprintName = "@//lib/impl:lib_impl"
                ReferencedContainer = "container:../../../../../test/fixtures/bwx.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
