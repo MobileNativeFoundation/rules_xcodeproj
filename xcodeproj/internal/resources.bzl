@@ -126,7 +126,6 @@ def _add_structured_resources_to_bundle(
             file,
             path = paths.join(dir[:-(1 + len(nested_path))], inner_dir),
             is_folder = True,
-            force_group_creation = True,
         )
         bundle.resources.append(fp)
 
