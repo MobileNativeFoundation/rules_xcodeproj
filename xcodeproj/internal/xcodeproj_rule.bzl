@@ -195,7 +195,6 @@ def _process_extra_files(
                 type = fp.type,
                 path = _normalize_path(fp.path),
                 is_folder = fp.is_folder,
-                include_in_navigator = fp.include_in_navigator,
                 force_group_creation = fp.force_group_creation,
             )
             for fp in extra_files

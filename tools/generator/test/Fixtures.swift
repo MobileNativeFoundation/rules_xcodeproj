@@ -40,7 +40,6 @@ enum Fixtures {
             "a/imported.a",
             "a/module.modulemap",
             "a/StaticFram.framework",
-            .generated("v/a.txt", includeInNavigator: false),
         ],
         schemeAutogenerationMode: .auto,
         customXcodeSchemes: [],
@@ -1062,7 +1061,6 @@ $(BAZEL_OUT)/B3.link.params
 $(BAZEL_OUT)/a/b/module.modulemap
 $(BAZEL_OUT)/a1b2c/bin/t.c
 $(BAZEL_OUT)/d.link.params
-$(BAZEL_OUT)/v/a.txt
 $(BAZEL_OUT)/z/A.link.params
 
 """)

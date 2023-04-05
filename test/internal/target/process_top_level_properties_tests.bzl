@@ -31,7 +31,6 @@ def _process_top_level_properties_test_impl(ctx):
             path = ctx.attr.expected_bundle_path,
             type = "g",
             is_folder = False,
-            include_in_navigator = True,
             force_group_creation = False,
         ) if ctx.attr.expected_bundle_path else None,
         properties.bundle_file_path,

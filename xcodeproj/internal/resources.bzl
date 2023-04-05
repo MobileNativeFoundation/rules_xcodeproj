@@ -95,8 +95,7 @@ def _add_structured_resources_to_bundle(
         *,
         nested_path,
         files,
-        generated,
-        extra_files):
+        generated):
     if nested_path:
         inner_dir = nested_path.split("/")[0]
     else:
@@ -131,9 +130,6 @@ def _add_structured_resources_to_bundle(
         )
         bundle.resources.append(fp)
 
-        if not file.is_source:
-            extra_files.append(file_path(file, include_in_navigator = False))
-
 def _add_structured_resources(
         *,
         root_bundle,
@@ -141,8 +137,7 @@ def _add_structured_resources(
         bundle_path,
         nested_path,
         files,
-        generated,
-        extra_files):
+        generated):
     bundle = resource_bundle_targets.get(bundle_path)
 
     if bundle:
@@ -155,7 +150,6 @@ def _add_structured_resources(
             nested_path = nested_path,
             files = files,
             generated = generated,
-            extra_files = extra_files,
         )
     else:
         _add_structured_resources_to_bundle(
@@ -163,7 +157,6 @@ def _add_structured_resources(
             nested_path = join_paths_ignoring_empty(bundle_path, nested_path),
             files = files,
             generated = generated,
-            extra_files = extra_files,
         )
 
 def _add_processed_resources(
@@ -217,8 +210,7 @@ def _add_unprocessed_resources(
         parent_bundle_paths,
         bundle_metadata,
         generated,
-        xccurrentversions,
-        extra_files):
+        xccurrentversions):
     for parent_dir, _, files in resources:
         if not parent_dir:
             _add_resources_to_bundle(
@@ -246,7 +238,6 @@ def _add_unprocessed_resources(
             nested_path = nested_path,
             files = files,
             generated = generated,
-            extra_files = extra_files,
         )
 
 # API
@@ -318,7 +309,6 @@ def collect_resources(
                 bundle_metadata = bundle_metadata,
                 generated = generated,
                 xccurrentversions = xccurrentversions,
-                extra_files = extra_files,
             )
         else:
             _add_processed_resources(
