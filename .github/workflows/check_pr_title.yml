@@ -7,9 +7,6 @@ on:
       - edited
       - reopened
       - synchronize
-  push:
-    branches:
-      - main
 
 jobs:
   check-commit-message-style:

@@ -6,6 +6,7 @@ load("@bazel_skylib//lib:structs.bzl", "structs")
 load(":collections.bzl", "set_if_true", "uniq")
 load(
     ":files.bzl",
+    "FRAMEWORK_EXTENSIONS",
     "build_setting_path",
     "file_path",
     "file_path_to_dto",
@@ -155,10 +156,11 @@ _BUNDLE_TYPES = {
 }
 
 def _lldb_context_key(*, platform, product):
-    if not product.file_path:
+    fp = product.file_path
+    if not fp:
         return None
 
-    product_basename = paths.basename(product.file_path.path)
+    product_basename = paths.basename(fp.path)
     base_key = "{} {}".format(
         platform_info.to_lldb_context_triple(platform),
         product_basename,
@@ -251,6 +253,7 @@ def _to_xcode_target_product(product):
         name = product.name,
         type = product.type,
         file = product.file,
+        basename = product.basename,
         file_path = product.file_path,
         executable = product.executable,
         executable_name = product.executable_name,
@@ -359,6 +362,7 @@ def _merge_xcode_target_product(*, src, dest):
         name = dest.name,
         type = dest.type,
         file = dest.file,
+        basename = dest.basename,
         file_path = dest.file_path,
         executable = dest.executable,
         executable_name = dest.executable_name,
@@ -665,7 +669,14 @@ def _xcode_target_to_dto(
     )
 
     if should_include_outputs:
-        set_if_true(dto, "o", _outputs_to_dto(xcode_target.outputs))
+        set_if_true(
+            dto,
+            "o",
+            _outputs_to_dto(
+                outputs = xcode_target.outputs,
+                product = xcode_target.product,
+            ),
+        )
 
     set_if_true(
         dto,
@@ -875,11 +886,11 @@ def _linker_inputs_to_dto(
 
     return (ret, link_params)
 
-def _outputs_to_dto(outputs):
+def _outputs_to_dto(*, outputs, product):
     dto = {}
 
-    if outputs.product_file:
-        dto["p"] = True
+    if outputs.product_file and product.basename:
+        dto["p"] = product.basename
 
     if outputs.swiftmodule:
         dto["s"] = _swift_to_dto(outputs)
@@ -897,7 +908,12 @@ def _product_to_dto(product):
         dto,
         "a",
         [
-            file_path_to_dto(normalized_file_path(file))
+            file_path_to_dto(
+                normalized_file_path(
+                    file,
+                    folder_type_extensions = FRAMEWORK_EXTENSIONS,
+                ),
+            )
             for file in product._additional_files.to_list()
         ],
     )

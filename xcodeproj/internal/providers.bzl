@@ -34,6 +34,9 @@ An attribute name (or `None`) to collect the bundle id string from.
         "codesignopts": """\
 An attribute name (or `None`) to collect the `codesignopts` `list` from.
 """,
+        "collect_uncategorized_files": """\
+Whether to collect files from uncategorized attributes.
+""",
         "deps": """\
 A sequence of attribute names to collect `Target`s from for `deps`-like
 attributes.
@@ -151,6 +154,11 @@ added to the project.
 """,
         "label": "The `Label` of the target.",
         "lldb_context": "A value returned from `lldb_context.collect`.",
+        "mergable_xcode_library_targets": """\
+A `List` of `struct`s with 'id' and 'product_path' fields. The 'id' field
+is the id of the target. The 'product_path' is the path to the target's
+product.
+""",
         "potential_target_merges": """\
 A `depset` of `struct`s with 'src' and 'dest' fields. The 'src' field is the id
 of the target that can be merged into the target with the id of the 'dest'

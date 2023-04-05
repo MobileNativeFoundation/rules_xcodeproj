@@ -102,6 +102,7 @@ def _target_info_fields(
         inputs,
         is_top_level_target,
         lldb_context,
+        mergable_xcode_library_targets,
         outputs,
         potential_target_merges,
         replacement_labels,
@@ -130,6 +131,8 @@ def _target_info_fields(
         is_top_level_target: Maps to the `XcodeProjInfo.is_top_level_target`
             field.
         lldb_context: Maps to the `XcodeProjInfo.lldb_context` field.
+        mergable_xcode_library_targets: Maps to the
+            `XcodeProjInfo.mergable_xcode_library_targets` field.
         outputs: Maps to the `XcodeProjInfo.outputs` field.
         potential_target_merges: Maps to the
             `XcodeProjInfo.potential_target_merges` field.
@@ -182,6 +185,7 @@ def _target_info_fields(
         "is_top_level_target": is_top_level_target,
         "lldb_context": lldb_context,
         "outputs": outputs,
+        "mergable_xcode_library_targets": mergable_xcode_library_targets,
         "potential_target_merges": potential_target_merges,
         "replacement_labels": replacement_labels,
         "resource_bundle_informations": resource_bundle_informations,
@@ -282,6 +286,12 @@ def _skip_target(
             clang_opts = [],
             transitive_infos = [
                 info
+                for _, info in transitive_infos
+            ],
+        ),
+        mergable_xcode_library_targets = depset(
+            transitive = [
+                info.mergable_xcode_library_targets
                 for _, info in transitive_infos
             ],
         ),
@@ -463,6 +473,7 @@ def _create_xcodeprojinfo(
         inputs = processed_target.inputs,
         is_top_level_target = processed_target.is_top_level_target,
         lldb_context = processed_target.lldb_context,
+        mergable_xcode_library_targets = depset(processed_target.mergable_xcode_library_targets),
         outputs = processed_target.outputs,
         potential_target_merges = depset(
             processed_target.potential_target_merges,

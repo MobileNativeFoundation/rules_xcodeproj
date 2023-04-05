@@ -153,6 +153,36 @@ def process_library_target(
         ],
     )
 
+    xcode_target = xcode_targets.make(
+        id = id,
+        label = label,
+        configuration = configuration,
+        package_bin_dir = package_bin_dir,
+        platform = platform,
+        product = product,
+        is_swift = is_swift,
+        build_settings = build_settings,
+        conlyopts = conlyopts,
+        cxxopts = cxxopts,
+        swiftcopts = swiftcopts,
+        search_paths = search_paths,
+        modulemaps = modulemaps,
+        swiftmodules = swiftmodules,
+        inputs = inputs,
+        linker_inputs = linker_inputs,
+        dependencies = dependencies,
+        transitive_dependencies = transitive_dependencies,
+        outputs = outputs,
+        should_create_xcode_target = target.files != depset(),
+    )
+
+    mergable_xcode_library_targets = [
+        struct(
+            id = xcode_target.id,
+            product_path = xcode_target.product.file_path,
+        ),
+    ]
+
     return processed_target(
         automatic_target_info = automatic_target_info,
         compilation_providers = compilation_providers,
@@ -160,29 +190,9 @@ def process_library_target(
         inputs = inputs,
         library = product.file,
         lldb_context = lldb_context,
+        mergable_xcode_library_targets = mergable_xcode_library_targets,
         outputs = outputs,
         search_paths = search_paths,
         transitive_dependencies = transitive_dependencies,
-        xcode_target = xcode_targets.make(
-            id = id,
-            label = label,
-            configuration = configuration,
-            package_bin_dir = package_bin_dir,
-            platform = platform,
-            product = product,
-            is_swift = is_swift,
-            build_settings = build_settings,
-            conlyopts = conlyopts,
-            cxxopts = cxxopts,
-            swiftcopts = swiftcopts,
-            search_paths = search_paths,
-            modulemaps = modulemaps,
-            swiftmodules = swiftmodules,
-            inputs = inputs,
-            linker_inputs = linker_inputs,
-            dependencies = dependencies,
-            transitive_dependencies = transitive_dependencies,
-            outputs = outputs,
-            should_create_xcode_target = target.files != depset(),
-        ),
+        xcode_target = xcode_target,
     )

@@ -81,6 +81,7 @@
             "--command_line_args=-AppleLanguages,(en-GB)"
         ]
     ],
+    "b": "$HOMEWBREW_BIN/bazel",
     "e": [
         {
             "_": "FXPageControl/FXPageControl/FXPageControl.h",
@@ -380,6 +381,7 @@
         "u": true
     },
     "p": "set -euo pipefail\n\nif [[ \"$ACTION\" == \"build\" ]]; then\n  cd \"$SRCROOT\"\n  echo \"Hello from pre-build!\"\nfi",
+    "r": "$BAZELISK_DOWNLOAD",
     "t": [
         "//WidgetExtension:WidgetExtension applebin_ios-ios_arm64-dbg-STABLE-14",
         [

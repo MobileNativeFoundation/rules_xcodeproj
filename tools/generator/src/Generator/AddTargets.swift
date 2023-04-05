@@ -58,12 +58,11 @@ extension Generator {
         let target = disambiguatedTarget.target
         let inputs = target.inputs
         let outputs = target.outputs
-        let productBasename = target.product.basename
         let productType = target.product.type
 
         let compileSources: (phase: PBXSourcesBuildPhase, hasCompileStub: Bool)?
         let product: PBXFileReference?
-        if productBasename != nil {
+        if target.product.basename != nil {
             guard let actualProduct = products.byTarget[key] else {
                 throw PreconditionError(message: """
 Product for target "\(key)" not found in `products`
@@ -89,7 +88,6 @@ Product for target "\(key)" not found in `products`
                 buildMode: buildMode,
                 productType: productType,
                 isResourceBundle: target.product.isResourceBundle,
-                productBasename: productBasename,
                 outputs: outputs
             ),
             try createCompilingDependenciesScript(
@@ -179,7 +177,6 @@ Product for target "\(key)" not found in `products`
         buildMode: BuildMode,
         productType: PBXProductType,
         isResourceBundle: Bool,
-        productBasename: String?,
         outputs: ConsolidatedTargetOutputs
     ) throws -> PBXShellScriptBuildPhase? {
         guard buildMode.usesBazelModeBuildScripts, !isResourceBundle else {
@@ -187,12 +184,12 @@ Product for target "\(key)" not found in `products`
         }
 
         let copyOutputs: String
-        if let productBasename = productBasename, outputs.hasProductOutput {
+        if let bazelBasename = outputs.productBasename {
             copyOutputs = #"""
 else
   "$BAZEL_INTEGRATION_DIR/copy_outputs.sh" \
     "\#(Generator.bazelForcedSwiftCompilePath)" \
-    "\#(productBasename)" \
+    "\#(bazelBasename)" \
     "\#(productType.rsyncExcludeFile)"
 """#
         } else {

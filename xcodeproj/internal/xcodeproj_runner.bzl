@@ -248,7 +248,6 @@ def _write_generator_build_file(
                 str(attr.adjust_schemes_for_swiftui_previews)
             ),
             "%build_mode%": attr.build_mode,
-            "%bazel_path%": attr.bazel_path,
             "%colorize%": str(attr._colorize[BuildSettingInfo].value),
             "%config%": attr.config,
             "%default_xcode_configuration%": (

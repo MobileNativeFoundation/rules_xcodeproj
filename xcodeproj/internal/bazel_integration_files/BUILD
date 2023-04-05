@@ -18,8 +18,8 @@ filegroup(
 filegroup(
     name = "bazel_integration_files",
     srcs = [
-        ":swiftc",
         ":rsync_excludes",
+        ":swiftc",
     ] + glob(
         ["**/*"],
         exclude = _BASE_FILES + [

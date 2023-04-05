@@ -10,6 +10,8 @@ load(":compilation_providers.bzl", comp_providers = "compilation_providers")
 load(":filelists.bzl", "filelists")
 load(
     ":files.bzl",
+    "FRAMEWORK_EXTENSIONS",
+    "RESOURCES_FOLDER_TYPE_EXTENSIONS",
     "file_path",
     "normalized_file_path",
     "parsed_file_path",
@@ -21,33 +23,6 @@ load(":resources.bzl", "collect_resources")
 load(":target_properties.bzl", "should_include_non_xcode_outputs")
 
 # Utility
-
-def _transitive_extra_files(*, id, files):
-    return depset(
-        [(
-            id,
-            tuple([
-                normalized_file_path(file)
-                for file in files.to_list()
-            ]),
-        )],
-    )
-
-def _collect_transitive_extra_files(id, transitive_info):
-    inputs = transitive_info.inputs
-    transitive = [inputs.extra_files]
-    if not transitive_info.xcode_target:
-        transitive.append(
-            _transitive_extra_files(id = id, files = inputs.srcs),
-        )
-        transitive.append(
-            _transitive_extra_files(id = id, files = inputs.non_arc_srcs),
-        )
-        transitive.append(
-            _transitive_extra_files(id = id, files = inputs.hdrs),
-        )
-
-    return depset(transitive = transitive)
 
 def _collect_transitive_uncategorized(info):
     if info.xcode_target:
@@ -71,7 +46,10 @@ def _process_cc_info_headers(headers, *, exclude_headers, pch, srcs, generated):
     def _process_header(header):
         if not header.is_source:
             generated.append(header)
-        return normalized_file_path(header)
+        return normalized_file_path(
+            header,
+            folder_type_extensions = FRAMEWORK_EXTENSIONS,
+        )
 
     return [
         _process_header(header)
@@ -122,7 +100,8 @@ def _collect_input_files(
         unfocused: Whether the target is unfocused. If `None`, it will be
             determined automatically (this should only be the case for
             `non_xcode_target`s).
-        id: A unique identifier for the target.
+        id: A unique identifier for the target. Will be `None` for non-Xcode
+            targets.
         platform: A value returned from `platform_info.collect`.
         is_bundle: Whether `target` is a bundle.
         product: A value returned from `process_product`.
@@ -172,8 +151,6 @@ def _collect_input_files(
     output_files = target.files.to_list()
 
     entitlements = []
-    extra_files = []
-    generated = []
     c_srcs = []
     cxx_srcs = []
     hdrs = []
@@ -181,6 +158,9 @@ def _collect_input_files(
     pch = []
     srcs = []
     uncategorized = []
+
+    generated = [file for file in additional_files if not file.is_source]
+    extra_files = [file_path(file) for file in additional_files]
 
     # Include BUILD files for the project but not for external repos
     if not target.label.workspace_root:
@@ -227,12 +207,23 @@ def _collect_input_files(
         extra_files.append(file_path(file))
 
     file_handlers = {}
-    for attr in automatic_target_info.srcs:
-        file_handlers[attr] = _handle_srcs_file
-    for attr in automatic_target_info.non_arc_srcs:
-        file_handlers[attr] = _handle_non_arc_srcs_file
-    for attr in automatic_target_info.hdrs:
-        file_handlers[attr] = _handle_hdrs_file
+
+    if id:
+        for attr in automatic_target_info.srcs:
+            file_handlers[attr] = _handle_srcs_file
+        for attr in automatic_target_info.non_arc_srcs:
+            file_handlers[attr] = _handle_non_arc_srcs_file
+        for attr in automatic_target_info.hdrs:
+            file_handlers[attr] = _handle_hdrs_file
+    else:
+        # Turn source files into extra files for non-Xcode targets
+        for attr in automatic_target_info.srcs:
+            file_handlers[attr] = _handle_extrafiles_file
+        for attr in automatic_target_info.non_arc_srcs:
+            file_handlers[attr] = _handle_extrafiles_file
+        for attr in automatic_target_info.hdrs:
+            file_handlers[attr] = _handle_extrafiles_file
+
     if automatic_target_info.pch:
         file_handlers[automatic_target_info.pch] = _handle_pch_file
     for attr in automatic_target_info.infoplists:
@@ -259,7 +250,14 @@ def _collect_input_files(
 
         if file.is_source:
             if not categorized and file not in output_files:
-                uncategorized.append(normalized_file_path(file))
+                uncategorized.append(
+                    normalized_file_path(
+                        file,
+                        folder_type_extensions = (
+                            RESOURCES_FOLDER_TYPE_EXTENSIONS
+                        ),
+                    ),
+                )
         elif categorized:
             generated.append(file)
 
@@ -273,17 +271,31 @@ def _collect_input_files(
             return
         transitive_extra_files.append(dep[XcodeProjInfo].inputs.uncategorized)
 
+    collect_uncategorized_files = (
+        automatic_target_info.collect_uncategorized_files
+    )
+
     for attr in dir(ctx.rule.files):
         if _should_ignore_input_attr(attr):
             continue
+
         handler = file_handlers.get(attr, None)
+
+        if not collect_uncategorized_files and not handler:
+            continue
+
         for file in getattr(ctx.rule.files, attr):
             _handle_file(file, handler = handler)
 
     for attr in dir(ctx.rule.file):
         if _should_ignore_input_attr(attr):
             continue
+
         handler = file_handlers.get(attr, None)
+
+        if not collect_uncategorized_files and not handler:
+            continue
+
         _handle_file(getattr(ctx.rule.file, attr), handler = handler)
 
     for attr in automatic_target_info.all_attrs:
@@ -324,11 +336,18 @@ def _collect_input_files(
             for file in linker_input_additional_files
             if file not in framework_files
         ]
-    additional_files = additional_files + linker_input_additional_files
-
-    generated.extend([file for file in additional_files if not file.is_source])
-    for file in additional_files:
-        extra_files.append(normalized_file_path(file))
+        generated.extend([
+            file
+            for file in linker_input_additional_files
+            if not file.is_source
+        ])
+        for file in linker_input_additional_files:
+            extra_files.append(
+                normalized_file_path(
+                    file,
+                    folder_type_extensions = FRAMEWORK_EXTENSIONS,
+                ),
+            )
 
     is_resource_bundle_consuming = is_bundle and AppleResourceInfo in target
     label = target.label
@@ -707,7 +726,7 @@ def _collect_input_files(
         extra_files = depset(
             [(label, tuple(extra_files))] if extra_files else None,
             transitive = [
-                _collect_transitive_extra_files(label, info)
+                depset(transitive = [info.inputs.extra_files])
                 for attr, info in transitive_infos
                 if (info.target_type in
                     automatic_target_info.xcode_targets.get(attr, [None]))

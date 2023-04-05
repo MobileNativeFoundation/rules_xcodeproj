@@ -74,6 +74,7 @@ extension Generator {
             "_BAZEL_OUTPUT_BASE": "$(PROJECT_DIR)/../..",
             "BAZEL_OUTPUT_BASE": "$(_BAZEL_OUTPUT_BASE:standardizepath)",
             "BAZEL_PATH": project.bazel,
+            "BAZEL_REAL": project.bazelReal,
             "BAZEL_WORKSPACE_ROOT": "$(SRCROOT)",
             "BUILD_DIR": """
 $(SYMROOT)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
@@ -123,7 +124,7 @@ $(PROJECT_FILE_PATH)/\(directories.internalDirectoryName)
             "LD_DYLIB_INSTALL_NAME": "",
             // We don't want Xcode to set any search paths, since we set them in
             // `link.params`
-            "LD_RUNPATH_SEARCH_PATHS": [],
+            "LD_RUNPATH_SEARCH_PATHS": [] as [String],
             "ONLY_ACTIVE_ARCH": true,
             "RULES_XCODEPROJ_BUILD_MODE": buildMode.rawValue,
             "SCHEME_TARGET_IDS_FILE": """

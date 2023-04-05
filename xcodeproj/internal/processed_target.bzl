@@ -14,6 +14,7 @@ def processed_target(
         is_xcode_required = False,
         library = None,
         lldb_context,
+        mergable_xcode_library_targets = None,
         outputs,
         potential_target_merges = None,
         resource_bundle_informations = None,
@@ -40,6 +41,9 @@ def processed_target(
         library: A `File` for the static library produced by this target, or
             `None`.
         lldb_context: A value as returned from `lldb_context.collect`.
+        mergable_xcode_library_targets: An optional `list` of `struct`s that
+            will be in the `XcodeProjInfo.mergable_xcode_library_targets`
+            `depset`.
         outputs: A value as returned from `output_files.collect` that will
             provide values for the `XcodeProjInfo.outputs` field.
         potential_target_merges: An optional `list` of `struct`s that will be in
@@ -66,6 +70,7 @@ def processed_target(
         is_xcode_required = is_xcode_required,
         library = library,
         lldb_context = lldb_context,
+        mergable_xcode_library_targets = mergable_xcode_library_targets,
         outputs = outputs,
         potential_target_merges = potential_target_merges,
         resource_bundle_informations = resource_bundle_informations,

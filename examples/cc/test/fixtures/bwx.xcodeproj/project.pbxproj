@@ -81,9 +81,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		04D0C0E1D77B094DEC4ED63A /* lib3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib3.h; sourceTree = "<group>"; };
 		10D21E69D7E12FFDA82B1273 /* lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib.h; sourceTree = "<group>"; };
 		18DF90BBBA2BA8D2AF06D94F /* lib2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib2.h; sourceTree = "<group>"; };
 		1F8D330113018E003269E782 /* liblib_impl.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_impl.a; path = "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external/liblib_impl.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		279A0E4737F6910DA83B77C4 /* lib3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib3.h; sourceTree = "<group>"; };
 		655197F36E3561F5EBB2B456 /* lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib.h; sourceTree = "<group>"; };
 		68571FA99BB8CAC9AA027C16 /* lib2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib2.h; sourceTree = "<group>"; };
 		82E1AC498ACAE9E123276B7A /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 		DE32C738128FA44FF0EA80BE /* liblib_impl.lo */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_impl.lo; path = "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib/liblib_impl.lo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E17E75D090217B10AE0BAF46 /* liblib_impl.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_impl.a; path = "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib2/liblib_impl.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4625264BB5CC1E80CC94DF2 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		E483854DF5BC316B65784CA2 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -108,6 +111,7 @@
 			children = (
 				FA261E4AF708F00AB0368E11 /* lib */,
 				F1B323372508EB9B5C75D7CE /* lib2 */,
+				92FD27E3A38229861829B679 /* lib3 */,
 				CE093984B3218CD2FC972D09 /* test */,
 				8EC0A5AD173DDF13D9361EBE /* tool */,
 				29CFFE07E6D74CFE2F61B31F /* Bazel External Repositories */,
@@ -150,12 +154,28 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		3226EF7DC502543C88C2C8D8 /* includes */ = {
+			isa = PBXGroup;
+			children = (
+				279A0E4737F6910DA83B77C4 /* lib3.h */,
+			);
+			path = includes;
+			sourceTree = "<group>";
+		};
 		41C1CE77343EA334178D06F7 /* external */ = {
 			isa = PBXGroup;
 			children = (
 				6943E9B08F3DD92EACE0E378 /* rules_xcodeproj_generated */,
 			);
 			path = external;
+			sourceTree = "<group>";
+		};
+		44C73F12516D366FDF43E910 /* lib3 */ = {
+			isa = PBXGroup;
+			children = (
+				04D0C0E1D77B094DEC4ED63A /* lib3.h */,
+			);
+			path = lib3;
 			sourceTree = "<group>";
 		};
 		6033DA143D6CA2B97C1808E7 /* private */ = {
@@ -172,6 +192,14 @@
 				9AC493BBC1DEC135D929E523 /* generator */,
 			);
 			path = rules_xcodeproj_generated;
+			sourceTree = "<group>";
+		};
+		6B7E5D4AABA27176ABE16160 /* lib3 */ = {
+			isa = PBXGroup;
+			children = (
+				AC4250FBBE388BE6EF181072 /* _virtual_includes */,
+			);
+			path = lib3;
 			sourceTree = "<group>";
 		};
 		6DEE7775A87F3AD8AD281743 /* Bazel Generated Files */ = {
@@ -201,6 +229,15 @@
 			path = tool;
 			sourceTree = "<group>";
 		};
+		92FD27E3A38229861829B679 /* lib3 */ = {
+			isa = PBXGroup;
+			children = (
+				3226EF7DC502543C88C2C8D8 /* includes */,
+				E483854DF5BC316B65784CA2 /* BUILD */,
+			);
+			path = lib3;
+			sourceTree = "<group>";
+		};
 		9AC493BBC1DEC135D929E523 /* generator */ = {
 			isa = PBXGroup;
 			children = (
@@ -223,6 +260,14 @@
 				9F7E4D4095E7BF2EE167B320 /* tool.3.link.params */,
 			);
 			path = "generator-params";
+			sourceTree = "<group>";
+		};
+		AC4250FBBE388BE6EF181072 /* _virtual_includes */ = {
+			isa = PBXGroup;
+			children = (
+				E3DC78DDF4F752131CE8F6ED /* lib_headers */,
+			);
+			path = _virtual_includes;
 			sourceTree = "<group>";
 		};
 		B93A94C580A3732A5B346592 /* examples_cc_external */ = {
@@ -271,6 +316,14 @@
 			path = fixtures;
 			sourceTree = "<group>";
 		};
+		E3DC78DDF4F752131CE8F6ED /* lib_headers */ = {
+			isa = PBXGroup;
+			children = (
+				44C73F12516D366FDF43E910 /* lib3 */,
+			);
+			path = lib_headers;
+			sourceTree = "<group>";
+		};
 		E6B50228DFEE5588FC3049F5 /* darwin_x86_64-dbg-STABLE-1 */ = {
 			isa = PBXGroup;
 			children = (
@@ -309,6 +362,7 @@
 			isa = PBXGroup;
 			children = (
 				FC3D4E078F411C4DDAC367B0 /* lib2 */,
+				6B7E5D4AABA27176ABE16160 /* lib3 */,
 			);
 			path = bin;
 			sourceTree = "<group>";
@@ -754,7 +808,8 @@
 				BAZEL_LLDB_INIT = "$(HOME)/.lldbinit-rules_xcodeproj";
 				BAZEL_OUT = "$(PROJECT_DIR)/bazel-out";
 				BAZEL_OUTPUT_BASE = "$(_BAZEL_OUTPUT_BASE:standardizepath)";
-				BAZEL_PATH = bazel;
+				BAZEL_PATH = $HOMEWBREW_BIN/bazel;
+				BAZEL_REAL = $BAZELISK_DOWNLOAD;
 				BAZEL_WORKSPACE_ROOT = "$(SRCROOT)";
 				BUILD_DIR = "$(SYMROOT)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
 				BUILD_WORKSPACE_DIRECTORY = "$(SRCROOT)";
@@ -804,7 +859,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -D_FORTIFY_SOURCE=1 -fstack-protector -Wall -Wthread-safety -Wself-assign -fno-omit-frame-pointer -iquote . -iquote bazel-out/darwin_x86_64-dbg-STABLE-1/bin -iquote external/examples_cc_external -iquote bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external -iquote external/bazel_tools -iquote bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/bazel_tools -Ibazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib2/_virtual_includes/lib_impl -isystem lib2/includes -isystem bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib2/includes -DSECRET_2=\\\"World!\\\" -DEXTERNAL_SECRET_2=\\\"World?\\\" -F$(SDKROOT)/System/Library/Frameworks -F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks -no-canonical-prefixes -pthread -no-canonical-prefixes -Wno-builtin-macro-redefined -D__DATE__=\\\"redacted\\\" -D__TIMESTAMP__=\\\"redacted\\\" -D__TIME__=\\\"redacted\\\"";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -D_FORTIFY_SOURCE=1 -fstack-protector -Wall -Wthread-safety -Wself-assign -fno-omit-frame-pointer -iquote . -iquote bazel-out/darwin_x86_64-dbg-STABLE-1/bin -iquote external/examples_cc_external -iquote bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external -iquote external/bazel_tools -iquote bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/bazel_tools -Ibazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib2/_virtual_includes/lib_impl -Ibazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib3/_virtual_includes/lib_headers -isystem lib2/includes -isystem bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib2/includes -isystem lib3/includes -isystem bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib3/includes -DSECRET_2=\\\"World!\\\" -DEXTERNAL_SECRET_2=\\\"World?\\\" -F$(SDKROOT)/System/Library/Frameworks -F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks -no-canonical-prefixes -pthread -no-canonical-prefixes -Wno-builtin-macro-redefined -D__DATE__=\\\"redacted\\\" -D__TIMESTAMP__=\\\"redacted\\\" -D__TIME__=\\\"redacted\\\"";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",

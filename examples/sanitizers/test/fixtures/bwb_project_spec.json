@@ -1,6 +1,7 @@
 {
     "B": "rules_xcodeproj",
     "R": "@//test/fixtures:xcodeproj_bwb",
+    "b": "$HOMEWBREW_BIN/bazel",
     "e": [
         "AddressSanitizerApp/BUILD",
         "AddressSanitizerApp/Info.plist",
@@ -15,5 +16,6 @@
     "i": "fixture-index-import-path",
     "m": "13.0",
     "n": "bwb",
+    "r": "$BAZELISK_DOWNLOAD",
     "s": "none"
 }

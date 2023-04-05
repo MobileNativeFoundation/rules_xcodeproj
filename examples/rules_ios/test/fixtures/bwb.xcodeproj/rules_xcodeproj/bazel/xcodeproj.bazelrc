@@ -1,0 +1,107 @@
+### `--config=rules_xcodeproj`
+#
+# Used directly when doing a normal build, but it is also the base config of all
+# the `rules_xcodeproj_*` configs. Adjust this config if you want something to
+# apply to all builds (which should be most settings).
+
+common:rules_xcodeproj --verbose_failures
+
+# Increase the default file digest cache size to 500k entries, as 50k (the
+# default) is too small for large projects.
+common:rules_xcodeproj --cache_computed_file_digests=500000
+
+# We default to `dbg` since debugging is broken otherwise
+build:rules_xcodeproj --compilation_mode=dbg
+
+# Work around https://github.com/bazelbuild/bazel/issues/13912
+build:rules_xcodeproj --experimental_action_cache_store_output_metadata
+
+# Xcode builds shouldn't mess with the workspace's symlinks
+build:rules_xcodeproj --experimental_convenience_symlinks=ignore
+
+# Not using `--define=apple.experimental.tree_artifact_outputs=1` is slow (we
+# have to unzip an archive on each build). If this doesn't work for your
+# project, you can set `--define=apple.experimental.tree_artifact_outputs=0`
+# on `build:rules_xcodeproj` in your `.bazelrc` or `xcodeproj.bazelrc` file.
+build:rules_xcodeproj --define=apple.experimental.tree_artifact_outputs=1
+
+# Fix Test Issue navigation
+build:rules_xcodeproj --features=apple.swizzle_absolute_xcttestsourcelocation
+
+# `oso_prefix_is_pwd` removes absolute paths in debug info, which increases
+# cache hit rates. We "undo" this in `bazel.lldbinit`, so debugging still works.
+build:rules_xcodeproj --features=oso_prefix_is_pwd
+
+# `relative_ast_path` uses relative paths when passing `--add_ast_path` to the
+# linker, which increases cache hit rates. We "undo" this in `bazel.lldbinit`,
+# so debugging still works.
+build:rules_xcodeproj --features=relative_ast_path
+
+# `swift.cacheable_swiftmodules` passes `-no-serialize-debugging-options` to
+# `swiftc`, which fixes lldb crashes and increases cache hit rates. We "undo"
+# this in `swift_debug_settings.py`, so debugging still works.
+build:rules_xcodeproj --features=swift.cacheable_swiftmodules
+
+# `swift.index-while-building` passes `-index-store-path` to `swiftc`, which
+# generates index store data. We enable this globally, and don't disable it in
+# `rules_xcodeproj_indexbuild`, even though we only need it for the normal
+# build, because it's better to get cache hits between normal and Index Build
+# builds than it is to save some time in an uncached Index Build build. We only
+# download the outputs in the normal build though, saving some bandwidth/disk
+# space.
+build:rules_xcodeproj --features=swift.index_while_building
+build:rules_xcodeproj --features=swift.use_global_index_store
+
+# TODO: Remove once 1.5.0+ is our minimum supported rules_swift
+# `swift.use_global_module_cache` drastically speeds up swift builds
+build:rules_xcodeproj --features=swift.use_global_module_cache
+
+# Removes potentially large unneeded event from the BEP
+build:rules_xcodeproj --nolegacy_important_outputs
+
+# `--show_result=0` prevents showing the spec.json and intermediate `.xcodeproj`
+# in the logs when generating, and all of the many outputs when building
+build:rules_xcodeproj --show_result=0
+
+### `--config=rules_xcodeproj_generator`
+#
+# Used when generating a project.
+
+build:rules_xcodeproj_generator --config=rules_xcodeproj
+
+### `--config=rules_xcodeproj_indexbuild`
+#
+# Used when doing an Index Build.
+
+build:rules_xcodeproj_indexbuild --config=rules_xcodeproj
+
+# Disable BES for Index Builds, as it runs a lot, and isn't user invoked
+build:rules_xcodeproj_indexbuild --bes_backend= --bes_results_url=
+
+### `--config=rules_xcodeproj_swiftuipreviews`
+#
+# Used when doing a SwiftUI Previews build.
+
+build:rules_xcodeproj_swiftuipreviews --config=rules_xcodeproj
+
+# Allow frameworks to find framework dependencies when running a preview
+# See `$PROJECT_FILE_PATH/rules_xcodeproj/bazel/copy_outputs.sh` for more info
+build:rules_xcodeproj_swiftuipreviews --linkopt="-Wl,-rpath,@loader_path/SwiftUIPreviewsFrameworks"
+
+# `swiftc` flags needed for SwiftUI Previews
+build:rules_xcodeproj_swiftuipreviews --swiftcopt=-Xfrontend --swiftcopt=-enable-implicit-dynamic
+build:rules_xcodeproj_swiftuipreviews --swiftcopt=-Xfrontend --swiftcopt=-enable-private-imports
+build:rules_xcodeproj_swiftuipreviews --swiftcopt=-Xfrontend --swiftcopt=-enable-dynamic-replacement-chaining
+
+### `--config=_rules_xcodeproj_build`
+#
+# Private implementation detail. Don't adjust this config, adjust
+# `rules_xcodeproj` instead. This config exists solely to allow project-level
+# configs to work correctly.
+
+build:_rules_xcodeproj_build --config=rules_xcodeproj
+
+### Project specific configs
+
+# Import `xcodeproj.bazelrc` if it exists
+try-import %workspace%/xcodeproj.bazelrc

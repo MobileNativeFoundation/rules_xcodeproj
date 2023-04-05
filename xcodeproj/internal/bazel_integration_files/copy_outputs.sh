@@ -46,42 +46,49 @@ else
       cd "${BAZEL_OUTPUTS_PRODUCT%/*}"
     fi
 
-    rsync \
-      --copy-links \
-      --recursive \
-      --times \
-      --delete \
-      ${exclude_list:+--exclude-from="$exclude_list"} \
-      --chmod=u+w \
-      --out-format="%n%L" \
-      "$product_basename" \
-      "$TARGET_BUILD_DIR"
+    if [[ -f "$product_basename" ]]; then
+      # Product is a binary, so symlink instead of rsync, to allow for Bazel-set
+      # rpaths to work
+      ln -sfh "$PWD/$product_basename" "$TARGET_BUILD_DIR/$PRODUCT_NAME"
+    else
+      # Product is a bundle
+      rsync \
+        --copy-links \
+        --recursive \
+        --times \
+        --delete \
+        ${exclude_list:+--exclude-from="$exclude_list"} \
+        --chmod=u+w \
+        --out-format="%n%L" \
+        "$product_basename" \
+        "$TARGET_BUILD_DIR"
 
-    # Incremental installation can fail if an embedded bundle is recompiled but
-    # the Info.plist is not updated. This causes the delta bundle that Xcode
-    # actually installs to not have a bundle ID for the embedded bundle. We
-    # avoid this potential issue by always including the Info.plist in the delta
-    # bundle by touching them.
-    # Source: https://github.com/bazelbuild/tulsi/commit/27354027fada7aa3ec3139fd686f85cc5039c564
-    # TODO: Pass the exact list of files to touch to this script
-    readonly plugins_dir="$TARGET_BUILD_DIR/${PLUGINS_FOLDER_PATH:-}"
-    if [[ "${TARGET_DEVICE_PLATFORM_NAME:-}" == "iphoneos" && \
-           -d "$plugins_dir" ]]; then
-      find "$plugins_dir" -depth 2 -name "Info.plist" -exec touch {} \;
-    fi
+      # Incremental installation can fail if an embedded bundle is recompiled but
+      # the Info.plist is not updated. This causes the delta bundle that Xcode
+      # actually installs to not have a bundle ID for the embedded bundle. We
+      # avoid this potential issue by always including the Info.plist in the delta
+      # bundle by touching them.
+      # Source: https://github.com/bazelbuild/tulsi/commit/27354027fada7aa3ec3139fd686f85cc5039c564
+      # TODO: Pass the exact list of files to touch to this script
+      readonly plugins_dir="$TARGET_BUILD_DIR/${PLUGINS_FOLDER_PATH:-}"
+      if [[ "${TARGET_DEVICE_PLATFORM_NAME:-}" == "iphoneos" && \
+            -d "$plugins_dir" ]]; then
+        find "$plugins_dir" -depth 2 -name "Info.plist" -exec touch {} \;
+      fi
 
-    # SwiftUI Previews has a hard time finding frameworks (`@rpath`) when using
-    # framework schemes, so let's symlink them into
-    # `$TARGET_BUILD_DIR` (since we modify `@rpath` to always include
-    # `@loader_path/SwiftUIPreviewsFrameworks`)
-    if [[ "${ENABLE_PREVIEWS:-}" == "YES" && \
-          -n "${PREVIEW_FRAMEWORK_PATHS:-}" ]]; then
-      mkdir -p "$TARGET_BUILD_DIR/$WRAPPER_NAME/SwiftUIPreviewsFrameworks"
-      cd "$TARGET_BUILD_DIR/$WRAPPER_NAME/SwiftUIPreviewsFrameworks"
+      # SwiftUI Previews has a hard time finding frameworks (`@rpath`) when using
+      # framework schemes, so let's symlink them into
+      # `$TARGET_BUILD_DIR` (since we modify `@rpath` to always include
+      # `@loader_path/SwiftUIPreviewsFrameworks`)
+      if [[ "${ENABLE_PREVIEWS:-}" == "YES" && \
+            -n "${PREVIEW_FRAMEWORK_PATHS:-}" ]]; then
+        mkdir -p "$TARGET_BUILD_DIR/$WRAPPER_NAME/SwiftUIPreviewsFrameworks"
+        cd "$TARGET_BUILD_DIR/$WRAPPER_NAME/SwiftUIPreviewsFrameworks"
 
-      # shellcheck disable=SC2016
-      xargs -n1 sh -c 'ln -shfF "$1" $(basename "$1")' _ \
-        <<< "$PREVIEW_FRAMEWORK_PATHS"
+        # shellcheck disable=SC2016
+        xargs -n1 sh -c 'ln -shfF "$1" $(basename "$1")' _ \
+          <<< "$PREVIEW_FRAMEWORK_PATHS"
+      fi
     fi
   fi
 fi

@@ -8,14 +8,17 @@ load(
 load(":linker_input_files.bzl", "linker_input_files")
 
 def _codesign_executable(*, ctx, executable):
-    executable_path = "rules_xcodeproj/{}/{}".format(
-        ctx.rule.attr.name,
+    executable_path = "{}_codesigned".format(
         executable.basename,
     )
     entitlements = ctx.actions.declare_file(
         "{}.entitlements".format(executable_path),
+        sibling = executable,
     )
-    output = ctx.actions.declare_file(executable_path)
+    output = ctx.actions.declare_file(
+        executable_path,
+        sibling = executable,
+    )
 
     ctx.actions.run_shell(
         outputs = [entitlements],
@@ -106,21 +109,23 @@ def process_product(
     """
     if bundle_file_path:
         file = bundle_file
+        basename = paths.basename(bundle_file_path.path)
         fp = bundle_file_path
         actual_fp = archive_file_path
     elif target[DefaultInfo].files_to_run.executable:
-        file = _codesign_executable(
-            ctx = ctx,
-            executable = target[DefaultInfo].files_to_run.executable,
-        )
-        fp = file_path(file)
+        executable = target[DefaultInfo].files_to_run.executable
+        file = _codesign_executable(ctx = ctx, executable = executable)
+        basename = file.basename
+        fp = file_path(executable)
         actual_fp = fp
     elif CcInfo in target and linker_inputs and target.files != depset():
         file = linker_input_files.get_primary_static_library(linker_inputs)
+        basename = file.basename if file else None
         fp = file_path(file) if file else None
         actual_fp = fp
     else:
         file = None
+        basename = None
         fp = None
         actual_fp = None
 
@@ -160,6 +165,7 @@ def process_product(
         framework_files = framework_files,
         file = file,
         path = path,
+        basename = basename,
         file_path = fp,
         actual_file_path = actual_fp,
         package_dir = package_dir,

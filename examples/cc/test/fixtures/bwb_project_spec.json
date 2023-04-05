@@ -1,6 +1,7 @@
 {
     "B": "rules_xcodeproj",
     "R": "@//test/fixtures:xcodeproj_bwb",
+    "b": "$HOMEWBREW_BIN/bazel",
     "e": [
         {
             "_": "examples_cc_external/lib.h",
@@ -10,10 +11,16 @@
             "_": "darwin_x86_64-dbg-STABLE-1/bin/lib2/_virtual_includes/lib_impl/lib2_prefix/lib2.h",
             "t": "g"
         },
+        {
+            "_": "darwin_x86_64-dbg-STABLE-1/bin/lib3/_virtual_includes/lib_headers/lib3/lib3.h",
+            "t": "g"
+        },
         "lib/BUILD",
         "lib/lib.h",
         "lib2/BUILD",
         "lib2/includes/lib2.h",
+        "lib3/BUILD",
+        "lib3/includes/lib3.h",
         "test/fixtures/BUILD",
         "tool/BUILD"
     ],
@@ -21,5 +28,6 @@
     "i": "fixture-index-import-path",
     "m": "13.0",
     "n": "bwb",
+    "r": "$BAZELISK_DOWNLOAD",
     "s": "auto"
 }

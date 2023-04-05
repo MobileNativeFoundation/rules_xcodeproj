@@ -80,10 +80,9 @@ def xcodeproj(
             target is unfocused.
         bazel_path: Optional. The path the `bazel` binary or wrapper script. If
             the path is relative it will be resolved using the `PATH`
-            environment variable (which is set to
-            `/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin` in
-            Xcode). If you want to specify a path to a workspace-relative
-            binary, you must prepend the path with `./` (e.g. `"./bazelw"`).
+            environment variable that is set when generating the project. If you
+            want to specify a path to a workspace-relative binary, you must
+            prepend the path with `./` (e.g. `"./bazelw"`).
         build_mode: Optional. The build mode the generated project should use.
 
             If this is set to `"xcode"`, the project will use the Xcode build

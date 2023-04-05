@@ -6,8 +6,8 @@ apple_resource_bundle(
     bundle_id = "com.example.resources",
     infoplists = ["Info.plist"],
     resources = glob(["Assets.xcassets/**"]) + [
-        "//iOSApp/Resources/ExampleNestedResources",
         ":deps_txt",
+        "//iOSApp/Resources/ExampleNestedResources",
     ],
     structured_resources = ["nested/hello.txt"],
     visibility = ["//iOSApp:__subpackages__"],
