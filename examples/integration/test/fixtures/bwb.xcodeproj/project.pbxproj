@@ -10041,6 +10041,7 @@
 				BAZEL_OUT = "$(PROJECT_DIR)/bazel-out";
 				BAZEL_OUTPUT_BASE = "$(_BAZEL_OUTPUT_BASE:standardizepath)";
 				BAZEL_PATH = $HOMEWBREW_BIN/bazel;
+				BAZEL_PATH_ENV = "/usr/bin:/bin:/usr/sbin:/sbin";
 				BAZEL_REAL = $BAZELISK_DOWNLOAD;
 				BAZEL_WORKSPACE_ROOT = "$(SRCROOT)";
 				BUILD_DIR = "$(SYMROOT)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
@@ -12509,6 +12510,7 @@
 				BAZEL_OUT = "$(PROJECT_DIR)/bazel-out";
 				BAZEL_OUTPUT_BASE = "$(_BAZEL_OUTPUT_BASE:standardizepath)";
 				BAZEL_PATH = $HOMEWBREW_BIN/bazel;
+				BAZEL_PATH_ENV = "/usr/bin:/bin:/usr/sbin:/sbin";
 				BAZEL_REAL = $BAZELISK_DOWNLOAD;
 				BAZEL_WORKSPACE_ROOT = "$(SRCROOT)";
 				BUILD_DIR = "$(SYMROOT)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";

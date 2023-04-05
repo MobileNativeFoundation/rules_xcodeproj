@@ -14,6 +14,7 @@ def xcodeproj(
         archived_bundles_allowed = None,
         associated_extra_files = {},
         bazel_path = "bazel",
+        bazel_path_env = "/usr/bin:/bin",
         build_mode = "bazel",
         config = "rules_xcodeproj",
         default_xcode_configuration = None,
@@ -83,6 +84,10 @@ def xcodeproj(
             environment variable that is set when generating the project. If you
             want to specify a path to a workspace-relative binary, you must
             prepend the path with `./` (e.g. `"./bazelw"`).
+        bazel_path_env: Optional. The `PATH` environment variable to use when
+            invoking the `bazel_path` binary or wrapper script. This is useful
+            if your wrapper script needs tools that are not available in the
+            default restrictive path.
         build_mode: Optional. The build mode the generated project should use.
 
             If this is set to `"xcode"`, the project will use the Xcode build
@@ -274,6 +279,8 @@ removed in a future release.""")
     # Apply defaults
     if not bazel_path:
         bazel_path = "bazel"
+    if not bazel_path_env:
+        bazel_path_env = "/usr/bin:/bin"
     if not build_mode:
         build_mode = "xcode"
     if install_directory == None:
@@ -399,6 +406,7 @@ Please refer to https://bazel.build/extending/config#defining) on how to them.
         ),
         build_mode = build_mode,
         bazel_path = bazel_path,
+        bazel_path_env = bazel_path_env,
         config = config,
         default_xcode_configuration = default_xcode_configuration,
         focused_targets = focused_targets,

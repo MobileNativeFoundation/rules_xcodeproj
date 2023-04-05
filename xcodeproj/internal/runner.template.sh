@@ -168,7 +168,7 @@ fi
 
 readonly bazel_cmd=(
   env
-  PATH="/usr/bin:/bin"
+  PATH="%bazel_path_env%"
   "$bazel_path"
 
   # Restart Bazel server if `DEVELOPER_DIR` changes to clear `developerDirCache`

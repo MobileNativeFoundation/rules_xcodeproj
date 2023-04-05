@@ -7,6 +7,7 @@ load(
 load(
     "//:xcodeproj_targets.bzl",
     "ASSOCIATED_EXTRA_FILES",
+    "BAZEL_PATH_ENV",
     "CONFIG",
     "DEFAULT_XCODE_CONFIGURATION",
     "EXTRA_FILES",
@@ -21,6 +22,7 @@ load(
 
 xcodeproj_fixture(
     associated_extra_files = ASSOCIATED_EXTRA_FILES,
+    bazel_path_env = BAZEL_PATH_ENV,
     config = CONFIG,
     default_xcode_configuration = DEFAULT_XCODE_CONFIGURATION,
     extra_files = EXTRA_FILES,

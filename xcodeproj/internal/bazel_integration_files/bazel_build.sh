@@ -4,6 +4,7 @@
 # - BAZEL_INTEGRATION_DIR
 # - BAZEL_OUT
 # - BAZEL_PATH
+# - BAZEL_PATH_ENV
 # - BAZEL_REAL
 # - DEVELOPER_DIR
 # - GENERATOR_LABEL
@@ -63,7 +64,7 @@ if [[ -s "$BAZEL_INTEGRATION_DIR/xcodeproj_extra_flags.bazelrc" ]]; then
 fi
 readonly bazelrcs
 
-envs=(PATH="/usr/bin:/bin")
+envs=(PATH="$BAZEL_PATH_ENV")
 
 if [[ -n "${BAZEL_REAL:-}" ]]; then
   envs+=(BAZEL_REAL="$BAZEL_REAL")

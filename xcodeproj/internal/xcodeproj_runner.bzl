@@ -248,6 +248,7 @@ def _write_generator_build_file(
                 str(attr.adjust_schemes_for_swiftui_previews)
             ),
             "%build_mode%": attr.build_mode,
+            "%bazel_path_env%": attr.bazel_path_env,
             "%colorize%": str(attr._colorize[BuildSettingInfo].value),
             "%config%": attr.config,
             "%default_xcode_configuration%": (
@@ -290,6 +291,7 @@ def _write_runner(
         name,
         actions,
         bazel_path,
+        bazel_path_env,
         config,
         execution_root_file,
         extra_flags_bazelrc,
@@ -313,6 +315,7 @@ def _write_runner(
         is_executable = True,
         substitutions = {
             "%bazel_path%": bazel_path,
+            "%bazel_path_env%": bazel_path_env,
             "%config%": config,
             "%execution_root_file%": execution_root_file.short_path,
             "%extra_flags_bazelrc%": extra_flags_bazelrc.short_path,
@@ -389,6 +392,7 @@ def _xcodeproj_runner_impl(ctx):
         name = name,
         actions = actions,
         bazel_path = ctx.attr.bazel_path,
+        bazel_path_env = ctx.attr.bazel_path_env,
         config = config,
         execution_root_file = execution_root_file,
         extra_flags_bazelrc = extra_flags_bazelrc,
@@ -438,6 +442,9 @@ xcodeproj_runner = rule(
             values = ["xcode", "bazel"],
         ),
         "bazel_path": attr.string(
+            mandatory = True,
+        ),
+        "bazel_path_env": attr.string(
             mandatory = True,
         ),
         "config": attr.string(
