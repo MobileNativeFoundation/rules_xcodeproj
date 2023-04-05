@@ -31,7 +31,6 @@ struct FilePath: Hashable, Decodable {
         case path = "_"
         case type = "t"
         case isFolder = "f"
-        case forceGroupCreation = "g"
     }
 
     init(from decoder: Decoder) throws {
@@ -50,8 +49,7 @@ struct FilePath: Hashable, Decodable {
             ?? .project
         isFolder = try container.decodeIfPresent(Bool.self, forKey: .isFolder)
             ?? false
-        forceGroupCreation = try container
-            .decodeIfPresent(Bool.self, forKey: .forceGroupCreation) ?? false
+        forceGroupCreation = isFolder
     }
 }
 

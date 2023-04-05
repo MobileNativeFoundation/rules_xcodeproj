@@ -6,17 +6,13 @@ def file_path(
         file,
         *,
         path = None,
-        is_folder = False,
-        force_group_creation = False):
+        is_folder = False):
     """Converts a `File` into a `FilePath` Swift DTO value.
 
     Args:
         file: A `File`.
         path: A path string to use instead of `file.path`.
         is_folder: Whether the path is to a folder.
-        force_group_creation: Whether to force the creation of all intermediate
-            groups in the generated project for the file. If this is `True`,
-            then no folder type optimizations will be used.
 
     Returns:
         A `struct` containing the following fields:
@@ -37,18 +33,15 @@ def file_path(
         return generated_file_path(
             path = path,
             is_folder = is_folder,
-            force_group_creation = force_group_creation,
         )
     if file.owner.workspace_name:
         return external_file_path(
             path = path,
             is_folder = is_folder,
-            force_group_creation = force_group_creation,
         )
     return project_file_path(
         path = path,
         is_folder = is_folder,
-        force_group_creation = force_group_creation,
     )
 
 def build_setting_path(
@@ -203,41 +196,35 @@ def raw_file_path(
         type,
         *,
         path,
-        is_folder,
-        force_group_creation):
+        is_folder):
     return struct(
         path = path,
         type = type,
         is_folder = is_folder,
-        force_group_creation = force_group_creation,
     )
 
 def external_file_path(
         path,
         *,
-        is_folder = False,
-        force_group_creation = False):
+        is_folder = False):
     return raw_file_path(
         # Type: "e" == `.external`
         type = "e",
         # Path, removing `external/` prefix
         path = path[9:],
         is_folder = is_folder,
-        force_group_creation = force_group_creation,
     )
 
 def generated_file_path(
         path,
         *,
-        is_folder = False,
-        force_group_creation = False):
+        is_folder = False):
     return raw_file_path(
         # Type: "g" == `.generated`
         type = "g",
         # Path, removing `bazel-out/` prefix
         path = path[10:],
         is_folder = is_folder,
-        force_group_creation = force_group_creation,
     )
 
 def is_external_path(path):
@@ -255,14 +242,12 @@ def is_relative_path(path):
 def project_file_path(
         path,
         *,
-        is_folder = False,
-        force_group_creation = False):
+        is_folder = False):
     return raw_file_path(
         # Type: "p" == `.project`
         type = "p",
         path = path,
         is_folder = is_folder,
-        force_group_creation = force_group_creation,
     )
 
 # TODO: Refactor all of file_path stuff to a module
@@ -294,9 +279,6 @@ def file_path_to_dto(file_path):
 
     if file_path.type != "p":
         ret["t"] = file_path.type
-
-    if file_path.force_group_creation:
-        ret["g"] = True
 
     if ret:
         ret["_"] = file_path.path
