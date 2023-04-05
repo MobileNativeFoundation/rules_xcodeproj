@@ -74,6 +74,7 @@ extension Generator {
             "_BAZEL_OUTPUT_BASE": "$(PROJECT_DIR)/../..",
             "BAZEL_OUTPUT_BASE": "$(_BAZEL_OUTPUT_BASE:standardizepath)",
             "BAZEL_PATH": project.bazel,
+            "BAZEL_PATH_ENV": project.bazelPathEnv,
             "BAZEL_REAL": project.bazelReal,
             "BAZEL_WORKSPACE_ROOT": "$(SRCROOT)",
             "BUILD_DIR": """

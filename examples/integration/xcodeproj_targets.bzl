@@ -8,6 +8,8 @@ load(
     "xcode_schemes",
 )
 
+BAZEL_PATH_ENV = "/usr/bin:/bin:/usr/sbin:/sbin"
+
 CONFIG = "rules_xcodeproj_integration"
 
 PROJECT_OPTIONS = project_options(

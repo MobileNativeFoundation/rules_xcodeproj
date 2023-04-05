@@ -987,6 +987,10 @@ def _write_spec(
     if bazel_path != "bazel":
         spec_dto["b"] = bazel_path
 
+    bazel_path_env = ctx.attr.bazel_path_env
+    if bazel_path_env != "/usr/bin:/bin":
+        spec_dto["1"] = bazel_path_env
+
     bazel_real = ctx.attr.bazel_real
     if bazel_real:
         spec_dto["r"] = bazel_real
@@ -1704,6 +1708,9 @@ def make_xcodeproj_rule(
             mandatory = True,
         ),
         "bazel_path": attr.string(
+            mandatory = True,
+        ),
+        "bazel_path_env": attr.string(
             mandatory = True,
         ),
         "bazel_real": attr.string(),
