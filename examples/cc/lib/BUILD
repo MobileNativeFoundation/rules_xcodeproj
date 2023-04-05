@@ -1,21 +1,10 @@
-load("@examples_cc_external//:local_includes.bzl", "local_includes")
-
-cc_library(
-    name = "lib_impl",
-    srcs = [
-        "lib.c",
-        "private/private.h",
-    ],
-    # Simulating a "local_includes"
-    copts = local_includes("private"),
-    local_defines = ["SECRET_3=\\\"Hello\\\""],
-    alwayslink = True,
-)
-
 cc_library(
     name = "lib_defines",
+    srcs = [
+        "defines.c",
+    ],
     defines = ["SECRET_2=\\\"World!\\\""],
-    implementation_deps = [":lib_impl"],
+    implementation_deps = ["//lib/impl:lib_impl"],
 )
 
 cc_library(

@@ -70,6 +70,7 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
     env = None
     exported_symbols_lists = []
     hdrs = []
+    implementation_deps = []
     infoplists = []
     launchdplists = []
     link_mnemonics = ["ObjcLink", "CppLink"]
@@ -86,8 +87,8 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
         xcode_targets = {
             "deps": [target_type.compile, None],
             "implementation_deps": [target_type.compile],
-            "interface_deps": [target_type.compile],
         }
+        implementation_deps = ["implementation_deps"]
     elif ctx.rule.kind == "objc_library":
         xcode_targets = {
             "deps": [target_type.compile, None],
@@ -97,6 +98,7 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
             "implementation_deps": [target_type.compile],
             "runtime_deps": [target_type.compile],
         }
+        implementation_deps = ["implementation_deps"]
         non_arc_srcs = ["non_arc_srcs"]
         pch = "pch"
     elif ctx.rule.kind == "swift_library":
@@ -220,6 +222,7 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
             exported_symbols_lists = exported_symbols_lists,
             hdrs = hdrs,
             infoplists = infoplists,
+            implementation_deps = implementation_deps,
             launchdplists = launchdplists,
             link_mnemonics = link_mnemonics,
             non_arc_srcs = non_arc_srcs,

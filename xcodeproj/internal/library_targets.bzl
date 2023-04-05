@@ -14,6 +14,7 @@ load(":output_files.bzl", "output_files")
 load(":platform.bzl", "platform_info")
 load(":processed_target.bzl", "processed_target")
 load(":product.bzl", "process_product")
+load(":providers.bzl", "XcodeProjInfo")
 load(":target_id.bzl", "get_id")
 load(
     ":target_properties.bzl",
@@ -61,6 +62,13 @@ def process_library_target(
         transitive_infos = transitive_infos,
     )
 
+    deps_infos = [
+        dep[XcodeProjInfo]
+        for attr in automatic_target_info.implementation_deps
+        for dep in getattr(ctx.rule.attr, attr, [])
+        if XcodeProjInfo in dep
+    ]
+
     objc = target[apple_common.Objc] if apple_common.Objc in target else None
     is_swift = SwiftInfo in target
     swift_info = target[SwiftInfo] if is_swift else None
@@ -70,6 +78,10 @@ def process_library_target(
         objc = objc,
         swift_info = swift_info,
         is_xcode_target = True,
+        transitive_implementation_providers = [
+            info.compilation_providers
+            for info in deps_infos
+        ],
     )
     linker_inputs = linker_input_files.collect(
         target = target,
@@ -134,6 +146,9 @@ def process_library_target(
         has_c_sources = inputs.has_c_sources,
         has_cxx_sources = inputs.has_cxx_sources,
         target = target,
+        implementation_compilation_context = (
+            compilation_providers.implementation_compilation_context
+        ),
         package_bin_dir = package_bin_dir,
         build_settings = build_settings,
     )

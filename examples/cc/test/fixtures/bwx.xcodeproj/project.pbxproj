@@ -23,12 +23,20 @@
 
 /* Begin PBXBuildFile section */
 		021B96F4E22F78DCE325C6B4 /* lib.c in Sources */ = {isa = PBXBuildFile; fileRef = 9EA769DDCBCA01C4A4A674AF /* lib.c */; };
+		4732D0CE41E115D51891BE0F /* defines.c in Sources */ = {isa = PBXBuildFile; fileRef = C73161F68ABCBA66C2144108 /* defines.c */; };
 		4B5CFEE5631A83F50DA9FF1B /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = E4625264BB5CC1E80CC94DF2 /* main.c */; };
-		5B4C8AFB1E79DDCDB13409B8 /* lib.c in Sources */ = {isa = PBXBuildFile; fileRef = B2DBE3AAD7A0F87B677A8325 /* lib.c */; };
+		B767451D28498E7585A817ED /* lib.c in Sources */ = {isa = PBXBuildFile; fileRef = 608FC1B03035074235E81C33 /* lib.c */; };
 		D7BB8B3C980580EC765C143F /* lib.c in Sources */ = {isa = PBXBuildFile; fileRef = AE0CF9E68A28C21F8DDA2623 /* lib.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		030E8DFE5FA5F13FE7596948 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2A0249063B1BCDF2CDE649B1;
+			remoteInfo = lib_defines;
+		};
 		42025A1CD8FA6A1FEB112EA2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
@@ -50,6 +58,20 @@
 			remoteGlobalIDString = 9DF8EA4260F38FC7243F6241;
 			remoteInfo = "@examples_cc_external//:lib_impl";
 		};
+		79517DE43BFEF2F6DDE1289D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
+			remoteInfo = BazelDependencies;
+		};
+		7AD1E38801E7857384AA413E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ED67D8E93A937C4514DCF45A;
+			remoteInfo = "@//lib/impl:lib_impl";
+		};
 		880FFE0FA4EE63FB2C4847F8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
@@ -57,7 +79,7 @@
 			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
 			remoteInfo = BazelDependencies;
 		};
-		C96C356A6F059727B4679041 /* PBXContainerItemProxy */ = {
+		BB0B1EDF165DD052D13FEA1A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
 			proxyType = 1;
@@ -71,13 +93,6 @@
 			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
 			remoteInfo = BazelDependencies;
 		};
-		F9D69D94708B6ED5E45131FC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E48E9FEBBB9A5F8F1FE1B1CD;
-			remoteInfo = "@//lib:lib_impl";
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -86,20 +101,24 @@
 		18DF90BBBA2BA8D2AF06D94F /* lib2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib2.h; sourceTree = "<group>"; };
 		1F8D330113018E003269E782 /* liblib_impl.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_impl.a; path = "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external/liblib_impl.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		279A0E4737F6910DA83B77C4 /* lib3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib3.h; sourceTree = "<group>"; };
+		44E6CFE4F6DA4DD1FDA1E2A5 /* impl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = impl.h; sourceTree = "<group>"; };
+		608FC1B03035074235E81C33 /* lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = lib.c; sourceTree = "<group>"; };
 		655197F36E3561F5EBB2B456 /* lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib.h; sourceTree = "<group>"; };
 		68571FA99BB8CAC9AA027C16 /* lib2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib2.h; sourceTree = "<group>"; };
+		7044C7DEF0FF7D895F8E44CF /* tool.4.link.params */ = {isa = PBXFileReference; path = tool.4.link.params; sourceTree = "<group>"; };
+		749ECE521B1B50D3AF8C99A4 /* liblib_defines.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_defines.a; path = "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib/liblib_defines.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		82E1AC498ACAE9E123276B7A /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
+		93D1D27158A07AD68DCD9F1C /* private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = private.h; sourceTree = "<group>"; };
 		9EA769DDCBCA01C4A4A674AF /* lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = lib.c; sourceTree = "<group>"; };
-		9F7E4D4095E7BF2EE167B320 /* tool.3.link.params */ = {isa = PBXFileReference; path = tool.3.link.params; sourceTree = "<group>"; };
 		AE0CF9E68A28C21F8DDA2623 /* lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = lib.c; sourceTree = "<group>"; };
 		B13DA8B967470B62463A7C36 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
-		B2DBE3AAD7A0F87B677A8325 /* lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = lib.c; sourceTree = "<group>"; };
 		B6393A8054CC3DB8C2683C2E /* tool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tool; sourceTree = BUILT_PRODUCTS_DIR; };
-		B7A403BFB656652EA53FB6DD /* private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = private.h; sourceTree = "<group>"; };
 		BCF94D18F26384B90265A750 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
+		C73161F68ABCBA66C2144108 /* defines.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = defines.c; sourceTree = "<group>"; };
+		D109608ACC4D1F3CF46B8BA8 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		D863235E2E1687A367308396 /* private.inc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = private.inc; sourceTree = "<group>"; };
 		DD0CC23129A3E5CC1B6B3393 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
-		DE32C738128FA44FF0EA80BE /* liblib_impl.lo */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_impl.lo; path = "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib/liblib_impl.lo"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE32C738128FA44FF0EA80BE /* liblib_impl.lo */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_impl.lo; path = "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib/impl/liblib_impl.lo"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E17E75D090217B10AE0BAF46 /* liblib_impl.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_impl.a; path = "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib2/liblib_impl.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4625264BB5CC1E80CC94DF2 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		E483854DF5BC316B65784CA2 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
@@ -170,12 +189,31 @@
 			path = external;
 			sourceTree = "<group>";
 		};
+		4234B8C0D05AE454D8F17DAA /* private */ = {
+			isa = PBXGroup;
+			children = (
+				93D1D27158A07AD68DCD9F1C /* private.h */,
+			);
+			path = private;
+			sourceTree = "<group>";
+		};
 		44C73F12516D366FDF43E910 /* lib3 */ = {
 			isa = PBXGroup;
 			children = (
 				04D0C0E1D77B094DEC4ED63A /* lib3.h */,
 			);
 			path = lib3;
+			sourceTree = "<group>";
+		};
+		5EFB5DEA7A2A42EAA0F24DE1 /* impl */ = {
+			isa = PBXGroup;
+			children = (
+				4234B8C0D05AE454D8F17DAA /* private */,
+				D109608ACC4D1F3CF46B8BA8 /* BUILD */,
+				44E6CFE4F6DA4DD1FDA1E2A5 /* impl.h */,
+				608FC1B03035074235E81C33 /* lib.c */,
+			);
+			path = impl;
 			sourceTree = "<group>";
 		};
 		6033DA143D6CA2B97C1808E7 /* private */ = {
@@ -211,14 +249,6 @@
 			name = "Bazel Generated Files";
 			path = "bazel-out";
 			sourceTree = SOURCE_ROOT;
-		};
-		8C751C8E5D51A45F0E89CB8F /* private */ = {
-			isa = PBXGroup;
-			children = (
-				B7A403BFB656652EA53FB6DD /* private.h */,
-			);
-			path = private;
-			sourceTree = "<group>";
 		};
 		8EC0A5AD173DDF13D9361EBE /* tool */ = {
 			isa = PBXGroup;
@@ -257,7 +287,7 @@
 		A201E7A0CFC9CC956948BA70 /* generator-params */ = {
 			isa = PBXGroup;
 			children = (
-				9F7E4D4095E7BF2EE167B320 /* tool.3.link.params */,
+				7044C7DEF0FF7D895F8E44CF /* tool.4.link.params */,
 			);
 			path = "generator-params";
 			sourceTree = "<group>";
@@ -292,6 +322,7 @@
 		C5DA04B2480EBE8D895B5826 /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				749ECE521B1B50D3AF8C99A4 /* liblib_defines.a */,
 				1F8D330113018E003269E782 /* liblib_impl.a */,
 				E17E75D090217B10AE0BAF46 /* liblib_impl.a */,
 				DE32C738128FA44FF0EA80BE /* liblib_impl.lo */,
@@ -370,9 +401,9 @@
 		FA261E4AF708F00AB0368E11 /* lib */ = {
 			isa = PBXGroup;
 			children = (
-				8C751C8E5D51A45F0E89CB8F /* private */,
+				5EFB5DEA7A2A42EAA0F24DE1 /* impl */,
 				DD0CC23129A3E5CC1B6B3393 /* BUILD */,
-				B2DBE3AAD7A0F87B677A8325 /* lib.c */,
+				C73161F68ABCBA66C2144108 /* defines.c */,
 				10D21E69D7E12FFDA82B1273 /* lib.h */,
 			);
 			path = lib;
@@ -405,6 +436,23 @@
 			productName = lib_impl;
 			productType = "com.apple.product-type.library.static";
 		};
+		2A0249063B1BCDF2CDE649B1 /* lib_defines */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F564784251F1A0518434891A /* Build configuration list for PBXNativeTarget "lib_defines" */;
+			buildPhases = (
+				52AA1E4C46F097668B9F6176 /* Create compiling dependencies */,
+				A7889188C1DBB281A47E2C16 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				75DE70A1245F8390C9408388 /* PBXTargetDependency */,
+				F104C04F16C693EEEA95C9D8 /* PBXTargetDependency */,
+			);
+			name = lib_defines;
+			productName = lib_defines;
+			productType = "com.apple.product-type.library.static";
+		};
 		9DF8EA4260F38FC7243F6241 /* @examples_cc_external//:lib_impl */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = FA7CA526EED1582756E3E941 /* Build configuration list for PBXNativeTarget "@examples_cc_external//:lib_impl" */;
@@ -421,22 +469,6 @@
 			productName = lib_impl;
 			productType = "com.apple.product-type.library.static";
 		};
-		E48E9FEBBB9A5F8F1FE1B1CD /* @//lib:lib_impl */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 4193581FD52824B6B27A38B9 /* Build configuration list for PBXNativeTarget "@//lib:lib_impl" */;
-			buildPhases = (
-				69580EBA0FAED5BDB37827D6 /* Create compiling dependencies */,
-				94D26C14F8860427A9AD2471 /* Sources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				8714A281BD8DEB70EFAA3A22 /* PBXTargetDependency */,
-			);
-			name = "@//lib:lib_impl";
-			productName = lib_impl;
-			productType = "com.apple.product-type.library.static";
-		};
 		EC6A68AC956C60AA25485960 /* tool */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 85DAE5AD4B16C63749019BBB /* Build configuration list for PBXNativeTarget "tool" */;
@@ -449,14 +481,30 @@
 			);
 			dependencies = (
 				C7CE0C2F304E0B02B1E4E5A4 /* PBXTargetDependency */,
-				352DFDCEE489902F858A718F /* PBXTargetDependency */,
 				33BE6091D980E6CC430D61CC /* PBXTargetDependency */,
 				59AC8FC7ED45C65DBD76BA41 /* PBXTargetDependency */,
+				04842A734A3641199B4D42BA /* PBXTargetDependency */,
 			);
 			name = tool;
 			productName = tool;
 			productReference = B6393A8054CC3DB8C2683C2E /* tool */;
 			productType = "com.apple.product-type.tool";
+		};
+		ED67D8E93A937C4514DCF45A /* @//lib/impl:lib_impl */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BD3A64FE809E1A5739A8CE9F /* Build configuration list for PBXNativeTarget "@//lib/impl:lib_impl" */;
+			buildPhases = (
+				4BF2B13A90E574B5A10E4D32 /* Create compiling dependencies */,
+				DE6A86F4E9AE8DF5AA18AF5E /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				10A829BE16996C0DFC7E5287 /* PBXTargetDependency */,
+			);
+			name = "@//lib/impl:lib_impl";
+			productName = lib_impl;
+			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
 
@@ -472,15 +520,19 @@
 						CreatedOnToolsVersion = 13.0.0;
 						LastSwiftMigration = 9999;
 					};
+					2A0249063B1BCDF2CDE649B1 = {
+						CreatedOnToolsVersion = 13.0.0;
+						LastSwiftMigration = 9999;
+					};
 					9DF8EA4260F38FC7243F6241 = {
 						CreatedOnToolsVersion = 13.0.0;
 						LastSwiftMigration = 9999;
 					};
-					E48E9FEBBB9A5F8F1FE1B1CD = {
+					EC6A68AC956C60AA25485960 = {
 						CreatedOnToolsVersion = 13.0.0;
 						LastSwiftMigration = 9999;
 					};
-					EC6A68AC956C60AA25485960 = {
+					ED67D8E93A937C4514DCF45A = {
 						CreatedOnToolsVersion = 13.0.0;
 						LastSwiftMigration = 9999;
 					};
@@ -503,9 +555,10 @@
 			projectRoot = "";
 			targets = (
 				FE59281FE487F27A37DC2EE7 /* BazelDependencies */,
-				E48E9FEBBB9A5F8F1FE1B1CD /* @//lib:lib_impl */,
+				ED67D8E93A937C4514DCF45A /* @//lib/impl:lib_impl */,
 				1674813229B44E631726DF6E /* @//lib2:lib_impl */,
 				9DF8EA4260F38FC7243F6241 /* @examples_cc_external//:lib_impl */,
+				2A0249063B1BCDF2CDE649B1 /* lib_defines */,
 				EC6A68AC956C60AA25485960 /* tool */,
 			);
 		};
@@ -563,7 +616,24 @@
 			shellScript = "perl -pe '\n  # Replace \"__BAZEL_XCODE_DEVELOPER_DIR__\" with \"$(DEVELOPER_DIR)\"\n  s/__BAZEL_XCODE_DEVELOPER_DIR__/\\$(DEVELOPER_DIR)/g;\n\n  # Replace \"__BAZEL_XCODE_SDKROOT__\" with \"$(SDKROOT)\"\n  s/__BAZEL_XCODE_SDKROOT__/\\$(SDKROOT)/g;\n\n  # Replace build settings with their values\n  s/\n    \\$             # Match a dollar sign\n    (\\()?          # Optionally match an opening parenthesis and capture it\n    ([a-zA-Z_]\\w*) # Match a variable name and capture it\n    (?(1)\\))       # If an opening parenthesis was captured, match a closing parenthesis\n  /$ENV{$2}/gx;    # Replace the entire matched string with the value of the corresponding environment variable\n\n' \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
-		69580EBA0FAED5BDB37827D6 /* Create compiling dependencies */ = {
+		4BF2B13A90E574B5A10E4D32 /* Create compiling dependencies */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(BAZEL_INTEGRATION_DIR)/create_xcode_overlay.sh",
+			);
+			name = "Create compiling dependencies";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$SCRIPT_INPUT_FILE_0\"\n";
+			showEnvVarsInLog = 0;
+		};
+		52AA1E4C46F097668B9F6176 /* Create compiling dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -653,11 +723,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		94D26C14F8860427A9AD2471 /* Sources */ = {
+		A7889188C1DBB281A47E2C16 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5B4C8AFB1E79DDCDB13409B8 /* lib.c in Sources */,
+				4732D0CE41E115D51891BE0F /* defines.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DE6A86F4E9AE8DF5AA18AF5E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B767451D28498E7585A817ED /* lib.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -672,6 +750,18 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		04842A734A3641199B4D42BA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = lib_defines;
+			target = 2A0249063B1BCDF2CDE649B1 /* lib_defines */;
+			targetProxy = 030E8DFE5FA5F13FE7596948 /* PBXContainerItemProxy */;
+		};
+		10A829BE16996C0DFC7E5287 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BazelDependencies;
+			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
+			targetProxy = BB0B1EDF165DD052D13FEA1A /* PBXContainerItemProxy */;
+		};
 		22C38633AA1187EC6099A753 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = BazelDependencies;
@@ -690,23 +780,17 @@
 			target = 1674813229B44E631726DF6E /* @//lib2:lib_impl */;
 			targetProxy = 4DAEA7EC6CB13136037C9ABB /* PBXContainerItemProxy */;
 		};
-		352DFDCEE489902F858A718F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "@//lib:lib_impl";
-			target = E48E9FEBBB9A5F8F1FE1B1CD /* @//lib:lib_impl */;
-			targetProxy = F9D69D94708B6ED5E45131FC /* PBXContainerItemProxy */;
-		};
 		59AC8FC7ED45C65DBD76BA41 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "@examples_cc_external//:lib_impl";
 			target = 9DF8EA4260F38FC7243F6241 /* @examples_cc_external//:lib_impl */;
 			targetProxy = 59511478AA09290DC3C73AC2 /* PBXContainerItemProxy */;
 		};
-		8714A281BD8DEB70EFAA3A22 /* PBXTargetDependency */ = {
+		75DE70A1245F8390C9408388 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = BazelDependencies;
 			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
-			targetProxy = C96C356A6F059727B4679041 /* PBXContainerItemProxy */;
+			targetProxy = 79517DE43BFEF2F6DDE1289D /* PBXContainerItemProxy */;
 		};
 		C7CE0C2F304E0B02B1E4E5A4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -714,42 +798,15 @@
 			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
 			targetProxy = 880FFE0FA4EE63FB2C4847F8 /* PBXContainerItemProxy */;
 		};
+		F104C04F16C693EEEA95C9D8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "@//lib/impl:lib_impl";
+			target = ED67D8E93A937C4514DCF45A /* @//lib/impl:lib_impl */;
+			targetProxy = 7AD1E38801E7857384AA413E /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		00E49FEAD01BA87C74959D6D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = x86_64;
-				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -D_FORTIFY_SOURCE=1 -fstack-protector -Wall -Wthread-safety -Wself-assign -fno-omit-frame-pointer -iquote . -iquote bazel-out/darwin_x86_64-dbg-STABLE-1/bin -DSECRET_3=\\\"Hello\\\" -F$(SDKROOT)/System/Library/Frameworks -F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks -no-canonical-prefixes -pthread -Ilib/private -Ibazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib/private -no-canonical-prefixes -Wno-builtin-macro-redefined -D__DATE__=\\\"redacted\\\" -D__TIMESTAMP__=\\\"redacted\\\" -D__TIME__=\\\"redacted\\\"";
-				ASAN_OTHER_CFLAGS__YES = (
-					"$(ASAN_OTHER_CFLAGS__NO)",
-					"-Wno-macro-redefined",
-					"-D_FORTIFY_SOURCE=0",
-				);
-				BAZEL_LABEL = "@//lib:lib_impl";
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib";
-				BAZEL_TARGET_ID = "//lib:lib_impl darwin_x86_64-dbg-STABLE-1";
-				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
-				COMPILE_TARGET_NAME = lib_impl;
-				ENABLE_BITCODE = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				EXECUTABLE_EXTENSION = lo;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
-				PRODUCT_NAME = lib_impl;
-				SDKROOT = macosx;
-				SUPPORTED_PLATFORMS = macosx;
-				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGET_NAME = lib_impl;
-			};
-			name = Debug;
-		};
 		1A9608E2F82C2D509E2094E1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -779,6 +836,38 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = lib_impl;
+			};
+			name = Debug;
+		};
+		53BA4C75582B422C4DABDD8B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = x86_64;
+				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -D_FORTIFY_SOURCE=1 -fstack-protector -Wall -Wthread-safety -Wself-assign -fno-omit-frame-pointer -iquote . -iquote bazel-out/darwin_x86_64-dbg-STABLE-1/bin -isystem lib/impl -isystem bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib/impl -DSECRET_2=\\\"World!\\\" -DIMPL_DEFINE=\\\"Implementation\\\" -F$(SDKROOT)/System/Library/Frameworks -F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks -no-canonical-prefixes -pthread -no-canonical-prefixes -Wno-builtin-macro-redefined -D__DATE__=\\\"redacted\\\" -D__TIMESTAMP__=\\\"redacted\\\" -D__TIME__=\\\"redacted\\\"";
+				ASAN_OTHER_CFLAGS__YES = (
+					"$(ASAN_OTHER_CFLAGS__NO)",
+					"-Wno-macro-redefined",
+					"-D_FORTIFY_SOURCE=0",
+				);
+				BAZEL_LABEL = "@//lib:lib_defines";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib";
+				BAZEL_TARGET_ID = "//lib:lib_defines darwin_x86_64-dbg-STABLE-1";
+				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
+				COMPILE_TARGET_NAME = lib_defines;
+				ENABLE_BITCODE = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
+				PRODUCT_NAME = lib_defines;
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGET_NAME = lib_defines;
 			};
 			name = Debug;
 		};
@@ -854,6 +943,39 @@
 			};
 			name = Debug;
 		};
+		C732F329B15198878363F99D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = x86_64;
+				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -D_FORTIFY_SOURCE=1 -fstack-protector -Wall -Wthread-safety -Wself-assign -fno-omit-frame-pointer -iquote . -iquote bazel-out/darwin_x86_64-dbg-STABLE-1/bin -isystem lib/impl -isystem bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib/impl -DSECRET_3=\\\"Hello\\\" -DIMPL_DEFINE=\\\"Implementation\\\" -F$(SDKROOT)/System/Library/Frameworks -F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks -no-canonical-prefixes -pthread -Ilib/impl/private -Ibazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib/impl/private -no-canonical-prefixes -Wno-builtin-macro-redefined -D__DATE__=\\\"redacted\\\" -D__TIMESTAMP__=\\\"redacted\\\" -D__TIME__=\\\"redacted\\\"";
+				ASAN_OTHER_CFLAGS__YES = (
+					"$(ASAN_OTHER_CFLAGS__NO)",
+					"-Wno-macro-redefined",
+					"-D_FORTIFY_SOURCE=0",
+				);
+				BAZEL_LABEL = "@//lib/impl:lib_impl";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib/impl";
+				BAZEL_TARGET_ID = "//lib/impl:lib_impl darwin_x86_64-dbg-STABLE-1";
+				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
+				COMPILE_TARGET_NAME = lib_impl;
+				ENABLE_BITCODE = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EXECUTABLE_EXTENSION = lo;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
+				PRODUCT_NAME = lib_impl;
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGET_NAME = lib_impl;
+			};
+			name = Debug;
+		};
 		DE39562D4492E281F18A3205 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -877,7 +999,7 @@
 				EXECUTABLE_EXTENSION = "";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GENERATE_INFOPLIST_FILE = YES;
-				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/generator-params/tool.3.link.params";
+				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/generator-params/tool.4.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
@@ -934,14 +1056,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		4193581FD52824B6B27A38B9 /* Build configuration list for PBXNativeTarget "@//lib:lib_impl" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				00E49FEAD01BA87C74959D6D /* Debug */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
 		85DAE5AD4B16C63749019BBB /* Build configuration list for PBXNativeTarget "tool" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -962,6 +1076,22 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				67F44AB65FA7A2E38A56F5FB /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		BD3A64FE809E1A5739A8CE9F /* Build configuration list for PBXNativeTarget "@//lib/impl:lib_impl" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C732F329B15198878363F99D /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		F564784251F1A0518434891A /* Build configuration list for PBXNativeTarget "lib_defines" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				53BA4C75582B422C4DABDD8B /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

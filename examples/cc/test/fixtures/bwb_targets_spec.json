@@ -1,4 +1,69 @@
 [
+    "//lib/impl:lib_impl darwin_x86_64-dbg-STABLE-1",
+    {
+        "1": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib/impl",
+        "2": {
+            "a": "x86_64",
+            "m": "12.0",
+            "o": "macos",
+            "v": "macosx"
+        },
+        "8": [
+            "-D_FORTIFY_SOURCE=1",
+            "-fstack-protector",
+            "-Wall",
+            "-Wthread-safety",
+            "-Wself-assign",
+            "-fno-omit-frame-pointer",
+            "-iquote",
+            ".",
+            "-iquote",
+            "bazel-out/darwin_x86_64-dbg-STABLE-1/bin",
+            "-isystem",
+            "lib/impl",
+            "-isystem",
+            "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib/impl",
+            "-DSECRET_3=\"Hello\"",
+            "-DIMPL_DEFINE=\"Implementation\"",
+            "-F__BAZEL_XCODE_SDKROOT__/System/Library/Frameworks",
+            "-F__BAZEL_XCODE_DEVELOPER_DIR__/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+            "-no-canonical-prefixes",
+            "-pthread",
+            "-Ilib/impl/private",
+            "-Ibazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib/impl/private",
+            "-no-canonical-prefixes",
+            "-Wno-builtin-macro-redefined",
+            "-D__DATE__=\"redacted\"",
+            "-D__TIMESTAMP__=\"redacted\"",
+            "-D__TIME__=\"redacted\""
+        ],
+        "b": {
+            "ENABLE_BITCODE": false,
+            "ENABLE_STRICT_OBJC_MSGSEND": true,
+            "GCC_OPTIMIZATION_LEVEL": "0",
+            "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
+            "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+            "SWIFT_VERSION": "5.0"
+        },
+        "c": "darwin_x86_64-dbg-STABLE-1",
+        "i": {
+            "s": [
+                "lib/impl/lib.c",
+                "lib/impl/private/private.h"
+            ]
+        },
+        "l": "//lib/impl:lib_impl",
+        "n": "lib_impl",
+        "p": {
+            "n": "lib_impl",
+            "p": {
+                "_": "darwin_x86_64-dbg-STABLE-1/bin/lib/impl/liblib_impl.lo",
+                "t": "g"
+            },
+            "t": "com.apple.product-type.library.static"
+        },
+        "s": false
+    },
     "//lib2:lib_impl darwin_x86_64-dbg-STABLE-1",
     {
         "1": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib2",
@@ -60,7 +125,7 @@
         },
         "s": false
     },
-    "//lib:lib_impl darwin_x86_64-dbg-STABLE-1",
+    "//lib:lib_defines darwin_x86_64-dbg-STABLE-1",
     {
         "1": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib",
         "2": {
@@ -80,13 +145,16 @@
             ".",
             "-iquote",
             "bazel-out/darwin_x86_64-dbg-STABLE-1/bin",
-            "-DSECRET_3=\"Hello\"",
+            "-isystem",
+            "lib/impl",
+            "-isystem",
+            "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib/impl",
+            "-DSECRET_2=\"World!\"",
+            "-DIMPL_DEFINE=\"Implementation\"",
             "-F__BAZEL_XCODE_SDKROOT__/System/Library/Frameworks",
             "-F__BAZEL_XCODE_DEVELOPER_DIR__/Platforms/MacOSX.platform/Developer/Library/Frameworks",
             "-no-canonical-prefixes",
             "-pthread",
-            "-Ilib/private",
-            "-Ibazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib/private",
             "-no-canonical-prefixes",
             "-Wno-builtin-macro-redefined",
             "-D__DATE__=\"redacted\"",
@@ -102,18 +170,20 @@
             "SWIFT_VERSION": "5.0"
         },
         "c": "darwin_x86_64-dbg-STABLE-1",
+        "d": [
+            "//lib/impl:lib_impl darwin_x86_64-dbg-STABLE-1"
+        ],
         "i": {
             "s": [
-                "lib/lib.c",
-                "lib/private/private.h"
+                "lib/defines.c"
             ]
         },
-        "l": "//lib:lib_impl",
-        "n": "lib_impl",
+        "l": "//lib:lib_defines",
+        "n": "lib_defines",
         "p": {
-            "n": "lib_impl",
+            "n": "lib_defines",
             "p": {
-                "_": "darwin_x86_64-dbg-STABLE-1/bin/lib/liblib_impl.lo",
+                "_": "darwin_x86_64-dbg-STABLE-1/bin/lib/liblib_defines.a",
                 "t": "g"
             },
             "t": "com.apple.product-type.library.static"
@@ -130,7 +200,7 @@
             "v": "macosx"
         },
         "6": {
-            "_": "darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/generator-params/tool.3.link.params",
+            "_": "darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/generator-params/tool.4.link.params",
             "t": "g"
         },
         "8": [
@@ -185,7 +255,7 @@
         },
         "c": "darwin_x86_64-dbg-STABLE-1",
         "d": [
-            "//lib:lib_impl darwin_x86_64-dbg-STABLE-1",
+            "//lib:lib_defines darwin_x86_64-dbg-STABLE-1",
             "@examples_cc_external//:lib_impl darwin_x86_64-dbg-STABLE-1",
             "//lib2:lib_impl darwin_x86_64-dbg-STABLE-1"
         ],

@@ -410,6 +410,9 @@ def process_top_level_target(
         has_c_sources = inputs.has_c_sources,
         has_cxx_sources = inputs.has_cxx_sources,
         target = target,
+        implementation_compilation_context = (
+            compilation_providers.implementation_compilation_context
+        ),
         package_bin_dir = package_bin_dir,
         build_settings = build_settings,
     )
