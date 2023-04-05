@@ -104,8 +104,10 @@ extension Project: Decodable {
         envs = try container
             .decodeIfPresent([TargetID: [String: String]].self, forKey: .envs)
             ?? [:]
-        extraFiles = try container.decodeFilePaths(.extraFiles)
-            .union(try container.decodeFolderFilePaths(.extraFolders))
+        extraFiles = try Set(
+            container.decodeFilePaths(.extraFiles) +
+            container.decodeFolderFilePaths(.extraFolders)
+        )
         schemeAutogenerationMode = try container
             .decodeIfPresent(
                 SchemeAutogenerationMode.self,
@@ -146,16 +148,16 @@ extension Project.Options: Decodable {
 }
 
 private extension KeyedDecodingContainer where K == Project.CodingKeys {
-    func decodeFilePaths(_ key: K) throws -> Set<FilePath> {
-        return try decodeIfPresent(Set<FilePath>.self, forKey: key) ?? []
+    func decodeFilePaths(_ key: K) throws -> [FilePath] {
+        return try decodeIfPresent([FilePath].self, forKey: key) ?? []
     }
 
-    func decodeFolderFilePaths(_ key: K) throws -> Set<FilePath> {
+    func decodeFolderFilePaths(_ key: K) throws -> [FilePath] {
         var folders = try decodeIfPresent([FilePath].self, forKey: key) ?? []
         for i in folders.indices {
             folders[i].isFolder = true
             folders[i].forceGroupCreation = true
         }
-        return Set(folders)
+        return folders
     }
 }
