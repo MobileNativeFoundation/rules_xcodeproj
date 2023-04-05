@@ -51,36 +51,6 @@ extension XCScheme {
             )
         }
 
-        let testAction: XCScheme.TestAction?
-        if let testActionInfo = schemeInfo.testActionInfo {
-            // TODO: Make this similar to `initBazelBuildOutputGroupsFile()`,
-            // instead of `otherPreActions`
-            var otherPreActions: [XCScheme.ExecutionAction] = []
-            if let aTargetInfo = testActionInfo.targetInfos
-                .lazy
-                .sortedLocalizedStandard(\.pbxTarget.name)
-                .first
-            {
-                otherPreActions.append(
-                    .createPreActionScript(
-                        title: "Update .lldbinit",
-                        scriptText: ExecutionAction.createLLDBInitScript,
-                        buildableReference: aTargetInfo.buildableReference
-                    )
-                )
-            }
-            testAction = try .init(
-                buildMode: buildMode,
-                testActionInfo: testActionInfo,
-                otherPreActions: otherPreActions
-            )
-        } else {
-            testAction = .init(
-                buildConfiguration: schemeInfo.defaultBuildConfigurationName,
-                macroExpansion: nil
-            )
-        }
-
         let launchAction: XCScheme.LaunchAction
         if let launchActionInfo = schemeInfo.launchActionInfo {
             let scriptTitle: String
@@ -112,6 +82,37 @@ extension XCScheme {
             launchAction = .init(
                 runnable: nil,
                 buildConfiguration: schemeInfo.defaultBuildConfigurationName
+            )
+        }
+
+        let testAction: XCScheme.TestAction?
+        if let testActionInfo = schemeInfo.testActionInfo {
+            // TODO: Make this similar to `initBazelBuildOutputGroupsFile()`,
+            // instead of `otherPreActions`
+            var otherPreActions: [XCScheme.ExecutionAction] = []
+            if let aTargetInfo = testActionInfo.targetInfos
+                .lazy
+                .sortedLocalizedStandard(\.pbxTarget.name)
+                .first
+            {
+                otherPreActions.append(
+                    .createPreActionScript(
+                        title: "Update .lldbinit",
+                        scriptText: ExecutionAction.createLLDBInitScript,
+                        buildableReference: aTargetInfo.buildableReference
+                    )
+                )
+            }
+            testAction = try .init(
+                buildMode: buildMode,
+                testActionInfo: testActionInfo,
+                launchActionHasRunnable: launchAction.runnable != nil,
+                otherPreActions: otherPreActions
+            )
+        } else {
+            testAction = .init(
+                buildConfiguration: schemeInfo.defaultBuildConfigurationName,
+                macroExpansion: nil
             )
         }
 
@@ -294,13 +295,14 @@ extension XCScheme.TestAction {
     convenience init(
         buildMode: BuildMode,
         testActionInfo: XCSchemeInfo.TestActionInfo,
+        launchActionHasRunnable: Bool,
         otherPreActions: [XCScheme.ExecutionAction] = []
     ) throws {
         let commandlineArguments = XCScheme.CommandLineArguments(
             xcSchemeInfoArgs: testActionInfo.args
         )
-        let shouldUseLaunchSchemeArgsEnv = commandlineArguments == nil &&
-            testActionInfo.env == nil
+        let shouldUseLaunchSchemeArgsEnv = launchActionHasRunnable &&
+            commandlineArguments == nil && testActionInfo.env == nil
 
         let environmentVariables: [XCScheme.EnvironmentVariable]?
         if shouldUseLaunchSchemeArgsEnv {
