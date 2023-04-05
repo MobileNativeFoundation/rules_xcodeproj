@@ -79,19 +79,19 @@ extension Generator {
 
         func resolveFilePath(
             _ filePath: FilePath,
+            nonSpecialRelativePath: Path,
             pathComponent: String,
+            offset: Int,
+            isExternal: Bool,
             isGroup: Bool
         ) -> (
             sourceTree: PBXSourceTree,
             name: String?,
             path: String
         ) {
-            if filePath.type == .external,
-                filePath.path.components.count <= 2,
-               let symlinkDest = try? (
-                directories.absoluteExternal + filePath.path
-               ).symlinkDestination()
-            {
+            if isExternal, offset <= 2, let symlinkDest = try? (
+                directories.absoluteExternal + nonSpecialRelativePath
+            ).symlinkDestination() {
                 let workspaceDirectoryComponents = directories
                     .workspaceComponents
                 let symlinkComponents = symlinkDest.components
@@ -106,7 +106,7 @@ extension Generator {
                     if isGroup {
                         resolvedRepositories.append(
                             (
-                                "/external" + filePath.path,
+                                "/external" + nonSpecialRelativePath,
                                 "$(SRCROOT)" + relativePath
                             )
                         )
@@ -120,7 +120,7 @@ extension Generator {
                 } else {
                     if isGroup {
                         resolvedRepositories.append(
-                            ("/external" + filePath.path, symlinkDest)
+                            ("/external" + nonSpecialRelativePath, symlinkDest)
                         )
                     }
 
@@ -142,7 +142,10 @@ extension Generator {
         func createElement(
             in pbxProj: PBXProj,
             filePath: FilePath,
+            nonSpecialRelativePath: Path,
             pathComponent: String,
+            offset: Int,
+            isExternal: Bool,
             parentIsLocalizedContainer: Bool,
             isLeaf: Bool,
             forceGroupCreation: Bool
@@ -165,7 +168,10 @@ extension Generator {
 
                 let (sourceTree, name, path) = resolveFilePath(
                     filePath,
+                    nonSpecialRelativePath: nonSpecialRelativePath,
                     pathComponent: pathComponent,
+                    offset: offset,
+                    isExternal: isExternal,
                     isGroup: true
                 )
 
@@ -187,7 +193,10 @@ extension Generator {
 
                 let group = createGroup(
                     filePath: filePath,
-                    pathComponent: pathComponent
+                    nonSpecialRelativePath: nonSpecialRelativePath,
+                    pathComponent: pathComponent,
+                    offset: offset,
+                    isExternal: isExternal
                 )
                 return (group, true)
             } else {
@@ -197,7 +206,10 @@ extension Generator {
 
                 let (sourceTree, name, path) = resolveFilePath(
                     filePath,
+                    nonSpecialRelativePath: nonSpecialRelativePath,
                     pathComponent: pathComponent,
+                    offset: offset,
+                    isExternal: isExternal,
                     isGroup: false
                 )
 
@@ -224,11 +236,17 @@ extension Generator {
 
         func createGroup(
             filePath: FilePath,
-            pathComponent: String
+            nonSpecialRelativePath: Path,
+            pathComponent: String,
+            offset: Int,
+            isExternal: Bool
         ) -> PBXGroup {
             let (sourceTree, name, path) = resolveFilePath(
                 filePath,
+                nonSpecialRelativePath: nonSpecialRelativePath,
                 pathComponent: pathComponent,
+                offset: offset,
+                isExternal: isExternal,
                 isGroup: true
             )
 
@@ -358,7 +376,7 @@ extension Generator {
                 path: "../../external"
             )
             pbxProj.add(object: group)
-            normalGroups[.external("")] = group
+            normalGroups[.init(path: "external")] = group
             externalGroup = group
 
             return group
@@ -376,7 +394,7 @@ extension Generator {
                 path: "bazel-out"
             )
             pbxProj.add(object: group)
-            normalGroups[.generated("")] = group
+            normalGroups[.init(path: "bazel-out")] = group
             generatedGroup = group
 
             return group
@@ -410,42 +428,58 @@ extension Generator {
         }
 
         var rootElements: [PBXFileElement] = []
-        var externalFileListFilePaths: [FilePath] = []
-        var generatedFileListFilePaths: [FilePath] = []
+        var externalFileListPaths: [String] = []
+        var generatedFileListPaths: [String] = []
         for fullFilePath in allInputPaths {
+            var components = fullFilePath.path.string.split(separator: "/")
+
             var filePath: FilePath
             var lastElement: PBXFileElement?
-            switch fullFilePath.type {
-            case .project:
-                filePath = .project(Path())
-                lastElement = nil
-            case .external:
-                filePath = .external(Path())
+            let isExternal: Bool
+            switch components[0] {
+            case "external":
+                filePath = .init(path: "external")
                 lastElement = createExternalGroup()
-                externalFileListFilePaths.append(fullFilePath)
-            case .generated:
-                filePath = .generated(Path())
+                components = Array(components[1...])
+                externalFileListPaths.append(
+                    (["$(BAZEL_EXTERNAL)"] + components).joined(separator: "/")
+                )
+                isExternal = true
+            case "bazel-out":
+                filePath = .init(path: "bazel-out")
                 lastElement = createGeneratedGroup()
+                components = Array(components[1...])
                 if !fullFilePath.isFolder {
-                    generatedFileListFilePaths.append(fullFilePath)
+                    generatedFileListPaths.append(
+                        (["$(BAZEL_OUT)"] + components).joined(separator: "/")
+                    )
                 }
+                isExternal = false
+            default:
+                filePath = .init(path: Path())
+                lastElement = nil
+                isExternal = false
             }
 
             var coreDataContainer: XCVersionGroup?
-            let components = fullFilePath.path.string.split(separator: "/")
             var parentIsLocalizedContainer = false
+            var nonSpecialRelativePath = Path()
             for (offset, component) in components.enumerated() {
                 let component = String(component)
 
                 // swiftlint:disable:next shorthand_operator
                 filePath = filePath + component
+                nonSpecialRelativePath = nonSpecialRelativePath + component
                 let isLeaf = offset == components.count - 1
                 filePath.isFolder = isLeaf && fullFilePath.isFolder
                 if
                     let (element, isNew) = createElement(
                         in: pbxProj,
                         filePath: filePath,
+                        nonSpecialRelativePath: nonSpecialRelativePath,
                         pathComponent: component,
+                        offset: offset,
+                        isExternal: isExternal,
                         parentIsLocalizedContainer: parentIsLocalizedContainer,
                         isLeaf: isLeaf,
                         forceGroupCreation: fullFilePath.forceGroupCreation
@@ -538,12 +572,6 @@ extension Generator {
 
         // Write xcfilelists
 
-        let externalPaths = externalFileListFilePaths
-            .map { FilePathResolver.resolveExternal($0.path) }
-
-        let generatedPaths = generatedFileListFilePaths
-            .map { FilePathResolver.resolveGenerated($0.path) }
-
         var internalFiles: [Path: String] = [:]
         func addXCFileList(_ path: Path, paths: [String]) -> Bool {
             guard !paths.isEmpty else {
@@ -556,9 +584,9 @@ extension Generator {
         }
 
         let usesExternalFileList =
-            addXCFileList(externalFileListPath, paths: externalPaths)
+            addXCFileList(externalFileListPath, paths: externalFileListPaths)
         let usesGeneratedFileList =
-            addXCFileList(generatedFileListPath, paths: generatedPaths)
+            addXCFileList(generatedFileListPath, paths: generatedFileListPaths)
 
         // Handle special groups
 

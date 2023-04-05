@@ -12,9 +12,7 @@ load(
     ":files.bzl",
     "FRAMEWORK_EXTENSIONS",
     "RESOURCES_FOLDER_TYPE_EXTENSIONS",
-    "file_path",
     "normalized_file_path",
-    "parsed_file_path",
 )
 load(":linker_input_files.bzl", "linker_input_files")
 load(":output_files.bzl", "parse_swift_info_module", "swift_to_outputs")
@@ -159,11 +157,11 @@ def _collect_input_files(
     uncategorized = []
 
     generated = [file for file in additional_files if not file.is_source]
-    extra_files = [file_path(file) for file in additional_files]
+    extra_files = [file.path for file in additional_files]
 
     # Include BUILD files for the project but not for external repos
     if not target.label.workspace_root:
-        extra_files.append(parsed_file_path(ctx.build_file_path))
+        extra_files.append(ctx.build_file_path)
 
     # buildifier: disable=uninitialized
     def _handle_srcs_file(file):
@@ -203,7 +201,7 @@ def _collect_input_files(
 
     # buildifier: disable=uninitialized
     def _handle_extrafiles_file(file):
-        extra_files.append(file_path(file))
+        extra_files.append(file.path)
 
     file_handlers = {}
 
@@ -469,7 +467,7 @@ def _collect_input_files(
                 generated.extend(transitive_libraries)
                 unfocused_libraries = depset(
                     [
-                        file_path(file)
+                        file.path
                         for file in transitive_libraries
                     ],
                 )

@@ -56,10 +56,7 @@
         "n": "lib_impl",
         "p": {
             "n": "lib_impl",
-            "p": {
-                "_": "darwin_x86_64-dbg-STABLE-1/bin/lib/impl/liblib_impl.lo",
-                "t": "g"
-            },
+            "p": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib/impl/liblib_impl.lo",
             "t": "com.apple.product-type.library.static"
         },
         "s": false
@@ -117,10 +114,7 @@
         "n": "lib_impl",
         "p": {
             "n": "lib_impl",
-            "p": {
-                "_": "darwin_x86_64-dbg-STABLE-1/bin/lib2/liblib_impl.a",
-                "t": "g"
-            },
+            "p": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib2/liblib_impl.a",
             "t": "com.apple.product-type.library.static"
         },
         "s": false
@@ -182,10 +176,7 @@
         "n": "lib_defines",
         "p": {
             "n": "lib_defines",
-            "p": {
-                "_": "darwin_x86_64-dbg-STABLE-1/bin/lib/liblib_defines.a",
-                "t": "g"
-            },
+            "p": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib/liblib_defines.a",
             "t": "com.apple.product-type.library.static"
         },
         "s": false
@@ -199,10 +190,7 @@
             "o": "macos",
             "v": "macosx"
         },
-        "6": {
-            "_": "darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tool.4.link.params",
-            "t": "g"
-        },
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tool.4.link.params",
         "8": [
             "-D_FORTIFY_SOURCE=1",
             "-fstack-protector",
@@ -273,10 +261,7 @@
         "p": {
             "e": "tool",
             "n": "tool",
-            "p": {
-                "_": "darwin_x86_64-dbg-STABLE-1/bin/tool/tool",
-                "t": "g"
-            },
+            "p": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/tool/tool",
             "t": "com.apple.product-type.tool"
         },
         "s": false
@@ -325,24 +310,15 @@
         "c": "darwin_x86_64-dbg-STABLE-1",
         "i": {
             "s": [
-                {
-                    "_": "examples_cc_external/lib.c",
-                    "t": "e"
-                },
-                {
-                    "_": "examples_cc_external/private/private.inc",
-                    "t": "e"
-                }
+                "external/examples_cc_external/lib.c",
+                "external/examples_cc_external/private/private.inc"
             ]
         },
         "l": "@examples_cc_external//:lib_impl",
         "n": "lib_impl",
         "p": {
             "n": "lib_impl",
-            "p": {
-                "_": "darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external/liblib_impl.a",
-                "t": "g"
-            },
+            "p": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external/liblib_impl.a",
             "t": "com.apple.product-type.library.static"
         },
         "s": false

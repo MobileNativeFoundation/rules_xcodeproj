@@ -33,8 +33,7 @@ extension Generator {
                 // since we override `DEPLOYMENT_LOCATION` and
                 // `BUILT_PRODUCTS_DIR` for them
                 name = target.product.basename
-                path = defaultTarget.product.path
-                    .flatMap { "bazel-out/\($0.path)" }
+                path = defaultTarget.product.path?.path.string
             }
 
             guard let path = path else {

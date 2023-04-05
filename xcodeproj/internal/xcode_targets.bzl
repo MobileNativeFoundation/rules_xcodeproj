@@ -8,8 +8,6 @@ load(
     ":files.bzl",
     "FRAMEWORK_EXTENSIONS",
     "build_setting_path",
-    "file_path",
-    "file_path_to_dto",
     "normalized_file_path",
 )
 load(":platform.bzl", "platform_info")
@@ -160,7 +158,7 @@ def _lldb_context_key(*, platform, product):
     if not fp:
         return None
 
-    product_basename = paths.basename(fp.path)
+    product_basename = paths.basename(fp)
     base_key = "{} {}".format(
         platform_info.to_lldb_context_triple(platform),
         product_basename,
@@ -642,16 +640,13 @@ def _xcode_target_to_dto(
         "5",
         linker_inputs_dto,
     )
-    set_if_true(
-        dto,
-        "6",
-        file_path_to_dto(file_path(link_params)),
-    )
-    set_if_true(
-        dto,
-        "4",
-        file_path_to_dto(file_path(xcode_target.infoplist)),
-    )
+
+    if link_params:
+        dto["6"] = link_params.path
+
+    if xcode_target.infoplist:
+        dto["4"] = xcode_target.infoplist.path
+
     set_if_true(
         dto,
         "e",
@@ -770,7 +765,7 @@ def _inputs_to_dto(inputs):
         value = getattr(inputs, attr)
         if value:
             ret[key] = [
-                file_path_to_dto(file_path(file))
+                file.path
                 for file in value.to_list()
             ]
 
@@ -779,23 +774,23 @@ def _inputs_to_dto(inputs):
     _process_attr("hdrs", "h")
 
     if inputs.pch:
-        ret["p"] = file_path_to_dto(file_path(inputs.pch))
+        ret["p"] = inputs.pch.path
 
     if inputs.entitlements:
-        ret["e"] = file_path_to_dto(file_path(inputs.entitlements))
+        ret["e"] = inputs.entitlements.path
 
     if inputs.resources:
         set_if_true(
             ret,
             "r",
-            [file_path_to_dto(fp) for fp in inputs.resources.to_list()],
+            inputs.resources.to_list(),
         )
 
     if inputs.folder_resources:
         set_if_true(
             ret,
             "f",
-            [file_path_to_dto(fp) for fp in inputs.folder_resources.to_list()],
+            inputs.folder_resources.to_list(),
         )
 
     return ret
@@ -829,10 +824,7 @@ def _linker_inputs_to_dto(
     set_if_true(
         ret,
         "d",
-        [
-            file_path_to_dto(file_path(file, path = file.dirname))
-            for file in linker_inputs.dynamic_frameworks
-        ],
+        [file.dirname for file in linker_inputs.dynamic_frameworks],
     )
 
     if linker_inputs.link_args:
@@ -920,16 +912,14 @@ def _product_to_dto(product):
         "t": product.type,
     }
 
-    set_if_true(dto, "p", file_path_to_dto(product.file_path))
+    set_if_true(dto, "p", product.file_path)
     set_if_true(
         dto,
         "a",
         [
-            file_path_to_dto(
-                normalized_file_path(
-                    file,
-                    folder_type_extensions = FRAMEWORK_EXTENSIONS,
-                ),
+            normalized_file_path(
+                file,
+                folder_type_extensions = FRAMEWORK_EXTENSIONS,
             )
             for file in product._additional_files.to_list()
         ],
@@ -941,11 +931,11 @@ def _product_to_dto(product):
 
 def _swift_to_dto(outputs):
     dto = {
-        "m": file_path_to_dto(file_path(outputs.swiftmodule)),
+        "m": outputs.swiftmodule.path,
     }
 
     if outputs.swift_generated_header:
-        dto["h"] = file_path_to_dto(file_path(outputs.swift_generated_header))
+        dto["h"] = outputs.swift_generated_header.path
 
     return dto
 

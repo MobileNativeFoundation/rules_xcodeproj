@@ -1,10 +1,6 @@
 """Functions for calculating a target's product."""
 
 load("@bazel_skylib//lib:paths.bzl", "paths")
-load(
-    ":files.bzl",
-    "file_path",
-)
 load(":linker_input_files.bzl", "linker_input_files")
 
 def _codesign_executable(*, ctx, executable):
@@ -109,19 +105,19 @@ def process_product(
     """
     if bundle_file_path:
         file = bundle_file
-        basename = paths.basename(bundle_file_path.path)
+        basename = paths.basename(bundle_file_path)
         fp = bundle_file_path
         actual_fp = archive_file_path
     elif target[DefaultInfo].files_to_run.executable:
         executable = target[DefaultInfo].files_to_run.executable
         file = _codesign_executable(ctx = ctx, executable = executable)
         basename = file.basename
-        fp = file_path(executable)
+        fp = executable.path
         actual_fp = fp
     elif CcInfo in target and linker_inputs and target.files != depset():
         file = linker_input_files.get_primary_static_library(linker_inputs)
         basename = file.basename if file else None
-        fp = file_path(file) if file else None
+        fp = file.path if file else None
         actual_fp = fp
     else:
         file = None

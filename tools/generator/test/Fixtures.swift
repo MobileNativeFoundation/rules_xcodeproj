@@ -2328,3 +2328,33 @@ $(MACOSX_FILES)
         )
     }
 }
+
+extension FilePath {
+    static func external(_ path: Path) -> FilePath {
+        return FilePath(path: "external" + path)
+    }
+
+    static func generated(
+        _ path: Path,
+        isFolder: Bool = false,
+        forceGroupCreation: Bool = false
+    ) -> FilePath {
+        return FilePath(
+            path: "bazel-out" + path,
+            isFolder: isFolder,
+            forceGroupCreation: forceGroupCreation
+        )
+    }
+
+    static func project(
+        _ path: Path,
+        isFolder: Bool = false,
+        forceGroupCreation: Bool = false
+    ) -> FilePath {
+        return FilePath(
+            path: path,
+            isFolder: isFolder,
+            forceGroupCreation: forceGroupCreation
+        )
+    }
+}

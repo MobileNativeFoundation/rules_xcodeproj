@@ -270,7 +270,6 @@
 		C05367CD225D44CFAE114A74 /* TargetResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C8EA74CBEA0685A0929665 /* TargetResolver.swift */; };
 		C0E21DDCC126487BC9CE7231 /* OrderedDictionary+Deprecations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609F535F5F898D23F13CF3A0 /* OrderedDictionary+Deprecations.swift */; };
 		C0EC294324D8897DEF33B7F3 /* RandomAccessCollection+Offsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A61FEF81FC88B600FEE32D3 /* RandomAccessCollection+Offsets.swift */; };
-		C1B9C50E3977BC373701F66B /* FilePathResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2C37EFF8B264519EC030E9 /* FilePathResolver.swift */; };
 		C2315BDBE5A5E5D50CE43687 /* OrderedSet+Invariants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF1EA53F2038BA5BD62541A /* OrderedSet+Invariants.swift */; };
 		C28D1079614FA09D96C4BAAE /* BazelLabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D65D31DB9E2BDA81B6F959 /* BazelLabelTests.swift */; };
 		C2CE0277B67B8D8056ED69E8 /* PBXRezBuildPhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C97FF6C00B3CBD8ED56F501 /* PBXRezBuildPhase.swift */; };
@@ -687,7 +686,6 @@
 		7976E3A8FDE1647E5A4BA25A /* OrderedSet+Diffing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedSet+Diffing.swift"; sourceTree = "<group>"; };
 		7A45F89042A297B65EEBD110 /* XCSchemeEnvironmentVariablesExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCSchemeEnvironmentVariablesExtensionsTests.swift; sourceTree = "<group>"; };
 		7A61FEF81FC88B600FEE32D3 /* RandomAccessCollection+Offsets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RandomAccessCollection+Offsets.swift"; sourceTree = "<group>"; };
-		7B2C37EFF8B264519EC030E9 /* FilePathResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePathResolver.swift; sourceTree = "<group>"; };
 		7B897629F141C3564CCB3756 /* Inputs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inputs.swift; sourceTree = "<group>"; };
 		7C9C659128796FF7CF07C54F /* BuildSettingsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildSettingsProvider.swift; sourceTree = "<group>"; };
 		7CC3967E2D5D30004998E3C0 /* _HashTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _HashTable.swift; sourceTree = "<group>"; };
@@ -1503,7 +1501,6 @@
 				D0C5D16CA442C28D5765BAA2 /* Generator */,
 				BB5B8734422420CE74FDA1B5 /* BuildSettingConditional.swift */,
 				2E8E3AA92CA38CB6D7B594D9 /* Errors.swift */,
-				7B2C37EFF8B264519EC030E9 /* FilePathResolver.swift */,
 				76837067E23DA5FF5E12E951 /* Logger.swift */,
 			);
 			path = src;
@@ -2722,7 +2719,6 @@
 				2ADA84E6EAC04880CDF561F5 /* XCScheme+Extensions.swift in Sources */,
 				694054361A624AE05A10A509 /* XCSchemeEnvironmentVariables+Extensions.swift in Sources */,
 				5DD84587B3A463C27B81C7E5 /* XcodeScheme+Extensions.swift in Sources */,
-				C1B9C50E3977BC373701F66B /* FilePathResolver.swift in Sources */,
 				EB43A0A3594E7529D14633B7 /* AddBazelDependenciesTarget.swift in Sources */,
 				DE64C79997702A0ABDE87972 /* AddTargets.swift in Sources */,
 				A1000E5E9029E50A4A08F6F0 /* CalculateXcodeGeneratedFiles.swift in Sources */,

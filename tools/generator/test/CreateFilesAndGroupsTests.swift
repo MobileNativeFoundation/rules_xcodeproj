@@ -144,9 +144,9 @@ final class CreateFilesAndGroupsTests: XCTestCase {
             expectedElements["z.h"]!,
             expectedElements["z.mm"]!,
             // Then Bazel External Repositories
-            expectedElements[.external("")]!,
+            expectedElements["external"]!,
             // Then Bazel Generated Files
-            expectedElements[.generated("")]!,
+            expectedElements["bazel-out"]!,
             // And finally the internal (rules_xcodeproj) group
             expectedInternalGroup,
         ]

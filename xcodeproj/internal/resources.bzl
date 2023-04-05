@@ -6,7 +6,6 @@ load(":configuration.bzl", "calculate_configuration")
 load(
     ":files.bzl",
     "RESOURCES_FOLDER_TYPE_EXTENSIONS",
-    "file_path",
     "join_paths_ignoring_empty",
     "normalized_file_path",
 )
@@ -107,12 +106,12 @@ def _add_structured_resources_to_bundle(
             generated.append(file)
 
         if not inner_dir:
-            bundle.resources.append(file_path(file))
+            bundle.resources.append(file.path)
             continue
 
         # Special case for localized
         if inner_dir.endswith(".lproj"):
-            bundle.resources.append(file_path(file))
+            bundle.resources.append(file.path)
             continue
 
         if file.is_directory:
@@ -123,11 +122,9 @@ def _add_structured_resources_to_bundle(
         if not dir.endswith(nested_path):
             continue
 
-        fp = file_path(
-            file,
-            path = paths.join(dir[:-(1 + len(nested_path))], inner_dir),
+        bundle.folder_resources.append(
+            paths.join(dir[:-(1 + len(nested_path))], inner_dir),
         )
-        bundle.folder_resources.append(fp)
 
 def _add_structured_resources(
         *,
