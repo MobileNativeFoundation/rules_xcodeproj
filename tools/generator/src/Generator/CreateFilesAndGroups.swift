@@ -426,13 +426,7 @@ extension Generator {
 
         var rootElements: [PBXFileElement] = []
         var nonDirectFolderLikeFilePaths: Set<FilePath> = []
-        var nonIncludedFiles: Set<FilePath> = []
         for fullFilePath in allInputPaths {
-            guard fullFilePath.includeInNavigator else {
-                nonIncludedFiles.insert(fullFilePath)
-                continue
-            }
-
             var filePath: FilePath
             var lastElement: PBXFileElement?
             switch fullFilePath.type {
@@ -555,7 +549,7 @@ extension Generator {
             .map { FilePathResolver.resolveExternal($0.path) }
 
         let generatedFilePaths = fileListFileFilePaths
-            .filter { $0.type == .generated && !$0.isFolder } + nonIncludedFiles
+            .filter { $0.type == .generated && !$0.isFolder }
 
         let generatedPaths = generatedFilePaths
             .map { FilePathResolver.resolveGenerated($0.path) }

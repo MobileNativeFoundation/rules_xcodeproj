@@ -11,20 +11,17 @@ struct FilePath: Hashable, Decodable {
     let type: PathType
     var path: Path
     var isFolder: Bool
-    let includeInNavigator: Bool
     var forceGroupCreation: Bool
 
     fileprivate init(
         type: PathType,
         path: Path,
         isFolder: Bool,
-        includeInNavigator: Bool,
         forceGroupCreation: Bool
     ) {
         self.type = type
         self.path = path
         self.isFolder = isFolder
-        self.includeInNavigator = includeInNavigator
         self.forceGroupCreation = forceGroupCreation
     }
 
@@ -34,7 +31,6 @@ struct FilePath: Hashable, Decodable {
         case path = "_"
         case type = "t"
         case isFolder = "f"
-        case includeInNavigator = "i"
         case forceGroupCreation = "g"
     }
 
@@ -44,7 +40,6 @@ struct FilePath: Hashable, Decodable {
             type = .project
             self.path = path
             isFolder = false
-            includeInNavigator = true
             forceGroupCreation = false
             return
         }
@@ -55,8 +50,6 @@ struct FilePath: Hashable, Decodable {
             ?? .project
         isFolder = try container.decodeIfPresent(Bool.self, forKey: .isFolder)
             ?? false
-        includeInNavigator = try container
-            .decodeIfPresent(Bool.self, forKey: .includeInNavigator) ?? true
         forceGroupCreation = try container
             .decodeIfPresent(Bool.self, forKey: .forceGroupCreation) ?? false
     }
@@ -66,14 +59,12 @@ extension FilePath {
     static func project(
         _ path: Path,
         isFolder: Bool = false,
-        includeInNavigator: Bool = true,
         forceGroupCreation: Bool = false
     ) -> FilePath {
         return FilePath(
             type: .project,
             path: path,
             isFolder: isFolder,
-            includeInNavigator: includeInNavigator,
             forceGroupCreation: forceGroupCreation
         )
     }
@@ -81,14 +72,12 @@ extension FilePath {
     static func external(
         _ path: Path,
         isFolder: Bool = false,
-        includeInNavigator: Bool = true,
         forceGroupCreation: Bool = false
     ) -> FilePath {
         return FilePath(
             type: .external,
             path: path,
             isFolder: isFolder,
-            includeInNavigator: includeInNavigator,
             forceGroupCreation: forceGroupCreation
         )
     }
@@ -96,14 +85,12 @@ extension FilePath {
     static func generated(
         _ path: Path,
         isFolder: Bool = false,
-        includeInNavigator: Bool = true,
         forceGroupCreation: Bool = false
     ) -> FilePath {
         return FilePath(
             type: .generated,
             path: path,
             isFolder: isFolder,
-            includeInNavigator: includeInNavigator,
             forceGroupCreation: forceGroupCreation
         )
     }
@@ -111,14 +98,12 @@ extension FilePath {
     static func `internal`(
         _ path: Path,
         isFolder: Bool = false,
-        includeInNavigator: Bool = true,
         forceGroupCreation: Bool = false
     ) -> FilePath {
         return FilePath(
             type: .internal,
             path: path,
             isFolder: isFolder,
-            includeInNavigator: includeInNavigator,
             forceGroupCreation: forceGroupCreation
         )
     }
@@ -130,7 +115,6 @@ extension FilePath {
             type: type,
             path: path.parent().normalize(),
             isFolder: false,
-            includeInNavigator: includeInNavigator,
             forceGroupCreation: forceGroupCreation
         )
     }
@@ -181,7 +165,6 @@ func + (lhs: FilePath, rhs: String) -> FilePath {
         type: lhs.type,
         path: path,
         isFolder: false,
-        includeInNavigator: lhs.includeInNavigator,
         forceGroupCreation: lhs.forceGroupCreation
     )
 }

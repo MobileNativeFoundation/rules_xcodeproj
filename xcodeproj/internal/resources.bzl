@@ -131,9 +131,6 @@ def _add_structured_resources_to_bundle(
         )
         bundle.resources.append(fp)
 
-        if not file.is_source:
-            extra_files.append(file_path(file, include_in_navigator = False))
-
 def _add_structured_resources(
         *,
         root_bundle,
