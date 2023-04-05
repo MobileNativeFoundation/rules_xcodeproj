@@ -108,8 +108,12 @@ if [[ $for_fixture -eq 1 ]]; then
   readonly targets_spec_dest="${mode_prefix}_targets_spec.json"
   python3 -m json.tool "$targets_spec_src" > "$targets_spec_dest"
 elif [[ -n "${specs_archive_path:-}" ]]; then
+  specs_archive_path_staging=$(mktemp -d)
+  cp "${spec_paths[@]}" "$specs_archive_path_staging"
+  cd "$specs_archive_path_staging"
+
   rm -f "$specs_archive_path"
-  COPYFILE_DISABLE=1 tar czfh "$specs_archive_path" "${spec_paths[@]}"
+  COPYFILE_DISABLE=1 tar czfh "$specs_archive_path" .
 
   echo
   echo "Collected specs into \"$specs_archive_path\""
