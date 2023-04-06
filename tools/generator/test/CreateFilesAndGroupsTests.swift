@@ -59,6 +59,8 @@ final class CreateFilesAndGroupsTests: XCTestCase {
             createdRootElements,
             _,
             _,
+            _,
+            _,
             _
         ) = try Generator.createFilesAndGroups(
             in: pbxProj,
@@ -114,7 +116,10 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         let (
             expectedFiles,
             expectedElements,
-            _
+            expectedInternalGroup,
+            _,
+            _,
+            expectedInternalFiles
         ) = Fixtures.files(
             in: expectedPBXProj,
             buildMode: .xcode,
@@ -143,7 +148,7 @@ final class CreateFilesAndGroupsTests: XCTestCase {
             // Then Bazel Generated Files
             expectedElements[.generated("")]!,
             // And finally the internal (rules_xcodeproj) group
-            expectedElements[.internal("")]!,
+            expectedInternalGroup,
         ]
         expectedMainGroup.addChildren(expectedRootElements)
 
@@ -155,6 +160,8 @@ final class CreateFilesAndGroupsTests: XCTestCase {
             createdFiles,
             createdRootElements,
             _,
+            _,
+            internalFiles,
             _,
             _
         ) = try Generator.createFilesAndGroups(
@@ -181,6 +188,10 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         XCTAssertNoDifference(
             createdFiles.map(KeyAndValue.init).sorted(),
             expectedFiles.map(KeyAndValue.init).sorted()
+        )
+        XCTAssertNoDifference(
+            internalFiles.map(KeyAndValue.init).sorted(),
+            expectedInternalFiles.map(KeyAndValue.init).sorted()
         )
 
         XCTAssertNoDifference(pbxProj, expectedPBXProj)
@@ -214,7 +225,10 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         let (
             expectedFiles,
             expectedElements,
-            _
+            expectedInternalGroup,
+            _,
+            _,
+            expectedInternalFiles
         ) = Fixtures.files(
             in: expectedPBXProj,
             buildMode: .bazel,
@@ -243,7 +257,7 @@ final class CreateFilesAndGroupsTests: XCTestCase {
             // Then Bazel Generated Files
             expectedElements[.generated("")]!,
             // And finally the internal (rules_xcodeproj) group
-            expectedElements[.internal("")]!,
+            expectedInternalGroup,
         ]
         expectedMainGroup.addChildren(expectedRootElements)
 
@@ -255,6 +269,8 @@ final class CreateFilesAndGroupsTests: XCTestCase {
             createdFiles,
             createdRootElements,
             _,
+            _,
+            internalFiles,
             _,
             _
         ) = try Generator.createFilesAndGroups(
@@ -281,6 +297,10 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         XCTAssertNoDifference(
             createdFiles.map(KeyAndValue.init).sorted(),
             expectedFiles.map(KeyAndValue.init).sorted()
+        )
+        XCTAssertNoDifference(
+            internalFiles.map(KeyAndValue.init).sorted(),
+            expectedInternalFiles.map(KeyAndValue.init).sorted()
         )
 
         XCTAssertNoDifference(pbxProj, expectedPBXProj)

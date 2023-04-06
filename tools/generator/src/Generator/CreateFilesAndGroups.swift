@@ -62,7 +62,9 @@ extension Generator {
     ) throws -> (
         files: [FilePath: File],
         rootElements: [PBXFileElement],
+        compileStub: PBXFileReference?,
         resolvedRepositories: [(Path, Path)],
+        internalFiles: [Path: String],
         usesExternalFileList: Bool,
         usesGeneratedFileList: Bool
     ) {
@@ -380,31 +382,13 @@ extension Generator {
             return group
         }
 
-        var internalGroup: PBXGroup?
-        func createInternalGroup() -> PBXGroup {
-            if let internalGroup = internalGroup {
-                return internalGroup
-            }
-
-            let group = PBXGroup(
-                sourceTree: .group,
-                name: directories.internalDirectoryName,
-                path: directories.internal.string
-            )
-            pbxProj.add(object: group)
-            normalGroups[.internal("")] = group
-            internalGroup = group
-
-            return group
-        }
-
         func isSpecialGroup(_ element: PBXFileElement) -> Bool {
             return element == externalGroup
                 || element == generatedGroup
-                || element == internalGroup
         }
 
         // Collect all files
+        var createCompileStub = false
         var allInputPaths = extraFiles
         for target in targets.values {
             if let linkParams = target.linkParams {
@@ -421,7 +405,7 @@ extension Generator {
                 target.product.type.hasCompilePhase,
                 target.product.path != nil
             {
-                allInputPaths.insert(.internal(compileStubPath))
+                createCompileStub = true
             }
         }
 
@@ -445,9 +429,6 @@ extension Generator {
                 if !fullFilePath.isFolder {
                     generatedFileListFilePaths.append(fullFilePath)
                 }
-            case .internal:
-                filePath = .internal(Path())
-                lastElement = createInternalGroup()
             }
 
             var coreDataContainer: XCVersionGroup?
@@ -516,12 +497,26 @@ extension Generator {
             }
         }
 
-        // Fix sourceTree of `bazelForcedSwiftCompilePath` and `compileStubPath`
-        if let element = fileReferences[.internal(bazelForcedSwiftCompilePath)] {
-            element.sourceTree = .custom("DERIVED_FILE_DIR")
-        }
-        if let element = fileReferences[.internal(compileStubPath)] {
-            element.sourceTree = .custom("DERIVED_FILE_DIR")
+        var internalGroup: PBXGroup?
+        var compileStub: PBXFileReference?
+        if createCompileStub {
+            let file = PBXFileReference(
+                sourceTree: .custom("DERIVED_FILE_DIR"),
+                name: nil,
+                lastKnownFileType: Xcode.filetype(extension: "m"),
+                path: compileStubPath.string
+            )
+            pbxProj.add(object: file)
+            compileStub = file
+
+            let group = PBXGroup(
+                children: [file],
+                sourceTree: .group,
+                name: directories.internalDirectoryName,
+                path: directories.internal.string
+            )
+            pbxProj.add(object: group)
+            internalGroup = group
         }
 
         try setXCCurrentVersions(
@@ -549,14 +544,13 @@ extension Generator {
         let generatedPaths = generatedFileListFilePaths
             .map { FilePathResolver.resolveGenerated($0.path) }
 
+        var internalFiles: [Path: String] = [:]
         func addXCFileList(_ path: Path, paths: [String]) -> Bool {
             guard !paths.isEmpty else {
                 return false
             }
 
-            files[.internal(path)] = .nonReferencedContent(
-                Set(paths.map { "\($0)\n" }).sorted().joined()
-            )
+            internalFiles[path] = Set(paths.map { "\($0)\n" }).sorted().joined()
 
             return true
         }
@@ -592,7 +586,9 @@ extension Generator {
         return (
             files,
             rootElements,
+            compileStub,
             resolvedRepositories,
+            internalFiles,
             usesExternalFileList,
             usesGeneratedFileList
         )

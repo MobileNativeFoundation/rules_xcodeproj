@@ -7,7 +7,8 @@ extension Generator {
         for disambiguatedTargets: DisambiguatedTargets,
         buildMode: BuildMode,
         products: Products,
-        files: [FilePath: File]
+        files: [FilePath: File],
+        compileStub: PBXFileReference?
     ) async throws -> [ConsolidatedTarget.Key: PBXNativeTarget] {
         return try await withThrowingTaskGroup(
             of: (ConsolidatedTarget.Key, PBXNativeTarget).self
@@ -25,7 +26,8 @@ extension Generator {
                             targetKeys: disambiguatedTargets.keys,
                             buildMode: buildMode,
                             products: products,
-                            files: files
+                            files: files,
+                            compileStub: compileStub
                         )
                     )
                 }
@@ -53,7 +55,8 @@ extension Generator {
         targetKeys: [TargetID: ConsolidatedTarget.Key],
         buildMode: BuildMode,
         products: Products,
-        files: [FilePath: File]
+        files: [FilePath: File],
+        compileStub: PBXFileReference?
     ) throws -> PBXNativeTarget {
         let target = disambiguatedTarget.target
         let inputs = target.inputs
@@ -75,7 +78,8 @@ Product for target "\(key)" not found in `products`
                 productType: productType,
                 inputs: inputs,
                 outputs: outputs,
-                files: files
+                files: files,
+                compileStub: compileStub
             )
         } else {
             product = nil
@@ -363,7 +367,8 @@ File "\(headerFile.filePath)" not found in `files`
         productType: PBXProductType,
         inputs: ConsolidatedTargetInputs,
         outputs: ConsolidatedTargetOutputs,
-        files: [FilePath: File]
+        files: [FilePath: File],
+        compileStub: PBXFileReference?
     ) throws -> (phase: PBXSourcesBuildPhase, hasCompileStub: Bool)? {
         let forcedBazelCompileFiles = outputs
             .forcedBazelCompileFiles(buildMode: buildMode)
@@ -396,16 +401,20 @@ File "\(sourceFile.filePath)" not found in `files`
 
         let hasCompileStub = sources.isEmpty
 
-        let sourceFiles: [SourceFile]
+        let buildFiles: [PBXBuildFile]
         if hasCompileStub {
-            sourceFiles = [SourceFile(.internal(compileStubPath))]
+            guard let compileStub = compileStub else {
+                throw PreconditionError(message: "`compileStub` is nil")
+            }
+
+            let compileStubBuildFile = PBXBuildFile(file: compileStub)
+            pbxProj.add(object: compileStubBuildFile)
+            buildFiles = [compileStubBuildFile]
         } else {
-            sourceFiles = sources
+            buildFiles = try sources.map(buildFile)
         }
 
-        let buildPhase = try PBXSourcesBuildPhase(
-            files: sourceFiles.map(buildFile)
-        )
+        let buildPhase = PBXSourcesBuildPhase(files: buildFiles)
         pbxProj.add(object: buildPhase)
 
         return (buildPhase, hasCompileStub)
