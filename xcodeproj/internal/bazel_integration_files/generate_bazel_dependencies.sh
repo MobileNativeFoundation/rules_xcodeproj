@@ -65,9 +65,11 @@ else
         && printf '\0' )
 
   raw_labels=()
-  output_groups=()
+  raw_target_ids=()
+  output_groups=("target_ids_list")
   for (( i=0; i<${#labels_and_output_groups[@]}; i+=2 )); do
     raw_labels+=("${labels_and_output_groups[i]}")
+    raw_target_ids+=("${labels_and_output_groups[i+1]#* }")
     output_groups+=("${labels_and_output_groups[i+1]}")
   done
 
@@ -80,6 +82,11 @@ else
     while IFS= read -r -d '' label; do
       labels+=("$label")
     done < <(printf "%s\0" "${raw_labels[@]}" | sort -uz)
+
+    target_ids=()
+    while IFS= read -r -d '' target_id; do
+      target_ids+=("$target_id")
+    done < <(printf "%s\0" "${raw_target_ids[@]}" | sort -uz)
   fi
 fi
 

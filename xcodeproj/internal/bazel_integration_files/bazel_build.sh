@@ -13,6 +13,7 @@
 # - OBJROOT
 # - RULES_XCODEPROJ_BUILD_MODE
 # - SRCROOT
+# - TARGET_IDS_LIST
 # - TERM
 # - USER
 # - XCODE_PRODUCT_BUILD_VERSION
@@ -20,6 +21,7 @@
 # - config
 # - (optional) labels
 # - output_groups
+# - (optional) target_ids
 
 output_groups_flag="--output_groups=$(IFS=, ; echo "${output_groups[*]}")"
 readonly output_groups_flag
@@ -116,9 +118,6 @@ fi
 
 # Build
 
-readonly build_marker="$OBJROOT/bazel_build_start"
-touch "$build_marker"
-
 "$BAZEL_INTEGRATION_DIR/process_bazel_build_log.py" \
   "${bazel_cmd[@]}" \
   build \
@@ -131,6 +130,23 @@ touch "$build_marker"
   "$GENERATOR_LABEL" \
   ${labels:+"--build_metadata=PATTERN=${labels[*]}"} \
   2>&1
+
+# Verify that we actually built what we requested
+
+if [[ -n "${target_ids:-}" ]]; then
+  diff_output=$(comm -23 <(printf '%s\n' "${target_ids[@]}") "$TARGET_IDS_FILE")
+
+  if [ -n "$diff_output" ]; then
+      missing_target_ids=("${diff_output[@]}")
+      echo "error: There were some target IDs that weren't known to Bazel" \
+"(e.g. \"${missing_target_ids[0]}\"). Please regenerate the project to fix" \
+"this. If you are still getting this error after regenerating your project," \
+"please file a bug report here:" \
+"https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bug.md" \
+        >&2
+      exit 1
+  fi
+fi
 
 # Collect indexstore filelists
 
@@ -154,7 +170,7 @@ for output_group in "${output_groups[@]}"; do
     target="${BASH_REMATCH[4]}"
     configuration="${BASH_REMATCH[5]}"
     filelist="$output_path/$configuration/bin/${repo:+"external/$repo/"}$package/$target-${output_type}.filelist"
-  elif [[ "$output_group" == "all_xc" ]]; then
+  elif [[ "$output_group" == "target_ids_list" || "$output_group" == "all_xc" ]]; then
     continue
   else
     echo "error: output group ($output_group) doesn't match regex. Please" \
