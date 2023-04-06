@@ -349,21 +349,11 @@ $(CONFIGURATION_BUILD_DIR)
             buildSettings["DEPLOYMENT_LOCATION"] = false
         }
 
-        if let infoPlist = target.infoPlist {
-            buildSettings.set(
-                "INFOPLIST_FILE",
-                to: FilePathResolver.resolve(infoPlist)
-            )
-        } else if buildMode.allowsGeneratedInfoPlists {
+        if target.infoPlist == nil && buildMode.allowsGeneratedInfoPlists {
             buildSettings["GENERATE_INFOPLIST_FILE"] = true
         }
 
-        if let entitlements = target.inputs.entitlements {
-            buildSettings.set(
-                "CODE_SIGN_ENTITLEMENTS",
-                to: FilePathResolver.resolve(entitlements)
-            )
-
+        if target.inputs.entitlements != nil {
             if !buildMode.usesBazelModeBuildScripts {
                 // This is required because otherwise Xcode can fails the build
                 // due to a generated entitlements file being modified by the
@@ -380,13 +370,6 @@ $(CONFIGURATION_BUILD_DIR)
         if buildMode == .xcode, target.product.isResourceBundle {
             // Used to work around CODE_SIGNING_ENABLED = YES in Xcode 14
             buildSettings["CODE_SIGNING_ALLOWED"] = false
-        }
-
-        if let pch = target.inputs.pch {
-            buildSettings.set(
-                "GCC_PREFIX_HEADER",
-                to: FilePathResolver.resolve(pch)
-            )
         }
 
         // Set VFS overlays

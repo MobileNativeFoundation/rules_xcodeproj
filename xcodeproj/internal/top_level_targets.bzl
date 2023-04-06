@@ -11,7 +11,7 @@ load(
 load(":collections.bzl", "set_if_true")
 load(":compilation_providers.bzl", comp_providers = "compilation_providers")
 load(":configuration.bzl", "get_configuration")
-load(":files.bzl", "file_path", "join_paths_ignoring_empty")
+load(":files.bzl", "build_setting_path", "file_path", "join_paths_ignoring_empty")
 load(":info_plists.bzl", "info_plists")
 load(":input_files.bzl", "input_files")
 load(":linker_input_files.bzl", "linker_input_files")
@@ -269,6 +269,11 @@ def process_top_level_target(
         ctx = ctx,
     )
 
+    if infoplist:
+        build_settings["INFOPLIST_FILE"] = build_setting_path(
+            file = infoplist,
+        )
+
     infoplists_attrs = automatic_target_info.infoplists
     if (infoplists_attrs and bundle_info and
         bundle_info.bundle_extension == ".appex"):
@@ -398,6 +403,11 @@ def process_top_level_target(
         infoplist = infoplist,
         transitive_infos = transitive_infos,
     )
+
+    if inputs.entitlements:
+        build_settings["CODE_SIGN_ENTITLEMENTS"] = build_setting_path(
+            file = inputs.entitlements,
+        )
 
     package_bin_dir = join_paths_ignoring_empty(
         ctx.bin_dir.path,

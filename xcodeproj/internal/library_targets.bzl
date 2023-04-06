@@ -5,7 +5,7 @@ load(":build_settings.bzl", "get_product_module_name")
 load(":collections.bzl", "set_if_true")
 load(":compilation_providers.bzl", comp_providers = "compilation_providers")
 load(":configuration.bzl", "get_configuration")
-load(":files.bzl", "join_paths_ignoring_empty")
+load(":files.bzl", "build_setting_path", "join_paths_ignoring_empty")
 load(":input_files.bzl", "input_files")
 load(":linker_input_files.bzl", "linker_input_files")
 load(":lldb_contexts.bzl", "lldb_contexts")
@@ -134,6 +134,11 @@ def process_library_target(
         swift_info = swift_info,
         transitive_infos = transitive_infos,
     )
+
+    if inputs.pch:
+        build_settings["GCC_PREFIX_HEADER"] = build_setting_path(
+            file = inputs.pch,
+        )
 
     package_bin_dir = join_paths_ignoring_empty(
         ctx.bin_dir.path,
