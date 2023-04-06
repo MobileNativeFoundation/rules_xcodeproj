@@ -464,8 +464,7 @@ actual targets: {}
         unfocused_targets.pop(xcode_target.id, None)
 
         # Adjust `unfocused_labels` for `extra_files` logic later
-        if label_str in unfocused_labels:
-            unfocused_labels.pop(label_str, None)
+        unfocused_labels.pop(label_str, None)
 
         infoplist = xcode_target.outputs.transitive_infoplists
         if infoplist:
