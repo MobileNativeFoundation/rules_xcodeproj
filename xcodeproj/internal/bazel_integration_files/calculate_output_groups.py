@@ -32,20 +32,17 @@ def _wait_for_value(calculate_value, value_name):
         if wait_counter == 0:
             now = datetime.datetime.now().strftime('%H:%M:%S')
             print(
-                    f"""\
-note: ({now}) {value_name} not updated yet, waiting...
-""",
-                    file = sys.stderr,
+                f"note: ({now}) {value_name} not updated yet, waiting...",
+                file = sys.stderr,
             )
         if wait_counter == 10:
             now = datetime.datetime.now().strftime('%H:%M:%S')
             print(
-                    f"""\
-warning: ({now}) {value_name} still not updated after 10 \
-seconds. If happens frequently, or the cache is never created, please file a \
-bug report here: \
+                f"""\
+warning: ({now}) {value_name} still not updated after 10 seconds. If happens \
+frequently, or the cache is never created, please file a bug report here: \
 https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bug.md""",
-                    file = sys.stderr,
+                file = sys.stderr,
             )
         time.sleep(1)
         wait_counter += 1
