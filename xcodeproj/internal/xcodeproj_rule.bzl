@@ -142,7 +142,8 @@ def _process_extra_files(
         unfocused_labels,
         replacement_labels_by_label,
         inputs,
-        focused_targets_extra_files):
+        focused_targets_extra_files,
+        focused_targets_extra_folders):
     extra_files = inputs.extra_files.to_list()
 
     # Add processed owned extra files
@@ -158,12 +159,30 @@ def _process_extra_files(
         )
         for label, files in extra_files
     ]
+    extra_folders = [
+        (
+            bazel_labels.normalize_label(
+                replacement_labels_by_label.get(label, label),
+            ),
+            files,
+        )
+        for label, files in focused_targets_extra_folders
+    ]
 
     # Filter out unfocused labels
     has_focused_labels = bool(focused_labels)
     extra_files = [
         file
         for label, files in extra_files
+        for file in files
+        if not label or not (
+            label in unfocused_labels or
+            (has_focused_labels and label not in focused_labels)
+        )
+    ]
+    extra_folders = [
+        file
+        for label, files in extra_folders
         for file in files
         if not label or not (
             label in unfocused_labels or
@@ -180,6 +199,7 @@ def _process_extra_files(
         ])
 
     extra_files = uniq(extra_files)
+    extra_folders = uniq(extra_folders)
 
     def _normalize_path(path):
         configuration, _, suffix = path.partition("/")
@@ -194,13 +214,23 @@ def _process_extra_files(
             raw_file_path(
                 type = fp.type,
                 path = _normalize_path(fp.path),
-                is_folder = fp.is_folder,
             )
             for fp in extra_files
         ]
+        extra_folders = [
+            raw_file_path(
+                type = fp.type,
+                path = _normalize_path(fp.path),
+            )
+            for fp in extra_folders
+        ]
         extra_files = sorted(extra_files, key = lambda fp: fp.type + fp.path)
+        extra_folders = sorted(
+            extra_folders,
+            key = lambda fp: fp.type + fp.path,
+        )
 
-    return extra_files
+    return extra_files, extra_folders
 
 def _process_xccurrentversions(
         *,
@@ -373,6 +403,7 @@ actual targets: {}
 
     files_only_targets = {}
     focused_targets_extra_files = []
+    focused_targets_extra_folders = []
     linker_products_map = {}
     unfocused_targets = {}
     for xcode_target in unprocessed_targets.values():
@@ -398,6 +429,12 @@ actual targets: {}
             # include their files if they aren't unfocused
             focused_targets_extra_files.append(
                 (xcode_target.label, xcode_target.inputs.resources.to_list()),
+            )
+            focused_targets_extra_folders.append(
+                (
+                    xcode_target.label,
+                    xcode_target.inputs.folder_resources.to_list(),
+                ),
             )
             files_only_targets[xcode_target.id] = xcode_target
             continue
@@ -809,6 +846,7 @@ actual targets: {}
         additional_outputs,
         has_unfocused_targets,
         focused_targets_extra_files,
+        focused_targets_extra_folders,
         replacement_labels_by_label,
         configurations_map,
         lldb_contexts_dtos,
@@ -951,6 +989,7 @@ def _write_spec(
         has_unfocused_targets,
         inputs,
         extra_files,
+        extra_folders,
         infos,
         minimum_xcode_version):
     # `target_hosts`
@@ -1016,6 +1055,11 @@ def _write_spec(
         spec_dto,
         "e",
         [file_path_to_dto(file) for file in extra_files],
+    )
+    set_if_true(
+        spec_dto,
+        "F",
+        [file_path_to_dto(file) for file in extra_folders],
     )
     set_if_true(
         spec_dto,
@@ -1458,6 +1502,7 @@ configurations: {}""".format(", ".join(xcode_configurations)))
         additional_outputs,
         has_unfocused_targets,
         focused_targets_extra_files,
+        focused_targets_extra_folders,
         replacement_labels_by_label,
         configurations_map,
         lldb_contexts_dtos,
@@ -1494,7 +1539,7 @@ configurations: {}""".format(", ".join(xcode_configurations)))
         if s.env and s.id in target_dtos
     }
 
-    extra_files = _process_extra_files(
+    extra_files, extra_folders = _process_extra_files(
         ctx = ctx,
         configurations_map = configurations_map,
         focused_labels = focused_labels,
@@ -1503,6 +1548,7 @@ configurations: {}""".format(", ".join(xcode_configurations)))
         replacement_labels_by_label = replacement_labels_by_label,
         inputs = inputs,
         focused_targets_extra_files = focused_targets_extra_files,
+        focused_targets_extra_folders = focused_targets_extra_folders,
     )
     xccurrentversion_files = _process_xccurrentversions(
         focused_labels = focused_labels,
@@ -1536,6 +1582,7 @@ configurations: {}""".format(", ".join(xcode_configurations)))
         has_unfocused_targets = has_unfocused_targets,
         inputs = inputs,
         extra_files = extra_files,
+        extra_folders = extra_folders,
         infos = infos,
         minimum_xcode_version = minimum_xcode_version,
     )

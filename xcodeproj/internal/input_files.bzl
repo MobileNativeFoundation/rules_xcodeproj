@@ -355,6 +355,7 @@ def _collect_input_files(
     label = target.label
 
     resources = None
+    folder_resources = None
     resource_bundles = None
     resource_bundle_dependencies = None
     xccurrentversions = None
@@ -408,6 +409,8 @@ def _collect_input_files(
             resource_bundle_dependencies = resources_result.dependencies
         if resources_result.resources:
             resources = depset(resources_result.resources)
+        if resources_result.folder_resources:
+            folder_resources = depset(resources_result.folder_resources)
     else:
         resource_bundle_labels = depset(
             transitive = [
@@ -678,6 +681,7 @@ def _collect_input_files(
         has_c_sources = bool(c_srcs),
         has_cxx_sources = bool(cxx_srcs),
         resources = resources,
+        folder_resources = folder_resources,
         resource_bundles = depset(
             resource_bundles,
             transitive = [
@@ -761,6 +765,7 @@ def _from_resource_bundle(bundle):
         has_c_sources = False,
         has_cxx_sources = False,
         resources = depset(bundle.resources),
+        folder_resources = depset(bundle.folder_resources),
         resource_bundles = depset(),
         resource_bundle_dependencies = bundle.dependencies,
         entitlements = None,
@@ -837,6 +842,7 @@ def _merge_input_files(*, transitive_infos, extra_generated = None):
         has_c_sources = False,
         has_cxx_sources = False,
         resources = None,
+        folder_resources = None,
         resource_bundles = depset(
             transitive = [
                 info.inputs.resource_bundles
