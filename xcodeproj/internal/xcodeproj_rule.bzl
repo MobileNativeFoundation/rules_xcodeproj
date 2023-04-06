@@ -525,7 +525,7 @@ actual targets: {}
             if src_label_str in unfocused_labels:
                 unfocused_labels.pop(src_label_str, None)
             if focused_labels:
-                focused_labels.pop(src_label_str, None)
+                focused_labels.insert(src_label_str, None)
 
     unfocused_dependencies = _calculate_unfocused_dependencies(
         build_mode = build_mode,
