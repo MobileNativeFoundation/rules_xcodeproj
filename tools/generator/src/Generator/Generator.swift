@@ -67,7 +67,9 @@ class Generator {
         async let (
             files,
             rootElements,
+            compileStub,
             resolvedRepositories,
+            internalFiles,
             usesExternalFileList,
             usesGeneratedFileList
         ) = Task {
@@ -140,7 +142,8 @@ class Generator {
             disambiguatedTargets,
             buildMode,
             products,
-            files
+            files,
+            compileStub
         )
         try await environment.setTargetConfigurations(
             pbxProj,
@@ -194,7 +197,7 @@ class Generator {
         try await environment.writeXcodeProj(
             xcodeProj,
             directories,
-            files,
+            internalFiles,
             outputPath
         )
     }

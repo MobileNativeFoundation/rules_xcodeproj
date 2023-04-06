@@ -29,13 +29,13 @@ final class AddTargetsTests: XCTestCase {
             workspaceOutput: workspaceOutputPath
         )
 
-        let (files, _, _) = Fixtures.files(
+        let (files, _, _, compileStub, _, _) = Fixtures.files(
             in: pbxProj,
             buildMode: .xcode,
             directories: directories,
             parentGroup: mainGroup
         )
-        let (expectedFiles, _, _) = Fixtures.files(
+        let (expectedFiles, _, _, expectedCompileStub, _, _) = Fixtures.files(
             in: expectedPBXProj,
             buildMode: .xcode,
             directories: directories,
@@ -55,6 +55,7 @@ final class AddTargetsTests: XCTestCase {
             in: expectedPBXProj,
             disambiguatedTargets: disambiguatedTargets,
             files: expectedFiles,
+            compileStub: expectedCompileStub,
             products: expectedProducts
         )
 
@@ -65,7 +66,8 @@ final class AddTargetsTests: XCTestCase {
             for: disambiguatedTargets,
             buildMode: .xcode,
             products: products,
-            files: files
+            files: files,
+            compileStub: compileStub
         )
 
         try pbxProj.fixReferences()
