@@ -36,7 +36,9 @@ struct Environment {
     ) throws -> (
         files: [FilePath: File],
         rootElements: [PBXFileElement],
-        resolvedRepositories: [(Path, Path)]
+        resolvedRepositories: [(Path, Path)],
+        usesExternalFileList: Bool,
+        usesGeneratedFileList: Bool
     )
 
     let setAdditionalProjectConfiguration: (
@@ -67,7 +69,8 @@ struct Environment {
         _ xcodeConfigurations: Set<String>,
         _ defaultXcodeConfiguration: String,
         _ indexImport: String,
-        _ files: [FilePath: File],
+        _ usesExternalFileList: Bool,
+        _ usesGeneratedFileList: Bool,
         _ bazelConfig: String,
         _ generatorLabel: BazelLabel,
         _ preBuildScript: String?,

@@ -10,7 +10,8 @@ extension Generator {
         xcodeConfigurations: Set<String>,
         defaultXcodeConfiguration: String,
         indexImport: String,
-        files: [FilePath: File],
+        usesExternalFileList: Bool,
+        usesGeneratedFileList: Bool,
         bazelConfig _: String,
         generatorLabel: BazelLabel,
         preBuildScript: String?,
@@ -83,7 +84,8 @@ $(INDEXING_SUPPORTED_PLATFORMS__$(INDEX_ENABLE_BUILD_ARENA))
             buildMode: buildMode,
             targets: consolidatedTargets.targets.values
                 .flatMap(\.sortedTargets),
-            files: files,
+            usesExternalFileList: usesExternalFileList,
+            usesGeneratedFileList: usesGeneratedFileList,
             generatorLabel: generatorLabel
         )
 
@@ -136,18 +138,18 @@ $(INDEXING_SUPPORTED_PLATFORMS__$(INDEX_ENABLE_BUILD_ARENA))
         in pbxProj: PBXProj,
         buildMode: BuildMode,
         targets _: [Target],
-        files: [FilePath: File],
+        usesExternalFileList: Bool,
+        usesGeneratedFileList: Bool,
         generatorLabel _: BazelLabel
     ) -> PBXShellScriptBuildPhase {
-        let hasGeneratedFiles = files.containsGeneratedFiles
 
         var outputFileListPaths: [String] = []
-        if files.containsExternalFiles {
+        if usesExternalFileList {
             outputFileListPaths.append(
                 FilePathResolver.resolveInternal(externalFileListPath)
             )
         }
-        if hasGeneratedFiles {
+        if usesGeneratedFileList {
             outputFileListPaths.append(
                 FilePathResolver.resolveInternal(generatedFileListPath)
             )
@@ -156,7 +158,7 @@ $(INDEXING_SUPPORTED_PLATFORMS__$(INDEX_ENABLE_BUILD_ARENA))
         let name: String
         if buildMode.usesBazelModeBuildScripts {
             name = "Bazel Build"
-        } else if hasGeneratedFiles {
+        } else if usesGeneratedFileList {
             name = "Generate Files"
         } else {
             name = "Fetch External Repositories"
@@ -226,14 +228,4 @@ perl -pe '
 
         return script
     }
-}
-
-private extension Dictionary where Key == FilePath {
-    var containsExternalFiles: Bool { keys.containsExternalFiles }
-    var containsGeneratedFiles: Bool { keys.containsGeneratedFiles }
-}
-
-private extension Sequence where Element == FilePath {
-    var containsExternalFiles: Bool { contains { $0.type == .external } }
-    var containsGeneratedFiles: Bool { contains { $0.type == .generated } }
 }
