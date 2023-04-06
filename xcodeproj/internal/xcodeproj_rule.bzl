@@ -844,7 +844,6 @@ actual targets: {}
         target_dtos,
         additional_generated,
         additional_outputs,
-        has_unfocused_targets,
         focused_targets_extra_files,
         focused_targets_extra_folders,
         replacement_labels_by_label,
@@ -986,8 +985,6 @@ def _write_spec(
         project_name,
         project_options,
         target_dtos,
-        has_unfocused_targets,
-        inputs,
         extra_files,
         extra_folders,
         infos,
@@ -1036,12 +1033,6 @@ def _write_spec(
     bazel_real = ctx.attr.bazel_real
     if bazel_real:
         spec_dto["r"] = bazel_real
-
-    force_bazel_dependencies = (
-        has_unfocused_targets or inputs.has_generated_files
-    )
-    if not force_bazel_dependencies:
-        spec_dto["f"] = False
 
     if ctx.attr.scheme_autogeneration_mode != "all":
         spec_dto["s"] = ctx.attr.scheme_autogeneration_mode
@@ -1500,7 +1491,6 @@ configurations: {}""".format(", ".join(xcode_configurations)))
         target_dtos,
         additional_generated,
         additional_outputs,
-        has_unfocused_targets,
         focused_targets_extra_files,
         focused_targets_extra_folders,
         replacement_labels_by_label,
@@ -1579,8 +1569,6 @@ configurations: {}""".format(", ".join(xcode_configurations)))
         default_xcode_configuration = default_xcode_configuration,
         envs = envs,
         target_dtos = target_dtos,
-        has_unfocused_targets = has_unfocused_targets,
-        inputs = inputs,
         extra_files = extra_files,
         extra_folders = extra_folders,
         infos = infos,

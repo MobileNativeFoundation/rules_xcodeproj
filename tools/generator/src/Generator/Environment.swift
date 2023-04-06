@@ -28,7 +28,6 @@ struct Environment {
         _ pbxProj: PBXProj,
         _ buildMode: BuildMode,
         _ forFixtures: Bool,
-        _ forceBazelDependencies: Bool,
         _ targets: [TargetID: Target],
         _ extraFiles: Set<FilePath>,
         _ xccurrentversions: [XCCurrentVersion],
@@ -64,7 +63,6 @@ struct Environment {
     let addBazelDependenciesTarget: (
         _ pbxProj: PBXProj,
         _ buildMode: BuildMode,
-        _ forceBazelDependencies: Bool,
         _ minimumXcodeVersion: SemanticVersion,
         _ xcodeConfigurations: Set<String>,
         _ defaultXcodeConfiguration: String,

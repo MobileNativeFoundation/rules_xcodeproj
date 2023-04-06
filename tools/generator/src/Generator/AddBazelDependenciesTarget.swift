@@ -2,27 +2,10 @@ import PathKit
 import XcodeProj
 
 extension Generator {
-    static func needsBazelDependenciesTarget(
-        buildMode: BuildMode,
-        forceBazelDependencies: Bool,
-        files: [FilePath: File],
-        hasTargets: Bool
-    ) -> Bool {
-        guard hasTargets else {
-            return false
-        }
-
-        return (forceBazelDependencies ||
-                buildMode.usesBazelModeBuildScripts ||
-                files.containsExternalFiles ||
-                files.containsGeneratedFiles)
-    }
-
     // swiftlint:disable:next function_parameter_count
     static func addBazelDependenciesTarget(
         in pbxProj: PBXProj,
         buildMode: BuildMode,
-        forceBazelDependencies: Bool,
         minimumXcodeVersion: SemanticVersion,
         xcodeConfigurations: Set<String>,
         defaultXcodeConfiguration: String,
@@ -34,12 +17,7 @@ extension Generator {
         postBuildScript: String?,
         consolidatedTargets: ConsolidatedTargets
     ) throws -> PBXAggregateTarget? {
-        guard needsBazelDependenciesTarget(
-            buildMode: buildMode,
-            forceBazelDependencies: forceBazelDependencies,
-            files: files,
-            hasTargets: !consolidatedTargets.targets.isEmpty
-        ) else {
+        guard !consolidatedTargets.targets.isEmpty else {
             return nil
         }
 

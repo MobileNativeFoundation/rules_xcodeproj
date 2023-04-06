@@ -67,7 +67,6 @@ final class GeneratorTests: XCTestCase {
             extraFiles: [],
             schemeAutogenerationMode: .auto,
             customXcodeSchemes: [],
-            forceBazelDependencies: false,
             indexImport: "/tmp/index-import",
             preBuildScript: "./pre-build.sh",
             postBuildScript: "./post-build.sh"
@@ -275,7 +274,6 @@ final class GeneratorTests: XCTestCase {
         struct CreateFilesAndGroupsCalled: Equatable {
             let pbxProj: PBXProj
             let buildMode: BuildMode
-            let forceBazelDependencies: Bool
             let targets: [TargetID: Target]
             let extraFiles: Set<FilePath>
             let xccurrentversions: [XCCurrentVersion]
@@ -287,7 +285,6 @@ final class GeneratorTests: XCTestCase {
             in pbxProj: PBXProj,
             buildMode: BuildMode,
             _forFixtures _: Bool,
-            forceBazelDependencies: Bool,
             targets: [TargetID: Target],
             extraFiles: Set<FilePath>,
             xccurrentversions: [XCCurrentVersion],
@@ -301,7 +298,6 @@ final class GeneratorTests: XCTestCase {
             createFilesAndGroupsCalled.append(.init(
                 pbxProj: pbxProj,
                 buildMode: buildMode,
-                forceBazelDependencies: forceBazelDependencies,
                 targets: targets,
                 extraFiles: extraFiles,
                 xccurrentversions: xccurrentversions,
@@ -317,7 +313,6 @@ final class GeneratorTests: XCTestCase {
         let expectedCreateFilesAndGroupsCalled = [CreateFilesAndGroupsCalled(
             pbxProj: pbxProj,
             buildMode: buildMode,
-            forceBazelDependencies: project.forceBazelDependencies,
             targets: targets,
             extraFiles: project.extraFiles,
             xccurrentversions: xccurrentversions,
@@ -452,7 +447,6 @@ final class GeneratorTests: XCTestCase {
         struct AddBazelDependenciesTargetCalled: Equatable {
             let pbxProj: PBXProj
             let buildMode: BuildMode
-            let forceBazelDependencies: Bool
             let minimumXcodeVersion: SemanticVersion
             let xcodeConfigurations: Set<String>
             let defaultXcodeConfiguration: String
@@ -470,7 +464,6 @@ final class GeneratorTests: XCTestCase {
         func addBazelDependenciesTarget(
             in pbxProj: PBXProj,
             buildMode: BuildMode,
-            forceBazelDependencies: Bool,
             minimumXcodeVersion: SemanticVersion,
             xcodeConfigurations: Set<String>,
             defaultXcodeConfiguration: String,
@@ -485,7 +478,6 @@ final class GeneratorTests: XCTestCase {
             addBazelDependenciesTargetCalled.append(.init(
                 pbxProj: pbxProj,
                 buildMode: buildMode,
-                forceBazelDependencies: forceBazelDependencies,
                 minimumXcodeVersion: minimumXcodeVersion,
                 xcodeConfigurations: xcodeConfigurations,
                 defaultXcodeConfiguration: defaultXcodeConfiguration,
@@ -504,7 +496,6 @@ final class GeneratorTests: XCTestCase {
             AddBazelDependenciesTargetCalled(
                 pbxProj: pbxProj,
                 buildMode: buildMode,
-                forceBazelDependencies: project.forceBazelDependencies,
                 minimumXcodeVersion: project.minimumXcodeVersion,
                 xcodeConfigurations: project.xcodeConfigurations,
                 defaultXcodeConfiguration: project.defaultXcodeConfiguration,

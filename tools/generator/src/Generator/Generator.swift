@@ -73,7 +73,6 @@ class Generator {
                 pbxProj,
                 buildMode,
                 forFixtures,
-                project.forceBazelDependencies,
                 targets,
                 project.extraFiles,
                 xccurrentversions,
@@ -122,7 +121,6 @@ class Generator {
             .addBazelDependenciesTarget(
                 pbxProj,
                 buildMode,
-                project.forceBazelDependencies,
                 project.minimumXcodeVersion,
                 project.xcodeConfigurations,
                 project.defaultXcodeConfiguration,

@@ -54,7 +54,6 @@ extension Generator {
         in pbxProj: PBXProj,
         buildMode: BuildMode,
         forFixtures: Bool,
-        forceBazelDependencies _: Bool,
         targets: [TargetID: Target],
         extraFiles: Set<FilePath>,
         xccurrentversions: [XCCurrentVersion],
