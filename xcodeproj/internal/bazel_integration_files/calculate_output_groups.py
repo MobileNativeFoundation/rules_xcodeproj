@@ -23,22 +23,93 @@ _SIMULATOR_PLATFORMS = {
     "macosx": None,
 }
 
-def _calculate_build_request_file(xcode_version, objroot):
+def _calculate_build_request_file(
+        xcode_version,
+        objroot,
+        build_request_min_ctime):
     if xcode_version < 1430:
         # Before Xcode 14.3
-        build_description_cache = max(
-            glob.iglob(f"{objroot}/XCBuildData/BuildDescriptionCacheIndex-*"),
-            key = os.path.getctime,
-        )
+        wait_counter = 0
+        while True:
+            build_description_cache = max(
+                glob.iglob(
+                    f"{objroot}/XCBuildData/BuildDescriptionCacheIndex-*",
+                ),
+                key = os.path.getctime,
+            )
+            if (os.path.getctime(build_description_cache) >=
+                build_request_min_ctime):
+                break
+            if wait_counter == 0:
+                now = datetime.datetime.now().strftime('%H:%M:%S')
+                print(
+                        f"""\
+note: ({now}) "{build_description_cache}" not updated yet, waiting...
+""",
+                        file = sys.stderr,
+                )
+            if wait_counter == 10:
+                now = datetime.datetime.now().strftime('%H:%M:%S')
+                print(
+                        f"""\
+warning: ({now}) "{build_description_cache}" still not updated after 10 \
+seconds. If happens frequently, or the cache is never created, please file a \
+bug report here: \
+https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bug.md""",
+                        file = sys.stderr,
+                )
+            time.sleep(1)
+            wait_counter += 1
+        if wait_counter > 0:
+            now = datetime.datetime.now().strftime('%H:%M:%S')
+            print(
+                    f"""\
+note: ({now}) "{build_description_cache}" updated after {wait_counter} \
+seconds.""",
+                    file = sys.stderr,
+            )
+
         with open(build_description_cache, 'rb') as f:
             f.seek(-32, os.SEEK_END)
             build_request_id = f.read().decode('ASCII')
         return f"{objroot}/XCBuildData/{build_request_id}-buildRequest.json"
 
-    xcbuilddata = max(
-        glob.iglob(f"{objroot}/XCBuildData/*.xcbuilddata"),
-        key = os.path.getctime,
-    )
+    wait_counter = 0
+    while True:
+        xcbuilddata = max(
+            glob.iglob(f"{objroot}/XCBuildData/*.xcbuilddata"),
+            key = os.path.getctime,
+        )
+        if (os.path.getctime(xcbuilddata) >= build_request_min_ctime):
+            break
+        if wait_counter == 0:
+            now = datetime.datetime.now().strftime('%H:%M:%S')
+            print(
+                    f"""\
+note: ({now}) newest '.xcbuilddata' folder not updated yet, waiting...
+""",
+                    file = sys.stderr,
+            )
+        if wait_counter == 10:
+            now = datetime.datetime.now().strftime('%H:%M:%S')
+            print(
+                    f"""\
+warning: ({now}) newest '.xcbuilddata' folder still not updated after 10 \
+seconds. If happens frequently, or the cache is never created, please file a \
+bug report here: \
+https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bug.md""",
+                    file = sys.stderr,
+            )
+        time.sleep(1)
+        wait_counter += 1
+    if wait_counter > 0:
+        now = datetime.datetime.now().strftime('%H:%M:%S')
+        print(
+                f"""\
+note: ({now}) "{xcbuilddata}" updated after {wait_counter} seconds.""",
+                file = sys.stderr,
+        )
+
     return f"{xcbuilddata}/build-request.json"
 
 def _calculate_label_and_target_ids(
@@ -47,6 +118,7 @@ def _calculate_label_and_target_ids(
         guid_labels,
         guid_target_ids):
     try:
+        # TODO: Remove this existence check after Xcode 14.3 is the minimum
         # The first time a certain buildRequest is used, the buildRequest.json
         # might not exist yet, so we for it to exist
         wait_counter = 0
@@ -267,6 +339,8 @@ def _main(
     if not os.path.exists(scheme_target_id_file):
         return
 
+    build_request_min_ctime = os.path.getctime(scheme_target_id_file)
+
     try:
         xcode_version = int(xcode_version)
     except ValueError:
@@ -297,6 +371,7 @@ https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bu
             build_request_file = _calculate_build_request_file(
                 xcode_version,
                 objroot,
+                build_request_min_ctime,
             )
             guid_labels, guid_target_ids = (
                 _calculate_guid_labels_and_target_ids(base_objroot)
