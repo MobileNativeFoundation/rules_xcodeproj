@@ -24,13 +24,13 @@ enum FilePathResolver {
     static func resolveRelativeToExecutionRoot(_ filePath: FilePath) -> String {
         let path: String
         switch filePath.type {
+        case .generated:
+            path = "bazel-out/\(filePath.path)"
+        case .external:
+            path = "external/\(filePath.path)"
         case .project:
             // We could check for `"."`, but this is only called on actual paths
             path = filePath.path.string
-        case .external:
-            path = "external/\(filePath.path)"
-        case .generated:
-            path = "bazel-out/\(filePath.path)"
         }
 
         return path
