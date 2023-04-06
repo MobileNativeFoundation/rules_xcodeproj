@@ -426,7 +426,8 @@ extension Generator {
         }
 
         var rootElements: [PBXFileElement] = []
-        var nonDirectFolderLikeFilePaths: Set<FilePath> = []
+        var externalFileListFilePaths: [FilePath] = []
+        var generatedFileListFilePaths: [FilePath] = []
         for fullFilePath in allInputPaths {
             var filePath: FilePath
             var lastElement: PBXFileElement?
@@ -437,9 +438,13 @@ extension Generator {
             case .external:
                 filePath = .external(Path())
                 lastElement = createExternalGroup()
+                externalFileListFilePaths.append(fullFilePath)
             case .generated:
                 filePath = .generated(Path())
                 lastElement = createGeneratedGroup()
+                if !fullFilePath.isFolder {
+                    generatedFileListFilePaths.append(fullFilePath)
+                }
             case .internal:
                 filePath = .internal(Path())
                 lastElement = createInternalGroup()
@@ -508,7 +513,6 @@ extension Generator {
 """)
                 }
                 fileReferences[fullFilePath] = reference
-                nonDirectFolderLikeFilePaths.insert(filePath)
             }
         }
 
@@ -539,20 +543,10 @@ extension Generator {
 
         // Write xcfilelists
 
-        let fileListFileFilePaths = fileReferences
-            .filter { filePath, _ in
-                return !nonDirectFolderLikeFilePaths.contains(filePath)
-            }
-            .map { filePath, _ in filePath }
-
-        let externalPaths = fileListFileFilePaths
-            .filter { $0.type == .external }
+        let externalPaths = externalFileListFilePaths
             .map { FilePathResolver.resolveExternal($0.path) }
 
-        let generatedFilePaths = fileListFileFilePaths
-            .filter { $0.type == .generated && !$0.isFolder }
-
-        let generatedPaths = generatedFilePaths
+        let generatedPaths = generatedFileListFilePaths
             .map { FilePathResolver.resolveGenerated($0.path) }
 
         func addXCFileList(_ path: Path, paths: [String]) -> Bool {
