@@ -62,7 +62,9 @@ extension Generator {
     ) throws -> (
         files: [FilePath: File],
         rootElements: [PBXFileElement],
-        resolvedRepositories: [(Path, Path)]
+        resolvedRepositories: [(Path, Path)],
+        usesExternalFileList: Bool,
+        usesGeneratedFileList: Bool
     ) {
         var fileReferences: [FilePath: PBXFileReference] = [:]
         var normalGroups: [FilePath: PBXGroup] = [:]
@@ -553,18 +555,22 @@ extension Generator {
         let generatedPaths = generatedFilePaths
             .map { FilePathResolver.resolveGenerated($0.path) }
 
-        func addXCFileList(_ path: Path, paths: [String]) {
+        func addXCFileList(_ path: Path, paths: [String]) -> Bool {
             guard !paths.isEmpty else {
-                return
+                return false
             }
 
             files[.internal(path)] = .nonReferencedContent(
                 Set(paths.map { "\($0)\n" }).sorted().joined()
             )
+
+            return true
         }
 
-        addXCFileList(externalFileListPath, paths: externalPaths)
-        addXCFileList(generatedFileListPath, paths: generatedPaths)
+        let usesExternalFileList =
+            addXCFileList(externalFileListPath, paths: externalPaths)
+        let usesGeneratedFileList =
+            addXCFileList(generatedFileListPath, paths: generatedPaths)
 
         // Handle special groups
 
@@ -592,7 +598,9 @@ extension Generator {
         return (
             files,
             rootElements,
-            resolvedRepositories
+            resolvedRepositories,
+            usesExternalFileList,
+            usesGeneratedFileList
         )
     }
 

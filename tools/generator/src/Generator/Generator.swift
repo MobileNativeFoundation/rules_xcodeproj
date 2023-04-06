@@ -67,7 +67,9 @@ class Generator {
         async let (
             files,
             rootElements,
-            resolvedRepositories
+            resolvedRepositories,
+            usesExternalFileList,
+            usesGeneratedFileList
         ) = Task {
             try environment.createFilesAndGroups(
                 pbxProj,
@@ -125,7 +127,8 @@ class Generator {
                 project.xcodeConfigurations,
                 project.defaultXcodeConfiguration,
                 project.indexImport,
-                files,
+                usesExternalFileList,
+                usesGeneratedFileList,
                 project.bazelConfig,
                 project.generatorLabel,
                 project.preBuildScript,

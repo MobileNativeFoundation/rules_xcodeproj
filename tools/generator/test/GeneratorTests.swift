@@ -293,7 +293,9 @@ final class GeneratorTests: XCTestCase {
         ) -> (
             files: [FilePath: File],
             rootElements: [PBXFileElement],
-            resolvedRepositories: [(Path, Path)]
+            resolvedRepositories: [(Path, Path)],
+            usesExternalFileList: Bool,
+            usesGeneratedFileList: Bool
         ) {
             createFilesAndGroupsCalled.append(.init(
                 pbxProj: pbxProj,
@@ -306,7 +308,9 @@ final class GeneratorTests: XCTestCase {
             return (
                 files,
                 rootElements,
-                resolvedRepositories
+                resolvedRepositories,
+                true,
+                true
             )
         }
 
@@ -451,7 +455,8 @@ final class GeneratorTests: XCTestCase {
             let xcodeConfigurations: Set<String>
             let defaultXcodeConfiguration: String
             let indexImport: String
-            let files: [FilePath: File]
+            let usesExternalFileList: Bool
+            let usesGeneratedFileList: Bool
             let bazelConfig: String
             let generatorLabel: BazelLabel
             let preBuildScript: String?
@@ -468,7 +473,8 @@ final class GeneratorTests: XCTestCase {
             xcodeConfigurations: Set<String>,
             defaultXcodeConfiguration: String,
             indexImport: String,
-            files: [FilePath: File],
+            usesExternalFileList: Bool,
+            usesGeneratedFileList: Bool,
             bazelConfig: String,
             generatorLabel: BazelLabel,
             preBuildScript: String?,
@@ -482,7 +488,8 @@ final class GeneratorTests: XCTestCase {
                 xcodeConfigurations: xcodeConfigurations,
                 defaultXcodeConfiguration: defaultXcodeConfiguration,
                 indexImport: indexImport,
-                files: files,
+                usesExternalFileList: usesExternalFileList,
+                usesGeneratedFileList: usesGeneratedFileList,
                 bazelConfig: bazelConfig,
                 generatorLabel: generatorLabel,
                 preBuildScript: preBuildScript,
@@ -500,7 +507,8 @@ final class GeneratorTests: XCTestCase {
                 xcodeConfigurations: project.xcodeConfigurations,
                 defaultXcodeConfiguration: project.defaultXcodeConfiguration,
                 indexImport: project.indexImport,
-                files: files,
+                usesExternalFileList: true,
+                usesGeneratedFileList: true,
                 bazelConfig: project.bazelConfig,
                 generatorLabel: project.generatorLabel,
                 preBuildScript: project.preBuildScript,

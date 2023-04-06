@@ -57,6 +57,8 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         let (
             createdFiles,
             createdRootElements,
+            _,
+            _,
             _
         ) = try Generator.createFilesAndGroups(
             in: pbxProj,
@@ -152,6 +154,8 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         let (
             createdFiles,
             createdRootElements,
+            _,
+            _,
             _
         ) = try Generator.createFilesAndGroups(
             in: pbxProj,
@@ -250,6 +254,8 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         let (
             createdFiles,
             createdRootElements,
+            _,
+            _,
             _
         ) = try Generator.createFilesAndGroups(
             in: pbxProj,
