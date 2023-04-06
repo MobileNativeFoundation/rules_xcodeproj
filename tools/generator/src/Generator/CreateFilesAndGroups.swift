@@ -438,9 +438,13 @@ extension Generator {
             case .external:
                 filePath = .external(Path())
                 lastElement = createExternalGroup()
+                externalFileListFilePaths.append(fullFilePath)
             case .generated:
                 filePath = .generated(Path())
                 lastElement = createGeneratedGroup()
+                if !fullFilePath.isFolder {
+                    generatedFileListFilePaths.append(fullFilePath)
+                }
             case .internal:
                 filePath = .internal(Path())
                 lastElement = createInternalGroup()
@@ -509,19 +513,6 @@ extension Generator {
 """)
                 }
                 fileReferences[fullFilePath] = reference
-            }
-
-            switch fullFilePath.type {
-            case .project:
-                break
-            case .external:
-                externalFileListFilePaths.append(fullFilePath)
-            case .generated:
-                if !fullFilePath.isFolder {
-                    generatedFileListFilePaths.append(fullFilePath)
-                }
-            case .internal:
-                break
             }
         }
 
