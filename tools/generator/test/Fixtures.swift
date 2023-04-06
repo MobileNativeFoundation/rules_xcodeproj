@@ -43,7 +43,6 @@ enum Fixtures {
         ],
         schemeAutogenerationMode: .auto,
         customXcodeSchemes: [],
-        forceBazelDependencies: false,
         indexImport: "/tmp/index-import",
         preBuildScript: "./pre-build.sh",
         postBuildScript: "./post-build.sh"
