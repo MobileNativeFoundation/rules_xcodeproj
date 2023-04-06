@@ -136,7 +136,7 @@ ERROR: build_mode wasn't one of the supported values: xcode, bazel
             } catch let error as DecodingError {
                 // Return a more detailed error message
                 throw PreconditionError(message: """
-While decoding "\(path)", encountered an error:
+Error decoding "\(path)":
 \(error.message)
 """)
             }
