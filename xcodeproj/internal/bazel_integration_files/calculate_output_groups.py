@@ -23,70 +23,17 @@ _SIMULATOR_PLATFORMS = {
     "macosx": None,
 }
 
-def _calculate_build_request_file(
-        xcode_version,
-        objroot,
-        build_request_min_ctime):
-    if xcode_version < 1430:
-        # Before Xcode 14.3
-        wait_counter = 0
-        while True:
-            build_description_cache = max(
-                glob.iglob(
-                    f"{objroot}/XCBuildData/BuildDescriptionCacheIndex-*",
-                ),
-                key = os.path.getctime,
-            )
-            if (os.path.getctime(build_description_cache) >=
-                build_request_min_ctime):
-                break
-            if wait_counter == 0:
-                now = datetime.datetime.now().strftime('%H:%M:%S')
-                print(
-                        f"""\
-note: ({now}) "{build_description_cache}" not updated yet, waiting...
-""",
-                        file = sys.stderr,
-                )
-            if wait_counter == 10:
-                now = datetime.datetime.now().strftime('%H:%M:%S')
-                print(
-                        f"""\
-warning: ({now}) "{build_description_cache}" still not updated after 10 \
-seconds. If happens frequently, or the cache is never created, please file a \
-bug report here: \
-https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bug.md""",
-                        file = sys.stderr,
-                )
-            time.sleep(1)
-            wait_counter += 1
-        if wait_counter > 0:
-            now = datetime.datetime.now().strftime('%H:%M:%S')
-            print(
-                    f"""\
-note: ({now}) "{build_description_cache}" updated after {wait_counter} \
-seconds.""",
-                    file = sys.stderr,
-            )
-
-        with open(build_description_cache, 'rb') as f:
-            f.seek(-32, os.SEEK_END)
-            build_request_id = f.read().decode('ASCII')
-        return f"{objroot}/XCBuildData/{build_request_id}-buildRequest.json"
-
+def _wait_for_value(calculate_value, value_name):
     wait_counter = 0
     while True:
-        xcbuilddata = max(
-            glob.iglob(f"{objroot}/XCBuildData/*.xcbuilddata"),
-            key = os.path.getctime,
-        )
-        if (os.path.getctime(xcbuilddata) >= build_request_min_ctime):
+        value = calculate_value()
+        if value:
             break
         if wait_counter == 0:
             now = datetime.datetime.now().strftime('%H:%M:%S')
             print(
                     f"""\
-note: ({now}) newest '.xcbuilddata' folder not updated yet, waiting...
+note: ({now}) {value_name} not updated yet, waiting...
 """,
                     file = sys.stderr,
             )
@@ -94,7 +41,7 @@ note: ({now}) newest '.xcbuilddata' folder not updated yet, waiting...
             now = datetime.datetime.now().strftime('%H:%M:%S')
             print(
                     f"""\
-warning: ({now}) newest '.xcbuilddata' folder still not updated after 10 \
+warning: ({now}) {value_name} still not updated after 10 \
 seconds. If happens frequently, or the cache is never created, please file a \
 bug report here: \
 https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bug.md""",
@@ -106,10 +53,49 @@ https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bu
         now = datetime.datetime.now().strftime('%H:%M:%S')
         print(
                 f"""\
-note: ({now}) "{xcbuilddata}" updated after {wait_counter} seconds.""",
+note: ({now}) {value_name} updated after {wait_counter} seconds.""",
                 file = sys.stderr,
         )
+    return value
 
+def _calculate_build_request_file(
+        xcode_version,
+        objroot,
+        build_request_min_ctime):
+    if xcode_version < 1430:
+        # Before Xcode 14.3
+        def wait_for_description():
+            build_description_cache = max(
+                glob.iglob(
+                    f"{objroot}/XCBuildData/BuildDescriptionCacheIndex-*",
+                ),
+                key = os.path.getctime,
+            )
+            if (os.path.getctime(build_description_cache) >=
+                build_request_min_ctime):
+                return build_description_cache
+            return None
+
+        build_description_cache = (
+            _wait_for_value(wait_for_description, "BuildDescriptionCacheIndex")
+        )
+        with open(build_description_cache, 'rb') as f:
+            f.seek(-32, os.SEEK_END)
+            build_request_id = f.read().decode('ASCII')
+        return f"{objroot}/XCBuildData/{build_request_id}-buildRequest.json"
+
+    def wait_for_xcbuilddata():
+        xcbuilddata = max(
+            glob.iglob(f"{objroot}/XCBuildData/*.xcbuilddata"),
+            key = os.path.getctime,
+        )
+        if os.path.getctime(xcbuilddata) >= build_request_min_ctime:
+            return xcbuilddata
+        return None
+
+    xcbuilddata = (
+        _wait_for_value(wait_for_xcbuilddata, "newest '.xcbuilddata' folder")
+    )
     return f"{xcbuilddata}/build-request.json"
 
 def _calculate_label_and_target_ids(
@@ -121,35 +107,10 @@ def _calculate_label_and_target_ids(
         # TODO: Remove this existence check after Xcode 14.3 is the minimum
         # The first time a certain buildRequest is used, the buildRequest.json
         # might not exist yet, so we for it to exist
-        wait_counter = 0
-        while not os.path.exists(build_request_file):
-            if wait_counter == 0:
-                now = datetime.datetime.now().strftime('%H:%M:%S')
-                print(
-                        f"""\
-note: ({now}) "{build_request_file}" doesn't exist yet, waiting for it to be \
-created...""",
-                        file = sys.stderr,
-                )
-            if wait_counter == 10:
-                now = datetime.datetime.now().strftime('%H:%M:%S')
-                print(
-                        f"""\
-warning: ({now}) "{build_request_file}" still doesn't exist after 10 seconds. \
-If happens frequently, or the cache is never created, please file a bug \
-report here: \
-https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bug.md""",
-                        file = sys.stderr,
-                )
-            time.sleep(1)
-            wait_counter += 1
-        if wait_counter > 0:
-            now = datetime.datetime.now().strftime('%H:%M:%S')
-            print(
-                    f"""\
-note: ({now}) "{build_request_file}" created after {wait_counter} seconds.""",
-                    file = sys.stderr,
-            )
+        _wait_for_value(
+            lambda: os.path.exists(build_request_file),
+            f"\"{build_request_file}\"",
+        )
 
         with open(build_request_file, encoding = "utf-8") as f:
             # Parse the build-request.json file
