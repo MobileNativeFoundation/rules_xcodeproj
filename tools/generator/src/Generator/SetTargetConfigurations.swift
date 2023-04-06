@@ -189,7 +189,10 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
                     conditionalFileNames[
                         xcodeConfiguration, default: [:]
                     ][key] = uniqueFiles
-                        .map { FilePathResolver.resolve($0).quoted }
+                        .map {
+                            FilePathResolver.resolveRelativeToExecutionRoot($0)
+                                .quoted
+                        }
                         .sorted()
                         .joined(separator: " ")
                     targetBuildSettings.set(
@@ -222,7 +225,10 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
             excludedSourceFileNames.append(
                 contentsOf: allUniqueFiles
                     .subtracting(configurationUniqueFiles[xcodeConfiguration]!)
-                    .map { FilePathResolver.resolve($0).quoted }
+                    .map {
+                        FilePathResolver.resolveRelativeToExecutionRoot($0)
+                            .quoted
+                    }
                     .sorted()
             )
 
