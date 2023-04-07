@@ -52,8 +52,6 @@ def _generated_files_repo_impl(repository_ctx):
     repository_ctx.file(
         "BUILD",
         content = """
-exports_files(["BUILD"])
-
 package_group(
     name = "package_group",
     packages = ["//..."],

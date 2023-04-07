@@ -295,7 +295,6 @@ def _write_runner(
         execution_root_file,
         extra_flags_bazelrc,
         extra_generator_flags,
-        generated_repo,
         generator_build_file,
         generator_defs_bzl,
         is_fixture,
@@ -366,6 +365,13 @@ def_env+='}}'""".format(
 
     is_bazel_6 = hasattr(apple_common, "link_multi_arch_static_library")
 
+    # FIXME: Create a unique generator per target
+    generator_label = "{repo}//generator".format(
+        repo = (
+            str(Label("@rules_xcodeproj_generated//:BUILD")).split("//", 1)[0]
+        ),
+    )
+
     actions.expand_template(
         template = template,
         output = output,
@@ -377,9 +383,7 @@ def_env+='}}'""".format(
             "%execution_root_file%": execution_root_file.short_path,
             "%extra_flags_bazelrc%": extra_flags_bazelrc.short_path,
             "%extra_generator_flags%": extra_generator_flags,
-            "%generator_label%": (
-                "{}//generator".format(generated_repo)
-            ),
+            "%generator_label%": generator_label,
             "%generator_build_file%": generator_build_file.short_path,
             "%generator_defs_bzl%": generator_defs_bzl.short_path,
             "%is_bazel_6%": "1" if is_bazel_6 else "0",
@@ -455,9 +459,6 @@ def _xcodeproj_runner_impl(ctx):
         extra_flags_bazelrc = extra_flags_bazelrc,
         extra_generator_flags = (
             ctx.attr._extra_generator_flags[BuildSettingInfo].value
-        ),
-        generated_repo = (
-            str(ctx.attr._generated_repo_marker.label).split("//", 1)[0]
         ),
         generator_build_file = generator_build_file,
         generator_defs_bzl = generator_defs_bzl,
@@ -586,10 +587,6 @@ xcodeproj_runner = rule(
         "_extra_swiftuipreviews_flags": attr.label(
             default = Label("//xcodeproj:extra_swiftuipreviews_flags"),
             providers = [BuildSettingInfo],
-        ),
-        "_generated_repo_marker": attr.label(
-            default = "@rules_xcodeproj_generated//:BUILD",
-            allow_single_file = True,
         ),
         "_generator_defs_bzl_template": attr.label(
             allow_single_file = True,
