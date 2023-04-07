@@ -49,9 +49,6 @@ final class GeneratorTests: XCTestCase {
                 tabWidth: 3,
                 usesTabs: false
             ),
-            bazel: "bz",
-            bazelPathEnv: "/usr/bin:/bin:/sbin",
-            bazelReal: "/Cache/download/bazel-42.0.1",
             bazelConfig: "rules_xcodeproj_test",
             xcodeConfigurations: ["Debug", "Release", "AppStore"],
             defaultXcodeConfiguration: "Release",

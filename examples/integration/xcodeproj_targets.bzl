@@ -11,12 +11,11 @@ load(
 BAZEL_ENV = {
     # Overriding `PATH`
     "PATH": "/usr/bin:/bin:/usr/sbin:/sbin",
-    # Testing escaping (quotes, spaces, and slashes)
+    # Testing escaping (quotes, spaces, newlines, and slashes)
     "QUOTES_VAR1": "foo \"bar\"",
     "QUOTES_VAR2": 'foo "bar"',
     "QUOTES_VAR3": "foo 'bar'",
-    "QUOTES_VAR4": 'foo \'bar\'',
-    "SLASHES_VAR": 'value/with\\slashes',
+    "SLASHES_VAR": "value/with\\slashes",
     "MULTILINE": """one line
 two line""",
     # Inheriting any `NOT_SET`, but won't find any

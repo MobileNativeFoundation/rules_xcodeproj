@@ -1181,8 +1181,11 @@ def _write_bazel_build_script(*, ctx, target_ids_list):
         envs.append("  '{}={}'".format(
             key,
             (value
+                .replace(
                 # Escape single quotes for bash
-                .replace("'", "'\"'\"'")),
+                "'",
+                "'\"'\"'",
+            )),
         ))
 
     ctx.actions.expand_template(

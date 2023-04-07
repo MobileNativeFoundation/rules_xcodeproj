@@ -14,7 +14,7 @@ def xcodeproj(
         archived_bundles_allowed = None,
         associated_extra_files = {},
         bazel_path = "bazel",
-        bazel_env = None,
+        bazel_env = {"PATH": "/usr/bin:/bin"},
         build_mode = "bazel",
         config = "rules_xcodeproj",
         default_xcode_configuration = None,
@@ -79,6 +79,17 @@ def xcodeproj(
             target the files should be associated with, and the value is a
             `list` of `File`s. These files won't be added to the project if the
             target is unfocused.
+        bazel_env: Optional. A `dict` of environment variables to set when
+            invoking `bazel_path`. This is useful for setting environment
+            variables that are required for Bazel actions to run successfully,
+            such as `JAVA_HOME` or `ANDROID_HOME`. It's also useful if
+            `bazel_path` itself (if it's a wrapper) needs certain environment
+            variables. The keys are the names of the environment variables, and
+            the values are the values of the environment variables. If a value
+            is `None`, the environment variable will be picked up from the
+            current environment. If project generation succeeds, but building
+            inside of Xcode fails because of missing environment variables, you
+            probably have to set them here.
         bazel_path: Optional. The path the `bazel` binary or wrapper script. If
             the path is relative it will be resolved using the `PATH`
             environment variable that is set when generating the project. If you

@@ -23,7 +23,6 @@ struct Project: Equatable {
 
     let name: String
     let options: Options
-    let bazel: String
     let bazelConfig: String
     let xcodeConfigurations: Set<String>
     let defaultXcodeConfiguration: String
@@ -47,7 +46,6 @@ extension Project: Decodable {
     enum CodingKeys: String, CodingKey {
         case name = "n"
         case options = "o"
-        case bazel = "b"
         case bazelConfig = "B"
         case xcodeConfigurations = "x"
         case defaultXcodeConfiguration = "d"
@@ -72,8 +70,6 @@ extension Project: Decodable {
         name = try container.decode(String.self, forKey: .name)
         options = try container.decodeIfPresent(Options.self, forKey: .options)
             ?? Options()
-        bazel = try container
-            .decodeIfPresent(String.self, forKey: .bazel) ?? "bazel"
         bazelConfig = try container.decode(String.self, forKey: .bazelConfig)
         xcodeConfigurations = try container
             .decodeIfPresent(Set<String>.self, forKey: .xcodeConfigurations) ??

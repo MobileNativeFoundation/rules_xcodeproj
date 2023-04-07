@@ -322,18 +322,30 @@ fi
             base_def_env_values.append('  "{}": """{}""",'.format(
                 key,
                 (value
+                    .replace(
                     # Escape backslashes for bzl
-                    .replace("\\", "\\\\")
+                    "\\",
+                    "\\\\",
+                )
+                    .replace(
                     # Escape double quotes for bzl
-                    .replace("\"", "\\\"")
+                    "\"",
+                    "\\\"",
+                )
+                    .replace(
                     # Escape single quotes for bash
-                    .replace("'", "'\"'\"'")),
+                    "'",
+                    "'\"'\"'",
+                )),
             ))
             base_envs_values.append("  '{}={}'".format(
                 key,
                 (value
+                    .replace(
                     # Escape single quotes for bash
-                    .replace("'", "'\"'\"'")),
+                    "'",
+                    "'\"'\"'",
+                )),
             ))
 
     collect_bazel_env = """\
@@ -346,10 +358,10 @@ def_env='{{
 
 {collect_statements}
 def_env+='}}'""".format(
-    base_def_env_values = "\n".join(base_def_env_values),
-    base_envs_values = "\n".join(base_envs_values),
-    collect_statements = "\n".join(collect_statements),
-)
+        base_def_env_values = "\n".join(base_def_env_values),
+        base_envs_values = "\n".join(base_envs_values),
+        collect_statements = "\n".join(collect_statements),
+    )
 
     is_bazel_6 = hasattr(apple_common, "link_multi_arch_static_library")
 
