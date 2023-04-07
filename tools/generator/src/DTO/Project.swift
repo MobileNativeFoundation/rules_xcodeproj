@@ -25,7 +25,7 @@ struct Project: Equatable {
     let options: Options
     let bazel: String
     let bazelPathEnv: String
-    let bazelReal: String
+    let bazelReal: String?
     let bazelConfig: String
     let xcodeConfigurations: Set<String>
     let defaultXcodeConfiguration: String
@@ -82,7 +82,7 @@ extension Project: Decodable {
             .decodeIfPresent(String.self, forKey: .bazelPathEnv) ??
             "/usr/bin:/bin"
         bazelReal = try container
-            .decodeIfPresent(String.self, forKey: .bazelReal) ?? ""
+            .decodeIfPresent(String.self, forKey: .bazelReal)
         bazelConfig = try container.decode(String.self, forKey: .bazelConfig)
         xcodeConfigurations = try container
             .decodeIfPresent(Set<String>.self, forKey: .xcodeConfigurations) ??
