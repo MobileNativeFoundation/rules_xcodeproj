@@ -2,7 +2,6 @@
     "B": "rules_xcodeproj",
     "R": "@//test/fixtures:xcodeproj_bwb",
     "T": "fixture-target-ids-file",
-    "b": "$HOMEWBREW_BIN/bazel",
     "e": [
         {
             "_": "examples_cc_external/lib.h",
@@ -27,10 +26,8 @@
         "test/fixtures/BUILD",
         "tool/BUILD"
     ],
-    "g": "@rules_xcodeproj_generated//generator:generator",
     "i": "fixture-index-import-path",
     "m": "13.0",
     "n": "bwb",
-    "r": "$BAZELISK_DOWNLOAD",
     "s": "auto"
 }

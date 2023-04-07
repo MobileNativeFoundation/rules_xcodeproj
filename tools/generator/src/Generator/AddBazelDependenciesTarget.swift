@@ -14,7 +14,6 @@ extension Generator {
         usesExternalFileList: Bool,
         usesGeneratedFileList: Bool,
         bazelConfig _: String,
-        generatorLabel: BazelLabel,
         preBuildScript: String?,
         postBuildScript: String?,
         consolidatedTargets: ConsolidatedTargets
@@ -87,8 +86,7 @@ $(INDEXING_SUPPORTED_PLATFORMS__$(INDEX_ENABLE_BUILD_ARENA))
             targets: consolidatedTargets.targets.values
                 .flatMap(\.sortedTargets),
             usesExternalFileList: usesExternalFileList,
-            usesGeneratedFileList: usesGeneratedFileList,
-            generatorLabel: generatorLabel
+            usesGeneratedFileList: usesGeneratedFileList
         )
 
         let createLLDBSettingsModuleScript =
@@ -141,8 +139,7 @@ $(INDEXING_SUPPORTED_PLATFORMS__$(INDEX_ENABLE_BUILD_ARENA))
         buildMode: BuildMode,
         targets _: [Target],
         usesExternalFileList: Bool,
-        usesGeneratedFileList: Bool,
-        generatorLabel _: BazelLabel
+        usesGeneratedFileList: Bool
     ) -> PBXShellScriptBuildPhase {
 
         var outputFileListPaths: [String] = []

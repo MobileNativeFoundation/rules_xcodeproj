@@ -73,8 +73,6 @@ extension Generator {
             "BAZEL_OUT": "$(PROJECT_DIR)/bazel-out",
             "_BAZEL_OUTPUT_BASE": "$(PROJECT_DIR)/../..",
             "BAZEL_OUTPUT_BASE": "$(_BAZEL_OUTPUT_BASE:standardizepath)",
-            "BAZEL_PATH": project.bazel,
-            "BAZEL_PATH_ENV": project.bazelPathEnv,
             "BAZEL_WORKSPACE_ROOT": "$(SRCROOT)",
             "BUILD_DIR": """
 $(SYMROOT)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
@@ -99,7 +97,6 @@ $(INDEXING_DEPLOYMENT_LOCATION__$(INDEX_ENABLE_BUILD_ARENA)),
 """,
             "DSTROOT": "$(PROJECT_TEMP_DIR)",
             "ENABLE_DEFAULT_SEARCH_PATHS": "NO",
-            "GENERATOR_LABEL": project.generatorLabel,
             "INDEX_FORCE_SCRIPT_EXECUTION": true,
             "INDEXING_BUILT_PRODUCTS_DIR__": """
 $(INDEXING_BUILT_PRODUCTS_DIR__NO)
@@ -141,10 +138,6 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
             "USE_HEADERMAP": false,
             "VALIDATE_WORKSPACE": false,
         ]
-
-        if let bazelReal = project.bazelReal {
-            buildSettings["BAZEL_REAL"] = bazelReal
-        }
 
         if buildMode.usesBazelModeBuildScripts {
             buildSettings.merge([

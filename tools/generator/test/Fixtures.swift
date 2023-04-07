@@ -13,13 +13,9 @@ enum Fixtures {
             tabWidth: 2,
             usesTabs: true
         ),
-        bazel: "bazelisk",
-        bazelPathEnv: "/usr/bin:/bin",
-        bazelReal: "",
         bazelConfig: "rules_xcodeproj_fixtures",
         xcodeConfigurations: ["Release", "Profile"],
         defaultXcodeConfiguration: "Profile",
-        generatorLabel: "@//:xcodeproj.generator",
         runnerLabel: "@//:xcodeproj",
         minimumXcodeVersion: "14.0.1",
         targets: targets,
@@ -1315,8 +1311,7 @@ $(BAZEL_OUT)/z/A.link.params
     }
 
     static func bazelDependenciesTarget(
-        in pbxProj: PBXProj,
-        generatorLabel _: String
+        in pbxProj: PBXProj
     ) -> PBXAggregateTarget {
         let allPlatforms = """
 watchsimulator \

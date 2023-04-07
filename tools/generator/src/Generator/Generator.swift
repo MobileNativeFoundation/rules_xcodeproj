@@ -133,7 +133,6 @@ class Generator {
                 usesExternalFileList,
                 usesGeneratedFileList,
                 project.bazelConfig,
-                project.generatorLabel,
                 project.preBuildScript,
                 project.postBuildScript,
                 consolidatedTargetsTask.value

@@ -8,7 +8,21 @@ load(
     "xcode_schemes",
 )
 
-BAZEL_PATH_ENV = "/usr/bin:/bin:/usr/sbin:/sbin"
+BAZEL_ENV = {
+    # Overriding `PATH`
+    "PATH": "/usr/bin:/bin:/usr/sbin:/sbin",
+    # Testing escaping (quotes, spaces, newlines, and slashes)
+    "QUOTES_VAR1": "foo \"bar\"",
+    "QUOTES_VAR2": 'foo "bar"',
+    "QUOTES_VAR3": "foo 'bar'",
+    "SLASHES_VAR": "value/with\\slashes",
+    "MULTILINE": """one line
+two line""",
+    # Inheriting any `NOT_SET`, but won't find any
+    "NOT_SET": None,
+    # Inheriting any `TERM`
+    "TERM": None,
+}
 
 CONFIG = "rules_xcodeproj_integration"
 

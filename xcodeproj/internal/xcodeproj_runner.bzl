@@ -248,7 +248,6 @@ def _write_generator_build_file(
                 str(attr.adjust_schemes_for_swiftui_previews)
             ),
             "%build_mode%": attr.build_mode,
-            "%bazel_path_env%": attr.bazel_path_env,
             "%colorize%": str(attr._colorize[BuildSettingInfo].value),
             "%config%": attr.config,
             "%default_xcode_configuration%": (
@@ -290,8 +289,8 @@ def _write_runner(
         *,
         name,
         actions,
+        bazel_env,
         bazel_path,
-        bazel_path_env,
         config,
         execution_root_file,
         extra_flags_bazelrc,
@@ -307,6 +306,63 @@ def _write_runner(
         xcodeproj_bazelrc):
     output = actions.declare_file("{}-runner.sh".format(name))
 
+    base_def_env_values = []
+    base_envs_values = []
+    collect_statements = []
+    for key, value in bazel_env.items():
+        if value == "\0":
+            collect_statements.append("""\
+if [[ -n "${{{key}:-}}" ]]; then
+  envs+=("{key}=${key}")
+  def_env+="  \\"{key}\\": \\"${key}\\",
+"
+fi
+""".format(key = key))
+        else:
+            base_def_env_values.append('  "{}": """{}""",'.format(
+                key,
+                (value
+                    .replace(
+                    # Escape backslashes for bzl
+                    "\\",
+                    "\\\\",
+                )
+                    .replace(
+                    # Escape double quotes for bzl
+                    "\"",
+                    "\\\"",
+                )
+                    .replace(
+                    # Escape single quotes for bash
+                    "'",
+                    "'\"'\"'",
+                )),
+            ))
+            base_envs_values.append("  '{}={}'".format(
+                key,
+                (value
+                    .replace(
+                    # Escape single quotes for bash
+                    "'",
+                    "'\"'\"'",
+                )),
+            ))
+
+    collect_bazel_env = """\
+envs=(
+{base_envs_values}
+)
+def_env='{{
+{base_def_env_values}
+'
+
+{collect_statements}
+def_env+='}}'""".format(
+        base_def_env_values = "\n".join(base_def_env_values),
+        base_envs_values = "\n".join(base_envs_values),
+        collect_statements = "\n".join(collect_statements),
+    )
+
     is_bazel_6 = hasattr(apple_common, "link_multi_arch_static_library")
 
     actions.expand_template(
@@ -315,7 +371,7 @@ def _write_runner(
         is_executable = True,
         substitutions = {
             "%bazel_path%": bazel_path,
-            "%bazel_path_env%": bazel_path_env,
+            "%collect_bazel_env%": collect_bazel_env,
             "%config%": config,
             "%execution_root_file%": execution_root_file.short_path,
             "%extra_flags_bazelrc%": extra_flags_bazelrc.short_path,
@@ -391,8 +447,8 @@ def _xcodeproj_runner_impl(ctx):
     runner = _write_runner(
         name = name,
         actions = actions,
+        bazel_env = ctx.attr.bazel_env,
         bazel_path = ctx.attr.bazel_path,
-        bazel_path_env = ctx.attr.bazel_path_env,
         config = config,
         execution_root_file = execution_root_file,
         extra_flags_bazelrc = extra_flags_bazelrc,
@@ -444,7 +500,7 @@ xcodeproj_runner = rule(
         "bazel_path": attr.string(
             mandatory = True,
         ),
-        "bazel_path_env": attr.string(
+        "bazel_env": attr.string_dict(
             mandatory = True,
         ),
         "config": attr.string(
