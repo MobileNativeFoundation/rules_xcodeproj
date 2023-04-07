@@ -39,9 +39,6 @@ final class CreateProjectTests: XCTestCase {
             "BAZEL_OUT": "$(PROJECT_DIR)/bazel-out",
             "_BAZEL_OUTPUT_BASE": "$(PROJECT_DIR)/../..",
             "BAZEL_OUTPUT_BASE": "$(_BAZEL_OUTPUT_BASE:standardizepath)",
-            "BAZEL_PATH": "bazelisk",
-            "BAZEL_PATH_ENV": "/usr/bin:/bin",
-            "BAZEL_REAL": "",
             "BAZEL_WORKSPACE_ROOT": "$(SRCROOT)",
             "BAZEL_INTEGRATION_DIR": "$(INTERNAL_DIR)/bazel",
             "BUILD_WORKSPACE_DIRECTORY": "$(SRCROOT)",
@@ -189,9 +186,6 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
             "BAZEL_OUT": "$(PROJECT_DIR)/bazel-out",
             "_BAZEL_OUTPUT_BASE": "$(PROJECT_DIR)/../..",
             "BAZEL_OUTPUT_BASE": "$(_BAZEL_OUTPUT_BASE:standardizepath)",
-            "BAZEL_PATH": "bazelisk",
-            "BAZEL_PATH_ENV": "/usr/bin:/bin",
-            "BAZEL_REAL": "",
             "BAZEL_WORKSPACE_ROOT": "$(SRCROOT)",
             "BUILD_DIR": """
 $(SYMROOT)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)

@@ -1,7 +1,7 @@
 load(
     ":defs.bzl",
+    "BAZEL_ENV",
     "BAZEL_PATH",
-    "BAZEL_REAL",
     "WORKSPACE_DIRECTORY",
     "xcodeproj",
 )
@@ -13,9 +13,8 @@ xcodeproj(
     name = "generator",
     adjust_schemes_for_swiftui_previews = %adjust_schemes_for_swiftui_previews%,
     build_mode = "%build_mode%",
+    bazel_env = BAZEL_ENV,
     bazel_path = BAZEL_PATH,
-    bazel_path_env = "%bazel_path_env%",
-    bazel_real = BAZEL_REAL,
     colorize = %colorize%,
     config = "%config%",
     default_xcode_configuration = %default_xcode_configuration%,

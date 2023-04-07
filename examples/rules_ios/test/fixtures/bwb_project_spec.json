@@ -16,7 +16,6 @@
             "--command_line_args=-AppleLanguages,(en-GB)"
         ]
     ],
-    "b": "$HOMEWBREW_BIN/bazel",
     "e": [
         {
             "_": "build_bazel_rules_ios/rules/library/common.pch",
@@ -680,7 +679,6 @@
     "i": "fixture-index-import-path",
     "m": "13.0",
     "n": "bwb",
-    "r": "$BAZELISK_DOWNLOAD",
     "t": [
         "//WidgetExtension:WidgetExtension applebin_ios-ios_arm64-dbg-STABLE-4",
         [

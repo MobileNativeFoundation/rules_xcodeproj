@@ -100,6 +100,9 @@ installer_flags+=(--execution_root "$execution_root")
 readonly output_base="${execution_root%/*/*}"
 readonly nested_output_base="$output_base/rules_xcodeproj/build_output_base"
 
+# Set bazel env
+%collect_bazel_env%
+
 # Create files for the generator target
 output_base_hash=$(/sbin/md5 -q -s "$output_base")
 readonly generator_package_directory="/tmp/rules_xcodeproj/generated/$output_base_hash/generator"
@@ -112,20 +115,12 @@ chmod u+w "$generator_package_directory/defs.bzl"
 cp "$schemes_json" "$generator_package_directory/custom_xcode_schemes.json"
 chmod u+w "$generator_package_directory/custom_xcode_schemes.json"
 
-if [[ %is_fixture% -eq 1 ]]; then
-  readonly def_bazel_path="\$HOMEWBREW_BIN/${bazel_path##*/}"
-  readonly def_bazel_real="\$BAZELISK_DOWNLOAD"
-else
-  readonly def_bazel_path="$bazel_path"
-  readonly def_bazel_real="${BAZEL_REAL:-}"
-fi
-
 cat >> "$generator_package_directory/defs.bzl" <<EOF
 
 # Constants
 
-BAZEL_PATH = "$def_bazel_path"
-BAZEL_REAL = "$def_bazel_real"
+BAZEL_ENV = $def_env
+BAZEL_PATH = "$bazel_path"
 WORKSPACE_DIRECTORY = "$BUILD_WORKSPACE_DIRECTORY"
 EOF
 
@@ -160,7 +155,7 @@ fi
 
 readonly bazel_cmd=(
   env
-  PATH="%bazel_path_env%"
+  "${envs[@]}"
   "$bazel_path"
 
   # Restart Bazel server if `DEVELOPER_DIR` changes to clear `developerDirCache`

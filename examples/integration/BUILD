@@ -2,7 +2,7 @@ load("@rules_xcodeproj//xcodeproj:defs.bzl", "xcodeproj")
 load(
     ":xcodeproj_targets.bzl",
     "ASSOCIATED_EXTRA_FILES",
-    "BAZEL_PATH_ENV",
+    "BAZEL_ENV",
     "CONFIG",
     "DEFAULT_XCODE_CONFIGURATION",
     "EXTRA_FILES",
@@ -49,7 +49,7 @@ exports_files(["README.md"])
     xcodeproj(
         name = "xcodeproj-{}".format(simulator_cpu),
         associated_extra_files = ASSOCIATED_EXTRA_FILES,
-        bazel_path_env = BAZEL_PATH_ENV,
+        bazel_env = BAZEL_ENV,
         build_mode = "xcode",
         config = CONFIG,
         default_xcode_configuration = DEFAULT_XCODE_CONFIGURATION,

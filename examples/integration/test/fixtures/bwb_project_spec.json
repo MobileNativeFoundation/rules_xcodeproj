@@ -1,5 +1,4 @@
 {
-    "1": "/usr/bin:/bin:/usr/sbin:/sbin",
     "B": "rules_xcodeproj_integration",
     "E": [
         "//CommandLine/Tests:CommandLineToolTests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-STABLE-39",
@@ -108,7 +107,6 @@
             "--command_line_args=-AppleLanguages,(en-GB)"
         ]
     ],
-    "b": "$HOMEWBREW_BIN/bazel",
     "e": [
         {
             "_": "FXPageControl/FXPageControl/FXPageControl.h",
@@ -400,7 +398,6 @@
         "u": true
     },
     "p": "set -euo pipefail\n\nif [[ \"$ACTION\" == \"build\" ]]; then\n  cd \"$SRCROOT\"\n  echo \"Hello from pre-build!\"\nfi",
-    "r": "$BAZELISK_DOWNLOAD",
     "t": [
         "//WidgetExtension:WidgetExtension applebin_ios-ios_arm64-dbg-STABLE-14",
         [

@@ -1,5 +1,4 @@
 _BASE_FILES = [
-    "bazel_build.sh",
     "calculate_output_groups.py",
     "copy_dsyms.sh",
     "create_lldbinit.sh",
