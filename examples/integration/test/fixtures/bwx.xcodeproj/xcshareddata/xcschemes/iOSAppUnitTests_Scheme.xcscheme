@@ -114,7 +114,8 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run After Tests"
-               scriptText = "echo &quot;Hi&quot;">
+               scriptText = "echo &quot;Hi&quot;"
+               shellToInvoke = "/bin/bash">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"

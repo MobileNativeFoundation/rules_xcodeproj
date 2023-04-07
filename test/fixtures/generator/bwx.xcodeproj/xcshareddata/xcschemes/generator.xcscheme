@@ -10,7 +10,8 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Example: Start build time tracking..."
-               scriptText = "echo &apos;Building target: generator&apos;">
+               scriptText = "echo &apos;Building target: generator&apos;"
+               shellToInvoke = "/bin/bash">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
@@ -76,7 +77,8 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Example: Stop build time tracking..."
-               scriptText = "echo &apos;Completed Building target: generator&apos;">
+               scriptText = "echo &apos;Completed Building target: generator&apos;"
+               shellToInvoke = "/bin/bash">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"

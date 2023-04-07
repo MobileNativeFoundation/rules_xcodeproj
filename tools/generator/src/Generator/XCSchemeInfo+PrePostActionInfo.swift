@@ -13,6 +13,7 @@ extension XCSchemeInfo.PrePostActionInfo {
         XCScheme.ExecutionAction(
             scriptText: script,
             title: name,
+            shellToInvoke: "/bin/bash",
             environmentBuildable: expandVariablesBasedOn?.buildableReference
         )
     }

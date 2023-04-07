@@ -222,6 +222,7 @@ perl -pe '
     ) -> PBXShellScriptBuildPhase {
         let script = PBXShellScriptBuildPhase(
             name: "\(name) Run Script",
+            shellPath: "/bin/bash",
             shellScript: "\(script)\n",
             showEnvVarsInLog: false,
             alwaysOutOfDate: alwaysOutOfDate
