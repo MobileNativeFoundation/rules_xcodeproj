@@ -3,9 +3,6 @@
 # - BAZEL_CONFIG
 # - BAZEL_INTEGRATION_DIR
 # - BAZEL_OUT
-# - BAZEL_PATH
-# - BAZEL_PATH_ENV
-# - BAZEL_REAL
 # - DEVELOPER_DIR
 # - GENERATOR_LABEL
 # - HOME
@@ -13,7 +10,6 @@
 # - OBJROOT
 # - RULES_XCODEPROJ_BUILD_MODE
 # - SRCROOT
-# - TARGET_IDS_LIST
 # - TERM
 # - USER
 # - XCODE_PRODUCT_BUILD_VERSION
@@ -66,16 +62,10 @@ if [[ -s "$BAZEL_INTEGRATION_DIR/xcodeproj_extra_flags.bazelrc" ]]; then
 fi
 readonly bazelrcs
 
-envs=(PATH="$BAZEL_PATH_ENV")
-
-if [[ -n "${BAZEL_REAL:-}" ]]; then
-  envs+=(BAZEL_REAL="$BAZEL_REAL")
-fi
-
 readonly bazel_cmd=(
   env
-  "${envs[@]}"
-  "$BAZEL_PATH"
+%bazel_env%
+  "%bazel_path%"
 
   # Restart bazel server if `DEVELOPER_DIR` changes to clear `developerDirCache`
   "--host_jvm_args=-Xdock:name=$DEVELOPER_DIR"
@@ -127,14 +117,14 @@ fi
   --color=yes \
   ${toolchain:+--define=SWIFT_CUSTOM_TOOLCHAIN="$toolchain"} \
   "$output_groups_flag" \
-  "$GENERATOR_LABEL" \
+  "%generator_label%" \
   ${labels:+"--build_metadata=PATTERN=${labels[*]}"} \
   2>&1
 
 # Verify that we actually built what we requested
 
 if [[ -n "${target_ids:-}" ]]; then
-  diff_output=$(comm -23 <(printf '%s\n' "${target_ids[@]}") "$TARGET_IDS_FILE")
+  diff_output=$(comm -23 <(printf '%s\n' "${target_ids[@]}") "%target_ids_list%")
 
   if [ -n "$diff_output" ]; then
       missing_target_ids=("${diff_output[@]}")

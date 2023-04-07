@@ -1002,7 +1002,6 @@ def _write_spec(
 
     spec_dto = {
         "B": config,
-        "g": str(ctx.label),
         "T": "fixture-target-ids-file" if is_fixture else build_setting_path(
             file = target_ids_list,
         ),
@@ -1023,18 +1022,6 @@ def _write_spec(
     project_options_dto = project_options_to_dto(project_options)
     if project_options_dto:
         spec_dto["o"] = project_options_dto
-
-    bazel_path = ctx.attr.bazel_path
-    if bazel_path != "bazel":
-        spec_dto["b"] = bazel_path
-
-    bazel_path_env = ctx.attr.bazel_path_env
-    if bazel_path_env != "/usr/bin:/bin":
-        spec_dto["1"] = bazel_path_env
-
-    bazel_real = ctx.attr.bazel_real
-    if bazel_real:
-        spec_dto["r"] = bazel_real
 
     if ctx.attr.scheme_autogeneration_mode != "all":
         spec_dto["s"] = ctx.attr.scheme_autogeneration_mode
@@ -1179,6 +1166,39 @@ def _write_extensionpointidentifiers(*, ctx, extension_infoplists):
         inputs = [targetids_file] + infoplist_files,
         outputs = [output],
         mnemonic = "CalculateXcodeProjExtensionPointIdentifiers",
+    )
+
+    return output
+
+def _write_bazel_build_script(*, ctx, target_ids_list):
+    output = ctx.actions.declare_file(
+        "{}_bazel_integration_files/bazel_build.sh".format(ctx.attr.name),
+    )
+
+    envs = []
+    for key, value in ctx.attr.bazel_env.items():
+        envs.append("  '{}={}'".format(
+            key,
+            (value
+                .replace(
+                # Escape single quotes for bash
+                "'",
+                "'\"'\"'",
+            )),
+        ))
+
+    ctx.actions.expand_template(
+        template = ctx.file._bazel_build_script_template,
+        output = output,
+        is_executable = True,
+        substitutions = {
+            "%bazel_env%": "\n".join(envs),
+            "%bazel_path%": ctx.attr.bazel_path,
+            "%generator_label%": str(ctx.label),
+            "%target_ids_list%": (
+                "$PROJECT_DIR/{}".format(target_ids_list.path)
+            ),
+        },
     )
 
     return output
@@ -1670,7 +1690,9 @@ done
     bazel_integration_files = (
         list(ctx.files._base_integration_files) +
         swift_debug_settings
-    )
+    ) + [
+        _write_bazel_build_script(ctx = ctx, target_ids_list = target_ids_list),
+    ]
     if build_mode == "xcode":
         bazel_integration_files.append(
             _write_create_xcode_overlay_script(ctx = ctx, targets = targets),
@@ -1768,10 +1790,9 @@ def make_xcodeproj_rule(
         "bazel_path": attr.string(
             mandatory = True,
         ),
-        "bazel_path_env": attr.string(
+        "bazel_env": attr.string_dict(
             mandatory = True,
         ),
-        "bazel_real": attr.string(),
         "build_mode": attr.string(
             mandatory = True,
         ),
@@ -1871,6 +1892,12 @@ def make_xcodeproj_rule(
             allow_files = True,
             default = Label(
                 "//xcodeproj/internal/bazel_integration_files:base_integration_files",
+            ),
+        ),
+        "_bazel_build_script_template": attr.label(
+            allow_single_file = True,
+            default = Label(
+                "//xcodeproj/internal:bazel_build.template.sh",
             ),
         ),
         "_bazel_integration_files": attr.label(

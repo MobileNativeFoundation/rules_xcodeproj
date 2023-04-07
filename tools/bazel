@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-bazel_version=$("$BAZEL_REAL" info release | cut -d ' ' -f 2 | cut -d '.' -f 1)
+bazel_version=$("$BAZEL_REAL" info release | /usr/bin/cut -d ' ' -f 2 | /usr/bin/cut -d '.' -f 1)
 if [[ "$bazel_version" == "version" ]]; then
   bazel_version=7
 fi
@@ -10,7 +10,7 @@ fi
 flags=()
 
 tool_location="${BASH_SOURCE[0]}"
-tool_abs_location="$(perl -MCwd -e 'print Cwd::abs_path shift' "$tool_location";)"
+tool_abs_location="$(/usr/bin/perl -MCwd -e 'print Cwd::abs_path shift' "$tool_location";)"
 readonly root_dir="${tool_abs_location%/*/*}"
 if [[ $bazel_version -lt 6 ]]; then
   flags+=("--bazelrc=$root_dir/bazel_5.bazelrc")

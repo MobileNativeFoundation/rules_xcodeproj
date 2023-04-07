@@ -143,7 +143,7 @@ def xcodeproj_fixture(
         name = "xcodeproj",
         modes_and_suffixes = [("xcode", "bwx"), ("bazel", "bwb")],
         associated_extra_files = {},
-        bazel_path_env = None,
+        bazel_env = None,
         config = "rules_xcodeproj",
         default_xcode_configuration = None,
         extra_files = [],
@@ -167,7 +167,7 @@ def xcodeproj_fixture(
             The `build_mode` will be pass to `xcodeproj.build_mode` and the
             `suffix` will be used as the suffix of the project and spec files.
         associated_extra_files: Maps to `xcodeproj.associated_extra_files`.
-        bazel_path_env: Maps to `xcodeproj.bazel_path_env`.
+        bazel_env: Maps to `xcodeproj.bazel_env`.
         config: Maps to `xcodeproj.config`.
         default_xcode_configuration: Maps to
             `xcodeproj.default_xcode_configuration`.
@@ -199,7 +199,7 @@ def xcodeproj_fixture(
         xcodeproj(
             name = fixture_name,
             associated_extra_files = associated_extra_files,
-            bazel_path_env = bazel_path_env,
+            bazel_env = bazel_env,
             build_mode = mode,
             config = config,
             default_xcode_configuration = default_xcode_configuration,

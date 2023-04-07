@@ -14,7 +14,7 @@ def xcodeproj(
         archived_bundles_allowed = None,
         associated_extra_files = {},
         bazel_path = "bazel",
-        bazel_path_env = "/usr/bin:/bin",
+        bazel_env = {"PATH": "/usr/bin:/bin"},
         build_mode = "bazel",
         config = "rules_xcodeproj",
         default_xcode_configuration = None,
@@ -79,15 +79,24 @@ def xcodeproj(
             target the files should be associated with, and the value is a
             `list` of `File`s. These files won't be added to the project if the
             target is unfocused.
+        bazel_env: Optional. A `dict` of environment variables to set when
+            invoking `bazel_path`. This is useful for setting environment
+            variables that are required for Bazel actions to run successfully,
+            such as `JAVA_HOME` or `ANDROID_HOME`. It's also useful if
+            `bazel_path` itself (if it's a wrapper) needs certain environment
+            variables. The keys are the names of the environment variables, and
+            the values are the values of the environment variables. If a value
+            is `None`, the environment variable will be picked up from the
+            current environment. If project generation succeeds, but building
+            inside of Xcode fails because of missing environment variables, you
+            probably have to set them here. If `PATH` is not specified, it will
+            default to `/usr/bin:/bin`, so you don't have to specify it unless
+            you want to user a different value
         bazel_path: Optional. The path the `bazel` binary or wrapper script. If
             the path is relative it will be resolved using the `PATH`
             environment variable that is set when generating the project. If you
             want to specify a path to a workspace-relative binary, you must
             prepend the path with `./` (e.g. `"./bazelw"`).
-        bazel_path_env: Optional. The `PATH` environment variable to use when
-            invoking the `bazel_path` binary or wrapper script. This is useful
-            if your wrapper script needs tools that are not available in the
-            default restrictive path.
         build_mode: Optional. The build mode the generated project should use.
 
             If this is set to `"xcode"`, the project will use the Xcode build
@@ -279,8 +288,9 @@ removed in a future release.""")
     # Apply defaults
     if not bazel_path:
         bazel_path = "bazel"
-    if not bazel_path_env:
-        bazel_path_env = "/usr/bin:/bin"
+    bazel_env = dict(bazel_env) if bazel_env else {}
+    if "PATH" not in bazel_env:
+        bazel_env["PATH"] = "/usr/bin:/bin"
     if not build_mode:
         build_mode = "xcode"
     if install_directory == None:
@@ -291,6 +301,16 @@ removed in a future release.""")
         project_options = _default_project_options()
     if not xcode_configurations:
         xcode_configurations = {"Debug": {}}
+
+    # Collect `BAZEL_REAL` from runner's env if it exist
+    bazel_env["BAZEL_REAL"] = None
+
+    bazel_env = {
+        # Null character is used to represent `None`, since `attr.string_dict`
+        # requires non-`None` values.
+        key: "\0" if value == None else value
+        for key, value in sorted(bazel_env.items())
+    }
 
     if default_xcode_configuration and default_xcode_configuration not in xcode_configurations:
         keys = sorted(xcode_configurations.keys())
@@ -406,7 +426,7 @@ Please refer to https://bazel.build/extending/config#defining) on how to them.
         ),
         build_mode = build_mode,
         bazel_path = bazel_path,
-        bazel_path_env = bazel_path_env,
+        bazel_env = bazel_env,
         config = config,
         default_xcode_configuration = default_xcode_configuration,
         focused_targets = focused_targets,
