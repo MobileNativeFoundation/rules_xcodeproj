@@ -66,15 +66,9 @@ if [[ -s "$BAZEL_INTEGRATION_DIR/xcodeproj_extra_flags.bazelrc" ]]; then
 fi
 readonly bazelrcs
 
-envs=(PATH="$BAZEL_PATH_ENV")
-
-if [[ -n "${BAZEL_REAL:-}" ]]; then
-  envs+=(BAZEL_REAL="$BAZEL_REAL")
-fi
-
 readonly bazel_cmd=(
   env
-  "${envs[@]}"
+  PATH="$BAZEL_PATH_ENV"
   "$BAZEL_PATH"
 
   # Restart bazel server if `DEVELOPER_DIR` changes to clear `developerDirCache`
