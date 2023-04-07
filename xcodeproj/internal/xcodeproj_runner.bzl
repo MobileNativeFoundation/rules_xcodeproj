@@ -365,7 +365,7 @@ def_env+='}}'""".format(
 
     is_bazel_6 = hasattr(apple_common, "link_multi_arch_static_library")
 
-    # FIXME: Create a unique generator per target
+    # TODO: Create a unique generator per target
     generator_label = "{repo}//generator".format(
         repo = (
             str(Label("@rules_xcodeproj_generated//:BUILD")).split("//", 1)[0]
