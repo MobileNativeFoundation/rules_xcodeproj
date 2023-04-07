@@ -89,7 +89,9 @@ def xcodeproj(
             is `None`, the environment variable will be picked up from the
             current environment. If project generation succeeds, but building
             inside of Xcode fails because of missing environment variables, you
-            probably have to set them here.
+            probably have to set them here. If `PATH` is not specified, it will
+            default to `/usr/bin:/bin`, so you don't have to specify it unless
+            you want to user a different value
         bazel_path: Optional. The path the `bazel` binary or wrapper script. If
             the path is relative it will be resolved using the `PATH`
             environment variable that is set when generating the project. If you
