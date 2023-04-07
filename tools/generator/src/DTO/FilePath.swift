@@ -5,7 +5,6 @@ struct FilePath: Hashable, Decodable {
         case project = "p"
         case external = "e"
         case generated = "g"
-        case `internal` = "i"
     }
 
     let type: PathType
@@ -89,19 +88,6 @@ extension FilePath {
             forceGroupCreation: forceGroupCreation
         )
     }
-
-    static func `internal`(
-        _ path: Path,
-        isFolder: Bool = false,
-        forceGroupCreation: Bool = false
-    ) -> FilePath {
-        return FilePath(
-            type: .internal,
-            path: path,
-            isFolder: isFolder,
-            forceGroupCreation: forceGroupCreation
-        )
-    }
 }
 
 extension FilePath {
@@ -139,7 +125,6 @@ extension FilePath.PathType: Comparable {
         case .project: return 0
         case .external: return 1
         case .generated: return 2
-        case .internal: return 3
         }
     }
 }
