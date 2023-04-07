@@ -75,7 +75,6 @@ struct Environment {
         _ usesExternalFileList: Bool,
         _ usesGeneratedFileList: Bool,
         _ bazelConfig: String,
-        _ generatorLabel: BazelLabel,
         _ preBuildScript: String?,
         _ postBuildScript: String?,
         _ consolidatedTargets: ConsolidatedTargets

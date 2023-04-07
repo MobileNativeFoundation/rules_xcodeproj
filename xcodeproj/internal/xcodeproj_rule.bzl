@@ -1002,7 +1002,6 @@ def _write_spec(
 
     spec_dto = {
         "B": config,
-        "g": str(ctx.label),
         "T": "fixture-target-ids-file" if is_fixture else build_setting_path(
             file = target_ids_list,
         ),
@@ -1195,6 +1194,7 @@ def _write_bazel_build_script(*, ctx, target_ids_list):
         substitutions = {
             "%bazel_env%": "\n".join(envs),
             "%bazel_path%": ctx.attr.bazel_path,
+            "%generator_label%": str(ctx.label),
             "%target_ids_list%": (
                 "$PROJECT_DIR/{}".format(target_ids_list.path)
             ),

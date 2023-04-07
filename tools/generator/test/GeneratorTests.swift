@@ -52,7 +52,6 @@ final class GeneratorTests: XCTestCase {
             bazelConfig: "rules_xcodeproj_test",
             xcodeConfigurations: ["Debug", "Release", "AppStore"],
             defaultXcodeConfiguration: "Release",
-            generatorLabel: "@//a/P:xcodeproj.gen",
             runnerLabel: "@//a/P:xcodeproj",
             minimumXcodeVersion: "13.2.0",
             targets: targets,
@@ -464,7 +463,6 @@ final class GeneratorTests: XCTestCase {
             let usesExternalFileList: Bool
             let usesGeneratedFileList: Bool
             let bazelConfig: String
-            let generatorLabel: BazelLabel
             let preBuildScript: String?
             let postBuildScript: String?
             let consolidatedTargets: ConsolidatedTargets
@@ -483,7 +481,6 @@ final class GeneratorTests: XCTestCase {
             usesExternalFileList: Bool,
             usesGeneratedFileList: Bool,
             bazelConfig: String,
-            generatorLabel: BazelLabel,
             preBuildScript: String?,
             postBuildScript: String?,
             consolidatedTargets: ConsolidatedTargets
@@ -499,7 +496,6 @@ final class GeneratorTests: XCTestCase {
                 usesExternalFileList: usesExternalFileList,
                 usesGeneratedFileList: usesGeneratedFileList,
                 bazelConfig: bazelConfig,
-                generatorLabel: generatorLabel,
                 preBuildScript: preBuildScript,
                 postBuildScript: postBuildScript,
                 consolidatedTargets: consolidatedTargets
@@ -519,7 +515,6 @@ final class GeneratorTests: XCTestCase {
                 usesExternalFileList: true,
                 usesGeneratedFileList: true,
                 bazelConfig: project.bazelConfig,
-                generatorLabel: project.generatorLabel,
                 preBuildScript: project.preBuildScript,
                 postBuildScript: project.postBuildScript,
                 consolidatedTargets: consolidatedTargets

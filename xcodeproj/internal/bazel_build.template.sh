@@ -117,7 +117,7 @@ fi
   --color=yes \
   ${toolchain:+--define=SWIFT_CUSTOM_TOOLCHAIN="$toolchain"} \
   "$output_groups_flag" \
-  "$GENERATOR_LABEL" \
+  "%generator_label%" \
   ${labels:+"--build_metadata=PATTERN=${labels[*]}"} \
   2>&1
 

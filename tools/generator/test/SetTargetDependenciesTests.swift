@@ -21,12 +21,10 @@ final class SetTargetDependenciesTests: XCTestCase {
         let consolidatedTargets = Fixtures.consolidatedTargets
 
         let bazelDependenciesTarget = Fixtures.bazelDependenciesTarget(
-            in: pbxProj,
-            generatorLabel: "@//gen:gen"
+            in: pbxProj
         )
         let expectedBazelDependenciesTarget = Fixtures.bazelDependenciesTarget(
-            in: expectedPBXProj,
-            generatorLabel: "@//gen:gen"
+            in: expectedPBXProj
         )
 
         let (pbxTargets, disambiguatedTargets) = Fixtures.pbxTargets(
