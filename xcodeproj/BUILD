@@ -30,15 +30,6 @@ string_flag(
     visibility = ["//visibility:public"],
 )
 
-# This is called by `runner.sh`. We need this redirection because with bzlmod
-# we can't reference the `@rules_xcodeproj_generated` label directly, since
-# there is no direct dependency on it.
-alias(
-    name = "generated_generator",
-    actual = "@rules_xcodeproj_generated//generator",
-    tags = ["manual"],
-)
-
 package_group(
     name = "generated",
     includes = ["@rules_xcodeproj_generated//:package_group"],

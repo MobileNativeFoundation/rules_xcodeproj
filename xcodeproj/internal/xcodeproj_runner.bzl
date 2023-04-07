@@ -295,6 +295,7 @@ def _write_runner(
         execution_root_file,
         extra_flags_bazelrc,
         extra_generator_flags,
+        generated_repo,
         generator_build_file,
         generator_defs_bzl,
         is_fixture,
@@ -377,7 +378,7 @@ def_env+='}}'""".format(
             "%extra_flags_bazelrc%": extra_flags_bazelrc.short_path,
             "%extra_generator_flags%": extra_generator_flags,
             "%generator_label%": (
-                "@rules_xcodeproj//xcodeproj:generated_generator"
+                "{}//generator".format(generated_repo)
             ),
             "%generator_build_file%": generator_build_file.short_path,
             "%generator_defs_bzl%": generator_defs_bzl.short_path,
@@ -454,6 +455,9 @@ def _xcodeproj_runner_impl(ctx):
         extra_flags_bazelrc = extra_flags_bazelrc,
         extra_generator_flags = (
             ctx.attr._extra_generator_flags[BuildSettingInfo].value
+        ),
+        generated_repo = (
+            str(ctx.attr._generated_repo_marker.label).split("//", 1)[0]
         ),
         generator_build_file = generator_build_file,
         generator_defs_bzl = generator_defs_bzl,
@@ -582,6 +586,10 @@ xcodeproj_runner = rule(
         "_extra_swiftuipreviews_flags": attr.label(
             default = Label("//xcodeproj:extra_swiftuipreviews_flags"),
             providers = [BuildSettingInfo],
+        ),
+        "_generated_repo_marker": attr.label(
+            default = "@rules_xcodeproj_generated//:BUILD",
+            allow_single_file = True,
         ),
         "_generator_defs_bzl_template": attr.label(
             allow_single_file = True,
