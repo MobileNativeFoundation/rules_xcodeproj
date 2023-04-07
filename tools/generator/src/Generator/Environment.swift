@@ -36,7 +36,9 @@ struct Environment {
     ) throws -> (
         files: [FilePath: File],
         rootElements: [PBXFileElement],
+        compileStub: PBXFileReference?,
         resolvedRepositories: [(Path, Path)],
+        internalFiles: [Path: String],
         usesExternalFileList: Bool,
         usesGeneratedFileList: Bool
     )
@@ -84,7 +86,8 @@ struct Environment {
         _ disambiguatedTargets: DisambiguatedTargets,
         _ buildMode: BuildMode,
         _ products: Products,
-        _ files: [FilePath: File]
+        _ files: [FilePath: File],
+        _ compileStub: PBXFileReference?
     ) async throws -> [ConsolidatedTarget.Key: PBXNativeTarget]
 
     let setTargetConfigurations: (
@@ -137,7 +140,7 @@ struct Environment {
     let writeXcodeProj: (
         _ xcodeProj: XcodeProj,
         _ directories: Directories,
-        _ files: [FilePath: File],
+        _ internalFiles: [Path: String],
         _ outputPath: Path
     ) throws -> Void
 }

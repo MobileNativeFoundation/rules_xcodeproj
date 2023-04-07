@@ -164,7 +164,10 @@ final class GeneratorTests: XCTestCase {
         let (
             files,
             filesAndGroups,
-            resolvedRepositories
+            _,
+            _,
+            resolvedRepositories,
+            _
         ) = Fixtures.files(
             in: pbxProj,
             buildMode: buildMode,
@@ -294,7 +297,9 @@ final class GeneratorTests: XCTestCase {
         ) -> (
             files: [FilePath: File],
             rootElements: [PBXFileElement],
+            compileStub: PBXFileReference?,
             resolvedRepositories: [(Path, Path)],
+            internalFiles: [Path: String],
             usesExternalFileList: Bool,
             usesGeneratedFileList: Bool
         ) {
@@ -309,7 +314,9 @@ final class GeneratorTests: XCTestCase {
             return (
                 files,
                 rootElements,
+                nil,
                 resolvedRepositories,
+                [:],
                 true,
                 true
             )
@@ -530,6 +537,7 @@ final class GeneratorTests: XCTestCase {
             let buildMode: BuildMode
             let products: Products
             let files: [FilePath: File]
+            let compileStub: PBXFileReference?
         }
 
         var addTargetsCalled: [AddTargetsCalled] = []
@@ -538,14 +546,16 @@ final class GeneratorTests: XCTestCase {
             for disambiguatedTargets: DisambiguatedTargets,
             buildMode: BuildMode,
             products: Products,
-            files: [FilePath: File]
+            files: [FilePath: File],
+            compileStub: PBXFileReference?
         ) throws -> [ConsolidatedTarget.Key: PBXNativeTarget] {
             addTargetsCalled.append(.init(
                 pbxProj: pbxProj,
                 disambiguatedTargets: disambiguatedTargets,
                 buildMode: buildMode,
                 products: products,
-                files: files
+                files: files,
+                compileStub: compileStub
             ))
             return pbxTargets
         }
@@ -555,7 +565,8 @@ final class GeneratorTests: XCTestCase {
             disambiguatedTargets: disambiguatedTargets,
             buildMode: buildMode,
             products: products,
-            files: files
+            files: files,
+            compileStub: nil
         )]
 
         // MARK: setTargetConfigurations()
@@ -779,7 +790,7 @@ final class GeneratorTests: XCTestCase {
         struct WriteXcodeProjCalled: Equatable {
             let xcodeProj: XcodeProj
             let directories: Directories
-            let files: [FilePath: File]
+            let internalFiles: [Path: String]
             let outputPath: Path
         }
 
@@ -787,13 +798,13 @@ final class GeneratorTests: XCTestCase {
         func writeXcodeProj(
             xcodeProj: XcodeProj,
             directories: Directories,
-            files: [FilePath: File],
+            internalFiles: [Path: String],
             to outputPath: Path
         ) {
             writeXcodeProjCalled.append(.init(
                 xcodeProj: xcodeProj,
                 directories: directories,
-                files: files,
+                internalFiles: internalFiles,
                 outputPath: outputPath
             ))
         }
@@ -801,7 +812,7 @@ final class GeneratorTests: XCTestCase {
         let expectedWriteXcodeProjCalled = [WriteXcodeProjCalled(
             xcodeProj: xcodeProj,
             directories: directories,
-            files: files,
+            internalFiles: [:],
             outputPath: outputPath
         )]
 

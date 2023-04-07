@@ -428,7 +428,10 @@ enum Fixtures {
     ) -> (
         files: [FilePath: File],
         elements: [FilePath: PBXFileElement],
-        resolvedRepositories: [(Path, Path)]
+        internalGroup: PBXGroup,
+        compileStub: PBXFileReference,
+        resolvedRepositories: [(Path, Path)],
+        internalFiles: [Path: String]
     ) {
         var elements: [FilePath: PBXFileElement] = [:]
 
@@ -1000,23 +1003,23 @@ enum Fixtures {
 
         // `internal`/_CompileStub_.m
 
-        elements[.internal("_CompileStub_.m")] = PBXFileReference(
+        let compileStub = PBXFileReference(
             sourceTree: .custom("DERIVED_FILE_DIR"),
             lastKnownFileType: "sourcecode.c.objc",
             path: "_CompileStub_.m"
         )
+        pbxProj.add(object: compileStub)
 
         // `internal`
 
-        elements[.internal("")] = PBXGroup(
-            children: [
-                elements[.internal("_CompileStub_.m")]!,
-            ],
+        let internalGroup = PBXGroup(
+            children: [compileStub],
             sourceTree: .group,
             name: directories.internalDirectoryName,
             path: (directories.workspaceOutput +
                    directories.internalDirectoryName).string
         )
+        pbxProj.add(object: internalGroup)
 
         elements.values.forEach { element in
             pbxProj.add(object: element)
@@ -1034,6 +1037,7 @@ enum Fixtures {
                     group.addChild(file)
                 }
             }
+            group.addChild(internalGroup)
         }
 
         var files: [FilePath: File] = [:]
@@ -1049,13 +1053,15 @@ enum Fixtures {
 
         // xcfilelists
 
-        files[.internal("external.xcfilelist")] = .nonReferencedContent("""
+        var internalFiles: [Path: String] = [:]
+
+        internalFiles["external.xcfilelist"] = """
 $(BAZEL_EXTERNAL)/a_repo/a.swift
 $(BAZEL_EXTERNAL)/another_repo/b.swift
 
-""")
+"""
 
-        files[.internal("generated.xcfilelist")] = .nonReferencedContent("""
+        internalFiles["generated.xcfilelist"] = """
 $(BAZEL_OUT)/B.link.params
 $(BAZEL_OUT)/B3.link.params
 $(BAZEL_OUT)/a/b/module.modulemap
@@ -1063,9 +1069,9 @@ $(BAZEL_OUT)/a1b2c/bin/t.c
 $(BAZEL_OUT)/d.link.params
 $(BAZEL_OUT)/z/A.link.params
 
-""")
+"""
 
-        return (files, elements, [])
+        return (files, elements, internalGroup, compileStub, [], internalFiles)
     }
 
     static func xcodeGeneratedFiles(
@@ -1380,6 +1386,7 @@ appletvos
         in pbxProj: PBXProj,
         disambiguatedTargets: DisambiguatedTargets,
         files: [FilePath: File],
+        compileStub: PBXFileReference,
         products: Products
     ) -> [ConsolidatedTarget.Key: PBXNativeTarget] {
         // Build phases
@@ -1473,9 +1480,7 @@ touch "$SCRIPT_OUTPUT_FILE_1"
                     hasCompileStub: true
                 ),
                 PBXSourcesBuildPhase(
-                    files: buildFiles([PBXBuildFile(
-                        file: elements[.internal("_CompileStub_.m")]!
-                    )])
+                    files: buildFiles([PBXBuildFile(file: compileStub)])
                 ),
                 PBXResourcesBuildPhase(
                     files: buildFiles([
@@ -1504,9 +1509,7 @@ touch "$SCRIPT_OUTPUT_FILE_1"
             ],
             "AC": [
                 PBXSourcesBuildPhase(
-                    files: buildFiles([PBXBuildFile(
-                        file: elements[.internal("_CompileStub_.m")]!
-                    )])
+                    files: buildFiles([PBXBuildFile(file: compileStub)])
                 ),
             ],
             "B 1": [
@@ -1531,9 +1534,7 @@ touch "$SCRIPT_OUTPUT_FILE_1"
                     hasCompileStub: true
                 ),
                 PBXSourcesBuildPhase(
-                    files: buildFiles([PBXBuildFile(
-                        file: elements[.internal("_CompileStub_.m")]!
-                    )])
+                    files: buildFiles([PBXBuildFile(file: compileStub)])
                 ),
                 PBXCopyFilesBuildPhase(
                     dstPath: "",
@@ -1553,9 +1554,7 @@ touch "$SCRIPT_OUTPUT_FILE_1"
                     hasCompileStub: true
                 ),
                 PBXSourcesBuildPhase(
-                    files: buildFiles([PBXBuildFile(
-                        file: elements[.internal("_CompileStub_.m")]!
-                    )])
+                    files: buildFiles([PBXBuildFile(file: compileStub)])
                 ),
             ],
             "C 1": [
@@ -1594,9 +1593,7 @@ touch "$SCRIPT_OUTPUT_FILE_1"
             ],
             "I": [
                 PBXSourcesBuildPhase(
-                    files: buildFiles([PBXBuildFile(
-                        file: elements[.internal("_CompileStub_.m")]!
-                    )])
+                    files: buildFiles([PBXBuildFile(file: compileStub)])
                 ),
                 PBXCopyFilesBuildPhase(
                     dstPath: "$(CONTENTS_FOLDER_PATH)/Watch",
@@ -1686,16 +1683,12 @@ touch "$SCRIPT_OUTPUT_FILE_1"
             ],
             "WDKE": [
                 PBXSourcesBuildPhase(
-                    files: buildFiles([PBXBuildFile(
-                        file: elements[.internal("_CompileStub_.m")]!
-                    )])
+                    files: buildFiles([PBXBuildFile(file: compileStub)])
                 ),
             ],
             "WKE": [
                 PBXSourcesBuildPhase(
-                    files: buildFiles([PBXBuildFile(
-                        file: elements[.internal("_CompileStub_.m")]!
-                    )])
+                    files: buildFiles([PBXBuildFile(file: compileStub)])
                 ),
             ],
         ]
@@ -1851,6 +1844,9 @@ touch "$SCRIPT_OUTPUT_FILE_1"
         let (
             files,
             _,
+            _,
+            compileStub,
+            _,
             _
         ) = Fixtures.files(
             in: pbxProj,
@@ -1867,6 +1863,7 @@ touch "$SCRIPT_OUTPUT_FILE_1"
             in: pbxProj,
             disambiguatedTargets: disambiguatedTargets,
             files: files,
+            compileStub: compileStub,
             products: products
         )
 

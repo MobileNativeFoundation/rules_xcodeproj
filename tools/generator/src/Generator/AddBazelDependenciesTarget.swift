@@ -148,12 +148,12 @@ $(INDEXING_SUPPORTED_PLATFORMS__$(INDEX_ENABLE_BUILD_ARENA))
         var outputFileListPaths: [String] = []
         if usesExternalFileList {
             outputFileListPaths.append(
-                FilePathResolver.resolveInternal(externalFileListPath)
+                "$(INTERNAL_DIR)/\(externalFileListPath)"
             )
         }
         if usesGeneratedFileList {
             outputFileListPaths.append(
-                FilePathResolver.resolveInternal(generatedFileListPath)
+                "$(INTERNAL_DIR)/\(generatedFileListPath)"
             )
         }
 

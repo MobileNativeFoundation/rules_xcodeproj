@@ -73,7 +73,7 @@ else
     output_groups+=("${labels_and_output_groups[i+1]}")
   done
 
-  if [ -z "${output_groups:-}" ]; then
+  if [ "${#output_groups[@]}" -eq 1 ]; then
     echo "BazelDependencies invoked without any output groups set." \
       "Exiting early."
     exit
