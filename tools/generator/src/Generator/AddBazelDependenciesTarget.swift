@@ -9,6 +9,7 @@ extension Generator {
         minimumXcodeVersion: SemanticVersion,
         xcodeConfigurations: Set<String>,
         defaultXcodeConfiguration: String,
+        targetIdsFile: String,
         indexImport: String,
         usesExternalFileList: Bool,
         usesGeneratedFileList: Bool,
@@ -56,6 +57,7 @@ $(INDEXING_SUPPORTED_PLATFORMS__NO)
 $(INDEXING_SUPPORTED_PLATFORMS__$(INDEX_ENABLE_BUILD_ARENA))
 """,
             "SUPPORTS_MACCATALYST": true,
+            "TARGET_IDS_FILE": targetIdsFile,
             "TARGET_NAME": "BazelDependencies",
         ]
 

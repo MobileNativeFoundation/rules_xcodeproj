@@ -67,6 +67,7 @@ final class GeneratorTests: XCTestCase {
             extraFiles: [],
             schemeAutogenerationMode: .auto,
             customXcodeSchemes: [],
+            targetIdsFile: "/tmp/target_ids",
             indexImport: "/tmp/index-import",
             preBuildScript: "./pre-build.sh",
             postBuildScript: "./post-build.sh"
@@ -461,6 +462,7 @@ final class GeneratorTests: XCTestCase {
             let minimumXcodeVersion: SemanticVersion
             let xcodeConfigurations: Set<String>
             let defaultXcodeConfiguration: String
+            let targetIdsFile: String
             let indexImport: String
             let usesExternalFileList: Bool
             let usesGeneratedFileList: Bool
@@ -479,6 +481,7 @@ final class GeneratorTests: XCTestCase {
             minimumXcodeVersion: SemanticVersion,
             xcodeConfigurations: Set<String>,
             defaultXcodeConfiguration: String,
+            targetIdsFile: String,
             indexImport: String,
             usesExternalFileList: Bool,
             usesGeneratedFileList: Bool,
@@ -494,6 +497,7 @@ final class GeneratorTests: XCTestCase {
                 minimumXcodeVersion: minimumXcodeVersion,
                 xcodeConfigurations: xcodeConfigurations,
                 defaultXcodeConfiguration: defaultXcodeConfiguration,
+                targetIdsFile: targetIdsFile,
                 indexImport: indexImport,
                 usesExternalFileList: usesExternalFileList,
                 usesGeneratedFileList: usesGeneratedFileList,
@@ -513,6 +517,7 @@ final class GeneratorTests: XCTestCase {
                 minimumXcodeVersion: project.minimumXcodeVersion,
                 xcodeConfigurations: project.xcodeConfigurations,
                 defaultXcodeConfiguration: project.defaultXcodeConfiguration,
+                targetIdsFile: project.targetIdsFile,
                 indexImport: project.indexImport,
                 usesExternalFileList: true,
                 usesGeneratedFileList: true,

@@ -70,6 +70,7 @@ struct Environment {
         _ minimumXcodeVersion: SemanticVersion,
         _ xcodeConfigurations: Set<String>,
         _ defaultXcodeConfiguration: String,
+        _ target_ids_file: String,
         _ indexImport: String,
         _ usesExternalFileList: Bool,
         _ usesGeneratedFileList: Bool,

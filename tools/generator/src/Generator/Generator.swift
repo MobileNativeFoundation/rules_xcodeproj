@@ -128,6 +128,7 @@ class Generator {
                 project.minimumXcodeVersion,
                 project.xcodeConfigurations,
                 project.defaultXcodeConfiguration,
+                project.targetIdsFile,
                 project.indexImport,
                 usesExternalFileList,
                 usesGeneratedFileList,

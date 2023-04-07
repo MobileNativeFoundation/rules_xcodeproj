@@ -986,7 +986,8 @@ def _write_spec(
         extra_files,
         extra_folders,
         infos,
-        minimum_xcode_version):
+        minimum_xcode_version,
+        target_ids_list):
     # `target_hosts`
     hosted_targets = depset(
         transitive = [info.hosted_targets for info in infos],
@@ -1002,6 +1003,9 @@ def _write_spec(
     spec_dto = {
         "B": config,
         "g": str(ctx.label),
+        "T": "fixture-target-ids-file" if is_fixture else build_setting_path(
+            file = target_ids_list,
+        ),
         "i": "fixture-index-import-path" if is_fixture else build_setting_path(
             file = ctx.executable._index_import,
         ),
@@ -1232,6 +1236,18 @@ echo "$execution_root" > "{out_full}"
             "no-remote": "1",
             "no-sandbox": "1",
         },
+    )
+
+    return output
+
+def _write_target_ids_list(*, ctx, target_dtos):
+    output = ctx.actions.declare_file(
+        "{}_target_ids".format(ctx.attr.name),
+    )
+
+    ctx.actions.write(
+        output,
+        "".join([id + "\n" for id in sorted(target_dtos.keys())]),
     )
 
     return output
@@ -1544,6 +1560,10 @@ configurations: {}""".format(", ".join(xcode_configurations)))
         replacement_labels_by_label = replacement_labels_by_label,
         inputs = inputs,
     )
+    target_ids_list = _write_target_ids_list(
+        ctx = ctx,
+        target_dtos = target_dtos,
+    )
 
     extension_infoplists = [
         s
@@ -1571,6 +1591,7 @@ configurations: {}""".format(", ".join(xcode_configurations)))
         extra_folders = extra_folders,
         infos = infos,
         minimum_xcode_version = minimum_xcode_version,
+        target_ids_list = target_ids_list,
     )
     execution_root_file = _write_execution_root_file(ctx = ctx)
     xccurrentversions_file = _write_xccurrentversions(
@@ -1717,6 +1738,7 @@ done
             all_targets = depset(
                 transitive = all_targets_files,
             ),
+            target_ids_list = depset([target_ids_list]),
             **dicts.add(
                 input_files_output_groups,
                 output_files_output_groups,
