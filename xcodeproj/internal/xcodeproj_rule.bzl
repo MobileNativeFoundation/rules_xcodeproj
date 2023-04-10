@@ -1288,20 +1288,14 @@ def _write_xcodeproj(
         build_mode,
         execution_root_file,
         extensionpointidentifiers_file,
-        install_directory,
+        install_path,
         is_fixture,
         colorize,
-        project_name,
         spec_files,
         workspace_directory,
         xccurrentversions_file):
     xcodeproj = ctx.actions.declare_directory(
         "{}.xcodeproj".format(ctx.attr.name),
-    )
-
-    install_path = paths.join(
-        install_directory,
-        "{}.xcodeproj".format(project_name),
     )
 
     args = ctx.actions.args()
@@ -1336,7 +1330,7 @@ def _write_xcodeproj(
         },
     )
 
-    return xcodeproj, install_path
+    return xcodeproj
 
 def _write_installer(
         *,
@@ -1506,6 +1500,7 @@ configurations: {}""".format(", ".join(xcode_configurations)))
 
     build_mode = ctx.attr.build_mode
     config = ctx.attr.config
+    install_path = ctx.attr.install_path
     is_fixture = ctx.attr._is_fixture
     colorize = ctx.attr.colorize
     project_name = ctx.attr.project_name
@@ -1711,12 +1706,11 @@ done
     else:
         bazel_integration_files.extend(ctx.files._bazel_integration_files)
 
-    xcodeproj, install_path = _write_xcodeproj(
+    xcodeproj = _write_xcodeproj(
         ctx = ctx,
         execution_root_file = execution_root_file,
-        install_directory = ctx.attr.install_directory,
+        install_path = install_path,
         workspace_directory = ctx.attr.workspace_directory,
-        project_name = project_name,
         spec_files = spec_files,
         xccurrentversions_file = xccurrentversions_file,
         extensionpointidentifiers_file = extensionpointidentifiers_file,
@@ -1815,7 +1809,7 @@ def make_xcodeproj_rule(
         "focused_targets": attr.string_list(
             mandatory = True,
         ),
-        "install_directory": attr.string(
+        "install_path": attr.string(
             mandatory = True,
         ),
         "minimum_xcode_version": attr.string(

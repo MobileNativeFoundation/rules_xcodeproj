@@ -168,7 +168,7 @@ readonly bazel_cmd=(
 echo >&2
 
 if [[ $original_arg_count -eq 0 ]]; then
-  echo 'Generating "%project_name%.xcodeproj"' >&2
+  echo 'Generating "%install_path%"' >&2
 
   "${bazel_cmd[@]}" \
     run \
