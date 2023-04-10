@@ -56,6 +56,8 @@ EXTRA_FILES = [
     "//:README.md",
 ]
 
+FAIL_FOR_INVALID_EXTRA_FILES_TARGETS = True
+
 ASSOCIATED_EXTRA_FILES = {
     "//iOSApp/Source:iOSApp": ["//iOSApp:ownership.yaml"],
     "//Lib": ["//Lib:README.md"],

@@ -17,6 +17,7 @@ load(
 load(":flattened_key_values.bzl", "flattened_key_values")
 load(":input_files.bzl", "input_files")
 load(":lldb_contexts.bzl", "lldb_contexts")
+load(":logging.bzl", "warn")
 load(":output_files.bzl", "output_files")
 load(":platform.bzl", "platform_info")
 load(":project_options.bzl", "project_options_to_dto")
@@ -40,6 +41,17 @@ _TERMINAL_PRODUCT_TYPES = {
     "com.apple.product-type.bundle.unit-test": None,
     "com.apple.product-type.bundle.ui-testing": None,
 }
+
+# Error Message Strings
+
+_INVALID_EXTRA_FILES_TARGETS_BASE_MESSAGE = """\
+Are you using an `alias`? `associated_extra_files` requires labels of the \
+actual targets: {}
+"""
+
+_INVALID_EXTRA_FILES_TARGETS_HINT = """\
+You can turn this error into a warning with `fail_for_invalid_extra_files_targets`
+"""
 
 def _calculate_unfocused_dependencies(
         *,
@@ -280,7 +292,9 @@ def _process_targets(
         infos,
         infos_per_xcode_configuration,
         owned_extra_files,
-        include_swiftui_previews_scheme_targets):
+        include_swiftui_previews_scheme_targets,
+        fail_for_invalid_extra_files_targets,
+        ):
     resource_bundle_xcode_targets = []
     unprocessed_targets = {}
     xcode_configurations = {}
@@ -383,10 +397,11 @@ targets.
         if label not in target_label_strs
     ]
     if invalid_extra_files_targets:
-        fail("""\
-Are you using an `alias`? `associated_extra_files` requires labels of the \
-actual targets: {}
-""".format(invalid_extra_files_targets))
+        message = _INVALID_EXTRA_FILES_TARGETS_BASE_MESSAGE.format(invalid_extra_files_targets)
+        if fail_for_invalid_extra_files_targets:
+            fail(message + _INVALID_EXTRA_FILES_TARGETS_HINT)
+        else:
+            warn(message)
 
     unfocused_libraries = {
         library: None
@@ -1546,6 +1561,9 @@ configurations: {}""".format(", ".join(xcode_configurations)))
             build_mode == "bazel" and
             ctx.attr.adjust_schemes_for_swiftui_previews
         ),
+        fail_for_invalid_extra_files_targets = (
+            ctx.attr.fail_for_invalid_extra_files_targets
+        ),
     )
 
     args = {
@@ -1801,6 +1819,9 @@ def make_xcodeproj_rule(
             mandatory = True,
         ),
         "default_xcode_configuration": attr.string(),
+        "fail_for_invalid_extra_files_targets": attr.bool(
+            default = True,
+        ),
         "focused_targets": attr.string_list(
             mandatory = True,
         ),

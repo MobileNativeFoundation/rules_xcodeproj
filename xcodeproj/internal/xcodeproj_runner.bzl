@@ -253,6 +253,9 @@ def _write_generator_build_file(
             "%default_xcode_configuration%": (
                 _serialize_nullable_string(attr.default_xcode_configuration)
             ),
+            "%fail_for_invalid_extra_files_targets%": (
+                str(attr.fail_for_invalid_extra_files_targets)
+            ),
             "%focused_targets%": str(attr.focused_targets),
             "%install_directory%": attr.install_directory,
             "%ios_device_cpus%": attr.ios_device_cpus,
@@ -507,6 +510,9 @@ xcodeproj_runner = rule(
             mandatory = True,
         ),
         "default_xcode_configuration": attr.string(),
+        "fail_for_invalid_extra_files_targets": attr.bool(
+            default = True,
+        ),
         "focused_targets": attr.string_list(
             default = [],
         ),
