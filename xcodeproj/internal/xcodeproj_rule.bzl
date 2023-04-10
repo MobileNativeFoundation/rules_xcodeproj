@@ -26,7 +26,7 @@ load(":platforms.bzl", "platforms")
 load(":project_options.bzl", "project_options_to_dto")
 load(":providers.bzl", "XcodeProjInfo")
 load(":resource_target.bzl", "process_resource_bundles")
-load(":target_id.bzl", "write_target_ids_list")
+load(":target_id.bzl", "write_target_ids_list", "calculate_replacement_label")
 load(":xcode_targets.bzl", "xcode_targets")
 
 # Utility
@@ -1485,12 +1485,27 @@ configurations: {}""".format(", ".join(xcode_configurations)))
     )
     focused_labels = {label: None for label in ctx.attr.focused_targets}
     unfocused_labels = {label: None for label in ctx.attr.unfocused_targets}
-    replacement_labels = {
-        r.id: r.label
-        for r in depset(
-            transitive = [info.replacement_labels for info in infos],
-        ).to_list()
+
+    replacement_labels_infos = depset(
+        transitive = [info.replacement_labels for info in infos],
+    ).to_list()
+
+    # Finds ids associated with multiple labels
+    multiple_replacement_labels = {
+        r.id: [x.label for x in replacement_labels_infos if x.id == r.id] # all labels associated with this id
+        for r in replacement_labels_infos
+        if len([s.id for s in replacement_labels_infos if s.id == r.id]) > 1 # Check to only consider ids associated with multiple labels
     }
+    # Ensures the id <=> label relationship is 1-1
+    replacement_labels = {}
+    for r in replacement_labels_infos:
+        if r.id in multiple_replacement_labels:
+            replacement_labels[r.id] = calculate_replacement_label(
+                id = r.id,
+                replacement_labels = multiple_replacement_labels[r.id],
+            )
+        else:
+            replacement_labels[r.id] = r.label
 
     (
         targets,

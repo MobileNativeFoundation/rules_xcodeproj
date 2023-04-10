@@ -74,6 +74,10 @@ _BUILD_TEST_RULES = {
     "test_suite": None,
 }
 
+_TEST_SUITE_RULES = {
+    "test_suite": None,
+}
+
 def _should_skip_target(*, ctx, target):
     """Determines if the given target should be skipped for target generation.
 
@@ -88,6 +92,8 @@ def _should_skip_target(*, ctx, target):
         `True` if `target` should be skipped for target generation.
     """
     if ctx.rule.kind in _BUILD_TEST_RULES:
+        return True
+    if ctx.rule.kind in _TEST_SUITE_RULES:
         return True
 
     if AppleBinaryInfo in target and not hasattr(ctx.rule.attr, "deps"):
