@@ -260,14 +260,10 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
     ) throws -> [String: BuildSetting] {
         var buildSettings = target.buildSettings
 
-        if let linkParams = target.linkParams {
+        if target.linkParams != nil {
             try buildSettings.prepend(
                 onKey: "OTHER_LDFLAGS",
                 ["@$(DERIVED_FILE_DIR)/link.params"]
-            )
-            buildSettings.set(
-                "LINK_PARAMS_FILE",
-                to: FilePathResolver.resolveGenerated(linkParams.path)
             )
         }
 
