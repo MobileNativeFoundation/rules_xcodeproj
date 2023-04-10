@@ -127,7 +127,7 @@ def xcodeproj(
         extra_files: Optional. A `list` of extra `File`s to be added to the
             project.
         fail_for_invalid_extra_files_targets: Optional. Determines wether, when
-            processing targets, invalid extra files without labels will fail or 
+            processing targets, invalid extra files without labels will fail or
             just emit a warning. Defaults to `True`.
         focused_targets: Optional. A `list` of target labels as `string` values.
             If specified, only these targets will be included in the generated
