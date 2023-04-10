@@ -587,5 +587,12 @@ def create_xcodeprojinfo(*, ctx, build_mode, target, transitive_infos):
 
     return XcodeProjInfo(
         label = target.label,
+        labels = depset(
+            [target.label],
+            transitive = [
+                info.labels
+                for _, info in transitive_infos
+            ],
+        ),
         **info_fields
     )
