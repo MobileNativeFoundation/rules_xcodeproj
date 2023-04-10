@@ -470,8 +470,11 @@ actual targets: {}
         # Remove from unfocused (to support `xcode_required_targets`)
         unfocused_targets.pop(xcode_target.id, None)
 
-        # Adjust `unfocused_labels` for `extra_files` logic later
+        # Adjust `{un.}focused_labels` for `extra_files` logic later
         unfocused_labels.pop(label_str, None)
+        if has_focused_labels:
+            # Add in `xcode_required_targets`
+            focused_labels[label_str] = None
 
         infoplist = xcode_target.outputs.transitive_infoplists
         if infoplist:
@@ -529,7 +532,7 @@ actual targets: {}
 
             # Adjust `{un,}focused_labels` for `extra_files` logic later
             unfocused_labels.pop(src_label_str, None)
-            if focused_labels and dest in focused_labels:
+            if has_focused_labels and dest in focused_labels:
                 focused_labels[src_label_str] = None
 
     unfocused_dependencies = _calculate_unfocused_dependencies(
