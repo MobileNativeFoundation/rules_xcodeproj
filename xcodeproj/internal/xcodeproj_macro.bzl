@@ -19,6 +19,7 @@ def xcodeproj(
         config = "rules_xcodeproj",
         default_xcode_configuration = None,
         extra_files = [],
+        fail_for_invalid_extra_files_targets = True,
         focused_targets = [],
         install_directory = None,
         ios_device_cpus = "arm64",
@@ -125,6 +126,9 @@ def xcodeproj(
             to adjust Xcode configurations.
         extra_files: Optional. A `list` of extra `File`s to be added to the
             project.
+        fail_for_invalid_extra_files_targets: Optional. Determines wether, when
+            processing targets, invalid extra files without labels will fail or
+            just emit a warning. Defaults to `True`.
         focused_targets: Optional. A `list` of target labels as `string` values.
             If specified, only these targets will be included in the generated
             project; all other targets will be excluded, as if they were
@@ -429,6 +433,7 @@ Please refer to https://bazel.build/extending/config#defining) on how to them.
         bazel_env = bazel_env,
         config = config,
         default_xcode_configuration = default_xcode_configuration,
+        fail_for_invalid_extra_files_targets = fail_for_invalid_extra_files_targets,
         focused_targets = focused_targets,
         install_directory = install_directory,
         ios_device_cpus = ios_device_cpus,

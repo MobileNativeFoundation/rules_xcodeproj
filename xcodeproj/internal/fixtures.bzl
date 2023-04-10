@@ -147,6 +147,7 @@ def xcodeproj_fixture(
         config = "rules_xcodeproj",
         default_xcode_configuration = None,
         extra_files = [],
+        fail_for_invalid_extra_files_targets = True,
         top_level_targets = [],
         focused_targets = [],
         unfocused_targets = [],
@@ -172,6 +173,7 @@ def xcodeproj_fixture(
         default_xcode_configuration: Maps to
             `xcodeproj.default_xcode_configuration`.
         extra_files: Maps to `xcodeproj.extra_files`.
+        fail_for_invalid_extra_files_targets: Maps to `fail_for_invalid_extra_files_targets`.
         post_build: Maps to `xcodeproj.post_build`.
         pre_build: Maps to `xcodeproj.pre_build`.
         project_options: Maps to `xcodeproj.project_options`.
@@ -204,6 +206,7 @@ def xcodeproj_fixture(
             config = config,
             default_xcode_configuration = default_xcode_configuration,
             extra_files = extra_files,
+            fail_for_invalid_extra_files_targets = fail_for_invalid_extra_files_targets,
             focused_targets = focused_targets,
             is_fixture = True,
             minimum_xcode_version = _MINIMUM_XCODE_VERSION,
