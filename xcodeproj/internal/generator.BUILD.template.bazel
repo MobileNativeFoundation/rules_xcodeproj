@@ -10,7 +10,7 @@ load(
 #
 # This target is generated and invoked by `xcodeproj_runner`.
 xcodeproj(
-    name = "generator",
+    name = "%name%",
     adjust_schemes_for_swiftui_previews = %adjust_schemes_for_swiftui_previews%,
     build_mode = "%build_mode%",
     bazel_env = BAZEL_ENV,

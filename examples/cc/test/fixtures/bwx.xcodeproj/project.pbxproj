@@ -105,7 +105,6 @@
 		608FC1B03035074235E81C33 /* lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = lib.c; sourceTree = "<group>"; };
 		655197F36E3561F5EBB2B456 /* lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib.h; sourceTree = "<group>"; };
 		68571FA99BB8CAC9AA027C16 /* lib2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib2.h; sourceTree = "<group>"; };
-		7044C7DEF0FF7D895F8E44CF /* tool.4.link.params */ = {isa = PBXFileReference; path = tool.4.link.params; sourceTree = "<group>"; };
 		749ECE521B1B50D3AF8C99A4 /* liblib_defines.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_defines.a; path = "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib/liblib_defines.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		82E1AC498ACAE9E123276B7A /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		93D1D27158A07AD68DCD9F1C /* private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = private.h; sourceTree = "<group>"; };
@@ -114,6 +113,7 @@
 		B13DA8B967470B62463A7C36 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		B6393A8054CC3DB8C2683C2E /* tool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tool; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCF94D18F26384B90265A750 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
+		C4540894ED64E2ADAFAEF962 /* tool.4.link.params */ = {isa = PBXFileReference; path = tool.4.link.params; sourceTree = "<group>"; };
 		C73161F68ABCBA66C2144108 /* defines.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = defines.c; sourceTree = "<group>"; };
 		D109608ACC4D1F3CF46B8BA8 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		D863235E2E1687A367308396 /* private.inc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = private.inc; sourceTree = "<group>"; };
@@ -250,6 +250,22 @@
 			path = "bazel-out";
 			sourceTree = SOURCE_ROOT;
 		};
+		79625E392E4088F3D93C0B5D /* test */ = {
+			isa = PBXGroup;
+			children = (
+				D1FBF8C30AF2D4B91744D03E /* fixtures */,
+			);
+			path = test;
+			sourceTree = "<group>";
+		};
+		7F1C764D0DEBDAC52E11EAF3 /* xcodeproj_bwx-params */ = {
+			isa = PBXGroup;
+			children = (
+				C4540894ED64E2ADAFAEF962 /* tool.4.link.params */,
+			);
+			path = "xcodeproj_bwx-params";
+			sourceTree = "<group>";
+		};
 		8EC0A5AD173DDF13D9361EBE /* tool */ = {
 			isa = PBXGroup;
 			children = (
@@ -271,7 +287,7 @@
 		9AC493BBC1DEC135D929E523 /* generator */ = {
 			isa = PBXGroup;
 			children = (
-				A201E7A0CFC9CC956948BA70 /* generator-params */,
+				79625E392E4088F3D93C0B5D /* test */,
 			);
 			path = generator;
 			sourceTree = "<group>";
@@ -284,20 +300,20 @@
 			path = lib2_prefix;
 			sourceTree = "<group>";
 		};
-		A201E7A0CFC9CC956948BA70 /* generator-params */ = {
-			isa = PBXGroup;
-			children = (
-				7044C7DEF0FF7D895F8E44CF /* tool.4.link.params */,
-			);
-			path = "generator-params";
-			sourceTree = "<group>";
-		};
 		AC4250FBBE388BE6EF181072 /* _virtual_includes */ = {
 			isa = PBXGroup;
 			children = (
 				E3DC78DDF4F752131CE8F6ED /* lib_headers */,
 			);
 			path = _virtual_includes;
+			sourceTree = "<group>";
+		};
+		AF2E1D31BFD2F1E20E3F982A /* xcodeproj_bwx */ = {
+			isa = PBXGroup;
+			children = (
+				7F1C764D0DEBDAC52E11EAF3 /* xcodeproj_bwx-params */,
+			);
+			path = xcodeproj_bwx;
 			sourceTree = "<group>";
 		};
 		B93A94C580A3732A5B346592 /* examples_cc_external */ = {
@@ -343,6 +359,14 @@
 			isa = PBXGroup;
 			children = (
 				B13DA8B967470B62463A7C36 /* BUILD */,
+			);
+			path = fixtures;
+			sourceTree = "<group>";
+		};
+		D1FBF8C30AF2D4B91744D03E /* fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				AF2E1D31BFD2F1E20E3F982A /* xcodeproj_bwx */,
 			);
 			path = fixtures;
 			sourceTree = "<group>";
@@ -997,7 +1021,7 @@
 				EXECUTABLE_EXTENSION = "";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GENERATE_INFOPLIST_FILE = YES;
-				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/generator-params/tool.4.link.params";
+				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/tool.4.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";

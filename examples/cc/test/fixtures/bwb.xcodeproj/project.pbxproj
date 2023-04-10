@@ -89,8 +89,8 @@
 		929141189779333F1DDD490C /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		9293611F1DD15F7DC235A447 /* lib3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib3.h; sourceTree = "<group>"; };
 		A25A68436486B6902B017B45 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
-		B7D9A4F903F37F7041656372 /* tool.4.link.params */ = {isa = PBXFileReference; path = tool.4.link.params; sourceTree = "<group>"; };
 		C4656D9E70B9E31C9EA13B82 /* liblib_defines.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_defines.a; path = "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib/liblib_defines.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF7B9B39E6A1899D7E5BD284 /* tool.4.link.params */ = {isa = PBXFileReference; path = tool.4.link.params; sourceTree = "<group>"; };
 		D14C8349EFC6309D19C1FFFD /* lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = lib.c; sourceTree = "<group>"; };
 		D20093170A54E92A741D748D /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		E475F19E9E0AF14E1F46E023 /* liblib_impl.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_impl.a; path = "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external/liblib_impl.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,6 +103,14 @@
 				3E72C5A9884694D3111105C4 /* _virtual_includes */,
 			);
 			path = lib3;
+			sourceTree = "<group>";
+		};
+		2454E755EE3BE4DB125DD927 /* xcodeproj_bwb-params */ = {
+			isa = PBXGroup;
+			children = (
+				CF7B9B39E6A1899D7E5BD284 /* tool.4.link.params */,
+			);
+			path = "xcodeproj_bwb-params";
 			sourceTree = "<group>";
 		};
 		37E3120547BEDCC42886C663 /* lib2 */ = {
@@ -173,14 +181,6 @@
 			path = lib_headers;
 			sourceTree = "<group>";
 		};
-		5BBCE0D88B978B77DAADCBB5 /* generator-params */ = {
-			isa = PBXGroup;
-			children = (
-				B7D9A4F903F37F7041656372 /* tool.4.link.params */,
-			);
-			path = "generator-params";
-			sourceTree = "<group>";
-		};
 		5C981C5BDF60FD9AF790B0BB /* tool */ = {
 			isa = PBXGroup;
 			children = (
@@ -190,12 +190,28 @@
 			path = tool;
 			sourceTree = "<group>";
 		};
+		5CB4840F390865C265614BE6 /* test */ = {
+			isa = PBXGroup;
+			children = (
+				D7584EFCA4F1F0E7E2B59CAB /* fixtures */,
+			);
+			path = test;
+			sourceTree = "<group>";
+		};
 		6D6EBA8D005ADA6B19181E6B /* external */ = {
 			isa = PBXGroup;
 			children = (
 				39E8685168A90ADF6E2C433B /* rules_xcodeproj_generated */,
 			);
 			path = external;
+			sourceTree = "<group>";
+		};
+		707ACF8AFF03035A13498AA1 /* xcodeproj_bwb */ = {
+			isa = PBXGroup;
+			children = (
+				2454E755EE3BE4DB125DD927 /* xcodeproj_bwb-params */,
+			);
+			path = xcodeproj_bwb;
 			sourceTree = "<group>";
 		};
 		891FF4EFB55BD0CCB8B61ED5 /* Products */ = {
@@ -276,7 +292,7 @@
 		A9043112325EE3CCB91F9109 /* generator */ = {
 			isa = PBXGroup;
 			children = (
-				5BBCE0D88B978B77DAADCBB5 /* generator-params */,
+				5CB4840F390865C265614BE6 /* test */,
 			);
 			path = generator;
 			sourceTree = "<group>";
@@ -322,6 +338,14 @@
 				1D89D3FEA341D6633BEC3C98 /* private.h */,
 			);
 			path = private;
+			sourceTree = "<group>";
+		};
+		D7584EFCA4F1F0E7E2B59CAB /* fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				707ACF8AFF03035A13498AA1 /* xcodeproj_bwb */,
+			);
+			path = fixtures;
 			sourceTree = "<group>";
 		};
 		DA71B8AC4306AD7E3F4B9A12 /* lib2 */ = {
@@ -880,7 +904,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				EXECUTABLE_EXTENSION = "";
 				GCC_OPTIMIZATION_LEVEL = 0;
-				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/generator-params/tool.4.link.params";
+				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tool.4.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";

@@ -105,7 +105,7 @@ readonly nested_output_base="$output_base/rules_xcodeproj/build_output_base"
 
 # Create files for the generator target
 output_base_hash=$(/sbin/md5 -q -s "$output_base")
-readonly generator_package_directory="/tmp/rules_xcodeproj/generated/$output_base_hash/generator"
+readonly generator_package_directory="/tmp/rules_xcodeproj/generated/$output_base_hash/%generator_package_name%"
 
 mkdir -p "$generator_package_directory"
 cp "$generator_build_file" "$generator_package_directory/BUILD"

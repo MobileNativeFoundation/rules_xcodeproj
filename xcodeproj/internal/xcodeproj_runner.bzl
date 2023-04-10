@@ -1,6 +1,7 @@
 """Implementation of the `xcodeproj_runner` rule."""
 
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
+load("@bazel_skylib//lib:paths.bzl", "paths")
 load(":collections.bzl", "uniq")
 load(":providers.bzl", "XcodeProjRunnerOutputInfo")
 
@@ -259,6 +260,7 @@ def _write_generator_build_file(
             "%ios_device_cpus%": attr.ios_device_cpus,
             "%ios_simulator_cpus%": attr.ios_simulator_cpus,
             "%minimum_xcode_version%": attr.minimum_xcode_version,
+            "%name%": name,
             "%owned_extra_files%": str(attr.owned_extra_files),
             "%post_build%": attr.post_build,
             "%pre_build%": attr.pre_build,
@@ -288,7 +290,6 @@ def _write_generator_build_file(
 
 def _write_runner(
         *,
-        name,
         actions,
         bazel_env,
         bazel_path,
@@ -299,6 +300,8 @@ def _write_runner(
         generator_build_file,
         generator_defs_bzl,
         is_fixture,
+        name,
+        package,
         project_name,
         runner_label,
         schemes_json,
@@ -366,8 +369,9 @@ def_env+='}}'""".format(
 
     is_bazel_6 = hasattr(apple_common, "link_multi_arch_static_library")
 
-    # TODO: Create a unique generator per target
-    generator_label = "{repo}//generator".format(
+    generator_package_name = paths.join("generator", package, name)
+    generator_label = "{repo}//{package}".format(
+        package = generator_package_name,
         repo = (
             str(Label("@rules_xcodeproj_generated//:BUILD")).split("//", 1)[0]
         ),
@@ -387,6 +391,7 @@ def_env+='}}'""".format(
             "%generator_label%": generator_label,
             "%generator_build_file%": generator_build_file.short_path,
             "%generator_defs_bzl%": generator_defs_bzl.short_path,
+            "%generator_package_name%": generator_package_name,
             "%is_bazel_6%": "1" if is_bazel_6 else "0",
             "%is_fixture%": "1" if is_fixture else "0",
             "%project_name%": project_name,
@@ -454,6 +459,7 @@ def _xcodeproj_runner_impl(ctx):
 
     runner = _write_runner(
         name = name,
+        package = ctx.label.package,
         actions = actions,
         bazel_env = ctx.attr.bazel_env,
         bazel_path = ctx.attr.bazel_path,
