@@ -522,7 +522,6 @@ targets.
         if len(src_ids) > 1:
             # We can only merge targets with a single library dependency
             continue
-        dest_target = unprocessed_targets[dest]
         dest_label_str = xcode_target_label_strs[dest]
 
         for src in src_ids:
@@ -532,17 +531,13 @@ targets.
                 continue
 
             src_target = unprocessed_targets[src]
+            src_label_str = xcode_target_label_strs[src]
 
             # Always include src of target merge if dest is included
             focused_targets[src] = src_target
 
             # Remove from unfocused (to support `xcode_required_targets`)
             unfocused_targets.pop(src, None)
-
-    for dest, srcs in target_merge_dests.items():
-        for src in srcs:
-            src_target = unprocessed_targets[src]
-            src_label_str = xcode_target_label_strs[src]
 
             # Adjust `{un,}focused_labels` for `extra_files` logic later
             unfocused_labels.pop(src_label_str, None)
@@ -565,8 +560,6 @@ targets.
         build_mode != "xcode"
     )
 
-    additional_generated = {}
-    additional_outputs = {}
     for xcode_target in focused_targets.values():
         label = xcode_target_labels[xcode_target.id]
         label_str = xcode_target_label_strs[xcode_target.id]
@@ -713,6 +706,8 @@ targets.
         if link_params:
             target_link_params[xcode_target.id] = depset([link_params])
 
+    additional_generated = {}
+    additional_outputs = {}
     for xcode_target in focused_targets.values():
         (
             transitive_dependencies,
