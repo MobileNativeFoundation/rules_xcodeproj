@@ -592,6 +592,7 @@ def _xcode_target_to_dto(
         "b",
         _build_settings_to_dto(
             build_mode = build_mode,
+            link_params = link_params,
             linker_products_map = linker_products_map,
             xcode_generated_paths = xcode_generated_paths,
             xcode_target = xcode_target,
@@ -717,10 +718,16 @@ def _xcode_target_to_dto(
 def _build_settings_to_dto(
         *,
         build_mode,
+        link_params,
         linker_products_map,
         xcode_generated_paths,
         xcode_target):
     build_settings = structs.to_dict(xcode_target._build_settings)
+
+    if link_params:
+        build_settings["LINK_PARAMS_FILE"] = build_setting_path(
+            path = link_params.path,
+        )
 
     _set_bazel_outputs_product(
         build_mode = build_mode,
