@@ -173,9 +173,9 @@ def normalized_file_path(file, *, folder_type_extensions):
     path = file.path
 
     for extension in folder_type_extensions:
-        prefix, ext, _ = path.partition(extension)
-        if not ext:
+        if extension not in path:
             continue
+        prefix, ext, _ = path.partition(extension)
         return file_path(
             file,
             path = prefix + ext,
