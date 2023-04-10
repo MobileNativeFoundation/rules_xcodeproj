@@ -512,7 +512,7 @@ xcodeproj_runner = rule(
     implementation = _xcodeproj_runner_impl,
     attrs = {
         "adjust_schemes_for_swiftui_previews": attr.bool(
-            default = False,
+            default = True,
             mandatory = True,
         ),
         "build_mode": attr.string(
