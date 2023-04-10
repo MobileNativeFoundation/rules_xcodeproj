@@ -232,6 +232,7 @@ def _write_generator_build_file(
         actions,
         attr,
         build_file_path,
+        install_path,
         name,
         runner_label,
         repo,
@@ -257,6 +258,7 @@ def _write_generator_build_file(
             ),
             "%focused_targets%": str(attr.focused_targets),
             "%install_directory%": attr.install_directory,
+            "%install_path%": install_path,
             "%ios_device_cpus%": attr.ios_device_cpus,
             "%ios_simulator_cpus%": attr.ios_simulator_cpus,
             "%minimum_xcode_version%": attr.minimum_xcode_version,
@@ -299,10 +301,10 @@ def _write_runner(
         extra_generator_flags,
         generator_build_file,
         generator_defs_bzl,
+        install_path,
         is_fixture,
         name,
         package,
-        project_name,
         runner_label,
         schemes_json,
         template,
@@ -392,9 +394,9 @@ def_env+='}}'""".format(
             "%generator_build_file%": generator_build_file.short_path,
             "%generator_defs_bzl%": generator_defs_bzl.short_path,
             "%generator_package_name%": generator_package_name,
+            "%install_path%": install_path,
             "%is_bazel_6%": "1" if is_bazel_6 else "0",
             "%is_fixture%": "1" if is_fixture else "0",
-            "%project_name%": project_name,
             "%runner_label%": runner_label,
             "%schemes_json%": schemes_json.short_path,
             "%xcode_version%": xcode_version,
@@ -416,6 +418,11 @@ def _xcodeproj_runner_impl(ctx):
         "@"
     )
     runner_label = str(ctx.label)
+
+    install_path = paths.join(
+        ctx.attr.install_directory,
+        "{}.xcodeproj".format(project_name),
+    )
 
     xcode_version = _get_xcode_product_version(
         xcode_config = ctx.attr._xcode_config[apple_common.XcodeVersionConfig],
@@ -443,6 +450,7 @@ def _xcodeproj_runner_impl(ctx):
         actions = actions,
         attr = attr,
         build_file_path = ctx.build_file_path,
+        install_path = install_path,
         name = name,
         runner_label = runner_label,
         repo = repo,
@@ -471,8 +479,8 @@ def _xcodeproj_runner_impl(ctx):
         ),
         generator_build_file = generator_build_file,
         generator_defs_bzl = generator_defs_bzl,
+        install_path = install_path,
         is_fixture = is_fixture,
-        project_name = project_name,
         runner_label = runner_label,
         schemes_json = schemes_json,
         template = ctx.file._runner_template,
