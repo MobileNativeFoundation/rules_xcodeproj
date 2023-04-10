@@ -358,10 +358,10 @@ def _process_targets(
     # that create Xcode targets
     label_strs = {
         bazel_labels.normalize_label(
-            replacement_labels_by_label.get(label, label)
+            replacement_labels_by_label.get(label, label),
         ): None
         for label in depset(
-            transitive = [info.labels for info in infos]
+            transitive = [info.labels for info in infos],
         ).to_list()
     }
 
