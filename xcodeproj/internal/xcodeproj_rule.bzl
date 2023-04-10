@@ -1319,6 +1319,7 @@ def _write_xcodeproj(
     ctx.actions.run(
         executable = ctx.attr._generator[DefaultInfo].files_to_run,
         mnemonic = "GenerateXcodeProj",
+        progress_message = "Generating \"{}\"".format(install_path),
         arguments = [args],
         inputs = spec_files + [
             execution_root_file,
