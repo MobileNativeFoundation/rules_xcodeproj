@@ -721,6 +721,7 @@ def _build_settings_to_dto(
         xcode_generated_paths,
         xcode_target):
     build_settings = structs.to_dict(xcode_target._build_settings)
+
     _set_bazel_outputs_product(
         build_mode = build_mode,
         build_settings = build_settings,
