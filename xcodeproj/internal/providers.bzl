@@ -157,6 +157,9 @@ specified in `top_level_targets` cause duplicate mis-configured targets to be
 added to the project.
 """,
         "label": "The `Label` of the target.",
+        "labels": """\
+A `depset` of `Labels` for the target and its transitive dependencies.
+""",
         "lldb_context": "A value returned from `lldb_context.collect`.",
         "mergable_xcode_library_targets": """\
 A `List` of `struct`s with 'id' and 'product_path' fields. The 'id' field

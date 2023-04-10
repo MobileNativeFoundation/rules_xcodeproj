@@ -345,23 +345,30 @@ def _process_targets(
         for id, label in replacement_labels.items()
     }
 
-    labels = {
+    xcode_target_labels = {
         t.id: replacement_labels.get(t.id, t.label)
         for t in unprocessed_targets.values()
     }
-    label_strs = {
+    xcode_target_label_strs = {
         id: bazel_labels.normalize_label(label)
-        for id, label in labels.items()
+        for id, label in xcode_target_labels.items()
     }
-    target_label_strs = {
-        label_str: None
-        for label_str in label_strs.values()
+
+    # Can't use `xcode_target_label_strs`, as those are only for bazel targets
+    # that create Xcode targets
+    label_strs = {
+        bazel_labels.normalize_label(
+            replacement_labels_by_label.get(label, label),
+        ): None
+        for label in depset(
+            transitive = [info.labels for info in infos],
+        ).to_list()
     }
 
     invalid_focused_targets = [
         label
         for label in focused_labels
-        if label not in target_label_strs
+        if label not in label_strs
     ]
     if invalid_focused_targets:
         fail("""\
@@ -380,7 +387,7 @@ targets.
     invalid_extra_files_targets = [
         label
         for label in owned_extra_files.values()
-        if label not in target_label_strs
+        if label not in label_strs
     ]
     if invalid_extra_files_targets:
         fail("""\
@@ -415,7 +422,7 @@ actual targets: {}
                     path = file.dirname,
                 )] = build_setting_path(file = product.file)
 
-        label_str = label_strs[xcode_target.id]
+        label_str = xcode_target_label_strs[xcode_target.id]
         if (label_str in unfocused_labels or
             (has_focused_labels and label_str not in focused_labels)):
             unfocused_targets[xcode_target.id] = xcode_target
@@ -457,8 +464,8 @@ actual targets: {}
 
     infoplists = {}
     for xcode_target in focused_targets.values():
-        label = labels[xcode_target.id]
-        label_str = label_strs[xcode_target.id]
+        label = xcode_target_labels[xcode_target.id]
+        label_str = xcode_target_label_strs[xcode_target.id]
 
         # Remove from unfocused (to support `xcode_required_targets`)
         unfocused_targets.pop(xcode_target.id, None)
@@ -499,7 +506,7 @@ actual targets: {}
             # We can only merge targets with a single library dependency
             continue
         dest_target = unprocessed_targets[dest]
-        dest_label_str = label_strs[dest]
+        dest_label_str = xcode_target_label_strs[dest]
 
         for src in src_ids:
             target_merge_dests.setdefault(dest, []).append(src)
@@ -518,7 +525,7 @@ actual targets: {}
     for dest, srcs in target_merge_dests.items():
         for src in srcs:
             src_target = unprocessed_targets[src]
-            src_label_str = label_strs[src]
+            src_label_str = xcode_target_label_strs[src]
 
             # Adjust `{un,}focused_labels` for `extra_files` logic later
             unfocused_labels.pop(src_label_str, None)
@@ -544,8 +551,8 @@ actual targets: {}
     additional_generated = {}
     additional_outputs = {}
     for xcode_target in focused_targets.values():
-        label = labels[xcode_target.id]
-        label_str = label_strs[xcode_target.id]
+        label = xcode_target_labels[xcode_target.id]
+        label_str = xcode_target_label_strs[xcode_target.id]
 
         for file, owner_label in owned_extra_files.items():
             if label_str == owner_label:
@@ -666,7 +673,7 @@ actual targets: {}
         dto, replaced_dependencies, link_params = xcode_targets.to_dto(
             ctx = ctx,
             xcode_target = xcode_target,
-            label = labels[xcode_target.id],
+            label = xcode_target_labels[xcode_target.id],
             is_fixture = is_fixture,
             additional_scheme_target_ids = additional_scheme_target_ids,
             build_mode = build_mode,
@@ -728,7 +735,7 @@ actual targets: {}
         additional_indexstores_files = []
         additional_linking_files = []
 
-        label = labels[xcode_target.id]
+        label = xcode_target_labels[xcode_target.id]
         target_infoplists = infoplists.get(label)
         if target_infoplists:
             additional_linking_files.extend(target_infoplists)

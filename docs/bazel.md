@@ -580,10 +580,10 @@ stabilizing it.
 
 <pre>
 XcodeProjInfo(<a href="#XcodeProjInfo-args">args</a>, <a href="#XcodeProjInfo-compilation_providers">compilation_providers</a>, <a href="#XcodeProjInfo-dependencies">dependencies</a>, <a href="#XcodeProjInfo-envs">envs</a>, <a href="#XcodeProjInfo-extension_infoplists">extension_infoplists</a>, <a href="#XcodeProjInfo-hosted_targets">hosted_targets</a>,
-              <a href="#XcodeProjInfo-inputs">inputs</a>, <a href="#XcodeProjInfo-is_top_level_target">is_top_level_target</a>, <a href="#XcodeProjInfo-label">label</a>, <a href="#XcodeProjInfo-lldb_context">lldb_context</a>, <a href="#XcodeProjInfo-mergable_xcode_library_targets">mergable_xcode_library_targets</a>,
-              <a href="#XcodeProjInfo-potential_target_merges">potential_target_merges</a>, <a href="#XcodeProjInfo-outputs">outputs</a>, <a href="#XcodeProjInfo-replacement_labels">replacement_labels</a>, <a href="#XcodeProjInfo-resource_bundle_informations">resource_bundle_informations</a>,
-              <a href="#XcodeProjInfo-rule_kind">rule_kind</a>, <a href="#XcodeProjInfo-search_paths">search_paths</a>, <a href="#XcodeProjInfo-target_type">target_type</a>, <a href="#XcodeProjInfo-transitive_dependencies">transitive_dependencies</a>, <a href="#XcodeProjInfo-xcode_required_targets">xcode_required_targets</a>,
-              <a href="#XcodeProjInfo-xcode_target">xcode_target</a>, <a href="#XcodeProjInfo-xcode_targets">xcode_targets</a>)
+              <a href="#XcodeProjInfo-inputs">inputs</a>, <a href="#XcodeProjInfo-is_top_level_target">is_top_level_target</a>, <a href="#XcodeProjInfo-label">label</a>, <a href="#XcodeProjInfo-labels">labels</a>, <a href="#XcodeProjInfo-lldb_context">lldb_context</a>,
+              <a href="#XcodeProjInfo-mergable_xcode_library_targets">mergable_xcode_library_targets</a>, <a href="#XcodeProjInfo-potential_target_merges">potential_target_merges</a>, <a href="#XcodeProjInfo-outputs">outputs</a>, <a href="#XcodeProjInfo-replacement_labels">replacement_labels</a>,
+              <a href="#XcodeProjInfo-resource_bundle_informations">resource_bundle_informations</a>, <a href="#XcodeProjInfo-rule_kind">rule_kind</a>, <a href="#XcodeProjInfo-search_paths">search_paths</a>, <a href="#XcodeProjInfo-target_type">target_type</a>,
+              <a href="#XcodeProjInfo-transitive_dependencies">transitive_dependencies</a>, <a href="#XcodeProjInfo-xcode_required_targets">xcode_required_targets</a>, <a href="#XcodeProjInfo-xcode_target">xcode_target</a>, <a href="#XcodeProjInfo-xcode_targets">xcode_targets</a>)
 </pre>
 
 Provides information needed to generate an Xcode project.
@@ -607,6 +607,7 @@ stabilizing it.
 | <a id="XcodeProjInfo-inputs"></a>inputs |  A value returned from <code>input_files.collect</code>, that contains the input files for this target. It also includes the two extra fields that collect all of the generated <code>Files</code> and all of the <code>Files</code> that should be added to the Xcode project, but are not associated with any targets.    |
 | <a id="XcodeProjInfo-is_top_level_target"></a>is_top_level_target |  Whether this target is a top-level target. Top-level targets are targets that are valid to be listed in the <code>top_level_targets</code> attribute of <code>xcodeproj</code>. In particular, this means that they aren't library targets, which when specified in <code>top_level_targets</code> cause duplicate mis-configured targets to be added to the project.    |
 | <a id="XcodeProjInfo-label"></a>label |  The <code>Label</code> of the target.    |
+| <a id="XcodeProjInfo-labels"></a>labels |  A <code>depset</code> of <code>Labels</code> for the target and its transitive dependencies.    |
 | <a id="XcodeProjInfo-lldb_context"></a>lldb_context |  A value returned from <code>lldb_context.collect</code>.    |
 | <a id="XcodeProjInfo-mergable_xcode_library_targets"></a>mergable_xcode_library_targets |  A <code>List</code> of <code>struct</code>s with 'id' and 'product_path' fields. The 'id' field is the id of the target. The 'product_path' is the path to the target's product.    |
 | <a id="XcodeProjInfo-potential_target_merges"></a>potential_target_merges |  A <code>depset</code> of <code>struct</code>s with 'src' and 'dest' fields. The 'src' field is the id of the target that can be merged into the target with the id of the 'dest' field.    |
