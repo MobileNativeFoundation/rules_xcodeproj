@@ -293,8 +293,7 @@ def _process_targets(
         infos_per_xcode_configuration,
         owned_extra_files,
         include_swiftui_previews_scheme_targets,
-        fail_for_invalid_extra_files_targets,
-        ):
+        fail_for_invalid_extra_files_targets):
     resource_bundle_xcode_targets = []
     unprocessed_targets = {}
     xcode_configurations = {}
@@ -1820,7 +1819,7 @@ def make_xcodeproj_rule(
         ),
         "default_xcode_configuration": attr.string(),
         "fail_for_invalid_extra_files_targets": attr.bool(
-            default = True,
+            mandatory = True,
         ),
         "focused_targets": attr.string_list(
             mandatory = True,
