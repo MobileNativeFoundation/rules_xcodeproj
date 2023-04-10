@@ -232,6 +232,7 @@ def _write_generator_build_file(
         attr,
         build_file_path,
         name,
+        runner_label,
         repo,
         template):
     output = actions.declare_file("{}.generator.BUILD.bazel".format(name))
@@ -264,7 +265,7 @@ def _write_generator_build_file(
             "%project_name%": attr.project_name,
             "%project_options%": str(attr.project_options),
             "%runner_build_file%": build_file_path,
-            "%runner_label%": attr.runner_label,
+            "%runner_label%": runner_label,
             "%scheme_autogeneration_mode%": attr.scheme_autogeneration_mode,
             "%tags%": tags,
             "%testonly%": str(attr.testonly),
@@ -409,6 +410,7 @@ def _xcodeproj_runner_impl(ctx):
         str(ctx.attr._generator_defs_bzl_template.label).split("//", 1)[0] or
         "@"
     )
+    runner_label = str(ctx.label)
 
     xcode_version = _get_xcode_product_version(
         xcode_config = ctx.attr._xcode_config[apple_common.XcodeVersionConfig],
@@ -437,6 +439,7 @@ def _xcodeproj_runner_impl(ctx):
         attr = attr,
         build_file_path = ctx.build_file_path,
         name = name,
+        runner_label = runner_label,
         repo = repo,
         template = ctx.file._generator_package_contents_template,
     )
@@ -464,7 +467,7 @@ def _xcodeproj_runner_impl(ctx):
         generator_defs_bzl = generator_defs_bzl,
         is_fixture = is_fixture,
         project_name = project_name,
-        runner_label = str(ctx.label),
+        runner_label = runner_label,
         schemes_json = schemes_json,
         template = ctx.file._runner_template,
         xcode_version = xcode_version,
@@ -531,7 +534,6 @@ xcodeproj_runner = rule(
         "project_name": attr.string(
             mandatory = True,
         ),
-        "runner_label": attr.string(),
         "scheme_autogeneration_mode": attr.string(
             default = "auto",
             values = ["auto", "none", "all"],

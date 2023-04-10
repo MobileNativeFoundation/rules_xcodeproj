@@ -440,7 +440,6 @@ Please refer to https://bazel.build/extending/config#defining) on how to them.
         pre_build = pre_build,
         project_name = project_name,
         project_options = project_options,
-        runner_label = bazel_labels.normalize_string(name),
         scheme_autogeneration_mode = scheme_autogeneration_mode,
         schemes_json = schemes_json,
         temporary_directory = temporary_directory,
