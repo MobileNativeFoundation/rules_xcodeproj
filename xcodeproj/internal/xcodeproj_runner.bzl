@@ -365,6 +365,13 @@ def_env+='}}'""".format(
 
     is_bazel_6 = hasattr(apple_common, "link_multi_arch_static_library")
 
+    # TODO: Create a unique generator per target
+    generator_label = "{repo}//generator".format(
+        repo = (
+            str(Label("@rules_xcodeproj_generated//:BUILD")).split("//", 1)[0]
+        ),
+    )
+
     actions.expand_template(
         template = template,
         output = output,
@@ -376,9 +383,7 @@ def_env+='}}'""".format(
             "%execution_root_file%": execution_root_file.short_path,
             "%extra_flags_bazelrc%": extra_flags_bazelrc.short_path,
             "%extra_generator_flags%": extra_generator_flags,
-            "%generator_label%": (
-                "@rules_xcodeproj//xcodeproj:generated_generator"
-            ),
+            "%generator_label%": generator_label,
             "%generator_build_file%": generator_build_file.short_path,
             "%generator_defs_bzl%": generator_defs_bzl.short_path,
             "%is_bazel_6%": "1" if is_bazel_6 else "0",
