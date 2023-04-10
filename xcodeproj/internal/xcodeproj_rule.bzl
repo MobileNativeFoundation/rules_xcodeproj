@@ -1820,7 +1820,7 @@ def make_xcodeproj_rule(
         ),
         "default_xcode_configuration": attr.string(),
         "fail_for_invalid_extra_files_targets": attr.bool(
-            default = True,
+            mandatory = True,
         ),
         "focused_targets": attr.string_list(
             mandatory = True,
