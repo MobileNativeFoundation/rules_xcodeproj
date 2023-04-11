@@ -333,3 +333,29 @@ bazel run //:xcodeproj -- --collect_specs=/path/to/specs.tar.gz
 
 The path passed to `--collect_specs` is where a `.tar.gz` archive containing the
 specs will be written.
+
+## Substitutions
+
+In your command, any reference to these variables will be expanded:
+
+- `$_GENERATOR_LABEL_`: The label of the generator target (e.g.
+  `@@_main~internal~rules_xcodeproj_generated//generator/xcodeproj`). Useful for
+  certain `aquery` commands:
+
+  ```
+  $bazel run //:xcodeproj -- -v 'aquery $_GENERATOR_LABEL_'
+  ...
+  INFO: Invocation ID: ca31d4b4-0df5-49de-a020-c70a922521af
+  INFO: Streaming build results to: https://app.buildbuddy.io/invocation/ca31d4b4-0df5-49de-a020-c70a922521af
+  INFO: Analyzed target @_main~internal~rules_xcodeproj_generated//generator/tools/generator/xcodeproj:xcodeproj (1 packages loaded, 2 targets configured).
+  INFO: Found 1 target...
+  action 'Writing file external/_main~internal~rules_xcodeproj_generated/generator/xcodeproj/xcodeproj-xcode_generated_paths.json'
+    Mnemonic: FileWrite
+    Target: @rules_xcodeproj_generated//generator/xcodeproj:xcodeproj
+    Configuration: darwin_arm64-dbg
+    Execution platform: @local_config_platform//:host
+    ActionKey: f0332c573c0b3ae2ebe525959057fd901d6ce582948b19f7b8e2fdee3f43f045
+    Inputs: []
+    Outputs: [bazel-out/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/xcodeproj/xcodeproj-xcode_generated_paths.json]
+  ...
+  ```
