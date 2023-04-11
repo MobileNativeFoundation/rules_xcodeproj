@@ -395,13 +395,13 @@ extension Generator {
                 allInputPaths.insert(linkParams)
             }
             if !target.cFlags.isEmpty {
-                allInputPaths.insert(target.cFlags[0])
+                allInputPaths.insert(.generated(Path(target.cFlags[0])))
             }
             if !target.cxxFlags.isEmpty {
-                allInputPaths.insert(target.cxxFlags[0])
+                allInputPaths.insert(.generated(Path(target.cxxFlags[0])))
             }
             if !target.swiftFlags.isEmpty {
-                allInputPaths.insert(target.swiftFlags[0])
+                allInputPaths.insert(.generated(Path(target.swiftFlags[0])))
             }
             if let infoPlist = target.infoPlist {
                 allInputPaths.insert(infoPlist)
