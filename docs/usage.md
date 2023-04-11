@@ -343,7 +343,7 @@ In your command, any reference to these variables will be expanded:
   certain `aquery` commands:
 
   ```
-  $bazel run //:xcodeproj -- -v 'aquery $_GENERATOR_LABEL_'
+  $bazel run //:xcodeproj -- 'aquery $_GENERATOR_LABEL_'
   ...
   INFO: Invocation ID: ca31d4b4-0df5-49de-a020-c70a922521af
   INFO: Streaming build results to: https://app.buildbuddy.io/invocation/ca31d4b4-0df5-49de-a020-c70a922521af
