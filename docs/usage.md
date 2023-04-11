@@ -9,6 +9,7 @@
 - [Command-line API](#command-line-api)
   - [Commands](#commands)
   - [Options](#options)
+  - [Substitutions](#substitutions)
 
 # Bazel configs
 
