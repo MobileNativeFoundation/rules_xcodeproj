@@ -651,7 +651,7 @@ targets.
     target_dtos = {}
     target_dependencies = {}
     target_link_params = {}
-
+    target_opt_files = {}
     for index, xcode_target in enumerate(focused_targets.values()):
         transitive_dependencies = {
             id: None
@@ -680,7 +680,7 @@ targets.
                     ),
                 )
 
-        dto, replaced_dependencies, link_params = xcode_targets.to_dto(
+        dto, replaced_dependencies, link_params, opt_files = xcode_targets.to_dto(
             ctx = ctx,
             xcode_target = xcode_target,
             label = xcode_target_labels[xcode_target.id],
@@ -705,6 +705,8 @@ targets.
         )
         if link_params:
             target_link_params[xcode_target.id] = depset([link_params])
+        if opt_files:
+            target_opt_files[xcode_target.id] = depset(opt_files)
 
     additional_generated = {}
     additional_outputs = {}
@@ -715,10 +717,15 @@ targets.
         ) = target_dependencies[xcode_target.id]
 
         transitive_link_params = []
+        transitive_opt_files = []
 
         link_params = target_link_params.get(xcode_target.id)
         if link_params:
             transitive_link_params.append(link_params)
+
+        opt_files = target_opt_files.get(xcode_target.id)
+        if opt_files:
+            transitive_opt_files.append(opt_files)
 
         for id in transitive_dependencies:
             merge = target_merges.get(id)
@@ -729,6 +736,10 @@ targets.
             link_params = target_link_params.get(id)
             if link_params:
                 transitive_link_params.append(link_params)
+
+            opt_files = target_opt_files.get(id)
+            if opt_files:
+                transitive_opt_files.append(opt_files)
 
         compiling_output_group_name = (
             xcode_target.inputs.compiling_output_group_name
@@ -741,6 +752,9 @@ targets.
         )
         bwb_linking_output_group_name = (
             xcode_target.outputs.linking_output_group_name
+        )
+        generated_output_group_name = (
+            xcode_target.outputs.generated_output_group_name
         )
 
         additional_compiling_files = []
@@ -796,6 +810,10 @@ targets.
             if link_params:
                 transitive_link_params.append(link_params)
 
+            opt_files = target_opt_files.get(id, None)
+            if opt_files:
+                transitive_opt_files.append(opt_files)
+
             dep_target = focused_targets[id]
 
             dep_compiling_output_group_name = (
@@ -836,6 +854,15 @@ targets.
                 additional_outputs[bwb_linking_output_group_name] = (
                     transitive_link_params
                 )
+
+        if transitive_opt_files:
+            # additional_compiling_files.append(transitive_opt_files)
+            if generated_output_group_name:
+                additional_outputs[generated_output_group_name] = (
+                    transitive_opt_files
+                )
+
+        # print("additional_compiling_files ", compiling_output_group_name, additional_compiling_files)
 
         if compiling_output_group_name:
             set_if_true(
@@ -1108,7 +1135,6 @@ def _write_spec(
     target_shards = []
     for shard in range(shard_count):
         sharded_targets = flattened_targets[shard * shard_size:(shard + 1) * shard_size]
-
         targets_json = json.encode(sharded_targets)
         targets_output = ctx.actions.declare_file(
             "{}-targets_spec.{}.json".format(ctx.attr.name, shard),
@@ -1754,7 +1780,12 @@ done
             input_files_output_groups["all_xl"],
         ]
     else:
-        input_files_output_groups = {}
+        input_files_output_groups = input_files.to_output_groups_fields(
+            inputs = inputs,
+            additional_generated = additional_generated,
+            index_import = ctx.executable._index_import,
+        )
+        print("input_files_output_groups : ", input_files_output_groups)
         output_files_output_groups = output_files.to_output_groups_fields(
             outputs = outputs,
             additional_outputs = additional_outputs,

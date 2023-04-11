@@ -120,6 +120,7 @@ def _create(
     if should_produce_output_groups and direct_outputs:
         linking_output_group_name = "bl {}".format(direct_outputs.id)
         products_output_group_name = "bp {}".format(direct_outputs.id)
+        generated_output_group_name = "bg {}".format(direct_outputs.id)
 
         indexstores_filelist = filelists.write(
             ctx = ctx,
@@ -139,7 +140,7 @@ def _create(
                 closest_compiled,
             ),
             (
-                "bg {}".format(direct_outputs.id),
+                generated_output_group_name,
                 False,
                 inputs.compiling_files if inputs else depset(),
             ),
@@ -154,6 +155,7 @@ def _create(
     else:
         linking_output_group_name = None
         products_output_group_name = None
+        generated_output_group_name = None
         direct_group_list = None
 
     output_group_list = depset(
@@ -178,6 +180,7 @@ def _create(
         direct_outputs = direct_outputs if should_produce_dto else None,
         linking_output_group_name = linking_output_group_name,
         products_output_group_name = products_output_group_name,
+        generated_output_group_name = generated_output_group_name,
         transitive_infoplists = transitive_infoplists,
     )
 

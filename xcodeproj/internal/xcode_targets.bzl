@@ -618,9 +618,37 @@ def _xcode_target_to_dto(
         conlyopts = new_conlyopts
         cxxopts = new_cxxopts
 
-    set_if_true(dto, "8", conlyopts)
-    set_if_true(dto, "9", cxxopts)
-    set_if_true(dto, "0", xcode_target._swiftcopts)
+    def _create_opt_params(opts, opt_type):
+        output = ctx.actions.declare_file(
+            "{}-params/{}.{}.{}.params".format(
+                ctx.attr.name,
+                name,
+                params_index,
+                opt_type
+            ),
+        )
+        ctx.actions.write(
+            output = output,
+            content = " ".join(opts),
+        )
+        # return ["@$(BAZEL_OUT)/{}".format(output.path.removeprefix("bazel-out/"))]
+        return output, ["@$(BAZEL_OUT)/{}".format(output.path.removeprefix("bazel-out/"))]
+
+    conlyopts_file, conlyopts_file_path = _create_opt_params(conlyopts, "conlyopts")
+    cxxopts_file, cxxopts_file_path = _create_opt_params(cxxopts, "cxxopts")
+    swiftcopts_file, swiftcopts_file_path = _create_opt_params(xcode_target._swiftcopts, "swiftcopts")
+    # print("conlyopts_file :", conlyopts_file)
+    # print("cxxopts_file :", cxxopts_file)
+    # print("swiftcopts_file :", swiftcopts_file)
+
+    set_if_true(dto, "8", conlyopts_file_path)
+    set_if_true(dto, "9", cxxopts_file_path)
+    set_if_true(dto, "0", swiftcopts_file_path)
+    opt_files = [conlyopts_file, cxxopts_file, swiftcopts_file]
+
+    # set_if_true(dto, "8", conlyopts)
+    # set_if_true(dto, "9", cxxopts)
+    # set_if_true(dto, "0", xcode_target._swiftcopts)
 
     set_if_true(
         dto,
@@ -713,7 +741,7 @@ def _xcode_target_to_dto(
         [id for id in dependencies if id not in unfocused_dependencies],
     )
 
-    return dto, replaced_dependencies, link_params
+    return dto, replaced_dependencies, link_params, opt_files
 
 def _build_settings_to_dto(
         *,
