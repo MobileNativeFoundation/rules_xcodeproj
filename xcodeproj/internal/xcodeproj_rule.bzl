@@ -1780,12 +1780,7 @@ done
             input_files_output_groups["all_xl"],
         ]
     else:
-        input_files_output_groups = input_files.to_output_groups_fields(
-            inputs = inputs,
-            additional_generated = additional_generated,
-            index_import = ctx.executable._index_import,
-        )
-        print("input_files_output_groups : ", input_files_output_groups)
+        input_files_output_groups = {}
         output_files_output_groups = output_files.to_output_groups_fields(
             outputs = outputs,
             additional_outputs = additional_outputs,

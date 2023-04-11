@@ -237,6 +237,7 @@ def _to_xcode_target_outputs(outputs):
             direct_outputs.dsym_files if direct_outputs else None
         ),
         linking_output_group_name = outputs.linking_output_group_name,
+        generated_output_group_name = outputs.generated_output_group_name,
         product_file = (
             direct_outputs.product if direct_outputs else None
         ),
@@ -351,6 +352,7 @@ def _merge_xcode_target_outputs(*, src, dest):
     return struct(
         dsym_files = dest.dsym_files,
         linking_output_group_name = dest.linking_output_group_name,
+        generated_output_group_name = dest.generated_output_group_name,
         swiftmodule = src.swiftmodule,
         swift_generated_header = src.swift_generated_header,
         product_file = dest.product_file,

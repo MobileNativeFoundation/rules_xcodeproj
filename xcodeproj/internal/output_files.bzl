@@ -382,6 +382,10 @@ def _to_output_groups_fields(
         for name, is_indexstores, files in outputs._output_group_list.to_list()
     }
 
+    # for output_group in output_groups:
+    #     if output_group.startswith("bg "):
+    #         print(output_group, output_groups[output_group])
+
     output_groups["all_b"] = depset(transitive = output_groups.values())
 
     return output_groups
