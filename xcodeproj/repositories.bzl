@@ -74,7 +74,7 @@ package_group(
     # Ensure that this repository is unique per output base
     output_base_hash = output_base_hash_result.stdout.strip()
     repository_ctx.symlink(
-        "/tmp/rules_xcodeproj/generated/{}/generator".format(output_base_hash),
+        "/tmp/rules_xcodeproj/generated_v2/{}/generator".format(output_base_hash),
         "generator",
     )
 
