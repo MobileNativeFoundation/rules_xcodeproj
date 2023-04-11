@@ -267,6 +267,27 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
             )
         }
 
+        if !target.cFlags.isEmpty {
+            try buildSettings.prepend(
+                onKey: "OTHER_CFLAGS",
+                ["@$(DERIVED_FILE_DIR)/conlyopts.params"]
+            )
+        }
+
+        if !target.cxxFlags.isEmpty {
+            try buildSettings.prepend(
+                onKey: "OTHER_CPLUSPLUSFLAGS",
+                ["@$(DERIVED_FILE_DIR)/cxxopts.params"]
+            )
+        }
+
+        if !target.swiftFlags.isEmpty {
+            try buildSettings.prepend(
+                onKey: "OTHER_SWIFT_FLAGS",
+                ["@$(DERIVED_FILE_DIR)/swiftcopts.params"]
+            )
+        }
+
         buildSettings.set("ARCHS", to: target.platform.arch)
         buildSettings.set(
             "BAZEL_PACKAGE_BIN_DIR",
@@ -466,10 +487,10 @@ $(CONFIGURATION_BUILD_DIR)
             flagsPrefix: cxxFlagsPrefix,
             flags: cxxFlags
         )
-        let swiftFlagsString = processFlagsString(
-            flagsPrefix: swiftFlagsPrefix,
-            flags: swiftFlags
-        )
+        // let swiftFlagsString = processFlagsString(
+        //     flagsPrefix: swiftFlagsPrefix,
+        //     flags: swiftFlags
+        // )
 
         // Append settings when using ASAN
         if cFlags.contains("-D_FORTIFY_SOURCE=1") {
@@ -499,15 +520,15 @@ $(ASAN_OTHER_CPLUSPLUSFLAGS__$(CLANG_ADDRESS_SANITIZER))
 """
         }
 
-        if !swiftFlagsString.isEmpty {
-            buildSettings.set("OTHER_SWIFT_FLAGS", to: swiftFlagsString)
-        }
-        if !cFlagsString.isEmpty {
-            buildSettings.set("OTHER_CFLAGS", to: cFlagsString)
-        }
-        if !cxxFlagsString.isEmpty {
-            buildSettings.set("OTHER_CPLUSPLUSFLAGS", to: cxxFlagsString)
-        }
+        // if !swiftFlagsString.isEmpty {
+        //     buildSettings.set("OTHER_SWIFT_FLAGS", to: swiftFlagsString)
+        // }
+        // if !cFlagsString.isEmpty {
+        //     buildSettings.set("OTHER_CFLAGS", to: cFlagsString)
+        // }
+        // if !cxxFlagsString.isEmpty {
+        //     buildSettings.set("OTHER_CPLUSPLUSFLAGS", to: cxxFlagsString)
+        // }
 
         return buildSettings
     }

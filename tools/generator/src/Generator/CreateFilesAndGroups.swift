@@ -394,6 +394,15 @@ extension Generator {
             if let linkParams = target.linkParams {
                 allInputPaths.insert(linkParams)
             }
+            if !target.cFlags.isEmpty {
+                allInputPaths.insert(target.cFlags[0])
+            }
+            if !target.cxxFlags.isEmpty {
+                allInputPaths.insert(target.cxxFlags[0])
+            }
+            if !target.swiftFlags.isEmpty {
+                allInputPaths.insert(target.swiftFlags[0])
+            }
             if let infoPlist = target.infoPlist {
                 allInputPaths.insert(infoPlist)
             }

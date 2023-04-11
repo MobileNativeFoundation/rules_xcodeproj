@@ -100,6 +100,10 @@ Product for target "\(key)" not found in `products`
                 hasClangSearchPaths: target.hasClangSearchPaths,
                 files: files
             ),
+            try createCompileDependenciesScript(
+                in: pbxProj,
+                buildMode: buildMode
+            ),
             try createLinkingDependenciesScript(
                 in: pbxProj,
                 buildMode: buildMode,
@@ -307,6 +311,58 @@ touch "$SCRIPT_OUTPUT_FILE_1"
         let script = PBXShellScriptBuildPhase(
             name: "Create linking dependencies",
             inputPaths: ["$(LINK_PARAMS_FILE)"],
+            outputPaths: outputsPaths,
+            shellScript: shellScriptComponents.joined(separator: "\n"),
+            showEnvVarsInLog: false
+        )
+        pbxProj.add(object: script)
+
+        return script
+    }
+
+    private static func createCompileDependenciesScript(
+        in pbxProj: PBXProj,
+        buildMode: BuildMode
+    ) throws -> PBXShellScriptBuildPhase? {
+        
+        let action = #"""
+perl -pe 's/^("?)(.*\$\(.*\).*?)("?)$/"$2"/ ; s/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$ENV{$2}/g' \
+  "$SCRIPT_INPUT_FILE_0" > "$SCRIPT_OUTPUT_FILE_0" \
+  "$SCRIPT_INPUT_FILE_1" > "$SCRIPT_OUTPUT_FILE_1" \
+  "$SCRIPT_INPUT_FILE_2" > "$SCRIPT_OUTPUT_FILE_2"
+"""#
+        var shellScriptComponents: [String]
+        if buildMode == .xcode {
+            shellScriptComponents = [
+                #"""
+set -euo pipefail
+
+\#(action)
+
+"""#,
+            ]
+        } else {
+            shellScriptComponents = [
+                #"""
+set -euo pipefail
+
+if [[ "${ENABLE_PREVIEWS:-}" == "YES" ]]; then
+\#(action)
+else
+  touch "$SCRIPT_OUTPUT_FILE_0" \
+  touch "$SCRIPT_OUTPUT_FILE_1" \
+  touch "$SCRIPT_OUTPUT_FILE_2"
+fi
+
+"""#,
+            ]
+        }
+
+        let outputsPaths = ["$(DERIVED_FILE_DIR)/conlyopts.params", "$(DERIVED_FILE_DIR)/cxxopts.params", "$(DERIVED_FILE_DIR)/swiftcopts.params"]
+    
+        let script = PBXShellScriptBuildPhase(
+            name: "Create compile dependencies",
+            inputPaths: ["$(C_COMPILE_PARAMS_FILE)", "$(CXX_COMPILE_PARAMS_FILE)", "$(SWIFT_COMPILE_PARAMS_FILE)",],
             outputPaths: outputsPaths,
             shellScript: shellScriptComponents.joined(separator: "\n"),
             showEnvVarsInLog: false

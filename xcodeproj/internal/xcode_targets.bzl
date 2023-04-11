@@ -589,18 +589,6 @@ def _xcode_target_to_dto(
         xcode_generated_paths_file = xcode_generated_paths_file,
     )
 
-    set_if_true(
-        dto,
-        "b",
-        _build_settings_to_dto(
-            build_mode = build_mode,
-            link_params = link_params,
-            linker_products_map = linker_products_map,
-            xcode_generated_paths = xcode_generated_paths,
-            xcode_target = xcode_target,
-        ),
-    )
-
     conlyopts = xcode_target._conlyopts
     cxxopts = xcode_target._cxxopts
     if is_fixture:
@@ -647,6 +635,21 @@ def _xcode_target_to_dto(
     set_if_true(dto, "9", cxxopts_file_path)
     set_if_true(dto, "0", swiftcopts_file_path)
     opt_files = [conlyopts_file, cxxopts_file, swiftcopts_file]
+
+    set_if_true(
+        dto,
+        "b",
+        _build_settings_to_dto(
+            build_mode = build_mode,
+            link_params = link_params,
+            c_compile_params_path = conlyopts_file_path,
+            cxx_compile_params_path = cxxopts_file_path,
+            swift_compile_params_path = swiftcopts_file_path,
+            linker_products_map = linker_products_map,
+            xcode_generated_paths = xcode_generated_paths,
+            xcode_target = xcode_target,
+        ),
+    )
 
     # set_if_true(dto, "8", conlyopts)
     # set_if_true(dto, "9", cxxopts)
@@ -749,6 +752,9 @@ def _build_settings_to_dto(
         *,
         build_mode,
         link_params,
+        c_compile_params_path,
+        cxx_compile_params_path,
+        swift_compile_params_path,
         linker_products_map,
         xcode_generated_paths,
         xcode_target):
@@ -758,6 +764,15 @@ def _build_settings_to_dto(
         build_settings["LINK_PARAMS_FILE"] = build_setting_path(
             path = link_params.path,
         )
+    
+    if c_compile_params_path:
+        build_settings["C_COMPILE_PARAMS_FILE"] = c_compile_params_path
+
+    if cxx_compile_params_path:
+        build_settings["CXX_COMPILE_PARAMS_FILE"] = cxx_compile_params_path
+
+    if swift_compile_params_path:
+        build_settings["SWIFT_COMPILE_PARAMS_FILE"] = swift_compile_params_path
 
     _set_bazel_outputs_product(
         build_mode = build_mode,
