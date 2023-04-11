@@ -767,7 +767,7 @@ enum Fixtures {
             lastKnownFileType: "file.xib",
             path: "Base.lproj/Example.xib"
         )
-        elements["Example.xib"] = PBXVariantGroup(
+        let example_xib_variant_group = PBXVariantGroup(
             children: [
                 base_lproj_example_xib,
                 en_lproj_example_strings,
@@ -776,9 +776,9 @@ enum Fixtures {
             sourceTree: .group,
             name: "Example.xib"
         )
-        elements["Base.lproj/Example.xib"] = elements["Example.xib"]!
-        elements["en.lproj/Example.strings"] = elements["Example.xib"]!
-        elements["es.lproj/Example.strings"] = elements["Example.xib"]!
+        elements["Base.lproj/Example.xib"] = example_xib_variant_group
+        elements["en.lproj/Example.strings"] = example_xib_variant_group
+        elements["es.lproj/Example.strings"] = example_xib_variant_group
 
         let en_lproj_localized_strings = PBXFileReference(
             sourceTree: .group,
@@ -792,7 +792,7 @@ enum Fixtures {
             lastKnownFileType: "text.plist.strings",
             path: "es.lproj/Localized.strings"
         )
-        elements["Localized.strings"] = PBXVariantGroup(
+        let localized_strings_variant_group = PBXVariantGroup(
             children: [
                 en_lproj_localized_strings,
                 es_lproj_localized_strings,
@@ -800,8 +800,8 @@ enum Fixtures {
             sourceTree: .group,
             name: "Localized.strings"
         )
-        elements["en.lproj/Localized.strings"] = elements["Localized.strings"]!
-        elements["es.lproj/Localized.strings"] = elements["Localized.strings"]!
+        elements["en.lproj/Localized.strings"] = localized_strings_variant_group
+        elements["es.lproj/Localized.strings"] = localized_strings_variant_group
 
         // r1/X.txt
 
@@ -1472,8 +1472,10 @@ touch "$SCRIPT_OUTPUT_FILE_1"
                 ),
                 PBXResourcesBuildPhase(
                     files: buildFiles([
-                        PBXBuildFile(file: elements["Example.xib"]!),
-                        PBXBuildFile(file: elements["Localized.strings"]!),
+                        PBXBuildFile(file: elements["Base.lproj/Example.xib"]!),
+                        PBXBuildFile(
+                            file: elements["es.lproj/Localized.strings"]!
+                        ),
                         PBXBuildFile(file: products
                             .byFilePath[.generated("r1/R1.bundle")]!
                         ),
@@ -2345,5 +2347,11 @@ extension FilePath {
             path: path,
             isFolder: isFolder
         )
+    }
+}
+
+extension Sequence where Element == PBXFileElement {
+    func sortedLocalizedStandard() -> [Element] {
+        return sortedLocalizedStandard(\.namePathSortString)
     }
 }
