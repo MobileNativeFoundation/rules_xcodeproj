@@ -184,7 +184,7 @@ else
     bazel_config="%config%_$config"
   fi
 
-  while IFS='' read -r arg; do cmd_args+=("$arg"); done < <(xargs -n1 <<< "$1")
+  while IFS='' read -r arg; do cmd_args+=("${arg//\$_GENERATOR_LABEL_/%generator_label%}"); done < <(xargs -n1 <<< "$1")
   cmd="${cmd_args[0]}"
 
   if [[ $cmd == "build" && -n "${generator_output_groups:-}" ]]; then
