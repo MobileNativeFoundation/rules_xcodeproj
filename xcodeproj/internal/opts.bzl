@@ -405,13 +405,17 @@ def _process_copts(
     if has_copts:
         if not has_cxxopts:
             if conly_optimizations:
-                build_settings["GCC_OPTIMIZATION_LEVEL"] = conly_optimizations[0][2:]
+                build_settings["GCC_OPTIMIZATION_LEVEL"] = (
+                    conly_optimizations[0][2:]
+                )
                 conly_optimizations = conly_optimizations[1:]
             else:
                 build_settings["GCC_OPTIMIZATION_LEVEL"] = "0"
         elif not has_conlyopts:
             if cxx_optimizations:
-                build_settings["GCC_OPTIMIZATION_LEVEL"] = cxx_optimizations[0][2:]
+                build_settings["GCC_OPTIMIZATION_LEVEL"] = (
+                    cxx_optimizations[0][2:]
+                )
                 cxx_optimizations = cxx_optimizations[1:]
             else:
                 build_settings["GCC_OPTIMIZATION_LEVEL"] = "0"
@@ -433,8 +437,10 @@ def _process_copts(
             else:
                 gcc_optimization = "-O0"
                 conly_optimizations = ([default_conly_optimization] +
-                                    conly_optimizations)
-                cxx_optimizations = [default_cxx_optimization] + cxx_optimizations
+                                       conly_optimizations)
+                cxx_optimizations = (
+                    [default_cxx_optimization] + cxx_optimizations
+                )
             build_settings["GCC_OPTIMIZATION_LEVEL"] = gcc_optimization[2:]
 
     return (
