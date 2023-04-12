@@ -25,12 +25,20 @@ XCODE_CONFIGURATIONS = {
         "//command_line_option:compilation_mode": "opt",
         # Until we have a solution for Instruments.app handling relative paths,
         # we need the debug info to include absolute source paths
-        "//command_line_option:features": ["-swift.debug_prefix_map"],
+        "//command_line_option:features": [
+            "-swift.debug_prefix_map",
+            "-swift.file_prefix_map",
+            "-swift.index_while_building",
+        ],
     },
     "Release": {
         "//command_line_option:apple_generate_dsym": True,
         "//command_line_option:compilation_mode": "opt",
-        "//command_line_option:features": ["-swift.debug_prefix_map"],
+        "//command_line_option:features": [
+            "-swift.debug_prefix_map",
+            "-swift.file_prefix_map",
+            "-swift.index_while_building",
+        ],
     },
 }
 
