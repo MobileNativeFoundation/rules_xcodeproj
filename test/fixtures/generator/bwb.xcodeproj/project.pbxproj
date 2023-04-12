@@ -3082,7 +3082,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -O2 -Os -D_FORTIFY_SOURCE=1 -fstack-protector -Wall -Wthread-safety -Wself-assign -fno-omit-frame-pointer -g0 -DNDEBUG -DNS_BLOCK_ASSERTIONS=1 -Wshorten-64-to-32 -Wbool-conversion -Wconstant-conversion -Wduplicate-method-match -Wempty-body -Wenum-conversion -Wint-conversion -Wunreachable-code -Wmismatched-return-types -Wundeclared-selector -Wuninitialized -Wunused-function -Wunused-variable -iquote external/com_github_michaeleisel_jjliso8601dateformatter -iquote bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_michaeleisel_jjliso8601dateformatter -Iexternal/com_github_michaeleisel_jjliso8601dateformatter/Sources/JJLISO8601DateFormatter/include -Ibazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_michaeleisel_jjliso8601dateformatter/Sources/JJLISO8601DateFormatter/include -DOS_MACOSX -fno-autolink -F$(SDKROOT)/System/Library/Frameworks -F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks -Wno-incompatible-pointer-types -Wno-incompatible-pointer-types-discards-qualifiers -Wno-shorten-64-to-32 -Wno-unreachable-code -Wno-unused-function -Wno-unused-variable -DNDEBUG=1 -Wno-unused-variable -Winit-self -Wno-extra";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Os -D_FORTIFY_SOURCE=1 -fstack-protector -Wall -Wthread-safety -Wself-assign -fno-omit-frame-pointer -g0 -DNDEBUG -DNS_BLOCK_ASSERTIONS=1 -Wshorten-64-to-32 -Wbool-conversion -Wconstant-conversion -Wduplicate-method-match -Wempty-body -Wenum-conversion -Wint-conversion -Wunreachable-code -Wmismatched-return-types -Wundeclared-selector -Wuninitialized -Wunused-function -Wunused-variable -iquote external/com_github_michaeleisel_jjliso8601dateformatter -iquote bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_michaeleisel_jjliso8601dateformatter -Iexternal/com_github_michaeleisel_jjliso8601dateformatter/Sources/JJLISO8601DateFormatter/include -Ibazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_michaeleisel_jjliso8601dateformatter/Sources/JJLISO8601DateFormatter/include -DOS_MACOSX -fno-autolink -F$(SDKROOT)/System/Library/Frameworks -F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks -Wno-incompatible-pointer-types -Wno-incompatible-pointer-types-discards-qualifiers -Wno-shorten-64-to-32 -Wno-unreachable-code -Wno-unused-function -Wno-unused-variable -DNDEBUG=1 -Wno-unused-variable -Winit-self -Wno-extra";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -3096,10 +3096,9 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_OPTIMIZATION_LEVEL = 2;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
-				OTHER_CPLUSPLUSFLAGS = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -O0";
 				PRODUCT_NAME = JJLISO8601DateFormatter;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
@@ -3197,7 +3196,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASAN_OTHER_CPLUSPLUSFLAGS__ = "$(ASAN_OTHER_CPLUSPLUSFLAGS__NO)";
-				ASAN_OTHER_CPLUSPLUSFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -O2 -Os -stdlib=libc++ -std=gnu++11 -D_FORTIFY_SOURCE=1 -fstack-protector -Wall -Wthread-safety -Wself-assign -fno-omit-frame-pointer -g0 -DNDEBUG -DNS_BLOCK_ASSERTIONS=1 -Wshorten-64-to-32 -Wbool-conversion -Wconstant-conversion -Wduplicate-method-match -Wempty-body -Wenum-conversion -Wint-conversion -Wunreachable-code -Wmismatched-return-types -Wundeclared-selector -Wuninitialized -Wunused-function -Wunused-variable -iquote external/com_github_michaeleisel_zippyjsoncfamily -iquote bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_michaeleisel_zippyjsoncfamily -Iexternal/com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/include -Ibazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/include -DOS_MACOSX -fno-autolink -F$(SDKROOT)/System/Library/Frameworks -F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks -std=c++17 -Wno-unused-function -Wno-reorder-ctor -Wno-return-type-c-linkage -Wno-shorten-64-to-32 -Wno-unused-variable -DNDEBUG=1 -Wno-unused-variable -Winit-self -Wno-extra";
+				ASAN_OTHER_CPLUSPLUSFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Os -stdlib=libc++ -std=gnu++11 -D_FORTIFY_SOURCE=1 -fstack-protector -Wall -Wthread-safety -Wself-assign -fno-omit-frame-pointer -g0 -DNDEBUG -DNS_BLOCK_ASSERTIONS=1 -Wshorten-64-to-32 -Wbool-conversion -Wconstant-conversion -Wduplicate-method-match -Wempty-body -Wenum-conversion -Wint-conversion -Wunreachable-code -Wmismatched-return-types -Wundeclared-selector -Wuninitialized -Wunused-function -Wunused-variable -iquote external/com_github_michaeleisel_zippyjsoncfamily -iquote bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_michaeleisel_zippyjsoncfamily -Iexternal/com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/include -Ibazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/include -DOS_MACOSX -fno-autolink -F$(SDKROOT)/System/Library/Frameworks -F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks -std=c++17 -Wno-unused-function -Wno-reorder-ctor -Wno-return-type-c-linkage -Wno-shorten-64-to-32 -Wno-unused-variable -DNDEBUG=1 -Wno-unused-variable -Winit-self -Wno-extra";
 				ASAN_OTHER_CPLUSPLUSFLAGS__YES = (
 					"$(ASAN_OTHER_CPLUSPLUSFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -3211,9 +3210,8 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_OPTIMIZATION_LEVEL = 2;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				OTHER_CFLAGS = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -O0";
 				OTHER_CPLUSPLUSFLAGS = "$(ASAN_OTHER_CPLUSPLUSFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_NAME = ZippyJSONCFamily;
 				SDKROOT = macosx;
@@ -3706,7 +3704,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASAN_OTHER_CPLUSPLUSFLAGS__ = "$(ASAN_OTHER_CPLUSPLUSFLAGS__NO)";
-				ASAN_OTHER_CPLUSPLUSFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -O2 -Os -stdlib=libc++ -std=gnu++11 -D_FORTIFY_SOURCE=1 -fstack-protector -Wall -Wthread-safety -Wself-assign -fno-omit-frame-pointer -g0 -DNDEBUG -DNS_BLOCK_ASSERTIONS=1 -Wshorten-64-to-32 -Wbool-conversion -Wconstant-conversion -Wduplicate-method-match -Wempty-body -Wenum-conversion -Wint-conversion -Wunreachable-code -Wmismatched-return-types -Wundeclared-selector -Wuninitialized -Wunused-function -Wunused-variable -iquote external/com_github_michaeleisel_zippyjsoncfamily -iquote bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_michaeleisel_zippyjsoncfamily -Iexternal/com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/include -Ibazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/include -DOS_MACOSX -fno-autolink -F$(SDKROOT)/System/Library/Frameworks -F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks -std=c++17 -Wno-unused-function -Wno-reorder-ctor -Wno-return-type-c-linkage -Wno-shorten-64-to-32 -Wno-unused-variable -DNDEBUG=1 -Wno-unused-variable -Winit-self -Wno-extra";
+				ASAN_OTHER_CPLUSPLUSFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Os -stdlib=libc++ -std=gnu++11 -D_FORTIFY_SOURCE=1 -fstack-protector -Wall -Wthread-safety -Wself-assign -fno-omit-frame-pointer -g0 -DNDEBUG -DNS_BLOCK_ASSERTIONS=1 -Wshorten-64-to-32 -Wbool-conversion -Wconstant-conversion -Wduplicate-method-match -Wempty-body -Wenum-conversion -Wint-conversion -Wunreachable-code -Wmismatched-return-types -Wundeclared-selector -Wuninitialized -Wunused-function -Wunused-variable -iquote external/com_github_michaeleisel_zippyjsoncfamily -iquote bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_michaeleisel_zippyjsoncfamily -Iexternal/com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/include -Ibazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_michaeleisel_zippyjsoncfamily/Sources/ZippyJSONCFamily/include -DOS_MACOSX -fno-autolink -F$(SDKROOT)/System/Library/Frameworks -F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks -std=c++17 -Wno-unused-function -Wno-reorder-ctor -Wno-return-type-c-linkage -Wno-shorten-64-to-32 -Wno-unused-variable -DNDEBUG=1 -Wno-unused-variable -Winit-self -Wno-extra";
 				ASAN_OTHER_CPLUSPLUSFLAGS__YES = (
 					"$(ASAN_OTHER_CPLUSPLUSFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -3720,9 +3718,8 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_OPTIMIZATION_LEVEL = 2;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				OTHER_CFLAGS = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -O0";
 				OTHER_CPLUSPLUSFLAGS = "$(ASAN_OTHER_CPLUSPLUSFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_NAME = ZippyJSONCFamily;
 				SDKROOT = macosx;
@@ -4262,7 +4259,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -O2 -Os -D_FORTIFY_SOURCE=1 -fstack-protector -Wall -Wthread-safety -Wself-assign -fno-omit-frame-pointer -g0 -DNDEBUG -DNS_BLOCK_ASSERTIONS=1 -Wshorten-64-to-32 -Wbool-conversion -Wconstant-conversion -Wduplicate-method-match -Wempty-body -Wenum-conversion -Wint-conversion -Wunreachable-code -Wmismatched-return-types -Wundeclared-selector -Wuninitialized -Wunused-function -Wunused-variable -iquote external/com_github_michaeleisel_jjliso8601dateformatter -iquote bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_michaeleisel_jjliso8601dateformatter -Iexternal/com_github_michaeleisel_jjliso8601dateformatter/Sources/JJLISO8601DateFormatter/include -Ibazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_michaeleisel_jjliso8601dateformatter/Sources/JJLISO8601DateFormatter/include -DOS_MACOSX -fno-autolink -F$(SDKROOT)/System/Library/Frameworks -F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks -Wno-incompatible-pointer-types -Wno-incompatible-pointer-types-discards-qualifiers -Wno-shorten-64-to-32 -Wno-unreachable-code -Wno-unused-function -Wno-unused-variable -DNDEBUG=1 -Wno-unused-variable -Winit-self -Wno-extra";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Os -D_FORTIFY_SOURCE=1 -fstack-protector -Wall -Wthread-safety -Wself-assign -fno-omit-frame-pointer -g0 -DNDEBUG -DNS_BLOCK_ASSERTIONS=1 -Wshorten-64-to-32 -Wbool-conversion -Wconstant-conversion -Wduplicate-method-match -Wempty-body -Wenum-conversion -Wint-conversion -Wunreachable-code -Wmismatched-return-types -Wundeclared-selector -Wuninitialized -Wunused-function -Wunused-variable -iquote external/com_github_michaeleisel_jjliso8601dateformatter -iquote bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_michaeleisel_jjliso8601dateformatter -Iexternal/com_github_michaeleisel_jjliso8601dateformatter/Sources/JJLISO8601DateFormatter/include -Ibazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_michaeleisel_jjliso8601dateformatter/Sources/JJLISO8601DateFormatter/include -DOS_MACOSX -fno-autolink -F$(SDKROOT)/System/Library/Frameworks -F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks -Wno-incompatible-pointer-types -Wno-incompatible-pointer-types-discards-qualifiers -Wno-shorten-64-to-32 -Wno-unreachable-code -Wno-unused-function -Wno-unused-variable -DNDEBUG=1 -Wno-unused-variable -Winit-self -Wno-extra";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -4276,10 +4273,9 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_OPTIMIZATION_LEVEL = 2;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
-				OTHER_CPLUSPLUSFLAGS = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -O0";
 				PRODUCT_NAME = JJLISO8601DateFormatter;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;

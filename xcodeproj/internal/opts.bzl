@@ -385,7 +385,9 @@ def _process_copts(
         *   A `bool` indicting if the target has debug info enabled for C.
         *   A `bool` indicting if the target has debug info enabled for C++.
     """
-    has_copts = conlyopts or cxxopts
+    has_conlyopts = bool(conlyopts)
+    has_cxxopts = bool(cxxopts)
+    has_copts = has_conlyopts or has_cxxopts
 
     (
         conlyopts,
@@ -401,25 +403,39 @@ def _process_copts(
     ) = _process_cc_opts(cxxopts, build_settings = build_settings)
 
     if has_copts:
-        # Calculate GCC_OPTIMIZATION_LEVEL, preserving C/C++ specific settings
-        if conly_optimizations:
-            default_conly_optimization = conly_optimizations[0]
-            conly_optimizations = conly_optimizations[1:]
+        if not has_cxxopts:
+            if conly_optimizations:
+                build_settings["GCC_OPTIMIZATION_LEVEL"] = conly_optimizations[0][2:]
+                conly_optimizations = conly_optimizations[1:]
+            else:
+                build_settings["GCC_OPTIMIZATION_LEVEL"] = "0"
+        elif not has_conlyopts:
+            if cxx_optimizations:
+                build_settings["GCC_OPTIMIZATION_LEVEL"] = cxx_optimizations[0][2:]
+                cxx_optimizations = cxx_optimizations[1:]
+            else:
+                build_settings["GCC_OPTIMIZATION_LEVEL"] = "0"
         else:
-            default_conly_optimization = "-O0"
-        if cxx_optimizations:
-            default_cxx_optimization = cxx_optimizations[0]
-            cxx_optimizations = cxx_optimizations[1:]
-        else:
-            default_cxx_optimization = "-O0"
-        if default_conly_optimization == default_cxx_optimization:
-            gcc_optimization = default_conly_optimization
-        else:
-            gcc_optimization = "-O0"
-            conly_optimizations = ([default_conly_optimization] +
-                                   conly_optimizations)
-            cxx_optimizations = [default_cxx_optimization] + cxx_optimizations
-        build_settings["GCC_OPTIMIZATION_LEVEL"] = gcc_optimization[2:]
+            # Calculate GCC_OPTIMIZATION_LEVEL, preserving C/C++ specific
+            # settings
+            if conly_optimizations:
+                default_conly_optimization = conly_optimizations[0]
+                conly_optimizations = conly_optimizations[1:]
+            else:
+                default_conly_optimization = "-O0"
+            if cxx_optimizations:
+                default_cxx_optimization = cxx_optimizations[0]
+                cxx_optimizations = cxx_optimizations[1:]
+            else:
+                default_cxx_optimization = "-O0"
+            if default_conly_optimization == default_cxx_optimization:
+                gcc_optimization = default_conly_optimization
+            else:
+                gcc_optimization = "-O0"
+                conly_optimizations = ([default_conly_optimization] +
+                                    conly_optimizations)
+                cxx_optimizations = [default_cxx_optimization] + cxx_optimizations
+            build_settings["GCC_OPTIMIZATION_LEVEL"] = gcc_optimization[2:]
 
     return (
         conly_optimizations + conlyopts,

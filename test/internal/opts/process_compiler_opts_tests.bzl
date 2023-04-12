@@ -885,6 +885,30 @@ def process_compiler_opts_test_suite(name):
         },
     )
 
+    _add_test(
+        name = "{}_conly_gcc_optimization_level".format(name),
+        conlyopts = ["-O1"],
+        cxxopts = [],
+        expected_build_settings = {
+            "GCC_OPTIMIZATION_LEVEL": "1",
+        },
+    )
+
+    _add_test(
+        name = "{}_cxx_gcc_optimization_level".format(name),
+        conlyopts = [],
+        cxxopts = ["-O1"],
+        expected_build_settings = {
+            "GCC_OPTIMIZATION_LEVEL": "1",
+        },
+    )
+
+    _add_test(
+        name = "{}_none_gcc_optimization_level".format(name),
+        conlyopts = [],
+        cxxopts = [],
+    )
+
     ## SWIFT_COMPILATION_MODE
 
     _add_test(

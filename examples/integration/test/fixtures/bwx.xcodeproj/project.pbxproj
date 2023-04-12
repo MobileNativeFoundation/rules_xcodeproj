@@ -10504,7 +10504,7 @@
 			buildSettings = {
 				ARCHS = arm64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -O2 -D_FORTIFY_SOURCE=1 -fstack-protector -Wall -Wthread-safety -Wself-assign -fno-omit-frame-pointer -g0 -DNDEBUG -DNS_BLOCK_ASSERTIONS=1 -iquote . -iquote bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37/bin -F$(SDKROOT)/System/Library/Frameworks -F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks -no-canonical-prefixes -pthread -no-canonical-prefixes -Wno-builtin-macro-redefined -D__DATE__=\\\"redacted\\\" -D__TIMESTAMP__=\\\"redacted\\\" -D__TIME__=\\\"redacted\\\"";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -D_FORTIFY_SOURCE=1 -fstack-protector -Wall -Wthread-safety -Wself-assign -fno-omit-frame-pointer -g0 -DNDEBUG -DNS_BLOCK_ASSERTIONS=1 -iquote . -iquote bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37/bin -F$(SDKROOT)/System/Library/Frameworks -F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks -no-canonical-prefixes -pthread -no-canonical-prefixes -Wno-builtin-macro-redefined -D__DATE__=\\\"redacted\\\" -D__TIMESTAMP__=\\\"redacted\\\" -D__TIME__=\\\"redacted\\\"";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -10518,11 +10518,10 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_OPTIMIZATION_LEVEL = 2;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
-				OTHER_CPLUSPLUSFLAGS = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -O0";
 				PRODUCT_NAME = c_lib;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
@@ -10655,7 +10654,7 @@
 			buildSettings = {
 				ARCHS = arm64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -O2 -Os -D_FORTIFY_SOURCE=1 -fstack-protector -Wall -Wthread-safety -Wself-assign -fno-omit-frame-pointer -g0 -DNDEBUG -DNS_BLOCK_ASSERTIONS=1 -Wshorten-64-to-32 -Wbool-conversion -Wconstant-conversion -Wduplicate-method-match -Wempty-body -Wenum-conversion -Wint-conversion -Wunreachable-code -Wmismatched-return-types -Wundeclared-selector -Wuninitialized -Wunused-function -Wunused-variable -iquote . -iquote bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37/bin -I$(SDKROOT)/usr/include/uuid -DSECRET_3=\\\"Hello\\\" -DSECRET_2=\\\"World!\\\" -DOS_MACOSX -fno-autolink -F$(SDKROOT)/System/Library/Frameworks -F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks -DNDEBUG=1 -Wno-unused-variable -Winit-self -Wno-extra";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Os -D_FORTIFY_SOURCE=1 -fstack-protector -Wall -Wthread-safety -Wself-assign -fno-omit-frame-pointer -g0 -DNDEBUG -DNS_BLOCK_ASSERTIONS=1 -Wshorten-64-to-32 -Wbool-conversion -Wconstant-conversion -Wduplicate-method-match -Wempty-body -Wenum-conversion -Wint-conversion -Wunreachable-code -Wmismatched-return-types -Wundeclared-selector -Wuninitialized -Wunused-function -Wunused-variable -iquote . -iquote bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37/bin -I$(SDKROOT)/usr/include/uuid -DSECRET_3=\\\"Hello\\\" -DSECRET_2=\\\"World!\\\" -DOS_MACOSX -fno-autolink -F$(SDKROOT)/System/Library/Frameworks -F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks -DNDEBUG=1 -Wno-unused-variable -Winit-self -Wno-extra";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -10669,11 +10668,10 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_OPTIMIZATION_LEVEL = 2;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
-				OTHER_CPLUSPLUSFLAGS = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -O0";
 				PRODUCT_NAME = lib_impl;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
@@ -11220,7 +11218,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -O2 -Os -D_FORTIFY_SOURCE=1 -fstack-protector -Wall -Wthread-safety -Wself-assign -fno-omit-frame-pointer -g0 -DNDEBUG -DNS_BLOCK_ASSERTIONS=1 -Wshorten-64-to-32 -Wbool-conversion -Wconstant-conversion -Wduplicate-method-match -Wempty-body -Wenum-conversion -Wint-conversion -Wunreachable-code -Wmismatched-return-types -Wundeclared-selector -Wuninitialized -Wunused-function -Wunused-variable -iquote . -iquote bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin -I$(SDKROOT)/usr/include/uuid -DSECRET_3=\\\"Hello\\\" -DSECRET_2=\\\"World!\\\" -DOS_MACOSX -fno-autolink -F$(SDKROOT)/System/Library/Frameworks -F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks -DNDEBUG=1 -Wno-unused-variable -Winit-self -Wno-extra";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Os -D_FORTIFY_SOURCE=1 -fstack-protector -Wall -Wthread-safety -Wself-assign -fno-omit-frame-pointer -g0 -DNDEBUG -DNS_BLOCK_ASSERTIONS=1 -Wshorten-64-to-32 -Wbool-conversion -Wconstant-conversion -Wduplicate-method-match -Wempty-body -Wenum-conversion -Wint-conversion -Wunreachable-code -Wmismatched-return-types -Wundeclared-selector -Wuninitialized -Wunused-function -Wunused-variable -iquote . -iquote bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin -I$(SDKROOT)/usr/include/uuid -DSECRET_3=\\\"Hello\\\" -DSECRET_2=\\\"World!\\\" -DOS_MACOSX -fno-autolink -F$(SDKROOT)/System/Library/Frameworks -F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks -DNDEBUG=1 -Wno-unused-variable -Winit-self -Wno-extra";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -11234,11 +11232,10 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_OPTIMIZATION_LEVEL = 2;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
-				OTHER_CPLUSPLUSFLAGS = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -O0";
 				PRODUCT_NAME = lib_impl;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
@@ -11495,7 +11492,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -O2 -Os -D_FORTIFY_SOURCE=1 -fstack-protector -Wall -Wthread-safety -Wself-assign -fno-omit-frame-pointer -g0 -DNDEBUG -DNS_BLOCK_ASSERTIONS=1 -Wshorten-64-to-32 -Wbool-conversion -Wconstant-conversion -Wduplicate-method-match -Wempty-body -Wenum-conversion -Wint-conversion -Wunreachable-code -Wmismatched-return-types -Wundeclared-selector -Wuninitialized -Wunused-function -Wunused-variable -iquote external/FXPageControl -iquote bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/external/FXPageControl -DOS_IOS -fno-autolink -F$(SDKROOT)/System/Library/Frameworks -F$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -fexceptions -fasm-blocks -fobjc-abi-version=2 -fobjc-legacy-dispatch -DNDEBUG=1 -Wno-unused-variable -Winit-self -Wno-extra";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Os -D_FORTIFY_SOURCE=1 -fstack-protector -Wall -Wthread-safety -Wself-assign -fno-omit-frame-pointer -g0 -DNDEBUG -DNS_BLOCK_ASSERTIONS=1 -Wshorten-64-to-32 -Wbool-conversion -Wconstant-conversion -Wduplicate-method-match -Wempty-body -Wenum-conversion -Wint-conversion -Wunreachable-code -Wmismatched-return-types -Wundeclared-selector -Wuninitialized -Wunused-function -Wunused-variable -iquote external/FXPageControl -iquote bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/external/FXPageControl -DOS_IOS -fno-autolink -F$(SDKROOT)/System/Library/Frameworks -F$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -fexceptions -fasm-blocks -fobjc-abi-version=2 -fobjc-legacy-dispatch -DNDEBUG=1 -Wno-unused-variable -Winit-self -Wno-extra";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -11509,11 +11506,10 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_OPTIMIZATION_LEVEL = 2;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
-				OTHER_CPLUSPLUSFLAGS = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -O0";
 				PRODUCT_MODULE_NAME = FXPageControl;
 				PRODUCT_NAME = FXPageControl;
 				SDKROOT = iphoneos;
@@ -12118,8 +12114,8 @@
 				ARCHS = x86_64;
 				"ARCHS[sdk=iphoneos*]" = arm64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -O2 -Os -D_FORTIFY_SOURCE=1 -fstack-protector -Wall -Wthread-safety -Wself-assign -fno-omit-frame-pointer -g0 -DNDEBUG -DNS_BLOCK_ASSERTIONS=1 -Wshorten-64-to-32 -Wbool-conversion -Wconstant-conversion -Wduplicate-method-match -Wempty-body -Wenum-conversion -Wint-conversion -Wunreachable-code -Wmismatched-return-types -Wundeclared-selector -Wuninitialized -Wunused-function -Wunused-variable -iquote . -iquote bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin -DOS_IOS -fno-autolink -F$(SDKROOT)/System/Library/Frameworks -F$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -fexceptions -fasm-blocks -fobjc-abi-version=2 -fobjc-legacy-dispatch -Ibazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/CoreUtilsMixed -DNDEBUG=1 -Wno-unused-variable -Winit-self -Wno-extra";
-				"ASAN_OTHER_CFLAGS__NO[sdk=iphoneos*]" = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -O2 -Os -D_FORTIFY_SOURCE=1 -fstack-protector -Wall -Wthread-safety -Wself-assign -fno-omit-frame-pointer -g0 -DNDEBUG -DNS_BLOCK_ASSERTIONS=1 -Wshorten-64-to-32 -Wbool-conversion -Wconstant-conversion -Wduplicate-method-match -Wempty-body -Wenum-conversion -Wint-conversion -Wunreachable-code -Wmismatched-return-types -Wundeclared-selector -Wuninitialized -Wunused-function -Wunused-variable -iquote . -iquote bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin -DOS_IOS -fno-autolink -F$(SDKROOT)/System/Library/Frameworks -F$(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/Library/Frameworks -Ibazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/iOSApp/CoreUtilsMixed -DNDEBUG=1 -Wno-unused-variable -Winit-self -Wno-extra";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Os -D_FORTIFY_SOURCE=1 -fstack-protector -Wall -Wthread-safety -Wself-assign -fno-omit-frame-pointer -g0 -DNDEBUG -DNS_BLOCK_ASSERTIONS=1 -Wshorten-64-to-32 -Wbool-conversion -Wconstant-conversion -Wduplicate-method-match -Wempty-body -Wenum-conversion -Wint-conversion -Wunreachable-code -Wmismatched-return-types -Wundeclared-selector -Wuninitialized -Wunused-function -Wunused-variable -iquote . -iquote bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin -DOS_IOS -fno-autolink -F$(SDKROOT)/System/Library/Frameworks -F$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -fexceptions -fasm-blocks -fobjc-abi-version=2 -fobjc-legacy-dispatch -Ibazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/CoreUtilsMixed -DNDEBUG=1 -Wno-unused-variable -Winit-self -Wno-extra";
+				"ASAN_OTHER_CFLAGS__NO[sdk=iphoneos*]" = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Os -D_FORTIFY_SOURCE=1 -fstack-protector -Wall -Wthread-safety -Wself-assign -fno-omit-frame-pointer -g0 -DNDEBUG -DNS_BLOCK_ASSERTIONS=1 -Wshorten-64-to-32 -Wbool-conversion -Wconstant-conversion -Wduplicate-method-match -Wempty-body -Wenum-conversion -Wint-conversion -Wunreachable-code -Wmismatched-return-types -Wundeclared-selector -Wuninitialized -Wunused-function -Wunused-variable -iquote . -iquote bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin -DOS_IOS -fno-autolink -F$(SDKROOT)/System/Library/Frameworks -F$(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/Library/Frameworks -Ibazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/iOSApp/CoreUtilsMixed -DNDEBUG=1 -Wno-unused-variable -Winit-self -Wno-extra";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -12135,11 +12131,10 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_OPTIMIZATION_LEVEL = 2;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
-				OTHER_CPLUSPLUSFLAGS = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -O0";
 				PRODUCT_NAME = MixedAnswer;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
@@ -12634,7 +12629,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -O2 -D_FORTIFY_SOURCE=1 -fstack-protector -Wall -Wthread-safety -Wself-assign -fno-omit-frame-pointer -g0 -DNDEBUG -DNS_BLOCK_ASSERTIONS=1 -iquote . -iquote bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin -F$(SDKROOT)/System/Library/Frameworks -F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks -no-canonical-prefixes -pthread -no-canonical-prefixes -Wno-builtin-macro-redefined -D__DATE__=\\\"redacted\\\" -D__TIMESTAMP__=\\\"redacted\\\" -D__TIME__=\\\"redacted\\\"";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -D_FORTIFY_SOURCE=1 -fstack-protector -Wall -Wthread-safety -Wself-assign -fno-omit-frame-pointer -g0 -DNDEBUG -DNS_BLOCK_ASSERTIONS=1 -iquote . -iquote bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin -F$(SDKROOT)/System/Library/Frameworks -F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks -no-canonical-prefixes -pthread -no-canonical-prefixes -Wno-builtin-macro-redefined -D__DATE__=\\\"redacted\\\" -D__TIMESTAMP__=\\\"redacted\\\" -D__TIME__=\\\"redacted\\\"";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -12648,11 +12643,10 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_OPTIMIZATION_LEVEL = 2;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
-				OTHER_CPLUSPLUSFLAGS = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -O0";
 				PRODUCT_NAME = c_lib;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
@@ -12798,7 +12792,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -O2 -Os -D_FORTIFY_SOURCE=1 -fstack-protector -Wall -Wthread-safety -Wself-assign -fno-omit-frame-pointer -g0 -DNDEBUG -DNS_BLOCK_ASSERTIONS=1 -Wshorten-64-to-32 -Wbool-conversion -Wconstant-conversion -Wduplicate-method-match -Wempty-body -Wenum-conversion -Wint-conversion -Wunreachable-code -Wmismatched-return-types -Wundeclared-selector -Wuninitialized -Wunused-function -Wunused-variable -iquote . -iquote bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin -iquote external/examples_command_line_external -iquote bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/external/examples_command_line_external \"-ICommandLine/CommandLineToolLib/dir with space\" \"-Ibazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineToolLib/dir with space\" -ICommandLine/CommandLineToolLib/private -Ibazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineToolLib/private -I$(SDKROOT)/usr/include/uuid -DSECRET_3=\\\"Hello\\\" -DSECRET_2=\\\"World!\\\" -Fexternal/examples_command_line_external -DOS_MACOSX -fno-autolink -F$(SDKROOT)/System/Library/Frameworks -F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks --config $(CURRENT_EXECUTION_ROOT)/CommandLine/CommandLineTool/verbose.cfg -DNDEBUG=1 -Wno-unused-variable -Winit-self -Wno-extra";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Os -D_FORTIFY_SOURCE=1 -fstack-protector -Wall -Wthread-safety -Wself-assign -fno-omit-frame-pointer -g0 -DNDEBUG -DNS_BLOCK_ASSERTIONS=1 -Wshorten-64-to-32 -Wbool-conversion -Wconstant-conversion -Wduplicate-method-match -Wempty-body -Wenum-conversion -Wint-conversion -Wunreachable-code -Wmismatched-return-types -Wundeclared-selector -Wuninitialized -Wunused-function -Wunused-variable -iquote . -iquote bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin -iquote external/examples_command_line_external -iquote bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/external/examples_command_line_external \"-ICommandLine/CommandLineToolLib/dir with space\" \"-Ibazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineToolLib/dir with space\" -ICommandLine/CommandLineToolLib/private -Ibazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineToolLib/private -I$(SDKROOT)/usr/include/uuid -DSECRET_3=\\\"Hello\\\" -DSECRET_2=\\\"World!\\\" -Fexternal/examples_command_line_external -DOS_MACOSX -fno-autolink -F$(SDKROOT)/System/Library/Frameworks -F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks --config $(CURRENT_EXECUTION_ROOT)/CommandLine/CommandLineTool/verbose.cfg -DNDEBUG=1 -Wno-unused-variable -Winit-self -Wno-extra";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -12818,13 +12812,12 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				EXECUTABLE_EXTENSION = "";
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_OPTIMIZATION_LEVEL = 2;
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-opt-STABLE-40/bin/CommandLine/CommandLineTool/rules_xcodeproj/CommandLineTool/Info.plist";
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/CommandLineTool.125.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				OTHER_CODE_SIGN_FLAGS = "-v";
-				OTHER_CPLUSPLUSFLAGS = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -O0";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				PRODUCT_NAME = CommandLineTool;
 				SDKROOT = macosx;
@@ -13213,7 +13206,7 @@
 			buildSettings = {
 				ARCHS = arm64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -O2 -D_FORTIFY_SOURCE=1 -fstack-protector -Wall -Wthread-safety -Wself-assign -fno-omit-frame-pointer -g0 -DNDEBUG -DNS_BLOCK_ASSERTIONS=1 -iquote . -iquote bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37/bin -F$(SDKROOT)/System/Library/Frameworks -F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks -no-canonical-prefixes -pthread -Ibazel-out -Iexternal -no-canonical-prefixes -Wno-builtin-macro-redefined -D__DATE__=\\\"redacted\\\" -D__TIMESTAMP__=\\\"redacted\\\" -D__TIME__=\\\"redacted\\\"";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -D_FORTIFY_SOURCE=1 -fstack-protector -Wall -Wthread-safety -Wself-assign -fno-omit-frame-pointer -g0 -DNDEBUG -DNS_BLOCK_ASSERTIONS=1 -iquote . -iquote bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37/bin -F$(SDKROOT)/System/Library/Frameworks -F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks -no-canonical-prefixes -pthread -Ibazel-out -Iexternal -no-canonical-prefixes -Wno-builtin-macro-redefined -D__DATE__=\\\"redacted\\\" -D__TIMESTAMP__=\\\"redacted\\\" -D__TIME__=\\\"redacted\\\"";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -13227,11 +13220,10 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_OPTIMIZATION_LEVEL = 2;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
-				OTHER_CPLUSPLUSFLAGS = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -O0";
 				PRODUCT_NAME = private_lib;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
@@ -13247,7 +13239,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -O2 -Os -D_FORTIFY_SOURCE=1 -fstack-protector -Wall -Wthread-safety -Wself-assign -fno-omit-frame-pointer -g0 -DNDEBUG -DNS_BLOCK_ASSERTIONS=1 -Wshorten-64-to-32 -Wbool-conversion -Wconstant-conversion -Wduplicate-method-match -Wempty-body -Wenum-conversion -Wint-conversion -Wunreachable-code -Wmismatched-return-types -Wundeclared-selector -Wuninitialized -Wunused-function -Wunused-variable -iquote . -iquote bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38/bin -I$(SDKROOT)/usr/include/uuid -DSECRET_3=\\\"Hello\\\" -DSECRET_2=\\\"World!\\\" -DOS_MACOSX -fno-autolink -F$(SDKROOT)/System/Library/Frameworks -F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks -DNDEBUG=1 -Wno-unused-variable -Winit-self -Wno-extra";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Os -D_FORTIFY_SOURCE=1 -fstack-protector -Wall -Wthread-safety -Wself-assign -fno-omit-frame-pointer -g0 -DNDEBUG -DNS_BLOCK_ASSERTIONS=1 -Wshorten-64-to-32 -Wbool-conversion -Wconstant-conversion -Wduplicate-method-match -Wempty-body -Wenum-conversion -Wint-conversion -Wunreachable-code -Wmismatched-return-types -Wundeclared-selector -Wuninitialized -Wunused-function -Wunused-variable -iquote . -iquote bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38/bin -I$(SDKROOT)/usr/include/uuid -DSECRET_3=\\\"Hello\\\" -DSECRET_2=\\\"World!\\\" -DOS_MACOSX -fno-autolink -F$(SDKROOT)/System/Library/Frameworks -F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks -DNDEBUG=1 -Wno-unused-variable -Winit-self -Wno-extra";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -13261,11 +13253,10 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_OPTIMIZATION_LEVEL = 2;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
-				OTHER_CPLUSPLUSFLAGS = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -O0";
 				PRODUCT_NAME = lib_impl;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
@@ -13437,7 +13428,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -O2 -D_FORTIFY_SOURCE=1 -fstack-protector -Wall -Wthread-safety -Wself-assign -fno-omit-frame-pointer -g0 -DNDEBUG -DNS_BLOCK_ASSERTIONS=1 -iquote . -iquote bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin -F$(SDKROOT)/System/Library/Frameworks -F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks -no-canonical-prefixes -pthread -Ibazel-out -Iexternal -no-canonical-prefixes -Wno-builtin-macro-redefined -D__DATE__=\\\"redacted\\\" -D__TIMESTAMP__=\\\"redacted\\\" -D__TIME__=\\\"redacted\\\"";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -D_FORTIFY_SOURCE=1 -fstack-protector -Wall -Wthread-safety -Wself-assign -fno-omit-frame-pointer -g0 -DNDEBUG -DNS_BLOCK_ASSERTIONS=1 -iquote . -iquote bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin -F$(SDKROOT)/System/Library/Frameworks -F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks -no-canonical-prefixes -pthread -Ibazel-out -Iexternal -no-canonical-prefixes -Wno-builtin-macro-redefined -D__DATE__=\\\"redacted\\\" -D__TIMESTAMP__=\\\"redacted\\\" -D__TIME__=\\\"redacted\\\"";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -13451,11 +13442,10 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_OPTIMIZATION_LEVEL = 2;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
-				OTHER_CPLUSPLUSFLAGS = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -O0";
 				PRODUCT_NAME = private_lib;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
@@ -13616,7 +13606,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -O2 -Os -D_FORTIFY_SOURCE=1 -fstack-protector -Wall -Wthread-safety -Wself-assign -fno-omit-frame-pointer -g0 -DNDEBUG -DNS_BLOCK_ASSERTIONS=1 -Wshorten-64-to-32 -Wbool-conversion -Wconstant-conversion -Wduplicate-method-match -Wempty-body -Wenum-conversion -Wint-conversion -Wunreachable-code -Wmismatched-return-types -Wundeclared-selector -Wuninitialized -Wunused-function -Wunused-variable -iquote . -iquote bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38/bin -iquote external/examples_command_line_external -iquote bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38/bin/external/examples_command_line_external \"-ICommandLine/CommandLineToolLib/dir with space\" \"-Ibazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38/bin/CommandLine/CommandLineToolLib/dir with space\" -ICommandLine/CommandLineToolLib/private -Ibazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38/bin/CommandLine/CommandLineToolLib/private -I$(SDKROOT)/usr/include/uuid -DSECRET_3=\\\"Hello\\\" -DSECRET_2=\\\"World!\\\" -Fexternal/examples_command_line_external -DOS_MACOSX -fno-autolink -F$(SDKROOT)/System/Library/Frameworks -F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks --config $(CURRENT_EXECUTION_ROOT)/CommandLine/CommandLineTool/verbose.cfg -DNDEBUG=1 -Wno-unused-variable -Winit-self -Wno-extra";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Os -D_FORTIFY_SOURCE=1 -fstack-protector -Wall -Wthread-safety -Wself-assign -fno-omit-frame-pointer -g0 -DNDEBUG -DNS_BLOCK_ASSERTIONS=1 -Wshorten-64-to-32 -Wbool-conversion -Wconstant-conversion -Wduplicate-method-match -Wempty-body -Wenum-conversion -Wint-conversion -Wunreachable-code -Wmismatched-return-types -Wundeclared-selector -Wuninitialized -Wunused-function -Wunused-variable -iquote . -iquote bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38/bin -iquote external/examples_command_line_external -iquote bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38/bin/external/examples_command_line_external \"-ICommandLine/CommandLineToolLib/dir with space\" \"-Ibazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38/bin/CommandLine/CommandLineToolLib/dir with space\" -ICommandLine/CommandLineToolLib/private -Ibazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38/bin/CommandLine/CommandLineToolLib/private -I$(SDKROOT)/usr/include/uuid -DSECRET_3=\\\"Hello\\\" -DSECRET_2=\\\"World!\\\" -Fexternal/examples_command_line_external -DOS_MACOSX -fno-autolink -F$(SDKROOT)/System/Library/Frameworks -F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks --config $(CURRENT_EXECUTION_ROOT)/CommandLine/CommandLineTool/verbose.cfg -DNDEBUG=1 -Wno-unused-variable -Winit-self -Wno-extra";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -13636,12 +13626,11 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				EXECUTABLE_EXTENSION = binary;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_OPTIMIZATION_LEVEL = 2;
 				GENERATE_INFOPLIST_FILE = YES;
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/UniversalCommandLineTool.137.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
-				OTHER_CPLUSPLUSFLAGS = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -O0";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				PRODUCT_MODULE_NAME = CommandLine_CommandLineTool_tool_binary;
 				PRODUCT_NAME = tool.binary;
@@ -13756,7 +13745,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -O2 -Os -D_FORTIFY_SOURCE=1 -fstack-protector -Wall -Wthread-safety -Wself-assign -fno-omit-frame-pointer -g0 -DNDEBUG -DNS_BLOCK_ASSERTIONS=1 -Wshorten-64-to-32 -Wbool-conversion -Wconstant-conversion -Wduplicate-method-match -Wempty-body -Wenum-conversion -Wint-conversion -Wunreachable-code -Wmismatched-return-types -Wundeclared-selector -Wuninitialized -Wunused-function -Wunused-variable -iquote . -iquote bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin -iquote external/com_github_krzyzanowskim_cryptoswift -iquote bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/external/com_github_krzyzanowskim_cryptoswift -iquote external/com_google_google_maps -iquote bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/external/com_google_google_maps -iquote external/FXPageControl -iquote bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/external/FXPageControl -IiOSApp/Test/TestingUtils -Ibazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Test/TestingUtils -IiOSApp/Source/CoreUtilsObjC -Ibazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Source/CoreUtilsObjC -DAWESOME -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Fexternal/com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator -Fexternal/com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator -Fexternal/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator -DOS_IOS -fno-autolink -F$(SDKROOT)/System/Library/Frameworks -F$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -fexceptions -fasm-blocks -fobjc-abi-version=2 -fobjc-legacy-dispatch -DNDEBUG=1 -Wno-unused-variable -Winit-self -Wno-extra";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Os -D_FORTIFY_SOURCE=1 -fstack-protector -Wall -Wthread-safety -Wself-assign -fno-omit-frame-pointer -g0 -DNDEBUG -DNS_BLOCK_ASSERTIONS=1 -Wshorten-64-to-32 -Wbool-conversion -Wconstant-conversion -Wduplicate-method-match -Wempty-body -Wenum-conversion -Wint-conversion -Wunreachable-code -Wmismatched-return-types -Wundeclared-selector -Wuninitialized -Wunused-function -Wunused-variable -iquote . -iquote bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin -iquote external/com_github_krzyzanowskim_cryptoswift -iquote bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/external/com_github_krzyzanowskim_cryptoswift -iquote external/com_google_google_maps -iquote bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/external/com_google_google_maps -iquote external/FXPageControl -iquote bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/external/FXPageControl -IiOSApp/Test/TestingUtils -Ibazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Test/TestingUtils -IiOSApp/Source/CoreUtilsObjC -Ibazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Source/CoreUtilsObjC -DAWESOME -Fexternal/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Fexternal/com_google_google_maps/GoogleMaps.xcframework/ios-arm64_x86_64-simulator -Fexternal/com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator -Fexternal/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator -DOS_IOS -fno-autolink -F$(SDKROOT)/System/Library/Frameworks -F$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -fexceptions -fasm-blocks -fobjc-abi-version=2 -fobjc-legacy-dispatch -DNDEBUG=1 -Wno-unused-variable -Winit-self -Wno-extra";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -13776,12 +13765,11 @@
 				DEPLOYMENT_LOCATION = NO;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_OPTIMIZATION_LEVEL = 2;
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Test/ObjCUnitTests/rules_xcodeproj/iOSAppObjCUnitTests.__internal__.__test_bundle/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/iOSAppObjCUnitTests.109.link.params";
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
-				OTHER_CPLUSPLUSFLAGS = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -O0";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.objctests";
 				PRODUCT_MODULE_NAME = iOSAppObjCUnitTests;
@@ -14006,7 +13994,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -O2 -Os -D_FORTIFY_SOURCE=1 -fstack-protector -Wall -Wthread-safety -Wself-assign -fno-omit-frame-pointer -g0 -DNDEBUG -DNS_BLOCK_ASSERTIONS=1 -Wshorten-64-to-32 -Wbool-conversion -Wconstant-conversion -Wduplicate-method-match -Wempty-body -Wenum-conversion -Wint-conversion -Wunreachable-code -Wmismatched-return-types -Wundeclared-selector -Wuninitialized -Wunused-function -Wunused-variable -iquote . -iquote bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin -iquote external/FXPageControl -iquote bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/external/FXPageControl -IiOSApp/Source/CoreUtilsObjC -Ibazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Source/CoreUtilsObjC -DOS_IOS -fno-autolink -F$(SDKROOT)/System/Library/Frameworks -F$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -fexceptions -fasm-blocks -fobjc-abi-version=2 -fobjc-legacy-dispatch -DNDEBUG=1 -Wno-unused-variable -Winit-self -Wno-extra";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Os -D_FORTIFY_SOURCE=1 -fstack-protector -Wall -Wthread-safety -Wself-assign -fno-omit-frame-pointer -g0 -DNDEBUG -DNS_BLOCK_ASSERTIONS=1 -Wshorten-64-to-32 -Wbool-conversion -Wconstant-conversion -Wduplicate-method-match -Wempty-body -Wenum-conversion -Wint-conversion -Wunreachable-code -Wmismatched-return-types -Wundeclared-selector -Wuninitialized -Wunused-function -Wunused-variable -iquote . -iquote bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin -iquote external/FXPageControl -iquote bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/external/FXPageControl -IiOSApp/Source/CoreUtilsObjC -Ibazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Source/CoreUtilsObjC -DOS_IOS -fno-autolink -F$(SDKROOT)/System/Library/Frameworks -F$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -fexceptions -fasm-blocks -fobjc-abi-version=2 -fobjc-legacy-dispatch -DNDEBUG=1 -Wno-unused-variable -Winit-self -Wno-extra";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -14020,11 +14008,10 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_OPTIMIZATION_LEVEL = 2;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
-				OTHER_CPLUSPLUSFLAGS = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -O0";
 				PRODUCT_MODULE_NAME = Utils;
 				PRODUCT_NAME = Utils;
 				SDKROOT = iphoneos;
@@ -14269,7 +14256,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -O2 -D_FORTIFY_SOURCE=1 -fstack-protector -Wall -Wthread-safety -Wself-assign -fno-omit-frame-pointer -g0 -DNDEBUG -DNS_BLOCK_ASSERTIONS=1 -iquote . -iquote bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38/bin -F$(SDKROOT)/System/Library/Frameworks -F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks -no-canonical-prefixes -pthread -no-canonical-prefixes -Wno-builtin-macro-redefined -D__DATE__=\\\"redacted\\\" -D__TIMESTAMP__=\\\"redacted\\\" -D__TIME__=\\\"redacted\\\"";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -D_FORTIFY_SOURCE=1 -fstack-protector -Wall -Wthread-safety -Wself-assign -fno-omit-frame-pointer -g0 -DNDEBUG -DNS_BLOCK_ASSERTIONS=1 -iquote . -iquote bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38/bin -F$(SDKROOT)/System/Library/Frameworks -F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks -no-canonical-prefixes -pthread -no-canonical-prefixes -Wno-builtin-macro-redefined -D__DATE__=\\\"redacted\\\" -D__TIMESTAMP__=\\\"redacted\\\" -D__TIME__=\\\"redacted\\\"";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -14283,11 +14270,10 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_OPTIMIZATION_LEVEL = 2;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
-				OTHER_CPLUSPLUSFLAGS = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -O0";
 				PRODUCT_NAME = c_lib;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
@@ -14375,8 +14361,8 @@
 				ARCHS = x86_64;
 				"ARCHS[sdk=iphoneos*]" = arm64;
 				ASAN_OTHER_CPLUSPLUSFLAGS__ = "$(ASAN_OTHER_CPLUSPLUSFLAGS__NO)";
-				ASAN_OTHER_CPLUSPLUSFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -O2 -Os -stdlib=libc++ -std=gnu++11 -D_FORTIFY_SOURCE=1 -fstack-protector -Wall -Wthread-safety -Wself-assign -fno-omit-frame-pointer -g0 -DNDEBUG -DNS_BLOCK_ASSERTIONS=1 -Wshorten-64-to-32 -Wbool-conversion -Wconstant-conversion -Wduplicate-method-match -Wempty-body -Wenum-conversion -Wint-conversion -Wunreachable-code -Wmismatched-return-types -Wundeclared-selector -Wuninitialized -Wunused-function -Wunused-variable -iquote . -iquote bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin -IiOSApp/Source/CoreUtilsObjC -Ibazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Source/CoreUtilsObjC -DOS_IOS -fno-autolink -F$(SDKROOT)/System/Library/Frameworks -F$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -fexceptions -fasm-blocks -fobjc-abi-version=2 -fobjc-legacy-dispatch -DNDEBUG=1 -Wno-unused-variable -Winit-self -Wno-extra";
-				"ASAN_OTHER_CPLUSPLUSFLAGS__NO[sdk=iphoneos*]" = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -O2 -Os -stdlib=libc++ -std=gnu++11 -D_FORTIFY_SOURCE=1 -fstack-protector -Wall -Wthread-safety -Wself-assign -fno-omit-frame-pointer -g0 -DNDEBUG -DNS_BLOCK_ASSERTIONS=1 -Wshorten-64-to-32 -Wbool-conversion -Wconstant-conversion -Wduplicate-method-match -Wempty-body -Wenum-conversion -Wint-conversion -Wunreachable-code -Wmismatched-return-types -Wundeclared-selector -Wuninitialized -Wunused-function -Wunused-variable -iquote . -iquote bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin -IiOSApp/Source/CoreUtilsObjC -Ibazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/iOSApp/Source/CoreUtilsObjC -DOS_IOS -fno-autolink -F$(SDKROOT)/System/Library/Frameworks -F$(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/Library/Frameworks -DNDEBUG=1 -Wno-unused-variable -Winit-self -Wno-extra";
+				ASAN_OTHER_CPLUSPLUSFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Os -stdlib=libc++ -std=gnu++11 -D_FORTIFY_SOURCE=1 -fstack-protector -Wall -Wthread-safety -Wself-assign -fno-omit-frame-pointer -g0 -DNDEBUG -DNS_BLOCK_ASSERTIONS=1 -Wshorten-64-to-32 -Wbool-conversion -Wconstant-conversion -Wduplicate-method-match -Wempty-body -Wenum-conversion -Wint-conversion -Wunreachable-code -Wmismatched-return-types -Wundeclared-selector -Wuninitialized -Wunused-function -Wunused-variable -iquote . -iquote bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin -IiOSApp/Source/CoreUtilsObjC -Ibazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Source/CoreUtilsObjC -DOS_IOS -fno-autolink -F$(SDKROOT)/System/Library/Frameworks -F$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -fexceptions -fasm-blocks -fobjc-abi-version=2 -fobjc-legacy-dispatch -DNDEBUG=1 -Wno-unused-variable -Winit-self -Wno-extra";
+				"ASAN_OTHER_CPLUSPLUSFLAGS__NO[sdk=iphoneos*]" = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Os -stdlib=libc++ -std=gnu++11 -D_FORTIFY_SOURCE=1 -fstack-protector -Wall -Wthread-safety -Wself-assign -fno-omit-frame-pointer -g0 -DNDEBUG -DNS_BLOCK_ASSERTIONS=1 -Wshorten-64-to-32 -Wbool-conversion -Wconstant-conversion -Wduplicate-method-match -Wempty-body -Wenum-conversion -Wint-conversion -Wunreachable-code -Wmismatched-return-types -Wundeclared-selector -Wuninitialized -Wunused-function -Wunused-variable -iquote . -iquote bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin -IiOSApp/Source/CoreUtilsObjC -Ibazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/iOSApp/Source/CoreUtilsObjC -DOS_IOS -fno-autolink -F$(SDKROOT)/System/Library/Frameworks -F$(DEVELOPER_DIR)/Platforms/iPhoneOS.platform/Developer/Library/Frameworks -DNDEBUG=1 -Wno-unused-variable -Winit-self -Wno-extra";
 				ASAN_OTHER_CPLUSPLUSFLAGS__YES = (
 					"$(ASAN_OTHER_CPLUSPLUSFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -14396,14 +14382,13 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_OPTIMIZATION_LEVEL = 2;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/iOSApp/Source/CoreUtilsObjC/CoreUtils/CoreUtils.pch";
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Source/CoreUtilsObjC/rules_xcodeproj/FrameworkCoreUtilsObjC/Info.plist";
 				"INFOPLIST_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/applebin_ios-ios_arm64-opt-STABLE-16/bin/iOSApp/Source/CoreUtilsObjC/rules_xcodeproj/FrameworkCoreUtilsObjC/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/FrameworkCoreUtilsObjC.90.link.params";
 				"LINK_PARAMS_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/FrameworkCoreUtilsObjC.144.link.params";
-				OTHER_CFLAGS = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -O0";
 				OTHER_CPLUSPLUSFLAGS = "$(ASAN_OTHER_CPLUSPLUSFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.CoreUtilsObjC";
@@ -14489,7 +14474,7 @@
 			buildSettings = {
 				ARCHS = arm64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -O2 -Os -D_FORTIFY_SOURCE=1 -fstack-protector -Wall -Wthread-safety -Wself-assign -fno-omit-frame-pointer -g0 -DNDEBUG -DNS_BLOCK_ASSERTIONS=1 -Wshorten-64-to-32 -Wbool-conversion -Wconstant-conversion -Wduplicate-method-match -Wempty-body -Wenum-conversion -Wint-conversion -Wunreachable-code -Wmismatched-return-types -Wundeclared-selector -Wuninitialized -Wunused-function -Wunused-variable -iquote . -iquote bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37/bin -iquote external/examples_command_line_external -iquote bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37/bin/external/examples_command_line_external \"-ICommandLine/CommandLineToolLib/dir with space\" \"-Ibazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37/bin/CommandLine/CommandLineToolLib/dir with space\" -ICommandLine/CommandLineToolLib/private -Ibazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37/bin/CommandLine/CommandLineToolLib/private -I$(SDKROOT)/usr/include/uuid -DSECRET_3=\\\"Hello\\\" -DSECRET_2=\\\"World!\\\" -Fexternal/examples_command_line_external -DOS_MACOSX -fno-autolink -F$(SDKROOT)/System/Library/Frameworks -F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks --config $(CURRENT_EXECUTION_ROOT)/CommandLine/CommandLineTool/verbose.cfg -DNDEBUG=1 -Wno-unused-variable -Winit-self -Wno-extra";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -Os -D_FORTIFY_SOURCE=1 -fstack-protector -Wall -Wthread-safety -Wself-assign -fno-omit-frame-pointer -g0 -DNDEBUG -DNS_BLOCK_ASSERTIONS=1 -Wshorten-64-to-32 -Wbool-conversion -Wconstant-conversion -Wduplicate-method-match -Wempty-body -Wenum-conversion -Wint-conversion -Wunreachable-code -Wmismatched-return-types -Wundeclared-selector -Wuninitialized -Wunused-function -Wunused-variable -iquote . -iquote bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37/bin -iquote external/examples_command_line_external -iquote bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37/bin/external/examples_command_line_external \"-ICommandLine/CommandLineToolLib/dir with space\" \"-Ibazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37/bin/CommandLine/CommandLineToolLib/dir with space\" -ICommandLine/CommandLineToolLib/private -Ibazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37/bin/CommandLine/CommandLineToolLib/private -I$(SDKROOT)/usr/include/uuid -DSECRET_3=\\\"Hello\\\" -DSECRET_2=\\\"World!\\\" -Fexternal/examples_command_line_external -DOS_MACOSX -fno-autolink -F$(SDKROOT)/System/Library/Frameworks -F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks --config $(CURRENT_EXECUTION_ROOT)/CommandLine/CommandLineTool/verbose.cfg -DNDEBUG=1 -Wno-unused-variable -Winit-self -Wno-extra";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -14509,12 +14494,11 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				EXECUTABLE_EXTENSION = binary;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_OPTIMIZATION_LEVEL = 2;
 				GENERATE_INFOPLIST_FILE = YES;
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/UniversalCommandLineTool.131.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
-				OTHER_CPLUSPLUSFLAGS = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -O0";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				PRODUCT_MODULE_NAME = CommandLine_CommandLineTool_tool_binary;
 				PRODUCT_NAME = tool.binary;
@@ -14573,7 +14557,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -O2 -D_FORTIFY_SOURCE=1 -fstack-protector -Wall -Wthread-safety -Wself-assign -fno-omit-frame-pointer -g0 -DNDEBUG -DNS_BLOCK_ASSERTIONS=1 -iquote . -iquote bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38/bin -F$(SDKROOT)/System/Library/Frameworks -F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks -no-canonical-prefixes -pthread -Ibazel-out -Iexternal -no-canonical-prefixes -Wno-builtin-macro-redefined -D__DATE__=\\\"redacted\\\" -D__TIMESTAMP__=\\\"redacted\\\" -D__TIME__=\\\"redacted\\\"";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -D_FORTIFY_SOURCE=1 -fstack-protector -Wall -Wthread-safety -Wself-assign -fno-omit-frame-pointer -g0 -DNDEBUG -DNS_BLOCK_ASSERTIONS=1 -iquote . -iquote bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38/bin -F$(SDKROOT)/System/Library/Frameworks -F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks -no-canonical-prefixes -pthread -Ibazel-out -Iexternal -no-canonical-prefixes -Wno-builtin-macro-redefined -D__DATE__=\\\"redacted\\\" -D__TIMESTAMP__=\\\"redacted\\\" -D__TIME__=\\\"redacted\\\"";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -14587,11 +14571,10 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_OPTIMIZATION_LEVEL = 2;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
-				OTHER_CPLUSPLUSFLAGS = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -O0";
 				PRODUCT_NAME = private_lib;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;

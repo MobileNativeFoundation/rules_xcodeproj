@@ -652,7 +652,6 @@
             "t": "g"
         },
         "8": [
-            "-O2",
             "-Os",
             "-D_FORTIFY_SOURCE=1",
             "-fstack-protector",
@@ -703,15 +702,12 @@
             "-Winit-self",
             "-Wno-extra"
         ],
-        "9": [
-            "-O0"
-        ],
         "b": {
             "CLANG_ENABLE_MODULES": true,
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
-            "GCC_OPTIMIZATION_LEVEL": "0",
+            "GCC_OPTIMIZATION_LEVEL": "2",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-opt-STABLE-40/bin/CommandLine/CommandLineTool/rules_xcodeproj/CommandLineTool/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/CommandLineTool.125.link.params",
             "OTHER_CODE_SIGN_FLAGS": [
@@ -879,7 +875,6 @@
             "t": "g"
         },
         "8": [
-            "-O2",
             "-Os",
             "-D_FORTIFY_SOURCE=1",
             "-fstack-protector",
@@ -930,15 +925,12 @@
             "-Winit-self",
             "-Wno-extra"
         ],
-        "9": [
-            "-O0"
-        ],
         "b": {
             "CLANG_ENABLE_MODULES": true,
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
-            "GCC_OPTIMIZATION_LEVEL": "0",
+            "GCC_OPTIMIZATION_LEVEL": "2",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/UniversalCommandLineTool.131.link.params",
             "PRODUCT_MODULE_NAME": "CommandLine_CommandLineTool_tool_binary",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
@@ -1103,7 +1095,6 @@
             "t": "g"
         },
         "8": [
-            "-O2",
             "-Os",
             "-D_FORTIFY_SOURCE=1",
             "-fstack-protector",
@@ -1154,15 +1145,12 @@
             "-Winit-self",
             "-Wno-extra"
         ],
-        "9": [
-            "-O0"
-        ],
         "b": {
             "CLANG_ENABLE_MODULES": true,
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
-            "GCC_OPTIMIZATION_LEVEL": "0",
+            "GCC_OPTIMIZATION_LEVEL": "2",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/UniversalCommandLineTool.137.link.params",
             "PRODUCT_MODULE_NAME": "CommandLine_CommandLineTool_tool_binary",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
@@ -1285,7 +1273,6 @@
             "v": "macosx"
         },
         "8": [
-            "-O2",
             "-Os",
             "-D_FORTIFY_SOURCE=1",
             "-fstack-protector",
@@ -1325,14 +1312,11 @@
             "-Winit-self",
             "-Wno-extra"
         ],
-        "9": [
-            "-O0"
-        ],
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
-            "GCC_OPTIMIZATION_LEVEL": "0",
+            "GCC_OPTIMIZATION_LEVEL": "2",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
             "SWIFT_VERSION": "5.0"
@@ -1513,7 +1497,6 @@
             "v": "macosx"
         },
         "8": [
-            "-O2",
             "-Os",
             "-D_FORTIFY_SOURCE=1",
             "-fstack-protector",
@@ -1553,14 +1536,11 @@
             "-Winit-self",
             "-Wno-extra"
         ],
-        "9": [
-            "-O0"
-        ],
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
-            "GCC_OPTIMIZATION_LEVEL": "0",
+            "GCC_OPTIMIZATION_LEVEL": "2",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
             "SWIFT_VERSION": "5.0"
@@ -1597,7 +1577,6 @@
             "v": "macosx"
         },
         "8": [
-            "-O2",
             "-Os",
             "-D_FORTIFY_SOURCE=1",
             "-fstack-protector",
@@ -1637,14 +1616,11 @@
             "-Winit-self",
             "-Wno-extra"
         ],
-        "9": [
-            "-O0"
-        ],
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
-            "GCC_OPTIMIZATION_LEVEL": "0",
+            "GCC_OPTIMIZATION_LEVEL": "2",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
             "SWIFT_VERSION": "5.0"
@@ -2355,7 +2331,6 @@
             "v": "macosx"
         },
         "8": [
-            "-O2",
             "-D_FORTIFY_SOURCE=1",
             "-fstack-protector",
             "-Wall",
@@ -2381,14 +2356,11 @@
             "-D__TIMESTAMP__=\"redacted\"",
             "-D__TIME__=\"redacted\""
         ],
-        "9": [
-            "-O0"
-        ],
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
-            "GCC_OPTIMIZATION_LEVEL": "0",
+            "GCC_OPTIMIZATION_LEVEL": "2",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
             "SWIFT_VERSION": "5.0"
@@ -2542,7 +2514,6 @@
             "v": "macosx"
         },
         "8": [
-            "-O2",
             "-D_FORTIFY_SOURCE=1",
             "-fstack-protector",
             "-Wall",
@@ -2568,14 +2539,11 @@
             "-D__TIMESTAMP__=\"redacted\"",
             "-D__TIME__=\"redacted\""
         ],
-        "9": [
-            "-O0"
-        ],
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
-            "GCC_OPTIMIZATION_LEVEL": "0",
+            "GCC_OPTIMIZATION_LEVEL": "2",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
             "SWIFT_VERSION": "5.0"
@@ -2611,7 +2579,6 @@
             "v": "macosx"
         },
         "8": [
-            "-O2",
             "-D_FORTIFY_SOURCE=1",
             "-fstack-protector",
             "-Wall",
@@ -2637,14 +2604,11 @@
             "-D__TIMESTAMP__=\"redacted\"",
             "-D__TIME__=\"redacted\""
         ],
-        "9": [
-            "-O0"
-        ],
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
-            "GCC_OPTIMIZATION_LEVEL": "0",
+            "GCC_OPTIMIZATION_LEVEL": "2",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
             "SWIFT_VERSION": "5.0"
@@ -3361,7 +3325,6 @@
             "v": "macosx"
         },
         "8": [
-            "-O2",
             "-D_FORTIFY_SOURCE=1",
             "-fstack-protector",
             "-Wall",
@@ -3385,14 +3348,11 @@
             "-D__TIMESTAMP__=\"redacted\"",
             "-D__TIME__=\"redacted\""
         ],
-        "9": [
-            "-O0"
-        ],
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
-            "GCC_OPTIMIZATION_LEVEL": "0",
+            "GCC_OPTIMIZATION_LEVEL": "2",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
             "SWIFT_VERSION": "5.0"
@@ -3542,7 +3502,6 @@
             "v": "macosx"
         },
         "8": [
-            "-O2",
             "-D_FORTIFY_SOURCE=1",
             "-fstack-protector",
             "-Wall",
@@ -3566,14 +3525,11 @@
             "-D__TIMESTAMP__=\"redacted\"",
             "-D__TIME__=\"redacted\""
         ],
-        "9": [
-            "-O0"
-        ],
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
-            "GCC_OPTIMIZATION_LEVEL": "0",
+            "GCC_OPTIMIZATION_LEVEL": "2",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
             "SWIFT_VERSION": "5.0"
@@ -3609,7 +3565,6 @@
             "v": "macosx"
         },
         "8": [
-            "-O2",
             "-D_FORTIFY_SOURCE=1",
             "-fstack-protector",
             "-Wall",
@@ -3633,14 +3588,11 @@
             "-D__TIMESTAMP__=\"redacted\"",
             "-D__TIME__=\"redacted\""
         ],
-        "9": [
-            "-O0"
-        ],
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
-            "GCC_OPTIMIZATION_LEVEL": "0",
+            "GCC_OPTIMIZATION_LEVEL": "2",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
             "SWIFT_VERSION": "5.0"
@@ -9255,7 +9207,6 @@
             "v": "iphoneos"
         },
         "8": [
-            "-O2",
             "-Os",
             "-D_FORTIFY_SOURCE=1",
             "-fstack-protector",
@@ -9293,14 +9244,11 @@
             "-Winit-self",
             "-Wno-extra"
         ],
-        "9": [
-            "-O0"
-        ],
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
-            "GCC_OPTIMIZATION_LEVEL": "0",
+            "GCC_OPTIMIZATION_LEVEL": "2",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
             "SWIFT_VERSION": "5.0"
@@ -9415,7 +9363,6 @@
             "v": "iphonesimulator"
         },
         "8": [
-            "-O2",
             "-Os",
             "-D_FORTIFY_SOURCE=1",
             "-fstack-protector",
@@ -9457,14 +9404,11 @@
             "-Winit-self",
             "-Wno-extra"
         ],
-        "9": [
-            "-O0"
-        ],
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
-            "GCC_OPTIMIZATION_LEVEL": "0",
+            "GCC_OPTIMIZATION_LEVEL": "2",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
             "SWIFT_VERSION": "5.0"
@@ -9907,11 +9851,7 @@
             "_": "darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/FrameworkCoreUtilsObjC.144.link.params",
             "t": "g"
         },
-        "8": [
-            "-O0"
-        ],
         "9": [
-            "-O2",
             "-Os",
             "-stdlib=libc++",
             "-std=gnu++11",
@@ -9957,7 +9897,7 @@
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
-            "GCC_OPTIMIZATION_LEVEL": "0",
+            "GCC_OPTIMIZATION_LEVEL": "2",
             "GCC_PREFIX_HEADER": "$(SRCROOT)/iOSApp/Source/CoreUtilsObjC/CoreUtils/CoreUtils.pch",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_arm64-opt-STABLE-16/bin/iOSApp/Source/CoreUtilsObjC/rules_xcodeproj/FrameworkCoreUtilsObjC/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/FrameworkCoreUtilsObjC.144.link.params",
@@ -10145,11 +10085,7 @@
             "_": "darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/FrameworkCoreUtilsObjC.90.link.params",
             "t": "g"
         },
-        "8": [
-            "-O0"
-        ],
         "9": [
-            "-O2",
             "-Os",
             "-stdlib=libc++",
             "-std=gnu++11",
@@ -10199,7 +10135,7 @@
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
-            "GCC_OPTIMIZATION_LEVEL": "0",
+            "GCC_OPTIMIZATION_LEVEL": "2",
             "GCC_PREFIX_HEADER": "$(SRCROOT)/iOSApp/Source/CoreUtilsObjC/CoreUtils/CoreUtils.pch",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Source/CoreUtilsObjC/rules_xcodeproj/FrameworkCoreUtilsObjC/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/FrameworkCoreUtilsObjC.90.link.params",
@@ -10344,7 +10280,6 @@
             "v": "iphonesimulator"
         },
         "8": [
-            "-O2",
             "-Os",
             "-D_FORTIFY_SOURCE=1",
             "-fstack-protector",
@@ -10391,14 +10326,11 @@
             "-Winit-self",
             "-Wno-extra"
         ],
-        "9": [
-            "-O0"
-        ],
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
-            "GCC_OPTIMIZATION_LEVEL": "0",
+            "GCC_OPTIMIZATION_LEVEL": "2",
             "PRODUCT_MODULE_NAME": "Utils",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
@@ -11491,7 +11423,6 @@
             "t": "g"
         },
         "8": [
-            "-O2",
             "-Os",
             "-D_FORTIFY_SOURCE=1",
             "-fstack-protector",
@@ -11553,16 +11484,13 @@
             "-Winit-self",
             "-Wno-extra"
         ],
-        "9": [
-            "-O0"
-        ],
         "b": {
             "CLANG_ENABLE_MODULES": true,
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
-            "GCC_OPTIMIZATION_LEVEL": "0",
+            "GCC_OPTIMIZATION_LEVEL": "2",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Test/ObjCUnitTests/rules_xcodeproj/iOSAppObjCUnitTests.__internal__.__test_bundle/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/iOSAppObjCUnitTests.109.link.params",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.objctests",
@@ -15011,7 +14939,6 @@
             "v": "iphonesimulator"
         },
         "8": [
-            "-O2",
             "-Os",
             "-D_FORTIFY_SOURCE=1",
             "-fstack-protector",
@@ -15052,14 +14979,11 @@
             "-Winit-self",
             "-Wno-extra"
         ],
-        "9": [
-            "-O0"
-        ],
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
-            "GCC_OPTIMIZATION_LEVEL": "0",
+            "GCC_OPTIMIZATION_LEVEL": "2",
             "PRODUCT_MODULE_NAME": "FXPageControl",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
