@@ -13,9 +13,11 @@ struct Target: Equatable {
     var isSwift: Bool
     let testHost: TargetID?
     var buildSettings: [String: BuildSetting]
-    let cFlags: [String]
-    let cxxFlags: [String]
-    let swiftFlags: [String]
+    let cParams: FilePath?
+    let cxxParams: FilePath?
+    let swiftParams: FilePath?
+    let cHasFortifySource: Bool
+    let cxxHasFortifySource: Bool
     let hasModulemaps: Bool
     var inputs: Inputs
     var linkerInputs: LinkerInputs
@@ -58,9 +60,11 @@ extension Target: Decodable {
         case isSwift = "s"
         case testHost = "h"
         case buildSettings = "b"
-        case cFlags = "8"
-        case cxxFlags = "9"
-        case swiftFlags = "0"
+        case cParams = "8"
+        case cxxParams = "9"
+        case swiftParams = "0"
+        case cHasFortifySource = "f"
+        case cxxHasFortifySource = "F"
         case hasModulemaps = "m"
         case inputs = "i"
         case linkerInputs = "5"
@@ -101,12 +105,16 @@ extension Target: Decodable {
                 [String: BuildSetting].self,
                 forKey: .buildSettings
             ) ?? [:]
-        cFlags = try container
-            .decodeIfPresent([String].self, forKey: .cFlags) ?? []
-        cxxFlags = try container
-            .decodeIfPresent([String].self, forKey: .cxxFlags) ?? []
-        swiftFlags = try container
-            .decodeIfPresent([String].self, forKey: .swiftFlags) ?? []
+        cParams = try container
+            .decodeIfPresent(FilePath.self, forKey: .cParams)
+        cxxParams = try container
+            .decodeIfPresent(FilePath.self, forKey: .cxxParams)
+        swiftParams = try container
+            .decodeIfPresent(FilePath.self, forKey: .swiftParams)
+        cHasFortifySource = try container
+            .decodeIfPresent(Bool.self, forKey: .cHasFortifySource) ?? false
+        cxxHasFortifySource = try container
+            .decodeIfPresent(Bool.self, forKey: .cxxHasFortifySource) ?? false
         hasModulemaps = try container
             .decodeIfPresent(Bool.self, forKey: .hasModulemaps) ?? false
         inputs = try container

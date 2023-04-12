@@ -234,6 +234,7 @@ def _to_xcode_target_outputs(outputs):
         dsym_files = (
             direct_outputs.dsym_files if direct_outputs else None
         ),
+        generated_output_group_name = outputs.generated_output_group_name,
         linking_output_group_name = outputs.linking_output_group_name,
         product_file = (
             direct_outputs.product if direct_outputs else None
@@ -348,6 +349,7 @@ def _merge_xcode_target_inputs(*, src, dest):
 def _merge_xcode_target_outputs(*, src, dest):
     return struct(
         dsym_files = dest.dsym_files,
+        generated_output_group_name = dest.generated_output_group_name,
         linking_output_group_name = dest.linking_output_group_name,
         swiftmodule = src.swiftmodule,
         swift_generated_header = src.swift_generated_header,
@@ -517,7 +519,6 @@ def _xcode_target_to_dto(
         additional_scheme_target_ids = None,
         build_mode,
         ctx,
-        is_fixture,
         label,
         link_params_processor,
         linker_products_map,
@@ -585,40 +586,68 @@ def _xcode_target_to_dto(
         xcode_generated_paths_file = xcode_generated_paths_file,
     )
 
+    def _create_compile_params(opts, opt_type):
+        if not opts:
+            return None
+
+        args = ctx.actions.args()
+        args.add_all(opts)
+
+        output = ctx.actions.declare_file(
+            "{}-params/{}.{}.{}.compile.params".format(
+                ctx.attr.name,
+                name,
+                params_index,
+                opt_type,
+            ),
+        )
+        ctx.actions.write(
+            output = output,
+            content = args,
+        )
+        return output
+
+    compile_params = []
+    c_params = _create_compile_params(xcode_target._conlyopts, "c")
+    if c_params:
+        compile_params.append(c_params)
+        dto["8"] = c_params.path
+
+    cxx_params = _create_compile_params(xcode_target._cxxopts, "cxx")
+    if cxx_params:
+        compile_params.append(cxx_params)
+        dto["9"] = cxx_params.path
+
+    swift_params = _create_compile_params(xcode_target._swiftcopts, "swift")
+    if swift_params:
+        compile_params.append(swift_params)
+        dto["0"] = swift_params.path
+
+    set_if_true(
+        dto,
+        "f",
+        "-D_FORTIFY_SOURCE=1" in xcode_target._conlyopts,
+    )
+    set_if_true(
+        dto,
+        "F",
+        "-D_FORTIFY_SOURCE=1" in xcode_target._cxxopts,
+    )
+
     set_if_true(
         dto,
         "b",
         _build_settings_to_dto(
             build_mode = build_mode,
+            c_params = c_params,
+            cxx_params = cxx_params,
+            swift_params = swift_params,
             link_params = link_params,
             linker_products_map = linker_products_map,
             xcode_generated_paths = xcode_generated_paths,
             xcode_target = xcode_target,
         ),
     )
-
-    conlyopts = xcode_target._conlyopts
-    cxxopts = xcode_target._cxxopts
-    if is_fixture:
-        # Until we no longer support Bazel 5, we need to remove the
-        # `BAZEL_CURRENT_REPOSITORY` define so Bazel 5 and 6 have the same
-        # fixture
-        new_conlyopts = []
-        new_cxxopts = []
-        for opt in conlyopts:
-            if opt.startswith("-DBAZEL_CURRENT_REPOSITORY="):
-                continue
-            new_conlyopts.append(opt)
-        for opt in cxxopts:
-            if opt.startswith("-DBAZEL_CURRENT_REPOSITORY="):
-                continue
-            new_cxxopts.append(opt)
-        conlyopts = new_conlyopts
-        cxxopts = new_cxxopts
-
-    set_if_true(dto, "8", conlyopts)
-    set_if_true(dto, "9", cxxopts)
-    set_if_true(dto, "0", xcode_target._swiftcopts)
 
     set_if_true(
         dto,
@@ -708,17 +737,38 @@ def _xcode_target_to_dto(
         [id for id in dependencies if id not in unfocused_dependencies],
     )
 
-    return dto, replaced_dependencies, link_params
+    return dto, replaced_dependencies, compile_params, link_params
 
 def _build_settings_to_dto(
         *,
         build_mode,
+        c_params,
+        cxx_params,
+        swift_params,
         link_params,
         linker_products_map,
         xcode_generated_paths,
         xcode_target):
     build_settings = structs.to_dict(xcode_target._build_settings)
 
+    if c_params:
+        build_settings["C_PARAMS_FILE"] = build_setting_path(
+            path = c_params.path,
+            # Fixes issues with indexing
+            use_current_execution_root = True,
+        )
+    if cxx_params:
+        build_settings["CXX_PARAMS_FILE"] = build_setting_path(
+            path = cxx_params.path,
+            # Fixes issues with indexing
+            use_current_execution_root = True,
+        )
+    if swift_params:
+        build_settings["SWIFT_PARAMS_FILE"] = build_setting_path(
+            path = swift_params.path,
+            # Fixes issues with indexing
+            use_current_execution_root = True,
+        )
     if link_params:
         build_settings["LINK_PARAMS_FILE"] = build_setting_path(
             path = link_params.path,

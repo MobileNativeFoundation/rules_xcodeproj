@@ -287,6 +287,9 @@ struct ConsolidatedTarget: Equatable {
     let inputs: ConsolidatedTargetInputs
     let linkerInputs: ConsolidatedTargetLinkerInputs
     let hasClangSearchPaths: Bool
+    let hasCParams: Bool
+    let hasCXXParams: Bool
+    let hasSwiftParams: Bool
     let hasLinkParams: Bool
     let resourceBundleDependencies: Set<TargetID>
     let watchApplication: TargetID?
@@ -384,6 +387,10 @@ extension ConsolidatedTarget {
         inputs = Self.consolidateInputs(targets: sortedTargets)
         linkerInputs = Self.consolidateLinkerInputs(targets: sortedTargets)
         hasLinkParams = aTarget.linkParams != nil
+
+        hasCParams = aTarget.cParams != nil
+        hasCXXParams = aTarget.cxxParams != nil
+        hasSwiftParams = aTarget.swiftParams != nil
 
         hasClangSearchPaths = sortedTargets.contains { target in
             return target.hasModulemaps
