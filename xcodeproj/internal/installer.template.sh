@@ -221,7 +221,7 @@ if [[ -f "$dest/rules_xcodeproj/generated.xcfilelist" ]]; then
 
   readonly workspace_name="${execution_root##*/}"
   readonly output_base="${execution_root%/*/*}"
-  readonly nested_output_base="$output_base/rules_xcodeproj/build_output_base"
+  readonly nested_output_base="$output_base/rules_xcodeproj.noindex/build_output_base"
   readonly bazel_out="$nested_output_base/execroot/$workspace_name/bazel-out"
 
   # Create directory structure in bazel-out

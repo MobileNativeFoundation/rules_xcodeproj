@@ -98,7 +98,7 @@ execution_root=$(<"$execution_root_file")
 installer_flags+=(--execution_root "$execution_root")
 
 readonly output_base="${execution_root%/*/*}"
-readonly nested_output_base="$output_base/rules_xcodeproj/build_output_base"
+readonly nested_output_base="$output_base/rules_xcodeproj.noindex/build_output_base"
 
 # Set bazel env
 %collect_bazel_env%
