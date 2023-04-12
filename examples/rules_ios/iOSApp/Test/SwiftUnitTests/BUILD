@@ -12,5 +12,6 @@ rules_ios_ios_unit_test(
     deps = [
         "//iOSApp/Source:iOSApp.library",
         "//iOSApp/Source/Utils",
+        "//iOSApp/Source/UtilsSwift",
     ],
 )
