@@ -7,6 +7,9 @@ def _merge_cc_compilation_context(
     if not direct_compilation_context:
         return None
 
+    if not compilation_contexts:
+        return direct_compilation_context
+
     return cc_common.create_compilation_context(
         # Maybe not correct, but we don't use this value in `opts.bzl`, so not
         # worth the computation to merge it
