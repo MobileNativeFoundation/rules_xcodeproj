@@ -9,7 +9,7 @@ load(
 )
 load(":providers.bzl", "XcodeProjAutomaticTargetProcessingInfo", "target_type")
 
-# Utility
+## Utility
 
 _UNSUPPORTED_SRCS_EXTENSIONS = {
     "a": True,
@@ -47,7 +47,59 @@ def _is_test_target(target):
         "com.apple.product-type.bundle.unit-test",
     )
 
-# Aspects
+## Aspects
+
+# These are declared as constants to cause starlark to reuse the same instances
+# instead of allocating and retaining new ones for each target
+
+_BINARY_DEPS_ATTRS = ["binary"]
+_DEPS_ATTRS = ["deps"]
+_EXPORTED_SYMBOLS_LISTS_ATTRS = ["exported_symbols_lists"]
+_HDRS_DEPS_ATTRS = ["hdrs"]
+_IMPLEMENTATION_DEPS_ATTRS = ["implementation_deps"]
+_INFOPLISTS_ATTRS = ["infoplists"]
+_LAUNCHDPLISTS_ATTRS = ["launchdplists"]
+_NON_ARC_SRCS_ATTRS = ["non_arc_srcs"]
+_SRCS_ATTRS = ["srcs"]
+
+_LINK_MNEMONICS = ["ObjcLink", "CppLink"]
+
+_XCODE_TARGET_TYPES_COMPILE = [target_type.compile]
+_XCODE_TARGET_TYPES_COMPILE_AND_NONE = [target_type.compile, None]
+
+_BINARY_XCODE_TARGETS = {
+    "binary": _XCODE_TARGET_TYPES_COMPILE_AND_NONE,
+}
+_DEPS_XCODE_TARGETS = {
+    "deps": _XCODE_TARGET_TYPES_COMPILE_AND_NONE,
+}
+_DEPS_ONLY_XCODE_TARGETS = {
+    "deps": _XCODE_TARGET_TYPES_COMPILE,
+}
+_EMPTY_XCODE_TARGETS = {}
+_CC_LIBRARY_XCODE_TARGETS = {
+    "deps": _XCODE_TARGET_TYPES_COMPILE_AND_NONE,
+    "implementation_deps": _XCODE_TARGET_TYPES_COMPILE,
+}
+_OBJC_LIBRARY_XCODE_TARGETS = {
+    "deps": _XCODE_TARGET_TYPES_COMPILE_AND_NONE,
+    # Issues like https://github.com/bazelbuild/bazel/issues/17646 made some Bazel users
+    # to fork Bazel and add implementation_deps attribute for objc_library_rule.
+    # TODO: Add link to changes for more context
+    "implementation_deps": _XCODE_TARGET_TYPES_COMPILE,
+    "runtime_deps": _XCODE_TARGET_TYPES_COMPILE,
+}
+_SWIFT_LIBRARY_XCODE_TARGETS = {
+    "deps": _XCODE_TARGET_TYPES_COMPILE_AND_NONE,
+    "private_deps": _XCODE_TARGET_TYPES_COMPILE_AND_NONE,
+}
+
+_DEFAULT_XCODE_TARGETS = {
+    target_type.compile: _DEPS_XCODE_TARGETS,
+    None: {"deps": [None]},
+}
+
+_EMPTY_LIST = []
 
 def _default_automatic_target_processing_aspect_impl(target, ctx):
     if XcodeProjAutomaticTargetProcessingInfo in target:
@@ -56,26 +108,26 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
     this_target_type = _get_target_type(target = target)
 
     if CcInfo in target:
-        srcs = ["srcs"]
+        srcs = _SRCS_ATTRS
     else:
-        srcs = []
+        srcs = _EMPTY_LIST
 
     alternate_icons = None
     app_icons = None
     args = None
     bundle_id = None
     codesignopts = None
-    deps = ["deps"]
+    deps = _DEPS_ATTRS
     entitlements = None
     env = None
-    exported_symbols_lists = []
-    hdrs = []
-    implementation_deps = []
-    infoplists = []
-    launchdplists = []
-    link_mnemonics = ["ObjcLink", "CppLink"]
+    exported_symbols_lists = _EMPTY_LIST
+    hdrs = _EMPTY_LIST
+    implementation_deps = _EMPTY_LIST
+    infoplists = _EMPTY_LIST
+    launchdplists = _EMPTY_LIST
+    link_mnemonics = _LINK_MNEMONICS
     bazel_build_mode_error = None
-    non_arc_srcs = []
+    non_arc_srcs = _EMPTY_LIST
     pch = None
     provisioning_profile = None
     collect_uncategorized_files = False
@@ -84,52 +136,39 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
     attrs = dir(ctx.rule.attr)
 
     if ctx.rule.kind == "cc_library":
-        xcode_targets = {
-            "deps": [target_type.compile, None],
-            "implementation_deps": [target_type.compile],
-        }
-        implementation_deps = ["implementation_deps"]
+        xcode_targets = _CC_LIBRARY_XCODE_TARGETS
+        implementation_deps = _IMPLEMENTATION_DEPS_ATTRS
     elif ctx.rule.kind == "objc_library":
-        xcode_targets = {
-            "deps": [target_type.compile, None],
-            # Issues like https://github.com/bazelbuild/bazel/issues/17646 made some Bazel users
-            # to fork Bazel and add implementation_deps attribute for objc_library_rule.
-            # TODO: Add link to changes for more context
-            "implementation_deps": [target_type.compile],
-            "runtime_deps": [target_type.compile],
-        }
-        implementation_deps = ["implementation_deps"]
-        non_arc_srcs = ["non_arc_srcs"]
+        xcode_targets = _OBJC_LIBRARY_XCODE_TARGETS
+        implementation_deps = _IMPLEMENTATION_DEPS_ATTRS
+        non_arc_srcs = _NON_ARC_SRCS_ATTRS
         pch = "pch"
     elif ctx.rule.kind == "swift_library":
-        xcode_targets = {
-            "deps": [target_type.compile, None],
-            "private_deps": [target_type.compile, None],
-        }
+        xcode_targets = _SWIFT_LIBRARY_XCODE_TARGETS
     elif ctx.rule.kind == "apple_resource_bundle":
-        xcode_targets = {}
+        xcode_targets = _EMPTY_XCODE_TARGETS
 
         # Ideally this would be exposed on `AppleResourceBundleInfo`
         bundle_id = "bundle_id"
-        infoplists = ["infoplists"]
+        infoplists = _INFOPLISTS_ATTRS
         should_generate_target = False
     elif ctx.rule.kind == "apple_resource_group":
-        xcode_targets = {}
+        xcode_targets = _EMPTY_XCODE_TARGETS
         should_generate_target = False
     elif AppleBundleInfo in target and target[AppleBundleInfo].binary:
         # Checking for `binary` being set is to work around a rules_ios issue
         xcode_targets = {
-            "deps": [target_type.compile, None],
+            "deps": _XCODE_TARGET_TYPES_COMPILE_AND_NONE,
         }
         if _is_test_target(target):
-            xcode_targets["test_host"] = [target_type.compile]
+            xcode_targets["test_host"] = _XCODE_TARGET_TYPES_COMPILE
             env = "env"
             if "args" in attrs:
                 args = "args"
         if "alternate_icons" in attrs:
             alternate_icons = "alternate_icons"
         if "app_clips" in attrs:
-            xcode_targets["app_clips"] = [target_type.compile]
+            xcode_targets["app_clips"] = _XCODE_TARGET_TYPES_COMPILE
         if "app_icons" in attrs:
             app_icons = "app_icons"
         if "codesignopts" in attrs:
@@ -137,47 +176,43 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
         if "entitlements" in attrs:
             entitlements = "entitlements"
         if "exported_symbols_lists" in attrs:
-            exported_symbols_lists = ["exported_symbols_lists"]
+            exported_symbols_lists = _EXPORTED_SYMBOLS_LISTS_ATTRS
         if "extension" in attrs:
-            xcode_targets["extension"] = [target_type.compile]
+            xcode_targets["extension"] = _XCODE_TARGET_TYPES_COMPILE
         if "extensions" in attrs:
-            xcode_targets["extensions"] = [target_type.compile]
+            xcode_targets["extensions"] = _XCODE_TARGET_TYPES_COMPILE
         if "frameworks" in attrs:
-            xcode_targets["frameworks"] = [target_type.compile]
+            xcode_targets["frameworks"] = _XCODE_TARGET_TYPES_COMPILE
         if "hdrs" in attrs:
-            hdrs = ["hdrs"]
+            hdrs = _HDRS_DEPS_ATTRS
         if "infoplists" in attrs:
-            infoplists = ["infoplists"]
+            infoplists = _INFOPLISTS_ATTRS
         if "provisioning_profile" in attrs:
             provisioning_profile = "provisioning_profile"
         if "watch_application" in attrs:
-            xcode_targets["watch_application"] = [target_type.compile]
+            xcode_targets["watch_application"] = _XCODE_TARGET_TYPES_COMPILE
     elif AppleBundleInfo in target:
         should_generate_target = False
         collect_uncategorized_files = ctx.rule.kind != "apple_bundle_import"
-        xcode_targets = {
-            "deps": [this_target_type, None],
-        }
+        xcode_targets = _DEFAULT_XCODE_TARGETS[this_target_type]
     elif AppleBinaryInfo in target:
         if "binary" in attrs:
-            deps_attr = "binary"
+            deps = _BINARY_DEPS_ATTRS
+            xcode_targets = _BINARY_XCODE_TARGETS
         else:
-            deps_attr = "deps"
-        deps = [deps_attr]
+            deps = _DEPS_ATTRS
+            xcode_targets = _DEPS_XCODE_TARGETS
 
         if "codesignopts" in attrs:
             codesignopts = "codesignopts"
         if "exported_symbols_lists" in attrs:
-            exported_symbols_lists = ["exported_symbols_lists"]
+            exported_symbols_lists = _EXPORTED_SYMBOLS_LISTS_ATTRS
         if "infoplists" in attrs:
-            infoplists = ["infoplists"]
+            infoplists = _INFOPLISTS_ATTRS
         if "launchdplists" in attrs:
-            launchdplists = ["launchdplists"]
-        xcode_targets = {
-            deps_attr: [target_type.compile, None],
-        }
+            launchdplists = _LAUNCHDPLISTS_ATTRS
     elif AppleFrameworkImportInfo in target:
-        xcode_targets = {"deps": [target_type.compile]}
+        xcode_targets = _DEPS_ONLY_XCODE_TARGETS
         if getattr(ctx.rule.attr, "bundle_only", False):
             bazel_build_mode_error = """\
 `bundle_only` can't be `True` on {} when `build_mode = \"xcode\"`
@@ -186,9 +221,7 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
         should_generate_target = False
         collect_uncategorized_files = False
     else:
-        xcode_targets = {
-            "deps": [this_target_type, None],
-        }
+        xcode_targets = _DEFAULT_XCODE_TARGETS[this_target_type]
 
         # Command-line tools
         executable = target[DefaultInfo].files_to_run.executable
@@ -197,7 +230,7 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
         should_generate_target = is_executable
         collect_uncategorized_files = not should_generate_target
         if is_executable and "srcs" in attrs:
-            srcs = ["srcs"]
+            srcs = _SRCS_ATTRS
 
     # Xcode doesn't support some source types that Bazel supports
     for attr in srcs:
