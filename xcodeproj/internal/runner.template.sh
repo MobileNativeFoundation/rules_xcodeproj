@@ -210,7 +210,7 @@ else
       "%generator_label%"
     )
   else
-    if [[ $cmd == "dump" ]]; then
+    if [[ $cmd == "dump" || $cmd == "shutdown" ]]; then
       pre_config_flags=()
     else
       pre_config_flags=("--config=$bazel_config")
