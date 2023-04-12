@@ -200,6 +200,7 @@ else
 
     pre_config_flags+=(
       "--experimental_remote_download_regex=$remote_download_regex"
+      "--config=$bazel_config"
     )
 
     # `--output_groups`
@@ -209,6 +210,11 @@ else
       "%generator_label%"
     )
   else
+    if [[ $cmd == "dump" ]]; then
+      pre_config_flags=()
+    else
+      pre_config_flags=("--config=$bazel_config")
+    fi
     post_config_flags=("${cmd_args[@]:1}")
   fi
 
@@ -219,7 +225,6 @@ else
 
   "${bazel_cmd[@]}" \
     "$cmd" \
-    "${pre_config_flags[@]}" \
-    "--config=$bazel_config" \
+    ${pre_config_flags:+"${pre_config_flags[@]}"} \
     ${post_config_flags:+"${post_config_flags[@]}"}
 fi
