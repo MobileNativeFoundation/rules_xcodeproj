@@ -1682,7 +1682,6 @@
             "v": "macosx"
         },
         "8": [
-            "-O2",
             "-Os",
             "-D_FORTIFY_SOURCE=1",
             "-fstack-protector",
@@ -1727,14 +1726,11 @@
             "-Winit-self",
             "-Wno-extra"
         ],
-        "9": [
-            "-O0"
-        ],
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
-            "GCC_OPTIMIZATION_LEVEL": "0",
+            "GCC_OPTIMIZATION_LEVEL": "2",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
             "SWIFT_VERSION": "5.0"
@@ -2070,11 +2066,7 @@
             "o": "macos",
             "v": "macosx"
         },
-        "8": [
-            "-O0"
-        ],
         "9": [
-            "-O2",
             "-Os",
             "-stdlib=libc++",
             "-std=gnu++11",
@@ -2125,7 +2117,7 @@
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
-            "GCC_OPTIMIZATION_LEVEL": "0",
+            "GCC_OPTIMIZATION_LEVEL": "2",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
             "SWIFT_VERSION": "5.0"
