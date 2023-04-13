@@ -361,24 +361,30 @@ def _process_targets(
         for id, label in xcode_target_labels.items()
     }
 
-    # Can't use `xcode_target_label_strs`, as those are only for bazel targets
-    # that create Xcode targets
-    label_strs = {
-        bazel_labels.normalize_label(
-            replacement_labels_by_label.get(label, label),
-        ): None
-        for label in depset(
-            transitive = [info.labels for info in infos],
-        ).to_list()
+    owned_extra_files = {
+        key: bazel_labels.normalize_label(Label(label_str))
+        for key, label_str in owned_extra_files.items()
     }
 
-    invalid_focused_targets = [
-        label
-        for label in focused_labels
-        if label not in label_strs
-    ]
-    if invalid_focused_targets:
-        fail("""\
+    if focused_labels or owned_extra_files:
+        # Can't use `xcode_target_label_strs`, as those are only for bazel
+        # targets that create Xcode targets
+        label_strs = {
+            bazel_labels.normalize_label(
+                replacement_labels_by_label.get(label, label),
+            ): None
+            for label in depset(
+                transitive = [info.labels for info in infos],
+            ).to_list()
+        }
+
+        invalid_focused_targets = [
+            label
+            for label in focused_labels
+            if label not in label_strs
+        ]
+        if invalid_focused_targets:
+            fail("""\
 `focused_targets` contains target(s) that are not transitive dependencies of \
 the targets listed in `top_level_targets`: {}
 
@@ -386,22 +392,19 @@ Are you using an `alias`? `focused_targets` requires labels of the actual \
 targets.
 """.format(invalid_focused_targets))
 
-    owned_extra_files = {
-        key: bazel_labels.normalize_label(Label(label_str))
-        for key, label_str in owned_extra_files.items()
-    }
-
-    invalid_extra_files_targets = [
-        label
-        for label in owned_extra_files.values()
-        if label not in label_strs
-    ]
-    if invalid_extra_files_targets:
-        message = _INVALID_EXTRA_FILES_TARGETS_BASE_MESSAGE.format(invalid_extra_files_targets)
-        if fail_for_invalid_extra_files_targets:
-            fail(message + _INVALID_EXTRA_FILES_TARGETS_HINT)
-        else:
-            warn(message)
+        invalid_extra_files_targets = [
+            label
+            for label in owned_extra_files.values()
+            if label not in label_strs
+        ]
+        if invalid_extra_files_targets:
+            message = _INVALID_EXTRA_FILES_TARGETS_BASE_MESSAGE.format(
+                invalid_extra_files_targets
+            )
+            if fail_for_invalid_extra_files_targets:
+                fail(message + _INVALID_EXTRA_FILES_TARGETS_HINT)
+            else:
+                warn(message)
 
     unfocused_libraries = {
         library: None
