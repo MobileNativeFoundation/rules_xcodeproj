@@ -95,6 +95,7 @@ def _collect_input_files(
     Args:
         ctx: The aspect context.
         target: The `Target` to collect inputs from.
+        attrs: `dir(ctx.rule.attr)` (as a performance optimization).
         unfocused: Whether the target is unfocused. If `None`, it will be
             determined automatically (this should only be the case for
             `non_xcode_target`s).

@@ -7,7 +7,6 @@ load(
 )
 load(
     ":providers.bzl",
-    "XcodeProjAutomaticTargetProcessingInfo",
     "XcodeProjInfo",
     "XcodeProjProvisioningProfileInfo",
 )

@@ -2,7 +2,6 @@
 
 load(
     "@build_bazel_rules_apple//apple:providers.bzl",
-    "AppleBinaryInfo",
     "AppleBundleInfo",
     "AppleFrameworkImportInfo",
     "AppleResourceBundleInfo",
@@ -160,6 +159,7 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
         xcode_targets = _SWIFT_LIBRARY_XCODE_TARGETS
     elif rule_kind == "apple_resource_bundle":
         should_generate_target = False
+
         # Ideally this would be exposed on `AppleResourceBundleInfo`
         bundle_id = "bundle_id"
         infoplists = _INFOPLISTS_ATTRS
