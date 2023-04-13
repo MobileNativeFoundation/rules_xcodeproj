@@ -1,3 +1,30 @@
+#/usr/bin/python3
+
+import sys
+from typing import List
+
+
+def _main(
+        output_path: str,
+        keys_and_paths: List[str],
+    ) -> None:
+    context_json_strs = {}
+    for key, path in zip(keys_and_paths[::2], keys_and_paths[1::2]):
+        with open(path, encoding = "utf-8") as fp:
+            context_json_strs[key] = fp.read()
+
+    settings_entries = [
+        f'"{key}": {content},'
+        for key, content in context_json_strs.items()
+        if content != '{}'
+    ]
+
+    with open(output_path, encoding = "utf-8", mode = "w") as fp:
+        if settings_entries:
+            settings_content = "\n" + "\n".join(settings_entries) + "\n"
+        else:
+            settings_content = ""
+        result = f'''\
 #!/usr/bin/python3
 
 """An lldb module that registers a stop hook to set swift settings."""
@@ -16,7 +43,7 @@ _BUNDLE_EXTENSIONS = [
 
 _TRIPLE_MATCH = re.compile(r"([^-]+-[^-]+)(-\D+)[^-]*(-.*)?")
 
-_SETTINGS = %settings_map%
+_SETTINGS = {{{settings_content}}}
 
 def __lldb_init_module(debugger, _internal_dict):
     # Register the stop hook when this module is loaded in lldb
@@ -27,11 +54,11 @@ def __lldb_init_module(debugger, _internal_dict):
         res,
     )
     if not res.Succeeded():
-        print(f"""\
+        print(f"""\\
 Failed to register Swift debug options stop hook:
 
-{res.GetError()}
-Please file a bug report here: \
+{{res.GetError()}}
+Please file a bug report here: \\
 https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bug.md
 """)
         return
@@ -56,20 +83,20 @@ class StopHook:
             return
 
         module_name = module.file.__get_fullpath__()
-        versionless_triple = _TRIPLE_MATCH.sub(r"\1\2\3", module.GetTriple())
+        versionless_triple = _TRIPLE_MATCH.sub(r"\\1\\2\\3", module.GetTriple())
         executable_path = _get_relative_executable_path(module_name)
-        key = f"{versionless_triple} {executable_path}"
+        key = f"{{versionless_triple}} {{executable_path}}"
 
         settings = _SETTINGS.get(key)
 
         if settings:
             frameworks = " ".join([
-                f'"{path}"'
+                f'"{{path}}"'
                 for path in settings.get("f", [])
             ])
             if frameworks:
                 lldb.debugger.HandleCommand(
-                    f"settings set -- target.swift-framework-search-paths {frameworks}",
+                    f"settings set -- target.swift-framework-search-paths {{frameworks}}",
                 )
             else:
                 lldb.debugger.HandleCommand(
@@ -77,12 +104,12 @@ class StopHook:
                 )
 
             includes = " ".join([
-                f'"{path}"'
+                f'"{{path}}"'
                 for path in settings.get("s", [])
             ])
             if includes:
                 lldb.debugger.HandleCommand(
-                    f"settings set -- target.swift-module-search-paths {includes}",
+                    f"settings set -- target.swift-module-search-paths {{includes}}",
                 )
             else:
                 lldb.debugger.HandleCommand(
@@ -92,11 +119,30 @@ class StopHook:
             clang = settings.get("c")
             if clang:
                 lldb.debugger.HandleCommand(
-                    f"settings set -- target.swift-extra-clang-flags '{clang}'",
+                    f"settings set -- target.swift-extra-clang-flags '{{clang}}'",
                 )
             else:
                 lldb.debugger.HandleCommand(
                     "settings clear target.swift-extra-clang-flags",
                 )
 
-        return True
+        return True'''
+        fp.write(f'{result}\n')
+
+
+if __name__ == "__main__":
+    if len(sys.argv) < 2:
+        print(
+            f"""
+Usage: {sys.argv[0]} <output> [key, path, [key, path, ...]]
+""",
+            file = sys.stderr,
+        )
+        exit(1)
+
+    _main(
+        # output_path
+        sys.argv[1],
+        # keys_and_paths
+        sys.argv[2:],
+    )
