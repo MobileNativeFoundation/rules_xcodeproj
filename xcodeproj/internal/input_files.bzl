@@ -389,9 +389,9 @@ def _collect_input_files(
             for label in resource_bundle_labels.to_list()
         }
 
-        extra_files.extend([
-            file
-            for label, files in depset(
+        transitive_extra_files.extend([
+            d
+            for label, d in depset(
                 transitive = [
                     info.inputs._resource_bundle_uncategorized
                     for attr, info in transitive_infos
@@ -399,7 +399,6 @@ def _collect_input_files(
                         automatic_target_info.xcode_targets.get(attr, [None]))
                 ],
             ).to_list()
-            for file in files
             if label not in bundle_labels
         ])
 
@@ -644,7 +643,7 @@ def _collect_input_files(
 
         if resource_bundle_uncategorized:
             resource_bundle_uncategorized_direct = [
-                (target.label, tuple(resource_bundle_uncategorized)),
+                (target.label, depset(resource_bundle_uncategorized)),
             ]
         else:
             resource_bundle_uncategorized_direct = None
@@ -727,7 +726,7 @@ def _collect_input_files(
         compiling_files = compiling_files,
         indexstores = indexstores_depset,
         extra_files = depset(
-            [(label, tuple(extra_files))] if extra_files else None,
+            [(label, depset(extra_files))] if extra_files else None,
             transitive = [
                 depset(transitive = [info.inputs.extra_files])
                 for attr, info in transitive_infos
@@ -736,7 +735,7 @@ def _collect_input_files(
             ] + transitive_extra_files,
         ),
         uncategorized = depset(
-            [(label, tuple(uncategorized))] if uncategorized else None,
+            [(label, depset(uncategorized))] if uncategorized else None,
             transitive = [
                 _collect_transitive_uncategorized(info)
                 for attr, info in transitive_infos

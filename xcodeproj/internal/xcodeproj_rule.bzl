@@ -158,59 +158,63 @@ def _process_extra_files(
         inputs,
         focused_targets_extra_files,
         focused_targets_extra_folders):
-    extra_files = inputs.extra_files.to_list()
-
-    # Add processed owned extra files
-    extra_files.extend(focused_targets_extra_files)
-
     # Apply replacement labels
-    extra_files = [
+    extra_files_depsets_by_label = [
         (
             bazel_labels.normalize_label(
                 replacement_labels_by_label.get(label, label),
             ),
-            files,
+            d,
         )
-        for label, files in extra_files
+        for label, d in depset(
+            # Processed owned extra files
+            focused_targets_extra_files,
+            transitive = [inputs.extra_files],
+        ).to_list()
     ]
-    extra_folders = [
+    extra_folders_depsets_by_label = [
         (
             bazel_labels.normalize_label(
                 replacement_labels_by_label.get(label, label),
             ),
-            files,
+            d,
         )
-        for label, files in focused_targets_extra_folders
+        for label, d in focused_targets_extra_folders
     ]
 
     # Filter out unfocused labels
     has_focused_labels = bool(focused_labels)
-    extra_files = [
-        file
-        for label, files in extra_files
-        for file in files
+    extra_files_depsets = [
+        d
+        for label, d in extra_files_depsets_by_label
         if not label or not (
             label in unfocused_labels or
             (has_focused_labels and label not in focused_labels)
         )
     ]
-    extra_folders = [
-        file
-        for label, files in extra_folders
-        for file in files
+    extra_folders_depsets = [
+        d
+        for label, d in extra_folders_depsets_by_label
         if not label or not (
             label in unfocused_labels or
             (has_focused_labels and label not in focused_labels)
         )
     ]
 
-    # Add unowned extra files
-    extra_files.append(ctx.attr.runner_build_file)
+    # Unowned extra files
+    unowned_extra_files = [ctx.attr.runner_build_file]
     for target in ctx.attr.unowned_extra_files:
-        extra_files.extend([file.path for file in target.files.to_list()])
+        unowned_extra_files.extend(
+            [file.path for file in target.files.to_list()],
+        )
 
-    extra_files = uniq(extra_files)
-    extra_folders = uniq(extra_folders)
+    extra_files = depset(
+        unowned_extra_files,
+        transitive = extra_files_depsets,
+    ).to_list()
+    extra_folders = depset(
+        transitive = extra_folders_depsets,
+    ).to_list()
 
     def _normalize_path(path):
         configuration, _, suffix = path.partition("/")
@@ -439,13 +443,10 @@ targets.
             # Don't create targets for resource bundles in BwB mode, but still
             # include their files if they aren't unfocused
             focused_targets_extra_files.append(
-                (xcode_target.label, xcode_target.inputs.resources.to_list()),
+                (xcode_target.label, xcode_target.inputs.resources),
             )
             focused_targets_extra_folders.append(
-                (
-                    xcode_target.label,
-                    xcode_target.inputs.folder_resources.to_list(),
-                ),
+                (xcode_target.label, xcode_target.inputs.folder_resources),
             )
             files_only_targets[xcode_target.id] = xcode_target
             continue
@@ -559,7 +560,7 @@ targets.
                 focused_targets_extra_files.append(
                     (
                         label,
-                        [file.path for file in file.files.to_list()],
+                        depset([file.path for file in file.files.to_list()]),
                     ),
                 )
 
