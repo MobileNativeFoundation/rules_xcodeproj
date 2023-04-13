@@ -65,6 +65,7 @@
 		23F6CDA0718AB8C6529FAEFA /* UndefinedBehaviorSanitizerApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UndefinedBehaviorSanitizerApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26402171D2C90A1F56C3ED05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		32A7ECDA2E7CB02DE09F10B8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		4EE551AB48127AD1CA863972 /* AddressSanitizerApp.0.swift.compile.params */ = {isa = PBXFileReference; path = AddressSanitizerApp.0.swift.compile.params; sourceTree = "<group>"; };
 		512720A0087AC17357907710 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		5D93E8EE6C19BA664BCC760E /* AddressSanitizerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressSanitizerApp.swift; sourceTree = "<group>"; };
 		679A4ADFAA204F60489DB965 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -77,7 +78,9 @@
 		C20ACCDE2249120A02DC365D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CC8AB21D48AAAA31B7436ECC /* AddressSanitizerExamples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressSanitizerExamples.swift; sourceTree = "<group>"; };
 		D20093170A54E92A741D748D /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
+		E95BC4B60F54614D49EF4B2D /* UndefinedBehaviorSanitizerApp.2.c.compile.params */ = {isa = PBXFileReference; path = UndefinedBehaviorSanitizerApp.2.c.compile.params; sourceTree = "<group>"; };
 		F5299FC770575944A8949052 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		F88C15C7444D4AE355FF6E7E /* ThreadSanitizerApp.1.swift.compile.params */ = {isa = PBXFileReference; path = ThreadSanitizerApp.1.swift.compile.params; sourceTree = "<group>"; };
 		F8C0069105E59BD40D81211A /* ThreadSanitizerApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThreadSanitizerApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB69EA98EA06ABD9A0BF2BBB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		FE1E9E3B076A33C7C2727B0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -107,7 +110,10 @@
 			isa = PBXGroup;
 			children = (
 				0892C33DDF78341D7B73BFBF /* AddressSanitizerApp.0.link.params */,
+				4EE551AB48127AD1CA863972 /* AddressSanitizerApp.0.swift.compile.params */,
 				01F92CB3FDD7346D12E737F7 /* ThreadSanitizerApp.1.link.params */,
+				F88C15C7444D4AE355FF6E7E /* ThreadSanitizerApp.1.swift.compile.params */,
+				E95BC4B60F54614D49EF4B2D /* UndefinedBehaviorSanitizerApp.2.c.compile.params */,
 				684285B1B73DDDADA2538A52 /* UndefinedBehaviorSanitizerApp.2.link.params */,
 			);
 			path = "xcodeproj_bwb-params";
@@ -358,6 +364,7 @@
 			buildConfigurationList = 019FE0CB3277299C53E8849F /* Build configuration list for PBXNativeTarget "AddressSanitizerApp" */;
 			buildPhases = (
 				9A240AC4A94F7BC2BE95B2C9 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
+				E2EAE1F255245F6DCE1108AD /* Create compiling dependencies */,
 				18AA58D692FF72040878187B /* Create linking dependencies */,
 				4792A74714DC1D313B0E084D /* Sources */,
 			);
@@ -376,6 +383,7 @@
 			buildConfigurationList = 7BD032E62CF3E4BDC11F6819 /* Build configuration list for PBXNativeTarget "UndefinedBehaviorSanitizerApp" */;
 			buildPhases = (
 				E3FD30E20DB67694E15F2FF7 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
+				4985A5E747D3102E12ED7D9A /* Create compiling dependencies */,
 				7ABB1254232F633B0BB8FF0E /* Create linking dependencies */,
 				123696DA2AFD12589C9836DA /* Sources */,
 			);
@@ -394,6 +402,7 @@
 			buildConfigurationList = D525AFE8A620E02798D82753 /* Build configuration list for PBXNativeTarget "ThreadSanitizerApp" */;
 			buildPhases = (
 				215EFC8B6035BBC69DBF1EFD /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
+				D66E5BB5C4D1F77EEECA4ED8 /* Create compiling dependencies */,
 				6B484573E412628982D5B72E /* Create linking dependencies */,
 				A93240159FFDD47DD6077BF3 /* Sources */,
 			);
@@ -507,6 +516,23 @@
 			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\nelse\n  \"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n    \"_BazelForcedCompile_.swift\" \\\n    \"ThreadSanitizerApp.app\" \\\n    \"$BAZEL_INTEGRATION_DIR/app.exclude.rsynclist\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		4985A5E747D3102E12ED7D9A /* Create compiling dependencies */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(C_PARAMS_FILE)",
+			);
+			name = "Create compiling dependencies";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/c.compile.params",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nperl -pe '\n  s/__BAZEL_XCODE_DEVELOPER_DIR__/\\$(DEVELOPER_DIR)/g;\n  s/__BAZEL_XCODE_SDKROOT__/\\$(SDKROOT)/g;\n  s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/gx;\n' \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"";
+			showEnvVarsInLog = 0;
+		};
 		6B484573E412628982D5B72E /* Create linking dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -575,6 +601,40 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"$BAZEL_INTEGRATION_DIR/generate_bazel_dependencies.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D66E5BB5C4D1F77EEECA4ED8 /* Create compiling dependencies */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SWIFT_PARAMS_FILE)",
+			);
+			name = "Create compiling dependencies";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/swift.compile.params",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nperl -pe '\n  s/__BAZEL_XCODE_DEVELOPER_DIR__/\\$(DEVELOPER_DIR)/g;\n  s/__BAZEL_XCODE_SDKROOT__/\\$(SDKROOT)/g;\n  s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/gx;\n' \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"";
+			showEnvVarsInLog = 0;
+		};
+		E2EAE1F255245F6DCE1108AD /* Create compiling dependencies */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SWIFT_PARAMS_FILE)",
+			);
+			name = "Create compiling dependencies";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/swift.compile.params",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nperl -pe '\n  s/__BAZEL_XCODE_DEVELOPER_DIR__/\\$(DEVELOPER_DIR)/g;\n  s/__BAZEL_XCODE_SDKROOT__/\\$(SDKROOT)/g;\n  s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/gx;\n' \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"";
 			showEnvVarsInLog = 0;
 		};
 		E3FD30E20DB67694E15F2FF7 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
@@ -655,7 +715,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -D_FORTIFY_SOURCE=1 -fstack-protector -Wall -Wthread-safety -Wself-assign -fno-omit-frame-pointer -Wshorten-64-to-32 -Wbool-conversion -Wconstant-conversion -Wduplicate-method-match -Wempty-body -Wenum-conversion -Wint-conversion -Wunreachable-code -Wmismatched-return-types -Wundeclared-selector -Wuninitialized -Wunused-function -Wunused-variable -iquote . -iquote bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin -DOS_IOS -fno-autolink -F$(SDKROOT)/System/Library/Frameworks -F$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -fexceptions -fasm-blocks -fobjc-abi-version=2 -fobjc-legacy-dispatch -DDEBUG=1 -fstack-protector -fstack-protector-all";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -671,6 +731,7 @@
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = UndefinedBehaviorSanitizerApp.library;
+				C_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UndefinedBehaviorSanitizerApp.2.c.compile.params";
 				DEPLOYMENT_LOCATION = NO;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -794,7 +855,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/ThreadSanitizerApp.1.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -DDEBUG -Xcc -iquote. -Xcc -iquotebazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin -static -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/ThreadSanitizerApp";
@@ -807,6 +868,7 @@
 				SWIFT_INCLUDE_PATHS = "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS))";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/ThreadSanitizerApp.1.swift.compile.params";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				TARGET_NAME = ThreadSanitizerApp;
@@ -835,7 +897,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/AddressSanitizerApp.0.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -DDEBUG -Xcc -iquote. -Xcc -iquotebazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin -static -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/AddressSanitizerApp";
@@ -848,6 +910,7 @@
 				SWIFT_INCLUDE_PATHS = "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS))";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/AddressSanitizerApp.0.swift.compile.params";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				TARGET_NAME = AddressSanitizerApp;

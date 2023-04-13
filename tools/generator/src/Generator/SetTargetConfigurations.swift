@@ -364,9 +364,26 @@ $(CONFIGURATION_BUILD_DIR)
 
         // Set VFS overlays
 
-        let cFlags = target.cFlags
-        let cxxFlags = target.cxxFlags
-        let swiftFlags = target.swiftFlags
+        let cFlags: [String]
+        if target.cParams != nil {
+            cFlags = ["@$(DERIVED_FILE_DIR)/c.compile.params"]
+        } else {
+            cFlags = []
+        }
+
+        let cxxFlags: [String]
+        if target.cxxParams != nil {
+            cxxFlags = ["@$(DERIVED_FILE_DIR)/cxx.compile.params"]
+        } else {
+            cxxFlags = []
+        }
+
+        let swiftFlags: [String]
+        if target.swiftParams != nil {
+            swiftFlags = ["@$(DERIVED_FILE_DIR)/swift.compile.params"]
+        } else {
+            swiftFlags = []
+        }
 
         var cFlagsPrefix: [String] = []
         var cxxFlagsPrefix: [String] = []
@@ -452,21 +469,13 @@ $(CONFIGURATION_BUILD_DIR)
             }
         }
 
-        var cFlagsString = processFlagsString(
-            flagsPrefix: cFlagsPrefix,
-            flags: cFlags
-        )
-        var cxxFlagsString = processFlagsString(
-            flagsPrefix: cxxFlagsPrefix,
-            flags: cxxFlags
-        )
-        let swiftFlagsString = processFlagsString(
-            flagsPrefix: swiftFlagsPrefix,
-            flags: swiftFlags
-        )
+        var cFlagsString = (cFlagsPrefix + cFlags).joined(separator: " ")
+        var cxxFlagsString = (cxxFlagsPrefix + cxxFlags).joined(separator: " ")
+        let swiftFlagsString = (swiftFlagsPrefix + swiftFlags)
+            .joined(separator: " ")
 
         // Append settings when using ASAN
-        if cFlags.contains("-D_FORTIFY_SOURCE=1") {
+        if target.cHasFortifySource {
             buildSettings["ASAN_OTHER_CFLAGS__"] = "$(ASAN_OTHER_CFLAGS__NO)"
             buildSettings.set("ASAN_OTHER_CFLAGS__NO", to: cFlagsString)
             buildSettings["ASAN_OTHER_CFLAGS__YES"] = [
@@ -476,7 +485,7 @@ $(CONFIGURATION_BUILD_DIR)
             ]
             cFlagsString = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))"
         }
-        if cxxFlags.contains("-D_FORTIFY_SOURCE=1") {
+        if target.cxxHasFortifySource {
             buildSettings["ASAN_OTHER_CPLUSPLUSFLAGS__"] =
                 "$(ASAN_OTHER_CPLUSPLUSFLAGS__NO)"
             buildSettings.set(
@@ -605,38 +614,6 @@ $(BUILD_DIR)/\(testHost.packageBinDir)/\(productPath)/\(executableName)
             }
         }
     }
-}
-
-private func processFlagsString(
-    flagsPrefix: [String],
-    flags: [String]
-) -> String {
-    // `flagsPrefix` doesn't need whitespace handling, as we make sure to have
-    // it in the correct form before this function is called.
-    let flags = flags
-        .map { flag in
-            guard !flag.contains(" ") else {
-                // We use the NUL character to prevent escaping it later
-                return "\0\(flag)\0"
-            }
-            return flag
-        }
-
-    return (flagsPrefix + flags).joined(separator: " ")
-        // Use Xcode set `DEVELOPER_DIR`
-        .replacingOccurrences(
-            of: "__BAZEL_XCODE_DEVELOPER_DIR__",
-            with: "$(DEVELOPER_DIR)"
-        )
-        // Use Xcode set `SDKROOT`
-        .replacingOccurrences(
-            of: "__BAZEL_XCODE_SDKROOT__",
-            with: "$(SDKROOT)"
-        )
-        // Escape quotes
-        .replacingOccurrences(of: #"""#, with: #"\""#)
-        // Convert NUL characters into quotes
-        .replacingOccurrences(of: "\0", with: #"""#)
 }
 
 private extension Dictionary where Value == BuildSetting {

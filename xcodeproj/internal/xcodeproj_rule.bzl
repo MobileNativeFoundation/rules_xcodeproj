@@ -634,8 +634,8 @@ targets.
 
     target_dtos = {}
     target_dependencies = {}
+    target_compile_params = {}
     target_link_params = {}
-
     for index, xcode_target in enumerate(focused_targets.values()):
         transitive_dependencies = {
             id: None
@@ -664,11 +664,15 @@ targets.
                     ),
                 )
 
-        dto, replaced_dependencies, link_params = xcode_targets.to_dto(
+        (
+            dto,
+            replaced_dependencies,
+            compile_params,
+            link_params,
+        ) = xcode_targets.to_dto(
             ctx = ctx,
             xcode_target = xcode_target,
             label = xcode_target_labels[xcode_target.id],
-            is_fixture = is_fixture,
             additional_scheme_target_ids = additional_scheme_target_ids,
             build_mode = build_mode,
             xcode_configurations = target_xcode_configurations,
@@ -687,6 +691,8 @@ targets.
             transitive_dependencies,
             replaced_dependencies,
         )
+        if compile_params:
+            target_compile_params[xcode_target.id] = depset(compile_params)
         if link_params:
             target_link_params[xcode_target.id] = depset([link_params])
 
@@ -698,8 +704,12 @@ targets.
             replaced_dependencies,
         ) = target_dependencies[xcode_target.id]
 
+        transitive_compile_params = []
         transitive_link_params = []
 
+        compile_params = target_compile_params.get(xcode_target.id)
+        if compile_params:
+            transitive_compile_params.append(compile_params)
         link_params = target_link_params.get(xcode_target.id)
         if link_params:
             transitive_link_params.append(link_params)
@@ -710,12 +720,18 @@ targets.
                 id = merge[0]
                 if id == xcode_target.id:
                     continue
+            compile_params = target_compile_params.get(id)
+            if compile_params:
+                transitive_compile_params.append(compile_params)
             link_params = target_link_params.get(id)
             if link_params:
                 transitive_link_params.append(link_params)
 
         compiling_output_group_name = (
             xcode_target.inputs.compiling_output_group_name
+        )
+        generated_output_group_name = (
+            xcode_target.outputs.generated_output_group_name
         )
         indexstores_output_group_name = (
             xcode_target.inputs.indexstores_output_group_name
@@ -776,6 +792,9 @@ targets.
             # The replaced dependency is not a transitive dependency, so we
             # need to add its merge in its output groups
 
+            compile_params = target_compile_params.get(id, None)
+            if compile_params:
+                transitive_compile_params.append(compile_params)
             link_params = target_link_params.get(id, None)
             if link_params:
                 transitive_link_params.append(link_params)
@@ -813,6 +832,12 @@ targets.
                     [],
                 )
 
+        if transitive_compile_params:
+            additional_compiling_files.extend(transitive_compile_params)
+            if generated_output_group_name:
+                additional_outputs[generated_output_group_name] = (
+                    transitive_compile_params
+                )
         if transitive_link_params:
             if linking_output_group_name:
                 additional_linking_files.extend(transitive_link_params)
@@ -1092,7 +1117,6 @@ def _write_spec(
     target_shards = []
     for shard in range(shard_count):
         sharded_targets = flattened_targets[shard * shard_size:(shard + 1) * shard_size]
-
         targets_json = json.encode(sharded_targets)
         targets_output = ctx.actions.declare_file(
             "{}-targets_spec.{}.json".format(ctx.attr.name, shard),

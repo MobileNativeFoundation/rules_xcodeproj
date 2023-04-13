@@ -101,14 +101,19 @@
 		18DF90BBBA2BA8D2AF06D94F /* lib2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib2.h; sourceTree = "<group>"; };
 		1F8D330113018E003269E782 /* liblib_impl.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_impl.a; path = "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external/liblib_impl.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		279A0E4737F6910DA83B77C4 /* lib3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib3.h; sourceTree = "<group>"; };
+		44C5DCED01C6F7DEDB56D244 /* lib_impl.2.c.compile.params */ = {isa = PBXFileReference; path = lib_impl.2.c.compile.params; sourceTree = "<group>"; };
 		44E6CFE4F6DA4DD1FDA1E2A5 /* impl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = impl.h; sourceTree = "<group>"; };
+		4AE6BEE839ABADC75C2A842D /* lib_defines.1.c.compile.params */ = {isa = PBXFileReference; path = lib_defines.1.c.compile.params; sourceTree = "<group>"; };
 		608FC1B03035074235E81C33 /* lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = lib.c; sourceTree = "<group>"; };
 		655197F36E3561F5EBB2B456 /* lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib.h; sourceTree = "<group>"; };
 		68571FA99BB8CAC9AA027C16 /* lib2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lib2.h; sourceTree = "<group>"; };
 		749ECE521B1B50D3AF8C99A4 /* liblib_defines.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_defines.a; path = "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib/liblib_defines.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		82E1AC498ACAE9E123276B7A /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
+		92085B1F3FBF3541A4D2AB87 /* lib_impl.3.c.compile.params */ = {isa = PBXFileReference; path = lib_impl.3.c.compile.params; sourceTree = "<group>"; };
+		938673652515D096C77EB8D2 /* lib_impl.0.c.compile.params */ = {isa = PBXFileReference; path = lib_impl.0.c.compile.params; sourceTree = "<group>"; };
 		93D1D27158A07AD68DCD9F1C /* private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = private.h; sourceTree = "<group>"; };
 		9EA769DDCBCA01C4A4A674AF /* lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = lib.c; sourceTree = "<group>"; };
+		A71941F865B99E73AEDBFA4A /* tool.4.c.compile.params */ = {isa = PBXFileReference; path = tool.4.c.compile.params; sourceTree = "<group>"; };
 		AE0CF9E68A28C21F8DDA2623 /* lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = lib.c; sourceTree = "<group>"; };
 		B13DA8B967470B62463A7C36 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		B6393A8054CC3DB8C2683C2E /* tool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tool; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -261,6 +266,11 @@
 		7F1C764D0DEBDAC52E11EAF3 /* xcodeproj_bwx-params */ = {
 			isa = PBXGroup;
 			children = (
+				4AE6BEE839ABADC75C2A842D /* lib_defines.1.c.compile.params */,
+				938673652515D096C77EB8D2 /* lib_impl.0.c.compile.params */,
+				44C5DCED01C6F7DEDB56D244 /* lib_impl.2.c.compile.params */,
+				92085B1F3FBF3541A4D2AB87 /* lib_impl.3.c.compile.params */,
+				A71941F865B99E73AEDBFA4A /* tool.4.c.compile.params */,
 				C4540894ED64E2ADAFAEF962 /* tool.4.link.params */,
 			);
 			path = "xcodeproj_bwx-params";
@@ -595,15 +605,16 @@
 			files = (
 			);
 			inputPaths = (
-				"$(BAZEL_INTEGRATION_DIR)/create_xcode_overlay.sh",
+				"$(C_PARAMS_FILE)",
 			);
 			name = "Create compiling dependencies";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/c.compile.params",
 				"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"$SCRIPT_INPUT_FILE_0\"\n";
+			shellScript = "set -euo pipefail\n\nperl -pe '\n  s/__BAZEL_XCODE_DEVELOPER_DIR__/\\$(DEVELOPER_DIR)/g;\n  s/__BAZEL_XCODE_SDKROOT__/\\$(SDKROOT)/g;\n  s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/gx;\n' \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\"$BAZEL_INTEGRATION_DIR/create_xcode_overlay.sh\"";
 			showEnvVarsInLog = 0;
 		};
 		26930AFFB7188AF135605E52 /* Create compiling dependencies */ = {
@@ -612,15 +623,16 @@
 			files = (
 			);
 			inputPaths = (
-				"$(BAZEL_INTEGRATION_DIR)/create_xcode_overlay.sh",
+				"$(C_PARAMS_FILE)",
 			);
 			name = "Create compiling dependencies";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/c.compile.params",
 				"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"$SCRIPT_INPUT_FILE_0\"\n";
+			shellScript = "set -euo pipefail\n\nperl -pe '\n  s/__BAZEL_XCODE_DEVELOPER_DIR__/\\$(DEVELOPER_DIR)/g;\n  s/__BAZEL_XCODE_SDKROOT__/\\$(SDKROOT)/g;\n  s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/gx;\n' \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\"$BAZEL_INTEGRATION_DIR/create_xcode_overlay.sh\"";
 			showEnvVarsInLog = 0;
 		};
 		2FB8CA190C5FD287F83F39E3 /* Create swift_debug_settings.py */ = {
@@ -646,15 +658,16 @@
 			files = (
 			);
 			inputPaths = (
-				"$(BAZEL_INTEGRATION_DIR)/create_xcode_overlay.sh",
+				"$(C_PARAMS_FILE)",
 			);
 			name = "Create compiling dependencies";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/c.compile.params",
 				"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"$SCRIPT_INPUT_FILE_0\"\n";
+			shellScript = "set -euo pipefail\n\nperl -pe '\n  s/__BAZEL_XCODE_DEVELOPER_DIR__/\\$(DEVELOPER_DIR)/g;\n  s/__BAZEL_XCODE_SDKROOT__/\\$(SDKROOT)/g;\n  s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/gx;\n' \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\"$BAZEL_INTEGRATION_DIR/create_xcode_overlay.sh\"";
 			showEnvVarsInLog = 0;
 		};
 		52AA1E4C46F097668B9F6176 /* Create compiling dependencies */ = {
@@ -663,15 +676,16 @@
 			files = (
 			);
 			inputPaths = (
-				"$(BAZEL_INTEGRATION_DIR)/create_xcode_overlay.sh",
+				"$(C_PARAMS_FILE)",
 			);
 			name = "Create compiling dependencies";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/c.compile.params",
 				"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"$SCRIPT_INPUT_FILE_0\"\n";
+			shellScript = "set -euo pipefail\n\nperl -pe '\n  s/__BAZEL_XCODE_DEVELOPER_DIR__/\\$(DEVELOPER_DIR)/g;\n  s/__BAZEL_XCODE_SDKROOT__/\\$(SDKROOT)/g;\n  s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/gx;\n' \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\"$BAZEL_INTEGRATION_DIR/create_xcode_overlay.sh\"";
 			showEnvVarsInLog = 0;
 		};
 		773C70B69E7F801B38FDC01C /* Generate Files */ = {
@@ -708,7 +722,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\nperl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  touch \"$SCRIPT_OUTPUT_FILE_0\"\nelse\nperl -pe 's/^(\"?)(.*\\$\\(.*\\).*?)(\"?)$/\"$2\"/ ; s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		E881916100D775EF5F50A2C6 /* Create compiling dependencies */ = {
@@ -717,15 +731,16 @@
 			files = (
 			);
 			inputPaths = (
-				"$(BAZEL_INTEGRATION_DIR)/create_xcode_overlay.sh",
+				"$(C_PARAMS_FILE)",
 			);
 			name = "Create compiling dependencies";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/c.compile.params",
 				"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"$SCRIPT_INPUT_FILE_0\"\n";
+			shellScript = "set -euo pipefail\n\nperl -pe '\n  s/__BAZEL_XCODE_DEVELOPER_DIR__/\\$(DEVELOPER_DIR)/g;\n  s/__BAZEL_XCODE_SDKROOT__/\\$(SDKROOT)/g;\n  s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/gx;\n' \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\"$BAZEL_INTEGRATION_DIR/create_xcode_overlay.sh\"";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -836,7 +851,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -D_FORTIFY_SOURCE=1 -fstack-protector -Wall -Wthread-safety -Wself-assign -fno-omit-frame-pointer -iquote . -iquote bazel-out/darwin_x86_64-dbg-STABLE-1/bin -Ibazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib2/_virtual_includes/lib_impl -isystem lib2/includes -isystem bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib2/includes -F$(SDKROOT)/System/Library/Frameworks -F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks -no-canonical-prefixes -pthread -no-canonical-prefixes -Wno-builtin-macro-redefined -D__DATE__=\\\"redacted\\\" -D__TIMESTAMP__=\\\"redacted\\\" -D__TIME__=\\\"redacted\\\"";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -847,6 +862,7 @@
 				BAZEL_TARGET_ID = "//lib2:lib_impl darwin_x86_64-dbg-STABLE-1";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = lib_impl;
+				C_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/lib_impl.2.c.compile.params";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -868,7 +884,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -D_FORTIFY_SOURCE=1 -fstack-protector -Wall -Wthread-safety -Wself-assign -fno-omit-frame-pointer -iquote . -iquote bazel-out/darwin_x86_64-dbg-STABLE-1/bin -isystem lib/impl -isystem bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib/impl -DSECRET_2=\\\"World!\\\" -DIMPL_DEFINE=\\\"Implementation\\\" -F$(SDKROOT)/System/Library/Frameworks -F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks -no-canonical-prefixes -pthread -no-canonical-prefixes -Wno-builtin-macro-redefined -D__DATE__=\\\"redacted\\\" -D__TIMESTAMP__=\\\"redacted\\\" -D__TIME__=\\\"redacted\\\"";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -879,6 +895,7 @@
 				BAZEL_TARGET_ID = "//lib:lib_defines darwin_x86_64-dbg-STABLE-1";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = lib_defines;
+				C_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/lib_defines.1.c.compile.params";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -970,7 +987,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -D_FORTIFY_SOURCE=1 -fstack-protector -Wall -Wthread-safety -Wself-assign -fno-omit-frame-pointer -iquote . -iquote bazel-out/darwin_x86_64-dbg-STABLE-1/bin -isystem lib/impl -isystem bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib/impl -DSECRET_3=\\\"Hello\\\" -DIMPL_DEFINE=\\\"Implementation\\\" -F$(SDKROOT)/System/Library/Frameworks -F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks -no-canonical-prefixes -pthread -Ilib/impl/private -Ibazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib/impl/private -no-canonical-prefixes -Wno-builtin-macro-redefined -D__DATE__=\\\"redacted\\\" -D__TIMESTAMP__=\\\"redacted\\\" -D__TIME__=\\\"redacted\\\"";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -981,6 +998,7 @@
 				BAZEL_TARGET_ID = "//lib/impl:lib_impl darwin_x86_64-dbg-STABLE-1";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = lib_impl;
+				C_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/lib_impl.0.c.compile.params";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				EXECUTABLE_EXTENSION = lo;
@@ -1003,7 +1021,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -D_FORTIFY_SOURCE=1 -fstack-protector -Wall -Wthread-safety -Wself-assign -fno-omit-frame-pointer -iquote . -iquote bazel-out/darwin_x86_64-dbg-STABLE-1/bin -iquote external/examples_cc_external -iquote bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external -iquote external/bazel_tools -iquote bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/bazel_tools -Ibazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib2/_virtual_includes/lib_impl -Ibazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib3/_virtual_includes/lib_headers -isystem lib2/includes -isystem bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib2/includes -isystem lib3/includes -isystem bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib3/includes -DSECRET_2=\\\"World!\\\" -DEXTERNAL_SECRET_2=\\\"World?\\\" -F$(SDKROOT)/System/Library/Frameworks -F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks -no-canonical-prefixes -pthread -no-canonical-prefixes -Wno-builtin-macro-redefined -D__DATE__=\\\"redacted\\\" -D__TIMESTAMP__=\\\"redacted\\\" -D__TIME__=\\\"redacted\\\"";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -1015,6 +1033,7 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				COMPILE_TARGET_NAME = tool;
+				C_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/tool.4.c.compile.params";
 				DEPLOYMENT_LOCATION = NO;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1040,7 +1059,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml -D_FORTIFY_SOURCE=1 -fstack-protector -Wall -Wthread-safety -Wself-assign -fno-omit-frame-pointer -iquote external/examples_cc_external -iquote bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external -DEXTERNAL_SECRET_3=\\\"Goodbye\\\" -F$(SDKROOT)/System/Library/Frameworks -F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks -no-canonical-prefixes -pthread -Iexternal/examples_cc_external/private -Ibazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external/private -no-canonical-prefixes -Wno-builtin-macro-redefined -D__DATE__=\\\"redacted\\\" -D__TIMESTAMP__=\\\"redacted\\\" -D__TIME__=\\\"redacted\\\"";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -1051,6 +1070,7 @@
 				BAZEL_TARGET_ID = "@examples_cc_external//:lib_impl darwin_x86_64-dbg-STABLE-1";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = lib_impl;
+				C_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/lib_impl.3.c.compile.params";
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;

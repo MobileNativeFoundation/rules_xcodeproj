@@ -118,6 +118,7 @@ def _create(
     )
 
     if should_produce_output_groups and direct_outputs:
+        generated_output_group_name = "bg {}".format(direct_outputs.id)
         linking_output_group_name = "bl {}".format(direct_outputs.id)
         products_output_group_name = "bp {}".format(direct_outputs.id)
 
@@ -139,7 +140,7 @@ def _create(
                 closest_compiled,
             ),
             (
-                "bg {}".format(direct_outputs.id),
+                generated_output_group_name,
                 False,
                 inputs.compiling_files if inputs else depset(),
             ),
@@ -152,6 +153,7 @@ def _create(
             (products_output_group_name, False, transitive_products),
         ]
     else:
+        generated_output_group_name = None
         linking_output_group_name = None
         products_output_group_name = None
         direct_group_list = None
@@ -176,6 +178,7 @@ def _create(
         _transitive_indexestores = transitive_indexestores,
         _transitive_products = transitive_products,
         direct_outputs = direct_outputs if should_produce_dto else None,
+        generated_output_group_name = generated_output_group_name,
         linking_output_group_name = linking_output_group_name,
         products_output_group_name = products_output_group_name,
         transitive_infoplists = transitive_infoplists,
@@ -378,6 +381,10 @@ def _to_output_groups_fields(
         )
         for name, is_indexstores, files in outputs._output_group_list.to_list()
     }
+
+    # for output_group in output_groups:
+    #     if output_group.startswith("bg "):
+    #         print(output_group, output_groups[output_group])
 
     output_groups["all_b"] = depset(transitive = output_groups.values())
 

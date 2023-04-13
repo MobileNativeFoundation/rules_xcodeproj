@@ -98,7 +98,9 @@ Product for target "\(key)" not found in `products`
                 in: pbxProj,
                 buildMode: buildMode,
                 hasClangSearchPaths: target.hasClangSearchPaths,
-                files: files
+                hasCParams: target.hasCParams,
+                hasCXXParams: target.hasCXXParams,
+                hasSwiftParams: target.hasSwiftParams
             ),
             try createLinkingDependenciesScript(
                 in: pbxProj,
@@ -234,21 +236,72 @@ Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)
         return script
     }
 
+    private static func createProcessCompileParamsCommand(
+        index: Int
+    ) -> String {
+        return #"""
+perl -pe '
+  s/__BAZEL_XCODE_DEVELOPER_DIR__/\$(DEVELOPER_DIR)/g;
+  s/__BAZEL_XCODE_SDKROOT__/\$(SDKROOT)/g;
+  s/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$ENV{$2}/gx;
+' "$SCRIPT_INPUT_FILE_\#(index)" > "$SCRIPT_OUTPUT_FILE_\#(index)"
+"""#
+}
+
     private static func createCompilingDependenciesScript(
         in pbxProj: PBXProj,
         buildMode: BuildMode,
         hasClangSearchPaths: Bool,
-        files _: [FilePath: File]
+        hasCParams: Bool,
+        hasCXXParams: Bool,
+        hasSwiftParams: Bool
     ) throws -> PBXShellScriptBuildPhase? {
-        guard buildMode == .xcode, hasClangSearchPaths else {
+        var shellScriptComponents = ["set -euo pipefail\n"]
+        var inputPaths: [String] = []
+        var outputPaths: [String] = []
+        var scriptIndex = 0
+
+        if hasCParams {
+            shellScriptComponents.append(
+                createProcessCompileParamsCommand(index: scriptIndex)
+            )
+            inputPaths.append("$(C_PARAMS_FILE)")
+            outputPaths.append("$(DERIVED_FILE_DIR)/c.compile.params")
+            scriptIndex += 1
+        }
+        if hasCXXParams {
+            shellScriptComponents.append(
+                createProcessCompileParamsCommand(index: scriptIndex)
+            )
+            inputPaths.append("$(CXX_PARAMS_FILE)")
+            outputPaths.append("$(DERIVED_FILE_DIR)/cxx.compile.params")
+            scriptIndex += 1
+        }
+        if hasSwiftParams {
+            shellScriptComponents.append(
+                createProcessCompileParamsCommand(index: scriptIndex)
+            )
+            inputPaths.append("$(SWIFT_PARAMS_FILE)")
+            outputPaths.append("$(DERIVED_FILE_DIR)/swift.compile.params")
+            scriptIndex += 1
+        }
+        if buildMode == .xcode && hasClangSearchPaths {
+            shellScriptComponents.append(#"""
+"$BAZEL_INTEGRATION_DIR/create_xcode_overlay.sh"
+"""#)
+            outputPaths.append("$(DERIVED_FILE_DIR)/xcode-overlay.yaml")
+        }
+
+        if shellScriptComponents.count == 1 {
+            // We don't have anything to do (first element is a header)
             return nil
         }
 
         let script = PBXShellScriptBuildPhase(
             name: "Create compiling dependencies",
-            inputPaths: ["$(BAZEL_INTEGRATION_DIR)/create_xcode_overlay.sh"],
-            outputPaths: ["$(DERIVED_FILE_DIR)/xcode-overlay.yaml"],
-            shellScript: "\"$SCRIPT_INPUT_FILE_0\"\n",
+            inputPaths: inputPaths,
+            outputPaths: outputPaths,
+            shellScript: shellScriptComponents.joined(separator: "\n"),
             showEnvVarsInLog: false
         )
         pbxProj.add(object: script)
@@ -276,7 +329,11 @@ perl -pe 's/^("?)(.*\$\(.*\).*?)("?)$/"$2"/ ; s/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$E
                 #"""
 set -euo pipefail
 
+if [[ "$ACTION" == "indexbuild" ]]; then
+  touch "$SCRIPT_OUTPUT_FILE_0"
+else
 \#(action)
+fi
 
 """#,
             ]

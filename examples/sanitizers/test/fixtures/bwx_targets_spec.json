@@ -1,22 +1,7 @@
 [
     "//AddressSanitizerApp:AddressSanitizerApp applebin_ios-ios_x86_64-dbg-STABLE-2",
     {
-        "0": [
-            "-DDEBUG",
-            "-Xcc",
-            "-iquote$(PROJECT_DIR)",
-            "-Xcc",
-            "-iquote$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin",
-            "-static",
-            "-Xcc",
-            "-O0",
-            "-Xcc",
-            "-DDEBUG=1",
-            "-Xcc",
-            "-fstack-protector",
-            "-Xcc",
-            "-fstack-protector-all"
-        ],
+        "0": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/AddressSanitizerApp.0.swift.compile.params",
         "1": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/AddressSanitizerApp",
         "2": {
             "a": "x86_64",
@@ -45,6 +30,7 @@
             "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS))",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+            "SWIFT_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/AddressSanitizerApp.0.swift.compile.params",
             "SWIFT_VERSION": "5.0",
             "TARGETED_DEVICE_FAMILY": "1"
         },
@@ -76,22 +62,7 @@
     },
     "//ThreadSanitizerApp:ThreadSanitizerApp applebin_ios-ios_x86_64-dbg-STABLE-2",
     {
-        "0": [
-            "-DDEBUG",
-            "-Xcc",
-            "-iquote$(PROJECT_DIR)",
-            "-Xcc",
-            "-iquote$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin",
-            "-static",
-            "-Xcc",
-            "-O0",
-            "-Xcc",
-            "-DDEBUG=1",
-            "-Xcc",
-            "-fstack-protector",
-            "-Xcc",
-            "-fstack-protector-all"
-        ],
+        "0": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/ThreadSanitizerApp.1.swift.compile.params",
         "1": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/ThreadSanitizerApp",
         "2": {
             "a": "x86_64",
@@ -120,6 +91,7 @@
             "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS))",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+            "SWIFT_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/ThreadSanitizerApp.1.swift.compile.params",
             "SWIFT_VERSION": "5.0",
             "TARGETED_DEVICE_FAMILY": "1"
         },
@@ -164,44 +136,10 @@
         },
         "4": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/UndefinedBehaviorSanitizerApp/rules_xcodeproj/UndefinedBehaviorSanitizerApp/Info.plist",
         "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/UndefinedBehaviorSanitizerApp.2.link.params",
-        "8": [
-            "-D_FORTIFY_SOURCE=1",
-            "-fstack-protector",
-            "-Wall",
-            "-Wthread-safety",
-            "-Wself-assign",
-            "-fno-omit-frame-pointer",
-            "-Wshorten-64-to-32",
-            "-Wbool-conversion",
-            "-Wconstant-conversion",
-            "-Wduplicate-method-match",
-            "-Wempty-body",
-            "-Wenum-conversion",
-            "-Wint-conversion",
-            "-Wunreachable-code",
-            "-Wmismatched-return-types",
-            "-Wundeclared-selector",
-            "-Wuninitialized",
-            "-Wunused-function",
-            "-Wunused-variable",
-            "-iquote",
-            ".",
-            "-iquote",
-            "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin",
-            "-DOS_IOS",
-            "-fno-autolink",
-            "-F__BAZEL_XCODE_SDKROOT__/System/Library/Frameworks",
-            "-F__BAZEL_XCODE_DEVELOPER_DIR__/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks",
-            "-fexceptions",
-            "-fasm-blocks",
-            "-fobjc-abi-version=2",
-            "-fobjc-legacy-dispatch",
-            "-DDEBUG=1",
-            "-fstack-protector",
-            "-fstack-protector-all"
-        ],
+        "8": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/UndefinedBehaviorSanitizerApp.2.c.compile.params",
         "b": {
             "CODE_SIGN_STYLE": "Manual",
+            "C_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/UndefinedBehaviorSanitizerApp.2.c.compile.params",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
             "GCC_OPTIMIZATION_LEVEL": "0",
@@ -214,6 +152,7 @@
             "TARGETED_DEVICE_FAMILY": "1"
         },
         "c": "applebin_ios-ios_x86_64-dbg-STABLE-2",
+        "f": true,
         "i": {
             "s": [
                 "UndefinedBehaviorSanitizerApp/Sources/AppDelegate.h",

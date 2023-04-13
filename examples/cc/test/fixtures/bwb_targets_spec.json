@@ -8,36 +8,9 @@
             "o": "macos",
             "v": "macosx"
         },
-        "8": [
-            "-D_FORTIFY_SOURCE=1",
-            "-fstack-protector",
-            "-Wall",
-            "-Wthread-safety",
-            "-Wself-assign",
-            "-fno-omit-frame-pointer",
-            "-iquote",
-            ".",
-            "-iquote",
-            "bazel-out/darwin_x86_64-dbg-STABLE-1/bin",
-            "-isystem",
-            "lib/impl",
-            "-isystem",
-            "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib/impl",
-            "-DSECRET_3=\"Hello\"",
-            "-DIMPL_DEFINE=\"Implementation\"",
-            "-F__BAZEL_XCODE_SDKROOT__/System/Library/Frameworks",
-            "-F__BAZEL_XCODE_DEVELOPER_DIR__/Platforms/MacOSX.platform/Developer/Library/Frameworks",
-            "-no-canonical-prefixes",
-            "-pthread",
-            "-Ilib/impl/private",
-            "-Ibazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib/impl/private",
-            "-no-canonical-prefixes",
-            "-Wno-builtin-macro-redefined",
-            "-D__DATE__=\"redacted\"",
-            "-D__TIMESTAMP__=\"redacted\"",
-            "-D__TIME__=\"redacted\""
-        ],
+        "8": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/lib_impl.0.c.compile.params",
         "b": {
+            "C_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/lib_impl.0.c.compile.params",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
             "GCC_OPTIMIZATION_LEVEL": "0",
@@ -46,6 +19,7 @@
             "SWIFT_VERSION": "5.0"
         },
         "c": "darwin_x86_64-dbg-STABLE-1",
+        "f": true,
         "i": {
             "s": [
                 "lib/impl/lib.c",
@@ -70,33 +44,9 @@
             "o": "macos",
             "v": "macosx"
         },
-        "8": [
-            "-D_FORTIFY_SOURCE=1",
-            "-fstack-protector",
-            "-Wall",
-            "-Wthread-safety",
-            "-Wself-assign",
-            "-fno-omit-frame-pointer",
-            "-iquote",
-            ".",
-            "-iquote",
-            "bazel-out/darwin_x86_64-dbg-STABLE-1/bin",
-            "-Ibazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib2/_virtual_includes/lib_impl",
-            "-isystem",
-            "lib2/includes",
-            "-isystem",
-            "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib2/includes",
-            "-F__BAZEL_XCODE_SDKROOT__/System/Library/Frameworks",
-            "-F__BAZEL_XCODE_DEVELOPER_DIR__/Platforms/MacOSX.platform/Developer/Library/Frameworks",
-            "-no-canonical-prefixes",
-            "-pthread",
-            "-no-canonical-prefixes",
-            "-Wno-builtin-macro-redefined",
-            "-D__DATE__=\"redacted\"",
-            "-D__TIMESTAMP__=\"redacted\"",
-            "-D__TIME__=\"redacted\""
-        ],
+        "8": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/lib_impl.2.c.compile.params",
         "b": {
+            "C_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/lib_impl.2.c.compile.params",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
             "GCC_OPTIMIZATION_LEVEL": "0",
@@ -105,6 +55,7 @@
             "SWIFT_VERSION": "5.0"
         },
         "c": "darwin_x86_64-dbg-STABLE-1",
+        "f": true,
         "i": {
             "s": [
                 "lib2/lib.c"
@@ -128,34 +79,9 @@
             "o": "macos",
             "v": "macosx"
         },
-        "8": [
-            "-D_FORTIFY_SOURCE=1",
-            "-fstack-protector",
-            "-Wall",
-            "-Wthread-safety",
-            "-Wself-assign",
-            "-fno-omit-frame-pointer",
-            "-iquote",
-            ".",
-            "-iquote",
-            "bazel-out/darwin_x86_64-dbg-STABLE-1/bin",
-            "-isystem",
-            "lib/impl",
-            "-isystem",
-            "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib/impl",
-            "-DSECRET_2=\"World!\"",
-            "-DIMPL_DEFINE=\"Implementation\"",
-            "-F__BAZEL_XCODE_SDKROOT__/System/Library/Frameworks",
-            "-F__BAZEL_XCODE_DEVELOPER_DIR__/Platforms/MacOSX.platform/Developer/Library/Frameworks",
-            "-no-canonical-prefixes",
-            "-pthread",
-            "-no-canonical-prefixes",
-            "-Wno-builtin-macro-redefined",
-            "-D__DATE__=\"redacted\"",
-            "-D__TIMESTAMP__=\"redacted\"",
-            "-D__TIME__=\"redacted\""
-        ],
+        "8": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/lib_defines.1.c.compile.params",
         "b": {
+            "C_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/lib_defines.1.c.compile.params",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
             "GCC_OPTIMIZATION_LEVEL": "0",
@@ -167,6 +93,7 @@
         "d": [
             "//lib/impl:lib_impl darwin_x86_64-dbg-STABLE-1"
         ],
+        "f": true,
         "i": {
             "s": [
                 "lib/defines.c"
@@ -191,49 +118,10 @@
             "v": "macosx"
         },
         "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tool.4.link.params",
-        "8": [
-            "-D_FORTIFY_SOURCE=1",
-            "-fstack-protector",
-            "-Wall",
-            "-Wthread-safety",
-            "-Wself-assign",
-            "-fno-omit-frame-pointer",
-            "-iquote",
-            ".",
-            "-iquote",
-            "bazel-out/darwin_x86_64-dbg-STABLE-1/bin",
-            "-iquote",
-            "external/examples_cc_external",
-            "-iquote",
-            "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external",
-            "-iquote",
-            "external/bazel_tools",
-            "-iquote",
-            "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/bazel_tools",
-            "-Ibazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib2/_virtual_includes/lib_impl",
-            "-Ibazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib3/_virtual_includes/lib_headers",
-            "-isystem",
-            "lib2/includes",
-            "-isystem",
-            "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib2/includes",
-            "-isystem",
-            "lib3/includes",
-            "-isystem",
-            "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib3/includes",
-            "-DSECRET_2=\"World!\"",
-            "-DEXTERNAL_SECRET_2=\"World?\"",
-            "-F__BAZEL_XCODE_SDKROOT__/System/Library/Frameworks",
-            "-F__BAZEL_XCODE_DEVELOPER_DIR__/Platforms/MacOSX.platform/Developer/Library/Frameworks",
-            "-no-canonical-prefixes",
-            "-pthread",
-            "-no-canonical-prefixes",
-            "-Wno-builtin-macro-redefined",
-            "-D__DATE__=\"redacted\"",
-            "-D__TIMESTAMP__=\"redacted\"",
-            "-D__TIME__=\"redacted\""
-        ],
+        "8": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tool.4.c.compile.params",
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/tool/tool_codesigned",
+            "C_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tool.4.c.compile.params",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
             "GCC_OPTIMIZATION_LEVEL": "0",
@@ -248,6 +136,7 @@
             "@examples_cc_external//:lib_impl darwin_x86_64-dbg-STABLE-1",
             "//lib2:lib_impl darwin_x86_64-dbg-STABLE-1"
         ],
+        "f": true,
         "i": {
             "s": [
                 "tool/main.c"
@@ -275,31 +164,9 @@
             "o": "macos",
             "v": "macosx"
         },
-        "8": [
-            "-D_FORTIFY_SOURCE=1",
-            "-fstack-protector",
-            "-Wall",
-            "-Wthread-safety",
-            "-Wself-assign",
-            "-fno-omit-frame-pointer",
-            "-iquote",
-            "external/examples_cc_external",
-            "-iquote",
-            "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external",
-            "-DEXTERNAL_SECRET_3=\"Goodbye\"",
-            "-F__BAZEL_XCODE_SDKROOT__/System/Library/Frameworks",
-            "-F__BAZEL_XCODE_DEVELOPER_DIR__/Platforms/MacOSX.platform/Developer/Library/Frameworks",
-            "-no-canonical-prefixes",
-            "-pthread",
-            "-Iexternal/examples_cc_external/private",
-            "-Ibazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external/private",
-            "-no-canonical-prefixes",
-            "-Wno-builtin-macro-redefined",
-            "-D__DATE__=\"redacted\"",
-            "-D__TIMESTAMP__=\"redacted\"",
-            "-D__TIME__=\"redacted\""
-        ],
+        "8": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/lib_impl.3.c.compile.params",
         "b": {
+            "C_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/lib_impl.3.c.compile.params",
             "ENABLE_BITCODE": false,
             "ENABLE_STRICT_OBJC_MSGSEND": true,
             "GCC_OPTIMIZATION_LEVEL": "0",
@@ -308,6 +175,7 @@
             "SWIFT_VERSION": "5.0"
         },
         "c": "darwin_x86_64-dbg-STABLE-1",
+        "f": true,
         "i": {
             "s": [
                 "external/examples_cc_external/lib.c",

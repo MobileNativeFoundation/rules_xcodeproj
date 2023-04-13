@@ -409,6 +409,15 @@ extension Generator {
         var createCompileStub = false
         var allInputPaths = extraFiles
         for target in targets.values {
+            if let cParams = target.cParams {
+                allInputPaths.insert(cParams)
+            }
+            if let cxxParams = target.cxxParams {
+                allInputPaths.insert(cxxParams)
+            }
+            if let swiftParams = target.swiftParams {
+                allInputPaths.insert(swiftParams)
+            }
             if let linkParams = target.linkParams {
                 allInputPaths.insert(linkParams)
             }
