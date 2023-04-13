@@ -24,13 +24,19 @@ load(":xcodeproj_aspect.bzl", "make_xcodeproj_aspect")
 
 # Utility
 
-_SWIFTUI_PREVIEW_PRODUCT_TYPES = [
-    "com.apple.product-type.application",
-    "com.apple.product-type.app-extension",
-    "com.apple.product-type.bundle",
-    "com.apple.product-type.framework",
-    "com.apple.product-type.tool",
-]
+_SWIFTUI_PREVIEW_PRODUCT_TYPES = {
+    "com.apple.product-type.application": None,
+    "com.apple.product-type.application.on-demand-install-capable": None,
+    "com.apple.product-type.application.watchapp": None,
+    "com.apple.product-type.application.watchapp2": None,
+    "com.apple.product-type.app-extension": None,
+    "com.apple.product-type.bundle": None,
+    "com.apple.product-type.bundle.unit-test": None,
+    "com.apple.product-type.extensionkit-extension": None,
+    "com.apple.product-type.framework": None,
+    "com.apple.product-type.tool": None,
+    "com.apple.product-type.tv-app-extension": None,
+}
 
 # TODO: Non-test_host applications should be terminal as well
 _TERMINAL_PRODUCT_TYPES = {
@@ -642,7 +648,8 @@ targets.
             for id in xcode_target.transitive_dependencies.to_list()
         }
 
-        if include_swiftui_previews_scheme_targets:
+        if (include_swiftui_previews_scheme_targets and
+            xcode_target.product.type in _SWIFTUI_PREVIEW_PRODUCT_TYPES):
             additional_scheme_target_ids = _calculate_swiftui_preview_targets(
                 xcode_target = xcode_target,
                 transitive_dependencies = transitive_dependencies,
