@@ -160,6 +160,7 @@ def process_top_level_target(
         ctx,
         build_mode,
         target,
+        attrs,
         automatic_target_info,
         bundle_info,
         transitive_infos):
@@ -169,6 +170,7 @@ def process_top_level_target(
         ctx: The aspect context.
         build_mode: See `xcodeproj.build_mode`.
         target: The `Target` to process.
+        attrs: `dir(ctx.rule.attr)` (as a performance optimization).
         automatic_target_info: The `XcodeProjAutomaticTargetProcessingInfo` for
             `target`.
         bundle_info: The `AppleBundleInfo` provider for `target`, or `None`.
@@ -370,6 +372,7 @@ def process_top_level_target(
     inputs = input_files.collect(
         ctx = ctx,
         target = target,
+        attrs = attrs,
         id = id,
         platform = platform,
         is_bundle = is_bundle,

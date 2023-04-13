@@ -525,13 +525,12 @@ rules, then you will use these providers to communicate between them.
 ## XcodeProjAutomaticTargetProcessingInfo
 
 <pre>
-XcodeProjAutomaticTargetProcessingInfo(<a href="#XcodeProjAutomaticTargetProcessingInfo-all_attrs">all_attrs</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-alternate_icons">alternate_icons</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-app_icons">app_icons</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-args">args</a>,
-                                       <a href="#XcodeProjAutomaticTargetProcessingInfo-bazel_build_mode_error">bazel_build_mode_error</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-bundle_id">bundle_id</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-codesignopts">codesignopts</a>,
-                                       <a href="#XcodeProjAutomaticTargetProcessingInfo-collect_uncategorized_files">collect_uncategorized_files</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-deps">deps</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-entitlements">entitlements</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-env">env</a>,
-                                       <a href="#XcodeProjAutomaticTargetProcessingInfo-exported_symbols_lists">exported_symbols_lists</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-hdrs">hdrs</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-implementation_deps">implementation_deps</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-infoplists">infoplists</a>,
-                                       <a href="#XcodeProjAutomaticTargetProcessingInfo-launchdplists">launchdplists</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-link_mnemonics">link_mnemonics</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-non_arc_srcs">non_arc_srcs</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-pch">pch</a>,
-                                       <a href="#XcodeProjAutomaticTargetProcessingInfo-provisioning_profile">provisioning_profile</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-should_generate_target">should_generate_target</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-srcs">srcs</a>,
-                                       <a href="#XcodeProjAutomaticTargetProcessingInfo-target_type">target_type</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-xcode_targets">xcode_targets</a>)
+XcodeProjAutomaticTargetProcessingInfo(<a href="#XcodeProjAutomaticTargetProcessingInfo-alternate_icons">alternate_icons</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-app_icons">app_icons</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-args">args</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-bazel_build_mode_error">bazel_build_mode_error</a>,
+                                       <a href="#XcodeProjAutomaticTargetProcessingInfo-bundle_id">bundle_id</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-codesignopts">codesignopts</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-collect_uncategorized_files">collect_uncategorized_files</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-deps">deps</a>,
+                                       <a href="#XcodeProjAutomaticTargetProcessingInfo-entitlements">entitlements</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-env">env</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-exported_symbols_lists">exported_symbols_lists</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-hdrs">hdrs</a>,
+                                       <a href="#XcodeProjAutomaticTargetProcessingInfo-implementation_deps">implementation_deps</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-infoplists">infoplists</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-launchdplists">launchdplists</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-link_mnemonics">link_mnemonics</a>,
+                                       <a href="#XcodeProjAutomaticTargetProcessingInfo-non_arc_srcs">non_arc_srcs</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-pch">pch</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-provisioning_profile">provisioning_profile</a>,
+                                       <a href="#XcodeProjAutomaticTargetProcessingInfo-should_generate_target">should_generate_target</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-srcs">srcs</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-target_type">target_type</a>, <a href="#XcodeProjAutomaticTargetProcessingInfo-xcode_targets">xcode_targets</a>)
 </pre>
 
 Provides needed information about a target to allow rules_xcodeproj to
@@ -550,7 +549,6 @@ stabilizing it.
 
 | Name  | Description |
 | :------------- | :------------- |
-| <a id="XcodeProjAutomaticTargetProcessingInfo-all_attrs"></a>all_attrs |  -    |
 | <a id="XcodeProjAutomaticTargetProcessingInfo-alternate_icons"></a>alternate_icons |  An attribute name (or <code>None</code>) to collect the application alternate icons.    |
 | <a id="XcodeProjAutomaticTargetProcessingInfo-app_icons"></a>app_icons |  An attribute name (or <code>None</code>) to collect the application icons.    |
 | <a id="XcodeProjAutomaticTargetProcessingInfo-args"></a>args |  A <code>List</code> (or <code>None</code>) representing the command line arguments that this target should execute or test with.    |

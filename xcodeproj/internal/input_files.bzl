@@ -78,6 +78,7 @@ def _collect_input_files(
         *,
         ctx,
         target,
+        attrs,
         unfocused = False,
         id,
         platform,
@@ -94,6 +95,7 @@ def _collect_input_files(
     Args:
         ctx: The aspect context.
         target: The `Target` to collect inputs from.
+        attrs: `dir(ctx.rule.attr)` (as a performance optimization).
         unfocused: Whether the target is unfocused. If `None`, it will be
             determined automatically (this should only be the case for
             `non_xcode_target`s).
@@ -298,7 +300,7 @@ def _collect_input_files(
 
         _handle_file(getattr(ctx.rule.file, attr), handler = handler)
 
-    for attr in automatic_target_info.all_attrs:
+    for attr in attrs:
         if _should_ignore_input_attr(attr):
             continue
 
@@ -306,7 +308,7 @@ def _collect_input_files(
             # Only attributes in `file_handlers` are categorized
             continue
 
-        dep = getattr(ctx.rule.attr, attr, None)
+        dep = getattr(ctx.rule.attr, attr)
 
         dep_type = type(dep)
         if dep_type == "Target":

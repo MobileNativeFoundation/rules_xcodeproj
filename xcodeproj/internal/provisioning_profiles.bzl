@@ -9,7 +9,7 @@ load(":providers.bzl", "XcodeProjProvisioningProfileInfo")
 
 def _process_attr(*, ctx, automatic_target_info, build_settings):
     attr = automatic_target_info.provisioning_profile
-    if not attr:
+    if not attr or not hasattr(ctx.rule.attr, attr):
         return
 
     provisioning_profile_target = getattr(ctx.rule.attr, attr)

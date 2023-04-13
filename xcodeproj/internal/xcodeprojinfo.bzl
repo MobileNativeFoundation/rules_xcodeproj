@@ -380,6 +380,7 @@ def _create_xcodeprojinfo(
         ctx,
         build_mode,
         target,
+        attrs,
         transitive_infos,
         automatic_target_info):
     """Creates the target portion of an `XcodeProjInfo` for a `Target`.
@@ -388,6 +389,7 @@ def _create_xcodeprojinfo(
         ctx: The aspect context.
         build_mode: See `xcodeproj.build_mode`.
         target: The `Target` to process.
+        attrs: `dir(ctx.rule.attr)` (as a performance optimization).
         automatic_target_info: The `XcodeProjAutomaticTargetProcessingInfo` for
             `target`.
         transitive_infos: A `list` of `XcodeProjInfo`s from the transitive
@@ -407,6 +409,7 @@ def _create_xcodeprojinfo(
         processed_target = process_non_xcode_target(
             ctx = ctx,
             target = target,
+            attrs = attrs,
             automatic_target_info = automatic_target_info,
             transitive_infos = transitive_infos,
         )
@@ -415,6 +418,7 @@ def _create_xcodeprojinfo(
             ctx = ctx,
             build_mode = build_mode,
             target = target,
+            attrs = attrs,
             automatic_target_info = automatic_target_info,
             bundle_info = target[AppleBundleInfo],
             transitive_infos = transitive_infos,
@@ -424,6 +428,7 @@ def _create_xcodeprojinfo(
             ctx = ctx,
             build_mode = build_mode,
             target = target,
+            attrs = attrs,
             automatic_target_info = automatic_target_info,
             bundle_info = None,
             transitive_infos = transitive_infos,
@@ -433,6 +438,7 @@ def _create_xcodeprojinfo(
             ctx = ctx,
             build_mode = build_mode,
             target = target,
+            attrs = attrs,
             automatic_target_info = automatic_target_info,
             transitive_infos = transitive_infos,
         )
@@ -544,12 +550,13 @@ def _create_xcodeprojinfo(
 
 # API
 
-def create_xcodeprojinfo(*, ctx, build_mode, target, transitive_infos):
+def create_xcodeprojinfo(*, ctx, build_mode, target, attrs, transitive_infos):
     """Creates an `XcodeProjInfo` for the given target.
 
     Args:
         ctx: The aspect context.
         build_mode: See `xcodeproj.build_mode`.
+        attrs: `dir(ctx.rule.attr)` (as a performance optimization).
         target: The `Target` to process.
         transitive_infos: A `list` of `XcodeProjInfo`s from the transitive
             dependencies of `target`.
@@ -578,6 +585,7 @@ def create_xcodeprojinfo(*, ctx, build_mode, target, transitive_infos):
             ctx = ctx,
             build_mode = build_mode,
             target = target,
+            attrs = attrs,
             automatic_target_info = automatic_target_info,
             transitive_infos = transitive_infos,
         )
