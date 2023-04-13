@@ -399,7 +399,7 @@ targets.
         ]
         if invalid_extra_files_targets:
             message = _INVALID_EXTRA_FILES_TARGETS_BASE_MESSAGE.format(
-                invalid_extra_files_targets
+                invalid_extra_files_targets,
             )
             if fail_for_invalid_extra_files_targets:
                 fail(message + _INVALID_EXTRA_FILES_TARGETS_HINT)
