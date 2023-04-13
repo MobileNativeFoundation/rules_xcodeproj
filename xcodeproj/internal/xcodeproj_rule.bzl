@@ -169,7 +169,7 @@ def _process_extra_files(
         for label, d in depset(
             # Processed owned extra files
             focused_targets_extra_files,
-            transitive = [inputs.extra_files]
+            transitive = [inputs.extra_files],
         ).to_list()
     ]
     extra_folders_depsets_by_label = [
