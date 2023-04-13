@@ -115,7 +115,7 @@ def _get_minimum_xcode_version(*, ctx):
 """)
     return ".".join(version.split(".")[0:3])
 
-def _is_same_platform_swiftui_preview_target(*, platform, xcode_target):
+def _is_same_platform_swiftui_preview_target(*, xcode_target):
     if not xcode_target:
         return False
     return xcode_target.product.type in _SWIFTUI_PREVIEW_PRODUCT_TYPES
