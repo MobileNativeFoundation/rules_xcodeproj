@@ -984,8 +984,6 @@
             "-iquotebazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_doublequote_hmap.hmap",
             "-Ibazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_angle_bracket_hmap.hmap",
             "-I.",
-            "-index-store-path",
-            "bazel-out/_global_index_store",
             "-DDEBUG=1",
             "-fstack-protector",
             "-fstack-protector-all"
@@ -1070,8 +1068,6 @@
             "-iquotebazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_doublequote_hmap.hmap",
             "-Ibazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift_angle_bracket_hmap.hmap",
             "-I.",
-            "-index-store-path",
-            "bazel-out/_global_index_store",
             "-DDEBUG=1",
             "-fstack-protector",
             "-fstack-protector-all"
@@ -1384,8 +1380,6 @@
             "-fmodules",
             "-fmodule-name=CoreUtils",
             "-I.",
-            "-index-store-path",
-            "bazel-out/_global_index_store",
             "-DDEBUG=1",
             "-fstack-protector",
             "-fstack-protector-all"
@@ -1468,8 +1462,6 @@
             "-fmodules",
             "-fmodule-name=CoreUtils",
             "-I.",
-            "-index-store-path",
-            "bazel-out/_global_index_store",
             "-DDEBUG=1",
             "-fstack-protector",
             "-fstack-protector-all"
@@ -1584,8 +1576,6 @@
             "-fmodules",
             "-fmodule-name=Utils",
             "-I.",
-            "-index-store-path",
-            "bazel-out/_global_index_store",
             "-DDEBUG=1",
             "-fstack-protector",
             "-fstack-protector-all"
@@ -2037,8 +2027,6 @@
             "-iquotebazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/MixedUnitTests/iOSAppMixedUnitTests_swift_doublequote_hmap.hmap",
             "-Ibazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/MixedUnitTests/iOSAppMixedUnitTests_swift_angle_bracket_hmap.hmap",
             "-I.",
-            "-index-store-path",
-            "bazel-out/_global_index_store",
             "-DDEBUG=1",
             "-fstack-protector",
             "-fstack-protector-all"
@@ -2221,8 +2209,6 @@
             "-fmodules",
             "-fmodule-name=iOSAppObjCUnitTests",
             "-I.",
-            "-index-store-path",
-            "bazel-out/_global_index_store",
             "-DDEBUG=1",
             "-fstack-protector",
             "-fstack-protector-all"
