@@ -98,7 +98,6 @@ execution_root=$(<"$execution_root_file")
 installer_flags+=(--execution_root "$execution_root")
 
 readonly output_base="${execution_root%/*/*}"
-readonly nested_output_base="$output_base/rules_xcodeproj.noindex/build_output_base"
 
 # Set bazel env
 %collect_bazel_env%
@@ -153,7 +152,7 @@ if [[ %is_fixture% -eq 1 ]]; then
   pre_config_flags+=("--config=fixtures")
 fi
 
-readonly bazel_cmd=(
+bazel_cmd=(
   env
   "${envs[@]}"
   "$bazel_path"
@@ -162,12 +161,15 @@ readonly bazel_cmd=(
   "--host_jvm_args=-Xdock:name=$developer_dir"
 
   "${bazelrcs[@]}"
-  --output_base "$nested_output_base"
 )
 
 echo >&2
 
 if [[ $original_arg_count -eq 0 ]]; then
+  bazel_cmd+=(
+    --output_base "$output_base/rules_xcodeproj.noindex/build_output_base"
+  )
+
   echo 'Generating "%install_path%"' >&2
 
   "${bazel_cmd[@]}" \
@@ -179,10 +181,19 @@ if [[ $original_arg_count -eq 0 ]]; then
     -- "${installer_flags[@]}"
 else
   if [[ $config == "build" ]]; then
-    bazel_config="_%config%_build"
+    readonly bazel_config="_%config%_build"
+    readonly output_base_name="build_output_base"
+  elif [[ $config == "indexbuild" ]]; then
+    readonly bazel_config="%config%_$config"
+    readonly output_base_name="indexbuild_output_base"
   else
-    bazel_config="%config%_$config"
+    readonly bazel_config="%config%_$config"
+    readonly output_base_name="build_output_base"
   fi
+
+  bazel_cmd+=(
+    --output_base "$output_base/rules_xcodeproj.noindex/$output_base_name"
+  )
 
   while IFS='' read -r arg; do cmd_args+=("${arg//\$_GENERATOR_LABEL_/%generator_label%}"); done < <(xargs -n1 <<< "$1")
   cmd="${cmd_args[0]}"
