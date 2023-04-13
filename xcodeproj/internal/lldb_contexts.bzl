@@ -30,15 +30,13 @@ def _collect_lldb_context(
     Returns:
         An opaque `struct` that should be passed to `lldb_contexts.to_dto`.
     """
-    framework_paths = []
-    clang = []
+    framework_paths = None
+    clang = None
     if id and is_swift and search_paths:
         clang = [(id, tuple(clang_opts))]
 
         if search_paths:
             framework_paths = search_paths.framework_includes
-        else:
-            framework_paths = tuple()
 
     return struct(
         _clang = depset(
