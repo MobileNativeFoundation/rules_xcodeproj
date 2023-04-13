@@ -41,10 +41,6 @@ def _is_platform_type(platform, platform_type):
     """
     return platform._platform.platform_type == platform_type
 
-def _is_same_type(lhs, rhs):
-    """Returns whether two platforms are the same platform type."""
-    return lhs._platform.platform_type == rhs._platform.platform_type
-
 def _platform_to_dto(platform):
     """Generates a target DTO value for a platform.
 
@@ -120,7 +116,6 @@ def _platform_to_lldb_context_triple(platform):
 platform_info = struct(
     collect = _collect_platform,
     is_platform_type = _is_platform_type,
-    is_same_type = _is_same_type,
     to_dto = _platform_to_dto,
     to_lldb_context_triple = _platform_to_lldb_context_triple,
     to_swift_triple = _platform_to_swift_triple,

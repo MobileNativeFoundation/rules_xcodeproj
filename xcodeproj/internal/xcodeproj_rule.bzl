@@ -118,8 +118,6 @@ def _get_minimum_xcode_version(*, ctx):
 def _is_same_platform_swiftui_preview_target(*, platform, xcode_target):
     if not xcode_target:
         return False
-    if not platform_info.is_same_type(platform, xcode_target.platform):
-        return False
     return xcode_target.product.type in _SWIFTUI_PREVIEW_PRODUCT_TYPES
 
 def _process_dep(dep):
