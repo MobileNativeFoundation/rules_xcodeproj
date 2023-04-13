@@ -7,6 +7,7 @@ load(
     "AppleBinaryInfo",
     "AppleBundleInfo",
 )
+load(":automatic_target_info.bzl", "calculate_automatic_target_info")
 load(":compilation_providers.bzl", comp_providers = "compilation_providers")
 load(":input_files.bzl", "input_files")
 load(":library_targets.bzl", "process_library_target")
@@ -15,7 +16,6 @@ load(":non_xcode_targets.bzl", "process_non_xcode_target")
 load(":output_files.bzl", "output_files")
 load(
     ":providers.bzl",
-    "XcodeProjAutomaticTargetProcessingInfo",
     "XcodeProjInfo",
     "target_type",
 )
@@ -565,7 +565,10 @@ def create_xcodeprojinfo(*, ctx, build_mode, target, attrs, transitive_infos):
         An `XcodeProjInfo` populated with information from `target` and
         `transitive_infos`.
     """
-    automatic_target_info = target[XcodeProjAutomaticTargetProcessingInfo]
+    automatic_target_info = calculate_automatic_target_info(
+        ctx = ctx,
+        target = target,
+    )
 
     if _should_skip_target(ctx = ctx, target = target):
         info_fields = _skip_target(

@@ -2,10 +2,6 @@
 
 load("@bazel_tools//tools/cpp:toolchain_utils.bzl", "use_cpp_toolchain")
 load(
-    ":default_automatic_target_processing_aspect.bzl",
-    "default_automatic_target_processing_aspect",
-)
-load(
     ":providers.bzl",
     "XcodeProjInfo",
     "XcodeProjProvisioningProfileInfo",
@@ -101,6 +97,5 @@ def make_xcodeproj_aspect(*, build_mode):
             ),
         },
         fragments = ["apple", "cpp", "objc"],
-        requires = [default_automatic_target_processing_aspect],
         toolchains = use_cpp_toolchain(),
     )

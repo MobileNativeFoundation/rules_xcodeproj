@@ -1,4 +1,4 @@
-"""Implementation of the `default_automatic_target_processing_aspect` aspect."""
+"""Functions for calculating automatic target info."""
 
 load(
     "@build_bazel_rules_apple//apple:providers.bzl",
@@ -113,9 +113,18 @@ _DEFAULT_XCODE_TARGETS = {
 
 _EMPTY_LIST = []
 
-def _default_automatic_target_processing_aspect_impl(target, ctx):
+def calculate_automatic_target_info(ctx, target):
+    """Calculates the automatic target info for the given target.
+
+    Args:
+        ctx: The aspect context.
+        target: The `Target` to calculate the automatic target info for.
+
+    Returns:
+        A `XcodeProjAutomaticTargetProcessingInfo` provider.
+    """
     if XcodeProjAutomaticTargetProcessingInfo in target:
-        return []
+        return target[XcodeProjAutomaticTargetProcessingInfo]
 
     this_target_type = _get_target_type(target = target)
 
@@ -228,35 +237,28 @@ def _default_automatic_target_processing_aspect_impl(target, ctx):
                 should_generate_target = False
                 break
 
-    return [
-        XcodeProjAutomaticTargetProcessingInfo(
-            alternate_icons = alternate_icons,
-            app_icons = app_icons,
-            args = args,
-            bazel_build_mode_error = bazel_build_mode_error,
-            bundle_id = bundle_id,
-            codesignopts = codesignopts,
-            collect_uncategorized_files = collect_uncategorized_files,
-            deps = deps,
-            entitlements = entitlements,
-            env = env,
-            exported_symbols_lists = exported_symbols_lists,
-            hdrs = hdrs,
-            infoplists = infoplists,
-            implementation_deps = implementation_deps,
-            launchdplists = launchdplists,
-            link_mnemonics = link_mnemonics,
-            non_arc_srcs = non_arc_srcs,
-            pch = pch,
-            provisioning_profile = provisioning_profile,
-            should_generate_target = should_generate_target,
-            srcs = srcs,
-            target_type = this_target_type,
-            xcode_targets = xcode_targets,
-        ),
-    ]
-
-default_automatic_target_processing_aspect = aspect(
-    implementation = _default_automatic_target_processing_aspect_impl,
-    attr_aspects = ["*"],
-)
+    return XcodeProjAutomaticTargetProcessingInfo(
+        alternate_icons = alternate_icons,
+        app_icons = app_icons,
+        args = args,
+        bazel_build_mode_error = bazel_build_mode_error,
+        bundle_id = bundle_id,
+        codesignopts = codesignopts,
+        collect_uncategorized_files = collect_uncategorized_files,
+        deps = deps,
+        entitlements = entitlements,
+        env = env,
+        exported_symbols_lists = exported_symbols_lists,
+        hdrs = hdrs,
+        infoplists = infoplists,
+        implementation_deps = implementation_deps,
+        launchdplists = launchdplists,
+        link_mnemonics = link_mnemonics,
+        non_arc_srcs = non_arc_srcs,
+        pch = pch,
+        provisioning_profile = provisioning_profile,
+        should_generate_target = should_generate_target,
+        srcs = srcs,
+        target_type = this_target_type,
+        xcode_targets = xcode_targets,
+    )
