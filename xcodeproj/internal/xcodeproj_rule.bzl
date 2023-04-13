@@ -1008,7 +1008,7 @@ def _write_swift_debug_settings(
     for (
         xcode_configuration,
         config_lldb_context_json_files,
-     ) in lldb_context_json_files.items():
+    ) in lldb_context_json_files.items():
         output = actions.declare_file(
             "{}_bazel_integration_files/{}-swift_debug_settings.py".format(
                 rule_name,

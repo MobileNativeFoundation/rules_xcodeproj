@@ -1,7 +1,5 @@
 """Module containing functions dealing with the `LLDBContext` DTO."""
 
-load("@bazel_skylib//lib:paths.bzl", "paths")
-load(":collections.bzl", "set_if_true", "uniq")
 load(
     ":files.bzl",
     "build_setting_path",
@@ -65,7 +63,7 @@ def _collect_lldb_context(
         ),
     )
 
-def  _labelless_clang_opts(clangopt_with_label):
+def _labelless_clang_opts(clangopt_with_label):
     _, opts = clangopt_with_label
     return opts
 
