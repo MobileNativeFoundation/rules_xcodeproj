@@ -78,6 +78,7 @@ def _collect_input_files(
         *,
         ctx,
         target,
+        attrs,
         unfocused = False,
         id,
         platform,
@@ -298,7 +299,7 @@ def _collect_input_files(
 
         _handle_file(getattr(ctx.rule.file, attr), handler = handler)
 
-    for attr in automatic_target_info.all_attrs:
+    for attr in attrs:
         if _should_ignore_input_attr(attr):
             continue
 
@@ -306,7 +307,7 @@ def _collect_input_files(
             # Only attributes in `file_handlers` are categorized
             continue
 
-        dep = getattr(ctx.rule.attr, attr, None)
+        dep = getattr(ctx.rule.attr, attr)
 
         dep_type = type(dep)
         if dep_type == "Target":

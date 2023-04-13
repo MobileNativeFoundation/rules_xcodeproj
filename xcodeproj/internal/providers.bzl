@@ -13,7 +13,6 @@ future. If you are using this provider, please let us know so we can prioritize
 stabilizing it.
 """,
     fields = {
-        "all_attrs": "",
         "alternate_icons": """\
 An attribute name (or `None`) to collect the application alternate icons.
 """,
@@ -21,8 +20,8 @@ An attribute name (or `None`) to collect the application alternate icons.
 An attribute name (or `None`) to collect the application icons.
 """,
         "args": """\
-A `List` (or `None`) representing the command line arguments that this target should execute or
-test with.
+A `List` (or `None`) representing the command line arguments that this target
+should execute or test with.
 """,
         "bazel_build_mode_error": """\
 If `build_mode = "bazel"`, then if this is non-`None`, it will be raised as an
@@ -46,8 +45,8 @@ An attribute name (or `None`) to collect `File`s from for the
 `entitlements`-like attribute.
 """,
         "env": """\
-A `dict` representing the environment variables that this target should execute or
-test with.
+A `dict` representing the environment variables that this target should execute
+or test with.
 """,
         "exported_symbols_lists": """\
 A sequence of attribute names to collect `File`s from for the
@@ -66,8 +65,8 @@ A sequence of attribute names to collect `File`s from for the `infoplists`-like
 attributes.
 """,
         "launchdplists": """\
-A sequence of attribute names to collect `File`s from for the `launchdplists`-like
-attributes.
+A sequence of attribute names to collect `File`s from for the
+`launchdplists`-like attributes.
 """,
         "link_mnemonics": """\
 A sequence of mnemonic (action) names to gather link parameters. The first

@@ -25,6 +25,7 @@ def process_non_xcode_target(
         *,
         ctx,
         target,
+        attrs,
         automatic_target_info,
         transitive_infos):
     """Gathers information about a non-Xcode target.
@@ -32,6 +33,7 @@ def process_non_xcode_target(
     Args:
         ctx: The aspect context.
         target: The `Target` to process.
+        attrs: `dir(ctx.rule.attr)` (as a performance optimization).
         automatic_target_info: The `XcodeProjAutomaticTargetProcessingInfo` for
             `target`.
         transitive_infos: A `list` of `depset`s of `XcodeProjInfo`s from the
@@ -120,6 +122,7 @@ rules_xcodeproj requires {} to have `{}` set.
         inputs = input_files.collect(
             ctx = ctx,
             target = target,
+            attrs = attrs,
             unfocused = None,
             id = None,
             platform = None,

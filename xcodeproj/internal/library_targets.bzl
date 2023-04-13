@@ -29,6 +29,7 @@ def process_library_target(
         ctx,
         build_mode,
         target,
+        attrs,
         automatic_target_info,
         transitive_infos):
     """Gathers information about a library target.
@@ -37,6 +38,7 @@ def process_library_target(
         ctx: The aspect context.
         build_mode: See `xcodeproj.build_mode`.
         target: The `Target` to process.
+        attrs: `dir(ctx.rule.attr)` (as a performance optimization).
         automatic_target_info: The `XcodeProjAutomaticTargetProcessingInfo` for
             `target`.
         transitive_infos: A `list` of `depset`s of `XcodeProjInfo`s from the
@@ -114,6 +116,7 @@ def process_library_target(
     inputs = input_files.collect(
         ctx = ctx,
         target = target,
+        attrs = attrs,
         id = id,
         platform = platform,
         is_bundle = False,

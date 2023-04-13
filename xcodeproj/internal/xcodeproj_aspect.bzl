@@ -29,14 +29,14 @@ def _should_ignore_attr(attr):
         attr in _IGNORE_ATTR
     )
 
-def _transitive_infos(*, ctx, automatic_target_info):
+def _transitive_infos(*, ctx, attrs):
     transitive_infos = []
 
     # TODO: Have `XcodeProjAutomaticTargetProcessingInfo` tell us which
     # attributes to look at. About 7% of an example pprof trace is spent on
     # `_should_ignore_attr` and the type checks below. If we had a list of
     # attributes with the types (list or not) we could eliminate that overhead.
-    for attr in automatic_target_info.all_attrs:
+    for attr in attrs:
         if _should_ignore_attr(attr):
             continue
 
@@ -62,15 +62,15 @@ def _xcodeproj_aspect_impl(target, ctx):
     if XcodeProjInfo not in target:
         # Only create an `XcodeProjInfo` if the target hasn't already created
         # one
+        attrs = dir(ctx.rule.attr)
         info = create_xcodeprojinfo(
             ctx = ctx,
             build_mode = ctx.attr._build_mode,
             target = target,
+            attrs = attrs,
             transitive_infos = _transitive_infos(
                 ctx = ctx,
-                automatic_target_info = (
-                    target[XcodeProjAutomaticTargetProcessingInfo]
-                ),
+                attrs = attrs,
             ),
         )
         if info:
