@@ -395,34 +395,6 @@ def process_compiler_opts_test_suite(name):
 
     # Skips
 
-    ## C and C++
-    # Anything with __BAZEL_XCODE_
-    # -isysroot
-    # -mios-simulator-version-min
-    # -miphoneos-version-min
-    # -mmacosx-version-min
-    # -mtvos-simulator-version-min
-    # -mtvos-version-min
-    # -mwatchos-simulator-version-min
-    # -mwatchos-version-min
-    # -target
-
-    ## Swift:
-    # Anything with __BAZEL_XCODE_
-    # -debug-prefix-map
-    # -emit-module-path
-    # -emit-object
-    # -enable-batch-mode
-    # -gline-tables-only
-    # -module-name
-    # -num-threads
-    # -output-file-map
-    # -parse-as-library
-    # -sdk
-    # -target
-    # -Xwrapped-swift
-    # Other things that end with ".swift", but don't start with "-"
-
     _add_test(
         name = "{}_skips_bazel".format(name),
         build_mode = "bazel",
@@ -443,6 +415,9 @@ def process_compiler_opts_test_suite(name):
             "ios",
             "-mmacosx-version-min=12.0",
             "-passthrough",
+            "-index-store-path",
+            "bazel-out/_global_index_store",
+            "-index-ignore-system-symbols",
             "--config",
             "relative/Path.yaml",
         ],
@@ -462,6 +437,9 @@ def process_compiler_opts_test_suite(name):
             "macos",
             "-passthrough",
             "-mios-simulator-version-min=14.0",
+            "-index-store-path",
+            "bazel-out/_global_index_store",
+            "-index-ignore-system-symbols",
             "--config",
             "relative/Path.yaml",
         ],
@@ -604,6 +582,9 @@ def process_compiler_opts_test_suite(name):
             "ios",
             "-mmacosx-version-min=12.0",
             "-passthrough",
+            "-index-store-path",
+            "bazel-out/_global_index_store",
+            "-index-ignore-system-symbols",
             "--config",
             "relative/Path.yaml",
         ],
@@ -623,6 +604,9 @@ def process_compiler_opts_test_suite(name):
             "macos",
             "-passthrough",
             "-mios-simulator-version-min=14.0",
+            "-index-store-path",
+            "bazel-out/_global_index_store",
+            "-index-ignore-system-symbols",
             "--config",
             "relative/Path.yaml",
         ],
