@@ -19,6 +19,10 @@ _CC_SKIP_OPTS = {
     "-mwatchos-version-min": 1,
     "-target": 2,
 
+    # We want to use Xcode's normal indexing handling
+    "-index-ignore-system-symbols": 1,
+    "-index-store-path": 2,
+
     # We want Xcode to control coloring
     "-fcolor-diagnostics": 1,
 }
