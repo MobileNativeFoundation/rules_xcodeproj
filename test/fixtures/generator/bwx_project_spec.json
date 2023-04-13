@@ -9,10 +9,7 @@
     "R": "//test/fixtures/generator:xcodeproj_bwx",
     "T": "fixture-target-ids-file",
     "e": [
-        {
-            "_": "build_bazel_rules_apple/apple/testing/DefaultTestBundle.plist",
-            "t": "e"
-        },
+        "external/build_bazel_rules_apple/apple/testing/DefaultTestBundle.plist",
         "test/fixtures/generator/BUILD",
         "tools/generator/BUILD",
         "tools/generator/test/BUILD",

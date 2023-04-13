@@ -27,10 +27,7 @@ def _process_top_level_properties_test_impl(ctx):
 
     asserts.equals(
         env,
-        struct(
-            path = ctx.attr.expected_bundle_path,
-            type = "g",
-        ) if ctx.attr.expected_bundle_path else None,
+        ctx.attr.expected_bundle_path if ctx.attr.expected_bundle_path else None,
         properties.bundle_file_path,
         "bundle_file_path",
     )
@@ -169,7 +166,7 @@ def process_top_level_properties_test_suite(name):
         target_files = ["bazel-out/some/test.xctest/test"],
         bundle_info = None,
         tree_artifact_enabled = True,
-        expected_bundle_path = "some/test.xctest",
+        expected_bundle_path = "bazel-out/some/test.xctest",
         expected_executable_name = "test",
         expected_product_name = "test",
         expected_product_type = "com.apple.product-type.bundle.unit-test",
@@ -192,7 +189,7 @@ def process_top_level_properties_test_suite(name):
             executable_name = "executable_name",
         ),
         tree_artifact_enabled = True,
-        expected_bundle_path = "some/flagship.app",
+        expected_bundle_path = "bazel-out/some/flagship.app",
         expected_executable_name = "executable_name",
         expected_product_name = "flagship",
         expected_product_type = "com.apple.product-type.application",
@@ -215,7 +212,9 @@ def process_top_level_properties_test_suite(name):
             executable_name = "executable_name",
         ),
         tree_artifact_enabled = False,
-        expected_bundle_path = "some/intermediate/Payload/flagship.app",
+        expected_bundle_path = (
+            "bazel-out/some/intermediate/Payload/flagship.app"
+        ),
         expected_executable_name = "executable_name",
         expected_product_name = "flagship",
         expected_product_type = "com.apple.product-type.application",
@@ -238,7 +237,7 @@ def process_top_level_properties_test_suite(name):
             executable_name = "executable_name",
         ),
         tree_artifact_enabled = False,
-        expected_bundle_path = "some/intermediate/flagship.xctest",
+        expected_bundle_path = "bazel-out/some/intermediate/flagship.xctest",
         expected_executable_name = "executable_name",
         expected_product_name = "flagship",
         expected_product_type = "com.apple.product-type.bundle.unit-test",

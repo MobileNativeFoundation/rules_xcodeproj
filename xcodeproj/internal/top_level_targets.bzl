@@ -11,7 +11,7 @@ load(
 load(":collections.bzl", "set_if_true")
 load(":compilation_providers.bzl", comp_providers = "compilation_providers")
 load(":configuration.bzl", "get_configuration")
-load(":files.bzl", "build_setting_path", "file_path", "join_paths_ignoring_empty")
+load(":files.bzl", "build_setting_path", "join_paths_ignoring_empty")
 load(":info_plists.bzl", "info_plists")
 load(":input_files.bzl", "input_files")
 load(":linker_input_files.bzl", "linker_input_files")
@@ -83,7 +83,7 @@ def process_top_level_properties(
         bundle_file = bundle_info.archive
         if bundle_file:
             bundle_path = bundle_file.path
-            archive_file_path = file_path(bundle_file)
+            archive_file_path = bundle_path
 
             if tree_artifact_enabled:
                 bundle_file_path = archive_file_path
@@ -101,18 +101,12 @@ def process_top_level_properties(
                         bundle_info.archive_root,
                         bundle,
                     )
-                bundle_file_path = file_path(
-                    bundle_file,
-                    path = bundle_file_path_path,
-                )
+                bundle_file_path = bundle_file_path_path
         elif product_type.startswith("com.apple.product-type.framework"):
             # Some rules only set the binary for static frameworks
             bundle_file = bundle_info.binary
             bundle_path = bundle_file.dirname
-            archive_file_path = file_path(
-                bundle_file,
-                path = bundle_path,
-            )
+            archive_file_path = bundle_path
             bundle_file_path = archive_file_path
         else:
             fail("`AppleBundleInfo.archive` not set for {}".format(target_name))
@@ -143,10 +137,7 @@ def process_top_level_properties(
             # "some/test.xctest/binary" -> "some/test.xctest"
             xctest_path = bundle_file.path
             bundle_path = xctest_path[:-(len(xctest_path.split(".xctest/")[1]) + 1)]
-            bundle_file_path = file_path(
-                bundle_file,
-                path = bundle_path,
-            )
+            bundle_file_path = bundle_path
             archive_file_path = bundle_file_path
         else:
             product_type = "com.apple.product-type.tool"

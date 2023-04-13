@@ -34,7 +34,7 @@ xccurrentversion files""",
             )
             continue
 
-        results.append(f'{{"c":{file_path},"v":"{version}"}}')
+        results.append(f'{{"c":"{file_path}","v":"{version}"}}')
 
     with open(output_path, encoding = "utf-8", mode = "w") as fp:
         fp.write(f'[{",".join(results)}]\n')

@@ -28,14 +28,8 @@
             "i": "//AddressSanitizerApp:AddressSanitizerApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
             "n": "AddressSanitizerApp.library"
         },
-        "4": {
-            "_": "applebin_ios-ios_x86_64-dbg-STABLE-2/bin/AddressSanitizerApp/rules_xcodeproj/AddressSanitizerApp/Info.plist",
-            "t": "g"
-        },
-        "6": {
-            "_": "darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/AddressSanitizerApp.0.link.params",
-            "t": "g"
-        },
+        "4": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/AddressSanitizerApp/rules_xcodeproj/AddressSanitizerApp/Info.plist",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/AddressSanitizerApp.0.link.params",
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/AddressSanitizerApp/AddressSanitizerApp.ipa",
             "CODE_SIGN_STYLE": "Manual",
@@ -68,25 +62,16 @@
         "o": {
             "p": "AddressSanitizerApp.app",
             "s": {
-                "m": {
-                    "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/AddressSanitizerApp/AddressSanitizerApp.swiftmodule",
-                    "t": "g"
-                }
+                "m": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/AddressSanitizerApp/AddressSanitizerApp.swiftmodule"
             }
         },
         "p": {
             "a": [
-                {
-                    "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/AddressSanitizerApp/libAddressSanitizerApp.library.a",
-                    "t": "g"
-                }
+                "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/AddressSanitizerApp/libAddressSanitizerApp.library.a"
             ],
             "e": "AddressSanitizerApp",
             "n": "AddressSanitizerApp",
-            "p": {
-                "_": "applebin_ios-ios_x86_64-dbg-STABLE-2/bin/AddressSanitizerApp/AddressSanitizerApp_archive-root/Payload/AddressSanitizerApp.app",
-                "t": "g"
-            },
+            "p": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/AddressSanitizerApp/AddressSanitizerApp_archive-root/Payload/AddressSanitizerApp.app",
             "t": "com.apple.product-type.application"
         }
     },
@@ -119,14 +104,8 @@
             "i": "//ThreadSanitizerApp:ThreadSanitizerApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
             "n": "ThreadSanitizerApp.library"
         },
-        "4": {
-            "_": "applebin_ios-ios_x86_64-dbg-STABLE-2/bin/ThreadSanitizerApp/rules_xcodeproj/ThreadSanitizerApp/Info.plist",
-            "t": "g"
-        },
-        "6": {
-            "_": "darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/ThreadSanitizerApp.1.link.params",
-            "t": "g"
-        },
+        "4": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/ThreadSanitizerApp/rules_xcodeproj/ThreadSanitizerApp/Info.plist",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/ThreadSanitizerApp.1.link.params",
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/ThreadSanitizerApp/ThreadSanitizerApp.ipa",
             "CODE_SIGN_STYLE": "Manual",
@@ -159,25 +138,16 @@
         "o": {
             "p": "ThreadSanitizerApp.app",
             "s": {
-                "m": {
-                    "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/ThreadSanitizerApp/ThreadSanitizerApp.swiftmodule",
-                    "t": "g"
-                }
+                "m": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/ThreadSanitizerApp/ThreadSanitizerApp.swiftmodule"
             }
         },
         "p": {
             "a": [
-                {
-                    "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/ThreadSanitizerApp/libThreadSanitizerApp.library.a",
-                    "t": "g"
-                }
+                "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/ThreadSanitizerApp/libThreadSanitizerApp.library.a"
             ],
             "e": "ThreadSanitizerApp",
             "n": "ThreadSanitizerApp",
-            "p": {
-                "_": "applebin_ios-ios_x86_64-dbg-STABLE-2/bin/ThreadSanitizerApp/ThreadSanitizerApp_archive-root/Payload/ThreadSanitizerApp.app",
-                "t": "g"
-            },
+            "p": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/ThreadSanitizerApp/ThreadSanitizerApp_archive-root/Payload/ThreadSanitizerApp.app",
             "t": "com.apple.product-type.application"
         }
     },
@@ -194,14 +164,8 @@
             "i": "//UndefinedBehaviorSanitizerApp:UndefinedBehaviorSanitizerApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
             "n": "UndefinedBehaviorSanitizerApp.library"
         },
-        "4": {
-            "_": "applebin_ios-ios_x86_64-dbg-STABLE-2/bin/UndefinedBehaviorSanitizerApp/rules_xcodeproj/UndefinedBehaviorSanitizerApp/Info.plist",
-            "t": "g"
-        },
-        "6": {
-            "_": "darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UndefinedBehaviorSanitizerApp.2.link.params",
-            "t": "g"
-        },
+        "4": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/UndefinedBehaviorSanitizerApp/rules_xcodeproj/UndefinedBehaviorSanitizerApp/Info.plist",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UndefinedBehaviorSanitizerApp.2.link.params",
         "8": [
             "-D_FORTIFY_SOURCE=1",
             "-fstack-protector",
@@ -267,17 +231,11 @@
         },
         "p": {
             "a": [
-                {
-                    "_": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/UndefinedBehaviorSanitizerApp/libUndefinedBehaviorSanitizerApp.library.a",
-                    "t": "g"
-                }
+                "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/UndefinedBehaviorSanitizerApp/libUndefinedBehaviorSanitizerApp.library.a"
             ],
             "e": "UndefinedBehaviorSanitizerApp",
             "n": "UndefinedBehaviorSanitizerApp",
-            "p": {
-                "_": "applebin_ios-ios_x86_64-dbg-STABLE-2/bin/UndefinedBehaviorSanitizerApp/UndefinedBehaviorSanitizerApp_archive-root/Payload/UndefinedBehaviorSanitizerApp.app",
-                "t": "g"
-            },
+            "p": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/UndefinedBehaviorSanitizerApp/UndefinedBehaviorSanitizerApp_archive-root/Payload/UndefinedBehaviorSanitizerApp.app",
             "t": "com.apple.product-type.application"
         },
         "s": false

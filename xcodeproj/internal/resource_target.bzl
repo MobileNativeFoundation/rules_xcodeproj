@@ -2,7 +2,6 @@
 
 load("@bazel_skylib//lib:paths.bzl", "paths")
 load(":collections.bzl", "set_if_true")
-load(":files.bzl", "parsed_file_path")
 load(":input_files.bzl", "input_files")
 load(":output_files.bzl", "output_files")
 load(":product.bzl", "process_product")
@@ -26,7 +25,6 @@ def _process_resource_bundle(bundle, *, information):
 
     package_bin_dir = bundle.package_bin_dir
     bundle_path = paths.join(package_bin_dir, "{}.bundle".format(name))
-    bundle_file_path = parsed_file_path(bundle_path)
 
     product = process_product(
         ctx = None,
@@ -36,7 +34,7 @@ def _process_resource_bundle(bundle, *, information):
         is_resource_bundle = True,
         bundle_file = None,
         bundle_path = bundle_path,
-        bundle_file_path = bundle_file_path,
+        bundle_file_path = bundle_path,
         linker_inputs = None,
     )
 

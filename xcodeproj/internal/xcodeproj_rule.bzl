@@ -9,10 +9,6 @@ load(":configuration.bzl", "get_configuration")
 load(
     ":files.bzl",
     "build_setting_path",
-    "file_path",
-    "file_path_to_dto",
-    "parsed_file_path",
-    "raw_file_path",
 )
 load(":flattened_key_values.bzl", "flattened_key_values")
 load(":input_files.bzl", "input_files")
@@ -203,12 +199,9 @@ def _process_extra_files(
     ]
 
     # Add unowned extra files
-    extra_files.append(parsed_file_path(ctx.attr.runner_build_file))
+    extra_files.append(ctx.attr.runner_build_file)
     for target in ctx.attr.unowned_extra_files:
-        extra_files.extend([
-            file_path(file)
-            for file in target.files.to_list()
-        ])
+        extra_files.extend([file.path for file in target.files.to_list()])
 
     extra_files = uniq(extra_files)
     extra_folders = uniq(extra_folders)
@@ -223,24 +216,15 @@ def _process_extra_files(
 
     if is_fixture:
         extra_files = [
-            raw_file_path(
-                type = fp.type,
-                path = _normalize_path(fp.path),
-            )
-            for fp in extra_files
+            _normalize_path(path)
+            for path in extra_files
         ]
         extra_folders = [
-            raw_file_path(
-                type = fp.type,
-                path = _normalize_path(fp.path),
-            )
-            for fp in extra_folders
+            _normalize_path(path)
+            for path in extra_folders
         ]
-        extra_files = sorted(extra_files, key = lambda fp: fp.type + fp.path)
-        extra_folders = sorted(
-            extra_folders,
-            key = lambda fp: fp.type + fp.path,
-        )
+        extra_files = sorted(extra_files)
+        extra_folders = sorted(extra_folders)
 
     return extra_files, extra_folders
 
@@ -569,7 +553,7 @@ targets.
                 focused_targets_extra_files.append(
                     (
                         label,
-                        [file_path(f) for f in file.files.to_list()],
+                        [file.path for file in file.files.to_list()],
                     ),
                 )
 
@@ -611,7 +595,7 @@ targets.
 
                 # Other libraries that are not being merged into `dest_target`
                 # can't merge into other targets
-                non_mergable_targets[file_path(library)] = None
+                non_mergable_targets[library.path] = None
 
     for src in target_merges.keys():
         src_target = focused_targets[src]
@@ -1053,12 +1037,12 @@ def _write_spec(
     set_if_true(
         spec_dto,
         "e",
-        [file_path_to_dto(file) for file in extra_files],
+        extra_files,
     )
     set_if_true(
         spec_dto,
         "F",
-        [file_path_to_dto(file) for file in extra_folders],
+        extra_folders,
     )
     set_if_true(
         spec_dto,
@@ -1131,9 +1115,7 @@ def _write_xccurrentversions(*, ctx, xccurrentversion_files):
     ctx.actions.write(
         containers_file,
         "".join([
-            json.encode(
-                file_path_to_dto(file_path(file, path = file.dirname)),
-            ) + "\n"
+            file.dirname + "\n"
             for file in xccurrentversion_files
         ]),
     )
