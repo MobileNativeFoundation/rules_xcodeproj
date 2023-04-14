@@ -81,7 +81,9 @@ fi
 touch "$lldbinit"
 
 readonly required_source='command source ~/.lldbinit-rules_xcodeproj'
-if ! grep -m 1 -q "$required_source" "$lldbinit"; then
+if ! grep -m 1 -q "^$required_source$" "$lldbinit"; then
+  # Add a newline if the file doesn't end with one
+  tail -c 1 "$lldbinit" | read || echo >> "$lldbinit"
   # Update `$lldbinit to source `~/.lldbinit-rules_xcodeproj`
   echo "$required_source" >> "$lldbinit"
 fi
