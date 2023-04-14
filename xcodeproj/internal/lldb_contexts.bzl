@@ -1,11 +1,5 @@
 """Module containing functions dealing with the `LLDBContext` DTO."""
 
-load(
-    ":files.bzl",
-    "build_setting_path",
-    "is_generated_path",
-)
-
 def _collect_lldb_context(
         *,
         id,
