@@ -1027,14 +1027,14 @@ def _write_swift_debug_settings(
                 lldb_context._framework_search_paths,
                 map_each = _non_generated_framework_build_setting_path,
             )
-            args.add("\0")
+            args.add("")
             args.add_all(lldb_context._swiftmodules)
-            args.add("\0")
+            args.add("")
             args.add_all(
                 lldb_context._clang,
                 map_each = _labelless_clang_opts,
             )
-            args.add("\0")
+            args.add("")
 
         actions.run(
             executable = swift_debug_settings_processor,

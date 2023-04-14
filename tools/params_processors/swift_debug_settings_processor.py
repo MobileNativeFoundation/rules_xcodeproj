@@ -3,7 +3,7 @@
 import json
 import os
 import sys
-from typing import Dict, List
+from typing import Dict, Iterator
 
 
 def _build_setting_path(path):
@@ -31,31 +31,30 @@ _ONCE_FLAGS = {
 }
 
 
-def _main(args: List[str]) -> None:
-    (
-        output_path,
-        xcode_generated_paths_path,
-        remaining_args,
-    ) = _parse_args(args)
+def _main(args: Iterator[str]) -> None:
+    output_path = next(args)[:-1]
+    xcode_generated_paths_path = next(args)[:-1]
 
     with open(xcode_generated_paths_path, encoding = "utf-8") as fp:
         xcode_generated_paths = json.load(fp)
 
     contexts = {}
-    while remaining_args:
-        key = remaining_args.pop(0)
+    while True:
+        key = next(args, "\n")[:-1]
+        if not key:
+            break
 
         framework_paths = []
-        while remaining_args:
-            path = remaining_args.pop(0)
-            if path == "\0":
+        while True:
+            path = next(args)[:-1]
+            if path == "":
                 break
             framework_paths.append(path)
 
         swiftmodule_paths = {}
-        while remaining_args:
-            path = remaining_args.pop(0)
-            if path == "\0":
+        while True:
+            path = next(args)[:-1]
+            if path == "":
                 break
             swiftmodule_paths[
                 _handle_swiftmodule_path(path, xcode_generated_paths)
@@ -63,9 +62,9 @@ def _main(args: List[str]) -> None:
 
         once_flags = {}
         clang_opts = []
-        while remaining_args:
-            opt = remaining_args.pop(0)
-            if opt == "\0":
+        while True:
+            opt = next(args)[:-1]
+            if opt == "":
                 break
             if opt in once_flags:
                 continue
@@ -200,29 +199,17 @@ class StopHook:
         fp.write(f'{result}\n')
 
 
-def _parse_args(args: List[str]) -> List[str]:
-    if len(args) == 1 and args[0].startswith("@"):
-        params_path = args[0][1:]
-        with open(params_path, encoding = "utf-8") as f:
-            args = f.read().splitlines()
-            if len(args) < 1:
-                print(
-                    f"Invalid params file: {params_path}",
-                    file = sys.stderr,
-                )
-                exit(1)
-    return args[0], args[1], args[2:]
+def _parse_args(params_path: str) -> Iterator[str]:
+    return open(params_path, encoding = "utf-8")
 
 
 if __name__ == "__main__":
-    if len(sys.argv) < 2:
+    if len(sys.argv) != 2:
         print(
             f"""
-Usage: {sys.argv[0]} <output> <xcode_generated_paths.json> [key, \
-[framework_path, ...], \\NUL, [swiftmodule_path, ...], \\NUL, \
-[clang_opt, ...], \\NUL, ...]""",
+Usage: {sys.argv[0]} @params_file""",
             file = sys.stderr,
         )
         exit(1)
 
-    _main(sys.argv[1:])
+    _main(_parse_args(sys.argv[1][1:]))
