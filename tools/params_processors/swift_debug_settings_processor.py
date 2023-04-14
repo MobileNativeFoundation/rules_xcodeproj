@@ -3,7 +3,7 @@
 import json
 import os
 import sys
-from typing import Dict, Iterator
+from typing import Iterator
 
 
 def _build_setting_path(path):
@@ -12,16 +12,6 @@ def _build_setting_path(path):
     if path.startswith("external/"):
         return f'$(BAZEL_EXTERNAL)/{path[9:]}'
     return path
-
-
-def _handle_swiftmodule_path(
-        path: str,
-        xcode_generated_paths: Dict[str, str]
-    ) -> str:
-    bs_path = xcode_generated_paths.get(path)
-    if not bs_path:
-        bs_path = _build_setting_path(path)
-    return os.path.dirname(bs_path)
 
 
 _ONCE_FLAGS = {
@@ -38,10 +28,20 @@ def _main(args: Iterator[str]) -> None:
     with open(xcode_generated_paths_path, encoding = "utf-8") as fp:
         xcode_generated_paths = json.load(fp)
 
+    if xcode_generated_paths:
+       def _handle_swiftmodule_path(path: str) -> str:
+            bs_path = xcode_generated_paths.get(path)
+            if not bs_path:
+                bs_path = _build_setting_path(path)
+            return os.path.dirname(bs_path)
+    else:
+        def _handle_swiftmodule_path(path: str) -> str:
+            return os.path.dirname(_build_setting_path(path))
+
     contexts = {}
     while True:
         key = next(args, "\n")[:-1]
-        if not key:
+        if key == "":
             break
 
         framework_paths = []
@@ -56,9 +56,7 @@ def _main(args: Iterator[str]) -> None:
             path = next(args)[:-1]
             if path == "":
                 break
-            swiftmodule_paths[
-                _handle_swiftmodule_path(path, xcode_generated_paths)
-            ] = None
+            swiftmodule_paths[_handle_swiftmodule_path(path)] = None
 
         once_flags = {}
         clang_opts = []
