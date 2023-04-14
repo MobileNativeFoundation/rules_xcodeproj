@@ -17,12 +17,12 @@ _BUNDLE_EXTENSIONS = [
 _TRIPLE_MATCH = re.compile(r"([^-]+-[^-]+)(-\D+)[^-]*(-.*)?")
 
 _SETTINGS = {
-"x86_64-apple-ios-simulator AddressSanitizerApp.app/AddressSanitizerApp": {
-  "c": "-iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all"
-},
-"x86_64-apple-ios-simulator ThreadSanitizerApp.app/ThreadSanitizerApp": {
-  "c": "-iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all"
-},
+	"x86_64-apple-ios-simulator AddressSanitizerApp.app/AddressSanitizerApp": {
+		"c": "-iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all"
+	},
+	"x86_64-apple-ios-simulator ThreadSanitizerApp.app/ThreadSanitizerApp": {
+		"c": "-iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all"
+	}
 }
 
 def __lldb_init_module(debugger, _internal_dict):

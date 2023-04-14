@@ -1,29 +1,99 @@
 #/usr/bin/python3
 
+import json
+import os
 import sys
-from typing import List
+from typing import Dict, List
 
 
-def _main(
-        output_path: str,
-        keys_and_paths: List[str],
-    ) -> None:
-    context_json_strs = {}
-    for key, path in zip(keys_and_paths[::2], keys_and_paths[1::2]):
-        with open(path, encoding = "utf-8") as fp:
-            context_json_strs[key] = fp.read()
+def _build_setting_path(path):
+    if path.startswith("bazel-out/"):
+        return f'$(BAZEL_OUT)/{path[10:]}'
+    if path.startswith("external/"):
+        return f'$(BAZEL_EXTERNAL)/{path[9:]}'
+    return path
 
-    settings_entries = [
-        f'"{key}": {content},'
-        for key, content in context_json_strs.items()
-        if content != '{}'
-    ]
+
+def _handle_swiftmodule_path(
+        path: str,
+        xcode_generated_paths: Dict[str, str]
+    ) -> str:
+    bs_path = xcode_generated_paths.get(path)
+    if not bs_path:
+        bs_path = _build_setting_path(path)
+    return os.path.dirname(bs_path)
+
+
+_ONCE_FLAGS = {
+    "-D": None,
+    "-F": None,
+    "-I": None,
+}
+
+
+def _main(args: List[str]) -> None:
+    (
+        output_path,
+        xcode_generated_paths_path,
+        remaining_args,
+    ) = _parse_args(args)
+
+    with open(xcode_generated_paths_path, encoding = "utf-8") as fp:
+        xcode_generated_paths = json.load(fp)
+
+    contexts = {}
+    while remaining_args:
+        key = remaining_args.pop(0)
+
+        framework_paths = []
+        while remaining_args:
+            path = remaining_args.pop(0)
+            if path == "\0":
+                break
+            framework_paths.append(path)
+
+        swiftmodule_paths = {}
+        while remaining_args:
+            path = remaining_args.pop(0)
+            if path == "\0":
+                break
+            swiftmodule_paths[
+                _handle_swiftmodule_path(path, xcode_generated_paths)
+            ] = None
+
+        once_flags = {}
+        clang_opts = []
+        while remaining_args:
+            opt = remaining_args.pop(0)
+            if opt == "\0":
+                break
+            if opt in once_flags:
+                continue
+            if ((opt[0:2] in _ONCE_FLAGS) or
+                opt.startswith("-fmodule-map-file=")):
+                # This can lead to correctness issues if the value of a define
+                # is specified multiple times, and different on different
+                # targets, but it's how lldb currently handles it. Ideally it
+                # should use a dictionary for the key of the define and only
+                # filter ones that have the same value as the last time the key
+                # was used.
+                once_flags[opt] = None
+            clang_opts.append(opt)
+
+        dto = {}
+
+        if clang_opts:
+            dto["c"] = " ".join(clang_opts)
+        if framework_paths:
+            dto["f"] = framework_paths
+        if swiftmodule_paths:
+            dto["s"] = list(swiftmodule_paths.keys())
+
+        if dto:
+            contexts[key] = dto
 
     with open(output_path, encoding = "utf-8", mode = "w") as fp:
-        if settings_entries:
-            settings_content = "\n" + "\n".join(settings_entries) + "\n"
-        else:
-            settings_content = ""
+        settings_content = json.dumps(contexts, indent = '\t', sort_keys = True)
         result = f'''\
 #!/usr/bin/python3
 
@@ -43,7 +113,7 @@ _BUNDLE_EXTENSIONS = [
 
 _TRIPLE_MATCH = re.compile(r"([^-]+-[^-]+)(-\D+)[^-]*(-.*)?")
 
-_SETTINGS = {{{settings_content}}}
+_SETTINGS = {settings_content}
 
 def __lldb_init_module(debugger, _internal_dict):
     # Register the stop hook when this module is loaded in lldb
@@ -130,19 +200,29 @@ class StopHook:
         fp.write(f'{result}\n')
 
 
+def _parse_args(args: List[str]) -> List[str]:
+    if len(args) == 1 and args[0].startswith("@"):
+        params_path = args[0][1:]
+        with open(params_path, encoding = "utf-8") as f:
+            args = f.read().splitlines()
+            if len(args) < 1:
+                print(
+                    f"Invalid params file: {params_path}",
+                    file = sys.stderr,
+                )
+                exit(1)
+    return args[0], args[1], args[2:]
+
+
 if __name__ == "__main__":
     if len(sys.argv) < 2:
         print(
             f"""
-Usage: {sys.argv[0]} <output> [key, path, [key, path, ...]]
-""",
+Usage: {sys.argv[0]} <output> <xcode_generated_paths.json> [key, \
+[framework_path, ...], \\NUL, [swiftmodule_path, ...], \\NUL, \
+[clang_opt, ...], \\NUL, ...]""",
             file = sys.stderr,
         )
         exit(1)
 
-    _main(
-        # output_path
-        sys.argv[1],
-        # keys_and_paths
-        sys.argv[2:],
-    )
+    _main(sys.argv[1:])

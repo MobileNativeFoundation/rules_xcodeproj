@@ -9,6 +9,7 @@ load(":configuration.bzl", "get_configuration")
 load(
     ":files.bzl",
     "build_setting_path",
+    "is_generated_path",
 )
 load(":flattened_key_values.bzl", "flattened_key_values")
 load(":input_files.bzl", "input_files")
@@ -637,7 +638,7 @@ targets.
 
     excluded_targets = dicts.add(unfocused_targets, files_only_targets)
 
-    lldb_context_json_files = {
+    lldb_contexts = {
         xcode_configuration: {}
         for xcode_configuration in infos_per_xcode_configuration.keys()
     }
@@ -667,21 +668,10 @@ targets.
 
         if include_lldb_context and xcode_target.lldb_context_key:
             for xcode_configuration in target_xcode_configurations:
-                lldb_context_json_file = lldb_contexts.to_json_file(
-                    xcode_target.lldb_context,
-                    actions = ctx.actions,
-                    context_index = index,
-                    lldb_context_processor = (
-                        ctx.executable._lldb_context_processor
-                    ),
-                    rule_name = ctx.attr.name,
-                    target_name = label.name,
-                    xcode_generated_paths_file = xcode_generated_paths_file,
-                )
                 set_if_true(
-                    lldb_context_json_files[xcode_configuration],
+                    lldb_contexts[xcode_configuration],
                     xcode_target.lldb_context_key,
-                    lldb_context_json_file,
+                    xcode_target.lldb_context,
                 )
 
         (
@@ -894,7 +884,8 @@ targets.
         focused_targets_extra_folders,
         replacement_labels_by_label,
         configurations_map,
-        lldb_context_json_files,
+        lldb_contexts,
+        xcode_generated_paths_file,
     )
 
 def _process_xcode_generated_paths(
@@ -998,17 +989,24 @@ def should_include_outputs(build_mode):
 
 # Actions
 
+def _labelless_clang_opts(clangopt_with_label):
+    _, opts = clangopt_with_label
+    return opts
+
+def _non_generated_framework_build_setting_path(path):
+    if is_generated_path(path):
+        return None
+    return build_setting_path(path = path)
+
 def _write_swift_debug_settings(
         *,
         actions,
-        lldb_context_json_files,
+        lldb_contexts,
         rule_name,
-        swift_debug_settings_processor):
+        swift_debug_settings_processor,
+        xcode_generated_paths_file):
     outputs = []
-    for (
-        xcode_configuration,
-        config_lldb_context_json_files,
-    ) in lldb_context_json_files.items():
+    for (xcode_configuration, config_lldb_contexts) in lldb_contexts.items():
         output = actions.declare_file(
             "{}_bazel_integration_files/{}-swift_debug_settings.py".format(
                 rule_name,
@@ -1018,16 +1016,32 @@ def _write_swift_debug_settings(
         outputs.append(output)
 
         args = actions.args()
+        args.use_param_file("@%s", use_always = True)
+        args.set_param_file_format(format = "multiline")
         args.add(output)
-        args.add_all(
-            flattened_key_values.to_list(config_lldb_context_json_files),
-        )
+        args.add(xcode_generated_paths_file)
+
+        for key, lldb_context in config_lldb_contexts.items():
+            args.add(key)
+            args.add_all(
+                lldb_context._framework_search_paths,
+                map_each = _non_generated_framework_build_setting_path,
+            )
+            args.add("\0")
+            args.add_all(lldb_context._swiftmodules)
+            args.add("\0")
+            args.add_all(
+                lldb_context._clang,
+                map_each = _labelless_clang_opts,
+            )
+            args.add("\0")
+
         actions.run(
             executable = swift_debug_settings_processor,
             arguments = [args],
             mnemonic = "SwiftDebugSettings",
             progress_message = "Generating %{output}",
-            inputs = config_lldb_context_json_files.values(),
+            inputs = [xcode_generated_paths_file],
             outputs = [output],
         )
 
@@ -1584,7 +1598,8 @@ configurations: {}""".format(", ".join(xcode_configurations)))
         focused_targets_extra_folders,
         replacement_labels_by_label,
         configurations_map,
-        lldb_context_json_files,
+        lldb_contexts,
+        xcode_generated_paths_file,
     ) = _process_targets(
         ctx = ctx,
         build_mode = build_mode,
@@ -1682,11 +1697,12 @@ configurations: {}""".format(", ".join(xcode_configurations)))
     )
     swift_debug_settings = _write_swift_debug_settings(
         actions = ctx.actions,
-        lldb_context_json_files = lldb_context_json_files,
+        lldb_contexts = lldb_contexts,
         rule_name = ctx.attr.name,
         swift_debug_settings_processor = (
             ctx.executable._swift_debug_settings_processor
         ),
+        xcode_generated_paths_file = xcode_generated_paths_file,
     )
 
     if configurations_map:
@@ -1713,7 +1729,7 @@ configurations: {}""".format(", ".join(xcode_configurations)))
                     xcode_configuration,
                 ),
             )
-            for xcode_configuration in lldb_context_json_files
+            for xcode_configuration in lldb_contexts
         ]
 
         unstable_files = (
@@ -1998,11 +2014,6 @@ def make_xcodeproj_rule(
         "_link_params_processor": attr.label(
             cfg = "exec",
             default = Label("//tools/params_processors:link_params_processor"),
-            executable = True,
-        ),
-        "_lldb_context_processor": attr.label(
-            cfg = "exec",
-            default = Label("//tools/params_processors:lldb_context_processor"),
             executable = True,
         ),
         "_swift_debug_settings_processor": attr.label(
