@@ -390,7 +390,7 @@ def _collect_input_files(
         }
 
         transitive_extra_files.extend([
-            d
+            depset([(label, d)])
             for label, d in depset(
                 transitive = [
                     info.inputs._resource_bundle_uncategorized

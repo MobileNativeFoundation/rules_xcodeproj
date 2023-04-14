@@ -45,6 +45,9 @@ rules_ios_ios_application(
         ":device_build": ":xcode_profile",
         "//conditions:default": None,
     }),
+    resource_bundles = {
+        "UnprocessedResources": ["data.json"],
+    },
     resources = glob(
         ["Assets.xcassets/**"],
         exclude = ["Assets.xcassets/AppIcon.appiconset/**"],
