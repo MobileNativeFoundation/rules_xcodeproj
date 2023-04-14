@@ -8,15 +8,6 @@ py_binary(
 )
 
 py_binary(
-    name = "lldb_context_processor",
-    srcs = ["lldb_context_processor.py"],
-    python_version = "PY3",
-    srcs_version = "PY3",
-    # TODO: Restrict visibility
-    visibility = ["//visibility:public"],
-)
-
-py_binary(
     name = "swift_debug_settings_processor",
     srcs = ["swift_debug_settings_processor.py"],
     python_version = "PY3",
