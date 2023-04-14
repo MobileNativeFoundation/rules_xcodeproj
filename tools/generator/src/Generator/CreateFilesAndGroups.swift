@@ -147,8 +147,7 @@ extension Generator {
             offset: Int,
             isExternal: Bool,
             parentIsLocalizedContainer: Bool,
-            isLeaf: Bool,
-            forceGroupCreation: Bool
+            isLeaf: Bool
         ) -> (PBXFileElement, isNew: Bool)? {
             if filePath.path.isLocalizedContainer {
                 // Localized container (e.g. /path/to/en.lproj)
@@ -186,7 +185,7 @@ extension Generator {
                 xcVersionGroups[filePath] = xcVersionGroup
 
                 return (xcVersionGroup, true)
-            } else if !isLeaf, forceGroupCreation || !filePath.path.isFolderTypeFileSource {
+            } else if !isLeaf && !filePath.path.isCoreDataModel {
                 if let group = normalGroups[filePath] {
                     return (group, false)
                 }
@@ -214,7 +213,7 @@ extension Generator {
                 )
 
                 let lastKnownFileType: String?
-                if filePath.isFolder, !filePath.path.isFolderTypeFileSource {
+                if filePath.isFolder && !filePath.path.isFolderTypeFileSource {
                     lastKnownFileType = "folder"
                 } else {
                     lastKnownFileType = filePath.path.lastKnownFileType
@@ -490,8 +489,7 @@ extension Generator {
                         offset: offset,
                         isExternal: isExternal,
                         parentIsLocalizedContainer: parentIsLocalizedContainer,
-                        isLeaf: isLeaf,
-                        forceGroupCreation: fullFilePath.forceGroupCreation
+                        isLeaf: isLeaf
                     )
                 {
                     if isNew {

@@ -91,7 +91,6 @@ private extension KeyedDecodingContainer where K == Inputs.CodingKeys {
         var folders = try decodeIfPresent([FilePath].self, forKey: key) ?? []
         for i in folders.indices {
             folders[i].isFolder = true
-            folders[i].forceGroupCreation = true
         }
         return folders
     }
