@@ -14,7 +14,7 @@ def xcodeproj(
         archived_bundles_allowed = None,
         associated_extra_files = {},
         bazel_path = "bazel",
-        bazel_env = {"PATH": "/usr/bin:/bin"},
+        bazel_env = {"PATH": "/bin:/usr/bin"},
         build_mode = "bazel",
         config = "rules_xcodeproj",
         default_xcode_configuration = None,
@@ -91,7 +91,7 @@ def xcodeproj(
             current environment. If project generation succeeds, but building
             inside of Xcode fails because of missing environment variables, you
             probably have to set them here. If `PATH` is not specified, it will
-            default to `/usr/bin:/bin`, so you don't have to specify it unless
+            default to `/bin:/usr/bin`, so you don't have to specify it unless
             you want to user a different value
         bazel_path: Optional. The path the `bazel` binary or wrapper script. If
             the path is relative it will be resolved using the `PATH`
@@ -294,7 +294,7 @@ removed in a future release.""")
         bazel_path = "bazel"
     bazel_env = dict(bazel_env) if bazel_env else {}
     if "PATH" not in bazel_env:
-        bazel_env["PATH"] = "/usr/bin:/bin"
+        bazel_env["PATH"] = "/bin:/usr/bin"
     if not build_mode:
         build_mode = "xcode"
     if install_directory == None:
