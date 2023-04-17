@@ -73,9 +73,7 @@ enum Fixtures {
                 srcs: ["x/y.swift"],
                 nonArcSrcs: ["b.c"],
                 resources: [
-                    "Assets.xcassets/Contents.json",
-                    "Assets.xcassets/some_image/Contents.json",
-                    "Assets.xcassets/some_image/some_image.png",
+                    "Assets.xcassets",
                 ]
             ),
             outputs: .init(
@@ -257,9 +255,7 @@ enum Fixtures {
             inputs: .init(
                 resources: [
                     "r1/X.txt",
-                    "r1/Assets.xcassets/Contents.json",
-                    "r1/Assets.xcassets/image/Contents.json",
-                    "r1/Assets.xcassets/image/image.png",
+                    "r1/Assets.xcassets",
                     "r1/E.xcdatamodeld/K2.xcdatamodel/contents",
                     .project("r1/nested", isFolder: true),
                     .project("r1/dir", isFolder: true),
@@ -750,11 +746,6 @@ enum Fixtures {
             lastKnownFileType: "folder.assetcatalog",
             path: "Assets.xcassets"
         )
-        elements["Assets.xcassets/Contents.json"] = elements["Assets.xcassets"]!
-        elements["Assets.xcassets/some_image/Contents.json"] =
-            elements["Assets.xcassets"]!
-        elements["Assets.xcassets/some_image/some_image.png"] =
-            elements["Assets.xcassets"]!
 
         // Localized files
 
@@ -827,12 +818,6 @@ enum Fixtures {
             lastKnownFileType: "folder.assetcatalog",
             path: "Assets.xcassets"
         )
-        elements["r1/Assets.xcassets/Contents.json"] =
-            elements["r1/Assets.xcassets"]!
-        elements["r1/Assets.xcassets/image/Contents.json"] =
-            elements["r1/Assets.xcassets"]!
-        elements["r1/Assets.xcassets/image/image.png"] =
-            elements["r1/Assets.xcassets"]!
 
         // r1/E.xcdatamodeld
 
@@ -2344,25 +2329,21 @@ extension FilePath {
 
     static func generated(
         _ path: Path,
-        isFolder: Bool = false,
-        forceGroupCreation: Bool = false
+        isFolder: Bool = false
     ) -> FilePath {
         return FilePath(
             path: "bazel-out" + path,
-            isFolder: isFolder,
-            forceGroupCreation: forceGroupCreation
+            isFolder: isFolder
         )
     }
 
     static func project(
         _ path: Path,
-        isFolder: Bool = false,
-        forceGroupCreation: Bool = false
+        isFolder: Bool = false
     ) -> FilePath {
         return FilePath(
             path: path,
-            isFolder: isFolder,
-            forceGroupCreation: forceGroupCreation
+            isFolder: isFolder
         )
     }
 }

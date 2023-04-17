@@ -12,6 +12,7 @@ extension Path {
     }
 
     var isCoreDataContainer: Bool { self.extension == "xcdatamodeld" }
+    var isCoreDataModel: Bool { self.extension == "xcdatamodel" }
     var isLocalizedContainer: Bool { self.extension == "lproj" }
 
     var isBazelBuildFile: Bool {
@@ -52,7 +53,6 @@ extension Path {
     }
 
     private var isBundle: Bool { self.extension == "bundle" }
-    private var isCoreDataModel: Bool { self.extension == "xcdatamodel" }
     private var isDocCArchive: Bool { self.extension == "docc" }
     private var isFramework: Bool { self.extension == "framework" }
     private var isSceneKitAssets: Bool { self.extension == "scnassets" }

@@ -3,16 +3,13 @@ import PathKit
 struct FilePath: Hashable, Decodable {
     var path: Path
     var isFolder: Bool
-    var forceGroupCreation: Bool
 
     init(
         path: Path,
-        isFolder: Bool = false,
-        forceGroupCreation: Bool = false
+        isFolder: Bool = false
     ) {
         self.path = path
         self.isFolder = isFolder
-        self.forceGroupCreation = forceGroupCreation
     }
 
     // MARK: Decodable
@@ -20,7 +17,6 @@ struct FilePath: Hashable, Decodable {
     init(from decoder: Decoder) throws {
         path = try decoder.singleValueContainer().decode(Path.self)
         isFolder = false
-        forceGroupCreation = false
     }
 }
 
@@ -28,8 +24,7 @@ extension FilePath {
     func parent() -> FilePath {
         return FilePath(
             path: path.parent().normalize(),
-            isFolder: false,
-            forceGroupCreation: forceGroupCreation
+            isFolder: false
         )
     }
 }
@@ -59,7 +54,6 @@ func + (lhs: FilePath, rhs: String) -> FilePath {
 
     return FilePath(
         path: path,
-        isFolder: false,
-        forceGroupCreation: lhs.forceGroupCreation
+        isFolder: false
     )
 }
