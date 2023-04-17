@@ -39,7 +39,7 @@ add it or a target that depends on it to \(runnerLabel)'s `top_level_targets` at
         runnerLabel: BazelLabel
     ) throws -> [String: [BazelLabel: TargetID]] {
         let targets = targetResolver.targets
-        let labelTargetInfos = try targetResolver.labelTargetInfos
+        let labelTargetInfos = targetResolver.labelTargetInfos
         let allBazelLabels = allBazelLabels
 
         var resolvedTargetIDs: [String: [BazelLabel: TargetID]] = [:]
@@ -132,34 +132,12 @@ add it or a target that depends on it to \(runnerLabel)'s `top_level_targets` at
     }
 }
 
-extension TargetResolver {
-    var labelTargetInfos: [BazelLabel: XcodeScheme.LabelTargetInfo] {
-        get throws {
-            var results = [BazelLabel: XcodeScheme.LabelTargetInfo]()
-
-            // Collect the target information
-            for (targetID, target) in targets {
-                let targetWithID = XcodeScheme
-                    .TargetWithID(id: targetID, target: target)
-                let isTopLevel = try pbxTargetInfo(for: targetID)
-                    .pbxTarget.isTopLevel
-                results[target.label, default: .init(
-                    label: target.label,
-                    isTopLevel: isTopLevel
-                )].add(targetWithID)
-            }
-
-            return results
-        }
-    }
-}
-
 // MARK: LabelTargetInfo
 
 extension XcodeScheme {
     /// Collects Target information for a BazelLabel.
-    struct LabelTargetInfo {
-        struct ConfigurationInfo {
+    struct LabelTargetInfo: Equatable {
+        struct ConfigurationInfo: Equatable {
             var targetsInPlatformOrder: [TargetWithID] = []
             var platforms: Set<Platform> = []
         }
