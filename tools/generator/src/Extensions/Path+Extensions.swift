@@ -17,9 +17,18 @@ extension Path {
     var isBazelBuildFile: Bool {
         lastComponent == "BUILD" || lastComponent == "BUILD.bazel"
     }
+    var isPodfile: Bool {
+        lastComponent == "Podfile"
+    }
 
     var explicitFileType: String? {
-        isBazelBuildFile ? Xcode.filetype(extension: "py") : nil
+        if isBazelBuildFile{
+            return Xcode.filetype(extension: "py")
+        }
+        if isPodfile {
+            return Xcode.filetype(extension: "rb")
+        }
+        return nil
     }
 
     var lastKnownFileType: String? {
