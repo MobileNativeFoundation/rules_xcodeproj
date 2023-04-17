@@ -1,13 +1,5 @@
 """Module containing functions dealing with the `LLDBContext` DTO."""
 
-load("@bazel_skylib//lib:paths.bzl", "paths")
-load(":collections.bzl", "set_if_true", "uniq")
-load(
-    ":files.bzl",
-    "build_setting_path",
-    "is_generated_path",
-)
-
 def _collect_lldb_context(
         *,
         id,
@@ -65,68 +57,6 @@ def _collect_lldb_context(
         ),
     )
 
-_ONCE_FLAGS = {
-    "-D": None,
-    "-F": None,
-    "-I": None,
-}
-
-def _lldb_context_to_dto(lldb_context, *, xcode_generated_paths):
-    if not lldb_context:
-        return {}
-
-    dto = {}
-
-    set_if_true(
-        dto,
-        "f",
-        [
-            build_setting_path(path = path)
-            for path in lldb_context._framework_search_paths.to_list()
-            if not is_generated_path(path)
-        ],
-    )
-
-    def _handle_swiftmodule_path(file):
-        path = file.path
-        bs_path = xcode_generated_paths.get(path)
-        if not bs_path:
-            bs_path = build_setting_path(
-                file = file,
-                path = path,
-            )
-        return paths.dirname(bs_path)
-
-    set_if_true(
-        dto,
-        "s",
-        uniq([
-            _handle_swiftmodule_path(file)
-            for file in lldb_context._swiftmodules.to_list()
-        ]),
-    )
-
-    once_flags = {}
-    clang_opts = []
-    for _, opts in lldb_context._clang.to_list():
-        for opt in opts:
-            if opt in once_flags:
-                continue
-            if (opt[0:2] in _ONCE_FLAGS) or opt.startswith("-fmodule-map-file="):
-                # This can lead to correctness issues if the value of a define
-                # is specified multiple times, and different on different
-                # targets, but it's how lldb currently handles it. Ideally it
-                # should use a dictionary for the key of the define and only
-                # filter ones that have the same value as the last time the key
-                # was used.
-                once_flags[opt] = None
-            clang_opts.append(opt)
-
-    set_if_true(dto, "c", " ".join(clang_opts))
-
-    return dto
-
 lldb_contexts = struct(
     collect = _collect_lldb_context,
-    to_dto = _lldb_context_to_dto,
 )

@@ -9,6 +9,7 @@ load(":configuration.bzl", "get_configuration")
 load(
     ":files.bzl",
     "build_setting_path",
+    "is_generated_path",
 )
 load(":flattened_key_values.bzl", "flattened_key_values")
 load(":input_files.bzl", "input_files")
@@ -637,7 +638,7 @@ targets.
 
     excluded_targets = dicts.add(unfocused_targets, files_only_targets)
 
-    lldb_contexts_dtos = {
+    lldb_contexts = {
         xcode_configuration: {}
         for xcode_configuration in infos_per_xcode_configuration.keys()
     }
@@ -662,17 +663,15 @@ targets.
         else:
             additional_scheme_target_ids = None
 
+        label = xcode_target_labels[xcode_target.id]
         target_xcode_configurations = xcode_configurations[xcode_target.id]
 
         if include_lldb_context and xcode_target.lldb_context_key:
             for xcode_configuration in target_xcode_configurations:
                 set_if_true(
-                    lldb_contexts_dtos[xcode_configuration],
+                    lldb_contexts[xcode_configuration],
                     xcode_target.lldb_context_key,
-                    lldb_contexts.to_dto(
-                        xcode_target.lldb_context,
-                        xcode_generated_paths = xcode_generated_paths,
-                    ),
+                    xcode_target.lldb_context,
                 )
 
         (
@@ -683,7 +682,7 @@ targets.
         ) = xcode_targets.to_dto(
             ctx = ctx,
             xcode_target = xcode_target,
-            label = xcode_target_labels[xcode_target.id],
+            label = label,
             additional_scheme_target_ids = additional_scheme_target_ids,
             build_mode = build_mode,
             xcode_configurations = target_xcode_configurations,
@@ -885,7 +884,8 @@ targets.
         focused_targets_extra_folders,
         replacement_labels_by_label,
         configurations_map,
-        lldb_contexts_dtos,
+        lldb_contexts,
+        xcode_generated_paths_file,
     )
 
 def _process_xcode_generated_paths(
@@ -989,23 +989,60 @@ def should_include_outputs(build_mode):
 
 # Actions
 
-def _write_swift_debug_settings(*, ctx, settings):
+def _labelless_clang_opts(clangopt_with_label):
+    _, opts = clangopt_with_label
+    return opts
+
+def _non_generated_framework_build_setting_path(path):
+    if is_generated_path(path):
+        return None
+    return build_setting_path(path = path)
+
+def _write_swift_debug_settings(
+        *,
+        actions,
+        lldb_contexts,
+        rule_name,
+        swift_debug_settings_processor,
+        xcode_generated_paths_file):
     outputs = []
-    for xcode_configuration, configuration_settings in settings.items():
-        output = ctx.actions.declare_file(
+    for (xcode_configuration, config_lldb_contexts) in lldb_contexts.items():
+        output = actions.declare_file(
             "{}_bazel_integration_files/{}-swift_debug_settings.py".format(
-                ctx.attr.name,
+                rule_name,
                 xcode_configuration,
             ),
         )
         outputs.append(output)
 
-        ctx.actions.expand_template(
-            template = ctx.file._swift_debug_settings_template,
-            output = output,
-            substitutions = {
-                "%settings_map%": json.encode_indent(configuration_settings),
-            },
+        args = actions.args()
+        args.use_param_file("@%s", use_always = True)
+        args.set_param_file_format(format = "multiline")
+        args.add(output)
+        args.add(xcode_generated_paths_file)
+
+        for key, lldb_context in config_lldb_contexts.items():
+            args.add(key)
+            args.add_all(
+                lldb_context._framework_search_paths,
+                map_each = _non_generated_framework_build_setting_path,
+            )
+            args.add("")
+            args.add_all(lldb_context._swiftmodules)
+            args.add("")
+            args.add_all(
+                lldb_context._clang,
+                map_each = _labelless_clang_opts,
+            )
+            args.add("")
+
+        actions.run(
+            executable = swift_debug_settings_processor,
+            arguments = [args],
+            mnemonic = "SwiftDebugSettings",
+            progress_message = "Generating %{output}",
+            inputs = [xcode_generated_paths_file],
+            outputs = [output],
         )
 
     return outputs
@@ -1561,7 +1598,8 @@ configurations: {}""".format(", ".join(xcode_configurations)))
         focused_targets_extra_folders,
         replacement_labels_by_label,
         configurations_map,
-        lldb_contexts_dtos,
+        lldb_contexts,
+        xcode_generated_paths_file,
     ) = _process_targets(
         ctx = ctx,
         build_mode = build_mode,
@@ -1658,8 +1696,13 @@ configurations: {}""".format(", ".join(xcode_configurations)))
         extension_infoplists = extension_infoplists,
     )
     swift_debug_settings = _write_swift_debug_settings(
-        ctx = ctx,
-        settings = lldb_contexts_dtos,
+        actions = ctx.actions,
+        lldb_contexts = lldb_contexts,
+        rule_name = ctx.attr.name,
+        swift_debug_settings_processor = (
+            ctx.executable._swift_debug_settings_processor
+        ),
+        xcode_generated_paths_file = xcode_generated_paths_file,
     )
 
     if configurations_map:
@@ -1686,7 +1729,7 @@ configurations: {}""".format(", ".join(xcode_configurations)))
                     xcode_configuration,
                 ),
             )
-            for xcode_configuration in lldb_contexts_dtos
+            for xcode_configuration in lldb_contexts
         ]
 
         unstable_files = (
@@ -1973,11 +2016,12 @@ def make_xcodeproj_rule(
             default = Label("//tools/params_processors:link_params_processor"),
             executable = True,
         ),
-        "_swift_debug_settings_template": attr.label(
-            allow_single_file = True,
+        "_swift_debug_settings_processor": attr.label(
+            cfg = "exec",
             default = Label(
-                "//xcodeproj/internal:swift_debug_settings.template.py",
+                "//tools/params_processors:swift_debug_settings_processor",
             ),
+            executable = True,
         ),
         "_xccurrentversions_parser": attr.label(
             cfg = "exec",
