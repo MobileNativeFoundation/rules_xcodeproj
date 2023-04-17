@@ -10,7 +10,7 @@ load(
 
 BAZEL_ENV = {
     # Overriding `PATH`
-    "PATH": "/usr/bin:/bin:/usr/sbin:/sbin",
+    "PATH": "/bin:/usr/bin:/sbin:/usr/sbin",
     # Testing escaping (quotes, spaces, newlines, and slashes)
     "QUOTES_VAR1": "foo \"bar\"",
     "QUOTES_VAR2": 'foo "bar"',
