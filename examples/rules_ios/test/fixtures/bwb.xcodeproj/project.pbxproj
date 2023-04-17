@@ -238,6 +238,7 @@
 		17BDC2AA5C879AF6EF88D387 /* iOSApp.library_private_angled_hmap.hmap */ = {isa = PBXFileReference; path = iOSApp.library_private_angled_hmap.hmap; sourceTree = "<group>"; };
 		18679A652983C08734BB53BA /* MixedAnswer_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = MixedAnswer_vfs.yaml; sourceTree = "<group>"; };
 		18AF9BC5B69A8CCD67B36719 /* Utils_swift_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = Utils_swift_vfs.yaml; sourceTree = "<group>"; };
+		1A9456CC05EF8893A02AE84F /* UnprocessedResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = wrapper.cfbundle; path = UnprocessedResources.bundle; sourceTree = "<group>"; };
 		1AFC7598B9F1214AF3B487D3 /* iOSAppMixedUnitTests_private_angled_hmap.hmap */ = {isa = PBXFileReference; path = iOSAppMixedUnitTests_private_angled_hmap.hmap; sourceTree = "<group>"; };
 		1B9B3BFED6CFB0577A9495B0 /* Intents.Intent.output.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intents.Intent.output.swift; sourceTree = "<group>"; };
 		1BA4A506FF3702955F308E7B /* CoreUtilsObjC_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = CoreUtilsObjC_vfs.yaml; sourceTree = "<group>"; };
@@ -276,6 +277,7 @@
 		37960139EC70CD0164A3E93D /* libMixedAnswer_swift.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libMixedAnswer_swift.a; path = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/libMixedAnswer_swift.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		38388F3FC2E2BC83EF7C6F2F /* LibDynamic_private_angled_hmap.hmap */ = {isa = PBXFileReference; path = LibDynamic_private_angled_hmap.hmap; sourceTree = "<group>"; };
 		38DF8C373C07F2CBB47A58AB /* iOSApp.library.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = iOSApp.library.modulemap; sourceTree = "<group>"; };
+		39059F00D2E490331FCA73FA /* UnprocessedResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = wrapper.cfbundle; path = UnprocessedResources.bundle; sourceTree = "<group>"; };
 		397F97935BDD6FC094D77A44 /* Intents.Intent.output.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intents.Intent.output.swift; sourceTree = "<group>"; };
 		399487B73A64195D5E0CEAF8 /* ios app.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ios app.entitlements"; sourceTree = "<group>"; };
 		39C0E2F06A4B7DAD7BA79A66 /* common.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = common.pch; sourceTree = "<group>"; };
@@ -349,6 +351,7 @@
 		7F16E2441EB158D358808E46 /* MixedAnswer_private_hmap.hmap */ = {isa = PBXFileReference; path = MixedAnswer_private_hmap.hmap; sourceTree = "<group>"; };
 		7F478E5EB1EBCD7C67E02CB3 /* iOSApp.library_private_angled_hmap.hmap */ = {isa = PBXFileReference; path = iOSApp.library_private_angled_hmap.hmap; sourceTree = "<group>"; };
 		806A7DC2EF2EA77C4AB660BA /* MixedAnswer_swift_angle_bracket_hmap.hmap */ = {isa = PBXFileReference; path = MixedAnswer_swift_angle_bracket_hmap.hmap; sourceTree = "<group>"; };
+		817C3EE93221FD1ABC7E9E9A /* data.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
 		81CEB384343DA3EBC4532AA1 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		84F744B59E92115EBD29D194 /* WidgetExtension.library.extended.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = WidgetExtension.library.extended.modulemap; sourceTree = "<group>"; };
 		853443833B8165A279DBA93B /* Utils */ = {isa = PBXFileReference; explicitFileType = wrapper.framework.static; includeInIndex = 0; path = Utils; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -414,6 +417,7 @@
 		B809EEC3C7BDE467DAF5DF73 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B9CA78B212C2F73741A87571 /* CoreUtilsObjC_public_hmap.hmap */ = {isa = PBXFileReference; path = CoreUtilsObjC_public_hmap.hmap; sourceTree = "<group>"; };
 		BC0D919D9C4954991E8C1FB8 /* iOSApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BDBC8B453324335F71754904 /* resource_bundle.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = resource_bundle.plist; sourceTree = "<group>"; };
 		BEE5E8313242BB932A99E4E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		BEEA406D7D2D485AEDBB4F40 /* RealAnswer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RealAnswer.h; sourceTree = "<group>"; };
 		BF16040287F3CC04369017F9 /* MixedAnswer.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = MixedAnswer.modulemap; sourceTree = "<group>"; };
@@ -671,6 +675,7 @@
 			children = (
 				41AFA8A7D95E5C83E319067C /* CoreUtilsMixed */,
 				84CA29055CB379FF60C0AE6F /* CoreUtilsObjC */,
+				DE50D16431B51FDCECF3DD28 /* iOSApp-UnprocessedResources */,
 				15168C02DFBEFDE100AF9141 /* iOSApp.library-modulemap */,
 				E0404808B707779E609F813A /* Utils */,
 				625FEB60131FC5996F192E3A /* iOSApp_private_angled_hmap.hmap */,
@@ -1028,6 +1033,7 @@
 			isa = PBXGroup;
 			children = (
 				39C0E2F06A4B7DAD7BA79A66 /* common.pch */,
+				BDBC8B453324335F71754904 /* resource_bundle.plist */,
 			);
 			path = library;
 			sourceTree = "<group>";
@@ -1115,6 +1121,14 @@
 				84F744B59E92115EBD29D194 /* WidgetExtension.library.extended.modulemap */,
 			);
 			path = WidgetExtension;
+			sourceTree = "<group>";
+		};
+		8FF154BFA9C65554048B13D8 /* iOSApp-UnprocessedResources */ = {
+			isa = PBXGroup;
+			children = (
+				1A9456CC05EF8893A02AE84F /* UnprocessedResources.bundle */,
+			);
+			path = "iOSApp-UnprocessedResources";
 			sourceTree = "<group>";
 		};
 		91A467A39BCBAAA3FFF4ACD2 /* ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2 */ = {
@@ -1207,6 +1221,7 @@
 			children = (
 				F14EDF33984C04CA68E22C9F /* CoreUtilsMixed */,
 				FB2FDE6467AD236BF9C2740B /* CoreUtilsObjC */,
+				8FF154BFA9C65554048B13D8 /* iOSApp-UnprocessedResources */,
 				D08B95DD4A82E61041263909 /* iOSApp.library-modulemap */,
 				15845BD087F188C55F8F9245 /* iOSApp_private_angled_hmap.hmap */,
 				16689261F50D166CF836E57B /* iOSApp_private_hmap.hmap */,
@@ -1410,6 +1425,7 @@
 				57E23D2B5CB8913F710374CE /* Utils */,
 				788FC887077E2ECEA09C1D7F /* Assets.xcassets */,
 				CD07B657B5ED92CC3963B7FD /* BUILD */,
+				817C3EE93221FD1ABC7E9E9A /* data.json */,
 				3423B69557C97C31CE6F81A4 /* Info.plist */,
 				399487B73A64195D5E0CEAF8 /* ios app.entitlements */,
 				FBF5E8B112A0F9856E6CB2D4 /* iOSApp.swift */,
@@ -1417,6 +1433,14 @@
 				E15621E1A61510FCB72B107B /* Localizable.strings */,
 			);
 			path = Source;
+			sourceTree = "<group>";
+		};
+		DE50D16431B51FDCECF3DD28 /* iOSApp-UnprocessedResources */ = {
+			isa = PBXGroup;
+			children = (
+				39059F00D2E490331FCA73FA /* UnprocessedResources.bundle */,
+			);
+			path = "iOSApp-UnprocessedResources";
 			sourceTree = "<group>";
 		};
 		DFA63AC01D6FB8D48E744F6B /* MixedAnswer */ = {
