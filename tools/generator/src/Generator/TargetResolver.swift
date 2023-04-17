@@ -9,6 +9,7 @@ struct TargetResolver: Equatable {
     let consolidatedTargetKeys: [TargetID: ConsolidatedTarget.Key]
     let pbxTargets: [ConsolidatedTarget.Key: PBXNativeTarget]
     let pbxTargetInfos: [ConsolidatedTarget.Key: PBXTargetInfo]
+    let labelTargetInfos: [BazelLabel: XcodeScheme.LabelTargetInfo]
 
     init(
         referencedContainer: String,
@@ -78,7 +79,28 @@ struct TargetResolver: Equatable {
                 additionalKeys: additionalKeys[key, default: []]
             )
         }
-        pbxTargetInfos = .init(uniqueKeysWithValues: pbxTargetInfoList.map { ($0.key, $0) })
+        let pbxTargetInfos = [ConsolidatedTarget.Key: PBXTargetInfo](uniqueKeysWithValues: pbxTargetInfoList.map { ($0.key, $0) })
+        self.pbxTargetInfos = pbxTargetInfos
+
+        func localPBXTargetInfo(for targetID: TargetID) throws -> PBXTargetInfo {
+            let key = try consolidatedTargetKeys
+                .value(for: targetID, context: Self.pbxTargetInfoCtx)
+            return try pbxTargetInfos
+                .value(for: key, context: Self.pbxTargetInfoCtx)
+        }
+
+        var labelTargetInfos: [BazelLabel: XcodeScheme.LabelTargetInfo] = [:]
+        for (targetID, target) in targets {
+            let targetWithID = XcodeScheme
+                .TargetWithID(id: targetID, target: target)
+            let isTopLevel = try localPBXTargetInfo(for: targetID)
+                .pbxTarget.isTopLevel
+            labelTargetInfos[target.label, default: .init(
+                label: target.label,
+                isTopLevel: isTopLevel
+            )].add(targetWithID)
+        }
+        self.labelTargetInfos = labelTargetInfos
     }
 }
 
