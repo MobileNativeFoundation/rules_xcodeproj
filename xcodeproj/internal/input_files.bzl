@@ -844,7 +844,6 @@ def _merge_input_files(*, transitive_infos, extra_generated = None):
                 for _, info in transitive_infos
             ],
         ),
-        entitlements = None,
         xccurrentversions = depset(
             transitive = [
                 info.inputs.xccurrentversions
