@@ -27,7 +27,6 @@ def _make_xcode_target(
         conlyopts = [],
         cxxopts = [],
         swiftcopts = [],
-        search_paths = None,
         modulemaps,
         swiftmodules,
         inputs,
@@ -59,7 +58,6 @@ def _make_xcode_target(
         test_host: The `id` of the target that is the test host for this
             target, or `None` if this target does not have a test host.
         build_settings: A `dict` of Xcode build settings for the target.
-        search_paths: A value returned from `process_opts`, or `None`.
         conlyopts: A `list` of processed C compiler options.
         cxxopts: A `list` of processed C++ compiler options.
         swiftcopts: A `list` of processed Swift compiler options.
@@ -103,7 +101,6 @@ def _make_xcode_target(
         _conlyopts = tuple(conlyopts),
         _cxxopts = tuple(cxxopts),
         _swiftcopts = tuple(swiftcopts),
-        _search_paths = search_paths,
         _modulemaps = modulemaps,
         _swiftmodules = tuple(swiftmodules),
         _watch_application = watch_application,
@@ -298,7 +295,6 @@ def _merge_xcode_target(*, src, dest):
         conlyopts = src._conlyopts or dest._conlyopts,
         cxxopts = src._cxxopts or dest._cxxopts,
         swiftcopts = src._swiftcopts or dest._swiftcopts,
-        search_paths = dest._search_paths,
         modulemaps = src._modulemaps,
         swiftmodules = src._swiftmodules,
         inputs = _merge_xcode_target_inputs(

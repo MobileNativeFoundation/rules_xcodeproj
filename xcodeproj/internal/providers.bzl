@@ -184,11 +184,6 @@ A `depset` of `struct`s with information used to generate resource bundles,
 which couldn't be collected from `AppleResourceInfo` alone.
 """,
         "rule_kind": "The ctx.rule.kind of the target.",
-        "search_paths": """\
-A value returned from `_process_search_paths`, that contains the search paths
-needed by this target. These search paths should be added to the search paths of
-any target that depends on this target.
-""",
         "target_type": """\
 A string that categorizes the type of the current target. This will be one of
 "compile", "resources", or `None`. Even if this target doesn't produce an Xcode

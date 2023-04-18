@@ -108,7 +108,6 @@ def _target_info_fields(
         replacement_labels,
         resource_bundle_informations,
         rule_kind,
-        search_paths,
         target_type,
         transitive_dependencies,
         xcode_target,
@@ -141,7 +140,6 @@ def _target_info_fields(
         resource_bundle_informations: Maps to the
             `XcodeProjInfo.resource_bundle_informations` field.
         rule_kind: Maps to the `XcodeProjInfo.rule_kind` field.
-        search_paths: Maps to the `XcodeProjInfo.search_paths` field.
         target_type: Maps to the `XcodeProjInfo.target_type` field.
         transitive_dependencies: Maps to the
             `XcodeProjInfo.transitive_dependencies` field.
@@ -167,7 +165,6 @@ def _target_info_fields(
         *   `replacement_labels`
         *   `resource_bundle_informations`
         *   `rule_kind`
-        *   `search_paths`
         *   `target_type`
         *   `envs`
         *   `transitive_dependencies`
@@ -190,7 +187,6 @@ def _target_info_fields(
         "replacement_labels": replacement_labels,
         "resource_bundle_informations": resource_bundle_informations,
         "rule_kind": rule_kind,
-        "search_paths": search_paths,
         "target_type": target_type,
         "envs": envs,
         "transitive_dependencies": transitive_dependencies,
@@ -328,7 +324,6 @@ def _skip_target(
             ],
         ),
         rule_kind = None,
-        search_paths = None,
         target_type = target_type.compile,
         envs = depset(
             [
@@ -514,7 +509,6 @@ def _create_xcodeprojinfo(
             ],
         ),
         rule_kind = ctx.rule.kind,
-        search_paths = processed_target.search_paths,
         target_type = processed_target.automatic_target_info.target_type,
         envs = depset(
             transitive = [

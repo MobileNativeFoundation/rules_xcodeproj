@@ -149,7 +149,6 @@ rules_xcodeproj requires {} to have `{}` set.
         mergable_xcode_library_targets = mergable_xcode_library_targets,
         outputs = provider_outputs,
         resource_bundle_informations = resource_bundle_informations,
-        search_paths = None,
         transitive_dependencies = transitive_dependencies,
         xcode_target = None,
     )
