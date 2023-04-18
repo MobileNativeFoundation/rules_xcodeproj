@@ -151,7 +151,14 @@ def process_library_target(
         label.workspace_root,
         label.package,
     )
-    conlyopts, cxxopts, swiftcopts, clang_opts = process_opts(
+    (
+        c_params,
+        cxx_params,
+        swift_params,
+        c_has_fortify_source,
+        cxx_has_fortify_source,
+        clang_opts,
+    ) = process_opts(
         ctx = ctx,
         build_mode = build_mode,
         has_c_sources = target_inputs.has_c_sources,
@@ -186,9 +193,11 @@ def process_library_target(
         product = product,
         is_swift = is_swift,
         build_settings = build_settings,
-        conlyopts = conlyopts,
-        cxxopts = cxxopts,
-        swiftcopts = swiftcopts,
+        c_params = c_params,
+        cxx_params = cxx_params,
+        swift_params = swift_params,
+        c_has_fortify_source = c_has_fortify_source,
+        cxx_has_fortify_source = cxx_has_fortify_source,
         modulemaps = modulemaps,
         swiftmodules = swiftmodules,
         inputs = target_inputs,

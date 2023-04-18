@@ -680,8 +680,29 @@ Using VFS overlays with `build_mode = "xcode"` is unsupported.
 
     return processed_opts, clang_opts, has_debug_info
 
+def _create_compile_params(*, actions, name, opts, opt_type):
+    if not opts or not actions:
+        return None
+
+    args = actions.args()
+    args.add_all(opts)
+
+    output = actions.declare_file(
+        "{}.rules_xcodeproj.{}.compile.params".format(
+            name,
+            opt_type,
+        ),
+    )
+    actions.write(
+        output = output,
+        content = args,
+    )
+    return output
+
 def _process_compiler_opts(
         *,
+        actions,
+        name,
         conlyopts,
         cxxopts,
         swiftcopts,
@@ -692,6 +713,8 @@ def _process_compiler_opts(
     """Processes compiler options.
 
     Args:
+        actions: `ctx.actions`.
+        name: The name of the target.
         conlyopts: A `list` of C compiler options.
         cxxopts: A `list` of C++ compiler options.
         swiftcopts: A `list` of Swift compiler options.
@@ -704,11 +727,15 @@ def _process_compiler_opts(
             `swiftcopts` lists.
 
     Returns:
-        A `tuple` containing four elements:
+        A `tuple` containing six elements:
 
-        *   A `list` of C compiler options.
-        *   A `list` of C++ compiler options.
-        *   A `list` of Swift compiler options.
+        *   A C compiler params `File`.
+        *   A C++ compiler params `File`.
+        *   A Swift compiler params `File`.
+        *   A `bool` that is `True` if C compiler options contain
+            "-D_FORTIFY_SOURCE=1".
+        *   A `bool` that is `True` if C++ compiler options contain
+            "-D_FORTIFY_SOURCE=1".
         *   A `list` of Swift PCM (clang) compiler options.
     """
 
@@ -767,7 +794,36 @@ def _process_compiler_opts(
         if has_swiftcop and swift_has_debug_info:
             swiftcopts = ["-g"] + swiftcopts
 
-    return conlyopts, cxxopts, swiftcopts, clang_opts
+    c_params = _create_compile_params(
+        actions = actions,
+        name = name,
+        opts = conlyopts,
+        opt_type = "c",
+    )
+    cxx_params = _create_compile_params(
+        actions = actions,
+        name = name,
+        opts = cxxopts,
+        opt_type = "cxx",
+    )
+    swift_params = _create_compile_params(
+        actions = actions,
+        name = name,
+        opts = swiftcopts,
+        opt_type = "swift",
+    )
+
+    c_has_fortify_source = "-D_FORTIFY_SOURCE=1" in conlyopts
+    cxx_has_fortify_source = "-D_FORTIFY_SOURCE=1" in cxxopts
+
+    return (
+        c_params,
+        cxx_params,
+        swift_params,
+        c_has_fortify_source,
+        cxx_has_fortify_source,
+        clang_opts,
+    )
 
 def _process_target_compiler_opts(
         *,
@@ -795,11 +851,15 @@ def _process_target_compiler_opts(
             settings that are parsed from the target's compiler options.
 
     Returns:
-        A `tuple` containing four elements:
+        A `tuple` containing six elements:
 
-        *   A `list` of C compiler options.
-        *   A `list` of C++ compiler options.
-        *   A `list` of Swift compiler options.
+        *   A C compiler params `File`.
+        *   A C++ compiler params `File`.
+        *   A Swift compiler params `File`.
+        *   A `bool` that is `True` if C compiler options contain
+            "-D_FORTIFY_SOURCE=1".
+        *   A `bool` that is `True` if C++ compiler options contain
+            "-D_FORTIFY_SOURCE=1".
         *   A `list` of Swift PCM (clang) compiler options.
     """
     (
@@ -815,6 +875,8 @@ def _process_target_compiler_opts(
         implementation_compilation_context = implementation_compilation_context,
     )
     return _process_compiler_opts(
+        actions = ctx.actions,
+        name = ctx.rule.attr.name,
         conlyopts = conlyopts,
         cxxopts = cxxopts,
         swiftcopts = swiftcopts,
@@ -890,11 +952,15 @@ def process_opts(
             settings that are parsed from the compiler and linker options.
 
     Returns:
-        A `tuple` containing four elements:
+        A `tuple` containing six elements:
 
-        *   A `list` of C compiler options.
-        *   A `list` of C++ compiler options.
-        *   A `list` of Swift compiler options.
+        *   A C compiler params `File`.
+        *   A C++ compiler params `File`.
+        *   A Swift compiler params `File`.
+        *   A `bool` that is `True` if C compiler options contain
+            "-D_FORTIFY_SOURCE=1".
+        *   A `bool` that is `True` if C++ compiler options contain
+            "-D_FORTIFY_SOURCE=1".
         *   A `list` of Swift PCM (clang) compiler options.
     """
     return _process_target_compiler_opts(

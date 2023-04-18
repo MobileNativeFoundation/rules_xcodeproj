@@ -24,9 +24,11 @@ def _make_xcode_target(
         is_swift,
         test_host = None,
         build_settings,
-        conlyopts = [],
-        cxxopts = [],
-        swiftcopts = [],
+        c_params = None,
+        cxx_params = None,
+        swift_params = None,
+        c_has_fortify_source = False,
+        cxx_has_fortify_source = False,
         modulemaps,
         swiftmodules,
         inputs,
@@ -58,9 +60,12 @@ def _make_xcode_target(
         test_host: The `id` of the target that is the test host for this
             target, or `None` if this target does not have a test host.
         build_settings: A `dict` of Xcode build settings for the target.
-        conlyopts: A `list` of processed C compiler options.
-        cxxopts: A `list` of processed C++ compiler options.
-        swiftcopts: A `list` of processed Swift compiler options.
+        c_params: A C compiler params `File`.
+        cxx_params: A C++ compiler params `File`.
+        swift_params: A Swift compiler params `File`.
+        c_has_fortify_source: Whether the C compiler has fortify source enabled.
+        cxx_has_fortify_source: Whether the C++ compiler has fortify source
+            enabled.
         modulemaps: The value returned from `process_modulemaps`.
         swiftmodules: The value returned from `process_swiftmodules`.
         inputs: The value returned from `input_files.collect`.
@@ -98,9 +103,11 @@ def _make_xcode_target(
         _package_bin_dir = package_bin_dir,
         _test_host = test_host,
         _build_settings = struct(**build_settings),
-        _conlyopts = tuple(conlyopts),
-        _cxxopts = tuple(cxxopts),
-        _swiftcopts = tuple(swiftcopts),
+        _c_params = c_params,
+        _cxx_params = cxx_params,
+        _swift_params = swift_params,
+        _c_has_fortify_source = c_has_fortify_source,
+        _cxx_has_fortify_source = cxx_has_fortify_source,
         _modulemaps = modulemaps,
         _swiftmodules = tuple(swiftmodules),
         _watch_application = watch_application,
@@ -292,9 +299,15 @@ def _merge_xcode_target(*, src, dest):
         is_swift = src.is_swift,
         test_host = dest._test_host,
         build_settings = build_settings,
-        conlyopts = src._conlyopts or dest._conlyopts,
-        cxxopts = src._cxxopts or dest._cxxopts,
-        swiftcopts = src._swiftcopts or dest._swiftcopts,
+        c_params = src._c_params or dest._c_params,
+        cxx_params = src._cxx_params or dest._cxx_params,
+        swift_params = src._swift_params or dest._swift_params,
+        c_has_fortify_source = (
+            src._c_has_fortify_source or dest._c_has_fortify_source
+        ),
+        cxx_has_fortify_source = (
+            src._cxx_has_fortify_source or dest._cxx_has_fortify_source
+        ),
         modulemaps = src._modulemaps,
         swiftmodules = src._swiftmodules,
         inputs = _merge_xcode_target_inputs(
@@ -581,52 +594,22 @@ def _xcode_target_to_dto(
         xcode_generated_paths_file = xcode_generated_paths_file,
     )
 
-    def _create_compile_params(opts, opt_type):
-        if not opts:
-            return None
-
-        args = ctx.actions.args()
-        args.add_all(opts)
-
-        output = ctx.actions.declare_file(
-            "{}-params/{}.{}.{}.compile.params".format(
-                ctx.attr.name,
-                name,
-                params_index,
-                opt_type,
-            ),
-        )
-        ctx.actions.write(
-            output = output,
-            content = args,
-        )
-        return output
-
-    compile_params = []
-    c_params = _create_compile_params(xcode_target._conlyopts, "c")
-    if c_params:
-        compile_params.append(c_params)
-        dto["8"] = c_params.path
-
-    cxx_params = _create_compile_params(xcode_target._cxxopts, "cxx")
-    if cxx_params:
-        compile_params.append(cxx_params)
-        dto["9"] = cxx_params.path
-
-    swift_params = _create_compile_params(xcode_target._swiftcopts, "swift")
-    if swift_params:
-        compile_params.append(swift_params)
-        dto["0"] = swift_params.path
+    if xcode_target._c_params:
+        dto["8"] = xcode_target._c_params.path
+    if xcode_target._cxx_params:
+        dto["9"] = xcode_target._cxx_params.path
+    if xcode_target._swift_params:
+        dto["0"] = xcode_target._swift_params.path
 
     set_if_true(
         dto,
         "f",
-        "-D_FORTIFY_SOURCE=1" in xcode_target._conlyopts,
+        xcode_target._c_has_fortify_source,
     )
     set_if_true(
         dto,
         "F",
-        "-D_FORTIFY_SOURCE=1" in xcode_target._cxxopts,
+        xcode_target._cxx_has_fortify_source,
     )
 
     set_if_true(
@@ -634,9 +617,9 @@ def _xcode_target_to_dto(
         "b",
         _build_settings_to_dto(
             build_mode = build_mode,
-            c_params = c_params,
-            cxx_params = cxx_params,
-            swift_params = swift_params,
+            c_params = xcode_target._c_params,
+            cxx_params = xcode_target._cxx_params,
+            swift_params = xcode_target._swift_params,
             link_params = link_params,
             linker_products_map = linker_products_map,
             xcode_generated_paths = xcode_generated_paths,
@@ -732,7 +715,7 @@ def _xcode_target_to_dto(
         [id for id in dependencies if id not in unfocused_dependencies],
     )
 
-    return dto, replaced_dependencies, compile_params, link_params
+    return dto, replaced_dependencies, link_params
 
 def _build_settings_to_dto(
         *,
