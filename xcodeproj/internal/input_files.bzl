@@ -365,8 +365,8 @@ def _collect_input_files(
     is_resource_bundle_consuming = is_bundle and AppleResourceInfo in target
     label = target.label
 
-    resources = tuple()
-    folder_resources = tuple()
+    resources = None
+    folder_resources = None
     resource_bundles = None
     resource_bundle_dependencies = None
     xccurrentversions = None
@@ -418,9 +418,9 @@ def _collect_input_files(
         if resources_result.dependencies:
             resource_bundle_dependencies = resources_result.dependencies
         if resources_result.resources:
-            resources = resources_result.resources
+            resources = depset(resources_result.resources)
         if resources_result.folder_resources:
-            folder_resources = resources_result.folder_resources
+            folder_resources = depset(resources_result.folder_resources)
     else:
         resource_bundle_labels = depset(
             transitive = [
@@ -770,7 +770,7 @@ def _from_resource_bundle(bundle):
     return struct(
         compiling_output_group_name = None,
         entitlements = None,
-        folder_resources = bundle.folder_resources,
+        folder_resources = depset(bundle.folder_resources),
         generated = depset(),
         has_c_sources = False,
         has_cxx_sources = False,
@@ -781,7 +781,7 @@ def _from_resource_bundle(bundle):
         non_arc_srcs = [],
         pch = None,
         resource_bundle_dependencies = bundle.dependencies,
-        resources = bundle.resources,
+        resources = depset(bundle.resources),
         srcs = [],
         unfocused_generated_compiling = None,
         unfocused_generated_indexstores = None,

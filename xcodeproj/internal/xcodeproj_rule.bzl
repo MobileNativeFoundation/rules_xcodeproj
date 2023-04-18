@@ -447,13 +447,10 @@ targets.
             # Don't create targets for resource bundles in BwB mode, but still
             # include their files if they aren't unfocused
             focused_targets_extra_files.append(
-                (xcode_target.label, depset(xcode_target.inputs.resources)),
+                (xcode_target.label, xcode_target.inputs.resources),
             )
             focused_targets_extra_folders.append(
-                (
-                    xcode_target.label,
-                    depset(xcode_target.inputs.folder_resources),
-                ),
+                (xcode_target.label, xcode_target.inputs.folder_resources),
             )
             files_only_targets[xcode_target.id] = xcode_target
             continue

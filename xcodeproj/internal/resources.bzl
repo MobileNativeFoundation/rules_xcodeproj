@@ -373,8 +373,8 @@ def collect_resources(
             ]
             if bundle
         ],
-        resources = tuple(root_bundle.resources),
-        folder_resources = tuple(root_bundle.folder_resources),
+        resources = root_bundle.resources,
+        folder_resources = root_bundle.folder_resources,
         generated = generated,
         xccurrentversions = xccurrentversions,
         extra_files = extra_files,
