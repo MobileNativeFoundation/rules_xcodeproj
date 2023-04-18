@@ -372,7 +372,7 @@ def process_top_level_target(
         linker_inputs = linker_inputs,
     )
 
-    inputs = input_files.collect(
+    (target_inputs, provider_inputs) = input_files.collect(
         ctx = ctx,
         target = target,
         attrs = attrs,
@@ -389,11 +389,11 @@ def process_top_level_target(
     )
     debug_outputs = target[apple_common.AppleDebugOutputs] if apple_common.AppleDebugOutputs in target else None
     output_group_info = target[OutputGroupInfo] if OutputGroupInfo in target else None
-    outputs = output_files.collect(
+    (target_outputs, provider_outputs) = output_files.collect(
         ctx = ctx,
         debug_outputs = debug_outputs,
         id = id,
-        inputs = inputs,
+        inputs = target_inputs,
         output_group_info = output_group_info,
         swift_info = swift_info,
         top_level_product = product,
@@ -401,9 +401,9 @@ def process_top_level_target(
         transitive_infos = transitive_infos,
     )
 
-    if inputs.entitlements:
+    if target_inputs.entitlements:
         build_settings["CODE_SIGN_ENTITLEMENTS"] = build_setting_path(
-            file = inputs.entitlements,
+            file = target_inputs.entitlements,
         )
 
     package_bin_dir = join_paths_ignoring_empty(
@@ -414,15 +414,15 @@ def process_top_level_target(
     search_paths, conlyopts, cxxopts, swiftcopts, clang_opts = process_opts(
         ctx = ctx,
         build_mode = build_mode,
-        has_c_sources = inputs.has_c_sources,
-        has_cxx_sources = inputs.has_cxx_sources,
+        has_c_sources = target_inputs.has_c_sources,
+        has_cxx_sources = target_inputs.has_cxx_sources,
         target = target,
         implementation_compilation_context = implementation_compilation_context,
         package_bin_dir = package_bin_dir,
         build_settings = build_settings,
     )
 
-    if not inputs.srcs:
+    if not target_inputs.srcs:
         potential_target_merges = [
             struct(
                 src = mergeable_target,
@@ -500,12 +500,12 @@ def process_top_level_target(
         dependencies = dependencies,
         extension_infoplists = extension_infoplists,
         hosted_targets = hosted_targets,
-        inputs = inputs,
+        inputs = provider_inputs,
         is_top_level_target = True,
         is_xcode_required = True,
         lldb_context = lldb_context,
         mergable_xcode_library_targets = [],
-        outputs = outputs,
+        outputs = provider_outputs,
         potential_target_merges = potential_target_merges,
         search_paths = search_paths,
         transitive_dependencies = transitive_dependencies,
@@ -525,7 +525,7 @@ def process_top_level_target(
             search_paths = search_paths,
             modulemaps = modulemaps,
             swiftmodules = swiftmodules,
-            inputs = inputs,
+            inputs = target_inputs,
             linker_inputs = linker_inputs,
             infoplist = infoplist,
             watch_application = watch_application,
@@ -533,7 +533,7 @@ def process_top_level_target(
             app_clips = app_clips,
             dependencies = dependencies,
             transitive_dependencies = transitive_dependencies,
-            outputs = outputs,
+            outputs = target_outputs,
             lldb_context = lldb_context,
             xcode_required_targets = depset(
                 transitive = [

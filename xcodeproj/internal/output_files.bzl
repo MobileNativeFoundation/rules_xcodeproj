@@ -35,8 +35,19 @@ def _create(
             with Bazel.
 
     Returns:
-        An opaque `struct` representing the internal data structure of the
-        `output_files` module.
+        A `tuple` with containing two elements:
+
+        *   A `struct`, which will only be used within the aspect, with the
+            following fields:
+
+            *   `direct_outputs`
+            *   `generated_output_group_name`
+            *   `linking_output_group_name`
+            *   `products_output_group_name`
+
+        *   An opaque `struct`, which will end up in `XcodeProjInfo.outputs`,
+            representing the internal data structure of the `output_files`
+            module.
     """
     compiled = None
     direct_products = []
@@ -91,7 +102,7 @@ def _create(
     transitive_infoplists = depset(
         [infoplist] if infoplist else None,
         transitive = [
-            info.outputs.transitive_infoplists
+            info.outputs._transitive_infoplists
             for attr, info in transitive_infos
             if (not automatic_target_info or
                 info.target_type in automatic_target_info.xcode_targets.get(
@@ -171,17 +182,22 @@ def _create(
         ],
     )
 
-    return struct(
-        _closest_compiled = closest_compiled,
-        _is_framework = is_framework,
-        _output_group_list = output_group_list,
-        _transitive_indexestores = transitive_indexestores,
-        _transitive_products = transitive_products,
-        direct_outputs = direct_outputs if should_produce_dto else None,
-        generated_output_group_name = generated_output_group_name,
-        linking_output_group_name = linking_output_group_name,
-        products_output_group_name = products_output_group_name,
-        transitive_infoplists = transitive_infoplists,
+    return (
+        struct(
+            direct_outputs = direct_outputs if should_produce_dto else None,
+            generated_output_group_name = generated_output_group_name,
+            linking_output_group_name = linking_output_group_name,
+            products_output_group_name = products_output_group_name,
+            transitive_infoplists = transitive_infoplists,
+        ),
+        struct(
+            _closest_compiled = closest_compiled,
+            _is_framework = is_framework,
+            _output_group_list = output_group_list,
+            _transitive_indexestores = transitive_indexestores,
+            _transitive_products = transitive_products,
+            _transitive_infoplists = transitive_infoplists,
+        ),
     )
 
 def _get_outputs(*, debug_outputs, id, product, swift_info, output_group_info):
@@ -381,10 +397,6 @@ def _to_output_groups_fields(
         )
         for name, is_indexstores, files in outputs._output_group_list.to_list()
     }
-
-    # for output_group in output_groups:
-    #     if output_group.startswith("bg "):
-    #         print(output_group, output_groups[output_group])
 
     output_groups["all_b"] = depset(transitive = output_groups.values())
 

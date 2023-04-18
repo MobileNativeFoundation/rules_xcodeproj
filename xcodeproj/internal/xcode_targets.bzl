@@ -181,9 +181,9 @@ def _lldb_context_key(*, platform, product):
 
 def _to_xcode_target_inputs(inputs):
     return struct(
-        srcs = inputs.srcs,
-        non_arc_srcs = inputs.non_arc_srcs,
-        hdrs = inputs.hdrs,
+        srcs = tuple(inputs.srcs),
+        non_arc_srcs = tuple(inputs.non_arc_srcs),
+        hdrs = tuple(inputs.hdrs),
         pch = inputs.pch,
         entitlements = inputs.entitlements,
         has_c_sources = inputs.has_c_sources,
@@ -815,7 +815,7 @@ def _inputs_to_dto(inputs):
         if value:
             ret[key] = [
                 file.path
-                for file in value.to_list()
+                for file in value
             ]
 
     _process_attr("srcs", "s")
@@ -832,14 +832,14 @@ def _inputs_to_dto(inputs):
         set_if_true(
             ret,
             "r",
-            inputs.resources.to_list(),
+            inputs.resources,
         )
 
     if inputs.folder_resources:
         set_if_true(
             ret,
             "f",
-            inputs.folder_resources.to_list(),
+            inputs.folder_resources,
         )
 
     return ret

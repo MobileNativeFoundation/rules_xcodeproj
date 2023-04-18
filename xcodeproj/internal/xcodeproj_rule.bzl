@@ -447,10 +447,13 @@ targets.
             # Don't create targets for resource bundles in BwB mode, but still
             # include their files if they aren't unfocused
             focused_targets_extra_files.append(
-                (xcode_target.label, xcode_target.inputs.resources),
+                (xcode_target.label, depset(xcode_target.inputs.resources)),
             )
             focused_targets_extra_folders.append(
-                (xcode_target.label, xcode_target.inputs.folder_resources),
+                (
+                    xcode_target.label,
+                    depset(xcode_target.inputs.folder_resources),
+                ),
             )
             files_only_targets[xcode_target.id] = xcode_target
             continue
@@ -1571,7 +1574,7 @@ configurations: {}""".format(", ".join(xcode_configurations)))
     minimum_xcode_version = (ctx.attr.minimum_xcode_version or
                              _get_minimum_xcode_version(ctx = ctx))
 
-    outputs = output_files.merge(
+    (_, provider_outputs) = output_files.merge(
         ctx = ctx,
         automatic_target_info = None,
         transitive_infos = [(None, info) for info in infos],
@@ -1816,7 +1819,7 @@ done
     else:
         input_files_output_groups = {}
         output_files_output_groups = output_files.to_output_groups_fields(
-            outputs = outputs,
+            outputs = provider_outputs,
             additional_outputs = additional_outputs,
             index_import = ctx.executable._index_import,
         )

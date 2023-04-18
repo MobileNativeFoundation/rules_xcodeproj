@@ -109,23 +109,30 @@ rules_xcodeproj requires {} to have `{}` set.
         if providers._is_xcode_library_target
     ]
 
+    (_, provider_inputs) = input_files.collect(
+        ctx = ctx,
+        target = target,
+        attrs = attrs,
+        unfocused = None,
+        id = None,
+        platform = None,
+        is_bundle = False,
+        product = None,
+        linker_inputs = linker_inputs,
+        automatic_target_info = automatic_target_info,
+        transitive_infos = transitive_infos,
+    )
+    (_, provider_outputs) = output_files.merge(
+        ctx = ctx,
+        automatic_target_info = automatic_target_info,
+        transitive_infos = transitive_infos,
+    )
+
     return processed_target(
         automatic_target_info = automatic_target_info,
         compilation_providers = compilation_providers,
         dependencies = dependencies,
-        inputs = input_files.collect(
-            ctx = ctx,
-            target = target,
-            attrs = attrs,
-            unfocused = None,
-            id = None,
-            platform = None,
-            is_bundle = False,
-            product = None,
-            linker_inputs = linker_inputs,
-            automatic_target_info = automatic_target_info,
-            transitive_infos = transitive_infos,
-        ),
+        inputs = provider_inputs,
         lldb_context = lldb_contexts.collect(
             id = None,
             is_swift = is_swift,
@@ -140,11 +147,7 @@ rules_xcodeproj requires {} to have `{}` set.
             ],
         ),
         mergable_xcode_library_targets = mergable_xcode_library_targets,
-        outputs = output_files.merge(
-            ctx = ctx,
-            automatic_target_info = automatic_target_info,
-            transitive_infos = transitive_infos,
-        ),
+        outputs = provider_outputs,
         resource_bundle_informations = resource_bundle_informations,
         search_paths = None,
         transitive_dependencies = transitive_dependencies,

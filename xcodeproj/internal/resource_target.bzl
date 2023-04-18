@@ -38,7 +38,7 @@ def _process_resource_bundle(bundle, *, information):
         linker_inputs = None,
     )
 
-    outputs = output_files.collect(
+    (target_outputs, _) = output_files.collect(
         ctx = None,
         debug_outputs = None,
         id = id,
@@ -63,7 +63,7 @@ def _process_resource_bundle(bundle, *, information):
         inputs = input_files.from_resource_bundle(bundle),
         dependencies = bundle.dependencies,
         transitive_dependencies = bundle.dependencies,
-        outputs = outputs,
+        outputs = target_outputs,
     )
 
 def process_resource_bundles(bundles, *, resource_bundle_informations):
