@@ -320,7 +320,7 @@ def process_top_level_target(
         )
 
     if avoid_compilation_providers_list:
-        avoid_compilation_providers = comp_providers.merge(
+        (avoid_compilation_providers, _) = comp_providers.merge(
             transitive_compilation_providers = avoid_compilation_providers_list,
         )
     else:
