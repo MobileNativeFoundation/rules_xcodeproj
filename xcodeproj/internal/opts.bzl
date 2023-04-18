@@ -1,7 +1,6 @@
 """Functions for processing compiler and linker options."""
 
 load("@bazel_tools//tools/cpp:toolchain_utils.bzl", "find_cpp_toolchain")
-load(":collections.bzl", "uniq")
 load(":files.bzl", "is_relative_path")
 
 # C and C++ compiler flags that we don't want to propagate to Xcode.

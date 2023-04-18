@@ -30,7 +30,7 @@ def _collect_lldb_context(
 
         if implementation_compilation_context:
             framework_paths = [
-                implementation_compilation_context.framework_includes
+                implementation_compilation_context.framework_includes,
             ]
 
     return struct(
