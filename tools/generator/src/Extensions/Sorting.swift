@@ -14,6 +14,31 @@ extension PBXFileElement {
             return cached
         }
 
+        let ret = """
+\(name ?? path ?? "")\t\(name ?? "")\t\(path ?? "")
+"""
+        Self.cache[uuid] = ret
+        return ret
+    }
+}
+
+extension PBXBuildFile {
+    private static var cache: [String: String] = [:]
+    private static let cacheLock = NSRecursiveLock()
+
+    var namePathSortString: String {
+        Self.cacheLock.lock()
+        defer {
+            Self.cacheLock.unlock()
+        }
+        if let cached = Self.cache[uuid] {
+            return cached
+        }
+
+        let name = file!.name
+        let path = file!.path
+        let parent = file!.parent
+
         let parentNamePathSortString = parent?.namePathSortString ?? ""
         let ret = """
 \(name ?? path ?? "")\t\(name ?? "")\t\(path ?? "")\t\(parentNamePathSortString)
@@ -62,7 +87,7 @@ extension Array where Element == PBXFileElement {
 
 extension Sequence where Element == PBXBuildFile {
     func sortedLocalizedStandard() -> [Element] {
-        return sortedLocalizedStandard(\.file!.namePathSortString)
+        return sortedLocalizedStandard(\.namePathSortString)
     }
 }
 
