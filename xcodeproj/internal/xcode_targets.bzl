@@ -832,14 +832,14 @@ def _inputs_to_dto(inputs):
         set_if_true(
             ret,
             "r",
-            inputs.resources,
+            inputs.resources.to_list(),
         )
 
     if inputs.folder_resources:
         set_if_true(
             ret,
             "f",
-            inputs.folder_resources,
+            inputs.folder_resources.to_list(),
         )
 
     return ret
