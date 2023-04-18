@@ -13,7 +13,6 @@ load(":linker_input_files.bzl", "linker_input_files")
 load(":lldb_contexts.bzl", "lldb_contexts")
 load(":output_files.bzl", "output_files")
 load(":processed_target.bzl", "processed_target")
-load(":providers.bzl", "XcodeProjInfo")
 load(":target_id.bzl", "get_id")
 load(
     ":target_properties.bzl",
@@ -74,22 +73,17 @@ rules_xcodeproj requires {} to have `{}` set.
     else:
         resource_bundle_informations = None
 
-    deps_infos = [
-        dep[XcodeProjInfo]
-        for attr in automatic_target_info.implementation_deps
-        for dep in getattr(ctx.rule.attr, attr, [])
-        if XcodeProjInfo in dep
-    ]
-
-    compilation_providers = comp_providers.collect(
+    (
+        compilation_providers,
+        _,
+    ) = comp_providers.collect(
         cc_info = cc_info,
         objc = objc,
         swift_info = swift_info,
         is_xcode_target = False,
-        transitive_implementation_providers = [
-            info.compilation_providers
-            for info in deps_infos
-        ],
+        # Since we don't use the returned `implementation_compilation_context`,
+        # we can pass `[]` here
+        transitive_implementation_providers = [],
     )
     linker_inputs = linker_input_files.collect(
         target = target,
