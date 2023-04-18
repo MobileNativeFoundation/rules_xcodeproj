@@ -32,9 +32,12 @@ into the directory if the example app is in a separate `WORKSPACE` with
 `cd examples/integration; bazel run //:xcodeproj`.
 
 You can even test your changes in a separate project living outside this
-repo by overriding the repository in your `.bazelrc`.
+repo by overriding the module or repository in your `.bazelrc`.
 ```
-build --override_repository=rules_xcodeproj=/Users/username/rules_xcodeproj
+# With bzlmod:
+build --override_module=rules_xcodeproj=/path/to/rules_xcodeproj
+# Without bzlmod:
+build --override_repository=rules_xcodeproj=/path/to/rules_xcodeproj
 ```
 It's important to add it to the `.bazelrc` instead of passing it as a
 flag to ensure all invocations will use the same configuration.
