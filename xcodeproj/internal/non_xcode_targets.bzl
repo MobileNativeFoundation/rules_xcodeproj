@@ -13,7 +13,6 @@ load(":linker_input_files.bzl", "linker_input_files")
 load(":lldb_contexts.bzl", "lldb_contexts")
 load(":output_files.bzl", "output_files")
 load(":processed_target.bzl", "processed_target")
-load(":providers.bzl", "XcodeProjInfo")
 load(":target_id.bzl", "get_id")
 load(
     ":target_properties.bzl",
@@ -73,13 +72,6 @@ rules_xcodeproj requires {} to have `{}` set.
         ]
     else:
         resource_bundle_informations = None
-
-    deps_infos = [
-        dep[XcodeProjInfo]
-        for attr in automatic_target_info.implementation_deps
-        for dep in getattr(ctx.rule.attr, attr, [])
-        if XcodeProjInfo in dep
-    ]
 
     (
         compilation_providers,
