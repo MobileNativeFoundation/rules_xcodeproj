@@ -131,7 +131,7 @@ def process_library_target(
     )
     debug_outputs = target[apple_common.AppleDebugOutputs] if apple_common.AppleDebugOutputs in target else None
     output_group_info = target[OutputGroupInfo] if OutputGroupInfo in target else None
-    outputs = output_files.collect(
+    (target_outputs, provider_outputs) = output_files.collect(
         ctx = ctx,
         debug_outputs = debug_outputs,
         id = id,
@@ -196,7 +196,7 @@ def process_library_target(
         linker_inputs = linker_inputs,
         dependencies = dependencies,
         transitive_dependencies = transitive_dependencies,
-        outputs = outputs,
+        outputs = target_outputs,
         should_create_xcode_target = target.files != depset(),
     )
 
@@ -215,7 +215,7 @@ def process_library_target(
         library = product.file,
         lldb_context = lldb_context,
         mergable_xcode_library_targets = mergable_xcode_library_targets,
-        outputs = outputs,
+        outputs = provider_outputs,
         search_paths = search_paths,
         transitive_dependencies = transitive_dependencies,
         xcode_target = xcode_target,

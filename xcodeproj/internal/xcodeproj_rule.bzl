@@ -1574,7 +1574,7 @@ configurations: {}""".format(", ".join(xcode_configurations)))
     minimum_xcode_version = (ctx.attr.minimum_xcode_version or
                              _get_minimum_xcode_version(ctx = ctx))
 
-    outputs = output_files.merge(
+    (_, provider_outputs) = output_files.merge(
         ctx = ctx,
         automatic_target_info = None,
         transitive_infos = [(None, info) for info in infos],
@@ -1819,7 +1819,7 @@ done
     else:
         input_files_output_groups = {}
         output_files_output_groups = output_files.to_output_groups_fields(
-            outputs = outputs,
+            outputs = provider_outputs,
             additional_outputs = additional_outputs,
             index_import = ctx.executable._index_import,
         )

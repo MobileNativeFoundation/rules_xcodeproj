@@ -243,6 +243,12 @@ def _skip_target(
         transitive_infos = transitive_infos,
     )
 
+    (_, provider_outputs) = output_files.merge(
+        ctx = ctx,
+        automatic_target_info = None,
+        transitive_infos = transitive_infos,
+    )
+
     return _target_info_fields(
         args = depset(
             [
@@ -295,11 +301,7 @@ def _skip_target(
                 for _, info in transitive_infos
             ],
         ),
-        outputs = output_files.merge(
-            ctx = ctx,
-            automatic_target_info = None,
-            transitive_infos = transitive_infos,
-        ),
+        outputs = provider_outputs,
         potential_target_merges = depset(
             transitive = [
                 info.potential_target_merges
