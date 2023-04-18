@@ -846,7 +846,10 @@ extension Generator {
                    }
                 }
 
-                // `isFolder` doesn't affect sorting
+                guard lhs.isFolder == rhs.isFolder else {
+                    return lhs.isFolder
+                }
+
                 return false
             }
 
