@@ -340,7 +340,10 @@ def process_top_level_target(
         if XcodeProjInfo in dep
     ]
 
-    compilation_providers = comp_providers.merge(
+    (
+        compilation_providers,
+        implementation_compilation_context,
+    ) = comp_providers.merge(
         apple_dynamic_framework_info = apple_dynamic_framework_info,
         cc_info = target[CcInfo] if CcInfo in target else None,
         swift_info = target[SwiftInfo] if SwiftInfo in target else None,
@@ -414,9 +417,7 @@ def process_top_level_target(
         has_c_sources = inputs.has_c_sources,
         has_cxx_sources = inputs.has_cxx_sources,
         target = target,
-        implementation_compilation_context = (
-            compilation_providers.implementation_compilation_context
-        ),
+        implementation_compilation_context = implementation_compilation_context,
         package_bin_dir = package_bin_dir,
         build_settings = build_settings,
     )

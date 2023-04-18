@@ -81,15 +81,17 @@ rules_xcodeproj requires {} to have `{}` set.
         if XcodeProjInfo in dep
     ]
 
-    compilation_providers = comp_providers.collect(
+    (
+        compilation_providers,
+        _,
+    ) = comp_providers.collect(
         cc_info = cc_info,
         objc = objc,
         swift_info = swift_info,
         is_xcode_target = False,
-        transitive_implementation_providers = [
-            info.compilation_providers
-            for info in deps_infos
-        ],
+        # Since we don't use the returned `implementation_compilation_context`,
+        # we can pass `[]` here
+        transitive_implementation_providers = [],
     )
     linker_inputs = linker_input_files.collect(
         target = target,

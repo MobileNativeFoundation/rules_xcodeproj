@@ -75,7 +75,10 @@ def process_library_target(
     is_swift = SwiftInfo in target
     swift_info = target[SwiftInfo] if is_swift else None
 
-    compilation_providers = comp_providers.collect(
+    (
+        compilation_providers,
+        implementation_compilation_context,
+    ) = comp_providers.collect(
         cc_info = target[CcInfo],
         objc = objc,
         swift_info = swift_info,
@@ -154,9 +157,7 @@ def process_library_target(
         has_c_sources = inputs.has_c_sources,
         has_cxx_sources = inputs.has_cxx_sources,
         target = target,
-        implementation_compilation_context = (
-            compilation_providers.implementation_compilation_context
-        ),
+        implementation_compilation_context = implementation_compilation_context,
         package_bin_dir = package_bin_dir,
         build_settings = build_settings,
     )

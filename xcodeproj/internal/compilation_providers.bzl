@@ -66,9 +66,13 @@ def _collect_compilation_providers(
             compilation providers merged.
 
     Returns:
-        An opaque `struct` containing the linker input files for a target. The
-        `struct` should be passed to functions in the `collect_providers` module
-        to retrieve its contents.
+        A `tuple` with two elements:
+
+        -   An opaque `struct` containing the linker input files for a target.
+            The `struct` should be passed to functions in the
+            `collect_providers` module to retrieve its contents.
+        -   The implementation deps aware `CcCompilationContext` for `target`.
+
     """
     is_xcode_library_target = cc_info and is_xcode_target
 
@@ -83,15 +87,16 @@ def _collect_compilation_providers(
         ],
     )
 
-    return struct(
-        _is_swift = swift_info != None,
-        _is_top_level = False,
-        _is_xcode_library_target = is_xcode_library_target,
-        _propagated_objc = objc,
-        _transitive_compilation_providers = (),
-        cc_info = cc_info,
-        implementation_compilation_context = implementation_compilation_context,
-        objc = objc,
+    return (
+        struct(
+            _is_swift = swift_info != None,
+            _is_top_level = False,
+            _is_xcode_library_target = is_xcode_library_target,
+            _propagated_objc = objc,
+            cc_info = cc_info,
+            objc = objc,
+        ),
+        implementation_compilation_context,
     )
 
 def _merge_compilation_providers(
@@ -143,17 +148,16 @@ def _merge_compilation_providers(
     else:
         propagated_objc = objc
 
-    return struct(
-        _is_swift = swift_info != None,
-        _is_top_level = True,
-        _is_xcode_library_target = False,
-        _propagated_objc = propagated_objc,
-        _transitive_compilation_providers = tuple(
-            transitive_compilation_providers,
+    return (
+        struct(
+            _is_swift = swift_info != None,
+            _is_top_level = True,
+            _is_xcode_library_target = False,
+            _propagated_objc = propagated_objc,
+            cc_info = merged_cc_info,
+            objc = objc,
         ),
-        cc_info = merged_cc_info,
-        implementation_compilation_context = implementation_compilation_context,
-        objc = objc,
+        implementation_compilation_context,
     )
 
 def _to_objc(objc, cc_info):
