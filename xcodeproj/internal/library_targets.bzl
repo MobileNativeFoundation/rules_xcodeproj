@@ -116,7 +116,7 @@ def process_library_target(
     )
 
     modulemaps = process_modulemaps(swift_info = swift_info)
-    inputs = input_files.collect(
+    (target_inputs, provider_inputs) = input_files.collect(
         ctx = ctx,
         target = target,
         attrs = attrs,
@@ -135,15 +135,15 @@ def process_library_target(
         ctx = ctx,
         debug_outputs = debug_outputs,
         id = id,
-        inputs = inputs,
+        inputs = target_inputs,
         output_group_info = output_group_info,
         swift_info = swift_info,
         transitive_infos = transitive_infos,
     )
 
-    if inputs.pch:
+    if target_inputs.pch:
         build_settings["GCC_PREFIX_HEADER"] = build_setting_path(
-            file = inputs.pch,
+            file = target_inputs.pch,
         )
 
     package_bin_dir = join_paths_ignoring_empty(
@@ -154,8 +154,8 @@ def process_library_target(
     search_paths, conlyopts, cxxopts, swiftcopts, clang_opts = process_opts(
         ctx = ctx,
         build_mode = build_mode,
-        has_c_sources = inputs.has_c_sources,
-        has_cxx_sources = inputs.has_cxx_sources,
+        has_c_sources = target_inputs.has_c_sources,
+        has_cxx_sources = target_inputs.has_cxx_sources,
         target = target,
         implementation_compilation_context = implementation_compilation_context,
         package_bin_dir = package_bin_dir,
@@ -192,7 +192,7 @@ def process_library_target(
         search_paths = search_paths,
         modulemaps = modulemaps,
         swiftmodules = swiftmodules,
-        inputs = inputs,
+        inputs = target_inputs,
         linker_inputs = linker_inputs,
         dependencies = dependencies,
         transitive_dependencies = transitive_dependencies,
@@ -211,7 +211,7 @@ def process_library_target(
         automatic_target_info = automatic_target_info,
         compilation_providers = compilation_providers,
         dependencies = dependencies,
-        inputs = inputs,
+        inputs = provider_inputs,
         library = product.file,
         lldb_context = lldb_context,
         mergable_xcode_library_targets = mergable_xcode_library_targets,
