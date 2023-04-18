@@ -274,6 +274,8 @@ swift_library(
         ignore_version_differences = ignore_version_differences,
     )
 
+    # jpsim fork for async writes
+    xcodeproj_git_sha = "5acbea1bb114e93d62741e8fefef87cde667e48a"
     _maybe(
         http_archive,
         name = "com_github_tuist_xcodeproj",
@@ -290,9 +292,9 @@ swift_library(
     ],
 )
 """,
-        sha256 = "70a4504d5cfd30e1c1968df3929bf0c40cba91bdb2ef0e3143c0e72bbe1d8092",
-        strip_prefix = "XcodeProj-8.9.0",
-        url = "https://github.com/tuist/XcodeProj/archive/refs/tags/8.9.0.tar.gz",
+        sha256 = "5835d539f5e83c3d61dc5f8cc3cbeb363c9c3f83a6145a81a165de56fb527b86",
+        strip_prefix = "XcodeProj-%s" % xcodeproj_git_sha,
+        url = "https://github.com/jpsim/XcodeProj/archive/%s.tar.gz" % xcodeproj_git_sha,
         ignore_version_differences = ignore_version_differences,
     )
 

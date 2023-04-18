@@ -8,8 +8,8 @@ extension Generator {
         directories: Directories,
         internalFiles: [Path: String],
         to outputPath: Path
-    ) throws {
-        try xcodeProj.write(path: outputPath)
+    ) async throws {
+        try await xcodeProj.write(path: outputPath)
 
         let internalOutputPath = outputPath + directories.internalDirectoryName
 

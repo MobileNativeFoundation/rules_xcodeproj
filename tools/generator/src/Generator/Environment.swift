@@ -141,5 +141,5 @@ struct Environment {
         _ directories: Directories,
         _ internalFiles: [Path: String],
         _ outputPath: Path
-    ) throws -> Void
+    ) async throws -> Void
 }
