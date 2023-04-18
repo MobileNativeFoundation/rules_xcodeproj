@@ -741,7 +741,7 @@ def _collect_input_files(
                 for attr, info in transitive_infos
                 if (info.inputs.has_generated_files and
                     (info.target_type in
-                    automatic_target_info.xcode_targets.get(attr, [None])))
+                     automatic_target_info.xcode_targets.get(attr, [None])))
             ]),
             indexstores = indexstores_depset,
             extra_files = depset(
