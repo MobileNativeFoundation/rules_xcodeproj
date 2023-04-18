@@ -274,9 +274,6 @@ swift_library(
         ignore_version_differences = ignore_version_differences,
     )
 
-    # Main branch as of 2022-09-07. Contains implementation for
-    # XCScheme.ExecutionAction.shellToInvoke
-    xcodeproj_git_sha = "b7e93122d08e59497211ea12f4da73e6a4d7d598"
     _maybe(
         http_archive,
         name = "com_github_tuist_xcodeproj",
@@ -293,9 +290,9 @@ swift_library(
     ],
 )
 """,
-        sha256 = "376f13a99dcb70961ebde9fcaa7bfeb360422990161b7fb35954937f671574dc",
-        strip_prefix = "XcodeProj-%s" % xcodeproj_git_sha,
-        url = "https://github.com/tuist/XcodeProj/archive/%s.tar.gz" % xcodeproj_git_sha,
+        sha256 = "70a4504d5cfd30e1c1968df3929bf0c40cba91bdb2ef0e3143c0e72bbe1d8092",
+        strip_prefix = "XcodeProj-8.9.0",
+        url = "https://github.com/tuist/XcodeProj/archive/refs/tags/8.9.0.tar.gz",
         ignore_version_differences = ignore_version_differences,
     )
 
