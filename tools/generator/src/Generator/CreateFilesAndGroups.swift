@@ -1,5 +1,6 @@
 // swiftlint:disable file_length
 import Foundation
+import OrderedCollections
 import PathKit
 import XcodeProj
 
@@ -40,11 +41,13 @@ extension Generator {
     static let externalFileListPath: Path = "external.xcfilelist"
     static let generatedFileListPath: Path = "generated.xcfilelist"
 
-    private static let localizedGroupExtensions: Set<String> = [
-        "intentdefinition",
-        "storyboard",
-        "strings",
-        "xib",
+    private static let folderTypeFileExtensions: Set<String?> = [
+       "bundle",
+       "docc",
+       "framework",
+       "scnassets",
+       "xcassets",
+       "xcdatamodel",
     ]
 
     // Most of the logic here is a modified version of
@@ -69,7 +72,6 @@ extension Generator {
         usesGeneratedFileList: Bool
     ) {
         var fileReferences: [FilePath: PBXFileReference] = [:]
-        var normalGroups: [FilePath: PBXGroup] = [:]
         var variantGroups: [FilePath: PBXVariantGroup] = [:]
         var xcVersionGroups: [FilePath: XCVersionGroup] = [:]
         var knownRegions: Set<String> = []
@@ -77,11 +79,13 @@ extension Generator {
             ("", forFixtures ? "$(SRCROOT)" : directories.workspace),
         ]
 
+        /// Calculates the needed `sourceTree`, `name`, and `path` for a file
+        /// reference. This function exists solely to deal with symlinked
+        /// external repositories. Xcode will act slow with, and fail to index,
+        /// files that are under symlinks.
         func resolveFilePath(
-            _ filePath: FilePath,
-            nonSpecialRelativePath: Path,
-            pathComponent: String,
-            offset: Int,
+            filePathStr: String,
+            node: FileTreeNode,
             isExternal: Bool,
             isGroup: Bool
         ) -> (
@@ -89,8 +93,22 @@ extension Generator {
             name: String?,
             path: String
         ) {
-            if isExternal, offset <= 2, let symlinkDest = try? (
-                directories.absoluteExternal + nonSpecialRelativePath
+            // `directoryLevel`` 0 is the root group
+            // `directoryLevel`` 1 is "external/"
+            // `directoryLevel`` 2 and 3 can be symlinks that we need to resolve
+            guard isExternal && node.directoryLevel <= 3 else {
+                return (
+                    sourceTree: .group,
+                    name: nil,
+                    path: node.name
+                )
+            }
+
+            // Drop "external/"
+            let externalRelativePathStr = Path(String(filePathStr.dropFirst(9)))
+
+            if let symlinkDest = try? (
+                directories.absoluteExternal + externalRelativePathStr
             ).symlinkDestination() {
                 let workspaceDirectoryComponents = directories
                     .workspaceComponents
@@ -106,7 +124,7 @@ extension Generator {
                     if isGroup {
                         resolvedRepositories.append(
                             (
-                                "/external" + nonSpecialRelativePath,
+                                "/external" + externalRelativePathStr,
                                 "$(SRCROOT)" + relativePath
                             )
                         )
@@ -114,19 +132,19 @@ extension Generator {
 
                     return (
                         sourceTree: .sourceRoot,
-                        name: pathComponent,
+                        name: node.name,
                         path: relativePath.string
                     )
                 } else {
                     if isGroup {
                         resolvedRepositories.append(
-                            ("/external" + nonSpecialRelativePath, symlinkDest)
+                            ("/external" + externalRelativePathStr, symlinkDest)
                         )
                     }
 
                     return (
                         sourceTree: .absolute,
-                        name: pathComponent,
+                        name: node.name,
                         path: symlinkDest.string
                     )
                 }
@@ -134,274 +152,477 @@ extension Generator {
                 return (
                     sourceTree: .group,
                     name: nil,
-                    path: pathComponent
+                    path: node.name
                 )
             }
         }
 
-        func createElement(
-            in pbxProj: PBXProj,
-            filePath: FilePath,
-            nonSpecialRelativePath: Path,
-            pathComponent: String,
-            offset: Int,
-            isExternal: Bool,
-            parentIsLocalizedContainer: Bool,
-            isLeaf: Bool
-        ) -> (PBXFileElement, isNew: Bool)? {
-            if filePath.path.isLocalizedContainer {
-                // Localized container (e.g. /path/to/en.lproj)
-                // We don't add it directly; an element will get added once the
-                // next path component is evaluated.
-                return nil
-            } else if parentIsLocalizedContainer {
-                // Localized file (e.g. /path/to/en.lproj/foo.png)
-                if let variantGroup = variantGroups[filePath] {
-                    return (variantGroup, false)
-                }
-                return addLocalizedFile(filePath: filePath)
-            } else if filePath.path.isCoreDataContainer {
-                if let xcVersionGroup = xcVersionGroups[filePath] {
-                    return (xcVersionGroup, false)
-                }
+        /// This function exists, instead of simply reusing
+        /// `handle{FileListPath,}Node`, to be as efficient as possible when
+        /// we don't need to actually create `PBXFileElement`s and just need to
+        /// know what the `FilePath`s would be. This happens when an element
+        /// in the tree is a "folder type file" like localized files or CoreData
+        /// models.
+        func collectFilePaths(
+            node: FileTreeNode,
+            filePathPrefix: String
+        ) -> [FilePath] {
+            let filePathStr = "\(filePathPrefix)\(node.name)"
+            let filePath = FilePath(
+                path: Path(filePathStr),
+                isFolder: node.isFolder
+            )
 
-                let (sourceTree, name, path) = resolveFilePath(
-                    filePath,
-                    nonSpecialRelativePath: nonSpecialRelativePath,
-                    pathComponent: pathComponent,
-                    offset: offset,
-                    isExternal: isExternal,
-                    isGroup: true
-                )
-
-                let xcVersionGroup = XCVersionGroup(
-                    path: path,
-                    name: name,
-                    sourceTree: sourceTree,
-                    versionGroupType: filePath.path.versionGroupType
-                )
-                pbxProj.add(object: xcVersionGroup)
-
-                xcVersionGroups[filePath] = xcVersionGroup
-
-                return (xcVersionGroup, true)
-            } else if !isLeaf && !filePath.path.isCoreDataModel {
-                if let group = normalGroups[filePath] {
-                    return (group, false)
-                }
-
-                let group = createGroup(
-                    filePath: filePath,
-                    nonSpecialRelativePath: nonSpecialRelativePath,
-                    pathComponent: pathComponent,
-                    offset: offset,
-                    isExternal: isExternal
-                )
-                return (group, true)
+            if node.children.isEmpty {
+                return [filePath]
             } else {
-                if let fileReference = fileReferences[filePath] {
-                    return (fileReference, false)
+                let childFilePathPrefix = "\(filePathStr)/"
+                var filePaths = node.children.flatMap { node in
+                    collectFilePaths(
+                        node: node,
+                        filePathPrefix: childFilePathPrefix
+                    )
                 }
-
-                let (sourceTree, name, path) = resolveFilePath(
-                    filePath,
-                    nonSpecialRelativePath: nonSpecialRelativePath,
-                    pathComponent: pathComponent,
-                    offset: offset,
-                    isExternal: isExternal,
-                    isGroup: false
-                )
-
-                let lastKnownFileType: String?
-                if filePath.isFolder && !filePath.path.isFolderTypeFileSource {
-                    lastKnownFileType = "folder"
-                } else {
-                    lastKnownFileType = filePath.path.lastKnownFileType
-                }
-                let file = PBXFileReference(
-                    sourceTree: sourceTree,
-                    name: name,
-                    explicitFileType: filePath.path.explicitFileType,
-                    lastKnownFileType: lastKnownFileType,
-                    path: path
-                )
-                pbxProj.add(object: file)
-
-                fileReferences[filePath] = file
-
-                return (file, true)
+                filePaths.append(filePath)
+                return filePaths
             }
         }
 
+        /// Creates a normal file (i.e. `PBXFileReference`).
+        func createFile(
+            node: FileTreeNode,
+            filePathStr: String,
+            isExternal: Bool
+        ) -> (
+            filePaths: [FilePath],
+            reference: PBXFileReference,
+            isFileLike: Bool
+        ) {
+            let (sourceTree, name, path) = resolveFilePath(
+                filePathStr: filePathStr,
+                node: node,
+                isExternal: isExternal,
+                isGroup: false
+            )
+
+            let ext = node.extension()
+
+            let isFileLike: Bool
+            let lastKnownFileType: String?
+            if node.isFolder && !folderTypeFileExtensions.contains(ext) {
+                lastKnownFileType = "folder"
+                isFileLike = false
+            } else {
+                if ext == "inc" {
+                    // XcodeProj treats `.inc` files as Pascal source files, but
+                    // they're commonly C/C++ headers, so map them as such here.
+                    lastKnownFileType = Xcode.filetype(extension: "h")
+                } else {
+                    lastKnownFileType = ext.flatMap { ext in
+                        return Xcode.filetype(extension: ext)
+                    }
+                }
+                isFileLike = true
+            }
+
+            let explicitFileType: String?
+            if node.name == "BUILD" || node.name == "BUILD.bazel" {
+                explicitFileType = Xcode.filetype(extension: "py")
+            } else if node.name == "Podfile" {
+                explicitFileType = Xcode.filetype(extension: "rb")
+            } else {
+                explicitFileType = nil
+            }
+
+            let file = PBXFileReference(
+                sourceTree: sourceTree,
+                name: name,
+                explicitFileType: explicitFileType,
+                lastKnownFileType: lastKnownFileType,
+                path: path
+            )
+            pbxProj.add(object: file)
+
+            let filePath = FilePath(
+                path: Path(filePathStr),
+                isFolder: node.isFolder
+            )
+            fileReferences[filePath] = file
+
+            let childFilePathPrefix = "\(filePathStr)/"
+            var filePaths = node.children.flatMap { node in
+                return collectFilePaths(
+                    node: node,
+                    filePathPrefix: childFilePathPrefix
+                )
+            }
+            filePaths.append(filePath)
+
+            return (filePaths, file, isFileLike)
+        }
+
+        /// Creates a normal group (i.e. `PBXGroup`).
         func createGroup(
-            filePath: FilePath,
-            nonSpecialRelativePath: Path,
-            pathComponent: String,
-            offset: Int,
+            node: FileTreeNode,
+            children: [HandledNode],
+            filePathStr: String,
             isExternal: Bool
         ) -> PBXGroup {
             let (sourceTree, name, path) = resolveFilePath(
-                filePath,
-                nonSpecialRelativePath: nonSpecialRelativePath,
-                pathComponent: pathComponent,
-                offset: offset,
+                filePathStr: filePathStr,
+                node: node,
                 isExternal: isExternal,
                 isGroup: true
             )
 
             let group = PBXGroup(
+                children: children
+                    .toFileElements(createVariantGroup: createVariantGroup),
                 sourceTree: sourceTree,
                 name: name,
                 path: path
             )
             pbxProj.add(object: group)
-            normalGroups[filePath] = group
 
             return group
         }
 
-        func addLocalizedFile(
-            filePath: FilePath
-        ) -> (PBXVariantGroup, isNew: Bool) {
-            // e.g. App.strings
-            let fileName = filePath.path.lastComponent
-            // e.g. resources/en.lproj
-            let localizedContainerFilePath = filePath.parent()
-            // e.g. resources/App.strings
-            let groupFilePath = localizedContainerFilePath.parent() + fileName
+        /// Creates a `PBXFileReference` for a localized file (e.g.
+        /// "en.lproj/Foo.xib") and returns it and other information that is
+        /// needed to group it into the correct "variant group".
+        func createLocalizedFile(
+            node: FileTreeNode,
+            language: String,
+            sourceTree: PBXSourceTree,
+            parentPath: String,
+            filePathStr: String,
+            isExternal: Bool
+        ) -> LocalizedFile {
+            let (basenameWithoutExt, ext) = node.splitExtension()
 
-            // TODO: Use `resolveFilePath`?
-
-            // Variant group
-            let variantGroup: PBXVariantGroup
-            let isNew: Bool
-            if let existingGroup = existingVariantGroup(containing: filePath) {
-                isNew = false
-                variantGroup = existingGroup.group
-                // For variant groups formed by Interface Builder files (".xib"
-                // or ".storyboard") and corresponding ".strings" files, name
-                // and path of the group must have the extension of the
-                // Interface Builder file. Since the order in which such groups
-                // are formed is not deterministic, we must change the name and
-                // path here as necessary.
-                if ["xib", "storyboard"].contains(filePath.path.extension),
-                   !variantGroup.name!.hasSuffix(fileName)
-                {
-                    variantGroup.name = fileName
-                    variantGroups[existingGroup.filePath] = nil
-                    variantGroups[groupFilePath] = variantGroup
-                }
-            } else {
-                isNew = true
-                variantGroup = PBXVariantGroup(
-                    children: [],
-                    sourceTree: .group,
-                    name: fileName
-                )
-                pbxProj.add(object: variantGroup)
-                variantGroups[groupFilePath] = variantGroup
-            }
-
-            // Localized element
-            let containedPath = Path(
-                components: [
-                    localizedContainerFilePath.path.lastComponent,
-                    fileName,
-                ]
-            )
-            let language = localizedContainerFilePath.path
-                .lastComponentWithoutExtension
-
-            let fileReference = PBXFileReference(
+            let file = PBXFileReference(
                 sourceTree: .group,
                 name: language,
-                lastKnownFileType: filePath.path.lastKnownFileType,
-                path: containedPath.string
+                lastKnownFileType: ext
+                    .flatMap { Xcode.filetype(extension: $0) },
+                path: "\(parentPath)/\(node.name)"
             )
-            pbxProj.add(object: fileReference)
-            variantGroup.addChild(fileReference)
+            pbxProj.add(object: file)
 
-            // When a localized file is copied, we should grab the group instead
-            variantGroups[filePath] = variantGroup
+            let filePath = FilePath(
+                path: Path(filePathStr),
+                isFolder: node.isFolder
+            )
+            let childFilePathPrefix = "\(filePathStr)/"
+            var filePaths = node.children.flatMap { node in
+                return collectFilePaths(
+                    node: node,
+                    filePathPrefix: childFilePathPrefix
+                )
+            }
+            filePaths.append(filePath)
 
+            return LocalizedFile(
+                name: node.name,
+                basenameWithoutExt: basenameWithoutExt,
+                ext: ext,
+                sourceTree: sourceTree,
+                filePaths: filePaths,
+                reference: file
+            )
+        }
+
+        /// Handles a node that represents a given localization language (e.g.
+        /// "en.lproj"). Returns an array of `LocalizedFile` which contains
+        /// information need to group the files into "variant groups".
+        func handleVariantGroupLanguage(
+            node: FileTreeNode,
+            language: String,
+            filePathStr: String,
+            isExternal: Bool
+        ) -> [LocalizedFile] {
             knownRegions.insert(language)
 
-            return (variantGroup, isNew)
+            let (sourceTree, _, path) = resolveFilePath(
+                filePathStr: filePathStr,
+                node: node,
+                isExternal: isExternal,
+                isGroup: true
+            )
+
+            let localizedFiles = node.children
+                .map { node in
+                    return createLocalizedFile(
+                        node: node,
+                        language: language,
+                        sourceTree: sourceTree,
+                        parentPath: path,
+                        filePathStr: "\(filePathStr)/\(node.name)",
+                        isExternal: isExternal
+                    )
+                }
+
+            return localizedFiles
         }
 
-        func existingVariantGroup(
-            containing filePath: FilePath
-        ) -> (group: PBXVariantGroup, filePath: FilePath)? {
-            let groupBaseFilePath = filePath.parent().parent()
+        /// Creates a grouping of localizations for a file. Xcode calls these
+        /// "variant groups". The name will be the filename that has one or
+        /// more localizations. For example, the variant group "Foo.xib" will
+        /// have children like "Base.lproj/Foo.xib" and "en.lproj/Foo.strings".
+        func createVariantGroup(
+            name: String,
+            sourceTree: PBXSourceTree,
+            children: [PBXFileElement],
+            filePaths: [FilePath]
+        ) -> PBXVariantGroup {
+            let variantGroup = PBXVariantGroup(
+                children: children,
+                sourceTree: sourceTree,
+                name: name
+            )
+            pbxProj.add(object: variantGroup)
 
-            // Variant groups used to localize Interface Builder or Intent
-            // Definition files (".xib", ".storyboard", or ".intentdefition")
-            // can contain files of these, respectively, and corresponding
-            // ".strings" files. However, the groups' names must always use the
-            // extension of the main file, i.e. either ".xib" or ".storyboard".
-            // Since the order in which such groups are formed is not
-            // deterministic, we must check for existing groups having the same
-            // name as the localized file and any of these extensions.
-            if let fileExtension = filePath.path.extension,
-               Self.localizedGroupExtensions.contains(fileExtension)
-            {
-                for groupExtension in Self.localizedGroupExtensions {
-                    let groupFilePath = groupBaseFilePath + """
-\(filePath.path.lastComponentWithoutExtension).\(groupExtension)
-"""
-                    if let variantGroup = variantGroups[groupFilePath] {
-                        return (variantGroup, groupFilePath)
+            // When a localized file is copied into a bundle, we should grab the
+            // group instead
+            filePaths.forEach {
+                variantGroups[$0] = variantGroup
+            }
+
+            return variantGroup
+        }
+
+        /// Creates a ".xcdatamodel" group.
+        func createVersionGroup(
+            node: FileTreeNode,
+            filePathStr: String,
+            isExternal: Bool
+        ) -> XCVersionGroup {
+            let (sourceTree, name, path) = resolveFilePath(
+                filePathStr: filePathStr,
+                node: node,
+                isExternal: isExternal,
+                isGroup: true
+            )
+
+            let children = node.children.map { node in
+                return createFile(
+                    node: node,
+                    filePathStr: "\(filePathStr)/\(node.name)",
+                    isExternal: isExternal
+                )
+            }
+
+            let xcVersionGroup = XCVersionGroup(
+                path: path,
+                name: name,
+                sourceTree: sourceTree,
+                versionGroupType: "wrapper.xcdatamodel",
+                children: children.map { $0.reference }
+            )
+            pbxProj.add(object: xcVersionGroup)
+
+            let filePath = FilePath(
+                path: Path(filePathStr),
+                isFolder: false
+            )
+            xcVersionGroups[filePath] = xcVersionGroup
+
+            // When a model file is copied into a bundle, we should grab the
+            // group instead
+            children.forEach {
+                $0.filePaths.forEach { xcVersionGroups[$0] = xcVersionGroup }
+            }
+
+            return xcVersionGroup
+        }
+
+        /// This function exists, instead of just reusing
+        /// `handleFileListPathNode`, in order to be as efficient as possible.
+        /// We only need to create and collect filelist paths for the
+        /// "external/" and "bazel-out/" subtrees.
+        func handleNode(
+            _ node: FileTreeNode,
+            filePathPrefix: String,
+            isExternal: Bool
+        ) -> HandledNode {
+            let filePathStr = "\(filePathPrefix)\(node.name)"
+            let childFilePathPrefix = "\(filePathStr)/"
+
+            if node.children.isEmpty {
+                let (_, element, isFileLike) = createFile(
+                    node: node,
+                    filePathStr: filePathStr,
+                    isExternal: isExternal
+                )
+                if isFileLike {
+                    return .fileLikeElement(element)
+                } else {
+                    return .groupLikeElement(element)
+                }
+            } else {
+                let (basenameWithoutExt, ext) = node.splitExtension()
+                switch ext {
+                case "lproj":
+                    return .variantGroupLanguage(handleVariantGroupLanguage(
+                        node: node,
+                        language: basenameWithoutExt,
+                        filePathStr: filePathStr,
+                        isExternal: isExternal
+                    ))
+                case "xcdatamodeld":
+                    return .fileLikeElement(createVersionGroup(
+                        node: node,
+                        filePathStr: filePathStr,
+                        isExternal: isExternal
+                    ))
+                default:
+                    let children = node.children.map { node in
+                        return handleNode(
+                            node,
+                            filePathPrefix: childFilePathPrefix,
+                            isExternal: isExternal
+                        )
                     }
+                    return .groupLikeElement(createGroup(
+                        node: node,
+                        children: children,
+                        filePathStr: filePathStr,
+                        isExternal: isExternal
+                    ))
                 }
             }
-
-            let groupFilePath = groupBaseFilePath + filePath.path.lastComponent
-            guard let variantGroup = variantGroups[groupFilePath] else {
-                return nil
-            }
-
-            return (variantGroup, groupFilePath)
         }
 
-        var externalGroup: PBXGroup?
-        func createExternalGroup() -> PBXGroup {
-            if let externalGroup = externalGroup {
-                return externalGroup
+        /// Processes a `FileTreeNode`, creating file elements and collecting
+        /// filelist paths. The nodes will not be the root "bazel-out/" or
+        /// "external/" nodes, those will be handled by
+        /// `handleBazelGroupNode()`.
+        func handleFileListPathNode(
+            _ node: FileTreeNode,
+            filePathPrefix: String,
+            fileListPathPrefix: String,
+            isExternal: Bool
+        ) -> (handledNode: HandledNode, fileListPaths: [String]) {
+            let filePathStr = "\(filePathPrefix)\(node.name)"
+            let childFilePathPrefix = "\(filePathStr)/"
+            let childFileListPathPrefix = "\(fileListPathPrefix)/\(node.name)"
+
+            if node.children.isEmpty {
+                let (_, element, isFileLike) = createFile(
+                    node: node,
+                    filePathStr: filePathStr,
+                    isExternal: isExternal
+                )
+                return (
+                    isFileLike ?
+                        .fileLikeElement(element) : .groupLikeElement(element),
+                    isExternal || !node.isFolder ?
+                        [childFileListPathPrefix]: []
+                )
+            } else {
+                let (basenameWithoutExt, ext) = node.splitExtension()
+                switch ext {
+                case "lproj":
+                    let fileListPaths = node.children.map { node in
+                        return "\(childFilePathPrefix)\(node.name)"
+                    }
+                    let variantGroupLanguage = handleVariantGroupLanguage(
+                        node: node,
+                        language: basenameWithoutExt,
+                        filePathStr: filePathStr,
+                        isExternal: isExternal
+                    )
+                    return (
+                        .variantGroupLanguage(variantGroupLanguage),
+                        fileListPaths
+                    )
+                case "xcdatamodeld":
+                    let fileListPaths = node.children.map { node in
+                        return "\(childFilePathPrefix)\(node.name)"
+                    }
+                    let group = createVersionGroup(
+                        node: node,
+                        filePathStr: filePathStr,
+                        isExternal: isExternal
+                    )
+                    return (.fileLikeElement(group), fileListPaths)
+                default:
+                    let childrenAndFileListPaths = node.children.map { node in
+                        return handleFileListPathNode(
+                            node,
+                            filePathPrefix: childFilePathPrefix,
+                            fileListPathPrefix: childFileListPathPrefix,
+                            isExternal: isExternal
+                        )
+                    }
+                    let group = createGroup(
+                        node: node,
+                        children: childrenAndFileListPaths
+                            .map { $0.handledNode },
+                        filePathStr: filePathStr,
+                        isExternal: isExternal
+                    )
+                    return (
+                        .groupLikeElement(group),
+                        childrenAndFileListPaths.flatMap { $0.fileListPaths }
+                    )
+                }
+            }
+        }
+
+        enum BazelNodeType {
+            case external
+            case bazelOut
+        }
+
+        /// Handles the "bazel-out/" or "external/" root nodes. Is basically the
+        /// same as `handleFileListPathNode()`.
+        func handleBazelGroupNode(
+            _ node: FileTreeNode,
+            _ bazelNodeType: BazelNodeType
+        ) -> (group: PBXGroup, fileListPaths: [String]) {
+            let filePathPrefix: String
+            let fileListPathPrefix: String
+            let isExternal: Bool
+            let groupName: String
+            let groupPath: String
+            switch bazelNodeType {
+            case .external:
+                filePathPrefix = "external/"
+                fileListPathPrefix = "$(BAZEL_EXTERNAL)"
+                isExternal = true
+                groupName = "Bazel External Repositories"
+                groupPath = "../../external"
+            case .bazelOut:
+                filePathPrefix = "bazel-out/"
+                fileListPathPrefix = "$(BAZEL_OUT)"
+                isExternal = false
+                groupName = "Bazel Generated Files"
+                groupPath = "bazel-out"
+            }
+
+            let childrenAndFileListPaths = node.children.map { node in
+                return handleFileListPathNode(
+                    node,
+                    filePathPrefix: filePathPrefix,
+                    fileListPathPrefix: fileListPathPrefix,
+                    isExternal: isExternal
+                )
             }
 
             let group = PBXGroup(
+                children: childrenAndFileListPaths.lazy.map(\.handledNode)
+                    .toFileElements(createVariantGroup: createVariantGroup),
                 sourceTree: .sourceRoot,
-                name: "Bazel External Repositories",
-                path: "../../external"
+                name: groupName,
+                path: groupPath
             )
             pbxProj.add(object: group)
-            normalGroups[.init(path: "external")] = group
-            externalGroup = group
 
-            return group
-        }
-
-        var generatedGroup: PBXGroup?
-        func createGeneratedGroup() -> PBXGroup {
-            if let generatedGroup = generatedGroup {
-                return generatedGroup
-            }
-
-            let group = PBXGroup(
-                sourceTree: .sourceRoot,
-                name: "Bazel Generated Files",
-                path: "bazel-out"
+            return (
+                group,
+                childrenAndFileListPaths.flatMap { $0.fileListPaths }
             )
-            pbxProj.add(object: group)
-            normalGroups[.init(path: "bazel-out")] = group
-            generatedGroup = group
-
-            return group
-        }
-
-        func isSpecialGroup(_ element: PBXFileElement) -> Bool {
-            return element == externalGroup
-                || element == generatedGroup
         }
 
         // Collect all files
@@ -435,108 +656,34 @@ extension Generator {
             }
         }
 
-        var rootElements: [PBXFileElement] = []
+        let rootNode = try calculateFileTree(filePaths: allInputPaths)
+
+        var externalGroup: PBXGroup?
+        var generatedGroup: PBXGroup?
+        var handledNodes: [HandledNode] = []
         var externalFileListPaths: [String] = []
         var generatedFileListPaths: [String] = []
-        for fullFilePath in allInputPaths {
-            var components = fullFilePath.path.string.split(separator: "/")
-
-            var filePath: FilePath
-            var lastElement: PBXFileElement?
-            let isExternal: Bool
-            switch components[0] {
+        for node in rootNode.children {
+            switch node.name {
             case "external":
-                filePath = .init(path: "external")
-                lastElement = createExternalGroup()
-                components = Array(components[1...])
-                externalFileListPaths.append(
-                    (["$(BAZEL_EXTERNAL)"] + components).joined(separator: "/")
-                )
-                isExternal = true
+                (
+                    externalGroup,
+                    externalFileListPaths
+                ) = handleBazelGroupNode(node, .external)
             case "bazel-out":
-                filePath = .init(path: "bazel-out")
-                lastElement = createGeneratedGroup()
-                components = Array(components[1...])
-                if !fullFilePath.isFolder {
-                    generatedFileListPaths.append(
-                        (["$(BAZEL_OUT)"] + components).joined(separator: "/")
-                    )
-                }
-                isExternal = false
+                (
+                    generatedGroup,
+                    generatedFileListPaths
+                ) = handleBazelGroupNode(node, .bazelOut)
             default:
-                filePath = .init(path: Path())
-                lastElement = nil
-                isExternal = false
-            }
-
-            var coreDataContainer: XCVersionGroup?
-            var parentIsLocalizedContainer = false
-            var nonSpecialRelativePath = Path()
-            for (offset, component) in components.enumerated() {
-                let component = String(component)
-
-                // swiftlint:disable:next shorthand_operator
-                filePath = filePath + component
-                nonSpecialRelativePath = nonSpecialRelativePath + component
-                let isLeaf = offset == components.count - 1
-                filePath.isFolder = isLeaf && fullFilePath.isFolder
-                if
-                    let (element, isNew) = createElement(
-                        in: pbxProj,
-                        filePath: filePath,
-                        nonSpecialRelativePath: nonSpecialRelativePath,
-                        pathComponent: component,
-                        offset: offset,
-                        isExternal: isExternal,
-                        parentIsLocalizedContainer: parentIsLocalizedContainer,
-                        isLeaf: isLeaf
-                    )
-                {
-                    if isNew {
-                        if let group = lastElement as? PBXGroup {
-                            // This will be the case for all non-root elements
-                            group.addChild(element)
-                        } else if !isSpecialGroup(element) {
-                            rootElements.append(element)
-                        }
-
-                        if let coreDataContainer = coreDataContainer {
-                            // When a model file is copied, we should grab
-                            // the group instead
-                            xcVersionGroups[filePath] = coreDataContainer
-                        }
-                    }
-
-                    if let element = element as? XCVersionGroup {
-                        coreDataContainer = element
-                    }
-
-                    lastElement = element
-
-                    // End early if we get back a file element. This can happen
-                    // if a folder-like file is added.
-                    if element is PBXFileReference { break }
-                } else {
-                    // TODO: Indicate this better
-                    parentIsLocalizedContainer = true
-                }
-            }
-
-            if let coreDataContainer = coreDataContainer {
-                // When a model file is copied, we should grab
-                // the group instead
-                xcVersionGroups[fullFilePath] = coreDataContainer
-            } else if fullFilePath != filePath {
-                // We need to add extra entries for file-like folders, to allow
-                // easy copying of resources
-                guard let reference = lastElement as? PBXFileReference else {
-                    throw PreconditionError(message: """
-`lastElement` wasn't a `PBXFileReference`
-""")
-                }
-                fileReferences[fullFilePath] = reference
+                handledNodes.append(
+                    handleNode(node, filePathPrefix: "", isExternal: false)
+                )
             }
         }
+
+        var rootElements = handledNodes
+            .toFileElements(createVariantGroup: createVariantGroup)
 
         var internalGroup: PBXGroup?
         var compileStub: PBXFileReference?
@@ -595,19 +742,16 @@ extension Generator {
         let usesGeneratedFileList =
             addXCFileList(generatedFileListPath, paths: generatedFileListPaths)
 
-        // Handle special groups
-
-        rootElements.sortGroupedLocalizedStandard()
+        // Handle special groups. We add these groups last to ensure their
+        // order, which is different from normal sorting. They need to come
+        // after the normal files and groups.
         if let externalGroup = externalGroup {
-            externalGroup.children.sortGroupedLocalizedStandard()
             rootElements.append(externalGroup)
         }
         if let generatedGroup = generatedGroup {
-            generatedGroup.children.sortGroupedLocalizedStandard()
             rootElements.append(generatedGroup)
         }
         if let internalGroup = internalGroup {
-            internalGroup.children.sortGroupedLocalizedStandard()
             rootElements.append(internalGroup)
         }
 
@@ -662,6 +806,265 @@ extension Generator {
 
             xcVerisonGroup.currentVersion = versionFile
         }
+    }
+
+    private static func calculateFileTree(
+        filePaths: Set<FilePath>
+    ) throws -> FileTreeNode {
+        guard !filePaths.isEmpty else {
+            throw PreconditionError(message: "`filePaths` was empty")
+        }
+
+        var nodesByComponentCount: [Int: [FileTreeNodeToVisit]] = [:]
+        for filePath in filePaths {
+            let components = filePath.path.string.split(separator: "/")
+            nodesByComponentCount[components.count, default: []]
+                .append(FileTreeNodeToVisit(
+                    components: components,
+                    isFolder: filePath.isFolder,
+                    children: []
+                ))
+        }
+
+        for componentCount in (1...nodesByComponentCount.keys.max()!)
+            .reversed()
+        {
+            let nodes = nodesByComponentCount
+                .removeValue(forKey: componentCount)!
+
+            let sortedNodes = nodes.sorted { lhs, rhs in
+                // Already bucketed to have the same component count, so we
+                // don't sort on count first
+
+                for i in lhs.components.indices {
+                   let lhsComponent = lhs.components[i]
+                   let rhsComponent = rhs.components[i]
+                   guard lhsComponent == rhsComponent else {
+                       // We properly sort in `toFileElements()`, so we do a
+                       // simple version here
+                       return lhsComponent < rhsComponent
+                   }
+                }
+
+                // `isFolder` doesn't affect sorting
+                return false
+            }
+
+            // Create parent nodes
+
+            let firstNode = sortedNodes[0]
+            var collectingParentComponents = firstNode.components.dropLast(1)
+            var collectingParentChildren: [FileTreeNode] = []
+            var nodesForNextComponentCount: [FileTreeNodeToVisit] = []
+
+            for node in sortedNodes {
+                let parentComponents = node.components.dropLast(1)
+                if parentComponents != collectingParentComponents {
+                    nodesForNextComponentCount.append(
+                        FileTreeNodeToVisit(
+                            components: Array(collectingParentComponents),
+                            children: collectingParentChildren
+                        )
+                    )
+
+                    collectingParentComponents = parentComponents
+                    collectingParentChildren = []
+                }
+
+                collectingParentChildren.append(
+                    FileTreeNode(
+                        name: String(node.components.last!),
+                        isFolder: node.isFolder,
+                        directoryLevel: componentCount,
+                        children: node.children
+                    )
+                )
+            }
+
+            guard componentCount != 1 else {
+                // Root node
+                return FileTreeNode(
+                    name: "",
+                    directoryLevel: 0,
+                    children: collectingParentChildren
+                )
+            }
+
+            // Last node
+            nodesForNextComponentCount.append(
+                FileTreeNodeToVisit(
+                    components: Array(collectingParentComponents),
+                    children: collectingParentChildren
+                )
+            )
+
+            nodesByComponentCount[componentCount - 1, default: []]
+                .append(contentsOf: nodesForNextComponentCount)
+        }
+
+        fatalError("Unreachable")
+    }
+}
+
+private class FileTreeNodeToVisit {
+    let components: [String.SubSequence]
+    let isFolder: Bool
+    let children: [FileTreeNode]
+
+    init(
+        components: [String.SubSequence],
+        isFolder: Bool = false,
+        children: [FileTreeNode]
+    ) {
+        self.components = components
+        self.isFolder = isFolder
+        self.children = children
+    }
+}
+
+extension FileTreeNodeToVisit: CustomDebugStringConvertible {
+    var debugDescription: String {
+        return #""\#(components.last!)": {\#(children.map { $0.name }.joined(separator: ","))}"#
+    }
+}
+
+private class FileTreeNode {
+    let name: String
+    let isFolder: Bool
+    let directoryLevel: Int
+    let children: [FileTreeNode]
+
+    init(
+        name: String,
+        isFolder: Bool = false,
+        directoryLevel: Int,
+        children: [FileTreeNode]
+    ) {
+        self.name = name
+        self.isFolder = isFolder
+        self.directoryLevel = directoryLevel
+        self.children = children
+    }
+}
+
+extension FileTreeNode {
+    func `extension`() -> String? {
+        guard let extIndex = name.lastIndex(of: ".") else {
+            return nil
+        }
+        return String(name[name.index(after: extIndex)..<name.endIndex])
+    }
+
+    func splitExtension() -> (base: String, ext: String?) {
+        guard let extIndex = name.lastIndex(of: ".") else {
+            return (name, nil)
+        }
+        return (
+            String(name[name.startIndex..<extIndex]),
+            String(name[name.index(after: extIndex)..<name.endIndex])
+        )
+    }
+}
+
+private enum HandledNode {
+    case fileLikeElement(PBXFileElement)
+    case groupLikeElement(PBXFileElement)
+    case variantGroupLanguage([LocalizedFile])
+}
+
+private struct LocalizedFile {
+    let name: String
+    let basenameWithoutExt: String
+    let ext: String?
+    let sourceTree: PBXSourceTree
+    let filePaths: [FilePath]
+    let reference: PBXFileReference
+}
+
+private let localizedIBFileExtensions: OrderedSet<String?> = [
+    "storyboard",
+    "xib",
+    "intentdefinition",
+]
+
+extension Sequence where Element == HandledNode {
+    func toFileElements(
+        createVariantGroup: (
+            _ name: String,
+            _ sourceTree: PBXSourceTree,
+            _ children: [PBXFileElement],
+            _ filePaths: [FilePath]
+        ) -> PBXVariantGroup
+    ) -> [PBXFileElement] {
+        var fileLikeElements: [PBXFileElement] = []
+        var groupLikeElements: [PBXFileElement] = []
+        var localizedFiles: [LocalizedFile] = []
+
+        for handledNode in self {
+            switch handledNode {
+            case .fileLikeElement(let element):
+                fileLikeElements.append(element)
+            case .groupLikeElement(let element):
+                groupLikeElements.append(element)
+            case .variantGroupLanguage(let languageLocalizedFiles):
+                localizedFiles.append(contentsOf: languageLocalizedFiles)
+            }
+        }
+
+        localizedFiles.sort(by: { lhs, rhs in
+            switch (lhs.ext, rhs.ext) {
+            case ("intentdefinition", "intentdefinition"): return false
+            case ("intentdefinition", _): return true
+            case (_, "intentdefinition"): return false
+            case ("storyboard", "storyboard"): return false
+            case ("storyboard", _): return true
+            case (_, "storyboard"): return false
+            case ("xib", "xib"): return false
+            case ("xib", _): return true
+            case (_, "xib"): return false
+            case ("strings", "strings"): return false
+            case ("strings", _): return true
+            case (_, "strings"): return false
+            // The order of other files should stay the same
+            default: return false
+            }
+        })
+
+        var groupings: OrderedDictionary<String, [LocalizedFile]> = [:]
+        outer: for localizedFile in localizedFiles {
+            if localizedFile.ext == "strings" {
+                // Attempt to add the ".strings" file to an IB file of the
+                // same name. Since we sorted `localizedFiles`, the "parent"
+                // group will already be in `groupings`.
+                let keys = groupings.keys
+
+                for ext in localizedIBFileExtensions {
+                    let key = "\(localizedFile.basenameWithoutExt).\(ext!)"
+                    if keys.contains(key) {
+                        groupings[key]!.append(localizedFile)
+                        continue outer
+                    }
+                }
+
+                // Didn't find a parent, fall through to non-IB handling
+            }
+
+            groupings[localizedFile.name, default: []].append(localizedFile)
+        }
+
+        for (name, localizedFiles) in groupings {
+            fileLikeElements.append(
+                createVariantGroup(
+                    name,
+                    localizedFiles.first!.sourceTree,
+                    localizedFiles.map { $0.reference },
+                    localizedFiles.flatMap { $0.filePaths }
+                )
+            )
+        }
+
+        return groupLikeElements.sortedLocalizedStandard() +
+            fileLikeElements.sortedLocalizedStandard()
     }
 }
 

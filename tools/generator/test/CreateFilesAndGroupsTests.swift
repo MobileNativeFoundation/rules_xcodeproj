@@ -139,8 +139,8 @@ final class CreateFilesAndGroupsTests: XCTestCase {
             expectedElements["Assets.xcassets"]!,
             expectedElements["b.c"]!,
             expectedElements["d.h"]!,
-            expectedElements["Example.xib"]!,
-            expectedElements["Localized.strings"]!,
+            expectedElements["Base.lproj/Example.xib"]!,
+            expectedElements["en.lproj/Localized.strings"]!,
             expectedElements["z.h"]!,
             expectedElements["z.mm"]!,
             // Then Bazel External Repositories
@@ -248,8 +248,8 @@ final class CreateFilesAndGroupsTests: XCTestCase {
             expectedElements["Assets.xcassets"]!,
             expectedElements["b.c"]!,
             expectedElements["d.h"]!,
-            expectedElements["Example.xib"]!,
-            expectedElements["Localized.strings"]!,
+            expectedElements["Base.lproj/Example.xib"]!,
+            expectedElements["en.lproj/Localized.strings"]!,
             expectedElements["z.h"]!,
             expectedElements["z.mm"]!,
             // Then Bazel External Repositories

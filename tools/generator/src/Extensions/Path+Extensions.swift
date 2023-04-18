@@ -1,64 +1,6 @@
 import PathKit
 import XcodeProj
 
-extension Path {
-    var isFolderTypeFileSource: Bool {
-        return isXCAssets
-            || isFramework
-            || isBundle
-            || isDocCArchive
-            || isSceneKitAssets
-            || isCoreDataModel
-    }
-
-    var isCoreDataContainer: Bool { self.extension == "xcdatamodeld" }
-    var isCoreDataModel: Bool { self.extension == "xcdatamodel" }
-    var isLocalizedContainer: Bool { self.extension == "lproj" }
-
-    var isBazelBuildFile: Bool {
-        lastComponent == "BUILD" || lastComponent == "BUILD.bazel"
-    }
-    var isPodfile: Bool {
-        lastComponent == "Podfile"
-    }
-
-    var explicitFileType: String? {
-        if isBazelBuildFile{
-            return Xcode.filetype(extension: "py")
-        }
-        if isPodfile {
-            return Xcode.filetype(extension: "rb")
-        }
-        return nil
-    }
-
-    var lastKnownFileType: String? {
-        // XcodeProj treats `.inc` files as Pascal source files, but
-        // they're commonly C/C++ headers, so map them as such here.
-        if self.extension == "inc", let ext = Xcode.filetype(extension: "h") {
-            return ext
-        }
-        return self.extension.flatMap { Xcode.filetype(extension: $0) }
-    }
-
-    var versionGroupType: String? {
-        switch self.extension {
-        case "xcdatamodeld":
-            return "wrapper.xcdatamodel"
-        case let fileExtension?:
-            return Xcode.filetype(extension: fileExtension)
-        default:
-            return nil
-        }
-    }
-
-    private var isBundle: Bool { self.extension == "bundle" }
-    private var isDocCArchive: Bool { self.extension == "docc" }
-    private var isFramework: Bool { self.extension == "framework" }
-    private var isSceneKitAssets: Bool { self.extension == "scnassets" }
-    private var isXCAssets: Bool { self.extension == "xcassets" }
-}
-
 extension String {
     /// Wraps the path in quotes if it needs it.
     var quoted: String {
