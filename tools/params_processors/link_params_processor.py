@@ -147,9 +147,7 @@ def _process_linkopts(
 
         # These flags are for wrapped_clang only
         if (opt.startswith("DSYM_HINT_DSYM_PATH=") or
-            opt.startswith("'DSYM_HINT_DSYM_PATH=") or
-            opt.startswith("DSYM_HINT_LINKED_BINARY=") or
-            opt.startswith("'DSYM_HINT_LINKED_BINARY=")):
+            opt.startswith("DSYM_HINT_LINKED_BINARY=")):
             return
 
         # Use Xcode set `DEVELOPER_DIR`
@@ -196,6 +194,12 @@ def _process_linkopts(
         if skip_next:
             skip_next -= 1
             continue
+
+        # Change "link.params" from `shell` to `multiline` format
+        # https://bazel.build/versions/6.1.0/rules/lib/Args#set_param_file_format.format
+        if linkopt.startswith("'") and linkopt.endswith("'"):
+            linkopt = linkopt[1:-1]
+
         skip_next = _LD_SKIP_OPTS.get(linkopt, 0)
         if skip_next:
             skip_next -= 1
