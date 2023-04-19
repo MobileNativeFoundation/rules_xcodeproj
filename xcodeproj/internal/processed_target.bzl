@@ -18,7 +18,6 @@ def processed_target(
         outputs,
         potential_target_merges = None,
         resource_bundle_informations = None,
-        search_paths,
         transitive_dependencies,
         xcode_target):
     """Generates the return value for target processing functions.
@@ -50,7 +49,6 @@ def processed_target(
             the `XcodeProjInfo.potential_target_merges` `depset`.
         resource_bundle_informations: An optional `list` of `struct`s that will
             be in the `XcodeProjInfo.resource_bundle_informations` `depset`.
-        search_paths: A value as returned from `process_opts`.
         transitive_dependencies: A `depset` of target ids of transitive
             dependencies of this target.
         xcode_target: An optional value returned from `xcode_targets.make` that
@@ -74,7 +72,6 @@ def processed_target(
         outputs = outputs,
         potential_target_merges = potential_target_merges,
         resource_bundle_informations = resource_bundle_informations,
-        search_paths = search_paths,
         target_type = target_type,
         transitive_dependencies = transitive_dependencies,
         xcode_target = xcode_target,

@@ -17,7 +17,6 @@ def _process_compiler_opts_test_impl(ctx):
 
     build_settings = {}
     (
-        search_paths,
         processed_conlyopts,
         processed_cxxopts,
         processed_swiftcopts,
@@ -32,7 +31,6 @@ def _process_compiler_opts_test_impl(ctx):
         build_settings = build_settings,
     )
     string_build_settings = stringify_dict(build_settings)
-    json_search_paths = json.encode(search_paths)
 
     expected_build_settings = {
         "ENABLE_STRICT_OBJC_MSGSEND": "True",
@@ -56,13 +54,6 @@ def _process_compiler_opts_test_impl(ctx):
         expected_build_settings,
         string_build_settings,
         "build_settings",
-    )
-
-    asserts.equals(
-        env,
-        ctx.attr.expected_search_paths,
-        json_search_paths,
-        "search_paths",
     )
 
     asserts.equals(
@@ -106,7 +97,6 @@ process_compiler_opts_test = unittest.make(
         "expected_cxxopts": attr.string_list(mandatory = True),
         "expected_swiftcopts": attr.string_list(mandatory = True),
         "expected_clang_opts": attr.string_list(mandatory = True),
-        "expected_search_paths": attr.string(mandatory = True),
         "cpp_fragment": attr.string_dict(mandatory = False),
         "package_bin_dir": attr.string(mandatory = True),
         "swiftcopts": attr.string_list(mandatory = True),
@@ -144,9 +134,6 @@ def process_compiler_opts_test_suite(name):
             expected_cxxopts = [],
             expected_swiftcopts = [],
             expected_clang_opts = [],
-            expected_search_paths = {
-                "framework_includes": [],
-            },
             conlyopts = [],
             cxxopts = [],
             swiftcopts = [],
@@ -167,7 +154,6 @@ def process_compiler_opts_test_suite(name):
             expected_cxxopts = expected_cxxopts,
             expected_swiftcopts = expected_swiftcopts,
             expected_clang_opts = expected_clang_opts,
-            expected_search_paths = json.encode(expected_search_paths),
             timeout = "short",
         )
 
@@ -270,13 +256,6 @@ def process_compiler_opts_test_suite(name):
             "-DDEBUG=1",
             "-F$(PROJECT_DIR)/somewhere",
         ],
-        expected_search_paths = {
-            "framework_includes": [
-                "__BAZEL_XCODE_DEVELOPER_DIR__/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks",
-                "__BAZEL_XCODE_SDKROOT__/Developer/Library/Frameworks",
-                "somewhere",
-            ],
-        },
     )
 
     _add_test(
@@ -376,13 +355,6 @@ def process_compiler_opts_test_suite(name):
             "-DDEBUG=1",
             "-F$(PROJECT_DIR)/somewhere",
         ],
-        expected_search_paths = {
-            "framework_includes": [
-                "__BAZEL_XCODE_DEVELOPER_DIR__/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks",
-                "__BAZEL_XCODE_SDKROOT__/Developer/Library/Frameworks",
-                "somewhere",
-            ],
-        },
     )
 
     _add_test(
@@ -557,9 +529,6 @@ def process_compiler_opts_test_suite(name):
             "-weird",
             "-a=bazel-out/hi",
         ],
-        expected_search_paths = {
-            "framework_includes": [],
-        },
     )
 
     _add_test(
@@ -702,9 +671,6 @@ def process_compiler_opts_test_suite(name):
             "-iquote",
             "$(PROJECT_DIR)/relative/path",
         ],
-        expected_search_paths = {
-            "framework_includes": [],
-        },
     )
 
     # Specific Xcode build settings
@@ -1083,9 +1049,6 @@ def process_compiler_opts_test_suite(name):
             "-iquote$(PROJECT_DIR)/4/5",
             "-isystem$(PROJECT_DIR)/s5/s6",
         ],
-        expected_search_paths = {
-            "framework_includes": [],
-        },
     )
 
     # Test suite

@@ -411,7 +411,7 @@ def process_top_level_target(
         label.workspace_root,
         label.package,
     )
-    search_paths, conlyopts, cxxopts, swiftcopts, clang_opts = process_opts(
+    conlyopts, cxxopts, swiftcopts, clang_opts = process_opts(
         ctx = ctx,
         build_mode = build_mode,
         has_c_sources = target_inputs.has_c_sources,
@@ -483,7 +483,7 @@ def process_top_level_target(
         id = id,
         is_swift = is_swift,
         clang_opts = clang_opts,
-        search_paths = search_paths,
+        implementation_compilation_context = implementation_compilation_context,
         swiftmodules = swiftmodules,
         transitive_infos = deps_infos,
     )
@@ -507,7 +507,6 @@ def process_top_level_target(
         mergable_xcode_library_targets = [],
         outputs = provider_outputs,
         potential_target_merges = potential_target_merges,
-        search_paths = search_paths,
         transitive_dependencies = transitive_dependencies,
         xcode_target = xcode_targets.make(
             id = id,
@@ -522,7 +521,6 @@ def process_top_level_target(
             conlyopts = conlyopts,
             cxxopts = cxxopts,
             swiftcopts = swiftcopts,
-            search_paths = search_paths,
             modulemaps = modulemaps,
             swiftmodules = swiftmodules,
             inputs = target_inputs,

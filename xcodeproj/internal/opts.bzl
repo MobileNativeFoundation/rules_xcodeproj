@@ -1,7 +1,6 @@
 """Functions for processing compiler and linker options."""
 
 load("@bazel_tools//tools/cpp:toolchain_utils.bzl", "find_cpp_toolchain")
-load(":collections.bzl", "uniq")
 load(":files.bzl", "is_relative_path")
 
 # C and C++ compiler flags that we don't want to propagate to Xcode.
@@ -231,42 +230,6 @@ Using VFS overlays with `build_mode = "xcode"` is unsupported.
         swiftcopts,
     )
 
-def create_search_paths(*, framework_includes):
-    """Creates a value representing search paths of a target.
-
-    Args:
-        framework_includes: A `list` of framework include paths (i.e. `-F`
-            values).
-
-    Returns:
-        A `struct` containing the `framework_includes` fields provided as
-        arguments.
-    """
-    return struct(
-        framework_includes = tuple(framework_includes),
-    )
-
-def merge_search_paths(search_paths):
-    """Merges a `list` of search paths into a single set set of search paths.
-
-    Args:
-        search_paths: A `list` of values returned from
-            `create_search_paths`.
-
-    Returns:
-        A value returned from `create_search_paths`, with the search paths
-        provided to it being the merged and deduplicated values from
-        `search_paths`.
-    """
-    framework_includes = []
-
-    for search_path in search_paths:
-        framework_includes.extend(search_path.framework_includes)
-
-    return create_search_paths(
-        framework_includes = uniq(framework_includes),
-    )
-
 def _process_cc_opts(opts, *, build_settings):
     """Processes C/C++ compiler options.
 
@@ -276,16 +239,13 @@ def _process_cc_opts(opts, *, build_settings):
             settings that are parsed from `opts`.
 
     Returns:
-        A `tuple` containing five elements:
+        A `tuple` containing three elements:
 
         *   A `list` of unhandled C/C++ compiler options.
         *   A `list` of C/C++ compiler optimization levels parsed.
-        *   A value returned by `create_search_paths` with the parsed search
-            paths.
         *   A `bool` indicting if the target has debug info enabled.
     """
     optimizations = []
-    framework_includes = []
     has_debug_info = {}
 
     def _inner_process_cc_opts(opt, previous_opt):
@@ -305,11 +265,6 @@ def _process_cc_opts(opts, *, build_settings):
         if opt_character == "O":
             optimizations.append(opt)
             return None
-        if opt == "-F":
-            return opt
-        if opt_character == "F":
-            framework_includes.append(opt[2:])
-            return opt
         if opt_character == "D":
             value = opt[2:]
             if value.startswith("OBJC_OLD_DISPATCH_PROTOTYPES"):
@@ -360,11 +315,7 @@ def _process_cc_opts(opts, *, build_settings):
 
         processed_opts.append(outer_opt)
 
-    search_paths = create_search_paths(
-        framework_includes = uniq(framework_includes),
-    )
-
-    return processed_opts, optimizations, search_paths, has_debug_info
+    return processed_opts, optimizations, has_debug_info
 
 def _process_copts(
         *,
@@ -380,12 +331,10 @@ def _process_copts(
             settings that are parsed from `conlyopts` and `cxxopts`.
 
     Returns:
-        A `tuple` containing three elements:
+        A `tuple` containing four elements:
 
         *   A `list` of unhandled C compiler options.
         *   A `list` of unhandled C++ compiler options.
-        *   A value returned by `create_search_paths` with the parsed search
-            paths.
         *   A `bool` indicting if the target has debug info enabled for C.
         *   A `bool` indicting if the target has debug info enabled for C++.
     """
@@ -396,13 +345,11 @@ def _process_copts(
     (
         conlyopts,
         conly_optimizations,
-        conly_search_paths,
         c_has_debug_info,
     ) = _process_cc_opts(conlyopts, build_settings = build_settings)
     (
         cxxopts,
         cxx_optimizations,
-        cxx_search_paths,
         cxx_has_debug_info,
     ) = _process_cc_opts(cxxopts, build_settings = build_settings)
 
@@ -450,8 +397,6 @@ def _process_copts(
     return (
         conly_optimizations + conlyopts,
         cxx_optimizations + cxxopts,
-        conly_search_paths,
-        cxx_search_paths,
         c_has_debug_info,
         cxx_has_debug_info,
     )
@@ -483,8 +428,6 @@ def _process_swiftcopts(
 
         *   A `list` of processed Swift compiler options.
         *   A `list` of clang compiler options.
-        *   A value returned by `create_search_paths` with the parsed search
-            paths.
         *   A `bool` indicting if the target has debug info enabled.
     """
 
@@ -500,7 +443,6 @@ def _process_swiftcopts(
     # which matches swiftc's default.
     build_settings["SWIFT_OPTIMIZATION_LEVEL"] = "-Onone"
 
-    framework_includes = []
     clang_opts = []
 
     def _process_clang_opt(opt, previous_opt, previous_clang_opt):
@@ -511,7 +453,6 @@ def _process_swiftcopts(
 
         if opt.startswith("-F"):
             path = opt[2:]
-            framework_includes.append(path)
             if is_clang_opt:
                 if path == ".":
                     clang_opt = "-F$(PROJECT_DIR)"
@@ -737,11 +678,7 @@ Using VFS overlays with `build_mode = "xcode"` is unsupported.
 
         processed_opts.append(outer_opt)
 
-    search_paths = create_search_paths(
-        framework_includes = uniq(framework_includes),
-    )
-
-    return processed_opts, clang_opts, search_paths, has_debug_info
+    return processed_opts, clang_opts, has_debug_info
 
 def _process_compiler_opts(
         *,
@@ -767,10 +704,8 @@ def _process_compiler_opts(
             `swiftcopts` lists.
 
     Returns:
-        A `tuple` containing five elements:
+        A `tuple` containing four elements:
 
-        *   A value returned by `create_search_paths` with the parsed search
-            paths.
         *   A `list` of C compiler options.
         *   A `list` of C++ compiler options.
         *   A `list` of Swift compiler options.
@@ -788,8 +723,6 @@ def _process_compiler_opts(
     (
         conlyopts,
         cxxopts,
-        conly_search_paths,
-        cxx_search_paths,
         c_has_debug_info,
         cxx_has_debug_info,
     ) = _process_copts(
@@ -800,7 +733,6 @@ def _process_compiler_opts(
     (
         swiftcopts,
         clang_opts,
-        swift_search_paths,
         swift_has_debug_info,
     ) = _process_swiftcopts(
         opts = swiftcopts,
@@ -835,13 +767,7 @@ def _process_compiler_opts(
         if has_swiftcop and swift_has_debug_info:
             swiftcopts = ["-g"] + swiftcopts
 
-    search_paths = merge_search_paths([
-        conly_search_paths,
-        cxx_search_paths,
-        swift_search_paths,
-    ])
-
-    return search_paths, conlyopts, cxxopts, swiftcopts, clang_opts
+    return conlyopts, cxxopts, swiftcopts, clang_opts
 
 def _process_target_compiler_opts(
         *,
@@ -869,10 +795,8 @@ def _process_target_compiler_opts(
             settings that are parsed from the target's compiler options.
 
     Returns:
-        A `tuple` containing five elements:
+        A `tuple` containing four elements:
 
-        *   A value returned by `create_search_paths` with the parsed search
-            paths.
         *   A `list` of C compiler options.
         *   A `list` of C++ compiler options.
         *   A `list` of Swift compiler options.
@@ -966,10 +890,8 @@ def process_opts(
             settings that are parsed from the compiler and linker options.
 
     Returns:
-        A `tuple` containing two elements:
+        A `tuple` containing four elements:
 
-        *   A value returned by `create_search_paths` with the parsed search
-            paths.
         *   A `list` of C compiler options.
         *   A `list` of C++ compiler options.
         *   A `list` of Swift compiler options.
