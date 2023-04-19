@@ -164,7 +164,6 @@ def process_library_target(
         has_c_sources = target_inputs.has_c_sources,
         has_cxx_sources = target_inputs.has_cxx_sources,
         target = target,
-        implementation_compilation_context = implementation_compilation_context,
         package_bin_dir = package_bin_dir,
         build_settings = build_settings,
     )
