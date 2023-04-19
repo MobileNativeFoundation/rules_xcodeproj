@@ -677,7 +677,6 @@ targets.
         (
             dto,
             replaced_dependencies,
-            compile_params,
             link_params,
         ) = xcode_targets.to_dto(
             ctx = ctx,
@@ -701,6 +700,15 @@ targets.
             transitive_dependencies,
             replaced_dependencies,
         )
+
+        compile_params = []
+        if xcode_target._c_params:
+            compile_params.append(xcode_target._c_params)
+        if xcode_target._cxx_params:
+            compile_params.append(xcode_target._cxx_params)
+        if xcode_target._swift_params:
+            compile_params.append(xcode_target._swift_params)
+
         if compile_params:
             target_compile_params[xcode_target.id] = depset(compile_params)
         if link_params:
