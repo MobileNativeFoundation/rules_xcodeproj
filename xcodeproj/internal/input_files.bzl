@@ -58,12 +58,12 @@ def _process_cc_info_headers(headers, *, exclude_headers, generated):
 
 # API
 
-_C_EXTENSIONS = {
+C_EXTENSIONS = {
     "c": None,
     "m": None,
 }
 
-_CXX_EXTENSIONS = {
+CXX_EXTENSIONS = {
     "cc": None,
     "cpp": None,
     "cxx": None,
@@ -180,18 +180,18 @@ def _collect_input_files(
     def _handle_srcs_file(file):
         srcs.append(file)
         extension = file.extension
-        if extension in _C_EXTENSIONS:
+        if extension in C_EXTENSIONS:
             c_srcs.append(file)
-        elif extension in _CXX_EXTENSIONS:
+        elif extension in CXX_EXTENSIONS:
             cxx_srcs.append(file)
 
     # buildifier: disable=uninitialized
     def _handle_non_arc_srcs_file(file):
         non_arc_srcs.append(file)
         extension = file.extension
-        if extension in _C_EXTENSIONS:
+        if extension in C_EXTENSIONS:
             c_srcs.append(file)
-        elif extension in _CXX_EXTENSIONS:
+        elif extension in CXX_EXTENSIONS:
             cxx_srcs.append(file)
 
     # buildifier: disable=uninitialized
