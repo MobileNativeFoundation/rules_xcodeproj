@@ -100,6 +100,8 @@ remaps=(
   # these should always be Xcode.app relative, our regex supports command-line
   # tools based paths as well.
   -remap "^(?:.*?/[^/]+/Contents/Developer|/Library/Developer/CommandLineTools).*?/SDKs/([^\\d.]+)=$DEVELOPER_DIR/Platforms/\$1.platform/Developer/SDKs/\$1"
+
+  -remap "DEVELOPER_DIR=$DEVELOPER_DIR"
 )
 
 # Import
