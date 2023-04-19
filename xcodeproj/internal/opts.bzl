@@ -1,5 +1,6 @@
 """Functions for processing compiler and linker options."""
 
+load("@bazel_tools//tools/cpp:toolchain_utils.bzl", "find_cpp_toolchain")
 load(":files.bzl", "is_relative_path")
 load(":input_files.bzl", "CXX_EXTENSIONS", "C_EXTENSIONS")
 
@@ -124,35 +125,119 @@ def _is_cxx_file(filename):
     ext_distance_from_end = len(filename) - last_dot_in_basename - 1
     return filename[-ext_distance_from_end:] in CXX_EXTENSIONS
 
-def _get_unprocessed_compiler_opts(
+# Defensive list of features that can appear in the CC toolchain, but that we
+# definitely don't want to enable (meaning we don't want them to contribute
+# command line flags).
+_UNSUPPORTED_CC_FEATURES = [
+    "debug_prefix_map_pwd_is_dot",
+    # TODO: See if we need to exclude or handle it properly
+    "thin_lto",
+    "module_maps",
+    "use_header_modules",
+    "fdo_instrument",
+    "fdo_optimize",
+]
+
+def _legacy_get_unprocessed_cc_compiler_opts(
         *,
-        build_mode,
+        ctx,
         has_c_sources,
         has_cxx_sources,
-        target):
-    """Returns the unprocessed compiler options for the given target.
+        has_swift_opts,
+        target,
+        implementation_compilation_context):
+    if (has_swift_opts or
+        not implementation_compilation_context or
+        not (has_c_sources or has_cxx_sources)):
+        return ([], [])
 
-    Args:
-        build_mode: See `xcodeproj.build_mode`.
-        has_c_sources: `True` if `target` has C sources.
-        has_cxx_sources: `True` if `target` has C++ sources.
-        target: The `Target` that the compiler options will be retrieved from.
+    cc_toolchain = find_cpp_toolchain(ctx)
 
-    Returns:
-        A `tuple` containing three elements:
+    user_copts = getattr(ctx.rule.attr, "copts", [])
+    user_copts = _expand_locations(
+        ctx = ctx,
+        values = user_copts,
+        targets = getattr(ctx.rule.attr, "data", []),
+    )
+    user_copts = _expand_make_variables(
+        ctx = ctx,
+        values = user_copts,
+        attribute_name = "copts",
+    )
 
-        *   A `list` of C compiler options.
-        *   A `list` of C++ compiler options.
-        *   A `list` of Swift compiler options.
-    """
+    is_objc = apple_common.Objc in target
+    if is_objc:
+        objc = ctx.fragments.objc
+        user_copts = (
+            objc.copts +
+            user_copts +
+            objc.copts_for_current_compilation_mode
+        )
 
-    swiftcopts = []
-    for action in target.actions:
-        if action.mnemonic == "SwiftCompile":
-            # First two arguments are "worker" and "swiftc"
-            swiftcopts = action.argv[2:]
-            break
+    feature_configuration = cc_common.configure_features(
+        ctx = ctx,
+        cc_toolchain = cc_toolchain,
+        requested_features = (
+            # `CcCommon.ALL_COMPILE_ACTIONS` doesn't include objc...
+            ctx.features + ["objc-compile", "objc++-compile"]
+        ),
+        unsupported_features = (
+            ctx.disabled_features + _UNSUPPORTED_CC_FEATURES
+        ),
+    )
+    variables = cc_common.create_compile_variables(
+        feature_configuration = feature_configuration,
+        cc_toolchain = cc_toolchain,
+        user_compile_flags = user_copts,
+        include_directories = implementation_compilation_context.includes,
+        quote_include_directories = implementation_compilation_context.quote_includes,
+        system_include_directories = implementation_compilation_context.system_includes,
+        framework_include_directories = (
+            implementation_compilation_context.framework_includes
+        ),
+        preprocessor_defines = depset(
+            transitive = [
+                implementation_compilation_context.local_defines,
+                implementation_compilation_context.defines,
+            ],
+        ),
+    )
 
+    cpp = ctx.fragments.cpp
+
+    if has_c_sources:
+        base_copts = cc_common.get_memory_inefficient_command_line(
+            feature_configuration = feature_configuration,
+            action_name = "objc-compile" if is_objc else "c-compile",
+            variables = variables,
+        )
+        conlyopts = base_copts + cpp.copts + cpp.conlyopts
+    else:
+        conlyopts = []
+
+    if has_cxx_sources:
+        base_cxxopts = cc_common.get_memory_inefficient_command_line(
+            feature_configuration = feature_configuration,
+            action_name = "objc++-compile" if is_objc else "c++-compile",
+            variables = variables,
+        )
+        cxxopts = base_cxxopts + cpp.copts + cpp.cxxopts
+    else:
+        cxxopts = []
+
+    return conlyopts, cxxopts
+
+def _modern_get_unprocessed_cc_compiler_opts(
+        *,
+        # buildifier: disable=unused-variable
+        ctx,
+        has_c_sources,
+        has_cxx_sources,
+        # buildifier: disable=unused-variable
+        has_swift_opts,
+        target,
+        # buildifier: disable=unused-variable
+        implementation_compilation_context):
     conlyopts = []
     if has_c_sources:
         for action in target.actions:
@@ -195,7 +280,57 @@ def _get_unprocessed_compiler_opts(
             cxxopts = action.argv[1:]
             break
 
-    if (conlyopts or cxxopts) and build_mode == "xcode":
+    return conlyopts, cxxopts
+
+# Bazel 6 check
+_get_unprocessed_cc_compiler_opts = (
+    _modern_get_unprocessed_cc_compiler_opts if hasattr(apple_common, "link_multi_arch_static_library") else _legacy_get_unprocessed_cc_compiler_opts
+)
+
+def _get_unprocessed_compiler_opts(
+        *,
+        ctx,
+        build_mode,
+        has_c_sources,
+        has_cxx_sources,
+        target,
+        implementation_compilation_context):
+    """Returns the unprocessed compiler options for the given target.
+
+    Args:
+        ctx: The aspect context.
+        build_mode: See `xcodeproj.build_mode`.
+        has_c_sources: `True` if `target` has C sources.
+        has_cxx_sources: `True` if `target` has C++ sources.
+        target: The `Target` that the compiler options will be retrieved from.
+        implementation_compilation_context: The implementation deps aware
+            `CcCompilationContext` for `target`.
+
+    Returns:
+        A `tuple` containing three elements:
+
+        *   A `list` of C compiler options.
+        *   A `list` of C++ compiler options.
+        *   A `list` of Swift compiler options.
+    """
+
+    swiftcopts = []
+    for action in target.actions:
+        if action.mnemonic == "SwiftCompile":
+            # First two arguments are "worker" and "swiftc"
+            swiftcopts = action.argv[2:]
+            break
+
+    conlyopts, cxxopts = _get_unprocessed_cc_compiler_opts(
+        ctx = ctx,
+        has_c_sources = has_c_sources,
+        has_cxx_sources = has_cxx_sources,
+        has_swift_opts = bool(swiftcopts),
+        target = target,
+        implementation_compilation_context = implementation_compilation_context,
+    )
+
+    if build_mode == "xcode":
         for opt in conlyopts + cxxopts:
             if opt.startswith("-ivfsoverlay`"):
                 fail("""\
@@ -810,6 +945,7 @@ def _process_target_compiler_opts(
         has_c_sources,
         has_cxx_sources,
         target,
+        implementation_compilation_context,
         package_bin_dir,
         build_settings):
     """Processes the compiler options for a target.
@@ -820,6 +956,8 @@ def _process_target_compiler_opts(
         has_c_sources: `True` if `target` has C sources.
         has_cxx_sources: `True` if `target` has C++ sources.
         target: The `Target` that the compiler options will be retrieved from.
+        implementation_compilation_context: The implementation deps aware
+            `CcCompilationContext` for `target`.
         package_bin_dir: The package directory for `target` within
             `ctx.bin_dir`.
         build_settings: A mutable `dict` that will be updated with build
@@ -842,10 +980,12 @@ def _process_target_compiler_opts(
         cxxopts,
         swiftcopts,
     ) = _get_unprocessed_compiler_opts(
+        ctx = ctx,
         build_mode = build_mode,
         has_c_sources = has_c_sources,
         has_cxx_sources = has_cxx_sources,
         target = target,
+        implementation_compilation_context = implementation_compilation_context,
     )
     return _process_compiler_opts(
         actions = ctx.actions,
@@ -859,6 +999,43 @@ def _process_target_compiler_opts(
         build_settings = build_settings,
     )
 
+# Utility
+
+def _expand_locations(*, ctx, values, targets = []):
+    """Expands the `$(location)` placeholders in each of the given values.
+
+    Args:
+        ctx: The aspect context.
+        values: A `list` of strings, which may contain `$(location)`
+            placeholders.
+        targets: A `list` of additional targets (other than the calling rule's
+            `deps`) that should be searched for substitutable labels.
+
+    Returns:
+        A `list` of strings with any `$(location)` placeholders filled in.
+    """
+    return [ctx.expand_location(value, targets) for value in values]
+
+def _expand_make_variables(*, ctx, values, attribute_name):
+    """Expands all references to Make variables in each of the given values.
+
+    Args:
+        ctx: The aspect context.
+        values: A `list` of strings, which may contain Make variable
+            placeholders.
+        attribute_name: The attribute name string that will be presented in the
+            console when an error occurs.
+
+    Returns:
+        A `list` of strings with Make variables placeholders filled in.
+    """
+    return [
+        ctx.expand_make_variables(attribute_name, token, {})
+        for value in values
+        # TODO: Handle `no_copts_tokenization`
+        for token in ctx.tokenize(value)
+    ]
+
 # API
 
 def process_opts(
@@ -868,6 +1045,7 @@ def process_opts(
         has_c_sources,
         has_cxx_sources,
         target,
+        implementation_compilation_context,
         package_bin_dir,
         build_settings):
     """Processes the compiler options for a target.
@@ -879,6 +1057,8 @@ def process_opts(
         has_cxx_sources: `True` if `target` has C++ sources.
         target: The `Target` that the compiler and linker options will be
             retrieved from.
+        implementation_compilation_context: The implementation deps aware
+            `CcCompilationContext` for `target`.
         package_bin_dir: The package directory for `target` within
             `ctx.bin_dir`.
         build_settings: A mutable `dict` that will be updated with build
@@ -902,6 +1082,7 @@ def process_opts(
         has_c_sources = has_c_sources,
         has_cxx_sources = has_cxx_sources,
         target = target,
+        implementation_compilation_context = implementation_compilation_context,
         package_bin_dir = package_bin_dir,
         build_settings = build_settings,
     )
