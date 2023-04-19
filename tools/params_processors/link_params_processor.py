@@ -76,6 +76,12 @@ _LD_SKIP_OPTS = {
 }
 
 
+def _quote_if_needed(opt):
+    if " " in opt or ("$(" in opt and ")" in opt):
+        return f"'{opt}'"
+    return opt
+
+
 def _process_linkopts(
         linkopts: List[str],
         xcode_generated_paths: Dict[str, str],
@@ -109,7 +115,13 @@ def _process_linkopts(
         return "{}={}".format(prefix, _process_linkopt_value(suffix))
 
     processed_linkopts = []
+    def _append_processed_linkopt(opt):
+        processed_linkopts.append(_quote_if_needed(opt))
+
     swiftui_previews_linkopts = []
+    def _append_swiftui_previews_linkopt(opt):
+        swiftui_previews_linkopts.append(_quote_if_needed(opt))
+
     last_opt = None
     def _process_linkopt(opt):
         if opt == "-filelist":
@@ -162,29 +174,29 @@ def _process_linkopts(
             if search_paths:
                 xcode_path = search_paths.get("x")
                 if xcode_path:
-                    processed_linkopts.append("-F" + xcode_path)
-                    swiftui_previews_linkopts.append("-Wl,-rpath," + xcode_path)
+                    _append_processed_linkopt("-F" + xcode_path)
+                    _append_swiftui_previews_linkopt("-Wl,-rpath," + xcode_path)
                 bazel_path = search_paths.get("b")
                 if bazel_path:
-                    processed_linkopts.append("-F" + bazel_path)
+                    _append_processed_linkopt("-F" + bazel_path)
                     if bazel_path.startswith("/"):
-                        swiftui_previews_linkopts.append(
+                        _append_swiftui_previews_linkopt(
                             "-Wl,-rpath," + bazel_path,
                         )
                     else:
                         swiftui_previews_linkopts.append(
-                            "-Wl,-rpath,$(PROJECT_DIR)/" + bazel_path,
+                            f"'-Wl,-rpath,$(PROJECT_DIR)/{bazel_path}'",
                         )
             else:
-                processed_linkopts.append(opt)
+                _append_processed_linkopt(opt)
                 prefix = path[0]
                 if prefix != "/" and prefix != "$":
                     swiftui_previews_linkopts.append(
-                        "-Wl,-rpath,$(PROJECT_DIR)/" + path,
+                        f"'-Wl,-rpath,$(PROJECT_DIR)/{path}'",
                     )
             return
 
-        processed_linkopts.append(",".join([
+        _append_processed_linkopt(",".join([
             _process_linkopt_component(component)
             for component in opt.split(",")
         ]))
