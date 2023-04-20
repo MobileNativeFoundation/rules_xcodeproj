@@ -127,13 +127,15 @@ def _make_xcode_target(
             platform = platform,
             product = product,
         ),
-        inputs = (
-            _to_xcode_target_inputs(inputs) if not compile_target else inputs
-        ),
+        inputs = _to_xcode_target_inputs(
+            id = id,
+            inputs = inputs,
+        ) if not compile_target else inputs,
         is_swift = is_swift,
-        outputs = (
-            _to_xcode_target_outputs(outputs) if not compile_target else outputs
-        ),
+        outputs = _to_xcode_target_outputs(
+            id = id,
+            outputs = outputs,
+        ) if not compile_target else outputs,
         infoplist = infoplist,
         should_create_xcode_target = should_create_xcode_target,
         transitive_dependencies = transitive_dependencies,
@@ -183,7 +185,7 @@ def _lldb_context_key(*, platform, product):
 
     return "{}/{}".format(base_key, executable_name)
 
-def _to_xcode_target_inputs(inputs):
+def _to_xcode_target_inputs(*, id, inputs):
     return struct(
         srcs = tuple(inputs.srcs),
         non_arc_srcs = tuple(inputs.non_arc_srcs),
@@ -202,9 +204,9 @@ def _to_xcode_target_inputs(inputs):
             inputs.unfocused_generated_indexstores
         ),
         unfocused_generated_linking = inputs.unfocused_generated_linking,
-        compiling_output_group_name = inputs.compiling_output_group_name,
-        indexstores_output_group_name = inputs.indexstores_output_group_name,
-        linking_output_group_name = inputs.linking_output_group_name,
+        compiling_output_group_name = "xc {}".format(id),
+        indexstores_output_group_name = "xi {}".format(id),
+        linking_output_group_name = "xl {}".format(id),
     )
 
 def _to_xcode_target_linker_inputs(linker_inputs):
@@ -222,7 +224,7 @@ def _to_xcode_target_linker_inputs(linker_inputs):
         static_libraries = top_level_values.static_libraries,
     )
 
-def _to_xcode_target_outputs(outputs):
+def _to_xcode_target_outputs(*, id, outputs):
     direct_outputs = outputs.direct_outputs
 
     swiftmodule = None
@@ -238,15 +240,15 @@ def _to_xcode_target_outputs(outputs):
         dsym_files = (
             direct_outputs.dsym_files if direct_outputs else None
         ),
-        generated_output_group_name = outputs.generated_output_group_name,
-        linking_output_group_name = outputs.linking_output_group_name,
+        generated_output_group_name = "bg {}".format(id),
+        linking_output_group_name = "bl {}".format(id),
         product_file = (
             direct_outputs.product if direct_outputs else None
         ),
         product_path = (
             direct_outputs.product_path if direct_outputs else None
         ),
-        products_output_group_name = outputs.products_output_group_name,
+        products_output_group_name = "bp {}".format(id),
         swiftmodule = swiftmodule,
         swift_generated_header = swift_generated_header,
         transitive_infoplists = outputs.transitive_infoplists,

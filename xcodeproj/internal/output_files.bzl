@@ -129,10 +129,6 @@ def _create(
     )
 
     if should_produce_output_groups and direct_outputs:
-        generated_output_group_name = "bg {}".format(direct_outputs.id)
-        linking_output_group_name = "bl {}".format(direct_outputs.id)
-        products_output_group_name = "bp {}".format(direct_outputs.id)
-
         indexstores_filelist = filelists.write(
             ctx = ctx,
             rule_name = ctx.rule.attr.name,
@@ -151,7 +147,9 @@ def _create(
                 closest_compiled,
             ),
             (
-                generated_output_group_name,
+                # This needs to be kept in sync with
+                # `xcode_target.inputs.generated_output_group_name`
+                "bg {}".format(direct_outputs.id),
                 False,
                 inputs.compiling_files if inputs else depset(),
             ),
@@ -160,13 +158,14 @@ def _create(
                 True,
                 indexstores_files,
             ),
-            (linking_output_group_name, False, depset()),
-            (products_output_group_name, False, transitive_products),
+            # This needs to be kept in sync with
+            # `xcode_target.inputs.linking_output_group_name`
+            ("bl {}".format(direct_outputs.id), False, depset()),
+            # This needs to be kept in sync with
+            # `xcode_target.inputs.products_output_group_name`
+            ("bp {}".format(direct_outputs.id), False, transitive_products),
         ]
     else:
-        generated_output_group_name = None
-        linking_output_group_name = None
-        products_output_group_name = None
         direct_group_list = None
 
     output_group_list = depset(
@@ -185,9 +184,6 @@ def _create(
     return (
         struct(
             direct_outputs = direct_outputs if should_produce_dto else None,
-            generated_output_group_name = generated_output_group_name,
-            linking_output_group_name = linking_output_group_name,
-            products_output_group_name = products_output_group_name,
             transitive_infoplists = transitive_infoplists,
         ),
         struct(

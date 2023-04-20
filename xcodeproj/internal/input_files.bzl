@@ -598,10 +598,6 @@ def _collect_input_files(
         modulemaps = modulemaps_depset.to_list()
 
     if id:
-        compiling_output_group_name = "xc {}".format(id)
-        indexstores_output_group_name = "xi {}".format(id)
-        linking_output_group_name = "xl {}".format(id)
-
         compiling_files = depset(
             modulemaps,
             transitive = [generated_depset],
@@ -619,14 +615,19 @@ def _collect_input_files(
         indexstores_files = depset([indexstores_filelist])
 
         direct_group_list = [
-            (compiling_output_group_name, False, compiling_files),
-            (indexstores_output_group_name, True, indexstores_files),
-            (linking_output_group_name, False, depset()),
+            # This needs to be kept in sync with
+            # `xcode_target.inputs.compiling_output_group_name`
+            ("xc {}".format(id), False, compiling_files),
+
+            # This needs to be kept in sync with
+            # `xcode_target.inputs.indexstores_output_group_name`
+            ("xi {}".format(id), True, indexstores_files),
+
+            # This needs to be kept in sync with
+            # `xcode_target.inputs.linking_output_group_name`
+            ("xl {}".format(id), False, depset()),
         ]
     else:
-        compiling_output_group_name = None
-        indexstores_output_group_name = None
-        linking_output_group_name = None
         compiling_files = generated_depset
         direct_group_list = None
 
@@ -672,7 +673,6 @@ def _collect_input_files(
     return (
         struct(
             compiling_files = compiling_files,
-            compiling_output_group_name = compiling_output_group_name,
             entitlements = entitlements[0] if entitlements else None,
             folder_resources = folder_resources,
             generated = generated_depset,
@@ -680,8 +680,6 @@ def _collect_input_files(
             has_cxx_sources = bool(cxx_srcs),
             hdrs = hdrs,
             indexstores = indexstores_depset,
-            indexstores_output_group_name = indexstores_output_group_name,
-            linking_output_group_name = linking_output_group_name,
             non_arc_srcs = non_arc_srcs,
             pch = pch[0] if pch else None,
             resource_bundle_dependencies = depset(
@@ -768,7 +766,6 @@ def _collect_input_files(
 
 def _from_resource_bundle(bundle):
     return struct(
-        compiling_output_group_name = None,
         entitlements = None,
         folder_resources = depset(bundle.folder_resources),
         generated = depset(),
@@ -776,8 +773,6 @@ def _from_resource_bundle(bundle):
         has_cxx_sources = False,
         hdrs = [],
         indexstores = depset(),
-        indexstores_output_group_name = None,
-        linking_output_group_name = None,
         non_arc_srcs = [],
         pch = None,
         resource_bundle_dependencies = bundle.dependencies,
