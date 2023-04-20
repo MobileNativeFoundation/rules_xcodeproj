@@ -132,7 +132,7 @@ def _is_same_platform_swiftui_preview_target(*, platform, xcode_target):
 def _process_dep(dep):
     info = dep[XcodeProjInfo]
 
-    if not info.is_top_level_target:
+    if info.non_top_level_rule_kind:
         fail("""
 '{label}' is not a top-level target, but was listed in `top_level_targets`. \
 Only list top-level targets (e.g. binaries, apps, tests, or distributable \
@@ -144,7 +144,7 @@ listed in `top_level_targets`, and don't need to be listed in \
 If you feel this is an error, and `{kind}` targets should be recognized as \
 top-level targets, file a bug report here: \
 https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bug.md
-""".format(label = dep.label, kind = info.rule_kind))
+""".format(label = dep.label, kind = info.non_top_level_rule_kind))
 
     return info
 

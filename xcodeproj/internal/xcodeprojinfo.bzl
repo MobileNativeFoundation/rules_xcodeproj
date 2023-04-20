@@ -100,14 +100,13 @@ def _target_info_fields(
         extension_infoplists,
         hosted_targets,
         inputs,
-        is_top_level_target,
         lldb_context,
         mergable_xcode_library_targets,
+        non_top_level_rule_kind,
         outputs,
         potential_target_merges,
         replacement_labels,
         resource_bundle_informations,
-        rule_kind,
         target_type,
         transitive_dependencies,
         xcode_target,
@@ -127,11 +126,11 @@ def _target_info_fields(
             field.
         hosted_targets: Maps to the `XcodeProjInfo.hosted_targets` field.
         inputs: Maps to the `XcodeProjInfo.inputs` field.
-        is_top_level_target: Maps to the `XcodeProjInfo.is_top_level_target`
-            field.
         lldb_context: Maps to the `XcodeProjInfo.lldb_context` field.
         mergable_xcode_library_targets: Maps to the
             `XcodeProjInfo.mergable_xcode_library_targets` field.
+        non_top_level_rule_kind: Maps to the
+            `XcodeProjInfo.non_top_level_rule_kind` field.
         outputs: Maps to the `XcodeProjInfo.outputs` field.
         potential_target_merges: Maps to the
             `XcodeProjInfo.potential_target_merges` field.
@@ -139,7 +138,6 @@ def _target_info_fields(
             field.
         resource_bundle_informations: Maps to the
             `XcodeProjInfo.resource_bundle_informations` field.
-        rule_kind: Maps to the `XcodeProjInfo.rule_kind` field.
         target_type: Maps to the `XcodeProjInfo.target_type` field.
         transitive_dependencies: Maps to the
             `XcodeProjInfo.transitive_dependencies` field.
@@ -179,14 +177,13 @@ def _target_info_fields(
         "extension_infoplists": extension_infoplists,
         "hosted_targets": hosted_targets,
         "inputs": inputs,
-        "is_top_level_target": is_top_level_target,
         "lldb_context": lldb_context,
         "outputs": outputs,
         "mergable_xcode_library_targets": mergable_xcode_library_targets,
+        "non_top_level_rule_kind": non_top_level_rule_kind,
         "potential_target_merges": potential_target_merges,
         "replacement_labels": replacement_labels,
         "resource_bundle_informations": resource_bundle_informations,
-        "rule_kind": rule_kind,
         "target_type": target_type,
         "envs": envs,
         "transitive_dependencies": transitive_dependencies,
@@ -281,7 +278,6 @@ def _skip_target(
         inputs = input_files.merge(
             transitive_infos = transitive_infos,
         ),
-        is_top_level_target = True,
         lldb_context = lldb_contexts.collect(
             id = None,
             is_swift = False,
@@ -297,6 +293,7 @@ def _skip_target(
                 for _, info in transitive_infos
             ],
         ),
+        non_top_level_rule_kind = None,
         outputs = provider_outputs,
         potential_target_merges = depset(
             transitive = [
@@ -323,7 +320,6 @@ def _skip_target(
                 for _, info in transitive_infos
             ],
         ),
-        rule_kind = None,
         target_type = target_type.compile,
         envs = depset(
             [
@@ -474,9 +470,13 @@ def _create_xcodeprojinfo(
             ],
         ),
         inputs = processed_target.inputs,
-        is_top_level_target = processed_target.is_top_level_target,
         lldb_context = processed_target.lldb_context,
-        mergable_xcode_library_targets = depset(processed_target.mergable_xcode_library_targets),
+        mergable_xcode_library_targets = depset(
+            processed_target.mergable_xcode_library_targets
+        ),
+        non_top_level_rule_kind = (
+            None if processed_target.is_top_level_target else ctx.rule.kind
+        ),
         outputs = processed_target.outputs,
         potential_target_merges = depset(
             processed_target.potential_target_merges,
@@ -508,7 +508,6 @@ def _create_xcodeprojinfo(
                     ))
             ],
         ),
-        rule_kind = ctx.rule.kind,
         target_type = processed_target.automatic_target_info.target_type,
         envs = depset(
             transitive = [
