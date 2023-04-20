@@ -129,7 +129,7 @@ def _create(
     )
 
     if should_produce_output_groups and direct_outputs:
-        generated_output_group_name = "bg {}".format(direct_outputs.id)
+        generated_output_group_name = "bc {}".format(direct_outputs.id)
         linking_output_group_name = "bl {}".format(direct_outputs.id)
         products_output_group_name = "bp {}".format(direct_outputs.id)
 
@@ -144,16 +144,15 @@ def _create(
         # expand to individual files and blow up the BEP
         indexstores_files = depset([indexstores_filelist])
 
+        compiled_and_generated_transitive = [closest_compiled]
+        if inputs:
+            compiled_and_generated_transitive.append(inputs.compiling_files)
+
         direct_group_list = [
-            (
-                "bc {}".format(direct_outputs.id),
-                False,
-                closest_compiled,
-            ),
             (
                 generated_output_group_name,
                 False,
-                inputs.compiling_files if inputs else depset(),
+                depset(transitive = compiled_and_generated_transitive),
             ),
             (
                 "bi {}".format(direct_outputs.id),
