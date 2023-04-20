@@ -1,5 +1,13 @@
 load("@buildifier_prebuilt//:rules.bzl", "buildifier")
 
+# See the note in __init__.py for why this is needed.
+py_library(
+    name = "py_init_shim",
+    testonly = 1,
+    srcs = ["__init__.py"],
+    visibility = ["//tools:__subpackages__"],
+)
+
 # Release
 
 filegroup(

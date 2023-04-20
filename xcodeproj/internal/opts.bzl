@@ -4,44 +4,6 @@ load("@bazel_tools//tools/cpp:toolchain_utils.bzl", "find_cpp_toolchain")
 load(":files.bzl", "is_relative_path")
 load(":input_files.bzl", "CXX_EXTENSIONS", "C_EXTENSIONS")
 
-# C and C++ compiler flags that we don't want to propagate to Xcode.
-# The values are the number of flags to skip, 1 being the flag itself, 2 being
-# another flag right after it, etc.
-_CC_SKIP_OPTS = {
-    # Xcode sets these, and no way to unset them
-    "-isysroot": 2,
-    "-mios-simulator-version-min": 1,
-    "-miphoneos-version-min": 1,
-    "-mmacosx-version-min": 1,
-    "-mtvos-simulator-version-min": 1,
-    "-mtvos-version-min": 1,
-    "-mwatchos-simulator-version-min": 1,
-    "-mwatchos-version-min": 1,
-    "-target": 2,
-
-    # Xcode sets input and output paths
-    "-c": 2,
-    "-o": 2,
-
-    # We set this in the generator
-    "-fobjc-arc": 1,
-    "-fno-objc-arc": 1,
-
-    # We want to use Xcode's dependency file handling
-    "-MD": 1,
-    "-MF": 2,
-
-    # We want to use Xcode's normal indexing handling
-    "-index-ignore-system-symbols": 1,
-    "-index-store-path": 2,
-
-    # We want Xcode to control coloring
-    "-fcolor-diagnostics": 1,
-
-    # This is wrapped_clang specific, and we don't want to translate it for BwX
-    "DEBUG_PREFIX_MAP_PWD": 1,
-}
-
 # Swift compiler flags that we don't want to propagate to Xcode.
 # The values are the number of flags to skip, 1 being the flag itself, 2 being
 # another flag right after it, etc.
@@ -149,7 +111,7 @@ def _legacy_get_unprocessed_cc_compiler_opts(
     if (has_swift_opts or
         not implementation_compilation_context or
         not (has_c_sources or has_cxx_sources)):
-        return ([], [])
+        return ([], [], [], [])
 
     cc_toolchain = find_cpp_toolchain(ctx)
 
@@ -212,8 +174,13 @@ def _legacy_get_unprocessed_cc_compiler_opts(
             variables = variables,
         )
         conlyopts = base_copts + cpp.copts + cpp.conlyopts
+        args = ctx.actions.args()
+        args.add("wrapped_clang")
+        args.add_all(conlyopts)
+        conly_args = [args]
     else:
         conlyopts = []
+        conly_args = []
 
     if has_cxx_sources:
         base_cxxopts = cc_common.get_memory_inefficient_command_line(
@@ -222,10 +189,15 @@ def _legacy_get_unprocessed_cc_compiler_opts(
             variables = variables,
         )
         cxxopts = base_cxxopts + cpp.copts + cpp.cxxopts
+        args = ctx.actions.args()
+        args.add("wrapped_clang_pp")
+        args.add_all(cxxopts)
+        cxx_args = [args]
     else:
         cxxopts = []
+        cxx_args = []
 
-    return conlyopts, cxxopts
+    return conlyopts, conly_args, cxxopts, cxx_args
 
 def _modern_get_unprocessed_cc_compiler_opts(
         *,
@@ -239,6 +211,7 @@ def _modern_get_unprocessed_cc_compiler_opts(
         # buildifier: disable=unused-variable
         implementation_compilation_context):
     conlyopts = []
+    conly_args = []
     if has_c_sources:
         for action in target.actions:
             if action.mnemonic not in _CC_COMPILE_ACTIONS:
@@ -257,9 +230,11 @@ def _modern_get_unprocessed_cc_compiler_opts(
 
             # First argument is "wrapped_clang"
             conlyopts = action.argv[1:]
+            conly_args = action.args
             break
 
     cxxopts = []
+    cxx_args = []
     if has_cxx_sources:
         for action in target.actions:
             if action.mnemonic not in _CC_COMPILE_ACTIONS:
@@ -278,9 +253,10 @@ def _modern_get_unprocessed_cc_compiler_opts(
 
             # First argument is "wrapped_clang_pp"
             cxxopts = action.argv[1:]
+            cxx_args = action.args
             break
 
-    return conlyopts, cxxopts
+    return conlyopts, conly_args, cxxopts, cxx_args
 
 # Bazel 6 check
 _get_unprocessed_cc_compiler_opts = (
@@ -321,7 +297,7 @@ def _get_unprocessed_compiler_opts(
             swiftcopts = action.argv[2:]
             break
 
-    conlyopts, cxxopts = _get_unprocessed_cc_compiler_opts(
+    conlyopts, conly_args, cxxopts, cxxargs = _get_unprocessed_cc_compiler_opts(
         ctx = ctx,
         has_c_sources = has_c_sources,
         has_cxx_sources = has_cxx_sources,
@@ -339,7 +315,9 @@ Using VFS overlays with `build_mode = "xcode"` is unsupported.
 
     return (
         conlyopts,
+        conly_args,
         cxxopts,
+        cxxargs,
         swiftcopts,
     )
 
@@ -352,33 +330,22 @@ def _process_cc_opts(opts, *, build_settings):
             settings that are parsed from `opts`.
 
     Returns:
-        A `tuple` containing three elements:
-
-        *   A `list` of unhandled C/C++ compiler options.
-        *   A `list` of C/C++ compiler optimization levels parsed.
-        *   A `bool` indicting if the target has debug info enabled.
+        A `bool` indicting if the target has debug info enabled.
     """
-    optimizations = []
-    has_debug_info = {}
-
-    def _inner_process_cc_opts(opt, previous_opt):
+    has_debug_info = False
+    for opt in opts:
         # Short-circuit opts that are too short for our checks
         if len(opt) < 2:
-            return opt
+            continue
 
-        if previous_opt == "-ivfsoverlay" or previous_opt == "--config":
-            if opt[0] != "/":
-                return "$(CURRENT_EXECUTION_ROOT)/" + opt
-            return opt
+        if opt == "-g":
+            has_debug_info = True
+            continue
 
         if opt[0] != "-":
-            return opt
-        opt_character = opt[1]
+            continue
 
-        if opt_character == "O":
-            optimizations.append(opt)
-            return None
-        if opt_character == "D":
+        if opt[1] == "D":
             value = opt[2:]
             if value.startswith("OBJC_OLD_DISPATCH_PROTOTYPES"):
                 suffix = value[-2:]
@@ -386,49 +353,9 @@ def _process_cc_opts(opts, *, build_settings):
                     build_settings["ENABLE_STRICT_OBJC_MSGSEND"] = False
                 elif suffix == "=0":
                     build_settings["ENABLE_STRICT_OBJC_MSGSEND"] = True
-                return None
-            return opt
-
-        # -ivfsoverlay and --config doesn't apply `-working_directory=`, so we
-        # need to prefix it ourselves
-        if opt.startswith("-ivfsoverlay"):
-            value = opt[12:]
-            if not value.startswith("/"):
-                return "-ivfsoverlay" + "$(CURRENT_EXECUTION_ROOT)/" + value
-            return opt
-
-        return opt
-
-    processed_opts = []
-    has_debug_info = False
-    skip_next = 0
-    outer_previous_opt = None
-    for outer_opt in opts:
-        if skip_next:
-            skip_next -= 1
-            continue
-        root_opt = outer_opt.split("=")[0]
-
-        skip_next = _CC_SKIP_OPTS.get(root_opt, 0)
-        if skip_next:
-            skip_next -= 1
             continue
 
-        if outer_opt == "-g":
-            has_debug_info = True
-            continue
-
-        processed_opt = _inner_process_cc_opts(outer_opt, outer_previous_opt)
-
-        outer_previous_opt = outer_opt
-
-        outer_opt = processed_opt
-        if not outer_opt:
-            continue
-
-        processed_opts.append(outer_opt)
-
-    return processed_opts, optimizations, has_debug_info
+    return has_debug_info
 
 def _process_copts(
         *,
@@ -444,72 +371,20 @@ def _process_copts(
             settings that are parsed from `conlyopts` and `cxxopts`.
 
     Returns:
-        A `tuple` containing four elements:
+        A `tuple` containing two elements:
 
-        *   A `list` of unhandled C compiler options.
-        *   A `list` of unhandled C++ compiler options.
         *   A `bool` indicting if the target has debug info enabled for C.
         *   A `bool` indicting if the target has debug info enabled for C++.
     """
-    has_conlyopts = bool(conlyopts)
-    has_cxxopts = bool(cxxopts)
-    has_copts = has_conlyopts or has_cxxopts
-
-    (
+    c_has_debug_info = _process_cc_opts(
         conlyopts,
-        conly_optimizations,
-        c_has_debug_info,
-    ) = _process_cc_opts(conlyopts, build_settings = build_settings)
-    (
+        build_settings = build_settings,
+    )
+    cxx_has_debug_info = _process_cc_opts(
         cxxopts,
-        cxx_optimizations,
-        cxx_has_debug_info,
-    ) = _process_cc_opts(cxxopts, build_settings = build_settings)
-
-    if has_copts:
-        if not has_cxxopts:
-            if conly_optimizations:
-                build_settings["GCC_OPTIMIZATION_LEVEL"] = (
-                    conly_optimizations[0][2:]
-                )
-                conly_optimizations = conly_optimizations[1:]
-            else:
-                build_settings["GCC_OPTIMIZATION_LEVEL"] = "0"
-        elif not has_conlyopts:
-            if cxx_optimizations:
-                build_settings["GCC_OPTIMIZATION_LEVEL"] = (
-                    cxx_optimizations[0][2:]
-                )
-                cxx_optimizations = cxx_optimizations[1:]
-            else:
-                build_settings["GCC_OPTIMIZATION_LEVEL"] = "0"
-        else:
-            # Calculate GCC_OPTIMIZATION_LEVEL, preserving C/C++ specific
-            # settings
-            if conly_optimizations:
-                default_conly_optimization = conly_optimizations[0]
-                conly_optimizations = conly_optimizations[1:]
-            else:
-                default_conly_optimization = "-O0"
-            if cxx_optimizations:
-                default_cxx_optimization = cxx_optimizations[0]
-                cxx_optimizations = cxx_optimizations[1:]
-            else:
-                default_cxx_optimization = "-O0"
-            if default_conly_optimization == default_cxx_optimization:
-                gcc_optimization = default_conly_optimization
-            else:
-                gcc_optimization = "-O0"
-                conly_optimizations = ([default_conly_optimization] +
-                                       conly_optimizations)
-                cxx_optimizations = (
-                    [default_cxx_optimization] + cxx_optimizations
-                )
-            build_settings["GCC_OPTIMIZATION_LEVEL"] = gcc_optimization[2:]
-
+        build_settings = build_settings,
+    )
     return (
-        conly_optimizations + conlyopts,
-        cxx_optimizations + cxxopts,
         c_has_debug_info,
         cxx_has_debug_info,
     )
@@ -793,7 +668,58 @@ Using VFS overlays with `build_mode = "xcode"` is unsupported.
 
     return processed_opts, clang_opts, has_debug_info
 
-def _create_compile_params(*, actions, name, opts, opt_type):
+def _create_cc_compile_params(
+        *,
+        actions,
+        name,
+        args,
+        opt_type,
+        cc_compiler_params_processor):
+    if not args or not actions:
+        return None
+
+    def _create_compiler_sub_params(idx, link_args):
+        sub_output = actions.declare_file(
+            "{}.rules_xcodeproj.{}.compile.sub-{}.params".format(
+                name,
+                opt_type,
+                idx,
+            ),
+        )
+        actions.write(
+            output = sub_output,
+            content = link_args,
+        )
+        return sub_output
+
+    sub_params = [
+        _create_compiler_sub_params(idx, sub_args)
+        for idx, sub_args in enumerate(args)
+    ]
+
+    params = actions.declare_file(
+        "{}.rules_xcodeproj.{}.compile.params".format(
+            name,
+            opt_type,
+        ),
+    )
+
+    params_args = actions.args()
+    params_args.add(params)
+    params_args.add_all(sub_params)
+
+    actions.run(
+        executable = cc_compiler_params_processor,
+        arguments = [params_args],
+        mnemonic = "ProcessCCCompileParams",
+        progress_message = "Generating %{output}",
+        inputs = sub_params,
+        outputs = [params],
+    )
+
+    return params
+
+def _create_swift_compile_params(*, actions, name, opts):
     if not opts or not actions:
         return None
 
@@ -801,10 +727,7 @@ def _create_compile_params(*, actions, name, opts, opt_type):
     args.add_all(opts)
 
     output = actions.declare_file(
-        "{}.rules_xcodeproj.{}.compile.params".format(
-            name,
-            opt_type,
-        ),
+        "{}.rules_xcodeproj.swift.compile.params".format(name),
     )
     actions.write(
         output = output,
@@ -817,19 +740,24 @@ def _process_compiler_opts(
         actions,
         name,
         conlyopts,
+        conly_args,
         cxxopts,
+        cxx_args,
         swiftcopts,
         build_mode,
         cpp_fragment,
         package_bin_dir,
-        build_settings):
+        build_settings,
+        cc_compiler_params_processor):
     """Processes compiler options.
 
     Args:
         actions: `ctx.actions`.
         name: The name of the target.
-        conlyopts: A `list` of C compiler options.
+        conlyopts: A `list` of C compiler options
+        conly_args: An `Args` object for C compiler options.
         cxxopts: A `list` of C++ compiler options.
+        cxx_args: An `Args` object for C compiler options.
         swiftcopts: A `list` of Swift compiler options.
         build_mode: See `xcodeproj.build_mode`.
         cpp_fragment: The `cpp` configuration fragment.
@@ -838,6 +766,8 @@ def _process_compiler_opts(
         build_settings: A mutable `dict` that will be updated with build
             settings that are parsed the `conlyopts`, `cxxopts`, and
             `swiftcopts` lists.
+        cc_compiler_params_processor: The `cc_compiler_params_processor`
+            executable.
 
     Returns:
         A `tuple` containing six elements:
@@ -859,8 +789,6 @@ def _process_compiler_opts(
     has_swiftcopts = bool(swiftcopts)
 
     (
-        conlyopts,
-        cxxopts,
         c_has_debug_info,
         cxx_has_debug_info,
     ) = _process_copts(
@@ -889,23 +817,24 @@ def _process_compiler_opts(
         else:
             build_settings["DEBUG_INFORMATION_FORMAT"] = ""
 
-    c_params = _create_compile_params(
+    c_params = _create_cc_compile_params(
         actions = actions,
         name = name,
-        opts = conlyopts,
+        args = conly_args,
         opt_type = "c",
+        cc_compiler_params_processor = cc_compiler_params_processor,
     )
-    cxx_params = _create_compile_params(
+    cxx_params = _create_cc_compile_params(
         actions = actions,
         name = name,
-        opts = cxxopts,
+        args = cxx_args,
         opt_type = "cxx",
+        cc_compiler_params_processor = cc_compiler_params_processor,
     )
-    swift_params = _create_compile_params(
+    swift_params = _create_swift_compile_params(
         actions = actions,
         name = name,
         opts = swiftcopts,
-        opt_type = "swift",
     )
 
     c_has_fortify_source = "-D_FORTIFY_SOURCE=1" in conlyopts
@@ -959,7 +888,9 @@ def _process_target_compiler_opts(
     """
     (
         conlyopts,
+        conly_args,
         cxxopts,
+        cxx_args,
         swiftcopts,
     ) = _get_unprocessed_compiler_opts(
         ctx = ctx,
@@ -973,12 +904,17 @@ def _process_target_compiler_opts(
         actions = ctx.actions,
         name = ctx.rule.attr.name,
         conlyopts = conlyopts,
+        conly_args = conly_args,
         cxxopts = cxxopts,
+        cxx_args = cxx_args,
         swiftcopts = swiftcopts,
         build_mode = build_mode,
         cpp_fragment = ctx.fragments.cpp,
         package_bin_dir = package_bin_dir,
         build_settings = build_settings,
+        cc_compiler_params_processor = (
+            ctx.executable._cc_compiler_params_processor
+        ),
     )
 
 # Utility
