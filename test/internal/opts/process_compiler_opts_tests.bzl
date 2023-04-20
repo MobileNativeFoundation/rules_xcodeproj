@@ -107,7 +107,7 @@ def _cpp_fragment(*, apple_generate_dsym):
 def _cpp_fragment_stub(dict):
     if not dict:
         return struct(
-            apple_generate_dsym = True,
+            apple_generate_dsym = False,
         )
     return struct(
         apple_generate_dsym = json.decode(dict["apple_generate_dsym"]),
@@ -560,6 +560,17 @@ def process_compiler_opts_test_suite(name):
         cpp_fragment = _cpp_fragment(apple_generate_dsym = False),
         expected_build_settings = {
             "DEBUG_INFORMATION_FORMAT": None,
+        },
+    )
+
+    _add_test(
+        name = "{}_no-debug-no-dsym".format(name),
+        conlyopts = ["-a"],
+        cxxopts = ["-b"],
+        swiftcopts = ["-c"],
+        cpp_fragment = _cpp_fragment(apple_generate_dsym = False),
+        expected_build_settings = {
+            "DEBUG_INFORMATION_FORMAT": "",
         },
     )
 
