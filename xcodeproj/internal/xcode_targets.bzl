@@ -100,6 +100,7 @@ def _make_xcode_target(
     """
 
     compile_targets = []
+
     # Intentionally add the Swift compile target first since it's used later in
     # the setting of `COMPILE_TARGET_NAME` and is assumed to be first when there
     # are multiple values.
