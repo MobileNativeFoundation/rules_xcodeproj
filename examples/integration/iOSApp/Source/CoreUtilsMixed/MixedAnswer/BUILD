@@ -25,6 +25,7 @@ module_map(
 objc_library(
     name = "MixedAnswer",
     srcs = ["MixedAnswer.m"],
+    defines = ["NEEDS_QUOTES=Two\\ words"],
     hdrs = ["MixedAnswer.h"],
     copts = [
         "-I$(BINDIR)/iOSApp/CoreUtilsMixed",
