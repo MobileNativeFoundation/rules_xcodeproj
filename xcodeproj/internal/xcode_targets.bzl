@@ -18,7 +18,7 @@ def _make_xcode_target(
         label,
         configuration,
         compile_target_swift = None,
-        compile_target_other = None,
+        compile_target_non_swift = None,
         package_bin_dir,
         platform,
         product,
@@ -54,8 +54,8 @@ def _make_xcode_target(
         configuration: The configuration of the `Target`.
         compile_target_swift: The Swift `xcode_target` that were merged into
             this target.
-        compile_target_other: The non-Swift `xcode_target` that were merged into
-            this target.
+        compile_target_non_swift: The non-Swift `xcode_target` that were merged
+            into this target.
         package_bin_dir: The package directory for the `Target` within
             `ctx.bin_dir`.
         platform: The value returned from `process_platform`.
@@ -98,20 +98,19 @@ def _make_xcode_target(
     Returns:
         A mostly opaque `struct` that can be passed to `xcode_targets.to_dto`.
     """
-    compile_target_present = (compile_target_swift or compile_target_other)
+
+    compile_targets = []
+    if compile_target_swift:
+        compile_targets.append(compile_target_swift)
+    if compile_target_non_swift:
+        compile_targets.append(compile_target_non_swift)
 
     product = (
-        _to_xcode_target_product(product) if not compile_target_present else product
+        _to_xcode_target_product(product) if not compile_targets else product
     )
 
-    _compile_targets = tuple([])
-    if compile_target_swift:
-        _compile_targets = tuple([compile_target_swift])
-    if compile_target_other:
-        _compile_targets = _compile_targets + tuple([compile_target_other])
-
     return struct(
-        _compile_targets = _compile_targets,
+        _compile_targets = tuple(compile_targets),
         _package_bin_dir = package_bin_dir,
         _test_host = test_host,
         _build_settings = struct(**build_settings),
@@ -132,7 +131,7 @@ def _make_xcode_target(
         platform = platform,
         product = product,
         linker_inputs = (
-            _to_xcode_target_linker_inputs(linker_inputs) if not compile_target_present else linker_inputs
+            _to_xcode_target_linker_inputs(linker_inputs) if not compile_targets else linker_inputs
         ),
         lldb_context = lldb_context,
         lldb_context_key = _lldb_context_key(
@@ -140,11 +139,11 @@ def _make_xcode_target(
             product = product,
         ),
         inputs = (
-            _to_xcode_target_inputs(inputs) if not compile_target_present else inputs
+            _to_xcode_target_inputs(inputs) if not compile_targets else inputs
         ),
         is_swift = is_swift,
         outputs = (
-            _to_xcode_target_outputs(outputs) if not compile_target_present else outputs
+            _to_xcode_target_outputs(outputs) if not compile_targets else outputs
         ),
         infoplist = infoplist,
         should_create_xcode_target = should_create_xcode_target,
@@ -313,6 +312,7 @@ def _merge_xcode_target(*, src_swift, src_other, dest):
     )
 
     srcs = []
+    transitive_dependencies = [dest._dependencies]
     platform = None
     c_params = dest._c_params
     cxx_params = dest._cxx_params
@@ -323,25 +323,26 @@ def _merge_xcode_target(*, src_swift, src_other, dest):
     modulemaps = ()
     if src_swift:
         srcs.append(src_swift)
+        transitive_dependencies.append(src_swift._dependencies)
         swift_params = src_swift._swift_params or dest._swift_params
         platform = src_swift.platform
         swiftmodules = src_swift._swiftmodules
         modulemaps = src_swift._modulemaps
     if src_other:
         srcs.append(src_other)
+        transitive_dependencies.append(src_other._dependencies)
         c_params = src_other._c_params or dest._c_params
         cxx_params = src_other._cxx_params or dest._cxx_params
         c_has_fortify_source = src_other._c_has_fortify_source or dest._c_has_fortify_source
         cxx_has_fortify_source = src_other._cxx_has_fortify_source or dest._cxx_has_fortify_source
         platform = src_other.platform
-        modulemaps = modulemaps + (src_other._modulemaps if modulemaps else src_other._modulemaps)
 
     return _make_xcode_target(
         id = dest.id,
         label = dest.label,
         configuration = dest.configuration,
         compile_target_swift = src_swift,
-        compile_target_other = src_other,
+        compile_target_non_swift = src_other,
         package_bin_dir = dest._package_bin_dir,
         platform = platform,
         product = _merge_xcode_target_product(
@@ -369,7 +370,7 @@ def _merge_xcode_target(*, src_swift, src_other, dest):
         extensions = dest._extensions,
         app_clips = dest._app_clips,
         dependencies = depset(
-            transitive = [dest._dependencies] + [src._dependencies for src in [src_swift, src_other] if src],
+            transitive = transitive_dependencies,
         ),
         transitive_dependencies = dest.transitive_dependencies,
         outputs = _merge_xcode_target_outputs(
@@ -382,17 +383,14 @@ def _merge_xcode_target(*, src_swift, src_other, dest):
 
 def _merge_xcode_target_inputs(*, src_swift, src_other, dest):
     srcs = ()
-    non_arc_srcs = ()
     if src_swift:
         srcs = src_swift.srcs
-        non_arc_srcs = src_swift.non_arc_srcs
     if src_other:
         srcs = srcs + src_other.srcs
-        non_arc_srcs = non_arc_srcs + src_other.non_arc_srcs
 
     return struct(
         srcs = srcs,
-        non_arc_srcs = non_arc_srcs,
+        non_arc_srcs = src_other.non_arc_srcs if src_other else (),
         hdrs = dest.hdrs,
         pch = src_other.pch if src_other else None,
         entitlements = dest.entitlements,
