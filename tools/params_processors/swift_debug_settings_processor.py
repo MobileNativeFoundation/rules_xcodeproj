@@ -75,7 +75,8 @@ def _main(args: Iterator[str]) -> None:
                 # filter ones that have the same value as the last time the key
                 # was used.
                 once_flags[opt] = None
-            clang_opts.append(opt)
+            # Escape spaces in paths, since these opts are whitespace separated
+            clang_opts.append(opt.replace(' ', '\\ '))
 
         dto = {}
 
