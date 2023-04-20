@@ -280,7 +280,7 @@ def _collect_output_files(
         inputs = None,
         transitive_infos,
         should_produce_dto = True,
-        should_produce_output_groups = None):
+        should_produce_output_groups = True):
     """Collects the outputs of a target.
 
     Args:
@@ -309,7 +309,7 @@ def _collect_output_files(
         An opaque `struct` that should be used with `output_files.to_dto` or
         `output_files.to_output_groups_fields`.
     """
-    if should_produce_output_groups == None:
+    if should_produce_output_groups:
         should_produce_output_groups = ctx.attr._build_mode != "xcode"
 
     outputs = _get_outputs(
