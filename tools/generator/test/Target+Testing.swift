@@ -10,7 +10,7 @@ extension Target {
         label: BazelLabel? = nil,
         configuration: String = "a1b2c",
         xcodeConfigurations: Set<String> = ["Profile"],
-        compileTargets: [CompileTarget]? = nil,
+        compileTargets: [CompileTarget] = [],
         packageBinDir: Path = "bazel-out/a1b2c/some/package",
         platform: Platform? = nil,
         product: Product,

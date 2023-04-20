@@ -5,7 +5,7 @@ struct Target: Equatable {
     var label: BazelLabel
     let configuration: String
     let xcodeConfigurations: Set<String>
-    var compileTargets: [CompileTarget]?
+    var compileTargets: [CompileTarget]
     let packageBinDir: Path
     var platform: Platform
     var product: Product
@@ -90,7 +90,7 @@ extension Target: Decodable {
             .decodeIfPresent(Set<String>.self, forKey: .xcodeConfigurations) ??
             ["Debug"]
         compileTargets = try container
-            .decodeIfPresent([CompileTarget].self, forKey: .compileTargets)
+            .decodeIfPresent([CompileTarget].self, forKey: .compileTargets) ?? []
         packageBinDir = try container.decode(Path.self, forKey: .packageBinDir)
         platform = try container.decode(Platform.self, forKey: .platform)
         product = try container.decode(Product.self, forKey: .product)
