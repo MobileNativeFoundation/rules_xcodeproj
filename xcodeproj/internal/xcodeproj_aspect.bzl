@@ -86,6 +86,13 @@ def make_xcodeproj_aspect(*, build_mode):
         attr_aspects = ["*"],
         attrs = {
             "_build_mode": attr.string(default = build_mode),
+            "_cc_compiler_params_processor": attr.label(
+                cfg = "exec",
+                default = Label(
+                    "//tools/params_processors:cc_compiler_params_processor",
+                ),
+                executable = True,
+            ),
             "_cc_toolchain": attr.label(default = Label(
                 "@bazel_tools//tools/cpp:current_cc_toolchain",
             )),

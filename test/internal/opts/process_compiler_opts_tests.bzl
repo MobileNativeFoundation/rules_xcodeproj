@@ -27,12 +27,15 @@ def _process_compiler_opts_test_impl(ctx):
         actions = None,
         name = "process_compiler_opts_tests",
         conlyopts = conlyopts,
+        conly_args = [],
         cxxopts = cxxopts,
+        cxx_args = [],
         swiftcopts = swiftcopts,
         build_mode = ctx.attr.build_mode,
         cpp_fragment = _cpp_fragment_stub(ctx.attr.cpp_fragment),
         package_bin_dir = ctx.attr.package_bin_dir,
         build_settings = build_settings,
+        cc_compiler_params_processor = None,
     )
     string_build_settings = stringify_dict(build_settings)
 
@@ -42,8 +45,6 @@ def _process_compiler_opts_test_impl(ctx):
         "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
         "SWIFT_VERSION": "5.0",
     }
-    if conlyopts or cxxopts:
-        expected_build_settings["GCC_OPTIMIZATION_LEVEL"] = "0"
     if conlyopts or cxxopts or swiftcopts:
         expected_build_settings["DEBUG_INFORMATION_FORMAT"] = ""
 
@@ -659,62 +660,6 @@ def process_compiler_opts_test_suite(name):
         expected_build_settings = {
             "ENABLE_TESTABILITY": "True",
         },
-    )
-
-    ## GCC_OPTIMIZATION_LEVEL
-
-    _add_test(
-        name = "{}_differing_gcc_optimization_level".format(name),
-        conlyopts = ["-O0"],
-        cxxopts = ["-O1"],
-    )
-
-    _add_test(
-        name = "{}_differing_gcc_optimization_level_common_first".format(name),
-        conlyopts = ["-O1", "-O0"],
-        cxxopts = ["-O1", "-O2"],
-        expected_build_settings = {
-            "GCC_OPTIMIZATION_LEVEL": "1",
-        },
-    )
-
-    _add_test(
-        name = "{}_multiple_gcc_optimization_levels".format(name),
-        conlyopts = ["-O1", "-O0"],
-        cxxopts = ["-O0", "-O1"],
-    )
-
-    _add_test(
-        name = "{}_common_gcc_optimization_level".format(name),
-        conlyopts = ["-O1"],
-        cxxopts = ["-O1"],
-        expected_build_settings = {
-            "GCC_OPTIMIZATION_LEVEL": "1",
-        },
-    )
-
-    _add_test(
-        name = "{}_conly_gcc_optimization_level".format(name),
-        conlyopts = ["-O1"],
-        cxxopts = [],
-        expected_build_settings = {
-            "GCC_OPTIMIZATION_LEVEL": "1",
-        },
-    )
-
-    _add_test(
-        name = "{}_cxx_gcc_optimization_level".format(name),
-        conlyopts = [],
-        cxxopts = ["-O1"],
-        expected_build_settings = {
-            "GCC_OPTIMIZATION_LEVEL": "1",
-        },
-    )
-
-    _add_test(
-        name = "{}_none_gcc_optimization_level".format(name),
-        conlyopts = [],
-        cxxopts = [],
     )
 
     ## SWIFT_COMPILATION_MODE
