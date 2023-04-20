@@ -141,11 +141,12 @@ def _calculate_label_and_target_ids(
                 # isn't a different compile target id
                 full_target_target_ids["build"]
             )
-            target_id = _select_target_id(
+            target_ids = _select_target_ids(
                 target_target_ids[configuration_name],
                 platform,
             )
-            labels_and_target_ids.append((label, target_id))
+            for target_id in target_ids:
+                labels_and_target_ids.append((label, target_id))
     except Exception as error:
         print(
             f"""\
@@ -216,17 +217,28 @@ https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bu
             config_compile_target_ids = {"key": "BAZEL_COMPILE_TARGET_IDS"}
             for key, value in configuration["buildSettings"].items():
                 if key.startswith("BAZEL_TARGET_ID"):
+                    if value == "$(BAZEL_TARGET_ID)":
+                        target_ids = value
+                    else:
+                        # This is only a single value but the later parsing of
+                        # these target ids assumes a list.
+                        target_ids = [value]
+
                     config_build_target_ids[_platform_from_build_key(key)] = (
-                        value
+                        target_ids
                     )
                 elif key.startswith("BAZEL_COMPILE_TARGET_IDS"):
-                    # Target identifiers contain a space but are space separated.
-                    # Split on all spaces then rejoin across the identifier pairs.
-                    target_ids = value.split(" ")
-                    target_ids = [
-                        " ".join(target_ids[i:i+2])
-                        for i in range(0, len(target_ids), 2)
-                    ]
+                    if value == "$(BAZEL_COMPILE_TARGET_IDS)":
+                        target_ids = "$(BAZEL_COMPILE_TARGET_IDS)"
+                    else:
+                        # Target identifiers contain a space but are space separated.
+                        # Split on all spaces then rejoin across the identifier pairs.
+                        target_ids = value.split(" ")
+                        target_ids = [
+                            " ".join(target_ids[i:i+2])
+                            for i in range(0, len(target_ids), 2)
+                        ]
+
                     config_compile_target_ids[_platform_from_compile_key(key)] = (
                         target_ids
                     )
@@ -270,7 +282,7 @@ def _platform_from_compile_key(key):
         return key[29:-2]
     return ""
 
-def _select_target_id(target_ids, platform):
+def _select_target_ids(target_ids, platform):
     key = target_ids["key"]
 
     platforms = {platform: None}
@@ -282,11 +294,11 @@ def _select_target_id(target_ids, platform):
     platforms.update(_similar_platforms(platform))
 
     for platform in platforms:
-        target_id = target_ids.get(platform)
-        if target_id:
-            if target_id == f"$({key})":
+        platform_target_ids = target_ids.get(platform)
+        if platform_target_ids:
+            if platform_target_ids == f"$({key})":
                 return target_ids[""]
-            return target_id
+            return platform_target_ids
     return target_ids[""]
 
 def _similar_platforms(platform):
