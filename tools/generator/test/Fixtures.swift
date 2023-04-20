@@ -1419,7 +1419,7 @@ set -euo pipefail
 if [[ "$ACTION" == "indexbuild" ]]; then
   touch "$SCRIPT_OUTPUT_FILE_0"
 else
-perl -pe 's/^("?)(.*\$\(.*\).*?)("?)$/"$2"/ ; s/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$ENV{$2}/g' \
+perl -pe 's/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$ENV{$2}/g' \
   "$SCRIPT_INPUT_FILE_0" > "$SCRIPT_OUTPUT_FILE_0"
 fi
 
