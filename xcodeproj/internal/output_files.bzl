@@ -309,6 +309,9 @@ def _collect_output_files(
         An opaque `struct` that should be used with `output_files.to_dto` or
         `output_files.to_output_groups_fields`.
     """
+    if should_produce_output_groups:
+        should_produce_output_groups = ctx.attr._build_mode != "xcode"
+
     outputs = _get_outputs(
         debug_outputs = debug_outputs,
         id = id,
