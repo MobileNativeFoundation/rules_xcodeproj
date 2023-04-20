@@ -27,13 +27,13 @@ else
     # Inputs for compiling, inputs for linking, and index store data
     readonly output_group_prefixes="xc,xl,xi"
   elif [[ "${ENABLE_PREVIEWS:-}" == "YES" ]]; then
-    # Compiled outputs (i.e. swiftmodules), products (i.e. bundles), generated
-    # inputs, index store data, and link params
-    readonly output_group_prefixes="bc,bp,bg,bi,bl"
+    # Compiled outputs (i.e. swiftmodules) and generated inputs, products (i.e.
+    # bundles), index store data, and link params
+    readonly output_group_prefixes="bc,bp,bi,bl"
   else
-    # Compiled outputs (i.e. swiftmodules), products (i.e. bundles), generated
-    # inputs, and index store data
-    readonly output_group_prefixes="bc,bp,bg,bi"
+    # Compiled outputs (i.e. swiftmodules) and generated
+    # inputs, products (i.e. bundles), and index store data
+    readonly output_group_prefixes="bc,bp,bi"
   fi
 
   readonly indexstores_regex='.*\.indexstore/.*'

@@ -6,10 +6,9 @@ cd "$SRCROOT"
 
 readonly config="${BAZEL_CONFIG}_indexbuild"
 
-# Compiled outputs (i.e. swiftmodules), and generated inputs
+# Compiled outputs (i.e. swiftmodules) and generated inputs
 readonly output_groups=(
   "bc $BAZEL_TARGET_ID"
-  "bg $BAZEL_TARGET_ID"
 )
 
 readonly base_outputs_regex='.*\.a$|.*\.swiftdoc$|.*\.swiftmodule$|.*\.swiftsourceinfo$'
