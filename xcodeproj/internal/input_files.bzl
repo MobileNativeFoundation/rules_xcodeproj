@@ -598,14 +598,17 @@ def _collect_input_files(
         modulemaps = modulemaps_depset.to_list()
 
     if id:
-        compiling_output_group_name = "xc {}".format(id)
-        indexstores_output_group_name = "xi {}".format(id)
-        linking_output_group_name = "xl {}".format(id)
-
         compiling_files = depset(
             modulemaps,
             transitive = [generated_depset],
         )
+    else:
+        compiling_files = generated_depset
+
+    if id and ctx.attr._build_mode == "xcode":
+        compiling_output_group_name = "xc {}".format(id)
+        indexstores_output_group_name = "xi {}".format(id)
+        linking_output_group_name = "xl {}".format(id)
 
         indexstores_filelist = filelists.write(
             ctx = ctx,
@@ -627,7 +630,6 @@ def _collect_input_files(
         compiling_output_group_name = None
         indexstores_output_group_name = None
         linking_output_group_name = None
-        compiling_files = generated_depset
         direct_group_list = None
 
     if not unfocused_libraries:
