@@ -213,15 +213,22 @@ https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bu
         compile_target_ids = {}
         for configuration in target_pif["buildConfigurations"]:
             config_build_target_ids = {"key": "BAZEL_TARGET_ID"}
-            config_compile_target_ids = {"key": "BAZEL_COMPILE_TARGET_ID"}
+            config_compile_target_ids = {"key": "BAZEL_COMPILE_TARGET_IDS"}
             for key, value in configuration["buildSettings"].items():
                 if key.startswith("BAZEL_TARGET_ID"):
                     config_build_target_ids[_platform_from_build_key(key)] = (
                         value
                     )
-                elif key.startswith("BAZEL_COMPILE_TARGET_ID"):
+                elif key.startswith("BAZEL_COMPILE_TARGET_IDS"):
+                    # Target identifiers contain a space but are space separated.
+                    # Split on all spaces then rejoin across the identifier pairs.
+                    target_ids = value.split(" ")
+                    target_ids = [
+                        " ".join(target_ids[i:i+2])
+                        for i in range(0, len(target_ids), 2)
+                    ]
                     config_compile_target_ids[_platform_from_compile_key(key)] = (
-                        value
+                        target_ids
                     )
                 elif key == "BAZEL_LABEL":
                     label = value
@@ -259,8 +266,8 @@ def _platform_from_build_key(key):
     return ""
 
 def _platform_from_compile_key(key):
-    if key.startswith("BAZEL_COMPILE_TARGET_ID[sdk="):
-        return key[28:-2]
+    if key.startswith("BAZEL_COMPILE_TARGET_IDS[sdk="):
+        return key[29:-2]
     return ""
 
 def _select_target_id(target_ids, platform):
