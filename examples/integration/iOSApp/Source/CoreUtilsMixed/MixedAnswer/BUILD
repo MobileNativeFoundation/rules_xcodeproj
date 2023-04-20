@@ -25,11 +25,11 @@ module_map(
 objc_library(
     name = "MixedAnswer",
     srcs = ["MixedAnswer.m"],
-    defines = ["NEEDS_QUOTES=Two\\ words"],
     hdrs = ["MixedAnswer.h"],
     copts = [
         "-I$(BINDIR)/iOSApp/CoreUtilsMixed",
     ],
+    defines = ["NEEDS_QUOTES=Two\\ words"],
     module_map = ":MixedAnswer_objc_modulemap",
     visibility = ["//iOSApp:__subpackages__"],
     deps = [
