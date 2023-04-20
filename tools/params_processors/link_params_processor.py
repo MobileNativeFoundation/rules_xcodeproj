@@ -95,7 +95,7 @@ def _process_linkopts(
             paths = fp.read().splitlines()
 
         return [
-            xcode_generated_paths.get(path, path)
+            _quote_if_needed(xcode_generated_paths.get(path, path))
             for path in paths
             if path != self_linked_path and not path.endswith(".o")
         ]
@@ -115,11 +115,11 @@ def _process_linkopts(
         return "{}={}".format(prefix, _process_linkopt_value(suffix))
 
     processed_linkopts = []
-    def _append_processed_linkopt(opt):
+    def _append_quoted_processed_linkopt(opt):
         processed_linkopts.append(_quote_if_needed(opt))
 
     swiftui_previews_linkopts = []
-    def _append_swiftui_previews_linkopt(opt):
+    def _append_quoted_swiftui_previews_linkopt(opt):
         swiftui_previews_linkopts.append(_quote_if_needed(opt))
 
     last_opt = None
@@ -127,6 +127,8 @@ def _process_linkopts(
         if opt == "-filelist":
             return
         if last_opt == "-filelist":
+            # Not calling `_append_quoted_processed_linkopt`, because
+            # `_process_filelist` applies quoting if needed
             processed_linkopts.extend(_process_filelist(opt))
             return
         if opt.endswith(self_linked_path):
@@ -136,6 +138,9 @@ def _process_linkopts(
 
         if opt == "-Wl,-rpath,@loader_path/SwiftUIPreviewsFrameworks":
             if is_framework:
+                # Not calling `_append_quoted_processed_linkopt`, because every
+                # element of `swiftui_previews_linkopts` is already quoted if
+                # needed
                 processed_linkopts.extend(swiftui_previews_linkopts)
             return
 
@@ -174,21 +179,26 @@ def _process_linkopts(
             if search_paths:
                 xcode_path = search_paths.get("x")
                 if xcode_path:
-                    _append_processed_linkopt("-F" + xcode_path)
-                    _append_swiftui_previews_linkopt("-Wl,-rpath," + xcode_path)
+                    _append_quoted_processed_linkopt("-F" + xcode_path)
+                    _append_quoted_swiftui_previews_linkopt(
+                        "-Wl,-rpath," + xcode_path,
+                    )
                 bazel_path = search_paths.get("b")
                 if bazel_path:
-                    _append_processed_linkopt("-F" + bazel_path)
+                    _append_quoted_processed_linkopt("-F" + bazel_path)
                     if bazel_path.startswith("/"):
-                        _append_swiftui_previews_linkopt(
+                        _append_quoted_swiftui_previews_linkopt(
                             "-Wl,-rpath," + bazel_path,
                         )
                     else:
+                        # Not calling `_append_quoted_swiftui_previews_linkopt`,
+                        # because we already know it needs to be quoted, and we
+                        # do so manually here
                         swiftui_previews_linkopts.append(
                             f"'-Wl,-rpath,$(PROJECT_DIR)/{bazel_path}'",
                         )
             else:
-                _append_processed_linkopt(opt)
+                _append_quoted_processed_linkopt(opt)
                 prefix = path[0]
                 if prefix != "/" and prefix != "$":
                     swiftui_previews_linkopts.append(
@@ -196,7 +206,7 @@ def _process_linkopts(
                     )
             return
 
-        _append_processed_linkopt(",".join([
+        _append_quoted_processed_linkopt(",".join([
             _process_linkopt_component(component)
             for component in opt.split(",")
         ]))
