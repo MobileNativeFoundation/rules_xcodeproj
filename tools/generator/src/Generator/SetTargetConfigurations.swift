@@ -291,13 +291,21 @@ $(BAZEL_OUT)\#(linkParams.path.string.dropFirst(9))
             buildSettings["MACH_O_TYPE"] = "staticlib"
         }
 
-        let compileTargetName: String
-        if let compileTarget = target.compileTarget {
+        if let target_ids = target.compileTargets?.map(\.id.rawValue) {
             buildSettings.set(
-                "BAZEL_COMPILE_TARGET_ID",
-                to: compileTarget.id.rawValue
+                "BAZEL_COMPILE_TARGET_IDS",
+                to: target_ids
             )
-            compileTargetName = compileTarget.name
+        }
+
+        let compileTargetName: String
+        if let compileTargets = target.compileTargets, compileTargets.count > 0 {
+            // Intentionally take the first `compileTargets` entry since this
+            // will be Swift in the case where a Swift compile target is present
+            // amongst a non-Swift compile target. Swift indexstore imports are
+            // the only supported ones right now so this opts to choose that when
+            // possible.
+            compileTargetName = compileTargets[0].name
         } else {
             compileTargetName = target.name
         }
@@ -782,7 +790,7 @@ where Key == BuildSettingConditional, Value == [String: BuildSetting] {
 
             // Set `BAZEL_{COMPILE_,}TARGET_ID` for first condition, for
             // buildRequest handling
-            if Set(["BAZEL_TARGET_ID", "BAZEL_COMPILE_TARGET_ID"])
+            if Set(["BAZEL_TARGET_ID", "BAZEL_COMPILE_TARGET_IDS"])
                 .contains(key)
             {
                 buildSettings.set(

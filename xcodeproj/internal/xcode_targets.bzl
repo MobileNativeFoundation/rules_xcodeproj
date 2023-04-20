@@ -102,7 +102,7 @@ def _make_xcode_target(
     )
 
     return struct(
-        _compile_target = compile_target,
+        _compile_targets = tuple([compile_target]) if compile_target else None,
         _package_bin_dir = package_bin_dir,
         _test_host = test_host,
         _build_settings = struct(**build_settings),
@@ -553,11 +553,11 @@ def _xcode_target_to_dto(
     if xcode_configurations != ["Debug"]:
         dto["x"] = xcode_configurations
 
-    if xcode_target._compile_target:
-        dto["3"] = {
-            "i": xcode_target._compile_target.id,
-            "n": xcode_target._compile_target.label.name,
-        }
+    if xcode_target._compile_targets:
+        dto["3"] = [{
+            "i": compile_target.id,
+            "n": compile_target.label.name,
+        } for compile_target in xcode_target._compile_targets]
 
     if is_unfocused_dependency:
         dto["u"] = True
@@ -576,7 +576,7 @@ def _xcode_target_to_dto(
 
     linker_inputs_dto, link_params = _linker_inputs_to_dto(
         ctx = ctx,
-        compile_target = xcode_target._compile_target,
+        compile_targets = xcode_target._compile_targets,
         generated_framework_search_paths = generated_framework_search_paths,
         is_framework = (
             xcode_target.product.type == "com.apple.product-type.framework"
@@ -789,7 +789,7 @@ def _linker_inputs_to_dto(
         linker_inputs,
         *,
         ctx,
-        compile_target,
+        compile_targets,
         generated_framework_search_paths,
         is_framework,
         link_params_processor,
@@ -801,14 +801,26 @@ def _linker_inputs_to_dto(
     if not linker_inputs:
         return ({}, None)
 
-    if compile_target:
-        self_product_path = compile_target.product.file.path
+    if compile_targets:
+        self_product_paths = [compile_target.product.file.path for compile_target in compile_targets]
     else:
         # Handle `{cc,swift}_{binary,test}` with `srcs` case
-        self_product_path = paths.join(
+        self_product_paths = [paths.join(
             product.package_dir,
             "lib{}.lo".format(name),
-        )
+        )]
+
+    generated_product_paths_file = ctx.actions.declare_file(
+        "{}-params/{}.{}.generated_product_paths_file.json".format(
+            ctx.attr.name,
+            name,
+            params_index,
+        ),
+    )
+    ctx.actions.write(
+        output = generated_product_paths_file,
+        content = json.encode(self_product_paths),
+    )
 
     ret = {}
     set_if_true(
@@ -862,7 +874,7 @@ def _linker_inputs_to_dto(
         args.add(xcode_generated_paths_file)
         args.add(generated_framework_search_paths_file)
         args.add("1" if is_framework else "0")
-        args.add(self_product_path)
+        args.add(generated_product_paths_file)
         args.add(platform_info.to_swift_triple(platform))
         args.add(link_params)
         args.add_all(link_sub_params)
@@ -875,6 +887,7 @@ def _linker_inputs_to_dto(
             inputs = (
                 [
                     xcode_generated_paths_file,
+                    generated_product_paths_file,
                     generated_framework_search_paths_file,
                 ] + link_sub_params + list(linker_inputs.link_args_inputs)
             ),
