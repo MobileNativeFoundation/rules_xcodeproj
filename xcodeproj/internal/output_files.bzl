@@ -1,7 +1,7 @@
 """Module containing functions dealing with target output files."""
 
 load(":filelists.bzl", "filelists")
-load(":frozen_constants.bzl", "EMPTY_DEPSET", "NONE_LIST")
+load(":frozen_constants.bzl", "EMPTY_DEPSET")
 
 # Utility
 
@@ -9,7 +9,6 @@ def _create(
         *,
         ctx,
         direct_outputs = None,
-        automatic_target_info = None,
         infoplist = None,
         inputs,
         transitive_infos,
@@ -21,8 +20,6 @@ def _create(
         ctx: The aspect context.
         direct_outputs: A value returned from `_get_outputs`, or `None` if
             the outputs are being merged.
-        automatic_target_info: The `XcodeProjAutomaticTargetProcessingInfo` for
-            the target.
         infoplist: A `File` or `None`.
         inputs: A value returned from `input_files.collect`, or `None`.
         transitive_infos: A `list` of `XcodeProjInfo`s for the transitive
@@ -80,25 +77,15 @@ def _create(
         else:
             closest_compiled = depset(transitive = [
                 info.outputs._closest_compiled
-                for attr, info in transitive_infos
-                if (not info.outputs._is_framework and
-                    (not automatic_target_info or
-                     info.target_type in automatic_target_info.xcode_targets.get(
-                         attr,
-                         NONE_LIST,
-                     )))
+                for info in transitive_infos
+                if not info.outputs._is_framework
             ])
 
         transitive_indexestores = depset(
             [indexstore] if indexstore else None,
             transitive = [
                 info.outputs._transitive_indexestores
-                for attr, info in transitive_infos
-                if (not automatic_target_info or
-                    info.target_type in automatic_target_info.xcode_targets.get(
-                        attr,
-                        NONE_LIST,
-                    ))
+                for info in transitive_infos
             ],
         )
 
@@ -109,12 +96,7 @@ def _create(
             direct_products if direct_products else None,
             transitive = [
                 info.outputs._transitive_products
-                for attr, info in transitive_infos
-                if (not automatic_target_info or
-                    info.target_type in automatic_target_info.xcode_targets.get(
-                        attr,
-                        NONE_LIST,
-                    ))
+                for info in transitive_infos
             ] + [dsym_files],
         )
     else:
@@ -126,12 +108,7 @@ def _create(
         [infoplist] if infoplist else None,
         transitive = [
             info.outputs._transitive_infoplists
-            for attr, info in transitive_infos
-            if (not automatic_target_info or
-                info.target_type in automatic_target_info.xcode_targets.get(
-                    attr,
-                    NONE_LIST,
-                ))
+            for info in transitive_infos
         ],
     )
 
@@ -179,12 +156,7 @@ def _create(
         direct_group_list,
         transitive = [
             info.outputs._output_group_list
-            for attr, info in transitive_infos
-            if (not automatic_target_info or
-                info.target_type in automatic_target_info.xcode_targets.get(
-                    attr,
-                    NONE_LIST,
-                ))
+            for info in transitive_infos
         ],
     )
 
@@ -336,13 +308,11 @@ def _collect_output_files(
         transitive_infos = transitive_infos,
     )
 
-def _merge_output_files(*, ctx, automatic_target_info, transitive_infos):
+def _merge_output_files(*, ctx, transitive_infos):
     """Creates merged outputs.
 
     Args:
         ctx: The aspect context.
-        automatic_target_info: The `XcodeProjAutomaticTargetProcessingInfo` for
-            the target.
         transitive_infos: A `list` of `XcodeProjInfo`s for the transitive
             dependencies of the current target.
 
@@ -354,7 +324,6 @@ def _merge_output_files(*, ctx, automatic_target_info, transitive_infos):
     return _create(
         ctx = ctx,
         transitive_infos = transitive_infos,
-        automatic_target_info = automatic_target_info,
         inputs = None,
         should_produce_dto = False,
         should_produce_output_groups = False,

@@ -294,7 +294,7 @@ def _process_targets(
     xcode_configurations = {}
     for xcode_configuration, i in infos_per_xcode_configuration.items():
         configuration_inputs = input_files.merge(
-            transitive_infos = [(None, info) for info in i],
+            transitive_infos = i,
         )
         configuration_resource_bundle_xcode_targets = process_resource_bundles(
             bundles = configuration_inputs.resource_bundles.to_list(),
@@ -1583,12 +1583,11 @@ configurations: {}""".format(", ".join(xcode_configurations)))
 
     (_, provider_outputs) = output_files.merge(
         ctx = ctx,
-        automatic_target_info = None,
-        transitive_infos = [(None, info) for info in infos],
+        transitive_infos = infos,
     )
 
     inputs = input_files.merge(
-        transitive_infos = [(None, info) for info in infos],
+        transitive_infos = infos,
     )
     focused_labels = {label: None for label in ctx.attr.focused_targets}
     unfocused_labels = {label: None for label in ctx.attr.unfocused_targets}

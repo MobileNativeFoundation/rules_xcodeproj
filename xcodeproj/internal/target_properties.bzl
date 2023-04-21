@@ -1,7 +1,6 @@
 """Functions for processing target properties"""
 
 load(":collections.bzl", "set_if_true", "uniq")
-load(":frozen_constants.bzl", "NONE_LIST")
 
 def should_include_non_xcode_outputs(ctx):
     """Determines whether outputs of non Xcode targets should be included in \
@@ -16,12 +15,12 @@ def should_include_non_xcode_outputs(ctx):
     """
     return ctx.attr._build_mode == "xcode"
 
-def process_dependencies(*, automatic_target_info, transitive_infos):
+def process_dependencies(*, transitive_infos):
     """Logic for processing target dependencies.
 
     Args:
-        automatic_target_info: Attribute information
-        transitive_infos: Transitive information of the deps
+        transitive_infos: A `list` of `XcodeProjInfo`s for the transitive
+            dependencies of `target`.
 
     Returns:
         A `tuple` containing two elements:
@@ -32,13 +31,7 @@ def process_dependencies(*, automatic_target_info, transitive_infos):
     direct_dependencies = []
     direct_transitive_dependencies = []
     all_transitive_dependencies = []
-    for attr, info in transitive_infos:
-        if not (not automatic_target_info or
-                info.target_type in automatic_target_info.xcode_targets.get(
-                    attr,
-                    NONE_LIST,
-                )):
-            continue
+    for info in transitive_infos:
         all_transitive_dependencies.append(info.transitive_dependencies)
         if info.xcode_target and info.xcode_target.should_create_xcode_target:
             # TODO: Refactor `should_create_xcode_target` and

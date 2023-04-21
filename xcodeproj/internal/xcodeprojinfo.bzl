@@ -232,15 +232,18 @@ def _skip_target(
         ],
     )
 
+    valid_transitive_infos = [
+        info
+        for _, info in transitive_infos
+    ]
+
     dependencies, transitive_dependencies = process_dependencies(
-        automatic_target_info = None,
-        transitive_infos = transitive_infos,
+        transitive_infos = valid_transitive_infos,
     )
 
     (_, provider_outputs) = output_files.merge(
         ctx = ctx,
-        automatic_target_info = None,
-        transitive_infos = transitive_infos,
+        transitive_infos = valid_transitive_infos,
     )
 
     return _target_info_fields(
@@ -259,7 +262,7 @@ def _skip_target(
             ],
             transitive = [
                 info.args
-                for _, info in transitive_infos
+                for info in valid_transitive_infos
             ],
         ),
         compilation_providers = compilation_providers,
@@ -267,31 +270,28 @@ def _skip_target(
         extension_infoplists = depset(
             transitive = [
                 info.extension_infoplists
-                for _, info in transitive_infos
+                for info in valid_transitive_infos
             ],
         ),
         hosted_targets = depset(
             transitive = [
                 info.hosted_targets
-                for _, info in transitive_infos
+                for info in valid_transitive_infos
             ],
         ),
         inputs = input_files.merge(
-            transitive_infos = transitive_infos,
+            transitive_infos = valid_transitive_infos,
         ),
         lldb_context = lldb_contexts.collect(
             id = None,
             is_swift = False,
             clang_opts = EMPTY_LIST,
-            transitive_infos = [
-                info
-                for _, info in transitive_infos
-            ],
+            transitive_infos = valid_transitive_infos,
         ),
         mergable_xcode_library_targets = depset(
             transitive = [
                 info.mergable_xcode_library_targets
-                for _, info in transitive_infos
+                for info in valid_transitive_infos
             ],
         ),
         non_top_level_rule_kind = None,
@@ -299,7 +299,7 @@ def _skip_target(
         potential_target_merges = depset(
             transitive = [
                 info.potential_target_merges
-                for _, info in transitive_infos
+                for info in valid_transitive_infos
             ],
         ),
         replacement_labels = depset(
@@ -312,13 +312,13 @@ def _skip_target(
             ],
             transitive = [
                 info.replacement_labels
-                for _, info in transitive_infos
+                for info in valid_transitive_infos
             ],
         ),
         resource_bundle_informations = depset(
             transitive = [
                 info.resource_bundle_informations
-                for _, info in transitive_infos
+                for info in valid_transitive_infos
             ],
         ),
         target_type = target_type.compile,
@@ -337,18 +337,21 @@ def _skip_target(
             ],
             transitive = [
                 info.envs
-                for _, info in transitive_infos
+                for info in valid_transitive_infos
             ],
         ),
         transitive_dependencies = transitive_dependencies,
         xcode_target = None,
         xcode_targets = depset(
-            transitive = [info.xcode_targets for _, info in transitive_infos],
+            transitive = [
+                info.xcode_targets
+                for info in valid_transitive_infos
+            ],
         ),
         xcode_required_targets = depset(
             transitive = [
                 info.xcode_required_targets
-                for _, info in transitive_infos
+                for info in valid_transitive_infos
             ],
         ),
     )

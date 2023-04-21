@@ -93,9 +93,15 @@ rules_xcodeproj requires {} to have `{}` set.
     )
     swiftmodules = process_swiftmodules(swift_info = swift_info)
 
+    valid_transitive_infos = [
+        info
+        for attr, info in transitive_infos
+        if (info.target_type in
+            automatic_target_info.xcode_targets.get(attr, NONE_LIST))
+    ]
+
     dependencies, transitive_dependencies = process_dependencies(
-        automatic_target_info = automatic_target_info,
-        transitive_infos = transitive_infos,
+        transitive_infos = valid_transitive_infos,
     )
 
     mergable_xcode_library_targets = [
@@ -121,12 +127,11 @@ rules_xcodeproj requires {} to have `{}` set.
         product = None,
         linker_inputs = linker_inputs,
         automatic_target_info = automatic_target_info,
-        transitive_infos = transitive_infos,
+        transitive_infos = valid_transitive_infos,
     )
     (_, provider_outputs) = output_files.merge(
         ctx = ctx,
-        automatic_target_info = automatic_target_info,
-        transitive_infos = transitive_infos,
+        transitive_infos = valid_transitive_infos,
     )
 
     return processed_target(
@@ -140,12 +145,7 @@ rules_xcodeproj requires {} to have `{}` set.
             # TODO: Should we still collect this?
             clang_opts = [],
             swiftmodules = swiftmodules,
-            transitive_infos = [
-                info
-                for attr, info in transitive_infos
-                if (info.target_type in
-                    automatic_target_info.xcode_targets.get(attr, NONE_LIST))
-            ],
+            transitive_infos = valid_transitive_infos,
         ),
         mergable_xcode_library_targets = mergable_xcode_library_targets,
         outputs = provider_outputs,
