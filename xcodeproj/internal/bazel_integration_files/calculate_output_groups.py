@@ -217,6 +217,9 @@ https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bu
             config_compile_target_ids = {"key": "BAZEL_COMPILE_TARGET_IDS"}
             for key, value in configuration["buildSettings"].items():
                 if key.startswith("BAZEL_TARGET_ID"):
+                    # This uses a list in the case where the value isn't meant to
+                    # be inherited. Otherwise, `$(BAZEL_TARGET_ID)` is used later
+                    # in this processing to pull from an inherited setting.
                     if value == "$(BAZEL_TARGET_ID)":
                         target_ids = value
                     else:
@@ -228,6 +231,10 @@ https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bu
                         target_ids
                     )
                 elif key.startswith("BAZEL_COMPILE_TARGET_IDS"):
+                    # This uses a list in the case where the value isn't meant to
+                    # be inherited. Otherwise, `$(BAZEL_COMPILE_TARGET_IDS)` is
+                    # used later in this processing to pull from an inherited
+                    # setting.
                     if value == "$(BAZEL_COMPILE_TARGET_IDS)":
                         target_ids = "$(BAZEL_COMPILE_TARGET_IDS)"
                     else:
