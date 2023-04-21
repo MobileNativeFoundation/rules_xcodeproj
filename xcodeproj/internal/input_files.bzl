@@ -541,6 +541,7 @@ def _collect_input_files(
         else:
             unfocused_generated_indexstores = None
     else:
+        bwx_unfocused_libraries = EMPTY_DEPSET
         non_target_swift_info_modules = EMPTY_DEPSET
         unfocused_generated_compiling = None
         unfocused_generated_indexstores = None
