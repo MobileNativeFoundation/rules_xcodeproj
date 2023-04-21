@@ -158,8 +158,6 @@ def _collect_input_files(
                 this target becomes an input to another target's categorized
                 attribute.
     """
-    output_files = target.files.to_list()
-
     entitlements = []
     c_srcs = []
     cxx_srcs = []
@@ -262,7 +260,7 @@ def _collect_input_files(
             categorized = False
 
         if file.is_source:
-            if not categorized and file not in output_files:
+            if not categorized:
                 uncategorized.append(
                     normalized_file_path(
                         file,
