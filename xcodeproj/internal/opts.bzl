@@ -678,7 +678,7 @@ def _create_cc_compile_params(
     if not args or not actions:
         return None
 
-    def _create_compiler_sub_params(idx, link_args):
+    def _create_compiler_sub_params(idx, sub_args):
         sub_output = actions.declare_file(
             "{}.rules_xcodeproj.{}.compile.sub-{}.params".format(
                 name,
@@ -688,7 +688,7 @@ def _create_cc_compile_params(
         )
         actions.write(
             output = sub_output,
-            content = link_args,
+            content = sub_args,
         )
         return sub_output
 
