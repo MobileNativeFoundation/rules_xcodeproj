@@ -1,6 +1,7 @@
 """Module containing functions dealing with target output files."""
 
 load(":filelists.bzl", "filelists")
+load(":frozen_constants.bzl", "EMPTY_DEPSET")
 
 # Utility
 
@@ -8,7 +9,6 @@ def _create(
         *,
         ctx,
         direct_outputs = None,
-        automatic_target_info = None,
         infoplist = None,
         inputs,
         transitive_infos,
@@ -20,8 +20,6 @@ def _create(
         ctx: The aspect context.
         direct_outputs: A value returned from `_get_outputs`, or `None` if
             the outputs are being merged.
-        automatic_target_info: The `XcodeProjAutomaticTargetProcessingInfo` for
-            the target.
         infoplist: A `File` or `None`.
         inputs: A value returned from `input_files.collect`, or `None`.
         transitive_infos: A `list` of `XcodeProjInfo`s for the transitive
@@ -51,7 +49,7 @@ def _create(
     """
     compiled = None
     direct_products = []
-    dsym_files = depset()
+    dsym_files = EMPTY_DEPSET
     indexstore = None
 
     if direct_outputs:
@@ -69,63 +67,49 @@ def _create(
         is_framework = False
         swift = None
 
-    if compiled:
-        # We only need the single swiftmodule in order to download everything
-        # from the remote cache (because of
-        # `--experimental_remote_download_regex`). Reducing the number of items
-        # in an output group keeps the BEP small.
-        closest_compiled = depset(compiled[0:1])
-    else:
-        closest_compiled = depset(transitive = [
-            info.outputs._closest_compiled
-            for attr, info in transitive_infos
-            if (not info.outputs._is_framework and
-                (not automatic_target_info or
-                 info.target_type in automatic_target_info.xcode_targets.get(
-                     attr,
-                     [None],
-                 )))
-        ])
+    if should_produce_output_groups:
+        if compiled:
+            # We only need the single swiftmodule in order to download
+            # everything from the remote cache (because of
+            # `--experimental_remote_download_regex`). Reducing the number of
+            # items in an output group keeps the BEP small.
+            closest_compiled = depset(compiled[0:1])
+        else:
+            closest_compiled = depset(transitive = [
+                info.outputs._closest_compiled
+                for info in transitive_infos
+                if not info.outputs._is_framework
+            ])
 
-    transitive_indexestores = depset(
-        [indexstore] if indexstore else None,
-        transitive = [
-            info.outputs._transitive_indexestores
-            for attr, info in transitive_infos
-            if (not automatic_target_info or
-                info.target_type in automatic_target_info.xcode_targets.get(
-                    attr,
-                    [None],
-                ))
-        ],
-    )
+        transitive_indexestores = depset(
+            [indexstore] if indexstore else None,
+            transitive = [
+                info.outputs._transitive_indexestores
+                for info in transitive_infos
+            ],
+        )
+
+        # TODO: Once BwB mode no longer has target dependencies, remove
+        # transitive products. Until then we need them, to allow `Copy Bazel
+        # Outputs` to be able to copy the products of transitive dependencies.
+        transitive_products = depset(
+            direct_products if direct_products else None,
+            transitive = [
+                info.outputs._transitive_products
+                for info in transitive_infos
+            ] + [dsym_files],
+        )
+    else:
+        closest_compiled = EMPTY_DEPSET
+        transitive_indexestores = EMPTY_DEPSET
+        transitive_products = EMPTY_DEPSET
+
     transitive_infoplists = depset(
         [infoplist] if infoplist else None,
         transitive = [
             info.outputs._transitive_infoplists
-            for attr, info in transitive_infos
-            if (not automatic_target_info or
-                info.target_type in automatic_target_info.xcode_targets.get(
-                    attr,
-                    [None],
-                ))
+            for info in transitive_infos
         ],
-    )
-
-    # TODO: Once BwB mode no longer has target dependencies, remove transitive
-    # products. Until then we need them, to allow `Copy Bazel Outputs` to be
-    # able to copy the products of transitive dependencies.
-    transitive_products = depset(
-        direct_products if direct_products else None,
-        transitive = [
-            info.outputs._transitive_products
-            for attr, info in transitive_infos
-            if (not automatic_target_info or
-                info.target_type in automatic_target_info.xcode_targets.get(
-                    attr,
-                    [None],
-                ))
-        ] + [dsym_files],
     )
 
     if should_produce_output_groups and direct_outputs:
@@ -159,7 +143,7 @@ def _create(
                 True,
                 indexstores_files,
             ),
-            (linking_output_group_name, False, depset()),
+            (linking_output_group_name, False, EMPTY_DEPSET),
             (products_output_group_name, False, transitive_products),
         ]
     else:
@@ -172,12 +156,7 @@ def _create(
         direct_group_list,
         transitive = [
             info.outputs._output_group_list
-            for attr, info in transitive_infos
-            if (not automatic_target_info or
-                info.target_type in automatic_target_info.xcode_targets.get(
-                    attr,
-                    [None],
-                ))
+            for info in transitive_infos
         ],
     )
 
@@ -329,13 +308,11 @@ def _collect_output_files(
         transitive_infos = transitive_infos,
     )
 
-def _merge_output_files(*, ctx, automatic_target_info, transitive_infos):
+def _merge_output_files(*, ctx, transitive_infos):
     """Creates merged outputs.
 
     Args:
         ctx: The aspect context.
-        automatic_target_info: The `XcodeProjAutomaticTargetProcessingInfo` for
-            the target.
         transitive_infos: A `list` of `XcodeProjInfo`s for the transitive
             dependencies of the current target.
 
@@ -347,7 +324,6 @@ def _merge_output_files(*, ctx, automatic_target_info, transitive_infos):
     return _create(
         ctx = ctx,
         transitive_infos = transitive_infos,
-        automatic_target_info = automatic_target_info,
         inputs = None,
         should_produce_dto = False,
         should_produce_output_groups = False,
@@ -358,11 +334,11 @@ def _process_output_group_files(
         files,
         is_indexstores,
         output_group_name,
-        additional_outputs,
+        additional_bwb_outputs,
         index_import):
     # `list` copy is needed for some reason to prevent depset from changing
     # underneath us. Without this it's nondeterministic which files are in it.
-    outputs_depsets = list(additional_outputs.get(output_group_name, []))
+    outputs_depsets = list(additional_bwb_outputs.get(output_group_name, []))
 
     if is_indexstores:
         direct = [index_import]
@@ -374,13 +350,13 @@ def _process_output_group_files(
 def _to_output_groups_fields(
         *,
         outputs,
-        additional_outputs = {},
+        additional_bwb_outputs = {},
         index_import):
     """Generates a dictionary to be splatted into `OutputGroupInfo`.
 
     Args:
         outputs: A value returned from `output_files.collect()`.
-        additional_outputs: A `dict` that maps the output group name of
+        additional_bwb_outputs: A `dict` that maps the output group name of
             targets to a `list` of `depset`s of `File`s that should be merged
             into the output group map for that output group name.
         index_import: A `File` for `index-import`.
@@ -394,7 +370,7 @@ def _to_output_groups_fields(
             files = files,
             is_indexstores = is_indexstores,
             output_group_name = name,
-            additional_outputs = additional_outputs,
+            additional_bwb_outputs = additional_bwb_outputs,
             index_import = index_import,
         )
         for name, is_indexstores, files in outputs._output_group_list.to_list()

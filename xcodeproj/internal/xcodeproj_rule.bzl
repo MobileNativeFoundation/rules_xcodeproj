@@ -294,7 +294,7 @@ def _process_targets(
     xcode_configurations = {}
     for xcode_configuration, i in infos_per_xcode_configuration.items():
         configuration_inputs = input_files.merge(
-            transitive_infos = [(None, info) for info in i],
+            transitive_infos = i,
         )
         configuration_resource_bundle_xcode_targets = process_resource_bundles(
             bundles = configuration_inputs.resource_bundles.to_list(),
@@ -714,8 +714,8 @@ targets.
         if link_params:
             target_link_params[xcode_target.id] = depset([link_params])
 
-    additional_generated = {}
-    additional_outputs = {}
+    additional_bwx_generated = {}
+    additional_bwb_outputs = {}
     for xcode_target in focused_targets.values():
         (
             transitive_dependencies,
@@ -745,35 +745,35 @@ targets.
             if link_params:
                 transitive_link_params.append(link_params)
 
-        compiling_output_group_name = (
+        bwx_compiling_output_group_name = (
             xcode_target.inputs.compiling_output_group_name
         )
-        generated_output_group_name = (
+        bwb_generated_output_group_name = (
             xcode_target.outputs.generated_output_group_name
         )
-        indexstores_output_group_name = (
+        bwx_indexstores_output_group_name = (
             xcode_target.inputs.indexstores_output_group_name
         )
-        linking_output_group_name = (
+        bwx_linking_output_group_name = (
             xcode_target.inputs.linking_output_group_name
         )
         bwb_linking_output_group_name = (
             xcode_target.outputs.linking_output_group_name
         )
 
-        additional_compiling_files = []
-        additional_indexstores_files = []
-        additional_linking_files = []
+        additional_bwx_compiling_files = []
+        additional_bwx_indexstores_files = []
+        additional_bwx_linking_files = []
 
         label = xcode_target_labels[xcode_target.id]
         target_infoplists = infoplists.get(label)
         if target_infoplists:
-            additional_linking_files.extend(target_infoplists)
-            products_output_group_name = (
+            additional_bwx_linking_files.extend(target_infoplists)
+            bwb_products_output_group_name = (
                 xcode_target.outputs.products_output_group_name
             )
-            if products_output_group_name:
-                additional_outputs[products_output_group_name] = (
+            if bwb_products_output_group_name:
+                additional_bwb_outputs[bwb_products_output_group_name] = (
                     target_infoplists
                 )
 
@@ -791,15 +791,15 @@ targets.
                 unfocused_dependency.inputs.unfocused_generated_linking
             )
             if unfocused_compiling_files:
-                additional_compiling_files.append(
+                additional_bwx_compiling_files.append(
                     depset(unfocused_compiling_files),
                 )
             if unfocused_indexstores_files:
-                additional_indexstores_files.append(
+                additional_bwx_indexstores_files.append(
                     depset(unfocused_indexstores_files),
                 )
             if unfocused_linking_files:
-                additional_linking_files.append(
+                additional_bwx_linking_files.append(
                     depset(unfocused_linking_files),
                 )
 
@@ -819,75 +819,77 @@ targets.
 
             dep_target = focused_targets[id]
 
-            dep_compiling_output_group_name = (
+            dep_bwx_compiling_output_group_name = (
                 dep_target.inputs.compiling_output_group_name
             )
-            dep_indexstores_output_group_name = (
+            dep_bwx_indexstores_output_group_name = (
                 dep_target.inputs.indexstores_output_group_name
             )
-            dep_linking_output_group_name = (
+            dep_bwx_linking_output_group_name = (
                 dep_target.inputs.linking_output_group_name
             )
 
-            if compiling_output_group_name and dep_compiling_output_group_name:
-                additional_compiling_files = additional_generated.get(
-                    dep_compiling_output_group_name,
+            if (bwx_compiling_output_group_name and
+                dep_bwx_compiling_output_group_name):
+                additional_bwx_compiling_files = additional_bwx_generated.get(
+                    dep_bwx_compiling_output_group_name,
                     [],
                 )
-                additional_compiling_files.append(dep_target.inputs.generated)
-            if (indexstores_output_group_name and
-                dep_indexstores_output_group_name):
-                additional_indexstores_files = additional_generated.get(
-                    dep_indexstores_output_group_name,
+                additional_bwx_compiling_files.append(dep_target.inputs.generated)
+            if (bwx_indexstores_output_group_name and
+                dep_bwx_indexstores_output_group_name):
+                additional_bwx_indexstores_files = additional_bwx_generated.get(
+                    dep_bwx_indexstores_output_group_name,
                     [],
                 )
-                additional_indexstores_files.append(
+                additional_bwx_indexstores_files.append(
                     dep_target.inputs.indexstores,
                 )
-            if linking_output_group_name and dep_linking_output_group_name:
-                additional_linking_files = additional_generated.get(
-                    dep_linking_output_group_name,
+            if (bwx_linking_output_group_name and
+                dep_bwx_linking_output_group_name):
+                additional_bwx_linking_files = additional_bwx_generated.get(
+                    dep_bwx_linking_output_group_name,
                     [],
                 )
 
         if transitive_compile_params:
-            additional_compiling_files.extend(transitive_compile_params)
-            if generated_output_group_name:
-                additional_outputs[generated_output_group_name] = (
+            additional_bwx_compiling_files.extend(transitive_compile_params)
+            if bwb_generated_output_group_name:
+                additional_bwb_outputs[bwb_generated_output_group_name] = (
                     transitive_compile_params
                 )
         if transitive_link_params:
-            if linking_output_group_name:
-                additional_linking_files.extend(transitive_link_params)
+            if bwx_linking_output_group_name:
+                additional_bwx_linking_files.extend(transitive_link_params)
             if bwb_linking_output_group_name:
-                additional_outputs[bwb_linking_output_group_name] = (
+                additional_bwb_outputs[bwb_linking_output_group_name] = (
                     transitive_link_params
                 )
 
-        if compiling_output_group_name:
+        if bwx_compiling_output_group_name:
             set_if_true(
-                additional_generated,
-                compiling_output_group_name,
-                additional_compiling_files,
+                additional_bwx_generated,
+                bwx_compiling_output_group_name,
+                additional_bwx_compiling_files,
             )
-        if indexstores_output_group_name:
+        if bwx_indexstores_output_group_name:
             set_if_true(
-                additional_generated,
-                indexstores_output_group_name,
-                additional_indexstores_files,
+                additional_bwx_generated,
+                bwx_indexstores_output_group_name,
+                additional_bwx_indexstores_files,
             )
-        if linking_output_group_name:
+        if bwx_linking_output_group_name:
             set_if_true(
-                additional_generated,
-                linking_output_group_name,
-                additional_linking_files,
+                additional_bwx_generated,
+                bwx_linking_output_group_name,
+                additional_bwx_linking_files,
             )
 
     return (
         focused_targets,
         target_dtos,
-        additional_generated,
-        additional_outputs,
+        additional_bwx_generated,
+        additional_bwb_outputs,
         focused_targets_extra_files,
         focused_targets_extra_folders,
         replacement_labels_by_label,
@@ -1581,12 +1583,11 @@ configurations: {}""".format(", ".join(xcode_configurations)))
 
     (_, provider_outputs) = output_files.merge(
         ctx = ctx,
-        automatic_target_info = None,
-        transitive_infos = [(None, info) for info in infos],
+        transitive_infos = infos,
     )
 
     inputs = input_files.merge(
-        transitive_infos = [(None, info) for info in infos],
+        transitive_infos = infos,
     )
     focused_labels = {label: None for label in ctx.attr.focused_targets}
     unfocused_labels = {label: None for label in ctx.attr.unfocused_targets}
@@ -1600,8 +1601,8 @@ configurations: {}""".format(", ".join(xcode_configurations)))
     (
         targets,
         target_dtos,
-        additional_generated,
-        additional_outputs,
+        additional_bwx_generated,
+        additional_bwb_outputs,
         focused_targets_extra_files,
         focused_targets_extra_folders,
         replacement_labels_by_label,
@@ -1812,7 +1813,7 @@ done
     if build_mode == "xcode":
         input_files_output_groups = input_files.to_output_groups_fields(
             inputs = inputs,
-            additional_generated = additional_generated,
+            additional_bwx_generated = additional_bwx_generated,
             index_import = ctx.executable._index_import,
         )
         output_files_output_groups = {}
@@ -1825,7 +1826,7 @@ done
         input_files_output_groups = {}
         output_files_output_groups = output_files.to_output_groups_fields(
             outputs = provider_outputs,
-            additional_outputs = additional_outputs,
+            additional_bwb_outputs = additional_bwb_outputs,
             index_import = ctx.executable._index_import,
         )
         all_targets_files = [output_files_output_groups["all_b"]]
