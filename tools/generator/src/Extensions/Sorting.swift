@@ -4,6 +4,8 @@ import XcodeProj
 extension PBXFileElement {
     private static var cache: [String: String] = [:]
     private static let cacheLock = NSRecursiveLock()
+    private static var buildFileCache: [String: String] = [:]
+    private static let buildFileCacheLock = NSRecursiveLock()
 
     var namePathSortString: String {
         Self.cacheLock.lock()
@@ -20,30 +22,21 @@ extension PBXFileElement {
         Self.cache[uuid] = ret
         return ret
     }
-}
 
-extension PBXBuildFile {
-    private static var cache: [String: String] = [:]
-    private static let cacheLock = NSRecursiveLock()
-
-    var namePathSortString: String {
-        Self.cacheLock.lock()
+    var buildFileNamePathSortString: String {
+        Self.buildFileCacheLock.lock()
         defer {
-            Self.cacheLock.unlock()
+            Self.buildFileCacheLock.unlock()
         }
-        if let cached = Self.cache[uuid] {
+        if let cached = Self.buildFileCache[uuid] {
             return cached
         }
 
-        let name = file!.name
-        let path = file!.path
-        let parent = file!.parent
-
-        let parentNamePathSortString = parent?.namePathSortString ?? ""
+        let parentNamePathSortString = parent?.buildFileNamePathSortString ?? ""
         let ret = """
 \(name ?? path ?? "")\t\(name ?? "")\t\(path ?? "")\t\(parentNamePathSortString)
 """
-        Self.cache[uuid] = ret
+        Self.buildFileCache[uuid] = ret
         return ret
     }
 }
@@ -87,7 +80,7 @@ extension Array where Element == PBXFileElement {
 
 extension Sequence where Element == PBXBuildFile {
     func sortedLocalizedStandard() -> [Element] {
-        return sortedLocalizedStandard(\.namePathSortString)
+        return sortedLocalizedStandard(\.file!.buildFileNamePathSortString)
     }
 }
 
