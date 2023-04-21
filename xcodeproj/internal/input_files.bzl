@@ -901,11 +901,11 @@ def _process_output_group_files(
         files,
         is_indexstores,
         output_group_name,
-        additional_generated,
+        additional_bwx_generated,
         index_import):
     # `list` copy is needed for some reason to prevent depset from changing
     # underneath us. Without this it's nondeterministic which files are in it.
-    generated_depsets = list(additional_generated.get(output_group_name, []))
+    generated_depsets = list(additional_bwx_generated.get(output_group_name, []))
 
     if is_indexstores:
         direct = [index_import]
@@ -917,13 +917,13 @@ def _process_output_group_files(
 def _to_output_groups_fields(
         *,
         inputs,
-        additional_generated = {},
+        additional_bwx_generated = {},
         index_import):
     """Generates a dictionary to be splatted into `OutputGroupInfo`.
 
     Args:
         inputs: A value returned from `input_files.collect`.
-        additional_generated: A `dict` that maps the output group name of
+        additional_bwx_generated: A `dict` that maps the output group name of
             targets to a `list` of `depset`s of `File`s that should be merged
             into the output group map for that output group name.
         index_import: A `File` for `index-import`.
@@ -937,7 +937,7 @@ def _to_output_groups_fields(
             files = files,
             is_indexstores = is_indexstores,
             output_group_name = name,
-            additional_generated = additional_generated,
+            additional_bwx_generated = additional_bwx_generated,
             index_import = index_import,
         )
         for name, is_indexstores, files in inputs._output_group_list.to_list()
