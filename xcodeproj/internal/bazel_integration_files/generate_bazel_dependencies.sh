@@ -64,14 +64,38 @@ else
         $output_group_prefixes \
         && printf '\0' )
 
+  readonly outputgroup_regex='[^\ ]+ @{0,2}(.*)//(.*):(.*) ([^\ ]+)$'
+
   raw_labels=()
   raw_target_ids=()
   output_groups=("target_ids_list")
+  indexstores_filelists=()
   for (( i=0; i<${#labels_and_output_groups[@]}; i+=2 )); do
     raw_labels+=("${labels_and_output_groups[i]}")
-    raw_target_ids+=("${labels_and_output_groups[i+1]#* }")
-    output_groups+=("${labels_and_output_groups[i+1]}")
+
+    output_group="${labels_and_output_groups[i+1]}"
+    raw_target_ids+=("${output_group#* }")
+    output_groups+=("$output_group")
+
+    output_type="${output_group%% *}"
+
+    if [[ "$output_type" == 'xi' || "$output_type" == 'bi' ]]; then
+      if [[ $output_group =~ $outputgroup_regex ]]; then
+        repo="${BASH_REMATCH[1]}"
+        if [[ "$repo" == "@" ]]; then
+          repo=""
+        fi
+
+        package="${BASH_REMATCH[2]}"
+        target="${BASH_REMATCH[3]}"
+        configuration="${BASH_REMATCH[4]}"
+        filelist="$configuration/bin/${repo:+"external/$repo/"}$package/$target-${output_type}.filelist"
+
+        indexstores_filelists+=("$filelist")
+      fi
+    fi
   done
+  readonly indexstores_filelists
 
   if [ "${#output_groups[@]}" -eq 1 ]; then
     echo "BazelDependencies invoked without any output groups set." \
@@ -141,7 +165,7 @@ if [[ $apply_sanitizers -eq 1 ]]; then
 fi
 readonly build_pre_config_flags
 
-# `bazel_build.sh` sets `indexstores_filelists`
+# `bazel_build.sh` sets `output_path`
 source "$BAZEL_INTEGRATION_DIR/bazel_build.sh"
 
 # Async actions
@@ -169,6 +193,6 @@ done
 if [ -n "${indexstores_filelists:-}" ]; then
   "$BAZEL_INTEGRATION_DIR/import_indexstores.sh" \
     "$PROJECT_DIR" \
-    "${indexstores_filelists[@]}" \
+    "${indexstores_filelists[@]/#/$output_path/}" \
     >"$log_dir/import_indexstores.async.log" 2>&1 &
 fi
