@@ -11849,6 +11849,8 @@
 				"BAZEL_COMPILE_TARGET_IDS[sdk=watchos*]" = "//watchOSAppExtension:watchOSAppExtension.library watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-5";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=watchsimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_HOST_LABEL_0 = "@//watchOSApp:watchOSApp";
+				BAZEL_HOST_PACKAGE_BIN_DIR_0 = "bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-21/bin/watchOSApp";
+				"BAZEL_HOST_PACKAGE_BIN_DIR_0[sdk=watchos*]" = "bazel-out/applebin_watchos-watchos_arm64_32-dbg-STABLE-22/bin/watchOSApp";
 				BAZEL_HOST_TARGET_ID_0 = "//watchOSApp:watchOSApp applebin_watchos-watchos_x86_64-dbg-STABLE-21";
 				"BAZEL_HOST_TARGET_ID_0[sdk=watchos*]" = "//watchOSApp:watchOSApp applebin_watchos-watchos_arm64_32-dbg-STABLE-22";
 				BAZEL_LABEL = "@//watchOSAppExtension:watchOSAppExtension";
@@ -12578,6 +12580,7 @@
 				BAZEL_COMPILE_TARGET_IDS = "//iMessageApp:iMessageAppExtension.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_HOST_LABEL_0 = "@//iMessageApp:iMessageApp";
+				BAZEL_HOST_PACKAGE_BIN_DIR_0 = "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iMessageApp";
 				BAZEL_HOST_TARGET_ID_0 = "//iMessageApp:iMessageApp applebin_ios-ios_x86_64-opt-STABLE-15";
 				BAZEL_LABEL = "@//iMessageApp:iMessageAppExtension";
 				BAZEL_OUTPUTS_DSYM = "\"bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iMessageApp/iMessageAppExtension.appex.dSYM\"";
@@ -12800,6 +12803,8 @@
 				"BAZEL_COMPILE_TARGET_IDS[sdk=iphoneos*]" = "//WidgetExtension:WidgetExtension.library ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_HOST_LABEL_0 = "@//iOSApp/Source:iOSApp";
+				BAZEL_HOST_PACKAGE_BIN_DIR_0 = "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Source";
+				"BAZEL_HOST_PACKAGE_BIN_DIR_0[sdk=iphoneos*]" = "bazel-out/applebin_ios-ios_arm64-opt-STABLE-16/bin/iOSApp/Source";
 				BAZEL_HOST_TARGET_ID_0 = "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-opt-STABLE-15";
 				"BAZEL_HOST_TARGET_ID_0[sdk=iphoneos*]" = "//iOSApp/Source:iOSApp applebin_ios-ios_arm64-opt-STABLE-16";
 				BAZEL_LABEL = "@//WidgetExtension:WidgetExtension";
@@ -12940,6 +12945,8 @@
 				"BAZEL_COMPILE_TARGET_IDS[sdk=watchos*]" = "//watchOSAppExtension:watchOSAppExtension.library watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-opt-STABLE-11";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=watchsimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_HOST_LABEL_0 = "@//watchOSApp:watchOSApp";
+				BAZEL_HOST_PACKAGE_BIN_DIR_0 = "bazel-out/applebin_watchos-watchos_x86_64-opt-STABLE-23/bin/watchOSApp";
+				"BAZEL_HOST_PACKAGE_BIN_DIR_0[sdk=watchos*]" = "bazel-out/applebin_watchos-watchos_arm64_32-opt-STABLE-24/bin/watchOSApp";
 				BAZEL_HOST_TARGET_ID_0 = "//watchOSApp:watchOSApp applebin_watchos-watchos_x86_64-opt-STABLE-23";
 				"BAZEL_HOST_TARGET_ID_0[sdk=watchos*]" = "//watchOSApp:watchOSApp applebin_watchos-watchos_arm64_32-opt-STABLE-24";
 				BAZEL_LABEL = "@//watchOSAppExtension:watchOSAppExtension";
@@ -13962,6 +13969,7 @@
 				BAZEL_COMPILE_TARGET_IDS = "//iMessageApp:iMessageAppExtension.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_HOST_LABEL_0 = "@//iMessageApp:iMessageApp";
+				BAZEL_HOST_PACKAGE_BIN_DIR_0 = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iMessageApp";
 				BAZEL_HOST_TARGET_ID_0 = "//iMessageApp:iMessageApp applebin_ios-ios_x86_64-dbg-STABLE-13";
 				BAZEL_LABEL = "@//iMessageApp:iMessageAppExtension";
 				BAZEL_OUTPUTS_DSYM = "\"bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iMessageApp/iMessageAppExtension.appex.dSYM\"";
@@ -14409,6 +14417,8 @@
 				"BAZEL_COMPILE_TARGET_IDS[sdk=iphoneos*]" = "//WidgetExtension:WidgetExtension.library ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_HOST_LABEL_0 = "@//iOSApp/Source:iOSApp";
+				BAZEL_HOST_PACKAGE_BIN_DIR_0 = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Source";
+				"BAZEL_HOST_PACKAGE_BIN_DIR_0[sdk=iphoneos*]" = "bazel-out/applebin_ios-ios_arm64-dbg-STABLE-14/bin/iOSApp/Source";
 				BAZEL_HOST_TARGET_ID_0 = "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-dbg-STABLE-13";
 				"BAZEL_HOST_TARGET_ID_0[sdk=iphoneos*]" = "//iOSApp/Source:iOSApp applebin_ios-ios_arm64-dbg-STABLE-14";
 				BAZEL_LABEL = "@//WidgetExtension:WidgetExtension";

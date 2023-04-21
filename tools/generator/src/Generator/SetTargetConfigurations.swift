@@ -341,6 +341,10 @@ $(BAZEL_OUT)\#(linkParams.path.string.dropFirst(9))
                 to: hostTarget.label.description
             )
             buildSettings.set("BAZEL_HOST_TARGET_ID_\(index)", to: id.rawValue)
+            buildSettings.set(
+                "BAZEL_HOST_PACKAGE_BIN_DIR_\(index)",
+                to: hostTarget.packageBinDir.string
+            )
         }
 
         if target.product.type.isLaunchable {

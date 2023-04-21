@@ -97,8 +97,9 @@ def _calculate_build_request_file(
 
 def _calculate_label_and_target_ids(
         build_request_file,
-        scheme_labels_and_target_ids,
+        scheme_return_data,
         guid_labels,
+        guid_package_bins,
         guid_target_ids):
     try:
         # TODO: Remove this existence check after Xcode 14.3 is the minimum
@@ -128,13 +129,15 @@ def _calculate_label_and_target_ids(
         )
         configuration_name = parameters["configurationName"]
 
-        labels_and_target_ids = []
+        return_data = []
         for target in build_request["configuredTargets"]:
-            label = guid_labels.get(target["guid"])
+            guid = target["guid"]
+            label = guid_labels.get(guid)
             if not label:
                 # `BazelDependency` and the like
                 continue
-            full_target_target_ids = guid_target_ids[target["guid"]]
+            package_bin = guid_package_bins[guid][configuration_name]
+            full_target_target_ids = guid_target_ids[guid]
             target_target_ids = (
                 full_target_target_ids.get(command) or
                 # Will only be `null` if `command == "buildFiles"` and there
@@ -146,7 +149,7 @@ def _calculate_label_and_target_ids(
                 platform,
             )
             for target_id in target_ids:
-                labels_and_target_ids.append((label, target_id))
+                return_data.append((label, package_bin, target_id))
     except Exception as error:
         print(
             f"""\
@@ -158,9 +161,9 @@ report here: \
 https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bug.md""",
             file = sys.stderr,
         )
-        return scheme_labels_and_target_ids
+        return scheme_return_data
 
-    return labels_and_target_ids
+    return return_data
 
 def _calculate_guid_labels_and_target_ids(base_objroot):
     pif_cache = f"{base_objroot}/XCBuildData/PIFCache"
@@ -190,18 +193,23 @@ https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bu
 
     guid_payload_parent = f"{base_objroot}/guid_payload"
     guid_payload_path = f"""\
-{guid_payload_parent}/{os.path.basename(project_pif)}_v2.json"""
+{guid_payload_parent}/{os.path.basename(project_pif)}_v3.json"""
 
     if os.path.exists(guid_payload_path):
         with open(guid_payload_path, encoding = "utf-8") as f:
             payload = json.load(f)
-            return payload["labels"], payload["targetIds"]
+            return (
+                payload["labels"],
+                payload["packageBins"],
+                payload["targetIds"],
+            )
 
     with open(project_pif, encoding = "utf-8") as f:
         project_pif = json.load(f)
 
     targets = project_pif["targets"]
 
+    guid_package_bins = {}
     guid_labels = {}
     guid_target_ids = {}
     for target_name in targets:
@@ -209,12 +217,14 @@ https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bu
         with open(target_file, encoding = "utf-8") as f:
             target_pif = json.load(f)
 
+        package_bins = {}
         label = None
         build_target_ids = {}
         compile_target_ids = {}
         for configuration in target_pif["buildConfigurations"]:
             config_build_target_ids = {"key": "BAZEL_TARGET_ID"}
             config_compile_target_ids = {"key": "BAZEL_COMPILE_TARGET_IDS"}
+            config_package_bin = None
             for key, value in configuration["buildSettings"].items():
                 if key.startswith("BAZEL_TARGET_ID"):
                     # This uses a list in the case where the value isn't meant to
@@ -251,7 +261,10 @@ https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bu
                     )
                 elif key == "BAZEL_LABEL":
                     label = value
+                elif key == "BAZEL_PACKAGE_BIN_DIR":
+                    config_package_bin = value
             configuration_name = configuration["name"]
+            package_bins[configuration_name] = config_package_bin
             build_target_ids[configuration_name] = config_build_target_ids
             compile_target_ids[configuration_name] = config_compile_target_ids
 
@@ -266,18 +279,20 @@ https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bu
             target_ids["buildFiles"] = compile_target_ids
 
         guid = target_pif["guid"]
+        guid_package_bins[guid] = package_bins
         guid_labels[guid] = label
         guid_target_ids[guid] = target_ids
 
     os.makedirs(guid_payload_parent, exist_ok = True)
     with open(guid_payload_path, "w", encoding = "utf-8") as f:
         payload = {
+            "packageBins": guid_package_bins,
             "labels": guid_labels,
             "targetIds": guid_target_ids,
         }
         json.dump(payload, f)
 
-    return guid_labels, guid_target_ids
+    return guid_labels, guid_package_bins, guid_target_ids
 
 def _platform_from_build_key(key):
     if key.startswith("BAZEL_TARGET_ID[sdk="):
@@ -338,10 +353,12 @@ https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bu
         xcode_version = 9999
 
     with open(scheme_target_id_file, encoding = "utf-8") as f:
-        scheme_label_and_target_ids = []
-        for label_and_target_id in set(f.read().splitlines()):
-            components = label_and_target_id.split(",")
-            scheme_label_and_target_ids.append((components[0], components[1]))
+        scheme_return_data = []
+        for return_data in set(f.read().splitlines()):
+            components = return_data.split(",")
+            scheme_return_data.append(
+                (components[0], components[1], components[2]),
+            )
 
     prefixes = prefixes_str.split(",")
 
@@ -349,7 +366,7 @@ https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bu
         # buildRequest for Index Build includes all targets, so we have to
         # fall back to the scheme labels and target ids (which are actually set
         # by the "Copy Bazel Outputs" script)
-        labels_and_target_ids = scheme_label_and_target_ids
+        return_data = scheme_return_data
     else:
         try:
             build_request_file = _calculate_build_request_file(
@@ -357,7 +374,7 @@ https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bu
                 objroot,
                 build_request_min_ctime,
             )
-            guid_labels, guid_target_ids = (
+            guid_labels, guid_package_bins, guid_target_ids = (
                 _calculate_guid_labels_and_target_ids(base_objroot)
             )
         except Exception:
@@ -370,19 +387,20 @@ report here: \
 https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bug.md""",
                 file = sys.stderr,
             )
-            labels_and_target_ids = scheme_label_and_target_ids
+            return_data = scheme_return_data
         else:
-            labels_and_target_ids = _calculate_label_and_target_ids(
+            return_data = _calculate_label_and_target_ids(
                 build_request_file,
-                scheme_label_and_target_ids,
+                scheme_return_data,
                 guid_labels,
+                guid_package_bins,
                 guid_target_ids,
             )
 
     print("\n".join(
         [
-            f"{label}\n{prefix} {id}"
-            for label, id in labels_and_target_ids
+            f"{label}\n{configuration}\n{prefix} {id}"
+            for label, configuration, id in return_data
             for prefix in prefixes
         ],
     ))

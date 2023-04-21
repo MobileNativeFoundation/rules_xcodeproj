@@ -27,7 +27,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Set Bazel Build Output Groups for iMessageAppExtension"
-               scriptText = "echo &quot;$BAZEL_LABEL,$BAZEL_TARGET_ID&quot; &gt;&gt; &quot;$SCHEME_TARGET_IDS_FILE&quot;&#10;echo &quot;$BAZEL_HOST_LABEL_0,$BAZEL_HOST_TARGET_ID_0&quot; &gt;&gt; &quot;$SCHEME_TARGET_IDS_FILE&quot;&#10;">
+               scriptText = "echo &quot;$BAZEL_LABEL,$BAZEL_PACKAGE_BIN_DIR,$BAZEL_TARGET_ID&quot; &gt;&gt; &quot;$SCHEME_TARGET_IDS_FILE&quot;&#10;echo &quot;$BAZEL_HOST_LABEL_0,$BAZEL_HOST_PACKAGE_BIN_DIR_0,$BAZEL_HOST_TARGET_ID_0&quot; &gt;&gt; &quot;$SCHEME_TARGET_IDS_FILE&quot;&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"

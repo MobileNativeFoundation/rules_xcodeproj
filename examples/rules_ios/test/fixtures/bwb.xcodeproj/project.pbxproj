@@ -3765,6 +3765,8 @@
 				ARCHS = x86_64;
 				"ARCHS[sdk=iphoneos*]" = arm64;
 				BAZEL_HOST_LABEL_0 = "@//iOSApp/Source:iOSApp";
+				BAZEL_HOST_PACKAGE_BIN_DIR_0 = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Source";
+				"BAZEL_HOST_PACKAGE_BIN_DIR_0[sdk=iphoneos*]" = "bazel-out/applebin_ios-ios_arm64-dbg-STABLE-4/bin/iOSApp/Source";
 				BAZEL_HOST_TARGET_ID_0 = "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-dbg-STABLE-3";
 				"BAZEL_HOST_TARGET_ID_0[sdk=iphoneos*]" = "//iOSApp/Source:iOSApp applebin_ios-ios_arm64-dbg-STABLE-4";
 				BAZEL_LABEL = "@//WidgetExtension:WidgetExtension";

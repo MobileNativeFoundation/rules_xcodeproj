@@ -64,36 +64,25 @@ else
         $output_group_prefixes \
         && printf '\0' )
 
-  readonly outputgroup_regex='[^\ ]+ @{0,2}(.*)//(.*):(.*) ([^\ ]+)$'
-
   raw_labels=()
   raw_target_ids=()
   output_groups=("target_ids_list")
   indexstores_filelists=()
-  for (( i=0; i<${#labels_and_output_groups[@]}; i+=2 )); do
-    raw_labels+=("${labels_and_output_groups[i]}")
-
-    output_group="${labels_and_output_groups[i+1]}"
-    raw_target_ids+=("${output_group#* }")
-    output_groups+=("$output_group")
+  for (( i=0; i<${#labels_and_output_groups[@]}; i+=3 )); do
+    label="${labels_and_output_groups[i]}"
+    package_bin="${labels_and_output_groups[i+1]}"
+    output_group="${labels_and_output_groups[i+2]}"
 
     output_type="${output_group%% *}"
-
     if [[ "$output_type" == 'xi' || "$output_type" == 'bi' ]]; then
-      if [[ $output_group =~ $outputgroup_regex ]]; then
-        repo="${BASH_REMATCH[1]}"
-        if [[ "$repo" == "@" ]]; then
-          repo=""
-        fi
-
-        package="${BASH_REMATCH[2]}"
-        target="${BASH_REMATCH[3]}"
-        configuration="${BASH_REMATCH[4]}"
-        filelist="$configuration/bin/${repo:+"external/$repo/"}$package/$target-${output_type}.filelist"
-
-        indexstores_filelists+=("$filelist")
-      fi
+      target="${label##*:}"
+      filelist="$package_bin/$target-${output_type}.filelist"
+      indexstores_filelists+=("$filelist")
     fi
+
+    raw_labels+=("$label")
+    raw_target_ids+=("${output_group#* }")
+    output_groups+=("$output_group")
   done
   readonly indexstores_filelists
 
@@ -193,6 +182,6 @@ done
 if [ -n "${indexstores_filelists:-}" ]; then
   "$BAZEL_INTEGRATION_DIR/import_indexstores.sh" \
     "$PROJECT_DIR" \
-    "${indexstores_filelists[@]/#/$output_path/}" \
+    "${indexstores_filelists[@]/#/${output_path%/*}/}" \
     >"$log_dir/import_indexstores.async.log" 2>&1 &
 fi

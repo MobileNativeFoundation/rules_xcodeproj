@@ -213,7 +213,7 @@ fi
             // a newline is added to the resulting string, if the host information is added to the
             // script.
             hostTargetOutputGroup = #"""
-echo "$BAZEL_HOST_LABEL_\#(hostIndex),$BAZEL_HOST_TARGET_ID_\#(hostIndex)" \#
+echo "$BAZEL_HOST_LABEL_\#(hostIndex),$BAZEL_HOST_PACKAGE_BIN_DIR_\#(hostIndex),$BAZEL_HOST_TARGET_ID_\#(hostIndex)" \#
 >> "$SCHEME_TARGET_IDS_FILE"
 
 """#
@@ -222,7 +222,7 @@ echo "$BAZEL_HOST_LABEL_\#(hostIndex),$BAZEL_HOST_TARGET_ID_\#(hostIndex)" \#
         }
 
         let scriptText = #"""
-echo "$BAZEL_LABEL,$BAZEL_TARGET_ID" >> "$SCHEME_TARGET_IDS_FILE"
+echo "$BAZEL_LABEL,$BAZEL_PACKAGE_BIN_DIR,$BAZEL_TARGET_ID" >> "$SCHEME_TARGET_IDS_FILE"
 \#(hostTargetOutputGroup)
 """#
         self.init(

@@ -26,7 +26,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Set Bazel Build Output Groups for TestingUtils"
-               scriptText = "echo &quot;$BAZEL_LABEL,$BAZEL_TARGET_ID&quot; &gt;&gt; &quot;$SCHEME_TARGET_IDS_FILE&quot;&#10;">
+               scriptText = "echo &quot;$BAZEL_LABEL,$BAZEL_PACKAGE_BIN_DIR,$BAZEL_TARGET_ID&quot; &gt;&gt; &quot;$SCHEME_TARGET_IDS_FILE&quot;&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
