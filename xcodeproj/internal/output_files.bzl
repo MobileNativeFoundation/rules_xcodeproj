@@ -69,36 +69,58 @@ def _create(
         is_framework = False
         swift = None
 
-    if compiled:
-        # We only need the single swiftmodule in order to download everything
-        # from the remote cache (because of
-        # `--experimental_remote_download_regex`). Reducing the number of items
-        # in an output group keeps the BEP small.
-        closest_compiled = depset(compiled[0:1])
-    else:
-        closest_compiled = depset(transitive = [
-            info.outputs._closest_compiled
-            for attr, info in transitive_infos
-            if (not info.outputs._is_framework and
-                (not automatic_target_info or
-                 info.target_type in automatic_target_info.xcode_targets.get(
-                     attr,
-                     [None],
-                 )))
-        ])
+    if should_produce_output_groups:
+        if compiled:
+            # We only need the single swiftmodule in order to download
+            # everything from the remote cache (because of
+            # `--experimental_remote_download_regex`). Reducing the number of
+            # items in an output group keeps the BEP small.
+            closest_compiled = depset(compiled[0:1])
+        else:
+            closest_compiled = depset(transitive = [
+                info.outputs._closest_compiled
+                for attr, info in transitive_infos
+                if (not info.outputs._is_framework and
+                    (not automatic_target_info or
+                     info.target_type in automatic_target_info.xcode_targets.get(
+                         attr,
+                         [None],
+                     )))
+            ])
 
-    transitive_indexestores = depset(
-        [indexstore] if indexstore else None,
-        transitive = [
-            info.outputs._transitive_indexestores
-            for attr, info in transitive_infos
-            if (not automatic_target_info or
-                info.target_type in automatic_target_info.xcode_targets.get(
-                    attr,
-                    [None],
-                ))
-        ],
-    )
+        transitive_indexestores = depset(
+            [indexstore] if indexstore else None,
+            transitive = [
+                info.outputs._transitive_indexestores
+                for attr, info in transitive_infos
+                if (not automatic_target_info or
+                    info.target_type in automatic_target_info.xcode_targets.get(
+                        attr,
+                        [None],
+                    ))
+            ],
+        )
+
+        # TODO: Once BwB mode no longer has target dependencies, remove
+        # transitive products. Until then we need them, to allow `Copy Bazel
+        # Outputs` to be able to copy the products of transitive dependencies.
+        transitive_products = depset(
+            direct_products if direct_products else None,
+            transitive = [
+                info.outputs._transitive_products
+                for attr, info in transitive_infos
+                if (not automatic_target_info or
+                    info.target_type in automatic_target_info.xcode_targets.get(
+                        attr,
+                        [None],
+                    ))
+            ] + [dsym_files],
+        )
+    else:
+        closest_compiled = depset()
+        transitive_indexestores = depset()
+        transitive_products = depset()
+
     transitive_infoplists = depset(
         [infoplist] if infoplist else None,
         transitive = [
@@ -110,22 +132,6 @@ def _create(
                     [None],
                 ))
         ],
-    )
-
-    # TODO: Once BwB mode no longer has target dependencies, remove transitive
-    # products. Until then we need them, to allow `Copy Bazel Outputs` to be
-    # able to copy the products of transitive dependencies.
-    transitive_products = depset(
-        direct_products if direct_products else None,
-        transitive = [
-            info.outputs._transitive_products
-            for attr, info in transitive_infos
-            if (not automatic_target_info or
-                info.target_type in automatic_target_info.xcode_targets.get(
-                    attr,
-                    [None],
-                ))
-        ] + [dsym_files],
     )
 
     if should_produce_output_groups and direct_outputs:

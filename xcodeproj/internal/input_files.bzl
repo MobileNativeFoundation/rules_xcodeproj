@@ -451,6 +451,8 @@ def _collect_input_files(
             generated = generated,
         ))
 
+    should_produce_output_groups = ctx.attr._build_mode == "xcode"
+
     # Collect unfocused target info
     indexstores = []
     unfocused_libraries = None
@@ -513,7 +515,7 @@ def _collect_input_files(
                 parse_swift_info_module(module),
             )
             generated.extend(compiled)
-            if indexstore:
+            if should_produce_output_groups and indexstore:
                 indexstores.append(indexstore)
 
         if is_swift:
@@ -568,15 +570,19 @@ def _collect_input_files(
                 automatic_target_info.xcode_targets.get(attr, [None]))
         ],
     )
-    indexstores_depset = depset(
-        indexstores if indexstores else None,
-        transitive = [
-            info.inputs.indexstores
-            for attr, info in transitive_infos
-            if (info.target_type in
-                automatic_target_info.xcode_targets.get(attr, [None]))
-        ],
-    )
+
+    if should_produce_output_groups:
+        indexstores_depset = depset(
+            indexstores if indexstores else None,
+            transitive = [
+                info.inputs.indexstores
+                for attr, info in transitive_infos
+                if (info.target_type in
+                    automatic_target_info.xcode_targets.get(attr, [None]))
+            ],
+        )
+    else:
+        indexstores_depset = depset()
 
     if modulemaps:
         modulemaps = [f for f in modulemaps if not f.is_source]
@@ -605,7 +611,7 @@ def _collect_input_files(
     else:
         compiling_files = generated_depset
 
-    if id and ctx.attr._build_mode == "xcode":
+    if id and should_produce_output_groups:
         compiling_output_group_name = "xc {}".format(id)
         indexstores_output_group_name = "xi {}".format(id)
         linking_output_group_name = "xl {}".format(id)
