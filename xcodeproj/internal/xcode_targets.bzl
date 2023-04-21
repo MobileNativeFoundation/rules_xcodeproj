@@ -10,6 +10,7 @@ load(
     "build_setting_path",
     "normalized_file_path",
 )
+load(":frozen_constants.bzl", "EMPTY_DEPSET", "EMPTY_LIST", "EMPTY_TUPLE")
 load(":platform.bzl", "platform_info")
 
 def _make_xcode_target(
@@ -35,14 +36,14 @@ def _make_xcode_target(
         linker_inputs = None,
         infoplist = None,
         watch_application = None,
-        extensions = [],
-        app_clips = [],
+        extensions = EMPTY_LIST,
+        app_clips = EMPTY_LIST,
         dependencies,
         transitive_dependencies,
         outputs,
         lldb_context = None,
         should_create_xcode_target = True,
-        xcode_required_targets = depset()):
+        xcode_required_targets = EMPTY_DEPSET):
     """Creates the internal data structure of the `xcode_targets` module.
 
     Args:
@@ -262,7 +263,7 @@ def _to_xcode_target_product(product):
         executable = product.executable,
         executable_name = product.executable_name,
         package_dir = product.package_dir,
-        additional_product_files = tuple(),
+        additional_product_files = EMPTY_TUPLE,
         framework_files = product.framework_files,
         is_resource_bundle = product.is_resource_bundle,
         _additional_files = product.framework_files,

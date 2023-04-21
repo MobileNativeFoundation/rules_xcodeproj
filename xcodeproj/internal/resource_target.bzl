@@ -2,6 +2,7 @@
 
 load("@bazel_skylib//lib:paths.bzl", "paths")
 load(":collections.bzl", "set_if_true")
+load(":frozen_constants.bzl", "EMPTY_LIST")
 load(":input_files.bzl", "input_files")
 load(":output_files.bzl", "output_files")
 load(":product.bzl", "process_product")
@@ -44,7 +45,7 @@ def _process_resource_bundle(bundle, *, information):
         id = id,
         output_group_info = None,
         swift_info = None,
-        transitive_infos = [],
+        transitive_infos = EMPTY_LIST,
         should_produce_dto = False,
         should_produce_output_groups = False,
     )
@@ -59,7 +60,7 @@ def _process_resource_bundle(bundle, *, information):
         is_swift = False,
         build_settings = build_settings,
         modulemaps = process_modulemaps(swift_info = None),
-        swiftmodules = [],
+        swiftmodules = EMPTY_LIST,
         inputs = input_files.from_resource_bundle(bundle),
         dependencies = bundle.dependencies,
         transitive_dependencies = bundle.dependencies,

@@ -8,6 +8,7 @@ load(
 load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo")
 load(":compilation_providers.bzl", comp_providers = "compilation_providers")
 load(":configuration.bzl", "get_configuration")
+load(":frozen_constants.bzl", "NONE_LIST")
 load(":input_files.bzl", "input_files")
 load(":linker_input_files.bzl", "linker_input_files")
 load(":lldb_contexts.bzl", "lldb_contexts")
@@ -143,7 +144,7 @@ rules_xcodeproj requires {} to have `{}` set.
                 info
                 for attr, info in transitive_infos
                 if (info.target_type in
-                    automatic_target_info.xcode_targets.get(attr, [None]))
+                    automatic_target_info.xcode_targets.get(attr, NONE_LIST))
             ],
         ),
         mergable_xcode_library_targets = mergable_xcode_library_targets,

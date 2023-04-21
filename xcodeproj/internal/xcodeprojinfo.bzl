@@ -9,6 +9,7 @@ load(
 )
 load(":automatic_target_info.bzl", "calculate_automatic_target_info")
 load(":compilation_providers.bzl", comp_providers = "compilation_providers")
+load(":frozen_constants.bzl", "EMPTY_LIST", "NONE_LIST")
 load(":input_files.bzl", "input_files")
 load(":library_targets.bzl", "process_library_target")
 load(":lldb_contexts.bzl", "lldb_contexts")
@@ -281,7 +282,7 @@ def _skip_target(
         lldb_context = lldb_contexts.collect(
             id = None,
             is_swift = False,
-            clang_opts = [],
+            clang_opts = EMPTY_LIST,
             transitive_infos = [
                 info
                 for _, info in transitive_infos
@@ -453,7 +454,7 @@ def _create_xcodeprojinfo(
                 if (info.target_type in
                     processed_target.automatic_target_info.xcode_targets.get(
                         attr,
-                        [None],
+                        NONE_LIST,
                     ))
             ],
         ),
@@ -465,7 +466,7 @@ def _create_xcodeprojinfo(
                 if (info.target_type in
                     processed_target.automatic_target_info.xcode_targets.get(
                         attr,
-                        [None],
+                        NONE_LIST,
                     ))
             ],
         ),
@@ -486,7 +487,7 @@ def _create_xcodeprojinfo(
                 if (info.target_type in
                     processed_target.automatic_target_info.xcode_targets.get(
                         attr,
-                        [None],
+                        NONE_LIST,
                     ))
             ],
         ),
@@ -504,7 +505,7 @@ def _create_xcodeprojinfo(
                 if (info.target_type in
                     processed_target.automatic_target_info.xcode_targets.get(
                         attr,
-                        [None],
+                        NONE_LIST,
                     ))
             ],
         ),
@@ -525,7 +526,7 @@ def _create_xcodeprojinfo(
                 if (info.target_type in
                     processed_target.automatic_target_info.xcode_targets.get(
                         attr,
-                        [None],
+                        NONE_LIST,
                     ))
             ],
         ),
@@ -537,7 +538,7 @@ def _create_xcodeprojinfo(
                 if (info.target_type in
                     processed_target.automatic_target_info.xcode_targets.get(
                         attr,
-                        [None],
+                        NONE_LIST,
                     ))
             ],
         ),
