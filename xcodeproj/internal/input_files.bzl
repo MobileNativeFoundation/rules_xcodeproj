@@ -658,6 +658,13 @@ def _collect_input_files(
             ],
         )
 
+    has_generated_files = bool(generated)
+    if not has_generated_files:
+        for info in transitive_infos:
+            if info.inputs.has_generated_files:
+                has_generated_files = True
+                break
+
     return (
         struct(
             compiling_files = compiling_files,
@@ -717,11 +724,7 @@ def _collect_input_files(
                     for info in transitive_infos
                 ],
             ),
-            has_generated_files = bool(generated) or bool([
-                True
-                for info in transitive_infos
-                if info.inputs.has_generated_files
-            ]),
+            has_generated_files = has_generated_files,
             indexstores = indexstores_depset,
             extra_files = depset(
                 [(label, depset(extra_files))] if extra_files else None,
@@ -776,6 +779,12 @@ def _merge_input_files(*, transitive_infos, extra_generated = None):
         values potentially include the inputs of the transitive dependencies,
         via `transitive_infos` (e.g. `generated` and `extra_files`).
     """
+    has_generated_files = False
+    for info in transitive_infos:
+        if info.inputs.has_generated_files:
+            has_generated_files = True
+            break
+
     return struct(
         _modulemaps = depset(
             transitive = [
@@ -838,11 +847,7 @@ def _merge_input_files(*, transitive_infos, extra_generated = None):
                 for info in transitive_infos
             ],
         ),
-        has_generated_files = bool([
-            True
-            for info in transitive_infos
-            if info.inputs.has_generated_files
-        ]),
+        has_generated_files = has_generated_files,
         indexstores = depset(
             transitive = [
                 info.inputs.indexstores
