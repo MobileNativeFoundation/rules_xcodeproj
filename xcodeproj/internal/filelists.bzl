@@ -1,8 +1,10 @@
 """Module containing functions dealing with file lists."""
 
+load(":frozen_constants.bzl", "EMPTY_DEPSET")
+
 def _write(*, ctx, rule_name, name, files):
     if files == None:
-        files = depset()
+        files = EMPTY_DEPSET
 
     args = ctx.actions.args()
     args.use_param_file("%s", use_always = True)

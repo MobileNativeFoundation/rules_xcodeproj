@@ -6,6 +6,7 @@ load(":collections.bzl", "set_if_true")
 load(":compilation_providers.bzl", comp_providers = "compilation_providers")
 load(":configuration.bzl", "get_configuration")
 load(":files.bzl", "build_setting_path", "join_paths_ignoring_empty")
+load(":frozen_constants.bzl", "NONE_LIST")
 load(":input_files.bzl", "input_files")
 load(":linker_input_files.bzl", "linker_input_files")
 load(":lldb_contexts.bzl", "lldb_contexts")
@@ -180,7 +181,7 @@ def process_library_target(
             info
             for attr, info in transitive_infos
             if (info.target_type in
-                automatic_target_info.xcode_targets.get(attr, [None]))
+                automatic_target_info.xcode_targets.get(attr, NONE_LIST))
         ],
     )
 

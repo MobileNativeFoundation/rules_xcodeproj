@@ -12,6 +12,7 @@ load(":collections.bzl", "set_if_true")
 load(":compilation_providers.bzl", comp_providers = "compilation_providers")
 load(":configuration.bzl", "get_configuration")
 load(":files.bzl", "build_setting_path", "join_paths_ignoring_empty")
+load(":frozen_constants.bzl", "EMPTY_LIST", "NONE_LIST")
 load(":info_plists.bzl", "info_plists")
 load(":input_files.bzl", "input_files")
 load(":linker_input_files.bzl", "linker_input_files")
@@ -290,7 +291,7 @@ def process_top_level_target(
     # The common case is to have a `bundle_info`, so this check prevents
     # expanding the `depset` unless needed. Yes, this uses knowledge of what
     # `process_top_level_properties` and `output_files.collect` does internally.
-    target_files = [] if bundle_info else target.files.to_list()
+    target_files = EMPTY_LIST if bundle_info else target.files.to_list()
 
     tree_artifact_enabled = get_tree_artifact_enabled(
         ctx = ctx,
@@ -511,7 +512,7 @@ def process_top_level_target(
         is_top_level_target = True,
         is_xcode_required = True,
         lldb_context = lldb_context,
-        mergable_xcode_library_targets = [],
+        mergable_xcode_library_targets = EMPTY_LIST,
         outputs = provider_outputs,
         potential_target_merges = potential_target_merges,
         transitive_dependencies = transitive_dependencies,
@@ -547,7 +548,7 @@ def process_top_level_target(
                     info.xcode_required_targets
                     for attr, info in transitive_infos
                     if (info.target_type in
-                        automatic_target_info.xcode_targets.get(attr, [None]))
+                        automatic_target_info.xcode_targets.get(attr, NONE_LIST))
                 ],
             ),
         ),

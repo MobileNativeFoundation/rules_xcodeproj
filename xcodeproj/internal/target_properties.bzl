@@ -1,6 +1,7 @@
 """Functions for processing target properties"""
 
 load(":collections.bzl", "set_if_true", "uniq")
+load(":frozen_constants.bzl", "NONE_LIST")
 
 def should_include_non_xcode_outputs(ctx):
     """Determines whether outputs of non Xcode targets should be included in \
@@ -35,7 +36,7 @@ def process_dependencies(*, automatic_target_info, transitive_infos):
         if not (not automatic_target_info or
                 info.target_type in automatic_target_info.xcode_targets.get(
                     attr,
-                    [None],
+                    NONE_LIST,
                 )):
             continue
         all_transitive_dependencies.append(info.transitive_dependencies)

@@ -6,6 +6,7 @@ load(
     "AppleFrameworkImportInfo",
     "AppleResourceBundleInfo",
 )
+load(":frozen_constants.bzl", "EMPTY_LIST", "NONE_LIST")
 load(":providers.bzl", "XcodeProjAutomaticTargetProcessingInfo", "target_type")
 
 ## Utility
@@ -108,10 +109,8 @@ _TEST_BUNDLE_XCODE_TARGETS = {
 
 _DEFAULT_XCODE_TARGETS = {
     target_type.compile: _DEPS_XCODE_TARGETS,
-    None: {"deps": [None]},
+    None: {"deps": NONE_LIST},
 }
-
-_EMPTY_LIST = []
 
 def calculate_automatic_target_info(ctx, target):
     """Calculates the automatic target info for the given target.
@@ -131,7 +130,7 @@ def calculate_automatic_target_info(ctx, target):
     if CcInfo in target:
         srcs = _SRCS_ATTRS
     else:
-        srcs = _EMPTY_LIST
+        srcs = EMPTY_LIST
 
     alternate_icons = None
     app_icons = None
@@ -141,14 +140,14 @@ def calculate_automatic_target_info(ctx, target):
     deps = _DEPS_ATTRS
     entitlements = None
     env = None
-    exported_symbols_lists = _EMPTY_LIST
-    hdrs = _EMPTY_LIST
-    implementation_deps = _EMPTY_LIST
-    infoplists = _EMPTY_LIST
-    launchdplists = _EMPTY_LIST
+    exported_symbols_lists = EMPTY_LIST
+    hdrs = EMPTY_LIST
+    implementation_deps = EMPTY_LIST
+    infoplists = EMPTY_LIST
+    launchdplists = EMPTY_LIST
     link_mnemonics = _LINK_MNEMONICS
     bazel_build_mode_error = None
-    non_arc_srcs = _EMPTY_LIST
+    non_arc_srcs = EMPTY_LIST
     pch = None
     provisioning_profile = None
     collect_uncategorized_files = False

@@ -1,6 +1,7 @@
 """Module containing functions dealing with target output files."""
 
 load(":filelists.bzl", "filelists")
+load(":frozen_constants.bzl", "EMPTY_DEPSET", "NONE_LIST")
 
 # Utility
 
@@ -51,7 +52,7 @@ def _create(
     """
     compiled = None
     direct_products = []
-    dsym_files = depset()
+    dsym_files = EMPTY_DEPSET
     indexstore = None
 
     if direct_outputs:
@@ -84,7 +85,7 @@ def _create(
                     (not automatic_target_info or
                      info.target_type in automatic_target_info.xcode_targets.get(
                          attr,
-                         [None],
+                         NONE_LIST,
                      )))
             ])
 
@@ -96,7 +97,7 @@ def _create(
                 if (not automatic_target_info or
                     info.target_type in automatic_target_info.xcode_targets.get(
                         attr,
-                        [None],
+                        NONE_LIST,
                     ))
             ],
         )
@@ -112,14 +113,14 @@ def _create(
                 if (not automatic_target_info or
                     info.target_type in automatic_target_info.xcode_targets.get(
                         attr,
-                        [None],
+                        NONE_LIST,
                     ))
             ] + [dsym_files],
         )
     else:
-        closest_compiled = depset()
-        transitive_indexestores = depset()
-        transitive_products = depset()
+        closest_compiled = EMPTY_DEPSET
+        transitive_indexestores = EMPTY_DEPSET
+        transitive_products = EMPTY_DEPSET
 
     transitive_infoplists = depset(
         [infoplist] if infoplist else None,
@@ -129,7 +130,7 @@ def _create(
             if (not automatic_target_info or
                 info.target_type in automatic_target_info.xcode_targets.get(
                     attr,
-                    [None],
+                    NONE_LIST,
                 ))
         ],
     )
@@ -165,7 +166,7 @@ def _create(
                 True,
                 indexstores_files,
             ),
-            (linking_output_group_name, False, depset()),
+            (linking_output_group_name, False, EMPTY_DEPSET),
             (products_output_group_name, False, transitive_products),
         ]
     else:
@@ -182,7 +183,7 @@ def _create(
             if (not automatic_target_info or
                 info.target_type in automatic_target_info.xcode_targets.get(
                     attr,
-                    [None],
+                    NONE_LIST,
                 ))
         ],
     )

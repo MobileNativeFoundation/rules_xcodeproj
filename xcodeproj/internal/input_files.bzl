@@ -14,6 +14,7 @@ load(
     "RESOURCES_FOLDER_TYPE_EXTENSIONS",
     "normalized_file_path",
 )
+load(":frozen_constants.bzl", "EMPTY_DEPSET", "EMPTY_LIST", "NONE_LIST")
 load(":linker_input_files.bzl", "linker_input_files")
 load(":output_files.bzl", "parse_swift_info_module", "swift_to_outputs")
 load(":providers.bzl", "XcodeProjInfo")
@@ -24,7 +25,7 @@ load(":target_properties.bzl", "should_include_non_xcode_outputs")
 
 def _collect_transitive_uncategorized(info):
     if info.xcode_target:
-        return depset()
+        return EMPTY_DEPSET
     return info.inputs.uncategorized
 
 _IGNORE_ATTR = {
@@ -86,10 +87,10 @@ def _collect_input_files(
         product,
         linker_inputs,
         automatic_target_info,
-        additional_files = [],
+        additional_files = EMPTY_LIST,
         modulemaps = None,
         transitive_infos,
-        avoid_deps = []):
+        avoid_deps = EMPTY_LIST):
     """Collects all of the inputs of a target.
 
     Args:
@@ -333,7 +334,7 @@ def _collect_input_files(
             info.inputs._product_framework_files
             for attr, info in transitive_infos
             if (info.target_type in
-                automatic_target_info.xcode_targets.get(attr, [None]))
+                automatic_target_info.xcode_targets.get(attr, NONE_LIST))
         ] + ([product.framework_files] if product else []),
     )
 
@@ -405,7 +406,7 @@ def _collect_input_files(
                     info.inputs._resource_bundle_uncategorized
                     for attr, info in transitive_infos
                     if (info.target_type in
-                        automatic_target_info.xcode_targets.get(attr, [None]))
+                        automatic_target_info.xcode_targets.get(attr, NONE_LIST))
                 ],
             ).to_list()
             if label not in bundle_labels
@@ -461,7 +462,7 @@ def _collect_input_files(
                     (info.xcode_target, info.compilation_providers)
                     for attr, info in transitive_infos
                     if (info.target_type in
-                        automatic_target_info.xcode_targets.get(attr, [None]))
+                        automatic_target_info.xcode_targets.get(attr, NONE_LIST))
                 ],
             )
             (
@@ -505,7 +506,7 @@ def _collect_input_files(
                     info.inputs._non_target_swift_info_modules
                     for attr, info in transitive_infos
                     if (info.target_type in
-                        automatic_target_info.xcode_targets.get(attr, [None]))
+                        automatic_target_info.xcode_targets.get(attr, NONE_LIST))
                 ],
             )
         for module in non_target_swift_info_modules.to_list():
@@ -548,7 +549,7 @@ def _collect_input_files(
         else:
             unfocused_generated_indexstores = None
     else:
-        non_target_swift_info_modules = depset()
+        non_target_swift_info_modules = EMPTY_DEPSET
         unfocused_generated_compiling = None
         unfocused_generated_indexstores = None
         unfocused_generated_linking = None
@@ -565,7 +566,7 @@ def _collect_input_files(
             info.inputs.generated
             for attr, info in transitive_infos
             if (info.target_type in
-                automatic_target_info.xcode_targets.get(attr, [None]))
+                automatic_target_info.xcode_targets.get(attr, NONE_LIST))
         ],
     )
 
@@ -576,11 +577,11 @@ def _collect_input_files(
                 info.inputs.indexstores
                 for attr, info in transitive_infos
                 if (info.target_type in
-                    automatic_target_info.xcode_targets.get(attr, [None]))
+                    automatic_target_info.xcode_targets.get(attr, NONE_LIST))
             ],
         )
     else:
-        indexstores_depset = depset()
+        indexstores_depset = EMPTY_DEPSET
 
     if modulemaps:
         modulemaps = [f for f in modulemaps if not f.is_source]
@@ -591,7 +592,7 @@ def _collect_input_files(
                 info.inputs._modulemaps
                 for attr, info in transitive_infos
                 if (info.target_type in
-                    automatic_target_info.xcode_targets.get(attr, [None]))
+                    automatic_target_info.xcode_targets.get(attr, NONE_LIST))
             ],
         )
 
@@ -628,7 +629,7 @@ def _collect_input_files(
         direct_group_list = [
             (compiling_output_group_name, False, compiling_files),
             (indexstores_output_group_name, True, indexstores_files),
-            (linking_output_group_name, False, depset()),
+            (linking_output_group_name, False, EMPTY_DEPSET),
         ]
     else:
         compiling_output_group_name = None
@@ -642,19 +643,19 @@ def _collect_input_files(
                 info.inputs.unfocused_libraries
                 for attr, info in transitive_infos
                 if (info.target_type in
-                    automatic_target_info.xcode_targets.get(attr, [None]))
+                    automatic_target_info.xcode_targets.get(attr, NONE_LIST))
             ],
         )
 
     if is_resource_bundle_consuming:
         # We've consumed them above
-        resource_bundle_uncategorized = depset()
+        resource_bundle_uncategorized = EMPTY_DEPSET
     else:
         # TODO: Remove hard-coded "apple_bundle_import" check
         if (AppleResourceBundleInfo in target and
             ctx.rule.kind != "apple_bundle_import"):
             resource_bundle_uncategorized = uncategorized
-            uncategorized = []
+            uncategorized = None
         else:
             resource_bundle_uncategorized = None
 
@@ -671,7 +672,7 @@ def _collect_input_files(
                 info.inputs._resource_bundle_uncategorized
                 for attr, info in transitive_infos
                 if (info.target_type in
-                    automatic_target_info.xcode_targets.get(attr, [None]))
+                    automatic_target_info.xcode_targets.get(attr, NONE_LIST))
             ],
         )
 
@@ -708,7 +709,7 @@ def _collect_input_files(
                     info.inputs._output_group_list
                     for attr, info in transitive_infos
                     if (info.target_type in
-                        automatic_target_info.xcode_targets.get(attr, [None]))
+                        automatic_target_info.xcode_targets.get(attr, NONE_LIST))
                 ],
             ),
             _product_framework_files = product_framework_files,
@@ -720,7 +721,7 @@ def _collect_input_files(
                     info.inputs.resource_bundles
                     for attr, info in transitive_infos
                     if (info.target_type in
-                        automatic_target_info.xcode_targets.get(attr, [None]))
+                        automatic_target_info.xcode_targets.get(attr, NONE_LIST))
                 ],
             ),
             xccurrentversions = depset(
@@ -729,7 +730,7 @@ def _collect_input_files(
                     info.inputs.xccurrentversions
                     for attr, info in transitive_infos
                     if (info.target_type in
-                        automatic_target_info.xcode_targets.get(attr, [None]))
+                        automatic_target_info.xcode_targets.get(attr, NONE_LIST))
                 ],
             ),
             generated = generated_depset,
@@ -739,7 +740,7 @@ def _collect_input_files(
                     info.inputs.important_generated
                     for attr, info in transitive_infos
                     if (info.target_type in
-                        automatic_target_info.xcode_targets.get(attr, [None]))
+                        automatic_target_info.xcode_targets.get(attr, NONE_LIST))
                 ],
             ),
             has_generated_files = bool(generated) or bool([
@@ -747,7 +748,7 @@ def _collect_input_files(
                 for attr, info in transitive_infos
                 if (info.inputs.has_generated_files and
                     (info.target_type in
-                     automatic_target_info.xcode_targets.get(attr, [None])))
+                     automatic_target_info.xcode_targets.get(attr, NONE_LIST)))
             ]),
             indexstores = indexstores_depset,
             extra_files = depset(
@@ -756,7 +757,7 @@ def _collect_input_files(
                     depset(transitive = [info.inputs.extra_files])
                     for attr, info in transitive_infos
                     if (info.target_type in
-                        automatic_target_info.xcode_targets.get(attr, [None]))
+                        automatic_target_info.xcode_targets.get(attr, NONE_LIST))
                 ] + transitive_extra_files,
             ),
             uncategorized = depset(
@@ -765,7 +766,7 @@ def _collect_input_files(
                     _collect_transitive_uncategorized(info)
                     for attr, info in transitive_infos
                     if (info.target_type in
-                        automatic_target_info.xcode_targets.get(attr, [None]))
+                        automatic_target_info.xcode_targets.get(attr, NONE_LIST))
                 ],
             ),
             unfocused_libraries = unfocused_libraries,
@@ -777,18 +778,18 @@ def _from_resource_bundle(bundle):
         compiling_output_group_name = None,
         entitlements = None,
         folder_resources = depset(bundle.folder_resources),
-        generated = depset(),
+        generated = EMPTY_DEPSET,
         has_c_sources = False,
         has_cxx_sources = False,
-        hdrs = [],
-        indexstores = depset(),
+        hdrs = EMPTY_LIST,
+        indexstores = EMPTY_DEPSET,
         indexstores_output_group_name = None,
         linking_output_group_name = None,
-        non_arc_srcs = [],
+        non_arc_srcs = EMPTY_LIST,
         pch = None,
         resource_bundle_dependencies = bundle.dependencies,
         resources = depset(bundle.resources),
-        srcs = [],
+        srcs = EMPTY_LIST,
         unfocused_generated_compiling = None,
         unfocused_generated_indexstores = None,
         unfocused_generated_linking = None,

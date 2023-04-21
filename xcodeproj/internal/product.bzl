@@ -1,6 +1,7 @@
 """Functions for calculating a target's product."""
 
 load("@bazel_skylib//lib:paths.bzl", "paths")
+load(":frozen_constants.bzl", "EMPTY_DEPSET")
 load(":linker_input_files.bzl", "linker_input_files")
 
 def _codesign_executable(*, ctx, executable):
@@ -137,7 +138,7 @@ def process_product(
             target[apple_common.AppleDynamicFramework].framework_files
         )
     else:
-        framework_files = depset()
+        framework_files = EMPTY_DEPSET
 
     if target and apple_common.AppleExecutableBinary in target:
         executable = target[apple_common.AppleExecutableBinary].binary
