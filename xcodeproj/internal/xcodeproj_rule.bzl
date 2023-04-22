@@ -1348,9 +1348,15 @@ def _write_target_ids_list(*, ctx, target_dtos):
         "{}_target_ids".format(ctx.attr.name),
     )
 
+    args = ctx.actions.args()
+    args.add_joined(
+        sorted(target_dtos.keys()),
+        join_with = "\n",
+    )
+
     ctx.actions.write(
         output,
-        "".join([id + "\n" for id in sorted(target_dtos.keys())]),
+        args,
     )
 
     return output
