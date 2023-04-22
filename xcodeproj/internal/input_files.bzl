@@ -698,7 +698,7 @@ def _collect_input_files(
                     info.inputs._output_group_list
                     for info in transitive_infos
                 ],
-            ),
+            ) if should_produce_output_groups else EMPTY_DEPSET,
             _product_framework_files = product_framework_files,
             _resource_bundle_labels = resource_bundle_labels,
             _resource_bundle_uncategorized = resource_bundle_uncategorized,
