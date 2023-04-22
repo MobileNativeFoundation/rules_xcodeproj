@@ -1,6 +1,7 @@
 """Functions for processing target properties"""
 
 load(":collections.bzl", "set_if_true", "uniq")
+load(":memory_efficiency.bzl", "memory_efficient_depset")
 
 def should_include_non_xcode_outputs(ctx):
     """Determines whether outputs of non Xcode targets should be included in \
@@ -44,11 +45,11 @@ def process_dependencies(*, transitive_infos):
             # didn't create an Xcode target.
             direct_transitive_dependencies.append(info.dependencies)
 
-    direct = depset(
+    direct = memory_efficient_depset(
         direct_dependencies,
         transitive = direct_transitive_dependencies,
     )
-    transitive = depset(
+    transitive = memory_efficient_depset(
         direct_dependencies,
         transitive = all_transitive_dependencies,
     )

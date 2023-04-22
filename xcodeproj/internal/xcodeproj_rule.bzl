@@ -413,7 +413,7 @@ targets.
     }
     has_focused_labels = bool(focused_labels)
 
-    if build_mode == "xcode":
+    if build_mode == "xcode" and resource_bundle_xcode_targets:
         transitive_focused_targets = [depset(resource_bundle_xcode_targets)]
     else:
         transitive_focused_targets = []
