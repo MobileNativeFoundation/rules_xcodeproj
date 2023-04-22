@@ -61,19 +61,19 @@ def _calculate_unfocused_dependencies(
         build_mode,
         targets,
         focused_targets,
-        unfocused_libraries,
+        bwx_unfocused_libraries,
         unfocused_targets):
     if build_mode != "xcode":
         return {}
 
     automatic_unfocused_dependencies = []
     transitive_focused_dependencies = []
-    if unfocused_targets or unfocused_libraries:
+    if unfocused_targets or bwx_unfocused_libraries:
         for xcode_target in focused_targets:
             transitive_focused_dependencies.append(
                 xcode_target.transitive_dependencies,
             )
-            if xcode_target.product.file_path in unfocused_libraries:
+            if xcode_target.product.file_path in bwx_unfocused_libraries:
                 automatic_unfocused_dependencies.append(xcode_target.id)
 
     transitive_dependencies = []
@@ -407,9 +407,9 @@ targets.
             else:
                 warn(message)
 
-    unfocused_libraries = {
+    bwx_unfocused_libraries = {
         library: None
-        for library in inputs.unfocused_libraries.to_list()
+        for library in inputs.bwx_unfocused_libraries.to_list()
     }
     has_focused_labels = bool(focused_labels)
 
@@ -543,11 +543,11 @@ targets.
         build_mode = build_mode,
         targets = unprocessed_targets,
         focused_targets = focused_targets.values(),
-        unfocused_libraries = unfocused_libraries,
+        bwx_unfocused_libraries = bwx_unfocused_libraries,
         unfocused_targets = unfocused_targets,
     )
 
-    has_automatic_unfocused_targets = bool(unfocused_libraries)
+    has_automatic_unfocused_targets = bool(bwx_unfocused_libraries)
     has_unfocused_targets = bool(unfocused_targets)
     include_lldb_context = (
         has_unfocused_targets or

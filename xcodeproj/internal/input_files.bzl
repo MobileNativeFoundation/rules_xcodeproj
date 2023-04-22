@@ -450,7 +450,7 @@ def _collect_input_files(
 
     # Collect unfocused target info
     indexstores = []
-    unfocused_libraries = None
+    bwx_unfocused_libraries = None
     if should_include_non_xcode_outputs(ctx = ctx):
         if unfocused == None:
             (dep_compilation_providers, _) = comp_providers.merge(
@@ -472,7 +472,7 @@ def _collect_input_files(
             unfocused = bool(direct_libraries)
             if unfocused:
                 generated.extend(transitive_libraries)
-                unfocused_libraries = depset(
+                bwx_unfocused_libraries = depset(
                     [
                         file.path
                         for file in transitive_libraries
@@ -623,10 +623,10 @@ def _collect_input_files(
         linking_output_group_name = None
         direct_group_list = None
 
-    if not unfocused_libraries:
-        unfocused_libraries = depset(
+    if not bwx_unfocused_libraries:
+        bwx_unfocused_libraries = depset(
             transitive = [
-                info.inputs.unfocused_libraries
+                info.inputs.bwx_unfocused_libraries
                 for info in transitive_infos
             ],
         )
@@ -740,7 +740,7 @@ def _collect_input_files(
                     for info in transitive_infos
                 ],
             ),
-            unfocused_libraries = unfocused_libraries,
+            bwx_unfocused_libraries = bwx_unfocused_libraries,
         ),
     )
 
@@ -866,9 +866,9 @@ def _merge_input_files(*, transitive_infos, extra_generated = None):
                 for info in transitive_infos
             ],
         ),
-        unfocused_libraries = depset(
+        bwx_unfocused_libraries = depset(
             transitive = [
-                info.inputs.unfocused_libraries
+                info.inputs.bwx_unfocused_libraries
                 for info in transitive_infos
             ],
         ),
