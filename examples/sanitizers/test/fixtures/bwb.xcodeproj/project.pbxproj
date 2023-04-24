@@ -774,7 +774,6 @@
 				C_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/UndefinedBehaviorSanitizerApp/UndefinedBehaviorSanitizerApp.library.rules_xcodeproj.c.compile.params";
 				DEPLOYMENT_LOCATION = NO;
 				ENABLE_BITCODE = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/UndefinedBehaviorSanitizerApp/rules_xcodeproj/UndefinedBehaviorSanitizerApp/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UndefinedBehaviorSanitizerApp.2.link.params";
@@ -834,6 +833,7 @@
 				DEPLOYMENT_LOCATION = "$(INDEXING_DEPLOYMENT_LOCATION__$(INDEX_ENABLE_BUILD_ARENA)),";
 				DSTROOT = "$(PROJECT_TEMP_DIR)";
 				ENABLE_DEFAULT_SEARCH_PATHS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INDEXING_BUILT_PRODUCTS_DIR__ = "$(INDEXING_BUILT_PRODUCTS_DIR__NO)";
 				INDEXING_BUILT_PRODUCTS_DIR__NO = "$(BUILD_DIR)";
@@ -888,7 +888,6 @@
 				COMPILE_TARGET_NAME = ThreadSanitizerApp.library;
 				DEPLOYMENT_LOCATION = NO;
 				ENABLE_BITCODE = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/ThreadSanitizerApp/rules_xcodeproj/ThreadSanitizerApp/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -927,7 +926,6 @@
 				COMPILE_TARGET_NAME = AddressSanitizerApp.library;
 				DEPLOYMENT_LOCATION = NO;
 				ENABLE_BITCODE = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/AddressSanitizerApp/rules_xcodeproj/AddressSanitizerApp/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;

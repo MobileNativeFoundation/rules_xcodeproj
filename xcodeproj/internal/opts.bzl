@@ -771,11 +771,6 @@ def _process_compiler_opts(
             "-D_FORTIFY_SOURCE=1".
         *   A `list` of Swift PCM (clang) compiler options.
     """
-
-    # Xcode's default for `ENABLE_STRICT_OBJC_MSGSEND` doesn't match its new
-    # project default, so we need to set it explicitly
-    build_settings["ENABLE_STRICT_OBJC_MSGSEND"] = True
-
     has_swiftcopts = bool(swiftcopts)
 
     (
