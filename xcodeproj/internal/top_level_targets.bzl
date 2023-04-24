@@ -12,11 +12,16 @@ load(":collections.bzl", "set_if_true")
 load(":compilation_providers.bzl", comp_providers = "compilation_providers")
 load(":configuration.bzl", "get_configuration")
 load(":files.bzl", "build_setting_path", "join_paths_ignoring_empty")
-load(":frozen_constants.bzl", "EMPTY_LIST", "NONE_LIST")
 load(":info_plists.bzl", "info_plists")
 load(":input_files.bzl", "input_files")
 load(":linker_input_files.bzl", "linker_input_files")
 load(":lldb_contexts.bzl", "lldb_contexts")
+load(
+    ":memory_efficiency.bzl",
+    "EMPTY_LIST",
+    "NONE_LIST",
+    "memory_efficient_depset",
+)
 load(":opts.bzl", "process_opts")
 load(":output_files.bzl", "output_files")
 load(":platform.bzl", "platform_info")
@@ -550,7 +555,7 @@ def process_top_level_target(
             transitive_dependencies = transitive_dependencies,
             outputs = target_outputs,
             lldb_context = lldb_context,
-            xcode_required_targets = depset(
+            xcode_required_targets = memory_efficient_depset(
                 transitive = [
                     info.xcode_required_targets
                     for info in valid_transitive_infos

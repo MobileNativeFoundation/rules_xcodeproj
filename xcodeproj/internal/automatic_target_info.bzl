@@ -6,7 +6,7 @@ load(
     "AppleFrameworkImportInfo",
     "AppleResourceBundleInfo",
 )
-load(":frozen_constants.bzl", "EMPTY_LIST", "NONE_LIST")
+load(":memory_efficiency.bzl", "EMPTY_LIST", "NONE_LIST")
 load(":providers.bzl", "XcodeProjAutomaticTargetProcessingInfo", "target_type")
 
 ## Utility

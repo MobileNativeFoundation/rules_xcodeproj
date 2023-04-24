@@ -10,7 +10,13 @@ load(
     "build_setting_path",
     "normalized_file_path",
 )
-load(":frozen_constants.bzl", "EMPTY_DEPSET", "EMPTY_LIST", "EMPTY_TUPLE")
+load(
+    ":memory_efficiency.bzl",
+    "EMPTY_DEPSET",
+    "EMPTY_LIST",
+    "EMPTY_TUPLE",
+    "memory_efficient_depset",
+)
 load(":platform.bzl", "platform_info")
 
 def _make_xcode_target(
@@ -320,7 +326,7 @@ def _merge_xcode_target(*, src, dest):
         watch_application = dest._watch_application,
         extensions = dest._extensions,
         app_clips = dest._app_clips,
-        dependencies = depset(
+        dependencies = memory_efficient_depset(
             transitive = [dest._dependencies, src._dependencies],
         ),
         transitive_dependencies = dest.transitive_dependencies,
@@ -379,12 +385,12 @@ def _merge_xcode_target_product(*, src, dest):
         executable = dest.executable,
         executable_name = dest.executable_name,
         package_dir = dest.package_dir,
-        framework_files = depset(
+        framework_files = memory_efficient_depset(
             transitive = [dest.framework_files, src.framework_files],
         ),
         additional_product_files = tuple([src.file]),
         is_resource_bundle = dest.is_resource_bundle,
-        _additional_files = depset(
+        _additional_files = memory_efficient_depset(
             [src.file],
             transitive = [dest._additional_files, src._additional_files],
         ),

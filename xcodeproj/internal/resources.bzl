@@ -9,6 +9,7 @@ load(
     "join_paths_ignoring_empty",
     "normalized_file_path",
 )
+load(":memory_efficiency.bzl", "memory_efficient_depset")
 load(":target_id.bzl", "get_id")
 
 # Utility
@@ -356,7 +357,7 @@ def collect_resources(
                     platform = platform,
                     resources = tuple(bundle.resources),
                     folder_resources = tuple(bundle.folder_resources),
-                    dependencies = depset([
+                    dependencies = memory_efficient_depset([
                         bundle_metadata[bundle_path].id
                         for bundle_path in bundle.dependency_paths
                     ]),

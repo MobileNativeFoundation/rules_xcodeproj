@@ -1,8 +1,8 @@
 """Functions for calculating a target's product."""
 
 load("@bazel_skylib//lib:paths.bzl", "paths")
-load(":frozen_constants.bzl", "EMPTY_DEPSET")
 load(":linker_input_files.bzl", "linker_input_files")
+load(":memory_efficiency.bzl", "EMPTY_DEPSET")
 
 def _codesign_executable(*, ctx, executable):
     executable_path = "{}_codesigned".format(
