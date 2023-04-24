@@ -786,9 +786,7 @@ def _process_compiler_opts(
     # project default, so we need to set it explicitly
     build_settings["ENABLE_STRICT_OBJC_MSGSEND"] = True
 
-    has_conlyopts = conlyopts
-    has_cxxopts = cxxopts
-    has_swiftcop = swiftcopts
+    has_swiftcopts = bool(swiftcopts)
 
     (
         c_has_debug_info,
@@ -809,31 +807,15 @@ def _process_compiler_opts(
         build_settings = build_settings,
     )
 
-    has_debug_info = {}
-    if has_conlyopts:
-        has_debug_info[c_has_debug_info] = None
-    if has_cxxopts:
-        has_debug_info[cxx_has_debug_info] = None
-    if has_swiftcop:
-        has_debug_info[swift_has_debug_info] = None
-
-    has_debug_infos = has_debug_info.keys()
-
-    if len(has_debug_infos) == 1:
-        # We don't set "DEBUG_INFORMATION_FORMAT" for "dwarf", as we set that at
-        # the project level.
-        if not has_debug_infos[0]:
-            build_settings["DEBUG_INFORMATION_FORMAT"] = ""
-        elif cpp_fragment.apple_generate_dsym:
+    if conlyopts or cxxopts or has_swiftcopts:
+        if cpp_fragment.apple_generate_dsym:
             build_settings["DEBUG_INFORMATION_FORMAT"] = "dwarf-with-dsym"
-    elif has_debug_infos:
-        build_settings["DEBUG_INFORMATION_FORMAT"] = ""
-        if has_conlyopts and c_has_debug_info:
-            conlyopts = ["-g"] + conlyopts
-        if has_cxxopts and cxx_has_debug_info:
-            cxxopts = ["-g"] + cxxopts
-        if has_swiftcop and swift_has_debug_info:
-            swiftcopts = ["-g"] + swiftcopts
+        elif c_has_debug_info or cxx_has_debug_info or swift_has_debug_info:
+            # We don't set "DEBUG_INFORMATION_FORMAT" to "dwarf", as we set
+            # that at the project level
+            pass
+        else:
+            build_settings["DEBUG_INFORMATION_FORMAT"] = ""
 
     c_params = _create_cc_compile_params(
         actions = actions,
