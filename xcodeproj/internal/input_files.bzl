@@ -216,6 +216,7 @@ def _collect_input_files(
         # assigning to `entitlements` creates a new local variable instead
         # of assigning to the existing variable
         entitlements.append(file)
+        extra_files.append(file.path)
 
     # buildifier: disable=uninitialized
     def _handle_extrafiles_file(file):

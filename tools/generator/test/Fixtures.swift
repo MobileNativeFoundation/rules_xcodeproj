@@ -36,6 +36,7 @@ enum Fixtures {
             "a/imported.a",
             "a/module.modulemap",
             "a/StaticFram.framework",
+            "app.entitlements",
         ],
         schemeAutogenerationMode: .auto,
         customXcodeSchemes: [],
@@ -94,6 +95,7 @@ enum Fixtures {
                 executableName: "A_ExecutableName"
             ),
             buildSettings: [
+                "CODE_SIGN_ENTITLEMENTS": .string("app.entitlements"),
                 "T": .string("43"),
                 "Z": .string("0"),
             ],
@@ -105,8 +107,7 @@ enum Fixtures {
                     "en.lproj/Localized.strings",
                     "en.lproj/Example.strings",
                     .generated("v", isFolder: true),
-                ],
-                entitlements: "app.entitlements"
+                ]
             ),
             linkerInputs: .init(
                 dynamicFrameworks: ["a/Fram.framework"]
