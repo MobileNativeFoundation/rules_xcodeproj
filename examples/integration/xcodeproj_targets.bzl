@@ -91,6 +91,7 @@ XCODEPROJ_TARGETS = [
         ],
         target_environments = ["device", "simulator"],
     ),
+    "//Bundle",
     "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests",
     "//iOSApp/Test/TestingUtils:macos_TestingUtils",
     "//iMessageApp",

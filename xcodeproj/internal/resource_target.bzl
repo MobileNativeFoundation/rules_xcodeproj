@@ -2,8 +2,8 @@
 
 load("@bazel_skylib//lib:paths.bzl", "paths")
 load(":collections.bzl", "set_if_true")
-load(":frozen_constants.bzl", "EMPTY_LIST")
 load(":input_files.bzl", "input_files")
+load(":memory_efficiency.bzl", "EMPTY_LIST")
 load(":output_files.bzl", "output_files")
 load(":product.bzl", "process_product")
 load(

@@ -9,10 +9,15 @@ load(
 )
 load(":automatic_target_info.bzl", "calculate_automatic_target_info")
 load(":compilation_providers.bzl", comp_providers = "compilation_providers")
-load(":frozen_constants.bzl", "EMPTY_LIST", "NONE_LIST")
 load(":input_files.bzl", "input_files")
 load(":library_targets.bzl", "process_library_target")
 load(":lldb_contexts.bzl", "lldb_contexts")
+load(
+    ":memory_efficiency.bzl",
+    "EMPTY_LIST",
+    "NONE_LIST",
+    "memory_efficient_depset",
+)
 load(":non_xcode_targets.bzl", "process_non_xcode_target")
 load(":output_files.bzl", "output_files")
 load(
@@ -247,7 +252,7 @@ def _skip_target(
     )
 
     return _target_info_fields(
-        args = depset(
+        args = memory_efficient_depset(
             [
                 _create_args_depset(
                     ctx = ctx,
@@ -267,13 +272,13 @@ def _skip_target(
         ),
         compilation_providers = compilation_providers,
         dependencies = dependencies,
-        extension_infoplists = depset(
+        extension_infoplists = memory_efficient_depset(
             transitive = [
                 info.extension_infoplists
                 for info in valid_transitive_infos
             ],
         ),
-        hosted_targets = depset(
+        hosted_targets = memory_efficient_depset(
             transitive = [
                 info.hosted_targets
                 for info in valid_transitive_infos
@@ -288,7 +293,7 @@ def _skip_target(
             clang_opts = EMPTY_LIST,
             transitive_infos = valid_transitive_infos,
         ),
-        mergable_xcode_library_targets = depset(
+        mergable_xcode_library_targets = memory_efficient_depset(
             transitive = [
                 info.mergable_xcode_library_targets
                 for info in valid_transitive_infos
@@ -296,13 +301,13 @@ def _skip_target(
         ),
         non_top_level_rule_kind = None,
         outputs = provider_outputs,
-        potential_target_merges = depset(
+        potential_target_merges = memory_efficient_depset(
             transitive = [
                 info.potential_target_merges
                 for info in valid_transitive_infos
             ],
         ),
-        replacement_labels = depset(
+        replacement_labels = memory_efficient_depset(
             [
                 struct(id = info.xcode_target.id, label = target.label)
                 for attr, info in transitive_infos
@@ -315,14 +320,14 @@ def _skip_target(
                 for info in valid_transitive_infos
             ],
         ),
-        resource_bundle_informations = depset(
+        resource_bundle_informations = memory_efficient_depset(
             transitive = [
                 info.resource_bundle_informations
                 for info in valid_transitive_infos
             ],
         ),
         target_type = target_type.compile,
-        envs = depset(
+        envs = memory_efficient_depset(
             [
                 _create_envs_depset(
                     ctx = ctx,
@@ -342,13 +347,13 @@ def _skip_target(
         ),
         transitive_dependencies = transitive_dependencies,
         xcode_target = None,
-        xcode_targets = depset(
+        xcode_targets = memory_efficient_depset(
             transitive = [
                 info.xcode_targets
                 for info in valid_transitive_infos
             ],
         ),
-        xcode_required_targets = depset(
+        xcode_required_targets = memory_efficient_depset(
             transitive = [
                 info.xcode_required_targets
                 for info in valid_transitive_infos
@@ -441,7 +446,7 @@ def _create_xcodeprojinfo(
         )
 
     return _target_info_fields(
-        args = depset(
+        args = memory_efficient_depset(
             transitive = [
                 info.args
                 for _, info in transitive_infos
@@ -449,7 +454,7 @@ def _create_xcodeprojinfo(
         ),
         compilation_providers = processed_target.compilation_providers,
         dependencies = processed_target.dependencies,
-        extension_infoplists = depset(
+        extension_infoplists = memory_efficient_depset(
             processed_target.extension_infoplists,
             transitive = [
                 info.extension_infoplists
@@ -461,7 +466,7 @@ def _create_xcodeprojinfo(
                     ))
             ],
         ),
-        hosted_targets = depset(
+        hosted_targets = memory_efficient_depset(
             processed_target.hosted_targets,
             transitive = [
                 info.hosted_targets
@@ -475,14 +480,14 @@ def _create_xcodeprojinfo(
         ),
         inputs = processed_target.inputs,
         lldb_context = processed_target.lldb_context,
-        mergable_xcode_library_targets = depset(
+        mergable_xcode_library_targets = memory_efficient_depset(
             processed_target.mergable_xcode_library_targets,
         ),
         non_top_level_rule_kind = (
             None if processed_target.is_top_level_target else ctx.rule.kind
         ),
         outputs = processed_target.outputs,
-        potential_target_merges = depset(
+        potential_target_merges = memory_efficient_depset(
             processed_target.potential_target_merges,
             transitive = [
                 info.potential_target_merges
@@ -494,13 +499,13 @@ def _create_xcodeprojinfo(
                     ))
             ],
         ),
-        replacement_labels = depset(
+        replacement_labels = memory_efficient_depset(
             transitive = [
                 info.replacement_labels
                 for _, info in transitive_infos
             ],
         ),
-        resource_bundle_informations = depset(
+        resource_bundle_informations = memory_efficient_depset(
             processed_target.resource_bundle_informations,
             transitive = [
                 info.resource_bundle_informations
@@ -513,7 +518,7 @@ def _create_xcodeprojinfo(
             ],
         ),
         target_type = processed_target.automatic_target_info.target_type,
-        envs = depset(
+        envs = memory_efficient_depset(
             transitive = [
                 info.envs
                 for _, info in transitive_infos
@@ -521,7 +526,7 @@ def _create_xcodeprojinfo(
         ),
         transitive_dependencies = processed_target.transitive_dependencies,
         xcode_target = processed_target.xcode_target,
-        xcode_targets = depset(
+        xcode_targets = memory_efficient_depset(
             processed_target.xcode_targets,
             transitive = [
                 info.xcode_targets
@@ -533,7 +538,7 @@ def _create_xcodeprojinfo(
                     ))
             ],
         ),
-        xcode_required_targets = depset(
+        xcode_required_targets = memory_efficient_depset(
             processed_target.xcode_targets if processed_target.is_xcode_required else None,
             transitive = [
                 info.xcode_required_targets

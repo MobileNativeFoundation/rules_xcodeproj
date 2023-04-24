@@ -14,8 +14,13 @@ load(
     "RESOURCES_FOLDER_TYPE_EXTENSIONS",
     "normalized_file_path",
 )
-load(":frozen_constants.bzl", "EMPTY_DEPSET", "EMPTY_LIST")
 load(":linker_input_files.bzl", "linker_input_files")
+load(
+    ":memory_efficiency.bzl",
+    "EMPTY_DEPSET",
+    "EMPTY_LIST",
+    "memory_efficient_depset",
+)
 load(":output_files.bzl", "parse_swift_info_module", "swift_to_outputs")
 load(":providers.bzl", "XcodeProjInfo")
 load(":resources.bzl", "collect_resources")
@@ -329,7 +334,7 @@ def _collect_input_files(
             for list_dep in dep:
                 _handle_dep(list_dep)
 
-    product_framework_files = depset(
+    product_framework_files = memory_efficient_depset(
         transitive = [
             info.inputs._product_framework_files
             for info in transitive_infos
@@ -385,7 +390,7 @@ def _collect_input_files(
             bundle.label
             for bundle in resources_result.bundles
         ]
-        resource_bundle_labels = depset(
+        resource_bundle_labels = memory_efficient_depset(
             bundle_labels_list if bundle_labels_list else None,
             transitive = [
                 dep[XcodeProjInfo].inputs._resource_bundle_labels
@@ -417,7 +422,7 @@ def _collect_input_files(
         if resources_result.folder_resources:
             folder_resources = depset(resources_result.folder_resources)
     else:
-        resource_bundle_labels = depset(
+        resource_bundle_labels = memory_efficient_depset(
             transitive = [
                 dep[XcodeProjInfo].inputs._resource_bundle_labels
                 for dep in avoid_deps
@@ -450,7 +455,7 @@ def _collect_input_files(
 
     # Collect unfocused target info
     indexstores = []
-    unfocused_libraries = None
+    bwx_unfocused_libraries = None
     if should_include_non_xcode_outputs(ctx = ctx):
         if unfocused == None:
             (dep_compilation_providers, _) = comp_providers.merge(
@@ -472,7 +477,7 @@ def _collect_input_files(
             unfocused = bool(direct_libraries)
             if unfocused:
                 generated.extend(transitive_libraries)
-                unfocused_libraries = depset(
+                bwx_unfocused_libraries = memory_efficient_depset(
                     [
                         file.path
                         for file in transitive_libraries
@@ -495,7 +500,7 @@ def _collect_input_files(
         if unfocused and is_swift:
             non_target_swift_info_modules = target[SwiftInfo].transitive_modules
         else:
-            non_target_swift_info_modules = depset(
+            non_target_swift_info_modules = memory_efficient_depset(
                 transitive = [
                     info.inputs._non_target_swift_info_modules
                     for info in transitive_infos
@@ -546,13 +551,18 @@ def _collect_input_files(
         unfocused_generated_indexstores = None
         unfocused_generated_linking = None
 
+        # Set non-`None` to prevent hitting the
+        # `if not bwx_unfocused_libraries:` check and subsequent calculation
+        # below
+        bwx_unfocused_libraries = EMPTY_DEPSET
+
     important_generated = [
         file
         for file in entitlements
         if not file.is_source
     ]
 
-    generated_depset = depset(
+    generated_depset = memory_efficient_depset(
         generated if generated else None,
         transitive = [
             info.inputs.generated
@@ -561,7 +571,7 @@ def _collect_input_files(
     )
 
     if should_produce_output_groups:
-        indexstores_depset = depset(
+        indexstores_depset = memory_efficient_depset(
             indexstores if indexstores else None,
             transitive = [
                 info.inputs.indexstores
@@ -573,9 +583,9 @@ def _collect_input_files(
 
     if modulemaps:
         modulemaps = [f for f in modulemaps if not f.is_source]
-        modulemaps_depset = depset(modulemaps)
+        modulemaps_depset = memory_efficient_depset(modulemaps)
     else:
-        modulemaps_depset = depset(
+        modulemaps_depset = memory_efficient_depset(
             transitive = [
                 info.inputs._modulemaps
                 for info in transitive_infos
@@ -589,7 +599,7 @@ def _collect_input_files(
         modulemaps = modulemaps_depset.to_list()
 
     if id:
-        compiling_files = depset(
+        compiling_files = memory_efficient_depset(
             modulemaps,
             transitive = [generated_depset],
         )
@@ -623,10 +633,10 @@ def _collect_input_files(
         linking_output_group_name = None
         direct_group_list = None
 
-    if not unfocused_libraries:
-        unfocused_libraries = depset(
+    if not bwx_unfocused_libraries:
+        bwx_unfocused_libraries = memory_efficient_depset(
             transitive = [
-                info.inputs.unfocused_libraries
+                info.inputs.bwx_unfocused_libraries
                 for info in transitive_infos
             ],
         )
@@ -645,12 +655,15 @@ def _collect_input_files(
 
         if resource_bundle_uncategorized:
             resource_bundle_uncategorized_direct = [
-                (target.label, depset(resource_bundle_uncategorized)),
+                (
+                    target.label,
+                    memory_efficient_depset(resource_bundle_uncategorized),
+                ),
             ]
         else:
             resource_bundle_uncategorized_direct = None
 
-        resource_bundle_uncategorized = depset(
+        resource_bundle_uncategorized = memory_efficient_depset(
             resource_bundle_uncategorized_direct,
             transitive = [
                 info.inputs._resource_bundle_uncategorized
@@ -680,7 +693,7 @@ def _collect_input_files(
             linking_output_group_name = linking_output_group_name,
             non_arc_srcs = non_arc_srcs,
             pch = pch[0] if pch else None,
-            resource_bundle_dependencies = depset(
+            resource_bundle_dependencies = memory_efficient_depset(
                 resource_bundle_dependencies,
             ),
             resources = resources,
@@ -692,24 +705,24 @@ def _collect_input_files(
         struct(
             _modulemaps = modulemaps_depset,
             _non_target_swift_info_modules = non_target_swift_info_modules,
-            _output_group_list = depset(
+            _output_group_list = memory_efficient_depset(
                 direct_group_list,
                 transitive = [
                     info.inputs._output_group_list
                     for info in transitive_infos
                 ],
-            ),
+            ) if should_produce_output_groups else EMPTY_DEPSET,
             _product_framework_files = product_framework_files,
             _resource_bundle_labels = resource_bundle_labels,
             _resource_bundle_uncategorized = resource_bundle_uncategorized,
-            resource_bundles = depset(
+            resource_bundles = memory_efficient_depset(
                 resource_bundles,
                 transitive = [
                     info.inputs.resource_bundles
                     for info in transitive_infos
                 ],
             ),
-            xccurrentversions = depset(
+            xccurrentversions = memory_efficient_depset(
                 [(label, tuple(xccurrentversions))] if xccurrentversions else None,
                 transitive = [
                     info.inputs.xccurrentversions
@@ -717,7 +730,7 @@ def _collect_input_files(
                 ],
             ),
             generated = generated_depset,
-            important_generated = depset(
+            important_generated = memory_efficient_depset(
                 important_generated if important_generated else None,
                 transitive = [
                     info.inputs.important_generated
@@ -726,21 +739,21 @@ def _collect_input_files(
             ),
             has_generated_files = has_generated_files,
             indexstores = indexstores_depset,
-            extra_files = depset(
+            extra_files = memory_efficient_depset(
                 [(label, depset(extra_files))] if extra_files else None,
                 transitive = [
                     depset(transitive = [info.inputs.extra_files])
                     for info in transitive_infos
                 ] + transitive_extra_files,
             ),
-            uncategorized = depset(
+            uncategorized = memory_efficient_depset(
                 [(label, depset(uncategorized))] if uncategorized else None,
                 transitive = [
                     _collect_transitive_uncategorized(info)
                     for info in transitive_infos
                 ],
             ),
-            unfocused_libraries = unfocused_libraries,
+            bwx_unfocused_libraries = bwx_unfocused_libraries,
         ),
     )
 
@@ -786,89 +799,89 @@ def _merge_input_files(*, transitive_infos, extra_generated = None):
             break
 
     return struct(
-        _modulemaps = depset(
+        _modulemaps = memory_efficient_depset(
             transitive = [
                 info.inputs._modulemaps
                 for info in transitive_infos
             ],
         ),
-        _non_target_swift_info_modules = depset(
+        _non_target_swift_info_modules = memory_efficient_depset(
             transitive = [
                 info.inputs._non_target_swift_info_modules
                 for info in transitive_infos
             ],
         ),
-        _output_group_list = depset(
+        _output_group_list = memory_efficient_depset(
             transitive = [
                 info.inputs._output_group_list
                 for info in transitive_infos
             ],
         ),
-        _product_framework_files = depset(
+        _product_framework_files = memory_efficient_depset(
             transitive = [
                 info.inputs._product_framework_files
                 for info in transitive_infos
             ],
         ),
-        _resource_bundle_labels = depset(
+        _resource_bundle_labels = memory_efficient_depset(
             transitive = [
                 info.inputs._resource_bundle_labels
                 for info in transitive_infos
             ],
         ),
-        _resource_bundle_uncategorized = depset(
+        _resource_bundle_uncategorized = memory_efficient_depset(
             transitive = [
                 info.inputs._resource_bundle_uncategorized
                 for info in transitive_infos
             ],
         ),
-        resource_bundles = depset(
+        resource_bundles = memory_efficient_depset(
             transitive = [
                 info.inputs.resource_bundles
                 for info in transitive_infos
             ],
         ),
-        xccurrentversions = depset(
+        xccurrentversions = memory_efficient_depset(
             transitive = [
                 info.inputs.xccurrentversions
                 for info in transitive_infos
             ],
         ),
-        generated = depset(
+        generated = memory_efficient_depset(
             extra_generated if extra_generated else None,
             transitive = [
                 info.inputs.generated
                 for info in transitive_infos
             ],
         ),
-        important_generated = depset(
+        important_generated = memory_efficient_depset(
             transitive = [
                 info.inputs.important_generated
                 for info in transitive_infos
             ],
         ),
         has_generated_files = has_generated_files,
-        indexstores = depset(
+        indexstores = memory_efficient_depset(
             transitive = [
                 info.inputs.indexstores
                 for info in transitive_infos
             ],
         ),
-        extra_files = depset(
+        extra_files = memory_efficient_depset(
             transitive = [
                 info.inputs.extra_files
                 for info in transitive_infos
             ],
         ),
-        uncategorized = depset(
+        uncategorized = memory_efficient_depset(
             transitive = [
                 info.inputs.uncategorized
                 for info in transitive_infos
             ],
         ),
-        unfocused_libraries = depset(
+        bwx_unfocused_libraries = memory_efficient_depset(
             transitive = [
-                info.inputs.unfocused_libraries
+                info.inputs.bwx_unfocused_libraries
                 for info in transitive_infos
             ],
         ),
@@ -883,14 +896,19 @@ def _process_output_group_files(
         index_import):
     # `list` copy is needed for some reason to prevent depset from changing
     # underneath us. Without this it's nondeterministic which files are in it.
-    generated_depsets = list(additional_bwx_generated.get(output_group_name, []))
+    generated_depsets = list(
+        additional_bwx_generated.get(output_group_name, []),
+    )
 
     if is_indexstores:
         direct = [index_import]
     else:
         direct = None
 
-    return depset(direct, transitive = generated_depsets + [files])
+    return memory_efficient_depset(
+        direct,
+        transitive = generated_depsets + [files],
+    )
 
 def _to_output_groups_fields(
         *,
@@ -921,21 +939,21 @@ def _to_output_groups_fields(
         for name, is_indexstores, files in inputs._output_group_list.to_list()
     }
 
-    output_groups["all_xc"] = depset(
+    output_groups["all_xc"] = memory_efficient_depset(
         transitive = [
             files
             for name, files in output_groups.items()
             if name.startswith("xc ")
         ],
     )
-    output_groups["all_xi"] = depset(
+    output_groups["all_xi"] = memory_efficient_depset(
         transitive = [
             files
             for name, files in output_groups.items()
             if name.startswith("xi ")
         ],
     )
-    output_groups["all_xl"] = depset(
+    output_groups["all_xl"] = memory_efficient_depset(
         transitive = [
             files
             for name, files in output_groups.items()
