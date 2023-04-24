@@ -63,13 +63,13 @@ enum Fixtures {
                 name: "a",
                 path: .generated("z/A.a")
             ),
-            isSwift: true,
             buildSettings: [
                 "PRODUCT_MODULE_NAME": .string("A"),
                 "SWIFT_OBJC_INTERFACE_HEADER_NAME": "y-Swift.h",
                 "T": .string("42"),
                 "Y": .bool(true),
             ],
+            swiftParams: .generated("A1.swift.compile.params"),
             inputs: .init(
                 srcs: ["x/y.swift"],
                 nonArcSrcs: ["b.c"],
@@ -93,7 +93,6 @@ enum Fixtures {
                 path: .generated("z/A.app"),
                 executableName: "A_ExecutableName"
             ),
-            isSwift: true,
             buildSettings: [
                 "T": .string("43"),
                 "Z": .string("0"),
@@ -205,7 +204,7 @@ enum Fixtures {
                 name: "E1",
                 path: .generated("e1/E.a")
             ),
-            isSwift: true,
+            swiftParams: .generated("E1.swift.compile.params"),
             hasModulemaps: true,
             inputs: .init(srcs: [.external("a_repo/a.swift")]),
             outputs: .init(
@@ -227,7 +226,7 @@ enum Fixtures {
                 name: "E2",
                 path: .generated("e2/E.a")
             ),
-            isSwift: true,
+            swiftParams: .generated("E2.swift.compile.params"),
             inputs: .init(srcs: [.external("another_repo/b.swift")])
         ),
         "I": Target.mock(
@@ -270,7 +269,7 @@ enum Fixtures {
                 name: "t",
                 path: .generated("T/T 1/T.a")
             ),
-            isSwift: true,
+            swiftParams: .generated("T 1.swift.compile.params"),
             inputs: .init(
                 srcs: ["T/T 1/Ta.swift", "T/Tb.swift"],
                 nonArcSrcs: ["T/T 1/Ta.c", "T/Tb.c"],
@@ -288,7 +287,7 @@ enum Fixtures {
                 name: "t",
                 path: .generated("T/T 2/T.a")
             ),
-            isSwift: true,
+            swiftParams: .generated("T 2.swift.compile.params"),
             inputs: .init(
                 srcs: ["T/T 2/Ta.swift", "T/Tb.swift"],
                 nonArcSrcs: ["T/T 2/Ta.c", "T/Tb.c"],
@@ -306,7 +305,7 @@ enum Fixtures {
                 name: "t",
                 path: .generated("T/T 3/T.a")
             ),
-            isSwift: true,
+            swiftParams: .generated("T 3.swift.compile.params"),
             inputs: .init(
                 srcs: ["T/T 3/Ta.swift", "T/Tb.swift"],
                 nonArcSrcs: ["T/T 3/Ta.c", "T/Tb.c"],
@@ -463,6 +462,48 @@ enum Fixtures {
             path: "a"
         )
 
+        // bazel-out/A1.swift.compile.params
+
+        elements[.generated("A1.swift.compile.params")] = PBXFileReference(
+            sourceTree: .group,
+            path: "A1.swift.compile.params"
+        )
+
+        // bazel-out/E1.swift.compile.params
+
+        elements[.generated("E1.swift.compile.params")] = PBXFileReference(
+            sourceTree: .group,
+            path: "E1.swift.compile.params"
+        )
+
+        // bazel-out/E2.swift.compile.params
+
+        elements[.generated("E2.swift.compile.params")] = PBXFileReference(
+            sourceTree: .group,
+            path: "E2.swift.compile.params"
+        )
+
+        // bazel-out/T 1.swift.compile.params
+
+        elements[.generated("T 1.swift.compile.params")] = PBXFileReference(
+            sourceTree: .group,
+            path: "T 1.swift.compile.params"
+        )
+
+        // bazel-out/T 2.swift.compile.params
+
+        elements[.generated("T 2.swift.compile.params")] = PBXFileReference(
+            sourceTree: .group,
+            path: "T 2.swift.compile.params"
+        )
+
+        // bazel-out/T 3.swift.compile.params
+
+        elements[.generated("T 3.swift.compile.params")] = PBXFileReference(
+            sourceTree: .group,
+            path: "T 3.swift.compile.params"
+        )
+
         // bazel-out/B.link.params
 
         elements[.generated("B.link.params")] = PBXFileReference(
@@ -515,9 +556,15 @@ enum Fixtures {
                 elements[.generated("a1b2c")]!,
                 elements[.generated("v", isFolder: true)]!,
                 elements[.generated("z")]!,
+                elements[.generated("A1.swift.compile.params")]!,
                 elements[.generated("B.link.params")]!,
                 elements[.generated("B3.link.params")]!,
                 elements[.generated("d.link.params")]!,
+                elements[.generated("E1.swift.compile.params")]!,
+                elements[.generated("E2.swift.compile.params")]!,
+                elements[.generated("T 1.swift.compile.params")]!,
+                elements[.generated("T 2.swift.compile.params")]!,
+                elements[.generated("T 3.swift.compile.params")]!,
             ],
             sourceTree: .sourceRoot,
             name: "Bazel Generated Files",
@@ -1043,8 +1090,14 @@ $(BAZEL_EXTERNAL)/another_repo/b.swift
 """
 
         internalFiles["generated.xcfilelist"] = """
+$(BAZEL_OUT)/A1.swift.compile.params
 $(BAZEL_OUT)/B.link.params
 $(BAZEL_OUT)/B3.link.params
+$(BAZEL_OUT)/E1.swift.compile.params
+$(BAZEL_OUT)/E2.swift.compile.params
+$(BAZEL_OUT)/T 1.swift.compile.params
+$(BAZEL_OUT)/T 2.swift.compile.params
+$(BAZEL_OUT)/T 3.swift.compile.params
 $(BAZEL_OUT)/a/b/module.modulemap
 $(BAZEL_OUT)/a1b2c/bin/t.c
 $(BAZEL_OUT)/d.link.params
@@ -1395,16 +1448,43 @@ cp "${SCRIPT_INPUT_FILE_0}" "${SCRIPT_OUTPUT_FILE_0}"
         }
 
         func createCreateCompilingDependenciesShellScript(
+            createOverlay: Bool = true,
+            createSwiftParams: Bool = false
         ) -> PBXShellScriptBuildPhase {
-            return PBXShellScriptBuildPhase(
-                name: "Create compiling dependencies",
-                inputPaths: [],
-                outputPaths: ["$(DERIVED_FILE_DIR)/xcode-overlay.yaml"],
-                shellScript: """
+            var shellScriptComponents: [String] = []
+            shellScriptComponents = ["""
 set -euo pipefail
 
-"$BAZEL_INTEGRATION_DIR/create_xcode_overlay.sh"
 """,
+            ]
+
+            var inputPaths: [String] = []
+            var outputPaths: [String] = []
+
+            if createSwiftParams {
+                inputPaths.append("$(SWIFT_PARAMS_FILE)")
+                outputPaths.append("$(DERIVED_FILE_DIR)/swift.compile.params")
+                shellScriptComponents.append(#"""
+perl -pe '
+  s/__BAZEL_XCODE_DEVELOPER_DIR__/\$(DEVELOPER_DIR)/g;
+  s/__BAZEL_XCODE_SDKROOT__/\$(SDKROOT)/g;
+  s/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$ENV{$2}/gx;
+' "$SCRIPT_INPUT_FILE_0" > "$SCRIPT_OUTPUT_FILE_0"
+"""#)
+            }
+
+            if createOverlay {
+                outputPaths.append("$(DERIVED_FILE_DIR)/xcode-overlay.yaml")
+                shellScriptComponents.append(#"""
+"$BAZEL_INTEGRATION_DIR/create_xcode_overlay.sh"
+"""#)
+            }
+
+            return PBXShellScriptBuildPhase(
+                name: "Create compiling dependencies",
+                inputPaths: inputPaths,
+                outputPaths: outputPaths,
+                shellScript: shellScriptComponents.joined(separator: "\n"),
                 showEnvVarsInLog: false
             )
         }
@@ -1452,6 +1532,10 @@ touch "$SCRIPT_OUTPUT_FILE_1"
 
         let buildPhases: [ConsolidatedTarget.Key: [PBXBuildPhase]] = [
             "A 1": [
+                createCreateCompilingDependenciesShellScript(
+                    createOverlay: false,
+                    createSwiftParams: true
+                ),
                 PBXSourcesBuildPhase(
                     files: buildFiles([
                         PBXBuildFile(file: elements["x/y.swift"]!),
@@ -1565,7 +1649,9 @@ touch "$SCRIPT_OUTPUT_FILE_1"
                 ),
             ],
             "E1": [
-                createCreateCompilingDependenciesShellScript(),
+                createCreateCompilingDependenciesShellScript(
+                    createSwiftParams: true
+                ),
                 PBXSourcesBuildPhase(
                     files: buildFiles([PBXBuildFile(
                         file: elements[.external("a_repo/a.swift")]!
@@ -1573,6 +1659,10 @@ touch "$SCRIPT_OUTPUT_FILE_1"
                 ),
             ],
             "E2": [
+                createCreateCompilingDependenciesShellScript(
+                    createOverlay: false,
+                    createSwiftParams: true
+                ),
                 PBXSourcesBuildPhase(
                     files: buildFiles([PBXBuildFile(
                         file: elements[.external("another_repo/b.swift")]!
@@ -1630,6 +1720,10 @@ touch "$SCRIPT_OUTPUT_FILE_1"
                 ),
             ],
             .init(["T 1", "T 2", "T 3"]): [
+                createCreateCompilingDependenciesShellScript(
+                    createOverlay: false,
+                    createSwiftParams: true
+                ),
                 PBXSourcesBuildPhase(
                     files: buildFiles([
                         PBXBuildFile(file: elements["T/T 1/Ta.swift"]!),
@@ -1918,7 +2012,8 @@ touch "$SCRIPT_OUTPUT_FILE_1"
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "MACOSX_DEPLOYMENT_TARGET": "10.0",
                 "OTHER_SWIFT_FLAGS": #"""
--vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml
+-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml \#
+@$(DERIVED_FILE_DIR)/swift.compile.params
 """#,
                 "PRODUCT_NAME": "a",
                 "SDKROOT": "macosx",
@@ -1939,9 +2034,6 @@ touch "$SCRIPT_OUTPUT_FILE_1"
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_LDFLAGS": "@$(DERIVED_FILE_DIR)/link.params",
-                "OTHER_SWIFT_FLAGS": #"""
--vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml
-"""#,
                 "PRODUCT_NAME": "A",
                 "SDKROOT": "macosx",
                 "SUPPORTED_PLATFORMS": "macosx",
@@ -2065,7 +2157,8 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2/A.app/A_ExecutableName
                 "OTHER_SWIFT_FLAGS": #"""
 -Xcc -ivfsoverlay -Xcc $(DERIVED_FILE_DIR)/xcode-overlay.yaml \#
 -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml \#
--vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml
+-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml \#
+@$(DERIVED_FILE_DIR)/swift.compile.params
 """#,
                 "PRODUCT_NAME": "E1",
                 "SDKROOT": "watchos",
@@ -2082,7 +2175,8 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2/A.app/A_ExecutableName
                 "COMPILE_TARGET_NAME": targets["E2"]!.name,
                 "GENERATE_INFOPLIST_FILE": "YES",
                 "OTHER_SWIFT_FLAGS": #"""
--vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml
+-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml \#
+@$(DERIVED_FILE_DIR)/swift.compile.params
 """#,
                 "PRODUCT_NAME": "E2",
                 "SDKROOT": "appletvos",
@@ -2164,7 +2258,8 @@ $(MACOSX_FILES)
 "T/T 3/Ta.c" "T/T 3/Ta.swift"
 """,
                 "OTHER_SWIFT_FLAGS": #"""
--vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml
+-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml \#
+@$(DERIVED_FILE_DIR)/swift.compile.params
 """#,
                 "PRODUCT_NAME": "t",
                 "SDKROOT": "macosx",

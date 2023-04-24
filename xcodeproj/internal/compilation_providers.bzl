@@ -51,7 +51,6 @@ def _collect_compilation_providers(
         *,
         cc_info,
         objc,
-        swift_info,
         is_xcode_target,
         transitive_implementation_providers):
     """Collects compilation providers for a non top-level target.
@@ -59,7 +58,6 @@ def _collect_compilation_providers(
     Args:
         cc_info: The `CcInfo` of the target, or `None`.
         objc: The `ObjcProvider` of the target, or `None`.
-        swift_info: The `SwiftInfo` of the target, or `None`.
         is_xcode_target: Whether the target is an Xcode target.
         transitive_implementation_providers: A `list` of
             `XcodeProjInfo`s of transitive implementation deps that should have
@@ -102,7 +100,6 @@ def _merge_compilation_providers(
         *,
         apple_dynamic_framework_info = None,
         cc_info = None,
-        swift_info = None,
         transitive_compilation_providers):
     """Merges compilation providers from the deps of a target.
 
@@ -110,7 +107,6 @@ def _merge_compilation_providers(
         apple_dynamic_framework_info: The
             `apple_common.AppleDynamicFrameworkInfo` of the target, or `None`.
         cc_info: The `CcInfo` of the target, or `None`.
-        swift_info: The `SwiftInfo` of the target, or `None`.
         transitive_compilation_providers: A `list` of
             `(xcode_target, XcodeProjInfo)` tuples of transitive dependencies
             that should have compilation providers merged.

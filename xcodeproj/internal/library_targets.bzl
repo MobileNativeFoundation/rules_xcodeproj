@@ -88,7 +88,6 @@ def process_library_target(
     ) = comp_providers.collect(
         cc_info = target[CcInfo],
         objc = objc,
-        swift_info = swift_info,
         is_xcode_target = True,
         transitive_implementation_providers = [
             info.compilation_providers

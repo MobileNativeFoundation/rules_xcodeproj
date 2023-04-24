@@ -79,7 +79,6 @@ rules_xcodeproj requires {} to have `{}` set.
     ) = comp_providers.collect(
         cc_info = cc_info,
         objc = objc,
-        swift_info = swift_info,
         is_xcode_target = False,
         # Since we don't use the returned `implementation_compilation_context`,
         # we can pass `[]` here
