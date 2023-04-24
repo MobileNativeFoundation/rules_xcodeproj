@@ -41,7 +41,6 @@ def _process_compiler_opts_test_impl(ctx):
 
     expected_build_settings = {
         "ENABLE_STRICT_OBJC_MSGSEND": "True",
-        "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
         "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
     }
     if conlyopts or cxxopts or swiftcopts:
