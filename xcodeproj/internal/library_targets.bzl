@@ -80,8 +80,7 @@ def process_library_target(
     ]
 
     objc = target[apple_common.Objc] if apple_common.Objc in target else None
-    is_swift = SwiftInfo in target
-    swift_info = target[SwiftInfo] if is_swift else None
+    swift_info = target[SwiftInfo] if SwiftInfo in target else None
 
     (
         compilation_providers,
@@ -89,7 +88,6 @@ def process_library_target(
     ) = comp_providers.collect(
         cc_info = target[CcInfo],
         objc = objc,
-        swift_info = swift_info,
         is_xcode_target = True,
         transitive_implementation_providers = [
             info.compilation_providers
@@ -181,7 +179,7 @@ def process_library_target(
     swiftmodules = process_swiftmodules(swift_info = swift_info)
     lldb_context = lldb_contexts.collect(
         id = id,
-        is_swift = is_swift,
+        is_swift = bool(swift_params),
         clang_opts = clang_opts,
         implementation_compilation_context = implementation_compilation_context,
         swiftmodules = swiftmodules,
@@ -200,7 +198,6 @@ def process_library_target(
         package_bin_dir = package_bin_dir,
         platform = platform,
         product = product,
-        is_swift = is_swift,
         build_settings = build_settings,
         c_params = c_params,
         cxx_params = cxx_params,

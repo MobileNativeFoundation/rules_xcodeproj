@@ -359,7 +359,8 @@ extension ConsolidatedTarget {
                     target.product.additionalPaths
             })
         )
-        isSwift = aTarget.isSwift
+        let isSwift = aTarget.swiftParams != nil
+        self.isSwift = isSwift
 
         sortedTargets = targets
             .sorted { lhs, rhs in
@@ -394,7 +395,7 @@ extension ConsolidatedTarget {
 
         hasClangSearchPaths = sortedTargets.contains { target in
             return target.hasModulemaps
-                || (!target.isSwift && target.inputs.containsSourceFiles)
+                || (!isSwift && target.inputs.containsSourceFiles)
         }
 
         let allExcludableFiles = targets.mapValues { target in

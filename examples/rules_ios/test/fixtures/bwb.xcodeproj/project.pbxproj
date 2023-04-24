@@ -3573,7 +3573,6 @@
 				COMPILE_TARGET_NAME = CoreUtilsObjC;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MACH_O_TYPE = staticlib;
-				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml";
 				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.CoreUtilsObjC";
 				PRODUCT_MODULE_NAME = iOSApp_Source_CoreUtilsObjC_CoreUtilsObjC;
 				PRODUCT_NAME = CoreUtils;
@@ -3606,7 +3605,6 @@
 				"LINK_PARAMS_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibDynamic.34.link.params";
 				MACH_O_TYPE = staticlib;
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml";
 				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.LibFramework";
 				PRODUCT_MODULE_NAME = Lib_LibDynamic;
 				PRODUCT_NAME = LibDynamic;
@@ -3629,7 +3627,6 @@
 				COMPILE_TARGET_NAME = Utils;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MACH_O_TYPE = staticlib;
-				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml";
 				PRODUCT_MODULE_NAME = iOSApp_Source_Utils_Utils;
 				PRODUCT_NAME = Utils;
 				SDKROOT = iphoneos;
@@ -3816,7 +3813,6 @@
 				COMPILE_TARGET_NAME = MixedAnswer;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MACH_O_TYPE = staticlib;
-				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml";
 				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.MixedAnswer";
 				PRODUCT_MODULE_NAME = iOSApp_Source_CoreUtilsMixed_MixedAnswer_MixedAnswer;
 				PRODUCT_NAME = MixedAnswer;
@@ -3844,7 +3840,6 @@
 				COMPILE_TARGET_NAME = Lib;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MACH_O_TYPE = staticlib;
-				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml";
 				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.LibFramework";
 				PRODUCT_MODULE_NAME = Lib_Lib;
 				PRODUCT_NAME = Lib;
@@ -3904,7 +3899,6 @@
 				COMPILE_TARGET_NAME = UI;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MACH_O_TYPE = staticlib;
-				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml";
 				PRODUCT_MODULE_NAME = UI_UI;
 				PRODUCT_NAME = UI;
 				SDKROOT = iphoneos;

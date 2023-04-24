@@ -449,7 +449,7 @@ $(CONFIGURATION_BUILD_DIR)
                 }
             }
 
-            if target.isSwift {
+            if !swiftFlags.isEmpty {
                 swiftFlagsPrefix.append(contentsOf: [
                     "-vfsoverlay",
                     "$(OBJROOT)/bazel-out-overlay.yaml",

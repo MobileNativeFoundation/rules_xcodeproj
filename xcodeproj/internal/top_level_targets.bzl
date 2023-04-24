@@ -253,8 +253,7 @@ def process_top_level_target(
     additional_files = []
     build_settings = {}
     is_bundle = bundle_info != None
-    is_swift = SwiftInfo in target
-    swift_info = target[SwiftInfo] if is_swift else None
+    swift_info = target[SwiftInfo] if SwiftInfo in target else None
 
     modulemaps = process_modulemaps(swift_info = swift_info)
 
@@ -359,7 +358,6 @@ def process_top_level_target(
     ) = comp_providers.merge(
         apple_dynamic_framework_info = apple_dynamic_framework_info,
         cc_info = target[CcInfo] if CcInfo in target else None,
-        swift_info = target[SwiftInfo] if SwiftInfo in target else None,
         transitive_compilation_providers = [
             (info.xcode_target, info.compilation_providers)
             for info in deps_infos
@@ -502,7 +500,7 @@ def process_top_level_target(
     swiftmodules = process_swiftmodules(swift_info = swift_info)
     lldb_context = lldb_contexts.collect(
         id = id,
-        is_swift = is_swift,
+        is_swift = bool(swift_params),
         clang_opts = clang_opts,
         implementation_compilation_context = implementation_compilation_context,
         swiftmodules = swiftmodules,
@@ -536,7 +534,6 @@ def process_top_level_target(
             package_bin_dir = package_bin_dir,
             platform = platform,
             product = product,
-            is_swift = is_swift,
             test_host = test_host,
             build_settings = build_settings,
             c_params = c_params,
