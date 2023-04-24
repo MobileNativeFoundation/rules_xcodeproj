@@ -39,9 +39,7 @@ def _process_compiler_opts_test_impl(ctx):
     )
     string_build_settings = stringify_dict(build_settings)
 
-    expected_build_settings = {
-        "ENABLE_STRICT_OBJC_MSGSEND": "True",
-    }
+    expected_build_settings = {}
     if conlyopts or cxxopts or swiftcopts:
         expected_build_settings["DEBUG_INFORMATION_FORMAT"] = ""
 
