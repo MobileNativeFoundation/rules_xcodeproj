@@ -39,7 +39,6 @@ def _make_xcode_target(
         swiftmodules,
         inputs,
         linker_inputs = None,
-        infoplist = None,
         watch_application = None,
         extensions = EMPTY_LIST,
         app_clips = EMPTY_LIST,
@@ -76,7 +75,6 @@ def _make_xcode_target(
         inputs: The value returned from `input_files.collect`.
         linker_inputs: A value returned from `linker_input_files.collect` or
             `None`.
-        infoplist: A `File` or `None`.
         watch_application: The `id` of the watch application target that should
             be embedded in this target, or `None`.
         extensions: A `list` of `id`s of application extension targets that
@@ -138,7 +136,6 @@ def _make_xcode_target(
         outputs = (
             _to_xcode_target_outputs(outputs) if not compile_target else outputs
         ),
-        infoplist = infoplist,
         should_create_xcode_target = should_create_xcode_target,
         transitive_dependencies = transitive_dependencies,
         xcode_required_targets = xcode_required_targets,
@@ -318,7 +315,6 @@ def _merge_xcode_target(*, src, dest):
             dest = dest.inputs,
         ),
         linker_inputs = dest.linker_inputs,
-        infoplist = dest.infoplist,
         watch_application = dest._watch_application,
         extensions = dest._extensions,
         app_clips = dest._app_clips,
@@ -650,9 +646,6 @@ def _xcode_target_to_dto(
 
     if link_params:
         dto["6"] = link_params.path
-
-    if xcode_target.infoplist:
-        dto["4"] = xcode_target.infoplist.path
 
     set_if_true(
         dto,

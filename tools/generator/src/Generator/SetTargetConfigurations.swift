@@ -340,7 +340,9 @@ $(CONFIGURATION_BUILD_DIR)
             buildSettings["DEPLOYMENT_LOCATION"] = false
         }
 
-        if target.infoPlist == nil && buildMode.allowsGeneratedInfoPlists {
+        if !buildSettings.keys.contains("INFOPLIST_FILE") &&
+            buildMode.allowsGeneratedInfoPlists
+        {
             buildSettings["GENERATE_INFOPLIST_FILE"] = true
         }
 
