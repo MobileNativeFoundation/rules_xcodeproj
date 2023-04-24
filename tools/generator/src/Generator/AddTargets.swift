@@ -844,14 +844,8 @@ private extension ConsolidatedTarget {
         }
 
         return targets.values.contains { target in
-            guard let headerBuildSetting = target
-                .buildSettings["SWIFT_OBJC_INTERFACE_HEADER_NAME"]
-            else {
-                // Not setting `SWIFT_OBJC_INTERFACE_HEADER_NAME` will cause
-                // the default `ModuleName-Swift.h` to be generated
-                return true
-            }
-            return headerBuildSetting != .string("")
+            return target.buildSettings.keys
+                .contains("SWIFT_OBJC_INTERFACE_HEADER_NAME")
         }
     }
 }
