@@ -424,7 +424,7 @@ $(CONFIGURATION_BUILD_DIR)
                     ])
                 }
 
-                if !target.isSwift, target.inputs.containsSourceFiles {
+                if target.inputs.containsSourceFiles {
                     if !cFlags.isEmpty {
                         cFlagsPrefix.append(contentsOf: [
                             "-ivfsoverlay",
