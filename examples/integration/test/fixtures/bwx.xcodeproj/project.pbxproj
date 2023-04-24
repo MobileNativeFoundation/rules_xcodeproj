@@ -11675,7 +11675,6 @@
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MACOSX_FILES = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-29/bin/iOSApp/Test/TestingUtils/TestingUtils.swift";
 				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
-				PRODUCT_MODULE_NAME = TestingUtils;
 				PRODUCT_NAME = TestingUtils;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = "macosx iphonesimulator";
@@ -12068,7 +12067,6 @@
 				IPHONEOS_FILES = "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/Lib/Lib.swift";
 				IPHONESIMULATOR_FILES = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/Lib/Lib.swift";
 				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(DERIVED_FILE_DIR)/xcode-overlay.yaml -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
-				PRODUCT_MODULE_NAME = Lib;
 				PRODUCT_NAME = Lib;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos appletvsimulator appletvos";
@@ -12120,7 +12118,6 @@
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/UI/UIFramework.iOS.framework/Modules";
 				"PREVIEWS_SWIFT_INCLUDE_PATH__YES[sdk=iphoneos*]" = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_arm64-opt-STABLE-16/bin/UI/UIFramework.iOS.framework/Modules";
 				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.UIFramework";
-				PRODUCT_MODULE_NAME = UI;
 				PRODUCT_NAME = UIFramework.iOS;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
@@ -12158,7 +12155,6 @@
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.uitests";
-				PRODUCT_MODULE_NAME = tvOSAppUITests;
 				PRODUCT_NAME = tvOSAppUITests;
 				SDKROOT = appletvos;
 				SUPPORTED_PLATFORMS = appletvsimulator;
@@ -12267,7 +12263,6 @@
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Source";
 				"PREVIEWS_SWIFT_INCLUDE_PATH__YES[sdk=iphoneos*]" = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_arm64-opt-STABLE-16/bin/iOSApp/Source";
 				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example";
-				PRODUCT_MODULE_NAME = iOSApp;
 				PRODUCT_NAME = iOSApp;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
@@ -12444,7 +12439,6 @@
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Test/SwiftUnitTests";
 				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.tests";
-				PRODUCT_MODULE_NAME = iOSAppSwiftUnitTests;
 				PRODUCT_NAME = iOSAppSwiftUnitTests;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = iphonesimulator;
@@ -12659,7 +12653,6 @@
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "$(BUILD_DIR)/bazel-out/applebin_tvos-tvos_x86_64-opt-STABLE-27/bin/tvOSApp/Source";
 				"PREVIEWS_SWIFT_INCLUDE_PATH__YES[sdk=appletvos*]" = "$(BUILD_DIR)/bazel-out/applebin_tvos-tvos_arm64-opt-STABLE-28/bin/tvOSApp/Source";
 				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example";
-				PRODUCT_MODULE_NAME = tvOSApp;
 				PRODUCT_NAME = tvOSApp;
 				SDKROOT = appletvos;
 				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
@@ -12729,7 +12722,6 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
-				PRODUCT_MODULE_NAME = FXPageControl;
 				PRODUCT_NAME = FXPageControl;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = iphonesimulator;
@@ -12783,7 +12775,6 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
-				PRODUCT_MODULE_NAME = FXPageControl;
 				PRODUCT_NAME = FXPageControl;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = iphonesimulator;
@@ -12828,7 +12819,6 @@
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "$(BUILD_DIR)/bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-25/bin/UI/UIFramework.tvOS.framework/Modules";
 				"PREVIEWS_SWIFT_INCLUDE_PATH__YES[sdk=appletvos*]" = "$(BUILD_DIR)/bazel-out/applebin_tvos-tvos_arm64-dbg-STABLE-26/bin/UI/UIFramework.tvOS.framework/Modules";
 				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.UIFramework";
-				PRODUCT_MODULE_NAME = UI;
 				PRODUCT_NAME = UIFramework.tvOS;
 				SDKROOT = appletvos;
 				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
@@ -12966,7 +12956,6 @@
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Source";
 				"PREVIEWS_SWIFT_INCLUDE_PATH__YES[sdk=iphoneos*]" = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_arm64-dbg-STABLE-14/bin/iOSApp/Source";
 				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example";
-				PRODUCT_MODULE_NAME = iOSApp;
 				PRODUCT_NAME = iOSApp;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
@@ -13094,7 +13083,6 @@
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "$(BUILD_DIR)/bazel-out/applebin_tvos-tvos_x86_64-opt-STABLE-27/bin/tvOSApp/Test/UnitTests";
 				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.tests";
-				PRODUCT_MODULE_NAME = tvOSAppUnitTests;
 				PRODUCT_NAME = tvOSAppUnitTests;
 				SDKROOT = appletvos;
 				SUPPORTED_PLATFORMS = appletvsimulator;
@@ -13248,7 +13236,6 @@
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/AppClip";
 				"PREVIEWS_SWIFT_INCLUDE_PATH__YES[sdk=iphoneos*]" = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_arm64-opt-STABLE-16/bin/AppClip";
 				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.app-clip";
-				PRODUCT_MODULE_NAME = AppClip;
 				PRODUCT_NAME = AppClip;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
@@ -13308,7 +13295,6 @@
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/AppClip";
 				"PREVIEWS_SWIFT_INCLUDE_PATH__YES[sdk=iphoneos*]" = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_arm64-dbg-STABLE-14/bin/AppClip";
 				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.app-clip";
-				PRODUCT_MODULE_NAME = AppClip;
 				PRODUCT_NAME = AppClip;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
@@ -13402,7 +13388,6 @@
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=watchos*]" = "$(WATCHOS_FILES)";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=watchsimulator*]" = "$(WATCHSIMULATOR_FILES)";
 				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(DERIVED_FILE_DIR)/xcode-overlay.yaml -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
-				PRODUCT_MODULE_NAME = Lib;
 				PRODUCT_NAME = Lib;
 				SDKROOT = watchos;
 				SUPPORTED_PLATFORMS = "watchsimulator watchos";
@@ -13457,7 +13442,6 @@
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "$(BUILD_DIR)/bazel-out/applebin_watchos-watchos_x86_64-opt-STABLE-19/bin/watchOSAppExtension";
 				"PREVIEWS_SWIFT_INCLUDE_PATH__YES[sdk=watchos*]" = "$(BUILD_DIR)/bazel-out/applebin_watchos-watchos_arm64_32-opt-STABLE-20/bin/watchOSAppExtension";
 				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.watch.extension";
-				PRODUCT_MODULE_NAME = watchOSAppExtension;
 				PRODUCT_NAME = watchOSAppExtension;
 				SDKROOT = watchos;
 				SUPPORTED_PLATFORMS = "watchsimulator watchos";
@@ -13496,7 +13480,6 @@
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.macosapp.uitests";
-				PRODUCT_MODULE_NAME = macOSAppUITests;
 				PRODUCT_NAME = macOSAppUITests;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
@@ -13630,7 +13613,6 @@
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "$(BUILD_DIR)/bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-25/bin/tvOSApp/Source";
 				"PREVIEWS_SWIFT_INCLUDE_PATH__YES[sdk=appletvos*]" = "$(BUILD_DIR)/bazel-out/applebin_tvos-tvos_arm64-dbg-STABLE-26/bin/tvOSApp/Source";
 				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example";
-				PRODUCT_MODULE_NAME = tvOSApp;
 				PRODUCT_NAME = tvOSApp;
 				SDKROOT = appletvos;
 				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
@@ -13666,7 +13648,6 @@
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.macosapp.uitests";
-				PRODUCT_MODULE_NAME = macOSAppUITests;
 				PRODUCT_NAME = macOSAppUITests;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
@@ -13778,7 +13759,6 @@
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.objctests";
-				PRODUCT_MODULE_NAME = iOSAppObjCUnitTests;
 				PRODUCT_NAME = iOSAppObjCUnitTests;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = iphonesimulator;
@@ -13919,7 +13899,6 @@
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "$(BUILD_DIR)/bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-17/bin/UI/UIFramework.watchOS.framework/Modules";
 				"PREVIEWS_SWIFT_INCLUDE_PATH__YES[sdk=watchos*]" = "$(BUILD_DIR)/bazel-out/applebin_watchos-watchos_arm64_32-dbg-STABLE-18/bin/UI/UIFramework.watchOS.framework/Modules";
 				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.UIFramework";
-				PRODUCT_MODULE_NAME = UI;
 				PRODUCT_NAME = UIFramework.watchOS;
 				SDKROOT = watchos;
 				SUPPORTED_PLATFORMS = "watchsimulator watchos";
@@ -13998,7 +13977,6 @@
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iMessageApp";
 				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.imessage-app.extension";
-				PRODUCT_MODULE_NAME = iMessageAppExtension;
 				PRODUCT_NAME = iMessageAppExtension;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = iphonesimulator;
@@ -14063,7 +14041,6 @@
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.uitests";
-				PRODUCT_MODULE_NAME = tvOSAppUITests;
 				PRODUCT_NAME = tvOSAppUITests;
 				SDKROOT = appletvos;
 				SUPPORTED_PLATFORMS = appletvsimulator;
@@ -14218,7 +14195,6 @@
 				IPHONEOS_FILES = "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/Lib/Lib.swift";
 				IPHONESIMULATOR_FILES = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/Lib/Lib.swift";
 				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(DERIVED_FILE_DIR)/xcode-overlay.yaml -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
-				PRODUCT_MODULE_NAME = Lib;
 				PRODUCT_NAME = Lib;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos appletvsimulator appletvos";
@@ -14388,7 +14364,6 @@
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "$(BUILD_DIR)/bazel-out/applebin_tvos-tvos_x86_64-opt-STABLE-27/bin/UI/UIFramework.tvOS.framework/Modules";
 				"PREVIEWS_SWIFT_INCLUDE_PATH__YES[sdk=appletvos*]" = "$(BUILD_DIR)/bazel-out/applebin_tvos-tvos_arm64-opt-STABLE-28/bin/UI/UIFramework.tvOS.framework/Modules";
 				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.UIFramework";
-				PRODUCT_MODULE_NAME = UI;
 				PRODUCT_NAME = UIFramework.tvOS;
 				SDKROOT = appletvos;
 				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
@@ -14458,7 +14433,6 @@
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=watchos*]" = "$(WATCHOS_FILES)";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=watchsimulator*]" = "$(WATCHSIMULATOR_FILES)";
 				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(DERIVED_FILE_DIR)/xcode-overlay.yaml -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
-				PRODUCT_MODULE_NAME = Lib;
 				PRODUCT_NAME = Lib;
 				SDKROOT = watchos;
 				SUPPORTED_PLATFORMS = "watchsimulator watchos";
@@ -14648,7 +14622,6 @@
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "$(BUILD_DIR)/bazel-out/applebin_watchos-watchos_x86_64-opt-STABLE-19/bin/UI/UIFramework.watchOS.framework/Modules";
 				"PREVIEWS_SWIFT_INCLUDE_PATH__YES[sdk=watchos*]" = "$(BUILD_DIR)/bazel-out/applebin_watchos-watchos_arm64_32-opt-STABLE-20/bin/UI/UIFramework.watchOS.framework/Modules";
 				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.UIFramework";
-				PRODUCT_MODULE_NAME = UI;
 				PRODUCT_NAME = UIFramework.watchOS;
 				SDKROOT = watchos;
 				SUPPORTED_PLATFORMS = "watchsimulator watchos";
@@ -14857,7 +14830,6 @@
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.objctests";
-				PRODUCT_MODULE_NAME = iOSAppObjCUnitTests;
 				PRODUCT_NAME = iOSAppObjCUnitTests;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = iphonesimulator;
@@ -14936,7 +14908,6 @@
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "$(BUILD_DIR)/bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-17/bin/watchOSAppExtension";
 				"PREVIEWS_SWIFT_INCLUDE_PATH__YES[sdk=watchos*]" = "$(BUILD_DIR)/bazel-out/applebin_watchos-watchos_arm64_32-dbg-STABLE-18/bin/watchOSAppExtension";
 				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.watch.extension";
-				PRODUCT_MODULE_NAME = watchOSAppExtension;
 				PRODUCT_NAME = watchOSAppExtension;
 				SDKROOT = watchos;
 				SUPPORTED_PLATFORMS = "watchsimulator watchos";
@@ -14976,7 +14947,6 @@
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Test/SwiftUnitTests";
 				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.tests";
-				PRODUCT_MODULE_NAME = iOSAppSwiftUnitTests;
 				PRODUCT_NAME = iOSAppSwiftUnitTests;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = iphonesimulator;
@@ -15077,7 +15047,6 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
-				PRODUCT_MODULE_NAME = Utils;
 				PRODUCT_NAME = Utils;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = iphonesimulator;
@@ -15130,7 +15099,6 @@
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/WidgetExtension";
 				"PREVIEWS_SWIFT_INCLUDE_PATH__YES[sdk=iphoneos*]" = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_arm64-dbg-STABLE-14/bin/WidgetExtension";
 				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.widget-extension";
-				PRODUCT_MODULE_NAME = WidgetExtension;
 				PRODUCT_NAME = WidgetExtension;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
@@ -15187,7 +15155,6 @@
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/WidgetExtension";
 				"PREVIEWS_SWIFT_INCLUDE_PATH__YES[sdk=iphoneos*]" = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_arm64-opt-STABLE-16/bin/WidgetExtension";
 				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.widget-extension";
-				PRODUCT_MODULE_NAME = WidgetExtension;
 				PRODUCT_NAME = WidgetExtension;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
@@ -15224,7 +15191,6 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
-				PRODUCT_MODULE_NAME = Utils;
 				PRODUCT_NAME = Utils;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = iphonesimulator;
@@ -15258,7 +15224,6 @@
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "$(BUILD_DIR)/bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-32/bin/macOSApp/Source";
 				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.macOSApp";
-				PRODUCT_MODULE_NAME = macOSApp;
 				PRODUCT_NAME = macOSApp;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
@@ -15353,7 +15318,6 @@
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "$(BUILD_DIR)/bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-31/bin/macOSApp/Source";
 				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.macOSApp";
-				PRODUCT_MODULE_NAME = macOSApp;
 				PRODUCT_NAME = macOSApp;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
@@ -15479,7 +15443,6 @@
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iMessageApp";
 				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.imessage-app.extension";
-				PRODUCT_MODULE_NAME = iMessageAppExtension;
 				PRODUCT_NAME = iMessageAppExtension;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = iphonesimulator;
@@ -15552,7 +15515,6 @@
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "$(BUILD_DIR)/bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-25/bin/tvOSApp/Test/UnitTests";
 				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.tests";
-				PRODUCT_MODULE_NAME = tvOSAppUnitTests;
 				PRODUCT_NAME = tvOSAppUnitTests;
 				SDKROOT = appletvos;
 				SUPPORTED_PLATFORMS = appletvsimulator;
@@ -15615,7 +15577,6 @@
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MACOSX_FILES = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-30/bin/iOSApp/Test/TestingUtils/TestingUtils.swift";
 				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
-				PRODUCT_MODULE_NAME = TestingUtils;
 				PRODUCT_NAME = TestingUtils;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = "macosx iphonesimulator";
@@ -15723,7 +15684,6 @@
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/UI/UIFramework.iOS.framework/Modules";
 				"PREVIEWS_SWIFT_INCLUDE_PATH__YES[sdk=iphoneos*]" = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_arm64-dbg-STABLE-14/bin/UI/UIFramework.iOS.framework/Modules";
 				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.UIFramework";
-				PRODUCT_MODULE_NAME = UI;
 				PRODUCT_NAME = UIFramework.iOS;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";

@@ -22,7 +22,6 @@
             "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
             "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/AddressSanitizerApp",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example",
-            "PRODUCT_MODULE_NAME": "AddressSanitizerApp",
             "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS))",
             "TARGETED_DEVICE_FAMILY": "1"
         },
@@ -75,7 +74,6 @@
             "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
             "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/ThreadSanitizerApp",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example",
-            "PRODUCT_MODULE_NAME": "ThreadSanitizerApp",
             "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS))",
             "TARGETED_DEVICE_FAMILY": "1"
         },

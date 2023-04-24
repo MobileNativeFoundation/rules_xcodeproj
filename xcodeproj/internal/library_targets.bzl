@@ -55,12 +55,6 @@ def process_library_target(
     build_settings = {}
 
     product_name = ctx.rule.attr.name
-    set_if_true(
-        build_settings,
-        "PRODUCT_MODULE_NAME",
-        get_product_module_name(ctx = ctx, target = target),
-    )
-
     valid_transitive_infos = [
         info
         for attr, info in transitive_infos
@@ -121,6 +115,10 @@ def process_library_target(
         product_type = "com.apple.product-type.library.static",
         linker_inputs = linker_inputs,
     )
+
+    product_module_name = get_product_module_name(ctx = ctx, target = target)
+    if product_module_name and product.name != product_module_name:
+        build_settings["PRODUCT_MODULE_NAME"] = product_module_name
 
     modulemaps = process_modulemaps(swift_info = swift_info)
     (target_inputs, provider_inputs) = input_files.collect(

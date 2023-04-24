@@ -481,11 +481,9 @@ def process_top_level_target(
     elif not ctx.var["COMPILATION_MODE"] == "dbg":
         build_settings["DEBUG_INFORMATION_FORMAT"] = ""
 
-    set_if_true(
-        build_settings,
-        "PRODUCT_MODULE_NAME",
-        get_product_module_name(ctx = ctx, target = target),
-    )
+    product_module_name = get_product_module_name(ctx = ctx, target = target)
+    if product_module_name and product.name != product_module_name:
+        build_settings["PRODUCT_MODULE_NAME"] = product_module_name
 
     codesignopts_attr_name = automatic_target_info.codesignopts
     if codesignopts_attr_name:

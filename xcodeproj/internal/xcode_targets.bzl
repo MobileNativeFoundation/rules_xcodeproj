@@ -285,6 +285,14 @@ def _merge_xcode_target(*, src, dest):
         build_settings,
     )
 
+    product = _merge_xcode_target_product(
+        src = src.product,
+        dest = dest.product,
+    )
+
+    if build_settings.get("PRODUCT_MODULE_NAME", None) == product.name:
+        build_settings.pop("PRODUCT_MODULE_NAME")
+
     return _make_xcode_target(
         id = dest.id,
         label = dest.label,
@@ -292,10 +300,7 @@ def _merge_xcode_target(*, src, dest):
         compile_target = src,
         package_bin_dir = dest._package_bin_dir,
         platform = src.platform,
-        product = _merge_xcode_target_product(
-            src = src.product,
-            dest = dest.product,
-        ),
+        product = product,
         test_host = dest._test_host,
         build_settings = build_settings,
         c_params = src._c_params or dest._c_params,
