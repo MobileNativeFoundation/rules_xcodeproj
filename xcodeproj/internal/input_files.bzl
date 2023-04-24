@@ -547,8 +547,8 @@ def _collect_input_files(
         unfocused_generated_linking = None
 
         # Set non-`None` to prevent hitting the
-        # `if not bwx_unfocused_libraries bwx_unfocused_libraries:` check and
-        # subsequent calculation below
+        # `if not bwx_unfocused_libraries:` check and subsequent calculation
+        # below
         bwx_unfocused_libraries = EMPTY_DEPSET
 
     important_generated = [
