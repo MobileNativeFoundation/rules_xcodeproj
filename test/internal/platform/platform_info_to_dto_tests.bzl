@@ -72,7 +72,6 @@ def platform_info_to_dto_test_suite(name):
         expected_platform_dict = {
             "a": "wild",
             "m": "12.0",
-            "o": "tvos",
             "v": "appletvos",
         },
     )
@@ -87,7 +86,6 @@ def platform_info_to_dto_test_suite(name):
         expected_platform_dict = {
             "a": "arm64",
             "m": "12.1",
-            "o": "macos",
             "v": "macosx",
         },
     )
