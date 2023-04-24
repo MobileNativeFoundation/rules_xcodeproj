@@ -590,7 +590,7 @@ private extension Target {
     var distinguisherKey: String {
         return ([
             platform.arch,
-            platform.os.rawValue,
+            "\(platform.os)",
             platform.minimumOsVersion.pretty,
             platform.variant.environment,
         ] + xcodeConfigurations).joined(separator: "-")

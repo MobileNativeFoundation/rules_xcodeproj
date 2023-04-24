@@ -1,9 +1,9 @@
 struct Platform: Equatable, Hashable {
-    enum OS: String, Decodable {
-        case macOS = "macos"
-        case iOS = "ios"
-        case tvOS = "tvos"
-        case watchOS = "watchos"
+    enum OS: Comparable {
+        case macOS
+        case iOS
+        case tvOS
+        case watchOS
     }
 
     enum Variant: String, Decodable {
@@ -75,21 +75,6 @@ extension Platform: Comparable {
     }
 }
 
-extension Platform.OS: Comparable {
-    static func < (lhs: Platform.OS, rhs: Platform.OS) -> Bool {
-        switch (lhs, rhs) {
-        case (.macOS, _): return true
-        case (_, .macOS): return false
-        case (.iOS, _): return true
-        case (_, .iOS): return false
-        case (.tvOS, _): return true
-        case (_, .tvOS): return false
-        case (.watchOS, _): return true
-        case (_, .watchOS): return false
-        }
-    }
-}
-
 extension Platform.Variant: Comparable {
     static func < (lhs: Platform.Variant, rhs: Platform.Variant) -> Bool {
         // Sort simulator first
@@ -116,7 +101,6 @@ extension Platform.Variant: Comparable {
 
 extension Platform: Decodable {
     enum CodingKeys: String, CodingKey {
-        case os = "o"
         case variant = "v"
         case arch = "a"
         case minimumOsVersion = "m"
@@ -125,10 +109,16 @@ extension Platform: Decodable {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        os = try container.decode(Platform.OS.self, forKey: .os)
         variant = try container.decode(Platform.Variant.self, forKey: .variant)
         arch = try container.decode(String.self, forKey: .arch)
         minimumOsVersion = try container
             .decode(SemanticVersion.self, forKey: .minimumOsVersion)
+
+        switch variant {
+        case .iOSSimulator, .iOSDevice: os = .iOS
+        case .macOS: os = .macOS
+        case .watchOSSimulator, .watchOSDevice: os = .watchOS
+        case .tvOSSimulator, .tvOSDevice: os = .tvOS
+        }
     }
 }

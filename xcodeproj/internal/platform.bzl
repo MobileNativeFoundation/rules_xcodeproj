@@ -52,10 +52,8 @@ def _platform_to_dto(platform):
         platform: A value returned from `platform_info.collect`.
     """
     apple_platform = platform._platform
-    platform_type = apple_platform.platform_type
 
     dto = {
-        "o": str(platform_type),
         "v": _PLATFORM_NAME[apple_platform],
         "a": platform._arch,
         "m": platform._os_version,
