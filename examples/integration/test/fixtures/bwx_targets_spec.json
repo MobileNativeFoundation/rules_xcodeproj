@@ -1967,7 +1967,7 @@
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "",
+            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_arm64-opt-STABLE-16/bin/Lib/dist/dynamic/rules_xcodeproj/iOS/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/iOS.155.link.params",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework",
@@ -2070,7 +2070,7 @@
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "",
+            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-opt-STABLE-15/bin/Lib/dist/dynamic/rules_xcodeproj/iOS/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/iOS.100.link.params",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework",
@@ -2172,7 +2172,7 @@
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "",
+            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_tvos-tvos_arm64-opt-STABLE-28/bin/Lib/dist/dynamic/rules_xcodeproj/tvOS/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/tvOS.157.link.params",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework"
@@ -2273,7 +2273,7 @@
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "",
+            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-opt-STABLE-27/bin/Lib/dist/dynamic/rules_xcodeproj/tvOS/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/tvOS.102.link.params",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework"
@@ -2374,7 +2374,7 @@
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "",
+            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_watchos-watchos_arm64_32-opt-STABLE-20/bin/Lib/dist/dynamic/rules_xcodeproj/watchOS/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/watchOS.158.link.params",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework"
@@ -2475,7 +2475,7 @@
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "",
+            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-opt-STABLE-19/bin/Lib/dist/dynamic/rules_xcodeproj/watchOS/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/watchOS.103.link.params",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework"
@@ -3045,7 +3045,7 @@
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "",
+            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_arm64-opt-STABLE-16/bin/Lib/rules_xcodeproj/LibFramework.iOS/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/LibFramework.iOS.147.link.params",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework",
@@ -3148,7 +3148,7 @@
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "",
+            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-opt-STABLE-15/bin/Lib/rules_xcodeproj/LibFramework.iOS/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/LibFramework.iOS.92.link.params",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework",
@@ -3250,7 +3250,7 @@
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "",
+            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_tvos-tvos_arm64-opt-STABLE-28/bin/Lib/rules_xcodeproj/LibFramework.tvOS/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/LibFramework.tvOS.159.link.params",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework"
@@ -3351,7 +3351,7 @@
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "",
+            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-opt-STABLE-27/bin/Lib/rules_xcodeproj/LibFramework.tvOS/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/LibFramework.tvOS.104.link.params",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework"
@@ -3452,7 +3452,7 @@
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "",
+            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_watchos-watchos_arm64_32-opt-STABLE-20/bin/Lib/rules_xcodeproj/LibFramework.watchOS/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/LibFramework.watchOS.150.link.params",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework"
@@ -3553,7 +3553,7 @@
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "",
+            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-opt-STABLE-19/bin/Lib/rules_xcodeproj/LibFramework.watchOS/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/LibFramework.watchOS.95.link.params",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework"
@@ -4776,7 +4776,7 @@
         "b": {
             "ASSETCATALOG_COMPILER_APPICON_NAME": "AppIcon",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "",
+            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iMessageApp/rules_xcodeproj/iMessageApp/Info.plist",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.imessage-app",
             "TARGETED_DEVICE_FAMILY": "1"
@@ -7757,7 +7757,7 @@
         "b": {
             "ASSETCATALOG_COMPILER_APPICON_NAME": "AppIcon",
             "CODE_SIGN_STYLE": "Automatic",
-            "DEBUG_INFORMATION_FORMAT": "",
+            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "DEVELOPMENT_TEAM": "V82V4GQZXM",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_watchos-watchos_arm64_32-opt-STABLE-24/bin/watchOSApp/rules_xcodeproj/watchOSApp/Info.plist",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.watch"
@@ -7845,7 +7845,7 @@
         "b": {
             "ASSETCATALOG_COMPILER_APPICON_NAME": "AppIcon",
             "CODE_SIGN_STYLE": "Manual",
-            "DEBUG_INFORMATION_FORMAT": "",
+            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-opt-STABLE-23/bin/watchOSApp/rules_xcodeproj/watchOSApp/Info.plist",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.watch"
         },

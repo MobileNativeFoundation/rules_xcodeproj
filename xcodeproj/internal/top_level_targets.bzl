@@ -477,10 +477,10 @@ def process_top_level_target(
     # a best guess at `-g` being used
     # We don't set "DEBUG_INFORMATION_FORMAT" for "dwarf", as we set that at
     # the project level.
-    if not ctx.var["COMPILATION_MODE"] == "dbg":
-        build_settings["DEBUG_INFORMATION_FORMAT"] = ""
-    elif cpp.apple_generate_dsym:
+    if cpp.apple_generate_dsym:
         build_settings["DEBUG_INFORMATION_FORMAT"] = "dwarf-with-dsym"
+    elif not ctx.var["COMPILATION_MODE"] == "dbg":
+        build_settings["DEBUG_INFORMATION_FORMAT"] = ""
 
     set_if_true(
         build_settings,

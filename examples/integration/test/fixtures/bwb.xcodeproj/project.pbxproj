@@ -11114,7 +11114,7 @@
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = iOS;
-				DEBUG_INFORMATION_FORMAT = "";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-opt-STABLE-15/bin/Lib/dist/dynamic/rules_xcodeproj/iOS/Info.plist";
 				"INFOPLIST_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/applebin_ios-ios_arm64-opt-STABLE-16/bin/Lib/dist/dynamic/rules_xcodeproj/iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -11149,7 +11149,7 @@
 				"BAZEL_TARGET_ID[sdk=appletvsimulator*]" = "$(BAZEL_TARGET_ID)";
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = tvOS;
-				DEBUG_INFORMATION_FORMAT = "";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-opt-STABLE-27/bin/Lib/dist/dynamic/rules_xcodeproj/tvOS/Info.plist";
 				"INFOPLIST_FILE[sdk=appletvos*]" = "$(BAZEL_OUT)/applebin_tvos-tvos_arm64-opt-STABLE-28/bin/Lib/dist/dynamic/rules_xcodeproj/tvOS/Info.plist";
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOS.89.link.params";
@@ -11217,7 +11217,7 @@
 				"BAZEL_TARGET_ID[sdk=watchsimulator*]" = "$(BAZEL_TARGET_ID)";
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = watchOS;
-				DEBUG_INFORMATION_FORMAT = "";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-opt-STABLE-19/bin/Lib/dist/dynamic/rules_xcodeproj/watchOS/Info.plist";
 				"INFOPLIST_FILE[sdk=watchos*]" = "$(BAZEL_OUT)/applebin_watchos-watchos_arm64_32-opt-STABLE-20/bin/Lib/dist/dynamic/rules_xcodeproj/watchOS/Info.plist";
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOS.90.link.params";
@@ -12347,7 +12347,7 @@
 				"BAZEL_TARGET_ID[sdk=appletvsimulator*]" = "$(BAZEL_TARGET_ID)";
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = LibFramework.tvOS;
-				DEBUG_INFORMATION_FORMAT = "";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-opt-STABLE-27/bin/Lib/rules_xcodeproj/LibFramework.tvOS/Info.plist";
 				"INFOPLIST_FILE[sdk=appletvos*]" = "$(BAZEL_OUT)/applebin_tvos-tvos_arm64-opt-STABLE-28/bin/Lib/rules_xcodeproj/LibFramework.tvOS/Info.plist";
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibFramework.tvOS.91.link.params";
@@ -13063,7 +13063,7 @@
 				CODE_SIGN_STYLE = Manual;
 				"CODE_SIGN_STYLE[sdk=watchos*]" = Automatic;
 				COMPILE_TARGET_NAME = watchOSApp;
-				DEBUG_INFORMATION_FORMAT = "";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
 				DEVELOPMENT_TEAM = V82V4GQZXM;
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-opt-STABLE-23/bin/watchOSApp/rules_xcodeproj/watchOSApp/Info.plist";
@@ -13090,7 +13090,7 @@
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = iMessageApp;
-				DEBUG_INFORMATION_FORMAT = "";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iMessageApp/rules_xcodeproj/iMessageApp/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -13535,7 +13535,7 @@
 				"BAZEL_TARGET_ID[sdk=watchsimulator*]" = "$(BAZEL_TARGET_ID)";
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = LibFramework.watchOS;
-				DEBUG_INFORMATION_FORMAT = "";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-opt-STABLE-19/bin/Lib/rules_xcodeproj/LibFramework.watchOS/Info.plist";
 				"INFOPLIST_FILE[sdk=watchos*]" = "$(BAZEL_OUT)/applebin_watchos-watchos_arm64_32-opt-STABLE-20/bin/Lib/rules_xcodeproj/LibFramework.watchOS/Info.plist";
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibFramework.watchOS.82.link.params";
