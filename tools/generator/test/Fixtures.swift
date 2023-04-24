@@ -66,6 +66,7 @@ enum Fixtures {
             isSwift: true,
             buildSettings: [
                 "PRODUCT_MODULE_NAME": .string("A"),
+                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "y-Swift.h",
                 "T": .string("42"),
                 "Y": .bool(true),
             ],
@@ -94,7 +95,6 @@ enum Fixtures {
             ),
             isSwift: true,
             buildSettings: [
-                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "T": .string("43"),
                 "Z": .string("0"),
             ],
@@ -1571,7 +1571,6 @@ touch "$SCRIPT_OUTPUT_FILE_1"
                         file: elements[.external("a_repo/a.swift")]!
                     )])
                 ),
-                createGeneratedHeaderShellScript(),
             ],
             "E2": [
                 PBXSourcesBuildPhase(
@@ -1579,7 +1578,6 @@ touch "$SCRIPT_OUTPUT_FILE_1"
                         file: elements[.external("another_repo/b.swift")]!
                     )])
                 ),
-                createGeneratedHeaderShellScript(),
             ],
             "I": [
                 PBXSourcesBuildPhase(
@@ -1656,7 +1654,6 @@ touch "$SCRIPT_OUTPUT_FILE_1"
                         ),
                     ])
                 ),
-                createGeneratedHeaderShellScript(),
             ],
             "W": [
                 PBXCopyFilesBuildPhase(
@@ -1946,7 +1943,6 @@ touch "$SCRIPT_OUTPUT_FILE_1"
 -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml
 """#,
                 "PRODUCT_NAME": "A",
-                "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
                 "SDKROOT": "macosx",
                 "SUPPORTED_PLATFORMS": "macosx",
                 "TARGET_NAME": targets["A 2"]!.name,

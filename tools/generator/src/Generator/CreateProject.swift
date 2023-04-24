@@ -131,6 +131,8 @@ $(OBJROOT)/scheme_target_ids
             "SRCROOT": srcRoot,
             // Bazel currently doesn't support Catalyst
             "SUPPORTS_MACCATALYST": false,
+            // Default to not creating the Swift generated header.
+            "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
             // Needed as the default otherwise `ENABLE_PREIVEWS` isn't set
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
             // Xcode needs a value for SWIFT_VERSION, so we set it to "5.0" by

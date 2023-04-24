@@ -419,9 +419,6 @@ def _process_swiftcopts(
         *   A `bool` indicting if the target has debug info enabled.
     """
 
-    # Default to not creating the Swift generated header.
-    build_settings["SWIFT_OBJC_INTERFACE_HEADER_NAME"] = ""
-
     # Xcode's default is `-O` when not set, so minimally set it to `-Onone`,
     # which matches swiftc's default.
     build_settings["SWIFT_OPTIMIZATION_LEVEL"] = "-Onone"
