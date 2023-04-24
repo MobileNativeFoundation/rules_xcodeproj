@@ -9,7 +9,6 @@ struct Target: Equatable {
     let packageBinDir: Path
     var platform: Platform
     var product: Product
-    var isTestonly: Bool
     var isSwift: Bool
     let testHost: TargetID?
     var buildSettings: [String: BuildSetting]
@@ -56,7 +55,6 @@ extension Target: Decodable {
         case packageBinDir = "1"
         case platform = "2"
         case product = "p"
-        case isTestonly = "t"
         case isSwift = "s"
         case testHost = "h"
         case buildSettings = "b"
@@ -94,8 +92,6 @@ extension Target: Decodable {
         packageBinDir = try container.decode(Path.self, forKey: .packageBinDir)
         platform = try container.decode(Platform.self, forKey: .platform)
         product = try container.decode(Product.self, forKey: .product)
-        isTestonly = try container
-            .decodeIfPresent(Bool.self, forKey: .isTestonly) ?? false
         isSwift = try container.decodeIfPresent(Bool.self, forKey: .isSwift) ??
             true
         testHost = try container
