@@ -133,6 +133,11 @@ $(OBJROOT)/scheme_target_ids
             "SUPPORTS_MACCATALYST": false,
             // Needed as the default otherwise `ENABLE_PREIVEWS` isn't set
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+            // Xcode needs a value for SWIFT_VERSION, so we set it to "5.0" by
+            // default. We will have to figure out a way to detect what the
+            // default is before Swift 6 (which will probably have a new
+            // language version).
+            "SWIFT_VERSION": "5.0",
             "TARGET_TEMP_DIR": """
 $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
 """,

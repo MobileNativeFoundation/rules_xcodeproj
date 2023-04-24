@@ -43,7 +43,6 @@ def _process_compiler_opts_test_impl(ctx):
         "ENABLE_STRICT_OBJC_MSGSEND": "True",
         "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
         "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-        "SWIFT_VERSION": "5.0",
     }
     if conlyopts or cxxopts or swiftcopts:
         expected_build_settings["DEBUG_INFORMATION_FORMAT"] = ""

@@ -913,7 +913,6 @@
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = lib_impl;
 			};
 			name = Debug;
@@ -945,7 +944,6 @@
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = lib_defines;
 			};
 			name = Debug;
@@ -1014,6 +1012,7 @@
 				SRCROOT = ../../../../..;
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGET_TEMP_DIR = "$(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)";
 				USE_HEADERMAP = NO;
 				VALIDATE_WORKSPACE = NO;
@@ -1049,7 +1048,6 @@
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = lib_impl;
 			};
 			name = Debug;
@@ -1086,7 +1084,6 @@
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = tool;
 			};
 			name = Debug;
@@ -1118,7 +1115,6 @@
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = lib_impl;
 			};
 			name = Debug;

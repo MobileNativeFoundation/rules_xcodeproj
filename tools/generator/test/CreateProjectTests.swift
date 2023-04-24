@@ -95,6 +95,7 @@ $(OBJROOT)/scheme_target_ids
             "SRCROOT": directories.workspace.string,
             "SUPPORTS_MACCATALYST": false,
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
+            "SWIFT_VERSION": "5.0",
             "TARGET_TEMP_DIR": """
 $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
 """,
@@ -250,6 +251,7 @@ $(OBJROOT)/scheme_target_ids
             "SWIFT_EXEC": "$(BAZEL_INTEGRATION_DIR)/swiftc",
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
             "SWIFT_USE_INTEGRATED_DRIVER": false,
+            "SWIFT_VERSION": "5.0",
             "TARGET_TEMP_DIR": """
 $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
 """,

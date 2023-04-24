@@ -3211,7 +3211,6 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				TARGET_NAME = iOSApp;
 			};
@@ -3243,7 +3242,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift.rules_xcodeproj.swift.compile.params";
 				"SWIFT_PARAMS_FILE[sdk=iphoneos*]" = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_swift.rules_xcodeproj.swift.compile.params";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = MixedAnswer_swift;
 			};
 			name = Debug;
@@ -3282,7 +3280,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/iOSApp.library_swift.rules_xcodeproj.swift.compile.params";
 				"SWIFT_PARAMS_FILE[sdk=iphoneos*]" = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2/bin/iOSApp/Source/iOSApp.library_swift.rules_xcodeproj.swift.compile.params";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = iOSApp.library;
 				WRAPPER_EXTENSION = "";
 			};
@@ -3316,7 +3313,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/UI/UI_swift.rules_xcodeproj.swift.compile.params";
 				"SWIFT_PARAMS_FILE[sdk=iphoneos*]" = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2/bin/UI/UI_swift.rules_xcodeproj.swift.compile.params";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = UI_swift;
 			};
 			name = Debug;
@@ -3349,7 +3345,6 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = Utils_objc;
 			};
 			name = Debug;
@@ -3408,7 +3403,6 @@
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "iOSAppSwiftUnitTests-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTests_swift.rules_xcodeproj.swift.compile.params";
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TARGET_BUILD_DIR = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Source$(TARGET_BUILD_SUBPATH)";
 				TARGET_NAME = iOSAppSwiftUnitTests;
@@ -3444,7 +3438,6 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = iOSAppMixedUnitTests_objc;
 			};
 			name = Debug;
@@ -3487,7 +3480,6 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TARGET_BUILD_DIR = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Source$(TARGET_BUILD_SUBPATH)";
 				TARGET_NAME = iOSAppObjCUnitTests;
@@ -3521,7 +3513,6 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TARGET_BUILD_DIR = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Source$(TARGET_BUILD_SUBPATH)";
 				TARGET_NAME = iOSAppMixedUnitTests;
@@ -3555,7 +3546,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/Lib/Lib_swift.rules_xcodeproj.swift.compile.params";
 				"SWIFT_PARAMS_FILE[sdk=iphoneos*]" = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2/bin/Lib/Lib_swift.rules_xcodeproj.swift.compile.params";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = Lib_swift;
 			};
 			name = Debug;
@@ -3600,7 +3590,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/WidgetExtension/WidgetExtension.library_swift.rules_xcodeproj.swift.compile.params";
 				"SWIFT_PARAMS_FILE[sdk=iphoneos*]" = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2/bin/WidgetExtension/WidgetExtension.library_swift.rules_xcodeproj.swift.compile.params";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = WidgetExtension.library;
 				WRAPPER_EXTENSION = "";
 			};
@@ -3633,7 +3622,6 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = CoreUtilsObjC;
 				WRAPPER_EXTENSION = "";
 			};
@@ -3671,7 +3659,6 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = LibDynamic;
 			};
 			name = Debug;
@@ -3698,7 +3685,6 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = Utils;
 				WRAPPER_EXTENSION = "";
 			};
@@ -3736,7 +3722,6 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = CoreUtilsObjC_objc;
 			};
 			name = Debug;
@@ -3796,6 +3781,7 @@
 				SWIFT_EXEC = "$(BAZEL_INTEGRATION_DIR)/swiftc";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_USE_INTEGRATED_DRIVER = NO;
+				SWIFT_VERSION = 5.0;
 				TARGET_TEMP_DIR = "$(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)";
 				USE_HEADERMAP = NO;
 				VALIDATE_WORKSPACE = NO;
@@ -3826,7 +3812,6 @@
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "iOSAppMixedUnitTests-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/MixedUnitTests/iOSAppMixedUnitTests_swift.rules_xcodeproj.swift.compile.params";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = iOSAppMixedUnitTests_swift;
 			};
 			name = Debug;
@@ -3869,7 +3854,6 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				TARGET_NAME = WidgetExtension;
 			};
@@ -3902,7 +3886,6 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = MixedAnswer;
 				WRAPPER_EXTENSION = "";
 			};
@@ -3935,7 +3918,6 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = Lib;
 				WRAPPER_EXTENSION = "";
 			};
@@ -3973,7 +3955,6 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = MixedAnswer_objc;
 			};
 			name = Debug;
@@ -4004,7 +3985,6 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = UI;
 				WRAPPER_EXTENSION = "";
 			};
