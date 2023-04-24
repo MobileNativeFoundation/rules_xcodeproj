@@ -20,7 +20,6 @@ struct Target: Equatable {
     var inputs: Inputs
     var linkerInputs: LinkerInputs
     var linkParams: FilePath?
-    var infoPlist: FilePath?
     let resourceBundleDependencies: Set<TargetID>
     let watchApplication: TargetID?
     let extensions: Set<TargetID>
@@ -65,7 +64,6 @@ extension Target: Decodable {
         case inputs = "i"
         case linkerInputs = "5"
         case linkParams = "6"
-        case infoPlist = "4"
         case resourceBundleDependencies = "r"
         case watchApplication = "w"
         case extensions = "e"
@@ -116,8 +114,6 @@ extension Target: Decodable {
             .init()
         linkParams = try container
             .decodeIfPresent(FilePath.self, forKey: .linkParams)
-        infoPlist = try container
-            .decodeIfPresent(FilePath.self, forKey: .infoPlist)
         resourceBundleDependencies = try container
             .decodeTargetIDs(.resourceBundleDependencies)
         watchApplication = try container

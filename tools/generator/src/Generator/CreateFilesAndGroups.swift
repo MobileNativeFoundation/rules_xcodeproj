@@ -641,9 +641,6 @@ extension Generator {
             if let linkParams = target.linkParams {
                 allInputPaths.insert(linkParams)
             }
-            if let infoPlist = target.infoPlist {
-                allInputPaths.insert(infoPlist)
-            }
             allInputPaths.formUnion(target.inputs.all)
             allInputPaths.formUnion(
                 target.outputs.forcedBazelCompileFiles(buildMode: buildMode)

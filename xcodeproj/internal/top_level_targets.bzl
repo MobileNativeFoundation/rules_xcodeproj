@@ -278,6 +278,7 @@ def process_top_level_target(
         build_settings["INFOPLIST_FILE"] = build_setting_path(
             file = infoplist,
         )
+        additional_files.append(infoplist)
 
     infoplists_attrs = automatic_target_info.infoplists
     if (infoplists_attrs and bundle_info and
@@ -545,7 +546,6 @@ def process_top_level_target(
             swiftmodules = swiftmodules,
             inputs = target_inputs,
             linker_inputs = linker_inputs,
-            infoplist = infoplist,
             watch_application = watch_application,
             extensions = extensions,
             app_clips = app_clips,
