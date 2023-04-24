@@ -304,11 +304,12 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
             to: target.platform.minimumOsVersion.pretty
         )
 
-        let executableExtension = target.product.path?.path.extension ?? ""
-        if executableExtension != target.product.type.fileExtension {
+        let productExtension = target.product.path?.path.extension ?? ""
+        if productExtension != target.product.type.fileExtension {
             buildSettings.set(
-                "EXECUTABLE_EXTENSION",
-                to: executableExtension
+                target.product.type.isBundle ?
+                    "WRAPPER_EXTENSION" : "EXECUTABLE_EXTENSION",
+                to: productExtension
             )
         }
 
