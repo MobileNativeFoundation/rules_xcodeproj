@@ -27,7 +27,6 @@
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "DEVELOPMENT_TEAM": "V82V4GQZXM",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "ENABLE_TESTABILITY": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_arm64-dbg-STABLE-14/bin/AppClip/rules_xcodeproj/AppClip/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/AppClip.66.link.params",
@@ -103,7 +102,6 @@
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "DEVELOPMENT_TEAM": "V82V4GQZXM",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_arm64-opt-STABLE-16/bin/AppClip/rules_xcodeproj/AppClip/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/AppClip.142.link.params",
             "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
@@ -181,7 +179,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "ENABLE_TESTABILITY": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/AppClip/rules_xcodeproj/AppClip/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/AppClip.11.link.params",
@@ -256,7 +253,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-opt-STABLE-15/bin/AppClip/rules_xcodeproj/AppClip/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/AppClip.87.link.params",
             "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
@@ -328,7 +324,6 @@
             "C_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-29/bin/Bundle/aplugin.library.rules_xcodeproj.c.compile.params",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-STABLE-31/bin/Bundle/rules_xcodeproj/Bundle/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/Bundle.31.link.params",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.ABundle"
@@ -377,7 +372,6 @@
             "C_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-30/bin/Bundle/aplugin.library.rules_xcodeproj.c.compile.params",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-opt-STABLE-32/bin/Bundle/rules_xcodeproj/Bundle/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/Bundle.107.link.params",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.ABundle"
@@ -429,7 +423,6 @@
             "C_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/CommandLine/CommandLineTool/tool.library.rules_xcodeproj.c.compile.params",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-STABLE-39/bin/CommandLine/CommandLineTool/rules_xcodeproj/CommandLineTool/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/CommandLineTool.51.link.params",
             "OTHER_CODE_SIGN_FLAGS": [
@@ -483,7 +476,6 @@
             "C_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineTool/tool.library.rules_xcodeproj.c.compile.params",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-opt-STABLE-40/bin/CommandLine/CommandLineTool/rules_xcodeproj/CommandLineTool/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/CommandLineTool.127.link.params",
             "OTHER_CODE_SIGN_FLAGS": [
@@ -539,7 +531,6 @@
             "C_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34/bin/CommandLine/CommandLineTool/tool.library.rules_xcodeproj.c.compile.params",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/UniversalCommandLineTool.57.link.params",
             "PRODUCT_MODULE_NAME": "CommandLine_CommandLineTool_tool_binary"
         },
@@ -589,7 +580,6 @@
             "C_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37/bin/CommandLine/CommandLineTool/tool.library.rules_xcodeproj.c.compile.params",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/UniversalCommandLineTool.133.link.params",
             "PRODUCT_MODULE_NAME": "CommandLine_CommandLineTool_tool_binary"
         },
@@ -642,7 +632,6 @@
             "C_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35/bin/CommandLine/CommandLineTool/tool.library.rules_xcodeproj.c.compile.params",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/UniversalCommandLineTool.63.link.params",
             "PRODUCT_MODULE_NAME": "CommandLine_CommandLineTool_tool_binary"
         },
@@ -692,7 +681,6 @@
             "C_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38/bin/CommandLine/CommandLineTool/tool.library.rules_xcodeproj.c.compile.params",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/UniversalCommandLineTool.139.link.params",
             "PRODUCT_MODULE_NAME": "CommandLine_CommandLineTool_tool_binary"
         },
@@ -738,8 +726,7 @@
         "b": {
             "C_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34/bin/CommandLine/CommandLineToolLib/lib_impl.rules_xcodeproj.c.compile.params",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true
+            "ENABLE_BITCODE": false
         },
         "c": "macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34",
         "f": true,
@@ -771,8 +758,7 @@
         "b": {
             "C_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37/bin/CommandLine/CommandLineToolLib/lib_impl.rules_xcodeproj.c.compile.params",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true
+            "ENABLE_BITCODE": false
         },
         "c": "macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37",
         "f": true,
@@ -807,8 +793,7 @@
         "b": {
             "C_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/CommandLine/CommandLineToolLib/lib_impl.rules_xcodeproj.c.compile.params",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true
+            "ENABLE_BITCODE": false
         },
         "c": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33",
         "f": true,
@@ -840,8 +825,7 @@
         "b": {
             "C_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35/bin/CommandLine/CommandLineToolLib/lib_impl.rules_xcodeproj.c.compile.params",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true
+            "ENABLE_BITCODE": false
         },
         "c": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35",
         "f": true,
@@ -873,8 +857,7 @@
         "b": {
             "C_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineToolLib/lib_impl.rules_xcodeproj.c.compile.params",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true
+            "ENABLE_BITCODE": false
         },
         "c": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36",
         "f": true,
@@ -909,8 +892,7 @@
         "b": {
             "C_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38/bin/CommandLine/CommandLineToolLib/lib_impl.rules_xcodeproj.c.compile.params",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true
+            "ENABLE_BITCODE": false
         },
         "c": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38",
         "f": true,
@@ -945,7 +927,6 @@
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "LibSwift",
             "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34/bin/CommandLine/CommandLineToolLib",
@@ -992,7 +973,6 @@
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "PRODUCT_MODULE_NAME": "LibSwift",
             "SWIFT_COMPILATION_MODE": "wholemodule",
             "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37/bin/CommandLine/CommandLineToolLib",
@@ -1043,7 +1023,6 @@
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "LibSwift",
             "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/CommandLine/CommandLineToolLib",
@@ -1090,7 +1069,6 @@
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "LibSwift",
             "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35/bin/CommandLine/CommandLineToolLib",
@@ -1137,7 +1115,6 @@
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "PRODUCT_MODULE_NAME": "LibSwift",
             "SWIFT_COMPILATION_MODE": "wholemodule",
             "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineToolLib",
@@ -1188,7 +1165,6 @@
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "PRODUCT_MODULE_NAME": "LibSwift",
             "SWIFT_COMPILATION_MODE": "wholemodule",
             "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38/bin/CommandLine/CommandLineToolLib",
@@ -1239,8 +1215,7 @@
         "b": {
             "C_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34/bin/CommandLine/CommandLineToolLib/private_lib.rules_xcodeproj.c.compile.params",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true
+            "ENABLE_BITCODE": false
         },
         "c": "macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34",
         "f": true,
@@ -1271,8 +1246,7 @@
         "b": {
             "C_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37/bin/CommandLine/CommandLineToolLib/private_lib.rules_xcodeproj.c.compile.params",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true
+            "ENABLE_BITCODE": false
         },
         "c": "macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37",
         "f": true,
@@ -1306,8 +1280,7 @@
         "b": {
             "C_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/CommandLine/CommandLineToolLib/private_lib.rules_xcodeproj.c.compile.params",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true
+            "ENABLE_BITCODE": false
         },
         "c": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33",
         "f": true,
@@ -1338,8 +1311,7 @@
         "b": {
             "C_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35/bin/CommandLine/CommandLineToolLib/private_lib.rules_xcodeproj.c.compile.params",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true
+            "ENABLE_BITCODE": false
         },
         "c": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35",
         "f": true,
@@ -1370,8 +1342,7 @@
         "b": {
             "C_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineToolLib/private_lib.rules_xcodeproj.c.compile.params",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true
+            "ENABLE_BITCODE": false
         },
         "c": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36",
         "f": true,
@@ -1405,8 +1376,7 @@
         "b": {
             "C_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38/bin/CommandLine/CommandLineToolLib/private_lib.rules_xcodeproj.c.compile.params",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true
+            "ENABLE_BITCODE": false
         },
         "c": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38",
         "f": true,
@@ -1440,7 +1410,6 @@
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "_SwiftLib",
             "SWIFT_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34/bin/CommandLine/CommandLineToolLib/private_swift_lib.rules_xcodeproj.swift.compile.params"
@@ -1477,7 +1446,6 @@
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "PRODUCT_MODULE_NAME": "_SwiftLib",
             "SWIFT_COMPILATION_MODE": "wholemodule",
             "SWIFT_OPTIMIZATION_LEVEL": "-O",
@@ -1518,7 +1486,6 @@
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "_SwiftLib",
             "SWIFT_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/CommandLine/CommandLineToolLib/private_swift_lib.rules_xcodeproj.swift.compile.params"
@@ -1555,7 +1522,6 @@
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "_SwiftLib",
             "SWIFT_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35/bin/CommandLine/CommandLineToolLib/private_swift_lib.rules_xcodeproj.swift.compile.params"
@@ -1592,7 +1558,6 @@
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "PRODUCT_MODULE_NAME": "_SwiftLib",
             "SWIFT_COMPILATION_MODE": "wholemodule",
             "SWIFT_OPTIMIZATION_LEVEL": "-O",
@@ -1633,7 +1598,6 @@
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "PRODUCT_MODULE_NAME": "_SwiftLib",
             "SWIFT_COMPILATION_MODE": "wholemodule",
             "SWIFT_OPTIMIZATION_LEVEL": "-O",
@@ -1681,7 +1645,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "ENABLE_TESTABILITY": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-STABLE-39/bin/CommandLine/Tests/rules_xcodeproj/CommandLineToolTests.__internal__.__test_bundle/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/CommandLineToolTests.64.link.params",
@@ -1741,7 +1704,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-opt-STABLE-40/bin/CommandLine/Tests/rules_xcodeproj/CommandLineToolTests.__internal__.__test_bundle/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/CommandLineToolTests.140.link.params",
             "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
@@ -1798,8 +1760,7 @@
         "b": {
             "C_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34/bin/CommandLine/swift_c_module/c_lib.rules_xcodeproj.c.compile.params",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true
+            "ENABLE_BITCODE": false
         },
         "c": "macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34",
         "f": true,
@@ -1830,8 +1791,7 @@
         "b": {
             "C_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37/bin/CommandLine/swift_c_module/c_lib.rules_xcodeproj.c.compile.params",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true
+            "ENABLE_BITCODE": false
         },
         "c": "macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37",
         "f": true,
@@ -1865,8 +1825,7 @@
         "b": {
             "C_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/CommandLine/swift_c_module/c_lib.rules_xcodeproj.c.compile.params",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true
+            "ENABLE_BITCODE": false
         },
         "c": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33",
         "f": true,
@@ -1897,8 +1856,7 @@
         "b": {
             "C_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35/bin/CommandLine/swift_c_module/c_lib.rules_xcodeproj.c.compile.params",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true
+            "ENABLE_BITCODE": false
         },
         "c": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35",
         "f": true,
@@ -1929,8 +1887,7 @@
         "b": {
             "C_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/swift_c_module/c_lib.rules_xcodeproj.c.compile.params",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true
+            "ENABLE_BITCODE": false
         },
         "c": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36",
         "f": true,
@@ -1964,8 +1921,7 @@
         "b": {
             "C_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38/bin/CommandLine/swift_c_module/c_lib.rules_xcodeproj.c.compile.params",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true
+            "ENABLE_BITCODE": false
         },
         "c": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38",
         "f": true,
@@ -2007,7 +1963,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_arm64-dbg-STABLE-14/bin/Lib/dist/dynamic/rules_xcodeproj/iOS/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/iOS.79.link.params",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework",
@@ -2059,7 +2014,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_arm64-opt-STABLE-16/bin/Lib/dist/dynamic/rules_xcodeproj/iOS/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/iOS.155.link.params",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework",
@@ -2114,7 +2068,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/Lib/dist/dynamic/rules_xcodeproj/iOS/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/iOS.24.link.params",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework",
@@ -2166,7 +2119,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-opt-STABLE-15/bin/Lib/dist/dynamic/rules_xcodeproj/iOS/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/iOS.100.link.params",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework",
@@ -2221,7 +2173,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_tvos-tvos_arm64-dbg-STABLE-26/bin/Lib/dist/dynamic/rules_xcodeproj/tvOS/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/tvOS.81.link.params",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework"
@@ -2272,7 +2223,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_tvos-tvos_arm64-opt-STABLE-28/bin/Lib/dist/dynamic/rules_xcodeproj/tvOS/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/tvOS.157.link.params",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework"
@@ -2326,7 +2276,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-dbg-STABLE-25/bin/Lib/dist/dynamic/rules_xcodeproj/tvOS/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/tvOS.26.link.params",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework"
@@ -2377,7 +2326,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-opt-STABLE-27/bin/Lib/dist/dynamic/rules_xcodeproj/tvOS/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/tvOS.102.link.params",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework"
@@ -2431,7 +2379,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_watchos-watchos_arm64_32-dbg-STABLE-18/bin/Lib/dist/dynamic/rules_xcodeproj/watchOS/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/watchOS.82.link.params",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework"
@@ -2482,7 +2429,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_watchos-watchos_arm64_32-opt-STABLE-20/bin/Lib/dist/dynamic/rules_xcodeproj/watchOS/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/watchOS.158.link.params",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework"
@@ -2536,7 +2482,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-dbg-STABLE-17/bin/Lib/dist/dynamic/rules_xcodeproj/watchOS/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/watchOS.27.link.params",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework"
@@ -2587,7 +2532,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-opt-STABLE-19/bin/Lib/dist/dynamic/rules_xcodeproj/watchOS/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/watchOS.103.link.params",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework"
@@ -2633,7 +2577,6 @@
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "Lib",
             "SWIFT_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/Lib/Lib.rules_xcodeproj.swift.compile.params"
@@ -2672,7 +2615,6 @@
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "PRODUCT_MODULE_NAME": "Lib",
             "SWIFT_COMPILATION_MODE": "wholemodule",
             "SWIFT_OPTIMIZATION_LEVEL": "-O",
@@ -2715,7 +2657,6 @@
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "Lib",
             "SWIFT_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/Lib/Lib.rules_xcodeproj.swift.compile.params"
@@ -2754,7 +2695,6 @@
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "PRODUCT_MODULE_NAME": "Lib",
             "SWIFT_COMPILATION_MODE": "wholemodule",
             "SWIFT_OPTIMIZATION_LEVEL": "-O",
@@ -2797,7 +2737,6 @@
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "Lib",
             "SWIFT_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-6/bin/Lib/Lib.rules_xcodeproj.swift.compile.params"
@@ -2836,7 +2775,6 @@
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "PRODUCT_MODULE_NAME": "Lib",
             "SWIFT_COMPILATION_MODE": "wholemodule",
             "SWIFT_OPTIMIZATION_LEVEL": "-O",
@@ -2879,7 +2817,6 @@
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "Lib",
             "SWIFT_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/Lib/Lib.rules_xcodeproj.swift.compile.params"
@@ -2918,7 +2855,6 @@
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "PRODUCT_MODULE_NAME": "Lib",
             "SWIFT_COMPILATION_MODE": "wholemodule",
             "SWIFT_OPTIMIZATION_LEVEL": "-O",
@@ -2961,7 +2897,6 @@
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "Lib",
             "SWIFT_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-5/bin/Lib/Lib.rules_xcodeproj.swift.compile.params"
@@ -3000,7 +2935,6 @@
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "PRODUCT_MODULE_NAME": "Lib",
             "SWIFT_COMPILATION_MODE": "wholemodule",
             "SWIFT_OPTIMIZATION_LEVEL": "-O",
@@ -3043,7 +2977,6 @@
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "Lib",
             "SWIFT_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/Lib/Lib.rules_xcodeproj.swift.compile.params"
@@ -3082,7 +3015,6 @@
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "PRODUCT_MODULE_NAME": "Lib",
             "SWIFT_COMPILATION_MODE": "wholemodule",
             "SWIFT_OPTIMIZATION_LEVEL": "-O",
@@ -3133,7 +3065,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_arm64-dbg-STABLE-14/bin/Lib/rules_xcodeproj/LibFramework.iOS/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/LibFramework.iOS.71.link.params",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework",
@@ -3185,7 +3116,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_arm64-opt-STABLE-16/bin/Lib/rules_xcodeproj/LibFramework.iOS/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/LibFramework.iOS.147.link.params",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework",
@@ -3240,7 +3170,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/Lib/rules_xcodeproj/LibFramework.iOS/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/LibFramework.iOS.16.link.params",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework",
@@ -3292,7 +3221,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-opt-STABLE-15/bin/Lib/rules_xcodeproj/LibFramework.iOS/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/LibFramework.iOS.92.link.params",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework",
@@ -3347,7 +3275,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_tvos-tvos_arm64-dbg-STABLE-26/bin/Lib/rules_xcodeproj/LibFramework.tvOS/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/LibFramework.tvOS.83.link.params",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework"
@@ -3398,7 +3325,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_tvos-tvos_arm64-opt-STABLE-28/bin/Lib/rules_xcodeproj/LibFramework.tvOS/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/LibFramework.tvOS.159.link.params",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework"
@@ -3452,7 +3378,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-dbg-STABLE-25/bin/Lib/rules_xcodeproj/LibFramework.tvOS/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/LibFramework.tvOS.28.link.params",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework"
@@ -3503,7 +3428,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-opt-STABLE-27/bin/Lib/rules_xcodeproj/LibFramework.tvOS/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/LibFramework.tvOS.104.link.params",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework"
@@ -3557,7 +3481,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_watchos-watchos_arm64_32-dbg-STABLE-18/bin/Lib/rules_xcodeproj/LibFramework.watchOS/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/LibFramework.watchOS.74.link.params",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework"
@@ -3608,7 +3531,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_watchos-watchos_arm64_32-opt-STABLE-20/bin/Lib/rules_xcodeproj/LibFramework.watchOS/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/LibFramework.watchOS.150.link.params",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework"
@@ -3662,7 +3584,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-dbg-STABLE-17/bin/Lib/rules_xcodeproj/LibFramework.watchOS/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/LibFramework.watchOS.19.link.params",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework"
@@ -3713,7 +3634,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-opt-STABLE-19/bin/Lib/rules_xcodeproj/LibFramework.watchOS/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/LibFramework.watchOS.95.link.params",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework"
@@ -3773,7 +3693,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "ENABLE_TESTABILITY": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_arm64-dbg-STABLE-14/bin/UI/rules_xcodeproj/UIFramework.iOS/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/UIFramework.iOS.72.link.params",
@@ -3846,7 +3765,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_arm64-opt-STABLE-16/bin/UI/rules_xcodeproj/UIFramework.iOS/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/UIFramework.iOS.148.link.params",
             "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
@@ -3923,7 +3841,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "ENABLE_TESTABILITY": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/UI/rules_xcodeproj/UIFramework.iOS/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/UIFramework.iOS.17.link.params",
@@ -3996,7 +3913,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-opt-STABLE-15/bin/UI/rules_xcodeproj/UIFramework.iOS/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/UIFramework.iOS.93.link.params",
             "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
@@ -4073,7 +3989,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "ENABLE_TESTABILITY": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_tvos-tvos_arm64-dbg-STABLE-26/bin/UI/rules_xcodeproj/UIFramework.tvOS/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/UIFramework.tvOS.84.link.params",
@@ -4142,7 +4057,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_tvos-tvos_arm64-opt-STABLE-28/bin/UI/rules_xcodeproj/UIFramework.tvOS/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/UIFramework.tvOS.160.link.params",
             "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
@@ -4215,7 +4129,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "ENABLE_TESTABILITY": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-dbg-STABLE-25/bin/UI/rules_xcodeproj/UIFramework.tvOS/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/UIFramework.tvOS.29.link.params",
@@ -4284,7 +4197,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-opt-STABLE-27/bin/UI/rules_xcodeproj/UIFramework.tvOS/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/UIFramework.tvOS.105.link.params",
             "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
@@ -4357,7 +4269,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "ENABLE_TESTABILITY": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_watchos-watchos_arm64_32-dbg-STABLE-18/bin/UI/rules_xcodeproj/UIFramework.watchOS/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/UIFramework.watchOS.75.link.params",
@@ -4426,7 +4337,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_watchos-watchos_arm64_32-opt-STABLE-20/bin/UI/rules_xcodeproj/UIFramework.watchOS/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/UIFramework.watchOS.151.link.params",
             "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
@@ -4499,7 +4409,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "ENABLE_TESTABILITY": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-dbg-STABLE-17/bin/UI/rules_xcodeproj/UIFramework.watchOS/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/UIFramework.watchOS.20.link.params",
@@ -4568,7 +4477,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-opt-STABLE-19/bin/UI/rules_xcodeproj/UIFramework.watchOS/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/UIFramework.watchOS.96.link.params",
             "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
@@ -4641,7 +4549,6 @@
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "DEVELOPMENT_TEAM": "V82V4GQZXM",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "ENABLE_TESTABILITY": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_arm64-dbg-STABLE-14/bin/WidgetExtension/rules_xcodeproj/WidgetExtension/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/WidgetExtension.69.link.params",
@@ -4714,7 +4621,6 @@
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "DEVELOPMENT_TEAM": "V82V4GQZXM",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_arm64-opt-STABLE-16/bin/WidgetExtension/rules_xcodeproj/WidgetExtension/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/WidgetExtension.145.link.params",
             "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
@@ -4790,7 +4696,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "ENABLE_TESTABILITY": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/WidgetExtension/rules_xcodeproj/WidgetExtension/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/WidgetExtension.14.link.params",
@@ -4862,7 +4767,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-opt-STABLE-15/bin/WidgetExtension/rules_xcodeproj/WidgetExtension/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/WidgetExtension.90.link.params",
             "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
@@ -4927,7 +4831,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iMessageApp/rules_xcodeproj/iMessageApp/Info.plist",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.imessage-app",
             "TARGETED_DEVICE_FAMILY": "1"
@@ -4972,7 +4875,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iMessageApp/rules_xcodeproj/iMessageApp/Info.plist",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.imessage-app",
             "TARGETED_DEVICE_FAMILY": "1"
@@ -5031,7 +4933,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "ENABLE_TESTABILITY": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iMessageApp/rules_xcodeproj/iMessageAppExtension/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/iMessageAppExtension.37.link.params",
@@ -5103,7 +5004,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iMessageApp/rules_xcodeproj/iMessageAppExtension/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/iMessageAppExtension.113.link.params",
             "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
@@ -5523,8 +5423,7 @@
         "b": {
             "C_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.rules_xcodeproj.c.compile.params",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true
+            "ENABLE_BITCODE": false
         },
         "c": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4",
         "d": [
@@ -5558,8 +5457,7 @@
         "b": {
             "C_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.rules_xcodeproj.c.compile.params",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true
+            "ENABLE_BITCODE": false
         },
         "c": "ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10",
         "d": [
@@ -5596,8 +5494,7 @@
         "b": {
             "C_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.rules_xcodeproj.c.compile.params",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true
+            "ENABLE_BITCODE": false
         },
         "c": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
         "d": [
@@ -5631,8 +5528,7 @@
         "b": {
             "C_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.rules_xcodeproj.c.compile.params",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true
+            "ENABLE_BITCODE": false
         },
         "c": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7",
         "d": [
@@ -5669,7 +5565,6 @@
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "MixedAnswer",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "MixedAnswer-Swift.h",
@@ -5708,7 +5603,6 @@
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "PRODUCT_MODULE_NAME": "MixedAnswer",
             "SWIFT_COMPILATION_MODE": "wholemodule",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "MixedAnswer-Swift.h",
@@ -5751,7 +5645,6 @@
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "MixedAnswer",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "MixedAnswer-Swift.h",
@@ -5790,7 +5683,6 @@
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "PRODUCT_MODULE_NAME": "MixedAnswer",
             "SWIFT_COMPILATION_MODE": "wholemodule",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "MixedAnswer-Swift.h",
@@ -5842,7 +5734,6 @@
             "CXX_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.rules_xcodeproj.cxx.compile.params",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "GCC_PREFIX_HEADER": "$(SRCROOT)/iOSApp/Source/CoreUtilsObjC/CoreUtils/CoreUtils.pch",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_arm64-dbg-STABLE-14/bin/iOSApp/Source/CoreUtilsObjC/rules_xcodeproj/FrameworkCoreUtilsObjC/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/FrameworkCoreUtilsObjC.70.link.params",
@@ -5901,7 +5792,6 @@
             "CXX_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.rules_xcodeproj.cxx.compile.params",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "GCC_PREFIX_HEADER": "$(SRCROOT)/iOSApp/Source/CoreUtilsObjC/CoreUtils/CoreUtils.pch",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_arm64-opt-STABLE-16/bin/iOSApp/Source/CoreUtilsObjC/rules_xcodeproj/FrameworkCoreUtilsObjC/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/FrameworkCoreUtilsObjC.146.link.params",
@@ -5963,7 +5853,6 @@
             "CXX_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.rules_xcodeproj.cxx.compile.params",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "GCC_PREFIX_HEADER": "$(SRCROOT)/iOSApp/Source/CoreUtilsObjC/CoreUtils/CoreUtils.pch",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Source/CoreUtilsObjC/rules_xcodeproj/FrameworkCoreUtilsObjC/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/FrameworkCoreUtilsObjC.15.link.params",
@@ -6022,7 +5911,6 @@
             "CXX_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.rules_xcodeproj.cxx.compile.params",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "GCC_PREFIX_HEADER": "$(SRCROOT)/iOSApp/Source/CoreUtilsObjC/CoreUtils/CoreUtils.pch",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Source/CoreUtilsObjC/rules_xcodeproj/FrameworkCoreUtilsObjC/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/FrameworkCoreUtilsObjC.91.link.params",
@@ -6076,7 +5964,6 @@
             "C_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/Utils/Utils.rules_xcodeproj.c.compile.params",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "PRODUCT_MODULE_NAME": "Utils"
         },
         "c": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
@@ -6113,7 +6000,6 @@
             "C_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Source/Utils/Utils.rules_xcodeproj.c.compile.params",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "PRODUCT_MODULE_NAME": "Utils"
         },
         "c": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7",
@@ -6173,7 +6059,6 @@
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "DEVELOPMENT_TEAM": "V82V4GQZXM",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "ENABLE_TESTABILITY": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_arm64-dbg-STABLE-14/bin/iOSApp/Source/rules_xcodeproj/iOSApp/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/iOSApp.78.link.params",
@@ -6281,7 +6166,6 @@
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "DEVELOPMENT_TEAM": "V82V4GQZXM",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_arm64-opt-STABLE-16/bin/iOSApp/Source/rules_xcodeproj/iOSApp/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/iOSApp.154.link.params",
             "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
@@ -6391,7 +6275,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "ENABLE_TESTABILITY": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Source/rules_xcodeproj/iOSApp/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/iOSApp.23.link.params",
@@ -6498,7 +6381,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Source/rules_xcodeproj/iOSApp/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/iOSApp.99.link.params",
             "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
@@ -6605,7 +6487,6 @@
             "C_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests.library.rules_xcodeproj.c.compile.params",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Test/ObjCUnitTests/rules_xcodeproj/iOSAppObjCUnitTests.__internal__.__test_bundle/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/iOSAppObjCUnitTests.35.link.params",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.objctests",
@@ -6678,7 +6559,6 @@
             "C_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests.library.rules_xcodeproj.c.compile.params",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Test/ObjCUnitTests/rules_xcodeproj/iOSAppObjCUnitTests.__internal__.__test_bundle/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/iOSAppObjCUnitTests.111.link.params",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.objctests",
@@ -6752,7 +6632,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "ENABLE_TESTABILITY": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Test/SwiftUnitTests/rules_xcodeproj/iOSAppSwiftUnitTests.__internal__.__test_bundle/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/iOSAppSwiftUnitTests.39.link.params",
@@ -6831,7 +6710,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Test/SwiftUnitTests/rules_xcodeproj/iOSAppSwiftUnitTests.__internal__.__test_bundle/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/iOSAppSwiftUnitTests.115.link.params",
             "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
@@ -6899,7 +6777,6 @@
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "TestingUtils",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "SwiftAPI/TestingUtils-Swift.h",
@@ -6938,7 +6815,6 @@
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "PRODUCT_MODULE_NAME": "TestingUtils",
             "SWIFT_COMPILATION_MODE": "wholemodule",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "SwiftAPI/TestingUtils-Swift.h",
@@ -6981,7 +6857,6 @@
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "TestingUtils",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "SwiftAPI/TestingUtils-Swift.h",
@@ -7020,7 +6895,6 @@
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "PRODUCT_MODULE_NAME": "TestingUtils",
             "SWIFT_COMPILATION_MODE": "wholemodule",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "SwiftAPI/TestingUtils-Swift.h",
@@ -7076,7 +6950,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "ENABLE_TESTABILITY": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-STABLE-31/bin/macOSApp/Source/rules_xcodeproj/macOSApp/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/macOSApp.40.link.params",
@@ -7144,7 +7017,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-opt-STABLE-32/bin/macOSApp/Source/rules_xcodeproj/macOSApp/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/macOSApp.116.link.params",
             "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
@@ -7209,7 +7081,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "ENABLE_TESTABILITY": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-STABLE-31/bin/macOSApp/Test/UITests/rules_xcodeproj/macOSAppUITests.__internal__.__test_bundle/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/macOSAppUITests.41.link.params",
@@ -7266,7 +7137,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-opt-STABLE-32/bin/macOSApp/Test/UITests/rules_xcodeproj/macOSAppUITests.__internal__.__test_bundle/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/macOSAppUITests.117.link.params",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.macosapp.uitests",
@@ -7335,7 +7205,6 @@
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "DEVELOPMENT_TEAM": "V82V4GQZXM",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "ENABLE_TESTABILITY": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_tvos-tvos_arm64-dbg-STABLE-26/bin/tvOSApp/Source/rules_xcodeproj/tvOSApp/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/tvOSApp.85.link.params",
@@ -7408,7 +7277,6 @@
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "DEVELOPMENT_TEAM": "V82V4GQZXM",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_tvos-tvos_arm64-opt-STABLE-28/bin/tvOSApp/Source/rules_xcodeproj/tvOSApp/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/tvOSApp.161.link.params",
             "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
@@ -7483,7 +7351,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "ENABLE_TESTABILITY": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-dbg-STABLE-25/bin/tvOSApp/Source/rules_xcodeproj/tvOSApp/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/tvOSApp.30.link.params",
@@ -7555,7 +7422,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-opt-STABLE-27/bin/tvOSApp/Source/rules_xcodeproj/tvOSApp/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/tvOSApp.106.link.params",
             "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
@@ -7623,7 +7489,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "ENABLE_TESTABILITY": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-dbg-STABLE-25/bin/tvOSApp/Test/UITests/rules_xcodeproj/tvOSAppUITests.__internal__.__test_bundle/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/tvOSAppUITests.42.link.params",
@@ -7680,7 +7545,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-opt-STABLE-27/bin/tvOSApp/Test/UITests/rules_xcodeproj/tvOSAppUITests.__internal__.__test_bundle/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/tvOSAppUITests.118.link.params",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.uitests",
@@ -7748,7 +7612,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "ENABLE_TESTABILITY": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-dbg-STABLE-25/bin/tvOSApp/Test/UnitTests/rules_xcodeproj/tvOSAppUnitTests.__internal__.__test_bundle/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/tvOSAppUnitTests.43.link.params",
@@ -7817,7 +7680,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-opt-STABLE-27/bin/tvOSApp/Test/UnitTests/rules_xcodeproj/tvOSAppUnitTests.__internal__.__test_bundle/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/tvOSAppUnitTests.119.link.params",
             "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
@@ -7883,7 +7745,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "ENABLE_TESTABILITY": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-dbg-STABLE-17/bin/watchOSApp/Test/UITests/rules_xcodeproj/watchOSAppUITests.__internal__.__test_bundle/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/watchOSAppUITests.44.link.params",
@@ -7940,7 +7801,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-opt-STABLE-19/bin/watchOSApp/Test/UITests/rules_xcodeproj/watchOSAppUITests.__internal__.__test_bundle/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/watchOSAppUITests.120.link.params",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.watchTests",
@@ -7997,7 +7857,6 @@
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "DEVELOPMENT_TEAM": "V82V4GQZXM",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_watchos-watchos_arm64_32-dbg-STABLE-22/bin/watchOSApp/rules_xcodeproj/watchOSApp/Info.plist",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.watch"
         },
@@ -8042,7 +7901,6 @@
             "DEBUG_INFORMATION_FORMAT": "",
             "DEVELOPMENT_TEAM": "V82V4GQZXM",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_watchos-watchos_arm64_32-opt-STABLE-24/bin/watchOSApp/rules_xcodeproj/watchOSApp/Info.plist",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.watch"
         },
@@ -8089,7 +7947,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-dbg-STABLE-21/bin/watchOSApp/rules_xcodeproj/watchOSApp/Info.plist",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.watch"
         },
@@ -8133,7 +7990,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-opt-STABLE-23/bin/watchOSApp/rules_xcodeproj/watchOSApp/Info.plist",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.watch"
         },
@@ -8192,7 +8048,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "ENABLE_TESTABILITY": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-dbg-STABLE-17/bin/watchOSAppExtension/Test/UnitTests/rules_xcodeproj/watchOSAppExtensionUnitTests.__internal__.__test_bundle/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/watchOSAppExtensionUnitTests.45.link.params",
@@ -8260,7 +8115,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-opt-STABLE-19/bin/watchOSAppExtension/Test/UnitTests/rules_xcodeproj/watchOSAppExtensionUnitTests.__internal__.__test_bundle/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/watchOSAppExtensionUnitTests.121.link.params",
             "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
@@ -8334,7 +8188,6 @@
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "DEVELOPMENT_TEAM": "V82V4GQZXM",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "ENABLE_TESTABILITY": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_watchos-watchos_arm64_32-dbg-STABLE-18/bin/watchOSAppExtension/rules_xcodeproj/watchOSAppExtension/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/watchOSAppExtension.76.link.params",
@@ -8407,7 +8260,6 @@
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "DEVELOPMENT_TEAM": "V82V4GQZXM",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_watchos-watchos_arm64_32-opt-STABLE-20/bin/watchOSAppExtension/rules_xcodeproj/watchOSAppExtension/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/watchOSAppExtension.152.link.params",
             "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
@@ -8483,7 +8335,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "ENABLE_TESTABILITY": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-dbg-STABLE-17/bin/watchOSAppExtension/rules_xcodeproj/watchOSAppExtension/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/watchOSAppExtension.21.link.params",
@@ -8555,7 +8406,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-opt-STABLE-19/bin/watchOSAppExtension/rules_xcodeproj/watchOSAppExtension/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/watchOSAppExtension.97.link.params",
             "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
@@ -8617,7 +8467,6 @@
             "C_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/external/FXPageControl/FXPageControl.rules_xcodeproj.c.compile.params",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "PRODUCT_MODULE_NAME": "FXPageControl"
         },
         "c": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
@@ -8650,7 +8499,6 @@
             "C_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/external/FXPageControl/FXPageControl.rules_xcodeproj.c.compile.params",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "PRODUCT_MODULE_NAME": "FXPageControl"
         },
         "c": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7",

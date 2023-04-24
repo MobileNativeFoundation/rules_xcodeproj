@@ -19,7 +19,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-3/bin/tools/generator/test/tests.__internal__.__test_bundle.zip",
             "CODE_SIGN_STYLE": "Manual",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "ENABLE_TESTABILITY": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-STABLE-3/bin/tools/generator/test/rules_xcodeproj/tests.__internal__.__test_bundle/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/generator/xcodeproj_bwb/xcodeproj_bwb-params/tests.10.link.params",
@@ -131,7 +130,6 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-opt-STABLE-4/bin/tools/generator/test/rules_xcodeproj/tests.__internal__.__test_bundle/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/generator/xcodeproj_bwb/xcodeproj_bwb-params/tests.20.link.params",
             "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
@@ -236,7 +234,6 @@
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-3/bin/tools/generator/generator_codesigned",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/generator/xcodeproj_bwb/xcodeproj_bwb-params/generator.7.link.params"
         },
         "c": "applebin_macos-darwin_x86_64-dbg-STABLE-3",
@@ -273,7 +270,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-4/bin/tools/generator/generator_codesigned",
             "DEBUG_INFORMATION_FORMAT": "",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/generator/xcodeproj_bwb/xcodeproj_bwb-params/generator.19.link.params"
         },
         "c": "applebin_macos-darwin_x86_64-opt-STABLE-4",
@@ -309,7 +305,6 @@
         },
         "b": {
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "generator",
             "SWIFT_INCLUDE_PATHS": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_apple_swift_collections bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_kylef_pathkit bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_zippyjson bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_tadija_aexml bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_tuist_xcodeproj",
@@ -421,7 +416,6 @@
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "PRODUCT_MODULE_NAME": "generator",
             "SWIFT_COMPILATION_MODE": "wholemodule",
             "SWIFT_INCLUDE_PATHS": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_apple_swift_collections bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_kylef_pathkit bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_michaeleisel_zippyjson bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_tadija_aexml bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_tuist_xcodeproj",
@@ -543,7 +537,6 @@
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-3/bin/tools/swiftc_stub/swiftc_codesigned",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "ENABLE_TESTABILITY": true,
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/generator/xcodeproj_bwb/xcodeproj_bwb-params/swiftc.11.link.params",
             "PRODUCT_MODULE_NAME": "tools_swiftc_stub_swiftc_stub_library",
@@ -595,7 +588,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-4/bin/tools/swiftc_stub/swiftc_codesigned",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/generator/xcodeproj_bwb/xcodeproj_bwb-params/swiftc.21.link.params",
             "PRODUCT_MODULE_NAME": "tools_swiftc_stub_swiftc_stub_library",
             "SWIFT_COMPILATION_MODE": "wholemodule",
@@ -642,7 +634,6 @@
         },
         "b": {
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "OrderedCollections",
             "SWIFT_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_apple_swift_collections/OrderedCollections.rules_xcodeproj.swift.compile.params"
@@ -728,7 +719,6 @@
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "PRODUCT_MODULE_NAME": "OrderedCollections",
             "SWIFT_COMPILATION_MODE": "wholemodule",
             "SWIFT_OPTIMIZATION_LEVEL": "-O",
@@ -818,7 +808,6 @@
         },
         "b": {
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "PathKit",
             "SWIFT_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_kylef_pathkit/PathKit.rules_xcodeproj.swift.compile.params"
@@ -855,7 +844,6 @@
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "PRODUCT_MODULE_NAME": "PathKit",
             "SWIFT_COMPILATION_MODE": "wholemodule",
             "SWIFT_OPTIMIZATION_LEVEL": "-O",
@@ -896,8 +884,7 @@
         "8": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_jjliso8601dateformatter/JJLISO8601DateFormatter.rules_xcodeproj.c.compile.params",
         "b": {
             "C_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_jjliso8601dateformatter/JJLISO8601DateFormatter.rules_xcodeproj.c.compile.params",
-            "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true
+            "ENABLE_BITCODE": false
         },
         "c": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
         "f": true,
@@ -934,8 +921,7 @@
         "b": {
             "C_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_michaeleisel_jjliso8601dateformatter/JJLISO8601DateFormatter.rules_xcodeproj.c.compile.params",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true
+            "ENABLE_BITCODE": false
         },
         "c": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2",
         "f": true,
@@ -975,7 +961,6 @@
         },
         "b": {
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "ZippyJSON",
             "SWIFT_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_zippyjson/ZippyJSON.rules_xcodeproj.swift.compile.params"
@@ -1017,7 +1002,6 @@
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "PRODUCT_MODULE_NAME": "ZippyJSON",
             "SWIFT_COMPILATION_MODE": "wholemodule",
             "SWIFT_OPTIMIZATION_LEVEL": "-O",
@@ -1064,8 +1048,7 @@
         "F": true,
         "b": {
             "CXX_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_zippyjsoncfamily/ZippyJSONCFamily.rules_xcodeproj.cxx.compile.params",
-            "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true
+            "ENABLE_BITCODE": false
         },
         "c": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
         "i": {
@@ -1099,8 +1082,7 @@
         "b": {
             "CXX_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_michaeleisel_zippyjsoncfamily/ZippyJSONCFamily.rules_xcodeproj.cxx.compile.params",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true
+            "ENABLE_BITCODE": false
         },
         "c": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2",
         "i": {
@@ -1136,7 +1118,6 @@
         },
         "b": {
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "CustomDump",
             "SWIFT_INCLUDE_PATHS": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_pointfreeco_xctest_dynamic_overlay",
@@ -1200,7 +1181,6 @@
         },
         "b": {
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "XCTestDynamicOverlay",
             "SWIFT_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/XCTestDynamicOverlay.rules_xcodeproj.swift.compile.params"
@@ -1236,7 +1216,6 @@
         },
         "b": {
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "XcodeProj",
             "SWIFT_INCLUDE_PATHS": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_tadija_aexml bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_kylef_pathkit",
@@ -1373,7 +1352,6 @@
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_BITCODE": false,
-            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "PRODUCT_MODULE_NAME": "XcodeProj",
             "SWIFT_COMPILATION_MODE": "wholemodule",
             "SWIFT_INCLUDE_PATHS": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_tadija_aexml bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_kylef_pathkit",

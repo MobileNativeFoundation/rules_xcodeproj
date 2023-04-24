@@ -97,6 +97,9 @@ $(INDEXING_DEPLOYMENT_LOCATION__$(INDEX_ENABLE_BUILD_ARENA)),
 """,
             "DSTROOT": "$(PROJECT_TEMP_DIR)",
             "ENABLE_DEFAULT_SEARCH_PATHS": "NO",
+            // Xcode's default for `ENABLE_STRICT_OBJC_MSGSEND` doesn't match
+            // its new project default, so we need to set it explicitly
+            "ENABLE_STRICT_OBJC_MSGSEND": true,
             "GCC_OPTIMIZATION_LEVEL": "0",
             "INDEX_FORCE_SCRIPT_EXECUTION": true,
             "INDEXING_BUILT_PRODUCTS_DIR__": """
