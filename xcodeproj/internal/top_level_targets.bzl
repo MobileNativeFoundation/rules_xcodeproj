@@ -464,7 +464,8 @@ def process_top_level_target(
 
     # TODO: Get the value for device builds, even when active config is not for
     # device, as Xcode only uses this value for device builds
-    build_settings["ENABLE_BITCODE"] = str(cpp.apple_bitcode_mode) != "none"
+    if str(cpp.apple_bitcode_mode) != "none":
+        build_settings["ENABLE_BITCODE"] = True
 
     set_if_true(
         build_settings,

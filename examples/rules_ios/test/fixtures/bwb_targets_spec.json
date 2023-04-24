@@ -10,7 +10,6 @@
         },
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2/bin/Lib",
-            "ENABLE_BITCODE": false,
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework",
             "PRODUCT_MODULE_NAME": "Lib_Lib"
         },
@@ -44,7 +43,6 @@
         },
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/Lib",
-            "ENABLE_BITCODE": false,
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework",
             "PRODUCT_MODULE_NAME": "Lib_Lib"
         },
@@ -80,7 +78,6 @@
         "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibDynamic.34.link.params",
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_ios-ios_arm64-dbg-STABLE-4/bin/Lib/LibDynamic.framework.zip",
-            "ENABLE_BITCODE": false,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_arm64-dbg-STABLE-4/bin/Lib/rules_xcodeproj/LibDynamic/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibDynamic.34.link.params",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework",
@@ -118,7 +115,6 @@
         "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibDynamic.13.link.params",
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/Lib/LibDynamic.framework.zip",
-            "ENABLE_BITCODE": false,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/Lib/rules_xcodeproj/LibDynamic/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibDynamic.13.link.params",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework",
@@ -154,7 +150,6 @@
             "v": "iphoneos"
         },
         "b": {
-            "ENABLE_BITCODE": false,
             "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "Lib",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "Lib-Swift.h",
@@ -191,7 +186,6 @@
             "v": "iphonesimulator"
         },
         "b": {
-            "ENABLE_BITCODE": false,
             "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "Lib",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "Lib-Swift.h",
@@ -228,7 +222,6 @@
         },
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2/bin/UI",
-            "ENABLE_BITCODE": false,
             "PRODUCT_MODULE_NAME": "UI_UI"
         },
         "c": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2",
@@ -262,7 +255,6 @@
         },
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/UI",
-            "ENABLE_BITCODE": false,
             "PRODUCT_MODULE_NAME": "UI_UI"
         },
         "c": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
@@ -296,7 +288,6 @@
             "v": "iphoneos"
         },
         "b": {
-            "ENABLE_BITCODE": false,
             "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "UI",
             "SWIFT_INCLUDE_PATHS": "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2/bin/Lib",
@@ -337,7 +328,6 @@
             "v": "iphonesimulator"
         },
         "b": {
-            "ENABLE_BITCODE": false,
             "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "UI",
             "SWIFT_INCLUDE_PATHS": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/Lib",
@@ -383,7 +373,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_ios-ios_arm64-dbg-STABLE-4/bin/WidgetExtension/WidgetExtension.zip",
             "CODE_SIGN_STYLE": "Automatic",
             "DEVELOPMENT_TEAM": "V82V4GQZXM",
-            "ENABLE_BITCODE": false,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_arm64-dbg-STABLE-4/bin/WidgetExtension/rules_xcodeproj/WidgetExtension/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/WidgetExtension.32.link.params",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.widget-extension",
@@ -427,7 +416,6 @@
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/WidgetExtension/WidgetExtension.zip",
             "CODE_SIGN_STYLE": "Manual",
-            "ENABLE_BITCODE": false,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/WidgetExtension/rules_xcodeproj/WidgetExtension/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/WidgetExtension.11.link.params",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.widget-extension",
@@ -472,7 +460,6 @@
         },
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2/bin/WidgetExtension",
-            "ENABLE_BITCODE": false,
             "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "WidgetExtension",
             "SWIFT_INCLUDE_PATHS": "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2/bin/Lib",
@@ -524,7 +511,6 @@
         },
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/WidgetExtension",
-            "ENABLE_BITCODE": false,
             "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "WidgetExtension",
             "SWIFT_INCLUDE_PATHS": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/Lib",
@@ -571,7 +557,6 @@
         },
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer",
-            "ENABLE_BITCODE": false,
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.MixedAnswer",
             "PRODUCT_MODULE_NAME": "iOSApp_Source_CoreUtilsMixed_MixedAnswer_MixedAnswer"
         },
@@ -606,7 +591,6 @@
         },
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer",
-            "ENABLE_BITCODE": false,
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.MixedAnswer",
             "PRODUCT_MODULE_NAME": "iOSApp_Source_CoreUtilsMixed_MixedAnswer_MixedAnswer"
         },
@@ -642,7 +626,6 @@
         "8": "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc.rules_xcodeproj.c.compile.params",
         "b": {
             "C_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc.rules_xcodeproj.c.compile.params",
-            "ENABLE_BITCODE": false,
             "GCC_PREFIX_HEADER": "$(BAZEL_EXTERNAL)/build_bazel_rules_ios/rules/library/common.pch"
         },
         "c": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2",
@@ -677,7 +660,6 @@
         "8": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc.rules_xcodeproj.c.compile.params",
         "b": {
             "C_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer_objc.rules_xcodeproj.c.compile.params",
-            "ENABLE_BITCODE": false,
             "GCC_PREFIX_HEADER": "$(BAZEL_EXTERNAL)/build_bazel_rules_ios/rules/library/common.pch"
         },
         "c": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
@@ -711,7 +693,6 @@
             "v": "iphoneos"
         },
         "b": {
-            "ENABLE_BITCODE": false,
             "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "MixedAnswer",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "MixedAnswer-Swift.h",
@@ -748,7 +729,6 @@
             "v": "iphonesimulator"
         },
         "b": {
-            "ENABLE_BITCODE": false,
             "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "MixedAnswer",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "MixedAnswer-Swift.h",
@@ -785,7 +765,6 @@
         },
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2/bin/iOSApp/Source/CoreUtilsObjC",
-            "ENABLE_BITCODE": false,
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.CoreUtilsObjC",
             "PRODUCT_MODULE_NAME": "iOSApp_Source_CoreUtilsObjC_CoreUtilsObjC"
         },
@@ -816,7 +795,6 @@
         },
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsObjC",
-            "ENABLE_BITCODE": false,
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.CoreUtilsObjC",
             "PRODUCT_MODULE_NAME": "iOSApp_Source_CoreUtilsObjC_CoreUtilsObjC"
         },
@@ -849,7 +827,6 @@
         "F": true,
         "b": {
             "CXX_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC_objc.rules_xcodeproj.cxx.compile.params",
-            "ENABLE_BITCODE": false,
             "GCC_PREFIX_HEADER": "$(SRCROOT)/iOSApp/Source/CoreUtilsObjC/CoreUtils/CoreUtils.pch"
         },
         "c": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2",
@@ -882,7 +859,6 @@
         "F": true,
         "b": {
             "CXX_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC_objc.rules_xcodeproj.cxx.compile.params",
-            "ENABLE_BITCODE": false,
             "GCC_PREFIX_HEADER": "$(SRCROOT)/iOSApp/Source/CoreUtilsObjC/CoreUtils/CoreUtils.pch"
         },
         "c": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
@@ -913,7 +889,6 @@
         },
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/Utils",
-            "ENABLE_BITCODE": false,
             "PRODUCT_MODULE_NAME": "iOSApp_Source_Utils_Utils"
         },
         "c": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
@@ -944,7 +919,6 @@
         "8": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/Utils/Utils_objc.rules_xcodeproj.c.compile.params",
         "b": {
             "C_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/Utils/Utils_objc.rules_xcodeproj.c.compile.params",
-            "ENABLE_BITCODE": false,
             "GCC_PREFIX_HEADER": "$(BAZEL_EXTERNAL)/build_bazel_rules_ios/rules/library/common.pch"
         },
         "c": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
@@ -987,7 +961,6 @@
             "CODE_SIGN_ENTITLEMENTS": "$(SRCROOT)/iOSApp/Source/ios app.entitlements",
             "CODE_SIGN_STYLE": "Automatic",
             "DEVELOPMENT_TEAM": "V82V4GQZXM",
-            "ENABLE_BITCODE": false,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_arm64-dbg-STABLE-4/bin/iOSApp/Source/rules_xcodeproj/iOSApp/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSApp.33.link.params",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example",
@@ -1047,7 +1020,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Source/iOSApp.ipa",
             "CODE_SIGN_ENTITLEMENTS": "$(SRCROOT)/iOSApp/Source/ios app.entitlements",
             "CODE_SIGN_STYLE": "Manual",
-            "ENABLE_BITCODE": false,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Source/rules_xcodeproj/iOSApp/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSApp.12.link.params",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example",
@@ -1104,7 +1076,6 @@
         },
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2/bin/iOSApp/Source",
-            "ENABLE_BITCODE": false,
             "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "iOSApp",
             "SWIFT_INCLUDE_PATHS": "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2/bin/Lib bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2/bin/UI bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer",
@@ -1157,7 +1128,6 @@
         },
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source",
-            "ENABLE_BITCODE": false,
             "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "iOSApp",
             "SWIFT_INCLUDE_PATHS": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/Lib bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/UI bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer",
@@ -1212,7 +1182,6 @@
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Test/MixedUnitTests/iOSAppMixedUnitTests.__internal__.__test_bundle.zip",
             "CODE_SIGN_STYLE": "Manual",
-            "ENABLE_BITCODE": false,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Test/MixedUnitTests/rules_xcodeproj/iOSAppMixedUnitTests.__internal__.__test_bundle/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppMixedUnitTests.18.link.params",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.mixedtests",
@@ -1252,7 +1221,6 @@
         "8": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/MixedUnitTests/iOSAppMixedUnitTests_objc.rules_xcodeproj.c.compile.params",
         "b": {
             "C_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/MixedUnitTests/iOSAppMixedUnitTests_objc.rules_xcodeproj.c.compile.params",
-            "ENABLE_BITCODE": false,
             "GCC_PREFIX_HEADER": "$(BAZEL_EXTERNAL)/build_bazel_rules_ios/rules/library/common.pch"
         },
         "c": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
@@ -1288,7 +1256,6 @@
             "v": "iphonesimulator"
         },
         "b": {
-            "ENABLE_BITCODE": false,
             "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "iOSAppMixedUnitTests",
             "SWIFT_INCLUDE_PATHS": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/Lib bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/UI bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source",
@@ -1343,7 +1310,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests.__internal__.__test_bundle.zip",
             "CODE_SIGN_STYLE": "Manual",
             "C_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests_objc.rules_xcodeproj.c.compile.params",
-            "ENABLE_BITCODE": false,
             "GCC_PREFIX_HEADER": "$(BAZEL_EXTERNAL)/build_bazel_rules_ios/rules/library/common.pch",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Test/ObjCUnitTests/rules_xcodeproj/iOSAppObjCUnitTests.__internal__.__test_bundle/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTests.19.link.params",
@@ -1403,7 +1369,6 @@
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTests.__internal__.__test_bundle.zip",
             "CODE_SIGN_STYLE": "Manual",
-            "ENABLE_BITCODE": false,
             "ENABLE_TESTABILITY": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Test/SwiftUnitTests/rules_xcodeproj/iOSAppSwiftUnitTests.__internal__.__test_bundle/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppSwiftUnitTests.20.link.params",
