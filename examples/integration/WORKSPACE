@@ -44,9 +44,9 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 http_archive(
     name = "rules_apple_linker",
-    sha256 = "89a537497197bd3ac1fcdd19c5edbdf296de5fec69b483be56a58c37688322a8",
-    strip_prefix = "rules_apple_linker-0.1.6",
-    url = "https://github.com/keith/rules_apple_linker/archive/refs/tags/0.1.6.tar.gz",
+    sha256 = "b9d6bdf4b1c8e0107bbdb3f71d4b59ba5a16029e438e23d2c4d448b04693d72e",
+    strip_prefix = "rules_apple_linker-0.3.1",
+    url = "https://github.com/keith/rules_apple_linker/archive/refs/tags/0.3.1.tar.gz",
 )
 
 load("@rules_apple_linker//:deps.bzl", "rules_apple_linker_deps")
