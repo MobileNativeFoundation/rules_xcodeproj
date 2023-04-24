@@ -133,7 +133,9 @@ $(OBJROOT)/scheme_target_ids
             "SUPPORTS_MACCATALYST": false,
             // Default to not creating the Swift generated header.
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
-            // Needed as the default otherwise `ENABLE_PREIVEWS` isn't set
+            // Xcode's default is `-O` when not set, so minimally set it to
+            // `-Onone`, which matches swiftc's default. Also needed as the
+            // default otherwise `ENABLE_PREIVEWS` isn't set.
             "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
             // Xcode needs a value for SWIFT_VERSION, so we set it to "5.0" by
             // default. We will have to figure out a way to detect what the

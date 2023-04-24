@@ -418,11 +418,6 @@ def _process_swiftcopts(
         *   A `list` of clang compiler options.
         *   A `bool` indicting if the target has debug info enabled.
     """
-
-    # Xcode's default is `-O` when not set, so minimally set it to `-Onone`,
-    # which matches swiftc's default.
-    build_settings["SWIFT_OPTIMIZATION_LEVEL"] = "-Onone"
-
     clang_opts = []
 
     def _process_clang_opt(opt, previous_opt, previous_clang_opt):
@@ -558,7 +553,8 @@ under {}""".format(opt, package_bin_dir))
             return None
 
         if opt.startswith("-O"):
-            build_settings["SWIFT_OPTIMIZATION_LEVEL"] = opt
+            if opt != "-Onone":
+                build_settings["SWIFT_OPTIMIZATION_LEVEL"] = opt
             return None
         if build_mode == "xcode" and opt.startswith("-vfsoverlay"):
             fail("""\
