@@ -10978,7 +10978,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswerLib_Swift.rules_xcodeproj.swift.compile.params";
 				"SWIFT_PARAMS_FILE[sdk=iphoneos*]" = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswerLib_Swift.rules_xcodeproj.swift.compile.params";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = MixedAnswerLib_Swift;
 			};
 			name = AppStore;
@@ -11006,7 +11005,6 @@
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "private/LibSwift-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35/bin/CommandLine/CommandLineToolLib/lib_swift.rules_xcodeproj.swift.compile.params";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = lib_swift;
 			};
 			name = Debug;
@@ -11071,7 +11069,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/UI/UI.rules_xcodeproj.swift.compile.params";
 				"SWIFT_PARAMS_FILE[sdk=watchos*]" = "$(CURRENT_EXECUTION_ROOT)/bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-5/bin/UI/UI.rules_xcodeproj.swift.compile.params";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = UIFramework.watchOS;
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
@@ -11106,7 +11103,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8/bin/Lib/Lib.rules_xcodeproj.swift.compile.params";
 				"SWIFT_PARAMS_FILE[sdk=watchos*]" = "$(CURRENT_EXECUTION_ROOT)/bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-opt-STABLE-11/bin/Lib/Lib.rules_xcodeproj.swift.compile.params";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = Lib;
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 				WATCHOS_FILES = "bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-opt-STABLE-11/bin/Lib/Lib.swift";
@@ -11148,7 +11144,6 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				TARGET_NAME = iOS;
 			};
@@ -11186,7 +11181,6 @@
 				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = tvOS;
 				TVOS_DEPLOYMENT_TARGET = 15.0;
 			};
@@ -11226,7 +11220,6 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				TARGET_NAME = iOS;
 			};
@@ -11264,7 +11257,6 @@
 				SUPPORTED_PLATFORMS = "watchsimulator watchos";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = watchOS;
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
@@ -11322,7 +11314,6 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TARGET_BUILD_DIR = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Source$(TARGET_BUILD_SUBPATH)";
 				TARGET_NAME = iOSAppObjCUnitTests;
@@ -11404,7 +11395,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/iOSApp.library.rules_xcodeproj.swift.compile.params";
 				"SWIFT_PARAMS_FILE[sdk=iphoneos*]" = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/iOSApp/Source/iOSApp.library.rules_xcodeproj.swift.compile.params";
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				TARGET_NAME = iOSApp;
 			};
@@ -11437,7 +11427,6 @@
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = private_lib;
 			};
 			name = Debug;
@@ -11478,7 +11467,6 @@
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = Bundle;
 				WRAPPER_EXTENSION = aplugin;
 			};
@@ -11517,7 +11505,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-29/bin/iOSApp/Test/TestingUtils/TestingUtils.rules_xcodeproj.swift.compile.params";
 				"SWIFT_PARAMS_FILE[sdk=iphonesimulator*]" = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/TestingUtils/TestingUtils.rules_xcodeproj.swift.compile.params";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = TestingUtils;
 			};
 			name = Debug;
@@ -11559,7 +11546,6 @@
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = UniversalCommandLineTool;
 			};
 			name = AppStore;
@@ -11638,7 +11624,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Source/iOSApp.library.rules_xcodeproj.swift.compile.params";
 				"SWIFT_PARAMS_FILE[sdk=iphoneos*]" = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/iOSApp/Source/iOSApp.library.rules_xcodeproj.swift.compile.params";
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				TARGET_NAME = iOSApp;
 			};
@@ -11704,7 +11689,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/UI/UI.rules_xcodeproj.swift.compile.params";
 				"SWIFT_PARAMS_FILE[sdk=appletvos*]" = "$(CURRENT_EXECUTION_ROOT)/bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-6/bin/UI/UI.rules_xcodeproj.swift.compile.params";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = UIFramework.tvOS;
 				TVOS_DEPLOYMENT_TARGET = 15.0;
 			};
@@ -11749,7 +11733,6 @@
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = CommandLineTool;
 			};
 			name = Debug;
@@ -11783,7 +11766,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/Lib/Lib.rules_xcodeproj.swift.compile.params";
 				"SWIFT_PARAMS_FILE[sdk=watchos*]" = "$(CURRENT_EXECUTION_ROOT)/bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-5/bin/Lib/Lib.rules_xcodeproj.swift.compile.params";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = Lib;
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 				WATCHOS_FILES = "bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-5/bin/Lib/Lib.swift";
@@ -11824,7 +11806,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-30/bin/iOSApp/Test/TestingUtils/TestingUtils.rules_xcodeproj.swift.compile.params";
 				"SWIFT_PARAMS_FILE[sdk=iphonesimulator*]" = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Test/TestingUtils/TestingUtils.rules_xcodeproj.swift.compile.params";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = TestingUtils;
 			};
 			name = AppStore;
@@ -11865,7 +11846,6 @@
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/watchOSAppExtension/Test/UnitTests/watchOSAppExtensionUnitTests.library.rules_xcodeproj.swift.compile.params";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = watchOSAppExtensionUnitTests;
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
@@ -11903,7 +11883,6 @@
 				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = tvOS;
 				TVOS_DEPLOYMENT_TARGET = 15.0;
 			};
@@ -11936,7 +11915,6 @@
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = c_lib;
 			};
 			name = Debug;
@@ -12002,7 +11980,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/watchOSAppExtension/watchOSAppExtension.library.rules_xcodeproj.swift.compile.params";
 				"SWIFT_PARAMS_FILE[sdk=watchos*]" = "$(CURRENT_EXECUTION_ROOT)/bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-5/bin/watchOSAppExtension/watchOSAppExtension.library.rules_xcodeproj.swift.compile.params";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = watchOSAppExtension;
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
@@ -12049,7 +12026,6 @@
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/tvOSApp/Test/UnitTests/tvOSAppUnitTests.library.rules_xcodeproj.swift.compile.params";
-				SWIFT_VERSION = 5.0;
 				TARGET_BUILD_DIR = "$(BUILD_DIR)/bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-25/bin/tvOSApp/Source$(TARGET_BUILD_SUBPATH)";
 				TARGET_NAME = tvOSAppUnitTests;
 				TEST_HOST = "$(BUILD_DIR)/bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-25/bin/tvOSApp/Source/tvOSApp.app/tvOSApp";
@@ -12096,7 +12072,6 @@
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = CommandLineTool;
 			};
 			name = AppStore;
@@ -12156,6 +12131,7 @@
 				SWIFT_EXEC = "$(BAZEL_INTEGRATION_DIR)/swiftc";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_USE_INTEGRATED_DRIVER = NO;
+				SWIFT_VERSION = 5.0;
 				TARGET_TEMP_DIR = "$(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)";
 				USE_HEADERMAP = NO;
 				VALIDATE_WORKSPACE = NO;
@@ -12220,7 +12196,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9/bin/tvOSApp/Source/tvOSApp.library.rules_xcodeproj.swift.compile.params";
 				"SWIFT_PARAMS_FILE[sdk=appletvos*]" = "$(CURRENT_EXECUTION_ROOT)/bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-opt-STABLE-12/bin/tvOSApp/Source/tvOSApp.library.rules_xcodeproj.swift.compile.params";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = tvOSApp;
 				TVOS_DEPLOYMENT_TARGET = 15.0;
 			};
@@ -12264,7 +12239,6 @@
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8/bin/watchOSApp/Test/UITests/watchOSAppUITests.library.rules_xcodeproj.swift.compile.params";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = watchOSAppUITests;
 				TEST_TARGET_NAME = watchOSApp;
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
@@ -12320,7 +12294,6 @@
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTests.library.rules_xcodeproj.swift.compile.params";
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TARGET_BUILD_DIR = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Source$(TARGET_BUILD_SUBPATH)";
 				TARGET_NAME = iOSAppSwiftUnitTests;
@@ -12364,7 +12337,6 @@
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8/bin/watchOSAppExtension/Test/UnitTests/watchOSAppExtensionUnitTests.library.rules_xcodeproj.swift.compile.params";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = watchOSAppExtensionUnitTests;
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
@@ -12404,7 +12376,6 @@
 				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = LibFramework.tvOS;
 				TVOS_DEPLOYMENT_TARGET = 15.0;
 			};
@@ -12437,7 +12408,6 @@
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = lib_impl;
 			};
 			name = AppStore;
@@ -12469,7 +12439,6 @@
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = private_lib;
 			};
 			name = AppStore;
@@ -12508,7 +12477,6 @@
 				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = LibFramework.tvOS;
 				TVOS_DEPLOYMENT_TARGET = 15.0;
 			};
@@ -12552,7 +12520,6 @@
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-30/bin/macOSApp/Source/macOSApp.library.rules_xcodeproj.swift.compile.params";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = macOSApp;
 			};
 			name = AppStore;
@@ -12595,7 +12562,6 @@
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9/bin/tvOSApp/Test/UITests/tvOSAppUITests.library.rules_xcodeproj.swift.compile.params";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = tvOSAppUITests;
 				TEST_TARGET_NAME = tvOSApp;
 				TVOS_DEPLOYMENT_TARGET = 15.0;
@@ -12625,7 +12591,6 @@
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "private/LibSwift-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37/bin/CommandLine/CommandLineToolLib/lib_swift.rules_xcodeproj.swift.compile.params";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = lib_swift;
 			};
 			name = AppStore;
@@ -12667,7 +12632,6 @@
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = UniversalCommandLineTool;
 			};
 			name = Debug;
@@ -12699,7 +12663,6 @@
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = lib_impl;
 			};
 			name = Debug;
@@ -12741,7 +12704,6 @@
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = UniversalCommandLineTool;
 			};
 			name = Debug;
@@ -12787,7 +12749,6 @@
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iMessageApp/iMessageAppExtension.library.rules_xcodeproj.swift.compile.params";
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				TARGET_NAME = iMessageAppExtension;
 			};
@@ -12850,7 +12811,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/tvOSApp/Source/tvOSApp.library.rules_xcodeproj.swift.compile.params";
 				"SWIFT_PARAMS_FILE[sdk=appletvos*]" = "$(CURRENT_EXECUTION_ROOT)/bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-6/bin/tvOSApp/Source/tvOSApp.library.rules_xcodeproj.swift.compile.params";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = tvOSApp;
 				TVOS_DEPLOYMENT_TARGET = 15.0;
 			};
@@ -12883,7 +12843,6 @@
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = private_lib;
 			};
 			name = AppStore;
@@ -12950,7 +12909,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/UI/UI.rules_xcodeproj.swift.compile.params";
 				"SWIFT_PARAMS_FILE[sdk=iphoneos*]" = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/UI/UI.rules_xcodeproj.swift.compile.params";
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				TARGET_NAME = UIFramework.iOS;
 			};
@@ -12985,7 +12943,6 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = FXPageControl;
 			};
 			name = AppStore;
@@ -13051,7 +13008,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/WidgetExtension/WidgetExtension.library.rules_xcodeproj.swift.compile.params";
 				"SWIFT_PARAMS_FILE[sdk=iphoneos*]" = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/WidgetExtension/WidgetExtension.library.rules_xcodeproj.swift.compile.params";
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				TARGET_NAME = WidgetExtension;
 			};
@@ -13079,7 +13035,6 @@
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34/bin/CommandLine/CommandLineToolLib/private_swift_lib.rules_xcodeproj.swift.compile.params";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = private_swift_lib;
 			};
 			name = Debug;
@@ -13120,7 +13075,6 @@
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = Bundle;
 				WRAPPER_EXTENSION = aplugin;
 			};
@@ -13205,7 +13159,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8/bin/watchOSAppExtension/watchOSAppExtension.library.rules_xcodeproj.swift.compile.params";
 				"SWIFT_PARAMS_FILE[sdk=watchos*]" = "$(CURRENT_EXECUTION_ROOT)/bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-opt-STABLE-11/bin/watchOSAppExtension/watchOSAppExtension.library.rules_xcodeproj.swift.compile.params";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = watchOSAppExtension;
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
@@ -13260,7 +13213,6 @@
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTests.library.rules_xcodeproj.swift.compile.params";
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TARGET_BUILD_DIR = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Source$(TARGET_BUILD_SUBPATH)";
 				TARGET_NAME = iOSAppSwiftUnitTests;
@@ -13299,7 +13251,6 @@
 				SUPPORTED_PLATFORMS = "watchsimulator watchos";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = watchOSApp;
 				WATCHOS_DEPLOYMENT_TARGET = 8.0;
 			};
@@ -13331,7 +13282,6 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				TARGET_NAME = iMessageApp;
 			};
@@ -13397,7 +13347,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/AppClip/AppClip.library.rules_xcodeproj.swift.compile.params";
 				"SWIFT_PARAMS_FILE[sdk=iphoneos*]" = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/AppClip/AppClip.library.rules_xcodeproj.swift.compile.params";
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				TARGET_NAME = AppClip;
 			};
@@ -13426,7 +13375,6 @@
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "private/LibSwift-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/CommandLine/CommandLineToolLib/lib_swift.rules_xcodeproj.swift.compile.params";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = lib_swift;
 			};
 			name = Debug;
@@ -13493,7 +13441,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/UI/UI.rules_xcodeproj.swift.compile.params";
 				"SWIFT_PARAMS_FILE[sdk=iphoneos*]" = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/UI/UI.rules_xcodeproj.swift.compile.params";
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				TARGET_NAME = UIFramework.iOS;
 			};
@@ -13531,7 +13478,6 @@
 				SUPPORTED_PLATFORMS = "watchsimulator watchos";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = watchOS;
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
@@ -13589,7 +13535,6 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TARGET_BUILD_DIR = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Source$(TARGET_BUILD_SUBPATH)";
 				TARGET_NAME = iOSAppObjCUnitTests;
@@ -13657,7 +13602,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/AppClip/AppClip.library.rules_xcodeproj.swift.compile.params";
 				"SWIFT_PARAMS_FILE[sdk=iphoneos*]" = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/AppClip/AppClip.library.rules_xcodeproj.swift.compile.params";
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				TARGET_NAME = AppClip;
 			};
@@ -13700,7 +13644,6 @@
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = UniversalCommandLineTool;
 			};
 			name = AppStore;
@@ -13728,7 +13671,6 @@
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "private/LibSwift-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineToolLib/lib_swift.rules_xcodeproj.swift.compile.params";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = lib_swift;
 			};
 			name = AppStore;
@@ -13756,7 +13698,6 @@
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "private/LibSwift-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38/bin/CommandLine/CommandLineToolLib/lib_swift.rules_xcodeproj.swift.compile.params";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = lib_swift;
 			};
 			name = AppStore;
@@ -13788,7 +13729,6 @@
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = c_lib;
 			};
 			name = AppStore;
@@ -13827,7 +13767,6 @@
 				SUPPORTED_PLATFORMS = "watchsimulator watchos";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = LibFramework.watchOS;
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
@@ -13877,7 +13816,6 @@
 				"SWIFT_PARAMS_FILE[sdk=appletvos*]" = "$(CURRENT_EXECUTION_ROOT)/bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-opt-STABLE-12/bin/Lib/Lib.rules_xcodeproj.swift.compile.params";
 				"SWIFT_PARAMS_FILE[sdk=appletvsimulator*]" = "$(CURRENT_EXECUTION_ROOT)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9/bin/Lib/Lib.rules_xcodeproj.swift.compile.params";
 				"SWIFT_PARAMS_FILE[sdk=iphoneos*]" = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/Lib/Lib.rules_xcodeproj.swift.compile.params";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = Lib;
 				TVOS_DEPLOYMENT_TARGET = 15.0;
 			};
@@ -13910,7 +13848,6 @@
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = private_lib;
 			};
 			name = Debug;
@@ -13937,7 +13874,6 @@
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35/bin/CommandLine/CommandLineToolLib/private_swift_lib.rules_xcodeproj.swift.compile.params";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = private_swift_lib;
 			};
 			name = Debug;
@@ -13979,7 +13915,6 @@
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-30/bin/macOSApp/Test/UITests/macOSAppUITests.library.rules_xcodeproj.swift.compile.params";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = macOSAppUITests;
 				TEST_TARGET_NAME = macOSApp;
 			};
@@ -14014,7 +13949,6 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = Utils;
 			};
 			name = AppStore;
@@ -14060,7 +13994,6 @@
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9/bin/tvOSApp/Test/UnitTests/tvOSAppUnitTests.library.rules_xcodeproj.swift.compile.params";
-				SWIFT_VERSION = 5.0;
 				TARGET_BUILD_DIR = "$(BUILD_DIR)/bazel-out/applebin_tvos-tvos_x86_64-opt-STABLE-27/bin/tvOSApp/Source$(TARGET_BUILD_SUBPATH)";
 				TARGET_NAME = tvOSAppUnitTests;
 				TEST_HOST = "$(BUILD_DIR)/bazel-out/applebin_tvos-tvos_x86_64-opt-STABLE-27/bin/tvOSApp/Source/tvOSApp.app/tvOSApp";
@@ -14112,7 +14045,6 @@
 				"SWIFT_PARAMS_FILE[sdk=appletvos*]" = "$(CURRENT_EXECUTION_ROOT)/bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-6/bin/Lib/Lib.rules_xcodeproj.swift.compile.params";
 				"SWIFT_PARAMS_FILE[sdk=appletvsimulator*]" = "$(CURRENT_EXECUTION_ROOT)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/Lib/Lib.rules_xcodeproj.swift.compile.params";
 				"SWIFT_PARAMS_FILE[sdk=iphoneos*]" = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/Lib/Lib.rules_xcodeproj.swift.compile.params";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = Lib;
 				TVOS_DEPLOYMENT_TARGET = 15.0;
 			};
@@ -14152,7 +14084,6 @@
 				SUPPORTED_PLATFORMS = "watchsimulator watchos";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = LibFramework.watchOS;
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
@@ -14185,7 +14116,6 @@
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = private_lib;
 			};
 			name = Debug;
@@ -14227,7 +14157,6 @@
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-29/bin/macOSApp/Test/UITests/macOSAppUITests.library.rules_xcodeproj.swift.compile.params";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = macOSAppUITests;
 				TEST_TARGET_NAME = macOSApp;
 			};
@@ -14260,7 +14189,6 @@
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = private_lib;
 			};
 			name = AppStore;
@@ -14287,7 +14215,6 @@
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/CommandLine/CommandLineToolLib/private_swift_lib.rules_xcodeproj.swift.compile.params";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = private_swift_lib;
 			};
 			name = Debug;
@@ -14333,7 +14260,6 @@
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iMessageApp/iMessageAppExtension.library.rules_xcodeproj.swift.compile.params";
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				TARGET_NAME = iMessageAppExtension;
 			};
@@ -14368,7 +14294,6 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = Utils;
 			};
 			name = Debug;
@@ -14400,7 +14325,6 @@
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = lib_impl;
 			};
 			name = AppStore;
@@ -14432,7 +14356,6 @@
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = lib_impl;
 			};
 			name = Debug;
@@ -14497,7 +14420,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8/bin/UI/UI.rules_xcodeproj.swift.compile.params";
 				"SWIFT_PARAMS_FILE[sdk=watchos*]" = "$(CURRENT_EXECUTION_ROOT)/bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-opt-STABLE-11/bin/UI/UI.rules_xcodeproj.swift.compile.params";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = UIFramework.watchOS;
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
@@ -14529,7 +14451,6 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				TARGET_NAME = iMessageApp;
 			};
@@ -14572,7 +14493,6 @@
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/Tests/CommandLineLibSwiftTestsLib.rules_xcodeproj.swift.compile.params";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = CommandLineToolTests;
 			};
 			name = AppStore;
@@ -14609,7 +14529,6 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = MixedAnswer;
 			};
 			name = AppStore;
@@ -14669,6 +14588,7 @@
 				SWIFT_EXEC = "$(BAZEL_INTEGRATION_DIR)/swiftc";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_USE_INTEGRATED_DRIVER = NO;
+				SWIFT_VERSION = 5.0;
 				TARGET_TEMP_DIR = "$(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)";
 				USE_HEADERMAP = NO;
 				VALIDATE_WORKSPACE = NO;
@@ -14714,7 +14634,6 @@
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/watchOSApp/Test/UITests/watchOSAppUITests.library.rules_xcodeproj.swift.compile.params";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = watchOSAppUITests;
 				TEST_TARGET_NAME = watchOSApp;
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
@@ -14750,7 +14669,6 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = FXPageControl;
 			};
 			name = Debug;
@@ -14782,7 +14700,6 @@
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = lib_impl;
 			};
 			name = AppStore;
@@ -14848,7 +14765,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/WidgetExtension/WidgetExtension.library.rules_xcodeproj.swift.compile.params";
 				"SWIFT_PARAMS_FILE[sdk=iphoneos*]" = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/WidgetExtension/WidgetExtension.library.rules_xcodeproj.swift.compile.params";
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				TARGET_NAME = WidgetExtension;
 			};
@@ -14877,7 +14793,6 @@
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "private/LibSwift-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34/bin/CommandLine/CommandLineToolLib/lib_swift.rules_xcodeproj.swift.compile.params";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = lib_swift;
 			};
 			name = Debug;
@@ -14914,7 +14829,6 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = MixedAnswer;
 			};
 			name = Debug;
@@ -14957,7 +14871,6 @@
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/tvOSApp/Test/UITests/tvOSAppUITests.library.rules_xcodeproj.swift.compile.params";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = tvOSAppUITests;
 				TEST_TARGET_NAME = tvOSApp;
 				TVOS_DEPLOYMENT_TARGET = 15.0;
@@ -14991,7 +14904,6 @@
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = c_lib;
 			};
 			name = Debug;
@@ -15018,7 +14930,6 @@
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37/bin/CommandLine/CommandLineToolLib/private_swift_lib.rules_xcodeproj.swift.compile.params";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = private_swift_lib;
 			};
 			name = AppStore;
@@ -15060,7 +14971,6 @@
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/CommandLine/Tests/CommandLineLibSwiftTestsLib.rules_xcodeproj.swift.compile.params";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = CommandLineToolTests;
 			};
 			name = Debug;
@@ -15092,7 +15002,6 @@
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = lib_impl;
 			};
 			name = Debug;
@@ -15119,7 +15028,6 @@
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineToolLib/private_swift_lib.rules_xcodeproj.swift.compile.params";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = private_swift_lib;
 			};
 			name = AppStore;
@@ -15162,7 +15070,6 @@
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-29/bin/macOSApp/Source/macOSApp.library.rules_xcodeproj.swift.compile.params";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = macOSApp;
 			};
 			name = Debug;
@@ -15216,7 +15123,6 @@
 				SUPPORTED_PLATFORMS = "watchsimulator watchos";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = watchOSApp;
 				WATCHOS_DEPLOYMENT_TARGET = 8.0;
 			};
@@ -15249,7 +15155,6 @@
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = c_lib;
 			};
 			name = AppStore;
@@ -15281,7 +15186,6 @@
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = c_lib;
 			};
 			name = AppStore;
@@ -15313,7 +15217,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswerLib_Swift.rules_xcodeproj.swift.compile.params";
 				"SWIFT_PARAMS_FILE[sdk=iphoneos*]" = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswerLib_Swift.rules_xcodeproj.swift.compile.params";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = MixedAnswerLib_Swift;
 			};
 			name = Debug;
@@ -15378,7 +15281,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9/bin/UI/UI.rules_xcodeproj.swift.compile.params";
 				"SWIFT_PARAMS_FILE[sdk=appletvos*]" = "$(CURRENT_EXECUTION_ROOT)/bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-opt-STABLE-12/bin/UI/UI.rules_xcodeproj.swift.compile.params";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = UIFramework.tvOS;
 				TVOS_DEPLOYMENT_TARGET = 15.0;
 			};
@@ -15406,7 +15308,6 @@
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38/bin/CommandLine/CommandLineToolLib/private_swift_lib.rules_xcodeproj.swift.compile.params";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = private_swift_lib;
 			};
 			name = AppStore;
@@ -15460,7 +15361,6 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				TARGET_NAME = FrameworkCoreUtilsObjC;
 			};
@@ -15493,7 +15393,6 @@
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGET_NAME = c_lib;
 			};
 			name = Debug;
@@ -15547,7 +15446,6 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				TARGET_NAME = FrameworkCoreUtilsObjC;
 			};

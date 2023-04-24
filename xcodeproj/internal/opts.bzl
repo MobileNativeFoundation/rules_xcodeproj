@@ -419,11 +419,6 @@ def _process_swiftcopts(
         *   A `bool` indicting if the target has debug info enabled.
     """
 
-    # Xcode needs a value for SWIFT_VERSION, so we set it to "5.0" by default.
-    # We will have to figure out a way to detect what the default is before
-    # Swift 6 (which will probably have a new language version).
-    build_settings["SWIFT_VERSION"] = "5.0"
-
     # Default to not creating the Swift generated header.
     build_settings["SWIFT_OBJC_INTERFACE_HEADER_NAME"] = ""
 
@@ -580,7 +575,9 @@ Using VFS overlays with `build_mode = "xcode"` is unsupported.
             build_settings["SWIFT_COMPILATION_MODE"] = compilation_mode
             return None
         if opt.startswith("-swift-version="):
-            build_settings["SWIFT_VERSION"] = opt[15:]
+            version = opt[15:]
+            if version != "5.0":
+                build_settings["SWIFT_VERSION"] = version
             return None
         if opt == "-emit-objc-header-path":
             # Handled in `previous_opt` check above
