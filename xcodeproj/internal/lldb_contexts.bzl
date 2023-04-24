@@ -1,5 +1,7 @@
 """Module containing functions dealing with the `LLDBContext` DTO."""
 
+load(":memory_efficiency.bzl", "memory_efficient_depset")
+
 def _collect_lldb_context(
         *,
         id,
@@ -34,7 +36,7 @@ def _collect_lldb_context(
             ]
 
     return struct(
-        _clang = depset(
+        _clang = memory_efficient_depset(
             clang,
             transitive = [
                 info.lldb_context._clang
@@ -42,14 +44,14 @@ def _collect_lldb_context(
             ],
             order = "topological",
         ),
-        _framework_search_paths = depset(
+        _framework_search_paths = memory_efficient_depset(
             transitive = framework_paths + [
                 info.lldb_context._framework_search_paths
                 for info in transitive_infos
             ],
             order = "topological",
         ),
-        _swiftmodules = depset(
+        _swiftmodules = memory_efficient_depset(
             swiftmodules,
             transitive = [
                 info.lldb_context._swiftmodules

@@ -1,7 +1,7 @@
 """Module containing functions dealing with target output files."""
 
 load(":filelists.bzl", "filelists")
-load(":frozen_constants.bzl", "EMPTY_DEPSET")
+load(":memory_efficiency.bzl", "EMPTY_DEPSET", "memory_efficient_depset")
 
 # Utility
 
@@ -73,15 +73,15 @@ def _create(
             # everything from the remote cache (because of
             # `--experimental_remote_download_regex`). Reducing the number of
             # items in an output group keeps the BEP small.
-            closest_compiled = depset(compiled[0:1])
+            closest_compiled = memory_efficient_depset(compiled[0:1])
         else:
-            closest_compiled = depset(transitive = [
+            closest_compiled = memory_efficient_depset(transitive = [
                 info.outputs._closest_compiled
                 for info in transitive_infos
                 if not info.outputs._is_framework
             ])
 
-        transitive_indexestores = depset(
+        transitive_indexestores = memory_efficient_depset(
             [indexstore] if indexstore else None,
             transitive = [
                 info.outputs._transitive_indexestores
@@ -92,7 +92,7 @@ def _create(
         # TODO: Once BwB mode no longer has target dependencies, remove
         # transitive products. Until then we need them, to allow `Copy Bazel
         # Outputs` to be able to copy the products of transitive dependencies.
-        transitive_products = depset(
+        transitive_products = memory_efficient_depset(
             direct_products if direct_products else None,
             transitive = [
                 info.outputs._transitive_products
@@ -104,7 +104,7 @@ def _create(
         transitive_indexestores = EMPTY_DEPSET
         transitive_products = EMPTY_DEPSET
 
-    transitive_infoplists = depset(
+    transitive_infoplists = memory_efficient_depset(
         [infoplist] if infoplist else None,
         transitive = [
             info.outputs._transitive_infoplists
@@ -136,7 +136,9 @@ def _create(
             (
                 generated_output_group_name,
                 False,
-                depset(transitive = compiled_and_generated_transitive),
+                memory_efficient_depset(
+                    transitive = compiled_and_generated_transitive,
+                ),
             ),
             (
                 "bi {}".format(direct_outputs.id),
@@ -152,7 +154,7 @@ def _create(
         products_output_group_name = None
         direct_group_list = None
 
-    output_group_list = depset(
+    output_group_list = memory_efficient_depset(
         direct_group_list,
         transitive = [
             info.outputs._output_group_list
@@ -345,7 +347,10 @@ def _process_output_group_files(
     else:
         direct = None
 
-    return depset(direct, transitive = outputs_depsets + [files])
+    return memory_efficient_depset(
+        direct,
+        transitive = outputs_depsets + [files],
+    )
 
 def _to_output_groups_fields(
         *,
@@ -376,7 +381,9 @@ def _to_output_groups_fields(
         for name, is_indexstores, files in outputs._output_group_list.to_list()
     }
 
-    output_groups["all_b"] = depset(transitive = output_groups.values())
+    output_groups["all_b"] = memory_efficient_depset(
+        transitive = output_groups.values(),
+    )
 
     return output_groups
 
