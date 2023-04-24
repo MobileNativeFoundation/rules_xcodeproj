@@ -89,7 +89,6 @@ def _collect_compilation_providers(
 
     return (
         struct(
-            _is_swift = swift_info != None,
             _is_top_level = False,
             _is_xcode_library_target = is_xcode_library_target,
             _propagated_objc = objc,
@@ -150,7 +149,6 @@ def _merge_compilation_providers(
 
     return (
         struct(
-            _is_swift = swift_info != None,
             _is_top_level = True,
             _is_xcode_library_target = False,
             _propagated_objc = propagated_objc,

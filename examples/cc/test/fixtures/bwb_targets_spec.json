@@ -25,8 +25,7 @@
             "n": "lib_impl",
             "p": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib/impl/liblib_impl.lo",
             "t": "com.apple.product-type.library.static"
-        },
-        "s": false
+        }
     },
     "//lib2:lib_impl darwin_x86_64-dbg-STABLE-1",
     {
@@ -53,8 +52,7 @@
             "n": "lib_impl",
             "p": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib2/liblib_impl.a",
             "t": "com.apple.product-type.library.static"
-        },
-        "s": false
+        }
     },
     "//lib:lib_defines darwin_x86_64-dbg-STABLE-1",
     {
@@ -84,8 +82,7 @@
             "n": "lib_defines",
             "p": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib/liblib_defines.a",
             "t": "com.apple.product-type.library.static"
-        },
-        "s": false
+        }
     },
     "//tool:tool darwin_x86_64-dbg-STABLE-1",
     {
@@ -124,8 +121,7 @@
             "n": "tool",
             "p": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/tool/tool",
             "t": "com.apple.product-type.tool"
-        },
-        "s": false
+        }
     },
     "@examples_cc_external//:lib_impl darwin_x86_64-dbg-STABLE-1",
     {
@@ -153,7 +149,6 @@
             "n": "lib_impl",
             "p": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external/liblib_impl.a",
             "t": "com.apple.product-type.library.static"
-        },
-        "s": false
+        }
     }
 ]

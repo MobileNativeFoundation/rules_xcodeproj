@@ -44,8 +44,7 @@ def process_non_xcode_target(
     """
     cc_info = target[CcInfo] if CcInfo in target else None
     objc = target[apple_common.Objc] if apple_common.Objc in target else None
-    is_swift = SwiftInfo in target
-    swift_info = target[SwiftInfo] if is_swift else None
+    swift_info = target[SwiftInfo] if SwiftInfo in target else None
 
     if AppleResourceBundleInfo in target and AppleResourceInfo not in target:
         # `apple_bundle_import` returns a `AppleResourceBundleInfo` and also
@@ -141,7 +140,7 @@ rules_xcodeproj requires {} to have `{}` set.
         inputs = provider_inputs,
         lldb_context = lldb_contexts.collect(
             id = None,
-            is_swift = is_swift,
+            is_swift = False,
             # TODO: Should we still collect this?
             clang_opts = [],
             swiftmodules = swiftmodules,

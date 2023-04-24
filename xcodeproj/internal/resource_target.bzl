@@ -57,7 +57,6 @@ def _process_resource_bundle(bundle, *, information):
         package_bin_dir = package_bin_dir,
         platform = bundle.platform,
         product = product,
-        is_swift = False,
         build_settings = build_settings,
         modulemaps = process_modulemaps(swift_info = None),
         swiftmodules = EMPTY_LIST,

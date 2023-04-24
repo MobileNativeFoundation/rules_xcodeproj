@@ -28,7 +28,6 @@ def _make_xcode_target(
         package_bin_dir,
         platform,
         product,
-        is_swift,
         test_host = None,
         build_settings,
         c_params = None,
@@ -63,7 +62,6 @@ def _make_xcode_target(
             `ctx.bin_dir`.
         platform: The value returned from `process_platform`.
         product: The value returned from `process_product`.
-        is_swift: Whether the target compiles Swift code.
         test_host: The `id` of the target that is the test host for this
             target, or `None` if this target does not have a test host.
         build_settings: A `dict` of Xcode build settings for the target.
@@ -137,7 +135,6 @@ def _make_xcode_target(
         inputs = (
             _to_xcode_target_inputs(inputs) if not compile_target else inputs
         ),
-        is_swift = is_swift,
         outputs = (
             _to_xcode_target_outputs(outputs) if not compile_target else outputs
         ),
@@ -303,7 +300,6 @@ def _merge_xcode_target(*, src, dest):
             src = src.product,
             dest = dest.product,
         ),
-        is_swift = src.is_swift,
         test_host = dest._test_host,
         build_settings = build_settings,
         c_params = src._c_params or dest._c_params,
@@ -464,7 +460,7 @@ def _set_swift_include_paths(
         build_settings,
         xcode_generated_paths,
         xcode_target):
-    if not xcode_target.is_swift:
+    if not xcode_target._swift_params:
         return
 
     def _handle_swiftmodule_path(file):
@@ -566,9 +562,6 @@ def _xcode_target_to_dto(
             "i": xcode_target._compile_target.id,
             "n": xcode_target._compile_target.label.name,
         }
-
-    if not xcode_target.is_swift:
-        dto["s"] = False
 
     if is_unfocused_dependency:
         dto["u"] = True
