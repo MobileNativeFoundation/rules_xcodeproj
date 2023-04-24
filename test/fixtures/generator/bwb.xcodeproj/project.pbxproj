@@ -3578,7 +3578,6 @@
 				PRODUCT_NAME = JJLISO8601DateFormatter;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGET_NAME = JJLISO8601DateFormatter;
 			};
 			name = Profile;
@@ -3688,7 +3687,6 @@
 				PRODUCT_NAME = ZippyJSONCFamily;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGET_NAME = ZippyJSONCFamily;
 			};
 			name = Release;
@@ -3793,7 +3791,6 @@
 				PRODUCT_NAME = PathKit;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_kylef_pathkit/PathKit.rules_xcodeproj.swift.compile.params";
 				TARGET_NAME = PathKit;
 			};
@@ -3831,7 +3828,6 @@
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_INCLUDE_PATHS = "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_apple_swift_collections bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_kylef_pathkit bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_zippyjson bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_tadija_aexml bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_tuist_xcodeproj bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/tools/generator bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_pointfreeco_xctest_dynamic_overlay bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_pointfreeco_swift_custom_dump";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/tools/generator/test/tests.library.rules_xcodeproj.swift.compile.params";
 				TARGET_NAME = tests;
 			};
@@ -3889,7 +3885,6 @@
 				PRODUCT_NAME = XCTestDynamicOverlay;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/XCTestDynamicOverlay.rules_xcodeproj.swift.compile.params";
 				TARGET_NAME = XCTestDynamicOverlay;
 			};
@@ -3965,7 +3960,6 @@
 				PRODUCT_NAME = XCTestDynamicOverlay;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/XCTestDynamicOverlay.rules_xcodeproj.swift.compile.params";
 				TARGET_NAME = XCTestDynamicOverlay;
 			};
@@ -4040,7 +4034,6 @@
 				PRODUCT_NAME = swiftc;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/tools/swiftc_stub/swiftc_stub.library.rules_xcodeproj.swift.compile.params";
 				TARGET_NAME = swiftc;
 			};
@@ -4090,7 +4083,6 @@
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_INCLUDE_PATHS = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_tadija_aexml bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_kylef_pathkit";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_tuist_xcodeproj/XcodeProj.rules_xcodeproj.swift.compile.params";
 				TARGET_NAME = XcodeProj;
 			};
@@ -4128,7 +4120,6 @@
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_INCLUDE_PATHS = "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_apple_swift_collections bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_kylef_pathkit bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_zippyjson bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_tadija_aexml bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_tuist_xcodeproj bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/tools/generator bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_pointfreeco_xctest_dynamic_overlay bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_pointfreeco_swift_custom_dump";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/tools/generator/test/tests.library.rules_xcodeproj.swift.compile.params";
 				TARGET_NAME = tests;
 			};
@@ -4153,7 +4144,6 @@
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_INCLUDE_PATHS = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_pointfreeco_xctest_dynamic_overlay";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_pointfreeco_swift_custom_dump/CustomDump.rules_xcodeproj.swift.compile.params";
 				TARGET_NAME = CustomDump;
 			};
@@ -4184,7 +4174,6 @@
 				PRODUCT_NAME = ZippyJSONCFamily;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGET_NAME = ZippyJSONCFamily;
 			};
 			name = Profile;
@@ -4221,7 +4210,6 @@
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_INCLUDE_PATHS = "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_apple_swift_collections bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_kylef_pathkit bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_zippyjson bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_tadija_aexml bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_tuist_xcodeproj bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/tools/generator bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_pointfreeco_xctest_dynamic_overlay bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_pointfreeco_swift_custom_dump";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/tools/generator/test/tests.library.rules_xcodeproj.swift.compile.params";
 				TARGET_NAME = tests;
 			};
@@ -4275,7 +4263,6 @@
 				PRODUCT_NAME = generator;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGET_NAME = generator;
 			};
 			name = Profile;
@@ -4304,7 +4291,6 @@
 				PRODUCT_NAME = JJLISO8601DateFormatter;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGET_NAME = JJLISO8601DateFormatter;
 			};
 			name = Debug;
@@ -4333,7 +4319,6 @@
 				PRODUCT_NAME = ZippyJSONCFamily;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGET_NAME = ZippyJSONCFamily;
 			};
 			name = Debug;
@@ -4356,7 +4341,6 @@
 				PRODUCT_NAME = ZippyJSON;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_zippyjson/ZippyJSON.rules_xcodeproj.swift.compile.params";
 				TARGET_NAME = ZippyJSON;
 			};
@@ -4381,7 +4365,6 @@
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_INCLUDE_PATHS = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_pointfreeco_xctest_dynamic_overlay";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_pointfreeco_swift_custom_dump/CustomDump.rules_xcodeproj.swift.compile.params";
 				TARGET_NAME = CustomDump;
 			};
@@ -4469,7 +4452,6 @@
 				PRODUCT_NAME = XCTestDynamicOverlay;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/XCTestDynamicOverlay.rules_xcodeproj.swift.compile.params";
 				TARGET_NAME = XCTestDynamicOverlay;
 			};
@@ -4585,7 +4567,6 @@
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_INCLUDE_PATHS = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_pointfreeco_xctest_dynamic_overlay";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_pointfreeco_swift_custom_dump/CustomDump.rules_xcodeproj.swift.compile.params";
 				TARGET_NAME = CustomDump;
 			};
@@ -4614,7 +4595,6 @@
 				PRODUCT_NAME = generator;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGET_NAME = generator;
 			};
 			name = Release;
@@ -4637,7 +4617,6 @@
 				PRODUCT_NAME = OrderedCollections;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_apple_swift_collections/OrderedCollections.rules_xcodeproj.swift.compile.params";
 				TARGET_NAME = OrderedCollections;
 			};
@@ -4689,7 +4668,6 @@
 				PRODUCT_NAME = generator;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGET_NAME = generator;
 			};
 			name = Debug;
@@ -4719,7 +4697,6 @@
 				PRODUCT_NAME = JJLISO8601DateFormatter;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGET_NAME = JJLISO8601DateFormatter;
 			};
 			name = Release;
@@ -4859,7 +4836,6 @@
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_INCLUDE_PATHS = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_apple_swift_collections bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_kylef_pathkit bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_zippyjson bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_tadija_aexml bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_tuist_xcodeproj";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/tools/generator/generator.library.rules_xcodeproj.swift.compile.params";
 				TARGET_NAME = generator.library;
 			};

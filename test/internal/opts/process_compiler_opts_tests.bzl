@@ -41,7 +41,6 @@ def _process_compiler_opts_test_impl(ctx):
 
     expected_build_settings = {
         "ENABLE_STRICT_OBJC_MSGSEND": "True",
-        "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
     }
     if conlyopts or cxxopts or swiftcopts:
         expected_build_settings["DEBUG_INFORMATION_FORMAT"] = ""
@@ -747,9 +746,7 @@ def process_compiler_opts_test_suite(name):
     _add_test(
         name = "{}_swift_option-Onone".format(name),
         swiftcopts = ["-Onone"],
-        expected_build_settings = {
-            "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-        },
+        expected_build_settings = {},
     )
 
     _add_test(

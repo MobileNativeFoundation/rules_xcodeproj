@@ -28,7 +28,6 @@
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example",
             "PRODUCT_MODULE_NAME": "AddressSanitizerApp",
             "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS))",
-            "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
             "SWIFT_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/AddressSanitizerApp/AddressSanitizerApp.library.rules_xcodeproj.swift.compile.params",
             "TARGETED_DEVICE_FAMILY": "1"
         },
@@ -87,7 +86,6 @@
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example",
             "PRODUCT_MODULE_NAME": "ThreadSanitizerApp",
             "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS))",
-            "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
             "SWIFT_PARAMS_FILE": "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/ThreadSanitizerApp/ThreadSanitizerApp.library.rules_xcodeproj.swift.compile.params",
             "TARGETED_DEVICE_FAMILY": "1"
         },
@@ -141,7 +139,6 @@
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/UndefinedBehaviorSanitizerApp/rules_xcodeproj/UndefinedBehaviorSanitizerApp/Info.plist",
             "LINK_PARAMS_FILE": "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/UndefinedBehaviorSanitizerApp.2.link.params",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example",
-            "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
             "TARGETED_DEVICE_FAMILY": "1"
         },
         "c": "applebin_ios-ios_x86_64-dbg-STABLE-2",
