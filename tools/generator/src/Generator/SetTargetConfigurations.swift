@@ -255,6 +255,7 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
         var buildSettings = target.buildSettings
 
         if let linkParams = target.linkParams {
+            // Drop the `bazel-out` prefix since we use the env var for this portion of the path.
             buildSettings.set("LINK_PARAMS_FILE", to: #"""
 $(BAZEL_OUT)\#(linkParams.path.string.dropFirst(9))
 """#)
