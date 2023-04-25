@@ -355,9 +355,14 @@ def _process_targets(
     }
 
     xcode_target_labels = {
-        t.id: replacement_labels.get(t.id, t.label)
+        t.id: t.label
         for t in unprocessed_targets.values()
     }
+    # `replacement_labels` are rare, so we iterate it and update
+    # `xcode_target_labels` instead of looking into it for each label
+    for id, label in replacement_labels.items():
+        xcode_target_labels[id] = label
+
     xcode_target_label_strs = {
         id: bazel_labels.normalize_label(label)
         for id, label in xcode_target_labels.items()
