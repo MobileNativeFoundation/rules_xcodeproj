@@ -358,6 +358,7 @@ def _process_targets(
         t.id: t.label
         for t in unprocessed_targets.values()
     }
+
     # `replacement_labels` are rare, so we iterate it and update
     # `xcode_target_labels` instead of looking into it for each label
     for id, label in replacement_labels.items():
