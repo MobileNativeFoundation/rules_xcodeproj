@@ -217,15 +217,15 @@ def _process_extra_files(
         transitive = extra_folders_depsets,
     ).to_list()
 
-    def _normalize_path(path):
-        configuration, _, suffix = path.partition("/")
-        if not suffix:
-            return path
-        return (
-            configurations_map.get(configuration, configuration) + "/" + suffix
-        )
-
     if is_fixture:
+        def _normalize_path(path):
+            configuration, _, suffix = path.partition("/")
+            if not suffix:
+                return path
+            return (
+                configurations_map.get(configuration, configuration) + "/" +
+                suffix
+            )
         extra_files = [
             _normalize_path(path)
             for path in extra_files
