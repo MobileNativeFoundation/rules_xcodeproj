@@ -274,14 +274,17 @@ def _collect_libraries(
                 libraries.append(static_library)
     return libraries
 
-def _get_transitive_static_libraries(linker_inputs):
+def _get_transitive_static_libraries_for_bwx(linker_inputs):
     return _collect_libraries(
         compilation_providers = linker_inputs._compilation_providers,
         objc_libraries = linker_inputs._objc_libraries,
         cc_linker_inputs = linker_inputs._cc_linker_inputs,
     )
 
-def _get_library_static_libraries(linker_inputs, *, dep_compilation_providers):
+def _get_library_static_libraries_for_bwx(
+        linker_inputs,
+        *,
+        dep_compilation_providers):
     dep_objc_libraries, dep_cc_linker_inputs = _extract_libraries(
         compilation_providers = dep_compilation_providers,
     )
@@ -337,8 +340,12 @@ def _get_primary_static_library(linker_inputs):
 linker_input_files = struct(
     collect = _collect_linker_inputs,
     merge = _merge_linker_inputs,
-    get_library_static_libraries = _get_library_static_libraries,
+    get_library_static_libraries_for_bwx = (
+        _get_library_static_libraries_for_bwx
+    ),
     get_primary_static_library = _get_primary_static_library,
-    get_transitive_static_libraries = _get_transitive_static_libraries,
+    get_transitive_static_libraries_for_bwx = (
+        _get_transitive_static_libraries_for_bwx
+    ),
     to_input_files = _to_input_files,
 )

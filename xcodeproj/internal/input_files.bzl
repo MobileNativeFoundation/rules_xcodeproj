@@ -469,7 +469,7 @@ def _collect_input_files(
             (
                 direct_libraries,
                 transitive_libraries,
-            ) = linker_input_files.get_library_static_libraries(
+            ) = linker_input_files.get_library_static_libraries_for_bwx(
                 linker_inputs = linker_inputs,
                 dep_compilation_providers = dep_compilation_providers,
             )
@@ -487,7 +487,7 @@ def _collect_input_files(
                 )
         else:
             unfocused_generated_linking = (
-                linker_input_files.get_transitive_static_libraries(
+                linker_input_files.get_transitive_static_libraries_for_bwx(
                     linker_inputs = linker_inputs,
                 )
             )
