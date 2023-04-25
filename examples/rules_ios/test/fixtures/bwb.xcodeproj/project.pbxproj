@@ -3244,9 +3244,9 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				"ARCHS[sdk=iphoneos*]" = arm64;
-				BAZEL_COMPILE_TARGET_ID = "//iOSApp/Source:iOSApp.library_swift ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1";
-				"BAZEL_COMPILE_TARGET_ID[sdk=iphoneos*]" = "//iOSApp/Source:iOSApp.library_swift ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2";
-				"BAZEL_COMPILE_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_ID)";
+				BAZEL_COMPILE_TARGET_IDS = "//iOSApp/Source:iOSApp.library_swift ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1";
+				"BAZEL_COMPILE_TARGET_IDS[sdk=iphoneos*]" = "//iOSApp/Source:iOSApp.library_swift ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2";
+				"BAZEL_COMPILE_TARGET_IDS[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//iOSApp/Source:iOSApp.library";
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source";
 				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2/bin/iOSApp/Source";
@@ -3354,8 +3354,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_COMPILE_TARGET_ID = "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests_swift ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1";
-				"BAZEL_COMPILE_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_ID)";
+				BAZEL_COMPILE_TARGET_IDS = "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests_swift ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1";
+				"BAZEL_COMPILE_TARGET_IDS[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests";
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTests.__internal__.__test_bundle.zip";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Test/SwiftUnitTests";
@@ -3429,8 +3429,8 @@
 					"-Wno-macro-redefined",
 					"-D_FORTIFY_SOURCE=0",
 				);
-				BAZEL_COMPILE_TARGET_ID = "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests_objc ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1";
-				"BAZEL_COMPILE_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_ID)";
+				BAZEL_COMPILE_TARGET_IDS = "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests_objc ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1";
+				"BAZEL_COMPILE_TARGET_IDS[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests";
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests.__internal__.__test_bundle.zip";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Test/ObjCUnitTests";
@@ -3520,9 +3520,9 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				"ARCHS[sdk=iphoneos*]" = arm64;
-				BAZEL_COMPILE_TARGET_ID = "//WidgetExtension:WidgetExtension.library_swift ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1";
-				"BAZEL_COMPILE_TARGET_ID[sdk=iphoneos*]" = "//WidgetExtension:WidgetExtension.library_swift ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2";
-				"BAZEL_COMPILE_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_ID)";
+				BAZEL_COMPILE_TARGET_IDS = "//WidgetExtension:WidgetExtension.library_swift ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1";
+				"BAZEL_COMPILE_TARGET_IDS[sdk=iphoneos*]" = "//WidgetExtension:WidgetExtension.library_swift ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2";
+				"BAZEL_COMPILE_TARGET_IDS[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//WidgetExtension:WidgetExtension.library";
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/WidgetExtension";
 				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2/bin/WidgetExtension";

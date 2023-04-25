@@ -8,10 +8,12 @@
             "m": "15.0",
             "v": "iphoneos"
         },
-        "3": {
-            "i": "//AppClip:AppClip.library ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4",
-            "n": "AppClip.library"
-        },
+        "3": [
+            {
+                "i": "//AppClip:AppClip.library ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4",
+                "n": "AppClip.library"
+            }
+        ],
         "5": {
             "d": [
                 "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework"
@@ -78,10 +80,12 @@
             "m": "15.0",
             "v": "iphoneos"
         },
-        "3": {
-            "i": "//AppClip:AppClip.library ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10",
-            "n": "AppClip.library"
-        },
+        "3": [
+            {
+                "i": "//AppClip:AppClip.library ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10",
+                "n": "AppClip.library"
+            }
+        ],
         "5": {
             "d": [
                 "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework"
@@ -151,10 +155,12 @@
             "m": "15.0",
             "v": "iphonesimulator"
         },
-        "3": {
-            "i": "//AppClip:AppClip.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
-            "n": "AppClip.library"
-        },
+        "3": [
+            {
+                "i": "//AppClip:AppClip.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
+                "n": "AppClip.library"
+            }
+        ],
         "5": {
             "d": [
                 "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework"
@@ -220,10 +226,12 @@
             "m": "15.0",
             "v": "iphonesimulator"
         },
-        "3": {
-            "i": "//AppClip:AppClip.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7",
-            "n": "AppClip.library"
-        },
+        "3": [
+            {
+                "i": "//AppClip:AppClip.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7",
+                "n": "AppClip.library"
+            }
+        ],
         "5": {
             "d": [
                 "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework"
@@ -291,10 +299,12 @@
             "m": "12.0",
             "v": "macosx"
         },
-        "3": {
-            "i": "//Bundle:aplugin.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-29",
-            "n": "aplugin.library"
-        },
+        "3": [
+            {
+                "i": "//Bundle:aplugin.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-29",
+                "n": "aplugin.library"
+            }
+        ],
         "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/Bundle.31.link.params",
         "8": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-29/bin/Bundle/aplugin.library.rules_xcodeproj.c.compile.params",
         "b": {
@@ -333,10 +343,12 @@
             "m": "12.0",
             "v": "macosx"
         },
-        "3": {
-            "i": "//Bundle:aplugin.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-30",
-            "n": "aplugin.library"
-        },
+        "3": [
+            {
+                "i": "//Bundle:aplugin.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-30",
+                "n": "aplugin.library"
+            }
+        ],
         "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/Bundle.107.link.params",
         "8": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-30/bin/Bundle/aplugin.library.rules_xcodeproj.c.compile.params",
         "b": {
@@ -378,10 +390,12 @@
             "m": "11.0",
             "v": "macosx"
         },
-        "3": {
-            "i": "//CommandLine/CommandLineTool:tool.library macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33",
-            "n": "tool.library"
-        },
+        "3": [
+            {
+                "i": "//CommandLine/CommandLineTool:tool.library macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33",
+                "n": "tool.library"
+            }
+        ],
         "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/CommandLineTool.51.link.params",
         "8": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/CommandLine/CommandLineTool/tool.library.rules_xcodeproj.c.compile.params",
         "b": {
@@ -425,10 +439,12 @@
             "m": "11.0",
             "v": "macosx"
         },
-        "3": {
-            "i": "//CommandLine/CommandLineTool:tool.library macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36",
-            "n": "tool.library"
-        },
+        "3": [
+            {
+                "i": "//CommandLine/CommandLineTool:tool.library macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36",
+                "n": "tool.library"
+            }
+        ],
         "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/CommandLineTool.127.link.params",
         "8": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineTool/tool.library.rules_xcodeproj.c.compile.params",
         "b": {
@@ -475,10 +491,12 @@
             "m": "11.0",
             "v": "macosx"
         },
-        "3": {
-            "i": "//CommandLine/CommandLineTool:tool.library macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34",
-            "n": "tool.library"
-        },
+        "3": [
+            {
+                "i": "//CommandLine/CommandLineTool:tool.library macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34",
+                "n": "tool.library"
+            }
+        ],
         "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/UniversalCommandLineTool.57.link.params",
         "8": "bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34/bin/CommandLine/CommandLineTool/tool.library.rules_xcodeproj.c.compile.params",
         "b": {
@@ -519,10 +537,12 @@
             "m": "11.0",
             "v": "macosx"
         },
-        "3": {
-            "i": "//CommandLine/CommandLineTool:tool.library macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37",
-            "n": "tool.library"
-        },
+        "3": [
+            {
+                "i": "//CommandLine/CommandLineTool:tool.library macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37",
+                "n": "tool.library"
+            }
+        ],
         "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/UniversalCommandLineTool.133.link.params",
         "8": "bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37/bin/CommandLine/CommandLineTool/tool.library.rules_xcodeproj.c.compile.params",
         "b": {
@@ -566,10 +586,12 @@
             "m": "11.0",
             "v": "macosx"
         },
-        "3": {
-            "i": "//CommandLine/CommandLineTool:tool.library macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35",
-            "n": "tool.library"
-        },
+        "3": [
+            {
+                "i": "//CommandLine/CommandLineTool:tool.library macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35",
+                "n": "tool.library"
+            }
+        ],
         "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/UniversalCommandLineTool.63.link.params",
         "8": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35/bin/CommandLine/CommandLineTool/tool.library.rules_xcodeproj.c.compile.params",
         "b": {
@@ -610,10 +632,12 @@
             "m": "11.0",
             "v": "macosx"
         },
-        "3": {
-            "i": "//CommandLine/CommandLineTool:tool.library macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38",
-            "n": "tool.library"
-        },
+        "3": [
+            {
+                "i": "//CommandLine/CommandLineTool:tool.library macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38",
+                "n": "tool.library"
+            }
+        ],
         "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/UniversalCommandLineTool.139.link.params",
         "8": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38/bin/CommandLine/CommandLineTool/tool.library.rules_xcodeproj.c.compile.params",
         "b": {
@@ -1486,10 +1510,12 @@
             "m": "11.0",
             "v": "macosx"
         },
-        "3": {
-            "i": "//CommandLine/Tests:CommandLineLibSwiftTestsLib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33",
-            "n": "CommandLineLibSwiftTestsLib"
-        },
+        "3": [
+            {
+                "i": "//CommandLine/Tests:CommandLineLibSwiftTestsLib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33",
+                "n": "CommandLineLibSwiftTestsLib"
+            }
+        ],
         "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/CommandLineToolTests.64.link.params",
         "b": {
             "CODE_SIGN_STYLE": "Manual",
@@ -1540,10 +1566,12 @@
             "m": "11.0",
             "v": "macosx"
         },
-        "3": {
-            "i": "//CommandLine/Tests:CommandLineLibSwiftTestsLib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36",
-            "n": "CommandLineLibSwiftTestsLib"
-        },
+        "3": [
+            {
+                "i": "//CommandLine/Tests:CommandLineLibSwiftTestsLib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36",
+                "n": "CommandLineLibSwiftTestsLib"
+            }
+        ],
         "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/CommandLineToolTests.140.link.params",
         "b": {
             "CODE_SIGN_STYLE": "Manual",
@@ -3337,10 +3365,12 @@
             "m": "15.0",
             "v": "iphoneos"
         },
-        "3": {
-            "i": "//UI:UI ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4",
-            "n": "UI"
-        },
+        "3": [
+            {
+                "i": "//UI:UI ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4",
+                "n": "UI"
+            }
+        ],
         "5": {
             "d": [
                 "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework",
@@ -3404,10 +3434,12 @@
             "m": "15.0",
             "v": "iphoneos"
         },
-        "3": {
-            "i": "//UI:UI ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10",
-            "n": "UI"
-        },
+        "3": [
+            {
+                "i": "//UI:UI ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10",
+                "n": "UI"
+            }
+        ],
         "5": {
             "d": [
                 "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework",
@@ -3475,10 +3507,12 @@
             "m": "15.0",
             "v": "iphonesimulator"
         },
-        "3": {
-            "i": "//UI:UI ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
-            "n": "UI"
-        },
+        "3": [
+            {
+                "i": "//UI:UI ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
+                "n": "UI"
+            }
+        ],
         "5": {
             "d": [
                 "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework",
@@ -3542,10 +3576,12 @@
             "m": "15.0",
             "v": "iphonesimulator"
         },
-        "3": {
-            "i": "//UI:UI ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7",
-            "n": "UI"
-        },
+        "3": [
+            {
+                "i": "//UI:UI ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7",
+                "n": "UI"
+            }
+        ],
         "5": {
             "d": [
                 "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework",
@@ -3613,10 +3649,12 @@
             "m": "15.0",
             "v": "appletvos"
         },
-        "3": {
-            "i": "//UI:UI tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-6",
-            "n": "UI"
-        },
+        "3": [
+            {
+                "i": "//UI:UI tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-6",
+                "n": "UI"
+            }
+        ],
         "5": {
             "d": [
                 "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework",
@@ -3676,10 +3714,12 @@
             "m": "15.0",
             "v": "appletvos"
         },
-        "3": {
-            "i": "//UI:UI tvos-arm64-min15.0-applebin_tvos-tvos_arm64-opt-STABLE-12",
-            "n": "UI"
-        },
+        "3": [
+            {
+                "i": "//UI:UI tvos-arm64-min15.0-applebin_tvos-tvos_arm64-opt-STABLE-12",
+                "n": "UI"
+            }
+        ],
         "5": {
             "d": [
                 "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework",
@@ -3743,10 +3783,12 @@
             "m": "15.0",
             "v": "appletvsimulator"
         },
-        "3": {
-            "i": "//UI:UI tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3",
-            "n": "UI"
-        },
+        "3": [
+            {
+                "i": "//UI:UI tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3",
+                "n": "UI"
+            }
+        ],
         "5": {
             "d": [
                 "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework",
@@ -3806,10 +3848,12 @@
             "m": "15.0",
             "v": "appletvsimulator"
         },
-        "3": {
-            "i": "//UI:UI tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9",
-            "n": "UI"
-        },
+        "3": [
+            {
+                "i": "//UI:UI tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9",
+                "n": "UI"
+            }
+        ],
         "5": {
             "d": [
                 "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework",
@@ -3873,10 +3917,12 @@
             "m": "7.0",
             "v": "watchos"
         },
-        "3": {
-            "i": "//UI:UI watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-5",
-            "n": "UI"
-        },
+        "3": [
+            {
+                "i": "//UI:UI watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-5",
+                "n": "UI"
+            }
+        ],
         "5": {
             "d": [
                 "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework",
@@ -3936,10 +3982,12 @@
             "m": "7.0",
             "v": "watchos"
         },
-        "3": {
-            "i": "//UI:UI watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-opt-STABLE-11",
-            "n": "UI"
-        },
+        "3": [
+            {
+                "i": "//UI:UI watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-opt-STABLE-11",
+                "n": "UI"
+            }
+        ],
         "5": {
             "d": [
                 "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework",
@@ -4003,10 +4051,12 @@
             "m": "7.0",
             "v": "watchsimulator"
         },
-        "3": {
-            "i": "//UI:UI watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2",
-            "n": "UI"
-        },
+        "3": [
+            {
+                "i": "//UI:UI watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2",
+                "n": "UI"
+            }
+        ],
         "5": {
             "d": [
                 "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework",
@@ -4066,10 +4116,12 @@
             "m": "7.0",
             "v": "watchsimulator"
         },
-        "3": {
-            "i": "//UI:UI watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8",
-            "n": "UI"
-        },
+        "3": [
+            {
+                "i": "//UI:UI watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8",
+                "n": "UI"
+            }
+        ],
         "5": {
             "d": [
                 "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework",
@@ -4133,10 +4185,12 @@
             "m": "15.0",
             "v": "iphoneos"
         },
-        "3": {
-            "i": "//WidgetExtension:WidgetExtension.library ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4",
-            "n": "WidgetExtension.library"
-        },
+        "3": [
+            {
+                "i": "//WidgetExtension:WidgetExtension.library ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4",
+                "n": "WidgetExtension.library"
+            }
+        ],
         "5": {
             "d": [
                 "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework"
@@ -4200,10 +4254,12 @@
             "m": "15.0",
             "v": "iphoneos"
         },
-        "3": {
-            "i": "//WidgetExtension:WidgetExtension.library ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10",
-            "n": "WidgetExtension.library"
-        },
+        "3": [
+            {
+                "i": "//WidgetExtension:WidgetExtension.library ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10",
+                "n": "WidgetExtension.library"
+            }
+        ],
         "5": {
             "d": [
                 "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework"
@@ -4271,10 +4327,12 @@
             "m": "15.0",
             "v": "iphonesimulator"
         },
-        "3": {
-            "i": "//WidgetExtension:WidgetExtension.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
-            "n": "WidgetExtension.library"
-        },
+        "3": [
+            {
+                "i": "//WidgetExtension:WidgetExtension.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
+                "n": "WidgetExtension.library"
+            }
+        ],
         "5": {
             "d": [
                 "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework"
@@ -4337,10 +4395,12 @@
             "m": "15.0",
             "v": "iphonesimulator"
         },
-        "3": {
-            "i": "//WidgetExtension:WidgetExtension.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7",
-            "n": "WidgetExtension.library"
-        },
+        "3": [
+            {
+                "i": "//WidgetExtension:WidgetExtension.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7",
+                "n": "WidgetExtension.library"
+            }
+        ],
         "5": {
             "d": [
                 "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework"
@@ -4490,10 +4550,12 @@
             "m": "15.0",
             "v": "iphonesimulator"
         },
-        "3": {
-            "i": "//iMessageApp:iMessageAppExtension.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
-            "n": "iMessageAppExtension.library"
-        },
+        "3": [
+            {
+                "i": "//iMessageApp:iMessageAppExtension.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
+                "n": "iMessageAppExtension.library"
+            }
+        ],
         "5": {
             "d": [
                 "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework"
@@ -4556,10 +4618,12 @@
             "m": "15.0",
             "v": "iphonesimulator"
         },
-        "3": {
-            "i": "//iMessageApp:iMessageAppExtension.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7",
-            "n": "iMessageAppExtension.library"
-        },
+        "3": [
+            {
+                "i": "//iMessageApp:iMessageAppExtension.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7",
+                "n": "iMessageAppExtension.library"
+            }
+        ],
         "5": {
             "d": [
                 "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework"
@@ -5236,10 +5300,12 @@
             "m": "15.0",
             "v": "iphoneos"
         },
-        "3": {
-            "i": "//iOSApp/Source/CoreUtilsObjC:CoreUtilsObjC ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4",
-            "n": "CoreUtilsObjC"
-        },
+        "3": [
+            {
+                "i": "//iOSApp/Source/CoreUtilsObjC:CoreUtilsObjC ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4",
+                "n": "CoreUtilsObjC"
+            }
+        ],
         "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/FrameworkCoreUtilsObjC.70.link.params",
         "9": "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.rules_xcodeproj.cxx.compile.params",
         "F": true,
@@ -5287,10 +5353,12 @@
             "m": "15.0",
             "v": "iphoneos"
         },
-        "3": {
-            "i": "//iOSApp/Source/CoreUtilsObjC:CoreUtilsObjC ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10",
-            "n": "CoreUtilsObjC"
-        },
+        "3": [
+            {
+                "i": "//iOSApp/Source/CoreUtilsObjC:CoreUtilsObjC ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10",
+                "n": "CoreUtilsObjC"
+            }
+        ],
         "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/FrameworkCoreUtilsObjC.146.link.params",
         "9": "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.rules_xcodeproj.cxx.compile.params",
         "F": true,
@@ -5341,10 +5409,12 @@
             "m": "15.0",
             "v": "iphonesimulator"
         },
-        "3": {
-            "i": "//iOSApp/Source/CoreUtilsObjC:CoreUtilsObjC ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
-            "n": "CoreUtilsObjC"
-        },
+        "3": [
+            {
+                "i": "//iOSApp/Source/CoreUtilsObjC:CoreUtilsObjC ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
+                "n": "CoreUtilsObjC"
+            }
+        ],
         "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/FrameworkCoreUtilsObjC.15.link.params",
         "9": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.rules_xcodeproj.cxx.compile.params",
         "F": true,
@@ -5392,10 +5462,12 @@
             "m": "15.0",
             "v": "iphonesimulator"
         },
-        "3": {
-            "i": "//iOSApp/Source/CoreUtilsObjC:CoreUtilsObjC ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7",
-            "n": "CoreUtilsObjC"
-        },
+        "3": [
+            {
+                "i": "//iOSApp/Source/CoreUtilsObjC:CoreUtilsObjC ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7",
+                "n": "CoreUtilsObjC"
+            }
+        ],
         "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/FrameworkCoreUtilsObjC.91.link.params",
         "9": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.rules_xcodeproj.cxx.compile.params",
         "F": true,
@@ -5514,10 +5586,12 @@
             "m": "15.0",
             "v": "iphoneos"
         },
-        "3": {
-            "i": "//iOSApp/Source:iOSApp.library ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4",
-            "n": "iOSApp.library"
-        },
+        "3": [
+            {
+                "i": "//iOSApp/Source:iOSApp.library ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4",
+                "n": "iOSApp.library"
+            }
+        ],
         "5": {
             "d": [
                 "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework",
@@ -5616,10 +5690,12 @@
             "m": "15.0",
             "v": "iphoneos"
         },
-        "3": {
-            "i": "//iOSApp/Source:iOSApp.library ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10",
-            "n": "iOSApp.library"
-        },
+        "3": [
+            {
+                "i": "//iOSApp/Source:iOSApp.library ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10",
+                "n": "iOSApp.library"
+            }
+        ],
         "5": {
             "d": [
                 "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework",
@@ -5721,10 +5797,12 @@
             "m": "15.0",
             "v": "iphonesimulator"
         },
-        "3": {
-            "i": "//iOSApp/Source:iOSApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
-            "n": "iOSApp.library"
-        },
+        "3": [
+            {
+                "i": "//iOSApp/Source:iOSApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
+                "n": "iOSApp.library"
+            }
+        ],
         "5": {
             "d": [
                 "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework",
@@ -5822,10 +5900,12 @@
             "m": "15.0",
             "v": "iphonesimulator"
         },
-        "3": {
-            "i": "//iOSApp/Source:iOSApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7",
-            "n": "iOSApp.library"
-        },
+        "3": [
+            {
+                "i": "//iOSApp/Source:iOSApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7",
+                "n": "iOSApp.library"
+            }
+        ],
         "5": {
             "d": [
                 "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework",
@@ -5925,10 +6005,12 @@
             "m": "15.0",
             "v": "iphonesimulator"
         },
-        "3": {
-            "i": "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
-            "n": "iOSAppObjCUnitTests.library"
-        },
+        "3": [
+            {
+                "i": "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
+                "n": "iOSAppObjCUnitTests.library"
+            }
+        ],
         "5": {
             "d": [
                 "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework",
@@ -5991,10 +6073,12 @@
             "m": "15.0",
             "v": "iphonesimulator"
         },
-        "3": {
-            "i": "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7",
-            "n": "iOSAppObjCUnitTests.library"
-        },
+        "3": [
+            {
+                "i": "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7",
+                "n": "iOSAppObjCUnitTests.library"
+            }
+        ],
         "5": {
             "d": [
                 "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework",
@@ -6061,10 +6145,12 @@
             "m": "15.0",
             "v": "iphonesimulator"
         },
-        "3": {
-            "i": "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
-            "n": "iOSAppSwiftUnitTests.library"
-        },
+        "3": [
+            {
+                "i": "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
+                "n": "iOSAppSwiftUnitTests.library"
+            }
+        ],
         "5": {
             "d": [
                 "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework",
@@ -6134,10 +6220,12 @@
             "m": "15.0",
             "v": "iphonesimulator"
         },
-        "3": {
-            "i": "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7",
-            "n": "iOSAppSwiftUnitTests.library"
-        },
+        "3": [
+            {
+                "i": "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7",
+                "n": "iOSAppSwiftUnitTests.library"
+            }
+        ],
         "5": {
             "d": [
                 "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework",
@@ -6359,10 +6447,12 @@
             "m": "12.0",
             "v": "macosx"
         },
-        "3": {
-            "i": "//macOSApp/Source:macOSApp.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-29",
-            "n": "macOSApp.library"
-        },
+        "3": [
+            {
+                "i": "//macOSApp/Source:macOSApp.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-29",
+                "n": "macOSApp.library"
+            }
+        ],
         "5": {
             "d": [
                 "macOSApp/third_party/ExampleFramework.framework"
@@ -6421,10 +6511,12 @@
             "m": "12.0",
             "v": "macosx"
         },
-        "3": {
-            "i": "//macOSApp/Source:macOSApp.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-30",
-            "n": "macOSApp.library"
-        },
+        "3": [
+            {
+                "i": "//macOSApp/Source:macOSApp.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-30",
+                "n": "macOSApp.library"
+            }
+        ],
         "5": {
             "d": [
                 "macOSApp/third_party/ExampleFramework.framework"
@@ -6486,10 +6578,12 @@
             "m": "12.0",
             "v": "macosx"
         },
-        "3": {
-            "i": "//macOSApp/Test/UITests:macOSAppUITests.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-29",
-            "n": "macOSAppUITests.library"
-        },
+        "3": [
+            {
+                "i": "//macOSApp/Test/UITests:macOSAppUITests.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-29",
+                "n": "macOSAppUITests.library"
+            }
+        ],
         "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/macOSAppUITests.41.link.params",
         "b": {
             "CODE_SIGN_STYLE": "Manual",
@@ -6537,10 +6631,12 @@
             "m": "12.0",
             "v": "macosx"
         },
-        "3": {
-            "i": "//macOSApp/Test/UITests:macOSAppUITests.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-30",
-            "n": "macOSAppUITests.library"
-        },
+        "3": [
+            {
+                "i": "//macOSApp/Test/UITests:macOSAppUITests.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-30",
+                "n": "macOSAppUITests.library"
+            }
+        ],
         "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/macOSAppUITests.117.link.params",
         "b": {
             "CODE_SIGN_STYLE": "Manual",
@@ -6592,10 +6688,12 @@
             "m": "15.0",
             "v": "appletvos"
         },
-        "3": {
-            "i": "//tvOSApp/Source:tvOSApp.library tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-6",
-            "n": "tvOSApp.library"
-        },
+        "3": [
+            {
+                "i": "//tvOSApp/Source:tvOSApp.library tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-6",
+                "n": "tvOSApp.library"
+            }
+        ],
         "5": {
             "d": [
                 "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework",
@@ -6659,10 +6757,12 @@
             "m": "15.0",
             "v": "appletvos"
         },
-        "3": {
-            "i": "//tvOSApp/Source:tvOSApp.library tvos-arm64-min15.0-applebin_tvos-tvos_arm64-opt-STABLE-12",
-            "n": "tvOSApp.library"
-        },
+        "3": [
+            {
+                "i": "//tvOSApp/Source:tvOSApp.library tvos-arm64-min15.0-applebin_tvos-tvos_arm64-opt-STABLE-12",
+                "n": "tvOSApp.library"
+            }
+        ],
         "5": {
             "d": [
                 "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework",
@@ -6729,10 +6829,12 @@
             "m": "15.0",
             "v": "appletvsimulator"
         },
-        "3": {
-            "i": "//tvOSApp/Source:tvOSApp.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3",
-            "n": "tvOSApp.library"
-        },
+        "3": [
+            {
+                "i": "//tvOSApp/Source:tvOSApp.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3",
+                "n": "tvOSApp.library"
+            }
+        ],
         "5": {
             "d": [
                 "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework",
@@ -6795,10 +6897,12 @@
             "m": "15.0",
             "v": "appletvsimulator"
         },
-        "3": {
-            "i": "//tvOSApp/Source:tvOSApp.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9",
-            "n": "tvOSApp.library"
-        },
+        "3": [
+            {
+                "i": "//tvOSApp/Source:tvOSApp.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9",
+                "n": "tvOSApp.library"
+            }
+        ],
         "5": {
             "d": [
                 "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework",
@@ -6864,10 +6968,12 @@
             "m": "15.0",
             "v": "appletvsimulator"
         },
-        "3": {
-            "i": "//tvOSApp/Test/UITests:tvOSAppUITests.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3",
-            "n": "tvOSAppUITests.library"
-        },
+        "3": [
+            {
+                "i": "//tvOSApp/Test/UITests:tvOSAppUITests.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3",
+                "n": "tvOSAppUITests.library"
+            }
+        ],
         "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/tvOSAppUITests.42.link.params",
         "b": {
             "CODE_SIGN_STYLE": "Manual",
@@ -6915,10 +7021,12 @@
             "m": "15.0",
             "v": "appletvsimulator"
         },
-        "3": {
-            "i": "//tvOSApp/Test/UITests:tvOSAppUITests.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9",
-            "n": "tvOSAppUITests.library"
-        },
+        "3": [
+            {
+                "i": "//tvOSApp/Test/UITests:tvOSAppUITests.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9",
+                "n": "tvOSAppUITests.library"
+            }
+        ],
         "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/tvOSAppUITests.118.link.params",
         "b": {
             "CODE_SIGN_STYLE": "Manual",
@@ -6970,10 +7078,12 @@
             "m": "15.0",
             "v": "appletvsimulator"
         },
-        "3": {
-            "i": "//tvOSApp/Test/UnitTests:tvOSAppUnitTests.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3",
-            "n": "tvOSAppUnitTests.library"
-        },
+        "3": [
+            {
+                "i": "//tvOSApp/Test/UnitTests:tvOSAppUnitTests.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3",
+                "n": "tvOSAppUnitTests.library"
+            }
+        ],
         "5": {
             "d": [
                 "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework",
@@ -7033,10 +7143,12 @@
             "m": "15.0",
             "v": "appletvsimulator"
         },
-        "3": {
-            "i": "//tvOSApp/Test/UnitTests:tvOSAppUnitTests.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9",
-            "n": "tvOSAppUnitTests.library"
-        },
+        "3": [
+            {
+                "i": "//tvOSApp/Test/UnitTests:tvOSAppUnitTests.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9",
+                "n": "tvOSAppUnitTests.library"
+            }
+        ],
         "5": {
             "d": [
                 "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework",
@@ -7100,10 +7212,12 @@
             "m": "7.0",
             "v": "watchsimulator"
         },
-        "3": {
-            "i": "//watchOSApp/Test/UITests:watchOSAppUITests.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2",
-            "n": "watchOSAppUITests.library"
-        },
+        "3": [
+            {
+                "i": "//watchOSApp/Test/UITests:watchOSAppUITests.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2",
+                "n": "watchOSAppUITests.library"
+            }
+        ],
         "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/watchOSAppUITests.44.link.params",
         "b": {
             "CODE_SIGN_STYLE": "Manual",
@@ -7151,10 +7265,12 @@
             "m": "7.0",
             "v": "watchsimulator"
         },
-        "3": {
-            "i": "//watchOSApp/Test/UITests:watchOSAppUITests.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8",
-            "n": "watchOSAppUITests.library"
-        },
+        "3": [
+            {
+                "i": "//watchOSApp/Test/UITests:watchOSAppUITests.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8",
+                "n": "watchOSAppUITests.library"
+            }
+        ],
         "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/watchOSAppUITests.120.link.params",
         "b": {
             "CODE_SIGN_STYLE": "Manual",
@@ -7370,10 +7486,12 @@
             "m": "7.0",
             "v": "watchsimulator"
         },
-        "3": {
-            "i": "//watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2",
-            "n": "watchOSAppExtensionUnitTests.library"
-        },
+        "3": [
+            {
+                "i": "//watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2",
+                "n": "watchOSAppExtensionUnitTests.library"
+            }
+        ],
         "5": {
             "d": [
                 "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework",
@@ -7432,10 +7550,12 @@
             "m": "7.0",
             "v": "watchsimulator"
         },
-        "3": {
-            "i": "//watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8",
-            "n": "watchOSAppExtensionUnitTests.library"
-        },
+        "3": [
+            {
+                "i": "//watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8",
+                "n": "watchOSAppExtensionUnitTests.library"
+            }
+        ],
         "5": {
             "d": [
                 "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework",
@@ -7498,10 +7618,12 @@
             "m": "7.0",
             "v": "watchos"
         },
-        "3": {
-            "i": "//watchOSAppExtension:watchOSAppExtension.library watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-5",
-            "n": "watchOSAppExtension.library"
-        },
+        "3": [
+            {
+                "i": "//watchOSAppExtension:watchOSAppExtension.library watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-5",
+                "n": "watchOSAppExtension.library"
+            }
+        ],
         "5": {
             "d": [
                 "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework",
@@ -7565,10 +7687,12 @@
             "m": "7.0",
             "v": "watchos"
         },
-        "3": {
-            "i": "//watchOSAppExtension:watchOSAppExtension.library watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-opt-STABLE-11",
-            "n": "watchOSAppExtension.library"
-        },
+        "3": [
+            {
+                "i": "//watchOSAppExtension:watchOSAppExtension.library watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-opt-STABLE-11",
+                "n": "watchOSAppExtension.library"
+            }
+        ],
         "5": {
             "d": [
                 "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework",
@@ -7636,10 +7760,12 @@
             "m": "7.0",
             "v": "watchsimulator"
         },
-        "3": {
-            "i": "//watchOSAppExtension:watchOSAppExtension.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2",
-            "n": "watchOSAppExtension.library"
-        },
+        "3": [
+            {
+                "i": "//watchOSAppExtension:watchOSAppExtension.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2",
+                "n": "watchOSAppExtension.library"
+            }
+        ],
         "5": {
             "d": [
                 "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework",
@@ -7702,10 +7828,12 @@
             "m": "7.0",
             "v": "watchsimulator"
         },
-        "3": {
-            "i": "//watchOSAppExtension:watchOSAppExtension.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8",
-            "n": "watchOSAppExtension.library"
-        },
+        "3": [
+            {
+                "i": "//watchOSAppExtension:watchOSAppExtension.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8",
+                "n": "watchOSAppExtension.library"
+            }
+        ],
         "5": {
             "d": [
                 "external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework",

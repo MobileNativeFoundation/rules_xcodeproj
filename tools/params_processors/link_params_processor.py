@@ -10,7 +10,7 @@ def _main(
         xcode_generated_paths_path: str,
         generated_framework_search_paths_path: str,
         is_framework: bool,
-        self_linked_path: str,
+        generated_product_paths_file: str,
         swift_triple: str,
         output_path: str,
         args_files: List[str]
@@ -21,13 +21,16 @@ def _main(
     with open(generated_framework_search_paths_path, encoding = "utf-8") as fp:
         generated_framework_search_paths = json.load(fp)
 
+    with open(generated_product_paths_file, encoding = "utf-8") as fp:
+        generated_product_paths = json.load(fp)
+
     linkopts = _process_linkopts(
         # First argument is the tool name
         linkopts = _parse_args(args_files),
         xcode_generated_paths = xcode_generated_paths,
         generated_framework_search_paths = generated_framework_search_paths,
         is_framework = is_framework,
-        self_linked_path = self_linked_path,
+        generated_product_paths = generated_product_paths,
         swift_triple = swift_triple
     )
 
@@ -87,7 +90,7 @@ def _process_linkopts(
         xcode_generated_paths: Dict[str, str],
         generated_framework_search_paths: Dict[str, Dict[str, str]],
         is_framework: bool,
-        self_linked_path: str,
+        generated_product_paths: List[str],
         swift_triple: str
     ) -> List[str]:
     def _process_filelist(filelist_path: str) -> List[str]:
@@ -97,7 +100,7 @@ def _process_linkopts(
         return [
             _quote_if_needed(xcode_generated_paths.get(path, path))
             for path in paths
-            if path != self_linked_path and not path.endswith(".o")
+            if not path in generated_product_paths and not path.endswith(".o")
         ]
 
     def _process_linkopt_value(value: str):
@@ -131,7 +134,9 @@ def _process_linkopts(
             # `_process_filelist` applies quoting if needed
             processed_linkopts.extend(_process_filelist(opt))
             return
-        if opt.endswith(self_linked_path):
+        
+        opt_generated_path_matches = [path for path in generated_product_paths if opt.endswith(path)]
+        if opt_generated_path_matches:
             if last_opt == "-force_load":
                 processed_linkopts.pop()
             return

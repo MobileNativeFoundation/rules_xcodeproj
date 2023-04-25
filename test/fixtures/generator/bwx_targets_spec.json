@@ -8,10 +8,12 @@
             "m": "12.0",
             "v": "macosx"
         },
-        "3": {
-            "i": "//tools/generator/test:tests.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
-            "n": "tests.library"
-        },
+        "3": [
+            {
+                "i": "//tools/generator/test:tests.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
+                "n": "tests.library"
+            }
+        ],
         "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/generator/xcodeproj_bwx/xcodeproj_bwx-params/tests.10.link.params",
         "b": {
             "CODE_SIGN_STYLE": "Manual",
@@ -109,10 +111,12 @@
             "m": "12.0",
             "v": "macosx"
         },
-        "3": {
-            "i": "//tools/generator/test:tests.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2",
-            "n": "tests.library"
-        },
+        "3": [
+            {
+                "i": "//tools/generator/test:tests.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2",
+                "n": "tests.library"
+            }
+        ],
         "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/generator/xcodeproj_bwx/xcodeproj_bwx-params/tests.20.link.params",
         "b": {
             "CODE_SIGN_STYLE": "Manual",
@@ -492,10 +496,12 @@
             "m": "12.0",
             "v": "macosx"
         },
-        "3": {
-            "i": "//tools/swiftc_stub:swiftc_stub.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
-            "n": "swiftc_stub.library"
-        },
+        "3": [
+            {
+                "i": "//tools/swiftc_stub:swiftc_stub.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
+                "n": "swiftc_stub.library"
+            }
+        ],
         "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/generator/xcodeproj_bwx/xcodeproj_bwx-params/swiftc.11.link.params",
         "b": {
             "ENABLE_TESTABILITY": true,
@@ -534,10 +540,12 @@
             "m": "12.0",
             "v": "macosx"
         },
-        "3": {
-            "i": "//tools/swiftc_stub:swiftc_stub.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2",
-            "n": "swiftc_stub.library"
-        },
+        "3": [
+            {
+                "i": "//tools/swiftc_stub:swiftc_stub.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2",
+                "n": "swiftc_stub.library"
+            }
+        ],
         "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/generator/xcodeproj_bwx/xcodeproj_bwx-params/swiftc.21.link.params",
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
