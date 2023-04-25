@@ -333,7 +333,7 @@ def process_top_level_target(
         )
 
     if avoid_compilation_providers_list:
-        (avoid_compilation_providers, _) = comp_providers.merge(
+        (avoid_compilation_providers, _, _) = comp_providers.merge(
             transitive_compilation_providers = avoid_compilation_providers_list,
         )
     else:
@@ -356,6 +356,7 @@ def process_top_level_target(
     (
         compilation_providers,
         implementation_compilation_context,
+        framework_includes,
     ) = comp_providers.merge(
         apple_dynamic_framework_info = apple_dynamic_framework_info,
         cc_info = target[CcInfo] if CcInfo in target else None,
@@ -503,7 +504,7 @@ def process_top_level_target(
         id = id,
         is_swift = bool(swift_params),
         clang_opts = clang_opts,
-        implementation_compilation_context = implementation_compilation_context,
+        framework_includes = framework_includes,
         swiftmodules = swiftmodules,
         transitive_infos = deps_infos,
     )

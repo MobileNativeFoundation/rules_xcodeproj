@@ -1,16 +1,26 @@
 """Module for propagating compilation providers."""
 
-def _merge_cc_compilation_context(
+def _legacy_merge_cc_compilation_context(
         *,
         direct_compilation_context,
         compilation_contexts):
     if not direct_compilation_context:
-        return None
+        return (None, None)
 
     if not compilation_contexts:
-        return direct_compilation_context
+        return (
+            direct_compilation_context,
+            direct_compilation_context.framework_includes,
+        )
 
-    return cc_common.create_compilation_context(
+    framework_includes = depset(
+        transitive = [direct_compilation_context.framework_includes] + [
+            compilation_context.framework_includes
+            for compilation_context in compilation_contexts
+        ],
+    )
+
+    compilation_context = cc_common.create_compilation_context(
         # Maybe not correct, but we don't use this value in `opts.bzl`, so not
         # worth the computation to merge it
         headers = direct_compilation_context.headers,
@@ -32,12 +42,7 @@ def _merge_cc_compilation_context(
                 for compilation_context in compilation_contexts
             ],
         ),
-        framework_includes = depset(
-            transitive = [direct_compilation_context.framework_includes] + [
-                compilation_context.framework_includes
-                for compilation_context in compilation_contexts
-            ],
-        ),
+        framework_includes = framework_includes,
         defines = depset(
             transitive = [direct_compilation_context.defines] + [
                 compilation_context.defines
@@ -46,6 +51,36 @@ def _merge_cc_compilation_context(
         ),
         local_defines = direct_compilation_context.local_defines,
     )
+
+    return (compilation_context, framework_includes)
+
+def _modern_merge_cc_compilation_context(
+        *,
+        direct_compilation_context,
+        # buildifier: disable=unused-variable
+        compilation_contexts):
+    if not direct_compilation_context:
+        return (None, None)
+
+    if not compilation_contexts:
+        return (
+            direct_compilation_context,
+            direct_compilation_context.framework_includes,
+        )
+
+    framework_includes = depset(
+        transitive = [direct_compilation_context.framework_includes] + [
+            compilation_context.framework_includes
+            for compilation_context in compilation_contexts
+        ],
+    )
+
+    return (direct_compilation_context, framework_includes)
+
+# Bazel 6 check
+_merge_cc_compilation_context = (
+    _modern_merge_cc_compilation_context if hasattr(apple_common, "link_multi_arch_static_library") else _legacy_merge_cc_compilation_context
+)
 
 def _collect_compilation_providers(
         *,
@@ -74,7 +109,10 @@ def _collect_compilation_providers(
     """
     is_xcode_library_target = cc_info and is_xcode_target
 
-    implementation_compilation_context = _merge_cc_compilation_context(
+    (
+        implementation_compilation_context,
+        framework_includes,
+    ) = _merge_cc_compilation_context(
         direct_compilation_context = (
             cc_info.compilation_context if cc_info else None
         ),
@@ -94,6 +132,7 @@ def _collect_compilation_providers(
             objc = objc,
         ),
         implementation_compilation_context,
+        framework_includes,
     )
 
 def _merge_compilation_providers(
@@ -129,6 +168,9 @@ def _merge_compilation_providers(
     implementation_compilation_context = (
         cc_info.compilation_context if cc_info else None
     )
+    framework_includes = (
+        implementation_compilation_context.framework_includes if cc_info else None
+    )
 
     objc = None
     maybe_objc_providers = [
@@ -152,6 +194,7 @@ def _merge_compilation_providers(
             objc = objc,
         ),
         implementation_compilation_context,
+        framework_includes,
     )
 
 def _to_objc(objc, cc_info):

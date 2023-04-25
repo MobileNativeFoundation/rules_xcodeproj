@@ -229,6 +229,7 @@ def _skip_target(
     (
         compilation_providers,
         _,
+        _,
     ) = comp_providers.merge(
         transitive_compilation_providers = [
             (

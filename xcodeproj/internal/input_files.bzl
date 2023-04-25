@@ -460,7 +460,7 @@ def _collect_input_files(
     bwx_unfocused_libraries = None
     if should_include_non_xcode_outputs(ctx = ctx):
         if unfocused == None:
-            (dep_compilation_providers, _) = comp_providers.merge(
+            (dep_compilation_providers, _, _) = comp_providers.merge(
                 transitive_compilation_providers = [
                     (info.xcode_target, info.compilation_providers)
                     for info in transitive_infos
