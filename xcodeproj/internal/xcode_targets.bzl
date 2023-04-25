@@ -189,7 +189,6 @@ def _to_xcode_target_inputs(inputs):
         srcs = tuple(inputs.srcs),
         non_arc_srcs = tuple(inputs.non_arc_srcs),
         hdrs = tuple(inputs.hdrs),
-        pch = inputs.pch,
         entitlements = inputs.entitlements,
         has_c_sources = inputs.has_c_sources,
         has_cxx_sources = inputs.has_cxx_sources,
@@ -335,7 +334,6 @@ def _merge_xcode_target_inputs(*, src, dest):
         srcs = src.srcs,
         non_arc_srcs = src.non_arc_srcs,
         hdrs = dest.hdrs,
-        pch = src.pch,
         entitlements = dest.entitlements,
         has_c_sources = src.has_c_sources,
         has_cxx_sources = src.has_cxx_sources,
@@ -745,7 +743,6 @@ def _inputs_to_dto(inputs):
         *   `srcs`: A `list` of `FilePath`s for `srcs`.
         *   `non_arc_srcs`: A `list` of `FilePath`s for `non_arc_srcs`.
         *   `hdrs`: A `list` of `FilePath`s for `hdrs`.
-        *   `pch`: An optional `FilePath` for `pch`.
         *   `resources`: A `list` of `FilePath`s for `resources`.
         *   `entitlements`: An optional `FilePath` for `entitlements`.
     """
@@ -762,9 +759,6 @@ def _inputs_to_dto(inputs):
     _process_attr("srcs", "s")
     _process_attr("non_arc_srcs", "n")
     _process_attr("hdrs", "h")
-
-    if inputs.pch:
-        ret["p"] = inputs.pch.path
 
     if inputs.entitlements:
         ret["e"] = inputs.entitlements.path
