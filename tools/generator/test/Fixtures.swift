@@ -2018,6 +2018,9 @@ touch "$SCRIPT_OUTPUT_FILE_1"
                 "PRODUCT_NAME": "a",
                 "SDKROOT": "macosx",
                 "SUPPORTED_PLATFORMS": "macosx",
+                "SWIFT_PARAMS_FILE": #"""
+$(CURRENT_EXECUTION_ROOT)/bazel-out/A1.swift.compile.params
+"""#,
                 "TARGET_NAME": targets["A 1"]!.name,
             ]) { $1 },
             "A 2": targets["A 2"]!.buildSettings.asDictionary.merging([
@@ -2032,6 +2035,7 @@ touch "$SCRIPT_OUTPUT_FILE_1"
                 "DEPLOYMENT_LOCATION": "NO",
                 "EXECUTABLE_NAME": "A_ExecutableName",
                 "GENERATE_INFOPLIST_FILE": "YES",
+                "LINK_PARAMS_FILE": #"$(BAZEL_OUT)/z/A.link.params"#,
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_LDFLAGS": "@$(DERIVED_FILE_DIR)/link.params",
                 "PRODUCT_NAME": "A",
@@ -2081,6 +2085,7 @@ touch "$SCRIPT_OUTPUT_FILE_1"
                 "COMPILE_TARGET_NAME": targets["B 2"]!.name,
                 "DEPLOYMENT_LOCATION": "NO",
                 "GENERATE_INFOPLIST_FILE": "YES",
+                "LINK_PARAMS_FILE": #"$(BAZEL_OUT)/B.link.params"#,
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_LDFLAGS": "@$(DERIVED_FILE_DIR)/link.params",
                 "PRODUCT_NAME": "B",
@@ -2105,6 +2110,7 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2/A.app/A_ExecutableName
                 "COMPILE_TARGET_NAME": targets["B 3"]!.name,
                 "DEPLOYMENT_LOCATION": "NO",
                 "GENERATE_INFOPLIST_FILE": "YES",
+                "LINK_PARAMS_FILE": #"$(BAZEL_OUT)/B3.link.params"#,
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_LDFLAGS": "@$(DERIVED_FILE_DIR)/link.params",
                 "PRODUCT_NAME": "B3",
@@ -2139,6 +2145,7 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2/A.app/A_ExecutableName
                 "DEPLOYMENT_LOCATION": "NO",
                 "EXECUTABLE_EXTENSION": "",
                 "GENERATE_INFOPLIST_FILE": "YES",
+                "LINK_PARAMS_FILE": #"$(BAZEL_OUT)/d.link.params"#,
                 "MACOSX_DEPLOYMENT_TARGET": "11.0",
                 "OTHER_LDFLAGS": "@$(DERIVED_FILE_DIR)/link.params",
                 "PRODUCT_NAME": "d",
@@ -2163,6 +2170,9 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2/A.app/A_ExecutableName
                 "PRODUCT_NAME": "E1",
                 "SDKROOT": "watchos",
                 "SUPPORTED_PLATFORMS": "watchos",
+                "SWIFT_PARAMS_FILE": #"""
+$(CURRENT_EXECUTION_ROOT)/bazel-out/E1.swift.compile.params
+"""#,
                 "TARGET_NAME": targets["E1"]!.name,
                 "WATCHOS_DEPLOYMENT_TARGET": "9.1",
             ]) { $1 },
@@ -2181,6 +2191,9 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2/A.app/A_ExecutableName
                 "PRODUCT_NAME": "E2",
                 "SDKROOT": "appletvos",
                 "SUPPORTED_PLATFORMS": "appletvos",
+                "SWIFT_PARAMS_FILE": #"""
+$(CURRENT_EXECUTION_ROOT)/bazel-out/E2.swift.compile.params
+"""#,
                 "TARGET_NAME": targets["E2"]!.name,
                 "TVOS_DEPLOYMENT_TARGET": "9.1",
             ]) { $1 },
@@ -2265,6 +2278,15 @@ $(MACOSX_FILES)
                 "SDKROOT": "macosx",
                 "SUPPORTED_PLATFORMS": "macosx iphonesimulator iphoneos",
                 "SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD": "YES",
+                "SWIFT_PARAMS_FILE": #"""
+$(CURRENT_EXECUTION_ROOT)/bazel-out/T 3.swift.compile.params
+"""#,
+                "SWIFT_PARAMS_FILE[sdk=iphoneos*]": #"""
+$(CURRENT_EXECUTION_ROOT)/bazel-out/T 1.swift.compile.params
+"""#,
+                "SWIFT_PARAMS_FILE[sdk=iphonesimulator*]": #"""
+$(CURRENT_EXECUTION_ROOT)/bazel-out/T 2.swift.compile.params
+"""#,
                 "TARGET_NAME": targets["T 1"]!.name,
             ]) { $1 },
             "W": targets["W"]!.buildSettings.asDictionary.merging([

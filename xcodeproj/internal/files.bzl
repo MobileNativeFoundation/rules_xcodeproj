@@ -7,8 +7,7 @@ def build_setting_path(
         file = None,
         path = None,
         absolute_path = True,
-        use_build_dir = False,
-        use_current_execution_root = False):
+        use_build_dir = False):
     """Converts a `File` into a `string` to be used in an Xcode build setting.
 
     Args:
@@ -17,8 +16,6 @@ def build_setting_path(
         absolute_path: Whether to ensure the path resolves to an absolute path.
         use_build_dir: Whether to use `$(BUILD_DIR)` instead of `$(BAZEL_OUT)`
             for generated files.
-        use_current_execution_root: Whether to use `$(CURRENT_EXECUTION_ROOT)`
-            instead of `$(PROJECT_DIR)` for generated external files.
 
     Returns:
         A `string`.
@@ -40,9 +37,7 @@ def build_setting_path(
 
     if type == "g":
         # Generated
-        if use_current_execution_root:
-            build_setting = "$(CURRENT_EXECUTION_ROOT)/{}".format(path)
-        elif use_build_dir:
+        if use_build_dir:
             if path:
                 build_setting = "$(BUILD_DIR)/{}".format(path)
             else:

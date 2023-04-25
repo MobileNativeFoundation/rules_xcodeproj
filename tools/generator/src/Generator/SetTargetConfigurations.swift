@@ -254,7 +254,11 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
     ) throws -> [String: BuildSetting] {
         var buildSettings = target.buildSettings
 
-        if target.linkParams != nil {
+        if let linkParams = target.linkParams {
+            // Drop the `bazel-out` prefix since we use the env var for this portion of the path.
+            buildSettings.set("LINK_PARAMS_FILE", to: #"""
+$(BAZEL_OUT)\#(linkParams.path.string.dropFirst(9))
+"""#)
             try buildSettings.prepend(
                 onKey: "OTHER_LDFLAGS",
                 ["@$(DERIVED_FILE_DIR)/link.params"]
@@ -368,21 +372,30 @@ $(CONFIGURATION_BUILD_DIR)
         // Set VFS overlays
 
         let cFlags: [String]
-        if target.cParams != nil {
+        if let cParams = target.cParams {
+            buildSettings.set("C_PARAMS_FILE", to: #"""
+$(CURRENT_EXECUTION_ROOT)/\#(cParams.path.string)
+"""#)
             cFlags = ["@$(DERIVED_FILE_DIR)/c.compile.params"]
         } else {
             cFlags = []
         }
 
         let cxxFlags: [String]
-        if target.cxxParams != nil {
+        if let cxxParams = target.cxxParams {
+            buildSettings.set("CXX_PARAMS_FILE", to: #"""
+$(CURRENT_EXECUTION_ROOT)/\#(cxxParams.path.string)
+"""#)
             cxxFlags = ["@$(DERIVED_FILE_DIR)/cxx.compile.params"]
         } else {
             cxxFlags = []
         }
 
         let swiftFlags: [String]
-        if target.swiftParams != nil {
+        if let swiftParams = target.swiftParams {
+            buildSettings.set("SWIFT_PARAMS_FILE", to: #"""
+$(CURRENT_EXECUTION_ROOT)/\#(swiftParams.path.string)
+"""#)
             swiftFlags = ["@$(DERIVED_FILE_DIR)/swift.compile.params"]
         } else {
             swiftFlags = []

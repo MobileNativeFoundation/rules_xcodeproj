@@ -613,10 +613,6 @@ def _xcode_target_to_dto(
         "b",
         _build_settings_to_dto(
             build_mode = build_mode,
-            c_params = xcode_target._c_params,
-            cxx_params = xcode_target._cxx_params,
-            swift_params = xcode_target._swift_params,
-            link_params = link_params,
             linker_products_map = linker_products_map,
             xcode_generated_paths = xcode_generated_paths,
             xcode_target = xcode_target,
@@ -713,37 +709,10 @@ def _xcode_target_to_dto(
 def _build_settings_to_dto(
         *,
         build_mode,
-        c_params,
-        cxx_params,
-        swift_params,
-        link_params,
         linker_products_map,
         xcode_generated_paths,
         xcode_target):
     build_settings = structs.to_dict(xcode_target._build_settings)
-
-    if c_params:
-        build_settings["C_PARAMS_FILE"] = build_setting_path(
-            path = c_params.path,
-            # Fixes issues with indexing
-            use_current_execution_root = True,
-        )
-    if cxx_params:
-        build_settings["CXX_PARAMS_FILE"] = build_setting_path(
-            path = cxx_params.path,
-            # Fixes issues with indexing
-            use_current_execution_root = True,
-        )
-    if swift_params:
-        build_settings["SWIFT_PARAMS_FILE"] = build_setting_path(
-            path = swift_params.path,
-            # Fixes issues with indexing
-            use_current_execution_root = True,
-        )
-    if link_params:
-        build_settings["LINK_PARAMS_FILE"] = build_setting_path(
-            path = link_params.path,
-        )
 
     _set_bazel_outputs_product(
         build_mode = build_mode,
