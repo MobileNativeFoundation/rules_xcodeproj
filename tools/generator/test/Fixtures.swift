@@ -176,8 +176,7 @@ enum Fixtures {
             ),
             inputs: .init(
                 srcs: ["a/b/c.m"],
-                hdrs: ["a/b/c.h"],
-                pch: "a/b/c.pch"
+                hdrs: ["a/b/c.h"]
             )
         ),
         "C 2": Target.mock(
@@ -654,14 +653,6 @@ enum Fixtures {
             path: "c.m"
         )
 
-        // a/b/c.pch
-
-        elements["a/b/c.pch"] = PBXFileReference(
-            sourceTree: .group,
-            lastKnownFileType: "sourcecode.c.h",
-            path: "c.pch"
-        )
-
         // a/b/d.m
 
         elements["a/b/d.m"] = PBXFileReference(
@@ -676,7 +667,6 @@ enum Fixtures {
             children: [
                 elements["a/b/c.h"]!,
                 elements["a/b/c.m"]!,
-                elements["a/b/c.pch"]!,
                 elements["a/b/d.m"]!,
             ],
             sourceTree: .group,
