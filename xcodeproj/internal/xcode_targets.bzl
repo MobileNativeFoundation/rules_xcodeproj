@@ -460,9 +460,10 @@ def _set_swift_include_paths(
     def _handle_swiftmodule_path(file):
         path = file.path
         bs_path = xcode_generated_paths.get(path)
-        if not bs_path:
-            bs_path = path
-        include_path = paths.dirname(bs_path)
+        if bs_path:
+            include_path = paths.dirname(bs_path)
+        else:
+            include_path = file.dirname
 
         if include_path.find(" ") != -1:
             include_path = '"{}"'.format(include_path)
