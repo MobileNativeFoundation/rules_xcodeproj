@@ -226,6 +226,7 @@ def _process_extra_files(
                 configurations_map.get(configuration, configuration) + "/" +
                 suffix
             )
+
         extra_files = [
             _normalize_path(path)
             for path in extra_files
