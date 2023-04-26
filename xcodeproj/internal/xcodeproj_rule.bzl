@@ -1356,10 +1356,8 @@ def _write_target_ids_list(*, ctx, target_dtos):
     )
 
     args = ctx.actions.args()
-    args.add_joined(
-        sorted(target_dtos.keys()),
-        join_with = "\n",
-    )
+    args.set_param_file_format("multiline")
+    args.add_all(sorted(target_dtos.keys()))
 
     ctx.actions.write(
         output,
