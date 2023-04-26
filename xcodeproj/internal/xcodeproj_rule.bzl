@@ -20,6 +20,7 @@ load(":platform.bzl", "platform_info")
 load(":project_options.bzl", "project_options_to_dto")
 load(":providers.bzl", "XcodeProjInfo")
 load(":resource_target.bzl", "process_resource_bundles")
+load(":target_id.bzl", "write_target_ids_list")
 load(":xcode_targets.bzl", "xcode_targets")
 load(":xcodeproj_aspect.bzl", "make_xcodeproj_aspect")
 
@@ -1350,22 +1351,6 @@ echo "$execution_root" > "{out_full}"
 
     return output
 
-def _write_target_ids_list(*, ctx, target_dtos):
-    output = ctx.actions.declare_file(
-        "{}_target_ids".format(ctx.attr.name),
-    )
-
-    args = ctx.actions.args()
-    args.set_param_file_format("multiline")
-    args.add_all(sorted(target_dtos.keys()))
-
-    ctx.actions.write(
-        output,
-        args,
-    )
-
-    return output
-
 def _write_xcodeproj(
         *,
         ctx,
@@ -1673,8 +1658,9 @@ configurations: {}""".format(", ".join(xcode_configurations)))
         replacement_labels_by_label = replacement_labels_by_label,
         inputs = inputs,
     )
-    target_ids_list = _write_target_ids_list(
-        ctx = ctx,
+    target_ids_list = write_target_ids_list(
+        actions = ctx.actions,
+        name = ctx.attr.name,
         target_dtos = target_dtos,
     )
 
