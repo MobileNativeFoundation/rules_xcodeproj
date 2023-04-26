@@ -672,7 +672,7 @@ targets.
 
         focused_targets[dest] = xcode_targets.merge(
             src_swift = src_target_swift,
-            src_other = src_target_objc,
+            src_non_swift = src_target_objc,
             dest = focused_targets[dest],
         )
 
