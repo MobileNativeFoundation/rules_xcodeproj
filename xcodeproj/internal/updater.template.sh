@@ -7,6 +7,7 @@ shopt -s nullglob
 readonly project_names=(%project_names%)
 readonly runners=(%runners%)
 
+updated_generators=()
 updated_specs=()
 updated_xcodeprojs=()
 
@@ -18,9 +19,11 @@ for i in "${!runners[@]}"; do
   project_spec_dest="$dir/${name}_project_spec.json"
   targets_spec_dest="$dir/${name}_targets_spec.json"
   xcodeproj_dest="$dir/$name.xcodeproj"
+  generator_dest="$dir/generated/xcodeproj_$name"
 
   "$runner"
 
+  updated_generators+=("$generator_dest")
   updated_specs+=(
     "$project_spec_dest"
     "$targets_spec_dest"
@@ -35,8 +38,19 @@ fi
 cd "$BUILD_WORKSPACE_DIRECTORY"
 
 for i in "${!updated_xcodeprojs[@]}"; do
+  generator="${updated_generators[i]}"
   spec="${updated_specs[i]}"
   xcodeproj="${updated_xcodeprojs[i]}"
+
+  diff=$(git diff "$generator")
+  if [[ -n "$diff" ]]; then
+    echo
+    echo "generated generator doesn't match expected:"
+    echo "$diff"
+    echo
+    echo 'Commit these changes if you wish to accept them.'
+    exit 1
+  fi
 
   diff=$(git diff "$spec")
   if [[ -n "$diff" ]]; then
