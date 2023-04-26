@@ -3,6 +3,7 @@
 load("@bazel_tools//tools/cpp:toolchain_utils.bzl", "find_cpp_toolchain")
 load(":files.bzl", "is_relative_path")
 load(":input_files.bzl", "CXX_EXTENSIONS", "C_EXTENSIONS")
+load(":memory_efficiency.bzl", "EMPTY_LIST")
 
 # Swift compiler flags that we don't want to propagate to Xcode.
 # The values are the number of flags to skip, 1 being the flag itself, 2 being
@@ -210,50 +211,35 @@ def _modern_get_unprocessed_cc_compiler_opts(
         target,
         # buildifier: disable=unused-variable
         implementation_compilation_context):
-    conlyopts = []
-    conly_args = []
-    if has_c_sources:
-        for action in target.actions:
-            if action.mnemonic not in _CC_COMPILE_ACTIONS:
-                continue
+    conlyopts = EMPTY_LIST
+    conly_args = EMPTY_LIST
+    cxxopts = EMPTY_LIST
+    cxx_args = EMPTY_LIST
 
-            previous_arg = None
-            is_c = False
-            for arg in action.argv:
-                if previous_arg == "-c":
-                    is_c = _is_c_file(arg)
-                    break
-                previous_arg = arg
+    if not has_c_sources and not has_cxx_sources:
+        return (conlyopts, conly_args, cxxopts, cxx_args)
 
-            if not is_c:
-                continue
+    for action in target.actions:
+        if action.mnemonic not in _CC_COMPILE_ACTIONS:
+            continue
 
-            # First argument is "wrapped_clang"
-            conlyopts = action.argv[1:]
-            conly_args = action.args
-            break
+        previous_arg = None
+        for arg in action.argv:
+            if previous_arg == "-c":
+                if not conly_args and _is_c_file(arg):
+                    # First argument is "wrapped_clang"
+                    conlyopts = action.argv[1:]
+                    conly_args = action.args
+                elif not cxx_args and _is_cxx_file(arg):
+                    # First argument is "wrapped_clang_pp"
+                    cxxopts = action.argv[1:]
+                    cxx_args = action.args
+                break
+            previous_arg = arg
 
-    cxxopts = []
-    cxx_args = []
-    if has_cxx_sources:
-        for action in target.actions:
-            if action.mnemonic not in _CC_COMPILE_ACTIONS:
-                continue
-
-            previous_arg = None
-            is_cxx = False
-            for arg in action.argv:
-                if previous_arg == "-c":
-                    is_cxx = _is_cxx_file(arg)
-                    break
-                previous_arg = arg
-
-            if not is_cxx:
-                continue
-
-            # First argument is "wrapped_clang_pp"
-            cxxopts = action.argv[1:]
-            cxx_args = action.args
+        if ((not has_c_sources or conly_args) and
+            (not has_cxx_sources or cxx_args)):
+            # We've found all the args we are looking for
             break
 
     return conlyopts, conly_args, cxxopts, cxx_args
