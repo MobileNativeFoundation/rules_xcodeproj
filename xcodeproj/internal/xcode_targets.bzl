@@ -282,12 +282,13 @@ def _to_xcode_target_product(product):
         _additional_files = product.framework_files,
     )
 
-def _merge_xcode_target(*, src_swift, src_other, dest):
+def _merge_xcode_target(*, src_swift, src_non_swift, dest):
     """Creates a new `xcode_target` by merging the values of `src` into `dest`.
 
     Args:
         src_swift: The `xcode_target` to merge into `dest` that `is_swift`.
-        src_other: The `xcode_target` to merge into `dest` that is not `is_swift`.
+        src_non_swift: The `xcode_target` to merge into `dest` that is not
+            `is_swift`.
         dest: The `xcode_target` being merged into.
 
     Returns:
@@ -301,9 +302,9 @@ def _merge_xcode_target(*, src_swift, src_other, dest):
             structs.to_dict(src_swift._build_settings),
             build_settings,
         )
-    if src_other:
+    if src_non_swift:
         build_settings = dicts.add(
-            structs.to_dict(src_other._build_settings),
+            structs.to_dict(src_non_swift._build_settings),
             build_settings,
         )
 
@@ -331,21 +332,21 @@ def _merge_xcode_target(*, src_swift, src_other, dest):
         platform = src_swift.platform
         swiftmodules = src_swift._swiftmodules
         modulemaps = src_swift._modulemaps
-    if src_other:
-        srcs.append(src_other)
-        transitive_dependencies.append(src_other._dependencies)
-        c_params = src_other._c_params or dest._c_params
-        cxx_params = src_other._cxx_params or dest._cxx_params
-        c_has_fortify_source = src_other._c_has_fortify_source or dest._c_has_fortify_source
-        cxx_has_fortify_source = src_other._cxx_has_fortify_source or dest._cxx_has_fortify_source
-        platform = src_other.platform
+    if src_non_swift:
+        srcs.append(src_non_swift)
+        transitive_dependencies.append(src_non_swift._dependencies)
+        c_params = src_non_swift._c_params or dest._c_params
+        cxx_params = src_non_swift._cxx_params or dest._cxx_params
+        c_has_fortify_source = src_non_swift._c_has_fortify_source or dest._c_has_fortify_source
+        cxx_has_fortify_source = src_non_swift._cxx_has_fortify_source or dest._cxx_has_fortify_source
+        platform = src_non_swift.platform
 
     return _make_xcode_target(
         id = dest.id,
         label = dest.label,
         configuration = dest.configuration,
         compile_target_swift = src_swift,
-        compile_target_non_swift = src_other,
+        compile_target_non_swift = src_non_swift,
         package_bin_dir = dest._package_bin_dir,
         platform = platform,
         product = _merge_xcode_target_product(
@@ -363,7 +364,7 @@ def _merge_xcode_target(*, src_swift, src_other, dest):
         swiftmodules = swiftmodules,
         inputs = _merge_xcode_target_inputs(
             src_swift = src_swift.inputs if src_swift else None,
-            src_other = src_other.inputs if src_other else None,
+            src_non_swift = src_non_swift.inputs if src_non_swift else None,
             dest = dest.inputs,
         ),
         linker_inputs = dest.linker_inputs,
@@ -382,19 +383,19 @@ def _merge_xcode_target(*, src_swift, src_other, dest):
         xcode_required_targets = dest.xcode_required_targets,
     )
 
-def _merge_xcode_target_inputs(*, src_swift, src_other, dest):
+def _merge_xcode_target_inputs(*, src_swift, src_non_swift, dest):
     srcs = ()
     if src_swift:
         srcs = src_swift.srcs
-    if src_other:
-        srcs = srcs + src_other.srcs
+    if src_non_swift:
+        srcs = srcs + src_non_swift.srcs
 
     return struct(
         srcs = srcs,
-        non_arc_srcs = src_other.non_arc_srcs if src_other else (),
+        non_arc_srcs = src_non_swift.non_arc_srcs if src_non_swift else (),
         hdrs = dest.hdrs,
-        has_c_sources = src_other.has_c_sources if src_other else None,
-        has_cxx_sources = src_other.has_cxx_sources if src_other else None,
+        has_c_sources = src_non_swift.has_c_sources if src_non_swift else None,
+        has_cxx_sources = src_non_swift.has_cxx_sources if src_non_swift else None,
         resources = dest.resources,
         folder_resources = dest.folder_resources,
         resource_bundle_dependencies = dest.resource_bundle_dependencies,
