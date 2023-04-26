@@ -632,17 +632,11 @@ targets.
         if is_same_destination_for_all_srcs:
             continue
 
+        # Process all libraries that cannot be merged into `dest_target`
         for library in xcode_targets.get_top_level_static_libraries(
             dest_target,
         ):
-            for src_target in src_targets:
-                # If direct owner, ignore since this is expected for a given library.
-                if library.owner == src_target.label:
-                    continue
-
-                # Other libraries that are not being merged into `dest_target`
-                # can't merge into other targets
-                non_mergable_targets[library.path] = None
+            non_mergable_targets[library.path] = None
 
     for src in target_merges.keys():
         src_target = focused_targets[src]
