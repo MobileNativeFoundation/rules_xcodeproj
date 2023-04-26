@@ -620,22 +620,23 @@ targets.
         src_targets = [focused_targets[src] for src in srcs]
         src_labels = [src_target.label for src_target in src_targets]
 
+        # If all src_targets have same dest_target, allow a merge.
+        is_same_destination_for_all_srcs = (
+            len(uniq([
+                dest
+                for src in srcs
+                for dest in target_merges[src]
+            ])) == 1
+        )
+        if is_same_destination_for_all_srcs:
+            continue
+
         for library in xcode_targets.get_top_level_static_libraries(
             dest_target,
         ):
             for src_target in src_targets:
-                ###############################
-                # FIXME
-                #
-                # Make this section more terse since it's doing duplicated work/might be wrong.
-                ###############################
-
                 # If direct owner, ignore since this is expected for a given library.
                 if library.owner == src_target.label:
-                    continue
-
-                # If all src_targets have same dest_target, consider good as well.
-                if library.owner in src_labels:
                     continue
 
                 # Other libraries that are not being merged into `dest_target`
@@ -660,18 +661,20 @@ targets.
     for dest, srcs in target_merge_dests.items():
         src_targets = [focused_targets.pop(src) for src in srcs]
 
+        # This functionality assumes that 2 or less sources are present in the
+        # potential merge. If that changes, this will need updated.
         src_target_swift = None
-        src_target_objc = None
+        src_target_non_swift = None
 
         for src_target in src_targets:
             if src_target._swift_params:
                 src_target_swift = src_target
             else:
-                src_target_objc = src_target
+                src_target_non_swift = src_target
 
         focused_targets[dest] = xcode_targets.merge(
             src_swift = src_target_swift,
-            src_non_swift = src_target_objc,
+            src_non_swift = src_target_non_swift,
             dest = focused_targets[dest],
         )
 
