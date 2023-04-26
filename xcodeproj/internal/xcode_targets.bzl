@@ -530,13 +530,13 @@ def _xcode_target_to_dto(
         should_include_outputs,
         excluded_targets = {},
         target_merges = {},
-        unfocused_dependencies,
+        bwx_unfocused_dependencies,
         xcode_configurations,
         xcode_generated_paths,
         xcode_generated_paths_file):
     inputs = xcode_target.inputs
     name = label.name
-    is_unfocused_dependency = xcode_target.id in unfocused_dependencies
+    is_unfocused_dependency = xcode_target.id in bwx_unfocused_dependencies
 
     dto = {
         "n": name,
@@ -698,7 +698,7 @@ def _xcode_target_to_dto(
     set_if_true(
         dto,
         "d",
-        [id for id in dependencies if id not in unfocused_dependencies],
+        [id for id in dependencies if id not in bwx_unfocused_dependencies],
     )
 
     return dto, replaced_dependencies, link_params
