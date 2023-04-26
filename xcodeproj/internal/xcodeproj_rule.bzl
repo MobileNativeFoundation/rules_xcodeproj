@@ -814,54 +814,58 @@ targets.
                         depset(unfocused_linking_files),
                     )
 
-        for id in replaced_dependencies:
-            if id in transitive_dependencies:
-                continue
+        # We only check for one output group name, because the others are also
+        # set if this one is
+        if bwx_compiling_output_group_name:
+            for id in replaced_dependencies:
+                if id in transitive_dependencies:
+                    continue
 
-            # The replaced dependency is not a transitive dependency, so we
-            # need to add its merge in its output groups
+                # The replaced dependency is not a transitive dependency, so we
+                # need to add its merge in its output groups
 
-            compile_params = target_compile_params.get(id, None)
-            if compile_params:
-                transitive_compile_params.append(compile_params)
-            link_params = target_link_params.get(id, None)
-            if link_params:
-                transitive_link_params.append(link_params)
+                compile_params = target_compile_params.get(id, None)
+                if compile_params:
+                    transitive_compile_params.append(compile_params)
+                link_params = target_link_params.get(id, None)
+                if link_params:
+                    transitive_link_params.append(link_params)
 
-            dep_target = focused_targets[id]
+                dep_target = focused_targets[id]
 
-            dep_bwx_compiling_output_group_name = (
-                dep_target.inputs.compiling_output_group_name
-            )
-            dep_bwx_indexstores_output_group_name = (
-                dep_target.inputs.indexstores_output_group_name
-            )
-            dep_bwx_linking_output_group_name = (
-                dep_target.inputs.linking_output_group_name
-            )
-
-            if (bwx_compiling_output_group_name and
-                dep_bwx_compiling_output_group_name):
-                additional_bwx_compiling_files = additional_bwx_generated.get(
-                    dep_bwx_compiling_output_group_name,
-                    [],
+                dep_bwx_compiling_output_group_name = (
+                    dep_target.inputs.compiling_output_group_name
                 )
-                additional_bwx_compiling_files.append(dep_target.inputs.generated)
-            if (bwx_indexstores_output_group_name and
-                dep_bwx_indexstores_output_group_name):
-                additional_bwx_indexstores_files = additional_bwx_generated.get(
-                    dep_bwx_indexstores_output_group_name,
-                    [],
+                dep_bwx_indexstores_output_group_name = (
+                    dep_target.inputs.indexstores_output_group_name
                 )
-                additional_bwx_indexstores_files.append(
-                    dep_target.inputs.indexstores,
+                dep_bwx_linking_output_group_name = (
+                    dep_target.inputs.linking_output_group_name
                 )
-            if (bwx_linking_output_group_name and
-                dep_bwx_linking_output_group_name):
-                additional_bwx_linking_files = additional_bwx_generated.get(
-                    dep_bwx_linking_output_group_name,
-                    [],
-                )
+
+                # We only check for one output group name, because the others
+                # are also set if this one is
+                if dep_bwx_compiling_output_group_name:
+                    additional_bwx_compiling_files = additional_bwx_generated.get(
+                        dep_bwx_compiling_output_group_name,
+                        [],
+                    )
+                    additional_bwx_compiling_files.append(
+                        dep_target.inputs.generated,
+                    )
+
+                    additional_bwx_indexstores_files = additional_bwx_generated.get(
+                        dep_bwx_indexstores_output_group_name,
+                        [],
+                    )
+                    additional_bwx_indexstores_files.append(
+                        dep_target.inputs.indexstores,
+                    )
+
+                    additional_bwx_linking_files = additional_bwx_generated.get(
+                        dep_bwx_linking_output_group_name,
+                        [],
+                    )
 
         if transitive_compile_params:
             additional_bwx_compiling_files.extend(transitive_compile_params)
@@ -877,19 +881,19 @@ targets.
                     transitive_link_params
                 )
 
+        # We only check for one output group name, because the others are also
+        # set if this one is
         if bwx_compiling_output_group_name:
             set_if_true(
                 additional_bwx_generated,
                 bwx_compiling_output_group_name,
                 additional_bwx_compiling_files,
             )
-        if bwx_indexstores_output_group_name:
             set_if_true(
                 additional_bwx_generated,
                 bwx_indexstores_output_group_name,
                 additional_bwx_indexstores_files,
             )
-        if bwx_linking_output_group_name:
             set_if_true(
                 additional_bwx_generated,
                 bwx_linking_output_group_name,
