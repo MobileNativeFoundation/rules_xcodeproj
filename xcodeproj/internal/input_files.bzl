@@ -18,6 +18,7 @@ load(":linker_input_files.bzl", "linker_input_files")
 load(
     ":memory_efficiency.bzl",
     "EMPTY_DEPSET",
+    "EMPTY_DICT",
     "EMPTY_LIST",
     "memory_efficient_depset",
 )
@@ -165,8 +166,8 @@ def _collect_input_files(
                 attribute.
     """
     entitlements = []
-    c_srcs = []
-    cxx_srcs = []
+    c_sources = {}
+    cxx_sources = {}
     hdrs = []
     non_arc_srcs = []
     pch = []
@@ -185,18 +186,18 @@ def _collect_input_files(
         srcs.append(file)
         extension = file.extension
         if extension in C_EXTENSIONS:
-            c_srcs.append(file)
+            c_sources[file.path] = None
         elif extension in CXX_EXTENSIONS:
-            cxx_srcs.append(file)
+            cxx_sources[file.path] = None
 
     # buildifier: disable=uninitialized
     def _handle_non_arc_srcs_file(file):
         non_arc_srcs.append(file)
         extension = file.extension
         if extension in C_EXTENSIONS:
-            c_srcs.append(file)
+            c_sources[file.path] = None
         elif extension in CXX_EXTENSIONS:
-            cxx_srcs.append(file)
+            cxx_sources[file.path] = None
 
     # buildifier: disable=uninitialized
     def _handle_hdrs_file(file):
@@ -687,8 +688,8 @@ def _collect_input_files(
             entitlements = entitlements[0] if entitlements else None,
             folder_resources = folder_resources,
             generated = generated_depset,
-            has_c_sources = bool(c_srcs),
-            has_cxx_sources = bool(cxx_srcs),
+            c_sources = c_sources,
+            cxx_sources = cxx_sources,
             hdrs = hdrs,
             indexstores = indexstores_depset,
             indexstores_output_group_name = indexstores_output_group_name,
@@ -765,8 +766,8 @@ def _from_resource_bundle(bundle):
         entitlements = None,
         folder_resources = depset(bundle.folder_resources),
         generated = EMPTY_DEPSET,
-        has_c_sources = False,
-        has_cxx_sources = False,
+        c_sources = EMPTY_DICT,
+        cxx_sources = EMPTY_DICT,
         hdrs = EMPTY_LIST,
         indexstores = EMPTY_DEPSET,
         indexstores_output_group_name = None,
