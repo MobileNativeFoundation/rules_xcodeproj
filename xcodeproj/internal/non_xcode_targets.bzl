@@ -76,6 +76,7 @@ rules_xcodeproj requires {} to have `{}` set.
     (
         compilation_providers,
         _,
+        _,
     ) = comp_providers.collect(
         cc_info = cc_info,
         objc = objc,
