@@ -57,7 +57,7 @@ _INVALID_EXTRA_FILES_TARGETS_HINT = """\
 You can turn this error into a warning with `fail_for_invalid_extra_files_targets`
 """
 
-def _calculate_unfocused_dependencies(
+def _calculate_bwx_unfocused_dependencies(
         *,
         build_mode,
         targets,
@@ -547,7 +547,7 @@ targets.
             if has_focused_labels and dest in focused_labels:
                 focused_labels[src_label_str] = None
 
-    unfocused_dependencies = _calculate_unfocused_dependencies(
+    bwx_unfocused_dependencies = _calculate_bwx_unfocused_dependencies(
         build_mode = build_mode,
         targets = unprocessed_targets,
         focused_targets = focused_targets.values(),
@@ -641,7 +641,7 @@ targets.
         ctx = ctx,
         build_mode = build_mode,
         focused_targets = focused_targets,
-        unfocused_dependencies = unfocused_dependencies,
+        bwx_unfocused_dependencies = bwx_unfocused_dependencies,
     )
 
     excluded_targets = dicts.add(unfocused_targets, files_only_targets)
@@ -699,7 +699,7 @@ targets.
             should_include_outputs = should_include_outputs(build_mode),
             excluded_targets = excluded_targets,
             target_merges = target_merges,
-            unfocused_dependencies = unfocused_dependencies,
+            bwx_unfocused_dependencies = bwx_unfocused_dependencies,
             xcode_generated_paths = xcode_generated_paths,
             xcode_generated_paths_file = xcode_generated_paths_file,
         )
@@ -785,31 +785,34 @@ targets.
                     target_infoplists
                 )
 
-        for dependency in transitive_dependencies:
-            unfocused_dependency = unfocused_dependencies.get(dependency)
-            if not unfocused_dependency:
-                continue
-            unfocused_compiling_files = (
-                unfocused_dependency.inputs.unfocused_generated_compiling
-            )
-            unfocused_indexstores_files = (
-                unfocused_dependency.inputs.unfocused_generated_indexstores
-            )
-            unfocused_linking_files = (
-                unfocused_dependency.inputs.unfocused_generated_linking
-            )
-            if unfocused_compiling_files:
-                additional_bwx_compiling_files.append(
-                    depset(unfocused_compiling_files),
+        if bwx_unfocused_dependencies:
+            for dependency in transitive_dependencies:
+                unfocused_dependency = bwx_unfocused_dependencies.get(
+                    dependency,
                 )
-            if unfocused_indexstores_files:
-                additional_bwx_indexstores_files.append(
-                    depset(unfocused_indexstores_files),
+                if not unfocused_dependency:
+                    continue
+                unfocused_compiling_files = (
+                    unfocused_dependency.inputs.unfocused_generated_compiling
                 )
-            if unfocused_linking_files:
-                additional_bwx_linking_files.append(
-                    depset(unfocused_linking_files),
+                unfocused_indexstores_files = (
+                    unfocused_dependency.inputs.unfocused_generated_indexstores
                 )
+                unfocused_linking_files = (
+                    unfocused_dependency.inputs.unfocused_generated_linking
+                )
+                if unfocused_compiling_files:
+                    additional_bwx_compiling_files.append(
+                        depset(unfocused_compiling_files),
+                    )
+                if unfocused_indexstores_files:
+                    additional_bwx_indexstores_files.append(
+                        depset(unfocused_indexstores_files),
+                    )
+                if unfocused_linking_files:
+                    additional_bwx_linking_files.append(
+                        depset(unfocused_linking_files),
+                    )
 
         for id in replaced_dependencies:
             if id in transitive_dependencies:
@@ -911,7 +914,7 @@ def _process_xcode_generated_paths(
         ctx,
         build_mode,
         focused_targets,
-        unfocused_dependencies):
+        bwx_unfocused_dependencies):
     xcode_generated_paths = {}
     xcode_generated_paths_file = ctx.actions.declare_file(
         "{}-xcode_generated_paths.json".format(ctx.attr.name),
@@ -925,7 +928,7 @@ def _process_xcode_generated_paths(
         return xcode_generated_paths, xcode_generated_paths_file
 
     for xcode_target in focused_targets.values():
-        if xcode_target.id in unfocused_dependencies:
+        if xcode_target.id in bwx_unfocused_dependencies:
             continue
 
         product = xcode_target.product
