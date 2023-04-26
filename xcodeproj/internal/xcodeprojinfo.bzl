@@ -226,7 +226,10 @@ def _skip_target(
         The return value of `_target_info_fields`, with values merged from
         `transitive_infos`.
     """
-    compilation_providers = comp_providers.merge(
+    (
+        compilation_providers,
+        _,
+    ) = comp_providers.merge(
         transitive_compilation_providers = [
             (
                 dep[XcodeProjInfo].xcode_target,
