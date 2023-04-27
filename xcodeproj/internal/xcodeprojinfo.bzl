@@ -337,7 +337,7 @@ def _skip_target(
                     automatic_target_info = automatic_target_info,
                 )
                 for info in deps_transitive_infos
-            ] if automatic_target_info.envs else None,
+            ] if automatic_target_info.env else None,
             transitive = [
                 info.envs
                 for info in valid_transitive_infos
