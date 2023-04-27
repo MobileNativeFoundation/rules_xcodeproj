@@ -528,8 +528,8 @@ targets.
             # Only merge if one src is swift and the other isn't.
             src_1 = src_ids[0]
             src_2 = src_ids[1]
-            src_1_is_swift = unprocessed_targets[src_1]._swift_params
-            src_2_is_swift = unprocessed_targets[src_2]._swift_params
+            src_1_is_swift = unprocessed_targets[src_1].swift_params
+            src_2_is_swift = unprocessed_targets[src_2].swift_params
 
             # Only merge 1 Swift and 1 non-Swift target for now.
             if (src_1_is_swift and src_2_is_swift) or (not src_1_is_swift and not src_2_is_swift):
@@ -653,7 +653,7 @@ targets.
         src_target_non_swift = None
 
         for src_target in src_targets:
-            if src_target._swift_params:
+            if src_target.swift_params:
                 src_target_swift = src_target
             else:
                 src_target_non_swift = src_target
@@ -744,8 +744,8 @@ targets.
             compile_params.append(xcode_target._c_params)
         if xcode_target._cxx_params:
             compile_params.append(xcode_target._cxx_params)
-        if xcode_target._swift_params:
-            compile_params.append(xcode_target._swift_params)
+        if xcode_target.swift_params:
+            compile_params.append(xcode_target.swift_params)
 
         if compile_params:
             target_compile_params[xcode_target.id] = depset(compile_params)

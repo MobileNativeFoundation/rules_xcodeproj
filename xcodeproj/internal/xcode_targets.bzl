@@ -123,7 +123,6 @@ def _make_xcode_target(
         _build_settings = struct(**build_settings),
         _c_params = c_params,
         _cxx_params = cxx_params,
-        _swift_params = swift_params,
         _c_has_fortify_source = c_has_fortify_source,
         _cxx_has_fortify_source = cxx_has_fortify_source,
         _modulemaps = modulemaps,
@@ -152,6 +151,7 @@ def _make_xcode_target(
             _to_xcode_target_outputs(outputs) if not compile_targets else outputs
         ),
         should_create_xcode_target = should_create_xcode_target,
+        swift_params = swift_params,
         transitive_dependencies = transitive_dependencies,
         xcode_required_targets = xcode_required_targets,
     )
@@ -320,7 +320,7 @@ def _merge_xcode_target(*, src_swift, src_non_swift, dest):
     platform = None
     c_params = dest._c_params
     cxx_params = dest._cxx_params
-    swift_params = dest._swift_params
+    swift_params = dest.swift_params
     c_has_fortify_source = dest._c_has_fortify_source
     cxx_has_fortify_source = dest._cxx_has_fortify_source
     swiftmodules = []
@@ -328,7 +328,7 @@ def _merge_xcode_target(*, src_swift, src_non_swift, dest):
     if src_swift:
         srcs.append(src_swift)
         transitive_dependencies.append(src_swift._dependencies)
-        swift_params = src_swift._swift_params or dest._swift_params
+        swift_params = src_swift.swift_params or dest.swift_params
         platform = src_swift.platform
         swiftmodules = src_swift._swiftmodules
         modulemaps = src_swift._modulemaps
@@ -516,7 +516,7 @@ def _set_swift_include_paths(
         build_settings,
         xcode_generated_paths,
         xcode_target):
-    if not xcode_target._swift_params:
+    if not xcode_target.swift_params:
         return
 
     def _handle_swiftmodule_path(file):
@@ -655,8 +655,8 @@ def _xcode_target_to_dto(
         dto["8"] = xcode_target._c_params.path
     if xcode_target._cxx_params:
         dto["9"] = xcode_target._cxx_params.path
-    if xcode_target._swift_params:
-        dto["0"] = xcode_target._swift_params.path
+    if xcode_target.swift_params:
+        dto["0"] = xcode_target.swift_params.path
 
     set_if_true(
         dto,
