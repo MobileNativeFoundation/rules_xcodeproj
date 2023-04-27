@@ -25,8 +25,6 @@ bzl_library(
     ],
 )
 
-exports_files(glob(["*.template.*"]))
-
 # Release
 
 filegroup(
@@ -36,8 +34,6 @@ filegroup(
         exclude = [
             "**/.*",
             "fixtures.bzl",
-            "updater.template.sh",
-            "validator.template.sh",
             "xcodeproj_tests.bzl",
         ],
     ) + [

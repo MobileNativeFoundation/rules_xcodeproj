@@ -1922,7 +1922,7 @@ def make_xcodeproj_rule(
         "_bazel_build_script_template": attr.label(
             allow_single_file = True,
             default = Label(
-                "//xcodeproj/internal:bazel_build.template.sh",
+                "//xcodeproj/internal/templates:bazel_build.sh",
             ),
         ),
         "_bazel_integration_files": attr.label(
@@ -1933,7 +1933,7 @@ def make_xcodeproj_rule(
         "_create_xcode_overlay_script_template": attr.label(
             allow_single_file = True,
             default = Label(
-                "//xcodeproj/internal:create_xcode_overlay.template.sh",
+                "//xcodeproj/internal/templates:create_xcode_overlay.sh",
             ),
         ),
         "_extensionpointidentifiers_parser": attr.label(
@@ -1953,7 +1953,7 @@ def make_xcodeproj_rule(
         ),
         "_installer_template": attr.label(
             allow_single_file = True,
-            default = Label("//xcodeproj/internal:installer.template.sh"),
+            default = Label("//xcodeproj/internal/templates:installer.sh"),
         ),
         "_is_fixture": attr.bool(default = is_fixture),
         "_link_params_processor": attr.label(

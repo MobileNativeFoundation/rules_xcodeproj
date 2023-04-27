@@ -3,7 +3,6 @@ load(":fixtures.bzl", "FIXTURE_TARGETS")
 
 exports_files([
     "fixtures.bzl",
-    "updater.template.sh",
 ])
 
 update_fixtures(

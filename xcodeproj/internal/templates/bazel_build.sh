@@ -24,9 +24,9 @@ readonly output_groups_flag
 
 # Set `output_base`
 
-# In `runner.template.sh` the generator has the build output base set inside
-# of the outer bazel's output path (`bazel-out/`). So here we need to make
-# our output base changes relative to that changed path.
+# In `runner.sh` the generator has the build output base set inside of the outer
+# bazel's output path (`bazel-out/`). So here we need to make our output base
+# changes relative to that changed path.
 readonly build_output_base="$BAZEL_OUTPUT_BASE"
 
 if [ "$ACTION" == "indexbuild" ]; then

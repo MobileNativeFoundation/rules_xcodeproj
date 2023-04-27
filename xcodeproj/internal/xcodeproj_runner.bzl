@@ -601,7 +601,7 @@ xcodeproj_runner = rule(
         "watchos_simulator_cpus": attr.string(),
         "_bazelrc_template": attr.label(
             allow_single_file = True,
-            default = Label("//xcodeproj/internal:xcodeproj.template.bazelrc"),
+            default = Label("//xcodeproj/internal/templates:xcodeproj.bazelrc"),
         ),
         "_colorize": attr.label(
             default = Label("//xcodeproj:color"),
@@ -626,18 +626,18 @@ xcodeproj_runner = rule(
         "_generator_defs_bzl_template": attr.label(
             allow_single_file = True,
             default = Label(
-                "//xcodeproj/internal:generator.defs.template.bzl",
+                "//xcodeproj/internal/templates:generator.defs.bzl",
             ),
         ),
         "_generator_package_contents_template": attr.label(
             allow_single_file = True,
             default = Label(
-                "//xcodeproj/internal:generator.BUILD.template.bazel",
+                "//xcodeproj/internal/templates:generator.BUILD.bazel",
             ),
         ),
         "_runner_template": attr.label(
             allow_single_file = True,
-            default = Label("//xcodeproj/internal:runner.template.sh"),
+            default = Label("//xcodeproj/internal/templates:runner.sh"),
         ),
         "_xcode_config": attr.label(
             default = configuration_field(
