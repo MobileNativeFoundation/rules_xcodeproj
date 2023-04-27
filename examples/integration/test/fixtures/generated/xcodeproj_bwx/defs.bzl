@@ -10,6 +10,11 @@ load(
 load(
     "@rules_xcodeproj//xcodeproj/internal:xcodeproj_rule.bzl",
     "make_xcodeproj_rule",
+)
+
+# buildifier: disable=bzl-visibility
+load(
+    "@rules_xcodeproj//xcodeproj/internal:xcodeproj_transitions.bzl",
     "make_xcodeproj_target_transitions",
 )
 

@@ -177,6 +177,11 @@ load(
 load(
     "{repo}//xcodeproj/internal:xcodeproj_rule.bzl",
     "make_xcodeproj_rule",
+)
+
+# buildifier: disable=bzl-visibility
+load(
+    "{repo}//xcodeproj/internal:xcodeproj_transitions.bzl",
     "make_xcodeproj_target_transitions",
 )""".format(repo = repo),
     ]
