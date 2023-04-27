@@ -25,8 +25,6 @@ bzl_library(
     ],
 )
 
-exports_files(glob(["*.template.*"]))
-
 # Release
 
 filegroup(
@@ -36,12 +34,11 @@ filegroup(
         exclude = [
             "**/.*",
             "fixtures.bzl",
-            "updater.template.sh",
-            "validator.template.sh",
             "xcodeproj_tests.bzl",
         ],
     ) + [
         "//" + package_name() + "/bazel_integration_files:release_files",
+        "//" + package_name() + "/templates:release_files",
     ],
     tags = ["manual"],
     visibility = ["//:__subpackages__"],

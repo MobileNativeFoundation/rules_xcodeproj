@@ -99,8 +99,8 @@ project-level configs, these flags adjust those instead of the base configs.
 
 A project `xcodeproj.bazelrc` file is loaded before the workspace `.bazelrc`.
 It’s created from a
-[template](../xcodeproj/internal/xcodeproj.template.bazelrc), which contains the
-default configs mentioned above, and will also contain stubs for the
+[template](../xcodeproj/internal/templates/xcodeproj.bazelrc), which contains
+the default configs mentioned above, and will also contain stubs for the
 project-level configs if they are used.
 
 ### Workspace `xcodeproj.bazelrc`
