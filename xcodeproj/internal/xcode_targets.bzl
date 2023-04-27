@@ -335,10 +335,10 @@ def _merge_xcode_target(*, src_swift, src_non_swift, dest):
     if src_non_swift:
         srcs.append(src_non_swift)
         transitive_dependencies.append(src_non_swift._dependencies)
-        c_params = src_non_swift._c_params or dest._c_params
-        cxx_params = src_non_swift._cxx_params or dest._cxx_params
-        c_has_fortify_source = src_non_swift._c_has_fortify_source or dest._c_has_fortify_source
-        cxx_has_fortify_source = src_non_swift._cxx_has_fortify_source or dest._cxx_has_fortify_source
+        c_params = src_non_swift._c_params or c_params
+        cxx_params = src_non_swift._cxx_params or cxx_params
+        c_has_fortify_source = src_non_swift._c_has_fortify_source or c_has_fortify_source
+        cxx_has_fortify_source = src_non_swift._cxx_has_fortify_source or cxx_has_fortify_source
         platform = src_non_swift.platform
 
     return _make_xcode_target(
