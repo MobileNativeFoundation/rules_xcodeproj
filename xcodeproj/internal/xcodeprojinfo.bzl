@@ -402,9 +402,6 @@ def _create_xcodeprojinfo(
     if not _should_create_provider(ctx = ctx, target = target):
         return None
 
-    if automatic_target_info.bazel_build_mode_error and build_mode != "bazel":
-        fail(automatic_target_info.bazel_build_mode_error)
-
     valid_transitive_infos = [
         info
         for attr, info in transitive_infos
@@ -548,6 +545,7 @@ def create_xcodeprojinfo(*, ctx, build_mode, target, attrs, transitive_infos):
     """
     automatic_target_info = calculate_automatic_target_info(
         ctx = ctx,
+        build_mode = build_mode,
         target = target,
     )
 
