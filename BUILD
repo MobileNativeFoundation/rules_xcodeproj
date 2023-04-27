@@ -27,7 +27,9 @@ filegroup(
 _BUILDIFIER_EXCLUDE_PATTERNS = [
     "./.git/*",
     "./xcodeproj/internal/*.template.*",
+    "./test/fixtures/**/generated/*",
     "**/bazel-output-base/*",
+    "**/test/fixtures/generated/*",
     "**/.rules_xcodeproj/*",
     "**/*.xcodeproj/*",
 ]

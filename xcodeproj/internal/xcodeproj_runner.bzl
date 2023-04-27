@@ -172,6 +172,7 @@ load(
     "{repo}//xcodeproj/internal:xcodeproj_aspect.bzl",
     "make_xcodeproj_aspect",
 )
+
 # buildifier: disable=bzl-visibility
 load(
     "{repo}//xcodeproj/internal:xcodeproj_rule.bzl",
@@ -181,6 +182,7 @@ load(
     ]
     if is_fixture:
         loads.append("""\
+
 # buildifier: disable=bzl-visibility
 load(
     "{repo}//xcodeproj/internal:fixtures.bzl",

@@ -83,6 +83,23 @@ if [[ $for_fixture -eq 1 ]]; then
   readonly mode="${mode_prefix##*/}"
   readonly project_dir="${mode_prefix%/*}"
 
+  # e.g. "test/fixtures/generator/generated/xcodeproj_bwb"
+  readonly source_path="%source_path%"
+  readonly generator_package_name_prefix="${source_path%/*}"
+  readonly generator_package_name="${generator_package_name_prefix#*/*/*/}"
+  readonly generator_name="${generator_package_name##*/}"
+
+  # Copy over generated generator
+  output_base_hash=$(/sbin/md5 -q -s "${execution_root%/*/*}")
+  readonly src_generator_package_directory="/tmp/rules_xcodeproj/generated_v2/$output_base_hash/generator/$generator_package_name"
+  readonly dest_generator_package_directory="$project_dir/generated"
+  readonly dest_generator_package="${dest_generator_package_directory:?}/$generator_name"
+  rm -rf "$dest_generator_package"
+  mkdir -p "$dest_generator_package_directory"
+  cp -r "$src_generator_package_directory" "$dest_generator_package_directory"
+  sed -i '' 's|visibility = \[.*\]|visibility = ["//test:__subpackages__"]|' "$dest_generator_package/BUILD"
+  sed -i '' 's|WORKSPACE_DIRECTORY = ".*"|WORKSPACE_DIRECTORY = "FIXTURE_WORKSPACE_DIRECTORY"|' "$dest_generator_package/defs.bzl"
+
   # Bazel versions can change the Starlark hashes, so we store replacements
   # per version
   pushd "$BUILD_WORKSPACE_DIRECTORY"
