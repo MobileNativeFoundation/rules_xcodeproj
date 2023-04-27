@@ -521,9 +521,23 @@ targets.
 
     target_merge_dests = {}
     for dest, src_ids in raw_target_merge_dests.items():
-        if len(src_ids) > 1:
-            # We can only merge targets with a single library dependency
+        if len(src_ids) == 1:
+            # We can always add merge targets of a single library dependency
+            pass
+        elif len(src_ids) == 2:
+            # Only merge if one src is swift and the other isn't.
+            src_1 = src_ids[0]
+            src_2 = src_ids[1]
+            src_1_is_swift = unprocessed_targets[src_1]._swift_params
+            src_2_is_swift = unprocessed_targets[src_2]._swift_params
+
+            # Only merge 1 Swift and 1 non-Swift target for now.
+            if (src_1_is_swift and src_2_is_swift) or (not src_1_is_swift and not src_2_is_swift):
+                continue
+        else:
+            # Unmergable source target count
             continue
+
         dest_label_str = xcode_target_label_strs[dest]
 
         for src in src_ids:
@@ -596,24 +610,24 @@ targets.
 
     non_mergable_targets = {}
     non_terminal_dests = {}
-    for src, dests in target_merges.items():
-        src_target = focused_targets[src]
+    for dest, srcs in target_merge_dests.items():
+        dest_target = focused_targets[dest]
+        src_labels = [focused_targets[src].label for src in srcs]
 
-        for dest in dests:
-            dest_target = focused_targets[dest]
-
-            if dest_target.product.type not in _TERMINAL_PRODUCT_TYPES:
+        if dest_target.product.type not in _TERMINAL_PRODUCT_TYPES:
+            for src in srcs:
                 non_terminal_dests.setdefault(src, []).append(dest)
 
-            for library in xcode_targets.get_top_level_static_libraries(
-                dest_target,
-            ):
-                if library.owner == src_target.label:
-                    continue
+        # Process all libraries that cannot be merged into `dest_target`
+        for library in xcode_targets.get_top_level_static_libraries(
+            dest_target,
+        ):
+            if library.owner in src_labels:
+                continue
 
-                # Other libraries that are not being merged into `dest_target`
-                # can't merge into other targets
-                non_mergable_targets[library.path] = None
+            # Other libraries that are not being merged into `dest_target`
+            # can't merge into other targets
+            non_mergable_targets[library.path] = None
 
     for src in target_merges.keys():
         src_target = focused_targets[src]
@@ -624,14 +638,31 @@ targets.
             for id in target_merge_srcs_by_label[src_target.label]:
                 target_merges.pop(id, None)
 
+    # Remap 'target_merge_dests' after popping invalid merges.
+    target_merge_dests = {}
     for src, dests in target_merges.items():
-        src_target = focused_targets.pop(src)
-
         for dest in dests:
-            focused_targets[dest] = xcode_targets.merge(
-                src = src_target,
-                dest = focused_targets[dest],
-            )
+            target_merge_dests.setdefault(dest, []).append(src)
+
+    for dest, srcs in target_merge_dests.items():
+        src_targets = [focused_targets.pop(src) for src in srcs]
+
+        # This functionality assumes that 2 or less sources are present in the
+        # potential merge. If that changes, this will need updated.
+        src_target_swift = None
+        src_target_non_swift = None
+
+        for src_target in src_targets:
+            if src_target._swift_params:
+                src_target_swift = src_target
+            else:
+                src_target_non_swift = src_target
+
+        focused_targets[dest] = xcode_targets.merge(
+            src_swift = src_target_swift,
+            src_non_swift = src_target_non_swift,
+            dest = focused_targets[dest],
+        )
 
     (
         xcode_generated_paths,
