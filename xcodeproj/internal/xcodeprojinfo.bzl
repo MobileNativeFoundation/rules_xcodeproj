@@ -162,13 +162,12 @@ def _target_info_fields(
         *   `generated_inputs`
         *   `hosted_targets`
         *   `inputs`
-        *   `is_top_level_target`
         *   `lldb_context`
+        *   `non_top_level_rule_kind`
         *   `outputs`
         *   `potential_target_merges`
         *   `replacement_labels`
         *   `resource_bundle_informations`
-        *   `rule_kind`
         *   `target_type`
         *   `envs`
         *   `transitive_dependencies`
@@ -255,6 +254,12 @@ def _skip_target(
         transitive_infos = valid_transitive_infos,
     )
 
+    deps_transitive_infos = [
+        info
+        for attr, info in transitive_infos
+        if attr in deps_attrs and info.xcode_target
+    ]
+
     return _target_info_fields(
         args = memory_efficient_depset(
             [
@@ -263,12 +268,8 @@ def _skip_target(
                     id = info.xcode_target.id,
                     automatic_target_info = automatic_target_info,
                 )
-                for attr, info in transitive_infos
-                if (target and
-                    attr in deps_attrs and
-                    info.xcode_target and
-                    automatic_target_info.args)
-            ],
+                for info in deps_transitive_infos
+            ] if automatic_target_info.args else None,
             transitive = [
                 info.args
                 for info in valid_transitive_infos
@@ -314,10 +315,7 @@ def _skip_target(
         replacement_labels = memory_efficient_depset(
             [
                 struct(id = info.xcode_target.id, label = target.label)
-                for attr, info in transitive_infos
-                if (target and
-                    attr in deps_attrs and
-                    info.xcode_target)
+                for info in deps_transitive_infos
             ],
             transitive = [
                 info.replacement_labels
@@ -338,12 +336,8 @@ def _skip_target(
                     id = info.xcode_target.id,
                     automatic_target_info = automatic_target_info,
                 )
-                for attr, info in transitive_infos
-                if (target and
-                    attr in deps_attrs and
-                    info.xcode_target and
-                    automatic_target_info.env)
-            ],
+                for info in deps_transitive_infos
+            ] if automatic_target_info.env else None,
             transitive = [
                 info.envs
                 for info in valid_transitive_infos
@@ -449,6 +443,16 @@ def _create_xcodeprojinfo(
             transitive_infos = transitive_infos,
         )
 
+    valid_transitive_infos = [
+        info
+        for attr, info in transitive_infos
+        if (info.target_type in
+            processed_target.automatic_target_info.xcode_targets.get(
+                attr,
+                NONE_LIST,
+            ))
+    ]
+
     return _target_info_fields(
         args = memory_efficient_depset(
             transitive = [
@@ -462,24 +466,14 @@ def _create_xcodeprojinfo(
             processed_target.extension_infoplists,
             transitive = [
                 info.extension_infoplists
-                for attr, info in transitive_infos
-                if (info.target_type in
-                    processed_target.automatic_target_info.xcode_targets.get(
-                        attr,
-                        NONE_LIST,
-                    ))
+                for info in valid_transitive_infos
             ],
         ),
         hosted_targets = memory_efficient_depset(
             processed_target.hosted_targets,
             transitive = [
                 info.hosted_targets
-                for attr, info in transitive_infos
-                if (info.target_type in
-                    processed_target.automatic_target_info.xcode_targets.get(
-                        attr,
-                        NONE_LIST,
-                    ))
+                for info in valid_transitive_infos
             ],
         ),
         inputs = processed_target.inputs,
@@ -495,12 +489,7 @@ def _create_xcodeprojinfo(
             processed_target.potential_target_merges,
             transitive = [
                 info.potential_target_merges
-                for attr, info in transitive_infos
-                if (info.target_type in
-                    processed_target.automatic_target_info.xcode_targets.get(
-                        attr,
-                        NONE_LIST,
-                    ))
+                for info in valid_transitive_infos
             ],
         ),
         replacement_labels = memory_efficient_depset(
@@ -513,12 +502,7 @@ def _create_xcodeprojinfo(
             processed_target.resource_bundle_informations,
             transitive = [
                 info.resource_bundle_informations
-                for attr, info in transitive_infos
-                if (info.target_type in
-                    processed_target.automatic_target_info.xcode_targets.get(
-                        attr,
-                        NONE_LIST,
-                    ))
+                for info in valid_transitive_infos
             ],
         ),
         target_type = processed_target.automatic_target_info.target_type,
@@ -534,24 +518,14 @@ def _create_xcodeprojinfo(
             processed_target.xcode_targets,
             transitive = [
                 info.xcode_targets
-                for attr, info in transitive_infos
-                if (info.target_type in
-                    processed_target.automatic_target_info.xcode_targets.get(
-                        attr,
-                        NONE_LIST,
-                    ))
+                for info in valid_transitive_infos
             ],
         ),
         xcode_required_targets = memory_efficient_depset(
             processed_target.xcode_targets if processed_target.is_xcode_required else None,
             transitive = [
                 info.xcode_required_targets
-                for attr, info in transitive_infos
-                if (info.target_type in
-                    processed_target.automatic_target_info.xcode_targets.get(
-                        attr,
-                        NONE_LIST,
-                    ))
+                for info in valid_transitive_infos
             ],
         ),
     )
