@@ -612,26 +612,21 @@ targets.
     non_terminal_dests = {}
     for dest, srcs in target_merge_dests.items():
         dest_target = focused_targets[dest]
+        src_labels = [focused_targets[src].label for src in srcs]
 
         if dest_target.product.type not in _TERMINAL_PRODUCT_TYPES:
             for src in srcs:
                 non_terminal_dests.setdefault(src, []).append(dest)
 
-        # If all srcs have same dest, allow a merge.
-        is_same_destination_for_all_srcs = (
-            len(uniq([
-                dest
-                for src in srcs
-                for dest in target_merges[src]
-            ])) == 1
-        )
-        if is_same_destination_for_all_srcs:
-            continue
-
         # Process all libraries that cannot be merged into `dest_target`
         for library in xcode_targets.get_top_level_static_libraries(
             dest_target,
         ):
+            if library.owner in src_labels:
+                continue
+
+            # Other libraries that are not being merged into `dest_target`
+            # can't merge into other targets
             non_mergable_targets[library.path] = None
 
     for src in target_merges.keys():
