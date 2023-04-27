@@ -740,10 +740,10 @@ targets.
         )
 
         compile_params = []
-        if xcode_target._c_params:
-            compile_params.append(xcode_target._c_params)
-        if xcode_target._cxx_params:
-            compile_params.append(xcode_target._cxx_params)
+        if xcode_target.c_params:
+            compile_params.append(xcode_target.c_params)
+        if xcode_target.cxx_params:
+            compile_params.append(xcode_target.cxx_params)
         if xcode_target.swift_params:
             compile_params.append(xcode_target.swift_params)
 

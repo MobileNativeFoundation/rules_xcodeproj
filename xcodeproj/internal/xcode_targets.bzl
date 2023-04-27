@@ -121,8 +121,6 @@ def _make_xcode_target(
         _package_bin_dir = package_bin_dir,
         _test_host = test_host,
         _build_settings = struct(**build_settings),
-        _c_params = c_params,
-        _cxx_params = cxx_params,
         _c_has_fortify_source = c_has_fortify_source,
         _cxx_has_fortify_source = cxx_has_fortify_source,
         _modulemaps = modulemaps,
@@ -134,6 +132,8 @@ def _make_xcode_target(
         id = id,
         label = label,
         configuration = configuration,
+        c_params = c_params,
+        cxx_params = cxx_params,
         platform = platform,
         product = product,
         linker_inputs = (
@@ -318,8 +318,8 @@ def _merge_xcode_target(*, src_swift, src_non_swift, dest):
     srcs = []
     transitive_dependencies = [dest._dependencies]
     platform = None
-    c_params = dest._c_params
-    cxx_params = dest._cxx_params
+    c_params = dest.c_params
+    cxx_params = dest.cxx_params
     swift_params = dest.swift_params
     c_has_fortify_source = dest._c_has_fortify_source
     cxx_has_fortify_source = dest._cxx_has_fortify_source
@@ -335,8 +335,8 @@ def _merge_xcode_target(*, src_swift, src_non_swift, dest):
     if src_non_swift:
         srcs.append(src_non_swift)
         transitive_dependencies.append(src_non_swift._dependencies)
-        c_params = src_non_swift._c_params or c_params
-        cxx_params = src_non_swift._cxx_params or cxx_params
+        c_params = src_non_swift.c_params or c_params
+        cxx_params = src_non_swift.cxx_params or cxx_params
         c_has_fortify_source = src_non_swift._c_has_fortify_source or c_has_fortify_source
         cxx_has_fortify_source = src_non_swift._cxx_has_fortify_source or cxx_has_fortify_source
         platform = src_non_swift.platform
@@ -651,10 +651,10 @@ def _xcode_target_to_dto(
         xcode_generated_paths_file = xcode_generated_paths_file,
     )
 
-    if xcode_target._c_params:
-        dto["8"] = xcode_target._c_params.path
-    if xcode_target._cxx_params:
-        dto["9"] = xcode_target._cxx_params.path
+    if xcode_target.c_params:
+        dto["8"] = xcode_target.c_params.path
+    if xcode_target.cxx_params:
+        dto["9"] = xcode_target.cxx_params.path
     if xcode_target.swift_params:
         dto["0"] = xcode_target.swift_params.path
 
