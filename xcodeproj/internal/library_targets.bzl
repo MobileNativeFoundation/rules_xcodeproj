@@ -6,7 +6,6 @@ load(":collections.bzl", "set_if_true")
 load(":compilation_providers.bzl", comp_providers = "compilation_providers")
 load(":configuration.bzl", "get_configuration")
 load(":files.bzl", "build_setting_path", "join_paths_ignoring_empty")
-load(":memory_efficiency.bzl", "NONE_LIST")
 load(":input_files.bzl", "input_files")
 load(":linker_input_files.bzl", "linker_input_files")
 load(":lldb_contexts.bzl", "lldb_contexts")
@@ -61,15 +60,8 @@ def process_library_target(
         get_product_module_name(ctx = ctx, target = target),
     )
 
-    valid_transitive_infos = [
-        info
-        for attr, info in transitive_infos
-        if (info.target_type in
-            automatic_target_info.xcode_targets.get(attr, NONE_LIST))
-    ]
-
     dependencies, transitive_dependencies = process_dependencies(
-        transitive_infos = valid_transitive_infos,
+        transitive_infos = transitive_infos,
     )
 
     deps_infos = [
@@ -135,7 +127,7 @@ def process_library_target(
         linker_inputs = linker_inputs,
         automatic_target_info = automatic_target_info,
         modulemaps = modulemaps,
-        transitive_infos = valid_transitive_infos,
+        transitive_infos = transitive_infos,
     )
     debug_outputs = target[apple_common.AppleDebugOutputs] if apple_common.AppleDebugOutputs in target else None
     output_group_info = target[OutputGroupInfo] if OutputGroupInfo in target else None
@@ -146,7 +138,7 @@ def process_library_target(
         inputs = target_inputs,
         output_group_info = output_group_info,
         swift_info = swift_info,
-        transitive_infos = valid_transitive_infos,
+        transitive_infos = transitive_infos,
     )
 
     if target_inputs.pch:
@@ -184,12 +176,7 @@ def process_library_target(
         clang_opts = clang_opts,
         framework_includes = framework_includes,
         swiftmodules = swiftmodules,
-        transitive_infos = [
-            info
-            for attr, info in transitive_infos
-            if (info.target_type in
-                automatic_target_info.xcode_targets.get(attr, NONE_LIST))
-        ],
+        transitive_infos = transitive_infos,
     )
 
     xcode_target = xcode_targets.make(
