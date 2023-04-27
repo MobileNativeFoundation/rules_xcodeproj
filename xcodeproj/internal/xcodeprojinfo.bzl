@@ -250,7 +250,6 @@ def _skip_target(
     )
 
     (_, provider_outputs) = output_files.merge(
-        ctx = ctx,
         transitive_infos = valid_transitive_infos,
     )
 

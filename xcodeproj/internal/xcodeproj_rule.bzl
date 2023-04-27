@@ -59,9 +59,9 @@ You can turn this error into a warning with `fail_for_invalid_extra_files_target
 def _calculate_bwx_unfocused_dependencies(
         *,
         build_mode,
-        targets,
-        focused_targets,
         bwx_unfocused_libraries,
+        focused_targets,
+        targets,
         unfocused_targets):
     if build_mode != "xcode":
         return {}
@@ -101,9 +101,9 @@ def _calculate_bwx_unfocused_dependencies(
 
 def _calculate_swiftui_preview_targets(
         *,
-        xcode_target,
+        targets,
         transitive_dependencies,
-        targets):
+        xcode_target):
     return [
         id
         for id in transitive_dependencies
@@ -113,8 +113,7 @@ def _calculate_swiftui_preview_targets(
         )
     ]
 
-def _get_minimum_xcode_version(*, ctx):
-    xcode_config = ctx.attr._xcode_config[apple_common.XcodeVersionConfig]
+def _get_minimum_xcode_version(*, xcode_config):
     version = str(xcode_config.xcode_version())
     if not version:
         fail("""\
@@ -150,15 +149,16 @@ https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bu
 
 def _process_extra_files(
         *,
-        ctx,
         configurations_map,
         focused_labels,
-        is_fixture,
-        unfocused_labels,
-        replacement_labels_by_label,
-        inputs,
         focused_targets_extra_files,
-        focused_targets_extra_folders):
+        focused_targets_extra_folders,
+        inputs,
+        is_fixture,
+        replacement_labels_by_label,
+        runner_build_file,
+        unfocused_labels,
+        unowned_extra_files):
     # Apply replacement labels
     extra_files_depsets_by_label = [
         (
@@ -203,14 +203,14 @@ def _process_extra_files(
     ]
 
     # Unowned extra files
-    unowned_extra_files = [ctx.attr.runner_build_file]
-    for target in ctx.attr.unowned_extra_files:
-        unowned_extra_files.extend(
+    all_unowned_extra_files = [runner_build_file]
+    for target in unowned_extra_files:
+        all_unowned_extra_files.extend(
             [file.path for file in target.files.to_list()],
         )
 
     extra_files = depset(
-        unowned_extra_files,
+        all_unowned_extra_files,
         transitive = extra_files_depsets,
     ).to_list()
     extra_folders = depset(
@@ -243,9 +243,9 @@ def _process_extra_files(
 def _process_xccurrentversions(
         *,
         focused_labels,
-        unfocused_labels,
+        inputs,
         replacement_labels_by_label,
-        inputs):
+        unfocused_labels):
     xccurrentversions_files = inputs.xccurrentversions.to_list()
 
     # Apply replacement labels
@@ -277,16 +277,18 @@ def _process_xccurrentversions(
 
 def _process_targets(
         *,
-        ctx,
+        actions,
         build_mode,
         is_fixture,
         configuration,
         focused_labels,
+        link_params_processor,
         unfocused_labels,
         replacement_labels,
         inputs,
         infos,
         infos_per_xcode_configuration,
+        name,
         owned_extra_files,
         include_swiftui_previews_scheme_targets,
         fail_for_invalid_extra_files_targets):
@@ -562,9 +564,9 @@ targets.
 
     bwx_unfocused_dependencies = _calculate_bwx_unfocused_dependencies(
         build_mode = build_mode,
-        targets = unprocessed_targets,
-        focused_targets = focused_targets.values(),
         bwx_unfocused_libraries = bwx_unfocused_libraries,
+        focused_targets = focused_targets.values(),
+        targets = unprocessed_targets,
         unfocused_targets = unfocused_targets,
     )
 
@@ -668,10 +670,11 @@ targets.
         xcode_generated_paths,
         xcode_generated_paths_file,
     ) = _process_xcode_generated_paths(
-        ctx = ctx,
+        actions = actions,
         build_mode = build_mode,
-        focused_targets = focused_targets,
         bwx_unfocused_dependencies = bwx_unfocused_dependencies,
+        focused_targets = focused_targets,
+        name = name,
     )
 
     excluded_targets = dicts.add(unfocused_targets, files_only_targets)
@@ -694,9 +697,9 @@ targets.
         if (include_swiftui_previews_scheme_targets and
             xcode_target.product.type in _SWIFTUI_PREVIEW_PRODUCT_TYPES):
             additional_scheme_target_ids = _calculate_swiftui_preview_targets(
-                xcode_target = xcode_target,
-                transitive_dependencies = transitive_dependencies,
                 targets = focused_targets,
+                transitive_dependencies = transitive_dependencies,
+                xcode_target = xcode_target,
             )
         else:
             additional_scheme_target_ids = None
@@ -717,19 +720,20 @@ targets.
             replaced_dependencies,
             link_params,
         ) = xcode_targets.to_dto(
-            ctx = ctx,
-            xcode_target = xcode_target,
-            label = label,
+            xcode_target,
+            actions = actions,
             additional_scheme_target_ids = additional_scheme_target_ids,
             build_mode = build_mode,
-            xcode_configurations = target_xcode_configurations,
-            link_params_processor = ctx.executable._link_params_processor,
+            bwx_unfocused_dependencies = bwx_unfocused_dependencies,
+            excluded_targets = excluded_targets,
+            label = label,
+            link_params_processor = link_params_processor,
             linker_products_map = linker_products_map,
             params_index = index,
+            rule_name = name,
             should_include_outputs = should_include_outputs(build_mode),
-            excluded_targets = excluded_targets,
             target_merges = target_merges,
-            bwx_unfocused_dependencies = bwx_unfocused_dependencies,
+            xcode_configurations = target_xcode_configurations,
             xcode_generated_paths = xcode_generated_paths,
             xcode_generated_paths_file = xcode_generated_paths_file,
         )
@@ -945,17 +949,18 @@ targets.
 
 def _process_xcode_generated_paths(
         *,
-        ctx,
+        actions,
         build_mode,
+        bwx_unfocused_dependencies,
         focused_targets,
-        bwx_unfocused_dependencies):
+        name):
     xcode_generated_paths = {}
-    xcode_generated_paths_file = ctx.actions.declare_file(
-        "{}-xcode_generated_paths.json".format(ctx.attr.name),
+    xcode_generated_paths_file = actions.declare_file(
+        "{}-xcode_generated_paths.json".format(name),
     )
 
     if build_mode != "xcode":
-        ctx.actions.write(
+        actions.write(
             content = json.encode(xcode_generated_paths),
             output = xcode_generated_paths_file,
         )
@@ -1032,7 +1037,7 @@ def _process_xcode_generated_paths(
                 )
             )
 
-    ctx.actions.write(
+    actions.write(
         content = json.encode(xcode_generated_paths),
         output = xcode_generated_paths_file,
     )
@@ -1057,14 +1062,14 @@ def _write_swift_debug_settings(
         *,
         actions,
         lldb_contexts,
-        rule_name,
+        name,
         swift_debug_settings_processor,
         xcode_generated_paths_file):
     outputs = []
     for (xcode_configuration, config_lldb_contexts) in lldb_contexts.items():
         output = actions.declare_file(
             "{}_bazel_integration_files/{}-swift_debug_settings.py".format(
-                rule_name,
+                name,
                 xcode_configuration,
             ),
         )
@@ -1104,21 +1109,28 @@ def _write_swift_debug_settings(
 
 def _write_spec(
         *,
+        actions,
         args,
         config,
-        ctx,
-        is_fixture,
-        xcode_configurations,
         default_xcode_configuration,
         envs,
-        project_name,
-        project_options,
-        target_dtos,
         extra_files,
         extra_folders,
         infos,
+        index_import,
+        is_fixture,
         minimum_xcode_version,
-        target_ids_list):
+        name,
+        post_build,
+        pre_build,
+        project_name,
+        project_options,
+        runner_label,
+        scheme_autogeneration_mode,
+        schemes_json,
+        target_dtos,
+        target_ids_list,
+        xcode_configurations):
     # `target_hosts`
     hosted_targets = depset(
         transitive = [info.hosted_targets for info in infos],
@@ -1137,11 +1149,11 @@ def _write_spec(
             file = target_ids_list,
         ),
         "i": "fixture-index-import-path" if is_fixture else build_setting_path(
-            file = ctx.executable._index_import,
+            file = index_import,
         ),
         "m": minimum_xcode_version,
         "n": project_name,
-        "R": ctx.attr.runner_label,
+        "R": runner_label,
     }
 
     if xcode_configurations != ["Debug"]:
@@ -1154,8 +1166,8 @@ def _write_spec(
     if project_options_dto:
         spec_dto["o"] = project_options_dto
 
-    if ctx.attr.scheme_autogeneration_mode != "all":
-        spec_dto["s"] = ctx.attr.scheme_autogeneration_mode
+    if scheme_autogeneration_mode != "all":
+        spec_dto["s"] = scheme_autogeneration_mode
 
     set_if_true(
         spec_dto,
@@ -1180,12 +1192,12 @@ def _write_spec(
     set_if_true(
         spec_dto,
         "P",
-        ctx.attr.post_build,
+        post_build,
     )
     set_if_true(
         spec_dto,
         "p",
-        ctx.attr.pre_build,
+        pre_build,
     )
     set_if_true(
         spec_dto,
@@ -1221,25 +1233,30 @@ def _write_spec(
     for shard in range(shard_count):
         sharded_targets = flattened_targets[shard * shard_size:(shard + 1) * shard_size]
         targets_json = json.encode(sharded_targets)
-        targets_output = ctx.actions.declare_file(
-            "{}-targets_spec.{}.json".format(ctx.attr.name, shard),
+        targets_output = actions.declare_file(
+            "{}-targets_spec.{}.json".format(name, shard),
         )
-        ctx.actions.write(targets_output, targets_json)
+        actions.write(targets_output, targets_json)
 
         target_shards.append(targets_output)
 
-    project_spec_output = ctx.actions.declare_file(
-        "{}-project_spec.json".format(ctx.attr.name),
+    project_spec_output = actions.declare_file(
+        "{}-project_spec.json".format(name),
     )
-    ctx.actions.write(project_spec_output, project_spec_json)
+    actions.write(project_spec_output, project_spec_json)
 
-    return [project_spec_output, ctx.file.schemes_json] + target_shards
+    return [project_spec_output, schemes_json] + target_shards
 
-def _write_xccurrentversions(*, ctx, xccurrentversion_files):
-    containers_file = ctx.actions.declare_file(
-        "{}_xccurrentversion_containers".format(ctx.attr.name),
+def _write_xccurrentversions(
+        *,
+        actions,
+        name,
+        xccurrentversion_files,
+        xccurrentversions_parser):
+    containers_file = actions.declare_file(
+        "{}_xccurrentversion_containers".format(name),
     )
-    ctx.actions.write(
+    actions.write(
         containers_file,
         "".join([
             file.dirname + "\n"
@@ -1247,19 +1264,17 @@ def _write_xccurrentversions(*, ctx, xccurrentversion_files):
         ]),
     )
 
-    files_list = ctx.actions.args()
+    files_list = actions.args()
     files_list.use_param_file("%s", use_always = True)
     files_list.set_param_file_format("multiline")
     files_list.add_all(xccurrentversion_files)
 
-    output = ctx.actions.declare_file(
-        "{}_xccurrentversions".format(ctx.attr.name),
+    output = actions.declare_file(
+        "{}_xccurrentversions".format(name),
     )
-    ctx.actions.run(
+    actions.run(
         arguments = [containers_file.path, files_list, output.path],
-        executable = (
-            ctx.attr._xccurrentversions_parser[DefaultInfo].files_to_run
-        ),
+        executable = xccurrentversions_parser,
         inputs = [containers_file] + xccurrentversion_files,
         outputs = [output],
         mnemonic = "CalculateXcodeProjXCCurrentVersions",
@@ -1267,30 +1282,34 @@ def _write_xccurrentversions(*, ctx, xccurrentversion_files):
 
     return output
 
-def _write_extensionpointidentifiers(*, ctx, extension_infoplists):
-    targetids_file = ctx.actions.declare_file(
-        "{}_extensionpointidentifiers_targetids".format(ctx.attr.name),
+def _write_extensionpointidentifiers(
+        *,
+        actions,
+        extension_infoplists,
+        extensionpointidentifiers_parser,
+        name):
+    targetids_file = actions.declare_file(
+        "{}_extensionpointidentifiers_targetids".format(name),
     )
-    ctx.actions.write(
+    actions.write(
         targetids_file,
         "".join([s.id + "\n" for s in extension_infoplists]),
     )
 
     infoplist_files = [s.infoplist for s in extension_infoplists]
 
-    files_list = ctx.actions.args()
+    files_list = actions.args()
     files_list.use_param_file("%s", use_always = True)
     files_list.set_param_file_format("multiline")
     files_list.add_all(infoplist_files)
 
-    output = ctx.actions.declare_file(
-        "{}_extensionpointidentifiers".format(ctx.attr.name),
+    output = actions.declare_file(
+        "{}_extensionpointidentifiers".format(name),
     )
 
-    tool = ctx.attr._extensionpointidentifiers_parser[DefaultInfo].files_to_run
-    ctx.actions.run(
+    actions.run(
         arguments = [targetids_file.path, files_list, output.path],
-        executable = tool,
+        executable = extensionpointidentifiers_parser,
         inputs = [targetids_file] + infoplist_files,
         outputs = [output],
         mnemonic = "CalculateXcodeProjExtensionPointIdentifiers",
@@ -1298,13 +1317,21 @@ def _write_extensionpointidentifiers(*, ctx, extension_infoplists):
 
     return output
 
-def _write_bazel_build_script(*, ctx, target_ids_list):
-    output = ctx.actions.declare_file(
-        "{}_bazel_integration_files/bazel_build.sh".format(ctx.attr.name),
+def _write_bazel_build_script(
+        *,
+        actions,
+        bazel_env,
+        bazel_path,
+        label,
+        name,
+        target_ids_list,
+        template):
+    output = actions.declare_file(
+        "{}_bazel_integration_files/bazel_build.sh".format(name),
     )
 
     envs = []
-    for key, value in ctx.attr.bazel_env.items():
+    for key, value in bazel_env.items():
         envs.append("  '{}={}'".format(
             key,
             (value
@@ -1315,14 +1342,14 @@ def _write_bazel_build_script(*, ctx, target_ids_list):
             )),
         ))
 
-    ctx.actions.expand_template(
-        template = ctx.file._bazel_build_script_template,
+    actions.expand_template(
+        template = template,
         output = output,
         is_executable = True,
         substitutions = {
             "%bazel_env%": "\n".join(envs),
-            "%bazel_path%": ctx.attr.bazel_path,
-            "%generator_label%": str(ctx.label),
+            "%bazel_path%": bazel_path,
+            "%generator_label%": str(label),
             "%target_ids_list%": (
                 "$PROJECT_DIR/{}".format(target_ids_list.path)
             ),
@@ -1331,11 +1358,9 @@ def _write_bazel_build_script(*, ctx, target_ids_list):
 
     return output
 
-def _write_create_xcode_overlay_script(*, ctx, targets):
-    output = ctx.actions.declare_file(
-        "{}_bazel_integration_files/create_xcode_overlay.sh".format(
-            ctx.attr.name,
-        ),
+def _write_create_xcode_overlay_script(*, actions, name, targets, template):
+    output = actions.declare_file(
+        "{}_bazel_integration_files/create_xcode_overlay.sh".format(name),
     )
 
     roots = []
@@ -1352,8 +1377,8 @@ def _write_create_xcode_overlay_script(*, ctx, targets):
 {{"external-contents": "{build_dir}","name": "${{bazel_out_prefix}}{bazel_out}","type": "file"}}\
 """.format(bazel_out = bazel_out, build_dir = build_dir))
 
-    ctx.actions.expand_template(
-        template = ctx.file._create_xcode_overlay_script_template,
+    actions.expand_template(
+        template = template,
         output = output,
         is_executable = True,
         substitutions = {
@@ -1363,10 +1388,10 @@ def _write_create_xcode_overlay_script(*, ctx, targets):
 
     return output
 
-def _write_execution_root_file(*, ctx):
-    output = ctx.actions.declare_file("{}_execution_root_file".format(ctx.attr.name))
+def _write_execution_root_file(*, actions, bin_dir_path, name):
+    output = actions.declare_file("{}_execution_root_file".format(name))
 
-    ctx.actions.run_shell(
+    actions.run_shell(
         outputs = [output],
         command = """\
 bin_dir_full_path="$(perl -MCwd -e 'print Cwd::abs_path shift' "{bin_dir_full}";)"
@@ -1374,7 +1399,7 @@ execution_root="${{bin_dir_full_path%/{bin_dir_full}}}"
 
 echo "$execution_root" > "{out_full}"
 """.format(
-            bin_dir_full = ctx.bin_dir.path,
+            bin_dir_full = bin_dir_path,
             out_full = output.path,
         ),
         mnemonic = "CalculateXcodeProjExecutionRoot",
@@ -1390,21 +1415,24 @@ echo "$execution_root" > "{out_full}"
 
 def _write_xcodeproj(
         *,
-        ctx,
+        actions,
         build_mode,
+        colorize,
         execution_root_file,
         extensionpointidentifiers_file,
+        generator,
+        index_import,
         install_path,
         is_fixture,
-        colorize,
+        name,
         spec_files,
         workspace_directory,
         xccurrentversions_file):
-    xcodeproj = ctx.actions.declare_directory(
-        "{}.xcodeproj".format(ctx.attr.name),
+    xcodeproj = actions.declare_directory(
+        "{}.xcodeproj".format(name),
     )
 
-    args = ctx.actions.args()
+    args = actions.args()
     args.add(execution_root_file.path)
     args.add(workspace_directory)
     args.add(xccurrentversions_file.path)
@@ -1416,8 +1444,8 @@ def _write_xcodeproj(
     args.add("1" if colorize else "0")
     args.add_all(spec_files)
 
-    ctx.actions.run(
-        executable = ctx.attr._generator[DefaultInfo].files_to_run,
+    actions.run(
+        executable = generator,
         mnemonic = "GenerateXcodeProj",
         progress_message = "Generating \"{}\"".format(install_path),
         arguments = [args],
@@ -1427,7 +1455,7 @@ def _write_xcodeproj(
             extensionpointidentifiers_file,
         ],
         outputs = [xcodeproj],
-        tools = [ctx.attr._index_import[DefaultInfo].files_to_run],
+        tools = [index_import],
         execution_requirements = {
             # Projects can be rather large, and take almost no time to generate
             # This also works around any RBC tree artifact issues
@@ -1440,17 +1468,18 @@ def _write_xcodeproj(
 
 def _write_installer(
         *,
-        ctx,
-        name = None,
+        actions,
         bazel_integration_files,
         config,
         configurations_map,
         install_path,
         is_fixture,
+        name,
         spec_files,
+        template,
         xcodeproj):
-    installer = ctx.actions.declare_file(
-        "{}-installer.sh".format(name or ctx.attr.name),
+    installer = actions.declare_file(
+        "{}-installer.sh".format(name),
     )
 
     configurations_replacements = "\\n".join([
@@ -1458,8 +1487,8 @@ def _write_installer(
         for configuration, replacement in configurations_map.items()
     ])
 
-    ctx.actions.expand_template(
-        template = ctx.file._installer_template,
+    actions.expand_template(
+        template = template,
         output = installer,
         is_executable = True,
         substitutions = {
@@ -1514,18 +1543,26 @@ def _xcodeproj_impl(ctx):
 `default_xcode_configuration` must be `None`, or one of the defined \
 configurations: {}""".format(", ".join(xcode_configurations)))
 
+    actions = ctx.actions
+    bin_dir_path = ctx.bin_dir.path
     build_mode = ctx.attr.build_mode
+    colorize = ctx.attr.colorize
     config = ctx.attr.config
+    configuration = calculate_configuration(bin_dir_path = bin_dir_path)
     install_path = ctx.attr.install_path
     is_fixture = ctx.attr._is_fixture
-    colorize = ctx.attr.colorize
+    minimum_xcode_version = (
+        ctx.attr.minimum_xcode_version or
+        _get_minimum_xcode_version(
+            xcode_config = (
+                ctx.attr._xcode_config[apple_common.XcodeVersionConfig]
+            ),
+        )
+    )
+    name = ctx.attr.name
     project_name = ctx.attr.project_name
-    configuration = calculate_configuration(bin_dir_path = ctx.bin_dir.path)
-    minimum_xcode_version = (ctx.attr.minimum_xcode_version or
-                             _get_minimum_xcode_version(ctx = ctx))
 
     (_, provider_outputs) = output_files.merge(
-        ctx = ctx,
         transitive_infos = infos,
     )
 
@@ -1553,24 +1590,26 @@ configurations: {}""".format(", ".join(xcode_configurations)))
         lldb_contexts,
         xcode_generated_paths_file,
     ) = _process_targets(
-        ctx = ctx,
+        actions = actions,
         build_mode = build_mode,
-        is_fixture = is_fixture,
         configuration = configuration,
+        fail_for_invalid_extra_files_targets = (
+            ctx.attr.fail_for_invalid_extra_files_targets
+        ),
         focused_labels = focused_labels,
-        unfocused_labels = unfocused_labels,
-        replacement_labels = replacement_labels,
-        inputs = inputs,
-        infos = infos,
-        infos_per_xcode_configuration = infos_per_xcode_configuration,
-        owned_extra_files = ctx.attr.owned_extra_files,
         include_swiftui_previews_scheme_targets = (
             build_mode == "bazel" and
             ctx.attr.adjust_schemes_for_swiftui_previews
         ),
-        fail_for_invalid_extra_files_targets = (
-            ctx.attr.fail_for_invalid_extra_files_targets
-        ),
+        infos = infos,
+        infos_per_xcode_configuration = infos_per_xcode_configuration,
+        inputs = inputs,
+        is_fixture = is_fixture,
+        link_params_processor = ctx.executable._link_params_processor,
+        name = name,
+        owned_extra_files = ctx.attr.owned_extra_files,
+        replacement_labels = replacement_labels,
+        unfocused_labels = unfocused_labels,
     )
 
     args = {
@@ -1589,25 +1628,26 @@ configurations: {}""".format(", ".join(xcode_configurations)))
     }
 
     extra_files, extra_folders = _process_extra_files(
-        ctx = ctx,
         configurations_map = configurations_map,
         focused_labels = focused_labels,
-        is_fixture = is_fixture,
-        unfocused_labels = unfocused_labels,
-        replacement_labels_by_label = replacement_labels_by_label,
-        inputs = inputs,
         focused_targets_extra_files = focused_targets_extra_files,
         focused_targets_extra_folders = focused_targets_extra_folders,
+        inputs = inputs,
+        is_fixture = is_fixture,
+        replacement_labels_by_label = replacement_labels_by_label,
+        runner_build_file = ctx.attr.runner_build_file,
+        unfocused_labels = unfocused_labels,
+        unowned_extra_files = ctx.attr.unowned_extra_files,
     )
     xccurrentversion_files = _process_xccurrentversions(
-        focused_labels = focused_labels,
-        unfocused_labels = unfocused_labels,
-        replacement_labels_by_label = replacement_labels_by_label,
         inputs = inputs,
+        focused_labels = focused_labels,
+        replacement_labels_by_label = replacement_labels_by_label,
+        unfocused_labels = unfocused_labels,
     )
     target_ids_list = write_target_ids_list(
-        actions = ctx.actions,
-        name = ctx.attr.name,
+        actions = actions,
+        name = name,
         target_dtos = target_dtos,
     )
 
@@ -1623,35 +1663,54 @@ configurations: {}""".format(", ".join(xcode_configurations)))
     ]
 
     spec_files = _write_spec(
-        ctx = ctx,
+        actions = actions,
         args = args,
-        is_fixture = is_fixture,
-        project_name = project_name,
-        project_options = ctx.attr.project_options,
         config = config,
-        xcode_configurations = xcode_configurations,
         default_xcode_configuration = default_xcode_configuration,
         envs = envs,
-        target_dtos = target_dtos,
         extra_files = extra_files,
         extra_folders = extra_folders,
+        index_import = ctx.executable._index_import,
         infos = infos,
+        is_fixture = is_fixture,
         minimum_xcode_version = minimum_xcode_version,
+        name = name,
+        post_build = ctx.attr.post_build,
+        pre_build = ctx.attr.pre_build,
+        project_name = project_name,
+        project_options = ctx.attr.project_options,
+        runner_label = ctx.attr.runner_label,
+        scheme_autogeneration_mode = ctx.attr.scheme_autogeneration_mode,
+        schemes_json = ctx.file.schemes_json,
+        target_dtos = target_dtos,
         target_ids_list = target_ids_list,
+        xcode_configurations = xcode_configurations,
     )
-    execution_root_file = _write_execution_root_file(ctx = ctx)
+    execution_root_file = _write_execution_root_file(
+        actions = actions,
+        bin_dir_path = bin_dir_path,
+        name = name,
+    )
     xccurrentversions_file = _write_xccurrentversions(
-        ctx = ctx,
+        actions = actions,
+        name = name,
         xccurrentversion_files = xccurrentversion_files,
+        xccurrentversions_parser = (
+            ctx.attr._xccurrentversions_parser[DefaultInfo].files_to_run
+        ),
     )
     extensionpointidentifiers_file = _write_extensionpointidentifiers(
-        ctx = ctx,
+        actions = actions,
         extension_infoplists = extension_infoplists,
+        extensionpointidentifiers_parser = (
+            ctx.attr._extensionpointidentifiers_parser[DefaultInfo].files_to_run
+        ),
+        name = name,
     )
     swift_debug_settings = _write_swift_debug_settings(
-        actions = ctx.actions,
+        actions = actions,
         lldb_contexts = lldb_contexts,
-        rule_name = ctx.attr.name,
+        name = name,
         swift_debug_settings_processor = (
             ctx.executable._swift_debug_settings_processor
         ),
@@ -1665,20 +1724,18 @@ configurations: {}""".format(", ".join(xcode_configurations)))
         ])
 
         normalized_specs = [
-            ctx.actions.declare_file(
-                "{}-normalized/spec.{}.json".format(ctx.attr.name, idx),
+            actions.declare_file(
+                "{}-normalized/spec.{}.json".format(name, idx),
             )
             for idx, file in enumerate(spec_files)
         ]
-        normalized_extensionpointidentifiers = ctx.actions.declare_file(
-            "{}_normalized/extensionpointidentifiers_targetids".format(
-                ctx.attr.name,
-            ),
+        normalized_extensionpointidentifiers = actions.declare_file(
+            "{}_normalized/extensionpointidentifiers_targetids".format(name),
         )
         normalized_swift_debug_settings = [
-            ctx.actions.declare_file(
+            actions.declare_file(
                 "{}_normalized/{}-swift_debug_settings.py".format(
-                    ctx.attr.name,
+                    name,
                     xcode_configuration,
                 ),
             )
@@ -1695,7 +1752,7 @@ configurations: {}""".format(", ".join(xcode_configurations)))
             normalized_swift_debug_settings +
             [normalized_extensionpointidentifiers]
         )
-        ctx.actions.run_shell(
+        actions.run_shell(
             inputs = unstable_files,
             outputs = normalized_files,
             command = """\
@@ -1722,35 +1779,53 @@ done
         list(ctx.files._base_integration_files) +
         swift_debug_settings
     ) + [
-        _write_bazel_build_script(ctx = ctx, target_ids_list = target_ids_list),
+        _write_bazel_build_script(
+            actions = actions,
+            bazel_env = ctx.attr.bazel_env,
+            bazel_path = ctx.attr.bazel_path,
+            label = ctx.label,
+            name = name,
+            target_ids_list = target_ids_list,
+            template = ctx.file._bazel_build_script_template,
+        ),
     ]
     if build_mode == "xcode":
         bazel_integration_files.append(
-            _write_create_xcode_overlay_script(ctx = ctx, targets = targets),
+            _write_create_xcode_overlay_script(
+                actions = actions,
+                name = name,
+                targets = targets,
+                template = ctx.file._create_xcode_overlay_script_template,
+            ),
         )
     else:
         bazel_integration_files.extend(ctx.files._bazel_integration_files)
 
     xcodeproj = _write_xcodeproj(
-        ctx = ctx,
-        execution_root_file = execution_root_file,
-        install_path = install_path,
-        workspace_directory = ctx.attr.workspace_directory,
-        spec_files = spec_files,
-        xccurrentversions_file = xccurrentversions_file,
-        extensionpointidentifiers_file = extensionpointidentifiers_file,
+        actions = actions,
         build_mode = build_mode,
-        is_fixture = is_fixture,
         colorize = colorize,
+        execution_root_file = execution_root_file,
+        extensionpointidentifiers_file = extensionpointidentifiers_file,
+        generator = ctx.attr._generator[DefaultInfo].files_to_run,
+        index_import = ctx.attr._index_import[DefaultInfo].files_to_run,
+        install_path = install_path,
+        is_fixture = is_fixture,
+        name = name,
+        spec_files = spec_files,
+        workspace_directory = ctx.attr.workspace_directory,
+        xccurrentversions_file = xccurrentversions_file,
     )
     installer = _write_installer(
-        ctx = ctx,
+        actions = actions,
         bazel_integration_files = bazel_integration_files,
         config = config,
         configurations_map = configurations_map,
         install_path = install_path,
         is_fixture = is_fixture,
+        name = name,
         spec_files = spec_files,
+        template = ctx.file._installer_template,
         xcodeproj = xcodeproj,
     )
 

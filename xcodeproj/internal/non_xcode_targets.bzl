@@ -123,7 +123,6 @@ rules_xcodeproj requires {} to have `{}` set.
         transitive_infos = transitive_infos,
     )
     (_, provider_outputs) = output_files.merge(
-        ctx = ctx,
         transitive_infos = transitive_infos,
     )
 
