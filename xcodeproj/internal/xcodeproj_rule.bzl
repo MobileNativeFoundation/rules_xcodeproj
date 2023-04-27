@@ -5,7 +5,7 @@ load("@bazel_skylib//lib:paths.bzl", "paths")
 load("@bazel_skylib//lib:shell.bzl", "shell")
 load(":bazel_labels.bzl", "bazel_labels")
 load(":collections.bzl", "set_if_true", "uniq")
-load(":configuration.bzl", "get_configuration")
+load(":configuration.bzl", "calculate_configuration")
 load(
     ":files.bzl",
     "build_setting_path",
@@ -1520,7 +1520,7 @@ configurations: {}""".format(", ".join(xcode_configurations)))
     is_fixture = ctx.attr._is_fixture
     colorize = ctx.attr.colorize
     project_name = ctx.attr.project_name
-    configuration = get_configuration(ctx = ctx)
+    configuration = calculate_configuration(bin_dir_path = ctx.bin_dir.path)
     minimum_xcode_version = (ctx.attr.minimum_xcode_version or
                              _get_minimum_xcode_version(ctx = ctx))
 

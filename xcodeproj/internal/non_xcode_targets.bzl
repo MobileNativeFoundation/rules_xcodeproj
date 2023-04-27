@@ -7,7 +7,7 @@ load(
 )
 load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo")
 load(":compilation_providers.bzl", comp_providers = "compilation_providers")
-load(":configuration.bzl", "get_configuration")
+load(":configuration.bzl", "calculate_configuration")
 load(":input_files.bzl", "input_files")
 load(":linker_input_files.bzl", "linker_input_files")
 load(":lldb_contexts.bzl", "lldb_contexts")
@@ -62,7 +62,9 @@ rules_xcodeproj requires {} to have `{}` set.
             struct(
                 id = get_id(
                     label = target.label,
-                    configuration = get_configuration(ctx),
+                    configuration = calculate_configuration(
+                        bin_dir_path = ctx.bin_dir.path,
+                    ),
                 ),
                 bundle_id = getattr(
                     ctx.rule.attr,
