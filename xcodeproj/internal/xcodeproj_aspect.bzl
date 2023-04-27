@@ -80,7 +80,7 @@ def _xcodeproj_aspect_impl(target, ctx):
 
     return providers
 
-def make_xcodeproj_aspect(*, build_mode):
+def make_xcodeproj_aspect(*, build_mode, generator_name):
     return aspect(
         implementation = _xcodeproj_aspect_impl,
         attr_aspects = ["*"],
@@ -96,6 +96,7 @@ def make_xcodeproj_aspect(*, build_mode):
             "_cc_toolchain": attr.label(default = Label(
                 "@bazel_tools//tools/cpp:current_cc_toolchain",
             )),
+            "_generator_name": attr.string(default = generator_name),
             "_xcode_config": attr.label(
                 default = configuration_field(
                     name = "xcode_config_label",

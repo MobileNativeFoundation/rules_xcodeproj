@@ -22,7 +22,6 @@ load(":providers.bzl", "XcodeProjInfo")
 load(":resource_target.bzl", "process_resource_bundles")
 load(":target_id.bzl", "write_target_ids_list")
 load(":xcode_targets.bzl", "xcode_targets")
-load(":xcodeproj_aspect.bzl", "make_xcodeproj_aspect")
 
 # Utility
 
@@ -1858,21 +1857,13 @@ done
         ),
     ]
 
-bwx_xcodeproj_aspect = make_xcodeproj_aspect(build_mode = "xcode")
-bwb_xcodeproj_aspect = make_xcodeproj_aspect(build_mode = "bazel")
-
 # buildifier: disable=function-docstring
 def make_xcodeproj_rule(
         *,
-        build_mode,
+        xcodeproj_aspect,
         is_fixture = False,
         target_transitions = None,
         xcodeproj_transition = None):
-    if build_mode == "bazel":
-        xcodeproj_aspect = bwb_xcodeproj_aspect
-    else:
-        xcodeproj_aspect = bwx_xcodeproj_aspect
-
     attrs = {
         "adjust_schemes_for_swiftui_previews": attr.bool(
             mandatory = True,

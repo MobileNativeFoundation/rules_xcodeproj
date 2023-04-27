@@ -169,6 +169,11 @@ def _write_generator_defz_bzl(
         """\
 # buildifier: disable=bzl-visibility
 load(
+    "{repo}//xcodeproj/internal:xcodeproj_aspect.bzl",
+    "make_xcodeproj_aspect",
+)
+# buildifier: disable=bzl-visibility
+load(
     "{repo}//xcodeproj/internal:xcodeproj_rule.bzl",
     "make_xcodeproj_rule",
     "make_xcodeproj_target_transitions",
@@ -216,6 +221,7 @@ _target_transitions = make_xcodeproj_target_transitions(
         output = output,
         substitutions = {
             "%build_mode%": build_mode,
+            "%generator_name%": name,
             "%is_fixture%": str(is_fixture),
             "%loads%": "\n".join(loads),
             "%target_transitions%": target_transitions,

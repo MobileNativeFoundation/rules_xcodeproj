@@ -633,6 +633,7 @@ def _create_cc_compile_params(
         *,
         actions,
         name,
+        generator_name,
         args,
         opt_type,
         cc_compiler_params_processor):
@@ -641,8 +642,9 @@ def _create_cc_compile_params(
 
     def _create_compiler_sub_params(idx, sub_args):
         sub_output = actions.declare_file(
-            "{}.rules_xcodeproj.{}.compile.sub-{}.params".format(
+            "{}.rules_xcodeproj.{}.{}.compile.sub-{}.params".format(
                 name,
+                generator_name,
                 opt_type,
                 idx,
             ),
@@ -659,8 +661,9 @@ def _create_cc_compile_params(
     ]
 
     params = actions.declare_file(
-        "{}.rules_xcodeproj.{}.compile.params".format(
+        "{}.rules_xcodeproj.{}.{}.compile.params".format(
             name,
+            generator_name,
             opt_type,
         ),
     )
@@ -680,7 +683,7 @@ def _create_cc_compile_params(
 
     return params
 
-def _create_swift_compile_params(*, actions, name, opts):
+def _create_swift_compile_params(*, actions, generator_name, name, opts):
     if not opts or not actions:
         return None
 
@@ -688,7 +691,10 @@ def _create_swift_compile_params(*, actions, name, opts):
     args.add_all(opts)
 
     output = actions.declare_file(
-        "{}.rules_xcodeproj.swift.compile.params".format(name),
+        "{}.rules_xcodeproj.{}.swift.compile.params".format(
+            name,
+            generator_name,
+        ),
     )
     actions.write(
         output = output,
@@ -699,36 +705,38 @@ def _create_swift_compile_params(*, actions, name, opts):
 def _process_compiler_opts(
         *,
         actions,
-        name,
-        conlyopts,
-        conly_args,
-        cxxopts,
-        cxx_args,
-        swiftcopts,
         build_mode,
-        cpp_fragment,
-        package_bin_dir,
         build_settings,
-        cc_compiler_params_processor):
+        cc_compiler_params_processor,
+        conly_args,
+        conlyopts,
+        cpp_fragment,
+        cxx_args,
+        cxxopts,
+        generator_name,
+        name,
+        package_bin_dir,
+        swiftcopts):
     """Processes compiler options.
 
     Args:
         actions: `ctx.actions`.
-        name: The name of the target.
-        conlyopts: A `list` of C compiler options
-        conly_args: An `Args` object for C compiler options.
-        cxxopts: A `list` of C++ compiler options.
-        cxx_args: An `Args` object for C compiler options.
-        swiftcopts: A `list` of Swift compiler options.
         build_mode: See `xcodeproj.build_mode`.
-        cpp_fragment: The `cpp` configuration fragment.
-        package_bin_dir: The package directory for the target within
-            `ctx.bin_dir`.
         build_settings: A mutable `dict` that will be updated with build
             settings that are parsed the `conlyopts`, `cxxopts`, and
             `swiftcopts` lists.
         cc_compiler_params_processor: The `cc_compiler_params_processor`
             executable.
+        conly_args: An `Args` object for C compiler options.
+        conlyopts: A `list` of C compiler options.
+        cpp_fragment: The `cpp` configuration fragment.
+        cxx_args: An `Args` object for C compiler options.
+        cxxopts: A `list` of C++ compiler options.
+        generator_name: The name of the xcodeproj target.
+        name: The name of the target.
+        package_bin_dir: The package directory for the target within
+            `ctx.bin_dir`.
+        swiftcopts: A `list` of Swift compiler options.
 
     Returns:
         A `tuple` containing six elements:
@@ -776,6 +784,7 @@ def _process_compiler_opts(
     c_params = _create_cc_compile_params(
         actions = actions,
         name = name,
+        generator_name = generator_name,
         args = conly_args,
         opt_type = "c",
         cc_compiler_params_processor = cc_compiler_params_processor,
@@ -783,6 +792,7 @@ def _process_compiler_opts(
     cxx_params = _create_cc_compile_params(
         actions = actions,
         name = name,
+        generator_name = generator_name,
         args = cxx_args,
         opt_type = "cxx",
         cc_compiler_params_processor = cc_compiler_params_processor,
@@ -790,6 +800,7 @@ def _process_compiler_opts(
     swift_params = _create_swift_compile_params(
         actions = actions,
         name = name,
+        generator_name = generator_name,
         opts = swiftcopts,
     )
 
@@ -859,6 +870,7 @@ def _process_target_compiler_opts(
     return _process_compiler_opts(
         actions = ctx.actions,
         name = ctx.rule.attr.name,
+        generator_name = ctx.attr._generator_name,
         conlyopts = conlyopts,
         conly_args = conly_args,
         cxxopts = cxxopts,
