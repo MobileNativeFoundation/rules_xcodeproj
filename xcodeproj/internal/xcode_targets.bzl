@@ -425,7 +425,7 @@ def _merge_xcode_target_outputs(*, src_swift, dest):
     )
 
 def _merge_xcode_target_product(*, srcs, dest):
-    src_files = [src.file for src in srcs]
+    src_files = [src.file for src in srcs if src.file]
     src_framework_files = [src.framework_files for src in srcs]
     src_additional_files = [src._additional_files for src in srcs]
     return struct(
@@ -859,7 +859,7 @@ def _linker_inputs_to_dto(
         return ({}, None)
 
     if compile_targets:
-        self_product_paths = [compile_target.product.file.path for compile_target in compile_targets]
+        self_product_paths = [compile_target.product.file.path for compile_target in compile_targets if compile_target.product.file]
     else:
         # Handle `{cc,swift}_{binary,test}` with `srcs` case
         self_product_paths = [paths.join(
