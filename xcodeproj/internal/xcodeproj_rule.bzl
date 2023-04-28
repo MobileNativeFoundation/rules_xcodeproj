@@ -6,6 +6,7 @@ load("@bazel_skylib//lib:shell.bzl", "shell")
 load(":bazel_labels.bzl", "bazel_labels")
 load(":collections.bzl", "set_if_true", "uniq")
 load(":configuration.bzl", "calculate_configuration")
+load(":execution_root.bzl", "write_execution_root_file")
 load(
     ":files.bzl",
     "build_setting_path",
@@ -1392,31 +1393,6 @@ def _write_create_xcode_overlay_script(*, actions, name, targets, template):
 
     return output
 
-def _write_execution_root_file(*, actions, bin_dir_path, name):
-    output = actions.declare_file("{}_execution_root_file".format(name))
-
-    actions.run_shell(
-        outputs = [output],
-        command = """\
-bin_dir_full_path="$(perl -MCwd -e 'print Cwd::abs_path shift' "{bin_dir_full}";)"
-execution_root="${{bin_dir_full_path%/{bin_dir_full}}}"
-
-echo "$execution_root" > "{out_full}"
-""".format(
-            bin_dir_full = bin_dir_path,
-            out_full = output.path,
-        ),
-        mnemonic = "CalculateXcodeProjExecutionRoot",
-        # This has to run locally
-        execution_requirements = {
-            "local": "1",
-            "no-remote": "1",
-            "no-sandbox": "1",
-        },
-    )
-
-    return output
-
 def _write_xcodeproj(
         *,
         actions,
@@ -1690,7 +1666,7 @@ configurations: {}""".format(", ".join(xcode_configurations)))
         target_ids_list = target_ids_list,
         xcode_configurations = xcode_configurations,
     )
-    execution_root_file = _write_execution_root_file(
+    execution_root_file = write_execution_root_file(
         actions = actions,
         bin_dir_path = bin_dir_path,
         name = name,
