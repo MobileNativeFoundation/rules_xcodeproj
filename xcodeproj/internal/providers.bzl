@@ -124,7 +124,7 @@ for the target (if applicable).
 A value returned from `compilation_providers.collect_for_{non_,}top_level`.
 """,
         "dependencies": """\
-A `depset` of target ids (see the `target` `struct`) that this target directly
+A `depset` of target ids (see `xcode_target.id`) that this target directly
 depends on.
 """,
         "envs": """\
@@ -190,8 +190,8 @@ A string that categorizes the type of the current target. This will be one of
 target, it can still have a non-`None` value for this field.
 """,
         "transitive_dependencies": """\
-A `depset` of target ids (see the `target` `struct`) that this target
-transitively depends on.
+A `depset` of target ids (see `xcode_target.id`) that this target transitively
+depends on.
 """,
         "xcode_required_targets": """\
 A `depset` of values returned from `xcode_targets.make` for targets that need to
@@ -199,7 +199,8 @@ be in projects that have `build_mode = "xcode"`. This means that they can't be
 unfocused in BwX mode, and if requested it will be ignored.
 """,
         "xcode_target": """\
-An optional value returned from `xcode_targets.make`.
+A value returned from `xcode_targets.make` if this target can produce an Xcode
+target.
 """,
         "xcode_targets": """\
 A `depset` of values returned from `xcode_targets.make`, which potentially will

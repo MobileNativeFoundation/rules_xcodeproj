@@ -600,7 +600,7 @@ stabilizing it.
 | :------------- | :------------- |
 | <a id="XcodeProjInfo-args"></a>args |  A <code>depset</code> of <code>struct</code>s with <code>id</code> and <code>arg</code> fields. The <code>id</code> field is the target id of the target and <code>arg</code> values for the target (if applicable).    |
 | <a id="XcodeProjInfo-compilation_providers"></a>compilation_providers |  A value returned from <code>compilation_providers.collect_for_{non_,}top_level</code>.    |
-| <a id="XcodeProjInfo-dependencies"></a>dependencies |  A <code>depset</code> of target ids (see the <code>target</code> <code>struct</code>) that this target directly depends on.    |
+| <a id="XcodeProjInfo-dependencies"></a>dependencies |  A <code>depset</code> of target ids (see <code>xcode_target.id</code>) that this target directly depends on.    |
 | <a id="XcodeProjInfo-envs"></a>envs |  A <code>depset</code> of <code>struct</code>s with <code>id</code> and <code>env</code> fields. The <code>id</code> field is the target id of the target and <code>env</code> values for the target (if applicable).    |
 | <a id="XcodeProjInfo-extension_infoplists"></a>extension_infoplists |  A <code>depset</code> of <code>struct</code>s with 'id' and 'infoplist' fields. The 'id' field is the target id of the application extension target. The 'infoplist' field is a <code>File</code> for the Info.plist for the target.    |
 | <a id="XcodeProjInfo-hosted_targets"></a>hosted_targets |  A <code>depset</code> of <code>struct</code>s with 'host' and 'hosted' fields. The 'host' field is the target id of the hosting target. The 'hosted' field is the target id of the hosted target.    |
@@ -615,9 +615,9 @@ stabilizing it.
 | <a id="XcodeProjInfo-resource_bundle_informations"></a>resource_bundle_informations |  A <code>depset</code> of <code>struct</code>s with information used to generate resource bundles, which couldn't be collected from <code>AppleResourceInfo</code> alone.    |
 | <a id="XcodeProjInfo-non_top_level_rule_kind"></a>non_top_level_rule_kind |  If this target is not a top-level target, this is the value from <code>ctx.rule.kind</code>, otherwise it is <code>None</code>. Top-level targets are targets that are valid to be listed in the <code>top_level_targets</code> attribute of <code>xcodeproj</code>. In particular, this means that they aren't library targets, which when specified in <code>top_level_targets</code> cause duplicate mis-configured targets to be added to the project.    |
 | <a id="XcodeProjInfo-target_type"></a>target_type |  A string that categorizes the type of the current target. This will be one of "compile", "resources", or <code>None</code>. Even if this target doesn't produce an Xcode target, it can still have a non-<code>None</code> value for this field.    |
-| <a id="XcodeProjInfo-transitive_dependencies"></a>transitive_dependencies |  A <code>depset</code> of target ids (see the <code>target</code> <code>struct</code>) that this target transitively depends on.    |
+| <a id="XcodeProjInfo-transitive_dependencies"></a>transitive_dependencies |  A <code>depset</code> of target ids (see <code>xcode_target.id</code>) that this target transitively depends on.    |
 | <a id="XcodeProjInfo-xcode_required_targets"></a>xcode_required_targets |  A <code>depset</code> of values returned from <code>xcode_targets.make</code> for targets that need to be in projects that have <code>build_mode = "xcode"</code>. This means that they can't be unfocused in BwX mode, and if requested it will be ignored.    |
-| <a id="XcodeProjInfo-xcode_target"></a>xcode_target |  An optional value returned from <code>xcode_targets.make</code>.    |
+| <a id="XcodeProjInfo-xcode_target"></a>xcode_target |  A value returned from <code>xcode_targets.make</code> if this target can produce an Xcode target.    |
 | <a id="XcodeProjInfo-xcode_targets"></a>xcode_targets |  A <code>depset</code> of values returned from <code>xcode_targets.make</code>, which potentially will become targets in the Xcode project.    |
 
 

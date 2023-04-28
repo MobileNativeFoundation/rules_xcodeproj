@@ -1,4 +1,4 @@
-"""API for Inspecting and Acting on Targets"""
+"""API for inspecting and acting on `Target`s."""
 
 load(
     "@build_bazel_rules_apple//apple:providers.bzl",
