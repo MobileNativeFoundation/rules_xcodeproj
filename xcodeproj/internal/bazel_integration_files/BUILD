@@ -22,6 +22,7 @@ filegroup(
     ] + glob(
         ["**/*"],
         exclude = _BASE_FILES + [
+            "**/*.bzl",
             "BUILD",
         ],
     ),
