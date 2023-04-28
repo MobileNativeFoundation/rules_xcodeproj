@@ -56,7 +56,8 @@ x_templates:
     - &generate_integration "--output_base=bazel-output-base run --config=workflows --config=fixtures //test/fixtures:update"
     - &validate_integration "--output_base=bazel-output-base run --config=workflows --config=fixtures //test/fixtures:validate"
     - &build_all "--output_base=bazel-output-base build --config=workflows --noexperimental_enable_bzlmod //..."
-    - &test_all "--output_base=bazel-output-base test --config=workflows --noexperimental_enable_bzlmod //..."
+    - &test_all "--output_base=bazel-output-base test --config=workflows --noexperimental_enable_bzlmod //... //test/internal/target_id:write_target_ids_list"
+    - &bazel_5_test_all "--output_base=bazel-output-base test --config=workflows --noexperimental_enable_bzlmod //..."
     - &bzlmod_generate_integration "--output_base=bazel-output-base run --config=workflows --config=fixtures //test/fixtures:update"
     - &bzlmod_build_all "--output_base=bazel-output-base build --config=workflows //..."
     - &bzlmod_test_all "--output_base=bazel-output-base test --config=workflows //test/..."
@@ -96,7 +97,7 @@ actions:
     <<: *action_base
     <<: *root_workspace
     bazel_commands:
-      - *test_all
+      - *bazel_5_test_all
 
   - name: Integration Test - Root
     <<: *arm64

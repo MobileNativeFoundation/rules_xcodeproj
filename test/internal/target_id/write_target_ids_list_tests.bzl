@@ -63,6 +63,8 @@ def write_target_ids_list_test_suite(name):
             name = name,
             expected_content = expected_content,
             target_under_test = target_under_test,
+            # TODO: Remove "manual" once we remove Bazel 5 and non-bzlmod tests
+            tags = ["manual"],
         )
 
     _add_test(
@@ -132,4 +134,6 @@ def write_target_ids_list_test_suite(name):
     native.test_suite(
         name = name,
         tests = test_names,
+        # TODO: Remove "manual" once we remove Bazel 5 and non-bzlmod tests
+        tags = ["manual"],
     )
