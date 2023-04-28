@@ -3,6 +3,11 @@
 load("@bazel_skylib//lib:dicts.bzl", "dicts")
 load("@bazel_skylib//lib:paths.bzl", "paths")
 load("@bazel_skylib//lib:shell.bzl", "shell")
+load(
+    "//xcodeproj/internal/bazel_integration_files:actions.bzl",
+    "write_bazel_build_script",
+    "write_create_xcode_overlay_script",
+)
 load(":bazel_labels.bzl", "bazel_labels")
 load(":collections.bzl", "set_if_true", "uniq")
 load(":configuration.bzl", "calculate_configuration")
@@ -1322,77 +1327,6 @@ def _write_extensionpointidentifiers(
 
     return output
 
-def _write_bazel_build_script(
-        *,
-        actions,
-        bazel_env,
-        bazel_path,
-        label,
-        name,
-        target_ids_list,
-        template):
-    output = actions.declare_file(
-        "{}_bazel_integration_files/bazel_build.sh".format(name),
-    )
-
-    envs = []
-    for key, value in bazel_env.items():
-        envs.append("  '{}={}'".format(
-            key,
-            (value
-                .replace(
-                # Escape single quotes for bash
-                "'",
-                "'\"'\"'",
-            )),
-        ))
-
-    actions.expand_template(
-        template = template,
-        output = output,
-        is_executable = True,
-        substitutions = {
-            "%bazel_env%": "\n".join(envs),
-            "%bazel_path%": bazel_path,
-            "%generator_label%": str(label),
-            "%target_ids_list%": (
-                "$PROJECT_DIR/{}".format(target_ids_list.path)
-            ),
-        },
-    )
-
-    return output
-
-def _write_create_xcode_overlay_script(*, actions, name, targets, template):
-    output = actions.declare_file(
-        "{}_bazel_integration_files/create_xcode_overlay.sh".format(name),
-    )
-
-    roots = []
-    for xcode_target in targets.values():
-        generated_header = xcode_target.outputs.swift_generated_header
-        if not generated_header:
-            continue
-
-        path = generated_header.path
-        build_dir = "$BUILD_DIR/{}".format(path)
-        bazel_out = "$BAZEL_OUT{}".format(path[9:])
-
-        roots.append("""\
-{{"external-contents": "{build_dir}","name": "${{bazel_out_prefix}}{bazel_out}","type": "file"}}\
-""".format(bazel_out = bazel_out, build_dir = build_dir))
-
-    actions.expand_template(
-        template = template,
-        output = output,
-        is_executable = True,
-        substitutions = {
-            "%roots%": ",".join(sorted(roots)),
-        },
-    )
-
-    return output
-
 def _write_xcodeproj(
         *,
         actions,
@@ -1759,21 +1693,20 @@ done
         list(ctx.files._base_integration_files) +
         swift_debug_settings
     ) + [
-        _write_bazel_build_script(
+        write_bazel_build_script(
             actions = actions,
             bazel_env = ctx.attr.bazel_env,
             bazel_path = ctx.attr.bazel_path,
-            label = ctx.label,
-            name = name,
+            generator_label = ctx.label,
             target_ids_list = target_ids_list,
             template = ctx.file._bazel_build_script_template,
         ),
     ]
     if build_mode == "xcode":
         bazel_integration_files.append(
-            _write_create_xcode_overlay_script(
+            write_create_xcode_overlay_script(
                 actions = actions,
-                name = name,
+                generator_name = name,
                 targets = targets,
                 template = ctx.file._create_xcode_overlay_script_template,
             ),
