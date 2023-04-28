@@ -584,17 +584,18 @@ def _generated_framework_search_paths(
 def _xcode_target_to_dto(
         xcode_target,
         *,
+        actions,
         additional_scheme_target_ids = None,
         build_mode,
-        ctx,
+        bwx_unfocused_dependencies,
+        excluded_targets = {},
         label,
         link_params_processor,
         linker_products_map,
         params_index,
+        rule_name,
         should_include_outputs,
-        excluded_targets = {},
         target_merges = {},
-        bwx_unfocused_dependencies,
         xcode_configurations,
         xcode_generated_paths,
         xcode_generated_paths_file):
@@ -636,18 +637,19 @@ def _xcode_target_to_dto(
     )
 
     linker_inputs_dto, link_params = _linker_inputs_to_dto(
-        ctx = ctx,
+        xcode_target.linker_inputs,
+        actions = actions,
         compile_targets = xcode_target._compile_targets,
         generated_framework_search_paths = generated_framework_search_paths,
         is_framework = (
             xcode_target.product.type == "com.apple.product-type.framework"
         ),
         link_params_processor = link_params_processor,
-        linker_inputs = xcode_target.linker_inputs,
         name = name,
         params_index = params_index,
         platform = xcode_target.platform,
         product = xcode_target.product,
+        rule_name = rule_name,
         xcode_generated_paths_file = xcode_generated_paths_file,
     )
 
@@ -842,7 +844,7 @@ def _inputs_to_dto(inputs):
 def _linker_inputs_to_dto(
         linker_inputs,
         *,
-        ctx,
+        actions,
         compile_targets,
         generated_framework_search_paths,
         is_framework,
@@ -851,6 +853,7 @@ def _linker_inputs_to_dto(
         params_index,
         platform,
         product,
+        rule_name,
         xcode_generated_paths_file):
     if not linker_inputs:
         return ({}, None)
@@ -864,14 +867,14 @@ def _linker_inputs_to_dto(
             "lib{}.lo".format(name),
         )]
 
-    generated_product_paths_file = ctx.actions.declare_file(
+    generated_product_paths_file = actions.declare_file(
         "{}-params/{}.{}.generated_product_paths_file.json".format(
-            ctx.attr.name,
+            rule_name,
             name,
             params_index,
         ),
     )
-    ctx.actions.write(
+    actions.write(
         output = generated_product_paths_file,
         content = json.encode(self_product_paths),
     )
@@ -884,28 +887,28 @@ def _linker_inputs_to_dto(
     )
 
     if linker_inputs.link_args:
-        generated_framework_search_paths_file = ctx.actions.declare_file(
+        generated_framework_search_paths_file = actions.declare_file(
             "{}-params/{}.{}.generated_framework_search_paths.json".format(
-                ctx.attr.name,
+                rule_name,
                 name,
                 params_index,
             ),
         )
-        ctx.actions.write(
+        actions.write(
             output = generated_framework_search_paths_file,
             content = json.encode(generated_framework_search_paths),
         )
 
         def _create_link_sub_params(idx, link_args):
-            output = ctx.actions.declare_file(
+            output = actions.declare_file(
                 "{}-params/{}.{}.link.sub-{}.params".format(
-                    ctx.attr.name,
+                    rule_name,
                     name,
                     params_index,
                     idx,
                 ),
             )
-            ctx.actions.write(
+            actions.write(
                 output = output,
                 content = link_args,
             )
@@ -916,15 +919,15 @@ def _linker_inputs_to_dto(
             for idx, link_args in enumerate(linker_inputs.link_args)
         ]
 
-        link_params = ctx.actions.declare_file(
+        link_params = actions.declare_file(
             "{}-params/{}.{}.link.params".format(
-                ctx.attr.name,
+                rule_name,
                 name,
                 params_index,
             ),
         )
 
-        args = ctx.actions.args()
+        args = actions.args()
         args.add(xcode_generated_paths_file)
         args.add(generated_framework_search_paths_file)
         args.add("1" if is_framework else "0")
@@ -933,7 +936,7 @@ def _linker_inputs_to_dto(
         args.add(link_params)
         args.add_all(link_sub_params)
 
-        ctx.actions.run(
+        actions.run(
             executable = link_params_processor,
             arguments = [args],
             mnemonic = "ProcessLinkParams",

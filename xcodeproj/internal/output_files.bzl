@@ -310,11 +310,10 @@ def _collect_output_files(
         transitive_infos = transitive_infos,
     )
 
-def _merge_output_files(*, ctx, transitive_infos):
+def _merge_output_files(*, transitive_infos):
     """Creates merged outputs.
 
     Args:
-        ctx: The aspect context.
         transitive_infos: A `list` of `XcodeProjInfo`s for the transitive
             dependencies of the current target.
 
@@ -324,7 +323,7 @@ def _merge_output_files(*, ctx, transitive_infos):
         `transitive_infos` (e.g. `generated` and `extra_files`).
     """
     return _create(
-        ctx = ctx,
+        ctx = None,
         transitive_infos = transitive_infos,
         inputs = None,
         should_produce_dto = False,
