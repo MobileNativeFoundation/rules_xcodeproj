@@ -1669,7 +1669,7 @@ configurations: {}""".format(", ".join(xcode_configurations)))
     execution_root_file = write_execution_root_file(
         actions = actions,
         bin_dir_path = bin_dir_path,
-        generator_name = name,
+        name = name,
     )
     xccurrentversions_file = _write_xccurrentversions(
         actions = actions,

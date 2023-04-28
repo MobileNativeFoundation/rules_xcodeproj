@@ -435,7 +435,7 @@ def _xcodeproj_runner_impl(ctx):
     execution_root_file = write_execution_root_file(
         actions = actions,
         bin_dir_path = ctx.bin_dir.path,
-        generator_name = name,
+        name = name,
     )
     schemes_json = _write_schemes_json(
         actions = actions,

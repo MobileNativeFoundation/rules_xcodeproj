@@ -1,20 +1,18 @@
 """Functions dealing with the Bazel execution root."""
 
-def write_execution_root_file(*, actions, bin_dir_path, generator_name):
+def write_execution_root_file(*, actions, bin_dir_path, name):
     """
     Creates a `File` containing the absolute path to the Bazel execution root.
 
     Args:
         actions: `ctx.actions`.
         bin_dir_path: `ctx.bin_dir.path`.
-        generator_name: The name of the `xcodeproj` generator target.
+        name: The name of the target creating the file.
 
     Returns:
         A `File` containing the absolute path to the Bazel execution root.
     """
-    output = actions.declare_file("{}_execution_root_file".format(
-        generator_name,
-    ))
+    output = actions.declare_file("{}_execution_root_file".format(name))
 
     actions.run_shell(
         outputs = [output],
