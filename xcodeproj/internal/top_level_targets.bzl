@@ -10,7 +10,7 @@ load(
 )
 load(":collections.bzl", "set_if_true")
 load(":compilation_providers.bzl", comp_providers = "compilation_providers")
-load(":configuration.bzl", "get_configuration")
+load(":configuration.bzl", "calculate_configuration")
 load(":files.bzl", "build_setting_path", "join_paths_ignoring_empty")
 load(":info_plists.bzl", "info_plists")
 load(":input_files.bzl", "input_files")
@@ -186,7 +186,7 @@ def process_top_level_target(
     Returns:
         The value returned from `processed_target`.
     """
-    configuration = get_configuration(ctx)
+    configuration = calculate_configuration(bin_dir_path = ctx.bin_dir.path)
     label = target.label
     id = get_id(label = label, configuration = configuration)
 
