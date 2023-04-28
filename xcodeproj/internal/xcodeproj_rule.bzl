@@ -642,12 +642,16 @@ targets.
 
     # Remap 'target_merge_dests' after popping invalid merges.
     target_merge_dests = {}
+    target_merge_src_targets = {}
     for src, dests in target_merges.items():
+        # Pop all merge srcs from focused_targets since they will be merged into
+        # the merge destination(s).
+        target_merge_src_targets[src] = focused_targets.pop(src)
         for dest in dests:
             target_merge_dests.setdefault(dest, []).append(src)
 
     for dest, srcs in target_merge_dests.items():
-        src_targets = [focused_targets.pop(src) for src in srcs]
+        src_targets = [target_merge_src_targets[src] for src in srcs]
 
         # This functionality assumes that 2 or less sources are present in the
         # potential merge. If that changes, this will need updated.
