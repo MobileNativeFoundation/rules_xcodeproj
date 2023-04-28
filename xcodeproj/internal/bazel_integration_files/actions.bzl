@@ -63,7 +63,7 @@ def write_create_xcode_overlay_script(
         targets,
         template):
     """
-    Writes the `bazel_build.sh` script.
+    Writes the `create_xcode_overlay.sh` script.
 
     Args:
         actions: `ctx.actions`.
@@ -72,7 +72,7 @@ def write_create_xcode_overlay_script(
         template: `xcodeproj/internal/templates/create_xcode_overlay.sh`.
 
     Returns:
-        The `File` for `bazel_build.sh`.
+        The `File` for `create_xcode_overlay.sh`.
     """
     output = actions.declare_file(
         "{}_bazel_integration_files/create_xcode_overlay.sh".format(
