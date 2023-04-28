@@ -234,13 +234,33 @@ extension Generator {
                 explicitFileType = nil
             }
 
-            let file = PBXFileReference(
-                sourceTree: sourceTree,
-                name: name,
-                explicitFileType: explicitFileType,
-                lastKnownFileType: lastKnownFileType,
-                path: path
-            )
+            var realPath:Path! = nil
+            if isExternal {
+                realPath = directories.absoluteExternal + Path(String(filePathStr.dropFirst("external/".count)))
+            }
+            else {
+                realPath = directories.workspace+Path(filePathStr)
+            }
+            
+            var file:PBXFileReference! = nil
+            if realPath.isSymlink, let realPathStr = try? realPath.symlinkDestination().string {
+                file = PBXFileReference(
+                    sourceTree: .absolute,
+                    name: URL(fileURLWithPath: realPathStr).lastPathComponent,
+                    explicitFileType: explicitFileType,
+                    lastKnownFileType: lastKnownFileType,
+                    path: realPathStr
+                )
+            } else {
+                file = PBXFileReference(
+                    sourceTree: sourceTree,
+                    name: name,
+                    explicitFileType: explicitFileType,
+                    lastKnownFileType: lastKnownFileType,
+                    path: path
+                )
+            }
+
             pbxProj.add(object: file)
 
             let filePath = FilePath(
