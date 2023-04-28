@@ -23,10 +23,6 @@ An attribute name (or `None`) to collect the application icons.
 A `List` (or `None`) representing the command line arguments that this target
 should execute or test with.
 """,
-        "bazel_build_mode_error": """\
-If `build_mode = "bazel"`, then if this is non-`None`, it will be raised as an
-error during analysis.
-""",
         "bundle_id": """\
 An attribute name (or `None`) to collect the bundle id string from.
 """,

@@ -112,11 +112,12 @@ _DEFAULT_XCODE_TARGETS = {
     None: {"deps": NONE_LIST},
 }
 
-def calculate_automatic_target_info(ctx, target):
+def calculate_automatic_target_info(ctx, build_mode, target):
     """Calculates the automatic target info for the given target.
 
     Args:
         ctx: The aspect context.
+        build_mode: See `xcodeproj.build_mode`.
         target: The `Target` to calculate the automatic target info for.
 
     Returns:
@@ -146,7 +147,6 @@ def calculate_automatic_target_info(ctx, target):
     infoplists = EMPTY_LIST
     launchdplists = EMPTY_LIST
     link_mnemonics = _LINK_MNEMONICS
-    bazel_build_mode_error = None
     non_arc_srcs = EMPTY_LIST
     pch = None
     provisioning_profile = None
@@ -209,10 +209,11 @@ def calculate_automatic_target_info(ctx, target):
         deps = _BINARY_DEPS_ATTRS
         xcode_targets = _BINARY_XCODE_TARGETS
     elif AppleFrameworkImportInfo in target:
-        if getattr(ctx.rule.attr, "bundle_only", False):
-            bazel_build_mode_error = """\
+        if (getattr(ctx.rule.attr, "bundle_only", False) and
+            build_mode == "xcode"):
+            fail("""\
 `bundle_only` can't be `True` on {} when `build_mode = \"xcode\"`
-""".format(target.label)
+""".format(target.label))
 
         should_generate_target = False
         collect_uncategorized_files = False
@@ -240,7 +241,6 @@ def calculate_automatic_target_info(ctx, target):
         alternate_icons = alternate_icons,
         app_icons = app_icons,
         args = args,
-        bazel_build_mode_error = bazel_build_mode_error,
         bundle_id = bundle_id,
         codesignopts = codesignopts,
         collect_uncategorized_files = collect_uncategorized_files,
