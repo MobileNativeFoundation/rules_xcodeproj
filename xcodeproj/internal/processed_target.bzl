@@ -4,7 +4,6 @@ load(":providers.bzl", "target_type")
 
 def processed_target(
         *,
-        automatic_target_info,
         compilation_providers,
         dependencies,
         extension_infoplists = None,
@@ -23,8 +22,6 @@ def processed_target(
     """Generates the return value for target processing functions.
 
     Args:
-        automatic_target_info: The `XcodeProjAutomaticTargetProcessingInfo` for
-            the target.
         compilation_providers: A value returned from
             `compilation_providers.collect`.
         dependencies: A `depset` of target ids of direct dependencies of this
@@ -58,7 +55,6 @@ def processed_target(
         A `struct` containing fields for each argument.
     """
     return struct(
-        automatic_target_info = automatic_target_info,
         compilation_providers = compilation_providers,
         extension_infoplists = extension_infoplists,
         dependencies = dependencies,

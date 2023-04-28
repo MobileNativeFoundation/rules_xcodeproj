@@ -128,7 +128,6 @@ rules_xcodeproj requires {} to have `{}` set.
     )
 
     return processed_target(
-        automatic_target_info = automatic_target_info,
         compilation_providers = compilation_providers,
         dependencies = dependencies,
         inputs = provider_inputs,

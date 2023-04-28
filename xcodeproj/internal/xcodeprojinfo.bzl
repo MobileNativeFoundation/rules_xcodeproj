@@ -504,7 +504,7 @@ def _create_xcodeprojinfo(
                 for info in valid_transitive_infos
             ],
         ),
-        target_type = processed_target.automatic_target_info.target_type,
+        target_type = automatic_target_info.target_type,
         envs = memory_efficient_depset(
             transitive = [
                 info.envs

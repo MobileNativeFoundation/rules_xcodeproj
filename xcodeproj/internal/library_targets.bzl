@@ -210,7 +210,6 @@ def process_library_target(
     ]
 
     return processed_target(
-        automatic_target_info = automatic_target_info,
         compilation_providers = compilation_providers,
         dependencies = dependencies,
         inputs = provider_inputs,
