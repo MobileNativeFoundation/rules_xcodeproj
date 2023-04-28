@@ -405,13 +405,22 @@ def _create_xcodeprojinfo(
     if automatic_target_info.bazel_build_mode_error and build_mode != "bazel":
         fail(automatic_target_info.bazel_build_mode_error)
 
+    valid_transitive_infos = [
+        info
+        for attr, info in transitive_infos
+        if (info.target_type in automatic_target_info.xcode_targets.get(
+            attr,
+            NONE_LIST,
+        ))
+    ]
+
     if not automatic_target_info.should_generate_target:
         processed_target = process_non_xcode_target(
             ctx = ctx,
             target = target,
             attrs = attrs,
             automatic_target_info = automatic_target_info,
-            transitive_infos = transitive_infos,
+            transitive_infos = valid_transitive_infos,
         )
     elif AppleBundleInfo in target:
         processed_target = process_top_level_target(
@@ -421,7 +430,7 @@ def _create_xcodeprojinfo(
             attrs = attrs,
             automatic_target_info = automatic_target_info,
             bundle_info = target[AppleBundleInfo],
-            transitive_infos = transitive_infos,
+            transitive_infos = valid_transitive_infos,
         )
     elif target[DefaultInfo].files_to_run.executable:
         processed_target = process_top_level_target(
@@ -431,7 +440,7 @@ def _create_xcodeprojinfo(
             attrs = attrs,
             automatic_target_info = automatic_target_info,
             bundle_info = None,
-            transitive_infos = transitive_infos,
+            transitive_infos = valid_transitive_infos,
         )
     else:
         processed_target = process_library_target(
@@ -440,18 +449,8 @@ def _create_xcodeprojinfo(
             target = target,
             attrs = attrs,
             automatic_target_info = automatic_target_info,
-            transitive_infos = transitive_infos,
+            transitive_infos = valid_transitive_infos,
         )
-
-    valid_transitive_infos = [
-        info
-        for attr, info in transitive_infos
-        if (info.target_type in
-            processed_target.automatic_target_info.xcode_targets.get(
-                attr,
-                NONE_LIST,
-            ))
-    ]
 
     return _target_info_fields(
         args = memory_efficient_depset(

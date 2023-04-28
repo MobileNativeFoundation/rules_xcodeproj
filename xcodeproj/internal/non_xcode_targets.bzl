@@ -11,7 +11,6 @@ load(":configuration.bzl", "calculate_configuration")
 load(":input_files.bzl", "input_files")
 load(":linker_input_files.bzl", "linker_input_files")
 load(":lldb_contexts.bzl", "lldb_contexts")
-load(":memory_efficiency.bzl", "NONE_LIST")
 load(":output_files.bzl", "output_files")
 load(":processed_target.bzl", "processed_target")
 load(":target_id.bzl", "get_id")
@@ -94,15 +93,8 @@ rules_xcodeproj requires {} to have `{}` set.
     )
     swiftmodules = process_swiftmodules(swift_info = swift_info)
 
-    valid_transitive_infos = [
-        info
-        for attr, info in transitive_infos
-        if (info.target_type in
-            automatic_target_info.xcode_targets.get(attr, NONE_LIST))
-    ]
-
     dependencies, transitive_dependencies = process_dependencies(
-        transitive_infos = valid_transitive_infos,
+        transitive_infos = transitive_infos,
     )
 
     mergable_xcode_library_targets = [
@@ -112,7 +104,7 @@ rules_xcodeproj requires {} to have `{}` set.
         )
         for target, providers in [
             (info.xcode_target, info.compilation_providers)
-            for (attr, info) in transitive_infos
+            for info in transitive_infos
         ]
         if providers._is_xcode_library_target
     ]
@@ -128,11 +120,11 @@ rules_xcodeproj requires {} to have `{}` set.
         product = None,
         linker_inputs = linker_inputs,
         automatic_target_info = automatic_target_info,
-        transitive_infos = valid_transitive_infos,
+        transitive_infos = transitive_infos,
     )
     (_, provider_outputs) = output_files.merge(
         ctx = ctx,
-        transitive_infos = valid_transitive_infos,
+        transitive_infos = transitive_infos,
     )
 
     return processed_target(
@@ -146,7 +138,7 @@ rules_xcodeproj requires {} to have `{}` set.
             # TODO: Should we still collect this?
             clang_opts = [],
             swiftmodules = swiftmodules,
-            transitive_infos = valid_transitive_infos,
+            transitive_infos = transitive_infos,
         ),
         mergable_xcode_library_targets = mergable_xcode_library_targets,
         outputs = provider_outputs,
