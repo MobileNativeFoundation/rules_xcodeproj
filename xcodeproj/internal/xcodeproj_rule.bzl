@@ -645,7 +645,7 @@ targets.
             target_merge_dests.setdefault(dest, []).append(src)
 
     for dest, srcs in target_merge_dests.items():
-        src_targets = [focused_targets.pop(src) for src in srcs]
+        src_targets = [focused_targets.pop(src, None) for src in srcs]
 
         # This functionality assumes that 2 or less sources are present in the
         # potential merge. If that changes, this will need updated.
