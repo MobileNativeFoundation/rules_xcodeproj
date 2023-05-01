@@ -1,5 +1,5 @@
 [
-    "//tools/generator/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-STABLE-3",
+    "@//tools/generator/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-STABLE-3",
     {
         "0": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/tools/generator/test/tests.library.rules_xcodeproj.xcodeproj_bwb.swift.compile.params",
         "1": "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-3/bin/tools/generator/test",
@@ -10,7 +10,7 @@
         },
         "3": [
             {
-                "i": "//tools/generator/test:tests.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
+                "i": "@//tools/generator/test:tests.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
                 "n": "tests.library"
             }
         ],
@@ -29,7 +29,7 @@
         },
         "c": "applebin_macos-darwin_x86_64-dbg-STABLE-3",
         "d": [
-            "//tools/generator:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
+            "@//tools/generator:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
             "@com_github_pointfreeco_swift_custom_dump//:CustomDump macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1"
         ],
         "i": {
@@ -48,6 +48,7 @@
                 "tools/generator/test/CreateProductsTest.swift",
                 "tools/generator/test/CreateProjectTests.swift",
                 "tools/generator/test/CreateXCSharedDataTests.swift",
+                "tools/generator/test/CreateXCUserDataTests.swift",
                 "tools/generator/test/CreateXcodeProjTests.swift",
                 "tools/generator/test/DefaultLoggerTests.swift",
                 "tools/generator/test/Dictionary+ExtensionTests.swift",
@@ -84,7 +85,7 @@
                 "tools/generator/test/XcodeSchemeTests.swift"
             ]
         },
-        "l": "//tools/generator/test:tests",
+        "l": "@//tools/generator/test:tests",
         "m": true,
         "n": "tests",
         "o": {
@@ -103,7 +104,7 @@
             "t": "com.apple.product-type.bundle.unit-test"
         }
     },
-    "//tools/generator/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-opt-STABLE-4",
+    "@//tools/generator/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-opt-STABLE-4",
     {
         "0": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/tools/generator/test/tests.library.rules_xcodeproj.xcodeproj_bwb.swift.compile.params",
         "1": "bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-4/bin/tools/generator/test",
@@ -114,7 +115,7 @@
         },
         "3": [
             {
-                "i": "//tools/generator/test:tests.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2",
+                "i": "@//tools/generator/test:tests.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2",
                 "n": "tests.library"
             }
         ],
@@ -138,7 +139,7 @@
         },
         "c": "applebin_macos-darwin_x86_64-opt-STABLE-4",
         "d": [
-            "//tools/generator:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2"
+            "@//tools/generator:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2"
         ],
         "i": {
             "s": [
@@ -156,6 +157,7 @@
                 "tools/generator/test/CreateProductsTest.swift",
                 "tools/generator/test/CreateProjectTests.swift",
                 "tools/generator/test/CreateXCSharedDataTests.swift",
+                "tools/generator/test/CreateXCUserDataTests.swift",
                 "tools/generator/test/CreateXcodeProjTests.swift",
                 "tools/generator/test/DefaultLoggerTests.swift",
                 "tools/generator/test/Dictionary+ExtensionTests.swift",
@@ -192,7 +194,7 @@
                 "tools/generator/test/XcodeSchemeTests.swift"
             ]
         },
-        "l": "//tools/generator/test:tests",
+        "l": "@//tools/generator/test:tests",
         "m": true,
         "n": "tests",
         "o": {
@@ -215,7 +217,7 @@
             "Release"
         ]
     },
-    "//tools/generator:generator applebin_macos-darwin_x86_64-dbg-STABLE-3",
+    "@//tools/generator:generator applebin_macos-darwin_x86_64-dbg-STABLE-3",
     {
         "1": "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-3/bin/tools/generator",
         "2": {
@@ -229,9 +231,9 @@
         },
         "c": "applebin_macos-darwin_x86_64-dbg-STABLE-3",
         "d": [
-            "//tools/generator:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1"
+            "@//tools/generator:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1"
         ],
-        "l": "//tools/generator:generator",
+        "l": "@//tools/generator:generator",
         "n": "generator",
         "o": {
             "p": "generator_codesigned"
@@ -243,7 +245,7 @@
             "t": "com.apple.product-type.tool"
         }
     },
-    "//tools/generator:generator applebin_macos-darwin_x86_64-opt-STABLE-4",
+    "@//tools/generator:generator applebin_macos-darwin_x86_64-opt-STABLE-4",
     {
         "1": "bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-4/bin/tools/generator",
         "2": {
@@ -261,9 +263,9 @@
         },
         "c": "applebin_macos-darwin_x86_64-opt-STABLE-4",
         "d": [
-            "//tools/generator:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2"
+            "@//tools/generator:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2"
         ],
-        "l": "//tools/generator:generator",
+        "l": "@//tools/generator:generator",
         "n": "generator",
         "o": {
             "p": "generator_codesigned"
@@ -279,7 +281,7 @@
             "Release"
         ]
     },
-    "//tools/generator:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
+    "@//tools/generator:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
     {
         "0": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/tools/generator/generator.library.rules_xcodeproj.xcodeproj_bwb.swift.compile.params",
         "1": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/tools/generator",
@@ -345,6 +347,7 @@
                 "tools/generator/src/Generator/CreateProducts.swift",
                 "tools/generator/src/Generator/CreateProject.swift",
                 "tools/generator/src/Generator/CreateXCSharedData.swift",
+                "tools/generator/src/Generator/CreateXCUserData.swift",
                 "tools/generator/src/Generator/CreateXcodeProj.swift",
                 "tools/generator/src/Generator/DisambiguateTargets.swift",
                 "tools/generator/src/Generator/Environment.swift",
@@ -372,7 +375,7 @@
                 "tools/generator/src/Logger.swift"
             ]
         },
-        "l": "//tools/generator:generator.library",
+        "l": "@//tools/generator:generator.library",
         "m": true,
         "n": "generator.library",
         "o": {
@@ -386,7 +389,7 @@
             "t": "com.apple.product-type.library.static"
         }
     },
-    "//tools/generator:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2",
+    "@//tools/generator:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2",
     {
         "0": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/tools/generator/generator.library.rules_xcodeproj.xcodeproj_bwb.swift.compile.params",
         "1": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/tools/generator",
@@ -454,6 +457,7 @@
                 "tools/generator/src/Generator/CreateProducts.swift",
                 "tools/generator/src/Generator/CreateProject.swift",
                 "tools/generator/src/Generator/CreateXCSharedData.swift",
+                "tools/generator/src/Generator/CreateXCUserData.swift",
                 "tools/generator/src/Generator/CreateXcodeProj.swift",
                 "tools/generator/src/Generator/DisambiguateTargets.swift",
                 "tools/generator/src/Generator/Environment.swift",
@@ -481,7 +485,7 @@
                 "tools/generator/src/Logger.swift"
             ]
         },
-        "l": "//tools/generator:generator.library",
+        "l": "@//tools/generator:generator.library",
         "m": true,
         "n": "generator.library",
         "o": {
@@ -499,7 +503,7 @@
             "Release"
         ]
     },
-    "//tools/swiftc_stub:swiftc applebin_macos-darwin_x86_64-dbg-STABLE-3",
+    "@//tools/swiftc_stub:swiftc applebin_macos-darwin_x86_64-dbg-STABLE-3",
     {
         "0": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/tools/swiftc_stub/swiftc_stub.library.rules_xcodeproj.xcodeproj_bwb.swift.compile.params",
         "1": "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-3/bin/tools/swiftc_stub",
@@ -510,7 +514,7 @@
         },
         "3": [
             {
-                "i": "//tools/swiftc_stub:swiftc_stub.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
+                "i": "@//tools/swiftc_stub:swiftc_stub.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
                 "n": "swiftc_stub.library"
             }
         ],
@@ -526,7 +530,7 @@
                 "tools/swiftc_stub/main.swift"
             ]
         },
-        "l": "//tools/swiftc_stub:swiftc",
+        "l": "@//tools/swiftc_stub:swiftc",
         "n": "swiftc",
         "o": {
             "p": "swiftc_codesigned",
@@ -544,7 +548,7 @@
             "t": "com.apple.product-type.tool"
         }
     },
-    "//tools/swiftc_stub:swiftc applebin_macos-darwin_x86_64-opt-STABLE-4",
+    "@//tools/swiftc_stub:swiftc applebin_macos-darwin_x86_64-opt-STABLE-4",
     {
         "0": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/tools/swiftc_stub/swiftc_stub.library.rules_xcodeproj.xcodeproj_bwb.swift.compile.params",
         "1": "bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-4/bin/tools/swiftc_stub",
@@ -555,7 +559,7 @@
         },
         "3": [
             {
-                "i": "//tools/swiftc_stub:swiftc_stub.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2",
+                "i": "@//tools/swiftc_stub:swiftc_stub.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2",
                 "n": "swiftc_stub.library"
             }
         ],
@@ -576,7 +580,7 @@
                 "tools/swiftc_stub/main.swift"
             ]
         },
-        "l": "//tools/swiftc_stub:swiftc",
+        "l": "@//tools/swiftc_stub:swiftc",
         "n": "swiftc",
         "o": {
             "p": "swiftc_codesigned",

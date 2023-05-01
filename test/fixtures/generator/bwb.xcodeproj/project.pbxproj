@@ -90,6 +90,7 @@
 		3598FFEE8492E15E545BF620 /* DefaultLoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859E0BC339C3E55F4FAA2AF1 /* DefaultLoggerTests.swift */; };
 		35B11AE1095B5B3216906D0D /* XCUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A7F5735BBF0937CCB34B74 /* XCUserData.swift */; };
 		3635CDA6766D531B6617CA2A /* XCWorkspaceDataElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77483031BF239504F305D93 /* XCWorkspaceDataElement.swift */; };
+		36C32753A09DFB60A72A7117 /* CreateXCUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92728007F27EEE0327CC6721 /* CreateXCUserData.swift */; };
 		36E94F07A9F68E7E61170C2C /* OrderedDictionary+Deprecations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A27B46C4FC033CAAE7A0B2 /* OrderedDictionary+Deprecations.swift */; };
 		37ED9378C56817A8468BE8B0 /* OrderedSet+Partial SetAlgebra+Basics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF60B4EE41AA39BF8BE4AA3 /* OrderedSet+Partial SetAlgebra+Basics.swift */; };
 		384EC04BF97265ECD2F40520 /* BazelLabel+TestExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD5DB8057F06955EDD5AD23 /* BazelLabel+TestExtensions.swift */; };
@@ -165,6 +166,7 @@
 		6ACE36A5F4AEB63F502EFF69 /* ConsolidatedTargetExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3452291D97B2C104718ABCA2 /* ConsolidatedTargetExtensionsTests.swift */; };
 		6B22C015908D41EF4FD21F52 /* AddBazelDependenciesTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A5AF1CBF448B48D1E65DF39 /* AddBazelDependenciesTarget.swift */; };
 		6D848DB7F08B072A6088811A /* OrderedSet+UnstableInternals.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FF557B7B1D208E940BC8CE /* OrderedSet+UnstableInternals.swift */; };
+		6E11E3431F707D50EC29732C /* CreateXCUserDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A4B77BCD6CFBD8FB8637EC /* CreateXCUserDataTests.swift */; };
 		6E760B074583038B1B2E3DD5 /* PBXReferenceProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F191467990E7C675CA282A26 /* PBXReferenceProxy.swift */; };
 		6E7B20C7957B27D818D27ED2 /* ZippyJSONDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D84F6718222FA7C662ED56 /* ZippyJSONDecoder.swift */; };
 		6E9D30F31D104BAAC5A1BD07 /* GeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A46E74D5EB9195A2F8109C /* GeneratorTests.swift */; };
@@ -208,6 +210,7 @@
 		83BE81C6EC2B61C4006D829C /* PBXShellScriptBuildPhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6A598E6BD4D6632DD9A22A /* PBXShellScriptBuildPhase.swift */; };
 		8484EFD44F3DFBAE77A8B386 /* CreateXCSharedDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449F5316BC33FFF5163F9191 /* CreateXCSharedDataTests.swift */; };
 		85BCCA168DC69F15359EE331 /* XCScheme+Runnable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93637B9256E4CB6F83F9828D /* XCScheme+Runnable.swift */; };
+		85F781D060FAC1C7BAC6AD75 /* CreateXCUserDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A4B77BCD6CFBD8FB8637EC /* CreateXCUserDataTests.swift */; };
 		863ED3A71D675E209D13491E /* OrderedSet+Partial SetAlgebra+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D650F25B90824B86103C0B /* OrderedSet+Partial SetAlgebra+Operations.swift */; };
 		875FED97D6829CDAFFB77ACA /* Platform+ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA179657FD6140D7E3E757A /* Platform+ExtensionsTests.swift */; };
 		87FC85BEAF2890060B372CC0 /* BuildSettingConditionalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EAB6000DBDCCDFDAEAB73D /* BuildSettingConditionalTests.swift */; };
@@ -673,6 +676,7 @@
 		8FD015138C774BA78C918B3A /* OrderedSet+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedSet+Codable.swift"; sourceTree = "<group>"; };
 		923CC205DC8CF8935A4DB70A /* libZippyJSONCFamily.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libZippyJSONCFamily.a; path = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_zippyjsoncfamily/libZippyJSONCFamily.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		927194992F298C79462A7EA2 /* _HashTable+Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "_HashTable+Constants.swift"; sourceTree = "<group>"; };
+		92728007F27EEE0327CC6721 /* CreateXCUserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateXCUserData.swift; sourceTree = "<group>"; };
 		93637B9256E4CB6F83F9828D /* XCScheme+Runnable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCScheme+Runnable.swift"; sourceTree = "<group>"; };
 		9688BD6C1EA3B2E2C399BBB4 /* _HashTable+Testing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "_HashTable+Testing.swift"; sourceTree = "<group>"; };
 		96A443E2CB3B251BE7642FE8 /* OrderedSet+Hashable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedSet+Hashable.swift"; sourceTree = "<group>"; };
@@ -701,6 +705,7 @@
 		A2F3DECD44D6641668E3EEC0 /* localtime.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = localtime.c; sourceTree = "<group>"; };
 		A360977902D77B4835C533C1 /* LinkerInputs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkerInputs.swift; sourceTree = "<group>"; };
 		A444EA1D327BCC04F2AAD191 /* KeyedDecodingContainer+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyedDecodingContainer+Additions.swift"; sourceTree = "<group>"; };
+		A4A4B77BCD6CFBD8FB8637EC /* CreateXCUserDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateXCUserDataTests.swift; sourceTree = "<group>"; };
 		A5C1D14E892E292D14310C46 /* CreateAutogeneratedXCSchemes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAutogeneratedXCSchemes.swift; sourceTree = "<group>"; };
 		A5D7021024F27F269D7A8691 /* OrderedSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderedSet.swift; sourceTree = "<group>"; };
 		A61F49C0EE9330580BB0169B /* ReferenceGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferenceGenerator.swift; sourceTree = "<group>"; };
@@ -923,6 +928,7 @@
 				BBF01BC0587B76C460985BCB /* CreateProject.swift */,
 				EF2F56429BB444555990FD3B /* CreateXcodeProj.swift */,
 				63553911EE4BEB03830D2A7A /* CreateXCSharedData.swift */,
+				92728007F27EEE0327CC6721 /* CreateXCUserData.swift */,
 				0AE0BA76CA15BF4A07E11120 /* DisambiguateTargets.swift */,
 				104ED0B66FF0C7EE07A402A8 /* Environment.swift */,
 				7BB54D34FD8C16A870A45846 /* Generator.swift */,
@@ -1823,6 +1829,7 @@
 				7ABD93F6E7BD344B5F4D00FE /* CreateProjectTests.swift */,
 				DFB8F81F749A17332DD29C6F /* CreateXcodeProjTests.swift */,
 				449F5316BC33FFF5163F9191 /* CreateXCSharedDataTests.swift */,
+				A4A4B77BCD6CFBD8FB8637EC /* CreateXCUserDataTests.swift */,
 				859E0BC339C3E55F4FAA2AF1 /* DefaultLoggerTests.swift */,
 				1F53C8753FEF387DC284633C /* Dictionary+ExtensionTests.swift */,
 				2850AAD5EADC527141646355 /* DirectoriesTests.swift */,
@@ -3000,6 +3007,7 @@
 				5C2C6CBAB26DDB6E97DD719A /* CreateProductsTest.swift in Sources */,
 				A00C14D6F73904D9D3DD7AEF /* CreateProjectTests.swift in Sources */,
 				8484EFD44F3DFBAE77A8B386 /* CreateXCSharedDataTests.swift in Sources */,
+				85F781D060FAC1C7BAC6AD75 /* CreateXCUserDataTests.swift in Sources */,
 				42ABA82223731C414E54551B /* CreateXcodeProjTests.swift in Sources */,
 				3598FFEE8492E15E545BF620 /* DefaultLoggerTests.swift in Sources */,
 				06A3253EBDCA330429CAE76E /* Dictionary+ExtensionTests.swift in Sources */,
@@ -3220,6 +3228,7 @@
 				9BDDF5500C7AA1DD9C44DA5C /* CreateProducts.swift in Sources */,
 				A223ECF34A4EC039BEADEE69 /* CreateProject.swift in Sources */,
 				AA01FF99602196C289E29EE9 /* CreateXCSharedData.swift in Sources */,
+				36C32753A09DFB60A72A7117 /* CreateXCUserData.swift in Sources */,
 				F5F47C664FB4827AFDA834D4 /* CreateXcodeProj.swift in Sources */,
 				3C5BC1F53D377D3611F86354 /* DisambiguateTargets.swift in Sources */,
 				5AAC38AAAD945C04C6B1CE18 /* Environment.swift in Sources */,
@@ -3274,6 +3283,7 @@
 				F1803CF9B8E7A949C56A4FA1 /* CreateProductsTest.swift in Sources */,
 				CB86D64E21A72B7AE612AF1D /* CreateProjectTests.swift in Sources */,
 				9CFFD623A540775103646B43 /* CreateXCSharedDataTests.swift in Sources */,
+				6E11E3431F707D50EC29732C /* CreateXCUserDataTests.swift in Sources */,
 				7D3AF7807A86FB732984E066 /* CreateXcodeProjTests.swift in Sources */,
 				39AAC9FB6136476DD63AF793 /* DefaultLoggerTests.swift in Sources */,
 				5357F21C4340A0261E6AB6EC /* Dictionary+ExtensionTests.swift in Sources */,
@@ -3531,7 +3541,7 @@
 				ARCHS = x86_64;
 				BAZEL_LABEL = "@//tools/generator:generator.library";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/tools/generator";
-				BAZEL_TARGET_ID = "//tools/generator:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2";
+				BAZEL_TARGET_ID = "@//tools/generator:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = generator.library;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -3580,13 +3590,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_COMPILE_TARGET_IDS = "//tools/generator/test:tests.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2";
+				BAZEL_COMPILE_TARGET_IDS = "@//tools/generator/test:tests.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=macosx*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//tools/generator/test:tests";
 				BAZEL_OUTPUTS_DSYM = "\"bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-4/bin/tools/generator/test/tests.xctest.dSYM\"";
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-4/bin/tools/generator/test/tests.__internal__.__test_bundle.zip";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-4/bin/tools/generator/test";
-				BAZEL_TARGET_ID = "//tools/generator/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-opt-STABLE-4";
+				BAZEL_TARGET_ID = "@//tools/generator/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-opt-STABLE-4";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_STYLE = Manual;
@@ -3618,13 +3628,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_COMPILE_TARGET_IDS = "//tools/generator/test:tests.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2";
+				BAZEL_COMPILE_TARGET_IDS = "@//tools/generator/test:tests.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=macosx*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//tools/generator/test:tests";
 				BAZEL_OUTPUTS_DSYM = "\"bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-4/bin/tools/generator/test/tests.xctest.dSYM\"";
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-4/bin/tools/generator/test/tests.__internal__.__test_bundle.zip";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-4/bin/tools/generator/test";
-				BAZEL_TARGET_ID = "//tools/generator/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-opt-STABLE-4";
+				BAZEL_TARGET_ID = "@//tools/generator/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-opt-STABLE-4";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_STYLE = Manual;
@@ -3787,12 +3797,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_COMPILE_TARGET_IDS = "//tools/generator/test:tests.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1";
+				BAZEL_COMPILE_TARGET_IDS = "@//tools/generator/test:tests.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=macosx*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//tools/generator/test:tests";
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-3/bin/tools/generator/test/tests.__internal__.__test_bundle.zip";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-3/bin/tools/generator/test";
-				BAZEL_TARGET_ID = "//tools/generator/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-STABLE-3";
+				BAZEL_TARGET_ID = "@//tools/generator/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-STABLE-3";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_STYLE = Manual;
@@ -3822,13 +3832,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_COMPILE_TARGET_IDS = "//tools/swiftc_stub:swiftc_stub.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2";
+				BAZEL_COMPILE_TARGET_IDS = "@//tools/swiftc_stub:swiftc_stub.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=macosx*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//tools/swiftc_stub:swiftc";
 				BAZEL_OUTPUTS_DSYM = "\"bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-4/bin/tools/swiftc_stub/swiftc.dSYM\"";
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-4/bin/tools/swiftc_stub/swiftc_codesigned";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-4/bin/tools/swiftc_stub";
-				BAZEL_TARGET_ID = "//tools/swiftc_stub:swiftc applebin_macos-darwin_x86_64-opt-STABLE-4";
+				BAZEL_TARGET_ID = "@//tools/swiftc_stub:swiftc applebin_macos-darwin_x86_64-opt-STABLE-4";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				COMPILE_TARGET_NAME = swiftc_stub.library;
@@ -3901,7 +3911,7 @@
 				ARCHS = x86_64;
 				BAZEL_LABEL = "@//tools/generator:generator.library";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/tools/generator";
-				BAZEL_TARGET_ID = "//tools/generator:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2";
+				BAZEL_TARGET_ID = "@//tools/generator:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = generator.library;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -3985,12 +3995,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_COMPILE_TARGET_IDS = "//tools/swiftc_stub:swiftc_stub.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1";
+				BAZEL_COMPILE_TARGET_IDS = "@//tools/swiftc_stub:swiftc_stub.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=macosx*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//tools/swiftc_stub:swiftc";
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-3/bin/tools/swiftc_stub/swiftc_codesigned";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-3/bin/tools/swiftc_stub";
-				BAZEL_TARGET_ID = "//tools/swiftc_stub:swiftc applebin_macos-darwin_x86_64-dbg-STABLE-3";
+				BAZEL_TARGET_ID = "@//tools/swiftc_stub:swiftc applebin_macos-darwin_x86_64-dbg-STABLE-3";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				COMPILE_TARGET_NAME = swiftc_stub.library;
@@ -4059,12 +4069,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_COMPILE_TARGET_IDS = "//tools/generator/test:tests.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1";
+				BAZEL_COMPILE_TARGET_IDS = "@//tools/generator/test:tests.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=macosx*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//tools/generator/test:tests";
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-3/bin/tools/generator/test/tests.__internal__.__test_bundle.zip";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-3/bin/tools/generator/test";
-				BAZEL_TARGET_ID = "//tools/generator/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-STABLE-3";
+				BAZEL_TARGET_ID = "@//tools/generator/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-STABLE-3";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_STYLE = Manual;
@@ -4143,12 +4153,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_COMPILE_TARGET_IDS = "//tools/generator/test:tests.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1";
+				BAZEL_COMPILE_TARGET_IDS = "@//tools/generator/test:tests.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=macosx*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//tools/generator/test:tests";
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-3/bin/tools/generator/test/tests.__internal__.__test_bundle.zip";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-3/bin/tools/generator/test";
-				BAZEL_TARGET_ID = "//tools/generator/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-STABLE-3";
+				BAZEL_TARGET_ID = "@//tools/generator/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-STABLE-3";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_STYLE = Manual;
@@ -4205,7 +4215,7 @@
 				BAZEL_OUTPUTS_DSYM = "\"bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-4/bin/tools/generator/generator.dSYM\"";
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-4/bin/tools/generator/generator_codesigned";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-4/bin/tools/generator";
-				BAZEL_TARGET_ID = "//tools/generator:generator applebin_macos-darwin_x86_64-opt-STABLE-4";
+				BAZEL_TARGET_ID = "@//tools/generator:generator applebin_macos-darwin_x86_64-opt-STABLE-4";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				COMPILE_TARGET_NAME = generator;
@@ -4407,13 +4417,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_COMPILE_TARGET_IDS = "//tools/generator/test:tests.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2";
+				BAZEL_COMPILE_TARGET_IDS = "@//tools/generator/test:tests.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=macosx*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//tools/generator/test:tests";
 				BAZEL_OUTPUTS_DSYM = "\"bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-4/bin/tools/generator/test/tests.xctest.dSYM\"";
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-4/bin/tools/generator/test/tests.__internal__.__test_bundle.zip";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-4/bin/tools/generator/test";
-				BAZEL_TARGET_ID = "//tools/generator/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-opt-STABLE-4";
+				BAZEL_TARGET_ID = "@//tools/generator/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-opt-STABLE-4";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_STYLE = Manual;
@@ -4518,7 +4528,7 @@
 				BAZEL_OUTPUTS_DSYM = "\"bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-4/bin/tools/generator/generator.dSYM\"";
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-4/bin/tools/generator/generator_codesigned";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-4/bin/tools/generator";
-				BAZEL_TARGET_ID = "//tools/generator:generator applebin_macos-darwin_x86_64-opt-STABLE-4";
+				BAZEL_TARGET_ID = "@//tools/generator:generator applebin_macos-darwin_x86_64-opt-STABLE-4";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				COMPILE_TARGET_NAME = generator;
@@ -4586,7 +4596,7 @@
 				BAZEL_LABEL = "@//tools/generator:generator";
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-3/bin/tools/generator/generator_codesigned";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-3/bin/tools/generator";
-				BAZEL_TARGET_ID = "//tools/generator:generator applebin_macos-darwin_x86_64-dbg-STABLE-3";
+				BAZEL_TARGET_ID = "@//tools/generator:generator applebin_macos-darwin_x86_64-dbg-STABLE-3";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				COMPILE_TARGET_NAME = generator;
@@ -4633,13 +4643,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_COMPILE_TARGET_IDS = "//tools/swiftc_stub:swiftc_stub.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2";
+				BAZEL_COMPILE_TARGET_IDS = "@//tools/swiftc_stub:swiftc_stub.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=macosx*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//tools/swiftc_stub:swiftc";
 				BAZEL_OUTPUTS_DSYM = "\"bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-4/bin/tools/swiftc_stub/swiftc.dSYM\"";
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-4/bin/tools/swiftc_stub/swiftc_codesigned";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-4/bin/tools/swiftc_stub";
-				BAZEL_TARGET_ID = "//tools/swiftc_stub:swiftc applebin_macos-darwin_x86_64-opt-STABLE-4";
+				BAZEL_TARGET_ID = "@//tools/swiftc_stub:swiftc applebin_macos-darwin_x86_64-opt-STABLE-4";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				COMPILE_TARGET_NAME = swiftc_stub.library;
@@ -4750,7 +4760,7 @@
 				ARCHS = x86_64;
 				BAZEL_LABEL = "@//tools/generator:generator.library";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/tools/generator";
-				BAZEL_TARGET_ID = "//tools/generator:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1";
+				BAZEL_TARGET_ID = "@//tools/generator:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = generator.library;
 				ENABLE_TESTABILITY = YES;
