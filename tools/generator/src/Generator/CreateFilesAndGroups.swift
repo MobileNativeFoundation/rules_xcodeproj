@@ -94,7 +94,7 @@ extension Generator {
             path: String
         ) {
             let relativePath: Path
-            let absolutePath: Path
+            var absolutePath: Path
             let addToResolvedRepositories: Bool
             switch bazelNodeType {
             case .external?:
@@ -112,11 +112,25 @@ extension Generator {
                 addToResolvedRepositories = false
             }
 
-            if let symlinkDest = try? absolutePath.symlinkDestination() {
+            var wasSymlink = false
+            while let symlinkDest = try? absolutePath.symlinkDestination() {
+                wasSymlink = true
+                absolutePath = symlinkDest
+            }
+
+            guard wasSymlink else {
+                return (
+                    sourceTree: .group,
+                    name: nil,
+                    path: node.name
+                )
+            }
+
+            if forFixtures {
                 let workspaceDirectoryComponents = directories
                     .workspaceComponents
-                let symlinkComponents = symlinkDest.components
-                if forFixtures, symlinkComponents.starts(
+                let symlinkComponents = absolutePath.components
+                if symlinkComponents.starts(
                     with: directories.workspaceComponents
                 ) {
                     let resolvedRelativeComponents = symlinkComponents.suffix(
@@ -139,26 +153,20 @@ extension Generator {
                         name: node.name,
                         path: resolvedRelativePath.string
                     )
-                } else {
-                    if addToResolvedRepositories {
-                        resolvedRepositories.append(
-                            ("/external" + relativePath, symlinkDest)
-                        )
-                    }
-
-                    return (
-                        sourceTree: .absolute,
-                        name: node.name,
-                        path: symlinkDest.string
-                    )
                 }
-            } else {
-                return (
-                    sourceTree: .group,
-                    name: nil,
-                    path: node.name
+            }
+
+            if addToResolvedRepositories {
+                resolvedRepositories.append(
+                    ("/external" + relativePath, absolutePath)
                 )
             }
+
+            return (
+                sourceTree: .absolute,
+                name: node.name,
+                path: absolutePath.string
+            )
         }
 
         /// This function exists, instead of simply reusing
