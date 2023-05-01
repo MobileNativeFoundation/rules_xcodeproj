@@ -86,17 +86,39 @@ extension Generator {
         func resolveFilePath(
             filePathStr: String,
             node: FileTreeNode,
-            isExternal: Bool,
+            bazelNodeType: BazelNodeType?,
             isGroup: Bool
         ) -> (
             sourceTree: PBXSourceTree,
             name: String?,
             path: String
         ) {
-            // `directoryLevel`` 0 is the root group
-            // `directoryLevel`` 1 is "external/"
-            // `directoryLevel`` 2 and 3 can be symlinks that we need to resolve
-            guard isExternal && node.directoryLevel <= 3 else {
+            let relativePath: Path
+            var absolutePath: Path
+            let addToResolvedRepositories: Bool
+            switch bazelNodeType {
+            case .external?:
+                // Drop "external/"
+                relativePath = Path(String(filePathStr.dropFirst(9)))
+                absolutePath = directories.absoluteExternal + relativePath
+                addToResolvedRepositories = isGroup
+            case .bazelOut?:
+                relativePath = Path(filePathStr)
+                absolutePath = directories.executionRoot + relativePath
+                addToResolvedRepositories = false
+            case nil:
+                relativePath = Path(filePathStr)
+                absolutePath = directories.workspace + relativePath
+                addToResolvedRepositories = false
+            }
+
+            var wasSymlink = false
+            while let symlinkDest = try? absolutePath.symlinkDestination() {
+                wasSymlink = true
+                absolutePath = symlinkDest
+            }
+
+            guard wasSymlink else {
                 return (
                     sourceTree: .group,
                     name: nil,
@@ -104,28 +126,24 @@ extension Generator {
                 )
             }
 
-            // Drop "external/"
-            let externalRelativePathStr = Path(String(filePathStr.dropFirst(9)))
-
-            if let symlinkDest = try? (
-                directories.absoluteExternal + externalRelativePathStr
-            ).symlinkDestination() {
+            if forFixtures {
                 let workspaceDirectoryComponents = directories
                     .workspaceComponents
-                let symlinkComponents = symlinkDest.components
-                if forFixtures, symlinkComponents.starts(
+                let symlinkComponents = absolutePath.components
+                if symlinkComponents.starts(
                     with: directories.workspaceComponents
                 ) {
-                    let relativeComponents = symlinkComponents.suffix(
+                    let resolvedRelativeComponents = symlinkComponents.suffix(
                         from: workspaceDirectoryComponents.count
                     )
-                    let relativePath = Path(components: relativeComponents)
+                    let resolvedRelativePath =
+                        Path(components: resolvedRelativeComponents)
 
-                    if isGroup {
+                    if addToResolvedRepositories {
                         resolvedRepositories.append(
                             (
-                                "/external" + externalRelativePathStr,
-                                "$(SRCROOT)" + relativePath
+                                "/external" + relativePath,
+                                "$(SRCROOT)" + resolvedRelativePath
                             )
                         )
                     }
@@ -133,28 +151,22 @@ extension Generator {
                     return (
                         sourceTree: .sourceRoot,
                         name: node.name,
-                        path: relativePath.string
-                    )
-                } else {
-                    if isGroup {
-                        resolvedRepositories.append(
-                            ("/external" + externalRelativePathStr, symlinkDest)
-                        )
-                    }
-
-                    return (
-                        sourceTree: .absolute,
-                        name: node.name,
-                        path: symlinkDest.string
+                        path: resolvedRelativePath.string
                     )
                 }
-            } else {
-                return (
-                    sourceTree: .group,
-                    name: nil,
-                    path: node.name
+            }
+
+            if addToResolvedRepositories {
+                resolvedRepositories.append(
+                    ("/external" + relativePath, absolutePath)
                 )
             }
+
+            return (
+                sourceTree: .absolute,
+                name: node.name,
+                path: absolutePath.string
+            )
         }
 
         /// This function exists, instead of simply reusing
@@ -192,7 +204,7 @@ extension Generator {
         func createFile(
             node: FileTreeNode,
             filePathStr: String,
-            isExternal: Bool
+            bazelNodeType: BazelNodeType?
         ) -> (
             filePaths: [FilePath],
             reference: PBXFileReference,
@@ -201,7 +213,7 @@ extension Generator {
             let (sourceTree, name, path) = resolveFilePath(
                 filePathStr: filePathStr,
                 node: node,
-                isExternal: isExternal,
+                bazelNodeType: bazelNodeType,
                 isGroup: false
             )
 
@@ -266,12 +278,12 @@ extension Generator {
             node: FileTreeNode,
             children: [HandledNode],
             filePathStr: String,
-            isExternal: Bool
+            bazelNodeType: BazelNodeType?
         ) -> PBXGroup {
             let (sourceTree, name, path) = resolveFilePath(
                 filePathStr: filePathStr,
                 node: node,
-                isExternal: isExternal,
+                bazelNodeType: bazelNodeType,
                 isGroup: true
             )
 
@@ -296,7 +308,7 @@ extension Generator {
             sourceTree: PBXSourceTree,
             parentPath: String,
             filePathStr: String,
-            isExternal: Bool
+            bazelNodeType: BazelNodeType?
         ) -> LocalizedFile {
             let (basenameWithoutExt, ext) = node.splitExtension()
 
@@ -339,14 +351,14 @@ extension Generator {
             node: FileTreeNode,
             language: String,
             filePathStr: String,
-            isExternal: Bool
+            bazelNodeType: BazelNodeType?
         ) -> [LocalizedFile] {
             knownRegions.insert(language)
 
             let (sourceTree, _, path) = resolveFilePath(
                 filePathStr: filePathStr,
                 node: node,
-                isExternal: isExternal,
+                bazelNodeType: bazelNodeType,
                 isGroup: true
             )
 
@@ -358,7 +370,7 @@ extension Generator {
                         sourceTree: sourceTree,
                         parentPath: path,
                         filePathStr: "\(filePathStr)/\(node.name)",
-                        isExternal: isExternal
+                        bazelNodeType: bazelNodeType
                     )
                 }
 
@@ -395,12 +407,12 @@ extension Generator {
         func createVersionGroup(
             node: FileTreeNode,
             filePathStr: String,
-            isExternal: Bool
+            bazelNodeType: BazelNodeType?
         ) -> XCVersionGroup {
             let (sourceTree, name, path) = resolveFilePath(
                 filePathStr: filePathStr,
                 node: node,
-                isExternal: isExternal,
+                bazelNodeType: bazelNodeType,
                 isGroup: true
             )
 
@@ -408,7 +420,7 @@ extension Generator {
                 return createFile(
                     node: node,
                     filePathStr: "\(filePathStr)/\(node.name)",
-                    isExternal: isExternal
+                    bazelNodeType: bazelNodeType
                 )
             }
 
@@ -443,7 +455,7 @@ extension Generator {
         func handleNode(
             _ node: FileTreeNode,
             filePathPrefix: String,
-            isExternal: Bool
+            bazelNodeType: BazelNodeType?
         ) -> HandledNode {
             let filePathStr = "\(filePathPrefix)\(node.name)"
             let childFilePathPrefix = "\(filePathStr)/"
@@ -452,7 +464,7 @@ extension Generator {
                 let (_, element, isFileLike) = createFile(
                     node: node,
                     filePathStr: filePathStr,
-                    isExternal: isExternal
+                    bazelNodeType: bazelNodeType
                 )
                 if isFileLike {
                     return .fileLikeElement(element)
@@ -467,27 +479,27 @@ extension Generator {
                         node: node,
                         language: basenameWithoutExt,
                         filePathStr: filePathStr,
-                        isExternal: isExternal
+                        bazelNodeType: bazelNodeType
                     ))
                 case "xcdatamodeld":
                     return .fileLikeElement(createVersionGroup(
                         node: node,
                         filePathStr: filePathStr,
-                        isExternal: isExternal
+                        bazelNodeType: bazelNodeType
                     ))
                 default:
                     let children = node.children.map { node in
                         return handleNode(
                             node,
                             filePathPrefix: childFilePathPrefix,
-                            isExternal: isExternal
+                            bazelNodeType: bazelNodeType
                         )
                     }
                     return .groupLikeElement(createGroup(
                         node: node,
                         children: children,
                         filePathStr: filePathStr,
-                        isExternal: isExternal
+                        bazelNodeType: bazelNodeType
                     ))
                 }
             }
@@ -501,7 +513,7 @@ extension Generator {
             _ node: FileTreeNode,
             filePathPrefix: String,
             fileListPathPrefix: String,
-            isExternal: Bool
+            bazelNodeType: BazelNodeType?
         ) -> (handledNode: HandledNode, fileListPaths: [String]) {
             let filePathStr = "\(filePathPrefix)\(node.name)"
             let childFilePathPrefix = "\(filePathStr)/"
@@ -511,12 +523,12 @@ extension Generator {
                 let (_, element, isFileLike) = createFile(
                     node: node,
                     filePathStr: filePathStr,
-                    isExternal: isExternal
+                    bazelNodeType: bazelNodeType
                 )
                 return (
                     isFileLike ?
                         .fileLikeElement(element) : .groupLikeElement(element),
-                    isExternal || !node.isFolder ?
+                    bazelNodeType == .external || !node.isFolder ?
                         [childFileListPathPrefix]: []
                 )
             } else {
@@ -530,7 +542,7 @@ extension Generator {
                         node: node,
                         language: basenameWithoutExt,
                         filePathStr: filePathStr,
-                        isExternal: isExternal
+                        bazelNodeType: bazelNodeType
                     )
                     return (
                         .variantGroupLanguage(variantGroupLanguage),
@@ -543,7 +555,7 @@ extension Generator {
                     let group = createVersionGroup(
                         node: node,
                         filePathStr: filePathStr,
-                        isExternal: isExternal
+                        bazelNodeType: bazelNodeType
                     )
                     return (.fileLikeElement(group), fileListPaths)
                 default:
@@ -552,7 +564,7 @@ extension Generator {
                             node,
                             filePathPrefix: childFilePathPrefix,
                             fileListPathPrefix: childFileListPathPrefix,
-                            isExternal: isExternal
+                            bazelNodeType: bazelNodeType
                         )
                     }
                     let group = createGroup(
@@ -560,7 +572,7 @@ extension Generator {
                         children: childrenAndFileListPaths
                             .map { $0.handledNode },
                         filePathStr: filePathStr,
-                        isExternal: isExternal
+                        bazelNodeType: bazelNodeType
                     )
                     return (
                         .groupLikeElement(group),
@@ -583,20 +595,17 @@ extension Generator {
         ) -> (group: PBXGroup, fileListPaths: [String]) {
             let filePathPrefix: String
             let fileListPathPrefix: String
-            let isExternal: Bool
             let groupName: String
             let groupPath: String
             switch bazelNodeType {
             case .external:
                 filePathPrefix = "external/"
                 fileListPathPrefix = "$(BAZEL_EXTERNAL)"
-                isExternal = true
                 groupName = "Bazel External Repositories"
                 groupPath = "../../external"
             case .bazelOut:
                 filePathPrefix = "bazel-out/"
                 fileListPathPrefix = "$(BAZEL_OUT)"
-                isExternal = false
                 groupName = "Bazel Generated Files"
                 groupPath = "bazel-out"
             }
@@ -606,7 +615,7 @@ extension Generator {
                     node,
                     filePathPrefix: filePathPrefix,
                     fileListPathPrefix: fileListPathPrefix,
-                    isExternal: isExternal
+                    bazelNodeType: bazelNodeType
                 )
             }
 
@@ -674,7 +683,7 @@ extension Generator {
                 ) = handleBazelGroupNode(node, .bazelOut)
             default:
                 handledNodes.append(
-                    handleNode(node, filePathPrefix: "", isExternal: false)
+                    handleNode(node, filePathPrefix: "", bazelNodeType: nil)
                 )
             }
         }
