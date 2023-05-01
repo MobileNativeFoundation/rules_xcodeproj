@@ -1,12 +1,12 @@
 {
     "B": "rules_xcodeproj",
     "E": [
-        "@//tools/generator/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-STABLE-3",
+        "//tools/generator/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-STABLE-3",
         {},
-        "@//tools/generator/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-opt-STABLE-4",
+        "//tools/generator/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-opt-STABLE-4",
         {}
     ],
-    "R": "@//test/fixtures/generator:xcodeproj_bwb",
+    "R": "//test/fixtures/generator:xcodeproj_bwb",
     "T": "fixture-target-ids-file",
     "e": [
         "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-3/bin/tools/generator/test/rules_xcodeproj/tests.__internal__.__test_bundle/Info.plist",
