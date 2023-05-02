@@ -10,17 +10,19 @@ final class CreateXcodeProjTests: XCTestCase {
 
         let pbxProj = Fixtures.pbxProj()
         let sharedData = Fixtures.xcSharedData()
+        let userData = Fixtures.xcUserData()
 
         let expectedPBXProj = Fixtures.pbxProj()
         let expectedXcodeProj = XcodeProj(
             workspace: XCWorkspace(),
             pbxproj: expectedPBXProj,
-            sharedData: sharedData
+            sharedData: sharedData,
+            userData: [userData]
         )
 
         // Act
 
-        let xcodeProj = Generator.createXcodeProj(for: pbxProj, sharedData: sharedData)
+        let xcodeProj = Generator.createXcodeProj(for: pbxProj, sharedData: sharedData, userData: userData)
 
         try pbxProj.fixReferences()
         try expectedPBXProj.fixReferences()

@@ -2406,6 +2406,21 @@ $(CURRENT_EXECUTION_ROOT)/bazel-out/T 2.swift.compile.params
         let schemes = xcSchemes()
         return XCSharedData(schemes: schemes)
     }
+    
+    static func xcUserData() -> XCUserData {
+        return XCUserData(
+            userName: "testUser",
+            schemes: [],
+            schemeManagement: XCSchemeManagement(schemeUserState: [
+                XCSchemeManagement.UserStateScheme(
+                    name: "Custom Scheme.xcscheme",
+                    shared: true,
+                    orderHint: 0,
+                    isShown: true
+                )
+            ])
+        )
+    }
 
     static func targetResolver(
         pbxProj: PBXProj,
