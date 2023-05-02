@@ -17,7 +17,7 @@ final class CreateXcodeProjTests: XCTestCase {
             workspace: XCWorkspace(),
             pbxproj: expectedPBXProj,
             sharedData: sharedData,
-            userData: userData
+            userData: [userData]
         )
 
         // Act

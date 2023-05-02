@@ -5,13 +5,13 @@ extension Generator {
     static func createXcodeProj(
         for pbxProj: PBXProj,
         sharedData: XCSharedData?,
-        userData: [XCUserData]
+        userData: XCUserData
     ) -> XcodeProj {
         return XcodeProj(
             workspace: XCWorkspace(),
             pbxproj: pbxProj,
             sharedData: sharedData,
-            userData: userData
+            userData: [userData]
         )
     }
 }

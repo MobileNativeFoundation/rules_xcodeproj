@@ -224,12 +224,12 @@ final class GeneratorTests: XCTestCase {
                 )
             ])
         )
-        let userData = [testUserData]
+        let userData = testUserData
         let xcodeProj = XcodeProj(
             workspace: XCWorkspace(),
             pbxproj: pbxProj,
             sharedData: sharedData,
-            userData: userData
+            userData: [userData]
         )
 
         let expectedMessagesLogged: [StubLogger.MessageLogged] = []
@@ -818,12 +818,12 @@ final class GeneratorTests: XCTestCase {
         func createXcodeProj(
             for pbxProj: PBXProj,
             sharedData: XCSharedData?,
-            userData: [XCUserData]
+            userData: XCUserData
         ) -> XcodeProj {
             createXcodeProjCalled.append(.init(
                 pbxProj: pbxProj,
                 sharedData: sharedData,
-                userData: userData
+                userData: [userData]
             ))
             return xcodeProj
         }
@@ -831,7 +831,7 @@ final class GeneratorTests: XCTestCase {
         let expectedCreateXcodeProjCalled = [CreateXcodeProjCalled(
             pbxProj: pbxProj,
             sharedData: sharedData,
-            userData: userData
+            userData: [userData]
         )]
 
         // MARK: writeXcodeProj()

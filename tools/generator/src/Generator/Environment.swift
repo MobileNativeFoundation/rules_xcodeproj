@@ -141,7 +141,7 @@ struct Environment {
     let createXcodeProj: (
         _ pbxProj: PBXProj,
         _ sharedData: XCSharedData?,
-        _ userData: [XCUserData]
+        _ userData: XCUserData
     ) -> XcodeProj
 
     let writeXcodeProj: (

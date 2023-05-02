@@ -2407,8 +2407,8 @@ $(CURRENT_EXECUTION_ROOT)/bazel-out/T 2.swift.compile.params
         return XCSharedData(schemes: schemes)
     }
     
-    static func xcUserData() -> [XCUserData] {
-        return [XCUserData(
+    static func xcUserData() -> XCUserData {
+        return XCUserData(
             userName: "testUser",
             schemes: [],
             schemeManagement: XCSchemeManagement(schemeUserState: [
@@ -2419,7 +2419,7 @@ $(CURRENT_EXECUTION_ROOT)/bazel-out/T 2.swift.compile.params
                     isShown: true
                 )
             ])
-        )]
+        )
     }
 
     static func targetResolver(
