@@ -22,7 +22,7 @@ load(":input_files.bzl", "input_files")
 load(":lldb_contexts.bzl", "lldb_contexts")
 load(":logging.bzl", "warn")
 load(":output_files.bzl", "output_files")
-load(":platform.bzl", "platform_info")
+load(":platforms.bzl", "platforms")
 load(":project_options.bzl", "project_options_to_dto")
 load(":providers.bzl", "XcodeProjInfo")
 load(":resource_target.bzl", "process_resource_bundles")
@@ -130,7 +130,7 @@ def _get_minimum_xcode_version(*, xcode_config):
 def _is_same_platform_swiftui_preview_target(*, platform, xcode_target):
     if not xcode_target:
         return False
-    if not platform_info.is_same_type(platform, xcode_target.platform):
+    if not platforms.is_same_type(platform, xcode_target.platform):
         return False
     return xcode_target.product.type in _SWIFTUI_PREVIEW_PRODUCT_TYPES
 

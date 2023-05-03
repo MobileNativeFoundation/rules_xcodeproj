@@ -108,7 +108,7 @@ def _collect_input_files(
             `non_xcode_target`s).
         id: A unique identifier for the target. Will be `None` for non-Xcode
             targets.
-        platform: A value returned from `platform_info.collect`.
+        platform: A value returned from `platforms.collect`.
         is_bundle: Whether `target` is a bundle.
         product: A value returned from `process_product`.
         linker_inputs: A value returned from `linker_file_inputs.collect`.

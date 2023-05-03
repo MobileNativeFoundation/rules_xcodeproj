@@ -23,7 +23,7 @@ load(
 )
 load(":opts.bzl", "process_opts")
 load(":output_files.bzl", "output_files")
-load(":platform.bzl", "platform_info")
+load(":platforms.bzl", "platforms")
 load(":processed_target.bzl", "processed_target")
 load(":product.bzl", "process_product")
 load(":providers.bzl", "XcodeProjInfo")
@@ -308,7 +308,7 @@ def process_top_level_target(
         tree_artifact_enabled = tree_artifact_enabled,
         build_settings = build_settings,
     )
-    platform = platform_info.collect(ctx = ctx)
+    platform = platforms.collect(ctx = ctx)
 
     avoid_compilation_providers_list = [
         (info.xcode_target, info.compilation_providers)

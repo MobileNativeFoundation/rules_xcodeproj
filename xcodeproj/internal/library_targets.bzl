@@ -11,7 +11,7 @@ load(":linker_input_files.bzl", "linker_input_files")
 load(":lldb_contexts.bzl", "lldb_contexts")
 load(":opts.bzl", "process_opts")
 load(":output_files.bzl", "output_files")
-load(":platform.bzl", "platform_info")
+load(":platforms.bzl", "platforms")
 load(":processed_target.bzl", "processed_target")
 load(":product.bzl", "process_product")
 load(":providers.bzl", "XcodeProjInfo")
@@ -106,7 +106,7 @@ def process_library_target(
         getattr(ctx.rule.attr, "enable_modules", False),
     )
 
-    platform = platform_info.collect(ctx = ctx)
+    platform = platforms.collect(ctx = ctx)
     product = process_product(
         ctx = ctx,
         target = target,
