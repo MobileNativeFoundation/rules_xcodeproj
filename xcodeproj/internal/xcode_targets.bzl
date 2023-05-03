@@ -17,7 +17,7 @@ load(
     "EMPTY_TUPLE",
     "memory_efficient_depset",
 )
-load(":platform.bzl", "platform_info")
+load(":platforms.bzl", "platforms")
 
 def _make_xcode_target(
         *,
@@ -180,7 +180,7 @@ def _lldb_context_key(*, platform, product):
 
     product_basename = paths.basename(fp)
     base_key = "{} {}".format(
-        platform_info.to_lldb_context_triple(platform),
+        platforms.to_lldb_context_triple(platform),
         product_basename,
     )
 
@@ -191,7 +191,7 @@ def _lldb_context_key(*, platform, product):
     if not executable_name:
         executable_name = paths.split_extension(product_basename)[0]
 
-    if platform_info.is_platform_type(
+    if platforms.is_platform_type(
         platform,
         apple_common.platform_type.macos,
     ):
@@ -608,7 +608,7 @@ def _xcode_target_to_dto(
         "l": str(label),
         "c": xcode_target.configuration,
         "1": xcode_target._package_bin_dir,
-        "2": platform_info.to_dto(xcode_target.platform),
+        "2": platforms.to_dto(xcode_target.platform),
         "p": _product_to_dto(xcode_target.product),
     }
 
@@ -932,7 +932,7 @@ def _linker_inputs_to_dto(
         args.add(generated_framework_search_paths_file)
         args.add("1" if is_framework else "0")
         args.add(generated_product_paths_file)
-        args.add(platform_info.to_swift_triple(platform))
+        args.add(platforms.to_swift_triple(platform))
         args.add(link_params)
         args.add_all(link_sub_params)
 

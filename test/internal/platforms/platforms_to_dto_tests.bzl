@@ -4,9 +4,9 @@ load("@bazel_skylib//lib:unittest.bzl", "asserts", "unittest")
 load("//test:utils.bzl", "stringify_dict")
 
 # buildifier: disable=bzl-visibility
-load("//xcodeproj/internal:platform.bzl", "platform_info")
+load("//xcodeproj/internal:platforms.bzl", "platforms")
 
-def _platform_info_to_dto_test_impl(ctx):
+def _platforms_to_dto_test_impl(ctx):
     env = unittest.begin(ctx)
 
     platform = struct(
@@ -14,7 +14,7 @@ def _platform_info_to_dto_test_impl(ctx):
         _os_version = ctx.attr.minimum_os_version,
         _platform = getattr(apple_common.platform, ctx.attr.platform_key),
     )
-    dto = platform_info.to_dto(platform)
+    dto = platforms.to_dto(platform)
     string_platform = stringify_dict(dto)
 
     asserts.equals(
@@ -26,8 +26,8 @@ def _platform_info_to_dto_test_impl(ctx):
 
     return unittest.end(env)
 
-platform_info_to_dto_test = unittest.make(
-    impl = _platform_info_to_dto_test_impl,
+platforms_to_dto_test = unittest.make(
+    impl = _platforms_to_dto_test_impl,
     attrs = {
         "arch": attr.string(mandatory = True),
         "expected_platform_dict": attr.string_dict(mandatory = True),
@@ -36,8 +36,8 @@ platform_info_to_dto_test = unittest.make(
     },
 )
 
-def platform_info_to_dto_test_suite(name):
-    """Test suite for `platform_info.to_dto`.
+def platforms_to_dto_test_suite(name):
+    """Test suite for `platforms.to_dto`.
 
     Args:
         name: The base name to be used in things created by this macro. Also the
@@ -53,7 +53,7 @@ def platform_info_to_dto_test_suite(name):
             minimum_os_version,
             expected_platform_dict):
         test_names.append(name)
-        platform_info_to_dto_test(
+        platforms_to_dto_test(
             name = name,
             platform_key = platform_key,
             arch = arch,

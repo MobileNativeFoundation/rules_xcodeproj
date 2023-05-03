@@ -249,7 +249,7 @@ def collect_resources(
     """Collects resource information for a target.
 
     Args:
-        platform: A value returned from `platform_info.collect`.
+        platform: A value returned from `platforms.collect`.
         resource_info: The `AppleResourceInfo` provider for the target.
         avoid_resource_infos: A `list` of `AppleResourceInfo` providers from
             targets that should be avoided (e.g. test hosts).

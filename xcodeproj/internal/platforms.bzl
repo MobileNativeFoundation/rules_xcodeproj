@@ -17,7 +17,7 @@ def _collect_platform(*, ctx):
         ctx: The aspect context.
 
     Returns:
-        An opaque `struct` to be used with `platform_info.to_dto`.
+        An opaque `struct` to be used with `platforms.to_dto`.
     """
     apple_fragment = ctx.fragments.apple
     platform = apple_fragment.single_arch_platform
@@ -36,7 +36,7 @@ def _is_platform_type(platform, platform_type):
     """Returns whether a platform is of a given type.
 
     Args:
-        platform: A value returned from `platform_info.collect`.
+        platform: A value returned from `platforms.collect`.
         platform_type: A value from `apple_common.platform`.
     """
     return platform._platform.platform_type == platform_type
@@ -49,7 +49,7 @@ def _platform_to_dto(platform):
     """Generates a target DTO value for a platform.
 
     Args:
-        platform: A value returned from `platform_info.collect`.
+        platform: A value returned from `platforms.collect`.
     """
     apple_platform = platform._platform
 
@@ -95,7 +95,7 @@ def _platform_to_swift_triple(platform):
     """Generates a Swift triple for a platform.
 
     Args:
-        platform: A value returned from `platform_info.collect`.
+        platform: A value returned from `platforms.collect`.
     """
     return "{arch}-apple-{triple_prefix}{triple_suffix}".format(
         arch = platform._arch,
@@ -107,7 +107,7 @@ def _platform_to_lldb_context_triple(platform):
     """Generates a lldb context triple for a platform.
 
     Args:
-        platform: A value returned from `platform_info.collect`.
+        platform: A value returned from `platforms.collect`.
     """
     return "{arch}-apple-{triple_prefix}{triple_suffix}".format(
         arch = platform._arch,
@@ -115,7 +115,7 @@ def _platform_to_lldb_context_triple(platform):
         triple_suffix = _TRIPLE_SUFFIX[platform._platform],
     )
 
-platform_info = struct(
+platforms = struct(
     collect = _collect_platform,
     is_platform_type = _is_platform_type,
     is_same_type = _is_same_type,
