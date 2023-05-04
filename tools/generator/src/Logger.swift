@@ -36,7 +36,9 @@ enum TerminalColor: Int {
         case .green, .yellow, .magenta:
             bold = false
         }
-        return "\u{001B}[\(self.rawValue)\(bold ? ";1" : "")m\(input)\u{001B}[0m"
+        return """
+\u{001B}[\(self.rawValue)\(bold ? ";1" : "")m\(input)\u{001B}[0m
+"""
     }
 }
 
@@ -56,7 +58,11 @@ final class DefaultLogger<E: TextOutputStream, O: TextOutputStream>: Logger {
         self.colorize = colorize
     }
 
-    func format(color: TerminalColor, prefix: String, message: String) -> String {
+    func format(
+        color: TerminalColor,
+        prefix: String,
+        message: String
+    ) -> String {
         if self.colorize {
             return "\(color.colorize("\(prefix):")) \(message)"
         } else {
