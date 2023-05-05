@@ -163,5 +163,5 @@ resolve the error.
 
 This can happen if you have opened Xcode using `rosetta`, the solution is to get native arm simulator support for your app and disable rosetta.
 
-![Alt text](/xcode-rosetta.png?raw=true "Xcode without Rosetta")
+![Alt text](/docs/xcode-rosetta.png?raw=true "Xcode without Rosetta")
 
