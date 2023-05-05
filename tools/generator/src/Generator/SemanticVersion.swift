@@ -1,7 +1,7 @@
 import Foundation
 
 // Inspired by https://gist.github.com/mjdescy/a805b5b4c49ed79fb240d3886815d5a2
-struct SemanticVersion: Equatable, Hashable {
+public struct SemanticVersion: Equatable, Hashable {
     static let maximumVersionPartCount = 3
 
     public let major: Int
@@ -19,7 +19,11 @@ struct SemanticVersion: Equatable, Hashable {
         let missingParts = Array(repeating: "0", count: missingPartsCount)
         components.append(contentsOf: missingParts)
 
-        self.init(major: components[0], minor: components[1], patch: components[2])
+        self.init(
+            major: components[0],
+            minor: components[1],
+            patch: components[2]
+        )
     }
 
     public init?(major: String, minor: String, patch: String) {
@@ -27,13 +31,11 @@ struct SemanticVersion: Equatable, Hashable {
             let majorAsInt = Int(major),
             let minorAsInt = Int(minor),
             let patchAsInt = Int(patch)
-            else {
-                return nil
+        else {
+            return nil
         }
 
-        self.init(major: majorAsInt,
-                  minor: minorAsInt,
-                  patch: patchAsInt)
+        self.init(major: majorAsInt, minor: minorAsInt, patch: patchAsInt)
     }
 
     public init(major: Int, minor: Int, patch: Int) {
@@ -45,21 +47,19 @@ struct SemanticVersion: Equatable, Hashable {
 
 extension SemanticVersion: Comparable {
     public static func < (lhs: SemanticVersion, rhs: SemanticVersion) -> Bool {
-        return (lhs.major < rhs.major)
-            || (lhs.major == rhs.major && lhs.minor < rhs.minor)
-            || (lhs.major == rhs.major && lhs.minor == rhs.minor && lhs.patch < rhs.patch)
+        (lhs.major, lhs.minor, lhs.patch) < (rhs.major, rhs.minor, rhs.patch)
     }
 }
 
 extension SemanticVersion {
     /// Fully qualified version string.
-    var full: String {
+    public var full: String {
         return "\(major).\(minor).\(patch)"
     }
 
-    /// Output a version string that inlucdes the major and minor values if the patch is 0.
-    /// Otherwise, output the fully qualified version string.
-    var pretty: String {
+    /// Output a version string that includes the major and minor values if the
+    /// patch is `0`. Otherwise, output the fully qualified version string.
+    public var pretty: String {
         if patch == 0 {
             return "\(major).\(minor)"
         }
@@ -74,21 +74,22 @@ extension SemanticVersion: CustomStringConvertible {
 }
 
 extension SemanticVersion: Encodable {
-    func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         try container.encode(full)
     }
 }
 
 extension SemanticVersion: Decodable {
-    init(from decoder: Decoder) throws {
-        let value = try decoder.singleValueContainer().decode(String.self)
-        guard let self0 = SemanticVersion(version: value) else {
+    public init(from decoder: Decoder) throws {
+        let versionString = try decoder.singleValueContainer()
+            .decode(String.self)
+        guard let version = SemanticVersion(version: versionString) else {
             throw DecodingError.dataCorrupted(.init(
                 codingPath: decoder.codingPath,
-                debugDescription: "invalid SemanticValue value: \(value)"
+                debugDescription: "Invalid SemanticVersion: \(versionString)"
             ))
         }
-        self = self0
+        self = version
     }
 }
