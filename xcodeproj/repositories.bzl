@@ -166,6 +166,31 @@ native_binary(
 
     _maybe(
         http_archive,
+        name = "com_github_apple_swift_argument_parser",
+        build_file_content = """\
+load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
+
+swift_library(
+    name = "ArgumentParserToolInfo",
+    srcs = glob(["Sources/ArgumentParserToolInfo/**/*.swift"]),
+    visibility = ["//visibility:public"],
+)
+
+swift_library(
+    name = "ArgumentParser",
+    srcs = glob(["Sources/ArgumentParser/**/*.swift"]),
+    visibility = ["//visibility:public"],
+    deps = [":ArgumentParserToolInfo"],
+)
+""",
+        sha256 = "44782ba7180f924f72661b8f457c268929ccd20441eac17301f18eff3b91ce0c",
+        strip_prefix = "swift-argument-parser-1.2.2",
+        url = "https://github.com/apple/swift-argument-parser/archive/refs/tags/1.2.2.tar.gz",
+        ignore_version_differences = ignore_version_differences,
+    )
+
+    _maybe(
+        http_archive,
         name = "com_github_kylef_pathkit",
         build_file_content = """\
 load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
