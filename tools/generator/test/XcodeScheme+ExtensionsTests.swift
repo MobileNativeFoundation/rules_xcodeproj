@@ -1,4 +1,5 @@
 import CustomDump
+import GeneratorCommon
 import XcodeProj
 import XCTest
 

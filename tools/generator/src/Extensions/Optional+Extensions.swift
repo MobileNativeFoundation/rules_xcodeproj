@@ -1,3 +1,5 @@
+import GeneratorCommon
+
 extension Optional {
     func orThrow(
         _ message: @autoclosure () -> String = "",

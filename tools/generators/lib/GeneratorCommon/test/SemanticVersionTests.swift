@@ -1,7 +1,6 @@
 import Foundation
+import GeneratorCommon
 import XCTest
-
-@testable import generator
 
 // Inspired by https://gist.github.com/mjdescy/a805b5b4c49ed79fb240d3886815d5a2
 class SemanticVersionTests: XCTestCase {
@@ -93,5 +92,22 @@ class SemanticVersionTests: XCTestCase {
         let decoder = JSONDecoder()
         let result = try decoder.decode(SemanticVersion.self, from: data)
         XCTAssertEqual(sver, result)
+    }
+}
+
+extension SemanticVersion: ExpressibleByStringLiteral {
+    public typealias ExtendedGraphemeClusterLiteralType = StringLiteralType
+    public typealias UnicodeScalarLiteralType = StringLiteralType
+
+    public init(extendedGraphemeClusterLiteral id: StringLiteralType) {
+        self.init(stringLiteral: id)
+    }
+
+    public init(unicodeScalarLiteral id: StringLiteralType) {
+        self.init(stringLiteral: id)
+    }
+
+    public init(stringLiteral value: StringLiteralType) {
+        self.init(version: value)!
     }
 }
