@@ -1,5 +1,6 @@
 import Darwin
 import Foundation
+import GeneratorCommon
 import PathKit
 import ZippyJSON
 

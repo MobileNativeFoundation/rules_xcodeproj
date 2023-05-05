@@ -15,6 +15,7 @@ swift_library(
     module_name = "tests",
     deps = [
         "//tools/generator:generator.library",
+        "//tools/lib/GeneratorCommon",
     ] + select({
         ":release_build": [],
         # This conditional dependency is to exercise how the Xcode configuration

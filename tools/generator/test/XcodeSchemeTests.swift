@@ -1,4 +1,6 @@
+import GeneratorCommon
 import XCTest
+
 @testable import generator
 
 // MARK: `BuildAction.init` Tests

@@ -1,3 +1,4 @@
+import GeneratorCommon
 import XcodeProj
 
 struct XCSchemeInfo: Equatable {

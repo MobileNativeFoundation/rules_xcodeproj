@@ -1,3 +1,4 @@
+import GeneratorCommon
 import OrderedCollections
 import PathKit
 import XcodeProj

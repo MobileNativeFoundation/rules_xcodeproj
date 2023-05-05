@@ -1,4 +1,5 @@
 import CryptoKit
+import GeneratorCommon
 import OrderedCollections
 import XcodeProj
 

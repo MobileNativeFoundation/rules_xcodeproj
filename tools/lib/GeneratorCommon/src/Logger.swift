@@ -1,7 +1,7 @@
 import Darwin
 
 /// Provides the capability to write log messages.
-protocol Logger {
+public protocol Logger {
     func logDebug(_ message: String)
     func logInfo(_ message: String)
     func logWarning(_ message: String)
@@ -9,15 +9,19 @@ protocol Logger {
 }
 
 /// A `TextOutputStream` that writes to standard error.
-final class StderrOutputStream: TextOutputStream {
-    func write(_ string: String) {
+public final class StderrOutputStream: TextOutputStream {
+    public init() {}
+
+    public func write(_ string: String) {
         fputs(string, stderr)
     }
 }
 
 /// A `TextOutputStream` that writes to standard out.
-final class StdoutOutputStream: TextOutputStream {
-    func write(_ string: String) {
+public final class StdoutOutputStream: TextOutputStream {
+    public init() {}
+
+    public func write(_ string: String) {
         fputs(string, stdout)
     }
 }
@@ -43,19 +47,22 @@ enum TerminalColor: Int {
 }
 
 /// The logger that is used when not running tests.
-final class DefaultLogger<E: TextOutputStream, O: TextOutputStream>: Logger {
+public final class DefaultLogger<
+    E: TextOutputStream,
+    O: TextOutputStream
+>: Logger {
     private var standardError: E
     private var standardOutput: O
     private var colorize: Bool
 
-    func enableColors() {
-        self.colorize = true
-    }
-
-    init(standardError: E, standardOutput: O, colorize: Bool) {
+    public init(standardError: E, standardOutput: O, colorize: Bool) {
         self.standardError = standardError
         self.standardOutput = standardOutput
         self.colorize = colorize
+    }
+
+    public func enableColors() {
+        self.colorize = true
     }
 
     func format(
@@ -70,28 +77,28 @@ final class DefaultLogger<E: TextOutputStream, O: TextOutputStream>: Logger {
         }
     }
 
-    func logDebug(_ message: String) {
+    public func logDebug(_ message: String) {
         print(
             self.format(color: .yellow, prefix: "DEBUG", message: message),
             to: &self.standardOutput
         )
     }
 
-    func logInfo(_ message: String) {
+    public func logInfo(_ message: String) {
         print(
             self.format(color: .green, prefix: "INFO", message: message),
             to: &self.standardOutput
         )
     }
 
-    func logWarning(_ message: String) {
+    public func logWarning(_ message: String) {
         print(
             self.format(color: .magenta, prefix: "WARNING", message: message),
             to: &self.standardError
         )
     }
 
-    func logError(_ message: String) {
+    public func logError(_ message: String) {
         print(
             self.format(color: .red, prefix: "ERROR", message: message),
             to: &self.standardError

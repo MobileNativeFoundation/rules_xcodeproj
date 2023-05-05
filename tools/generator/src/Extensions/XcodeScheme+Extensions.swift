@@ -1,3 +1,5 @@
+import GeneratorCommon
+
 // MARK: TargetWithID
 
 extension XcodeScheme {

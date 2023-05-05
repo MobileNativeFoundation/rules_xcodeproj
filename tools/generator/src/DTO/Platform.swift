@@ -1,3 +1,5 @@
+import GeneratorCommon
+
 struct Platform: Equatable, Hashable {
     enum OS: Comparable {
         case macOS
