@@ -159,7 +159,7 @@ fallback profiles, or if you use specify a profile in the workspace.
 Copying the profile to `~/Library/MobileDevice/Provisioning Profiles` will
 resolve the error.
 
-## Why I do not see any Simulators after generating project using rules_xcodeproj?
+## Why I do not see any simulators after generating project using rules_xcodeproj?
 
 This can happen if you have opened Xcode using `rosetta`, the solution is to get native arm simulator support for your app and disable rosetta.
 
