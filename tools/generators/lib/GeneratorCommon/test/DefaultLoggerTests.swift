@@ -1,6 +1,5 @@
+import GeneratorCommon
 import XCTest
-
-@testable import generator
 
 /// A `TextOutputStream` that writes to a string.
 final class StringOutputStream: TextOutputStream {

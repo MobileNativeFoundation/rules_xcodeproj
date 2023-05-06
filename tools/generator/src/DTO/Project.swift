@@ -1,3 +1,5 @@
+import GeneratorCommon
+
 struct Project: Equatable {
     struct Options: Equatable {
         let developmentRegion: String

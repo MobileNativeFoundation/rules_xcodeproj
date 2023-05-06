@@ -1,4 +1,5 @@
 import CustomDump
+import GeneratorCommon
 import PathKit
 import XCTest
 
@@ -773,7 +774,7 @@ final class GeneratorTests: XCTestCase {
         let expectedCreateXCSharedDataCalled = [CreateXCSharedDataCalled(
             schemes: allXCSchemes
         )]
-        
+
         // MARK: createXCUserData()
 
         struct CreateXCUserDataCalled: Equatable {

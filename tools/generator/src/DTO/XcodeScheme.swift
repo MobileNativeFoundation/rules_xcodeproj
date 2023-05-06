@@ -1,3 +1,5 @@
+import GeneratorCommon
+
 struct XcodeScheme: Equatable, Decodable {
     let name: String
     let buildAction: XcodeScheme.BuildAction?

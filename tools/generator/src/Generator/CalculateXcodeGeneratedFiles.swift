@@ -1,3 +1,4 @@
+import GeneratorCommon
 import PathKit
 
 extension Generator {

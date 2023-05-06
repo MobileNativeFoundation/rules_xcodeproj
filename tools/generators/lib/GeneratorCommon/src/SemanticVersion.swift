@@ -60,7 +60,7 @@ extension SemanticVersion {
     /// Output a version string that includes the major and minor values if the
     /// patch is `0`. Otherwise, output the fully qualified version string.
     public var pretty: String {
-        if patch == 0 {
+        guard patch != 0 else {
             return "\(major).\(minor)"
         }
         return full

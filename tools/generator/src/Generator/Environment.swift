@@ -1,3 +1,4 @@
+import GeneratorCommon
 import PathKit
 import XcodeProj
 
@@ -130,7 +131,7 @@ struct Environment {
     ) throws -> [XCScheme]
 
     let createXCSharedData: (_ schemes: [XCScheme]) -> XCSharedData
-    
+
     let createXCUserData: (
         _ userName: String,
         _ schemes: [XCScheme],

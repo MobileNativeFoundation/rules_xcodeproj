@@ -77,6 +77,8 @@ def write_target_ids_list_test_suite(name):
 @@//tools/generator:generator applebin_macos-darwin_x86_64-opt-ST-5e821ae22d1b
 @@//tools/generator:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c233c8334636
 @@//tools/generator:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-ST-5e821ae22d1b
+@@//tools/generators/lib/GeneratorCommon:GeneratorCommon macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c233c8334636
+@@//tools/generators/lib/GeneratorCommon:GeneratorCommon macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-ST-5e821ae22d1b
 @@//tools/swiftc_stub:swiftc applebin_macos-darwin_x86_64-dbg-ST-c233c8334636
 @@//tools/swiftc_stub:swiftc applebin_macos-darwin_x86_64-opt-ST-5e821ae22d1b
 @@_main~dev_non_module_deps~com_github_pointfreeco_swift_custom_dump//:CustomDump macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c233c8334636
@@ -108,6 +110,8 @@ def write_target_ids_list_test_suite(name):
 @@//tools/generator:generator applebin_macos-darwin_x86_64-opt-ST-5e821ae22d1b
 @@//tools/generator:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c233c8334636
 @@//tools/generator:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-ST-5e821ae22d1b
+@@//tools/generators/lib/GeneratorCommon:GeneratorCommon macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c233c8334636
+@@//tools/generators/lib/GeneratorCommon:GeneratorCommon macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-ST-5e821ae22d1b
 @@//tools/swiftc_stub:swiftc applebin_macos-darwin_x86_64-dbg-ST-c233c8334636
 @@//tools/swiftc_stub:swiftc applebin_macos-darwin_x86_64-opt-ST-5e821ae22d1b
 @@_main~dev_non_module_deps~com_github_pointfreeco_swift_custom_dump//:CustomDump macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c233c8334636

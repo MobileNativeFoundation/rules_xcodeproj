@@ -1,3 +1,4 @@
+import GeneratorCommon
 import XCTest
 
 @testable import generator

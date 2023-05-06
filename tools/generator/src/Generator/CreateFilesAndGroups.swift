@@ -1,5 +1,6 @@
 // swiftlint:disable file_length
 import Foundation
+import GeneratorCommon
 import OrderedCollections
 import PathKit
 import XcodeProj
