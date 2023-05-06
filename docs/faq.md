@@ -162,5 +162,3 @@ fallback profiles, or if you use specify a profile in the workspace.
 
 Copying the profile to `~/Library/MobileDevice/Provisioning Profiles` will
 resolve the error.
-
-
