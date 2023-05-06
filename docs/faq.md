@@ -115,6 +115,10 @@ on subsequent builds. rules_xcodeproj thus doesn’t officially support this use
 case, and recommends declaring a different [`xcodeproj`](bazel.md#xcodeproj)
 target for each build mode if needed.
 
+## Why I do not see any simulators after generating project using rules_xcodeproj?
+
+This can happen if you have opened Xcode using `rosetta`, the solution is to get native arm simulator support for your app and disable rosetta.
+
 ## Why do I get an error like “Provisioning profile "PROFILE_NAME" is Xcode managed, but signing settings require a manually managed profile”?
 
 This error should only occur if `build_mode = "xcode"`. If you are using another
@@ -159,9 +163,4 @@ fallback profiles, or if you use specify a profile in the workspace.
 Copying the profile to `~/Library/MobileDevice/Provisioning Profiles` will
 resolve the error.
 
-## Why I do not see any simulators after generating project using rules_xcodeproj?
-
-This can happen if you have opened Xcode using `rosetta`, the solution is to get native arm simulator support for your app and disable rosetta.
-
-![Alt text](/docs/xcode-rosetta.png?raw=true "Xcode without Rosetta")
 
