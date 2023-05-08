@@ -261,7 +261,7 @@ def collect_resources(
             `process_resource_bundles`.
         *   `dependencies`: A `list` of `id`s of resource bundle targets that
             this target depends on.
-        *   `resources`: A `list` of `file_path`s of resources that should be
+        *   `resources`: A `list` of tuples (`file_path`, `owner`) of resources that should be
             added to the target's bundle.
         *   `generated`: A `list` of `file_path`s of generated resources.
         *   `xccurrentversions`: A `list` of `.xccurrentversion` `File`s.
@@ -343,6 +343,19 @@ def collect_resources(
         parent.dependency_paths.append(child_bundle_path)
 
     frozen_bundles = []
+    resource_to_owners = {} 
+    for (resource, owner) in resource_info.owners.to_list():
+        # AppleResourceInfo treats resource files inside xcassets separately, whereas 
+        # rules_xcodeproj only cares about .xcassets folder
+        if ".xcassets" in resource: 
+            resource = resource.split(".xcassets")[0] + ".xcassets"
+
+        # a resource can have multiple owners
+        if resource in resource_to_owners and owner not in resource_to_owners[resource]:
+            resource_to_owners[resource].append(owner)
+        else:
+            resource_to_owners[resource] = [owner]
+
     for bundle_path in parent_bundle_paths:
         bundle = resource_bundle_targets.get(bundle_path)
         metadata = bundle_metadata.get(bundle_path)
@@ -363,6 +376,14 @@ def collect_resources(
                     ]),
                 ),
             )
+    
+    resource_owner_pairs = [] 
+    for resource in root_bundle.resources:
+        if resource not in resource_to_owners:
+            resource_owner_pairs.append((resource, None))
+            continue
+        for owner in resource_to_owners[resource]:
+            resource_owner_pairs.append((resource, owner))
 
     return struct(
         bundles = frozen_bundles,
@@ -374,7 +395,7 @@ def collect_resources(
             ]
             if bundle
         ],
-        resources = root_bundle.resources,
+        resources = resource_owner_pairs,
         folder_resources = root_bundle.folder_resources,
         generated = generated,
         xccurrentversions = xccurrentversions,

@@ -732,6 +732,8 @@ targets.
         ) = xcode_targets.to_dto(
             xcode_target,
             actions = actions,
+            focused_labels = focused_labels,
+            unfocused_labels = unfocused_labels,
             additional_scheme_target_ids = additional_scheme_target_ids,
             build_mode = build_mode,
             bwx_unfocused_dependencies = bwx_unfocused_dependencies,

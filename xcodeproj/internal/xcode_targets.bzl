@@ -590,6 +590,8 @@ def _xcode_target_to_dto(
         bwx_unfocused_dependencies,
         excluded_targets = {},
         label,
+        focused_labels,
+        unfocused_labels,
         link_params_processor,
         linker_products_map,
         params_index,
@@ -696,7 +698,7 @@ def _xcode_target_to_dto(
             if id not in excluded_targets
         ],
     )
-    set_if_true(dto, "i", _inputs_to_dto(inputs))
+    set_if_true(dto, "i", _inputs_to_dto(inputs, focused_labels, unfocused_labels))
     set_if_true(
         dto,
         "5",
@@ -796,11 +798,13 @@ def _build_settings_to_dto(
 
     return build_settings
 
-def _inputs_to_dto(inputs):
+def _inputs_to_dto(inputs, focused_labels, unfocused_labels):
     """Generates a target DTO value for inputs.
 
     Args:
         inputs: A value returned from `input_files.to_xcode_target_inputs`.
+        focused_targets: Maps to `xcodeproj.focused_targets`.
+        unfocused_targets: Maps to `xcodeproj.unfocused_targets`.
 
     Returns:
         A `dict` containing the following elements:
@@ -826,10 +830,21 @@ def _inputs_to_dto(inputs):
     _process_attr("hdrs", "h")
 
     if inputs.resources:
+        # resources of unfocused targets should be excluded 
+        has_focused_labels = bool(focused_labels)
+        filtered_resources = [
+            resource
+            for resource, owner in inputs.resources.to_list()
+            if not owner or not (
+                owner in unfocused_labels or
+                (has_focused_labels and owner not in focused_labels)
+            )
+        ]
+
         set_if_true(
             ret,
             "r",
-            inputs.resources.to_list(),
+            filtered_resources
         )
 
     if inputs.folder_resources:
