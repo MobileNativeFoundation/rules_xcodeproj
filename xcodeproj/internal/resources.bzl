@@ -411,10 +411,6 @@ def collect_resources(
                 ),
             )
 
-
-    print("resources ", root_bundle.resources)
-    print("folder_resources ", root_bundle.folder_resources)
-
     return struct(
         bundles = frozen_bundles,
         dependencies = [

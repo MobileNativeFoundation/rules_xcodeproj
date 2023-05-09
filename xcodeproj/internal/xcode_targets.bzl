@@ -832,7 +832,6 @@ def _inputs_to_dto(inputs, *, focused_labels, unfocused_labels):
     if inputs.resources:
         # resources of unfocused targets should be excluded
         has_focused_labels = bool(focused_labels)
-        print(inputs.resources.to_list())
         filtered_resources = [
             resource
             for resource, owner in inputs.resources.to_list()
