@@ -798,7 +798,7 @@ def _build_settings_to_dto(
 
     return build_settings
 
-def _inputs_to_dto(inputs, focused_labels, unfocused_labels):
+def _inputs_to_dto(inputs, *, focused_labels, unfocused_labels):
     """Generates a target DTO value for inputs.
 
     Args:
