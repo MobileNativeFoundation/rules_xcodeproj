@@ -83,6 +83,10 @@ def write_target_ids_list_test_suite(name):
 @@//tools/swiftc_stub:swiftc applebin_macos-darwin_x86_64-opt-ST-5e821ae22d1b
 @@_main~dev_non_module_deps~com_github_pointfreeco_swift_custom_dump//:CustomDump macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c233c8334636
 @@_main~dev_non_module_deps~com_github_pointfreeco_xctest_dynamic_overlay//:XCTestDynamicOverlay macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c233c8334636
+@@_main~non_module_deps~com_github_apple_swift_argument_parser//:ArgumentParser macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c233c8334636
+@@_main~non_module_deps~com_github_apple_swift_argument_parser//:ArgumentParser macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-ST-5e821ae22d1b
+@@_main~non_module_deps~com_github_apple_swift_argument_parser//:ArgumentParserToolInfo macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c233c8334636
+@@_main~non_module_deps~com_github_apple_swift_argument_parser//:ArgumentParserToolInfo macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-ST-5e821ae22d1b
 @@_main~non_module_deps~com_github_apple_swift_collections//:OrderedCollections macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c233c8334636
 @@_main~non_module_deps~com_github_apple_swift_collections//:OrderedCollections macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-ST-5e821ae22d1b
 @@_main~non_module_deps~com_github_kylef_pathkit//:PathKit macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c233c8334636
@@ -116,6 +120,10 @@ def write_target_ids_list_test_suite(name):
 @@//tools/swiftc_stub:swiftc applebin_macos-darwin_x86_64-opt-ST-5e821ae22d1b
 @@_main~dev_non_module_deps~com_github_pointfreeco_swift_custom_dump//:CustomDump macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c233c8334636
 @@_main~dev_non_module_deps~com_github_pointfreeco_xctest_dynamic_overlay//:XCTestDynamicOverlay macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c233c8334636
+@@_main~non_module_deps~com_github_apple_swift_argument_parser//:ArgumentParser macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c233c8334636
+@@_main~non_module_deps~com_github_apple_swift_argument_parser//:ArgumentParser macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-ST-5e821ae22d1b
+@@_main~non_module_deps~com_github_apple_swift_argument_parser//:ArgumentParserToolInfo macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c233c8334636
+@@_main~non_module_deps~com_github_apple_swift_argument_parser//:ArgumentParserToolInfo macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-ST-5e821ae22d1b
 @@_main~non_module_deps~com_github_apple_swift_collections//:OrderedCollections macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c233c8334636
 @@_main~non_module_deps~com_github_apple_swift_collections//:OrderedCollections macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-ST-5e821ae22d1b
 @@_main~non_module_deps~com_github_kylef_pathkit//:PathKit macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c233c8334636

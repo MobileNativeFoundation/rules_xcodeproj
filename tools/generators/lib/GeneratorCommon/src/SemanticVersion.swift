@@ -1,3 +1,4 @@
+import ArgumentParser
 import Foundation
 
 // Inspired by https://gist.github.com/mjdescy/a805b5b4c49ed79fb240d3886815d5a2
@@ -91,5 +92,11 @@ extension SemanticVersion: Decodable {
             ))
         }
         self = version
+    }
+}
+
+extension SemanticVersion: ExpressibleByArgument {
+    public init?(argument: String) {
+       self.init(version: argument)
     }
 }
