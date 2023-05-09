@@ -832,6 +832,7 @@ def _inputs_to_dto(inputs, *, focused_labels, unfocused_labels):
     if inputs.resources:
         # resources of unfocused targets should be excluded
         has_focused_labels = bool(focused_labels)
+        print(inputs.resources.to_list())
         filtered_resources = [
             resource
             for resource, owner in inputs.resources.to_list()
@@ -848,10 +849,19 @@ def _inputs_to_dto(inputs, *, focused_labels, unfocused_labels):
         )
 
     if inputs.folder_resources:
+        has_focused_labels = bool(focused_labels)
+        filtered_folder_resources = [
+            resource
+            for resource, owner in inputs.folder_resources.to_list()
+            if not owner or not (
+                owner in unfocused_labels or
+                (has_focused_labels and owner not in focused_labels)
+            )
+        ]
         set_if_true(
             ret,
             "f",
-            inputs.folder_resources.to_list(),
+            filtered_folder_resources,
         )
 
     return ret

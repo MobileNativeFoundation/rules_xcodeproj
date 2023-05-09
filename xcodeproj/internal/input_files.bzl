@@ -775,7 +775,7 @@ def _from_resource_bundle(bundle):
         non_arc_srcs = EMPTY_LIST,
         pch = None,
         resource_bundle_dependencies = bundle.dependencies,
-        resources = depset([(resource, None) for resource in bundle.resources]) if bundle.resources else EMPTY_DEPSET,
+        resources = depset(bundle.resources),
         srcs = EMPTY_LIST,
         unfocused_generated_compiling = None,
         unfocused_generated_indexstores = None,
