@@ -6,8 +6,8 @@ UNFOCUSED_TARGETS = [
     "@com_github_tadija_aexml//:AEXML",
 ]
 
-_APP_TARGET = "//tools/generator"
-_TEST_TARGET = "//tools/generator/test:tests"
+_APP_TARGET = "//tools/generators/legacy:generator"
+_TEST_TARGET = "//tools/generators/legacy/test:tests"
 _TOOL_TARGET = "//tools/swiftc_stub:swiftc"
 
 TOP_LEVEL_TARGETS = [_APP_TARGET, _TEST_TARGET, _TOOL_TARGET]
@@ -44,13 +44,13 @@ XCODE_CONFIGURATIONS = {
 
 SCHEME_AUTOGENERATION_MODE = "none"
 
-# tl;dr The `tools/generator` custom Xcode schemes are wrapped in a function
-# because they are shared with `//tools/generator:xcodeproj` and
-# `//test/fixtures/generator:xcodeproj`.
+# tl;dr The `tools/generators/legacy:generator` custom Xcode schemes are wrapped in a
+# function because they are shared with `//tools/generators/legacy:xcodeproj`
+# and `//test/fixtures/generator:xcodeproj`.
 #
-# The Xcode schemes for `tools/generator` are loaded from a function because
-# several of the `xcode_schemes` functions must be called on a BUILD file
-# thread as they resolve and normalize Bazel labels. These functions use
+# The Xcode schemes for `tools/generators/legacy` are loaded from a function
+# because several of the `xcode_schemes` functions must be called on a BUILD
+# file thread as they resolve and normalize Bazel labels. These functions use
 # `bazel_labels.parse` which, in turn, use `workspace_name_resolvers`
 # functions. It is the `workspace_name_resolvers` functions that must be called
 # on a BUILD file thread.
@@ -93,10 +93,10 @@ def get_xcode_schemes():
             launch_action = xcode_schemes.launch_action(
                 _APP_TARGET,
                 args = [
-                    "bazel-output-base/rules_xcodeproj.noindex/build_output_base/execroot/_main/bazel-out/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/generator/xcodeproj/xcodeproj_execution_root_file",
+                    "bazel-output-base/rules_xcodeproj.noindex/build_output_base/execroot/_main/bazel-out/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/generators/legacy/xcodeproj/xcodeproj_execution_root_file",
                     "/tmp/workspace",
-                    "bazel-output-base/rules_xcodeproj.noindex/build_output_base/execroot/_main/bazel-out/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/generator/xcodeproj/xcodeproj_xccurrentversions",
-                    "bazel-output-base/rules_xcodeproj.noindex/build_output_base/execroot/_main/bazel-out/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/generator/xcodeproj/xcodeproj_extensionpointidentifiers",
+                    "bazel-output-base/rules_xcodeproj.noindex/build_output_base/execroot/_main/bazel-out/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/generators/legacy/xcodeproj/xcodeproj_xccurrentversions",
+                    "bazel-output-base/rules_xcodeproj.noindex/build_output_base/execroot/_main/bazel-out/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/generators/legacy/xcodeproj/xcodeproj_extensionpointidentifiers",
                     "/tmp/out.xcodeproj",
                     "/tmp/out.final.xcodeproj",
                     "bazel",
@@ -127,10 +127,10 @@ def get_xcode_schemes():
             profile_action = xcode_schemes.profile_action(
                 _APP_TARGET,
                 args = [
-                    "bazel-output-base/rules_xcodeproj.noindex/build_output_base/execroot/_main/bazel-out/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/generator/xcodeproj/xcodeproj_execution_root_file",
+                    "bazel-output-base/rules_xcodeproj.noindex/build_output_base/execroot/_main/bazel-out/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/generators/legacy/xcodeproj/xcodeproj_execution_root_file",
                     "/tmp/workspace",
-                    "bazel-output-base/rules_xcodeproj.noindex/build_output_base/execroot/_main/bazel-out/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/generator/xcodeproj/xcodeproj_xccurrentversions",
-                    "bazel-output-base/rules_xcodeproj.noindex/build_output_base/execroot/_main/bazel-out/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/generator/xcodeproj/xcodeproj_extensionpointidentifiers",
+                    "bazel-output-base/rules_xcodeproj.noindex/build_output_base/execroot/_main/bazel-out/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/generators/legacy/xcodeproj/xcodeproj_xccurrentversions",
+                    "bazel-output-base/rules_xcodeproj.noindex/build_output_base/execroot/_main/bazel-out/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/generators/legacy/xcodeproj/xcodeproj_extensionpointidentifiers",
                     "/tmp/out.xcodeproj",
                     "/tmp/out.final.xcodeproj",
                     "bazel",

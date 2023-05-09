@@ -87,15 +87,15 @@ changes (e.g. because of a Bazel configuration change), and generate the project
 without closing and reopening it, or performing a clean build, Xcode will warn
 about the old paths. This seems to be a caching bug in Xcode.
 
-## Do I need to place my custom Xcode scheme declarations in a function like `tools/generator`?
+## Do I need to place my custom Xcode scheme declarations in a function like `tools/generators/legacy`?
 
 No. Unless you are sharing your Xcode declarations with multiple `xcodeproj`
 targets, there is no need to place them in a function. You are encouraged to
 declare them directly in your `BUILD` file.
 
-The Xcode schemes for `tools/generator` are loaded from a function because
-several of the `xcode_schemes` functions must be called on a `BUILD` file
-thread as they resolve and normalize Bazel labels. These functions use
+The Xcode schemes for `tools/generators/legacy` are loaded from a function
+because several of the `xcode_schemes` functions must be called on a `BUILD`
+file thread as they resolve and normalize Bazel labels. These functions use
 `bazel_labels.parse` which, in turn, use `workspace_name_resolvers`
 functions. It is the `workspace_name_resolvers` functions that must be called
 on a BUILD file thread.

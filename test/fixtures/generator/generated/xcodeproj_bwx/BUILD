@@ -36,7 +36,7 @@ xcodeproj(
     schemes_json = ":custom_xcode_schemes.json",
     tags = ["manual"],
     top_level_device_targets = [],
-    top_level_simulator_targets = ["@//tools/generator:generator", "@//tools/generator/test:tests", "@//tools/swiftc_stub:swiftc"],
+    top_level_simulator_targets = ["@//tools/generators/legacy:generator", "@//tools/generators/legacy/test:tests", "@//tools/swiftc_stub:swiftc"],
     tvos_device_cpus = "arm64",
     tvos_simulator_cpus = "",
     unfocused_targets = ["@com_github_tadija_aexml//:AEXML"],

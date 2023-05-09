@@ -3,14 +3,14 @@
         "build_action": {
             "post_actions": [
                 {
-                    "expand_variables_based_on": "@//tools/generator:generator",
+                    "expand_variables_based_on": "@//tools/generators/legacy:generator",
                     "name": "Example: Stop build time tracking...",
                     "script": "echo 'Completed Building target: generator'"
                 }
             ],
             "pre_actions": [
                 {
-                    "expand_variables_based_on": "@//tools/generator:generator",
+                    "expand_variables_based_on": "@//tools/generators/legacy:generator",
                     "name": "Example: Start build time tracking...",
                     "script": "echo 'Building target: generator'"
                 }
@@ -24,16 +24,16 @@
                         "running": "unspecified",
                         "testing": "unspecified"
                     },
-                    "label": "@//tools/generator:generator"
+                    "label": "@//tools/generators/legacy:generator"
                 }
             ]
         },
         "launch_action": {
             "args": [
-                "bazel-output-base/rules_xcodeproj.noindex/build_output_base/execroot/_main/bazel-out/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/generator/xcodeproj/xcodeproj_execution_root_file",
+                "bazel-output-base/rules_xcodeproj.noindex/build_output_base/execroot/_main/bazel-out/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/generators/legacy/xcodeproj/xcodeproj_execution_root_file",
                 "/tmp/workspace",
-                "bazel-output-base/rules_xcodeproj.noindex/build_output_base/execroot/_main/bazel-out/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/generator/xcodeproj/xcodeproj_xccurrentversions",
-                "bazel-output-base/rules_xcodeproj.noindex/build_output_base/execroot/_main/bazel-out/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/generator/xcodeproj/xcodeproj_extensionpointidentifiers",
+                "bazel-output-base/rules_xcodeproj.noindex/build_output_base/execroot/_main/bazel-out/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/generators/legacy/xcodeproj/xcodeproj_xccurrentversions",
+                "bazel-output-base/rules_xcodeproj.noindex/build_output_base/execroot/_main/bazel-out/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/generators/legacy/xcodeproj/xcodeproj_extensionpointidentifiers",
                 "/tmp/out.xcodeproj",
                 "/tmp/out.final.xcodeproj",
                 "bazel",
@@ -61,16 +61,16 @@
             "env": {
                 "CUSTOM_ENV_VAR": "hello"
             },
-            "target": "@//tools/generator:generator",
+            "target": "@//tools/generators/legacy:generator",
             "working_directory": "$(BUILD_WORKSPACE_DIRECTORY)"
         },
         "name": "generator",
         "profile_action": {
             "args": [
-                "bazel-output-base/rules_xcodeproj.noindex/build_output_base/execroot/_main/bazel-out/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/generator/xcodeproj/xcodeproj_execution_root_file",
+                "bazel-output-base/rules_xcodeproj.noindex/build_output_base/execroot/_main/bazel-out/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/generators/legacy/xcodeproj/xcodeproj_execution_root_file",
                 "/tmp/workspace",
-                "bazel-output-base/rules_xcodeproj.noindex/build_output_base/execroot/_main/bazel-out/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/generator/xcodeproj/xcodeproj_xccurrentversions",
-                "bazel-output-base/rules_xcodeproj.noindex/build_output_base/execroot/_main/bazel-out/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/generator/xcodeproj/xcodeproj_extensionpointidentifiers",
+                "bazel-output-base/rules_xcodeproj.noindex/build_output_base/execroot/_main/bazel-out/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/generators/legacy/xcodeproj/xcodeproj_xccurrentversions",
+                "bazel-output-base/rules_xcodeproj.noindex/build_output_base/execroot/_main/bazel-out/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/generators/legacy/xcodeproj/xcodeproj_extensionpointidentifiers",
                 "/tmp/out.xcodeproj",
                 "/tmp/out.final.xcodeproj",
                 "bazel",
@@ -89,7 +89,7 @@
             ],
             "build_configuration": "Profile",
             "env": null,
-            "target": "@//tools/generator:generator",
+            "target": "@//tools/generators/legacy:generator",
             "working_directory": "$(BUILD_WORKSPACE_DIRECTORY)"
         },
         "test_action": {
@@ -109,7 +109,7 @@
             "post_actions": [],
             "pre_actions": [],
             "targets": [
-                "@//tools/generator/test:tests"
+                "@//tools/generators/legacy/test:tests"
             ]
         }
     },

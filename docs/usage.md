@@ -348,7 +348,7 @@ In your command, any reference to these variables will be expanded:
   ...
   INFO: Invocation ID: ca31d4b4-0df5-49de-a020-c70a922521af
   INFO: Streaming build results to: https://app.buildbuddy.io/invocation/ca31d4b4-0df5-49de-a020-c70a922521af
-  INFO: Analyzed target @_main~internal~rules_xcodeproj_generated//generator/tools/generator/xcodeproj:xcodeproj (1 packages loaded, 2 targets configured).
+  INFO: Analyzed target @_main~internal~rules_xcodeproj_generated//generator/tools/generators/legacy/xcodeproj:xcodeproj (1 packages loaded, 2 targets configured).
   INFO: Found 1 target...
   action 'Writing file external/_main~internal~rules_xcodeproj_generated/generator/xcodeproj/xcodeproj-xcode_generated_paths.json'
     Mnemonic: FileWrite

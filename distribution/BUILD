@@ -36,13 +36,13 @@ pkg_tar(
     extension = "tar.gz",
     mode = "0444",
     modes = {
-        "tools/generator/prebuilt_universal_generator": "0744",
+        "tools/generators/legacy/prebuilt_universal_generator": "0744",
     },
     owner = "0.0",
     package_file_name = "release.tar.gz",
     remap_paths = {
-        "tools/generator/BUILD.release.bazel": "tools/generator/BUILD",
-        "tools/generator/universal_generator": "tools/generator/prebuilt_universal_generator",
+        "tools/generators/legacy/BUILD.release.bazel": "tools/generators/legacy/BUILD",
+        "tools/generators/legacy/universal_generator": "tools/generators/legacy/prebuilt_universal_generator",
         "tools/swiftc_stub/BUILD.release.bazel": "tools/swiftc_stub/BUILD",
     },
     strip_prefix = "/",

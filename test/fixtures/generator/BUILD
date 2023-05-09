@@ -1,5 +1,5 @@
 load(
-    "//tools/generator:xcodeproj_targets.bzl",
+    "//tools/generators/legacy:xcodeproj_targets.bzl",
     "SCHEME_AUTOGENERATION_MODE",
     "TOP_LEVEL_TARGETS",
     "UNFOCUSED_TARGETS",

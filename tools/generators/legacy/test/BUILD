@@ -14,7 +14,7 @@ swift_library(
     srcs = glob(["**/*.swift"]),
     module_name = "tests",
     deps = [
-        "//tools/generator:generator.library",
+        "//tools/generators/legacy:generator.library",
         "//tools/generators/lib/GeneratorCommon",
     ] + select({
         ":release_build": [],

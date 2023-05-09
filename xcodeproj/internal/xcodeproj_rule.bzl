@@ -1931,7 +1931,7 @@ def make_xcodeproj_rule(
         ),
         "_generator": attr.label(
             cfg = "exec",
-            default = Label("//tools/generator:universal_generator"),
+            default = Label("//tools/generators/legacy:universal_generator"),
             executable = True,
         ),
         "_index_import": attr.label(
