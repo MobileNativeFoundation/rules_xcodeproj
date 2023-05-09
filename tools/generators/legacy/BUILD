@@ -22,7 +22,7 @@ swift_library(
     name = "generator.library",
     srcs = glob(["src/**/*.swift"]),
     module_name = "generator",
-    visibility = ["//tools/generator/test:__pkg__"],
+    visibility = ["//tools/generators/legacy/test:__pkg__"],
     deps = [
         "//tools/generators/lib/GeneratorCommon",
         "@com_github_apple_swift_collections//:OrderedCollections",

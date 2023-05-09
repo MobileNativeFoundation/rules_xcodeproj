@@ -71,12 +71,12 @@ def write_target_ids_list_test_suite(name):
         name = "{}_generator_bwb".format(name),
         target_under_test = "//test/fixtures/generator/generated/xcodeproj_bwb",
         expected_content = """\
-@@//tools/generator/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-ST-c233c8334636
-@@//tools/generator/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-opt-ST-5e821ae22d1b
-@@//tools/generator:generator applebin_macos-darwin_x86_64-dbg-ST-c233c8334636
-@@//tools/generator:generator applebin_macos-darwin_x86_64-opt-ST-5e821ae22d1b
-@@//tools/generator:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c233c8334636
-@@//tools/generator:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-ST-5e821ae22d1b
+@@//tools/generators/legacy/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-ST-c233c8334636
+@@//tools/generators/legacy/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-opt-ST-5e821ae22d1b
+@@//tools/generators/legacy:generator applebin_macos-darwin_x86_64-dbg-ST-c233c8334636
+@@//tools/generators/legacy:generator applebin_macos-darwin_x86_64-opt-ST-5e821ae22d1b
+@@//tools/generators/legacy:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c233c8334636
+@@//tools/generators/legacy:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-ST-5e821ae22d1b
 @@//tools/generators/lib/GeneratorCommon:GeneratorCommon macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c233c8334636
 @@//tools/generators/lib/GeneratorCommon:GeneratorCommon macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-ST-5e821ae22d1b
 @@//tools/swiftc_stub:swiftc applebin_macos-darwin_x86_64-dbg-ST-c233c8334636
@@ -104,12 +104,12 @@ def write_target_ids_list_test_suite(name):
         name = "{}_generator_bwx".format(name),
         target_under_test = "//test/fixtures/generator/generated/xcodeproj_bwx",
         expected_content = """\
-@@//tools/generator/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-ST-c233c8334636
-@@//tools/generator/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-opt-ST-5e821ae22d1b
-@@//tools/generator:generator applebin_macos-darwin_x86_64-dbg-ST-c233c8334636
-@@//tools/generator:generator applebin_macos-darwin_x86_64-opt-ST-5e821ae22d1b
-@@//tools/generator:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c233c8334636
-@@//tools/generator:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-ST-5e821ae22d1b
+@@//tools/generators/legacy/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-ST-c233c8334636
+@@//tools/generators/legacy/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-opt-ST-5e821ae22d1b
+@@//tools/generators/legacy:generator applebin_macos-darwin_x86_64-dbg-ST-c233c8334636
+@@//tools/generators/legacy:generator applebin_macos-darwin_x86_64-opt-ST-5e821ae22d1b
+@@//tools/generators/legacy:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c233c8334636
+@@//tools/generators/legacy:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-ST-5e821ae22d1b
 @@//tools/generators/lib/GeneratorCommon:GeneratorCommon macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-ST-c233c8334636
 @@//tools/generators/lib/GeneratorCommon:GeneratorCommon macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-ST-5e821ae22d1b
 @@//tools/swiftc_stub:swiftc applebin_macos-darwin_x86_64-dbg-ST-c233c8334636

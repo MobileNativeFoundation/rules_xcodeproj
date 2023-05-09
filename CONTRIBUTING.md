@@ -8,15 +8,15 @@ merging `main` into your PR branch to update it and resolve conflicts.
 
 1. `git clone https://github.com/MobileNativeFoundation/rules_xcodeproj.git`
 1. `cd rules_xcodeproj`
-1. `bazel run //tools/generator:xcodeproj` to generate an Xcode project
+1. `bazel run //tools/generators/legacy:xcodeproj` to generate an Xcode project
 and develop in Xcode, or just open the directory in your favourite text
 editor.
 1. Build with Xcode:
     1. Select the `generator` scheme to compile the executable.
     1. Select the `tests` scheme to run the tests.
 1. Build with Bazel:
-    1. `bazel build //tools/generator` to compile the executable.
-    1. `bazel test //test/...` to run the tests.
+    1. `bazel build //tools/generators/legacy:generator` to compile the executable.
+    1. `bazel test //tools/generators/legacy/test/...` to run the tests.
 
 ## Developing
 
