@@ -81,15 +81,7 @@ $(INDEXING_SUPPORTED_PLATFORMS__$(INDEX_ENABLE_BUILD_ARENA))
         )
         pbxProj.add(object: configurationList)
 
-        let bazelBuildScript = createBazelBuildScript(
-            in: pbxProj,
-            buildMode: buildMode,
-            targets: consolidatedTargets.targets.values
-                .flatMap(\.sortedTargets),
-            usesExternalFileList: usesExternalFileList,
-            usesGeneratedFileList: usesGeneratedFileList
-        )
-
+        let bazelBuildScript = createBazelBuildScript(in: pbxProj)
         let createLLDBSettingsModuleScript =
             createCreateLLDBSettingsModuleScript(in: pbxProj)
 
@@ -136,37 +128,14 @@ $(INDEXING_SUPPORTED_PLATFORMS__$(INDEX_ENABLE_BUILD_ARENA))
     }
 
     private static func createBazelBuildScript(
-        in pbxProj: PBXProj,
-        buildMode: BuildMode,
-        targets _: [Target],
-        usesExternalFileList: Bool,
-        usesGeneratedFileList: Bool
+        in pbxProj: PBXProj
     ) -> PBXShellScriptBuildPhase {
-
-        var outputFileListPaths: [String] = []
-        if usesExternalFileList {
-            outputFileListPaths.append(
-                "$(INTERNAL_DIR)/\(externalFileListPath)"
-            )
-        }
-        if usesGeneratedFileList {
-            outputFileListPaths.append(
-                "$(INTERNAL_DIR)/\(generatedFileListPath)"
-            )
-        }
-
-        let name: String
-        if buildMode.usesBazelModeBuildScripts {
-            name = "Bazel Build"
-        } else if usesGeneratedFileList {
-            name = "Generate Files"
-        } else {
-            name = "Fetch External Repositories"
-        }
-
         let script = PBXShellScriptBuildPhase(
-            name: name,
-            outputFileListPaths: outputFileListPaths,
+            name: "Generate Bazel Dependencies",
+            outputFileListPaths: [
+                "$(INTERNAL_DIR)/\(externalFileListPath)",
+                "$(INTERNAL_DIR)/\(generatedFileListPath)",
+            ],
             shellScript: """
 "$BAZEL_INTEGRATION_DIR/generate_bazel_dependencies.sh"
 

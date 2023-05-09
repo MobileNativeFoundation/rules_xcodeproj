@@ -47,7 +47,7 @@ information.
   - Closes the `PBXProject` element
 - `bazel_dependencies`:
   - All of the `BazelDependencies` related elements:
-    - `Bazel Build` script build phase
+    - `Generate Bazel Dependencies` script build phase
     - `XCBuildConfiguration`
     - `XCBuildConfigurationList`
 - `pbxnativetargets`:
