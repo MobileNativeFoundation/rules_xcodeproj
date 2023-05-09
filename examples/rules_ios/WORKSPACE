@@ -2,8 +2,8 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 http_archive(
     name = "build_bazel_rules_ios",
-    sha256 = "e2b81bfba10988ce9803b8bdf94f774144949ba7ebd248d5a1d2cb90d7fc72a2",
-    url = "https://github.com/bazel-ios/rules_ios/releases/download/1.0.0/rules_ios.1.0.0.tar.gz",
+    sha256 = "7ef26dfff0220114e060ed0d4866a2c9c7387c5e918cc33bb1396095efd1f4c0",
+    url = "https://github.com/bazel-ios/rules_ios/releases/download/1.1.0/rules_ios.1.1.0.tar.gz",
 )
 
 load(
