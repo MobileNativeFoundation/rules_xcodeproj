@@ -343,11 +343,11 @@ def collect_resources(
         parent.dependency_paths.append(child_bundle_path)
 
     frozen_bundles = []
-    resource_to_owners = {} 
+    resource_to_owners = {}
     for (resource, owner) in resource_info.owners.to_list():
-        # AppleResourceInfo treats resource files inside xcassets separately, whereas 
+        # AppleResourceInfo treats resource files inside xcassets separately, whereas
         # rules_xcodeproj only cares about .xcassets folder
-        if ".xcassets" in resource: 
+        if ".xcassets" in resource:
             resource = resource.split(".xcassets")[0] + ".xcassets"
 
         # a resource can have multiple owners
@@ -376,8 +376,8 @@ def collect_resources(
                     ]),
                 ),
             )
-    
-    resource_owner_pairs = [] 
+
+    resource_owner_pairs = []
     for resource in root_bundle.resources:
         if resource not in resource_to_owners:
             resource_owner_pairs.append((resource, None))

@@ -803,8 +803,8 @@ def _inputs_to_dto(inputs, focused_labels, unfocused_labels):
 
     Args:
         inputs: A value returned from `input_files.to_xcode_target_inputs`.
-        focused_targets: Maps to `xcodeproj.focused_targets`.
-        unfocused_targets: Maps to `xcodeproj.unfocused_targets`.
+        focused_labels: Maps to `xcodeproj.focused_targets`.
+        unfocused_labels: Maps to `xcodeproj.unfocused_targets`.
 
     Returns:
         A `dict` containing the following elements:
@@ -830,7 +830,7 @@ def _inputs_to_dto(inputs, focused_labels, unfocused_labels):
     _process_attr("hdrs", "h")
 
     if inputs.resources:
-        # resources of unfocused targets should be excluded 
+        # resources of unfocused targets should be excluded
         has_focused_labels = bool(focused_labels)
         filtered_resources = [
             resource
@@ -844,7 +844,7 @@ def _inputs_to_dto(inputs, focused_labels, unfocused_labels):
         set_if_true(
             ret,
             "r",
-            filtered_resources
+            filtered_resources,
         )
 
     if inputs.folder_resources:
