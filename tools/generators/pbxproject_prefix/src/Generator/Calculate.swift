@@ -25,17 +25,17 @@ extension Generator {
         // element isn't terminated, and `attributes` is left open.
         //
         // The tabs for indenting are intentional. The trailing newlines are
-        // intentional, as `cat` needs them to concatinate the partials
+        // intentional, as `cat` needs them to concatenate the partials
         // correctly.
         return #"""
-		\#(Identifiers.Project.id) /* Project object */ = {
+		\#(Identifiers.Project.id) = {
 			isa = PBXProject;
-			buildConfigurationList = \#(Identifiers.Project.buildConfigurationList) /* Build configuration list for PBXProject */;
+			buildConfigurationList = \#(Identifiers.Project.buildConfigurationList);
 			compatibilityVersion = \#(compatibilityVersion.pbxProjEscaped);
 			developmentRegion = \#(developmentRegion.pbxProjEscaped);
 			hasScannedForEncodings = 0;
-			mainGroup = \#(Identifiers.FilesAndGroups.mainGroup) /* \#(workspace) */;
-			productRefGroup = \#(Identifiers.FilesAndGroups.productsGroup) /* Products */;
+			mainGroup = \#(Identifiers.FilesAndGroups.mainGroup(workspace));
+			productRefGroup = \#(Identifiers.FilesAndGroups.productsGroup);
 			projectDirPath = \#(projectDir.pbxProjEscaped);
 			projectRoot = "";
 			attributes = {
