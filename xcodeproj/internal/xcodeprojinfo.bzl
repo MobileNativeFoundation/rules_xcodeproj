@@ -266,15 +266,6 @@ def _skip_target(
         if attr in deps_attrs and info.xcode_target
     ]
 
-    test_suite_replacement_labels = []
-    if ctx.rule.kind == "test_suite":
-        for info in valid_transitive_infos:
-            for xcode_target in info.xcode_targets.to_list():
-                if xcode_target.id.count(".__internal__.__test_bundle"):
-                    test_suite_replacement_labels.append(
-                        struct(id = xcode_target.id, label = target.label),
-                    )
-
     return _target_info_fields(
         args = memory_efficient_depset(
             [
@@ -331,7 +322,7 @@ def _skip_target(
             [
                 struct(id = info.xcode_target.id, label = target.label)
                 for info in deps_transitive_infos
-            ] + test_suite_replacement_labels,
+            ],
             transitive = [
                 info.replacement_labels
                 for info in valid_transitive_infos
