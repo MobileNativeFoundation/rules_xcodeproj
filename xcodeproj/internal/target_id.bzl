@@ -17,11 +17,13 @@ def get_id(*, label, configuration):
 def _longest_common_prefix(labels):
     if not labels:
         return None
+
     # Assume the shortest string is the answer
     res = labels[0]
     for s in labels:
         if len(s) < len(res):
             res = s
+
     # Compare one character at a time with the rest,
     # as soon as any difference is found the result holds the longest common prefix
     index = 0
@@ -48,10 +50,10 @@ def calculate_replacement_label(*, id, replacement_labels):
         The longest common prefix between the list of labels and the label contained in the id,
         if a longest common prefix is not found the label contained in the id is returned
     """
-    id_label = id.split(" ")[0] # This assumes the id follows the creation pattern in `get_id`
+    id_label = id.split(" ")[0]  # This assumes the id follows the creation pattern in `get_id`
 
     res = _longest_common_prefix(
-        [id_label] + ["%s" % label for label in replacement_labels]
+        [id_label] + ["%s" % label for label in replacement_labels],
     )
     if not res:
         return None
