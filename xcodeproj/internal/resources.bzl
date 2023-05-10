@@ -20,7 +20,7 @@ def _normalize_resource_path(resource):
             continue
         prefix, ext, _ = resource.partition(extension)
         resource = prefix + ext
-        break 
+        break
     return resource
 
 def _processed_resource_fields(resources_info):
@@ -110,7 +110,7 @@ def _add_structured_resources_to_bundle(
         *,
         nested_path,
         files,
-        generated, 
+        generated,
         resource_to_owners):
     if nested_path:
         inner_dir = nested_path.split("/")[0]
@@ -123,7 +123,7 @@ def _add_structured_resources_to_bundle(
 
         if not inner_dir:
             owners = resource_to_owners.get(file.path, {})
-            if not owners: 
+            if not owners:
                 bundle.resources.append((file.path, None))
             for owner in owners:
                 bundle.resources.append((file.path, owner))
@@ -132,7 +132,7 @@ def _add_structured_resources_to_bundle(
         # Special case for localized
         if inner_dir.endswith(".lproj"):
             owners = resource_to_owners.get(file.path, {})
-            if not owners: 
+            if not owners:
                 bundle.resources.append((file.path, None))
             for owner in owners:
                 bundle.resources.append((file.path, owner))
@@ -148,11 +148,11 @@ def _add_structured_resources_to_bundle(
 
         folder_resource = paths.join(dir[:-(1 + len(nested_path))], inner_dir)
         owners = resource_to_owners.get(folder_resource, {})
-        if not owners: 
+        if not owners:
             bundle.folder_resources.append((folder_resource, None))
         for owner in owners:
             bundle.folder_resources.append(
-                (folder_resource, owner)
+                (folder_resource, owner),
             )
 
 def _add_structured_resources(
@@ -314,12 +314,13 @@ def collect_resources(
     resource_to_owners = {}
 
     processed_fields = _processed_resource_fields(resource_info)
-    
+
     for (resource, owner) in resource_info.owners.to_list():
         resource = _normalize_resource_path(resource)
+
         # a resource can have multiple owners
         resource_to_owners.setdefault(resource, {})[owner] = None
-        
+
     # Create the bundles, regardless of avoiding duplicates, to work around
     # a rules_apple bug
     for field in processed_fields:
