@@ -6,12 +6,19 @@
 /// `Identifiers` is used to generate these identifiers.
 public enum Identifiers {
     public enum FilesAndGroups {
-        public static let mainGroup = "000000000000000000000003"
-        public static let productsGroup = "000000000000000000000004"
+        public static func mainGroup(_ path: String) -> String {
+            return #"000000000000000000000003 /* \#(path) */"#
+        }
+
+        public static let productsGroup = #"""
+000000000000000000000004 /* Products */
+"""#
     }
 
     public enum Project {
-        public static let id = "000000000000000000000001"
-        public static let buildConfigurationList = "000000000000000000000002"
+        public static let id = #"000000000000000000000001 /* Project object */"#
+        public static let buildConfigurationList = #"""
+000000000000000000000002 /* Build configuration list for PBXProject */
+"""#
     }
 }

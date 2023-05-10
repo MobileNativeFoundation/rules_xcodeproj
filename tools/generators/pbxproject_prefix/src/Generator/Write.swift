@@ -1,7 +1,7 @@
 import Foundation
 
 extension Generator {
-    /// Writes the `projectPrefix` to the file designated by `outputPath`.
+    /// Writes `projectPrefix` to the file designated by `outputPath`.
     static func write(
         _ projectPrefix: String,
         to outputPath: URL

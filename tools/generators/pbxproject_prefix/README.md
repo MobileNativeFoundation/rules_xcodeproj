@@ -13,8 +13,8 @@ The generator accepts the following command-line arguments (see
 - Positional `workspace`
 - Positional `execution-root-file`
 - Positional `minimum-xcode-version`
-- Option `--development-region <development-region>`
-- Option `--organization-name <organization-name>`
+- Optional option `--development-region <development-region>`
+- Optional option `--organization-name <organization-name>`
 - Flag `--colorize`
 
 Here is an example invocation:

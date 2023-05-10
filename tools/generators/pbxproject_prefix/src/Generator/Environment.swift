@@ -23,10 +23,7 @@ extension Generator {
 
         let readExecutionRootFile: (_ url: URL) throws -> String
 
-        let write: (
-            _ projectPrefix: String,
-            _ outputPath: URL
-        ) throws -> Void
+        let write: (_ projectPrefix: String, _ outputPath: URL) throws -> Void
     }
 }
 
