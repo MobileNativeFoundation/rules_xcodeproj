@@ -39,9 +39,7 @@ struct Environment {
         rootElements: [PBXFileElement],
         compileStub: PBXFileReference?,
         resolvedRepositories: [(Path, Path)],
-        internalFiles: [Path: String],
-        usesExternalFileList: Bool,
-        usesGeneratedFileList: Bool
+        internalFiles: [Path: String]
     )
 
     let setAdditionalProjectConfiguration: (
@@ -73,8 +71,6 @@ struct Environment {
         _ defaultXcodeConfiguration: String,
         _ target_ids_file: String,
         _ indexImport: String,
-        _ usesExternalFileList: Bool,
-        _ usesGeneratedFileList: Bool,
         _ bazelConfig: String,
         _ preBuildScript: String?,
         _ postBuildScript: String?,

@@ -317,9 +317,7 @@ final class GeneratorTests: XCTestCase {
             rootElements: [PBXFileElement],
             compileStub: PBXFileReference?,
             resolvedRepositories: [(Path, Path)],
-            internalFiles: [Path: String],
-            usesExternalFileList: Bool,
-            usesGeneratedFileList: Bool
+            internalFiles: [Path: String]
         ) {
             createFilesAndGroupsCalled.append(.init(
                 pbxProj: pbxProj,
@@ -334,9 +332,7 @@ final class GeneratorTests: XCTestCase {
                 rootElements,
                 nil,
                 resolvedRepositories,
-                [:],
-                true,
-                true
+                [:]
             )
         }
 
@@ -482,8 +478,6 @@ final class GeneratorTests: XCTestCase {
             let defaultXcodeConfiguration: String
             let targetIdsFile: String
             let indexImport: String
-            let usesExternalFileList: Bool
-            let usesGeneratedFileList: Bool
             let bazelConfig: String
             let preBuildScript: String?
             let postBuildScript: String?
@@ -500,8 +494,6 @@ final class GeneratorTests: XCTestCase {
             defaultXcodeConfiguration: String,
             targetIdsFile: String,
             indexImport: String,
-            usesExternalFileList: Bool,
-            usesGeneratedFileList: Bool,
             bazelConfig: String,
             preBuildScript: String?,
             postBuildScript: String?,
@@ -515,8 +507,6 @@ final class GeneratorTests: XCTestCase {
                 defaultXcodeConfiguration: defaultXcodeConfiguration,
                 targetIdsFile: targetIdsFile,
                 indexImport: indexImport,
-                usesExternalFileList: usesExternalFileList,
-                usesGeneratedFileList: usesGeneratedFileList,
                 bazelConfig: bazelConfig,
                 preBuildScript: preBuildScript,
                 postBuildScript: postBuildScript,
@@ -534,8 +524,6 @@ final class GeneratorTests: XCTestCase {
                 defaultXcodeConfiguration: project.defaultXcodeConfiguration,
                 targetIdsFile: project.targetIdsFile,
                 indexImport: project.indexImport,
-                usesExternalFileList: true,
-                usesGeneratedFileList: true,
                 bazelConfig: project.bazelConfig,
                 preBuildScript: project.preBuildScript,
                 postBuildScript: project.postBuildScript,

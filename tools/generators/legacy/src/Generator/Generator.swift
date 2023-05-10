@@ -72,9 +72,7 @@ class Generator {
             rootElements,
             compileStub,
             resolvedRepositories,
-            internalFiles,
-            usesExternalFileList,
-            usesGeneratedFileList
+            internalFiles
         ) = Task {
             try environment.createFilesAndGroups(
                 pbxProj,
@@ -133,8 +131,6 @@ class Generator {
                 project.defaultXcodeConfiguration,
                 project.targetIdsFile,
                 project.indexImport,
-                usesExternalFileList,
-                usesGeneratedFileList,
                 project.bazelConfig,
                 project.preBuildScript,
                 project.postBuildScript,

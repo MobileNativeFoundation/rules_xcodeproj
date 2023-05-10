@@ -68,9 +68,7 @@ extension Generator {
         rootElements: [PBXFileElement],
         compileStub: PBXFileReference?,
         resolvedRepositories: [(Path, Path)],
-        internalFiles: [Path: String],
-        usesExternalFileList: Bool,
-        usesGeneratedFileList: Bool
+        internalFiles: [Path: String]
     ) {
         var fileReferences: [FilePath: PBXFileReference] = [:]
         var variantGroups: [FilePath: PBXVariantGroup] = [:]
@@ -734,20 +732,12 @@ extension Generator {
         // Write xcfilelists
 
         var internalFiles: [Path: String] = [:]
-        func addXCFileList(_ path: Path, paths: [String]) -> Bool {
-            guard !paths.isEmpty else {
-                return false
-            }
-
+        func addXCFileList(_ path: Path, paths: [String]) {
             internalFiles[path] = Set(paths.map { "\($0)\n" }).sorted().joined()
-
-            return true
         }
 
-        let usesExternalFileList =
-            addXCFileList(externalFileListPath, paths: externalFileListPaths)
-        let usesGeneratedFileList =
-            addXCFileList(generatedFileListPath, paths: generatedFileListPaths)
+        addXCFileList(externalFileListPath, paths: externalFileListPaths)
+        addXCFileList(generatedFileListPath, paths: generatedFileListPaths)
 
         // Handle special groups. We add these groups last to ensure their
         // order, which is different from normal sorting. They need to come
@@ -774,9 +764,7 @@ extension Generator {
             rootElements,
             compileStub,
             resolvedRepositories,
-            internalFiles,
-            usesExternalFileList,
-            usesGeneratedFileList
+            internalFiles
         )
     }
 
