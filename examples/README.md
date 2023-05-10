@@ -8,6 +8,9 @@ This directory holds several examples using rules_xcodeproj. To open an example,
 * **integration**
     <br> Contains many targets to exercise all of the [rules_apple](https://github.com/bazelbuild/rules_apple/tree/master/doc) rules, along with various ways of using rules_xcodeproj itself (e.g. multi-platform consolidated targets, SwiftUI Previews, device support, etc.).
 
+* **rules_ios**
+    <br> Contains targets to exercise [rules_ios](https://github.com/bazel-ios/rules_ios) macros and rules.
+
 * **sanitizers**
     <br> Contains targets to test Sanitizers in BwB mode. The main purpose is to make sure sanitizers in BwB mode work and give UI feedback the same way sanitizers do in BwX builds.
 
