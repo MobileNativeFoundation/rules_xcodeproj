@@ -8,7 +8,10 @@ ios_unit_test(
     },
     minimum_os_version = "15.0",
     test_host = "//iOSApp",
-    visibility = ["@rules_xcodeproj//xcodeproj:generated"],
+    visibility = [
+        "//iOSApp:__subpackages__",
+        "@rules_xcodeproj//xcodeproj:generated",
+    ],
     deps = [":iOSAppObjCUnitTests.library"],
 )
 

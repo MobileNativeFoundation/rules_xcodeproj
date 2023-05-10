@@ -11,7 +11,10 @@ ios_unit_test(
     minimum_os_version = "15.0",
     resources = ["//iOSApp/Resources/ExampleResources:exported_resources"],
     test_host = "//iOSApp",
-    visibility = ["@rules_xcodeproj//xcodeproj:generated"],
+    visibility = [
+        "//iOSApp:__subpackages__",
+        "@rules_xcodeproj//xcodeproj:generated",
+    ],
     deps = [":iOSAppSwiftUnitTests.library"],
 )
 
