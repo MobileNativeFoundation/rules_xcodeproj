@@ -6,14 +6,12 @@ def build_setting_path(
         *,
         file = None,
         path = None,
-        absolute_path = True,
         use_build_dir = False):
     """Converts a `File` into a `string` to be used in an Xcode build setting.
 
     Args:
         file: A `File`. One of `file` or `path` must be specified.
         path: A path `string. One of `file` or `path` must be specified.
-        absolute_path: Whether to ensure the path resolves to an absolute path.
         use_build_dir: Whether to use `$(BUILD_DIR)` instead of `$(BAZEL_OUT)`
             for generated files.
 
@@ -43,25 +41,20 @@ def build_setting_path(
             else:
                 # Support directory reference
                 build_setting = "$(BUILD_DIR)"
-        elif absolute_path:
+        else:
             # Removing "bazel-out" prefix
             build_setting = "$(BAZEL_OUT){}".format(path[9:])
-        else:
-            build_setting = path
     elif type == "e":
         # External
-        if absolute_path:
-            if path:
-                # Removing "external" prefix
-                build_setting = "$(BAZEL_EXTERNAL){}".format(path[8:])
-            else:
-                # Support directory reference
-                build_setting = "$(BAZEL_EXTERNAL)"
+        if path:
+            # Removing "external" prefix
+            build_setting = "$(BAZEL_EXTERNAL){}".format(path[8:])
         else:
-            build_setting = path
+            # Support directory reference
+            build_setting = "$(BAZEL_EXTERNAL)"
     else:
         # Project or absolute
-        if absolute_path and is_relative_path(path):
+        if is_relative_path(path):
             build_setting = "$(SRCROOT)/{}".format(path)
         else:
             build_setting = path
