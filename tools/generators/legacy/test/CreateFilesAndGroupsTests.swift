@@ -60,8 +60,6 @@ final class CreateFilesAndGroupsTests: XCTestCase {
             createdRootElements,
             _,
             _,
-            _,
-            _,
             _
         ) = try Generator.createFilesAndGroups(
             in: pbxProj,
@@ -162,9 +160,7 @@ final class CreateFilesAndGroupsTests: XCTestCase {
             createdRootElements,
             _,
             _,
-            internalFiles,
-            _,
-            _
+            internalFiles
         ) = try Generator.createFilesAndGroups(
             in: pbxProj,
             buildMode: .xcode,
@@ -271,9 +267,7 @@ final class CreateFilesAndGroupsTests: XCTestCase {
             createdRootElements,
             _,
             _,
-            internalFiles,
-            _,
-            _
+            internalFiles
         ) = try Generator.createFilesAndGroups(
             in: pbxProj,
             buildMode: .bazel,

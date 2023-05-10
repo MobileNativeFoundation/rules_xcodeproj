@@ -12,8 +12,6 @@ extension Generator {
         defaultXcodeConfiguration: String,
         targetIdsFile: String,
         indexImport: String,
-        usesExternalFileList: Bool,
-        usesGeneratedFileList: Bool,
         bazelConfig _: String,
         preBuildScript: String?,
         postBuildScript: String?,
