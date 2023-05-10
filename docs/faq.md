@@ -49,6 +49,13 @@ extensions or tests having different minimum OS versions than the app, which can
 possibly be fixed by using minimum deployment OS version instead). If you
 need help, reach out to us.
 
+One particular case that you have to watch out for (pun intended) is
+accidentally including a `watchos_application` in `xcodeproj.top_level_targets`
+when it's being embedded in an `ios_application` target. `watchos_application`
+targets should only be included in `xcodeproj.top_level_targets` when they are
+not being embedded by an `ios_application` target, since they will have a
+different configuration applied to them, resulting in multiple Xcode targets.
+
 ## What is `CompileStub.m`?
 
 If you have a top level target, such as `ios_application`, and its primary
