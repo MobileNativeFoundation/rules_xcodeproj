@@ -4,11 +4,16 @@ load("//xcodeproj:defs.bzl", "xcode_schemes", "xcodeproj")
 load("//xcodeproj/internal:collections.bzl", "flatten", "uniq")
 
 _TOOLS = {
+    "bazel_dependencies": "//tools/generators/bazel_dependencies",
     "pbxproject_prefix": "//tools/generators/pbxproject_prefix",
     "swiftc_stub": "//tools/swiftc_stub:swiftc",
 }
 
 _TESTS = {
+    "bazel_dependencies": [
+        "//tools/generators/lib/PBXProj:PBXProjTests",
+        "//tools/generators/bazel_dependencies:bazel_dependencies_tests",
+    ],
     "pbxproject_prefix": [
         "//tools/generators/lib/PBXProj:PBXProjTests",
         "//tools/generators/pbxproject_prefix:pbxproject_prefix_tests",
@@ -22,6 +27,40 @@ _SCHEME_DIAGNOSTICS = xcode_schemes.diagnostics(
 )
 
 _SCHEMES = [
+    xcode_schemes.scheme(
+        name = "bazel_dependencies",
+        launch_action = xcode_schemes.launch_action(
+            _TOOLS["bazel_dependencies"],
+            args = [
+                # outputPath
+                "/tmp/pbxproj_partials/bazel_dependencies",
+                # targetIdsFile
+                "bazel-out/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/xcodeproj/xcodeproj_target_ids",
+                # indexImport
+                "bazel-out/darwin_arm64-opt-exec-2B5CBBC6/bin/external/_main~non_module_deps~rules_xcodeproj_index_import/index-import",
+                # xcodeConfigurations
+                "--xcode-configurations",
+                "Debug",
+                "Release",
+                # defaultXcodeConfiguration
+                "--default-xcode-configuration",
+                "Release",
+                # platforms
+                "--platforms",
+                "macosx",
+                "iphonesimulator",
+                # preBuildScript
+                # postBuildScript
+            ],
+            build_configuration = "Release",
+            diagnostics = _SCHEME_DIAGNOSTICS,
+            working_directory = "$(BUILD_WORKSPACE_DIRECTORY)",
+        ),
+        test_action = xcode_schemes.test_action(
+            _TESTS["bazel_dependencies"],
+            diagnostics = _SCHEME_DIAGNOSTICS,
+        ),
+    ),
     xcode_schemes.scheme(
         name = "pbxproject_prefix",
         launch_action = xcode_schemes.launch_action(
@@ -83,6 +122,9 @@ _XCODE_CONFIGURATIONS = {
 xcodeproj(
     name = "xcodeproj",
     associated_extra_files = {
+        "//tools/generators/bazel_dependencies": [
+            "//tools/generators/bazel_dependencies:README.md",
+        ],
         "//tools/generators/pbxproject_prefix": [
             "//tools/generators/pbxproject_prefix:README.md",
         ],
