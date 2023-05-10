@@ -75,3 +75,12 @@ exports_files(["README.md"])
         "x86_64",
     ]
 ]
+
+xcodeproj(
+    name = "TestAppResources", 
+    build_mode = "bazel",
+    tags = ["manual"],
+    top_level_targets = XCODEPROJ_TARGETS,
+    bazel_env = BAZEL_ENV,
+    focused_targets = ["//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests"],
+)
