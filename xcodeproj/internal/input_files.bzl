@@ -71,13 +71,12 @@ def _transform_into_label_to_resources(resources):
             added to the target's bundle.
 
     Returns:
-        A `list` of tuples (`owner`, depset([`resource`])) 
+        A `list` of tuples (`owner`, depset([`resource`]))
     """
     label_to_resources_depset = {}
     for (owner, resource) in resources:
         label_to_resources_depset.setdefault(owner, {})[resource] = None
     return [(owner, depset(label_to_resources_depset[owner].keys())) for owner in label_to_resources_depset]
-
 
 # API
 
