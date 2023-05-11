@@ -1,5 +1,7 @@
 """Functions dealing with Target IDs."""
 
+load(":bazel_labels.bzl", "bazel_labels")
+
 def get_id(*, label, configuration):
     """Generates a unique identifier for a target.
 
@@ -10,7 +12,10 @@ def get_id(*, label, configuration):
     Returns:
         An opaque string that uniquely identifies the target.
     """
-    return "{} {}".format(label, configuration)
+    return "{} {}".format(
+        bazel_labels.normalize_label(label),
+        configuration,
+    )
 
 def write_target_ids_list(*, actions, name, target_dtos):
     """Writes the list of target IDs for a set of `xcode_target`s to a file.
