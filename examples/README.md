@@ -28,4 +28,4 @@ latest version on each respective repository.
 - [SwiftLint](https://github.com/realm/SwiftLint/blob/325d0ee1e44a87fc82afeb874b83ceb82f6728cf/BUILD#L113-L142)
 - [SwiftLint Custom Rules demo](https://vimeo.com/820572803) and [code](https://github.com/jpsim/swiftlint-bazel-example)
 - [SwiftUI iOS App with Bazel template](https://github.com/mattrobmattrob/bazel-ios-swiftui-template/blob/666640b796f347b62b8e5878e00c2d2f44c247cc/BUILD.bazel#L9-L18)
-- [Telegram](https://github.com/TelegramMessenger/Telegram-iOS/blob/master/Telegram/BUILD)
+- [Telegram](https://github.com/TelegramMessenger/Telegram-iOS/blob/09a60ba5dfac95f19b443685c56d7ac371cb1d2f/Telegram/BUILD#L2000-L2022)
