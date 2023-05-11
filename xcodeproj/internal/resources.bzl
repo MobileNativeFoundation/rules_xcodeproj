@@ -93,9 +93,9 @@ def _add_resources_to_bundle(
         if fp:
             resource_owners = resource_to_owners.get(fp, {})
             if not resource_owners:
-                bundle.resources.append((fp, None))
+                bundle.resources.append((None, fp))
             for resource_owner in resource_owners:
-                bundle.resources.append((fp, resource_owner))
+                bundle.resources.append((resource_owner, fp))
 
 def _create_bundle(name = None):
     return struct(
@@ -124,18 +124,18 @@ def _add_structured_resources_to_bundle(
         if not inner_dir:
             owners = resource_to_owners.get(file.path, {})
             if not owners:
-                bundle.resources.append((file.path, None))
+                bundle.resources.append((None, file.path))
             for owner in owners:
-                bundle.resources.append((file.path, owner))
+                bundle.resources.append((owner, file.path))
             continue
 
         # Special case for localized
         if inner_dir.endswith(".lproj"):
             owners = resource_to_owners.get(file.path, {})
             if not owners:
-                bundle.resources.append((file.path, None))
+                bundle.resources.append((None, file.path))
             for owner in owners:
-                bundle.resources.append((file.path, owner))
+                bundle.resources.append((owner, file.path))
             continue
 
         if file.is_directory:
@@ -149,10 +149,10 @@ def _add_structured_resources_to_bundle(
         folder_resource = paths.join(dir[:-(1 + len(nested_path))], inner_dir)
         owners = resource_to_owners.get(folder_resource, {})
         if not owners:
-            bundle.folder_resources.append((folder_resource, None))
+            bundle.folder_resources.append((None, folder_resource))
         for owner in owners:
             bundle.folder_resources.append(
-                (folder_resource, owner),
+                (owner, folder_resource),
             )
 
 def _add_structured_resources(
@@ -299,7 +299,7 @@ def collect_resources(
             `process_resource_bundles`.
         *   `dependencies`: A `list` of `id`s of resource bundle targets that
             this target depends on.
-        *   `resources`: A `list` of tuples (`file_path`, `owner`) of resources that should be
+        *   `resources`: A `list` of tuples (`owner, `file_path`) of resources that should be
             added to the target's bundle.
         *   `generated`: A `list` of `file_path`s of generated resources.
         *   `xccurrentversions`: A `list` of `.xccurrentversion` `File`s.
@@ -390,7 +390,6 @@ def collect_resources(
         parent.dependency_paths.append(child_bundle_path)
 
     frozen_bundles = []
-
     for bundle_path in parent_bundle_paths:
         bundle = resource_bundle_targets.get(bundle_path)
         metadata = bundle_metadata.get(bundle_path)

@@ -828,13 +828,13 @@ def _inputs_to_dto(inputs, *, focused_labels, unfocused_labels):
     _process_attr("srcs", "s")
     _process_attr("non_arc_srcs", "n")
     _process_attr("hdrs", "h")
+    has_focused_labels = bool(focused_labels)
 
     if inputs.resources:
         # resources of unfocused targets should be excluded
-        has_focused_labels = bool(focused_labels)
         filtered_resources = [
             resource
-            for resource, owner in inputs.resources.to_list()
+            for owner, resource in inputs.resources.to_list()
             if not owner or not (
                 owner in unfocused_labels or
                 (has_focused_labels and owner not in focused_labels)
@@ -848,10 +848,9 @@ def _inputs_to_dto(inputs, *, focused_labels, unfocused_labels):
         )
 
     if inputs.folder_resources:
-        has_focused_labels = bool(focused_labels)
         filtered_folder_resources = [
             resource
-            for resource, owner in inputs.folder_resources.to_list()
+            for owner, resource in inputs.folder_resources.to_list()
             if not owner or not (
                 owner in unfocused_labels or
                 (has_focused_labels and owner not in focused_labels)
