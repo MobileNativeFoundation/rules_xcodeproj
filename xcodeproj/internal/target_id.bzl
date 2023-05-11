@@ -37,10 +37,11 @@ def _longest_common_prefix(labels):
     return res
 
 def calculate_replacement_label(*, id, replacement_labels):
-    """Calculates a single replacement label for a given id and list of replacement labels
+    """Calculates a single replacement label for a given id and list of \
+    replacement labels.
 
-    It considers the list of labels received plus the label contained in the id itself, then it finds
-    the longest common prefix between those
+    It considers the list of labels received plus the label contained in the id
+    itself, then it finds the longest common prefix between those.
 
     Args:
         id: An id that uniquely represents a target (see `get_id`)
