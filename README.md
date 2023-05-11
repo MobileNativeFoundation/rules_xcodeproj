@@ -74,6 +74,7 @@ the ruleset.
 - Snap
 - Spotify
 - SwiftLint
+- [Telegram](https://github.com/TelegramMessenger/Telegram-iOS)
 - Ten Ten
 - Tinder
 - Tokopedia
