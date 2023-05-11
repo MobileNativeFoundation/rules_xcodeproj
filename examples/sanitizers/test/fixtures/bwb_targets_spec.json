@@ -1,5 +1,5 @@
 [
-    "//AddressSanitizerApp:AddressSanitizerApp applebin_ios-ios_x86_64-dbg-STABLE-2",
+    "@//AddressSanitizerApp:AddressSanitizerApp applebin_ios-ios_x86_64-dbg-STABLE-2",
     {
         "0": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/AddressSanitizerApp/AddressSanitizerApp.library.rules_xcodeproj.xcodeproj_bwb.swift.compile.params",
         "1": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/AddressSanitizerApp",
@@ -10,7 +10,7 @@
         },
         "3": [
             {
-                "i": "//AddressSanitizerApp:AddressSanitizerApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
+                "i": "@//AddressSanitizerApp:AddressSanitizerApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
                 "n": "AddressSanitizerApp.library"
             }
         ],
@@ -54,7 +54,7 @@
             "t": "com.apple.product-type.application"
         }
     },
-    "//ThreadSanitizerApp:ThreadSanitizerApp applebin_ios-ios_x86_64-dbg-STABLE-2",
+    "@//ThreadSanitizerApp:ThreadSanitizerApp applebin_ios-ios_x86_64-dbg-STABLE-2",
     {
         "0": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/ThreadSanitizerApp/ThreadSanitizerApp.library.rules_xcodeproj.xcodeproj_bwb.swift.compile.params",
         "1": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/ThreadSanitizerApp",
@@ -65,7 +65,7 @@
         },
         "3": [
             {
-                "i": "//ThreadSanitizerApp:ThreadSanitizerApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
+                "i": "@//ThreadSanitizerApp:ThreadSanitizerApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
                 "n": "ThreadSanitizerApp.library"
             }
         ],
@@ -109,7 +109,7 @@
             "t": "com.apple.product-type.application"
         }
     },
-    "//UndefinedBehaviorSanitizerApp:UndefinedBehaviorSanitizerApp applebin_ios-ios_x86_64-dbg-STABLE-2",
+    "@//UndefinedBehaviorSanitizerApp:UndefinedBehaviorSanitizerApp applebin_ios-ios_x86_64-dbg-STABLE-2",
     {
         "1": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/UndefinedBehaviorSanitizerApp",
         "2": {
@@ -119,7 +119,7 @@
         },
         "3": [
             {
-                "i": "//UndefinedBehaviorSanitizerApp:UndefinedBehaviorSanitizerApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
+                "i": "@//UndefinedBehaviorSanitizerApp:UndefinedBehaviorSanitizerApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
                 "n": "UndefinedBehaviorSanitizerApp.library"
             }
         ],

@@ -949,7 +949,7 @@
 				);
 				BAZEL_LABEL = "@//lib:lib_defines";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib";
-				BAZEL_TARGET_ID = "//lib:lib_defines darwin_x86_64-dbg-STABLE-1";
+				BAZEL_TARGET_ID = "@//lib:lib_defines darwin_x86_64-dbg-STABLE-1";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = lib_defines;
 				C_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib/lib_defines.rules_xcodeproj.xcodeproj_bwb.c.compile.params";
@@ -993,7 +993,7 @@
 				);
 				BAZEL_LABEL = "@//lib2:lib_impl";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib2";
-				BAZEL_TARGET_ID = "//lib2:lib_impl darwin_x86_64-dbg-STABLE-1";
+				BAZEL_TARGET_ID = "@//lib2:lib_impl darwin_x86_64-dbg-STABLE-1";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = lib_impl;
 				C_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib2/lib_impl.rules_xcodeproj.xcodeproj_bwb.c.compile.params";
@@ -1020,7 +1020,7 @@
 				BAZEL_LABEL = "@//tool:tool";
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/tool/tool_codesigned";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/tool";
-				BAZEL_TARGET_ID = "//tool:tool darwin_x86_64-dbg-STABLE-1";
+				BAZEL_TARGET_ID = "@//tool:tool darwin_x86_64-dbg-STABLE-1";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				COMPILE_TARGET_NAME = tool;
@@ -1116,7 +1116,7 @@
 				);
 				BAZEL_LABEL = "@//lib/impl:lib_impl";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib/impl";
-				BAZEL_TARGET_ID = "//lib/impl:lib_impl darwin_x86_64-dbg-STABLE-1";
+				BAZEL_TARGET_ID = "@//lib/impl:lib_impl darwin_x86_64-dbg-STABLE-1";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = lib_impl;
 				C_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib/impl/lib_impl.rules_xcodeproj.xcodeproj_bwb.c.compile.params";

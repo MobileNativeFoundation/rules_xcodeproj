@@ -10959,8 +10959,8 @@
 				BAZEL_LABEL = "@//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswerLib_Swift";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer";
-				BAZEL_TARGET_ID = "//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswerLib_Swift ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7";
-				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswerLib_Swift ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10";
+				BAZEL_TARGET_ID = "@//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswerLib_Swift ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7";
+				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "@//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswerLib_Swift ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = MixedAnswerLib_Swift;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -10986,7 +10986,7 @@
 				ARCHS = x86_64;
 				BAZEL_LABEL = "@//CommandLine/CommandLineToolLib:lib_swift";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35/bin/CommandLine/CommandLineToolLib";
-				BAZEL_TARGET_ID = "//CommandLine/CommandLineToolLib:lib_swift macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35";
+				BAZEL_TARGET_ID = "@//CommandLine/CommandLineToolLib:lib_swift macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = lib_swift;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -11010,8 +11010,8 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				ARCHS = x86_64;
 				"ARCHS[sdk=watchos*]" = arm64_32;
-				BAZEL_COMPILE_TARGET_IDS = "//UI:UI watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2";
-				"BAZEL_COMPILE_TARGET_IDS[sdk=watchos*]" = "//UI:UI watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-5";
+				BAZEL_COMPILE_TARGET_IDS = "@//UI:UI watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2";
+				"BAZEL_COMPILE_TARGET_IDS[sdk=watchos*]" = "@//UI:UI watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-5";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=watchsimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//UI:UIFramework.watchOS";
 				BAZEL_OUTPUTS_DSYM = (
@@ -11026,8 +11026,8 @@
 				"BAZEL_OUTPUTS_PRODUCT[sdk=watchos*]" = "bazel-out/applebin_watchos-watchos_arm64_32-dbg-STABLE-18/bin/UI/UIFramework.watchOS.framework";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-17/bin/UI";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=watchos*]" = "bazel-out/applebin_watchos-watchos_arm64_32-dbg-STABLE-18/bin/UI";
-				BAZEL_TARGET_ID = "//UI:UIFramework.watchOS applebin_watchos-watchos_x86_64-dbg-STABLE-17";
-				"BAZEL_TARGET_ID[sdk=watchos*]" = "//UI:UIFramework.watchOS applebin_watchos-watchos_arm64_32-dbg-STABLE-18";
+				BAZEL_TARGET_ID = "@//UI:UIFramework.watchOS applebin_watchos-watchos_x86_64-dbg-STABLE-17";
+				"BAZEL_TARGET_ID[sdk=watchos*]" = "@//UI:UIFramework.watchOS applebin_watchos-watchos_arm64_32-dbg-STABLE-18";
 				"BAZEL_TARGET_ID[sdk=watchsimulator*]" = "$(BAZEL_TARGET_ID)";
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = UI;
@@ -11073,8 +11073,8 @@
 				BAZEL_LABEL = "@//Lib:Lib";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8/bin/Lib";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=watchos*]" = "bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-opt-STABLE-11/bin/Lib";
-				BAZEL_TARGET_ID = "//Lib:Lib watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8";
-				"BAZEL_TARGET_ID[sdk=watchos*]" = "//Lib:Lib watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-opt-STABLE-11";
+				BAZEL_TARGET_ID = "@//Lib:Lib watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8";
+				"BAZEL_TARGET_ID[sdk=watchos*]" = "@//Lib:Lib watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-opt-STABLE-11";
 				"BAZEL_TARGET_ID[sdk=watchsimulator*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = Lib;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -11109,8 +11109,8 @@
 				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/applebin_ios-ios_arm64-opt-STABLE-16/bin/Lib/dist/dynamic/Lib.framework";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/Lib/dist/dynamic";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/applebin_ios-ios_arm64-opt-STABLE-16/bin/Lib/dist/dynamic";
-				BAZEL_TARGET_ID = "//Lib/dist/dynamic:iOS applebin_ios-ios_x86_64-opt-STABLE-15";
-				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "//Lib/dist/dynamic:iOS applebin_ios-ios_arm64-opt-STABLE-16";
+				BAZEL_TARGET_ID = "@//Lib/dist/dynamic:iOS applebin_ios-ios_x86_64-opt-STABLE-15";
+				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "@//Lib/dist/dynamic:iOS applebin_ios-ios_arm64-opt-STABLE-16";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = iOS;
@@ -11144,8 +11144,8 @@
 				"BAZEL_OUTPUTS_PRODUCT[sdk=appletvos*]" = "bazel-out/applebin_tvos-tvos_arm64-opt-STABLE-28/bin/Lib/dist/dynamic/Lib.framework";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_tvos-tvos_x86_64-opt-STABLE-27/bin/Lib/dist/dynamic";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=appletvos*]" = "bazel-out/applebin_tvos-tvos_arm64-opt-STABLE-28/bin/Lib/dist/dynamic";
-				BAZEL_TARGET_ID = "//Lib/dist/dynamic:tvOS applebin_tvos-tvos_x86_64-opt-STABLE-27";
-				"BAZEL_TARGET_ID[sdk=appletvos*]" = "//Lib/dist/dynamic:tvOS applebin_tvos-tvos_arm64-opt-STABLE-28";
+				BAZEL_TARGET_ID = "@//Lib/dist/dynamic:tvOS applebin_tvos-tvos_x86_64-opt-STABLE-27";
+				"BAZEL_TARGET_ID[sdk=appletvos*]" = "@//Lib/dist/dynamic:tvOS applebin_tvos-tvos_arm64-opt-STABLE-28";
 				"BAZEL_TARGET_ID[sdk=appletvsimulator*]" = "$(BAZEL_TARGET_ID)";
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = tvOS;
@@ -11177,8 +11177,8 @@
 				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/applebin_ios-ios_arm64-dbg-STABLE-14/bin/Lib/dist/dynamic/Lib.framework";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/Lib/dist/dynamic";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/applebin_ios-ios_arm64-dbg-STABLE-14/bin/Lib/dist/dynamic";
-				BAZEL_TARGET_ID = "//Lib/dist/dynamic:iOS applebin_ios-ios_x86_64-dbg-STABLE-13";
-				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "//Lib/dist/dynamic:iOS applebin_ios-ios_arm64-dbg-STABLE-14";
+				BAZEL_TARGET_ID = "@//Lib/dist/dynamic:iOS applebin_ios-ios_x86_64-dbg-STABLE-13";
+				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "@//Lib/dist/dynamic:iOS applebin_ios-ios_arm64-dbg-STABLE-14";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = iOS;
@@ -11212,8 +11212,8 @@
 				"BAZEL_OUTPUTS_PRODUCT[sdk=watchos*]" = "bazel-out/applebin_watchos-watchos_arm64_32-opt-STABLE-20/bin/Lib/dist/dynamic/Lib.framework";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_watchos-watchos_x86_64-opt-STABLE-19/bin/Lib/dist/dynamic";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=watchos*]" = "bazel-out/applebin_watchos-watchos_arm64_32-opt-STABLE-20/bin/Lib/dist/dynamic";
-				BAZEL_TARGET_ID = "//Lib/dist/dynamic:watchOS applebin_watchos-watchos_x86_64-opt-STABLE-19";
-				"BAZEL_TARGET_ID[sdk=watchos*]" = "//Lib/dist/dynamic:watchOS applebin_watchos-watchos_arm64_32-opt-STABLE-20";
+				BAZEL_TARGET_ID = "@//Lib/dist/dynamic:watchOS applebin_watchos-watchos_x86_64-opt-STABLE-19";
+				"BAZEL_TARGET_ID[sdk=watchos*]" = "@//Lib/dist/dynamic:watchOS applebin_watchos-watchos_arm64_32-opt-STABLE-20";
 				"BAZEL_TARGET_ID[sdk=watchsimulator*]" = "$(BAZEL_TARGET_ID)";
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = watchOS;
@@ -11245,7 +11245,7 @@
 					"-Wno-macro-redefined",
 					"-D_FORTIFY_SOURCE=0",
 				);
-				BAZEL_COMPILE_TARGET_IDS = "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7";
+				BAZEL_COMPILE_TARGET_IDS = "@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests";
 				BAZEL_OUTPUTS_DSYM = (
@@ -11262,7 +11262,7 @@
 				);
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests.xctest";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Test/ObjCUnitTests";
-				BAZEL_TARGET_ID = "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests.__internal__.__test_bundle applebin_ios-ios_x86_64-opt-STABLE-15";
+				BAZEL_TARGET_ID = "@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests.__internal__.__test_bundle applebin_ios-ios_x86_64-opt-STABLE-15";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CLANG_ENABLE_MODULES = YES;
@@ -11295,8 +11295,8 @@
 				ARCHS = x86_64;
 				"ARCHS[sdk=iphoneos*]" = arm64;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				BAZEL_COMPILE_TARGET_IDS = "//iOSApp/Source:iOSApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1";
-				"BAZEL_COMPILE_TARGET_IDS[sdk=iphoneos*]" = "//iOSApp/Source:iOSApp.library ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4";
+				BAZEL_COMPILE_TARGET_IDS = "@//iOSApp/Source:iOSApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1";
+				"BAZEL_COMPILE_TARGET_IDS[sdk=iphoneos*]" = "@//iOSApp/Source:iOSApp.library ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//iOSApp/Source:iOSApp";
 				BAZEL_OUTPUTS_DSYM = (
@@ -11325,8 +11325,8 @@
 				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/applebin_ios-ios_arm64-dbg-STABLE-14/bin/iOSApp/Source/iOSApp.app";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Source";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/applebin_ios-ios_arm64-dbg-STABLE-14/bin/iOSApp/Source";
-				BAZEL_TARGET_ID = "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-dbg-STABLE-13";
-				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "//iOSApp/Source:iOSApp applebin_ios-ios_arm64-dbg-STABLE-14";
+				BAZEL_TARGET_ID = "@//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-dbg-STABLE-13";
+				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "@//iOSApp/Source:iOSApp applebin_ios-ios_arm64-dbg-STABLE-14";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_ENTITLEMENTS = "$(SRCROOT)/iOSApp/Source/ios app.entitlements";
@@ -11377,7 +11377,7 @@
 				);
 				BAZEL_LABEL = "@//CommandLine/CommandLineToolLib:private_lib";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34/bin/CommandLine/CommandLineToolLib";
-				BAZEL_TARGET_ID = "//CommandLine/CommandLineToolLib:private_lib macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34";
+				BAZEL_TARGET_ID = "@//CommandLine/CommandLineToolLib:private_lib macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = private_lib;
 				C_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34/bin/CommandLine/CommandLineToolLib/private_lib.rules_xcodeproj.xcodeproj_bwb.c.compile.params";
@@ -11402,13 +11402,13 @@
 					"-Wno-macro-redefined",
 					"-D_FORTIFY_SOURCE=0",
 				);
-				BAZEL_COMPILE_TARGET_IDS = "//Bundle:aplugin.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-30";
+				BAZEL_COMPILE_TARGET_IDS = "@//Bundle:aplugin.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-30";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=macosx*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//Bundle:Bundle";
 				BAZEL_OUTPUTS_DSYM = "\"bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-32/bin/Bundle/ABundle.aplugin.dSYM\"";
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-32/bin/Bundle/ABundle.aplugin";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-32/bin/Bundle";
-				BAZEL_TARGET_ID = "//Bundle:Bundle applebin_macos-darwin_x86_64-opt-STABLE-32";
+				BAZEL_TARGET_ID = "@//Bundle:Bundle applebin_macos-darwin_x86_64-opt-STABLE-32";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = aplugin.library;
@@ -11435,8 +11435,8 @@
 				BAZEL_LABEL = "@//iOSApp/Test/TestingUtils:TestingUtils";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-29/bin/iOSApp/Test/TestingUtils";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphonesimulator*]" = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/TestingUtils";
-				BAZEL_TARGET_ID = "//iOSApp/Test/TestingUtils:TestingUtils macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-29";
-				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "//iOSApp/Test/TestingUtils:TestingUtils ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1";
+				BAZEL_TARGET_ID = "@//iOSApp/Test/TestingUtils:TestingUtils macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-29";
+				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "@//iOSApp/Test/TestingUtils:TestingUtils ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = TestingUtils;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -11473,12 +11473,12 @@
 					"-Wno-macro-redefined",
 					"-D_FORTIFY_SOURCE=0",
 				);
-				BAZEL_COMPILE_TARGET_IDS = "//CommandLine/CommandLineTool:tool.library macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37";
+				BAZEL_COMPILE_TARGET_IDS = "@//CommandLine/CommandLineTool:tool.library macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=macosx*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//CommandLine/CommandLineTool:UniversalCommandLineTool";
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37/bin/CommandLine/CommandLineTool/tool.binary_codesigned";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37/bin/CommandLine/CommandLineTool";
-				BAZEL_TARGET_ID = "//CommandLine/CommandLineTool:tool.binary macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37";
+				BAZEL_TARGET_ID = "@//CommandLine/CommandLineTool:tool.binary macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CLANG_ENABLE_MODULES = YES;
@@ -11505,8 +11505,8 @@
 				ARCHS = x86_64;
 				"ARCHS[sdk=iphoneos*]" = arm64;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				BAZEL_COMPILE_TARGET_IDS = "//iOSApp/Source:iOSApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7";
-				"BAZEL_COMPILE_TARGET_IDS[sdk=iphoneos*]" = "//iOSApp/Source:iOSApp.library ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10";
+				BAZEL_COMPILE_TARGET_IDS = "@//iOSApp/Source:iOSApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7";
+				"BAZEL_COMPILE_TARGET_IDS[sdk=iphoneos*]" = "@//iOSApp/Source:iOSApp.library ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//iOSApp/Source:iOSApp";
 				BAZEL_OUTPUTS_DSYM = (
@@ -11535,8 +11535,8 @@
 				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/applebin_ios-ios_arm64-opt-STABLE-16/bin/iOSApp/Source/iOSApp.app";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Source";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/applebin_ios-ios_arm64-opt-STABLE-16/bin/iOSApp/Source";
-				BAZEL_TARGET_ID = "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-opt-STABLE-15";
-				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "//iOSApp/Source:iOSApp applebin_ios-ios_arm64-opt-STABLE-16";
+				BAZEL_TARGET_ID = "@//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-opt-STABLE-15";
+				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "@//iOSApp/Source:iOSApp applebin_ios-ios_arm64-opt-STABLE-16";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_ENTITLEMENTS = "$(SRCROOT)/iOSApp/Source/ios app.entitlements";
@@ -11581,8 +11581,8 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				ARCHS = x86_64;
 				"ARCHS[sdk=appletvos*]" = arm64;
-				BAZEL_COMPILE_TARGET_IDS = "//UI:UI tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3";
-				"BAZEL_COMPILE_TARGET_IDS[sdk=appletvos*]" = "//UI:UI tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-6";
+				BAZEL_COMPILE_TARGET_IDS = "@//UI:UI tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3";
+				"BAZEL_COMPILE_TARGET_IDS[sdk=appletvos*]" = "@//UI:UI tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-6";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=appletvsimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//UI:UIFramework.tvOS";
 				BAZEL_OUTPUTS_DSYM = (
@@ -11597,8 +11597,8 @@
 				"BAZEL_OUTPUTS_PRODUCT[sdk=appletvos*]" = "bazel-out/applebin_tvos-tvos_arm64-dbg-STABLE-26/bin/UI/UIFramework.tvOS.framework";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-25/bin/UI";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=appletvos*]" = "bazel-out/applebin_tvos-tvos_arm64-dbg-STABLE-26/bin/UI";
-				BAZEL_TARGET_ID = "//UI:UIFramework.tvOS applebin_tvos-tvos_x86_64-dbg-STABLE-25";
-				"BAZEL_TARGET_ID[sdk=appletvos*]" = "//UI:UIFramework.tvOS applebin_tvos-tvos_arm64-dbg-STABLE-26";
+				BAZEL_TARGET_ID = "@//UI:UIFramework.tvOS applebin_tvos-tvos_x86_64-dbg-STABLE-25";
+				"BAZEL_TARGET_ID[sdk=appletvos*]" = "@//UI:UIFramework.tvOS applebin_tvos-tvos_arm64-dbg-STABLE-26";
 				"BAZEL_TARGET_ID[sdk=appletvsimulator*]" = "$(BAZEL_TARGET_ID)";
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = UI;
@@ -11647,13 +11647,13 @@
 					"-Wno-macro-redefined",
 					"-D_FORTIFY_SOURCE=0",
 				);
-				BAZEL_COMPILE_TARGET_IDS = "//CommandLine/CommandLineTool:tool.library macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33";
+				BAZEL_COMPILE_TARGET_IDS = "@//CommandLine/CommandLineTool:tool.library macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=macosx*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//CommandLine/CommandLineTool:CommandLineTool";
 				BAZEL_OUTPUTS_DSYM = "\"bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-39/bin/CommandLine/CommandLineTool/CommandLineTool.dSYM\"";
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-39/bin/CommandLine/CommandLineTool/CommandLineTool_codesigned";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-39/bin/CommandLine/CommandLineTool";
-				BAZEL_TARGET_ID = "//CommandLine/CommandLineTool:CommandLineTool applebin_macos-darwin_x86_64-dbg-STABLE-39";
+				BAZEL_TARGET_ID = "@//CommandLine/CommandLineTool:CommandLineTool applebin_macos-darwin_x86_64-dbg-STABLE-39";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CLANG_ENABLE_MODULES = YES;
@@ -11683,8 +11683,8 @@
 				BAZEL_LABEL = "@//Lib:Lib";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/Lib";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=watchos*]" = "bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-5/bin/Lib";
-				BAZEL_TARGET_ID = "//Lib:Lib watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2";
-				"BAZEL_TARGET_ID[sdk=watchos*]" = "//Lib:Lib watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-5";
+				BAZEL_TARGET_ID = "@//Lib:Lib watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2";
+				"BAZEL_TARGET_ID[sdk=watchos*]" = "@//Lib:Lib watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-5";
 				"BAZEL_TARGET_ID[sdk=watchsimulator*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = Lib;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -11714,8 +11714,8 @@
 				BAZEL_LABEL = "@//iOSApp/Test/TestingUtils:TestingUtils";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-30/bin/iOSApp/Test/TestingUtils";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphonesimulator*]" = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Test/TestingUtils";
-				BAZEL_TARGET_ID = "//iOSApp/Test/TestingUtils:TestingUtils macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-30";
-				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "//iOSApp/Test/TestingUtils:TestingUtils ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7";
+				BAZEL_TARGET_ID = "@//iOSApp/Test/TestingUtils:TestingUtils macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-30";
+				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "@//iOSApp/Test/TestingUtils:TestingUtils ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = TestingUtils;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -11746,13 +11746,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_COMPILE_TARGET_IDS = "//watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2";
+				BAZEL_COMPILE_TARGET_IDS = "@//watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=watchsimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests";
 				BAZEL_OUTPUTS_DSYM = "\"bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-17/bin/watchOSAppExtension/Test/UnitTests/watchOSAppExtensionUnitTests.xctest.dSYM\"";
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-17/bin/watchOSAppExtension/Test/UnitTests/watchOSAppExtensionUnitTests.xctest";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-17/bin/watchOSAppExtension/Test/UnitTests";
-				BAZEL_TARGET_ID = "//watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests.__internal__.__test_bundle applebin_watchos-watchos_x86_64-dbg-STABLE-17";
+				BAZEL_TARGET_ID = "@//watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests.__internal__.__test_bundle applebin_watchos-watchos_x86_64-dbg-STABLE-17";
 				"BAZEL_TARGET_ID[sdk=watchsimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_STYLE = Manual;
@@ -11790,8 +11790,8 @@
 				"BAZEL_OUTPUTS_PRODUCT[sdk=appletvos*]" = "bazel-out/applebin_tvos-tvos_arm64-dbg-STABLE-26/bin/Lib/dist/dynamic/Lib.framework";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-25/bin/Lib/dist/dynamic";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=appletvos*]" = "bazel-out/applebin_tvos-tvos_arm64-dbg-STABLE-26/bin/Lib/dist/dynamic";
-				BAZEL_TARGET_ID = "//Lib/dist/dynamic:tvOS applebin_tvos-tvos_x86_64-dbg-STABLE-25";
-				"BAZEL_TARGET_ID[sdk=appletvos*]" = "//Lib/dist/dynamic:tvOS applebin_tvos-tvos_arm64-dbg-STABLE-26";
+				BAZEL_TARGET_ID = "@//Lib/dist/dynamic:tvOS applebin_tvos-tvos_x86_64-dbg-STABLE-25";
+				"BAZEL_TARGET_ID[sdk=appletvos*]" = "@//Lib/dist/dynamic:tvOS applebin_tvos-tvos_arm64-dbg-STABLE-26";
 				"BAZEL_TARGET_ID[sdk=appletvsimulator*]" = "$(BAZEL_TARGET_ID)";
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = tvOS;
@@ -11825,7 +11825,7 @@
 				);
 				BAZEL_LABEL = "@//CommandLine/swift_c_module:c_lib";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34/bin/CommandLine/swift_c_module";
-				BAZEL_TARGET_ID = "//CommandLine/swift_c_module:c_lib macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34";
+				BAZEL_TARGET_ID = "@//CommandLine/swift_c_module:c_lib macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = c_lib;
 				C_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34/bin/CommandLine/swift_c_module/c_lib.rules_xcodeproj.xcodeproj_bwb.c.compile.params";
@@ -11845,12 +11845,12 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				ARCHS = x86_64;
 				"ARCHS[sdk=watchos*]" = arm64_32;
-				BAZEL_COMPILE_TARGET_IDS = "//watchOSAppExtension:watchOSAppExtension.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2";
-				"BAZEL_COMPILE_TARGET_IDS[sdk=watchos*]" = "//watchOSAppExtension:watchOSAppExtension.library watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-5";
+				BAZEL_COMPILE_TARGET_IDS = "@//watchOSAppExtension:watchOSAppExtension.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2";
+				"BAZEL_COMPILE_TARGET_IDS[sdk=watchos*]" = "@//watchOSAppExtension:watchOSAppExtension.library watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-5";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=watchsimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_HOST_LABEL_0 = "@//watchOSApp:watchOSApp";
-				BAZEL_HOST_TARGET_ID_0 = "//watchOSApp:watchOSApp applebin_watchos-watchos_x86_64-dbg-STABLE-21";
-				"BAZEL_HOST_TARGET_ID_0[sdk=watchos*]" = "//watchOSApp:watchOSApp applebin_watchos-watchos_arm64_32-dbg-STABLE-22";
+				BAZEL_HOST_TARGET_ID_0 = "@//watchOSApp:watchOSApp applebin_watchos-watchos_x86_64-dbg-STABLE-21";
+				"BAZEL_HOST_TARGET_ID_0[sdk=watchos*]" = "@//watchOSApp:watchOSApp applebin_watchos-watchos_arm64_32-dbg-STABLE-22";
 				BAZEL_LABEL = "@//watchOSAppExtension:watchOSAppExtension";
 				BAZEL_OUTPUTS_DSYM = (
 					"\"bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-17/bin/Lib/LibFramework.watchOS.framework.dSYM\"",
@@ -11866,8 +11866,8 @@
 				"BAZEL_OUTPUTS_PRODUCT[sdk=watchos*]" = "bazel-out/applebin_watchos-watchos_arm64_32-dbg-STABLE-18/bin/watchOSAppExtension/watchOSAppExtension.appex";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-17/bin/watchOSAppExtension";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=watchos*]" = "bazel-out/applebin_watchos-watchos_arm64_32-dbg-STABLE-18/bin/watchOSAppExtension";
-				BAZEL_TARGET_ID = "//watchOSAppExtension:watchOSAppExtension applebin_watchos-watchos_x86_64-dbg-STABLE-17";
-				"BAZEL_TARGET_ID[sdk=watchos*]" = "//watchOSAppExtension:watchOSAppExtension applebin_watchos-watchos_arm64_32-dbg-STABLE-18";
+				BAZEL_TARGET_ID = "@//watchOSAppExtension:watchOSAppExtension applebin_watchos-watchos_x86_64-dbg-STABLE-17";
+				"BAZEL_TARGET_ID[sdk=watchos*]" = "@//watchOSAppExtension:watchOSAppExtension applebin_watchos-watchos_arm64_32-dbg-STABLE-18";
 				"BAZEL_TARGET_ID[sdk=watchsimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_STYLE = Manual;
@@ -11905,7 +11905,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_COMPILE_TARGET_IDS = "//tvOSApp/Test/UnitTests:tvOSAppUnitTests.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3";
+				BAZEL_COMPILE_TARGET_IDS = "@//tvOSApp/Test/UnitTests:tvOSAppUnitTests.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=appletvsimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//tvOSApp/Test/UnitTests:tvOSAppUnitTests";
 				BAZEL_OUTPUTS_DSYM = (
@@ -11916,7 +11916,7 @@
 				);
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-25/bin/tvOSApp/Test/UnitTests/tvOSAppUnitTests.xctest";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-25/bin/tvOSApp/Test/UnitTests";
-				BAZEL_TARGET_ID = "//tvOSApp/Test/UnitTests:tvOSAppUnitTests.__internal__.__test_bundle applebin_tvos-tvos_x86_64-dbg-STABLE-25";
+				BAZEL_TARGET_ID = "@//tvOSApp/Test/UnitTests:tvOSAppUnitTests.__internal__.__test_bundle applebin_tvos-tvos_x86_64-dbg-STABLE-25";
 				"BAZEL_TARGET_ID[sdk=appletvsimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_STYLE = Manual;
@@ -11956,13 +11956,13 @@
 					"-Wno-macro-redefined",
 					"-D_FORTIFY_SOURCE=0",
 				);
-				BAZEL_COMPILE_TARGET_IDS = "//CommandLine/CommandLineTool:tool.library macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36";
+				BAZEL_COMPILE_TARGET_IDS = "@//CommandLine/CommandLineTool:tool.library macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=macosx*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//CommandLine/CommandLineTool:CommandLineTool";
 				BAZEL_OUTPUTS_DSYM = "\"bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-40/bin/CommandLine/CommandLineTool/CommandLineTool.dSYM\"";
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-40/bin/CommandLine/CommandLineTool/CommandLineTool_codesigned";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-40/bin/CommandLine/CommandLineTool";
-				BAZEL_TARGET_ID = "//CommandLine/CommandLineTool:CommandLineTool applebin_macos-darwin_x86_64-opt-STABLE-40";
+				BAZEL_TARGET_ID = "@//CommandLine/CommandLineTool:CommandLineTool applebin_macos-darwin_x86_64-opt-STABLE-40";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CLANG_ENABLE_MODULES = YES;
@@ -12054,8 +12054,8 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				"ARCHS[sdk=appletvos*]" = arm64;
-				BAZEL_COMPILE_TARGET_IDS = "//tvOSApp/Source:tvOSApp.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9";
-				"BAZEL_COMPILE_TARGET_IDS[sdk=appletvos*]" = "//tvOSApp/Source:tvOSApp.library tvos-arm64-min15.0-applebin_tvos-tvos_arm64-opt-STABLE-12";
+				BAZEL_COMPILE_TARGET_IDS = "@//tvOSApp/Source:tvOSApp.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9";
+				"BAZEL_COMPILE_TARGET_IDS[sdk=appletvos*]" = "@//tvOSApp/Source:tvOSApp.library tvos-arm64-min15.0-applebin_tvos-tvos_arm64-opt-STABLE-12";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=appletvsimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//tvOSApp/Source:tvOSApp";
 				BAZEL_OUTPUTS_DSYM = (
@@ -12072,8 +12072,8 @@
 				"BAZEL_OUTPUTS_PRODUCT[sdk=appletvos*]" = "bazel-out/applebin_tvos-tvos_arm64-opt-STABLE-28/bin/tvOSApp/Source/tvOSApp.app";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_tvos-tvos_x86_64-opt-STABLE-27/bin/tvOSApp/Source";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=appletvos*]" = "bazel-out/applebin_tvos-tvos_arm64-opt-STABLE-28/bin/tvOSApp/Source";
-				BAZEL_TARGET_ID = "//tvOSApp/Source:tvOSApp applebin_tvos-tvos_x86_64-opt-STABLE-27";
-				"BAZEL_TARGET_ID[sdk=appletvos*]" = "//tvOSApp/Source:tvOSApp applebin_tvos-tvos_arm64-opt-STABLE-28";
+				BAZEL_TARGET_ID = "@//tvOSApp/Source:tvOSApp applebin_tvos-tvos_x86_64-opt-STABLE-27";
+				"BAZEL_TARGET_ID[sdk=appletvos*]" = "@//tvOSApp/Source:tvOSApp applebin_tvos-tvos_arm64-opt-STABLE-28";
 				"BAZEL_TARGET_ID[sdk=appletvsimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_STYLE = Manual;
@@ -12112,7 +12112,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_COMPILE_TARGET_IDS = "//watchOSApp/Test/UITests:watchOSAppUITests.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8";
+				BAZEL_COMPILE_TARGET_IDS = "@//watchOSApp/Test/UITests:watchOSAppUITests.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=watchsimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//watchOSApp/Test/UITests:watchOSAppUITests";
 				BAZEL_OUTPUTS_DSYM = (
@@ -12123,7 +12123,7 @@
 				);
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_watchos-watchos_x86_64-opt-STABLE-19/bin/watchOSApp/Test/UITests/watchOSAppUITests.xctest";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_watchos-watchos_x86_64-opt-STABLE-19/bin/watchOSApp/Test/UITests";
-				BAZEL_TARGET_ID = "//watchOSApp/Test/UITests:watchOSAppUITests.__internal__.__test_bundle applebin_watchos-watchos_x86_64-opt-STABLE-19";
+				BAZEL_TARGET_ID = "@//watchOSApp/Test/UITests:watchOSAppUITests.__internal__.__test_bundle applebin_watchos-watchos_x86_64-opt-STABLE-19";
 				"BAZEL_TARGET_ID[sdk=watchsimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGNING_ALLOWED = YES;
@@ -12153,7 +12153,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_COMPILE_TARGET_IDS = "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7";
+				BAZEL_COMPILE_TARGET_IDS = "@//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests";
 				BAZEL_OUTPUTS_DSYM = (
@@ -12170,7 +12170,7 @@
 				);
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTests.xctest";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Test/SwiftUnitTests";
-				BAZEL_TARGET_ID = "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests.__internal__.__test_bundle applebin_ios-ios_x86_64-opt-STABLE-15";
+				BAZEL_TARGET_ID = "@//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests.__internal__.__test_bundle applebin_ios-ios_x86_64-opt-STABLE-15";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_STYLE = Manual;
@@ -12206,13 +12206,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_COMPILE_TARGET_IDS = "//watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8";
+				BAZEL_COMPILE_TARGET_IDS = "@//watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=watchsimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests";
 				BAZEL_OUTPUTS_DSYM = "\"bazel-out/applebin_watchos-watchos_x86_64-opt-STABLE-19/bin/watchOSAppExtension/Test/UnitTests/watchOSAppExtensionUnitTests.xctest.dSYM\"";
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_watchos-watchos_x86_64-opt-STABLE-19/bin/watchOSAppExtension/Test/UnitTests/watchOSAppExtensionUnitTests.xctest";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_watchos-watchos_x86_64-opt-STABLE-19/bin/watchOSAppExtension/Test/UnitTests";
-				BAZEL_TARGET_ID = "//watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests.__internal__.__test_bundle applebin_watchos-watchos_x86_64-opt-STABLE-19";
+				BAZEL_TARGET_ID = "@//watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests.__internal__.__test_bundle applebin_watchos-watchos_x86_64-opt-STABLE-19";
 				"BAZEL_TARGET_ID[sdk=watchsimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_STYLE = Manual;
@@ -12253,8 +12253,8 @@
 				"BAZEL_OUTPUTS_PRODUCT[sdk=appletvos*]" = "bazel-out/applebin_tvos-tvos_arm64-dbg-STABLE-26/bin/Lib/LibFramework.tvOS.framework";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-25/bin/Lib";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=appletvos*]" = "bazel-out/applebin_tvos-tvos_arm64-dbg-STABLE-26/bin/Lib";
-				BAZEL_TARGET_ID = "//Lib:LibFramework.tvOS applebin_tvos-tvos_x86_64-dbg-STABLE-25";
-				"BAZEL_TARGET_ID[sdk=appletvos*]" = "//Lib:LibFramework.tvOS applebin_tvos-tvos_arm64-dbg-STABLE-26";
+				BAZEL_TARGET_ID = "@//Lib:LibFramework.tvOS applebin_tvos-tvos_x86_64-dbg-STABLE-25";
+				"BAZEL_TARGET_ID[sdk=appletvos*]" = "@//Lib:LibFramework.tvOS applebin_tvos-tvos_arm64-dbg-STABLE-26";
 				"BAZEL_TARGET_ID[sdk=appletvsimulator*]" = "$(BAZEL_TARGET_ID)";
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = LibFramework.tvOS;
@@ -12288,7 +12288,7 @@
 				);
 				BAZEL_LABEL = "@//CommandLine/CommandLineToolLib:lib_impl";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38/bin/CommandLine/CommandLineToolLib";
-				BAZEL_TARGET_ID = "//CommandLine/CommandLineToolLib:lib_impl macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38";
+				BAZEL_TARGET_ID = "@//CommandLine/CommandLineToolLib:lib_impl macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = lib_impl;
 				C_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38/bin/CommandLine/CommandLineToolLib/lib_impl.rules_xcodeproj.xcodeproj_bwb.c.compile.params";
@@ -12315,7 +12315,7 @@
 				);
 				BAZEL_LABEL = "@//CommandLine/CommandLineToolLib:private_lib";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38/bin/CommandLine/CommandLineToolLib";
-				BAZEL_TARGET_ID = "//CommandLine/CommandLineToolLib:private_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38";
+				BAZEL_TARGET_ID = "@//CommandLine/CommandLineToolLib:private_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = private_lib;
 				C_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38/bin/CommandLine/CommandLineToolLib/private_lib.rules_xcodeproj.xcodeproj_bwb.c.compile.params";
@@ -12342,8 +12342,8 @@
 				"BAZEL_OUTPUTS_PRODUCT[sdk=appletvos*]" = "bazel-out/applebin_tvos-tvos_arm64-opt-STABLE-28/bin/Lib/LibFramework.tvOS.framework";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_tvos-tvos_x86_64-opt-STABLE-27/bin/Lib";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=appletvos*]" = "bazel-out/applebin_tvos-tvos_arm64-opt-STABLE-28/bin/Lib";
-				BAZEL_TARGET_ID = "//Lib:LibFramework.tvOS applebin_tvos-tvos_x86_64-opt-STABLE-27";
-				"BAZEL_TARGET_ID[sdk=appletvos*]" = "//Lib:LibFramework.tvOS applebin_tvos-tvos_arm64-opt-STABLE-28";
+				BAZEL_TARGET_ID = "@//Lib:LibFramework.tvOS applebin_tvos-tvos_x86_64-opt-STABLE-27";
+				"BAZEL_TARGET_ID[sdk=appletvos*]" = "@//Lib:LibFramework.tvOS applebin_tvos-tvos_arm64-opt-STABLE-28";
 				"BAZEL_TARGET_ID[sdk=appletvsimulator*]" = "$(BAZEL_TARGET_ID)";
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = LibFramework.tvOS;
@@ -12369,13 +12369,13 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				BAZEL_COMPILE_TARGET_IDS = "//macOSApp/Source:macOSApp.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-30";
+				BAZEL_COMPILE_TARGET_IDS = "@//macOSApp/Source:macOSApp.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-30";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=macosx*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//macOSApp/Source:macOSApp";
 				BAZEL_OUTPUTS_DSYM = "\"bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-32/bin/macOSApp/Source/macOSApp.app.dSYM\"";
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-32/bin/macOSApp/Source/macOSApp.app";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-32/bin/macOSApp/Source";
-				BAZEL_TARGET_ID = "//macOSApp/Source:macOSApp applebin_macos-darwin_x86_64-opt-STABLE-32";
+				BAZEL_TARGET_ID = "@//macOSApp/Source:macOSApp applebin_macos-darwin_x86_64-opt-STABLE-32";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_STYLE = Manual;
@@ -12407,7 +12407,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_COMPILE_TARGET_IDS = "//tvOSApp/Test/UITests:tvOSAppUITests.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9";
+				BAZEL_COMPILE_TARGET_IDS = "@//tvOSApp/Test/UITests:tvOSAppUITests.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=appletvsimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//tvOSApp/Test/UITests:tvOSAppUITests";
 				BAZEL_OUTPUTS_DSYM = (
@@ -12418,7 +12418,7 @@
 				);
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_tvos-tvos_x86_64-opt-STABLE-27/bin/tvOSApp/Test/UITests/tvOSAppUITests.xctest";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_tvos-tvos_x86_64-opt-STABLE-27/bin/tvOSApp/Test/UITests";
-				BAZEL_TARGET_ID = "//tvOSApp/Test/UITests:tvOSAppUITests.__internal__.__test_bundle applebin_tvos-tvos_x86_64-opt-STABLE-27";
+				BAZEL_TARGET_ID = "@//tvOSApp/Test/UITests:tvOSAppUITests.__internal__.__test_bundle applebin_tvos-tvos_x86_64-opt-STABLE-27";
 				"BAZEL_TARGET_ID[sdk=appletvsimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGNING_ALLOWED = YES;
@@ -12450,7 +12450,7 @@
 				ARCHS = arm64;
 				BAZEL_LABEL = "@//CommandLine/CommandLineToolLib:lib_swift";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37/bin/CommandLine/CommandLineToolLib";
-				BAZEL_TARGET_ID = "//CommandLine/CommandLineToolLib:lib_swift macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37";
+				BAZEL_TARGET_ID = "@//CommandLine/CommandLineToolLib:lib_swift macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = lib_swift;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -12480,12 +12480,12 @@
 					"-Wno-macro-redefined",
 					"-D_FORTIFY_SOURCE=0",
 				);
-				BAZEL_COMPILE_TARGET_IDS = "//CommandLine/CommandLineTool:tool.library macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34";
+				BAZEL_COMPILE_TARGET_IDS = "@//CommandLine/CommandLineTool:tool.library macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=macosx*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//CommandLine/CommandLineTool:UniversalCommandLineTool";
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34/bin/CommandLine/CommandLineTool/tool.binary_codesigned";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34/bin/CommandLine/CommandLineTool";
-				BAZEL_TARGET_ID = "//CommandLine/CommandLineTool:tool.binary macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34";
+				BAZEL_TARGET_ID = "@//CommandLine/CommandLineTool:tool.binary macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CLANG_ENABLE_MODULES = YES;
@@ -12519,7 +12519,7 @@
 				);
 				BAZEL_LABEL = "@//CommandLine/CommandLineToolLib:lib_impl";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/CommandLine/CommandLineToolLib";
-				BAZEL_TARGET_ID = "//CommandLine/CommandLineToolLib:lib_impl macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33";
+				BAZEL_TARGET_ID = "@//CommandLine/CommandLineToolLib:lib_impl macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = lib_impl;
 				C_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/CommandLine/CommandLineToolLib/lib_impl.rules_xcodeproj.xcodeproj_bwb.c.compile.params";
@@ -12544,12 +12544,12 @@
 					"-Wno-macro-redefined",
 					"-D_FORTIFY_SOURCE=0",
 				);
-				BAZEL_COMPILE_TARGET_IDS = "//CommandLine/CommandLineTool:tool.library macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35";
+				BAZEL_COMPILE_TARGET_IDS = "@//CommandLine/CommandLineTool:tool.library macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=macosx*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//CommandLine/CommandLineTool:UniversalCommandLineTool";
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35/bin/CommandLine/CommandLineTool/tool.binary_codesigned";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35/bin/CommandLine/CommandLineTool";
-				BAZEL_TARGET_ID = "//CommandLine/CommandLineTool:tool.binary macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35";
+				BAZEL_TARGET_ID = "@//CommandLine/CommandLineTool:tool.binary macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CLANG_ENABLE_MODULES = YES;
@@ -12575,15 +12575,15 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				ARCHS = x86_64;
-				BAZEL_COMPILE_TARGET_IDS = "//iMessageApp:iMessageAppExtension.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7";
+				BAZEL_COMPILE_TARGET_IDS = "@//iMessageApp:iMessageAppExtension.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_HOST_LABEL_0 = "@//iMessageApp:iMessageApp";
-				BAZEL_HOST_TARGET_ID_0 = "//iMessageApp:iMessageApp applebin_ios-ios_x86_64-opt-STABLE-15";
+				BAZEL_HOST_TARGET_ID_0 = "@//iMessageApp:iMessageApp applebin_ios-ios_x86_64-opt-STABLE-15";
 				BAZEL_LABEL = "@//iMessageApp:iMessageAppExtension";
 				BAZEL_OUTPUTS_DSYM = "\"bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iMessageApp/iMessageAppExtension.appex.dSYM\"";
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iMessageApp/iMessageAppExtension.appex";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iMessageApp";
-				BAZEL_TARGET_ID = "//iMessageApp:iMessageAppExtension applebin_ios-ios_x86_64-opt-STABLE-15";
+				BAZEL_TARGET_ID = "@//iMessageApp:iMessageAppExtension applebin_ios-ios_x86_64-opt-STABLE-15";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_STYLE = Manual;
@@ -12618,8 +12618,8 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				"ARCHS[sdk=appletvos*]" = arm64;
-				BAZEL_COMPILE_TARGET_IDS = "//tvOSApp/Source:tvOSApp.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3";
-				"BAZEL_COMPILE_TARGET_IDS[sdk=appletvos*]" = "//tvOSApp/Source:tvOSApp.library tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-6";
+				BAZEL_COMPILE_TARGET_IDS = "@//tvOSApp/Source:tvOSApp.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3";
+				"BAZEL_COMPILE_TARGET_IDS[sdk=appletvos*]" = "@//tvOSApp/Source:tvOSApp.library tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-6";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=appletvsimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//tvOSApp/Source:tvOSApp";
 				BAZEL_OUTPUTS_DSYM = (
@@ -12636,8 +12636,8 @@
 				"BAZEL_OUTPUTS_PRODUCT[sdk=appletvos*]" = "bazel-out/applebin_tvos-tvos_arm64-dbg-STABLE-26/bin/tvOSApp/Source/tvOSApp.app";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-25/bin/tvOSApp/Source";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=appletvos*]" = "bazel-out/applebin_tvos-tvos_arm64-dbg-STABLE-26/bin/tvOSApp/Source";
-				BAZEL_TARGET_ID = "//tvOSApp/Source:tvOSApp applebin_tvos-tvos_x86_64-dbg-STABLE-25";
-				"BAZEL_TARGET_ID[sdk=appletvos*]" = "//tvOSApp/Source:tvOSApp applebin_tvos-tvos_arm64-dbg-STABLE-26";
+				BAZEL_TARGET_ID = "@//tvOSApp/Source:tvOSApp applebin_tvos-tvos_x86_64-dbg-STABLE-25";
+				"BAZEL_TARGET_ID[sdk=appletvos*]" = "@//tvOSApp/Source:tvOSApp applebin_tvos-tvos_arm64-dbg-STABLE-26";
 				"BAZEL_TARGET_ID[sdk=appletvsimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_STYLE = Manual;
@@ -12684,7 +12684,7 @@
 				);
 				BAZEL_LABEL = "@//CommandLine/CommandLineToolLib:private_lib";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineToolLib";
-				BAZEL_TARGET_ID = "//CommandLine/CommandLineToolLib:private_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36";
+				BAZEL_TARGET_ID = "@//CommandLine/CommandLineToolLib:private_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = private_lib;
 				C_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineToolLib/private_lib.rules_xcodeproj.xcodeproj_bwb.c.compile.params";
@@ -12704,8 +12704,8 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				ARCHS = x86_64;
 				"ARCHS[sdk=iphoneos*]" = arm64;
-				BAZEL_COMPILE_TARGET_IDS = "//UI:UI ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1";
-				"BAZEL_COMPILE_TARGET_IDS[sdk=iphoneos*]" = "//UI:UI ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4";
+				BAZEL_COMPILE_TARGET_IDS = "@//UI:UI ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1";
+				"BAZEL_COMPILE_TARGET_IDS[sdk=iphoneos*]" = "@//UI:UI ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//UI:UIFramework.iOS";
 				BAZEL_OUTPUTS_DSYM = (
@@ -12720,8 +12720,8 @@
 				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/applebin_ios-ios_arm64-dbg-STABLE-14/bin/UI/UIFramework.iOS.framework";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/UI";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/applebin_ios-ios_arm64-dbg-STABLE-14/bin/UI";
-				BAZEL_TARGET_ID = "//UI:UIFramework.iOS applebin_ios-ios_x86_64-dbg-STABLE-13";
-				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "//UI:UIFramework.iOS applebin_ios-ios_arm64-dbg-STABLE-14";
+				BAZEL_TARGET_ID = "@//UI:UIFramework.iOS applebin_ios-ios_x86_64-dbg-STABLE-13";
+				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "@//UI:UIFramework.iOS applebin_ios-ios_arm64-dbg-STABLE-14";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = UI;
@@ -12796,12 +12796,12 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				ARCHS = x86_64;
 				"ARCHS[sdk=iphoneos*]" = arm64;
-				BAZEL_COMPILE_TARGET_IDS = "//WidgetExtension:WidgetExtension.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7";
-				"BAZEL_COMPILE_TARGET_IDS[sdk=iphoneos*]" = "//WidgetExtension:WidgetExtension.library ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10";
+				BAZEL_COMPILE_TARGET_IDS = "@//WidgetExtension:WidgetExtension.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7";
+				"BAZEL_COMPILE_TARGET_IDS[sdk=iphoneos*]" = "@//WidgetExtension:WidgetExtension.library ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_HOST_LABEL_0 = "@//iOSApp/Source:iOSApp";
-				BAZEL_HOST_TARGET_ID_0 = "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-opt-STABLE-15";
-				"BAZEL_HOST_TARGET_ID_0[sdk=iphoneos*]" = "//iOSApp/Source:iOSApp applebin_ios-ios_arm64-opt-STABLE-16";
+				BAZEL_HOST_TARGET_ID_0 = "@//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-opt-STABLE-15";
+				"BAZEL_HOST_TARGET_ID_0[sdk=iphoneos*]" = "@//iOSApp/Source:iOSApp applebin_ios-ios_arm64-opt-STABLE-16";
 				BAZEL_LABEL = "@//WidgetExtension:WidgetExtension";
 				BAZEL_OUTPUTS_DSYM = "\"bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/WidgetExtension/WidgetExtension.appex.dSYM\"";
 				"BAZEL_OUTPUTS_DSYM[sdk=iphoneos*]" = "\"bazel-out/applebin_ios-ios_arm64-opt-STABLE-16/bin/WidgetExtension/WidgetExtension.appex.dSYM\"";
@@ -12809,8 +12809,8 @@
 				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/applebin_ios-ios_arm64-opt-STABLE-16/bin/WidgetExtension/WidgetExtension.appex";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/WidgetExtension";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/applebin_ios-ios_arm64-opt-STABLE-16/bin/WidgetExtension";
-				BAZEL_TARGET_ID = "//WidgetExtension:WidgetExtension applebin_ios-ios_x86_64-opt-STABLE-15";
-				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "//WidgetExtension:WidgetExtension applebin_ios-ios_arm64-opt-STABLE-16";
+				BAZEL_TARGET_ID = "@//WidgetExtension:WidgetExtension applebin_ios-ios_x86_64-opt-STABLE-15";
+				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "@//WidgetExtension:WidgetExtension applebin_ios-ios_arm64-opt-STABLE-16";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_STYLE = Manual;
@@ -12859,7 +12859,7 @@
 				ARCHS = arm64;
 				BAZEL_LABEL = "@//CommandLine/CommandLineToolLib:private_swift_lib";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34/bin/CommandLine/CommandLineToolLib";
-				BAZEL_TARGET_ID = "//CommandLine/CommandLineToolLib:private_swift_lib macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34";
+				BAZEL_TARGET_ID = "@//CommandLine/CommandLineToolLib:private_swift_lib macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = private_swift_lib;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -12886,13 +12886,13 @@
 					"-Wno-macro-redefined",
 					"-D_FORTIFY_SOURCE=0",
 				);
-				BAZEL_COMPILE_TARGET_IDS = "//Bundle:aplugin.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-29";
+				BAZEL_COMPILE_TARGET_IDS = "@//Bundle:aplugin.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-29";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=macosx*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//Bundle:Bundle";
 				BAZEL_OUTPUTS_DSYM = "\"bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-31/bin/Bundle/ABundle.aplugin.dSYM\"";
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-31/bin/Bundle/ABundle.aplugin";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-31/bin/Bundle";
-				BAZEL_TARGET_ID = "//Bundle:Bundle applebin_macos-darwin_x86_64-dbg-STABLE-31";
+				BAZEL_TARGET_ID = "@//Bundle:Bundle applebin_macos-darwin_x86_64-dbg-STABLE-31";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = aplugin.library;
@@ -12936,12 +12936,12 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				ARCHS = x86_64;
 				"ARCHS[sdk=watchos*]" = arm64_32;
-				BAZEL_COMPILE_TARGET_IDS = "//watchOSAppExtension:watchOSAppExtension.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8";
-				"BAZEL_COMPILE_TARGET_IDS[sdk=watchos*]" = "//watchOSAppExtension:watchOSAppExtension.library watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-opt-STABLE-11";
+				BAZEL_COMPILE_TARGET_IDS = "@//watchOSAppExtension:watchOSAppExtension.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8";
+				"BAZEL_COMPILE_TARGET_IDS[sdk=watchos*]" = "@//watchOSAppExtension:watchOSAppExtension.library watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-opt-STABLE-11";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=watchsimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_HOST_LABEL_0 = "@//watchOSApp:watchOSApp";
-				BAZEL_HOST_TARGET_ID_0 = "//watchOSApp:watchOSApp applebin_watchos-watchos_x86_64-opt-STABLE-23";
-				"BAZEL_HOST_TARGET_ID_0[sdk=watchos*]" = "//watchOSApp:watchOSApp applebin_watchos-watchos_arm64_32-opt-STABLE-24";
+				BAZEL_HOST_TARGET_ID_0 = "@//watchOSApp:watchOSApp applebin_watchos-watchos_x86_64-opt-STABLE-23";
+				"BAZEL_HOST_TARGET_ID_0[sdk=watchos*]" = "@//watchOSApp:watchOSApp applebin_watchos-watchos_arm64_32-opt-STABLE-24";
 				BAZEL_LABEL = "@//watchOSAppExtension:watchOSAppExtension";
 				BAZEL_OUTPUTS_DSYM = (
 					"\"bazel-out/applebin_watchos-watchos_x86_64-opt-STABLE-19/bin/Lib/LibFramework.watchOS.framework.dSYM\"",
@@ -12957,8 +12957,8 @@
 				"BAZEL_OUTPUTS_PRODUCT[sdk=watchos*]" = "bazel-out/applebin_watchos-watchos_arm64_32-opt-STABLE-20/bin/watchOSAppExtension/watchOSAppExtension.appex";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_watchos-watchos_x86_64-opt-STABLE-19/bin/watchOSAppExtension";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=watchos*]" = "bazel-out/applebin_watchos-watchos_arm64_32-opt-STABLE-20/bin/watchOSAppExtension";
-				BAZEL_TARGET_ID = "//watchOSAppExtension:watchOSAppExtension applebin_watchos-watchos_x86_64-opt-STABLE-19";
-				"BAZEL_TARGET_ID[sdk=watchos*]" = "//watchOSAppExtension:watchOSAppExtension applebin_watchos-watchos_arm64_32-opt-STABLE-20";
+				BAZEL_TARGET_ID = "@//watchOSAppExtension:watchOSAppExtension applebin_watchos-watchos_x86_64-opt-STABLE-19";
+				"BAZEL_TARGET_ID[sdk=watchos*]" = "@//watchOSAppExtension:watchOSAppExtension applebin_watchos-watchos_arm64_32-opt-STABLE-20";
 				"BAZEL_TARGET_ID[sdk=watchsimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_STYLE = Manual;
@@ -12997,7 +12997,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_COMPILE_TARGET_IDS = "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1";
+				BAZEL_COMPILE_TARGET_IDS = "@//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests";
 				BAZEL_OUTPUTS_DSYM = (
@@ -13014,7 +13014,7 @@
 				);
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTests.xctest";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Test/SwiftUnitTests";
-				BAZEL_TARGET_ID = "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-13";
+				BAZEL_TARGET_ID = "@//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-13";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_STYLE = Manual;
@@ -13056,8 +13056,8 @@
 				"BAZEL_OUTPUTS_PRODUCT[sdk=watchos*]" = "bazel-out/applebin_watchos-watchos_arm64_32-opt-STABLE-24/bin/watchOSApp/watchOSApp.app";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_watchos-watchos_x86_64-opt-STABLE-23/bin/watchOSApp";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=watchos*]" = "bazel-out/applebin_watchos-watchos_arm64_32-opt-STABLE-24/bin/watchOSApp";
-				BAZEL_TARGET_ID = "//watchOSApp:watchOSApp applebin_watchos-watchos_x86_64-opt-STABLE-23";
-				"BAZEL_TARGET_ID[sdk=watchos*]" = "//watchOSApp:watchOSApp applebin_watchos-watchos_arm64_32-opt-STABLE-24";
+				BAZEL_TARGET_ID = "@//watchOSApp:watchOSApp applebin_watchos-watchos_x86_64-opt-STABLE-23";
+				"BAZEL_TARGET_ID[sdk=watchos*]" = "@//watchOSApp:watchOSApp applebin_watchos-watchos_arm64_32-opt-STABLE-24";
 				"BAZEL_TARGET_ID[sdk=watchsimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_STYLE = Manual;
@@ -13085,7 +13085,7 @@
 				BAZEL_LABEL = "@//iMessageApp:iMessageApp";
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iMessageApp/iMessageApp.app";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iMessageApp";
-				BAZEL_TARGET_ID = "//iMessageApp:iMessageApp applebin_ios-ios_x86_64-opt-STABLE-15";
+				BAZEL_TARGET_ID = "@//iMessageApp:iMessageApp applebin_ios-ios_x86_64-opt-STABLE-15";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_STYLE = Manual;
@@ -13110,8 +13110,8 @@
 				ARCHS = x86_64;
 				"ARCHS[sdk=iphoneos*]" = arm64;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				BAZEL_COMPILE_TARGET_IDS = "//AppClip:AppClip.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7";
-				"BAZEL_COMPILE_TARGET_IDS[sdk=iphoneos*]" = "//AppClip:AppClip.library ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10";
+				BAZEL_COMPILE_TARGET_IDS = "@//AppClip:AppClip.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7";
+				"BAZEL_COMPILE_TARGET_IDS[sdk=iphoneos*]" = "@//AppClip:AppClip.library ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//AppClip:AppClip";
 				BAZEL_OUTPUTS_DSYM = "\"bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/AppClip/AppClip.app.dSYM\"";
@@ -13120,8 +13120,8 @@
 				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/applebin_ios-ios_arm64-opt-STABLE-16/bin/AppClip/AppClip.app";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/AppClip";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/applebin_ios-ios_arm64-opt-STABLE-16/bin/AppClip";
-				BAZEL_TARGET_ID = "//AppClip:AppClip applebin_ios-ios_x86_64-opt-STABLE-15";
-				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "//AppClip:AppClip applebin_ios-ios_arm64-opt-STABLE-16";
+				BAZEL_TARGET_ID = "@//AppClip:AppClip applebin_ios-ios_x86_64-opt-STABLE-15";
+				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "@//AppClip:AppClip applebin_ios-ios_arm64-opt-STABLE-16";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_ENTITLEMENTS = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-opt-STABLE-15/bin/AppClip/Entitlements.withbundleid.plist";
@@ -13166,7 +13166,7 @@
 				ARCHS = x86_64;
 				BAZEL_LABEL = "@//CommandLine/CommandLineToolLib:lib_swift";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/CommandLine/CommandLineToolLib";
-				BAZEL_TARGET_ID = "//CommandLine/CommandLineToolLib:lib_swift macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33";
+				BAZEL_TARGET_ID = "@//CommandLine/CommandLineToolLib:lib_swift macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = lib_swift;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -13190,8 +13190,8 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				ARCHS = x86_64;
 				"ARCHS[sdk=iphoneos*]" = arm64;
-				BAZEL_COMPILE_TARGET_IDS = "//UI:UI ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7";
-				"BAZEL_COMPILE_TARGET_IDS[sdk=iphoneos*]" = "//UI:UI ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10";
+				BAZEL_COMPILE_TARGET_IDS = "@//UI:UI ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7";
+				"BAZEL_COMPILE_TARGET_IDS[sdk=iphoneos*]" = "@//UI:UI ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//UI:UIFramework.iOS";
 				BAZEL_OUTPUTS_DSYM = (
@@ -13206,8 +13206,8 @@
 				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/applebin_ios-ios_arm64-opt-STABLE-16/bin/UI/UIFramework.iOS.framework";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/UI";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/applebin_ios-ios_arm64-opt-STABLE-16/bin/UI";
-				BAZEL_TARGET_ID = "//UI:UIFramework.iOS applebin_ios-ios_x86_64-opt-STABLE-15";
-				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "//UI:UIFramework.iOS applebin_ios-ios_arm64-opt-STABLE-16";
+				BAZEL_TARGET_ID = "@//UI:UIFramework.iOS applebin_ios-ios_x86_64-opt-STABLE-15";
+				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "@//UI:UIFramework.iOS applebin_ios-ios_arm64-opt-STABLE-16";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = UI;
@@ -13259,8 +13259,8 @@
 				"BAZEL_OUTPUTS_PRODUCT[sdk=watchos*]" = "bazel-out/applebin_watchos-watchos_arm64_32-dbg-STABLE-18/bin/Lib/dist/dynamic/Lib.framework";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-17/bin/Lib/dist/dynamic";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=watchos*]" = "bazel-out/applebin_watchos-watchos_arm64_32-dbg-STABLE-18/bin/Lib/dist/dynamic";
-				BAZEL_TARGET_ID = "//Lib/dist/dynamic:watchOS applebin_watchos-watchos_x86_64-dbg-STABLE-17";
-				"BAZEL_TARGET_ID[sdk=watchos*]" = "//Lib/dist/dynamic:watchOS applebin_watchos-watchos_arm64_32-dbg-STABLE-18";
+				BAZEL_TARGET_ID = "@//Lib/dist/dynamic:watchOS applebin_watchos-watchos_x86_64-dbg-STABLE-17";
+				"BAZEL_TARGET_ID[sdk=watchos*]" = "@//Lib/dist/dynamic:watchOS applebin_watchos-watchos_arm64_32-dbg-STABLE-18";
 				"BAZEL_TARGET_ID[sdk=watchsimulator*]" = "$(BAZEL_TARGET_ID)";
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = watchOS;
@@ -13292,7 +13292,7 @@
 					"-Wno-macro-redefined",
 					"-D_FORTIFY_SOURCE=0",
 				);
-				BAZEL_COMPILE_TARGET_IDS = "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1";
+				BAZEL_COMPILE_TARGET_IDS = "@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests";
 				BAZEL_OUTPUTS_DSYM = (
@@ -13309,7 +13309,7 @@
 				);
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests.xctest";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Test/ObjCUnitTests";
-				BAZEL_TARGET_ID = "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-13";
+				BAZEL_TARGET_ID = "@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-13";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CLANG_ENABLE_MODULES = YES;
@@ -13342,8 +13342,8 @@
 				ARCHS = x86_64;
 				"ARCHS[sdk=iphoneos*]" = arm64;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				BAZEL_COMPILE_TARGET_IDS = "//AppClip:AppClip.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1";
-				"BAZEL_COMPILE_TARGET_IDS[sdk=iphoneos*]" = "//AppClip:AppClip.library ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4";
+				BAZEL_COMPILE_TARGET_IDS = "@//AppClip:AppClip.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1";
+				"BAZEL_COMPILE_TARGET_IDS[sdk=iphoneos*]" = "@//AppClip:AppClip.library ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//AppClip:AppClip";
 				BAZEL_OUTPUTS_DSYM = "\"bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/AppClip/AppClip.app.dSYM\"";
@@ -13352,8 +13352,8 @@
 				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/applebin_ios-ios_arm64-dbg-STABLE-14/bin/AppClip/AppClip.app";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/AppClip";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/applebin_ios-ios_arm64-dbg-STABLE-14/bin/AppClip";
-				BAZEL_TARGET_ID = "//AppClip:AppClip applebin_ios-ios_x86_64-dbg-STABLE-13";
-				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "//AppClip:AppClip applebin_ios-ios_arm64-dbg-STABLE-14";
+				BAZEL_TARGET_ID = "@//AppClip:AppClip applebin_ios-ios_x86_64-dbg-STABLE-13";
+				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "@//AppClip:AppClip applebin_ios-ios_arm64-dbg-STABLE-14";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_ENTITLEMENTS = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/AppClip/Entitlements.withbundleid.plist";
@@ -13402,12 +13402,12 @@
 					"-Wno-macro-redefined",
 					"-D_FORTIFY_SOURCE=0",
 				);
-				BAZEL_COMPILE_TARGET_IDS = "//CommandLine/CommandLineTool:tool.library macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38";
+				BAZEL_COMPILE_TARGET_IDS = "@//CommandLine/CommandLineTool:tool.library macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=macosx*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//CommandLine/CommandLineTool:UniversalCommandLineTool";
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38/bin/CommandLine/CommandLineTool/tool.binary_codesigned";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38/bin/CommandLine/CommandLineTool";
-				BAZEL_TARGET_ID = "//CommandLine/CommandLineTool:tool.binary macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38";
+				BAZEL_TARGET_ID = "@//CommandLine/CommandLineTool:tool.binary macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CLANG_ENABLE_MODULES = YES;
@@ -13434,7 +13434,7 @@
 				ARCHS = x86_64;
 				BAZEL_LABEL = "@//CommandLine/CommandLineToolLib:lib_swift";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineToolLib";
-				BAZEL_TARGET_ID = "//CommandLine/CommandLineToolLib:lib_swift macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36";
+				BAZEL_TARGET_ID = "@//CommandLine/CommandLineToolLib:lib_swift macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = lib_swift;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -13459,7 +13459,7 @@
 				ARCHS = x86_64;
 				BAZEL_LABEL = "@//CommandLine/CommandLineToolLib:lib_swift";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38/bin/CommandLine/CommandLineToolLib";
-				BAZEL_TARGET_ID = "//CommandLine/CommandLineToolLib:lib_swift macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38";
+				BAZEL_TARGET_ID = "@//CommandLine/CommandLineToolLib:lib_swift macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = lib_swift;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -13491,7 +13491,7 @@
 				);
 				BAZEL_LABEL = "@//CommandLine/swift_c_module:c_lib";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37/bin/CommandLine/swift_c_module";
-				BAZEL_TARGET_ID = "//CommandLine/swift_c_module:c_lib macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37";
+				BAZEL_TARGET_ID = "@//CommandLine/swift_c_module:c_lib macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = c_lib;
 				C_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37/bin/CommandLine/swift_c_module/c_lib.rules_xcodeproj.xcodeproj_bwb.c.compile.params";
@@ -13518,8 +13518,8 @@
 				"BAZEL_OUTPUTS_PRODUCT[sdk=watchos*]" = "bazel-out/applebin_watchos-watchos_arm64_32-opt-STABLE-20/bin/Lib/LibFramework.watchOS.framework";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_watchos-watchos_x86_64-opt-STABLE-19/bin/Lib";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=watchos*]" = "bazel-out/applebin_watchos-watchos_arm64_32-opt-STABLE-20/bin/Lib";
-				BAZEL_TARGET_ID = "//Lib:LibFramework.watchOS applebin_watchos-watchos_x86_64-opt-STABLE-19";
-				"BAZEL_TARGET_ID[sdk=watchos*]" = "//Lib:LibFramework.watchOS applebin_watchos-watchos_arm64_32-opt-STABLE-20";
+				BAZEL_TARGET_ID = "@//Lib:LibFramework.watchOS applebin_watchos-watchos_x86_64-opt-STABLE-19";
+				"BAZEL_TARGET_ID[sdk=watchos*]" = "@//Lib:LibFramework.watchOS applebin_watchos-watchos_arm64_32-opt-STABLE-20";
 				"BAZEL_TARGET_ID[sdk=watchsimulator*]" = "$(BAZEL_TARGET_ID)";
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = LibFramework.watchOS;
@@ -13553,10 +13553,10 @@
 				"BAZEL_PACKAGE_BIN_DIR[sdk=appletvos*]" = "bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-opt-STABLE-12/bin/Lib";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=appletvsimulator*]" = "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9/bin/Lib";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/Lib";
-				BAZEL_TARGET_ID = "//Lib:Lib ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7";
-				"BAZEL_TARGET_ID[sdk=appletvos*]" = "//Lib:Lib tvos-arm64-min15.0-applebin_tvos-tvos_arm64-opt-STABLE-12";
-				"BAZEL_TARGET_ID[sdk=appletvsimulator*]" = "//Lib:Lib tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9";
-				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "//Lib:Lib ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10";
+				BAZEL_TARGET_ID = "@//Lib:Lib ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7";
+				"BAZEL_TARGET_ID[sdk=appletvos*]" = "@//Lib:Lib tvos-arm64-min15.0-applebin_tvos-tvos_arm64-opt-STABLE-12";
+				"BAZEL_TARGET_ID[sdk=appletvsimulator*]" = "@//Lib:Lib tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9";
+				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "@//Lib:Lib ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = Lib;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -13599,7 +13599,7 @@
 				);
 				BAZEL_LABEL = "@//CommandLine/CommandLineToolLib:private_lib";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35/bin/CommandLine/CommandLineToolLib";
-				BAZEL_TARGET_ID = "//CommandLine/CommandLineToolLib:private_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35";
+				BAZEL_TARGET_ID = "@//CommandLine/CommandLineToolLib:private_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = private_lib;
 				C_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35/bin/CommandLine/CommandLineToolLib/private_lib.rules_xcodeproj.xcodeproj_bwb.c.compile.params";
@@ -13619,7 +13619,7 @@
 				ARCHS = x86_64;
 				BAZEL_LABEL = "@//CommandLine/CommandLineToolLib:private_swift_lib";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35/bin/CommandLine/CommandLineToolLib";
-				BAZEL_TARGET_ID = "//CommandLine/CommandLineToolLib:private_swift_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35";
+				BAZEL_TARGET_ID = "@//CommandLine/CommandLineToolLib:private_swift_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = private_swift_lib;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -13639,7 +13639,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_COMPILE_TARGET_IDS = "//macOSApp/Test/UITests:macOSAppUITests.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-30";
+				BAZEL_COMPILE_TARGET_IDS = "@//macOSApp/Test/UITests:macOSAppUITests.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-30";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=macosx*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//macOSApp/Test/UITests:macOSAppUITests";
 				BAZEL_OUTPUTS_DSYM = (
@@ -13648,7 +13648,7 @@
 				);
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-32/bin/macOSApp/Test/UITests/macOSAppUITests.xctest";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-32/bin/macOSApp/Test/UITests";
-				BAZEL_TARGET_ID = "//macOSApp/Test/UITests:macOSAppUITests.__internal__.__test_bundle applebin_macos-darwin_x86_64-opt-STABLE-32";
+				BAZEL_TARGET_ID = "@//macOSApp/Test/UITests:macOSAppUITests.__internal__.__test_bundle applebin_macos-darwin_x86_64-opt-STABLE-32";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGNING_ALLOWED = YES;
@@ -13687,7 +13687,7 @@
 				);
 				BAZEL_LABEL = "@//iOSApp/Source/Utils:Utils";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Source/Utils";
-				BAZEL_TARGET_ID = "//iOSApp/Source/Utils:Utils ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7";
+				BAZEL_TARGET_ID = "@//iOSApp/Source/Utils:Utils ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = Utils;
 				C_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Source/Utils/Utils.rules_xcodeproj.xcodeproj_bwb.c.compile.params";
@@ -13707,7 +13707,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_COMPILE_TARGET_IDS = "//tvOSApp/Test/UnitTests:tvOSAppUnitTests.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9";
+				BAZEL_COMPILE_TARGET_IDS = "@//tvOSApp/Test/UnitTests:tvOSAppUnitTests.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=appletvsimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//tvOSApp/Test/UnitTests:tvOSAppUnitTests";
 				BAZEL_OUTPUTS_DSYM = (
@@ -13718,7 +13718,7 @@
 				);
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_tvos-tvos_x86_64-opt-STABLE-27/bin/tvOSApp/Test/UnitTests/tvOSAppUnitTests.xctest";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_tvos-tvos_x86_64-opt-STABLE-27/bin/tvOSApp/Test/UnitTests";
-				BAZEL_TARGET_ID = "//tvOSApp/Test/UnitTests:tvOSAppUnitTests.__internal__.__test_bundle applebin_tvos-tvos_x86_64-opt-STABLE-27";
+				BAZEL_TARGET_ID = "@//tvOSApp/Test/UnitTests:tvOSAppUnitTests.__internal__.__test_bundle applebin_tvos-tvos_x86_64-opt-STABLE-27";
 				"BAZEL_TARGET_ID[sdk=appletvsimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_STYLE = Manual;
@@ -13761,10 +13761,10 @@
 				"BAZEL_PACKAGE_BIN_DIR[sdk=appletvos*]" = "bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-6/bin/Lib";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=appletvsimulator*]" = "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/Lib";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/Lib";
-				BAZEL_TARGET_ID = "//Lib:Lib ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1";
-				"BAZEL_TARGET_ID[sdk=appletvos*]" = "//Lib:Lib tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-6";
-				"BAZEL_TARGET_ID[sdk=appletvsimulator*]" = "//Lib:Lib tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3";
-				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "//Lib:Lib ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4";
+				BAZEL_TARGET_ID = "@//Lib:Lib ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1";
+				"BAZEL_TARGET_ID[sdk=appletvos*]" = "@//Lib:Lib tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-6";
+				"BAZEL_TARGET_ID[sdk=appletvsimulator*]" = "@//Lib:Lib tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3";
+				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "@//Lib:Lib ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = Lib;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -13806,8 +13806,8 @@
 				"BAZEL_OUTPUTS_PRODUCT[sdk=watchos*]" = "bazel-out/applebin_watchos-watchos_arm64_32-dbg-STABLE-18/bin/Lib/LibFramework.watchOS.framework";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-17/bin/Lib";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=watchos*]" = "bazel-out/applebin_watchos-watchos_arm64_32-dbg-STABLE-18/bin/Lib";
-				BAZEL_TARGET_ID = "//Lib:LibFramework.watchOS applebin_watchos-watchos_x86_64-dbg-STABLE-17";
-				"BAZEL_TARGET_ID[sdk=watchos*]" = "//Lib:LibFramework.watchOS applebin_watchos-watchos_arm64_32-dbg-STABLE-18";
+				BAZEL_TARGET_ID = "@//Lib:LibFramework.watchOS applebin_watchos-watchos_x86_64-dbg-STABLE-17";
+				"BAZEL_TARGET_ID[sdk=watchos*]" = "@//Lib:LibFramework.watchOS applebin_watchos-watchos_arm64_32-dbg-STABLE-18";
 				"BAZEL_TARGET_ID[sdk=watchsimulator*]" = "$(BAZEL_TARGET_ID)";
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = LibFramework.watchOS;
@@ -13841,7 +13841,7 @@
 				);
 				BAZEL_LABEL = "@//CommandLine/CommandLineToolLib:private_lib";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/CommandLine/CommandLineToolLib";
-				BAZEL_TARGET_ID = "//CommandLine/CommandLineToolLib:private_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33";
+				BAZEL_TARGET_ID = "@//CommandLine/CommandLineToolLib:private_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = private_lib;
 				C_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/CommandLine/CommandLineToolLib/private_lib.rules_xcodeproj.xcodeproj_bwb.c.compile.params";
@@ -13859,7 +13859,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_COMPILE_TARGET_IDS = "//macOSApp/Test/UITests:macOSAppUITests.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-29";
+				BAZEL_COMPILE_TARGET_IDS = "@//macOSApp/Test/UITests:macOSAppUITests.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-29";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=macosx*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//macOSApp/Test/UITests:macOSAppUITests";
 				BAZEL_OUTPUTS_DSYM = (
@@ -13868,7 +13868,7 @@
 				);
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-31/bin/macOSApp/Test/UITests/macOSAppUITests.xctest";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-31/bin/macOSApp/Test/UITests";
-				BAZEL_TARGET_ID = "//macOSApp/Test/UITests:macOSAppUITests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-STABLE-31";
+				BAZEL_TARGET_ID = "@//macOSApp/Test/UITests:macOSAppUITests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-STABLE-31";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGNING_ALLOWED = YES;
@@ -13906,7 +13906,7 @@
 				);
 				BAZEL_LABEL = "@//CommandLine/CommandLineToolLib:private_lib";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37/bin/CommandLine/CommandLineToolLib";
-				BAZEL_TARGET_ID = "//CommandLine/CommandLineToolLib:private_lib macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37";
+				BAZEL_TARGET_ID = "@//CommandLine/CommandLineToolLib:private_lib macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = private_lib;
 				C_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37/bin/CommandLine/CommandLineToolLib/private_lib.rules_xcodeproj.xcodeproj_bwb.c.compile.params";
@@ -13926,7 +13926,7 @@
 				ARCHS = x86_64;
 				BAZEL_LABEL = "@//CommandLine/CommandLineToolLib:private_swift_lib";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/CommandLine/CommandLineToolLib";
-				BAZEL_TARGET_ID = "//CommandLine/CommandLineToolLib:private_swift_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33";
+				BAZEL_TARGET_ID = "@//CommandLine/CommandLineToolLib:private_swift_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = private_swift_lib;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -13947,15 +13947,15 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				ARCHS = x86_64;
-				BAZEL_COMPILE_TARGET_IDS = "//iMessageApp:iMessageAppExtension.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1";
+				BAZEL_COMPILE_TARGET_IDS = "@//iMessageApp:iMessageAppExtension.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_HOST_LABEL_0 = "@//iMessageApp:iMessageApp";
-				BAZEL_HOST_TARGET_ID_0 = "//iMessageApp:iMessageApp applebin_ios-ios_x86_64-dbg-STABLE-13";
+				BAZEL_HOST_TARGET_ID_0 = "@//iMessageApp:iMessageApp applebin_ios-ios_x86_64-dbg-STABLE-13";
 				BAZEL_LABEL = "@//iMessageApp:iMessageAppExtension";
 				BAZEL_OUTPUTS_DSYM = "\"bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iMessageApp/iMessageAppExtension.appex.dSYM\"";
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iMessageApp/iMessageAppExtension.appex";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iMessageApp";
-				BAZEL_TARGET_ID = "//iMessageApp:iMessageAppExtension applebin_ios-ios_x86_64-dbg-STABLE-13";
+				BAZEL_TARGET_ID = "@//iMessageApp:iMessageAppExtension applebin_ios-ios_x86_64-dbg-STABLE-13";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_STYLE = Manual;
@@ -13997,7 +13997,7 @@
 				);
 				BAZEL_LABEL = "@//iOSApp/Source/Utils:Utils";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/Utils";
-				BAZEL_TARGET_ID = "//iOSApp/Source/Utils:Utils ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1";
+				BAZEL_TARGET_ID = "@//iOSApp/Source/Utils:Utils ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = Utils;
 				C_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/Utils/Utils.rules_xcodeproj.xcodeproj_bwb.c.compile.params";
@@ -14026,7 +14026,7 @@
 				);
 				BAZEL_LABEL = "@//CommandLine/CommandLineToolLib:lib_impl";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineToolLib";
-				BAZEL_TARGET_ID = "//CommandLine/CommandLineToolLib:lib_impl macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36";
+				BAZEL_TARGET_ID = "@//CommandLine/CommandLineToolLib:lib_impl macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = lib_impl;
 				C_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineToolLib/lib_impl.rules_xcodeproj.xcodeproj_bwb.c.compile.params";
@@ -14053,7 +14053,7 @@
 				);
 				BAZEL_LABEL = "@//CommandLine/CommandLineToolLib:lib_impl";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34/bin/CommandLine/CommandLineToolLib";
-				BAZEL_TARGET_ID = "//CommandLine/CommandLineToolLib:lib_impl macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34";
+				BAZEL_TARGET_ID = "@//CommandLine/CommandLineToolLib:lib_impl macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = lib_impl;
 				C_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34/bin/CommandLine/CommandLineToolLib/lib_impl.rules_xcodeproj.xcodeproj_bwb.c.compile.params";
@@ -14073,8 +14073,8 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				ARCHS = x86_64;
 				"ARCHS[sdk=watchos*]" = arm64_32;
-				BAZEL_COMPILE_TARGET_IDS = "//UI:UI watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8";
-				"BAZEL_COMPILE_TARGET_IDS[sdk=watchos*]" = "//UI:UI watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-opt-STABLE-11";
+				BAZEL_COMPILE_TARGET_IDS = "@//UI:UI watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8";
+				"BAZEL_COMPILE_TARGET_IDS[sdk=watchos*]" = "@//UI:UI watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-opt-STABLE-11";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=watchsimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//UI:UIFramework.watchOS";
 				BAZEL_OUTPUTS_DSYM = (
@@ -14089,8 +14089,8 @@
 				"BAZEL_OUTPUTS_PRODUCT[sdk=watchos*]" = "bazel-out/applebin_watchos-watchos_arm64_32-opt-STABLE-20/bin/UI/UIFramework.watchOS.framework";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_watchos-watchos_x86_64-opt-STABLE-19/bin/UI";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=watchos*]" = "bazel-out/applebin_watchos-watchos_arm64_32-opt-STABLE-20/bin/UI";
-				BAZEL_TARGET_ID = "//UI:UIFramework.watchOS applebin_watchos-watchos_x86_64-opt-STABLE-19";
-				"BAZEL_TARGET_ID[sdk=watchos*]" = "//UI:UIFramework.watchOS applebin_watchos-watchos_arm64_32-opt-STABLE-20";
+				BAZEL_TARGET_ID = "@//UI:UIFramework.watchOS applebin_watchos-watchos_x86_64-opt-STABLE-19";
+				"BAZEL_TARGET_ID[sdk=watchos*]" = "@//UI:UIFramework.watchOS applebin_watchos-watchos_arm64_32-opt-STABLE-20";
 				"BAZEL_TARGET_ID[sdk=watchsimulator*]" = "$(BAZEL_TARGET_ID)";
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = UI;
@@ -14137,7 +14137,7 @@
 				BAZEL_LABEL = "@//iMessageApp:iMessageApp";
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iMessageApp/iMessageApp.app";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iMessageApp";
-				BAZEL_TARGET_ID = "//iMessageApp:iMessageApp applebin_ios-ios_x86_64-dbg-STABLE-13";
+				BAZEL_TARGET_ID = "@//iMessageApp:iMessageApp applebin_ios-ios_x86_64-dbg-STABLE-13";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_STYLE = Manual;
@@ -14160,13 +14160,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_COMPILE_TARGET_IDS = "//CommandLine/Tests:CommandLineLibSwiftTestsLib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36";
+				BAZEL_COMPILE_TARGET_IDS = "@//CommandLine/Tests:CommandLineLibSwiftTestsLib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=macosx*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//CommandLine/Tests:CommandLineToolTests";
 				BAZEL_OUTPUTS_DSYM = "\"bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-40/bin/CommandLine/Tests/CommandLineToolTests.xctest.dSYM\"";
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-40/bin/CommandLine/Tests/CommandLineToolTests.xctest";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-40/bin/CommandLine/Tests";
-				BAZEL_TARGET_ID = "//CommandLine/Tests:CommandLineToolTests.__internal__.__test_bundle applebin_macos-darwin_x86_64-opt-STABLE-40";
+				BAZEL_TARGET_ID = "@//CommandLine/Tests:CommandLineToolTests.__internal__.__test_bundle applebin_macos-darwin_x86_64-opt-STABLE-40";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_STYLE = Manual;
@@ -14209,8 +14209,8 @@
 				BAZEL_LABEL = "@//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswer";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer";
-				BAZEL_TARGET_ID = "//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswer ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7";
-				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswer ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10";
+				BAZEL_TARGET_ID = "@//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswer ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7";
+				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "@//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswer ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = MixedAnswer;
 				C_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.rules_xcodeproj.xcodeproj_bwb.c.compile.params";
@@ -14295,7 +14295,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_COMPILE_TARGET_IDS = "//watchOSApp/Test/UITests:watchOSAppUITests.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2";
+				BAZEL_COMPILE_TARGET_IDS = "@//watchOSApp/Test/UITests:watchOSAppUITests.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=watchsimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//watchOSApp/Test/UITests:watchOSAppUITests";
 				BAZEL_OUTPUTS_DSYM = (
@@ -14306,7 +14306,7 @@
 				);
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-17/bin/watchOSApp/Test/UITests/watchOSAppUITests.xctest";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-17/bin/watchOSApp/Test/UITests";
-				BAZEL_TARGET_ID = "//watchOSApp/Test/UITests:watchOSAppUITests.__internal__.__test_bundle applebin_watchos-watchos_x86_64-dbg-STABLE-17";
+				BAZEL_TARGET_ID = "@//watchOSApp/Test/UITests:watchOSAppUITests.__internal__.__test_bundle applebin_watchos-watchos_x86_64-dbg-STABLE-17";
 				"BAZEL_TARGET_ID[sdk=watchsimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGNING_ALLOWED = YES;
@@ -14373,7 +14373,7 @@
 				);
 				BAZEL_LABEL = "@//CommandLine/CommandLineToolLib:lib_impl";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37/bin/CommandLine/CommandLineToolLib";
-				BAZEL_TARGET_ID = "//CommandLine/CommandLineToolLib:lib_impl macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37";
+				BAZEL_TARGET_ID = "@//CommandLine/CommandLineToolLib:lib_impl macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = lib_impl;
 				C_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37/bin/CommandLine/CommandLineToolLib/lib_impl.rules_xcodeproj.xcodeproj_bwb.c.compile.params";
@@ -14393,12 +14393,12 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				ARCHS = x86_64;
 				"ARCHS[sdk=iphoneos*]" = arm64;
-				BAZEL_COMPILE_TARGET_IDS = "//WidgetExtension:WidgetExtension.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1";
-				"BAZEL_COMPILE_TARGET_IDS[sdk=iphoneos*]" = "//WidgetExtension:WidgetExtension.library ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4";
+				BAZEL_COMPILE_TARGET_IDS = "@//WidgetExtension:WidgetExtension.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1";
+				"BAZEL_COMPILE_TARGET_IDS[sdk=iphoneos*]" = "@//WidgetExtension:WidgetExtension.library ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_HOST_LABEL_0 = "@//iOSApp/Source:iOSApp";
-				BAZEL_HOST_TARGET_ID_0 = "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-dbg-STABLE-13";
-				"BAZEL_HOST_TARGET_ID_0[sdk=iphoneos*]" = "//iOSApp/Source:iOSApp applebin_ios-ios_arm64-dbg-STABLE-14";
+				BAZEL_HOST_TARGET_ID_0 = "@//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-dbg-STABLE-13";
+				"BAZEL_HOST_TARGET_ID_0[sdk=iphoneos*]" = "@//iOSApp/Source:iOSApp applebin_ios-ios_arm64-dbg-STABLE-14";
 				BAZEL_LABEL = "@//WidgetExtension:WidgetExtension";
 				BAZEL_OUTPUTS_DSYM = "\"bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/WidgetExtension/WidgetExtension.appex.dSYM\"";
 				"BAZEL_OUTPUTS_DSYM[sdk=iphoneos*]" = "\"bazel-out/applebin_ios-ios_arm64-dbg-STABLE-14/bin/WidgetExtension/WidgetExtension.appex.dSYM\"";
@@ -14406,8 +14406,8 @@
 				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/applebin_ios-ios_arm64-dbg-STABLE-14/bin/WidgetExtension/WidgetExtension.appex";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/WidgetExtension";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/applebin_ios-ios_arm64-dbg-STABLE-14/bin/WidgetExtension";
-				BAZEL_TARGET_ID = "//WidgetExtension:WidgetExtension applebin_ios-ios_x86_64-dbg-STABLE-13";
-				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "//WidgetExtension:WidgetExtension applebin_ios-ios_arm64-dbg-STABLE-14";
+				BAZEL_TARGET_ID = "@//WidgetExtension:WidgetExtension applebin_ios-ios_x86_64-dbg-STABLE-13";
+				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "@//WidgetExtension:WidgetExtension applebin_ios-ios_arm64-dbg-STABLE-14";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_STYLE = Manual;
@@ -14455,7 +14455,7 @@
 				ARCHS = arm64;
 				BAZEL_LABEL = "@//CommandLine/CommandLineToolLib:lib_swift";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34/bin/CommandLine/CommandLineToolLib";
-				BAZEL_TARGET_ID = "//CommandLine/CommandLineToolLib:lib_swift macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34";
+				BAZEL_TARGET_ID = "@//CommandLine/CommandLineToolLib:lib_swift macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = lib_swift;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -14488,8 +14488,8 @@
 				BAZEL_LABEL = "@//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswer";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer";
-				BAZEL_TARGET_ID = "//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswer ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1";
-				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswer ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4";
+				BAZEL_TARGET_ID = "@//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswer ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1";
+				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "@//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswer ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = MixedAnswer;
 				C_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.rules_xcodeproj.xcodeproj_bwb.c.compile.params";
@@ -14509,7 +14509,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_COMPILE_TARGET_IDS = "//tvOSApp/Test/UITests:tvOSAppUITests.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3";
+				BAZEL_COMPILE_TARGET_IDS = "@//tvOSApp/Test/UITests:tvOSAppUITests.library tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=appletvsimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//tvOSApp/Test/UITests:tvOSAppUITests";
 				BAZEL_OUTPUTS_DSYM = (
@@ -14520,7 +14520,7 @@
 				);
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-25/bin/tvOSApp/Test/UITests/tvOSAppUITests.xctest";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-25/bin/tvOSApp/Test/UITests";
-				BAZEL_TARGET_ID = "//tvOSApp/Test/UITests:tvOSAppUITests.__internal__.__test_bundle applebin_tvos-tvos_x86_64-dbg-STABLE-25";
+				BAZEL_TARGET_ID = "@//tvOSApp/Test/UITests:tvOSAppUITests.__internal__.__test_bundle applebin_tvos-tvos_x86_64-dbg-STABLE-25";
 				"BAZEL_TARGET_ID[sdk=appletvsimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGNING_ALLOWED = YES;
@@ -14558,7 +14558,7 @@
 				);
 				BAZEL_LABEL = "@//CommandLine/swift_c_module:c_lib";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35/bin/CommandLine/swift_c_module";
-				BAZEL_TARGET_ID = "//CommandLine/swift_c_module:c_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35";
+				BAZEL_TARGET_ID = "@//CommandLine/swift_c_module:c_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = c_lib;
 				C_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35/bin/CommandLine/swift_c_module/c_lib.rules_xcodeproj.xcodeproj_bwb.c.compile.params";
@@ -14578,7 +14578,7 @@
 				ARCHS = arm64;
 				BAZEL_LABEL = "@//CommandLine/CommandLineToolLib:private_swift_lib";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37/bin/CommandLine/CommandLineToolLib";
-				BAZEL_TARGET_ID = "//CommandLine/CommandLineToolLib:private_swift_lib macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37";
+				BAZEL_TARGET_ID = "@//CommandLine/CommandLineToolLib:private_swift_lib macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = private_swift_lib;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -14599,13 +14599,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = x86_64;
-				BAZEL_COMPILE_TARGET_IDS = "//CommandLine/Tests:CommandLineLibSwiftTestsLib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33";
+				BAZEL_COMPILE_TARGET_IDS = "@//CommandLine/Tests:CommandLineLibSwiftTestsLib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=macosx*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//CommandLine/Tests:CommandLineToolTests";
 				BAZEL_OUTPUTS_DSYM = "\"bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-39/bin/CommandLine/Tests/CommandLineToolTests.xctest.dSYM\"";
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-39/bin/CommandLine/Tests/CommandLineToolTests.xctest";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-39/bin/CommandLine/Tests";
-				BAZEL_TARGET_ID = "//CommandLine/Tests:CommandLineToolTests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-STABLE-39";
+				BAZEL_TARGET_ID = "@//CommandLine/Tests:CommandLineToolTests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-STABLE-39";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_STYLE = Manual;
@@ -14645,7 +14645,7 @@
 				);
 				BAZEL_LABEL = "@//CommandLine/CommandLineToolLib:lib_impl";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35/bin/CommandLine/CommandLineToolLib";
-				BAZEL_TARGET_ID = "//CommandLine/CommandLineToolLib:lib_impl macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35";
+				BAZEL_TARGET_ID = "@//CommandLine/CommandLineToolLib:lib_impl macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = lib_impl;
 				C_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35/bin/CommandLine/CommandLineToolLib/lib_impl.rules_xcodeproj.xcodeproj_bwb.c.compile.params";
@@ -14665,7 +14665,7 @@
 				ARCHS = x86_64;
 				BAZEL_LABEL = "@//CommandLine/CommandLineToolLib:private_swift_lib";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineToolLib";
-				BAZEL_TARGET_ID = "//CommandLine/CommandLineToolLib:private_swift_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36";
+				BAZEL_TARGET_ID = "@//CommandLine/CommandLineToolLib:private_swift_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = private_swift_lib;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -14687,13 +14687,13 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				BAZEL_COMPILE_TARGET_IDS = "//macOSApp/Source:macOSApp.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-29";
+				BAZEL_COMPILE_TARGET_IDS = "@//macOSApp/Source:macOSApp.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-29";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=macosx*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//macOSApp/Source:macOSApp";
 				BAZEL_OUTPUTS_DSYM = "\"bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-31/bin/macOSApp/Source/macOSApp.app.dSYM\"";
 				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-31/bin/macOSApp/Source/macOSApp.app";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-31/bin/macOSApp/Source";
-				BAZEL_TARGET_ID = "//macOSApp/Source:macOSApp applebin_macos-darwin_x86_64-dbg-STABLE-31";
+				BAZEL_TARGET_ID = "@//macOSApp/Source:macOSApp applebin_macos-darwin_x86_64-dbg-STABLE-31";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_STYLE = Manual;
@@ -14749,8 +14749,8 @@
 				"BAZEL_OUTPUTS_PRODUCT[sdk=watchos*]" = "bazel-out/applebin_watchos-watchos_arm64_32-dbg-STABLE-22/bin/watchOSApp/watchOSApp.app";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-21/bin/watchOSApp";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=watchos*]" = "bazel-out/applebin_watchos-watchos_arm64_32-dbg-STABLE-22/bin/watchOSApp";
-				BAZEL_TARGET_ID = "//watchOSApp:watchOSApp applebin_watchos-watchos_x86_64-dbg-STABLE-21";
-				"BAZEL_TARGET_ID[sdk=watchos*]" = "//watchOSApp:watchOSApp applebin_watchos-watchos_arm64_32-dbg-STABLE-22";
+				BAZEL_TARGET_ID = "@//watchOSApp:watchOSApp applebin_watchos-watchos_x86_64-dbg-STABLE-21";
+				"BAZEL_TARGET_ID[sdk=watchos*]" = "@//watchOSApp:watchOSApp applebin_watchos-watchos_arm64_32-dbg-STABLE-22";
 				"BAZEL_TARGET_ID[sdk=watchsimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_STYLE = Manual;
@@ -14783,7 +14783,7 @@
 				);
 				BAZEL_LABEL = "@//CommandLine/swift_c_module:c_lib";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/swift_c_module";
-				BAZEL_TARGET_ID = "//CommandLine/swift_c_module:c_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36";
+				BAZEL_TARGET_ID = "@//CommandLine/swift_c_module:c_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = c_lib;
 				C_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/swift_c_module/c_lib.rules_xcodeproj.xcodeproj_bwb.c.compile.params";
@@ -14810,7 +14810,7 @@
 				);
 				BAZEL_LABEL = "@//CommandLine/swift_c_module:c_lib";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38/bin/CommandLine/swift_c_module";
-				BAZEL_TARGET_ID = "//CommandLine/swift_c_module:c_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38";
+				BAZEL_TARGET_ID = "@//CommandLine/swift_c_module:c_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = c_lib;
 				C_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38/bin/CommandLine/swift_c_module/c_lib.rules_xcodeproj.xcodeproj_bwb.c.compile.params";
@@ -14832,8 +14832,8 @@
 				BAZEL_LABEL = "@//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswerLib_Swift";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer";
-				BAZEL_TARGET_ID = "//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswerLib_Swift ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1";
-				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswerLib_Swift ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4";
+				BAZEL_TARGET_ID = "@//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswerLib_Swift ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1";
+				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "@//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswerLib_Swift ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = MixedAnswerLib_Swift;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -14858,8 +14858,8 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				ARCHS = x86_64;
 				"ARCHS[sdk=appletvos*]" = arm64;
-				BAZEL_COMPILE_TARGET_IDS = "//UI:UI tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9";
-				"BAZEL_COMPILE_TARGET_IDS[sdk=appletvos*]" = "//UI:UI tvos-arm64-min15.0-applebin_tvos-tvos_arm64-opt-STABLE-12";
+				BAZEL_COMPILE_TARGET_IDS = "@//UI:UI tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9";
+				"BAZEL_COMPILE_TARGET_IDS[sdk=appletvos*]" = "@//UI:UI tvos-arm64-min15.0-applebin_tvos-tvos_arm64-opt-STABLE-12";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=appletvsimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//UI:UIFramework.tvOS";
 				BAZEL_OUTPUTS_DSYM = (
@@ -14874,8 +14874,8 @@
 				"BAZEL_OUTPUTS_PRODUCT[sdk=appletvos*]" = "bazel-out/applebin_tvos-tvos_arm64-opt-STABLE-28/bin/UI/UIFramework.tvOS.framework";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_tvos-tvos_x86_64-opt-STABLE-27/bin/UI";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=appletvos*]" = "bazel-out/applebin_tvos-tvos_arm64-opt-STABLE-28/bin/UI";
-				BAZEL_TARGET_ID = "//UI:UIFramework.tvOS applebin_tvos-tvos_x86_64-opt-STABLE-27";
-				"BAZEL_TARGET_ID[sdk=appletvos*]" = "//UI:UIFramework.tvOS applebin_tvos-tvos_arm64-opt-STABLE-28";
+				BAZEL_TARGET_ID = "@//UI:UIFramework.tvOS applebin_tvos-tvos_x86_64-opt-STABLE-27";
+				"BAZEL_TARGET_ID[sdk=appletvos*]" = "@//UI:UIFramework.tvOS applebin_tvos-tvos_arm64-opt-STABLE-28";
 				"BAZEL_TARGET_ID[sdk=appletvsimulator*]" = "$(BAZEL_TARGET_ID)";
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = UI;
@@ -14920,7 +14920,7 @@
 				ARCHS = x86_64;
 				BAZEL_LABEL = "@//CommandLine/CommandLineToolLib:private_swift_lib";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38/bin/CommandLine/CommandLineToolLib";
-				BAZEL_TARGET_ID = "//CommandLine/CommandLineToolLib:private_swift_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38";
+				BAZEL_TARGET_ID = "@//CommandLine/CommandLineToolLib:private_swift_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = private_swift_lib;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -14949,8 +14949,8 @@
 					"-Wno-macro-redefined",
 					"-D_FORTIFY_SOURCE=0",
 				);
-				BAZEL_COMPILE_TARGET_IDS = "//iOSApp/Source/CoreUtilsObjC:CoreUtilsObjC ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7";
-				"BAZEL_COMPILE_TARGET_IDS[sdk=iphoneos*]" = "//iOSApp/Source/CoreUtilsObjC:CoreUtilsObjC ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10";
+				BAZEL_COMPILE_TARGET_IDS = "@//iOSApp/Source/CoreUtilsObjC:CoreUtilsObjC ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7";
+				"BAZEL_COMPILE_TARGET_IDS[sdk=iphoneos*]" = "@//iOSApp/Source/CoreUtilsObjC:CoreUtilsObjC ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC";
 				BAZEL_OUTPUTS_DSYM = "\"bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.framework.dSYM\"";
@@ -14959,8 +14959,8 @@
 				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/applebin_ios-ios_arm64-opt-STABLE-16/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.framework";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Source/CoreUtilsObjC";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/applebin_ios-ios_arm64-opt-STABLE-16/bin/iOSApp/Source/CoreUtilsObjC";
-				BAZEL_TARGET_ID = "//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC applebin_ios-ios_x86_64-opt-STABLE-15";
-				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC applebin_ios-ios_arm64-opt-STABLE-16";
+				BAZEL_TARGET_ID = "@//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC applebin_ios-ios_x86_64-opt-STABLE-15";
+				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "@//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC applebin_ios-ios_arm64-opt-STABLE-16";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = CoreUtilsObjC;
@@ -15000,7 +15000,7 @@
 				);
 				BAZEL_LABEL = "@//CommandLine/swift_c_module:c_lib";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/CommandLine/swift_c_module";
-				BAZEL_TARGET_ID = "//CommandLine/swift_c_module:c_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33";
+				BAZEL_TARGET_ID = "@//CommandLine/swift_c_module:c_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = c_lib;
 				C_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/CommandLine/swift_c_module/c_lib.rules_xcodeproj.xcodeproj_bwb.c.compile.params";
@@ -15026,8 +15026,8 @@
 					"-Wno-macro-redefined",
 					"-D_FORTIFY_SOURCE=0",
 				);
-				BAZEL_COMPILE_TARGET_IDS = "//iOSApp/Source/CoreUtilsObjC:CoreUtilsObjC ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1";
-				"BAZEL_COMPILE_TARGET_IDS[sdk=iphoneos*]" = "//iOSApp/Source/CoreUtilsObjC:CoreUtilsObjC ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4";
+				BAZEL_COMPILE_TARGET_IDS = "@//iOSApp/Source/CoreUtilsObjC:CoreUtilsObjC ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1";
+				"BAZEL_COMPILE_TARGET_IDS[sdk=iphoneos*]" = "@//iOSApp/Source/CoreUtilsObjC:CoreUtilsObjC ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC";
 				BAZEL_OUTPUTS_DSYM = "\"bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.framework.dSYM\"";
@@ -15036,8 +15036,8 @@
 				"BAZEL_OUTPUTS_PRODUCT[sdk=iphoneos*]" = "bazel-out/applebin_ios-ios_arm64-dbg-STABLE-14/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.framework";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Source/CoreUtilsObjC";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/applebin_ios-ios_arm64-dbg-STABLE-14/bin/iOSApp/Source/CoreUtilsObjC";
-				BAZEL_TARGET_ID = "//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC applebin_ios-ios_x86_64-dbg-STABLE-13";
-				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC applebin_ios-ios_arm64-dbg-STABLE-14";
+				BAZEL_TARGET_ID = "@//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC applebin_ios-ios_x86_64-dbg-STABLE-13";
+				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "@//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC applebin_ios-ios_arm64-dbg-STABLE-14";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = CoreUtilsObjC;

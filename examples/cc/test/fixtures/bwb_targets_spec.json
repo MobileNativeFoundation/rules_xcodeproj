@@ -1,5 +1,5 @@
 [
-    "//lib/impl:lib_impl darwin_x86_64-dbg-STABLE-1",
+    "@//lib/impl:lib_impl darwin_x86_64-dbg-STABLE-1",
     {
         "1": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib/impl",
         "2": {
@@ -24,7 +24,7 @@
             "t": "com.apple.product-type.library.static"
         }
     },
-    "//lib2:lib_impl darwin_x86_64-dbg-STABLE-1",
+    "@//lib2:lib_impl darwin_x86_64-dbg-STABLE-1",
     {
         "1": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib2",
         "2": {
@@ -48,7 +48,7 @@
             "t": "com.apple.product-type.library.static"
         }
     },
-    "//lib:lib_defines darwin_x86_64-dbg-STABLE-1",
+    "@//lib:lib_defines darwin_x86_64-dbg-STABLE-1",
     {
         "1": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib",
         "2": {
@@ -59,7 +59,7 @@
         "8": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib/lib_defines.rules_xcodeproj.xcodeproj_bwb.c.compile.params",
         "c": "darwin_x86_64-dbg-STABLE-1",
         "d": [
-            "//lib/impl:lib_impl darwin_x86_64-dbg-STABLE-1"
+            "@//lib/impl:lib_impl darwin_x86_64-dbg-STABLE-1"
         ],
         "f": true,
         "i": {
@@ -75,7 +75,7 @@
             "t": "com.apple.product-type.library.static"
         }
     },
-    "//tool:tool darwin_x86_64-dbg-STABLE-1",
+    "@//tool:tool darwin_x86_64-dbg-STABLE-1",
     {
         "1": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/tool",
         "2": {
@@ -90,9 +90,9 @@
         },
         "c": "darwin_x86_64-dbg-STABLE-1",
         "d": [
-            "//lib:lib_defines darwin_x86_64-dbg-STABLE-1",
+            "@//lib:lib_defines darwin_x86_64-dbg-STABLE-1",
             "@examples_cc_external//:lib_impl darwin_x86_64-dbg-STABLE-1",
-            "//lib2:lib_impl darwin_x86_64-dbg-STABLE-1"
+            "@//lib2:lib_impl darwin_x86_64-dbg-STABLE-1"
         ],
         "f": true,
         "i": {
