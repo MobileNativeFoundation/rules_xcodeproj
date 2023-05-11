@@ -54,7 +54,7 @@ def calculate_replacement_label(*, id, replacement_labels):
     id_label = id.split(" ")[0]  # This assumes the id follows the creation pattern in `get_id`
 
     res = _longest_common_prefix(
-        [id_label] + ["%s" % label for label in replacement_labels],
+        [id_label] + [bazel_labels.normalize_label(label) for label in replacement_labels],
     )
     if not res:
         return None
