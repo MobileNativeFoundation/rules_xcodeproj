@@ -1,9 +1,9 @@
 {
     "B": "rules_xcodeproj",
     "E": [
-        "//tools/generators/legacy/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-STABLE-3",
+        "@//tools/generators/legacy/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-STABLE-3",
         {},
-        "//tools/generators/legacy/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-opt-STABLE-4",
+        "@//tools/generators/legacy/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-opt-STABLE-4",
         {}
     ],
     "R": "//test/fixtures/generator:xcodeproj_bwx",
