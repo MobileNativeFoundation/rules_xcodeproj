@@ -1490,23 +1490,19 @@ configurations: {}""".format(", ".join(xcode_configurations)))
         transitive = [info.replacement_labels for info in infos],
     ).to_list()
 
-    # Finds ids associated with multiple labels
-    multiple_replacement_labels = {
-        r.id: [x.label for x in replacement_labels_infos if x.id == r.id]  # all labels associated with this id
-        for r in replacement_labels_infos
-        if len([s.id for s in replacement_labels_infos if s.id == r.id]) > 1  # Check to only consider ids associated with multiple labels
-    }
-
-    # Ensures the id <=> label relationship is 1-1
-    replacement_labels = {}
+    raw_replacement_labels = {}
     for r in replacement_labels_infos:
-        if r.id in multiple_replacement_labels:
-            replacement_labels[r.id] = calculate_replacement_label(
-                id = r.id,
-                replacement_labels = multiple_replacement_labels[r.id],
-            )
+        raw_replacement_labels.setdefault(r.id, []).append(r.label)
+
+    replacement_labels = {}
+    for id, labels in raw_replacement_labels.items():
+        if len(labels) > 1:
+            replacement_labels[id] = calculate_replacement_label(
+                 id = id,
+                 replacement_labels = labels,
+             )
         else:
-            replacement_labels[r.id] = r.label
+            replacement_labels[id] = labels[0]
 
     (
         targets,
