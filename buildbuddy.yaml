@@ -55,7 +55,7 @@ x_templates:
     - &set_release_archive_override "--output_base=setup-bazel-output-base run --config=workflows @rules_xcodeproj//tools:set_release_archive_override"
     - &generate_integration "--output_base=bazel-output-base run --config=workflows --config=fixtures //test/fixtures:update"
     - &validate_integration "--output_base=bazel-output-base run --config=workflows --config=fixtures //test/fixtures:validate"
-    - &build_all "--output_base=bazel-output-base build --config=workflows --noexperimental_enable_bzlmod //..."
+    - &build_all "--output_base=bazel-output-base build --config=workflows --config=fixtures --noexperimental_enable_bzlmod //..."
     - &test_all "--output_base=bazel-output-base test --config=workflows --noexperimental_enable_bzlmod //..."
     - &bazel_5_test_all "--output_base=bazel-output-base test --config=workflows --noexperimental_enable_bzlmod //..."
     - &bzlmod_generate_integration "--output_base=bazel-output-base run --config=workflows --config=fixtures //test/fixtures:update"
@@ -132,6 +132,14 @@ actions:
       - *bzlmod_build_all
 
   - name: Integration Test - "examples/integration"
+    <<: *arm64
+    <<: *action_base
+    <<: *normal_resources
+    <<: *examples_integration_workspace
+    bazel_commands:
+      - *validate_integration
+      - *build_all
+  - name: Integration Test - "examples/integration" - Bzlmod
     <<: *arm64
     <<: *action_base
     <<: *normal_resources
