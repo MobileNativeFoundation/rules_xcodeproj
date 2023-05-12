@@ -137,6 +137,14 @@ actions:
     <<: *normal_resources
     <<: *examples_integration_workspace
     bazel_commands:
+      - *validate_integration
+      - *build_all
+  - name: Integration Test - "examples/integration" - Bzlmod
+    <<: *arm64
+    <<: *action_base
+    <<: *normal_resources
+    <<: *examples_integration_workspace
+    bazel_commands:
       - *bzlmod_generate_integration
       - *bzlmod_build_all
   - name: Integration Test - "examples/integration" - Bazel 5
