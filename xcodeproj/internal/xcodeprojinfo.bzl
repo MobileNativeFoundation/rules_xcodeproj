@@ -97,27 +97,22 @@ def _get_skip_type(*, ctx, target):
         target: The `Target` to check.
 
     Returns:
-        A `tuple` with two elements:
-
-        -   A `bool` indicating if `target` should be skipped for target generation.
-        -   The `skip_type` for this target.
+        A `skip_type` if the target should be skipped, otherwise `None`.
     """
     if ctx.rule.kind in _BUILD_TEST_RULES:
-        return (True, skip_type.apple_build_test)
+        return skip_type.apple_build_test
 
     if ctx.rule.kind in _TEST_SUITE_RULES:
-        return (True, skip_type.test_suite)
+        return skip_type.test_suite
 
     if AppleBinaryInfo in target and not hasattr(ctx.rule.attr, "deps"):
-        return (True, skip_type.apple_binary_no_deps)
+        return skip_type.apple_binary_no_deps
 
-    return (
-        targets.is_test_bundle(
-            target = target,
-            deps = getattr(ctx.rule.attr, "deps", None),
-        ),
-        skip_type.apple_test_bundle,
+    is_test_bundle = targets.is_test_bundle(
+        target = target,
+        deps = getattr(ctx.rule.attr, "deps", None),
     )
+    return skip_type.apple_test_bundle if is_test_bundle else None
 
 def _target_info_fields(
         *,
@@ -589,12 +584,12 @@ def create_xcodeprojinfo(*, ctx, build_mode, target, attrs, transitive_infos):
         target = target,
     )
 
-    should_skip, skip_type = _get_skip_type(ctx = ctx, target = target)
-    if should_skip:
+    target_skip_type = _get_skip_type(ctx = ctx, target = target)
+    if target_skip_type:
         info_fields = _skip_target(
             ctx = ctx,
             target = target,
-            target_skip_type = skip_type,
+            target_skip_type = target_skip_type,
             deps = [
                 dep
                 for attr in automatic_target_info.deps
