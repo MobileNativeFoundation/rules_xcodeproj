@@ -784,37 +784,6 @@
             "t": "com.apple.product-type.library.static"
         }
     },
-    "//CommandLine/CommandLineToolLib:lib_impl macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36",
-    {
-        "1": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineToolLib",
-        "2": {
-            "a": "x86_64",
-            "m": "11.0",
-            "v": "macosx"
-        },
-        "8": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineToolLib/lib_impl.rules_xcodeproj.c.compile.params",
-        "b": {
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym"
-        },
-        "c": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36",
-        "f": true,
-        "i": {
-            "s": [
-                "CommandLine/CommandLineToolLib/lib.m",
-                "CommandLine/CommandLineToolLib/private.h"
-            ]
-        },
-        "l": "//CommandLine/CommandLineToolLib:lib_impl",
-        "n": "lib_impl",
-        "p": {
-            "n": "lib_impl",
-            "p": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineToolLib/liblib_impl.a",
-            "t": "com.apple.product-type.library.static"
-        },
-        "x": [
-            "AppStore"
-        ]
-    },
     "//CommandLine/CommandLineToolLib:lib_impl macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38",
     {
         "1": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38/bin/CommandLine/CommandLineToolLib",
@@ -840,6 +809,37 @@
         "p": {
             "n": "lib_impl",
             "p": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38/bin/CommandLine/CommandLineToolLib/liblib_impl.a",
+            "t": "com.apple.product-type.library.static"
+        },
+        "x": [
+            "AppStore"
+        ]
+    },
+    "//CommandLine/CommandLineToolLib:lib_impl macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36",
+    {
+        "1": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineToolLib",
+        "2": {
+            "a": "x86_64",
+            "m": "11.0",
+            "v": "macosx"
+        },
+        "8": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineToolLib/lib_impl.rules_xcodeproj.c.compile.params",
+        "b": {
+            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym"
+        },
+        "c": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36",
+        "f": true,
+        "i": {
+            "s": [
+                "CommandLine/CommandLineToolLib/lib.m",
+                "CommandLine/CommandLineToolLib/private.h"
+            ]
+        },
+        "l": "//CommandLine/CommandLineToolLib:lib_impl",
+        "n": "lib_impl",
+        "p": {
+            "n": "lib_impl",
+            "p": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineToolLib/liblib_impl.a",
             "t": "com.apple.product-type.library.static"
         },
         "x": [
@@ -1022,53 +1022,6 @@
             "t": "com.apple.product-type.library.static"
         }
     },
-    "//CommandLine/CommandLineToolLib:lib_swift macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36",
-    {
-        "0": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineToolLib/lib_swift.rules_xcodeproj.swift.compile.params",
-        "1": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineToolLib",
-        "2": {
-            "a": "x86_64",
-            "m": "11.0",
-            "v": "macosx"
-        },
-        "b": {
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "PRODUCT_MODULE_NAME": "LibSwift",
-            "SWIFT_COMPILATION_MODE": "wholemodule",
-            "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineToolLib",
-            "SWIFT_OBJC_INTERFACE_HEADER_NAME": "private/LibSwift-Swift.h",
-            "SWIFT_OPTIMIZATION_LEVEL": "-O"
-        },
-        "c": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36",
-        "d": [
-            "//CommandLine/swift_c_module:c_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36",
-            "//CommandLine/CommandLineToolLib:lib_impl macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36",
-            "//CommandLine/CommandLineToolLib:private_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36",
-            "//CommandLine/CommandLineToolLib:private_swift_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36"
-        ],
-        "i": {
-            "s": [
-                "CommandLine/CommandLineToolLib/lib.swift"
-            ]
-        },
-        "l": "//CommandLine/CommandLineToolLib:lib_swift",
-        "m": true,
-        "n": "lib_swift",
-        "o": {
-            "s": {
-                "h": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineToolLib/private/LibSwift-Swift.h",
-                "m": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineToolLib/LibSwift.swiftmodule"
-            }
-        },
-        "p": {
-            "n": "lib_swift",
-            "p": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineToolLib/liblib_swift.a",
-            "t": "com.apple.product-type.library.static"
-        },
-        "x": [
-            "AppStore"
-        ]
-    },
     "//CommandLine/CommandLineToolLib:lib_swift macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38",
     {
         "0": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38/bin/CommandLine/CommandLineToolLib/lib_swift.rules_xcodeproj.swift.compile.params",
@@ -1110,6 +1063,53 @@
         "p": {
             "n": "lib_swift",
             "p": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38/bin/CommandLine/CommandLineToolLib/liblib_swift.a",
+            "t": "com.apple.product-type.library.static"
+        },
+        "x": [
+            "AppStore"
+        ]
+    },
+    "//CommandLine/CommandLineToolLib:lib_swift macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36",
+    {
+        "0": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineToolLib/lib_swift.rules_xcodeproj.swift.compile.params",
+        "1": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineToolLib",
+        "2": {
+            "a": "x86_64",
+            "m": "11.0",
+            "v": "macosx"
+        },
+        "b": {
+            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
+            "PRODUCT_MODULE_NAME": "LibSwift",
+            "SWIFT_COMPILATION_MODE": "wholemodule",
+            "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineToolLib",
+            "SWIFT_OBJC_INTERFACE_HEADER_NAME": "private/LibSwift-Swift.h",
+            "SWIFT_OPTIMIZATION_LEVEL": "-O"
+        },
+        "c": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36",
+        "d": [
+            "//CommandLine/swift_c_module:c_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36",
+            "//CommandLine/CommandLineToolLib:lib_impl macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36",
+            "//CommandLine/CommandLineToolLib:private_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36",
+            "//CommandLine/CommandLineToolLib:private_swift_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36"
+        ],
+        "i": {
+            "s": [
+                "CommandLine/CommandLineToolLib/lib.swift"
+            ]
+        },
+        "l": "//CommandLine/CommandLineToolLib:lib_swift",
+        "m": true,
+        "n": "lib_swift",
+        "o": {
+            "s": {
+                "h": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineToolLib/private/LibSwift-Swift.h",
+                "m": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineToolLib/LibSwift.swiftmodule"
+            }
+        },
+        "p": {
+            "n": "lib_swift",
+            "p": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineToolLib/liblib_swift.a",
             "t": "com.apple.product-type.library.static"
         },
         "x": [
@@ -1227,36 +1227,6 @@
             "t": "com.apple.product-type.library.static"
         }
     },
-    "//CommandLine/CommandLineToolLib:private_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36",
-    {
-        "1": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineToolLib",
-        "2": {
-            "a": "x86_64",
-            "m": "11.0",
-            "v": "macosx"
-        },
-        "8": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineToolLib/private_lib.rules_xcodeproj.c.compile.params",
-        "b": {
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym"
-        },
-        "c": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36",
-        "f": true,
-        "i": {
-            "s": [
-                "CommandLine/CommandLineToolLib/private_lib.c"
-            ]
-        },
-        "l": "//CommandLine/CommandLineToolLib:private_lib",
-        "n": "private_lib",
-        "p": {
-            "n": "private_lib",
-            "p": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineToolLib/libprivate_lib.a",
-            "t": "com.apple.product-type.library.static"
-        },
-        "x": [
-            "AppStore"
-        ]
-    },
     "//CommandLine/CommandLineToolLib:private_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38",
     {
         "1": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38/bin/CommandLine/CommandLineToolLib",
@@ -1281,6 +1251,36 @@
         "p": {
             "n": "private_lib",
             "p": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38/bin/CommandLine/CommandLineToolLib/libprivate_lib.a",
+            "t": "com.apple.product-type.library.static"
+        },
+        "x": [
+            "AppStore"
+        ]
+    },
+    "//CommandLine/CommandLineToolLib:private_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36",
+    {
+        "1": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineToolLib",
+        "2": {
+            "a": "x86_64",
+            "m": "11.0",
+            "v": "macosx"
+        },
+        "8": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineToolLib/private_lib.rules_xcodeproj.c.compile.params",
+        "b": {
+            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym"
+        },
+        "c": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36",
+        "f": true,
+        "i": {
+            "s": [
+                "CommandLine/CommandLineToolLib/private_lib.c"
+            ]
+        },
+        "l": "//CommandLine/CommandLineToolLib:private_lib",
+        "n": "private_lib",
+        "p": {
+            "n": "private_lib",
+            "p": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineToolLib/libprivate_lib.a",
             "t": "com.apple.product-type.library.static"
         },
         "x": [
@@ -1423,43 +1423,6 @@
             "t": "com.apple.product-type.library.static"
         }
     },
-    "//CommandLine/CommandLineToolLib:private_swift_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36",
-    {
-        "0": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineToolLib/private_swift_lib.rules_xcodeproj.swift.compile.params",
-        "1": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineToolLib",
-        "2": {
-            "a": "x86_64",
-            "m": "11.0",
-            "v": "macosx"
-        },
-        "b": {
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "PRODUCT_MODULE_NAME": "_SwiftLib",
-            "SWIFT_COMPILATION_MODE": "wholemodule",
-            "SWIFT_OPTIMIZATION_LEVEL": "-O"
-        },
-        "c": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36",
-        "i": {
-            "s": [
-                "CommandLine/CommandLineToolLib/private_lib.swift"
-            ]
-        },
-        "l": "//CommandLine/CommandLineToolLib:private_swift_lib",
-        "n": "private_swift_lib",
-        "o": {
-            "s": {
-                "m": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineToolLib/_SwiftLib.swiftmodule"
-            }
-        },
-        "p": {
-            "n": "private_swift_lib",
-            "p": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineToolLib/libprivate_swift_lib.a",
-            "t": "com.apple.product-type.library.static"
-        },
-        "x": [
-            "AppStore"
-        ]
-    },
     "//CommandLine/CommandLineToolLib:private_swift_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38",
     {
         "0": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38/bin/CommandLine/CommandLineToolLib/private_swift_lib.rules_xcodeproj.swift.compile.params",
@@ -1491,6 +1454,43 @@
         "p": {
             "n": "private_swift_lib",
             "p": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38/bin/CommandLine/CommandLineToolLib/libprivate_swift_lib.a",
+            "t": "com.apple.product-type.library.static"
+        },
+        "x": [
+            "AppStore"
+        ]
+    },
+    "//CommandLine/CommandLineToolLib:private_swift_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36",
+    {
+        "0": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineToolLib/private_swift_lib.rules_xcodeproj.swift.compile.params",
+        "1": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineToolLib",
+        "2": {
+            "a": "x86_64",
+            "m": "11.0",
+            "v": "macosx"
+        },
+        "b": {
+            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
+            "PRODUCT_MODULE_NAME": "_SwiftLib",
+            "SWIFT_COMPILATION_MODE": "wholemodule",
+            "SWIFT_OPTIMIZATION_LEVEL": "-O"
+        },
+        "c": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36",
+        "i": {
+            "s": [
+                "CommandLine/CommandLineToolLib/private_lib.swift"
+            ]
+        },
+        "l": "//CommandLine/CommandLineToolLib:private_swift_lib",
+        "n": "private_swift_lib",
+        "o": {
+            "s": {
+                "m": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineToolLib/_SwiftLib.swiftmodule"
+            }
+        },
+        "p": {
+            "n": "private_swift_lib",
+            "p": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineToolLib/libprivate_swift_lib.a",
             "t": "com.apple.product-type.library.static"
         },
         "x": [
@@ -1724,36 +1724,6 @@
             "t": "com.apple.product-type.library.static"
         }
     },
-    "//CommandLine/swift_c_module:c_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36",
-    {
-        "1": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/swift_c_module",
-        "2": {
-            "a": "x86_64",
-            "m": "11.0",
-            "v": "macosx"
-        },
-        "8": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/swift_c_module/c_lib.rules_xcodeproj.c.compile.params",
-        "b": {
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym"
-        },
-        "c": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36",
-        "f": true,
-        "i": {
-            "s": [
-                "CommandLine/swift_c_module/c_lib.c"
-            ]
-        },
-        "l": "//CommandLine/swift_c_module:c_lib",
-        "n": "c_lib",
-        "p": {
-            "n": "c_lib",
-            "p": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/swift_c_module/libc_lib.a",
-            "t": "com.apple.product-type.library.static"
-        },
-        "x": [
-            "AppStore"
-        ]
-    },
     "//CommandLine/swift_c_module:c_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38",
     {
         "1": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38/bin/CommandLine/swift_c_module",
@@ -1778,6 +1748,36 @@
         "p": {
             "n": "c_lib",
             "p": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38/bin/CommandLine/swift_c_module/libc_lib.a",
+            "t": "com.apple.product-type.library.static"
+        },
+        "x": [
+            "AppStore"
+        ]
+    },
+    "//CommandLine/swift_c_module:c_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36",
+    {
+        "1": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/swift_c_module",
+        "2": {
+            "a": "x86_64",
+            "m": "11.0",
+            "v": "macosx"
+        },
+        "8": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/swift_c_module/c_lib.rules_xcodeproj.c.compile.params",
+        "b": {
+            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym"
+        },
+        "c": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36",
+        "f": true,
+        "i": {
+            "s": [
+                "CommandLine/swift_c_module/c_lib.c"
+            ]
+        },
+        "l": "//CommandLine/swift_c_module:c_lib",
+        "n": "c_lib",
+        "p": {
+            "n": "c_lib",
+            "p": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/swift_c_module/libc_lib.a",
             "t": "com.apple.product-type.library.static"
         },
         "x": [
