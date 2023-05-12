@@ -235,7 +235,7 @@ def _skip_target(
 
     Args:
         ctx: The aspect context.
-        skip_type: The `skip_type` for this `target` (see `_get_skip_type`).
+        target_skip_type: The `skip_type` for this `target` (see `_get_skip_type`).
         target: The `Target` to skip.
         deps: `Target`s collected from `ctx.attr.deps`.
         deps_attrs: A sequence of attribute names to collect `Target`s from for
