@@ -1562,7 +1562,7 @@ configurations: {}""".format(", ".join(xcode_configurations)))
     target_ids_list = write_target_ids_list(
         actions = actions,
         name = name,
-        target_dtos = target_dtos,
+        target_ids = target_dtos.keys(),
     )
 
     extension_infoplists = [
