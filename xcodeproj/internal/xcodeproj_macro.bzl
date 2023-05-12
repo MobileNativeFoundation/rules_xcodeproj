@@ -7,6 +7,11 @@ load(":top_level_target.bzl", "top_level_target")
 load(":xcode_schemes.bzl", "focus_schemes", "unfocus_schemes")
 load(":xcodeproj_runner.bzl", "xcodeproj_runner")
 
+def _normalize_build_setting(flag):
+    if flag.startswith("//command_line_option:"):
+        return flag
+    return bazel_labels.normalize_string(flag)
+
 def xcodeproj(
         *,
         name,
@@ -386,6 +391,7 @@ alphabetically ("{default}").
             )
         schemes_json = json.encode(schemes)
 
+    normalized_xcode_configurations = {}
     xcode_configuration_inverse_map = {}
     xcode_configuration_flags = None
     for configuration, flags in xcode_configurations.items():
@@ -394,6 +400,15 @@ alphabetically ("{default}").
 All values in `xcode_configurations` must be transition settings dictionaries.
 Please refer to https://bazel.build/extending/config#defining) on how to them.
 """)
+
+        # Make sure Starlark build settings work with bzlmod (need to resolve
+        # the labels before it reaches the generated BUILD file)
+        flags = {
+            _normalize_build_setting(flag): value
+            for flag, value in flags.items()
+        }
+        normalized_xcode_configurations[configuration] = flags
+
         keys = sorted(flags.keys())
         if xcode_configuration_flags == None:
             xcode_configuration_flags = keys
@@ -420,7 +435,7 @@ Please refer to https://bazel.build/extending/config#defining) on how to them.
         configuration = configurations[0]
         xcode_configuration_map[configuration] = configurations
         dedupped_xcode_configurations[configuration] = (
-            xcode_configurations[configuration]
+            normalized_xcode_configurations[configuration]
         )
 
     xcodeproj_runner(

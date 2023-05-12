@@ -37,9 +37,11 @@ PROJECT_OPTIONS = project_options(
 XCODE_CONFIGURATIONS = {
     "AppStore": {
         "//command_line_option:compilation_mode": "opt",
+        "@//:flag_to_transition_on": "AppStore",
     },
     "Debug": {
         "//command_line_option:compilation_mode": "dbg",
+        "@//:flag_to_transition_on": "Debug",
     },
 }
 
