@@ -15,6 +15,7 @@ def _write_target_ids_list_test_impl(ctx):
     expected_output = _DECLARED_OUTPUT_FILE
 
     set_param_file_format_args = {}
+
     def _args_set_param_file_format(format):
         set_param_file_format_args["format"] = format
 
@@ -25,6 +26,7 @@ def _write_target_ids_list_test_impl(ctx):
     )
 
     write_args = {}
+
     def _actions_write(write_output, args):
         write_args["output"] = write_output
         write_args["args"] = args
@@ -39,7 +41,7 @@ def _write_target_ids_list_test_impl(ctx):
 
     output = write_target_ids_list(
         actions = actions,
-        name =  "a_generator_name",
+        name = "a_generator_name",
         target_ids = ctx.attr.target_ids,
     )
 
