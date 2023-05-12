@@ -26,7 +26,6 @@ def _process_compiler_opts_test_impl(ctx):
     ) = process_compiler_opts(
         actions = None,
         name = "process_compiler_opts_tests",
-        generator_name = "process_compiler_opts_tests_generator",
         conlyopts = conlyopts,
         conly_args = [],
         cxxopts = cxxopts,

@@ -633,7 +633,6 @@ def _create_cc_compile_params(
         *,
         actions,
         name,
-        generator_name,
         args,
         opt_type,
         cc_compiler_params_processor):
@@ -642,9 +641,8 @@ def _create_cc_compile_params(
 
     def _create_compiler_sub_params(idx, sub_args):
         sub_output = actions.declare_file(
-            "{}.rules_xcodeproj.{}.{}.compile.sub-{}.params".format(
+            "{}.rules_xcodeproj.{}.compile.sub-{}.params".format(
                 name,
-                generator_name,
                 opt_type,
                 idx,
             ),
@@ -661,11 +659,7 @@ def _create_cc_compile_params(
     ]
 
     params = actions.declare_file(
-        "{}.rules_xcodeproj.{}.{}.compile.params".format(
-            name,
-            generator_name,
-            opt_type,
-        ),
+        "{}.rules_xcodeproj.{}.compile.params".format(name, opt_type),
     )
 
     params_args = actions.args()
@@ -683,7 +677,7 @@ def _create_cc_compile_params(
 
     return params
 
-def _create_swift_compile_params(*, actions, generator_name, name, opts):
+def _create_swift_compile_params(*, actions, name, opts):
     if not opts or not actions:
         return None
 
@@ -691,10 +685,7 @@ def _create_swift_compile_params(*, actions, generator_name, name, opts):
     args.add_all(opts)
 
     output = actions.declare_file(
-        "{}.rules_xcodeproj.{}.swift.compile.params".format(
-            name,
-            generator_name,
-        ),
+        "{}.rules_xcodeproj.swift.compile.params".format(name),
     )
     actions.write(
         output = output,
@@ -713,7 +704,6 @@ def _process_compiler_opts(
         cpp_fragment,
         cxx_args,
         cxxopts,
-        generator_name,
         name,
         package_bin_dir,
         swiftcopts):
@@ -732,7 +722,6 @@ def _process_compiler_opts(
         cpp_fragment: The `cpp` configuration fragment.
         cxx_args: An `Args` object for C compiler options.
         cxxopts: A `list` of C++ compiler options.
-        generator_name: The name of the xcodeproj target.
         name: The name of the target.
         package_bin_dir: The package directory for the target within
             `ctx.bin_dir`.
@@ -784,7 +773,6 @@ def _process_compiler_opts(
     c_params = _create_cc_compile_params(
         actions = actions,
         name = name,
-        generator_name = generator_name,
         args = conly_args,
         opt_type = "c",
         cc_compiler_params_processor = cc_compiler_params_processor,
@@ -792,7 +780,6 @@ def _process_compiler_opts(
     cxx_params = _create_cc_compile_params(
         actions = actions,
         name = name,
-        generator_name = generator_name,
         args = cxx_args,
         opt_type = "cxx",
         cc_compiler_params_processor = cc_compiler_params_processor,
@@ -800,7 +787,6 @@ def _process_compiler_opts(
     swift_params = _create_swift_compile_params(
         actions = actions,
         name = name,
-        generator_name = generator_name,
         opts = swiftcopts,
     )
 
@@ -870,7 +856,6 @@ def _process_target_compiler_opts(
     return _process_compiler_opts(
         actions = ctx.actions,
         name = ctx.rule.attr.name,
-        generator_name = ctx.attr._generator_name,
         conlyopts = conlyopts,
         conly_args = conly_args,
         cxxopts = cxxopts,
