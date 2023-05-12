@@ -29,7 +29,7 @@ Minimum Xcode version that the generated project supports.
         var minimumXcodeVersion: SemanticVersion
 
         @Argument(help: "Development region for the project.")
-        var developmentRegion
+        var developmentRegion: String
 
         @Option(help: """
 Populates the `ORGANIZATIONNAME` attribute for the project.

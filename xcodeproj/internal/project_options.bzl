@@ -49,7 +49,7 @@ def project_options_to_dto(project_options):
         A `dict` containing the fields of the provided `project_options` struct.
     """
     dto = {
-        "d": project_options["development_region"]
+        "d": project_options["development_region"],
     }
 
     indent_width = project_options.get("indent_width")
