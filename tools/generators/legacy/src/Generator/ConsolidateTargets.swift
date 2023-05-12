@@ -165,6 +165,12 @@ Target "\(id)" not found in `consolidateTargets().targets`
             // Reevaluate dependent targets
             if let rdeps = rdepsMap.removeValue(forKey: key) {
                 for rdep in rdeps {
+                    guard keys.contains(rdep) else {
+                        // If rdep has already been deconsolidated, we don't
+                        // need to do anything with it. And actually doing
+                        // anything can lead to errors.
+                        continue
+                    }
                     try updateDependencies(for: rdep)
                     keysToEvaluate.insert(rdep)
                 }
