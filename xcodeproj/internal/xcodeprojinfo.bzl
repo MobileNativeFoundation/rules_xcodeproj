@@ -97,7 +97,7 @@ def _get_skip_type(*, ctx, target):
         target: The `Target` to check.
 
     Returns:
-        A `skip_type` if the target should be skipped, otherwise `None`.
+        A `skip_type` if `target` should be skipped, otherwise `None`.
     """
     if ctx.rule.kind in _BUILD_TEST_RULES:
         return skip_type.apple_build_test
