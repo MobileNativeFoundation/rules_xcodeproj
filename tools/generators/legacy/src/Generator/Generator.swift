@@ -172,7 +172,7 @@ class Generator {
             pbxTargets: pbxTargets
         )
 
-        var customSchemes = try environment.createCustomXCSchemes(
+        let customSchemes = try environment.createCustomXCSchemes(
             project.customXcodeSchemes,
             buildMode,
             project.xcodeConfigurations,
