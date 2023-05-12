@@ -13,7 +13,7 @@ The generator accepts the following command-line arguments (see
 - Positional `workspace`
 - Positional `execution-root-file`
 - Positional `minimum-xcode-version`
-- Optional option `--development-region <development-region>`
+- Positional `development-region`
 - Optional option `--organization-name <organization-name>`
 - Flag `--colorize`
 
@@ -25,7 +25,7 @@ $ pbxproject_prefix \
     /tmp/workspace \
     bazel-output-base/rules_xcodeproj.noindex/build_output_base/execroot/_main/bazel-out/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/generators/xcodeproj/xcodeproj_execution_root_file \
     14.0 \
-    --development-region enGB \
+    enGB \
     --organization-name MobileNativeFoundation
 ```
 
