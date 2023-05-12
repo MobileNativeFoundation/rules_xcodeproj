@@ -122,7 +122,7 @@ extension Project.Options: Decodable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
         developmentRegion = try container
-            .decodeIfPresent(String.self, forKey: .developmentRegion) ?? "en"
+            .decode(String.self, forKey: .developmentRegion)
         indentWidth = try container
             .decodeIfPresent(UInt.self, forKey: .indentWidth)
         organizationName = try container

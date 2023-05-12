@@ -48,11 +48,9 @@ def project_options_to_dto(project_options):
     Returns:
         A `dict` containing the fields of the provided `project_options` struct.
     """
-    dto = {}
-
-    development_region = project_options.get("development_region")
-    if development_region and development_region != "en":
-        dto["d"] = development_region
+    dto = {
+        "d": project_options["development_region"]
+    }
 
     indent_width = project_options.get("indent_width")
     if indent_width:
