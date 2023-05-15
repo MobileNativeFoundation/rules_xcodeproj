@@ -15,7 +15,7 @@ struct Generator {
     }
 
     /// Calculates the `PBXProject` prefix `PBXProj` partial and writes it to
-    /// disk.
+    /// disk
     func generate(arguments: Arguments) throws {
         try environment.write(
             environment.calculate(

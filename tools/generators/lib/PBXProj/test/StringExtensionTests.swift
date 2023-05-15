@@ -3,6 +3,9 @@ import PBXProj
 import XCTest
 
 final class StringExtensionTests: XCTestCase {
+
+    // MARK: - pbxProjEscaped
+
     // Copied from https://github.com/tuist/XcodeProj/blob/f570155209af12643309ac4e758b875c63dcbf50/Tests/XcodeProjTests/Utils/CommentedStringTests.swift#L7-L62
     func test_pbxProjEscaped() {
         let quote = "\""
@@ -64,5 +67,189 @@ escaped: \(escapedString)
 """)
             }
         }
+    }
+
+    // MARK: - derivedDataBasedBuildSettingPath
+
+    func test_derivedDataBasedBuildSettingPath_bazelOut_itself() {
+        // Arrange
+
+        let path = "bazel-out"
+        let expectedBuildSetting = "$(BUILD_DIR)/bazel-out"
+
+        // Act
+
+        let buildSetting = path.derivedDataBasedBuildSettingPath
+
+        // Assert
+
+        XCTAssertEqual(buildSetting, expectedBuildSetting)
+    }
+
+    func test_derivedDataBasedBuildSettingPath_bazelOut_relative() {
+        // Arrange
+
+        let path = "bazel-out/a/path"
+        let expectedBuildSetting = "$(BUILD_DIR)/bazel-out/a/path"
+
+        // Act
+
+        let buildSetting = path.derivedDataBasedBuildSettingPath
+
+        // Assert
+
+        XCTAssertEqual(buildSetting, expectedBuildSetting)
+    }
+
+    func test_derivedDataBasedBuildSettingPath_external_itself() {
+        // Arrange
+
+        let path = "external"
+        let expectedBuildSetting = "$(BAZEL_EXTERNAL)"
+
+        // Act
+
+        let buildSetting = path.derivedDataBasedBuildSettingPath
+
+        // Assert
+
+        XCTAssertEqual(buildSetting, expectedBuildSetting)
+    }
+
+    func test_derivedDataBasedBuildSettingPath_external_relative() {
+        // Arrange
+
+        let path = "external/another/path"
+        let expectedBuildSetting = "$(BAZEL_EXTERNAL)/another/path"
+
+        // Act
+
+        let buildSetting = path.derivedDataBasedBuildSettingPath
+
+        // Assert
+
+        XCTAssertEqual(buildSetting, expectedBuildSetting)
+    }
+
+    func test_derivedDataBasedBuildSettingPath_absolute() {
+        // Arrange
+
+        let path = "/tmp/absolute/path"
+        let expectedBuildSetting = "/tmp/absolute/path"
+
+        // Act
+
+        let buildSetting = path.derivedDataBasedBuildSettingPath
+
+        // Assert
+
+        XCTAssertEqual(buildSetting, expectedBuildSetting)
+    }
+
+    func test_derivedDataBasedBuildSettingPath_project() {
+        // Arrange
+
+        let path = "relative/to/project"
+        let expectedBuildSetting = "$(SRCROOT)/relative/to/project"
+
+        // Act
+
+        let buildSetting = path.derivedDataBasedBuildSettingPath
+
+        // Assert
+
+        XCTAssertEqual(buildSetting, expectedBuildSetting)
+    }
+
+    // MARK: - executionRootBasedBuildSettingPath
+
+    func test_executionRootBasedBuildSettingPath_bazelOut_itself() {
+        // Arrange
+
+        let path = "bazel-out"
+        let expectedBuildSetting = "$(BAZEL_OUT)"
+
+        // Act
+
+        let buildSetting = path.executionRootBasedBuildSettingPath
+
+        // Assert
+
+        XCTAssertEqual(buildSetting, expectedBuildSetting)
+    }
+
+    func test_executionRootBasedBuildSettingPath_bazelOut_relative() {
+        // Arrange
+
+        let path = "bazel-out/a/path"
+        let expectedBuildSetting = "$(BAZEL_OUT)/a/path"
+
+        // Act
+
+        let buildSetting = path.executionRootBasedBuildSettingPath
+
+        // Assert
+
+        XCTAssertEqual(buildSetting, expectedBuildSetting)
+    }
+
+    func test_executionRootBasedBuildSettingPath_external_itself() {
+        // Arrange
+
+        let path = "external"
+        let expectedBuildSetting = "$(BAZEL_EXTERNAL)"
+
+        // Act
+
+        let buildSetting = path.executionRootBasedBuildSettingPath
+
+        // Assert
+
+        XCTAssertEqual(buildSetting, expectedBuildSetting)
+    }
+
+    func test_executionRootBasedBuildSettingPath_external_relative() {
+        // Arrange
+
+        let path = "external/another/path"
+        let expectedBuildSetting = "$(BAZEL_EXTERNAL)/another/path"
+
+        // Act
+
+        let buildSetting = path.executionRootBasedBuildSettingPath
+
+        // Assert
+
+        XCTAssertEqual(buildSetting, expectedBuildSetting)
+    }
+
+    func test_executionRootBasedBuildSettingPath_absolute() {
+        // Arrange
+
+        let path = "/tmp/absolute/path"
+        let expectedBuildSetting = "/tmp/absolute/path"
+
+        // Act
+
+        let buildSetting = path.executionRootBasedBuildSettingPath
+
+        // Assert
+
+        XCTAssertEqual(buildSetting, expectedBuildSetting)
+    }
+
+    func test_executionRootBasedBuildSettingPath_project() {
+        // Arrange
+
+        let path = "relative/to/project"
+        let expectedBuildSetting = "$(SRCROOT)/relative/to/project"
+
+        // Act
+
+        let buildSetting = path.executionRootBasedBuildSettingPath
+
+        // Assert
+
+        XCTAssertEqual(buildSetting, expectedBuildSetting)
     }
 }

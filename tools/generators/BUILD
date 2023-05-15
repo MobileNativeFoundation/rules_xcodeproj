@@ -5,6 +5,7 @@ exports_files(["README.md"])
 filegroup(
     name = "release_files",
     srcs = [
+        "//" + package_name() + "/bazel_dependencies:release_files",
         "//" + package_name() + "/legacy:release_files",
         # TODO: Uncomment when we start using the incremental generator
         # "//" + package_name() + "/pbxproject_prefix:release_files",

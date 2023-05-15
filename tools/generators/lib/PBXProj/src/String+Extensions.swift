@@ -1,6 +1,49 @@
 import Foundation
 
 extension String {
+    private var isExternalBazelPath: Bool {
+        return hasPrefix("external/") || self == "external"
+    }
+
+    private var isGeneratedBazelPath: Bool {
+        return hasPrefix("bazel-out/") || self == "bazel-out"
+    }
+
+    /// Converts a Bazel based path to one suitable for use in Xcode build
+    /// settings. This uses `$(BUILD_DIR)`, `$(BAZEL_EXTERNAL)`, and
+    /// `$(SRCROOT)` for relative paths.
+    public var derivedDataBasedBuildSettingPath: String {
+        if isExternalBazelPath {
+            // Removing "external" prefix
+            return "$(BAZEL_EXTERNAL)\(dropFirst(8))"
+        } else if isGeneratedBazelPath {
+            return "$(BUILD_DIR)/\(self)"
+        } else if hasPrefix("/") {
+            // Absolute path
+            return self
+        } else {
+            return "$(SRCROOT)/\(self)"
+        }
+    }
+
+    /// Converts a Bazel based path to one suitable for use in Xcode build
+    /// settings. This uses `$(BAZEL_OUT)`, `$(BAZEL_EXTERNAL)`, and
+    /// `$(SRCROOT)` for relative paths.
+    public var executionRootBasedBuildSettingPath: String {
+        if isExternalBazelPath {
+            // Removing "external" prefix
+            return "$(BAZEL_EXTERNAL)\(dropFirst(8))"
+        } else if isGeneratedBazelPath {
+            // Removing "bazel-out" prefix
+            return "$(BAZEL_OUT)\(dropFirst(9))"
+        } else if hasPrefix("/") {
+            // Absolute path
+            return self
+        } else {
+            return "$(SRCROOT)/\(self)"
+        }
+    }
+
     private static var invalidCharacters: CharacterSet = {
         var invalidSet = CharacterSet(charactersIn: "_$")
         invalidSet.insert(UnicodeScalar("/"))

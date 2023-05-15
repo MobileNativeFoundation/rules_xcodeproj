@@ -45,11 +45,12 @@ information.
 - `pbxproject_targets`:
   - The `PBXProject.targets` property
   - Closes the `PBXProject` element
-- `bazel_dependencies`:
+- [`bazel_dependencies`](bazel_dependencies/README.md):
   - All of the `BazelDependencies` related elements:
     - `Generate Bazel Dependencies` script build phase
     - `XCBuildConfiguration`
     - `XCBuildConfigurationList`
+    - `BazelDependencies` `PBXAggregateTarget`
 - `pbxnativetargets`:
   - Run once on each shard of all the targets
   - All of the `PBXNativeTarget` related elements:
