@@ -245,6 +245,9 @@ objc_library(
     visibility = ["//visibility:public"],
 )
 """,
+        patches = [
+            Label("//third_party/com_github_michaeleisel_jjliso8601dateformatter:include_fix.patch"),
+        ],
         sha256 = "6fe15f251f100f3df057c2802a50765387674fde9c922375683682b5ba37eef0",
         strip_prefix = "JJLISO8601DateFormatter-0.1.6",
         url = "https://github.com/michaeleisel/JJLISO8601DateFormatter/archive/refs/tags/0.1.6.tar.gz",
@@ -271,6 +274,9 @@ objc_library(
     visibility = ["//visibility:public"],
 )
 """,
+        patches = [
+            Label("//third_party/com_github_michaeleisel_zippyjsoncfamily:include_fix.patch"),
+        ],
         sha256 = "b215927ada8403e1b056d39450c6a7b59122eca4b0c7fc5beb5f0b5fea2acd72",
         strip_prefix = "ZippyJSONCFamily-1.2.9",
         url = "https://github.com/michaeleisel/ZippyJSONCFamily/archive/refs/tags/1.2.9.tar.gz",
@@ -389,7 +395,7 @@ swift_library(
 """,
         patches = [
             # Custom for our tests
-            "//third_party/com_github_pointfreeco_swift_custom_dump:type_name.patch",
+            Label("//third_party/com_github_pointfreeco_swift_custom_dump:type_name.patch"),
         ],
         sha256 = "a45e8f275794960651043623e23abb8365f0455b4ad5976bc56a4fa00c5efb31",
         strip_prefix = "swift-custom-dump-0.5.0",

@@ -1,0 +1,11 @@
+--- Sources/ZippyJSONCFamily/JSONSerialization.mm
++++ Sources/ZippyJSONCFamily/JSONSerialization.mm
+@@ -3,7 +3,7 @@
+ // NOTE: ARC is disabled for this file
+
+ #import "simdjson.h"
+-#import "JSONSerialization.h"
++#import "include/JSONSerialization.h"
+ #import <CoreFoundation/CoreFoundation.h>
+ #import <Foundation/Foundation.h>
+ #import <stdio.h>
