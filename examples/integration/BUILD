@@ -1,3 +1,4 @@
+load("@bazel_skylib//rules:common_settings.bzl", "string_flag")
 load("@rules_xcodeproj//xcodeproj:defs.bzl", "xcodeproj")
 load(
     ":xcodeproj_targets.bzl",
@@ -17,6 +18,12 @@ load(
 )
 
 exports_files(["README.md"])
+
+string_flag(
+    name = "flag_to_transition_on",
+    build_setting_default = "",
+    visibility = ["//visibility:public"],
+)
 
 # Example of xcodeproj cache warming
 #

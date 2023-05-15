@@ -28,7 +28,7 @@ load(
 
 _INPUTS = {}
 
-_XCODE_CONFIGURATIONS = {"AppStore": {"//command_line_option:compilation_mode": "opt"}, "Debug": {"//command_line_option:compilation_mode": "dbg"}}
+_XCODE_CONFIGURATIONS = {"AppStore": {"//command_line_option:compilation_mode": "opt", "@//:flag_to_transition_on": "AAAAAAA"}, "Debug": {"//command_line_option:compilation_mode": "dbg", "@//:flag_to_transition_on": "B"}}
 
 def _target_transition_implementation(settings, _attr):
     outputs = {}
@@ -47,7 +47,7 @@ def _target_transition_implementation(settings, _attr):
 _target_transitions = make_xcodeproj_target_transitions(
     implementation = _target_transition_implementation,
     inputs = _INPUTS.keys(),
-    outputs = ["//command_line_option:compilation_mode"],
+    outputs = ["//command_line_option:compilation_mode", "@//:flag_to_transition_on"],
 )
 
 # Aspect
