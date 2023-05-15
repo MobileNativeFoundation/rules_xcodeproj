@@ -698,7 +698,15 @@ def _xcode_target_to_dto(
             if id not in excluded_targets
         ],
     )
-    set_if_true(dto, "i", _inputs_to_dto(inputs, focused_labels = focused_labels, unfocused_labels = unfocused_labels))
+    set_if_true(
+        dto,
+        "i",
+        _inputs_to_dto(
+            inputs,
+            focused_labels = focused_labels,
+            unfocused_labels = unfocused_labels,
+        ),
+    )
     set_if_true(
         dto,
         "5",
