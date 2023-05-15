@@ -443,7 +443,11 @@ def _collect_input_files(
                 _transform_into_label_to_resources(resources_result.resources),
             )
         if resources_result.folder_resources:
-            folder_resources = depset(_transform_into_label_to_resources(resources_result.folder_resources))
+            folder_resources = depset(
+                _transform_into_label_to_resources(
+                    resources_result.folder_resources,
+                ),
+            )
     else:
         resource_bundle_labels = memory_efficient_depset(
             transitive = [
