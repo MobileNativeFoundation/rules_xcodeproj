@@ -23,6 +23,13 @@ def _normalize_resource_path(resource):
 
     return resource
 
+def _update_bundle_owner_resource_tuples(resource, owner_resource_tuples, resource_to_owners):
+    resource_owners = resource_to_owners.get(resource, {})
+    if not resource_owners:
+        owner_resource_tuples.append((None, resource))
+    for resource_owner in resource_owners:
+        owner_resource_tuples.append((resource_owner, resource))
+
 def _processed_resource_fields(resources_info):
     return [
         f
@@ -91,11 +98,7 @@ def _add_resources_to_bundle(
             xccurrentversions = xccurrentversions,
         )
         if fp:
-            resource_owners = resource_to_owners.get(fp, {})
-            if not resource_owners:
-                bundle.resources.append((None, fp))
-            for resource_owner in resource_owners:
-                bundle.resources.append((resource_owner, fp))
+            _update_bundle_owner_resource_tuples(fp, bundle.resources, resource_to_owners)
 
 def _create_bundle(name = None):
     return struct(
@@ -122,20 +125,12 @@ def _add_structured_resources_to_bundle(
             generated.append(file)
 
         if not inner_dir:
-            owners = resource_to_owners.get(file.path, {})
-            if not owners:
-                bundle.resources.append((None, file.path))
-            for owner in owners:
-                bundle.resources.append((owner, file.path))
+            _update_bundle_owner_resource_tuples(file.path, bundle.resources, resource_to_owners)
             continue
 
         # Special case for localized
         if inner_dir.endswith(".lproj"):
-            owners = resource_to_owners.get(file.path, {})
-            if not owners:
-                bundle.resources.append((None, file.path))
-            for owner in owners:
-                bundle.resources.append((owner, file.path))
+            _update_bundle_owner_resource_tuples(file.path, bundle.resources, resource_to_owners)
             continue
 
         if file.is_directory:
@@ -147,13 +142,7 @@ def _add_structured_resources_to_bundle(
             continue
 
         folder_resource = paths.join(dir[:-(1 + len(nested_path))], inner_dir)
-        owners = resource_to_owners.get(folder_resource, {})
-        if not owners:
-            bundle.folder_resources.append((None, folder_resource))
-        for owner in owners:
-            bundle.folder_resources.append(
-                (owner, folder_resource),
-            )
+        _update_bundle_owner_resource_tuples(folder_resource, bundle.folder_resources, resource_to_owners)
 
 def _add_structured_resources(
         *,
