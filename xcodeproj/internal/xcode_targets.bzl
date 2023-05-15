@@ -851,14 +851,16 @@ def _inputs_to_dto(inputs, *, focused_labels, unfocused_labels):
         )
 
     if inputs.folder_resources:
-        filtered_folder_resources = depset(transitive = [
-            resource
-            for owner, resource in inputs.folder_resources.to_list()
-            if not owner or not (
-                owner in unfocused_labels or
-                (has_focused_labels and owner not in focused_labels)
-            )
-        ]).to_list()
+        filtered_folder_resources = depset(
+            transitive = [
+                resource
+                for owner, resource in inputs.folder_resources.to_list()
+                if not owner or not (
+                    owner in unfocused_labels or
+                    (has_focused_labels and owner not in focused_labels)
+                )
+            ],
+        ).to_list()
 
         set_if_true(
             ret,
