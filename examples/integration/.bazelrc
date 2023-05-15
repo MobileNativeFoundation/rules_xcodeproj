@@ -2,7 +2,6 @@
 import %workspace%/../../shared.bazelrc
 
 # Exercise the extra flags feature
-
 build:rules_xcodeproj --@rules_xcodeproj//xcodeproj:extra_common_flags='--verbose_failures'
 build:rules_xcodeproj --@rules_xcodeproj//xcodeproj:extra_generator_flags='--noverbose_failures'
 build:rules_xcodeproj --@rules_xcodeproj//xcodeproj:extra_indexbuild_flags='--noverbose_failures'
@@ -15,6 +14,9 @@ build:rules_xcodeproj --@build_bazel_rules_swift//swift:universal_tools
 
 # Enable dSYM generation
 build:rules_xcodeproj --apple_generate_dsym
+
+# Verify that `--experimental_sibling_repository_layout` works
+build --experimental_sibling_repository_layout
 
 build --test_env=INTEGRATION_TEST_ENV_VAR=TRUE
 

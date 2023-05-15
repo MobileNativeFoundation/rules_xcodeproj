@@ -1,8 +1,12 @@
 import Foundation
 
 extension String {
-    private var isExternalBazelPath: Bool {
+    private var isLegacyExternalBazelPath: Bool {
         return hasPrefix("external/") || self == "external"
+    }
+
+    private var isSiblingExternalBazelPath: Bool {
+        return hasPrefix("../") || self == ".."
     }
 
     private var isGeneratedBazelPath: Bool {
@@ -13,7 +17,7 @@ extension String {
     /// settings. This uses `$(BUILD_DIR)`, `$(BAZEL_EXTERNAL)`, and
     /// `$(SRCROOT)` for relative paths.
     public var derivedDataBasedBuildSettingPath: String {
-        if isExternalBazelPath {
+        if isLegacyExternalBazelPath {
             // Removing "external" prefix
             return "$(BAZEL_EXTERNAL)\(dropFirst(8))"
         } else if isGeneratedBazelPath {
@@ -21,6 +25,9 @@ extension String {
         } else if hasPrefix("/") {
             // Absolute path
             return self
+        } else if isSiblingExternalBazelPath {
+            // Removing ".." prefix
+            return "$(BAZEL_EXTERNAL)\(dropFirst(2))"
         } else {
             return "$(SRCROOT)/\(self)"
         }
@@ -30,7 +37,7 @@ extension String {
     /// settings. This uses `$(BAZEL_OUT)`, `$(BAZEL_EXTERNAL)`, and
     /// `$(SRCROOT)` for relative paths.
     public var executionRootBasedBuildSettingPath: String {
-        if isExternalBazelPath {
+        if isLegacyExternalBazelPath {
             // Removing "external" prefix
             return "$(BAZEL_EXTERNAL)\(dropFirst(8))"
         } else if isGeneratedBazelPath {
@@ -39,6 +46,9 @@ extension String {
         } else if hasPrefix("/") {
             // Absolute path
             return self
+        } else if isSiblingExternalBazelPath {
+            // Removing ".." prefix
+            return "$(BAZEL_EXTERNAL)\(dropFirst(2))"
         } else {
             return "$(SRCROOT)/\(self)"
         }

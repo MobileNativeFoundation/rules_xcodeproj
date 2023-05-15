@@ -45,10 +45,18 @@ def build_setting_path(
             # Removing "bazel-out" prefix
             build_setting = "$(BAZEL_OUT){}".format(path[9:])
     elif type == "e":
-        # External
+        # Legacy external
         if path:
             # Removing "external" prefix
             build_setting = "$(BAZEL_EXTERNAL){}".format(path[8:])
+        else:
+            # Support directory reference
+            build_setting = "$(BAZEL_EXTERNAL)"
+    elif type == "s":
+        # Sibling external
+        if path:
+            # Removing ".." prefix
+            build_setting = "$(BAZEL_EXTERNAL){}".format(path[2:])
         else:
             # Support directory reference
             build_setting = "$(BAZEL_EXTERNAL)"
@@ -78,14 +86,16 @@ def _file_type(file):
     if not file.is_source:
         return "g"
     if file.owner.workspace_name:
-        return "e"
+        return "e" if file.path.startswith("external") else "s"
     return None
 
 def _parsed_path_type(path):
     if is_generated_path(path):
         return "g"
-    if is_external_path(path):
+    if is_legacy_external_path(path):
         return "e"
+    if is_sibling_external_path(path):
+        return "s"
     return None
 
 RESOURCES_FOLDER_TYPE_EXTENSIONS = [
@@ -121,8 +131,11 @@ def normalized_file_path(file, *, folder_type_extensions):
 
     return path
 
-def is_external_path(path):
+def is_legacy_external_path(path):
     return path == "external" or path.startswith("external/")
+
+def is_sibling_external_path(path):
+    return path == ".." or path.startswith("../")
 
 def is_generated_path(path):
     return path == "bazel-out" or path.startswith("bazel-out/")

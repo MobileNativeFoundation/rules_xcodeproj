@@ -35,12 +35,13 @@ final class CreateProjectTests: XCTestCase {
             "ALWAYS_SEARCH_USER_PATHS": false,
             "BAZEL_CONFIG": project.bazelConfig,
             "BAZEL_EXTERNAL": "$(BAZEL_OUTPUT_BASE)/external",
+            "BAZEL_INTEGRATION_DIR": "$(INTERNAL_DIR)/bazel",
             "BAZEL_LLDB_INIT": "$(HOME)/.lldbinit-rules_xcodeproj",
             "BAZEL_OUT": "$(PROJECT_DIR)/bazel-out",
             "_BAZEL_OUTPUT_BASE": "$(PROJECT_DIR)/../..",
             "BAZEL_OUTPUT_BASE": "$(_BAZEL_OUTPUT_BASE:standardizepath)",
+            "BAZEL_USE_SIBLING_EXTERNAL": false,
             "BAZEL_WORKSPACE_ROOT": "$(SRCROOT)",
-            "BAZEL_INTEGRATION_DIR": "$(INTERNAL_DIR)/bazel",
             "BUILD_WORKSPACE_DIRECTORY": "$(SRCROOT)",
             "BUILD_DIR": """
 $(SYMROOT)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
@@ -189,6 +190,7 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
             "BAZEL_OUT": "$(PROJECT_DIR)/bazel-out",
             "_BAZEL_OUTPUT_BASE": "$(PROJECT_DIR)/../..",
             "BAZEL_OUTPUT_BASE": "$(_BAZEL_OUTPUT_BASE:standardizepath)",
+            "BAZEL_USE_SIBLING_EXTERNAL": false,
             "BAZEL_WORKSPACE_ROOT": "$(SRCROOT)",
             "BUILD_DIR": """
 $(SYMROOT)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)

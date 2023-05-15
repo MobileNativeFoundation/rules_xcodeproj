@@ -152,6 +152,9 @@ def xcodeproj_rules_dependencies(
         build_file_content = """\
 load("@bazel_skylib//rules:native_binary.bzl", "native_binary")
 
+# Used as an external file marker
+exports_files(["BUILD"])
+
 native_binary(
     name = "index_import",
     src = "index-import",

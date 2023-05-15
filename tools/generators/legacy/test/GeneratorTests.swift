@@ -67,7 +67,8 @@ final class GeneratorTests: XCTestCase {
             targetIdsFile: "/tmp/target_ids",
             indexImport: "/tmp/index-import",
             preBuildScript: "./pre-build.sh",
-            postBuildScript: "./post-build.sh"
+            postBuildScript: "./post-build.sh",
+            useSiblingExternal: false
         )
         let xccurrentversions: [XCCurrentVersion] = [
             .init(container: "Ex/M.xcdatamodeld", version: "M2.xcdatamodel"),

@@ -44,7 +44,8 @@ enum Fixtures {
         targetIdsFile: "/tmp/target_ids",
         indexImport: "/tmp/index-import",
         preBuildScript: "./pre-build.sh",
-        postBuildScript: "./post-build.sh"
+        postBuildScript: "./post-build.sh",
+        useSiblingExternal: false
     )
 
     static let extensionPointIdentifiers: [TargetID: ExtensionPointIdentifier] = [

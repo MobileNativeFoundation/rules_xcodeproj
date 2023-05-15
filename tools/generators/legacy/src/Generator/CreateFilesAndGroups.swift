@@ -95,21 +95,26 @@ extension Generator {
         ) {
             let relativePath: Path
             var absolutePath: Path
-            let addToResolvedRepositories: Bool
+            let resolvedRepositoryPrefix: Path?
             switch bazelNodeType {
-            case .external?:
+            case .legacyExternal?:
                 // Drop "external/"
                 relativePath = Path(String(filePathStr.dropFirst(9)))
                 absolutePath = directories.absoluteExternal + relativePath
-                addToResolvedRepositories = isGroup
+                resolvedRepositoryPrefix = isGroup ? "./external" : nil
+            case .siblingExternal?:
+                // Drop "../"
+                relativePath = Path(String(filePathStr.dropFirst(3)))
+                absolutePath = directories.absoluteExternal + relativePath
+                resolvedRepositoryPrefix = isGroup ? ".." : nil
             case .bazelOut?:
                 relativePath = Path(filePathStr)
                 absolutePath = directories.executionRoot + relativePath
-                addToResolvedRepositories = false
+                resolvedRepositoryPrefix = nil
             case nil:
                 relativePath = Path(filePathStr)
                 absolutePath = directories.workspace + relativePath
-                addToResolvedRepositories = false
+                resolvedRepositoryPrefix = nil
             }
 
             var wasSymlink = false
@@ -139,10 +144,10 @@ extension Generator {
                     let resolvedRelativePath =
                         Path(components: resolvedRelativeComponents)
 
-                    if addToResolvedRepositories {
+                    if let resolvedRepositoryPrefix {
                         resolvedRepositories.append(
                             (
-                                "./external" + relativePath,
+                                resolvedRepositoryPrefix + relativePath,
                                 "$(SRCROOT)" + resolvedRelativePath
                             )
                         )
@@ -156,9 +161,9 @@ extension Generator {
                 }
             }
 
-            if addToResolvedRepositories {
+            if let resolvedRepositoryPrefix {
                 resolvedRepositories.append(
-                    ("./external" + relativePath, absolutePath)
+                    (resolvedRepositoryPrefix + relativePath, absolutePath)
                 )
             }
 
@@ -528,8 +533,10 @@ extension Generator {
                 return (
                     isFileLike ?
                         .fileLikeElement(element) : .groupLikeElement(element),
-                    bazelNodeType == .external || !node.isFolder ?
-                        [childFileListPathPrefix]: []
+                    bazelNodeType == .legacyExternal ||
+                        bazelNodeType == .siblingExternal ||
+                        !node.isFolder ?
+                            [childFileListPathPrefix]: []
                 )
             } else {
                 let (basenameWithoutExt, ext) = node.splitExtension()
@@ -583,7 +590,8 @@ extension Generator {
         }
 
         enum BazelNodeType {
-            case external
+            case legacyExternal
+            case siblingExternal
             case bazelOut
         }
 
@@ -598,8 +606,13 @@ extension Generator {
             let groupName: String
             let groupPath: String
             switch bazelNodeType {
-            case .external:
+            case .legacyExternal:
                 filePathPrefix = "external/"
+                fileListPathPrefix = "$(BAZEL_EXTERNAL)"
+                groupName = "Bazel External Repositories"
+                groupPath = "../../external"
+            case .siblingExternal:
+                filePathPrefix = "../"
                 fileListPathPrefix = "$(BAZEL_EXTERNAL)"
                 groupName = "Bazel External Repositories"
                 groupPath = "../../external"
@@ -675,7 +688,12 @@ extension Generator {
                 (
                     externalGroup,
                     externalFileListPaths
-                ) = handleBazelGroupNode(node, .external)
+                ) = handleBazelGroupNode(node, .legacyExternal)
+            case "..":
+                (
+                    externalGroup,
+                    externalFileListPaths
+                ) = handleBazelGroupNode(node, .siblingExternal)
             case "bazel-out":
                 (
                     generatedGroup,

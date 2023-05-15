@@ -74,6 +74,7 @@ extension Generator {
             "BAZEL_OUT": "$(PROJECT_DIR)/bazel-out",
             "_BAZEL_OUTPUT_BASE": "$(PROJECT_DIR)/../..",
             "BAZEL_OUTPUT_BASE": "$(_BAZEL_OUTPUT_BASE:standardizepath)",
+            "BAZEL_USE_SIBLING_EXTERNAL": project.useSiblingExternal,
             "BAZEL_WORKSPACE_ROOT": "$(SRCROOT)",
             "BUILD_DIR": """
 $(SYMROOT)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)

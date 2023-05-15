@@ -4,14 +4,26 @@ set -euo pipefail
 
 readonly execution_root="$PROJECT_DIR"
 
-readonly output_base="${execution_root%/*/*}"
-readonly build_external="$execution_root/external"
+readonly build_execroot="${execution_root%/*}"
+readonly build_output_base="${build_execroot%/*}"
 
 readonly workspace_name="${execution_root##*/}"
-readonly index_execution_root="${output_base%/*}/indexbuild_output_base/execroot/$workspace_name"
+readonly index_execroot="${build_output_base%/*}/indexbuild_output_base/execroot"
+readonly index_execution_root="$index_execroot/$workspace_name"
 
 readonly index_bazel_out="$index_execution_root/bazel-out"
-readonly index_external="$index_execution_root/external"
+
+if [[ "$BAZEL_USE_SIBLING_EXTERNAL" == "YES" ]]; then
+  # `--experimental_sibling_repository_layout`
+  readonly external_prefix="../"
+  readonly build_external="$build_execroot"
+  readonly index_external="$index_execroot"
+else
+  # `--noexperimental_sibling_repository_layout`
+  readonly external_prefix="./external/"
+  readonly build_external="$execution_root/external"
+  readonly index_external="$index_execution_root/external"
+fi
 
 {
 
@@ -38,11 +50,11 @@ echo "settings set target.source-map ./bazel-out/ \"$BAZEL_OUT\""
 echo "settings append target.source-map ./bazel-out/ \"$index_bazel_out\""
 
 # `external` when set from Project navigator
-echo "settings append target.source-map ./external/ \"$BAZEL_EXTERNAL\""
+echo "settings append target.source-map $external_prefix \"$BAZEL_EXTERNAL\""
 # `external` when set from indexing opened file
-echo "settings append target.source-map ./external/ \"$index_external\""
+echo "settings append target.source-map $external_prefix \"$index_external\""
 # `external` when set from swiftsourcefile
-echo "settings append target.source-map ./external/ \"$build_external\""
+echo "settings append target.source-map $external_prefix \"$build_external\""
 
 # Project files and locally resolved external repositories
 #

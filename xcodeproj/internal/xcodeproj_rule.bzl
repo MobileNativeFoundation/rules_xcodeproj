@@ -1153,6 +1153,7 @@ def _write_spec(
         runner_label,
         scheme_autogeneration_mode,
         schemes_json,
+        use_sibling_external,
         target_dtos,
         target_ids_list,
         xcode_configurations):
@@ -1179,6 +1180,7 @@ def _write_spec(
         "m": minimum_xcode_version,
         "n": project_name,
         "R": runner_label,
+        "S": use_sibling_external,
     }
 
     if xcode_configurations != ["Debug"]:
@@ -1613,6 +1615,7 @@ configurations: {}""".format(", ".join(xcode_configurations)))
         schemes_json = ctx.file.schemes_json,
         target_dtos = target_dtos,
         target_ids_list = target_ids_list,
+        use_sibling_external = False if ctx.file._external_marker_file.path.startswith("external/") else True,
         xcode_configurations = xcode_configurations,
     )
     execution_root_file = write_execution_root_file(
@@ -1943,6 +1946,10 @@ def make_xcodeproj_rule(
             cfg = "exec",
             default = Label("//tools/extensionpointidentifiers_parser"),
             executable = True,
+        ),
+        "_external_marker_file": attr.label(
+            allow_single_file = True,
+            default = Label("@rules_xcodeproj_index_import//:BUILD"),
         ),
         "_generator": attr.label(
             cfg = "exec",
