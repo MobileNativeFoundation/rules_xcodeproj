@@ -142,7 +142,11 @@ def _add_structured_resources_to_bundle(
             continue
 
         folder_resource = paths.join(dir[:-(1 + len(nested_path))], inner_dir)
-        _update_bundle_owner_resource_tuples(folder_resource, bundle.folder_resources, resource_to_owners)
+        _update_bundle_owner_resource_tuples(
+            resource = folder_resource,
+            owner_resource_tuples = bundle.folder_resources,
+            resource_to_owners = resource_to_owners,
+        )
 
 def _add_structured_resources(
         *,
