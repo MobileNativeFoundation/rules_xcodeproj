@@ -108,11 +108,13 @@ def _get_skip_type(*, ctx, target):
     if AppleBinaryInfo in target and not hasattr(ctx.rule.attr, "deps"):
         return skip_type.apple_binary_no_deps
 
-    is_test_bundle = targets.is_test_bundle(
+    if targets.is_test_bundle(
         target = target,
         deps = getattr(ctx.rule.attr, "deps", None),
-    )
-    return skip_type.apple_test_bundle if is_test_bundle else None
+    ):
+        return skip_type.apple_test_bundle
+
+    return None
 
 def _target_info_fields(
         *,
