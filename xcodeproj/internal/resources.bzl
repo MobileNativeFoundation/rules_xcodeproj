@@ -23,7 +23,11 @@ def _normalize_resource_path(resource):
 
     return resource
 
-def _update_bundle_owner_resource_tuples(resource, owner_resource_tuples, resource_to_owners):
+def _update_bundle_owner_resource_tuples(
+        *,
+        resource,
+        owner_resource_tuples,
+        resource_to_owners):
     resource_owners = resource_to_owners.get(resource, {})
     if not resource_owners:
         owner_resource_tuples.append((None, resource))
