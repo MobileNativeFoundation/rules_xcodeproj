@@ -78,7 +78,7 @@ def _transform_into_label_to_resources(resources):
         label_to_resources_depset.setdefault(owner, {})[resource] = None
     return [
         (owner, depset(resources.keys()))
-        for resources, owner in label_to_resources_depset.items()
+        for owner, resources in label_to_resources_depset.items()
     ]
 
 # API
