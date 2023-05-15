@@ -19,8 +19,8 @@ def _normalize_resource_path(resource):
         if extension not in resource:
             continue
         prefix, ext, _ = resource.partition(extension)
-        resource = prefix + ext
-        break
+        return prefix + ext
+
     return resource
 
 def _processed_resource_fields(resources_info):
