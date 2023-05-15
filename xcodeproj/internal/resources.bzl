@@ -98,7 +98,11 @@ def _add_resources_to_bundle(
             xccurrentversions = xccurrentversions,
         )
         if fp:
-            _update_bundle_owner_resource_tuples(fp, bundle.resources, resource_to_owners)
+            _update_bundle_owner_resource_tuples(
+                resource = fp,
+                owner_resource_tuples = bundle.resources,
+                resource_to_owners = resource_to_owners,
+            )
 
 def _create_bundle(name = None):
     return struct(
