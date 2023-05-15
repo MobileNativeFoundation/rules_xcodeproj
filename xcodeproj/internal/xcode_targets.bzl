@@ -828,6 +828,7 @@ def _inputs_to_dto(inputs, *, focused_labels, unfocused_labels):
     _process_attr("srcs", "s")
     _process_attr("non_arc_srcs", "n")
     _process_attr("hdrs", "h")
+
     has_focused_labels = bool(focused_labels)
 
     if inputs.resources:
