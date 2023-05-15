@@ -130,7 +130,11 @@ def _add_structured_resources_to_bundle(
 
         # Special case for localized
         if inner_dir.endswith(".lproj"):
-            _update_bundle_owner_resource_tuples(file.path, bundle.resources, resource_to_owners)
+            _update_bundle_owner_resource_tuples(
+                resource = file.path,
+                owner_resource_tuples = bundle.resources,
+                resource_to_owners = resource_to_owners,
+            )
             continue
 
         if file.is_directory:
