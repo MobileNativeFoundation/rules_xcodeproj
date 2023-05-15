@@ -439,7 +439,9 @@ def _collect_input_files(
         if resources_result.dependencies:
             resource_bundle_dependencies = resources_result.dependencies
         if resources_result.resources:
-            resources = depset(_transform_into_label_to_resources(resources_result.resources))
+            resources = depset(
+                _transform_into_label_to_resources(resources_result.resources),
+            )
         if resources_result.folder_resources:
             folder_resources = depset(_transform_into_label_to_resources(resources_result.folder_resources))
     else:
