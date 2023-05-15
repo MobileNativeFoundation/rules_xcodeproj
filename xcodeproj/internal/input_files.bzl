@@ -788,7 +788,9 @@ def _from_resource_bundle(bundle):
     return struct(
         compiling_output_group_name = None,
         entitlements = None,
-        folder_resources = depset(_transform_into_label_to_resources(bundle.folder_resources)),
+        folder_resources = depset(
+            _transform_into_label_to_resources(bundle.folder_resources),
+        ),
         generated = EMPTY_DEPSET,
         c_sources = EMPTY_DICT,
         cxx_sources = EMPTY_DICT,
