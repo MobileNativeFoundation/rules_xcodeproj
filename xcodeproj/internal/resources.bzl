@@ -133,7 +133,11 @@ def _add_structured_resources_to_bundle(
             generated.append(file)
 
         if not inner_dir:
-            _update_bundle_owner_resource_tuples(file.path, bundle.resources, resource_to_owners)
+            _update_bundle_owner_resource_tuples(
+                resource = file.path,
+                owner_resource_tuples = bundle.resources,
+                resource_to_owners = resource_to_owners,
+            )
             continue
 
         # Special case for localized
