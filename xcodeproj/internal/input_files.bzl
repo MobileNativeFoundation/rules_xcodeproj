@@ -801,7 +801,9 @@ def _from_resource_bundle(bundle):
         non_arc_srcs = EMPTY_LIST,
         pch = None,
         resource_bundle_dependencies = bundle.dependencies,
-        resources = depset(_transform_into_label_to_resources(bundle.resources)),
+        resources = depset(
+            _transform_into_label_to_resources(bundle.resources),
+        ),
         srcs = EMPTY_LIST,
         unfocused_generated_compiling = None,
         unfocused_generated_indexstores = None,
