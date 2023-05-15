@@ -299,8 +299,8 @@ def collect_resources(
             `process_resource_bundles`.
         *   `dependencies`: A `list` of `id`s of resource bundle targets that
             this target depends on.
-        *   `resources`: A `list` of tuples (`owner, `file_path`) of resources that should be
-            added to the target's bundle.
+        *   `resources`: A `list` of tuples (`owner, `file_path`) of resources
+            that should be added to the target's bundle.
         *   `generated`: A `list` of `file_path`s of generated resources.
         *   `xccurrentversions`: A `list` of `.xccurrentversion` `File`s.
         *   `extra_files`: A `list` of `file_path`s of extra files.
