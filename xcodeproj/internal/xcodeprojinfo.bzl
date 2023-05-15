@@ -12,6 +12,7 @@ load(":compilation_providers.bzl", comp_providers = "compilation_providers")
 load(":input_files.bzl", "input_files")
 load(":library_targets.bzl", "process_library_target")
 load(":lldb_contexts.bzl", "lldb_contexts")
+load(":logging.bzl", "warn")
 load(
     ":memory_efficiency.bzl",
     "EMPTY_LIST",
@@ -283,9 +284,20 @@ def _skip_target(
     def _target_replacement_label(info):
         if not info.xcode_target:
             return target.label
-        if _APPLE_INTERNAL_TEST_BUNDLE_SUFFIX not in info.xcode_target.label.name:
-            return target.label
         if target_skip_type != skip_type.apple_test_bundle:
+            return target.label
+        if _APPLE_INTERNAL_TEST_BUNDLE_SUFFIX not in info.xcode_target.label.name:
+            warn("""\
+Couldn't find '{suffix}' suffix in '{label}' with skip_type={type}, \
+replacement labels might not work as expected.
+
+Please, file a bug report here: \
+https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bug.md
+""".format(
+                suffix = _APPLE_INTERNAL_TEST_BUNDLE_SUFFIX,
+                label = info.xcode_target.label,
+                type = target_skip_type,
+            ))
             return target.label
         return Label(
             "@//{}:{}".format(
