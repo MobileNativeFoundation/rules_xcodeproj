@@ -15,6 +15,7 @@ ios_unit_test(
         "IOS_APP_UNIT_TESTS": "CUSTOM_ENV_VALUE",
     },
     minimum_os_version = "15.0",
+    tags = ["cpu:4"],
     test_host = "//iOSApp",
     visibility = [
         "//iOSApp:__subpackages__",
@@ -65,6 +66,7 @@ ios_unit_test_suite(
         ":iPhone-13-Pro__16.2",
         ":iPad-Air-4th-gen__16.2",
     ],
+    tags = ["cpu:4"],
     test_host = "//iOSApp",
     visibility = [
         "//iOSApp:__subpackages__",
