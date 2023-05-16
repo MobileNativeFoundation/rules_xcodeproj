@@ -19,6 +19,7 @@ XCODEPROJ_TARGETS = [
     "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests",
     "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite",
     "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTestSuite",
+    "//iOSApp/Test/UITests:iOSAppUITestSuite",
 ]
 
 IOS_BUNDLE_ID = "rules-xcodeproj.example"
