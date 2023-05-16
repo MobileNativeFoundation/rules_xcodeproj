@@ -63,7 +63,7 @@
             "expand_variables_based_on": null,
             "post_actions": [
                 {
-                    "expand_variables_based_on": "@//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests",
+                    "expand_variables_based_on": "@//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTestSuite",
                     "name": "Run After Tests",
                     "script": "echo \"Hi\""
                 }
