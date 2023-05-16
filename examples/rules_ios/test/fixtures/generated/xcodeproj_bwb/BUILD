@@ -36,7 +36,7 @@ xcodeproj(
     schemes_json = ":custom_xcode_schemes.json",
     tags = ["manual"],
     top_level_device_targets = ["@//iOSApp:iOSApp", "@//Lib:LibDynamic"],
-    top_level_simulator_targets = ["@//iOSApp:iOSApp", "@//Lib:LibDynamic", "@//iOSApp/Test/MixedUnitTests:iOSAppMixedUnitTests", "@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests", "@//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests"],
+    top_level_simulator_targets = ["@//iOSApp:iOSApp", "@//Lib:LibDynamic", "@//iOSApp/Test/UITests:iOSAppUITests", "@//iOSApp/Test/MixedUnitTests:iOSAppMixedUnitTests", "@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests", "@//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests"],
     tvos_device_cpus = "arm64",
     tvos_simulator_cpus = "",
     unfocused_targets = [],
