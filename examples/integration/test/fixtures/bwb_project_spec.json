@@ -57,14 +57,6 @@
         {
             "INTEGRATION_TEST_ENV_VAR": "TRUE"
         },
-        "//iOSApp/Test/UITests:iOSAppUITests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-13",
-        {
-            "INTEGRATION_TEST_ENV_VAR": "TRUE"
-        },
-        "//iOSApp/Test/UITests:iOSAppUITests.__internal__.__test_bundle applebin_ios-ios_x86_64-opt-STABLE-15",
-        {
-            "INTEGRATION_TEST_ENV_VAR": "TRUE"
-        },
         "//macOSApp/Test/UITests:macOSAppUITests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-STABLE-31",
         {
             "INTEGRATION_TEST_ENV_VAR": "TRUE"
@@ -192,7 +184,6 @@
         "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Test/SwiftUnitTests/rules_xcodeproj/iOSAppSwiftUnitTestSuite.__internal__.__test_bundle/Info.plist",
         "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Test/SwiftUnitTests/rules_xcodeproj/iOSAppSwiftUnitTests.__internal__.__test_bundle/Info.plist",
         "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Test/UITests/rules_xcodeproj/iOSAppUITestSuite.__internal__.__test_bundle/Info.plist",
-        "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Test/UITests/rules_xcodeproj/iOSAppUITests.__internal__.__test_bundle/Info.plist",
         "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/AppClip/Entitlements.withbundleid.plist",
         "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/AppClip/rules_xcodeproj/AppClip/Info.plist",
         "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/Lib/dist/dynamic/rules_xcodeproj/iOS/Info.plist",
@@ -207,7 +198,6 @@
         "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Test/SwiftUnitTests/rules_xcodeproj/iOSAppSwiftUnitTestSuite.__internal__.__test_bundle/Info.plist",
         "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Test/SwiftUnitTests/rules_xcodeproj/iOSAppSwiftUnitTests.__internal__.__test_bundle/Info.plist",
         "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Test/UITests/rules_xcodeproj/iOSAppUITestSuite.__internal__.__test_bundle/Info.plist",
-        "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Test/UITests/rules_xcodeproj/iOSAppUITests.__internal__.__test_bundle/Info.plist",
         "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-31/bin/Bundle/rules_xcodeproj/Bundle/Info.plist",
         "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-31/bin/macOSApp/Source/rules_xcodeproj/macOSApp/Info.plist",
         "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-31/bin/macOSApp/Test/UITests/rules_xcodeproj/macOSAppUITests.__internal__.__test_bundle/Info.plist",
