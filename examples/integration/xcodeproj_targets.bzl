@@ -99,6 +99,7 @@ XCODEPROJ_TARGETS = [
     "//iOSApp/Test/TestingUtils:macos_TestingUtils",
     "//iMessageApp",
     "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests",
+    "//iOSApp/Test/UITests:iOSAppUITests",
     "//macOSApp/Source:macOSApp",
     "//macOSApp/Test/UITests:macOSAppUITests",
     "//tvOSApp/Test/UITests:tvOSAppUITests",
