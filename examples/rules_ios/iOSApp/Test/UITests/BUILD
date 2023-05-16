@@ -13,7 +13,7 @@ rules_ios_ios_ui_test(
     bundle_id = "rules-xcodeproj.example.uitests",
     minimum_os_version = "15.0",
     module_name = "iOSAppUITests",
-    tags = ["cpu:4"],
+    tags = ["cpu:6"],
     test_host = "//iOSApp",
     visibility = ["@rules_xcodeproj//xcodeproj:generated"],
 )
@@ -40,7 +40,7 @@ rules_ios_ios_ui_test(
         ":iPhone-13-Pro__16.2",
         ":iPad-Air-4th-gen__16.2",
     ],
-    tags = ["cpu:4"],
+    tags = ["cpu:6"],
     test_host = "//iOSApp",
     visibility = ["@rules_xcodeproj//xcodeproj:generated"],
 )
