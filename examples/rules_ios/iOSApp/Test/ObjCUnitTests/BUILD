@@ -28,8 +28,8 @@ ios_test_runner(
 )
 
 ios_test_runner(
-    name = "iPad-Air-2__16.2",
-    device_type = "iPad Air 2",
+    name = "iPad-Air-4th-gen__16.2",
+    device_type = "iPad Air (4th generation)",
     os_version = "16.2",
 )
 
@@ -41,7 +41,7 @@ rules_ios_ios_unit_test(
     module_name = "iOSAppObjCUnitTestSuite",
     runners = [
         ":iPhone-13-Pro__16.2",
-        ":iPad-Air-2__16.2",
+        ":iPad-Air-4th-gen__16.2",
     ],
     test_host = "//iOSApp",
     visibility = ["@rules_xcodeproj//xcodeproj:generated"],
