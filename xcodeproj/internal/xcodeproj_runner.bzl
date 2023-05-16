@@ -115,7 +115,12 @@ def _write_schemes_json(*, actions, name, schemes_json):
     output = actions.declare_file(
         "{}-custom_xcode_schemes.json".format(name),
     )
-    actions.write(output, schemes_json if schemes_json else "[]")
+    # A new line character is added to make this file a valid unix text file,
+    # without this unexpect behaviours may occur when interacting with other
+    # unix-compatible tools (e.g. updating fixtures in the repo).
+    if schemes_json and not schemes_json.endswith("\n"):
+        schemes_json = schemes_json + "\n"
+    actions.write(output, schemes_json if schemes_json else "[]\n")
     return output
 
 _APPEND_TRANSITION_FLAGS = {
