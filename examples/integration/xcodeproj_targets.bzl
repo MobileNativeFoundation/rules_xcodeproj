@@ -107,6 +107,7 @@ XCODEPROJ_TARGETS = [
     "//watchOSApp/Test/UITests:watchOSAppUITests",
     "//watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests",
     "//iOSApp/Test:iOSAppTestSuite",
+    "//iOSApp/Test/UITests:iOSAppUITestSuite",
     "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite",
     "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTestSuite",
 ]
