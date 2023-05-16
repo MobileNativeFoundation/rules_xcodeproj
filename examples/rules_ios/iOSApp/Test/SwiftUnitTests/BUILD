@@ -1,5 +1,11 @@
-load("@build_bazel_rules_ios//rules:test.bzl", rules_ios_ios_unit_test = "ios_unit_test")
-load("@build_bazel_rules_apple//apple/testing/default_runner:ios_test_runner.bzl", "ios_test_runner")
+load(
+    "@build_bazel_rules_ios//rules:test.bzl",
+    rules_ios_ios_unit_test = "ios_unit_test",
+)
+load(
+    "@build_bazel_rules_apple//apple/testing/default_runner:ios_test_runner.bzl",
+    "ios_test_runner",
+)
 
 rules_ios_ios_unit_test(
     name = "iOSAppSwiftUnitTests",
