@@ -47,5 +47,32 @@
                 "@//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests"
             ]
         }
+    },
+    {
+        "build_action": null,
+        "launch_action": null,
+        "name": "iOSAppUnitTestSuite_Scheme",
+        "profile_action": null,
+        "test_action": {
+            "args": null,
+            "build_configuration": null,
+            "diagnostics": null,
+            "env": {
+                "IOSAPPSWIFTUNITTESTS_CUSTOMSCHEMEVAR": "TRUE"
+            },
+            "expand_variables_based_on": null,
+            "post_actions": [
+                {
+                    "expand_variables_based_on": "@//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests",
+                    "name": "Run After Tests",
+                    "script": "echo \"Hi\""
+                }
+            ],
+            "pre_actions": [],
+            "targets": [
+                "@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite",
+                "@//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTestSuite"
+            ]
+        }
     }
 ]

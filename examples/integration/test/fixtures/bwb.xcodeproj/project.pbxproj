@@ -40,6 +40,7 @@
 		43C779D161AA0465C0DDE95E /* UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A45A0819673348AC1A7EEE /* UITests.swift */; };
 		44A7E746741295D2382B2173 /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15833304DE0816B599377D45 /* Lib.swift */; };
 		4BFB62FFBB1CA26E01D65B26 /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214ABF62385578C03DED265 /* Lib.swift */; };
+		4D9923CE9713ABD3F5C193E3 /* SwiftUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A6DC8C0E0B91CA7A026111 /* SwiftUnitTests.swift */; };
 		4FD4120329A466F92FC394E8 /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BECCADF4C068C1CFEF8E5B8 /* Lib.swift */; };
 		53E23014C111CFD291259C97 /* private_lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34051E31629F66435DD61AF0 /* private_lib.swift */; };
 		54CD08F33D9E8D0FEF192DC7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43483C0C029D669DC6D9079A /* ContentView.swift */; };
@@ -96,6 +97,7 @@
 		E48D3BC4D5BA7C22214BB9BF /* watchOSAppExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 0982B680A74E8BD8A971CC76 /* watchOSAppExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		E4D37243E160FD1EA0C3965A /* FXPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = CCB9EDDAC48EA2A043A5D901 /* FXPageControl.m */; };
 		E556150B5BC80DD08DE2D5F1 /* private_lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34051E31629F66435DD61AF0 /* private_lib.swift */; };
+		E66604D967169C5470384FC1 /* ObjCUnitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EFD33DA1BC7E7196649D05D /* ObjCUnitTests.m */; };
 		E9EDC8C43E023AD8F43A4263 /* macOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67496CA997EE1999978DD2D4 /* macOSApp.swift */; };
 		ED655B35633C9B26824521B6 /* _CompileStub_.m in Sources */ = {isa = PBXBuildFile; fileRef = E84DBAC32A7C151ED97289BA /* _CompileStub_.m */; };
 		F18E2A47BE4C47BA7F64F09C /* _CompileStub_.m in Sources */ = {isa = PBXBuildFile; fileRef = E84DBAC32A7C151ED97289BA /* _CompileStub_.m */; };
@@ -217,6 +219,13 @@
 			remoteGlobalIDString = ACEF2F653E0F6BEA37D2C7B6;
 			remoteInfo = tvOSApp;
 		};
+		542C4E039DCCA12C911B7A09 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0805833D09730531AD081697 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
+			remoteInfo = BazelDependencies;
+		};
 		5E9AC5B7458CB5F5EC7A5A23 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0805833D09730531AD081697 /* Project object */;
@@ -251,6 +260,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
 			remoteInfo = BazelDependencies;
+		};
+		764A2CCDAE16ABA3F0830028 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0805833D09730531AD081697 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1765D91CC168F25A5BC51603;
+			remoteInfo = iOSApp;
 		};
 		7699AD76B28DC4F10D3E2421 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -455,6 +471,13 @@
 			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
 			remoteInfo = BazelDependencies;
 		};
+		EA86503F87522DE0CA1AC4B2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0805833D09730531AD081697 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
+			remoteInfo = BazelDependencies;
+		};
 		EAD5378EECD89ECFD779837A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0805833D09730531AD081697 /* Project object */;
@@ -475,6 +498,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
 			remoteInfo = BazelDependencies;
+		};
+		EDD4C32B165C8554E20CA68F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0805833D09730531AD081697 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1765D91CC168F25A5BC51603;
+			remoteInfo = iOSApp;
 		};
 		EE7E8B6AE1E795335A7051CB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -551,10 +581,12 @@
 /* Begin PBXFileReference section */
 		001F2F140FDC8C90981500F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		00A94572C696E0EA46C0F7DC /* Lib.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; path = Lib.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
+		00C188164D317CAE007A58A2 /* watchOSAppExtension.142.link.params */ = {isa = PBXFileReference; path = watchOSAppExtension.142.link.params; sourceTree = "<group>"; };
 		01506E1C822A25B4F703986A /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		0156075391A8046358CF5FEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		015D1BF06E73DF8F20FCFA6C /* Entitlements.withbundleid.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Entitlements.withbundleid.plist; sourceTree = "<group>"; };
 		0170D4C164FF00D6E562958C /* GoogleMapsCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMapsCore.framework; sourceTree = "<group>"; };
+		019BB1908B8EB6DB997959F8 /* tvOSApp.75.link.params */ = {isa = PBXFileReference; path = tvOSApp.75.link.params; sourceTree = "<group>"; };
 		01C0E082C4D7EF0C6DBA4B0D /* watchOSAppExtension.library.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; path = watchOSAppExtension.library.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		01C8147CD352BF472EFA9644 /* Lib.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; path = Lib.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		020711CFE990B904B97C4A0C /* iMessageAppExtension.102.link.params */ = {isa = PBXFileReference; path = iMessageAppExtension.102.link.params; sourceTree = "<group>"; };
@@ -584,6 +616,7 @@
 		0B46C19AD5A145E2F87A6232 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		0C4AD689DFBE22F0FFD4E8F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		0C5DBB439F85E47FD7C722FE /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
+		0C663A2CD0E88D4D37CBC631 /* LibFramework.tvOS.73.link.params */ = {isa = PBXFileReference; path = LibFramework.tvOS.73.link.params; sourceTree = "<group>"; };
 		0C8C8454418DDFFE862326C6 /* iMessageAppExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = iMessageAppExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CCD818E4052CAC1B4D5CBB5 /* Lib.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; path = Lib.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		0CD48611106618767B10E7C9 /* nested */ = {isa = PBXFileReference; lastKnownFileType = folder; path = nested; sourceTree = "<group>"; };
@@ -592,6 +625,7 @@
 		0E1B34DB03119E2880F01891 /* Greeting.swift.stencil */ = {isa = PBXFileReference; path = Greeting.swift.stencil; sourceTree = "<group>"; };
 		0EB4D4CE3DBA45514DBE1E5E /* watchOSAppUITests.library.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; path = watchOSAppUITests.library.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		0EBD8F245B059F4F6F6FB96F /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
+		0ED57391597B0AD84920FE85 /* UIFramework.iOS.82.link.params */ = {isa = PBXFileReference; path = UIFramework.iOS.82.link.params; sourceTree = "<group>"; };
 		0EECEF60D8A575D7E9900E34 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		0F40869FA0ACF94AD91F5382 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		0F4334D1E132FC96899B1600 /* Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
@@ -627,6 +661,7 @@
 		1C185B8AB07D4422FA56D6A5 /* liblib_swift.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_swift.a; path = "bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37/bin/CommandLine/CommandLineToolLib/liblib_swift.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C3C169732AE661ACA8693A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		1C3E50FA80A83B6F134DFD38 /* WidgetExtension.library.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; path = WidgetExtension.library.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
+		1CD292E2860449E55F1FD1B7 /* UIFramework.watchOS.141.link.params */ = {isa = PBXFileReference; path = UIFramework.watchOS.141.link.params; sourceTree = "<group>"; };
 		1D1177806FD1B277EEDB91BB /* LibFramework.tvOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LibFramework.tvOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D3E4060B4DF95BC213F3639 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		1E20C382E55A760CCFEC98DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -666,6 +701,7 @@
 		2C814F9BB07EBF1814D33B66 /* FrameworkCoreUtilsObjC.5.link.params */ = {isa = PBXFileReference; path = FrameworkCoreUtilsObjC.5.link.params; sourceTree = "<group>"; };
 		2D92F316DAC976698B045140 /* Entitlements.withbundleid.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Entitlements.withbundleid.plist; sourceTree = "<group>"; };
 		2EBE34FE4C2C36E72BDF336A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		2EE6F79FD6DF0BA0C9685265 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2F125E9BEA4413878750E9AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2FAF11751A92E97E6187C6C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2FCFAFB9D5B4520241458E46 /* FrameworkCoreUtilsObjC.80.link.params */ = {isa = PBXFileReference; path = FrameworkCoreUtilsObjC.80.link.params; sourceTree = "<group>"; };
@@ -676,6 +712,7 @@
 		3186E81EB1FDC3321F7A9FC6 /* iOSApp.library.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; path = iOSApp.library.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		32EADC9885D43037F53BB2A1 /* WidgetExtension.4.link.params */ = {isa = PBXFileReference; path = WidgetExtension.4.link.params; sourceTree = "<group>"; };
 		331C91FDCA4754A04846BCDA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		3371288E0A08678B7CD99EC9 /* watchOS.92.link.params */ = {isa = PBXFileReference; path = watchOS.92.link.params; sourceTree = "<group>"; };
 		34051E31629F66435DD61AF0 /* private_lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = private_lib.swift; sourceTree = "<group>"; };
 		3414CA386E0673F0FF99DD50 /* private_swift_lib.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; path = private_swift_lib.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		34207E6337AA126C74536FF9 /* c_lib.rules_xcodeproj.c.compile.params */ = {isa = PBXFileReference; path = c_lib.rules_xcodeproj.c.compile.params; sourceTree = "<group>"; };
@@ -710,10 +747,13 @@
 		3ED2E5F148FDD4DC5D61C5EB /* es */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = es; path = es.lproj/unprocessed.json; sourceTree = "<group>"; };
 		3F8DB53241535D6532BEBD96 /* UI.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; path = UI.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		4034C1D391CED83AE478F996 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		406FFB0D104A9C756082767E /* UniversalCommandLineTool.124.link.params */ = {isa = PBXFileReference; path = UniversalCommandLineTool.124.link.params; sourceTree = "<group>"; };
 		40A9F920449B4FCA89C8BF1C /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		40DDF175A0B2A5139BA4071C /* c_lib.rules_xcodeproj.c.compile.params */ = {isa = PBXFileReference; path = c_lib.rules_xcodeproj.c.compile.params; sourceTree = "<group>"; };
 		4127C83EB6C186C2535795D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		41AC923724131AD9ED45AA14 /* WidgetExtension.136.link.params */ = {isa = PBXFileReference; path = WidgetExtension.136.link.params; sourceTree = "<group>"; };
 		41B6CD632856BDBB4963675D /* FXPageControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FXPageControl.h; sourceTree = "<group>"; };
+		42BAC836B5DC0B3E578234E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		43483C0C029D669DC6D9079A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		450105F2AE378B492310C414 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		457420091A3C0A5767952582 /* iOS.143.link.params */ = {isa = PBXFileReference; path = iOS.143.link.params; sourceTree = "<group>"; };
@@ -727,6 +767,7 @@
 		4881EEC5A32BE56448E19924 /* UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITests.swift; sourceTree = "<group>"; };
 		48BD809D7C49CFD4CFCD3B78 /* Entitlements.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Entitlements.entitlements; sourceTree = "<group>"; };
 		4942A330FF2FA587642E6328 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		4A6925E3B3DC90FC6A37C242 /* iOSAppObjCUnitTestSuite.35.link.params */ = {isa = PBXFileReference; path = iOSAppObjCUnitTestSuite.35.link.params; sourceTree = "<group>"; };
 		4AB6F0E6261D874D740C3F3C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		4AC34D4EE70844D45C60CD55 /* private_swift_lib.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; path = private_swift_lib.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		4BB881D963E8683979A06E74 /* iOSAppSwiftUnitTests.library.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; path = iOSAppSwiftUnitTests.library.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
@@ -740,6 +781,7 @@
 		51742187BD979DC5C6B36E2D /* tool.library.rules_xcodeproj.c.compile.params */ = {isa = PBXFileReference; path = tool.library.rules_xcodeproj.c.compile.params; sourceTree = "<group>"; };
 		51FCE7023C8D783D16819C5C /* lib_impl.rules_xcodeproj.c.compile.params */ = {isa = PBXFileReference; path = lib_impl.rules_xcodeproj.c.compile.params; sourceTree = "<group>"; };
 		527EDCB17920C6B742B6B535 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		52A408316F62EA464F7EF1A8 /* LibFramework.watchOS.140.link.params */ = {isa = PBXFileReference; path = LibFramework.watchOS.140.link.params; sourceTree = "<group>"; };
 		5363C149251A898407013539 /* lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lib.swift; sourceTree = "<group>"; };
 		54550FC8CAC701F17A09C6CB /* UI.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; path = UI.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		549E367287400D16737BBD4D /* Utils.rules_xcodeproj.c.compile.params */ = {isa = PBXFileReference; path = Utils.rules_xcodeproj.c.compile.params; sourceTree = "<group>"; };
@@ -758,6 +800,7 @@
 		5B037FE0100534DE8130AF42 /* lib_swift.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; path = lib_swift.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		5B156A88051BA339B11EABD7 /* lib_impl.rules_xcodeproj.c.compile.params */ = {isa = PBXFileReference; path = lib_impl.rules_xcodeproj.c.compile.params; sourceTree = "<group>"; };
 		5B18EDDBB2FF3D10BA4A81A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		5B64B59AB93292659EDDA9D1 /* iOSApp.68.link.params */ = {isa = PBXFileReference; path = iOSApp.68.link.params; sourceTree = "<group>"; };
 		5B74F39A84428B8DEB27AD00 /* libLib.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libLib.a; path = "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8/bin/Lib/libLib.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B832A98240B85F79EFCD418 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		5B837AA5F1648932EB01B966 /* UI.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; path = UI.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
@@ -790,6 +833,7 @@
 		6B39192E766D75959E70F299 /* private_lib.rules_xcodeproj.c.compile.params */ = {isa = PBXFileReference; path = private_lib.rules_xcodeproj.c.compile.params; sourceTree = "<group>"; };
 		6C99929F7EA72D96514D6580 /* MixedAnswer_objc_modulemap-module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = "MixedAnswer_objc_modulemap-module.modulemap"; sourceTree = "<group>"; };
 		6CFEEE584B6117A9CB639096 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		6D27E2F45A186BDD61E55A8F /* iOSAppSwiftUnitTestSuite.library.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; path = iOSAppSwiftUnitTestSuite.library.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		6D9C8C1A0B07E081B22A6110 /* tvOSApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tvOSApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E5644922EB50A517EE1B9B9 /* Lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lib.swift; sourceTree = "<group>"; };
 		6F0A45FF561184C888411281 /* AppClip.131.link.params */ = {isa = PBXFileReference; path = AppClip.131.link.params; sourceTree = "<group>"; };
@@ -812,6 +856,8 @@
 		78CAAB2D02CBE1BFAD0B6C71 /* Info.withbundleid.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.withbundleid.plist; sourceTree = "<group>"; };
 		7957F36AB709B4E5A9FA8B83 /* Lib.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; path = Lib.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		79B50B7CCD3AC7ECE084459F /* AppClip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppClip.swift; sourceTree = "<group>"; };
+		79B9E08F45AF4A2A91439C04 /* UniversalCommandLineTool.54.link.params */ = {isa = PBXFileReference; path = UniversalCommandLineTool.54.link.params; sourceTree = "<group>"; };
+		7A11B18558DAEC6F7843B1EF /* iOS.69.link.params */ = {isa = PBXFileReference; path = iOS.69.link.params; sourceTree = "<group>"; };
 		7A65A40923575510E3C8AB18 /* iOSApp.library.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; path = iOSApp.library.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		7A877044D6D06AE9BC902505 /* CommandLineLibSwiftTestsLib.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; path = CommandLineLibSwiftTestsLib.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		7AC4556C25A41349D3F092D7 /* tool.library.rules_xcodeproj.c.compile.params */ = {isa = PBXFileReference; path = tool.library.rules_xcodeproj.c.compile.params; sourceTree = "<group>"; };
@@ -833,10 +879,12 @@
 		82081A6BD08E21EB1E306B59 /* watchOSAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = watchOSAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		820F0E7BE6D1A1C7C2B9576A /* libImportableLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libImportableLibrary.a; sourceTree = "<group>"; };
 		82A2980C2D5CC09907E8C397 /* MixedAnswerLib_Swift.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; path = MixedAnswerLib_Swift.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
+		830FA6F748919E2DFE3CAD91 /* iOSAppSwiftUnitTestSuite.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSAppSwiftUnitTestSuite.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		83165F168A41AD59E59461A7 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		8344307AF89CF3E1448C5323 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		83AFCF96795D66ECA00B0EF0 /* ownership.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = ownership.yaml; sourceTree = "<group>"; };
 		83CB1E3ED10A89BC70153DA6 /* nested */ = {isa = PBXFileReference; lastKnownFileType = folder; path = nested; sourceTree = "<group>"; };
+		844B6A225F76C67C0EB6C82C /* tvOSApp.95.link.params */ = {isa = PBXFileReference; path = tvOSApp.95.link.params; sourceTree = "<group>"; };
 		847B3D46C150D0CF60A9F5F8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		84BC12E12DCB1079F881E1DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		84D982C64D4FD100F6E0ADD2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -859,6 +907,7 @@
 		8AB1368E644467C1E8924378 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = wrapper.cfbundle; path = GoogleMaps.bundle; sourceTree = "<group>"; };
 		8B035738C344E2740B2020F8 /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = "<group>"; };
 		8B3E8ADFDCA2B70A6AE73107 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		8C75CFA9AA442A3372DFDDBB /* FrameworkCoreUtilsObjC.61.link.params */ = {isa = PBXFileReference; path = FrameworkCoreUtilsObjC.61.link.params; sourceTree = "<group>"; };
 		8C79A816C831354461BE752F /* liblib_impl.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_impl.a; path = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38/bin/CommandLine/CommandLineToolLib/liblib_impl.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CD91E1119F0BFDA720504B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8D59CB4DD416D596DF065CE3 /* CoreUtilsObjC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CoreUtilsObjC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -885,6 +934,7 @@
 		94FD4C3393FBF2745986679C /* lib_swift.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; path = lib_swift.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		951AAC45924B26E9C77DC7A2 /* private_lib.rules_xcodeproj.c.compile.params */ = {isa = PBXFileReference; path = private_lib.rules_xcodeproj.c.compile.params; sourceTree = "<group>"; };
 		9628D93F73851B21FC725BF9 /* CoreUtilsObjC.rules_xcodeproj.cxx.compile.params */ = {isa = PBXFileReference; path = CoreUtilsObjC.rules_xcodeproj.cxx.compile.params; sourceTree = "<group>"; };
+		97168BB952E941A87E980F3A /* iOSAppSwiftUnitTestSuite.112.link.params */ = {isa = PBXFileReference; path = iOSAppSwiftUnitTestSuite.112.link.params; sourceTree = "<group>"; };
 		971C9B4C8EA8A37D88CB2603 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		97DC554A57A7E90F4D17CEBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		97EC99D31FABCCBE28429657 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = en; path = en.lproj/unprocessed.json; sourceTree = "<group>"; };
@@ -908,6 +958,7 @@
 		9D32250FF31C50E3EFB5E75C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		9E3C67424F456D9FF51EEBDA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		9E9A34CF7D39ABC67B25D278 /* iOSAppSwiftUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSAppSwiftUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9ED59D7ADA131B75B8765737 /* UIFramework.tvOS.74.link.params */ = {isa = PBXFileReference; path = UIFramework.tvOS.74.link.params; sourceTree = "<group>"; };
 		9EDD583C3B1836877AAAC18F /* UIFramework.watchOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UIFramework.watchOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FADC50F83228A0BC2F03239 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		9FB807E65788589E5F03DF37 /* Answers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Answers.h; sourceTree = "<group>"; };
@@ -925,11 +976,13 @@
 		A43B7F66FF9518FDB6203F44 /* private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = private.h; sourceTree = "<group>"; };
 		A47FA7DCD9DE165F69942473 /* AppClip.76.link.params */ = {isa = PBXFileReference; path = AppClip.76.link.params; sourceTree = "<group>"; };
 		A4B7C7B0B3E5966287BE381D /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
+		A564C4DE29D21B686050AAEF /* iOSAppObjCUnitTestSuite.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSAppObjCUnitTestSuite.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A60529BDB4433012C2BB7074 /* tool.library.rules_xcodeproj.c.compile.params */ = {isa = PBXFileReference; path = tool.library.rules_xcodeproj.c.compile.params; sourceTree = "<group>"; };
 		A67AC1982B08388B0B071590 /* MixedAnswer_swift_modulemap-module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = "MixedAnswer_swift_modulemap-module.modulemap"; sourceTree = "<group>"; };
 		A6EF4CCCBB8ADC915DCB24C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		A72784148E298BC9F8822CE8 /* libFXPageControl.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libFXPageControl.a; path = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/external/FXPageControl/libFXPageControl.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A755C138B3C37E7179D040B6 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
+		A77A65232B104F9556AC1761 /* UIFramework.watchOS.85.link.params */ = {isa = PBXFileReference; path = UIFramework.watchOS.85.link.params; sourceTree = "<group>"; };
 		A7DD5DC08825B46B051D74B0 /* UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITests.swift; sourceTree = "<group>"; };
 		A83FE950E89815B2E4F9E4AD /* aplugin.library.rules_xcodeproj.c.compile.params */ = {isa = PBXFileReference; path = aplugin.library.rules_xcodeproj.c.compile.params; sourceTree = "<group>"; };
 		A8608D755BE6019F0A41AD58 /* LibFramework.watchOS.63.link.params */ = {isa = PBXFileReference; path = LibFramework.watchOS.63.link.params; sourceTree = "<group>"; };
@@ -938,6 +991,7 @@
 		A96D7309FDFA4E623551AC92 /* tvOSAppUITests.library.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; path = tvOSAppUITests.library.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		A9721D8883D73A3F13BF89BB /* Lib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Lib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9D9FEBC0972D69FB407711D /* WidgetExtension.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = WidgetExtension.intentdefinition; sourceTree = "<group>"; };
+		A9EDA2BD2E77016E20105200 /* watchOSAppExtension.86.link.params */ = {isa = PBXFileReference; path = watchOSAppExtension.86.link.params; sourceTree = "<group>"; };
 		AAC9F5126C0750EE2B014B1D /* libLib.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libLib.a; path = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/Lib/libLib.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AADB68387784D243F2101889 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		AB6369A09F58ECA3863FAD5F /* iOSApp.library.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; path = iOSApp.library.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
@@ -955,7 +1009,9 @@
 		B1163CCC8293D3DD7D46D598 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B13F7A534D61F880A524705D /* tool.library.rules_xcodeproj.c.compile.params */ = {isa = PBXFileReference; path = tool.library.rules_xcodeproj.c.compile.params; sourceTree = "<group>"; };
 		B175955D9351877CB9A87F1D /* WatchOSAppExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchOSAppExtensionTests.swift; sourceTree = "<group>"; };
+		B21666A521728AC6CA65C9A7 /* iOSAppObjCUnitTestSuite.111.link.params */ = {isa = PBXFileReference; path = iOSAppObjCUnitTestSuite.111.link.params; sourceTree = "<group>"; };
 		B22C14159977FC1B40CBFC41 /* watchOSAppExtension.library.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; path = watchOSAppExtension.library.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
+		B27116B6C3825906E5E9CF9B /* CommandLineToolTests.55.link.params */ = {isa = PBXFileReference; path = CommandLineToolTests.55.link.params; sourceTree = "<group>"; };
 		B3B9A85867C5CFB2A9E157A8 /* exported-symbols.lds */ = {isa = PBXFileReference; path = "exported-symbols.lds"; sourceTree = "<group>"; };
 		B3D16B465F572A08A439CB5B /* UniversalCommandLineTool.128.link.params */ = {isa = PBXFileReference; path = UniversalCommandLineTool.128.link.params; sourceTree = "<group>"; };
 		B3F3C4F4AC7B78A566595E43 /* TestingUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingUtils.swift; sourceTree = "<group>"; };
@@ -1011,13 +1067,16 @@
 		CB202A53010BDC39A3CB6CCF /* UIFramework.iOS.61.link.params */ = {isa = PBXFileReference; path = UIFramework.iOS.61.link.params; sourceTree = "<group>"; };
 		CB38C7FF0302F53A6AAE579F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CB3DC152A3E3107BA02D60A1 /* macOSAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = macOSAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB9C1C044D0FC4D099A99823 /* AppClip.57.link.params */ = {isa = PBXFileReference; path = AppClip.57.link.params; sourceTree = "<group>"; };
 		CC3E4C2E2017C34B5C0D2A9C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CC801C958E1C2BF7E3E989C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CCB9EDDAC48EA2A043A5D901 /* FXPageControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FXPageControl.m; sourceTree = "<group>"; };
 		CD07B657B5ED92CC3963B7FD /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		CD613337D769259B7312A7ED /* Info.withbundleid.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.withbundleid.plist; sourceTree = "<group>"; };
+		CE9C9B777E865F4590779C75 /* UIFramework.watchOS.65.link.params */ = {isa = PBXFileReference; path = UIFramework.watchOS.65.link.params; sourceTree = "<group>"; };
 		CEA3B5B86605752BE48FA932 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D04DAB4233F4848FFE131AD9 /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = "<group>"; };
+		D05E5BDD606231D98CE1D2E5 /* CommandLineTool.42.link.params */ = {isa = PBXFileReference; path = CommandLineTool.42.link.params; sourceTree = "<group>"; };
 		D20093170A54E92A741D748D /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		D325855C402FA6CDE8EA77EC /* macOSApp.library.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; path = macOSApp.library.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		D3556B26799209D48460E58D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -1040,6 +1099,7 @@
 		DCDEBD7F498744CF9A66B436 /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = "<group>"; };
 		DD2F1B00AE62DD0E1EFC221E /* c_lib.rules_xcodeproj.c.compile.params */ = {isa = PBXFileReference; path = c_lib.rules_xcodeproj.c.compile.params; sourceTree = "<group>"; };
 		DDC6FADA8D522B130B4334CA /* UI.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; path = UI.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
+		DE15D701E5580C3DE6AA46A8 /* iOSApp.88.link.params */ = {isa = PBXFileReference; path = iOSApp.88.link.params; sourceTree = "<group>"; };
 		DE7A85C8CB6B02FF81C3EE90 /* bucket */ = {isa = PBXFileReference; lastKnownFileType = folder; path = bucket; sourceTree = "<group>"; };
 		DEB4E4650BF1C65018C114F9 /* FXPageControl.rules_xcodeproj.c.compile.params */ = {isa = PBXFileReference; path = FXPageControl.rules_xcodeproj.c.compile.params; sourceTree = "<group>"; };
 		DEC281EEBC231F6DC6BAB6CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -1071,6 +1131,7 @@
 		E851D6F2D8F78F93161DEF2C /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		E85AF0B345AC23346EAC18AD /* tvOSAppUnitTests.108.link.params */ = {isa = PBXFileReference; path = tvOSAppUnitTests.108.link.params; sourceTree = "<group>"; };
 		E8703E9FBF39A0D71E2D4086 /* Bundle.20.link.params */ = {isa = PBXFileReference; path = Bundle.20.link.params; sourceTree = "<group>"; };
+		E887D519AA061FD9251EE90A /* tvOS.71.link.params */ = {isa = PBXFileReference; path = tvOS.71.link.params; sourceTree = "<group>"; };
 		E906A61B46091C8750A0DE5F /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		E92A43EEF7161DB373C02ED4 /* MixedAnswer-Swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MixedAnswer-Swift.h"; sourceTree = "<group>"; };
 		E92E98B0E02D056B0BBAD2E2 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
@@ -1120,6 +1181,7 @@
 		FC00C85AEA7136F459F898C6 /* tool.binary */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tool.binary; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC04D0F789BD40E7581D9622 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		FC66568F3A729EDCE873BB26 /* watchOSAppUITests.library.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; path = watchOSAppUITests.library.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
+		FCA6EE4612B7A6B92A2AF58B /* UniversalCommandLineTool.130.link.params */ = {isa = PBXFileReference; path = UniversalCommandLineTool.130.link.params; sourceTree = "<group>"; };
 		FD0C838571F5F14E002195FF /* tool.library.rules_xcodeproj.c.compile.params */ = {isa = PBXFileReference; path = tool.library.rules_xcodeproj.c.compile.params; sourceTree = "<group>"; };
 		FD42EC897A0935BEDC013AEF /* macOSApp.30.link.params */ = {isa = PBXFileReference; path = macOSApp.30.link.params; sourceTree = "<group>"; };
 		FDC975FBEFB4C3DC4E3AB334 /* Lib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Lib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1159,6 +1221,14 @@
 				701841C832130A8885454B75 /* UI.rules_xcodeproj.swift.compile.params */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		01F6D84A7F165BA771A85973 /* iOSAppSwiftUnitTestSuite.__internal__.__test_bundle */ = {
+			isa = PBXGroup;
+			children = (
+				BD0200750BF9E1DA86C5B8CC /* Info.plist */,
+			);
+			path = iOSAppSwiftUnitTestSuite.__internal__.__test_bundle;
 			sourceTree = "<group>";
 		};
 		023632018C2ADB55E7242063 /* Test */ = {
@@ -2939,6 +3009,7 @@
 			isa = PBXGroup;
 			children = (
 				F17B87AA34130B6EA415B4D8 /* iOSAppObjCUnitTests.__internal__.__test_bundle */,
+				E69F6263E81699E566F9516F /* iOSAppObjCUnitTestSuite.__internal__.__test_bundle */,
 			);
 			path = rules_xcodeproj;
 			sourceTree = "<group>";
@@ -3625,6 +3696,7 @@
 			isa = PBXGroup;
 			children = (
 				4BB881D963E8683979A06E74 /* iOSAppSwiftUnitTests.library.rules_xcodeproj.swift.compile.params */,
+				C1A5F835389AEC682EFD6709 /* iOSAppSwiftUnitTestSuite.library.rules_xcodeproj.swift.compile.params */,
 			);
 			path = SwiftUnitTests;
 			sourceTree = "<group>";
@@ -3814,6 +3886,14 @@
 			path = Lib;
 			sourceTree = "<group>";
 		};
+		77E472058382F76219F3BD33 /* iOSAppObjCUnitTestSuite.__internal__.__test_bundle */ = {
+			isa = PBXGroup;
+			children = (
+				2EE6F79FD6DF0BA0C9685265 /* Info.plist */,
+			);
+			path = iOSAppObjCUnitTestSuite.__internal__.__test_bundle;
+			sourceTree = "<group>";
+		};
 		78B9D697263E9249CB148ED8 /* Source */ = {
 			isa = PBXGroup;
 			children = (
@@ -3822,6 +3902,14 @@
 				7A65A40923575510E3C8AB18 /* iOSApp.library.rules_xcodeproj.swift.compile.params */,
 			);
 			path = Source;
+			sourceTree = "<group>";
+		};
+		7923AFA41E9AB2103E76A9AA /* iOSAppSwiftUnitTestSuite.__internal__.__test_bundle */ = {
+			isa = PBXGroup;
+			children = (
+				42BAC836B5DC0B3E578234E3 /* Info.plist */,
+			);
+			path = iOSAppSwiftUnitTestSuite.__internal__.__test_bundle;
 			sourceTree = "<group>";
 		};
 		7930EB5A2C6FC4B594D5ACF2 /* Utils */ = {
@@ -4140,6 +4228,7 @@
 				0C8C8454418DDFFE862326C6 /* iMessageAppExtension.appex */,
 				BC0D919D9C4954991E8C1FB8 /* iOSApp.app */,
 				2389FC2E3790FF01911CDBCC /* iOSAppObjCUnitTests.xctest */,
+				A564C4DE29D21B686050AAEF /* iOSAppObjCUnitTestSuite.xctest */,
 				9E9A34CF7D39ABC67B25D278 /* iOSAppSwiftUnitTests.xctest */,
 				F6F1090237FF04C38B58E42A /* iOSAppUITests.xctest */,
 				FDC975FBEFB4C3DC4E3AB334 /* Lib.framework */,
@@ -4241,6 +4330,7 @@
 			isa = PBXGroup;
 			children = (
 				457A050DC17AB540B0D0A41E /* iOSAppObjCUnitTests.library.rules_xcodeproj.c.compile.params */,
+				32A09A392A3D76C1D57E4566 /* iOSAppObjCUnitTestSuite.library.rules_xcodeproj.c.compile.params */,
 			);
 			path = ObjCUnitTests;
 			sourceTree = "<group>";
@@ -4552,6 +4642,7 @@
 			isa = PBXGroup;
 			children = (
 				CBCE78712880E1098A0FC595 /* iOSAppSwiftUnitTests.__internal__.__test_bundle */,
+				7923AFA41E9AB2103E76A9AA /* iOSAppSwiftUnitTestSuite.__internal__.__test_bundle */,
 			);
 			path = rules_xcodeproj;
 			sourceTree = "<group>";
@@ -5305,6 +5396,7 @@
 			isa = PBXGroup;
 			children = (
 				D8843CE8EC49608932D6131C /* iOSAppObjCUnitTests.library.rules_xcodeproj.c.compile.params */,
+				E5BC8D0917B18F26C3EFF457 /* iOSAppObjCUnitTestSuite.library.rules_xcodeproj.c.compile.params */,
 			);
 			path = ObjCUnitTests;
 			sourceTree = "<group>";
@@ -5429,6 +5521,7 @@
 			isa = PBXGroup;
 			children = (
 				F0230CD1C4150203B3C071E9 /* iOSAppSwiftUnitTests.library.rules_xcodeproj.swift.compile.params */,
+				6D27E2F45A186BDD61E55A8F /* iOSAppSwiftUnitTestSuite.library.rules_xcodeproj.swift.compile.params */,
 			);
 			path = SwiftUnitTests;
 			sourceTree = "<group>";
@@ -5625,6 +5718,7 @@
 			isa = PBXGroup;
 			children = (
 				93AD4432151F9EC9E8CE63D5 /* iOSAppSwiftUnitTests.__internal__.__test_bundle */,
+				01F6D84A7F165BA771A85973 /* iOSAppSwiftUnitTestSuite.__internal__.__test_bundle */,
 			);
 			path = rules_xcodeproj;
 			sourceTree = "<group>";
@@ -5888,6 +5982,7 @@
 			isa = PBXGroup;
 			children = (
 				38034AB48DCF5E87FFDDCA2E /* iOSAppObjCUnitTests.__internal__.__test_bundle */,
+				77E472058382F76219F3BD33 /* iOSAppObjCUnitTestSuite.__internal__.__test_bundle */,
 			);
 			path = rules_xcodeproj;
 			sourceTree = "<group>";
@@ -6231,6 +6326,14 @@
 				54550FC8CAC701F17A09C6CB /* UI.rules_xcodeproj.swift.compile.params */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		E69F6263E81699E566F9516F /* iOSAppObjCUnitTestSuite.__internal__.__test_bundle */ = {
+			isa = PBXGroup;
+			children = (
+				E62844E580697FDE9322EDC7 /* Info.plist */,
+			);
+			path = iOSAppObjCUnitTestSuite.__internal__.__test_bundle;
 			sourceTree = "<group>";
 		};
 		E702DF4A7C84B8FAFA2FC3FD /* applebin_tvos-tvos_x86_64-opt-STABLE-27 */ = {
@@ -7356,6 +7459,26 @@
 			productName = Lib;
 			productType = "com.apple.product-type.library.static";
 		};
+		8EE630791B4B7821701DA6DE /* iOSAppObjCUnitTestSuite */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E4837355184501B1853E5EC8 /* Build configuration list for PBXNativeTarget "iOSAppObjCUnitTestSuite" */;
+			buildPhases = (
+				941287568BA30E392EF8DAB4 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
+				9460BE12EA80EE1054CB1A05 /* Create compiling dependencies */,
+				9E244320E7A93CE9B9B5255A /* Create linking dependencies */,
+				4CDB5D37E784697C59CEAC80 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E5FE011C5AF76DB113DF642E /* PBXTargetDependency */,
+				24DB9924D58A426ABF3035C3 /* PBXTargetDependency */,
+			);
+			name = iOSAppObjCUnitTestSuite;
+			productName = iOSAppObjCUnitTestSuite;
+			productReference = A564C4DE29D21B686050AAEF /* iOSAppObjCUnitTestSuite.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		9B2255D9DE767A905FA0A70B /* lib_swift (arm64) */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = FA2FC4DEC4B2A8FDFCD4584F /* Build configuration list for PBXNativeTarget "lib_swift (arm64)" */;
@@ -7442,6 +7565,26 @@
 			name = "c_lib (arm64)";
 			productName = c_lib;
 			productType = "com.apple.product-type.library.static";
+		};
+		ACDA5ACDC1BF2DFDEAE93AFB /* iOSAppSwiftUnitTestSuite */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 54364E8F97C215D398C4DA76 /* Build configuration list for PBXNativeTarget "iOSAppSwiftUnitTestSuite" */;
+			buildPhases = (
+				BAE730AE0EFE6C56AF9D2C82 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
+				B6B7ED1B6980CEE94212525A /* Create compiling dependencies */,
+				9A7CC743315C4978E43A0E10 /* Create linking dependencies */,
+				11F55043033A5E7E8C4F3F0A /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DCD8E26E64178B2FED76D1A6 /* PBXTargetDependency */,
+				056DB65DBAB7821A70C8A2E2 /* PBXTargetDependency */,
+			);
+			name = iOSAppSwiftUnitTestSuite;
+			productName = iOSAppSwiftUnitTestSuite;
+			productReference = 830FA6F748919E2DFE3CAD91 /* iOSAppSwiftUnitTestSuite.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		ACEF2F653E0F6BEA37D2C7B6 /* tvOSApp */ = {
 			isa = PBXNativeTarget;
@@ -7937,6 +8080,11 @@
 						CreatedOnToolsVersion = 13.0.0;
 						LastSwiftMigration = 9999;
 					};
+					8EE630791B4B7821701DA6DE = {
+						CreatedOnToolsVersion = 13.0.0;
+						LastSwiftMigration = 9999;
+						TestTargetID = 1765D91CC168F25A5BC51603;
+					};
 					9B2255D9DE767A905FA0A70B = {
 						CreatedOnToolsVersion = 13.0.0;
 						LastSwiftMigration = 9999;
@@ -7956,6 +8104,11 @@
 					A7DC0A48644EFD0FCDE5EF90 = {
 						CreatedOnToolsVersion = 13.0.0;
 						LastSwiftMigration = 9999;
+					};
+					ACDA5ACDC1BF2DFDEAE93AFB = {
+						CreatedOnToolsVersion = 13.0.0;
+						LastSwiftMigration = 9999;
+						TestTargetID = 1765D91CC168F25A5BC51603;
 					};
 					ACEF2F653E0F6BEA37D2C7B6 = {
 						CreatedOnToolsVersion = 13.0.0;
@@ -8072,6 +8225,7 @@
 				252CA33FB4DD1F73A46CE0A6 /* iOS */,
 				1765D91CC168F25A5BC51603 /* iOSApp */,
 				41EA1ABC35FAFDF6B7FE0600 /* iOSAppObjCUnitTests */,
+				8EE630791B4B7821701DA6DE /* iOSAppObjCUnitTestSuite */,
 				D2B147BDA8E8FC10D91B53BB /* iOSAppSwiftUnitTests */,
 				CBEEB73C29EF2302986BB53C /* iOSAppUITests */,
 				9D6BB9A04FEC771667C78F54 /* Lib (iOS, tvOS) */,
@@ -9351,6 +9505,40 @@
 			shellScript = "set -euo pipefail\n\nif [[ \"${ENABLE_PREVIEWS:-}\" == \"YES\" ]]; then\nperl -pe 's/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\nelse\n  touch \"$SCRIPT_OUTPUT_FILE_0\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		941287568BA30E392EF8DAB4 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = "Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\nelse\n  \"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n    \"_BazelForcedCompile_.swift\" \\\n    \"iOSAppObjCUnitTestSuite.xctest\" \\\n    \"$BAZEL_INTEGRATION_DIR/xctest.exclude.rsynclist\"\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		9460BE12EA80EE1054CB1A05 /* Create compiling dependencies */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(C_PARAMS_FILE)",
+			);
+			name = "Create compiling dependencies";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/c.compile.params",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nperl -pe '\n  s/__BAZEL_XCODE_DEVELOPER_DIR__/\\$(DEVELOPER_DIR)/g;\n  s/__BAZEL_XCODE_SDKROOT__/\\$(SDKROOT)/g;\n  s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/gx;\n' \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"";
+			showEnvVarsInLog = 0;
+		};
 		9476EC2A0ADCDA7F32C63D7E /* Create compiling dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -9436,6 +9624,23 @@
 			shellScript = "set -euo pipefail\n\nperl -pe '\n  s/__BAZEL_XCODE_DEVELOPER_DIR__/\\$(DEVELOPER_DIR)/g;\n  s/__BAZEL_XCODE_SDKROOT__/\\$(SDKROOT)/g;\n  s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/gx;\n' \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"";
 			showEnvVarsInLog = 0;
 		};
+		9A7CC743315C4978E43A0E10 /* Create linking dependencies */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(LINK_PARAMS_FILE)",
+			);
+			name = "Create linking dependencies";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/link.params",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nif [[ \"${ENABLE_PREVIEWS:-}\" == \"YES\" ]]; then\nperl -pe 's/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\nelse\n  touch \"$SCRIPT_OUTPUT_FILE_0\"\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		9C72B493BBB21FF221EBC79C /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -9483,6 +9688,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\nelse\n  \"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n    \"_BazelForcedCompile_.swift\" \\\n    \"tool.binary_codesigned\" \\\n    \"\"\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		9E244320E7A93CE9B9B5255A /* Create linking dependencies */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(LINK_PARAMS_FILE)",
+			);
+			name = "Create linking dependencies";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/link.params",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nif [[ \"${ENABLE_PREVIEWS:-}\" == \"YES\" ]]; then\nperl -pe 's/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\nelse\n  touch \"$SCRIPT_OUTPUT_FILE_0\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		9FDE065FCA9AAC5A0A44A11F /* Create linking dependencies */ = {
@@ -9637,6 +9859,23 @@
 			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\n\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		B6B7ED1B6980CEE94212525A /* Create compiling dependencies */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SWIFT_PARAMS_FILE)",
+			);
+			name = "Create compiling dependencies";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/swift.compile.params",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nperl -pe '\n  s/__BAZEL_XCODE_DEVELOPER_DIR__/\\$(DEVELOPER_DIR)/g;\n  s/__BAZEL_XCODE_SDKROOT__/\\$(SDKROOT)/g;\n  s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/gx;\n' \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"";
+			showEnvVarsInLog = 0;
+		};
 		B6EB9297CD7079BA039A92D5 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -9685,6 +9924,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\n\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		BAE730AE0EFE6C56AF9D2C82 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = "Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\nelse\n  \"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n    \"_BazelForcedCompile_.swift\" \\\n    \"iOSAppSwiftUnitTestSuite.xctest\" \\\n    \"$BAZEL_INTEGRATION_DIR/xctest.exclude.rsynclist\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		BD0667782FD004D83EAA3729 /* Create linking dependencies */ = {
@@ -10328,6 +10584,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		11F55043033A5E7E8C4F3F0A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4D9923CE9713ABD3F5C193E3 /* SwiftUnitTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		16C57B6813982BA852B1DC27 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -10449,6 +10713,14 @@
 				1DC498C43B37ECA2C807A327 /* Intents.swift in Sources */,
 				B212C1F654EC979A41615291 /* Intents.swift in Sources */,
 				81CC6C81626E5A04DE8BB44E /* Intents.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4CDB5D37E784697C59CEAC80 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E66604D967169C5470384FC1 /* ObjCUnitTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -10762,6 +11034,12 @@
 			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
 			targetProxy = ACEB1374228556C1C9CBC69E /* PBXContainerItemProxy */;
 		};
+		056DB65DBAB7821A70C8A2E2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = iOSApp;
+			target = 1765D91CC168F25A5BC51603 /* iOSApp */;
+			targetProxy = 764A2CCDAE16ABA3F0830028 /* PBXContainerItemProxy */;
+		};
 		0576A3A5933E955D30A2375D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = macOSApp;
@@ -10815,6 +11093,12 @@
 			name = BazelDependencies;
 			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
 			targetProxy = EAD5378EECD89ECFD779837A /* PBXContainerItemProxy */;
+		};
+		24DB9924D58A426ABF3035C3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = iOSApp;
+			target = 1765D91CC168F25A5BC51603 /* iOSApp */;
+			targetProxy = EDD4C32B165C8554E20CA68F /* PBXContainerItemProxy */;
 		};
 		2C535CFF97E30B92E04CA24E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -11092,6 +11376,12 @@
 			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
 			targetProxy = F3D6B3D765A91AFD6AE6AD37 /* PBXContainerItemProxy */;
 		};
+		DCD8E26E64178B2FED76D1A6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BazelDependencies;
+			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
+			targetProxy = EA86503F87522DE0CA1AC4B2 /* PBXContainerItemProxy */;
+		};
 		DCFC3BB75E277BE43D89F2EF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = BazelDependencies;
@@ -11103,6 +11393,12 @@
 			name = BazelDependencies;
 			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
 			targetProxy = 9DBF02CAC6C6AC4B7C3505BA /* PBXContainerItemProxy */;
+		};
+		E5FE011C5AF76DB113DF642E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BazelDependencies;
+			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
+			targetProxy = 542C4E039DCCA12C911B7A09 /* PBXContainerItemProxy */;
 		};
 		EA596F412B85D7F7D01BC6C5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -12110,6 +12406,61 @@
 				"SWIFT_PARAMS_FILE[sdk=watchos*]" = "$(CURRENT_EXECUTION_ROOT)/bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-5/bin/watchOSAppExtension/watchOSAppExtension.library.rules_xcodeproj.swift.compile.params";
 				TARGET_NAME = watchOSAppExtension;
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
+			};
+			name = Debug;
+		};
+		34686682DCEAA1B918C8DEFF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = x86_64;
+				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
+				ASAN_OTHER_CFLAGS__YES = (
+					"$(ASAN_OTHER_CFLAGS__NO)",
+					"-Wno-macro-redefined",
+					"-D_FORTIFY_SOURCE=0",
+				);
+				BAZEL_COMPILE_TARGET_IDS = "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1";
+				"BAZEL_COMPILE_TARGET_IDS[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
+				BAZEL_LABEL = "@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite";
+				BAZEL_OUTPUTS_DSYM = (
+					"\"bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.framework.dSYM\"",
+					"\"bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/Lib/LibFramework.iOS.framework.dSYM\"",
+					"\"bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/UI/UIFramework.iOS.framework.dSYM\"",
+					"\"bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/WidgetExtension/WidgetExtension.appex.dSYM\"",
+					"\"bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/AppClip/AppClip.app.dSYM\"",
+					"\"bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-17/bin/Lib/LibFramework.watchOS.framework.dSYM\"",
+					"\"bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-17/bin/UI/UIFramework.watchOS.framework.dSYM\"",
+					"\"bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-17/bin/watchOSAppExtension/watchOSAppExtension.appex.dSYM\"",
+					"\"bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Source/iOSApp.app.dSYM\"",
+					"\"bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTestSuite.xctest.dSYM\"",
+				);
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTestSuite.xctest";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Test/ObjCUnitTests";
+				BAZEL_TARGET_ID = "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-13";
+				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
+				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Manual;
+				COMPILE_TARGET_NAME = iOSAppObjCUnitTestSuite.library;
+				C_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTestSuite.library.rules_xcodeproj.c.compile.params";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEPLOYMENT_LOCATION = NO;
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Test/ObjCUnitTests/rules_xcodeproj/iOSAppObjCUnitTestSuite.__internal__.__test_bundle/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTestSuite.35.link.params";
+				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
+				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.objctests";
+				PRODUCT_MODULE_NAME = iOSAppObjCUnitTestsSuite;
+				PRODUCT_NAME = iOSAppObjCUnitTestSuite;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = iphonesimulator;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGET_BUILD_DIR = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Source$(TARGET_BUILD_SUBPATH)";
+				TARGET_NAME = iOSAppObjCUnitTestSuite;
+				TEST_HOST = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Source/iOSApp.app/iOSApp_ExecutableName";
 			};
 			name = Debug;
 		};
@@ -14696,6 +15047,59 @@
 			};
 			name = AppStore;
 		};
+		C23CC8FDE48C88B9C2A42857 /* AppStore */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = x86_64;
+				BAZEL_COMPILE_TARGET_IDS = "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTestSuite.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7";
+				"BAZEL_COMPILE_TARGET_IDS[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
+				BAZEL_LABEL = "@//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTestSuite";
+				BAZEL_OUTPUTS_DSYM = (
+					"\"bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.framework.dSYM\"",
+					"\"bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/Lib/LibFramework.iOS.framework.dSYM\"",
+					"\"bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/UI/UIFramework.iOS.framework.dSYM\"",
+					"\"bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/WidgetExtension/WidgetExtension.appex.dSYM\"",
+					"\"bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/AppClip/AppClip.app.dSYM\"",
+					"\"bazel-out/applebin_watchos-watchos_x86_64-opt-STABLE-19/bin/Lib/LibFramework.watchOS.framework.dSYM\"",
+					"\"bazel-out/applebin_watchos-watchos_x86_64-opt-STABLE-19/bin/UI/UIFramework.watchOS.framework.dSYM\"",
+					"\"bazel-out/applebin_watchos-watchos_x86_64-opt-STABLE-19/bin/watchOSAppExtension/watchOSAppExtension.appex.dSYM\"",
+					"\"bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Source/iOSApp.app.dSYM\"",
+					"\"bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTestSuite.xctest.dSYM\"",
+				);
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTestSuite.xctest";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Test/SwiftUnitTests";
+				BAZEL_TARGET_ID = "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTestSuite.__internal__.__test_bundle applebin_ios-ios_x86_64-opt-STABLE-15";
+				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
+				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
+				CODE_SIGN_STYLE = Manual;
+				COMPILE_TARGET_NAME = iOSAppSwiftUnitTestSuite.library;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEPLOYMENT_LOCATION = NO;
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Test/SwiftUnitTests/rules_xcodeproj/iOSAppSwiftUnitTestSuite.__internal__.__test_bundle/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppSwiftUnitTestSuite.112.link.params";
+				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
+				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
+				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
+				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Test/SwiftUnitTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.tests";
+				PRODUCT_MODULE_NAME = iOSAppSwiftUnitTestSuite;
+				PRODUCT_NAME = iOSAppSwiftUnitTestSuite;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = iphonesimulator;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_INCLUDE_PATHS = "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/Lib bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/UI bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Source bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Test/TestingUtils";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTestSuite.library.rules_xcodeproj.swift.compile.params";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGET_BUILD_DIR = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Source$(TARGET_BUILD_SUBPATH)";
+				TARGET_NAME = iOSAppSwiftUnitTestSuite;
+				TEST_HOST = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Source/iOSApp.app/iOSApp_ExecutableName";
+			};
+			name = AppStore;
+		};
 		C5527CE4F7879E4C3B98809C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -14988,6 +15392,61 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineToolLib/private_swift_lib.rules_xcodeproj.swift.compile.params";
 				TARGET_NAME = private_swift_lib;
+			};
+			name = AppStore;
+		};
+		E1A6B91C890EAB5D95D06398 /* AppStore */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = x86_64;
+				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
+				ASAN_OTHER_CFLAGS__YES = (
+					"$(ASAN_OTHER_CFLAGS__NO)",
+					"-Wno-macro-redefined",
+					"-D_FORTIFY_SOURCE=0",
+				);
+				BAZEL_COMPILE_TARGET_IDS = "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7";
+				"BAZEL_COMPILE_TARGET_IDS[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
+				BAZEL_LABEL = "@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite";
+				BAZEL_OUTPUTS_DSYM = (
+					"\"bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.framework.dSYM\"",
+					"\"bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/Lib/LibFramework.iOS.framework.dSYM\"",
+					"\"bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/UI/UIFramework.iOS.framework.dSYM\"",
+					"\"bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/WidgetExtension/WidgetExtension.appex.dSYM\"",
+					"\"bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/AppClip/AppClip.app.dSYM\"",
+					"\"bazel-out/applebin_watchos-watchos_x86_64-opt-STABLE-19/bin/Lib/LibFramework.watchOS.framework.dSYM\"",
+					"\"bazel-out/applebin_watchos-watchos_x86_64-opt-STABLE-19/bin/UI/UIFramework.watchOS.framework.dSYM\"",
+					"\"bazel-out/applebin_watchos-watchos_x86_64-opt-STABLE-19/bin/watchOSAppExtension/watchOSAppExtension.appex.dSYM\"",
+					"\"bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Source/iOSApp.app.dSYM\"",
+					"\"bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTestSuite.xctest.dSYM\"",
+				);
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTestSuite.xctest";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Test/ObjCUnitTests";
+				BAZEL_TARGET_ID = "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite.__internal__.__test_bundle applebin_ios-ios_x86_64-opt-STABLE-15";
+				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
+				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Manual;
+				COMPILE_TARGET_NAME = iOSAppObjCUnitTestSuite.library;
+				C_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTestSuite.library.rules_xcodeproj.c.compile.params";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEPLOYMENT_LOCATION = NO;
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Test/ObjCUnitTests/rules_xcodeproj/iOSAppObjCUnitTestSuite.__internal__.__test_bundle/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTestSuite.111.link.params";
+				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
+				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.objctests";
+				PRODUCT_MODULE_NAME = iOSAppObjCUnitTestsSuite;
+				PRODUCT_NAME = iOSAppObjCUnitTestSuite;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = iphonesimulator;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGET_BUILD_DIR = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Source$(TARGET_BUILD_SUBPATH)";
+				TARGET_NAME = iOSAppObjCUnitTestSuite;
+				TEST_HOST = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Source/iOSApp.app/iOSApp_ExecutableName";
 			};
 			name = AppStore;
 		};
@@ -15502,6 +15961,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
+		54364E8F97C215D398C4DA76 /* Build configuration list for PBXNativeTarget "iOSAppSwiftUnitTestSuite" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C23CC8FDE48C88B9C2A42857 /* AppStore */,
+				BD5CF946869FA7B91B606524 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
 		544698785313BA61A731283E /* Build configuration list for PBXNativeTarget "FrameworkCoreUtilsObjC" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -15813,6 +16281,15 @@
 			buildConfigurations = (
 				2B691A21AC01F87320935180 /* AppStore */,
 				1930030923086D364CC3127B /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		E4837355184501B1853E5EC8 /* Build configuration list for PBXNativeTarget "iOSAppObjCUnitTestSuite" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E1A6B91C890EAB5D95D06398 /* AppStore */,
+				34686682DCEAA1B918C8DEFF /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
