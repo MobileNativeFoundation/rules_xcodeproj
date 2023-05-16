@@ -63,6 +63,24 @@ def _process_cc_info_headers(headers, *, exclude_headers, generated):
         if header not in exclude_headers
     ]
 
+def _transform_into_label_to_resources(resources):
+    """Helper function to transform resources for easier consumption
+
+    Args:
+        resources: A `list` of tuples (`owner`, `file_path`) of resources that should be
+            added to the target's bundle.
+
+    Returns:
+        A `list` of tuples (`owner`, depset([`resource`]))
+    """
+    label_to_resources_depset = {}
+    for (owner, resource) in resources:
+        label_to_resources_depset.setdefault(owner, {})[resource] = None
+    return [
+        (owner, depset(resources.keys()))
+        for owner, resources in label_to_resources_depset.items()
+    ]
+
 # API
 
 C_EXTENSIONS = {
@@ -421,9 +439,15 @@ def _collect_input_files(
         if resources_result.dependencies:
             resource_bundle_dependencies = resources_result.dependencies
         if resources_result.resources:
-            resources = depset(resources_result.resources)
+            resources = depset(
+                _transform_into_label_to_resources(resources_result.resources),
+            )
         if resources_result.folder_resources:
-            folder_resources = depset(resources_result.folder_resources)
+            folder_resources = depset(
+                _transform_into_label_to_resources(
+                    resources_result.folder_resources,
+                ),
+            )
     else:
         resource_bundle_labels = memory_efficient_depset(
             transitive = [
@@ -764,7 +788,9 @@ def _from_resource_bundle(bundle):
     return struct(
         compiling_output_group_name = None,
         entitlements = None,
-        folder_resources = depset(bundle.folder_resources),
+        folder_resources = depset(
+            _transform_into_label_to_resources(bundle.folder_resources),
+        ),
         generated = EMPTY_DEPSET,
         c_sources = EMPTY_DICT,
         cxx_sources = EMPTY_DICT,
@@ -775,7 +801,9 @@ def _from_resource_bundle(bundle):
         non_arc_srcs = EMPTY_LIST,
         pch = None,
         resource_bundle_dependencies = bundle.dependencies,
-        resources = depset(bundle.resources),
+        resources = depset(
+            _transform_into_label_to_resources(bundle.resources),
+        ),
         srcs = EMPTY_LIST,
         unfocused_generated_compiling = None,
         unfocused_generated_indexstores = None,

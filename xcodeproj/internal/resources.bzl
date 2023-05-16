@@ -14,6 +14,26 @@ load(":target_id.bzl", "get_id")
 
 # Utility
 
+def _normalize_resource_path(resource):
+    for extension in RESOURCES_FOLDER_TYPE_EXTENSIONS:
+        if extension not in resource:
+            continue
+        prefix, ext, _ = resource.partition(extension)
+        return prefix + ext
+
+    return resource
+
+def _update_bundle_owner_resource_tuples(
+        *,
+        resource,
+        owner_resource_tuples,
+        resource_to_owners):
+    resource_owners = resource_to_owners.get(resource, {})
+    if not resource_owners:
+        owner_resource_tuples.append((None, resource))
+    for resource_owner in resource_owners:
+        owner_resource_tuples.append((resource_owner, resource))
+
 def _processed_resource_fields(resources_info):
     return [
         f
@@ -71,7 +91,8 @@ def _add_resources_to_bundle(
         files,
         bundle_metadata,
         generated,
-        xccurrentversions):
+        xccurrentversions,
+        resource_to_owners):
     for file in files.to_list():
         fp = _process_resource(
             bundle_path = bundle_path,
@@ -81,7 +102,11 @@ def _add_resources_to_bundle(
             xccurrentversions = xccurrentversions,
         )
         if fp:
-            bundle.resources.append(fp)
+            _update_bundle_owner_resource_tuples(
+                resource = fp,
+                owner_resource_tuples = bundle.resources,
+                resource_to_owners = resource_to_owners,
+            )
 
 def _create_bundle(name = None):
     return struct(
@@ -96,7 +121,8 @@ def _add_structured_resources_to_bundle(
         *,
         nested_path,
         files,
-        generated):
+        generated,
+        resource_to_owners):
     if nested_path:
         inner_dir = nested_path.split("/")[0]
     else:
@@ -107,12 +133,20 @@ def _add_structured_resources_to_bundle(
             generated.append(file)
 
         if not inner_dir:
-            bundle.resources.append(file.path)
+            _update_bundle_owner_resource_tuples(
+                resource = file.path,
+                owner_resource_tuples = bundle.resources,
+                resource_to_owners = resource_to_owners,
+            )
             continue
 
         # Special case for localized
         if inner_dir.endswith(".lproj"):
-            bundle.resources.append(file.path)
+            _update_bundle_owner_resource_tuples(
+                resource = file.path,
+                owner_resource_tuples = bundle.resources,
+                resource_to_owners = resource_to_owners,
+            )
             continue
 
         if file.is_directory:
@@ -123,8 +157,11 @@ def _add_structured_resources_to_bundle(
         if not dir.endswith(nested_path):
             continue
 
-        bundle.folder_resources.append(
-            paths.join(dir[:-(1 + len(nested_path))], inner_dir),
+        folder_resource = paths.join(dir[:-(1 + len(nested_path))], inner_dir)
+        _update_bundle_owner_resource_tuples(
+            resource = folder_resource,
+            owner_resource_tuples = bundle.folder_resources,
+            resource_to_owners = resource_to_owners,
         )
 
 def _add_structured_resources(
@@ -134,7 +171,8 @@ def _add_structured_resources(
         bundle_path,
         nested_path,
         files,
-        generated):
+        generated,
+        resource_to_owners):
     bundle = resource_bundle_targets.get(bundle_path)
 
     if bundle:
@@ -149,6 +187,7 @@ def _add_structured_resources(
             nested_path = nested_path,
             files = files,
             generated = generated,
+            resource_to_owners = resource_to_owners,
         )
     else:
         _add_structured_resources_to_bundle(
@@ -156,6 +195,7 @@ def _add_structured_resources(
             nested_path = join_paths_ignoring_empty(bundle_path, nested_path),
             files = files,
             generated = generated,
+            resource_to_owners = resource_to_owners,
         )
 
 def _add_processed_resources(
@@ -165,7 +205,8 @@ def _add_processed_resources(
         resource_bundle_targets,
         bundle_metadata,
         generated,
-        xccurrentversions):
+        xccurrentversions,
+        resource_to_owners):
     for parent_dir, _, files in resources:
         if not parent_dir:
             _add_resources_to_bundle(
@@ -175,6 +216,7 @@ def _add_processed_resources(
                 bundle_metadata = bundle_metadata,
                 generated = generated,
                 xccurrentversions = xccurrentversions,
+                resource_to_owners = resource_to_owners,
             )
             continue
 
@@ -187,6 +229,7 @@ def _add_processed_resources(
                 bundle_metadata = bundle_metadata,
                 generated = generated,
                 xccurrentversions = xccurrentversions,
+                resource_to_owners = resource_to_owners,
             )
             continue
 
@@ -199,6 +242,7 @@ def _add_processed_resources(
             bundle_metadata = bundle_metadata,
             generated = generated,
             xccurrentversions = xccurrentversions,
+            resource_to_owners = resource_to_owners,
         )
 
 def _add_unprocessed_resources(
@@ -209,7 +253,8 @@ def _add_unprocessed_resources(
         parent_bundle_paths,
         bundle_metadata,
         generated,
-        xccurrentversions):
+        xccurrentversions,
+        resource_to_owners):
     for parent_dir, _, files in resources:
         if not parent_dir:
             _add_resources_to_bundle(
@@ -219,6 +264,7 @@ def _add_unprocessed_resources(
                 bundle_metadata = bundle_metadata,
                 generated = generated,
                 xccurrentversions = xccurrentversions,
+                resource_to_owners = resource_to_owners,
             )
             continue
 
@@ -237,6 +283,7 @@ def _add_unprocessed_resources(
             nested_path = nested_path,
             files = files,
             generated = generated,
+            resource_to_owners = resource_to_owners,
         )
 
 # API
@@ -261,8 +308,8 @@ def collect_resources(
             `process_resource_bundles`.
         *   `dependencies`: A `list` of `id`s of resource bundle targets that
             this target depends on.
-        *   `resources`: A `list` of `file_path`s of resources that should be
-            added to the target's bundle.
+        *   `resources`: A `list` of tuples (`owner, `file_path`) of resources
+            that should be added to the target's bundle.
         *   `generated`: A `list` of `file_path`s of generated resources.
         *   `xccurrentversions`: A `list` of `.xccurrentversion` `File`s.
         *   `extra_files`: A `list` of `file_path`s of extra files.
@@ -273,8 +320,15 @@ def collect_resources(
     xccurrentversions = []
     extra_files = []
     bundle_metadata = {}
+    resource_to_owners = {}
 
     processed_fields = _processed_resource_fields(resource_info)
+
+    for (resource, owner) in resource_info.owners.to_list():
+        resource = _normalize_resource_path(resource)
+
+        # a resource can have multiple owners
+        resource_to_owners.setdefault(resource, {})[owner] = None
 
     # Create the bundles, regardless of avoiding duplicates, to work around
     # a rules_apple bug
@@ -308,6 +362,7 @@ def collect_resources(
                 bundle_metadata = bundle_metadata,
                 generated = generated,
                 xccurrentversions = xccurrentversions,
+                resource_to_owners = resource_to_owners,
             )
         else:
             _add_processed_resources(
@@ -317,6 +372,7 @@ def collect_resources(
                 bundle_metadata = bundle_metadata,
                 generated = generated,
                 xccurrentversions = xccurrentversions,
+                resource_to_owners = resource_to_owners,
             )
 
     resources_common.deduplicate(

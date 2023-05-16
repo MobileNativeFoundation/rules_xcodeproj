@@ -461,11 +461,11 @@ targets.
         if xcode_target.product.is_resource_bundle and exclude_resource_bundles:
             # Don't create targets for resource bundles in BwB mode, but still
             # include their files if they aren't unfocused
-            focused_targets_extra_files.append(
-                (xcode_target.label, xcode_target.inputs.resources),
+            focused_targets_extra_files.extend(
+                xcode_target.inputs.resources.to_list(),
             )
-            focused_targets_extra_folders.append(
-                (xcode_target.label, xcode_target.inputs.folder_resources),
+            focused_targets_extra_folders.extend(
+                xcode_target.inputs.folder_resources.to_list(),
             )
             files_only_targets[xcode_target.id] = xcode_target
             continue
@@ -736,6 +736,7 @@ targets.
             build_mode = build_mode,
             bwx_unfocused_dependencies = bwx_unfocused_dependencies,
             excluded_targets = excluded_targets,
+            focused_labels = focused_labels,
             label = label,
             link_params_processor = link_params_processor,
             linker_products_map = linker_products_map,
@@ -743,6 +744,7 @@ targets.
             rule_name = name,
             should_include_outputs = should_include_outputs(build_mode),
             target_merges = target_merges,
+            unfocused_labels = unfocused_labels,
             xcode_configurations = target_xcode_configurations,
             xcode_generated_paths = xcode_generated_paths,
             xcode_generated_paths_file = xcode_generated_paths_file,

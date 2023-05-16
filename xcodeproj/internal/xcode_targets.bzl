@@ -589,6 +589,7 @@ def _xcode_target_to_dto(
         build_mode,
         bwx_unfocused_dependencies,
         excluded_targets = {},
+        focused_labels,
         label,
         link_params_processor,
         linker_products_map,
@@ -596,6 +597,7 @@ def _xcode_target_to_dto(
         rule_name,
         should_include_outputs,
         target_merges = {},
+        unfocused_labels,
         xcode_configurations,
         xcode_generated_paths,
         xcode_generated_paths_file):
@@ -696,7 +698,15 @@ def _xcode_target_to_dto(
             if id not in excluded_targets
         ],
     )
-    set_if_true(dto, "i", _inputs_to_dto(inputs))
+    set_if_true(
+        dto,
+        "i",
+        _inputs_to_dto(
+            inputs,
+            focused_labels = focused_labels,
+            unfocused_labels = unfocused_labels,
+        ),
+    )
     set_if_true(
         dto,
         "5",
@@ -796,11 +806,13 @@ def _build_settings_to_dto(
 
     return build_settings
 
-def _inputs_to_dto(inputs):
+def _inputs_to_dto(inputs, *, focused_labels, unfocused_labels):
     """Generates a target DTO value for inputs.
 
     Args:
         inputs: A value returned from `input_files.to_xcode_target_inputs`.
+        focused_labels: Maps to `xcodeproj.focused_targets`.
+        unfocused_labels: Maps to `xcodeproj.unfocused_targets`.
 
     Returns:
         A `dict` containing the following elements:
@@ -825,18 +837,43 @@ def _inputs_to_dto(inputs):
     _process_attr("non_arc_srcs", "n")
     _process_attr("hdrs", "h")
 
+    has_focused_labels = bool(focused_labels)
+
     if inputs.resources:
+        # resources of unfocused targets should be excluded
+        filtered_resources = depset(
+            transitive = [
+                resource
+                for owner, resource in inputs.resources.to_list()
+                if not owner or not (
+                    owner in unfocused_labels or
+                    (has_focused_labels and owner not in focused_labels)
+                )
+            ],
+        ).to_list()
+
         set_if_true(
             ret,
             "r",
-            inputs.resources.to_list(),
+            filtered_resources,
         )
 
     if inputs.folder_resources:
+        filtered_folder_resources = depset(
+            transitive = [
+                resource
+                for owner, resource in inputs.folder_resources.to_list()
+                if not owner or not (
+                    owner in unfocused_labels or
+                    (has_focused_labels and owner not in focused_labels)
+                )
+            ],
+        ).to_list()
+
         set_if_true(
             ret,
             "f",
-            inputs.folder_resources.to_list(),
+            filtered_folder_resources,
         )
 
     return ret
