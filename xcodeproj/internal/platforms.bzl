@@ -1,6 +1,6 @@
 """Functions for processing platforms."""
 
-_PLATFORM_NAME = {
+PLATFORM_NAME = {
     apple_common.platform.ios_device: "iphoneos",
     apple_common.platform.ios_simulator: "iphonesimulator",
     apple_common.platform.macos: "macosx",
@@ -54,7 +54,7 @@ def _platform_to_dto(platform):
     apple_platform = platform._platform
 
     dto = {
-        "v": _PLATFORM_NAME[apple_platform],
+        "v": PLATFORM_NAME[apple_platform],
         "a": platform._arch,
         "m": platform._os_version,
     }
