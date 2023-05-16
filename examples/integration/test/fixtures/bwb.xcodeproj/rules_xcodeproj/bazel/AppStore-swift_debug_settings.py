@@ -251,6 +251,9 @@ _SETTINGS = {
 			"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/Lib"
 		]
 	},
+	"x86_64-apple-ios-simulator iOSAppUITestSuite.xctest/iOSAppUITestSuite": {
+		"c": "-iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin -Os -DNDEBUG=1 -Wno-unused-variable -Winit-self -Wno-extra"
+	},
 	"x86_64-apple-ios-simulator iOSAppUITests.xctest/iOSAppUITests": {
 		"c": "-iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin -Os -DNDEBUG=1 -Wno-unused-variable -Winit-self -Wno-extra"
 	},
