@@ -119,7 +119,7 @@ def _write_schemes_json(*, actions, name, schemes_json):
     # A new line character is added to make this file a valid unix text file,
     # without this unexpect behaviours may occur when interacting with other
     # unix-compatible tools (e.g. updating fixtures in the repo).
-   schemes_json = schemes_json if schemes_json else "[]"
+    schemes_json = schemes_json if schemes_json else "[]"
     actions.write(output, schemes_json + "\n")
     return output
 
