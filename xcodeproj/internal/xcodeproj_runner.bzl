@@ -115,6 +115,7 @@ def _write_schemes_json(*, actions, name, schemes_json):
     output = actions.declare_file(
         "{}-custom_xcode_schemes.json".format(name),
     )
+
     # A new line character is added to make this file a valid unix text file,
     # without this unexpect behaviours may occur when interacting with other
     # unix-compatible tools (e.g. updating fixtures in the repo).
