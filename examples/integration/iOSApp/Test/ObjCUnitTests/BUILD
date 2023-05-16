@@ -53,11 +53,11 @@ ios_unit_test_suite(
     env = {
         "IOS_APP_UNIT_TESTS": "CUSTOM_ENV_VALUE",
     },
+    minimum_os_version = "15.0",
     runners = [
         ":iPhone-13-Pro__16.2",
         ":iPad-Air-2__16.2",
     ],
-    minimum_os_version = "15.0",
     test_host = "//iOSApp",
     visibility = [
         "//iOSApp:__subpackages__",
