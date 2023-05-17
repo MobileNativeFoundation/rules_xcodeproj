@@ -404,9 +404,9 @@ def _process_swiftcopts(
                 clang_opt = "$(PROJECT_DIR)/" + opt
             else:
                 clang_opt = opt
-        # -vfsoverlay doesn't apply `-working_directory=`, so we need to
-        # prefix it ourselves
         elif previous_clang_opt == "-ivfsoverlay":
+            # -vfsoverlay doesn't apply `-working_directory=`, so we need to
+            # prefix it ourselves
             if opt[0] != "/":
                 clang_opt = "$(CURRENT_EXECUTION_ROOT)/" + opt
             else:
