@@ -97,6 +97,13 @@ def make_xcodeproj_aspect(*, build_mode, generator_name):
                 "@bazel_tools//tools/cpp:current_cc_toolchain",
             )),
             "_generator_name": attr.string(default = generator_name),
+            "_swift_compiler_params_processor": attr.label(
+                cfg = "exec",
+                default = Label(
+                    "//tools/params_processors:swift_compiler_params_processor",
+                ),
+                executable = True,
+            ),
             "_xcode_config": attr.label(
                 default = configuration_field(
                     name = "xcode_config_label",
