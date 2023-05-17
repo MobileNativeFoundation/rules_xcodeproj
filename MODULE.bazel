@@ -30,8 +30,8 @@ bazel_dep(
 bazel_dep(
     name = "stardoc",
     version = "0.5.4",
-    repo_name = "io_bazel_stardoc",
     dev_dependency = True,
+    repo_name = "io_bazel_stardoc",
 )
 
 internal = use_extension("//xcodeproj:extensions.bzl", "internal")
