@@ -43,6 +43,33 @@ py_binary(
     visibility = ["//visibility:public"],
 )
 
+py_library(
+    name = "swift_compiler_params_processor_library",
+    srcs = ["swift_compiler_params_processor.py"],
+    srcs_version = "PY3",
+    # TODO: Restrict visibility
+    visibility = ["//visibility:public"],
+)
+
+py_binary(
+    name = "swift_compiler_params_processor",
+    srcs = ["swift_compiler_params_processor.py"],
+    python_version = "PY3",
+    srcs_version = "PY3",
+    # TODO: Restrict visibility
+    visibility = ["//visibility:public"],
+    deps = [":swift_compiler_params_processor_library"],
+)
+
+py_test(
+    name = "swift_compiler_params_processor_tests",
+    srcs = ["swift_compiler_params_processor_tests.py"],
+    deps = [
+        ":swift_compiler_params_processor_library",
+        "//:py_init_shim",
+    ],
+)
+
 # Release
 
 filegroup(

@@ -31,11 +31,13 @@ def _process_compiler_opts_test_impl(ctx):
         cxxopts = cxxopts,
         cxx_args = [],
         swiftcopts = swiftcopts,
+        swift_args = [],
         build_mode = ctx.attr.build_mode,
         cpp_fragment = _cpp_fragment_stub(ctx.attr.cpp_fragment),
         package_bin_dir = ctx.attr.package_bin_dir,
         build_settings = build_settings,
         cc_compiler_params_processor = None,
+        swift_compiler_params_processor = None,
     )
     string_build_settings = stringify_dict(build_settings)
 
