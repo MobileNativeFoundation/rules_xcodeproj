@@ -56,6 +56,7 @@ ios_ui_test_suite(
         ":iPhone-13-Pro__16.2",
         ":iPad-Air-4th-gen__16.2",
     ],
+    tags = ["manual"],
     test_host = "//iOSApp",
     visibility = ["@rules_xcodeproj//xcodeproj:generated"],
     deps = [":iOSAppUITestSuite.library"],

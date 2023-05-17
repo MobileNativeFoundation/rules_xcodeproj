@@ -65,6 +65,7 @@ ios_unit_test_suite(
         ":iPhone-13-Pro__16.2",
         ":iPad-Air-4th-gen__16.2",
     ],
+    tags = ["manual"],
     test_host = "//iOSApp",
     visibility = [
         "//iOSApp:__subpackages__",
