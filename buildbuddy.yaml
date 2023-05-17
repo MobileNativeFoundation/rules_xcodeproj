@@ -75,7 +75,7 @@ actions:
     <<: *light_resources
     <<: *root_workspace
     bazel_commands:
-      - "test --config=workflows --noenable_bzlmod //docs:diff_test"
+      - "test --config=workflows //docs:diff_test"
 
   - name: Test
     <<: *arm64
