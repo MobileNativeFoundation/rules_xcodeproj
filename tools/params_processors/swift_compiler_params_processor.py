@@ -84,12 +84,11 @@ def _process_clang_opt(
         opt: str,
         previous_opt: str,
         previous_clang_opt: str,
-        build_mode: str) -> Optional[str]:
+        is_bwx: bool) -> Optional[str]:
     if opt == "-Xcc":
         return opt
 
     is_clang_opt = previous_opt == "-Xcc"
-    is_bwx = build_mode == "xcode"
 
     if not (is_clang_opt or is_bwx):
         return None
@@ -181,12 +180,12 @@ def _inner_process_swiftcopts(
         previous_opt: str,
         previous_frontend_opt: str,
         previous_clang_opt: str,
-        build_mode: str) -> Optional[str]:
+        is_bwx: bool) -> Optional[str]:
     clang_opt = _process_clang_opt(
-        opt,
-        previous_opt,
-        previous_clang_opt,
-        build_mode,
+        opt = opt,
+        previous_opt = previous_opt,
+        previous_clang_opt = previous_clang_opt,
+        is_bwx = is_bwx,
     )
     if clang_opt:
         return clang_opt
@@ -225,6 +224,8 @@ def process_args(
         params_paths: List[str],
         parse_args,
         build_mode: str) -> List[str]:
+    is_bwx = build_mode == "xcode"
+
     # First line is "swiftc"
     skip_next = 1
 
@@ -281,7 +282,7 @@ def process_args(
                 previous_opt = previous_opt,
                 previous_frontend_opt = previous_frontend_opt,
                 previous_clang_opt = previous_clang_opt,
-                build_mode = build_mode,
+                is_bwx = is_bwx,
             )
 
             if previous_opt == "-Xcc":
