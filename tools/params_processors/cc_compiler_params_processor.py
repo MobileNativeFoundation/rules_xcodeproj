@@ -26,10 +26,6 @@ _CC_SKIP_OPTS = {
     # Debug info is handled in `opts.bzl`
     "-g": 1,
 
-    # We set this in the generator
-    "-fobjc-arc": 1,
-    "-fno-objc-arc": 1,
-
     # We want to use Xcode's dependency file handling
     "-MD": 1,
     "-MF": 2,
