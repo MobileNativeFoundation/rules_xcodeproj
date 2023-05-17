@@ -106,6 +106,9 @@ XCODEPROJ_TARGETS = [
     "//watchOSApp/Test/UITests:watchOSAppUITests",
     "//watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests",
     "//iOSApp/Test:iOSAppTestSuite",
+    "//iOSApp/Test/UITests:iOSAppUITestSuite",
+    "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite",
+    "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTestSuite",
 ]
 
 IOS_BUNDLE_ID = "rules-xcodeproj.example"
@@ -150,6 +153,25 @@ def get_xcode_schemes():
                 ],
                 targets = [
                     "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests",
+                ],
+            ),
+        ),
+        xcode_schemes.scheme(
+            name = "iOSAppUnitTestSuite_Scheme",
+            test_action = xcode_schemes.test_action(
+                env = {
+                    "IOSAPPSWIFTUNITTESTS_CUSTOMSCHEMEVAR": "TRUE",
+                },
+                targets = [
+                    "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite",
+                    "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTestSuite",
+                ],
+                post_actions = [
+                    xcode_schemes.pre_post_action(
+                        name = "Run After Tests",
+                        script = "echo \"Hi\"",
+                        expand_variables_based_on = "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTestSuite",
+                    ),
                 ],
             ),
         ),

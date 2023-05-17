@@ -13,10 +13,12 @@ XCODEPROJ_TARGETS = [
         ],
         target_environments = ["device", "simulator"],
     ),
-    "//iOSApp/Test/UITests:iOSAppUITests",
     "//iOSApp/Test/MixedUnitTests:iOSAppMixedUnitTests",
     "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests",
     "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests",
+    "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite",
+    "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTestSuite",
+    "//iOSApp/Test/UITests:iOSAppUITestSuite",
 ]
 
 IOS_BUNDLE_ID = "rules-xcodeproj.example"

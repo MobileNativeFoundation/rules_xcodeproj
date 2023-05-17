@@ -14,9 +14,9 @@
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "CBEEB73C29EF2302986BB53C"
-                     BuildableName = "iOSAppUITests.xctest"
-                     BlueprintName = "iOSAppUITests"
+                     BlueprintIdentifier = "ACDA5ACDC1BF2DFDEAE93AFB"
+                     BuildableName = "iOSAppSwiftUnitTestSuite.xctest"
+                     BlueprintName = "iOSAppSwiftUnitTestSuite"
                      ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
@@ -25,14 +25,14 @@
          <ExecutionAction
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
-               title = "Set Bazel Build Output Groups for iOSAppUITests"
+               title = "Set Bazel Build Output Groups for iOSAppSwiftUnitTestSuite"
                scriptText = "echo &quot;$BAZEL_LABEL,$BAZEL_TARGET_ID&quot; &gt;&gt; &quot;$SCHEME_TARGET_IDS_FILE&quot;&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "CBEEB73C29EF2302986BB53C"
-                     BuildableName = "iOSAppUITests.xctest"
-                     BlueprintName = "iOSAppUITests"
+                     BlueprintIdentifier = "ACDA5ACDC1BF2DFDEAE93AFB"
+                     BuildableName = "iOSAppSwiftUnitTestSuite.xctest"
+                     BlueprintName = "iOSAppSwiftUnitTestSuite"
                      ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
@@ -46,9 +46,9 @@
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "CBEEB73C29EF2302986BB53C"
-                     BuildableName = "iOSAppUITests.xctest"
-                     BlueprintName = "iOSAppUITests"
+                     BlueprintIdentifier = "ACDA5ACDC1BF2DFDEAE93AFB"
+                     BuildableName = "iOSAppSwiftUnitTestSuite.xctest"
+                     BlueprintName = "iOSAppSwiftUnitTestSuite"
                      ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
@@ -64,9 +64,37 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CBEEB73C29EF2302986BB53C"
-               BuildableName = "iOSAppUITests.xctest"
-               BlueprintName = "iOSAppUITests"
+               BlueprintIdentifier = "1765D91CC168F25A5BC51603"
+               BuildableName = "iOSApp.app"
+               BlueprintName = "iOSApp"
+               ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "ACDA5ACDC1BF2DFDEAE93AFB"
+               BuildableName = "iOSAppSwiftUnitTestSuite.xctest"
+               BlueprintName = "iOSAppSwiftUnitTestSuite"
+               ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "06E3C912B8DE52D274641347"
+               BuildableName = "WidgetExtension.appex"
+               BlueprintName = "WidgetExtension"
                ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -86,9 +114,9 @@
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "CBEEB73C29EF2302986BB53C"
-                     BuildableName = "iOSAppUITests.xctest"
-                     BlueprintName = "iOSAppUITests"
+                     BlueprintIdentifier = "ACDA5ACDC1BF2DFDEAE93AFB"
+                     BuildableName = "iOSAppSwiftUnitTestSuite.xctest"
+                     BlueprintName = "iOSAppSwiftUnitTestSuite"
                      ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
@@ -98,9 +126,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CBEEB73C29EF2302986BB53C"
-            BuildableName = "iOSAppUITests.xctest"
-            BlueprintName = "iOSAppUITests"
+            BlueprintIdentifier = "ACDA5ACDC1BF2DFDEAE93AFB"
+            BuildableName = "iOSAppSwiftUnitTestSuite.xctest"
+            BlueprintName = "iOSAppSwiftUnitTestSuite"
             ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -109,13 +137,23 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CBEEB73C29EF2302986BB53C"
-               BuildableName = "iOSAppUITests.xctest"
-               BlueprintName = "iOSAppUITests"
+               BlueprintIdentifier = "ACDA5ACDC1BF2DFDEAE93AFB"
+               BuildableName = "iOSAppSwiftUnitTestSuite.xctest"
+               BlueprintName = "iOSAppSwiftUnitTestSuite"
                ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
+      <CommandLineArguments>
+         <CommandLineArgument
+            argument = "-AppleLanguages"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "(en-GB)"
+            isEnabled = "YES">
+         </CommandLineArgument>
+      </CommandLineArguments>
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "BUILD_WORKING_DIRECTORY"
@@ -148,9 +186,9 @@
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "CBEEB73C29EF2302986BB53C"
-                     BuildableName = "iOSAppUITests.xctest"
-                     BlueprintName = "iOSAppUITests"
+                     BlueprintIdentifier = "ACDA5ACDC1BF2DFDEAE93AFB"
+                     BuildableName = "iOSAppSwiftUnitTestSuite.xctest"
+                     BlueprintName = "iOSAppSwiftUnitTestSuite"
                      ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
@@ -160,9 +198,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CBEEB73C29EF2302986BB53C"
-            BuildableName = "iOSAppUITests.xctest"
-            BlueprintName = "iOSAppUITests"
+            BlueprintIdentifier = "ACDA5ACDC1BF2DFDEAE93AFB"
+            BuildableName = "iOSAppSwiftUnitTestSuite.xctest"
+            BlueprintName = "iOSAppSwiftUnitTestSuite"
             ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -194,9 +232,9 @@
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "CBEEB73C29EF2302986BB53C"
-                     BuildableName = "iOSAppUITests.xctest"
-                     BlueprintName = "iOSAppUITests"
+                     BlueprintIdentifier = "ACDA5ACDC1BF2DFDEAE93AFB"
+                     BuildableName = "iOSAppSwiftUnitTestSuite.xctest"
+                     BlueprintName = "iOSAppSwiftUnitTestSuite"
                      ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
@@ -206,9 +244,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CBEEB73C29EF2302986BB53C"
-            BuildableName = "iOSAppUITests.xctest"
-            BlueprintName = "iOSAppUITests"
+            BlueprintIdentifier = "ACDA5ACDC1BF2DFDEAE93AFB"
+            BuildableName = "iOSAppSwiftUnitTestSuite.xctest"
+            BlueprintName = "iOSAppSwiftUnitTestSuite"
             ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
