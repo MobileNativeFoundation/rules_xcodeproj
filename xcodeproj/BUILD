@@ -1,3 +1,4 @@
+load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
 load("@bazel_skylib//rules:common_settings.bzl", "bool_flag", "string_flag")
 
 bool_flag(
@@ -33,6 +34,13 @@ string_flag(
 package_group(
     name = "generated",
     includes = ["@rules_xcodeproj_generated//:package_group"],
+)
+
+bzl_library(
+    name = "xcodeproj",
+    srcs = glob(["*.bzl"]),
+    visibility = ["//visibility:public"],
+    deps = ["//xcodeproj/internal:xcodeproj_internal"],
 )
 
 # Release
