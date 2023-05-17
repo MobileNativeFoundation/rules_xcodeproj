@@ -2,4 +2,4 @@
 
 set -euo pipefail
 
-bazel run --config=cache --noexperimental_enable_bzlmod //docs:update
+bazel run --config=cache //docs:update
