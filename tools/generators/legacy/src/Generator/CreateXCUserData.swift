@@ -14,6 +14,11 @@ extension Generator {
                 guard lhs.isTopLevel == rhs.isTopLevel else {
                     return lhs.isTopLevel
                 }
+                
+                guard lhs.isApplication == rhs.isApplication else {
+                    return lhs.isApplication
+                }
+                
                 return lhs.scheme.name < rhs.scheme.name
             }
             .map(\.scheme)
