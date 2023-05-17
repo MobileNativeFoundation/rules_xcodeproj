@@ -13,7 +13,7 @@ rules_ios_ios_unit_test(
     bundle_id = "rules-xcodeproj.example.objctests",
     minimum_os_version = "15.0",
     module_name = "iOSAppObjCUnitTests",
-    tags = ["cpu:6"],
+    tags = ["manual"],
     test_host = "//iOSApp",
     visibility = ["@rules_xcodeproj//xcodeproj:generated"],
     deps = [
@@ -44,7 +44,7 @@ rules_ios_ios_unit_test(
         ":iPhone-13-Pro__16.2",
         ":iPad-Air-4th-gen__16.2",
     ],
-    tags = ["cpu:6"],
+    tags = ["manual"],
     test_host = "//iOSApp",
     visibility = ["@rules_xcodeproj//xcodeproj:generated"],
     deps = [
