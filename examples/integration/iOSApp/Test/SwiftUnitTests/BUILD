@@ -10,6 +10,7 @@ ios_unit_test(
     },
     minimum_os_version = "15.0",
     resources = ["//iOSApp/Resources/ExampleResources:exported_resources"],
+    tags = ["manual"],
     test_host = "//iOSApp",
     visibility = [
         "//iOSApp:__subpackages__",

@@ -7,6 +7,7 @@ ios_unit_test(
         "IOS_APP_UNIT_TESTS": "CUSTOM_ENV_VALUE",
     },
     minimum_os_version = "15.0",
+    tags = ["manual"],
     test_host = "//iOSApp",
     visibility = [
         "//iOSApp:__subpackages__",

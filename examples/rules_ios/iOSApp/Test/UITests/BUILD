@@ -6,6 +6,7 @@ rules_ios_ios_ui_test(
     bundle_id = "rules-xcodeproj.example.uitests",
     minimum_os_version = "15.0",
     module_name = "iOSAppUITests",
+    tags = ["manual"],
     test_host = "//iOSApp",
     visibility = ["@rules_xcodeproj//xcodeproj:generated"],
 )

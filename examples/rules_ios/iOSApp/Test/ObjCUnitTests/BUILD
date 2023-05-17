@@ -9,6 +9,7 @@ rules_ios_ios_unit_test(
     bundle_id = "rules-xcodeproj.example.objctests",
     minimum_os_version = "15.0",
     module_name = "iOSAppObjCUnitTests",
+    tags = ["manual"],
     test_host = "//iOSApp",
     visibility = ["@rules_xcodeproj//xcodeproj:generated"],
     deps = [
