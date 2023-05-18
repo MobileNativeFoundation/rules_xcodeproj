@@ -281,4 +281,49 @@ extension PBXProductType {
     var isTopLevel: Bool {
         return isLaunchable || isTestBundle
     }
+    
+    private static let productTypeOrderDict = Dictionary(uniqueKeysWithValues: [
+        // Applications
+        PBXProductType.application,
+        PBXProductType.onDemandInstallCapableApplication,
+        PBXProductType.watchApp,
+        PBXProductType.watch2App,
+        PBXProductType.watch2AppContainer,
+        PBXProductType.commandLineTool,
+        PBXProductType.messagesApplication,
+        PBXProductType.xpcService,
+        // App extensions
+        PBXProductType.appExtension,
+        PBXProductType.extensionKitExtension,
+        PBXProductType.watchExtension,
+        PBXProductType.watch2Extension,
+        PBXProductType.tvExtension,
+        PBXProductType.intentsServiceExtension,
+        PBXProductType.driverExtension,
+        PBXProductType.systemExtension,
+        PBXProductType.messagesExtension,
+        PBXProductType.stickerPack,
+        PBXProductType.xcodeExtension,
+        // Tests
+        PBXProductType.unitTestBundle,
+        PBXProductType.uiTestBundle,
+        PBXProductType.ocUnitTestBundle,
+        // Frameworks
+        PBXProductType.framework,
+        PBXProductType.xcFramework,
+        PBXProductType.staticFramework,
+        // Libraries
+        PBXProductType.staticLibrary,
+        PBXProductType.dynamicLibrary,
+        PBXProductType.metalLibrary,
+        // Resources
+        PBXProductType.bundle,
+        PBXProductType.instrumentsPackage,
+        // Others
+        PBXProductType.none
+    ].enumerated().map {($1, $0)})
+    
+    var sortOrder: Int {
+        return PBXProductType.productTypeOrderDict[self] ?? Int.max
+    }
 }
