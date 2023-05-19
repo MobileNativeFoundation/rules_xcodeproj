@@ -362,11 +362,6 @@ Using VFS overlays with `build_mode = "xcode"` is unsupported.
         if compilation_mode:
             build_settings["SWIFT_COMPILATION_MODE"] = compilation_mode
             return
-        if opt.startswith("-swift-version="):
-            version = opt[15:]
-            if version != "5.0":
-                build_settings["SWIFT_VERSION"] = version
-            return
         if opt == "-emit-objc-header-path":
             # Handled in `previous_opt` check above
             return
