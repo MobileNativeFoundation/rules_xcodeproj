@@ -78,6 +78,7 @@ _SCHEMES = [
                 "enGB",
                 # organizationName
                 "--organization-name",
+                "MobileNativeFoundation",
             ],
             build_configuration = "Release",
             diagnostics = _SCHEME_DIAGNOSTICS,
