@@ -1,0 +1,15 @@
+version: 1
+on:
+  pull_request:
+    - jobs:
+        - script: snapci/pr.sh
+          run_on: "mac_mini"
+  cool:
+    job:
+      script: snapci/cool.sh
+      run_on: "mac_mini"
+  comment:
+    - body: "/deploy"
+      jobs:
+        - script: snapci/cool.sh
+          run_on: "mac_mini"
