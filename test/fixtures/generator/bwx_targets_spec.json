@@ -17,7 +17,6 @@
         "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/generator/xcodeproj_bwx/xcodeproj_bwx-params/tests.13.link.params",
         "b": {
             "CODE_SIGN_STYLE": "Manual",
-            "ENABLE_TESTABILITY": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-STABLE-3/bin/tools/generators/legacy/test/rules_xcodeproj/tests.__internal__.__test_bundle/Info.plist",
             "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
             "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
@@ -277,7 +276,6 @@
             "v": "macosx"
         },
         "b": {
-            "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "generator",
             "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_apple_swift_argument_parser $(BUILD_DIR)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/tools/generators/lib/GeneratorCommon $(BUILD_DIR)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_apple_swift_collections $(BUILD_DIR)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_kylef_pathkit $(BUILD_DIR)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_zippyjson bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_tadija_aexml $(BUILD_DIR)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_tuist_xcodeproj"
         },
@@ -495,7 +493,6 @@
             "v": "macosx"
         },
         "b": {
-            "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "GeneratorCommon",
             "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_apple_swift_argument_parser"
         },
@@ -584,7 +581,6 @@
         ],
         "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/generator/xcodeproj_bwx/xcodeproj_bwx-params/swiftc.14.link.params",
         "b": {
-            "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "tools_swiftc_stub_swiftc_stub_library"
         },
         "c": "applebin_macos-darwin_x86_64-dbg-STABLE-3",
@@ -671,7 +667,6 @@
             "v": "macosx"
         },
         "b": {
-            "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "ArgumentParser",
             "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_apple_swift_argument_parser"
         },
@@ -829,7 +824,6 @@
             "v": "macosx"
         },
         "b": {
-            "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "ArgumentParserToolInfo"
         },
         "c": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
@@ -899,7 +893,6 @@
             "v": "macosx"
         },
         "b": {
-            "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "OrderedCollections"
         },
         "c": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
@@ -1067,7 +1060,6 @@
             "v": "macosx"
         },
         "b": {
-            "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "PathKit"
         },
         "c": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
@@ -1204,7 +1196,6 @@
             "v": "macosx"
         },
         "b": {
-            "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "ZippyJSON"
         },
         "c": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
@@ -1345,7 +1336,6 @@
             "v": "macosx"
         },
         "b": {
-            "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "CustomDump",
             "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_pointfreeco_xctest_dynamic_overlay"
         },
@@ -1405,7 +1395,6 @@
             "v": "macosx"
         },
         "b": {
-            "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "XCTestDynamicOverlay"
         },
         "c": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
@@ -1437,7 +1426,6 @@
             "v": "macosx"
         },
         "b": {
-            "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "XcodeProj",
             "SWIFT_INCLUDE_PATHS": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_tadija_aexml $(BUILD_DIR)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_kylef_pathkit"
         },
