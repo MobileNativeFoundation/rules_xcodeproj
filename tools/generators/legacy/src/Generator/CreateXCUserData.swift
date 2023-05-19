@@ -11,7 +11,9 @@ extension Generator {
             .sorted { lhs, rhs in
                 // xor, compare productType then alphabetical if
                 // both scheme have the same productType
-                guard lhs.productTypeSortOrder == rhs.productTypeSortOrder else {
+                guard
+                    lhs.productTypeSortOrder == rhs.productTypeSortOrder
+                else {
                     return lhs.productTypeSortOrder < rhs.productTypeSortOrder
                 }
                 
