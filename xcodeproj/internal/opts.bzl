@@ -237,35 +237,6 @@ Using VFS overlays with `build_mode = "xcode"` is unsupported.
         swift_args,
     )
 
-def _process_cc_opts(opts):
-    """Processes C/C++ compiler options.
-
-    Args:
-        opts: A `list` of C/C++ compiler options.
-
-    Returns:
-        A `bool` indicting if the target has debug info enabled.
-    """
-    return "-g" in opts
-
-def _process_copts(*, conlyopts, cxxopts):
-    """Processes C and C++ compiler options.
-
-    Args:
-        conlyopts: A `list` of C compiler options.
-        cxxopts: A `list` of C++ compiler options.
-
-    Returns:
-        A `tuple` containing two elements:
-
-        *   A `bool` indicting if the target has debug info enabled for C.
-        *   A `bool` indicting if the target has debug info enabled for C++.
-    """
-    return (
-        _process_cc_opts(conlyopts),
-        _process_cc_opts(cxxopts),
-    )
-
 def _process_swiftcopts(
         opts,
         *,
@@ -417,10 +388,8 @@ def _process_compiler_opts(
     """
     has_swiftcopts = bool(swiftcopts)
 
-    (
-        c_has_debug_info,
-        cxx_has_debug_info,
-    ) = _process_copts(conlyopts = conlyopts, cxxopts = cxxopts)
+    c_has_debug_info = "-g" in conlyopts
+    cxx_has_debug_info = "-g" in cxxopts
     swift_has_debug_info = _process_swiftcopts(
         opts = swiftcopts,
         build_mode = build_mode,
