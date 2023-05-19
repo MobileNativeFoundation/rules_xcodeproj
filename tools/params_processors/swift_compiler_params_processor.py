@@ -306,16 +306,16 @@ def process_args(
     return processed_opts
 
 
+def _parse_args(params_path: str) -> Iterator[str]:
+    return open(params_path, encoding = "utf-8")
+
+
 def _main(output_path: str, build_mode: str, params_paths: List[str]) -> None:
     processed_opts = process_args(params_paths, _parse_args, build_mode)
 
     with open(output_path, encoding = "utf-8", mode = "w") as fp:
         result = "\n".join(processed_opts)
         fp.write(f'{result}\n')
-
-
-def _parse_args(params_path: str) -> Iterator[str]:
-    return open(params_path, encoding = "utf-8")
 
 
 if __name__ == "__main__":

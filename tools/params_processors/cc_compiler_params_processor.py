@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 import sys
-from typing import Iterator, List
+from typing import Iterator, List, Optional
 
 
 # C and C++ compiler flags that we don't want to propagate to Xcode.
@@ -51,7 +51,7 @@ _NEEDS_CURRENT_EXECUTION_ROOT = {
 }
 
 
-def _inner_process_cc_opts(opt, previous_opt):
+def _inner_process_cc_opts(opt: str, previous_opt: Optional[str]) -> str:
     # Short-circuit opts that are too short for our checks
     if len(opt) < 2:
         return opt
