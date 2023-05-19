@@ -286,12 +286,12 @@ extension PBXProductType {
         switch self {
         // Applications
         case .application,
+            .commandLineTool,
+            .messagesApplication,
             .onDemandInstallCapableApplication,
             .watchApp,
             .watch2App,
             .watch2AppContainer,
-            .commandLineTool,
-            .messagesApplication,
             .xpcService:
             return 0
         // App extensions
