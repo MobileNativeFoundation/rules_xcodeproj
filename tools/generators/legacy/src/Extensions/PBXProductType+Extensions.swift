@@ -308,9 +308,9 @@ extension PBXProductType {
             .xcodeExtension:
             return 1
         // Tests
-        case .unitTestBundle,
-            PBXProductType.uiTestBundle,
-            PBXProductType.ocUnitTestBundle:
+        case .ocUnitTestBundle,
+            .uiTestBundle,
+            .unitTestBundle:
             return 2
         // Others
         default:
