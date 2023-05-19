@@ -109,6 +109,15 @@ def process_swift_params(params_paths: List[str], parse_args):
             if not opt:
                 continue
 
+            # Use Xcode set `DEVELOPER_DIR`
+            opt = opt.replace(
+                "__BAZEL_XCODE_DEVELOPER_DIR__",
+                "$(DEVELOPER_DIR)",
+            )
+
+            # Use Xcode set `SDKROOT`
+            opt = opt.replace("__BAZEL_XCODE_SDKROOT__", "$(SDKROOT)")
+
             clang_opts.append(opt)
 
     return clang_opts
