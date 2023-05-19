@@ -341,7 +341,6 @@ https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bu
         lldb_context = lldb_contexts.collect(
             id = None,
             is_swift = False,
-            clang_opts = EMPTY_LIST,
             transitive_infos = valid_transitive_infos,
         ),
         mergable_xcode_library_targets = memory_efficient_depset(

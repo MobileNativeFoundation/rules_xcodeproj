@@ -11,6 +11,7 @@ load(":configuration.bzl", "calculate_configuration")
 load(":input_files.bzl", "input_files")
 load(":linker_input_files.bzl", "linker_input_files")
 load(":lldb_contexts.bzl", "lldb_contexts")
+load(":memory_efficiency.bzl", "EMPTY_LIST")
 load(":output_files.bzl", "output_files")
 load(":processed_target.bzl", "processed_target")
 load(":target_id.bzl", "get_id")
@@ -134,7 +135,7 @@ rules_xcodeproj requires {} to have `{}` set.
             id = None,
             is_swift = False,
             # TODO: Should we still collect this?
-            clang_opts = [],
+            swift_sub_params = None,
             swiftmodules = swiftmodules,
             transitive_infos = transitive_infos,
         ),

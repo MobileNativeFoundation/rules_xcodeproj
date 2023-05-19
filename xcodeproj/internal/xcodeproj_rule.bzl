@@ -1061,9 +1061,9 @@ def should_include_outputs(build_mode):
 
 # Actions
 
-def _labelless_clang_opts(clangopt_with_label):
-    _, opts = clangopt_with_label
-    return opts
+def _labelless_swift_sub_params(swift_sub_params_with_label):
+    _, swift_sub_params = swift_sub_params_with_label
+    return [file.path for file in swift_sub_params] + [""]
 
 def _non_generated_framework_build_setting_path(path):
     if is_generated_path(path):
@@ -1077,6 +1077,15 @@ def _write_swift_debug_settings(
         name,
         swift_debug_settings_processor,
         xcode_generated_paths_file):
+    inputs = depset(
+        [xcode_generated_paths_file],
+        transitive = [
+            lldb_context._swift_sub_params
+            for config_lldb_contexts in lldb_contexts.values()
+            for lldb_context in config_lldb_contexts.values()
+        ],
+    )
+
     outputs = []
     for (xcode_configuration, config_lldb_contexts) in lldb_contexts.items():
         output = actions.declare_file(
@@ -1103,8 +1112,8 @@ def _write_swift_debug_settings(
             args.add_all(lldb_context._swiftmodules)
             args.add("")
             args.add_all(
-                lldb_context._clang,
-                map_each = _labelless_clang_opts,
+                lldb_context._labelled_swift_sub_params,
+                map_each = _labelless_swift_sub_params,
             )
             args.add("")
 
@@ -1113,8 +1122,12 @@ def _write_swift_debug_settings(
             arguments = [args],
             mnemonic = "SwiftDebugSettings",
             progress_message = "Generating %{output}",
-            inputs = [xcode_generated_paths_file],
+            inputs = inputs,
             outputs = [output],
+            execution_requirements = {
+                # Lots (lots...) of input files, so avoid sandbox for speed
+                "no-sandbox": "1",
+            },
         )
 
     return outputs
