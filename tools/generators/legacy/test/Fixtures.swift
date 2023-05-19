@@ -1,4 +1,5 @@
 import Foundation
+import GeneratorCommon
 import PathKit
 import XcodeProj
 

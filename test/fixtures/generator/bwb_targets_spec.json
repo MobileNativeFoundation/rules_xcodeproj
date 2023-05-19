@@ -305,7 +305,6 @@
             "s": [
                 "tools/generators/legacy/src/BuildSettingConditional.swift",
                 "tools/generators/legacy/src/DTO/BazelLabel.swift",
-                "tools/generators/legacy/src/DTO/BuildMode.swift",
                 "tools/generators/legacy/src/DTO/BuildSetting.swift",
                 "tools/generators/legacy/src/DTO/Directories.swift",
                 "tools/generators/legacy/src/DTO/ExtensionPointIdentifier.swift",
@@ -322,6 +321,7 @@
                 "tools/generators/legacy/src/DTO/XCCurrentVersion.swift",
                 "tools/generators/legacy/src/DTO/XcodeScheme.swift",
                 "tools/generators/legacy/src/Extensions/Array+Extensions.swift",
+                "tools/generators/legacy/src/Extensions/BuildMode+Extensions.swift",
                 "tools/generators/legacy/src/Extensions/Dictionary+Extensions.swift",
                 "tools/generators/legacy/src/Extensions/Optional+Extensions.swift",
                 "tools/generators/legacy/src/Extensions/PBXGroup+Extensions.swift",
@@ -413,7 +413,6 @@
             "s": [
                 "tools/generators/legacy/src/BuildSettingConditional.swift",
                 "tools/generators/legacy/src/DTO/BazelLabel.swift",
-                "tools/generators/legacy/src/DTO/BuildMode.swift",
                 "tools/generators/legacy/src/DTO/BuildSetting.swift",
                 "tools/generators/legacy/src/DTO/Directories.swift",
                 "tools/generators/legacy/src/DTO/ExtensionPointIdentifier.swift",
@@ -430,6 +429,7 @@
                 "tools/generators/legacy/src/DTO/XCCurrentVersion.swift",
                 "tools/generators/legacy/src/DTO/XcodeScheme.swift",
                 "tools/generators/legacy/src/Extensions/Array+Extensions.swift",
+                "tools/generators/legacy/src/Extensions/BuildMode+Extensions.swift",
                 "tools/generators/legacy/src/Extensions/Dictionary+Extensions.swift",
                 "tools/generators/legacy/src/Extensions/Optional+Extensions.swift",
                 "tools/generators/legacy/src/Extensions/PBXGroup+Extensions.swift",
@@ -517,6 +517,7 @@
         ],
         "i": {
             "s": [
+                "tools/generators/lib/GeneratorCommon/src/BuildMode.swift",
                 "tools/generators/lib/GeneratorCommon/src/Errors.swift",
                 "tools/generators/lib/GeneratorCommon/src/Logger.swift",
                 "tools/generators/lib/GeneratorCommon/src/SemanticVersion.swift"
@@ -557,6 +558,7 @@
         ],
         "i": {
             "s": [
+                "tools/generators/lib/GeneratorCommon/src/BuildMode.swift",
                 "tools/generators/lib/GeneratorCommon/src/Errors.swift",
                 "tools/generators/lib/GeneratorCommon/src/Logger.swift",
                 "tools/generators/lib/GeneratorCommon/src/SemanticVersion.swift"
