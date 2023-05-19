@@ -296,15 +296,15 @@ extension PBXProductType {
             return 0
         // App extensions
         case .appExtension,
-            .extensionKitExtension,
-            .watchExtension,
-            .watch2Extension,
-            .tvExtension,
-            .intentsServiceExtension,
             .driverExtension,
-            .systemExtension,
+            .extensionKitExtension,
+            .intentsServiceExtension,
             .messagesExtension,
             .stickerPack,
+            .systemExtension,
+            .tvExtension,
+            .watchExtension,
+            .watch2Extension,
             .xcodeExtension:
             return 1
         // Tests
