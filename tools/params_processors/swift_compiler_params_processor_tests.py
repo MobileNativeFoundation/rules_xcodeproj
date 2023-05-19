@@ -230,8 +230,6 @@ class swift_compiler_params_processor_test(unittest.TestCase):
         )
 
     def test_paths_bwx(self):
-        self.maxDiff = None
-
         def _parse_args(args):
             return iter([f"{arg}\n" for arg in args])
 

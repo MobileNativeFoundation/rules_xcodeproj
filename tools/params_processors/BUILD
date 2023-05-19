@@ -34,6 +34,14 @@ py_binary(
     visibility = ["//visibility:public"],
 )
 
+py_library(
+    name = "swift_debug_settings_processor_library",
+    srcs = ["swift_debug_settings_processor.py"],
+    srcs_version = "PY3",
+    # TODO: Restrict visibility
+    visibility = ["//visibility:public"],
+)
+
 py_binary(
     name = "swift_debug_settings_processor",
     srcs = ["swift_debug_settings_processor.py"],
@@ -41,6 +49,16 @@ py_binary(
     srcs_version = "PY3",
     # TODO: Restrict visibility
     visibility = ["//visibility:public"],
+    deps = [":swift_debug_settings_processor_library"],
+)
+
+py_test(
+    name = "swift_debug_settings_processor_tests",
+    srcs = ["swift_debug_settings_processor_tests.py"],
+    deps = [
+        ":swift_debug_settings_processor_library",
+        "//:py_init_shim",
+    ],
 )
 
 py_library(

@@ -20,9 +20,9 @@ def _process_compiler_opts_test_impl(ctx):
         _,
         _,
         _,
+        _,
         c_has_fortify_source,
         cxx_has_fortify_source,
-        clang_opts,
     ) = process_compiler_opts(
         actions = None,
         name = "process_compiler_opts_tests",
@@ -72,13 +72,6 @@ def _process_compiler_opts_test_impl(ctx):
         "cxx_has_fortify_source",
     )
 
-    asserts.equals(
-        env,
-        ctx.attr.expected_clang_opts,
-        clang_opts,
-        "clang_opts",
-    )
-
     return unittest.end(env)
 
 process_compiler_opts_test = unittest.make(
@@ -90,7 +83,6 @@ process_compiler_opts_test = unittest.make(
         "expected_build_settings": attr.string_dict(mandatory = True),
         "expected_c_has_fortify_source": attr.bool(mandatory = True),
         "expected_cxx_has_fortify_source": attr.bool(mandatory = True),
-        "expected_clang_opts": attr.string_list(mandatory = True),
         "cpp_fragment": attr.string_dict(mandatory = False),
         "package_bin_dir": attr.string(mandatory = True),
         "swiftcopts": attr.string_list(mandatory = True),
@@ -126,7 +118,6 @@ def process_compiler_opts_test_suite(name):
             expected_build_settings = {},
             expected_c_has_fortify_source = False,
             expected_cxx_has_fortify_source = False,
-            expected_clang_opts = [],
             conlyopts = [],
             cxxopts = [],
             swiftcopts = [],
@@ -145,7 +136,6 @@ def process_compiler_opts_test_suite(name):
             expected_build_settings = stringify_dict(expected_build_settings),
             expected_c_has_fortify_source = expected_c_has_fortify_source,
             expected_cxx_has_fortify_source = expected_cxx_has_fortify_source,
-            expected_clang_opts = expected_clang_opts,
             timeout = "short",
         )
 
@@ -210,17 +200,6 @@ def process_compiler_opts_test_suite(name):
         expected_build_settings = {
             "ENABLE_TESTABILITY": "True",
         },
-        expected_clang_opts = [
-            "-iquote$(PROJECT_DIR)",
-            "-iquote$(PROJECT_DIR)/bazel-out/ios-sim_arm64-min15.0-applebin_ios-ios_sim_arm64-fastbuild-ST-4e6c2a19403f/bin",
-            "-fmodule-map-file=/abs/path",
-            "-I/abs/path",
-            "-iquote/abs/path",
-            "-isystem/abs/path",
-            "-O0",
-            "-DDEBUG=1",
-            "-F$(PROJECT_DIR)/somewhere",
-        ],
     )
 
     _add_test(
@@ -282,17 +261,6 @@ def process_compiler_opts_test_suite(name):
         expected_build_settings = {
             "ENABLE_TESTABILITY": "True",
         },
-        expected_clang_opts = [
-            "-iquote$(PROJECT_DIR)",
-            "-iquote$(PROJECT_DIR)/bazel-out/ios-sim_arm64-min15.0-applebin_ios-ios_sim_arm64-fastbuild-ST-4e6c2a19403f/bin",
-            "-fmodule-map-file=/abs/path",
-            "-I/abs/path",
-            "-iquote/abs/path",
-            "-isystem/abs/path",
-            "-O0",
-            "-DDEBUG=1",
-            "-F$(PROJECT_DIR)/somewhere",
-        ],
     )
 
     _add_test(
@@ -412,10 +380,6 @@ def process_compiler_opts_test_suite(name):
             "-Xwrapped-swift",
             "-passthrough",
         ],
-        expected_clang_opts = [
-            "-weird",
-            "-a=bazel-out/hi",
-        ],
     )
 
     _add_test(
@@ -512,12 +476,6 @@ def process_compiler_opts_test_suite(name):
             "relative/path",
             "-Xwrapped-swift",
             "-passthrough",
-        ],
-        expected_clang_opts = [
-            "-weird",
-            "-a=bazel-out/hi",
-            "-iquote",
-            "$(PROJECT_DIR)/relative/path",
         ],
     )
 
@@ -820,11 +778,6 @@ def process_compiler_opts_test_suite(name):
             "-iquote4/5",
             "-Xcc",
             "-isystems5/s6",
-        ],
-        expected_clang_opts = [
-            "-I$(PROJECT_DIR)/c/d/e",
-            "-iquote$(PROJECT_DIR)/4/5",
-            "-isystem$(PROJECT_DIR)/s5/s6",
         ],
     )
 

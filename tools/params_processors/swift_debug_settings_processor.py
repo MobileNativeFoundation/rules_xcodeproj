@@ -92,6 +92,8 @@ def _process_clang_opt(opt, previous_opt, previous_clang_opt):
         return opt
     elif opt.startswith("-ivfsoverlay"):
         value = opt[12:]
+        if not value:
+            return opt
         if not value.startswith("/"):
             return "-ivfsoverlay$(CURRENT_EXECUTION_ROOT)/" + value
         return opt
@@ -99,7 +101,7 @@ def _process_clang_opt(opt, previous_opt, previous_clang_opt):
     return opt
 
 
-def _process_swift_params(params_paths: List[str], parse_args):
+def process_swift_params(params_paths: List[str], parse_args):
     clang_opts = []
     previous_opt = None
     previous_clang_opt = None
@@ -190,7 +192,7 @@ def _main(args: Iterator[str]) -> None:
             clang_opts_cache_key = " ".join(swift_sub_params_list)
             raw_clang_opts = clang_opts_cache.get(clang_opts_cache_key, None)
             if not raw_clang_opts:
-                raw_clang_opts = _process_swift_params(
+                raw_clang_opts = process_swift_params(
                     params_paths = swift_sub_params_list,
                     parse_args = _parse_args,
                 )

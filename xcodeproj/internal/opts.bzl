@@ -486,11 +486,11 @@ def _process_compiler_opts(
         *   A C compiler params `File`.
         *   A C++ compiler params `File`.
         *   A Swift compiler params `File`.
+        *   A `list` of Swift compiler sub-params `File`s.
         *   A `bool` that is `True` if C compiler options contain
             "-D_FORTIFY_SOURCE=1".
         *   A `bool` that is `True` if C++ compiler options contain
             "-D_FORTIFY_SOURCE=1".
-        *   A `list` of Swift PCM (clang) compiler options.
     """
     has_swiftcopts = bool(swiftcopts)
 
