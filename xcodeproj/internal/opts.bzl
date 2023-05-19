@@ -3,14 +3,6 @@
 load("@bazel_tools//tools/cpp:toolchain_utils.bzl", "find_cpp_toolchain")
 load(":memory_efficiency.bzl", "EMPTY_LIST")
 
-# Maps Swift compliation mode compiler flags to the corresponding Xcode values
-_SWIFT_COMPILATION_MODE_OPTS = {
-    "-incremental": "singlefile",
-    "-no-whole-module-optimization": "singlefile",
-    "-whole-module-optimization": "wholemodule",
-    "-wmo": "wholemodule",
-}
-
 # Compiler option processing
 
 _CC_COMPILE_ACTIONS = {
@@ -358,10 +350,6 @@ under {}""".format(opt, package_bin_dir))
             fail("""\
 Using VFS overlays with `build_mode = "xcode"` is unsupported.
 """)
-        compilation_mode = _SWIFT_COMPILATION_MODE_OPTS.get(opt, "")
-        if compilation_mode:
-            build_settings["SWIFT_COMPILATION_MODE"] = compilation_mode
-            return
         if opt == "-emit-objc-header-path":
             # Handled in `previous_opt` check above
             return
