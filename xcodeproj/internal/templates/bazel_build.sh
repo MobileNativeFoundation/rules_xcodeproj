@@ -122,6 +122,7 @@ fi
   ${build_pre_config_flags:+"${build_pre_config_flags[@]}"} \
   --config="$config" \
   --color=yes \
+  # -s \
   ${toolchain:+--define=SWIFT_CUSTOM_TOOLCHAIN="$toolchain"} \
   "$output_groups_flag" \
   "%generator_label%" \

@@ -50,13 +50,22 @@ def _create(
     compiled = None
     direct_products = []
     dsym_files = EMPTY_DEPSET
-    indexstore = None
+    indexstores = [] 
 
     if direct_outputs:
         is_framework = direct_outputs.is_framework
         swift = direct_outputs.swift
         if swift:
             compiled, indexstore = swift_to_outputs(swift)
+            if indexstore: 
+                indexstores.append(indexstore)
+        objc = direct_outputs.objc
+        if objc: 
+            # objc case 
+            if indexstores: 
+                print("THIS SHOULD NOT HAPPEN")
+            else:
+                indexstores = objc
 
         if direct_outputs.product:
             direct_products.append(direct_outputs.product)
@@ -82,7 +91,7 @@ def _create(
             ])
 
         transitive_indexestores = memory_efficient_depset(
-            [indexstore] if indexstore else None,
+            indexstores if indexstores else None,
             transitive = [
                 info.outputs._transitive_indexestores
                 for info in transitive_infos
@@ -131,7 +140,7 @@ def _create(
         compiled_and_generated_transitive = [closest_compiled]
         if inputs:
             compiled_and_generated_transitive.append(inputs.compiling_files)
-
+            
         direct_group_list = [
             (
                 generated_output_group_name,
@@ -180,7 +189,7 @@ def _create(
         ),
     )
 
-def _get_outputs(*, debug_outputs, id, product, swift_info, output_group_info):
+def _get_outputs(*, debug_outputs, id, product, swift_info, output_group_info, objc_indexstores = None):
     """Collects the output files for a given target.
 
     The outputs are bucketed into two categories: build and index. The build
@@ -197,6 +206,7 @@ def _get_outputs(*, debug_outputs, id, product, swift_info, output_group_info):
         product: A value returned from `process_product`, or `None` if the
             target isn't a top level target.
         swift_info: The `SwiftInfo` provider for the target, or `None`.
+        objc_indexstores: Placeholder
 
     Returns:
         A `struct` containing the following fields:
@@ -235,6 +245,7 @@ def _get_outputs(*, debug_outputs, id, product, swift_info, output_group_info):
         product_file_path = product.actual_file_path if product else None,
         dsym_files = dsym_files,
         swift = swift,
+        objc = objc_indexstores,
     )
 
 def _has_dsym(debug_outputs):
@@ -260,7 +271,8 @@ def _collect_output_files(
         inputs = None,
         transitive_infos,
         should_produce_dto = True,
-        should_produce_output_groups = True):
+        should_produce_output_groups = True,
+        objc_indexstores = None):
     """Collects the outputs of a target.
 
     Args:
@@ -284,6 +296,7 @@ def _collect_output_files(
             `outputs.to_output_groups_fields` will include output groups for
             this target. This will only be `True` for modes that build primarily
             with Bazel.
+        objc_indexstores: Placeholder 
 
     Returns:
         An opaque `struct` that should be used with `output_files.to_dto` or
@@ -298,6 +311,7 @@ def _collect_output_files(
         output_group_info = output_group_info,
         product = top_level_product,
         swift_info = swift_info,
+        objc_indexstores = objc_indexstores,
     )
 
     return _create(
