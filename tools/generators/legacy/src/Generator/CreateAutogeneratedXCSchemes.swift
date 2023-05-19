@@ -120,7 +120,8 @@ extension Generator {
                         buildMode: buildMode,
                         schemeInfo: schemeInfo
                     ),
-                    productTypeSortOrder: (pbxTarget.productType ?? .none).sortOrder
+                    productTypeSortOrder:
+                        (pbxTarget.productType ?? .none).sortOrder
                 )
             }
     }
