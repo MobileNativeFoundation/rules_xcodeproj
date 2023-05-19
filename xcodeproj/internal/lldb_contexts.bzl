@@ -28,7 +28,7 @@ def _collect_lldb_context(
     labelled_swift_sub_params = None
     if id and is_swift:
         if swift_sub_params:
-            labelled_swift_sub_params= [(id, tuple(swift_sub_params))]
+            labelled_swift_sub_params = [(id, tuple(swift_sub_params))]
 
         if framework_includes:
             framework_paths = [framework_includes]

@@ -15,7 +15,6 @@ load(":lldb_contexts.bzl", "lldb_contexts")
 load(":logging.bzl", "warn")
 load(
     ":memory_efficiency.bzl",
-    "EMPTY_LIST",
     "NONE_LIST",
     "memory_efficient_depset",
 )

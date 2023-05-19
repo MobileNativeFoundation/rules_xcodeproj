@@ -1,7 +1,6 @@
 """Functions for processing compiler and linker options."""
 
 load("@bazel_tools//tools/cpp:toolchain_utils.bzl", "find_cpp_toolchain")
-load(":files.bzl", "is_relative_path")
 load(":memory_efficiency.bzl", "EMPTY_LIST")
 
 # Maps Swift compliation mode compiler flags to the corresponding Xcode values
@@ -337,6 +336,7 @@ def _process_swiftcopts(
         *   A `list` of clang compiler options.
         *   A `bool` indicting if the target has debug info enabled.
     """
+
     def _inner_process_swiftcopts(opt, previous_opt):
         if opt == "-Xcc" or previous_opt == "-Xcc":
             return
