@@ -27,14 +27,11 @@ Below is a list of the `PBXProj` partial generators, and a high level
 description of what each one does. Please see their associated READMEs for more
 information.
 
-- `pbxproject_additional_elements`:
+- [`pbxproj_prefix`](pbxproj_prefix/README.md):
   - The start of the `PBXProj` element
-  - All of the various `PBXProject` additional elements:
+  - All of the `PBXProject` related elements:
     - `XCBuildConfiguration`
     - `XCBuildConfigurationList`
-    - `PBXTargetDependency`
-    - `PBXContainerItemProxy`
-- [`pbxproject_prefix`](pbxproject_prefix/README.md):
   - The start of the `PBXProject` element
   - Contains all `PBXProject` properties except for
     `attributes.TargetAttributes`, `targets`, and `knownRegions`
@@ -45,12 +42,16 @@ information.
 - `pbxproject_targets`:
   - The `PBXProject.targets` property
   - Closes the `PBXProject` element
+- `target_dependencies`:
+  - `PBXTargetDependency`s
+  - `PBXContainerItemProxy`s
 - [`bazel_dependencies`](bazel_dependencies/README.md):
   - All of the `BazelDependencies` related elements:
-    - `Generate Bazel Dependencies` script build phase
+    - `Bazel Build` script build phase
+    - `Create swift_debug_settings.py` script build phase
     - `XCBuildConfiguration`
     - `XCBuildConfigurationList`
-    - `BazelDependencies` `PBXAggregateTarget`
+  - `BazelDependencies` `PBXAggregateTarget`
 - `pbxnativetargets`:
   - Run once on each shard of all the targets
   - All of the `PBXNativeTarget` related elements:

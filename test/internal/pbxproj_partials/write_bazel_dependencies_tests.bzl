@@ -192,6 +192,8 @@ def write_bazel_dependencies_test_suite(name):
     def _add_test(
             *,
             name,
+
+            # Inputs
             colorize = False,
             default_xcode_configuration = None,
             index_import,
@@ -200,12 +202,15 @@ def write_bazel_dependencies_test_suite(name):
             pre_build_script = None,
             target_ids_list,
             xcode_configurations,
+
+            # Expected
             expected_args,
             expected_writes = {}):
         test_names.append(name)
         write_bazel_dependencies_test(
-            # Inputs
             name = name,
+
+            # Inputs
             colorize = colorize,
             default_xcode_configuration = default_xcode_configuration,
             index_import = index_import,
@@ -224,6 +229,8 @@ def write_bazel_dependencies_test_suite(name):
 
     _add_test(
         name = "{}_basic".format(name),
+
+        # Inputs
         index_import = "some/path/to/index_import",
         platforms = [
             "MACOS",
@@ -234,6 +241,8 @@ def write_bazel_dependencies_test_suite(name):
             "Release",
             "Debug",
         ],
+
+        # Expected
         expected_args = [
             # outputPath
             _OUTPUT_DECLARED_FILE,
@@ -256,6 +265,8 @@ def write_bazel_dependencies_test_suite(name):
 
     _add_test(
         name = "{}_full".format(name),
+
+        # Inputs
         colorize = True,
         default_xcode_configuration = "Debug",
         index_import = "some/path/to/index_import",
@@ -270,6 +281,8 @@ def write_bazel_dependencies_test_suite(name):
             "Release",
             "Debug",
         ],
+
+        # Expected
         expected_args = [
             # outputPath
             _OUTPUT_DECLARED_FILE,
