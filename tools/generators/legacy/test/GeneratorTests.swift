@@ -208,7 +208,7 @@ final class GeneratorTests: XCTestCase {
                     lastUpgradeVersion: nil,
                     version: nil
                 ),
-                isTopLevel: false
+                productTypeSortOrder: 0
             ),
         ]
         let allXCSchemes = customXCSchemes +

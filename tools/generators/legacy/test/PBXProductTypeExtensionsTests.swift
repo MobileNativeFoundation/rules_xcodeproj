@@ -19,4 +19,16 @@ class PBXProductTypeExtensionsTests: XCTestCase {
     func test_isTopLevel_whenIsNotTopLevel() throws {
         XCTAssertFalse(PBXProductType.staticLibrary.isTopLevel)
     }
+    
+    func test_sortOrder_topLevelPrecedeNonTopLevel() throws {
+        XCTAssertTrue(PBXProductType.unitTestBundle.sortOrder < PBXProductType.staticLibrary.sortOrder)
+    }
+    
+    func test_sortOrder_applicationPrecedeTest() throws {
+        XCTAssertTrue(PBXProductType.application.sortOrder < PBXProductType.unitTestBundle.sortOrder)
+    }
+    
+    func test_sortOrder_sameInGroup() throws {
+        XCTAssertTrue(PBXProductType.application.sortOrder == PBXProductType.commandLineTool.sortOrder)
+    }
 }

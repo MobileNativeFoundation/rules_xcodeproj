@@ -281,4 +281,40 @@ extension PBXProductType {
     var isTopLevel: Bool {
         return isLaunchable || isTestBundle
     }
+    
+    var sortOrder: Int {
+        switch self {
+        // Applications
+        case .application,
+            .commandLineTool,
+            .messagesApplication,
+            .onDemandInstallCapableApplication,
+            .watchApp,
+            .watch2App,
+            .watch2AppContainer,
+            .xpcService:
+            return 0
+        // App extensions
+        case .appExtension,
+            .driverExtension,
+            .extensionKitExtension,
+            .intentsServiceExtension,
+            .messagesExtension,
+            .stickerPack,
+            .systemExtension,
+            .tvExtension,
+            .watchExtension,
+            .watch2Extension,
+            .xcodeExtension:
+            return 1
+        // Tests
+        case .ocUnitTestBundle,
+            .uiTestBundle,
+            .unitTestBundle:
+            return 2
+        // Others
+        default:
+            return 3
+        }
+    }
 }
