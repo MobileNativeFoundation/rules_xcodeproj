@@ -17,6 +17,13 @@ def _build_setting_path(path):
 def _is_relative_path(path: str) -> bool:
     return not path.startswith("/") and not path.startswith("__BAZEL_")
 
+_CLANG_PATH_PREFIXES = [
+    "-F",
+    "-fmodule-map-file=",
+    "-iquote",
+    "-isystem",
+    "-I",
+]
 
 _CLANG_SEARCH_PATHS = {
     "-iquote": None,
@@ -37,60 +44,31 @@ def _process_clang_opt(opt, previous_opt, previous_clang_opt):
     if previous_opt != "-Xcc":
         return None
 
-    if opt.startswith("-F"):
-        path = opt[2:]
-        if path == ".":
-            return "-F$(PROJECT_DIR)"
-        if _is_relative_path(path):
-            return "-F$(PROJECT_DIR)/" + path
-        return opt
-    elif opt.startswith("-fmodule-map-file="):
-        path = opt[18:]
-        if path == ".":
-            return "-fmodule-map-file=$(PROJECT_DIR)"
-        if _is_relative_path(path):
-            return "-fmodule-map-file=$(PROJECT_DIR)/" + path
-        return opt
-    elif opt.startswith("-iquote"):
-        path = opt[7:]
-        if not path:
+    for path_prefix in _CLANG_PATH_PREFIXES:
+        if opt.startswith(path_prefix):
+            path = opt[len(path_prefix):]
+            if not path:
+                return opt
+            if path == ".":
+                return f"{path_prefix}$(PROJECT_DIR)"
+            if _is_relative_path(path):
+                return f"{path_prefix}$(PROJECT_DIR)/{path}"
             return opt
-        if path == ".":
-            return "-iquote$(PROJECT_DIR)"
-        if _is_relative_path(path):
-            return "-iquote$(PROJECT_DIR)/" + path
-        return opt
-    elif opt.startswith("-I"):
-        path = opt[2:]
-        if not path:
-            return opt
-        if path == ".":
-            return "-I$(PROJECT_DIR)"
-        if _is_relative_path(path):
-            return "-I$(PROJECT_DIR)/" + path
-        return opt
-    elif opt.startswith("-isystem"):
-        path = opt[8:]
-        if not path:
-            return opt
-        if path == ".":
-            return "-isystem$(PROJECT_DIR)"
-        if _is_relative_path(path):
-            return "-isystem$(PROJECT_DIR)/" + path
-        return opt
-    elif previous_clang_opt in _CLANG_SEARCH_PATHS:
+
+    if previous_clang_opt in _CLANG_SEARCH_PATHS:
         if opt == ".":
             return "$(PROJECT_DIR)"
         if _is_relative_path(opt):
             return "$(PROJECT_DIR)/" + opt
         return opt
-    elif previous_clang_opt == "-ivfsoverlay":
+    if previous_clang_opt == "-ivfsoverlay":
         # -vfsoverlay doesn't apply `-working_directory=`, so we need to
         # prefix it ourselves
         if opt[0] != "/":
             return "$(CURRENT_EXECUTION_ROOT)/" + opt
         return opt
-    elif opt.startswith("-ivfsoverlay"):
+    if opt.startswith("-ivfsoverlay"):
+        # Remove `-ivfsoverlay` prefix
         value = opt[12:]
         if not value:
             return opt
