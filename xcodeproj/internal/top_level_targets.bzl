@@ -421,9 +421,9 @@ def process_top_level_target(
         c_params,
         cxx_params,
         swift_params,
+        swift_sub_params,
         c_has_fortify_source,
         cxx_has_fortify_source,
-        clang_opts,
     ) = process_opts(
         ctx = ctx,
         build_mode = build_mode,
@@ -494,10 +494,10 @@ def process_top_level_target(
         )
     swiftmodules = process_swiftmodules(swift_info = swift_info)
     lldb_context = lldb_contexts.collect(
+        framework_includes = framework_includes,
         id = id,
         is_swift = bool(swift_params),
-        clang_opts = clang_opts,
-        framework_includes = framework_includes,
+        swift_sub_params = swift_sub_params,
         swiftmodules = swiftmodules,
         transitive_infos = deps_infos,
     )

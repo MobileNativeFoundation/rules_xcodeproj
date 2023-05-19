@@ -134,7 +134,7 @@ rules_xcodeproj requires {} to have `{}` set.
             id = None,
             is_swift = False,
             # TODO: Should we still collect this?
-            clang_opts = [],
+            swift_sub_params = None,
             swiftmodules = swiftmodules,
             transitive_infos = transitive_infos,
         ),

@@ -3,7 +3,7 @@
 import json
 import os
 import sys
-from typing import Iterator
+from typing import Iterator, List
 
 
 def _build_setting_path(path):
@@ -14,11 +14,104 @@ def _build_setting_path(path):
     return path
 
 
+def _is_relative_path(path: str) -> bool:
+    return not path.startswith("/") and not path.startswith("__BAZEL_")
+
+_CLANG_PATH_PREFIXES = [
+    "-F",
+    "-fmodule-map-file=",
+    "-iquote",
+    "-isystem",
+    "-I",
+]
+
+_CLANG_SEARCH_PATHS = {
+    "-iquote": None,
+    "-isystem": None,
+    "-I": None,
+}
+
 _ONCE_FLAGS = {
     "-D": None,
     "-F": None,
     "-I": None,
 }
+
+
+def _process_clang_opt(opt, previous_opt, previous_clang_opt):
+    if opt == "-Xcc":
+        return None
+    if previous_opt != "-Xcc":
+        return None
+
+    for path_prefix in _CLANG_PATH_PREFIXES:
+        if opt.startswith(path_prefix):
+            path = opt[len(path_prefix):]
+            if not path:
+                return opt
+            if path == ".":
+                return f"{path_prefix}$(PROJECT_DIR)"
+            if _is_relative_path(path):
+                return f"{path_prefix}$(PROJECT_DIR)/{path}"
+            return opt
+
+    if previous_clang_opt in _CLANG_SEARCH_PATHS:
+        if opt == ".":
+            return "$(PROJECT_DIR)"
+        if _is_relative_path(opt):
+            return "$(PROJECT_DIR)/" + opt
+        return opt
+    if previous_clang_opt == "-ivfsoverlay":
+        # -vfsoverlay doesn't apply `-working_directory=`, so we need to
+        # prefix it ourselves
+        if opt[0] != "/":
+            return "$(CURRENT_EXECUTION_ROOT)/" + opt
+        return opt
+    if opt.startswith("-ivfsoverlay"):
+        # Remove `-ivfsoverlay` prefix
+        value = opt[12:]
+        if not value:
+            return opt
+        if not value.startswith("/"):
+            return "-ivfsoverlay$(CURRENT_EXECUTION_ROOT)/" + value
+        return opt
+
+    return opt
+
+
+def process_swift_params(params_paths: List[str], parse_args):
+    clang_opts = []
+    previous_opt = None
+    previous_clang_opt = None
+    for params_path in params_paths:
+        for opt in parse_args(params_path):
+            # Remove trailing newline
+            opt = opt[:-1]
+
+            # Change "compile.params" from `shell` to `multiline` format
+            # https://bazel.build/versions/6.1.0/rules/lib/Args#set_param_file_format.format
+            if opt.startswith("'") and opt.endswith("'"):
+                opt = opt[1:-1]
+
+            processed_opt = _process_clang_opt(
+                opt = opt,
+                previous_opt = previous_opt,
+                previous_clang_opt = previous_clang_opt,
+            )
+
+            if previous_opt == "-Xcc":
+                previous_clang_opt = opt
+            elif opt != "-Xcc":
+                previous_clang_opt = None
+            previous_opt = opt
+
+            opt = processed_opt
+            if not opt:
+                continue
+
+            clang_opts.append(opt)
+
+    return clang_opts
 
 
 def _main(args: Iterator[str]) -> None:
@@ -60,23 +153,44 @@ def _main(args: Iterator[str]) -> None:
 
         once_flags = {}
         clang_opts = []
+        clang_opts_cache = {}
         while True:
-            opt = next(args)[:-1]
-            if opt == "":
+            swift_sub_params_list = []
+            while True:
+                swift_params = next(args)[:-1]
+                if swift_params == "":
+                    # Groups of swift params files are separated by a blank line
+                    break
+                swift_sub_params_list.append(swift_params)
+            if not swift_sub_params_list:
+                # If we didn't get any swift params files, we're done with
+                # processing clang opts
                 break
-            if opt in once_flags:
-                continue
-            if ((opt[0:2] in _ONCE_FLAGS) or
-                opt.startswith("-fmodule-map-file=")):
-                # This can lead to correctness issues if the value of a define
-                # is specified multiple times, and different on different
-                # targets, but it's how lldb currently handles it. Ideally it
-                # should use a dictionary for the key of the define and only
-                # filter ones that have the same value as the last time the key
-                # was used.
-                once_flags[opt] = None
-            # Escape spaces in paths, since these opts are whitespace separated
-            clang_opts.append(opt.replace(' ', '\\ '))
+
+            clang_opts_cache_key = " ".join(swift_sub_params_list)
+            raw_clang_opts = clang_opts_cache.get(clang_opts_cache_key, None)
+            if not raw_clang_opts:
+                raw_clang_opts = process_swift_params(
+                    params_paths = swift_sub_params_list,
+                    parse_args = _parse_args,
+                )
+                clang_opts_cache[clang_opts_cache_key] = raw_clang_opts
+
+            for opt in raw_clang_opts:
+                if opt in once_flags:
+                    continue
+                if ((opt[0:2] in _ONCE_FLAGS) or
+                    opt.startswith("-fmodule-map-file=")):
+                    # This can lead to correctness issues if the value of a
+                    # define is specified multiple times, and different on
+                    # different targets, but it's how lldb currently handles it.
+                    # Ideally it should use a dictionary for the key of the
+                    # define and only filter ones that have the same value as
+                    # the last time the key was used.
+                    once_flags[opt] = None
+                # Escape spaces in paths, since these opts are whitespace
+                # separated
+                clang_opts.append(opt.replace(' ', '\\ '))
 
         dto = {}
 

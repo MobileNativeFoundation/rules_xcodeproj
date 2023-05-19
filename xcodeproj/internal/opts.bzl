@@ -1,7 +1,6 @@
 """Functions for processing compiler and linker options."""
 
 load("@bazel_tools//tools/cpp:toolchain_utils.bzl", "find_cpp_toolchain")
-load(":files.bzl", "is_relative_path")
 load(":memory_efficiency.bzl", "EMPTY_LIST")
 
 # Maps Swift compliation mode compiler flags to the corresponding Xcode values
@@ -314,12 +313,6 @@ def _process_copts(
         cxx_has_debug_info,
     )
 
-_CLANG_SEARCH_PATHS = {
-    "-iquote": None,
-    "-isystem": None,
-    "-I": None,
-}
-
 def _process_swiftcopts(
         opts,
         *,
@@ -343,89 +336,9 @@ def _process_swiftcopts(
         *   A `list` of clang compiler options.
         *   A `bool` indicting if the target has debug info enabled.
     """
-    clang_opts = []
 
-    def _process_clang_opt(opt, previous_opt, previous_clang_opt):
-        if opt == "-Xcc":
-            return True
-        if previous_opt != "-Xcc":
-            return False
-
-        if opt.startswith("-F"):
-            path = opt[2:]
-            if path == ".":
-                clang_opt = "-F$(PROJECT_DIR)"
-            elif is_relative_path(path):
-                clang_opt = "-F$(PROJECT_DIR)/" + path
-            else:
-                clang_opt = opt
-        elif opt.startswith("-fmodule-map-file="):
-            path = opt[18:]
-            if path == ".":
-                clang_opt = "-fmodule-map-file=$(PROJECT_DIR)"
-            elif is_relative_path(path):
-                clang_opt = "-fmodule-map-file=$(PROJECT_DIR)/" + path
-            else:
-                clang_opt = opt
-        elif opt.startswith("-iquote"):
-            path = opt[7:]
-            if not path:
-                clang_opt = opt
-            elif path == ".":
-                clang_opt = "-iquote$(PROJECT_DIR)"
-            elif is_relative_path(path):
-                clang_opt = "-iquote$(PROJECT_DIR)/" + path
-            else:
-                clang_opt = opt
-        elif opt.startswith("-I"):
-            path = opt[2:]
-            if not path:
-                clang_opt = opt
-            elif path == ".":
-                clang_opt = "-I$(PROJECT_DIR)"
-            elif is_relative_path(path):
-                clang_opt = "-I$(PROJECT_DIR)/" + path
-            else:
-                clang_opt = opt
-        elif opt.startswith("-isystem"):
-            path = opt[8:]
-            if not path:
-                clang_opt = opt
-            elif path == ".":
-                clang_opt = "-isystem$(PROJECT_DIR)"
-            elif is_relative_path(path):
-                clang_opt = "-isystem$(PROJECT_DIR)/" + path
-            else:
-                clang_opt = opt
-        elif previous_clang_opt in _CLANG_SEARCH_PATHS:
-            if opt == ".":
-                clang_opt = "$(PROJECT_DIR)"
-            elif is_relative_path(opt):
-                clang_opt = "$(PROJECT_DIR)/" + opt
-            else:
-                clang_opt = opt
-        elif previous_clang_opt == "-ivfsoverlay":
-            # -vfsoverlay doesn't apply `-working_directory=`, so we need to
-            # prefix it ourselves
-            if opt[0] != "/":
-                clang_opt = "$(CURRENT_EXECUTION_ROOT)/" + opt
-            else:
-                clang_opt = opt
-        elif opt.startswith("-ivfsoverlay"):
-            value = opt[12:]
-            if not value.startswith("/"):
-                clang_opt = "-ivfsoverlay$(CURRENT_EXECUTION_ROOT)/" + value
-            else:
-                clang_opt = opt
-        else:
-            clang_opt = opt
-
-        clang_opts.append(clang_opt)
-
-        return True
-
-    def _inner_process_swiftcopts(opt, previous_opt, previous_clang_opt):
-        if _process_clang_opt(opt, previous_opt, previous_clang_opt):
+    def _inner_process_swiftcopts(opt, previous_opt):
+        if opt == "-Xcc" or previous_opt == "-Xcc":
             return
 
         if previous_opt == "-emit-objc-header-path":
@@ -466,7 +379,6 @@ Using VFS overlays with `build_mode = "xcode"` is unsupported.
 
     has_debug_info = False
     outer_previous_opt = None
-    outer_previous_clang_opt = None
     for outer_opt in opts:
         if outer_opt == "-g":
             has_debug_info = True
@@ -475,16 +387,11 @@ Using VFS overlays with `build_mode = "xcode"` is unsupported.
         _inner_process_swiftcopts(
             outer_opt,
             outer_previous_opt,
-            outer_previous_clang_opt,
         )
 
-        if outer_previous_opt == "-Xcc":
-            outer_previous_clang_opt = outer_opt
-        elif outer_opt != "-Xcc":
-            outer_previous_clang_opt = None
         outer_previous_opt = outer_opt
 
-    return clang_opts, has_debug_info
+    return has_debug_info
 
 def _create_compile_params(
         *,
@@ -494,7 +401,7 @@ def _create_compile_params(
         opt_type,
         params_processor):
     if not args or not actions:
-        return None
+        return None, None
 
     def _create_compiler_sub_params(idx, sub_args):
         sub_output = actions.declare_file(
@@ -532,7 +439,7 @@ def _create_compile_params(
         outputs = [params],
     )
 
-    return params
+    return params, sub_params
 
 def _process_compiler_opts(
         *,
@@ -579,11 +486,11 @@ def _process_compiler_opts(
         *   A C compiler params `File`.
         *   A C++ compiler params `File`.
         *   A Swift compiler params `File`.
+        *   A `list` of Swift compiler sub-params `File`s.
         *   A `bool` that is `True` if C compiler options contain
             "-D_FORTIFY_SOURCE=1".
         *   A `bool` that is `True` if C++ compiler options contain
             "-D_FORTIFY_SOURCE=1".
-        *   A `list` of Swift PCM (clang) compiler options.
     """
     has_swiftcopts = bool(swiftcopts)
 
@@ -595,10 +502,7 @@ def _process_compiler_opts(
         cxxopts = cxxopts,
         build_settings = build_settings,
     )
-    (
-        clang_opts,
-        swift_has_debug_info,
-    ) = _process_swiftcopts(
+    swift_has_debug_info = _process_swiftcopts(
         opts = swiftcopts,
         build_mode = build_mode,
         package_bin_dir = package_bin_dir,
@@ -615,21 +519,21 @@ def _process_compiler_opts(
         else:
             build_settings["DEBUG_INFORMATION_FORMAT"] = ""
 
-    c_params = _create_compile_params(
+    c_params, _ = _create_compile_params(
         actions = actions,
         name = name,
         args = conly_args,
         opt_type = "C",
         params_processor = cc_compiler_params_processor,
     )
-    cxx_params = _create_compile_params(
+    cxx_params, _ = _create_compile_params(
         actions = actions,
         name = name,
         args = cxx_args,
         opt_type = "CXX",
         params_processor = cc_compiler_params_processor,
     )
-    swift_params = _create_compile_params(
+    swift_params, swift_sub_params = _create_compile_params(
         actions = actions,
         name = name,
         args = swift_args,
@@ -644,9 +548,9 @@ def _process_compiler_opts(
         c_params,
         cxx_params,
         swift_params,
+        swift_sub_params,
         c_has_fortify_source,
         cxx_has_fortify_source,
-        clang_opts,
     )
 
 def _process_target_compiler_opts(
