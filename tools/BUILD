@@ -76,6 +76,8 @@ _SCHEMES = [
                 "14.0",
                 # developmentRegion
                 "enGB",
+                # organizationName
+                "--organization-name",
             ],
             build_configuration = "Release",
             diagnostics = _SCHEME_DIAGNOSTICS,
