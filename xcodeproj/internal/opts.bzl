@@ -358,9 +358,6 @@ under {}""".format(opt, package_bin_dir))
             fail("""\
 Using VFS overlays with `build_mode = "xcode"` is unsupported.
 """)
-        if opt == "-enable-testing":
-            build_settings["ENABLE_TESTABILITY"] = True
-            return
         compilation_mode = _SWIFT_COMPILATION_MODE_OPTS.get(opt, "")
         if compilation_mode:
             build_settings["SWIFT_COMPILATION_MODE"] = compilation_mode

@@ -12461,7 +12461,6 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = TestingUtils;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_TESTABILITY = YES;
 				EXCLUDED_SOURCE_FILE_NAMES = "$(IPHONESIMULATOR_FILES) $(MACOSX_FILES) bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Test/TestingUtils/TestingUtils.swift bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-30/bin/iOSApp/Test/TestingUtils/TestingUtils.swift";
 				GENERATE_INFOPLIST_FILE = YES;
 				INCLUDED_SOURCE_FILE_NAMES = "";
@@ -12531,7 +12530,6 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = lib_swift;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_TESTABILITY = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(DERIVED_FILE_DIR)/xcode-overlay.yaml -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
@@ -12562,7 +12560,6 @@
 				COMPILE_TARGET_NAME = iOSAppUITests.library;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
-				ENABLE_TESTABILITY = YES;
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Test/UITests/rules_xcodeproj/iOSAppUITests.__internal__.__test_bundle/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/iOSAppUITests.34.link.params";
@@ -13004,7 +13001,6 @@
 				COMPILE_TARGET_NAME = tvOSAppUITests.library;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
-				ENABLE_TESTABILITY = YES;
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-dbg-STABLE-25/bin/tvOSApp/Test/UITests/rules_xcodeproj/tvOSAppUITests.__internal__.__test_bundle/Info.plist";
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/tvOSAppUITests.45.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
@@ -13145,7 +13141,6 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = private_swift_lib;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_TESTABILITY = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
@@ -13252,7 +13247,6 @@
 				COMPILE_TARGET_NAME = watchOSAppExtensionUnitTests.library;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
-				ENABLE_TESTABILITY = YES;
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-dbg-STABLE-17/bin/watchOSAppExtension/Test/UnitTests/rules_xcodeproj/watchOSAppExtensionUnitTests.__internal__.__test_bundle/Info.plist";
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/watchOSAppExtensionUnitTests.48.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
@@ -13322,7 +13316,6 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = lib_swift;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_TESTABILITY = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(DERIVED_FILE_DIR)/xcode-overlay.yaml -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
@@ -13664,7 +13657,6 @@
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = UI;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_TESTABILITY = YES;
 				EXCLUDED_SOURCE_FILE_NAMES = "$(APPLETVOS_FILES) $(APPLETVSIMULATOR_FILES)";
 				INCLUDED_SOURCE_FILE_NAMES = "";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=appletvos*]" = "$(APPLETVOS_FILES)";
@@ -13798,7 +13790,6 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
 				DEVELOPMENT_TEAM = V82V4GQZXM;
-				ENABLE_TESTABILITY = YES;
 				EXCLUDED_SOURCE_FILE_NAMES = "$(IPHONEOS_FILES) $(IPHONESIMULATOR_FILES)";
 				EXECUTABLE_NAME = iOSApp_ExecutableName;
 				INCLUDED_SOURCE_FILE_NAMES = "";
@@ -14040,7 +14031,6 @@
 				COMPILE_TARGET_NAME = watchOSAppUITests.library;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
-				ENABLE_TESTABILITY = YES;
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-dbg-STABLE-17/bin/watchOSApp/Test/UITests/rules_xcodeproj/watchOSAppUITests.__internal__.__test_bundle/Info.plist";
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/watchOSAppUITests.47.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
@@ -14161,7 +14151,6 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
 				DEVELOPMENT_TEAM = V82V4GQZXM;
-				ENABLE_TESTABILITY = YES;
 				EXCLUDED_SOURCE_FILE_NAMES = "$(IPHONEOS_FILES) $(IPHONESIMULATOR_FILES)";
 				INCLUDED_SOURCE_FILE_NAMES = "";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=iphoneos*]" = "$(IPHONEOS_FILES)";
@@ -14486,7 +14475,6 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
 				DEVELOPMENT_TEAM = V82V4GQZXM;
-				ENABLE_TESTABILITY = YES;
 				EXCLUDED_SOURCE_FILE_NAMES = "$(APPLETVOS_FILES) $(APPLETVSIMULATOR_FILES)";
 				INCLUDED_SOURCE_FILE_NAMES = "";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=appletvos*]" = "$(APPLETVOS_FILES)";
@@ -14531,7 +14519,6 @@
 				COMPILE_TARGET_NAME = macOSAppUITests.library;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
-				ENABLE_TESTABILITY = YES;
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-STABLE-31/bin/macOSApp/Test/UITests/rules_xcodeproj/macOSAppUITests.__internal__.__test_bundle/Info.plist";
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/macOSAppUITests.44.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
@@ -14775,7 +14762,6 @@
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = UI;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_TESTABILITY = YES;
 				EXCLUDED_SOURCE_FILE_NAMES = "$(WATCHOS_FILES) $(WATCHSIMULATOR_FILES)";
 				INCLUDED_SOURCE_FILE_NAMES = "";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=watchos*]" = "$(WATCHOS_FILES)";
@@ -15118,7 +15104,6 @@
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = Lib;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_TESTABILITY = YES;
 				EXCLUDED_SOURCE_FILE_NAMES = "$(APPLETVOS_FILES) $(APPLETVSIMULATOR_FILES) $(IPHONEOS_FILES) $(IPHONESIMULATOR_FILES) bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/Lib/Lib.swift bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/Lib/Lib.swift bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-opt-STABLE-12/bin/Lib/Lib.swift bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9/bin/Lib/Lib.swift";
 				GENERATE_INFOPLIST_FILE = YES;
 				INCLUDED_SOURCE_FILE_NAMES = "";
@@ -15365,7 +15350,6 @@
 				COMPILE_TARGET_NAME = iOSAppSwiftUnitTestSuite.library;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
-				ENABLE_TESTABILITY = YES;
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Test/SwiftUnitTests/rules_xcodeproj/iOSAppSwiftUnitTestSuite.__internal__.__test_bundle/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/iOSAppSwiftUnitTestSuite.51.link.params";
@@ -15480,7 +15464,6 @@
 				"BAZEL_TARGET_ID[sdk=watchsimulator*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = Lib;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_TESTABILITY = YES;
 				EXCLUDED_SOURCE_FILE_NAMES = "$(WATCHOS_FILES) $(WATCHSIMULATOR_FILES) bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-opt-STABLE-11/bin/Lib/Lib.swift bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8/bin/Lib/Lib.swift";
 				GENERATE_INFOPLIST_FILE = YES;
 				INCLUDED_SOURCE_FILE_NAMES = "";
@@ -15510,7 +15493,6 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = private_swift_lib;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_TESTABILITY = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
@@ -15751,7 +15733,6 @@
 				COMPILE_TARGET_NAME = CommandLineLibSwiftTestsLib;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
-				ENABLE_TESTABILITY = YES;
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-STABLE-39/bin/CommandLine/Tests/rules_xcodeproj/CommandLineToolTests.__internal__.__test_bundle/Info.plist";
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/CommandLineToolTests.70.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
@@ -15991,7 +15972,6 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
 				DEVELOPMENT_TEAM = V82V4GQZXM;
-				ENABLE_TESTABILITY = YES;
 				EXCLUDED_SOURCE_FILE_NAMES = "$(WATCHOS_FILES) $(WATCHSIMULATOR_FILES)";
 				INCLUDED_SOURCE_FILE_NAMES = "";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=watchos*]" = "$(WATCHOS_FILES)";
@@ -16037,7 +16017,6 @@
 				COMPILE_TARGET_NAME = iOSAppSwiftUnitTests.library;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
-				ENABLE_TESTABILITY = YES;
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Test/SwiftUnitTests/rules_xcodeproj/iOSAppSwiftUnitTests.__internal__.__test_bundle/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/iOSAppSwiftUnitTests.42.link.params";
@@ -16173,7 +16152,6 @@
 				COMPILE_TARGET_NAME = iOSAppUITestSuite.library;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
-				ENABLE_TESTABILITY = YES;
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Test/UITests/rules_xcodeproj/iOSAppUITestSuite.__internal__.__test_bundle/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/iOSAppUITestSuite.49.link.params";
@@ -16217,7 +16195,6 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
 				DEVELOPMENT_TEAM = V82V4GQZXM;
-				ENABLE_TESTABILITY = YES;
 				EXCLUDED_SOURCE_FILE_NAMES = "$(IPHONEOS_FILES) $(IPHONESIMULATOR_FILES) bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/WidgetExtension/Intents.swift bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/WidgetExtension/Intents.swift";
 				INCLUDED_SOURCE_FILE_NAMES = "";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=iphoneos*]" = "$(IPHONEOS_FILES)";
@@ -16386,7 +16363,6 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = lib_swift;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_TESTABILITY = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(DERIVED_FILE_DIR)/xcode-overlay.yaml -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
@@ -16481,7 +16457,6 @@
 				COMPILE_TARGET_NAME = macOSApp.library;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
-				ENABLE_TESTABILITY = YES;
 				EXCLUDED_SOURCE_FILE_NAMES = "$(MACOSX_FILES)";
 				INCLUDED_SOURCE_FILE_NAMES = "";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=macosx*]" = "$(MACOSX_FILES)";
@@ -16515,7 +16490,6 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = private_swift_lib;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_TESTABILITY = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
@@ -16611,7 +16585,6 @@
 				COMPILE_TARGET_NAME = iMessageAppExtension.library;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
-				ENABLE_TESTABILITY = YES;
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iMessageApp/rules_xcodeproj/iMessageAppExtension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/iMessageAppExtension.40.link.params";
@@ -16685,7 +16658,6 @@
 				COMPILE_TARGET_NAME = tvOSAppUnitTests.library;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
-				ENABLE_TESTABILITY = YES;
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-dbg-STABLE-25/bin/tvOSApp/Test/UnitTests/rules_xcodeproj/tvOSAppUnitTests.__internal__.__test_bundle/Info.plist";
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/tvOSAppUnitTests.46.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
@@ -16784,7 +16756,6 @@
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = MixedAnswerLib_Swift;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_TESTABILITY = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
@@ -16846,7 +16817,6 @@
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = UI;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_TESTABILITY = YES;
 				EXCLUDED_SOURCE_FILE_NAMES = "$(IPHONEOS_FILES) $(IPHONESIMULATOR_FILES)";
 				INCLUDED_SOURCE_FILE_NAMES = "";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=iphoneos*]" = "$(IPHONEOS_FILES)";

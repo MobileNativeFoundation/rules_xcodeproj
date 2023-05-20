@@ -4426,7 +4426,6 @@
 				BAZEL_TARGET_ID = "@com_github_kylef_pathkit//:PathKit macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = PathKit;
-				ENABLE_TESTABILITY = YES;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PRODUCT_MODULE_NAME = PathKit;
@@ -4447,7 +4446,6 @@
 				BAZEL_TARGET_ID = "@com_github_apple_swift_argument_parser//:ArgumentParserToolInfo macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = ArgumentParserToolInfo;
-				ENABLE_TESTABILITY = YES;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PRODUCT_MODULE_NAME = ArgumentParserToolInfo;
@@ -4474,7 +4472,6 @@
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = tests.library;
 				DEPLOYMENT_LOCATION = NO;
-				ENABLE_TESTABILITY = YES;
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-STABLE-3/bin/tools/generators/legacy/test/rules_xcodeproj/tests.__internal__.__test_bundle/Info.plist";
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/generator/xcodeproj_bwb/xcodeproj_bwb-params/tests.13.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
@@ -4535,7 +4532,6 @@
 				BAZEL_TARGET_ID = "@com_github_pointfreeco_xctest_dynamic_overlay//:XCTestDynamicOverlay macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = XCTestDynamicOverlay;
-				ENABLE_TESTABILITY = YES;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PRODUCT_MODULE_NAME = XCTestDynamicOverlay;
@@ -4627,7 +4623,6 @@
 				BAZEL_TARGET_ID = "@com_github_pointfreeco_xctest_dynamic_overlay//:XCTestDynamicOverlay macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = XCTestDynamicOverlay;
-				ENABLE_TESTABILITY = YES;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PRODUCT_MODULE_NAME = XCTestDynamicOverlay;
@@ -4648,7 +4643,6 @@
 				BAZEL_TARGET_ID = "//tools/generators/lib/GeneratorCommon:GeneratorCommon macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = GeneratorCommon;
-				ENABLE_TESTABILITY = YES;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PRODUCT_MODULE_NAME = GeneratorCommon;
@@ -4739,7 +4733,6 @@
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				COMPILE_TARGET_NAME = swiftc_stub.library;
 				DEPLOYMENT_LOCATION = NO;
-				ENABLE_TESTABILITY = YES;
 				EXECUTABLE_EXTENSION = "";
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/generator/xcodeproj_bwb/xcodeproj_bwb-params/swiftc.14.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
@@ -4786,7 +4779,6 @@
 				BAZEL_TARGET_ID = "@com_github_tuist_xcodeproj//:XcodeProj macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = XcodeProj;
-				ENABLE_TESTABILITY = YES;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PRODUCT_MODULE_NAME = XcodeProj;
@@ -4814,7 +4806,6 @@
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = tests.library;
 				DEPLOYMENT_LOCATION = NO;
-				ENABLE_TESTABILITY = YES;
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-STABLE-3/bin/tools/generators/legacy/test/rules_xcodeproj/tests.__internal__.__test_bundle/Info.plist";
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/generator/xcodeproj_bwb/xcodeproj_bwb-params/tests.13.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
@@ -4843,7 +4834,6 @@
 				BAZEL_TARGET_ID = "@com_github_pointfreeco_swift_custom_dump//:CustomDump macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = CustomDump;
-				ENABLE_TESTABILITY = YES;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PRODUCT_MODULE_NAME = CustomDump;
@@ -4898,7 +4888,6 @@
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = tests.library;
 				DEPLOYMENT_LOCATION = NO;
-				ENABLE_TESTABILITY = YES;
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-STABLE-3/bin/tools/generators/legacy/test/rules_xcodeproj/tests.__internal__.__test_bundle/Info.plist";
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/generator/xcodeproj_bwb/xcodeproj_bwb-params/tests.13.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
@@ -5027,7 +5016,6 @@
 				BAZEL_TARGET_ID = "@com_github_michaeleisel_zippyjson//:ZippyJSON macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = ZippyJSON;
-				ENABLE_TESTABILITY = YES;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PRODUCT_MODULE_NAME = ZippyJSON;
@@ -5048,7 +5036,6 @@
 				BAZEL_TARGET_ID = "@com_github_pointfreeco_swift_custom_dump//:CustomDump macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = CustomDump;
-				ENABLE_TESTABILITY = YES;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PRODUCT_MODULE_NAME = CustomDump;
@@ -5135,7 +5122,6 @@
 				BAZEL_TARGET_ID = "@com_github_pointfreeco_xctest_dynamic_overlay//:XCTestDynamicOverlay macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = XCTestDynamicOverlay;
-				ENABLE_TESTABILITY = YES;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PRODUCT_MODULE_NAME = XCTestDynamicOverlay;
@@ -5265,7 +5251,6 @@
 				BAZEL_TARGET_ID = "@com_github_pointfreeco_swift_custom_dump//:CustomDump macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = CustomDump;
-				ENABLE_TESTABILITY = YES;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PRODUCT_MODULE_NAME = CustomDump;
@@ -5312,7 +5297,6 @@
 				BAZEL_TARGET_ID = "@com_github_apple_swift_collections//:OrderedCollections macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = OrderedCollections;
-				ENABLE_TESTABILITY = YES;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PRODUCT_MODULE_NAME = OrderedCollections;
@@ -5462,7 +5446,6 @@
 				BAZEL_TARGET_ID = "@com_github_apple_swift_argument_parser//:ArgumentParser macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = ArgumentParser;
-				ENABLE_TESTABILITY = YES;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PRODUCT_MODULE_NAME = ArgumentParser;
@@ -5567,7 +5550,6 @@
 				BAZEL_TARGET_ID = "//tools/generators/legacy:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = generator.library;
-				ENABLE_TESTABILITY = YES;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PRODUCT_MODULE_NAME = generator;

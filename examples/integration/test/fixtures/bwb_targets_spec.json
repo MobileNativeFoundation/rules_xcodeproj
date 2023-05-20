@@ -30,7 +30,6 @@
             "CODE_SIGN_STYLE": "Automatic",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "DEVELOPMENT_TEAM": "V82V4GQZXM",
-            "ENABLE_TESTABILITY": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_arm64-dbg-STABLE-14/bin/AppClip/rules_xcodeproj/AppClip/Info.plist",
             "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
             "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
@@ -182,7 +181,6 @@
             "CODE_SIGN_ENTITLEMENTS": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/AppClip/Entitlements.withbundleid.plist",
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "ENABLE_TESTABILITY": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/AppClip/rules_xcodeproj/AppClip/Info.plist",
             "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
             "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
@@ -893,7 +891,6 @@
         },
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "LibSwift",
             "SWIFT_INCLUDE_PATHS": "bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34/bin/CommandLine/CommandLineToolLib",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "private/LibSwift-Swift.h"
@@ -983,7 +980,6 @@
         },
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "LibSwift",
             "SWIFT_INCLUDE_PATHS": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35/bin/CommandLine/CommandLineToolLib",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "private/LibSwift-Swift.h"
@@ -1026,7 +1022,6 @@
         },
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "LibSwift",
             "SWIFT_INCLUDE_PATHS": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/CommandLine/CommandLineToolLib",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "private/LibSwift-Swift.h"
@@ -1334,7 +1329,6 @@
         },
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "_SwiftLib"
         },
         "c": "macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34",
@@ -1404,7 +1398,6 @@
         },
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "_SwiftLib"
         },
         "c": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35",
@@ -1437,7 +1430,6 @@
         },
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "_SwiftLib"
         },
         "c": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33",
@@ -1556,7 +1548,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-39/bin/CommandLine/Tests/CommandLineToolTests.xctest",
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "ENABLE_TESTABILITY": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-STABLE-39/bin/CommandLine/Tests/rules_xcodeproj/CommandLineToolTests.__internal__.__test_bundle/Info.plist",
             "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
             "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
@@ -2449,7 +2440,6 @@
         },
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "Lib"
         },
         "c": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4",
@@ -2523,7 +2513,6 @@
         },
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "Lib"
         },
         "c": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
@@ -2597,7 +2586,6 @@
         },
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "Lib"
         },
         "c": "tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-6",
@@ -2671,7 +2659,6 @@
         },
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "Lib"
         },
         "c": "tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3",
@@ -2745,7 +2732,6 @@
         },
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "Lib"
         },
         "c": "watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-5",
@@ -2819,7 +2805,6 @@
         },
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "Lib"
         },
         "c": "watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2",
@@ -3341,7 +3326,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_ios-ios_arm64-dbg-STABLE-14/bin/UI/UIFramework.iOS.framework",
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "ENABLE_TESTABILITY": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_arm64-dbg-STABLE-14/bin/UI/rules_xcodeproj/UIFramework.iOS/Info.plist",
             "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
             "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
@@ -3499,7 +3483,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/UI/UIFramework.iOS.framework",
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "ENABLE_TESTABILITY": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/UI/rules_xcodeproj/UIFramework.iOS/Info.plist",
             "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
             "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
@@ -3660,7 +3643,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_tvos-tvos_arm64-dbg-STABLE-26/bin/UI/UIFramework.tvOS.framework",
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "ENABLE_TESTABILITY": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_tvos-tvos_arm64-dbg-STABLE-26/bin/UI/rules_xcodeproj/UIFramework.tvOS/Info.plist",
             "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
             "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
@@ -3818,7 +3800,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-25/bin/UI/UIFramework.tvOS.framework",
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "ENABLE_TESTABILITY": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-dbg-STABLE-25/bin/UI/rules_xcodeproj/UIFramework.tvOS/Info.plist",
             "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
             "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
@@ -3976,7 +3957,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_watchos-watchos_arm64_32-dbg-STABLE-18/bin/UI/UIFramework.watchOS.framework",
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "ENABLE_TESTABILITY": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_watchos-watchos_arm64_32-dbg-STABLE-18/bin/UI/rules_xcodeproj/UIFramework.watchOS/Info.plist",
             "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
             "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
@@ -4134,7 +4114,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-17/bin/UI/UIFramework.watchOS.framework",
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "ENABLE_TESTABILITY": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-dbg-STABLE-17/bin/UI/rules_xcodeproj/UIFramework.watchOS/Info.plist",
             "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
             "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
@@ -4288,7 +4267,6 @@
             "CODE_SIGN_STYLE": "Automatic",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "DEVELOPMENT_TEAM": "V82V4GQZXM",
-            "ENABLE_TESTABILITY": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_arm64-dbg-STABLE-14/bin/WidgetExtension/rules_xcodeproj/WidgetExtension/Info.plist",
             "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
             "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
@@ -4437,7 +4415,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/WidgetExtension/WidgetExtension.appex",
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "ENABLE_TESTABILITY": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/WidgetExtension/rules_xcodeproj/WidgetExtension/Info.plist",
             "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
             "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
@@ -4670,7 +4647,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iMessageApp/iMessageAppExtension.appex",
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "ENABLE_TESTABILITY": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iMessageApp/rules_xcodeproj/iMessageAppExtension/Info.plist",
             "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
             "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
@@ -4926,7 +4902,6 @@
         },
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "MixedAnswer",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "MixedAnswer-Swift.h"
         },
@@ -5000,7 +4975,6 @@
         },
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "MixedAnswer",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "MixedAnswer-Swift.h"
         },
@@ -5419,7 +5393,6 @@
             "CODE_SIGN_STYLE": "Automatic",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "DEVELOPMENT_TEAM": "V82V4GQZXM",
-            "ENABLE_TESTABILITY": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_arm64-dbg-STABLE-14/bin/iOSApp/Source/rules_xcodeproj/iOSApp/Info.plist",
             "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
             "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
@@ -5655,7 +5628,6 @@
             "CODE_SIGN_ENTITLEMENTS": "$(SRCROOT)/iOSApp/Source/ios app.entitlements",
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "ENABLE_TESTABILITY": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Source/rules_xcodeproj/iOSApp/Info.plist",
             "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
             "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
@@ -6233,7 +6205,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTestSuite.xctest",
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "ENABLE_TESTABILITY": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Test/SwiftUnitTests/rules_xcodeproj/iOSAppSwiftUnitTestSuite.__internal__.__test_bundle/Info.plist",
             "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
             "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
@@ -6427,7 +6398,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTests.xctest",
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "ENABLE_TESTABILITY": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Test/SwiftUnitTests/rules_xcodeproj/iOSAppSwiftUnitTests.__internal__.__test_bundle/Info.plist",
             "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
             "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
@@ -6585,7 +6555,6 @@
         },
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "TestingUtils",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "SwiftAPI/TestingUtils-Swift.h"
         },
@@ -6659,7 +6628,6 @@
         },
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "TestingUtils",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "SwiftAPI/TestingUtils-Swift.h"
         },
@@ -6754,7 +6722,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Test/UITests/iOSAppUITestSuite.xctest",
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "ENABLE_TESTABILITY": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Test/UITests/rules_xcodeproj/iOSAppUITestSuite.__internal__.__test_bundle/Info.plist",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.uitests",
             "PRODUCT_MODULE_NAME": "iOSAppUITestSuite",
@@ -6892,7 +6859,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Test/UITests/iOSAppUITests.xctest",
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "ENABLE_TESTABILITY": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Test/UITests/rules_xcodeproj/iOSAppUITests.__internal__.__test_bundle/Info.plist",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.uitests",
             "PRODUCT_MODULE_NAME": "iOSAppUITests",
@@ -7027,7 +6993,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-31/bin/macOSApp/Source/macOSApp.app",
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "ENABLE_TESTABILITY": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-STABLE-31/bin/macOSApp/Source/rules_xcodeproj/macOSApp/Info.plist",
             "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
             "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
@@ -7161,7 +7126,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-31/bin/macOSApp/Test/UITests/macOSAppUITests.xctest",
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "ENABLE_TESTABILITY": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-STABLE-31/bin/macOSApp/Test/UITests/rules_xcodeproj/macOSAppUITests.__internal__.__test_bundle/Info.plist",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.macosapp.uitests",
             "PRODUCT_MODULE_NAME": "macOSAppUITests"
@@ -7294,7 +7258,6 @@
             "CODE_SIGN_STYLE": "Automatic",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "DEVELOPMENT_TEAM": "V82V4GQZXM",
-            "ENABLE_TESTABILITY": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_tvos-tvos_arm64-dbg-STABLE-26/bin/tvOSApp/Source/rules_xcodeproj/tvOSApp/Info.plist",
             "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
             "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
@@ -7454,7 +7417,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-25/bin/tvOSApp/Source/tvOSApp.app",
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "ENABLE_TESTABILITY": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-dbg-STABLE-25/bin/tvOSApp/Source/rules_xcodeproj/tvOSApp/Info.plist",
             "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
             "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
@@ -7603,7 +7565,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-25/bin/tvOSApp/Test/UITests/tvOSAppUITests.xctest",
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "ENABLE_TESTABILITY": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-dbg-STABLE-25/bin/tvOSApp/Test/UITests/rules_xcodeproj/tvOSAppUITests.__internal__.__test_bundle/Info.plist",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.uitests",
             "PRODUCT_MODULE_NAME": "tvOSAppUITests"
@@ -7739,7 +7700,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-25/bin/tvOSApp/Test/UnitTests/tvOSAppUnitTests.xctest",
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "ENABLE_TESTABILITY": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-dbg-STABLE-25/bin/tvOSApp/Test/UnitTests/rules_xcodeproj/tvOSAppUnitTests.__internal__.__test_bundle/Info.plist",
             "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
             "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
@@ -7885,7 +7845,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-17/bin/watchOSApp/Test/UITests/watchOSAppUITests.xctest",
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "ENABLE_TESTABILITY": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-dbg-STABLE-17/bin/watchOSApp/Test/UITests/rules_xcodeproj/watchOSAppUITests.__internal__.__test_bundle/Info.plist",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.watchTests",
             "PRODUCT_MODULE_NAME": "watchOSAppUITestsLibrary"
@@ -8201,7 +8160,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-17/bin/watchOSAppExtension/Test/UnitTests/watchOSAppExtensionUnitTests.xctest",
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "ENABLE_TESTABILITY": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-dbg-STABLE-17/bin/watchOSAppExtension/Test/UnitTests/rules_xcodeproj/watchOSAppExtensionUnitTests.__internal__.__test_bundle/Info.plist",
             "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
             "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
@@ -8349,7 +8307,6 @@
             "CODE_SIGN_STYLE": "Automatic",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "DEVELOPMENT_TEAM": "V82V4GQZXM",
-            "ENABLE_TESTABILITY": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_watchos-watchos_arm64_32-dbg-STABLE-18/bin/watchOSAppExtension/rules_xcodeproj/watchOSAppExtension/Info.plist",
             "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
             "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
@@ -8502,7 +8459,6 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-17/bin/watchOSAppExtension/watchOSAppExtension.appex",
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
-            "ENABLE_TESTABILITY": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-dbg-STABLE-17/bin/watchOSAppExtension/rules_xcodeproj/watchOSAppExtension/Info.plist",
             "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
             "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",

@@ -197,9 +197,6 @@ def process_compiler_opts_test_suite(name):
             "examples/xcode_like/ExampleUITests/ExampleUITests.swift",
             "examples/xcode_like/ExampleUITests/ExampleUITestsLaunchTests.swift",
         ],
-        expected_build_settings = {
-            "ENABLE_TESTABILITY": "True",
-        },
     )
 
     _add_test(
@@ -258,9 +255,6 @@ def process_compiler_opts_test_suite(name):
             "examples/xcode_like/ExampleUITests/ExampleUITests.swift",
             "examples/xcode_like/ExampleUITests/ExampleUITestsLaunchTests.swift",
         ],
-        expected_build_settings = {
-            "ENABLE_TESTABILITY": "True",
-        },
     )
 
     _add_test(
@@ -615,16 +609,6 @@ def process_compiler_opts_test_suite(name):
         expected_build_settings = {
             "DEBUG_INFORMATION_FORMAT": "",
             "ENABLE_STRICT_OBJC_MSGSEND": "False",
-        },
-    )
-
-    ## ENABLE_TESTABILITY
-
-    _add_test(
-        name = "{}_swift_option-enable-testing".format(name),
-        swiftcopts = ["-enable-testing"],
-        expected_build_settings = {
-            "ENABLE_TESTABILITY": "True",
         },
     )
 
