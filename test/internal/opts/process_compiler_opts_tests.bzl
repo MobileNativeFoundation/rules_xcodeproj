@@ -723,16 +723,6 @@ def process_compiler_opts_test_suite(name):
         },
     )
 
-    ## SWIFT_STRICT_CONCURRENCY
-
-    _add_test(
-        name = "{}_swift_option-strict-concurrency".format(name),
-        swiftcopts = ["-strict-concurrency=targeted"],
-        expected_build_settings = {
-            "SWIFT_STRICT_CONCURRENCY": "targeted",
-        },
-    )
-
     ## SWIFT_VERSION
 
     _add_test(

@@ -82,7 +82,7 @@ public enum Identifiers {
         ) -> String {
             precondition(index <= 121, "`index` must be in the range `0...121`")
             return #"""
-0000000000000000000000\#(String(0x05 + index, radix: 16, uppercase: true)) \#
+0000000000000000000000\#(String(format: "%02X", 0x05 + index)) \#
 /* \#(name) */
 """#
         }

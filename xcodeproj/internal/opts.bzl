@@ -373,9 +373,6 @@ Using VFS overlays with `build_mode = "xcode"` is unsupported.
         if opt == "-emit-objc-header-path":
             # Handled in `previous_opt` check above
             return
-        if opt.startswith("-strict-concurrency="):
-            build_settings["SWIFT_STRICT_CONCURRENCY"] = opt[20:]
-            return
 
     has_debug_info = False
     outer_previous_opt = None
