@@ -141,7 +141,6 @@
             "v": "iphoneos"
         },
         "b": {
-            "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "Lib",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "Lib-Swift.h"
         },
@@ -175,7 +174,6 @@
             "v": "iphonesimulator"
         },
         "b": {
-            "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "Lib",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "Lib-Swift.h"
         },
@@ -273,7 +271,6 @@
             "v": "iphoneos"
         },
         "b": {
-            "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "UI",
             "SWIFT_INCLUDE_PATHS": "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2/bin/Lib",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "UI-Swift.h"
@@ -311,7 +308,6 @@
             "v": "iphonesimulator"
         },
         "b": {
-            "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "UI",
             "SWIFT_INCLUDE_PATHS": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/Lib",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "UI-Swift.h"
@@ -435,7 +431,6 @@
         ],
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2/bin/WidgetExtension",
-            "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "WidgetExtension",
             "SWIFT_INCLUDE_PATHS": "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2/bin/Lib",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "WidgetExtension-Swift.h"
@@ -486,7 +481,6 @@
         ],
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/WidgetExtension",
-            "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "WidgetExtension",
             "SWIFT_INCLUDE_PATHS": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/Lib",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "WidgetExtension-Swift.h"
@@ -656,7 +650,6 @@
             "v": "iphoneos"
         },
         "b": {
-            "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "MixedAnswer",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "MixedAnswer-Swift.h"
         },
@@ -690,7 +683,6 @@
             "v": "iphonesimulator"
         },
         "b": {
-            "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "MixedAnswer",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "MixedAnswer-Swift.h"
         },
@@ -1012,7 +1004,6 @@
         ],
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2/bin/iOSApp/Source",
-            "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "iOSApp",
             "SWIFT_INCLUDE_PATHS": "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2/bin/Lib bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2/bin/UI bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "iOSApp-Swift.h"
@@ -1064,7 +1055,6 @@
         ],
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source",
-            "ENABLE_TESTABILITY": true,
             "PRODUCT_MODULE_NAME": "iOSApp",
             "SWIFT_INCLUDE_PATHS": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/Lib bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/UI bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "iOSApp-Swift.h"
@@ -1127,7 +1117,6 @@
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Test/MixedUnitTests/iOSAppMixedUnitTests.__internal__.__test_bundle.zip",
             "CODE_SIGN_STYLE": "Manual",
-            "ENABLE_TESTABILITY": true,
             "GCC_PREFIX_HEADER": "$(BAZEL_EXTERNAL)/build_bazel_rules_ios/rules/library/common.pch",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Test/MixedUnitTests/rules_xcodeproj/iOSAppMixedUnitTests.__internal__.__test_bundle/Info.plist",
             "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
@@ -1308,7 +1297,6 @@
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTestSuite.__internal__.__test_bundle.zip",
             "CODE_SIGN_STYLE": "Manual",
-            "ENABLE_TESTABILITY": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Test/SwiftUnitTests/rules_xcodeproj/iOSAppSwiftUnitTestSuite.__internal__.__test_bundle/Info.plist",
             "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
             "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
@@ -1373,7 +1361,6 @@
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTests.__internal__.__test_bundle.zip",
             "CODE_SIGN_STYLE": "Manual",
-            "ENABLE_TESTABILITY": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Test/SwiftUnitTests/rules_xcodeproj/iOSAppSwiftUnitTests.__internal__.__test_bundle/Info.plist",
             "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
             "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
@@ -1434,7 +1421,6 @@
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Test/UITests/iOSAppUITestSuite.__internal__.__test_bundle.zip",
             "CODE_SIGN_STYLE": "Manual",
-            "ENABLE_TESTABILITY": true,
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Test/UITests/rules_xcodeproj/iOSAppUITestSuite.__internal__.__test_bundle/Info.plist",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.uitests",
             "PRODUCT_MODULE_NAME": "iOSAppUITestSuite",
