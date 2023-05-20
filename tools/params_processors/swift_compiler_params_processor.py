@@ -44,7 +44,6 @@ _SWIFTC_SKIP_OPTS = {
     "-g": 1,
     "-incremental": 1,
     "-no-whole-module-optimization": 1,
-    "-strict-concurrency": 2,
     "-swift-version": 2,
     "-whole-module-optimization": 1,
     "-wmo": 1,
