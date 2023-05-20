@@ -161,6 +161,33 @@ class swift_debug_settings_processor_test(unittest.TestCase):
             ],
         )
 
+    def test_replacements(self):
+        def _parse_args(args):
+            return iter([f"{arg}\n" for arg in args])
+
+        self.assertEqual(
+            swift_debug_settings_processor.process_swift_params(
+                [[
+                    "swiftc",
+
+                    *_before_each(
+                        [
+                            "-F__BAZEL_XCODE_DEVELOPER_DIR__/Hi",
+                            "-I__BAZEL_XCODE_SDKROOT__/Yo",
+                            "-I__BAZEL_XCODE_SOMETHING_/path",
+                        ],
+                        "-Xcc",
+                    )
+                ]],
+                parse_args = _parse_args,
+            ),
+            [
+                "-F$(DEVELOPER_DIR)/Hi",
+                "-I$(SDKROOT)/Yo",
+                "-I__BAZEL_XCODE_SOMETHING_/path",
+            ],
+        )
+
     def test_vfsoverlay(self):
         def _parse_args(args):
             return iter([f"{arg}\n" for arg in args])
