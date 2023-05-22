@@ -1,19 +1,9 @@
+import GeneratorCommon
 import Foundation
 
 extension Generator {
-    /// Writes `projectPrefix` to the file designated by `outputPath`.
-    static func write(
-        _ projectPrefix: String,
-        to outputPath: URL
-    ) throws {
-        // Create parent directory
-        try FileManager.default.createDirectory(
-            at: outputPath.deletingLastPathComponent(),
-            withIntermediateDirectories: true
-        )
-
-        // Write
-        try projectPrefix
-            .write(to: outputPath, atomically: false, encoding: .utf8)
+    /// Writes `projPrefix` to the file designated by `outputPath`.
+    static func write(_ projPrefix: String, to outputPath: URL) throws {
+        return try projPrefix.writeCreatingParentDirectories(to: outputPath)
     }
 }
