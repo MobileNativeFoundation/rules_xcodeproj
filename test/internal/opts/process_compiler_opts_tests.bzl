@@ -612,51 +612,6 @@ def process_compiler_opts_test_suite(name):
         },
     )
 
-    ## SWIFT_COMPILATION_MODE
-
-    _add_test(
-        name = "{}_multiple_swift_compilation_modes".format(name),
-        swiftcopts = [
-            "-wmo",
-            "-no-whole-module-optimization",
-        ],
-        expected_build_settings = {
-            "SWIFT_COMPILATION_MODE": "singlefile",
-        },
-    )
-
-    _add_test(
-        name = "{}_swift_option-incremental".format(name),
-        swiftcopts = ["-incremental"],
-        expected_build_settings = {
-            "SWIFT_COMPILATION_MODE": "singlefile",
-        },
-    )
-
-    _add_test(
-        name = "{}_swift_option-whole-module-optimization".format(name),
-        swiftcopts = ["-whole-module-optimization"],
-        expected_build_settings = {
-            "SWIFT_COMPILATION_MODE": "wholemodule",
-        },
-    )
-
-    _add_test(
-        name = "{}_swift_option-wmo".format(name),
-        swiftcopts = ["-wmo"],
-        expected_build_settings = {
-            "SWIFT_COMPILATION_MODE": "wholemodule",
-        },
-    )
-
-    _add_test(
-        name = "{}_swift_option-no-whole-module-optimization".format(name),
-        swiftcopts = ["-no-whole-module-optimization"],
-        expected_build_settings = {
-            "SWIFT_COMPILATION_MODE": "singlefile",
-        },
-    )
-
     ## SWIFT_OBJC_INTERFACE_HEADER_NAME
 
     _add_test(
