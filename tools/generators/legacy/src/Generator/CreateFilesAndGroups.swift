@@ -57,6 +57,7 @@ extension Generator {
     static func createFilesAndGroups(
         in pbxProj: PBXProj,
         buildMode: BuildMode,
+        developmentRegion: String,
         forFixtures: Bool,
         targets: [TargetID: Target],
         extraFiles: Set<FilePath>,
@@ -752,8 +753,7 @@ extension Generator {
             rootElements.append(internalGroup)
         }
 
-        // TODO: Configure development region?
-        knownRegions.insert("en")
+        knownRegions.insert(developmentRegion)
 
         // Xcode puts "Base" last after sorting
         knownRegions.remove("Base")

@@ -51,7 +51,7 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         ]
         expectedMainGroup.addChildren(expectedRootElements)
 
-        expectedPBXProj.rootObject!.knownRegions = ["en", "Base"]
+        expectedPBXProj.rootObject!.knownRegions = ["es", "Base"]
 
         // Act
 
@@ -64,6 +64,7 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         ) = try Generator.createFilesAndGroups(
             in: pbxProj,
             buildMode: .xcode,
+            developmentRegion: "es",
             forFixtures: false,
             targets: targets,
             extraFiles: extraFiles,
@@ -164,6 +165,7 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         ) = try Generator.createFilesAndGroups(
             in: pbxProj,
             buildMode: .xcode,
+            developmentRegion: "es",
             forFixtures: false,
             targets: targets,
             extraFiles: extraFiles,
@@ -271,6 +273,7 @@ final class CreateFilesAndGroupsTests: XCTestCase {
         ) = try Generator.createFilesAndGroups(
             in: pbxProj,
             buildMode: .bazel,
+            developmentRegion: "es",
             forFixtures: false,
             targets: targets,
             extraFiles: extraFiles,

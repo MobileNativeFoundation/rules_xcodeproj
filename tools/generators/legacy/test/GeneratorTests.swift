@@ -304,6 +304,7 @@ final class GeneratorTests: XCTestCase {
         struct CreateFilesAndGroupsCalled: Equatable {
             let pbxProj: PBXProj
             let buildMode: BuildMode
+            let developmentRegion: String
             let targets: [TargetID: Target]
             let extraFiles: Set<FilePath>
             let xccurrentversions: [XCCurrentVersion]
@@ -314,6 +315,7 @@ final class GeneratorTests: XCTestCase {
         func createFilesAndGroups(
             in pbxProj: PBXProj,
             buildMode: BuildMode,
+            developmentRegion: String,
             _forFixtures _: Bool,
             targets: [TargetID: Target],
             extraFiles: Set<FilePath>,
@@ -330,6 +332,7 @@ final class GeneratorTests: XCTestCase {
             createFilesAndGroupsCalled.append(.init(
                 pbxProj: pbxProj,
                 buildMode: buildMode,
+                developmentRegion: developmentRegion,
                 targets: targets,
                 extraFiles: extraFiles,
                 xccurrentversions: xccurrentversions,
@@ -347,6 +350,7 @@ final class GeneratorTests: XCTestCase {
         let expectedCreateFilesAndGroupsCalled = [CreateFilesAndGroupsCalled(
             pbxProj: pbxProj,
             buildMode: buildMode,
+            developmentRegion: project.options.developmentRegion,
             targets: targets,
             extraFiles: project.extraFiles,
             xccurrentversions: xccurrentversions,
