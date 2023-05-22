@@ -330,11 +330,7 @@ def _process_swiftcopts(
             settings that are parsed from `opts`.
 
     Returns:
-        A `tuple` containing three elements:
-
-        *   A `list` of processed Swift compiler options.
-        *   A `list` of clang compiler options.
-        *   A `bool` indicting if the target has debug info enabled.
+        A `bool` indicting if the target has debug info enabled.
     """
 
     def _inner_process_swiftcopts(opt, previous_opt):
