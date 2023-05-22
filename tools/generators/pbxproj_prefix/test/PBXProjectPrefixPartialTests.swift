@@ -5,7 +5,7 @@ import XCTest
 
 @testable import pbxproj_prefix
 
-class CalculateTests: XCTestCase {
+class PBXProjectPrefixPartialTests: XCTestCase {
     func test_defaultXcodeConfiguration() {
         // Arrange
 
@@ -24,14 +24,7 @@ class CalculateTests: XCTestCase {
         ]
 
         // The tabs for indenting are intentional
-        let expectedPBXProjPrefixPartial = #"""
-// !$*UTF8*$!
-{
-	archiveVersion = 1;
-	classes = {
-	};
-	objectVersion = 55;
-	objects = {
+        let expectedPBXProjectPrefixPartial = #"""
 		000000000000000000000005 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {BUILD_SETTINGS_HERE};
@@ -76,7 +69,7 @@ class CalculateTests: XCTestCase {
 
         // Act
 
-        let pbxProjPrefixPartial = Generator.calculate(
+        let pbxProjectPrefixPartial = Generator.pbxProjectPrefixPartial(
             buildSettings: buildSettings,
             compatibilityVersion: compatibilityVersion,
             defaultXcodeConfiguration: defaultXcodeConfiguration,
@@ -90,8 +83,8 @@ class CalculateTests: XCTestCase {
         // Assert
 
         XCTAssertNoDifference(
-            pbxProjPrefixPartial,
-            expectedPBXProjPrefixPartial
+            pbxProjectPrefixPartial,
+            expectedPBXProjectPrefixPartial
         )
     }
 
@@ -113,14 +106,7 @@ class CalculateTests: XCTestCase {
         ]
 
         // The tabs for indenting are intentional
-        let expectedPBXProjPrefixPartial = #"""
-// !$*UTF8*$!
-{
-	archiveVersion = 1;
-	classes = {
-	};
-	objectVersion = 55;
-	objects = {
+        let expectedPBXProjectPrefixPartial = #"""
 		000000000000000000000005 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {BUILD_SETTINGS_HERE};
@@ -165,7 +151,7 @@ class CalculateTests: XCTestCase {
 
         // Act
 
-        let pbxProjPrefixPartial = Generator.calculate(
+        let pbxProjectPrefixPartial = Generator.pbxProjectPrefixPartial(
             buildSettings: buildSettings,
             compatibilityVersion: compatibilityVersion,
             defaultXcodeConfiguration: defaultXcodeConfiguration,
@@ -179,8 +165,8 @@ class CalculateTests: XCTestCase {
         // Assert
 
         XCTAssertNoDifference(
-            pbxProjPrefixPartial,
-            expectedPBXProjPrefixPartial
+            pbxProjectPrefixPartial,
+            expectedPBXProjectPrefixPartial
         )
     }
 
@@ -201,14 +187,7 @@ class CalculateTests: XCTestCase {
             "Debug",
         ]
 
-        let expectedPBXProjPrefixPartial = #"""
-// !$*UTF8*$!
-{
-	archiveVersion = 1;
-	classes = {
-	};
-	objectVersion = 55;
-	objects = {
+        let expectedPBXProjectPrefixPartial = #"""
 		000000000000000000000005 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {BUILD_SETTINGS_HERE};
@@ -254,7 +233,7 @@ class CalculateTests: XCTestCase {
 
         // Act
 
-        let pbxProjPrefixPartial = Generator.calculate(
+        let pbxProjectPrefixPartial = Generator.pbxProjectPrefixPartial(
             buildSettings: buildSettings,
             compatibilityVersion: compatibilityVersion,
             defaultXcodeConfiguration: defaultXcodeConfiguration,
@@ -268,8 +247,8 @@ class CalculateTests: XCTestCase {
         // Assert
 
         XCTAssertNoDifference(
-            pbxProjPrefixPartial,
-            expectedPBXProjPrefixPartial
+            pbxProjectPrefixPartial,
+            expectedPBXProjectPrefixPartial
         )
     }
 
@@ -290,14 +269,7 @@ class CalculateTests: XCTestCase {
             "Debug",
         ]
 
-        let expectedPBXProjPrefixPartial = #"""
-// !$*UTF8*$!
-{
-	archiveVersion = 1;
-	classes = {
-	};
-	objectVersion = 55;
-	objects = {
+        let expectedPBXProjectPrefixPartial = #"""
 		000000000000000000000005 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {BUILD_SETTINGS_HERE};
@@ -343,7 +315,7 @@ class CalculateTests: XCTestCase {
 
         // Act
 
-        let pbxProjPrefixPartial = Generator.calculate(
+        let pbxProjectPrefixPartial = Generator.pbxProjectPrefixPartial(
             buildSettings: buildSettings,
             compatibilityVersion: compatibilityVersion,
             defaultXcodeConfiguration: defaultXcodeConfiguration,
@@ -357,8 +329,8 @@ class CalculateTests: XCTestCase {
         // Assert
 
         XCTAssertNoDifference(
-            pbxProjPrefixPartial,
-            expectedPBXProjPrefixPartial
+            pbxProjectPrefixPartial,
+            expectedPBXProjectPrefixPartial
         )
     }
 
@@ -379,14 +351,7 @@ class CalculateTests: XCTestCase {
             "Debug",
         ]
 
-        let expectedPBXProjPrefixPartial = #"""
-// !$*UTF8*$!
-{
-	archiveVersion = 1;
-	classes = {
-	};
-	objectVersion = 55;
-	objects = {
+        let expectedPBXProjectPrefixPartial = #"""
 		000000000000000000000005 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {BUILD_SETTINGS_HERE};
@@ -432,7 +397,7 @@ class CalculateTests: XCTestCase {
 
         // Act
 
-        let pbxProjPrefixPartial = Generator.calculate(
+        let pbxProjectPrefixPartial = Generator.pbxProjectPrefixPartial(
             buildSettings: buildSettings,
             compatibilityVersion: compatibilityVersion,
             defaultXcodeConfiguration: defaultXcodeConfiguration,
@@ -446,8 +411,8 @@ class CalculateTests: XCTestCase {
         // Assert
 
         XCTAssertNoDifference(
-            pbxProjPrefixPartial,
-            expectedPBXProjPrefixPartial
+            pbxProjectPrefixPartial,
+            expectedPBXProjectPrefixPartial
         )
     }
 }

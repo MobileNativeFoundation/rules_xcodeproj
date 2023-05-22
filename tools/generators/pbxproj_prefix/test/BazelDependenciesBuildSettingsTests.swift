@@ -2,9 +2,9 @@ import CustomDump
 import PBXProj
 import XCTest
 
-@testable import bazel_dependencies
+@testable import pbxproj_prefix
 
-class BuildSettingsTests: XCTestCase {
+class BazelDependenciesBuildSettingsTests: XCTestCase {
     func test() {
         // Arrange
 
@@ -37,7 +37,7 @@ class BuildSettingsTests: XCTestCase {
 
         // Act
 
-        let buildSettings = Generator.buildSettings(
+        let buildSettings = Generator.bazelDependenciesBuildSettings(
             indexImport: indexImport,
             platforms: platforms,
             targetIdsFile: targetIdsFile

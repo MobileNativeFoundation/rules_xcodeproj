@@ -29,6 +29,12 @@ information.
 
 - [`pbxproj_prefix`](pbxproj_prefix/README.md):
   - The start of the `PBXProj` element
+  - All of the `BazelDependencies` related elements:
+    - `Generate Bazel Dependencies` script build phase
+    - `Create swift_debug_settings.py` script build phase
+    - `XCBuildConfiguration`
+    - `XCBuildConfigurationList`
+  - `BazelDependencies` `PBXAggregateTarget`
   - All of the `PBXProject` related elements:
     - `XCBuildConfiguration`
     - `XCBuildConfigurationList`
@@ -45,13 +51,6 @@ information.
 - `target_dependencies`:
   - `PBXTargetDependency`s
   - `PBXContainerItemProxy`s
-- [`bazel_dependencies`](bazel_dependencies/README.md):
-  - All of the `BazelDependencies` related elements:
-    - `Generate Bazel Dependencies` script build phase
-    - `Create swift_debug_settings.py` script build phase
-    - `XCBuildConfiguration`
-    - `XCBuildConfigurationList`
-  - `BazelDependencies` `PBXAggregateTarget`
 - `pbxnativetargets`:
   - Run once on each shard of all the targets
   - All of the `PBXNativeTarget` related elements:

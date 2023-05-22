@@ -1,6 +1,7 @@
 import ArgumentParser
 import Foundation
 import GeneratorCommon
+import PBXProj
 
 extension Generator {
     struct Arguments: ParsableArguments {
@@ -23,6 +24,12 @@ Path to a file that contains the absolute path to the Bazel execution root.
         )
         var executionRootFile: URL
 
+        @Argument(help: "Path to the target IDs list file.")
+        var targetIdsFile: String
+
+        @Argument(help: "Path to the index_import executable.")
+        var indexImport: String
+
         @Argument(help: "`xcodeproj.build_mode`.")
         var buildMode: BuildMode
 
@@ -41,11 +48,29 @@ Populates the `ORGANIZATIONNAME` attribute for the project.
 
         @Option(
             parsing: .upToNextOption,
+            help: "Names of the platforms the project is using."
+        )
+        var platforms: [Platform]
+
+        @Option(
+            parsing: .upToNextOption,
             help: "Names of the Xcode configurations the project is using."
         )
         var xcodeConfigurations: [String]
 
         @Option(help: "Name of the default Xcode configuration.")
         var defaultXcodeConfiguration: String?
+
+        @Option(
+            help: "Path to a file containing a pre-build script.",
+            transform: { URL(fileURLWithPath: $0, isDirectory: false) }
+        )
+        var preBuildScript: URL?
+
+        @Option(
+            help: "Path to a file containing a post-build script.",
+            transform: { URL(fileURLWithPath: $0, isDirectory: false) }
+        )
+        var postBuildScript: URL?
     }
 }

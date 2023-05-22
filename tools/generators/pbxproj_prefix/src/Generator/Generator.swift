@@ -23,25 +23,54 @@ struct Generator {
             )
         )
 
+        let bazelDependenciesPartial = environment.bazelDependenciesPartial(
+            /*buildSettings:*/ environment
+                .bazelDependenciesBuildSettings(
+                    /*indexImport:*/ arguments.indexImport,
+                    /*platforms:*/ arguments.platforms,
+                    /*targetIdsFile:*/ arguments.targetIdsFile
+                ),
+            /*defaultXcodeConfiguration:*/ arguments
+                .defaultXcodeConfiguration,
+            /*postBuildRunScript:*/ environment.runScriptBuildPhase(
+                /*name:*/ "Post-build",
+                /*script:*/ try environment.readPrePostBuildScript(
+                    /*postBuildScript:*/ arguments.postBuildScript
+                )
+            ),
+            /*preBuildRunScript:*/ environment.runScriptBuildPhase(
+                /*name:*/ "Pre-build",
+                /*script:*/ try environment.readPrePostBuildScript(
+                    /*preBuildScript:*/ arguments.preBuildScript
+                )
+            ),
+            /*xcodeConfigurations:*/ arguments.xcodeConfigurations
+        )
+
+        let pbxProjectPrefixPartial = environment.pbxProjectPrefixPartial(
+            /*buildSettings:*/ environment.pbxProjectBuildSettings(
+                /*buildMode:*/ arguments.buildMode,
+                /*indexingProjectDir:*/ environment.indexingProjectDir(
+                    /*projectDir:*/ projectDir
+                ),
+                /*workspace:*/ arguments.workspace
+            ),
+            /*compatibilityVersion:*/ environment.compatibilityVersion(
+                arguments.minimumXcodeVersion
+            ),
+            /*defaultXcodeConfiguration:*/ arguments
+                .defaultXcodeConfiguration,
+            /*developmentRegion:*/ arguments.developmentRegion,
+            /*organizationName:*/ arguments.organizationName,
+            /*projectDir:*/ projectDir,
+            /*workspace:*/ arguments.workspace,
+            /*xcodeConfigurations:*/ arguments.xcodeConfigurations
+        )
+
         try environment.write(
-            environment.calculate(
-                /*buildSettings:*/ environment.buildSettings(
-                    /*buildMode:*/ arguments.buildMode,
-                    /*indexingProjectDir:*/ environment.indexingProjectDir(
-                        /*projectDir:*/ projectDir
-                    ),
-                    /*workspace:*/ arguments.workspace
-                ),
-                /*compatibilityVersion:*/ environment.compatibilityVersion(
-                    arguments.minimumXcodeVersion
-                ),
-                /*defaultXcodeConfiguration:*/ arguments
-                    .defaultXcodeConfiguration,
-                /*developmentRegion:*/ arguments.developmentRegion,
-                /*organizationName:*/ arguments.organizationName,
-                /*projectDir:*/ projectDir,
-                /*workspace:*/ arguments.workspace,
-                /*xcodeConfigurations:*/ arguments.xcodeConfigurations
+            environment.pbxProjPrefixPartial(
+                /*bazelDependenciesPartial:*/ bazelDependenciesPartial,
+                /*pbxProjectPrefixPartial:*/ pbxProjectPrefixPartial
             ),
             /*to:*/ arguments.outputPath
         )
