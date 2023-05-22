@@ -23,5 +23,5 @@ function post_comment() {
 function build_and_test() {
     echo "Building and testing rules_xcodeproj..."
     bzl build //distribution:release # build release package
-    bzl test //... # run tests
+    bzl --output_base=bazel-output-base test --config=workflows --noexperimental_enable_bzlmod //... # run tests
 }
