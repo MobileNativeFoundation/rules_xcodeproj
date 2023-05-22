@@ -23,6 +23,7 @@ def _write_pbxproj_prefix(
         post_build_script,
         pre_build_script,
         project_options,
+        resolved_repositories_file,
         target_ids_list,
         tool,
         workspace_directory,
@@ -48,6 +49,8 @@ def _write_pbxproj_prefix(
         post_build_script: A `string` representing a post build script.
         pre_build_script: A `string` representing a pre build script.
         project_options: A `dict` as returned by `project_options`.
+        resolved_repositories_file: A `File` containing containing a string for
+            the `RESOLVED_REPOSITORIES` build setting.
         target_ids_list: A `File` containing a list of target IDs.
         tool: The executable that will generate the `PBXProj` partial.
         workspace_directory: The absolute path to the Bazel workspace
@@ -82,6 +85,9 @@ def _write_pbxproj_prefix(
 
     # indexImport
     args.add(index_import)
+
+    # resolvedRepositoriesFile
+    args.add(resolved_repositories_file)
 
     # buildMode
     args.add(build_mode)

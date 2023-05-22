@@ -15,6 +15,7 @@ The generator accepts the following command-line arguments (see
 - Positional `execution-root-file`
 - Positional `target-ids-file`
 - Positional `index-import`
+- Positional `resolved-repositories-file`
 - Positional `build-mode`
 - Positional `minimum-xcode-version`
 - Positional `development-region`
@@ -35,6 +36,7 @@ $ pbxproj_prefix \
     bazel-output-base/rules_xcodeproj.noindex/build_output_base/execroot/_main/bazel-out/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/generators/xcodeproj/xcodeproj_execution_root_file \
     bazel-out/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/generators/xcodeproj/xcodeproj_target_ids \
     bazel-out/darwin_arm64-opt-exec-2B5CBBC6/bin/external/_main~non_module_deps~rules_xcodeproj_index_import/index-import \
+    bazel-out/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/generators/xcodeproj/xcodeproj_pbxproj_partials/resolved_repositories \
     bazel \
     14.0 \
     enGB \
@@ -221,7 +223,7 @@ Here is an example output:
 				LIBTOOL = "$(BAZEL_INTEGRATION_DIR)/libtool.sh";
 				ONLY_ACTIVE_ARCH = YES;
 				PROJECT_DIR = "$(INDEXING_PROJECT_DIR__$(INDEX_ENABLE_BUILD_ARENA))";
-				RESOLVED_REPOSITORIES = "";
+				RESOLVED_REPOSITORIES = "\"\" \"/tmp/workspace\"";
 				RULES_XCODEPROJ_BUILD_MODE = bazel;
 				SCHEME_TARGET_IDS_FILE = "$(OBJROOT)/scheme_target_ids";
 				SRCROOT = /tmp/workspace;
@@ -286,7 +288,7 @@ Here is an example output:
 				LIBTOOL = "$(BAZEL_INTEGRATION_DIR)/libtool.sh";
 				ONLY_ACTIVE_ARCH = YES;
 				PROJECT_DIR = "$(INDEXING_PROJECT_DIR__$(INDEX_ENABLE_BUILD_ARENA))";
-				RESOLVED_REPOSITORIES = "";
+				RESOLVED_REPOSITORIES = "\"\" \"/tmp/workspace\"";
 				RULES_XCODEPROJ_BUILD_MODE = bazel;
 				SCHEME_TARGET_IDS_FILE = "$(OBJROOT)/scheme_target_ids";
 				SRCROOT = /tmp/workspace;

@@ -9,10 +9,13 @@ extension Generator {
     ///   - buildMode: The `BuildMode`.
     ///   - indexingProjectDir: The value returned from
     ///     `Generator.indexingProjectDir()`.
+    ///   - resolvedRepositories: The value to be used for the
+    ///     `RESOLVED_REPOSITORIES` build setting.
     ///   - workspace: The absolute path to the Bazel workspace.
     static func pbxProjectBuildSettings(
         buildMode: BuildMode,
         indexingProjectDir: String,
+        resolvedRepositories: String,
         workspace: String
     ) -> String {
         var settings: [String: String] = [
@@ -70,8 +73,7 @@ extension Generator {
             "PROJECT_DIR":
                 "$(INDEXING_PROJECT_DIR__$(INDEX_ENABLE_BUILD_ARENA))"
                 .pbxProjEscaped,
-            // TODO: Set `RESOLVED_REPOSITORIES`
-            "RESOLVED_REPOSITORIES": "".pbxProjEscaped,
+            "RESOLVED_REPOSITORIES": resolvedRepositories.pbxProjEscaped,
             "RULES_XCODEPROJ_BUILD_MODE": buildMode.rawValue,
             "SCHEME_TARGET_IDS_FILE":
                 "$(OBJROOT)/scheme_target_ids".pbxProjEscaped,

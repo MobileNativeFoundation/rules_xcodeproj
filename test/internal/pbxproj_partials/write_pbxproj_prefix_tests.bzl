@@ -93,6 +93,7 @@ def _write_pbxproj_prefix_test_impl(ctx):
         post_build_script = ctx.attr.post_build_script,
         pre_build_script = ctx.attr.pre_build_script,
         project_options = ctx.attr.project_options,
+        resolved_repositories_file = ctx.attr.resolved_repositories_file,
         target_ids_list = ctx.attr.target_ids_list,
         tool = None,
         workspace_directory = ctx.attr.workspace_directory,
@@ -180,6 +181,7 @@ write_pbxproj_prefix_test = unittest.make(
         "post_build_script": attr.string(),
         "pre_build_script": attr.string(),
         "project_options": attr.string_dict(mandatory = True),
+        "resolved_repositories_file": attr.string(mandatory = True),
         "target_ids_list": attr.string(mandatory = True),
         "workspace_directory": attr.string(mandatory = True),
         "xcode_configurations": attr.string_list(mandatory = True),
@@ -214,6 +216,7 @@ def write_pbxproj_prefix_test_suite(name):
             post_build_script = None,
             pre_build_script = None,
             project_options,
+            resolved_repositories_file,
             target_ids_list,
             workspace_directory,
             xcode_configurations,
@@ -236,6 +239,7 @@ def write_pbxproj_prefix_test_suite(name):
             post_build_script = post_build_script,
             pre_build_script = pre_build_script,
             project_options = project_options,
+            resolved_repositories_file = resolved_repositories_file,
             target_ids_list = target_ids_list,
             workspace_directory = workspace_directory,
             xcode_configurations = xcode_configurations,
@@ -262,6 +266,7 @@ def write_pbxproj_prefix_test_suite(name):
         project_options = {
             "development_region": "en",
         },
+        resolved_repositories_file = "some/path/to/resolved_repositories_file",
         target_ids_list = "a/path/to/target_ids_list",
         workspace_directory = "/Users/TimApple/StarBoard",
         xcode_configurations = [
@@ -281,6 +286,8 @@ def write_pbxproj_prefix_test_suite(name):
             "a/path/to/target_ids_list",
             # indexImport
             "some/path/to/index_import",
+            # resolvedRepositoriesFile
+            "some/path/to/resolved_repositories_file",
             # buildMode
             "xcode",
             # minimumXcodeVersion
@@ -320,6 +327,7 @@ def write_pbxproj_prefix_test_suite(name):
             "organization_name": "MobileNativeFoundation 2",
         },
         minimum_xcode_version = "14.2.1",
+        resolved_repositories_file = "some/path/to/resolved_repositories_file",
         target_ids_list = "a/path/to/target_ids_list",
         workspace_directory = "/Users/TimApple/StarBoard",
         xcode_configurations = [
@@ -339,6 +347,8 @@ def write_pbxproj_prefix_test_suite(name):
             "a/path/to/target_ids_list",
             # indexImport
             "some/path/to/index_import",
+            # resolvedRepositoriesFile
+            "some/path/to/resolved_repositories_file",
             # buildMode
             "bazel",
             # minimumXcodeVersion

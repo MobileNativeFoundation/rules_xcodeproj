@@ -31,6 +31,7 @@ extension Generator {
         let pbxProjectBuildSettings: (
             _ buildMode: BuildMode,
             _ indexingProjectDir: String,
+            _ resolvedRepositories: String,
             _ workspace: String
         ) -> String
 
@@ -54,6 +55,8 @@ extension Generator {
 
         let readExecutionRootFile: (_ url: URL) throws -> String
 
+        let readResolvedRepositoriesFile: (_ url: URL) throws -> String
+
         let readPrePostBuildScript: (_ url: URL?) throws -> String?
 
         let runScriptBuildPhase: (_ name: String, _ script: String?) -> String?
@@ -74,6 +77,7 @@ extension Generator.Environment {
         pbxProjPrefixPartial: Generator.pbxProjPrefixPartial,
         projectDir: Generator.projectDir,
         readExecutionRootFile: Generator.readExecutionRootFile,
+        readResolvedRepositoriesFile: Generator.readResolvedRepositoriesFile,
         readPrePostBuildScript: Generator.readPrePostBuildScript,
         runScriptBuildPhase: Generator.runScriptBuildPhase,
         write: Generator.write
