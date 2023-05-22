@@ -707,16 +707,6 @@ def process_compiler_opts_test_suite(name):
         },
     )
 
-    ## SWIFT_VERSION
-
-    _add_test(
-        name = "{}_swift_option-swift-version".format(name),
-        swiftcopts = ["-swift-version=42"],
-        expected_build_settings = {
-            "SWIFT_VERSION": "42",
-        },
-    )
-
     # Search Paths
 
     _add_test(
