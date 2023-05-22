@@ -1,3 +1,5 @@
+import CryptoKit
+
 /// Helps set identifiers for `PBXProj` elements.
 ///
 /// Identifiers are unique 12 byte numbers encoded as 24 character hex strings.
@@ -49,6 +51,21 @@ public enum Identifiers {
     }
 
     public enum FilesAndGroups {
+        /// The logical type of the element being identified.
+        public enum ElementType: String {
+            /// A normal `PBXFileReference`.
+            case fileReference = "0"
+
+            /// A `PBXGroup`.
+            case group = "1"
+
+            /// A `PBXVariantGroup` or child `PBXFileReference`.
+            case localized = "2"
+
+            /// A `XCVersionGroup` or child `PBXFileReference`.
+            case coreData = "3"
+        }
+
         public static func mainGroup(_ path: String) -> String {
             return #"000000000000000000000003 /* \#(path) */"#
         }
@@ -56,6 +73,57 @@ public enum Identifiers {
         public static let productsGroup = #"""
 000000000000000000000004 /* Products */
 """#
+
+        /// Calculates the identifier for a file or group element at `path`.
+        ///
+        /// - Parameters:
+        ///   - path: The file path for the version group.
+        ///   - type: The type of path being identified.
+        ///   - hashCache: A cache that will be used to guarantee that the
+        ///     identifier returned is unique.
+        public static func element(
+            _ path: String,
+            type: ElementType,
+            hashCache: inout Set<String>
+        ) -> String {
+            let hash = elementHash(path + type.rawValue, hashCache: &hashCache)
+            return #"FF\#(hash) /* \#(path) */"#
+        }
+
+        private static func elementHash(
+            _ hashable: String,
+            hashCache: inout Set<String>
+        ) -> String {
+            var hash: String
+            var retryCount = 0
+            repeat {
+                hash = elementHash(hashable, retryCount: retryCount)
+                retryCount += 1
+            } while hashCache.contains(hash)
+
+            hashCache.insert(hash)
+
+            return hash
+        }
+
+        private static func elementHash(
+            _ path: String,
+            retryCount: Int
+        ) -> String {
+            let content: String
+            if retryCount == 0 {
+                content = path
+            } else {
+                content = "\(path)\0\(retryCount)"
+            }
+
+            let digest = Insecure.MD5.hash(data: content.data(using: .utf8)!)
+            return digest
+                // We can only use the first 22 characters
+                .dropLast(5)
+                .map { String(format: "%02X", $0) }
+                .joined()
+        }
     }
 
     public enum Project {
