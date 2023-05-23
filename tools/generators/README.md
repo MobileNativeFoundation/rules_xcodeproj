@@ -47,7 +47,7 @@ information.
   - `PBXContainerItemProxy`s
 - [`bazel_dependencies`](bazel_dependencies/README.md):
   - All of the `BazelDependencies` related elements:
-    - `Bazel Build` script build phase
+    - `Generate Bazel Dependencies` script build phase
     - `Create swift_debug_settings.py` script build phase
     - `XCBuildConfiguration`
     - `XCBuildConfigurationList`
