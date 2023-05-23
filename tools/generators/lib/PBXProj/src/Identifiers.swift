@@ -76,6 +76,10 @@ public enum Identifiers {
 
         /// Calculates the identifier for a file or group element at `path`.
         ///
+        /// - Note: The order that this is called in matters. If two
+        ///   `path + type` hash to the same value, the second one will have a
+        ///   new hash generated to guarentee it is unique.
+        ///
         /// - Parameters:
         ///   - path: The file path for the version group.
         ///   - type: The type of path being identified.
@@ -90,6 +94,11 @@ public enum Identifiers {
             return #"FF\#(hash) /* \#(path) */"#
         }
 
+        /// Calculates a unique hash for the path encoded in `hashable`. The
+        /// hash needs to be unique among all of the values in `hashCache`,
+        /// because two different `hashable` might hash to the same value, and
+        /// the hash is used as part of a unique identifier, so we can't have
+        /// clashes.
         private static func elementHash(
             _ hashable: String,
             hashCache: inout Set<String>
@@ -119,7 +128,12 @@ public enum Identifiers {
 
             let digest = Insecure.MD5.hash(data: content.data(using: .utf8)!)
             return digest
-                // We can only use the first 22 characters
+                // Xcode identifiers are 24 characters. We are using 2
+                // characters at the front for "FF". That leaves 22 characters
+                // that we can use. MD5 digests are 16 bytes (32 charcters)
+                // long. So we need to truncate it to fit within the remaining
+                // 22 characters (by dropping 5 bytes). We choose the front 22
+                // because are the most unique.
                 .dropLast(5)
                 .map { String(format: "%02X", $0) }
                 .joined()
