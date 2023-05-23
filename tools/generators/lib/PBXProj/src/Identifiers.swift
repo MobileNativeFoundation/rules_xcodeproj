@@ -76,9 +76,9 @@ public enum Identifiers {
 
         /// Calculates the identifier for a file or group element at `path`.
         ///
-        /// - Note: The order that this is called in matters. If two
-        ///   `path + type` hash to the same value, the second one will have a
-        ///   new hash generated to guarentee it is unique.
+        /// - Note: The order that this is called matters. If two `path + type`
+        ///   hash to the same value, the second one will have a new hash
+        ///   generated to guarentee it is unique.
         ///
         /// - Parameters:
         ///   - path: The file path for the version group.
