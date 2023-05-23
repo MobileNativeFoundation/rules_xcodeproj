@@ -285,10 +285,20 @@ def _process_swiftcopts(
     Returns:
         A `bool` indicting if the target has debug info enabled.
     """
+    is_bwx = build_mode == "xcode"
 
-    def _inner_process_swiftcopts(opt, previous_opt):
+    has_debug_info = False
+    next_previous_opt = None
+    for opt in opts:
+        previous_opt = next_previous_opt
+        next_previous_opt = opt
+
         if opt == "-Xcc" or previous_opt == "-Xcc":
-            return
+            continue
+
+        if opt == "-g":
+            has_debug_info = True
+            continue
 
         if previous_opt == "-emit-objc-header-path":
             if not opt.startswith(package_bin_dir):
@@ -297,29 +307,12 @@ def _process_swiftcopts(
 under {}""".format(opt, package_bin_dir))
             header_name = opt[len(package_bin_dir) + 1:]
             build_settings["SWIFT_OBJC_INTERFACE_HEADER_NAME"] = header_name
-            return
+            continue
 
-        if build_mode == "xcode" and opt.startswith("-vfsoverlay"):
+        if is_bwx and opt.startswith("-vfsoverlay"):
             fail("""\
 Using VFS overlays with `build_mode = "xcode"` is unsupported.
 """)
-        if opt == "-emit-objc-header-path":
-            # Handled in `previous_opt` check above
-            return
-
-    has_debug_info = False
-    outer_previous_opt = None
-    for outer_opt in opts:
-        if outer_opt == "-g":
-            has_debug_info = True
-            continue
-
-        _inner_process_swiftcopts(
-            outer_opt,
-            outer_previous_opt,
-        )
-
-        outer_previous_opt = outer_opt
 
     return has_debug_info
 
