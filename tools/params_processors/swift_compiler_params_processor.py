@@ -159,9 +159,6 @@ def _process_clang_opt(
             value = opt[12:]
             if not value.startswith("/"):
                 opt = "-ivfsoverlay$(CURRENT_EXECUTION_ROOT)/" + value
-
-        # We do this check here, to prevent the `-O` logic below
-        # from incorrectly detecting this situation
         return opt
 
     return None
@@ -183,9 +180,6 @@ def _inner_process_swiftcopts(
     if clang_opt:
         return clang_opt
 
-    if opt.startswith("-O"):
-        # Handled in `opts.bzl`
-        return None
     if opt[0] != "-" and opt.endswith(".swift"):
         # These are the files to compile, not options. They are seen here
         # because of the way we collect Swift compiler options. Ideally in

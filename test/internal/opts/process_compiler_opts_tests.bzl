@@ -626,42 +626,6 @@ def process_compiler_opts_test_suite(name):
         },
     )
 
-    ## SWIFT_OPTIMIZATION_LEVEL
-
-    _add_test(
-        name = "{}_multiple_swift_optimization_levels".format(name),
-        swiftcopts = [
-            "-Osize",
-            "-Onone",
-            "-O",
-        ],
-        expected_build_settings = {
-            "SWIFT_OPTIMIZATION_LEVEL": "-O",
-        },
-    )
-
-    _add_test(
-        name = "{}_swift_option-Onone".format(name),
-        swiftcopts = ["-Onone"],
-        expected_build_settings = {},
-    )
-
-    _add_test(
-        name = "{}_swift_option-O".format(name),
-        swiftcopts = ["-O"],
-        expected_build_settings = {
-            "SWIFT_OPTIMIZATION_LEVEL": "-O",
-        },
-    )
-
-    _add_test(
-        name = "{}_swift_option-Osize".format(name),
-        swiftcopts = ["-Osize"],
-        expected_build_settings = {
-            "SWIFT_OPTIMIZATION_LEVEL": "-Osize",
-        },
-    )
-
     # Search Paths
 
     _add_test(

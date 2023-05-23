@@ -12922,7 +12922,6 @@
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos appletvsimulator appletvos";
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/Lib/Lib.rules_xcodeproj.swift.compile.params";
 				"SWIFT_PARAMS_FILE[sdk=appletvos*]" = "$(CURRENT_EXECUTION_ROOT)/bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-opt-STABLE-12/bin/Lib/Lib.rules_xcodeproj.swift.compile.params";
 				"SWIFT_PARAMS_FILE[sdk=appletvsimulator*]" = "$(CURRENT_EXECUTION_ROOT)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9/bin/Lib/Lib.rules_xcodeproj.swift.compile.params";
@@ -12975,7 +12974,6 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_INCLUDE_PATHS = "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) $(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/Lib";
 				"SWIFT_INCLUDE_PATHS[sdk=iphoneos*]" = "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) $(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/Lib";
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/UI/UI.rules_xcodeproj.swift.compile.params";
 				"SWIFT_PARAMS_FILE[sdk=iphoneos*]" = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/UI/UI.rules_xcodeproj.swift.compile.params";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -13120,7 +13118,6 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_INCLUDE_PATHS = "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) $(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/Lib $(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/UI/UIFramework.iOS.framework/Modules $(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer";
 				"SWIFT_INCLUDE_PATHS[sdk=iphoneos*]" = "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) $(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/Lib $(BUILD_DIR)/bazel-out/applebin_ios-ios_arm64-opt-STABLE-16/bin/UI/UIFramework.iOS.framework/Modules $(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer";
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Source/iOSApp.library.rules_xcodeproj.swift.compile.params";
 				"SWIFT_PARAMS_FILE[sdk=iphoneos*]" = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/iOSApp/Source/iOSApp.library.rules_xcodeproj.swift.compile.params";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -13167,7 +13164,6 @@
 				PRODUCT_NAME = private_swift_lib;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineToolLib/private_swift_lib.rules_xcodeproj.swift.compile.params";
 				TARGET_NAME = private_swift_lib;
 			};
@@ -13292,7 +13288,6 @@
 				SUPPORTED_PLATFORMS = iphonesimulator;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_INCLUDE_PATHS = "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) $(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/Lib $(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/UI/UIFramework.iOS.framework/Modules $(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer $(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Source $(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Test/TestingUtils";
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTests.library.rules_xcodeproj.swift.compile.params";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TARGET_BUILD_DIR = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Source$(TARGET_BUILD_SUBPATH)";
@@ -13353,7 +13348,6 @@
 				SDKROOT = watchos;
 				SUPPORTED_PLATFORMS = watchsimulator;
 				SWIFT_INCLUDE_PATHS = "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) $(BUILD_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8/bin/Lib $(BUILD_DIR)/bazel-out/applebin_watchos-watchos_x86_64-opt-STABLE-19/bin/UI/UIFramework.watchOS.framework/Modules";
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8/bin/watchOSAppExtension/Test/UnitTests/watchOSAppExtensionUnitTests.library.rules_xcodeproj.swift.compile.params";
 				TARGET_NAME = watchOSAppExtensionUnitTests;
 				WATCHOS_DEPLOYMENT_TARGET = 7.0;
@@ -13504,7 +13498,6 @@
 				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
 				SWIFT_INCLUDE_PATHS = "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) $(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9/bin/Lib $(BUILD_DIR)/bazel-out/applebin_tvos-tvos_x86_64-opt-STABLE-27/bin/UI/UIFramework.tvOS.framework/Modules";
 				"SWIFT_INCLUDE_PATHS[sdk=appletvos*]" = "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) $(BUILD_DIR)/bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-opt-STABLE-12/bin/Lib $(BUILD_DIR)/bazel-out/applebin_tvos-tvos_arm64-opt-STABLE-28/bin/UI/UIFramework.tvOS.framework/Modules";
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9/bin/tvOSApp/Source/tvOSApp.library.rules_xcodeproj.swift.compile.params";
 				"SWIFT_PARAMS_FILE[sdk=appletvos*]" = "$(CURRENT_EXECUTION_ROOT)/bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-opt-STABLE-12/bin/tvOSApp/Source/tvOSApp.library.rules_xcodeproj.swift.compile.params";
 				TARGET_NAME = tvOSApp;
@@ -13537,7 +13530,6 @@
 				PRODUCT_NAME = watchOSAppUITests;
 				SDKROOT = watchos;
 				SUPPORTED_PLATFORMS = watchsimulator;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8/bin/watchOSApp/Test/UITests/watchOSAppUITests.library.rules_xcodeproj.swift.compile.params";
 				TARGET_NAME = watchOSAppUITests;
 				TEST_TARGET_NAME = watchOSApp;
@@ -13592,7 +13584,6 @@
 				PRODUCT_NAME = private_swift_lib;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37/bin/CommandLine/CommandLineToolLib/private_swift_lib.rules_xcodeproj.swift.compile.params";
 				TARGET_NAME = private_swift_lib;
 			};
@@ -13933,7 +13924,6 @@
 				SDKROOT = appletvos;
 				SUPPORTED_PLATFORMS = appletvsimulator;
 				SWIFT_INCLUDE_PATHS = "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) $(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9/bin/Lib $(BUILD_DIR)/bazel-out/applebin_tvos-tvos_x86_64-opt-STABLE-27/bin/UI/UIFramework.tvOS.framework/Modules $(BUILD_DIR)/bazel-out/applebin_tvos-tvos_x86_64-opt-STABLE-27/bin/tvOSApp/Source";
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9/bin/tvOSApp/Test/UnitTests/tvOSAppUnitTests.library.rules_xcodeproj.swift.compile.params";
 				TARGET_BUILD_DIR = "$(BUILD_DIR)/bazel-out/applebin_tvos-tvos_x86_64-opt-STABLE-27/bin/tvOSApp/Source$(TARGET_BUILD_SUBPATH)";
 				TARGET_NAME = tvOSAppUnitTests;
@@ -14107,7 +14097,6 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_INCLUDE_PATHS = "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) $(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/Lib";
 				"SWIFT_INCLUDE_PATHS[sdk=iphoneos*]" = "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) $(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/Lib";
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/AppClip/AppClip.library.rules_xcodeproj.swift.compile.params";
 				"SWIFT_PARAMS_FILE[sdk=iphoneos*]" = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/AppClip/AppClip.library.rules_xcodeproj.swift.compile.params";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -14256,7 +14245,6 @@
 				PRODUCT_NAME = Lib;
 				SDKROOT = watchos;
 				SUPPORTED_PLATFORMS = "watchsimulator watchos";
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8/bin/Lib/Lib.rules_xcodeproj.swift.compile.params";
 				"SWIFT_PARAMS_FILE[sdk=watchos*]" = "$(CURRENT_EXECUTION_ROOT)/bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-opt-STABLE-11/bin/Lib/Lib.rules_xcodeproj.swift.compile.params";
 				TARGET_NAME = Lib;
@@ -14312,7 +14300,6 @@
 				SUPPORTED_PLATFORMS = "watchsimulator watchos";
 				SWIFT_INCLUDE_PATHS = "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) $(BUILD_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8/bin/Lib $(BUILD_DIR)/bazel-out/applebin_watchos-watchos_x86_64-opt-STABLE-19/bin/UI/UIFramework.watchOS.framework/Modules";
 				"SWIFT_INCLUDE_PATHS[sdk=watchos*]" = "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) $(BUILD_DIR)/bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-opt-STABLE-11/bin/Lib $(BUILD_DIR)/bazel-out/applebin_watchos-watchos_arm64_32-opt-STABLE-20/bin/UI/UIFramework.watchOS.framework/Modules";
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8/bin/watchOSAppExtension/watchOSAppExtension.library.rules_xcodeproj.swift.compile.params";
 				"SWIFT_PARAMS_FILE[sdk=watchos*]" = "$(CURRENT_EXECUTION_ROOT)/bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-opt-STABLE-11/bin/watchOSAppExtension/watchOSAppExtension.library.rules_xcodeproj.swift.compile.params";
 				TARGET_NAME = watchOSAppExtension;
@@ -14348,7 +14335,6 @@
 				PRODUCT_NAME = macOSAppUITests;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-30/bin/macOSApp/Test/UITests/macOSAppUITests.library.rules_xcodeproj.swift.compile.params";
 				TARGET_NAME = macOSAppUITests;
 				TEST_TARGET_NAME = macOSApp;
@@ -14374,7 +14360,6 @@
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_INCLUDE_PATHS = "$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38/bin/CommandLine/CommandLineToolLib";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "private/LibSwift-Swift.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38/bin/CommandLine/CommandLineToolLib/lib_swift.rules_xcodeproj.swift.compile.params";
 				TARGET_NAME = lib_swift;
 			};
@@ -14844,7 +14829,6 @@
 				SUPPORTED_PLATFORMS = iphonesimulator;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_INCLUDE_PATHS = "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) $(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/Lib $(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/UI/UIFramework.iOS.framework/Modules $(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer $(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Source $(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Test/TestingUtils";
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTestSuite.library.rules_xcodeproj.swift.compile.params";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TARGET_BUILD_DIR = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Source$(TARGET_BUILD_SUBPATH)";
@@ -14886,7 +14870,6 @@
 				SUPPORTED_PLATFORMS = iphonesimulator;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_INCLUDE_PATHS = "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) $(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/Lib";
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iMessageApp/iMessageAppExtension.library.rules_xcodeproj.swift.compile.params";
 				TARGETED_DEVICE_FAMILY = 1;
 				TARGET_NAME = iMessageAppExtension;
@@ -14915,7 +14898,6 @@
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "MixedAnswer-Swift.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswerLib_Swift.rules_xcodeproj.swift.compile.params";
 				"SWIFT_PARAMS_FILE[sdk=iphoneos*]" = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswerLib_Swift.rules_xcodeproj.swift.compile.params";
 				TARGET_NAME = MixedAnswerLib_Swift;
@@ -14947,7 +14929,6 @@
 				PRODUCT_NAME = tvOSAppUITests;
 				SDKROOT = appletvos;
 				SUPPORTED_PLATFORMS = appletvsimulator;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9/bin/tvOSApp/Test/UITests/tvOSAppUITests.library.rules_xcodeproj.swift.compile.params";
 				TARGET_NAME = tvOSAppUITests;
 				TEST_TARGET_NAME = tvOSApp;
@@ -15272,7 +15253,6 @@
 				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
 				SWIFT_INCLUDE_PATHS = "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) $(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9/bin/Lib";
 				"SWIFT_INCLUDE_PATHS[sdk=appletvos*]" = "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) $(BUILD_DIR)/bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-opt-STABLE-12/bin/Lib";
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9/bin/UI/UI.rules_xcodeproj.swift.compile.params";
 				"SWIFT_PARAMS_FILE[sdk=appletvos*]" = "$(CURRENT_EXECUTION_ROOT)/bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-opt-STABLE-12/bin/UI/UI.rules_xcodeproj.swift.compile.params";
 				TARGET_NAME = UIFramework.tvOS;
@@ -15422,7 +15402,6 @@
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = iphonesimulator;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Test/UITests/iOSAppUITests.library.rules_xcodeproj.swift.compile.params";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TARGET_NAME = iOSAppUITests;
@@ -15555,7 +15534,6 @@
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_INCLUDE_PATHS = "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) $(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineToolLib";
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/Tests/CommandLineLibSwiftTestsLib.rules_xcodeproj.swift.compile.params";
 				TARGET_NAME = CommandLineToolTests;
 			};
@@ -15685,7 +15663,6 @@
 				SUPPORTED_PLATFORMS = "watchsimulator watchos";
 				SWIFT_INCLUDE_PATHS = "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) $(BUILD_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8/bin/Lib";
 				"SWIFT_INCLUDE_PATHS[sdk=watchos*]" = "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) $(BUILD_DIR)/bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-opt-STABLE-11/bin/Lib";
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8/bin/UI/UI.rules_xcodeproj.swift.compile.params";
 				"SWIFT_PARAMS_FILE[sdk=watchos*]" = "$(CURRENT_EXECUTION_ROOT)/bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-opt-STABLE-11/bin/UI/UI.rules_xcodeproj.swift.compile.params";
 				TARGET_NAME = UIFramework.watchOS;
@@ -15820,7 +15797,6 @@
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_INCLUDE_PATHS = "$(BUILD_DIR)/bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37/bin/CommandLine/CommandLineToolLib";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "private/LibSwift-Swift.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37/bin/CommandLine/CommandLineToolLib/lib_swift.rules_xcodeproj.swift.compile.params";
 				TARGET_NAME = lib_swift;
 			};
@@ -15916,7 +15892,6 @@
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_INCLUDE_PATHS = "$(BUILD_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineToolLib";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "private/LibSwift-Swift.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineToolLib/lib_swift.rules_xcodeproj.swift.compile.params";
 				TARGET_NAME = lib_swift;
 			};
@@ -16252,7 +16227,6 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_INCLUDE_PATHS = "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) $(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/Lib";
 				"SWIFT_INCLUDE_PATHS[sdk=iphoneos*]" = "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) $(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/Lib";
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/WidgetExtension/WidgetExtension.library.rules_xcodeproj.swift.compile.params";
 				"SWIFT_PARAMS_FILE[sdk=iphoneos*]" = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/WidgetExtension/WidgetExtension.library.rules_xcodeproj.swift.compile.params";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -16320,7 +16294,6 @@
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_INCLUDE_PATHS = "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS))";
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-30/bin/macOSApp/Source/macOSApp.library.rules_xcodeproj.swift.compile.params";
 				TARGET_NAME = macOSApp;
 			};
@@ -16377,7 +16350,6 @@
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = iphonesimulator;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Test/UITests/iOSAppUITestSuite.library.rules_xcodeproj.swift.compile.params";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TARGET_NAME = iOSAppUITestSuite;
@@ -16707,7 +16679,6 @@
 				SUPPORTED_PLATFORMS = "macosx iphonesimulator";
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "SwiftAPI/TestingUtils-Swift.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-30/bin/iOSApp/Test/TestingUtils/TestingUtils.rules_xcodeproj.swift.compile.params";
 				"SWIFT_PARAMS_FILE[sdk=iphonesimulator*]" = "$(CURRENT_EXECUTION_ROOT)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Test/TestingUtils/TestingUtils.rules_xcodeproj.swift.compile.params";
 				TARGET_NAME = TestingUtils;
@@ -16837,7 +16808,6 @@
 				PRODUCT_NAME = private_swift_lib;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_PARAMS_FILE = "$(CURRENT_EXECUTION_ROOT)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38/bin/CommandLine/CommandLineToolLib/private_swift_lib.rules_xcodeproj.swift.compile.params";
 				TARGET_NAME = private_swift_lib;
 			};

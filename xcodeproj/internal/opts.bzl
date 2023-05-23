@@ -338,10 +338,6 @@ under {}""".format(opt, package_bin_dir))
             build_settings["SWIFT_OBJC_INTERFACE_HEADER_NAME"] = header_name
             return
 
-        if opt.startswith("-O"):
-            if opt != "-Onone":
-                build_settings["SWIFT_OPTIMIZATION_LEVEL"] = opt
-            return
         if build_mode == "xcode" and opt.startswith("-vfsoverlay"):
             fail("""\
 Using VFS overlays with `build_mode = "xcode"` is unsupported.
