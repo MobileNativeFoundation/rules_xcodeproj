@@ -41,7 +41,7 @@ struct Project: Equatable {
     let indexImport: String
     let preBuildScript: String?
     let postBuildScript: String?
-    let aliasLabels: [BazelLabel: [TargetID]]
+    let aliasLabels: [BazelLabel: [BazelLabel]]
 }
 
 extension Project: Decodable {
@@ -109,7 +109,7 @@ extension Project: Decodable {
         postBuildScript = try container
             .decodeIfPresent(String.self, forKey: .postBuildScript)
         aliasLabels = try container.decodeIfPresent(
-            [BazelLabel: [TargetID]].self,
+            [BazelLabel: [BazelLabel]].self,
             forKey: .aliasLabels
         ) ?? [:]
     }

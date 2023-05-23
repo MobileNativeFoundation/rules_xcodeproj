@@ -126,15 +126,17 @@ extension XCSchemeInfo {
         defaultBuildConfigurationName: String,
         targetResolver: TargetResolver,
         runnerLabel: BazelLabel,
+        aliasLabels: [BazelLabel: [BazelLabel]],
         args: [TargetID: [String]],
         envs: [TargetID: [String: String]]
     ) throws {
         let targetIDsByLabelAndConfiguration = try scheme.resolveTargetIDs(
             targetResolver: targetResolver,
             xcodeConfigurations: xcodeConfigurations,
-            runnerLabel: runnerLabel
+            runnerLabel: runnerLabel,
+            aliasLabels: aliasLabels
         )
-        let schemeWithDefaults = try scheme.withDefaults
+        let schemeWithDefaults = try scheme.withDefaults(aliasLabels: aliasLabels)
         try self.init(
             name: schemeWithDefaults.name,
             defaultBuildConfigurationName: defaultBuildConfigurationName,

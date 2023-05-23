@@ -301,14 +301,20 @@ def _skip_target(
             "{}:{}".format(package_label_str, ctx.rule.attr.generator_name),
         )
 
-    if ctx.rule.kind == "test_suite":
+    # Set `alias_labels` only for raw `test_suite` rules by checking for the
+    # existence of the `generator_name` attribute. This attribute will be set
+    # in `ios_*_test_suite` rules.
+    if ctx.rule.kind == "test_suite" and not getattr(ctx.rule.attr, "generator_name"):
         alias_labels = [
             struct(
-                alias = target.label,
-                labels = [
-                    info.xcode_target.label
-                    for info in deps_transitive_infos
-                ],
+                alias = "%s" % target.label,
+                labels = depset(
+                    [
+                        "%s" % info.label
+                        for attr, info in transitive_infos
+                        if attr == "tests"
+                    ]
+                ),
             )
         ]
     else:

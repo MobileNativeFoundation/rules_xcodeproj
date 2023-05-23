@@ -11,6 +11,7 @@ extension Generator {
         defaultBuildConfigurationName: String,
         targetResolver: TargetResolver,
         runnerLabel: BazelLabel,
+        aliasLabels: [BazelLabel: [BazelLabel]],
         args: [TargetID: [String]],
         envs: [TargetID: [String: String]]
     ) throws -> [XCScheme] {
@@ -21,6 +22,7 @@ extension Generator {
                 defaultBuildConfigurationName: defaultBuildConfigurationName,
                 targetResolver: targetResolver,
                 runnerLabel: runnerLabel,
+                aliasLabels: aliasLabels,
                 args: args,
                 envs: envs
             )

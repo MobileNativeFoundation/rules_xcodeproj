@@ -180,6 +180,7 @@ class Generator {
             project.defaultXcodeConfiguration,
             targetResolver,
             project.runnerLabel,
+            project.aliasLabels,
             project.args,
             project.envs
         )

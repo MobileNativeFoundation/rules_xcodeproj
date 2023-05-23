@@ -114,6 +114,7 @@ struct Environment {
         _ defaultBuildConfigurationName: String,
         _ targetResolver: TargetResolver,
         _ xcodeprojLabel: BazelLabel,
+        _ aliasLabels: [BazelLabel: [BazelLabel]],
         _ args: [TargetID: [String]],
         _ envs: [TargetID: [String: String]]
     ) throws -> [XCScheme]

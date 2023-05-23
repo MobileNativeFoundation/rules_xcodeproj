@@ -38,7 +38,8 @@ add it or a target that depends on it to \(runnerLabel)'s `top_level_targets` at
     func resolveTargetIDs(
         targetResolver: TargetResolver,
         xcodeConfigurations: Set<String>,
-        runnerLabel: BazelLabel
+        runnerLabel: BazelLabel,
+        aliasLabels: [BazelLabel: [BazelLabel]]
     ) throws -> [String: [BazelLabel: TargetID]] {
         let targets = targetResolver.targets
         let labelTargetInfos = targetResolver.labelTargetInfos
@@ -51,7 +52,8 @@ add it or a target that depends on it to \(runnerLabel)'s `top_level_targets` at
                 targets: targets,
                 labelTargetInfos: labelTargetInfos,
                 allBazelLabels: allBazelLabels,
-                runnerLabel: runnerLabel
+                runnerLabel: runnerLabel,
+                aliasLabels: aliasLabels
             )
         }
 
@@ -63,7 +65,8 @@ add it or a target that depends on it to \(runnerLabel)'s `top_level_targets` at
         targets: [TargetID: Target],
         labelTargetInfos: [BazelLabel: XcodeScheme.LabelTargetInfo],
         allBazelLabels: Set<BazelLabel>,
-        runnerLabel: BazelLabel
+        runnerLabel: BazelLabel,
+        aliasLabels: [BazelLabel: [BazelLabel]]
     ) throws -> [BazelLabel: TargetID] {
         var resolvedTargetIDs: [BazelLabel: TargetID] = [:]
 
@@ -71,31 +74,39 @@ add it or a target that depends on it to \(runnerLabel)'s `top_level_targets` at
         var topLevelLabels: Set<BazelLabel> = []
         var topLevelTargetIDs: Set<TargetID> = []
         var topLevelPlatforms: Set<Platform> = []
-        for label in allBazelLabels {
-            let labelTargetInfo = try labelTargetInfos.value(
-                for: label,
-                message: aliasErrorMessage(
-                    runnerLabel: runnerLabel,
-                    missingLabel: label
-                )
-            )
-            guard labelTargetInfo.isTopLevel else {
-                continue
+
+        for targetLabel in allBazelLabels {
+            var labelsToProcess: [BazelLabel] = [targetLabel]
+            if let actualLabels = aliasLabels[targetLabel], actualLabels.count > 0 {
+                labelsToProcess = actualLabels
             }
 
-            if let best = try labelTargetInfo
-                .bestPerConfiguration[configuration]
-            {
-                topLevelLabels.insert(label)
-                topLevelPlatforms.formUnion(best.platforms)
+            for label in labelsToProcess {
+                let labelTargetInfo = try labelTargetInfos.value(
+                    for: label,
+                    message: aliasErrorMessage(
+                        runnerLabel: runnerLabel,
+                        missingLabel: label
+                    )
+                )
+                guard labelTargetInfo.isTopLevel else {
+                    continue
+                }
 
-                let targetID = best.id
-                topLevelTargetIDs.insert(targetID)
-                resolvedTargetIDs[label] = targetID
+                if let best = try labelTargetInfo
+                    .bestPerConfiguration[configuration]
+                {
+                    topLevelLabels.insert(label)
+                    topLevelPlatforms.formUnion(best.platforms)
+
+                    let targetID = best.id
+                    topLevelTargetIDs.insert(targetID)
+                    resolvedTargetIDs[label] = targetID
+                }
             }
         }
 
-        let otherLabels = allBazelLabels.subtracting(topLevelLabels)
+        let otherLabels = allBazelLabels.subtracting(topLevelLabels).subtracting(aliasLabels.keys)
         for label in otherLabels {
             let labelTargetInfo = try labelTargetInfos.value(
                 for: label,

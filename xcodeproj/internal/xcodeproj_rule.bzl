@@ -1167,7 +1167,7 @@ def _write_spec(
         target_hosts.setdefault(s.hosted, []).append(s.host)
 
     alias_labels = {
-        s.alias: s.labels
+        s.alias: s.labels.to_list()
         for s in depset(transitive = [i.alias_labels for i in infos]).to_list()
     }
 

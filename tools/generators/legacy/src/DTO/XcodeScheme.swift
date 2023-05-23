@@ -36,15 +36,22 @@ extension XcodeScheme {
     }
 
     /// Create a new scheme applying any default actions based upon the current scheme.
-    var withDefaults: XcodeScheme {
-        get throws {
-            var buildTargets = [BazelLabel: XcodeScheme.BuildTarget]()
+    func withDefaults(
+        aliasLabels: [BazelLabel: [BazelLabel]] = [:]
+    ) throws -> XcodeScheme {
+        var buildTargets = [BazelLabel: XcodeScheme.BuildTarget]()
 
-            func enableBuildForValue(
-                _ label: BazelLabel,
-                _ keyPath: WritableKeyPath<XcodeScheme.BuildFor, XcodeScheme.BuildFor.Value>,
-                _ mode: EnableBuildForValueMode = .merge
-            ) throws {
+        func enableBuildForValue(
+            _ targetLabel: BazelLabel,
+            _ keyPath: WritableKeyPath<XcodeScheme.BuildFor, XcodeScheme.BuildFor.Value>,
+            _ mode: EnableBuildForValueMode = .merge
+        ) throws {
+            var labelsToProcess: [BazelLabel] = [targetLabel]
+            if let actualLabels = aliasLabels[targetLabel], actualLabels.count > 0 {
+                labelsToProcess = actualLabels
+            }
+
+            for label in labelsToProcess {
                 var buildTarget = buildTargets[label, default: .init(label: label, buildFor: .init())]
                 switch mode {
                 case .merge:
@@ -61,62 +68,79 @@ disabled, but the target is referenced in the scheme's \(keyPath.actionType) act
                 }
                 buildTargets[label] = buildTarget
             }
-
-            // Populate the dictionary with any build targets that were
-            // explicitly specified. We are guaranteed not to have build targets
-            // with duplicate labels. So, we can just add these.
-            buildAction?.targets.forEach { buildTargets[$0.label] = $0 }
-
-            // Default ProfileAction
-            let newProfileAction: XcodeScheme.ProfileAction?
-            if let profileAction = profileAction {
-                newProfileAction = profileAction
-            } else if let launchAction = launchAction,
-                buildTargets[launchAction.target]?.buildFor.profiling != .disabled
-            {
-                newProfileAction = .init(
-                    target: launchAction.target,
-                    buildConfigurationName: launchAction.buildConfigurationName,
-                    workingDirectory: launchAction.workingDirectory
-                )
-            } else {
-                newProfileAction = nil
-            }
-
-            // Update the buildFor for the build targets
-            try testAction?.targets.forEach { try enableBuildForValue($0, \.testing) }
-            try launchAction.map { try enableBuildForValue($0.target, \.running) }
-            try newProfileAction.map { try enableBuildForValue($0.target, \.profiling) }
-
-            // If no build targets have running enabled, then enable it for all targets
-            if !buildTargets.values.contains(where: \.buildFor.running.isEnabled) {
-                try buildTargets.keys.forEach { try enableBuildForValue($0, \.running) }
-            }
-
-            // Enable archiving for any targets that have running enabled
-            try buildTargets.values.filter(\.buildFor.running.isEnabled).map(\.label).forEach {
-                try enableBuildForValue($0, \.archiving, .setIfAble)
-            }
-
-            // Enable analyze for all targets
-            try buildTargets.keys.forEach { try enableBuildForValue($0, \.analyzing, .setIfAble) }
-
-            // Create a new build action which includes all of the referenced labels as build targets
-            // We must do this after processing all of the other actions.
-            let newBuildAction = try XcodeScheme.BuildAction(
-                targets: buildTargets.values,
-                preActions: buildAction?.preActions ?? [],
-                postActions: buildAction?.postActions ?? []
-            )
-
-            return try .init(
-                name: name,
-                buildAction: newBuildAction,
-                testAction: testAction,
-                launchAction: launchAction,
-                profileAction: newProfileAction
-            )
         }
+
+        // Populate the dictionary with any build targets that were
+        // explicitly specified. We are guaranteed not to have build targets
+        // with duplicate labels. So, we can just add these.
+        buildAction?.targets.forEach { buildTargets[$0.label] = $0 }
+
+        // Default ProfileAction
+        let newProfileAction: XcodeScheme.ProfileAction?
+        if let profileAction = profileAction {
+            newProfileAction = profileAction
+        } else if let launchAction = launchAction,
+            buildTargets[launchAction.target]?.buildFor.profiling != .disabled
+        {
+            newProfileAction = .init(
+                target: launchAction.target,
+                buildConfigurationName: launchAction.buildConfigurationName,
+                workingDirectory: launchAction.workingDirectory
+            )
+        } else {
+            newProfileAction = nil
+        }
+
+        // Update the buildFor for the build targets
+        try testAction?.targets.forEach { try enableBuildForValue($0, \.testing) }
+        try launchAction.map { try enableBuildForValue($0.target, \.running) }
+        try newProfileAction.map { try enableBuildForValue($0.target, \.profiling) }
+
+        // If no build targets have running enabled, then enable it for all targets
+        if !buildTargets.values.contains(where: \.buildFor.running.isEnabled) {
+            try buildTargets.keys.forEach { try enableBuildForValue($0, \.running) }
+        }
+
+        // Enable archiving for any targets that have running enabled
+        try buildTargets.values.filter(\.buildFor.running.isEnabled).map(\.label).forEach {
+            try enableBuildForValue($0, \.archiving, .setIfAble)
+        }
+
+        // Enable analyze for all targets
+        try buildTargets.keys.forEach { try enableBuildForValue($0, \.analyzing, .setIfAble) }
+
+        // Create a new build action which includes all of the referenced labels as build targets
+        // We must do this after processing all of the other actions.
+        let newBuildAction = try XcodeScheme.BuildAction(
+            targets: buildTargets.values,
+            preActions: buildAction?.preActions ?? [],
+            postActions: buildAction?.postActions ?? []
+        )
+
+        // Default TestAction
+        let newTestAction: XcodeScheme.TestAction?
+        if aliasLabels.keys.count > 0 {
+            newTestAction = try XcodeScheme.TestAction(
+                targets: buildTargets.values.map { $0.label },
+                buildConfigurationName: testAction?.buildConfigurationName,
+                args: testAction?.args,
+                diagnostics: testAction?.diagnostics ?? .init(),
+                env: testAction?.env,
+                expandVariablesBasedOn: testAction?.expandVariablesBasedOn,
+                preActions: testAction?.preActions ?? [],
+                postActions: testAction?.preActions ?? []
+            )
+        } else {
+            newTestAction = testAction
+        }
+
+        return try .init(
+            name: name,
+            buildAction: newBuildAction,
+            testAction: newTestAction,
+            launchAction: launchAction,
+            profileAction: newProfileAction
+        )
     }
 }
 
