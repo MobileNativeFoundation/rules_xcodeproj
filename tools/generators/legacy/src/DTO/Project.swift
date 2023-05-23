@@ -41,6 +41,7 @@ struct Project: Equatable {
     let indexImport: String
     let preBuildScript: String?
     let postBuildScript: String?
+    let aliasLabels: [BazelLabel: [TargetID]]
 }
 
 extension Project: Decodable {
@@ -62,6 +63,7 @@ extension Project: Decodable {
         case indexImport = "i"
         case preBuildScript = "p"
         case postBuildScript = "P"
+        case aliasLabels = "A"
     }
 
     init(from decoder: Decoder) throws {
@@ -106,6 +108,10 @@ extension Project: Decodable {
             .decodeIfPresent(String.self, forKey: .preBuildScript)
         postBuildScript = try container
             .decodeIfPresent(String.self, forKey: .postBuildScript)
+        aliasLabels = try container.decodeIfPresent(
+            [BazelLabel: [TargetID]].self,
+            forKey: .aliasLabels
+        ) ?? [:]
     }
 }
 

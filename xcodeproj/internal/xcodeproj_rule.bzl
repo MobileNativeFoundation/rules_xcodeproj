@@ -1166,6 +1166,11 @@ def _write_spec(
             continue
         target_hosts.setdefault(s.hosted, []).append(s.host)
 
+    alias_labels = {
+        s.alias: s.labels
+        for s in depset(transitive = [i.alias_labels for i in infos]).to_list()
+    }
+
     # TODO: Strip fat frameworks instead of setting `VALIDATE_WORKSPACE`
 
     spec_dto = {
@@ -1179,6 +1184,7 @@ def _write_spec(
         "m": minimum_xcode_version,
         "n": project_name,
         "R": runner_label,
+        "A": flattened_key_values.to_list(alias_labels, sort = is_fixture),
     }
 
     if xcode_configurations != ["Debug"]:

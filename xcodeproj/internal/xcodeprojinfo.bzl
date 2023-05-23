@@ -116,6 +116,7 @@ def _get_skip_type(*, ctx, target):
 
 def _target_info_fields(
         *,
+        alias_labels,
         args,
         compilation_providers,
         dependencies,
@@ -140,6 +141,7 @@ def _target_info_fields(
     This should be merged with other fields to fully create an `XcodeProjInfo`.
 
     Args:
+        alias_labels: Maps to the `XcodeProjInfo.alias_labels` field.
         args: Maps to the `XcodeProjInfo.args` field.
         compilation_providers: Maps to the `XcodeProjInfo.compilation_providers`
             field.
@@ -172,6 +174,7 @@ def _target_info_fields(
     Returns:
         A `dict` containing the following fields:
 
+        *   `alias_labels`
         *   `args`
         *   `compilation_providers`
         *   `dependencies`
@@ -193,6 +196,7 @@ def _target_info_fields(
         *   `xcode_required_targets`
     """
     return {
+        "alias_labels": alias_labels,
         "args": args,
         "compilation_providers": compilation_providers,
         "dependencies": dependencies,
@@ -297,7 +301,27 @@ def _skip_target(
             "{}:{}".format(package_label_str, ctx.rule.attr.generator_name),
         )
 
+    if ctx.rule.kind == "test_suite":
+        alias_labels = [
+            struct(
+                alias = target.label,
+                labels = [
+                    info.xcode_target.label
+                    for info in deps_transitive_infos
+                ],
+            )
+        ]
+    else:
+        alias_labels = None
+
     return _target_info_fields(
+        alias_labels = memory_efficient_depset(
+            alias_labels,
+            transitive = [
+                info.alias_labels
+                for info in valid_transitive_infos
+            ],
+        ),
         args = memory_efficient_depset(
             [
                 _create_args_depset(
@@ -489,6 +513,12 @@ def _create_xcodeprojinfo(
         )
 
     return _target_info_fields(
+        alias_labels = memory_efficient_depset(
+            transitive = [
+                info.alias_labels
+                for _, info in transitive_infos
+            ],
+        ),
         args = memory_efficient_depset(
             transitive = [
                 info.args

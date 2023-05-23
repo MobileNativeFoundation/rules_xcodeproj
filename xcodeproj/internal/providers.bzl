@@ -111,6 +111,11 @@ future. If you are using this provider, please let us know so we can prioritize
 stabilizing it.
 """,
     fields = {
+        "alias_labels": """\
+A `depset` of `struct`s with `alias` and `labels` fields. The `alias` field is
+the `Label` of the target that is expanding to one or more other targets. The
+`labels` field is a `list` of `Label`s that the alias expands to.
+""",
         "args": """\
 A `depset` of `struct`s with `id` and `arg` fields. The `id` field is the
 target id of the target and `arg` values
