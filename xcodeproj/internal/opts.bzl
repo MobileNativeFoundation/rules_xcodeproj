@@ -237,54 +237,23 @@ Using VFS overlays with `build_mode = "xcode"` is unsupported.
         swift_args,
     )
 
-def _process_cc_opts(opts, *, build_settings):
+def _process_cc_opts(opts):
     """Processes C/C++ compiler options.
 
     Args:
         opts: A `list` of C/C++ compiler options.
-        build_settings: A mutable `dict` that will be updated with build
-            settings that are parsed from `opts`.
 
     Returns:
         A `bool` indicting if the target has debug info enabled.
     """
-    has_debug_info = False
-    for opt in opts:
-        # Short-circuit opts that are too short for our checks
-        if len(opt) < 2:
-            continue
+    return "-g" in opts
 
-        if opt == "-g":
-            has_debug_info = True
-            continue
-
-        if opt[0] != "-":
-            continue
-
-        if opt[1] == "D":
-            value = opt[2:]
-            if value.startswith("OBJC_OLD_DISPATCH_PROTOTYPES"):
-                suffix = value[-2:]
-                if suffix == "=1":
-                    build_settings["ENABLE_STRICT_OBJC_MSGSEND"] = False
-                elif suffix == "=0":
-                    build_settings["ENABLE_STRICT_OBJC_MSGSEND"] = True
-            continue
-
-    return has_debug_info
-
-def _process_copts(
-        *,
-        conlyopts,
-        cxxopts,
-        build_settings):
+def _process_copts(*, conlyopts, cxxopts):
     """Processes C and C++ compiler options.
 
     Args:
         conlyopts: A `list` of C compiler options.
         cxxopts: A `list` of C++ compiler options.
-        build_settings: A mutable `dict` that will be updated with build
-            settings that are parsed from `conlyopts` and `cxxopts`.
 
     Returns:
         A `tuple` containing two elements:
@@ -292,17 +261,9 @@ def _process_copts(
         *   A `bool` indicting if the target has debug info enabled for C.
         *   A `bool` indicting if the target has debug info enabled for C++.
     """
-    c_has_debug_info = _process_cc_opts(
-        conlyopts,
-        build_settings = build_settings,
-    )
-    cxx_has_debug_info = _process_cc_opts(
-        cxxopts,
-        build_settings = build_settings,
-    )
     return (
-        c_has_debug_info,
-        cxx_has_debug_info,
+        _process_cc_opts(conlyopts),
+        _process_cc_opts(cxxopts),
     )
 
 def _process_swiftcopts(
@@ -466,11 +427,7 @@ def _process_compiler_opts(
     (
         c_has_debug_info,
         cxx_has_debug_info,
-    ) = _process_copts(
-        conlyopts = conlyopts,
-        cxxopts = cxxopts,
-        build_settings = build_settings,
-    )
+    ) = _process_copts(conlyopts = conlyopts, cxxopts = cxxopts)
     swift_has_debug_info = _process_swiftcopts(
         opts = swiftcopts,
         build_mode = build_mode,

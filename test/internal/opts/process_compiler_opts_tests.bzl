@@ -601,17 +601,6 @@ def process_compiler_opts_test_suite(name):
         },
     )
 
-    ## ENABLE_STRICT_OBJC_MSGSEND
-
-    _add_test(
-        name = "{}_enable_strict_objc_msgsend".format(name),
-        conlyopts = ["-DOBJC_OLD_DISPATCH_PROTOTYPES=1"],
-        expected_build_settings = {
-            "DEBUG_INFORMATION_FORMAT": "",
-            "ENABLE_STRICT_OBJC_MSGSEND": "False",
-        },
-    )
-
     ## SWIFT_OBJC_INTERFACE_HEADER_NAME
 
     _add_test(

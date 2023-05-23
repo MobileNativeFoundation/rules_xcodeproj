@@ -56,17 +56,6 @@ def _inner_process_cc_opts(opt, previous_opt):
             return "$(CURRENT_EXECUTION_ROOT)/" + opt
         return opt
 
-    if opt[0] != "-":
-        return opt
-    opt_character = opt[1]
-
-    if opt_character == "D":
-        value = opt[2:]
-        if value.startswith("OBJC_OLD_DISPATCH_PROTOTYPES"):
-            # `ENABLE_STRICT_OBJC_MSGSEND` is set in `opts.bzl``
-            return None
-        return opt
-
     # -ivfsoverlay and --config doesn't apply `-working_directory=`, so we
     # need to prefix it ourselves
     if opt.startswith("-ivfsoverlay"):
