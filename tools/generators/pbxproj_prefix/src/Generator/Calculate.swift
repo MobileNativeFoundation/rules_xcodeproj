@@ -52,7 +52,7 @@ extension Generator {
         // This is a `PBXProj` partial for the start of the `PBXProj` element,
         // `PBXProject` related elements, and _part of_ the start of the
         // `PBXProject` element. Different generators will generate the
-        // remaining ports of the `PBXProject` element. Because of this, it's
+        // remaining parts of the `PBXProject` element. Because of this, it's
         // intentional that the element isn't terminated, and `attributes` is
         // left open.
         //
