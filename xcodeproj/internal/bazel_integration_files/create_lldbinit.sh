@@ -57,7 +57,7 @@ if [[ -n "${RESOLVED_REPOSITORIES:-}" ]]; then
   for (( i=0; i<${#repos[@]}; i+=2 )); do
     prefix="${repos[$i]}"
     path="${repos[$i+1]}"
-    echo "settings append target.source-map \".$prefix/\" \"$path\""
+    echo "settings append target.source-map \"$prefix/\" \"$path\""
   done
 fi
 
