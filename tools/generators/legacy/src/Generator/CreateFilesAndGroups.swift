@@ -454,11 +454,8 @@ extension Generator {
         /// "external/" and "bazel-out/" subtrees.
         func handleNode(
             _ node: FileTreeNode,
-            filePathPrefix: String
+            filePathStr: String
         ) -> HandledNode {
-            let filePathStr = "\(filePathPrefix)\(node.name)"
-            let childFilePathPrefix = "\(filePathStr)/"
-
             if node.children.isEmpty {
                 let (_, element, isFileLike) = createFile(
                     node: node,
@@ -490,7 +487,7 @@ extension Generator {
                     let children = node.children.map { node in
                         return handleNode(
                             node,
-                            filePathPrefix: childFilePathPrefix
+                            filePathStr: "\(filePathStr)/\(node.name)"
                         )
                     }
                     return .groupLikeElement(createGroup(
@@ -509,14 +506,10 @@ extension Generator {
         /// `handleBazelGroupNode()`.
         func handleFileListPathNode(
             _ node: FileTreeNode,
-            filePathPrefix: String,
-            fileListPathPrefix: String,
+            filePathStr: String,
+            fileListPathStr: String,
             bazelNodeType: BazelNodeType
         ) -> (handledNode: HandledNode, fileListPaths: [String]) {
-            let filePathStr = "\(filePathPrefix)\(node.name)"
-            let childFilePathPrefix = "\(filePathStr)/"
-            let childFileListPathPrefix = "\(fileListPathPrefix)/\(node.name)"
-
             if node.children.isEmpty {
                 let (_, element, isFileLike) = createFile(
                     node: node,
@@ -527,14 +520,14 @@ extension Generator {
                     isFileLike ?
                         .fileLikeElement(element) : .groupLikeElement(element),
                     bazelNodeType == .external || !node.isFolder ?
-                        [childFileListPathPrefix]: []
+                        [fileListPathStr]: []
                 )
             } else {
                 let (basenameWithoutExt, ext) = node.splitExtension()
                 switch ext {
                 case "lproj":
                     let fileListPaths = node.children.map { node in
-                        return "\(childFilePathPrefix)\(node.name)"
+                        return "\(fileListPathStr)/\(node.name)"
                     }
                     let variantGroupLanguage = handleVariantGroupLanguage(
                         node: node,
@@ -548,7 +541,7 @@ extension Generator {
                     )
                 case "xcdatamodeld":
                     let fileListPaths = node.children.map { node in
-                        return "\(childFilePathPrefix)\(node.name)"
+                        return "\(fileListPathStr)/\(node.name)"
                     }
                     let group = createVersionGroup(
                         node: node,
@@ -560,8 +553,8 @@ extension Generator {
                     let childrenAndFileListPaths = node.children.map { node in
                         return handleFileListPathNode(
                             node,
-                            filePathPrefix: childFilePathPrefix,
-                            fileListPathPrefix: childFileListPathPrefix,
+                            filePathStr: "\(filePathStr)/\(node.name)",
+                            fileListPathStr: "\(fileListPathStr)/\(node.name)",
                             bazelNodeType: bazelNodeType
                         )
                     }
@@ -591,19 +584,19 @@ extension Generator {
             _ node: FileTreeNode,
             _ bazelNodeType: BazelNodeType
         ) -> (group: PBXGroup, fileListPaths: [String]) {
-            let filePathPrefix: String
-            let fileListPathPrefix: String
+            let filePathStr: String
+            let fileListPathStr: String
             let groupName: String
             let groupPath: String
             switch bazelNodeType {
             case .external:
-                filePathPrefix = "external/"
-                fileListPathPrefix = "$(BAZEL_EXTERNAL)"
+                filePathStr = "external"
+                fileListPathStr = "$(BAZEL_EXTERNAL)"
                 groupName = "Bazel External Repositories"
                 groupPath = "../../external"
             case .bazelOut:
-                filePathPrefix = "bazel-out/"
-                fileListPathPrefix = "$(BAZEL_OUT)"
+                filePathStr = "bazel-out"
+                fileListPathStr = "$(BAZEL_OUT)"
                 groupName = "Bazel Generated Files"
                 groupPath = "bazel-out"
             }
@@ -611,8 +604,8 @@ extension Generator {
             let childrenAndFileListPaths = node.children.map { node in
                 return handleFileListPathNode(
                     node,
-                    filePathPrefix: filePathPrefix,
-                    fileListPathPrefix: fileListPathPrefix,
+                    filePathStr: "\(filePathStr)/\(node.name)",
+                    fileListPathStr: "\(fileListPathStr)/\(node.name)",
                     bazelNodeType: bazelNodeType
                 )
             }
@@ -681,7 +674,7 @@ extension Generator {
                 ) = handleBazelGroupNode(node, .bazelOut)
             default:
                 handledNodes.append(
-                    handleNode(node, filePathPrefix: "")
+                    handleNode(node, filePathStr: node.name)
                 )
             }
         }
