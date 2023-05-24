@@ -2,7 +2,7 @@ import PBXProj
 
 extension Generator {
     /// Calculates the BazelDependencies `PBXProj` partial.
-    static func calculate(
+    static func bazelDependenciesPartial(
         buildSettings: String,
         defaultXcodeConfiguration: String?,
         postBuildRunScript: String?,

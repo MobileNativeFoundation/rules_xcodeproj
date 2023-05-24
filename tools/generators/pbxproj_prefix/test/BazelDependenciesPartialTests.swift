@@ -3,9 +3,9 @@ import Foundation
 import PBXProj
 import XCTest
 
-@testable import bazel_dependencies
+@testable import pbxproj_prefix
 
-class CalculateTests: XCTestCase {
+class BazelDependenciesPartialTests: XCTestCase {
     func test_noOptionalValues() {
         // Arrange
 
@@ -101,7 +101,7 @@ class CalculateTests: XCTestCase {
 
         // Act
 
-        let bazelDependencies = Generator.calculate(
+        let bazelDependencies = Generator.bazelDependenciesPartial(
             buildSettings: buildSettings,
             defaultXcodeConfiguration: defaultXcodeConfiguration,
             postBuildRunScript: postBuildRunScript,
@@ -209,7 +209,7 @@ class CalculateTests: XCTestCase {
 
         // Act
 
-        let bazelDependencies = Generator.calculate(
+        let bazelDependencies = Generator.bazelDependenciesPartial(
             buildSettings: buildSettings,
             defaultXcodeConfiguration: defaultXcodeConfiguration,
             postBuildRunScript: postBuildRunScript,
@@ -319,7 +319,7 @@ class CalculateTests: XCTestCase {
 
         // Act
 
-        let bazelDependencies = Generator.calculate(
+        let bazelDependencies = Generator.bazelDependenciesPartial(
             buildSettings: buildSettings,
             defaultXcodeConfiguration: defaultXcodeConfiguration,
             postBuildRunScript: postBuildRunScript,
@@ -429,7 +429,7 @@ class CalculateTests: XCTestCase {
 
         // Act
 
-        let bazelDependencies = Generator.calculate(
+        let bazelDependencies = Generator.bazelDependenciesPartial(
             buildSettings: buildSettings,
             defaultXcodeConfiguration: defaultXcodeConfiguration,
             postBuildRunScript: postBuildRunScript,

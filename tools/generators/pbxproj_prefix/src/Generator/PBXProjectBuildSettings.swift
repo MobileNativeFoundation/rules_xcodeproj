@@ -10,7 +10,7 @@ extension Generator {
     ///   - indexingProjectDir: The value returned from
     ///     `Generator.indexingProjectDir()`.
     ///   - workspace: The absolute path to the Bazel workspace.
-    static func buildSettings(
+    static func pbxProjectBuildSettings(
         buildMode: BuildMode,
         indexingProjectDir: String,
         workspace: String

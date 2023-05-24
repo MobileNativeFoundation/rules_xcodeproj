@@ -10,7 +10,7 @@ extension Generator {
     ///   - platforms: The platforms that the project builds for.
     ///   - targetIdsFile: The Bazel execution root relative path to the
     ///     target IDs list file.
-    static func buildSettings(
+    static func bazelDependenciesBuildSettings(
         indexImport: String,
         platforms: [Platform],
         targetIdsFile: String

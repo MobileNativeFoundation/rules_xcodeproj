@@ -1,8 +1,8 @@
 import PBXProj
 
 extension Generator {
-    /// Calculates the `PBXProj` prefix partial.
-    static func calculate(
+    /// Calculates the `PBXProject` prefix `PBXProj` partial.
+    static func pbxProjectPrefixPartial(
         buildSettings: String,
         compatibilityVersion: String,
         defaultXcodeConfiguration: String?,
@@ -49,24 +49,16 @@ extension Generator {
 
         // Final form
 
-        // This is a `PBXProj` partial for the start of the `PBXProj` element,
-        // `PBXProject` related elements, and _part of_ the start of the
-        // `PBXProject` element. Different generators will generate the
-        // remaining parts of the `PBXProject` element. Because of this, it's
-        // intentional that the element isn't terminated, and `attributes` is
-        // left open.
+        // This is a `PBXProj` partial for `PBXProject` related elements and
+        // _part of_ the `PBXProject` element. Different generators will
+        // generate the remaining parts of the `PBXProject` element. Because of
+        // this, it's intentional that the element isn't terminated, and
+        // `attributes` is left open.
         //
         // The tabs for indenting are intentional. The trailing newlines are
         // intentional, as `cat` needs them to concatenate the partials
         // correctly.
         return #"""
-// !$*UTF8*$!
-{
-	archiveVersion = 1;
-	classes = {
-	};
-	objectVersion = 55;
-	objects = {
 \#(buildConfigurations.map(\.element).joined(separator: "\n"))
 		\#(Identifiers.Project.buildConfigurationList) = {
 			isa = XCConfigurationList;

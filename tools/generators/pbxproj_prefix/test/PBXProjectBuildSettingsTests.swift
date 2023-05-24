@@ -4,7 +4,7 @@ import XCTest
 
 @testable import pbxproj_prefix
 
-class BuildSettingsTests: XCTestCase {
+class PBXProjectBuildSettingsTests: XCTestCase {
     func test_bazel() {
         // Arrange
 
@@ -79,7 +79,7 @@ class BuildSettingsTests: XCTestCase {
 
         // Act
 
-        let buildSettings = Generator.buildSettings(
+        let buildSettings = Generator.pbxProjectBuildSettings(
             buildMode: buildMode,
             indexingProjectDir: indexingProjectDir,
             workspace: workspace
@@ -156,7 +156,7 @@ class BuildSettingsTests: XCTestCase {
 
         // Act
 
-        let buildSettings = Generator.buildSettings(
+        let buildSettings = Generator.pbxProjectBuildSettings(
             buildMode: buildMode,
             indexingProjectDir: indexingProjectDir,
             workspace: workspace

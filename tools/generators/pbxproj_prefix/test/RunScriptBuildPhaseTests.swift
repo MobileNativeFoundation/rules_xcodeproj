@@ -2,7 +2,7 @@ import CustomDump
 import PBXProj
 import XCTest
 
-@testable import bazel_dependencies
+@testable import pbxproj_prefix
 
 class RunScriptBuildPhaseTests: XCTestCase {
     func test() {
