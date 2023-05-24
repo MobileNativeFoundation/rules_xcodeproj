@@ -454,8 +454,7 @@ extension Generator {
         /// "external/" and "bazel-out/" subtrees.
         func handleNode(
             _ node: FileTreeNode,
-            filePathPrefix: String,
-            bazelNodeType: BazelNodeType?
+            filePathPrefix: String
         ) -> HandledNode {
             let filePathStr = "\(filePathPrefix)\(node.name)"
             let childFilePathPrefix = "\(filePathStr)/"
@@ -464,7 +463,7 @@ extension Generator {
                 let (_, element, isFileLike) = createFile(
                     node: node,
                     filePathStr: filePathStr,
-                    bazelNodeType: bazelNodeType
+                    bazelNodeType: nil
                 )
                 if isFileLike {
                     return .fileLikeElement(element)
@@ -479,27 +478,26 @@ extension Generator {
                         node: node,
                         language: basenameWithoutExt,
                         filePathStr: filePathStr,
-                        bazelNodeType: bazelNodeType
+                        bazelNodeType: nil
                     ))
                 case "xcdatamodeld":
                     return .fileLikeElement(createVersionGroup(
                         node: node,
                         filePathStr: filePathStr,
-                        bazelNodeType: bazelNodeType
+                        bazelNodeType: nil
                     ))
                 default:
                     let children = node.children.map { node in
                         return handleNode(
                             node,
-                            filePathPrefix: childFilePathPrefix,
-                            bazelNodeType: bazelNodeType
+                            filePathPrefix: childFilePathPrefix
                         )
                     }
                     return .groupLikeElement(createGroup(
                         node: node,
                         children: children,
                         filePathStr: filePathStr,
-                        bazelNodeType: bazelNodeType
+                        bazelNodeType: nil
                     ))
                 }
             }
@@ -513,7 +511,7 @@ extension Generator {
             _ node: FileTreeNode,
             filePathPrefix: String,
             fileListPathPrefix: String,
-            bazelNodeType: BazelNodeType?
+            bazelNodeType: BazelNodeType
         ) -> (handledNode: HandledNode, fileListPaths: [String]) {
             let filePathStr = "\(filePathPrefix)\(node.name)"
             let childFilePathPrefix = "\(filePathStr)/"
@@ -683,7 +681,7 @@ extension Generator {
                 ) = handleBazelGroupNode(node, .bazelOut)
             default:
                 handledNodes.append(
-                    handleNode(node, filePathPrefix: "", bazelNodeType: nil)
+                    handleNode(node, filePathPrefix: "")
                 )
             }
         }
