@@ -177,9 +177,8 @@ extension Generator {
         /// models.
         func collectFilePaths(
             node: FileTreeNode,
-            filePathPrefix: String
+            filePathStr: String
         ) -> [FilePath] {
-            let filePathStr = "\(filePathPrefix)\(node.name)"
             let filePath = FilePath(
                 path: Path(filePathStr),
                 isFolder: node.isFolder
@@ -188,11 +187,10 @@ extension Generator {
             if node.children.isEmpty {
                 return [filePath]
             } else {
-                let childFilePathPrefix = "\(filePathStr)/"
                 var filePaths = node.children.flatMap { node in
                     collectFilePaths(
                         node: node,
-                        filePathPrefix: childFilePathPrefix
+                        filePathStr: "\(filePathStr)/\(node.name)"
                     )
                 }
                 filePaths.append(filePath)
@@ -261,11 +259,10 @@ extension Generator {
             )
             fileReferences[filePath] = file
 
-            let childFilePathPrefix = "\(filePathStr)/"
             var filePaths = node.children.flatMap { node in
                 return collectFilePaths(
                     node: node,
-                    filePathPrefix: childFilePathPrefix
+                    filePathStr: "\(filePathStr)/\(node.name)"
                 )
             }
             filePaths.append(filePath)
@@ -325,11 +322,10 @@ extension Generator {
                 path: Path(filePathStr),
                 isFolder: node.isFolder
             )
-            let childFilePathPrefix = "\(filePathStr)/"
             var filePaths = node.children.flatMap { node in
                 return collectFilePaths(
                     node: node,
-                    filePathPrefix: childFilePathPrefix
+                    filePathStr: "\(filePathStr)/\(node.name)"
                 )
             }
             filePaths.append(filePath)
