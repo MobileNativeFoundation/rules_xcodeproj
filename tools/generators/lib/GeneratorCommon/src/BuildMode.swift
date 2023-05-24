@@ -1,4 +1,6 @@
-public enum BuildMode: String {
+import ArgumentParser
+
+public enum BuildMode: String, ExpressibleByArgument {
     case xcode
     case bazel
 }

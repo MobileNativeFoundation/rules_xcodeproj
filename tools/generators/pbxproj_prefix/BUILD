@@ -15,9 +15,9 @@ exports_files(["README.md"])
 # Generator
 
 swift_library(
-    name = "pbxproject_prefix.library",
+    name = "pbxproj_prefix.library",
     srcs = glob(["src/**/*.swift"]),
-    module_name = "pbxproject_prefix",
+    module_name = "pbxproj_prefix",
     deps = [
         "//tools/generators/lib/GeneratorCommon",
         "//tools/generators/lib/PBXProj",
@@ -34,20 +34,20 @@ swift_library(
 # `swift_library`s. Maybe https://github.com/bazelbuild/bazel/issues/6526 will
 # fix that for us.
 macos_command_line_application(
-    name = "pbxproject_prefix",
+    name = "pbxproj_prefix",
     minimum_os_version = "12.0",
     visibility = ["//visibility:public"],
-    deps = [":pbxproject_prefix.library"],
+    deps = [":pbxproj_prefix.library"],
 )
 
 swift_binary(
-    name = "pbxproject_prefix_binary",
-    deps = [":pbxproject_prefix.library"],
+    name = "pbxproj_prefix_binary",
+    deps = [":pbxproj_prefix.library"],
 )
 
 apple_universal_binary(
-    name = "universal_pbxproject_prefix",
-    binary = ":pbxproject_prefix_binary",
+    name = "universal_pbxproj_prefix",
+    binary = ":pbxproj_prefix_binary",
     forced_cpus = [
         "x86_64",
         "arm64",
@@ -60,25 +60,25 @@ apple_universal_binary(
 # Tests
 
 swift_library(
-    name = "pbxproject_prefix_tests.library",
+    name = "pbxproj_prefix_tests.library",
     testonly = True,
     srcs = glob(["test/**/*.swift"]),
-    module_name = "pbxproject_prefix_tests",
+    module_name = "pbxproj_prefix_tests",
     deps = [
-        ":pbxproject_prefix.library",
+        ":pbxproj_prefix.library",
         "@com_github_pointfreeco_swift_custom_dump//:CustomDump",
     ],
 )
 
 macos_unit_test(
-    name = "pbxproject_prefix_tests",
+    name = "pbxproj_prefix_tests",
     minimum_os_version = "12.0",
     visibility = [
         "//test:__subpackages__",
         "@rules_xcodeproj//xcodeproj:generated",
     ],
     deps = [
-        ":pbxproject_prefix_tests.library",
+        ":pbxproj_prefix_tests.library",
     ],
 )
 
@@ -88,7 +88,7 @@ filegroup(
     name = "release_files",
     srcs = [
         "BUILD.release.bazel",
-        ":universal_pbxproject_prefix",
+        ":universal_pbxproj_prefix",
     ],
     tags = ["manual"],
     visibility = ["//:__subpackages__"],

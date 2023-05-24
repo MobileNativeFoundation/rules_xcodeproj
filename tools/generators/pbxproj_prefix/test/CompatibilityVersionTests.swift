@@ -1,7 +1,7 @@
 import GeneratorCommon
 import XCTest
 
-@testable import pbxproject_prefix
+@testable import pbxproj_prefix
 
 class CompatibilityVersionTests: XCTestCase {
     func test_lowXcodeVersion() {

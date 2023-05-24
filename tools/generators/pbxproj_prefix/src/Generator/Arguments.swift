@@ -6,7 +6,7 @@ extension Generator {
     struct Arguments: ParsableArguments {
         @Argument(
             help: """
-Path to where the 'pbxproject_prefix' 'PBXProj' partial should be written.
+Path to where the 'pbxproj_prefix' 'PBXProj' partial should be written.
 """,
             transform: { URL(fileURLWithPath: $0, isDirectory: false) }
         )
@@ -23,6 +23,9 @@ Path to a file that contains the absolute path to the Bazel execution root.
         )
         var executionRootFile: URL
 
+        @Argument(help: "`xcodeproj.build_mode`.")
+        var buildMode: BuildMode
+
         @Argument(help: """
 Minimum Xcode version that the generated project supports.
 """)
@@ -35,5 +38,14 @@ Minimum Xcode version that the generated project supports.
 Populates the `ORGANIZATIONNAME` attribute for the project.
 """)
         var organizationName: String?
+
+        @Option(
+            parsing: .upToNextOption,
+            help: "Names of the Xcode configurations the project is using."
+        )
+        var xcodeConfigurations: [String]
+
+        @Option(help: "Name of the default Xcode configuration.")
+        var defaultXcodeConfiguration: String?
     }
 }

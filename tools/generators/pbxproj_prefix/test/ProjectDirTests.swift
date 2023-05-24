@@ -1,6 +1,6 @@
 import XCTest
 
-@testable import pbxproject_prefix
+@testable import pbxproj_prefix
 
 class ProjectDirTests: XCTestCase {
     func test_privatePrefix() {
