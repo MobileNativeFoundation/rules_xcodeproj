@@ -4,13 +4,13 @@ load(
     "write_bazel_dependencies_test_suite",
 )
 load(
-    ":write_pbxproject_prefix_tests.bzl",
-    "write_pbxproject_prefix_test_suite",
+    ":write_pbxproj_prefix_tests.bzl",
+    "write_pbxproj_prefix_test_suite",
 )
 
 write_bazel_dependencies_test_suite(name = "write_bazel_dependencies")
 
-write_pbxproject_prefix_test_suite(name = "write_pbxproject_prefix")
+write_pbxproj_prefix_test_suite(name = "write_pbxproj_prefix")
 
 test_suite(name = "pbxproj_partials")
 

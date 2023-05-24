@@ -3,10 +3,10 @@ import Foundation
 import GeneratorCommon
 
 @main
-struct PBXProjectPrefix: ParsableCommand {
+struct PBXProjPrefix: ParsableCommand {
     static var configuration = CommandConfiguration(
-        commandName: "pbxproject_prefix",
-        abstract: "Generates the 'PBXProject' prefix 'PBXProj' partial."
+        commandName: "pbxproj_prefix",
+        abstract: "Generates the 'PBXProj' prefix partial."
     )
 
     @OptionGroup var arguments: Generator.Arguments

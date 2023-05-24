@@ -123,22 +123,30 @@ def _write_bazel_dependencies(
 
     return output
 
-def _write_pbxproject_prefix(
+def _write_pbxproj_prefix(
         *,
         actions,
+        build_mode,
         colorize,
+        default_xcode_configuration,
         execution_root_file,
         generator_name,
         minimum_xcode_version,
         project_options,
         tool,
-        workspace_directory):
+        workspace_directory,
+        xcode_configurations):
     """
     Creates a `File` containing a `PBXProject` prefix `PBXProj` partial.
 
     Args:
         actions: `ctx.actions`.
+        build_mode: `xcodeproj.build_mode`.
         colorize: A `bool` indicating whether to colorize the output.
+        default_xcode_configuration: Optional. The name of the the Xcode
+            configuration to use when building, if not overridden by custom
+            schemes. If not set, the first Xcode configuration alphabetically
+            will be used.
         execution_root_file: A `File` containing the absolute path to the Bazel
             execution root.
         generator_name: The name of the `xcodeproj` generator target.
@@ -148,6 +156,7 @@ def _write_pbxproject_prefix(
         tool: The executable that will generate the `PBXProj` partial.
         workspace_directory: The absolute path to the Bazel workspace
             directory.
+        xcode_configurations: A sequence of Xcode configuration names.
 
     Returns:
         The `File` for the `PBXProject` prefix `PBXProj` partial.
@@ -169,6 +178,9 @@ def _write_pbxproject_prefix(
     # executionRootFile
     args.add(execution_root_file)
 
+    # buildMode
+    args.add(build_mode)
+
     # minimumXcodeVersion
     args.add(minimum_xcode_version)
 
@@ -180,6 +192,16 @@ def _write_pbxproject_prefix(
     if organization_name:
         args.add("--organization-name", organization_name)
 
+    # xcodeConfigurations
+    args.add_all(
+        "--xcode-configurations",
+        xcode_configurations,
+    )
+
+    # defaultXcodeConfiguration
+    if default_xcode_configuration:
+        args.add("--default-xcode-configuration", default_xcode_configuration)
+
     # colorize
     if colorize:
         args.add("--colorize")
@@ -189,12 +211,12 @@ def _write_pbxproject_prefix(
         executable = tool,
         inputs = [execution_root_file],
         outputs = [output],
-        mnemonic = "WritePBXProjPBXProjectPrefix",
+        mnemonic = "WritePBXProjPrefix",
     )
 
     return output
 
 pbxproj_partials = struct(
     write_bazel_dependencies = _write_bazel_dependencies,
-    write_pbxproject_prefix = _write_pbxproject_prefix,
+    write_pbxproj_prefix = _write_pbxproj_prefix,
 )

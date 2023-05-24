@@ -1,0 +1,101 @@
+import PBXProj
+
+extension Generator {
+    /// Calculates the `PBXProj` prefix partial.
+    static func calculate(
+        buildSettings: String,
+        compatibilityVersion: String,
+        defaultXcodeConfiguration: String?,
+        developmentRegion: String,
+        organizationName: String?,
+        projectDir: String,
+        workspace: String,
+        xcodeConfigurations: [String]
+    ) -> String {
+        // Organization name
+
+        let organizationNameAttribute: String
+        if let organizationName = organizationName {
+            organizationNameAttribute = #"""
+				ORGANIZATIONNAME = \#(organizationName.pbxProjEscaped);
+
+"""#
+        } else {
+            organizationNameAttribute = ""
+        }
+
+        // Build configurations
+
+        let sortedXcodeConfigurations = Set(xcodeConfigurations).sorted()
+        let defaultXcodeConfiguration = defaultXcodeConfiguration ??
+            sortedXcodeConfigurations.first!
+
+        let buildConfigurations =  sortedXcodeConfigurations
+            .enumerated()
+            .map { index, name in
+                let id = Identifiers.Project
+                    .buildConfiguration(name, index: UInt8(index))
+                return (
+                    id: id,
+                    element: #"""
+		\#(id) = {
+			isa = XCBuildConfiguration;
+			buildSettings = \#(buildSettings);
+			name = \#(name.pbxProjEscaped);
+		};
+"""#
+                )
+            }
+
+        // Final form
+
+        // This is a `PBXProj` partial for the start of the `PBXProj` element,
+        // `PBXProject` related elements, and _part of_ the start of the
+        // `PBXProject` element. Different generators will generate the
+        // remaining parts of the `PBXProject` element. Because of this, it's
+        // intentional that the element isn't terminated, and `attributes` is
+        // left open.
+        //
+        // The tabs for indenting are intentional. The trailing newlines are
+        // intentional, as `cat` needs them to concatenate the partials
+        // correctly.
+        return #"""
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+\#(buildConfigurations.map(\.element).joined(separator: "\n"))
+		\#(Identifiers.Project.buildConfigurationList) = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+\#(
+    buildConfigurations
+        .map { id, _ in "\t\t\t\t\(id),"}.joined(separator: "\n")
+)
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = \#(
+                defaultXcodeConfiguration.pbxProjEscaped
+            );
+		};
+		\#(Identifiers.Project.id) = {
+			isa = PBXProject;
+			buildConfigurationList = \#(Identifiers.Project.buildConfigurationList);
+			compatibilityVersion = \#(compatibilityVersion.pbxProjEscaped);
+			developmentRegion = \#(developmentRegion.pbxProjEscaped);
+			hasScannedForEncodings = 0;
+			mainGroup = \#(Identifiers.FilesAndGroups.mainGroup(workspace));
+			productRefGroup = \#(Identifiers.FilesAndGroups.productsGroup);
+			projectDirPath = \#(projectDir.pbxProjEscaped);
+			projectRoot = "";
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 9999;
+				LastUpgradeCheck = 9999;
+\#(organizationNameAttribute)
+"""#
+    }
+}
