@@ -6,56 +6,6 @@ import sys
 from typing import Dict, List
 
 
-def _main(
-        xcode_generated_paths_path: str,
-        generated_framework_search_paths_path: str,
-        is_framework: bool,
-        generated_product_paths_file: str,
-        swift_triple: str,
-        output_path: str,
-        args_files: List[str]
-    ) -> None:
-    with open(xcode_generated_paths_path, encoding = "utf-8") as fp:
-        xcode_generated_paths = json.load(fp)
-
-    with open(generated_framework_search_paths_path, encoding = "utf-8") as fp:
-        generated_framework_search_paths = json.load(fp)
-
-    with open(generated_product_paths_file, encoding = "utf-8") as fp:
-        generated_product_paths = json.load(fp)
-
-    linkopts = _process_linkopts(
-        # First argument is the tool name
-        linkopts = _parse_args(args_files),
-        xcode_generated_paths = xcode_generated_paths,
-        generated_framework_search_paths = generated_framework_search_paths,
-        is_framework = is_framework,
-        generated_product_paths = generated_product_paths,
-        swift_triple = swift_triple
-    )
-
-    with open(output_path, encoding = "utf-8", mode = "w") as fp:
-        result = "\n".join(linkopts)
-        fp.write(f'{result}\n')
-
-
-def _parse_args(args_files: List[str]) -> List[str]:
-    args = []
-    for args_path in args_files:
-        # Each argument is a path to a file containing the actual arguments
-        with open(args_path, encoding = "utf-8") as fp:
-            lines = fp.read().splitlines()
-            if lines[0].startswith("@"):
-                # Sometimes those arguments might be also be a redirect
-                with open(lines[0][1:], encoding = "utf-8") as f:
-                    args.extend(f.read().splitlines())
-            else:
-                # First argument is the tool name
-                args.extend(lines[1:])
-
-    return args
-
-
 # linker flags that we don't want to propagate to Xcode.
 # The values are the number of flags to skip, 1 being the flag itself, 2 being
 # another flag right after it, etc.
@@ -79,7 +29,24 @@ _LD_SKIP_OPTS = {
 }
 
 
-def _quote_if_needed(opt):
+def _parse_args(args_files: List[str]) -> List[str]:
+    args = []
+    for args_path in args_files:
+        # Each argument is a path to a file containing the actual arguments
+        with open(args_path, encoding = "utf-8") as fp:
+            lines = fp.read().splitlines()
+            if lines[0].startswith("@"):
+                # Sometimes those arguments might be also be a redirect
+                with open(lines[0][1:], encoding = "utf-8") as f:
+                    args.extend(f.read().splitlines())
+            else:
+                # First argument is the tool name
+                args.extend(lines[1:])
+
+    return args
+
+
+def _quote_if_needed(opt: str) -> str:
     if " " in opt or ("$(" in opt and ")" in opt):
         return f"'{opt}'"
     return opt
@@ -134,8 +101,12 @@ def _process_linkopts(
             # `_process_filelist` applies quoting if needed
             processed_linkopts.extend(_process_filelist(opt))
             return
-        
-        opt_generated_path_matches = [path for path in generated_product_paths if opt.endswith(path)]
+
+        opt_generated_path_matches = [
+            path
+            for path in generated_product_paths
+            if opt.endswith(path)
+        ]
         if opt_generated_path_matches:
             if last_opt == "-force_load":
                 processed_linkopts.pop()
@@ -237,6 +208,39 @@ def _process_linkopts(
         last_opt = linkopt
 
     return processed_linkopts
+
+
+def _main(
+        xcode_generated_paths_path: str,
+        generated_framework_search_paths_path: str,
+        is_framework: bool,
+        generated_product_paths_file: str,
+        swift_triple: str,
+        output_path: str,
+        args_files: List[str]
+    ) -> None:
+    with open(xcode_generated_paths_path, encoding = "utf-8") as fp:
+        xcode_generated_paths = json.load(fp)
+
+    with open(generated_framework_search_paths_path, encoding = "utf-8") as fp:
+        generated_framework_search_paths = json.load(fp)
+
+    with open(generated_product_paths_file, encoding = "utf-8") as fp:
+        generated_product_paths = json.load(fp)
+
+    linkopts = _process_linkopts(
+        # First argument is the tool name
+        linkopts = _parse_args(args_files),
+        xcode_generated_paths = xcode_generated_paths,
+        generated_framework_search_paths = generated_framework_search_paths,
+        is_framework = is_framework,
+        generated_product_paths = generated_product_paths,
+        swift_triple = swift_triple
+    )
+
+    with open(output_path, encoding = "utf-8", mode = "w") as fp:
+        result = "\n".join(linkopts)
+        fp.write(f'{result}\n')
 
 
 if __name__ == "__main__":
