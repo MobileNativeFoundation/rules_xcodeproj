@@ -76,7 +76,7 @@ extension Generator {
         var xcVersionGroups: [FilePath: XCVersionGroup] = [:]
         var knownRegions: Set<String> = []
         var resolvedRepositories: [(Path, Path)] = [
-            ("", forFixtures ? "$(SRCROOT)" : directories.workspace),
+            (".", forFixtures ? "$(SRCROOT)" : directories.workspace),
         ]
 
         /// Calculates the needed `sourceTree`, `name`, and `path` for a file
@@ -142,7 +142,7 @@ extension Generator {
                     if addToResolvedRepositories {
                         resolvedRepositories.append(
                             (
-                                "/external" + relativePath,
+                                "./external" + relativePath,
                                 "$(SRCROOT)" + resolvedRelativePath
                             )
                         )
@@ -158,7 +158,7 @@ extension Generator {
 
             if addToResolvedRepositories {
                 resolvedRepositories.append(
-                    ("/external" + relativePath, absolutePath)
+                    ("./external" + relativePath, absolutePath)
                 )
             }
 
