@@ -42,9 +42,9 @@ def get_xcode_schemes():
                     xcode_schemes.pre_post_action(
                         name = "Run After Tests",
                         script = "echo \"Hi\"",
-                        expand_variables_based_on = "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests"
+                        expand_variables_based_on = "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests",
                     ),
                 ],
             ),
-        )
+        ),
     ]

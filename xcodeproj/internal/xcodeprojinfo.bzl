@@ -298,8 +298,10 @@ https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bu
                 type = target_skip_type,
             ))
             return target.label
+
         # `_APPLE_INTERNAL_TEST_BUNDLE_SUFFIX` should always be present here so remove it
         label_name = info.xcode_target.label.name.replace(_APPLE_INTERNAL_TEST_BUNDLE_SUFFIX, "")
+
         # As of https://github.com/bazelbuild/rules_apple/pull/1948 `bundle_name` can be used to
         # name the bundle instead of the target name. That attribute is collected in `xcode_target.product.name` so
         # in order to get a valid label here put the target name back using `generator_name` since at this
