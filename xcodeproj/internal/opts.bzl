@@ -284,6 +284,12 @@ def _process_swiftcopts(
             build_settings["SWIFT_COMPILATION_MODE"] = compilation_mode
             continue
 
+        if opt.startswith("-swift-version="):
+            version = opt[15:]
+            if version != "5.0":
+                build_settings["SWIFT_VERSION"] = version
+            continue
+
         if previous_opt == "-emit-objc-header-path":
             if not opt.startswith(package_bin_dir):
                 fail("""\
