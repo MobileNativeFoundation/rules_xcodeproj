@@ -79,6 +79,11 @@ extension Generator {
             (".", forFixtures ? "$(SRCROOT)" : directories.workspace),
         ]
 
+        enum BazelNodeType {
+            case external
+            case bazelOut
+        }
+
         /// Calculates the needed `sourceTree`, `name`, and `path` for a file
         /// reference. This function exists solely to deal with symlinked
         /// external repositories. Xcode will act slow with, and fail to index,
@@ -170,7 +175,7 @@ extension Generator {
         }
 
         /// This function exists, instead of simply reusing
-        /// `handle{FileListPath,}Node`, to be as efficient as possible when
+        /// `handle{Non,}FileListPathNode`, to be as efficient as possible when
         /// we don't need to actually create `PBXFileElement`s and just need to
         /// know what the `FilePath`s would be. This happens when an element
         /// in the tree is a "folder type file" like localized files or CoreData
@@ -444,56 +449,102 @@ extension Generator {
             return xcVersionGroup
         }
 
-        /// This function exists, instead of just reusing
-        /// `handleFileListPathNode`, in order to be as efficient as possible.
-        /// We only need to create and collect filelist paths for the
-        /// "external/" and "bazel-out/" subtrees.
+        enum SemiHandledNode {
+            case file(HandledNode)
+            case group(HandledNode, fileListPaths: [String])
+            case specialGroup(HandledNode)
+
+            var handledNode: HandledNode {
+                switch self {
+                case .file(let handledNode): return handledNode
+                case .group(let handledNode, _): return handledNode
+                case .specialGroup(let handledNode): return handledNode
+                }
+            }
+        }
+
+        /// Consolidates most of the logic between `handleNonFileListPathNode()`
+        /// and `handleFileListPathNode()`.
         func handleNode(
             _ node: FileTreeNode,
-            filePathStr: String
-        ) -> HandledNode {
+            bazelNodeType: BazelNodeType?,
+            filePathStr: String,
+            handleGroupNode: () -> (
+                children: [HandledNode],
+                fileListPaths: [String]
+            )
+        ) -> SemiHandledNode {
             if node.children.isEmpty {
                 let (_, element, isFileLike) = createFile(
                     node: node,
                     filePathStr: filePathStr,
-                    bazelNodeType: nil
+                    bazelNodeType: bazelNodeType
                 )
                 if isFileLike {
-                    return .fileLikeElement(element)
+                    return .file(.fileLikeElement(element))
                 } else {
-                    return .groupLikeElement(element)
+                    return .file(.groupLikeElement(element))
                 }
             } else {
                 let (basenameWithoutExt, ext) = node.splitExtension()
                 switch ext {
                 case "lproj":
-                    return .variantGroupLanguage(handleVariantGroupLanguage(
-                        node: node,
-                        language: basenameWithoutExt,
-                        filePathStr: filePathStr,
-                        bazelNodeType: nil
-                    ))
+                    return .specialGroup(
+                        .variantGroupLanguage(handleVariantGroupLanguage(
+                            node: node,
+                            language: basenameWithoutExt,
+                            filePathStr: filePathStr,
+                            bazelNodeType: bazelNodeType
+                        ))
+                    )
                 case "xcdatamodeld":
-                    return .fileLikeElement(createVersionGroup(
-                        node: node,
-                        filePathStr: filePathStr,
-                        bazelNodeType: nil
-                    ))
+                    return .specialGroup(
+                        .fileLikeElement(createVersionGroup(
+                            node: node,
+                            filePathStr: filePathStr,
+                            bazelNodeType: bazelNodeType
+                        ))
+                    )
                 default:
-                    let children = node.children.map { node in
-                        return handleNode(
-                            node,
-                            filePathStr: "\(filePathStr)/\(node.name)"
-                        )
-                    }
-                    return .groupLikeElement(createGroup(
-                        node: node,
-                        children: children,
-                        filePathStr: filePathStr,
-                        bazelNodeType: nil
-                    ))
+                    let (children, fileListPaths) = handleGroupNode()
+                    return .group(
+                        .groupLikeElement(createGroup(
+                            node: node,
+                            children: children,
+                            filePathStr: filePathStr,
+                            bazelNodeType: bazelNodeType
+                        )),
+                        fileListPaths: fileListPaths
+                    )
                 }
             }
+        }
+
+        /// This function exists, instead of just reusing
+        /// `handleFileListPathNode`, in order to be as efficient as possible.
+        /// We only need to create and collect filelist paths for the
+        /// "external/" and "bazel-out/" subtrees.
+        func handleNonFileListPathNode(
+            _ node: FileTreeNode,
+            filePathStr: String
+        ) -> HandledNode {
+            let semiHandledNode = handleNode(
+                node,
+                bazelNodeType: nil,
+                filePathStr: filePathStr,
+                handleGroupNode: {
+                    return (
+                        children: node.children.map { node in
+                            return handleNonFileListPathNode(
+                                node,
+                                filePathStr: "\(filePathStr)/\(node.name)"
+                            )
+                        },
+                        fileListPaths: []
+                    )
+                }
+            )
+            return semiHandledNode.handledNode
         }
 
         /// Processes a `FileTreeNode`, creating file elements and collecting
@@ -506,46 +557,11 @@ extension Generator {
             fileListPathStr: String,
             bazelNodeType: BazelNodeType
         ) -> (handledNode: HandledNode, fileListPaths: [String]) {
-            if node.children.isEmpty {
-                let (_, element, isFileLike) = createFile(
-                    node: node,
-                    filePathStr: filePathStr,
-                    bazelNodeType: bazelNodeType
-                )
-                return (
-                    isFileLike ?
-                        .fileLikeElement(element) : .groupLikeElement(element),
-                    bazelNodeType == .external || !node.isFolder ?
-                        [fileListPathStr]: []
-                )
-            } else {
-                let (basenameWithoutExt, ext) = node.splitExtension()
-                switch ext {
-                case "lproj":
-                    let fileListPaths = node.children.map { node in
-                        return "\(fileListPathStr)/\(node.name)"
-                    }
-                    let variantGroupLanguage = handleVariantGroupLanguage(
-                        node: node,
-                        language: basenameWithoutExt,
-                        filePathStr: filePathStr,
-                        bazelNodeType: bazelNodeType
-                    )
-                    return (
-                        .variantGroupLanguage(variantGroupLanguage),
-                        fileListPaths
-                    )
-                case "xcdatamodeld":
-                    let fileListPaths = node.children.map { node in
-                        return "\(fileListPathStr)/\(node.name)"
-                    }
-                    let group = createVersionGroup(
-                        node: node,
-                        filePathStr: filePathStr,
-                        bazelNodeType: bazelNodeType
-                    )
-                    return (.fileLikeElement(group), fileListPaths)
-                default:
+            let semiHandledNode = handleNode(
+                node,
+                bazelNodeType: bazelNodeType,
+                filePathStr: filePathStr,
+                handleGroupNode: {
                     let childrenAndFileListPaths = node.children.map { node in
                         return handleFileListPathNode(
                             node,
@@ -554,24 +570,35 @@ extension Generator {
                             bazelNodeType: bazelNodeType
                         )
                     }
-                    let group = createGroup(
-                        node: node,
+
+                    return (
                         children: childrenAndFileListPaths
                             .map { $0.handledNode },
-                        filePathStr: filePathStr,
-                        bazelNodeType: bazelNodeType
-                    )
-                    return (
-                        .groupLikeElement(group),
-                        childrenAndFileListPaths.flatMap { $0.fileListPaths }
+                        fileListPaths: childrenAndFileListPaths
+                            .flatMap { $0.fileListPaths }
                     )
                 }
-            }
-        }
+            )
 
-        enum BazelNodeType {
-            case external
-            case bazelOut
+            switch semiHandledNode {
+            case .file(let handledNode):
+                let fileListPaths: [String]
+                if bazelNodeType == .external || !node.isFolder {
+                    fileListPaths = [fileListPathStr]
+                } else {
+                    fileListPaths = []
+                }
+                return (handledNode, fileListPaths)
+
+            case .specialGroup(let handledNode):
+                let fileListPaths = node.children.map { node in
+                    return "\(fileListPathStr)/\(node.name)"
+                }
+                return (handledNode, fileListPaths)
+
+            case .group(let handledNode, let fileListPaths):
+                return (handledNode, fileListPaths)
+            }
         }
 
         /// Handles the "bazel-out/" or "external/" root nodes. Is basically the
@@ -670,7 +697,7 @@ extension Generator {
                 ) = handleBazelGroupNode(node, .bazelOut)
             default:
                 handledNodes.append(
-                    handleNode(node, filePathStr: node.name)
+                    handleNonFileListPathNode(node, filePathStr: node.name)
                 )
             }
         }
