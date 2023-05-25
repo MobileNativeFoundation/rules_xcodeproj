@@ -3,6 +3,14 @@
 load("@bazel_tools//tools/cpp:toolchain_utils.bzl", "find_cpp_toolchain")
 load(":memory_efficiency.bzl", "EMPTY_LIST")
 
+# Maps Swift compliation mode compiler flags to the corresponding Xcode values
+_SWIFT_COMPILATION_MODE_OPTS = {
+    "-incremental": "singlefile",
+    "-no-whole-module-optimization": "singlefile",
+    "-whole-module-optimization": "wholemodule",
+    "-wmo": "wholemodule",
+}
+
 # Compiler option processing
 
 _CC_COMPILE_ACTIONS = {
@@ -269,6 +277,11 @@ def _process_swiftcopts(
 
         if opt == "-g":
             has_debug_info = True
+            continue
+
+        compilation_mode = _SWIFT_COMPILATION_MODE_OPTS.get(opt, "")
+        if compilation_mode:
+            build_settings["SWIFT_COMPILATION_MODE"] = compilation_mode
             continue
 
         if previous_opt == "-emit-objc-header-path":
