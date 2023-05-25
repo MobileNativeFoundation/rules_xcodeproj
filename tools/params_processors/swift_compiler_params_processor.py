@@ -42,6 +42,10 @@ _SWIFTC_SKIP_OPTS = {
     # These are handled in `opts.bzl`
     "-emit-objc-header-path": 2,
     "-g": 1,
+    "-incremental": 1,
+    "-no-whole-module-optimization": 1,
+    "-whole-module-optimization": 1,
+    "-wmo": 1,
 
     # This is rules_swift specific, and we don't want to translate it for BwX
     "-Xwrapped-swift": 1,
