@@ -498,6 +498,14 @@ $(CURRENT_EXECUTION_ROOT)/\#(swiftParams.path.string)
             }
         }
 
+        if buildMode == .xcode &&
+           buildSettings.keys.contains("PREVIEWS_SWIFT_INCLUDE__YES")
+        {
+            swiftFlagsPrefix.append(
+                "$(PREVIEWS_SWIFT_INCLUDE__$(ENABLE_PREVIEWS))"
+            )
+        }
+
         var cFlagsString = (cFlagsPrefix + cFlags).joined(separator: " ")
         var cxxFlagsString = (cxxFlagsPrefix + cxxFlags).joined(separator: " ")
         let swiftFlagsString = (swiftFlagsPrefix + swiftFlags)
