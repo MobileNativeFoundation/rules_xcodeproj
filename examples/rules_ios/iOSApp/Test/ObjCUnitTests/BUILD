@@ -11,6 +11,7 @@ rules_ios_ios_unit_test(
     name = "iOSAppObjCUnitTests",
     srcs = glob(["**/*.m"]),
     bundle_id = "rules-xcodeproj.example.objctests",
+    bundle_name = "iOS_App_ObjC_UnitTests",
     minimum_os_version = "15.0",
     module_name = "iOSAppObjCUnitTests",
     tags = ["manual"],

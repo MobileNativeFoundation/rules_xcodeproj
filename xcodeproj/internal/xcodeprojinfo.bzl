@@ -12,7 +12,6 @@ load(":compilation_providers.bzl", comp_providers = "compilation_providers")
 load(":input_files.bzl", "input_files")
 load(":library_targets.bzl", "process_library_target")
 load(":lldb_contexts.bzl", "lldb_contexts")
-load(":logging.bzl", "warn")
 load(
     ":memory_efficiency.bzl",
     "NONE_LIST",
@@ -76,8 +75,6 @@ _BUILD_TEST_RULES = {
 _TEST_SUITE_RULES = {
     "test_suite": None,
 }
-
-_APPLE_INTERNAL_TEST_BUNDLE_SUFFIX = ".__internal__.__test_bundle"
 
 skip_type = struct(
     apple_build_test = "apple_build_test",
@@ -285,23 +282,15 @@ def _skip_target(
             return target.label
         if target_skip_type != skip_type.apple_test_bundle:
             return target.label
-        if _APPLE_INTERNAL_TEST_BUNDLE_SUFFIX not in info.xcode_target.label.name:
-            warn("""\
-Couldn't find '{suffix}' suffix in '{label}' with skip_type={type}, \
-replacement labels might not work as expected.
 
-Please, file a bug report here: \
-https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bug.md
-""".format(
-                suffix = _APPLE_INTERNAL_TEST_BUNDLE_SUFFIX,
-                label = info.xcode_target.label,
-                type = target_skip_type,
-            ))
-            return target.label
+        # As of https://github.com/bazelbuild/rules_apple/pull/1948
+        # `bundle_name` can be used to name the bundle instead of the
+        # target name. Because of that we use `ctx.rule.attr.generator_name`
+        # here to ensure this is always a real target label.
         return Label(
             "@//{}:{}".format(
                 info.xcode_target.label.package,
-                info.xcode_target.label.name.replace(_APPLE_INTERNAL_TEST_BUNDLE_SUFFIX, ""),
+                ctx.rule.attr.generator_name,
             ),
         )
 
