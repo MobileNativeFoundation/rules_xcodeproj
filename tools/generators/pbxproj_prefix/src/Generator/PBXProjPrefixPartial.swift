@@ -19,8 +19,8 @@ extension Generator {
 	};
 	objectVersion = 55;
 	objects = {
-\#(bazelDependenciesPartial)
-\#(pbxProjectPrefixPartial)
+\#(bazelDependenciesPartial)\#
+\#(pbxProjectPrefixPartial)\#
 
 """#
     }

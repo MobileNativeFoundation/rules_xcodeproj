@@ -9,8 +9,8 @@ class PBXProjPrefixPartialTests: XCTestCase {
     func test() {
         // Arrange
 
-        let bazelDependenciesPartial = "{BazelDependencies_Partial}"
-        let pbxProjectPrefixPartial = "{PBXProject_Prefix_Partial}"
+        let bazelDependenciesPartial = "{BazelDependencies_Partial}\n"
+        let pbxProjectPrefixPartial = "{PBXProject_Prefix_Partial}\n"
 
         let expectedPbxProjPrefixPartial = #"""
 // !$*UTF8*$!
