@@ -283,9 +283,10 @@ def _skip_target(
         if target_skip_type != skip_type.apple_test_bundle:
             return target.label
 
-        # As of https://github.com/bazelbuild/rules_apple/pull/1948 `bundle_name` can be used to
-        # name the bundle instead of the target name. Because of that we use `ctx.rule.attr.generator_name` here
-        # to ensure this is always a real target label.
+        # As of https://github.com/bazelbuild/rules_apple/pull/1948
+        # `bundle_name` can be used to name the bundle instead of the
+        # target name. Because of that we use `ctx.rule.attr.generator_name`
+        # here to ensure this is always a real target label.
         return Label(
             "@//{}:{}".format(
                 info.xcode_target.label.package,
