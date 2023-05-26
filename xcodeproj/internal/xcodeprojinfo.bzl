@@ -12,7 +12,6 @@ load(":compilation_providers.bzl", comp_providers = "compilation_providers")
 load(":input_files.bzl", "input_files")
 load(":library_targets.bzl", "process_library_target")
 load(":lldb_contexts.bzl", "lldb_contexts")
-load(":logging.bzl", "warn")
 load(
     ":memory_efficiency.bzl",
     "NONE_LIST",
@@ -283,6 +282,7 @@ def _skip_target(
             return target.label
         if target_skip_type != skip_type.apple_test_bundle:
             return target.label
+
         # As of https://github.com/bazelbuild/rules_apple/pull/1948 `bundle_name` can be used to
         # name the bundle instead of the target name. Because of that we use `ctx.rule.attr.generator_name` here
         # to ensure this is always a real target label.
