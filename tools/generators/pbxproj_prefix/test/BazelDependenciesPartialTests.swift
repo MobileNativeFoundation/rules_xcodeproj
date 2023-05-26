@@ -96,7 +96,6 @@ class BazelDependenciesPartialTests: XCTestCase {
 			name = BazelDependencies;
 			productName = BazelDependencies;
 		};
-
 """#
 
         // Act
@@ -204,7 +203,6 @@ class BazelDependenciesPartialTests: XCTestCase {
 			name = BazelDependencies;
 			productName = BazelDependencies;
 		};
-
 """#
 
         // Act
@@ -314,7 +312,6 @@ class BazelDependenciesPartialTests: XCTestCase {
 			name = BazelDependencies;
 			productName = BazelDependencies;
 		};
-
 """#
 
         // Act
@@ -424,7 +421,6 @@ class BazelDependenciesPartialTests: XCTestCase {
 			name = BazelDependencies;
 			productName = BazelDependencies;
 		};
-
 """#
 
         // Act

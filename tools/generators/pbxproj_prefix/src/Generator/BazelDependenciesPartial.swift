@@ -107,9 +107,7 @@ extension Generator {
 
         // Final form
 
-        // The tabs for indenting are intentional. The trailing newlines are
-        // intentional, as `cat` needs them to concatenate the partials
-        // correctly.
+        // The tabs for indenting are intentional
         return #"""
 \#(buildPhases.map(\.element).joined(separator: "\n"))
 \#(buildConfigurations.map(\.element).joined(separator: "\n"))
@@ -139,7 +137,6 @@ extension Generator {
 			name = BazelDependencies;
 			productName = BazelDependencies;
 		};
-
 """#
     }
 
