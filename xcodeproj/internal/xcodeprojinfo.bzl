@@ -77,8 +77,6 @@ _TEST_SUITE_RULES = {
     "test_suite": None,
 }
 
-_APPLE_INTERNAL_TEST_BUNDLE_SUFFIX = ".__internal__.__test_bundle"
-
 skip_type = struct(
     apple_build_test = "apple_build_test",
     apple_binary_no_deps = "apple_binary_no_deps",
@@ -285,32 +283,13 @@ def _skip_target(
             return target.label
         if target_skip_type != skip_type.apple_test_bundle:
             return target.label
-        if _APPLE_INTERNAL_TEST_BUNDLE_SUFFIX not in info.xcode_target.label.name:
-            warn("""\
-Couldn't find '{suffix}' suffix in '{label}' with skip_type={type}, \
-replacement labels might not work as expected.
-
-Please, file a bug report here: \
-https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bug.md
-""".format(
-                suffix = _APPLE_INTERNAL_TEST_BUNDLE_SUFFIX,
-                label = info.xcode_target.label,
-                type = target_skip_type,
-            ))
-            return target.label
-
-        # `_APPLE_INTERNAL_TEST_BUNDLE_SUFFIX` should always be present here so remove it
-        label_name = info.xcode_target.label.name.replace(_APPLE_INTERNAL_TEST_BUNDLE_SUFFIX, "")
-
         # As of https://github.com/bazelbuild/rules_apple/pull/1948 `bundle_name` can be used to
-        # name the bundle instead of the target name. That attribute is collected in `xcode_target.product.name` so
-        # in order to get a valid label here put the target name back using `generator_name` since at this
-        # point the original `test_suite` was already skipped
-        label_name = label_name.replace(info.xcode_target.product.name, ctx.rule.attr.generator_name)
+        # name the bundle instead of the target name. Because of that we use `ctx.rule.attr.generator_name` here
+        # to ensure this is always a real target label.
         return Label(
             "@//{}:{}".format(
                 info.xcode_target.label.package,
-                label_name,
+                ctx.rule.attr.generator_name,
             ),
         )
 
