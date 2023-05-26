@@ -31,18 +31,18 @@ public enum Identifiers {
         /// `XCBBuildConfiguration`s.
         ///
         /// The identifiers start at `0000000000000000000000F9` and decrease
-        /// down to a minimum of `000000000000000000000080`. This is because the
+        /// down to a minimum of `000000000000000000000081`. This is because the
         /// other `Identifiers.BazelDependencies` values use the range
         /// `0000000000000000000000FA`...`0000000000000000000000FF`, and
         /// `Identifiers.Project.buildConfiguration` uses the range
-        /// `000000000000000000000005`...`00000000000000000000007E`.
+        /// `000000000000000000000007`...`00000000000000000000007E`.
         ///
-        /// - Precondition: `index` must be in the range `0...121`.
+        /// - Precondition: `index` must be in the range `0...120`.
         public static func buildConfiguration(
             _ name: String,
             index: UInt8
         ) -> String {
-            precondition(index <= 121, "`index` must be in the range `0...121`")
+            precondition(index <= 120, "`index` must be in the range `0...120`")
             return #"""
 0000000000000000000000\#(String(0xF9 - index, radix: 16, uppercase: true)) \#
 /* \#(name) */
@@ -70,6 +70,12 @@ public enum Identifiers {
             return #"000000000000000000000003 /* \#(path) */"#
         }
 
+        public static let bazelExternalRepositoriesGroup = #"""
+000000000000000000000005 /* Bazel External Repositories */
+"""#
+        public static let bazelGeneratedFilesGroup = #"""
+000000000000000000000006 /* Bazel Generated Files */
+"""#
         public static let productsGroup = #"""
 000000000000000000000004 /* Products */
 """#
@@ -78,7 +84,7 @@ public enum Identifiers {
         ///
         /// - Note: The order that this is called matters. If two `path + type`
         ///   hash to the same value, the second one will have a new hash
-        ///   generated to guarentee it is unique.
+        ///   generated to guarantee it is unique.
         ///
         /// - Parameters:
         ///   - path: The file path for the version group.
@@ -149,22 +155,22 @@ public enum Identifiers {
         /// Calculates the identifier for one of the `PBXProject`
         /// `XCBBuildConfiguration`s.
         ///
-        /// The identifiers start at `000000000000000000000005` and increase
-        /// up to a maximum of `00000000000000000000007E`. This is because the
+        /// The identifiers start at `000000000000000000000007` and increase
+        /// up to a maximum of `00000000000000000000007F`. This is because the
         /// other `Identifiers.Project` and `Identifiers.FilesAndGroups` values
         /// use the range
-        /// `000000000000000000000001`...`000000000000000000000004`, and
+        /// `000000000000000000000001`...`000000000000000000000006`, and
         /// `Identifiers.BazelDependencies.buildConfiguration` uses the range
-        /// `000000000000000000000080`...`0000000000000000000000F9`.
+        /// `000000000000000000000081`...`0000000000000000000000F9`.
         ///
-        /// - Precondition: `index` must be in the range `0...121`.
+        /// - Precondition: `index` must be in the range `0...120`.
         public static func buildConfiguration(
             _ name: String,
             index: UInt8
         ) -> String {
-            precondition(index <= 121, "`index` must be in the range `0...121`")
+            precondition(index <= 120, "`index` must be in the range `0...120`")
             return #"""
-0000000000000000000000\#(String(format: "%02X", 0x05 + index)) \#
+0000000000000000000000\#(String(format: "%02X", 0x07 + index)) \#
 /* \#(name) */
 """#
         }

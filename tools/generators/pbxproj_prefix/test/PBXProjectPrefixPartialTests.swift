@@ -25,17 +25,17 @@ class PBXProjectPrefixPartialTests: XCTestCase {
 
         // The tabs for indenting are intentional
         let expectedPBXProjectPrefixPartial = #"""
-		000000000000000000000005 /* Debug */ = {
+		000000000000000000000007 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {BUILD_SETTINGS_HERE};
 			name = Debug;
 		};
-		000000000000000000000006 /* Profile */ = {
+		000000000000000000000008 /* Profile */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {BUILD_SETTINGS_HERE};
 			name = Profile;
 		};
-		000000000000000000000007 /* Release */ = {
+		000000000000000000000009 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {BUILD_SETTINGS_HERE};
 			name = Release;
@@ -43,9 +43,9 @@ class PBXProjectPrefixPartialTests: XCTestCase {
 		000000000000000000000002 /* Build configuration list for PBXProject */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				000000000000000000000005 /* Debug */,
-				000000000000000000000006 /* Profile */,
-				000000000000000000000007 /* Release */,
+				000000000000000000000007 /* Debug */,
+				000000000000000000000008 /* Profile */,
+				000000000000000000000009 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Profile;
@@ -107,17 +107,17 @@ class PBXProjectPrefixPartialTests: XCTestCase {
 
         // The tabs for indenting are intentional
         let expectedPBXProjectPrefixPartial = #"""
-		000000000000000000000005 /* Debug */ = {
+		000000000000000000000007 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {BUILD_SETTINGS_HERE};
 			name = Debug;
 		};
-		000000000000000000000006 /* Profile */ = {
+		000000000000000000000008 /* Profile */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {BUILD_SETTINGS_HERE};
 			name = Profile;
 		};
-		000000000000000000000007 /* Release */ = {
+		000000000000000000000009 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {BUILD_SETTINGS_HERE};
 			name = Release;
@@ -125,9 +125,9 @@ class PBXProjectPrefixPartialTests: XCTestCase {
 		000000000000000000000002 /* Build configuration list for PBXProject */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				000000000000000000000005 /* Debug */,
-				000000000000000000000006 /* Profile */,
-				000000000000000000000007 /* Release */,
+				000000000000000000000007 /* Debug */,
+				000000000000000000000008 /* Profile */,
+				000000000000000000000009 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
@@ -188,17 +188,17 @@ class PBXProjectPrefixPartialTests: XCTestCase {
         ]
 
         let expectedPBXProjectPrefixPartial = #"""
-		000000000000000000000005 /* Debug */ = {
+		000000000000000000000007 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {BUILD_SETTINGS_HERE};
 			name = Debug;
 		};
-		000000000000000000000006 /* Profile */ = {
+		000000000000000000000008 /* Profile */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {BUILD_SETTINGS_HERE};
 			name = Profile;
 		};
-		000000000000000000000007 /* Release */ = {
+		000000000000000000000009 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {BUILD_SETTINGS_HERE};
 			name = Release;
@@ -206,9 +206,9 @@ class PBXProjectPrefixPartialTests: XCTestCase {
 		000000000000000000000002 /* Build configuration list for PBXProject */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				000000000000000000000005 /* Debug */,
-				000000000000000000000006 /* Profile */,
-				000000000000000000000007 /* Release */,
+				000000000000000000000007 /* Debug */,
+				000000000000000000000008 /* Profile */,
+				000000000000000000000009 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
@@ -270,17 +270,17 @@ class PBXProjectPrefixPartialTests: XCTestCase {
         ]
 
         let expectedPBXProjectPrefixPartial = #"""
-		000000000000000000000005 /* Debug */ = {
+		000000000000000000000007 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {BUILD_SETTINGS_HERE};
 			name = Debug;
 		};
-		000000000000000000000006 /* Profile */ = {
+		000000000000000000000008 /* Profile */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {BUILD_SETTINGS_HERE};
 			name = Profile;
 		};
-		000000000000000000000007 /* Release */ = {
+		000000000000000000000009 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {BUILD_SETTINGS_HERE};
 			name = Release;
@@ -288,9 +288,9 @@ class PBXProjectPrefixPartialTests: XCTestCase {
 		000000000000000000000002 /* Build configuration list for PBXProject */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				000000000000000000000005 /* Debug */,
-				000000000000000000000006 /* Profile */,
-				000000000000000000000007 /* Release */,
+				000000000000000000000007 /* Debug */,
+				000000000000000000000008 /* Profile */,
+				000000000000000000000009 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
@@ -352,17 +352,17 @@ class PBXProjectPrefixPartialTests: XCTestCase {
         ]
 
         let expectedPBXProjectPrefixPartial = #"""
-		000000000000000000000005 /* Debug */ = {
+		000000000000000000000007 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {BUILD_SETTINGS_HERE};
 			name = Debug;
 		};
-		000000000000000000000006 /* Profile */ = {
+		000000000000000000000008 /* Profile */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {BUILD_SETTINGS_HERE};
 			name = Profile;
 		};
-		000000000000000000000007 /* Release */ = {
+		000000000000000000000009 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {BUILD_SETTINGS_HERE};
 			name = Release;
@@ -370,9 +370,9 @@ class PBXProjectPrefixPartialTests: XCTestCase {
 		000000000000000000000002 /* Build configuration list for PBXProject */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				000000000000000000000005 /* Debug */,
-				000000000000000000000006 /* Profile */,
-				000000000000000000000007 /* Release */,
+				000000000000000000000007 /* Debug */,
+				000000000000000000000008 /* Profile */,
+				000000000000000000000009 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

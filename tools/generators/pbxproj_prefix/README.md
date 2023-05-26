@@ -173,7 +173,7 @@ Here is an example output:
 			name = BazelDependencies;
 			productName = BazelDependencies;
 		};
-		000000000000000000000005 /* Debug */ = {
+		000000000000000000000007 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -238,7 +238,7 @@ Here is an example output:
 			};
 			name = Debug;
 		};
-		000000000000000000000006 /* Release */ = {
+		000000000000000000000008 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -306,20 +306,20 @@ Here is an example output:
 		000000000000000000000002 /* Build configuration list for PBXProject */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				000000000000000000000005 /* Debug */,
-				000000000000000000000006 /* Release */,
+				000000000000000000000007 /* Debug */,
+				000000000000000000000008 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		000000000000000000000001 /* Project object */ = {
 			isa = PBXProject;
-			buildConfigurationList = 000000000000000000000004 /* Build configuration list for PBXProject */;
+			buildConfigurationList = 000000000000000000000002 /* Build configuration list for PBXProject */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = enGB;
 			hasScannedForEncodings = 0;
-			mainGroup = 000000000000000000000002 /* /tmp/workspace */;
-			productRefGroup = 000000000000000000000003 /* Products */;
+			mainGroup = 000000000000000000000003 /* /tmp/workspace */;
+			productRefGroup = 000000000000000000000004 /* Products */;
 			projectDirPath = /tmp/workspace/bazel-output-base/rules_xcodeproj.noindex/build_output_base/execroot/_main;
 			projectRoot = "";
 			attributes = {
