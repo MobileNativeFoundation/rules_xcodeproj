@@ -287,14 +287,15 @@ def _skip_target(
         # Normalizes label to ensure this works with and without bzlmod
         # and then drop the target name because that will be replaced below
         label_str = bazel_labels.normalize_label(info.xcode_target.label)
-        label_str = label_str.split(":")[0]
+        package_label_str = label_str.split(":")[0]
 
         # As of https://github.com/bazelbuild/rules_apple/pull/1948
         # `bundle_name` can be used to name the bundle instead of the
         # target name. Because of that we use `ctx.rule.attr.generator_name`
         # here to ensure this is always a real target label.
-        label_str = "{}:{}".format(label_str, ctx.rule.attr.generator_name)
-        return Label(label_str)
+        return Label(
+            "{}:{}".format(package_label_str, ctx.rule.attr.generator_name),
+        )
 
     return _target_info_fields(
         args = memory_efficient_depset(
