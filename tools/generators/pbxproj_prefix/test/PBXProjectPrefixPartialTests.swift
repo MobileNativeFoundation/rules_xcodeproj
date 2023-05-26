@@ -64,6 +64,7 @@ class PBXProjectPrefixPartialTests: XCTestCase {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 9999;
 				LastUpgradeCheck = 9999;
+
 """#
 
         // Act
@@ -145,6 +146,7 @@ class PBXProjectPrefixPartialTests: XCTestCase {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 9999;
 				LastUpgradeCheck = 9999;
+
 """#
 
         // Act
@@ -226,6 +228,7 @@ class PBXProjectPrefixPartialTests: XCTestCase {
 				LastSwiftUpdateCheck = 9999;
 				LastUpgradeCheck = 9999;
 				ORGANIZATIONNAME = SingleWord;
+
 """#
 
         // Act
@@ -307,6 +310,7 @@ class PBXProjectPrefixPartialTests: XCTestCase {
 				LastSwiftUpdateCheck = 9999;
 				LastUpgradeCheck = 9999;
 				ORGANIZATIONNAME = "Multiple Words";
+
 """#
 
         // Act
@@ -388,6 +392,7 @@ class PBXProjectPrefixPartialTests: XCTestCase {
 				LastSwiftUpdateCheck = 9999;
 				LastUpgradeCheck = 9999;
 				ORGANIZATIONNAME = "Go \"Home\"";
+
 """#
 
         // Act

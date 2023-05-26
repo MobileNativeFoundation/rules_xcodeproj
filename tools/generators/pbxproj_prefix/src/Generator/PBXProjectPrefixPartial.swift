@@ -17,8 +17,8 @@ extension Generator {
         let organizationNameAttribute: String
         if let organizationName = organizationName {
             organizationNameAttribute = #"""
-
 				ORGANIZATIONNAME = \#(organizationName.pbxProjEscaped);
+
 """#
         } else {
             organizationNameAttribute = ""
@@ -55,7 +55,9 @@ extension Generator {
         // this, it's intentional that the element isn't terminated, and
         // `attributes` is left open.
         //
-        // The tabs for indenting are intentional.
+        // The tabs for indenting are intentional. The trailing newlines are
+        // intentional, as `cat` needs them to concatenate the partials
+        // correctly.
         return #"""
 \#(buildConfigurations.map(\.element).joined(separator: "\n"))
 		\#(Identifiers.Project.buildConfigurationList) = {
@@ -84,7 +86,7 @@ extension Generator {
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 9999;
-				LastUpgradeCheck = 9999;\#
+				LastUpgradeCheck = 9999;
 \#(organizationNameAttribute)
 """#
     }
