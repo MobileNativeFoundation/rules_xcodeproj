@@ -8,6 +8,7 @@ load(
     "AppleBundleInfo",
 )
 load(":automatic_target_info.bzl", "calculate_automatic_target_info")
+load(":bazel_labels.bzl", "bazel_labels")
 load(":compilation_providers.bzl", comp_providers = "compilation_providers")
 load(":input_files.bzl", "input_files")
 load(":library_targets.bzl", "process_library_target")
@@ -283,16 +284,17 @@ def _skip_target(
         if target_skip_type != skip_type.apple_test_bundle:
             return target.label
 
+        # Normalizes label to ensure this works with and without bzlmod
+        # and then drop the target name because that will be replaced below
+        label_str = bazel_labels.normalize_label(info.xcode_target.label)
+        label_str = label_str.split(":")[0]
+
         # As of https://github.com/bazelbuild/rules_apple/pull/1948
         # `bundle_name` can be used to name the bundle instead of the
         # target name. Because of that we use `ctx.rule.attr.generator_name`
         # here to ensure this is always a real target label.
-        return Label(
-            "@//{}:{}".format(
-                info.xcode_target.label.package,
-                ctx.rule.attr.generator_name,
-            ),
-        )
+        label_str = "{}:{}".format(label_str, ctx.rule.attr.generator_name)
+        return Label(label_str)
 
     return _target_info_fields(
         args = memory_efficient_depset(
