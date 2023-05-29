@@ -91,7 +91,7 @@ if [[ $for_fixture -eq 1 ]]; then
 
   # Copy over generated generator
   output_base_hash=$(/sbin/md5 -q -s "${execution_root%/*/*}")
-  readonly src_generator_package_directory="/tmp/rules_xcodeproj/generated_v2/$output_base_hash/generator/$generator_package_name"
+  readonly src_generator_package_directory="/var/tmp/rules_xcodeproj/generated_v2/$output_base_hash/generator/$generator_package_name"
   readonly dest_generator_package_directory="$project_dir/generated"
   readonly dest_generator_package="${dest_generator_package_directory:?}/$generator_name"
   rm -rf "$dest_generator_package"
