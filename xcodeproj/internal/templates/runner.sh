@@ -104,7 +104,7 @@ readonly output_base="${execution_root%/*/*}"
 
 # Create files for the generator target
 output_base_hash=$(/sbin/md5 -q -s "$output_base")
-readonly generator_package_directory="/tmp/rules_xcodeproj/generated_v2/$output_base_hash/%generator_package_name%"
+readonly generator_package_directory="/var/tmp/rules_xcodeproj/generated_v2/$output_base_hash/%generator_package_name%"
 
 mkdir -p "$generator_package_directory"
 cp "$generator_build_file" "$generator_package_directory/BUILD"
