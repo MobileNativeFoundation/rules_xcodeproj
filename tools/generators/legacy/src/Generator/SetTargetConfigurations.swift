@@ -540,7 +540,10 @@ $(ASAN_OTHER_CPLUSPLUSFLAGS__$(CLANG_ADDRESS_SANITIZER))
         }
 
         if !swiftFlagsString.isEmpty {
-            buildSettings.set("OTHER_SWIFT_FLAGS", to: swiftFlagsString)
+            try buildSettings.prepend(
+                onKey: "OTHER_SWIFT_FLAGS",
+                swiftFlagsString
+            )
         }
         if !cFlagsString.isEmpty {
             buildSettings.set("OTHER_CFLAGS", to: cFlagsString)
@@ -681,6 +684,41 @@ private extension Dictionary where Value == BuildSetting {
         default:
             throw PreconditionError(message: """
 Build setting for \(key) is not an array: \(buildSetting)
+""")
+        }
+    }
+    mutating func prepend(
+        onKey key: Key,
+        onlyIfSet: Bool = false,
+        _ content: String
+    ) throws {
+        let maybeBuildSetting = self[key]
+
+        let buildSetting: Value
+        if let maybeBuildSetting = maybeBuildSetting {
+            buildSetting = maybeBuildSetting
+        } else {
+            guard !onlyIfSet else {
+                return
+            }
+            buildSetting = .string("")
+        }
+
+        switch buildSetting {
+        case let .string(existing):
+            let new: String
+            if existing.isEmpty {
+                new = content
+            } else {
+                new = "\(content) \(existing)"
+            }
+            guard !new.isEmpty else {
+                return
+            }
+            self[key] = .string(new)
+        default:
+            throw PreconditionError(message: """
+Build setting for \(key) is not a string: \(buildSetting)
 """)
         }
     }

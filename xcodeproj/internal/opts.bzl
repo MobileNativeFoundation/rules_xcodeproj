@@ -1,6 +1,8 @@
 """Functions for processing compiler and linker options."""
 
 load("@bazel_tools//tools/cpp:toolchain_utils.bzl", "find_cpp_toolchain")
+load(":collections.bzl", "set_if_true")
+load(":files.bzl", "is_relative_path", "replace_bazel_placeholders")
 load(":memory_efficiency.bzl", "EMPTY_LIST")
 
 # Maps Swift compliation mode compiler flags to the corresponding Xcode values
@@ -268,9 +270,21 @@ def _process_swiftcopts(
 
     has_debug_info = False
     next_previous_opt = None
+    next_previous_frontend_opt = None
+    project_set_opts = []
     for opt in opts:
         previous_opt = next_previous_opt
         next_previous_opt = opt
+
+        if opt == "-Xfrontend":
+            # Skipped to simplify the checks below
+            continue
+
+        previous_frontend_opt = next_previous_frontend_opt
+        if previous_opt == "-Xfrontend":
+            next_previous_frontend_opt = opt
+        else:
+            next_previous_frontend_opt = None
 
         if opt == "-Xcc" or previous_opt == "-Xcc":
             continue
@@ -299,10 +313,153 @@ under {}""".format(opt, package_bin_dir))
             build_settings["SWIFT_OBJC_INTERFACE_HEADER_NAME"] = header_name
             continue
 
-        if is_bwx and opt.startswith("-vfsoverlay"):
-            fail("""\
+        if not is_bwx:
+            if previous_opt == "-I":
+                path = opt
+                if path == ".":
+                    absolute_opt = "$(PROJECT_DIR)"
+                elif is_relative_path(path):
+                    absolute_opt = "$(CURRENT_EXECUTION_ROOT)/" + path
+                else:
+                    absolute_opt = replace_bazel_placeholders(opt)
+                project_set_opts.append(absolute_opt)
+                continue
+
+            if opt.startswith("-I"):
+                path = opt[2:]
+                if not path:
+                    absolute_opt = opt
+                elif path == ".":
+                    absolute_opt = "-I$(PROJECT_DIR)"
+                elif is_relative_path(path):
+                    absolute_opt = "-I$(CURRENT_EXECUTION_ROOT)/" + path
+                else:
+                    absolute_opt = replace_bazel_placeholders(opt)
+                project_set_opts.append(absolute_opt)
+                continue
+
+        if previous_opt == "-Xfrontend":
+            if opt == "-explicit-swift-module-map-file":
+                project_set_opts.append(previous_opt)
+                project_set_opts.append(opt)
+                continue
+            if previous_frontend_opt == "-explicit-swift-module-map-file":
+                if is_bwx:
+                    fail("""\
+Using explicit module maps with `build_mode = "xcode"` is unsupported.
+""")
+                else:
+                    path = opt
+                    if is_relative_path(path):
+                        absolute_opt = "$(CURRENT_EXECUTION_ROOT)/" + path
+                    else:
+                        absolute_opt = opt
+                    project_set_opts.append(previous_opt)
+                    project_set_opts.append(absolute_opt)
+                continue
+
+            if previous_frontend_opt == "-vfsoverlay":
+                if is_bwx:
+                    fail("""\
 Using VFS overlays with `build_mode = "xcode"` is unsupported.
 """)
+                else:
+                    path = opt
+                    if is_relative_path(path):
+                        absolute_opt = "$(CURRENT_EXECUTION_ROOT)/" + path
+                    else:
+                        absolute_opt = opt
+                    project_set_opts.append(previous_opt)
+                    project_set_opts.append(absolute_opt)
+                continue
+
+            if opt.startswith("-vfsoverlay"):
+                if is_bwx:
+                    fail("""\
+Using VFS overlays with `build_mode = "xcode"` is unsupported.
+""")
+                else:
+                    path = opt[11:]
+                    if path.startswith("="):
+                        path = path[1:]
+                    if not path:
+                        absolute_opt = opt
+                    elif is_relative_path(path):
+                        absolute_opt = (
+                            "-vfsoverlay$(CURRENT_EXECUTION_ROOT)/" + path
+                        )
+                    else:
+                        absolute_opt = opt
+                    project_set_opts.append(previous_opt)
+                    project_set_opts.append(absolute_opt)
+                continue
+
+        else:
+            if opt == "-explicit-swift-module-map-file":
+                project_set_opts.append(opt)
+                continue
+            if previous_opt == "-explicit-swift-module-map-file":
+                if is_bwx:
+                    fail("""\
+Using explicit module maps with `build_mode = "xcode"` is unsupported.
+""")
+                else:
+                    path = opt
+                    if is_relative_path(path):
+                        absolute_opt = "$(CURRENT_EXECUTION_ROOT)/" + path
+                    else:
+                        absolute_opt = opt
+                    project_set_opts.append(absolute_opt)
+                continue
+
+            if previous_opt == "-vfsoverlay":
+                if is_bwx:
+                    fail("""\
+Using VFS overlays with `build_mode = "xcode"` is unsupported.
+""")
+                else:
+                    path = opt
+                    if is_relative_path(path):
+                        absolute_opt = "$(CURRENT_EXECUTION_ROOT)/" + path
+                    else:
+                        absolute_opt = opt
+                    project_set_opts.append(absolute_opt)
+                continue
+
+            if opt.startswith("-vfsoverlay"):
+                if is_bwx:
+                    fail("""\
+Using VFS overlays with `build_mode = "xcode"` is unsupported.
+""")
+                else:
+                    path = opt[11:]
+                    if path.startswith("="):
+                        path = path[1:]
+                    if not path:
+                        absolute_opt = opt
+                    elif is_relative_path(path):
+                        absolute_opt = (
+                            "-vfsoverlay$(CURRENT_EXECUTION_ROOT)/" + path
+                        )
+                    else:
+                        absolute_opt = opt
+                    project_set_opts.append(absolute_opt)
+                continue
+
+    # Xcode's SourceKit `source.request.editor.open.interface` request filters a
+    # lot of arguments, and the params file in particular. In order to fix this
+    # request we need to include `-I` and `-vfsoverlay` arguments in the
+    # `OTHER_SWIFT_FLAGS` build setting. Above we set `project_set_opts` to
+    # include those arguments. We also filter these same arguments in
+    # `swift_compiler_params_processor.py` to prevent duplication.
+    #
+    # Since `-working-directory` is also filtered for the request, we ensure
+    # that relative paths use `$(CURRENT_EXECUTION_ROOT)`.
+    set_if_true(
+        build_settings,
+        "OTHER_SWIFT_FLAGS",
+        " ".join(project_set_opts),
+    )
 
     return has_debug_info
 

@@ -139,3 +139,12 @@ def join_paths_ignoring_empty(*components):
     if not non_empty_components:
         return ""
     return paths.join(*non_empty_components)
+
+def replace_bazel_placeholders(path):
+    # Use Xcode set `DEVELOPER_DIR`
+    path = path.replace("__BAZEL_XCODE_DEVELOPER_DIR__", "$(DEVELOPER_DIR)")
+
+    # Use Xcode set `SDKROOT`
+    path = path.replace("__BAZEL_XCODE_SDKROOT__", "$(SDKROOT)")
+
+    return path

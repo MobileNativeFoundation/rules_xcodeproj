@@ -168,16 +168,6 @@ class swift_compiler_params_processor_test(unittest.TestCase):
                 ".",
 
                 # -I
-                "-I/absolute/path",
-                "-I",
-                "/absolute/path",
-                "-Irelative/path",
-                "-I",
-                "relative/path",
-                "-I.",
-                "-I",
-                ".",
-
                 "-Xcc",
                 "-I/absolute/path",
                 "-Xcc",
@@ -459,8 +449,6 @@ class swift_compiler_params_processor_test(unittest.TestCase):
             ),
             [
                 "'-F$(DEVELOPER_DIR)/Hi'",
-                "'-I$(SDKROOT)/Yo'",
-                "-I__BAZEL_XCODE_SOMETHING_/path",
             ],
         )
 
@@ -524,9 +512,7 @@ class swift_compiler_params_processor_test(unittest.TestCase):
                 "-import-underlying-module",
                 "-passthrough",
                 "-passthrough",
-                "-I__BAZEL_XCODE_SOMETHING_/path",
                 "-passthrough",
-                "-Ibazel-out/...",
                 "-passthrough",
                 "-keep-me=something.swift",
                 "-Xcc",
@@ -608,6 +594,33 @@ class swift_compiler_params_processor_test(unittest.TestCase):
             ],
         )
 
+    def test_explicit_swift_module_map_file(self):
+        def _parse_args(args):
+            return iter([f"{arg}\n" for arg in args])
+
+        self.assertEqual(
+            swift_compiler_params_processor.process_args(
+                [[
+                    "swiftc",
+                    "-explicit-swift-module-map-file",
+                    "/Some/Path.json",
+                    "-explicit-swift-module-map-file",
+                    "relative/Path.json",
+                    "-Xfrontend",
+                    "-explicit-swift-module-map-file",
+                    "-Xfrontend",
+                    "/Some/Path.json",
+                    "-Xfrontend",
+                    "-explicit-swift-module-map-file",
+                    "-Xfrontend",
+                    "relative/Path.json",
+                ]],
+                parse_args = _parse_args,
+                build_mode = "bazel",
+            ),
+            [],
+        )
+
     def test_vfsoverlay(self):
         def _parse_args(args):
             return iter([f"{arg}\n" for arg in args])
@@ -632,28 +645,15 @@ class swift_compiler_params_processor_test(unittest.TestCase):
                     "-vfsoverlay/Some/Path.yaml",
                     "-Xfrontend",
                     "-vfsoverlayrelative/Path.yaml",
+                    "-Xfrontend",
+                    "-vfsoverlay=/Some/Path.yaml",
+                    "-Xfrontend",
+                    "-vfsoverlay=relative/Path.yaml",
                 ]],
                 parse_args = _parse_args,
                 build_mode = "bazel",
             ),
-            [
-                "-vfsoverlay",
-                "/Some/Path.yaml",
-                "-vfsoverlay",
-                "'$(CURRENT_EXECUTION_ROOT)/relative/Path.yaml'",
-                "-Xfrontend",
-                "-vfsoverlay",
-                "-Xfrontend",
-                "/Some/Path.yaml",
-                "-Xfrontend",
-                "-vfsoverlay",
-                "-Xfrontend",
-                "'$(CURRENT_EXECUTION_ROOT)/relative/Path.yaml'",
-                "-Xfrontend",
-                "-vfsoverlay/Some/Path.yaml",
-                "-Xfrontend",
-                "'-vfsoverlay$(CURRENT_EXECUTION_ROOT)/relative/Path.yaml'",
-            ],
+            [],
         )
 
     def test_quoting(self):
@@ -664,17 +664,19 @@ class swift_compiler_params_processor_test(unittest.TestCase):
             swift_compiler_params_processor.process_args(
                 [[
                     "swiftc",
-                    "-Inon/quoted/path",
-                    "-vfsoverlay",
-                    "relative/Path.yaml",
+                    "-Xcc",
+                    "-I/non/quoted/path",
+                    "-Xcc",
+                    "-Irelative/path",
                 ]],
                 parse_args = _parse_args,
-                build_mode = "bazel",
+                build_mode = "xcode",
             ),
             [
-                "-Inon/quoted/path",
-                "-vfsoverlay",
-                "'$(CURRENT_EXECUTION_ROOT)/relative/Path.yaml'",
+                "-Xcc",
+                "-I/non/quoted/path",
+                "-Xcc",
+                "'-I$(PROJECT_DIR)/relative/path'",
             ],
         )
 
