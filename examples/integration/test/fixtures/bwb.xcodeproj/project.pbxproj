@@ -11605,7 +11605,7 @@
 				COMPILE_TARGET_NAME = MixedAnswerLib_Swift;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PRODUCT_MODULE_NAME = MixedAnswer;
 				PRODUCT_NAME = MixedAnswerLib_Swift;
 				SDKROOT = iphoneos;
@@ -11630,7 +11630,7 @@
 				COMPILE_TARGET_NAME = lib_swift;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PRODUCT_MODULE_NAME = LibSwift;
 				PRODUCT_NAME = lib_swift;
 				SDKROOT = macosx;
@@ -11675,7 +11675,7 @@
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.watchOS.9.link.params";
 				"LINK_PARAMS_FILE[sdk=watchos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.watchOS.67.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/UI";
@@ -11719,7 +11719,7 @@
 				INCLUDED_SOURCE_FILE_NAMES = "";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=watchos*]" = "$(WATCHOS_FILES)";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=watchsimulator*]" = "$(WATCHSIMULATOR_FILES)";
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PRODUCT_MODULE_NAME = Lib;
 				PRODUCT_NAME = Lib;
 				SDKROOT = watchos;
@@ -11802,7 +11802,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppUITestSuite.114.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.uitests";
 				PRODUCT_MODULE_NAME = iOSAppUITestSuite;
 				PRODUCT_NAME = iOSAppUITestSuite;
@@ -11923,7 +11923,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -12027,7 +12027,7 @@
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSApp.12.link.params";
 				"LINK_PARAMS_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSApp.70.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source";
@@ -12052,7 +12052,7 @@
 			buildSettings = {
 				ARCHS = arm64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -12079,7 +12079,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -12131,7 +12131,7 @@
 				IPHONESIMULATOR_FILES = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/TestingUtils/TestingUtils.swift";
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MACOSX_FILES = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-29/bin/iOSApp/Test/TestingUtils/TestingUtils.swift";
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PRODUCT_MODULE_NAME = TestingUtils;
 				PRODUCT_NAME = TestingUtils;
 				SDKROOT = macosx;
@@ -12149,7 +12149,7 @@
 			buildSettings = {
 				ARCHS = arm64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -12235,7 +12235,7 @@
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSApp.90.link.params";
 				"LINK_PARAMS_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSApp.148.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Source";
@@ -12289,7 +12289,7 @@
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.tvOS.18.link.params";
 				"LINK_PARAMS_FILE[sdk=appletvos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.tvOS.76.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/UI";
@@ -12321,7 +12321,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -12372,7 +12372,7 @@
 				INCLUDED_SOURCE_FILE_NAMES = "";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=watchos*]" = "$(WATCHOS_FILES)";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=watchsimulator*]" = "$(WATCHSIMULATOR_FILES)";
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PRODUCT_MODULE_NAME = Lib;
 				PRODUCT_NAME = Lib;
 				SDKROOT = watchos;
@@ -12406,7 +12406,7 @@
 				IPHONESIMULATOR_FILES = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Test/TestingUtils/TestingUtils.swift";
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MACOSX_FILES = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-30/bin/iOSApp/Test/TestingUtils/TestingUtils.swift";
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PRODUCT_MODULE_NAME = TestingUtils;
 				PRODUCT_NAME = TestingUtils;
 				SDKROOT = macosx;
@@ -12440,7 +12440,7 @@
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-dbg-STABLE-17/bin/watchOSAppExtension/Test/UnitTests/rules_xcodeproj/watchOSAppExtensionUnitTests.__internal__.__test_bundle/Info.plist";
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOSAppExtensionUnitTests.35.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/watchOSAppExtension/Test/UnitTests";
@@ -12494,7 +12494,7 @@
 			buildSettings = {
 				ARCHS = arm64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -12558,7 +12558,7 @@
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOSAppExtension.10.link.params";
 				"LINK_PARAMS_FILE[sdk=watchos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOSAppExtension.68.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/watchOSAppExtension";
@@ -12582,7 +12582,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -12657,7 +12657,7 @@
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-dbg-STABLE-25/bin/tvOSApp/Test/UnitTests/rules_xcodeproj/tvOSAppUnitTests.__internal__.__test_bundle/Info.plist";
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOSAppUnitTests.33.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/tvOSApp/Test/UnitTests";
@@ -12680,7 +12680,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -12817,7 +12817,7 @@
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOSApp.97.link.params";
 				"LINK_PARAMS_FILE[sdk=appletvos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOSApp.155.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9/bin/tvOSApp/Source";
@@ -12863,7 +12863,7 @@
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-opt-STABLE-19/bin/watchOSApp/Test/UITests/rules_xcodeproj/watchOSAppUITests.__internal__.__test_bundle/Info.plist";
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOSAppUITests.112.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.watchTests";
 				PRODUCT_MODULE_NAME = watchOSAppUITestsLibrary;
 				PRODUCT_NAME = watchOSAppUITests;
@@ -12909,7 +12909,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppSwiftUnitTests.107.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Test/SwiftUnitTests";
@@ -12949,7 +12949,7 @@
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-opt-STABLE-19/bin/watchOSAppExtension/Test/UnitTests/rules_xcodeproj/watchOSAppExtensionUnitTests.__internal__.__test_bundle/Info.plist";
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOSAppExtensionUnitTests.113.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8/bin/watchOSAppExtension/Test/UnitTests";
@@ -13006,7 +13006,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -13033,7 +13033,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -13112,7 +13112,7 @@
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/macOSApp.108.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-30/bin/macOSApp/Source";
@@ -13154,7 +13154,7 @@
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-opt-STABLE-27/bin/tvOSApp/Test/UITests/rules_xcodeproj/tvOSAppUITests.__internal__.__test_bundle/Info.plist";
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOSAppUITests.110.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.uitests";
 				PRODUCT_MODULE_NAME = tvOSAppUITests;
 				PRODUCT_NAME = tvOSAppUITests;
@@ -13179,7 +13179,7 @@
 				COMPILE_TARGET_NAME = lib_swift;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PRODUCT_MODULE_NAME = LibSwift;
 				PRODUCT_NAME = lib_swift;
 				SDKROOT = macosx;
@@ -13197,7 +13197,7 @@
 			buildSettings = {
 				ARCHS = arm64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -13234,7 +13234,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -13261,7 +13261,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -13317,7 +13317,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iMessageAppExtension.105.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iMessageApp";
@@ -13373,7 +13373,7 @@
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOSApp.19.link.params";
 				"LINK_PARAMS_FILE[sdk=appletvos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOSApp.77.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/tvOSApp/Source";
@@ -13397,7 +13397,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -13453,7 +13453,7 @@
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.iOS.6.link.params";
 				"LINK_PARAMS_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.iOS.64.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/UI";
@@ -13486,7 +13486,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -13551,7 +13551,7 @@
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/WidgetExtension.82.link.params";
 				"LINK_PARAMS_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/WidgetExtension.140.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/WidgetExtension";
@@ -13583,7 +13583,7 @@
 				COMPILE_TARGET_NAME = private_swift_lib;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PRODUCT_MODULE_NAME = _SwiftLib;
 				PRODUCT_NAME = private_swift_lib;
 				SDKROOT = macosx;
@@ -13598,7 +13598,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -13690,7 +13690,7 @@
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOSAppExtension.88.link.params";
 				"LINK_PARAMS_FILE[sdk=watchos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOSAppExtension.146.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8/bin/watchOSAppExtension";
@@ -13742,7 +13742,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppSwiftUnitTests.29.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/SwiftUnitTests";
@@ -13854,7 +13854,7 @@
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/AppClip.79.link.params";
 				"LINK_PARAMS_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/AppClip.137.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/AppClip";
@@ -13886,7 +13886,7 @@
 				COMPILE_TARGET_NAME = lib_swift;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PRODUCT_MODULE_NAME = LibSwift;
 				PRODUCT_NAME = lib_swift;
 				SDKROOT = macosx;
@@ -13932,7 +13932,7 @@
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.iOS.84.link.params";
 				"LINK_PARAMS_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.iOS.142.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/UI";
@@ -13999,7 +13999,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -14083,7 +14083,7 @@
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/AppClip.1.link.params";
 				"LINK_PARAMS_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/AppClip.59.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/AppClip";
@@ -14108,7 +14108,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -14151,7 +14151,7 @@
 				COMPILE_TARGET_NAME = lib_swift;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PRODUCT_MODULE_NAME = LibSwift;
 				PRODUCT_NAME = lib_swift;
 				SDKROOT = macosx;
@@ -14175,7 +14175,7 @@
 				COMPILE_TARGET_NAME = lib_swift;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PRODUCT_MODULE_NAME = LibSwift;
 				PRODUCT_NAME = lib_swift;
 				SDKROOT = macosx;
@@ -14193,7 +14193,7 @@
 			buildSettings = {
 				ARCHS = arm64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -14279,7 +14279,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				IPHONEOS_FILES = "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/Lib/Lib.swift";
 				IPHONESIMULATOR_FILES = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/Lib/Lib.swift";
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PRODUCT_MODULE_NAME = Lib;
 				PRODUCT_NAME = Lib;
 				SDKROOT = iphoneos;
@@ -14300,7 +14300,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -14333,7 +14333,7 @@
 				COMPILE_TARGET_NAME = private_swift_lib;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PRODUCT_MODULE_NAME = _SwiftLib;
 				PRODUCT_NAME = private_swift_lib;
 				SDKROOT = macosx;
@@ -14368,7 +14368,7 @@
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/macOSAppUITests.109.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.macosapp.uitests";
 				PRODUCT_MODULE_NAME = macOSAppUITests;
 				PRODUCT_NAME = macOSAppUITests;
@@ -14386,7 +14386,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -14435,7 +14435,7 @@
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-opt-STABLE-27/bin/tvOSApp/Test/UnitTests/rules_xcodeproj/tvOSAppUnitTests.__internal__.__test_bundle/Info.plist";
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOSAppUnitTests.111.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9/bin/tvOSApp/Test/UnitTests";
@@ -14483,7 +14483,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				IPHONEOS_FILES = "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/Lib/Lib.swift";
 				IPHONESIMULATOR_FILES = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/Lib/Lib.swift";
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PRODUCT_MODULE_NAME = Lib;
 				PRODUCT_NAME = Lib;
 				SDKROOT = iphoneos;
@@ -14538,7 +14538,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -14585,7 +14585,7 @@
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/macOSAppUITests.31.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.macosapp.uitests";
 				PRODUCT_MODULE_NAME = macOSAppUITests;
 				PRODUCT_NAME = macOSAppUITests;
@@ -14602,7 +14602,7 @@
 			buildSettings = {
 				ARCHS = arm64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -14635,7 +14635,7 @@
 				COMPILE_TARGET_NAME = private_swift_lib;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PRODUCT_MODULE_NAME = _SwiftLib;
 				PRODUCT_NAME = private_swift_lib;
 				SDKROOT = macosx;
@@ -14669,7 +14669,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iMessageAppExtension.27.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iMessageApp";
@@ -14719,7 +14719,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppUITestSuite.36.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.uitests";
 				PRODUCT_MODULE_NAME = iOSAppUITestSuite;
 				PRODUCT_NAME = iOSAppUITestSuite;
@@ -14738,7 +14738,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -14767,7 +14767,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -14794,7 +14794,7 @@
 			buildSettings = {
 				ARCHS = arm64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -14849,7 +14849,7 @@
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.watchOS.87.link.params";
 				"LINK_PARAMS_FILE[sdk=watchos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.watchOS.145.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8/bin/UI";
@@ -14925,7 +14925,7 @@
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/CommandLineToolTests.135.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/Tests";
@@ -14947,7 +14947,7 @@
 				ARCHS = x86_64;
 				"ARCHS[sdk=iphoneos*]" = arm64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -15071,7 +15071,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppUITests.99.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.uitests";
 				PRODUCT_MODULE_NAME = iOSAppUITests;
 				PRODUCT_NAME = iOSAppUITests;
@@ -15112,7 +15112,7 @@
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-dbg-STABLE-17/bin/watchOSApp/Test/UITests/rules_xcodeproj/watchOSAppUITests.__internal__.__test_bundle/Info.plist";
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOSAppUITests.34.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.watchTests";
 				PRODUCT_MODULE_NAME = watchOSAppUITestsLibrary;
 				PRODUCT_NAME = watchOSAppUITests;
@@ -15158,7 +15158,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppUITests.21.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.uitests";
 				PRODUCT_MODULE_NAME = iOSAppUITests;
 				PRODUCT_NAME = iOSAppUITests;
@@ -15204,7 +15204,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppSwiftUnitTestSuite.38.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/SwiftUnitTests";
@@ -15228,7 +15228,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -15257,7 +15257,7 @@
 			buildSettings = {
 				ARCHS = arm64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -15311,7 +15311,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppSwiftUnitTestSuite.116.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Test/SwiftUnitTests";
@@ -15372,7 +15372,7 @@
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/WidgetExtension.4.link.params";
 				"LINK_PARAMS_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/WidgetExtension.62.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/WidgetExtension";
@@ -15403,7 +15403,7 @@
 				COMPILE_TARGET_NAME = lib_swift;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PRODUCT_MODULE_NAME = LibSwift;
 				PRODUCT_NAME = lib_swift;
 				SDKROOT = macosx;
@@ -15421,7 +15421,7 @@
 				ARCHS = x86_64;
 				"ARCHS[sdk=iphoneos*]" = arm64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -15473,7 +15473,7 @@
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-dbg-STABLE-25/bin/tvOSApp/Test/UITests/rules_xcodeproj/tvOSAppUITests.__internal__.__test_bundle/Info.plist";
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOSAppUITests.32.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.uitests";
 				PRODUCT_MODULE_NAME = tvOSAppUITests;
 				PRODUCT_NAME = tvOSAppUITests;
@@ -15491,7 +15491,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -15524,7 +15524,7 @@
 				COMPILE_TARGET_NAME = private_swift_lib;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PRODUCT_MODULE_NAME = _SwiftLib;
 				PRODUCT_NAME = private_swift_lib;
 				SDKROOT = macosx;
@@ -15556,7 +15556,7 @@
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/CommandLineToolTests.57.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/CommandLine/Tests";
@@ -15576,7 +15576,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -15609,7 +15609,7 @@
 				COMPILE_TARGET_NAME = private_swift_lib;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PRODUCT_MODULE_NAME = _SwiftLib;
 				PRODUCT_NAME = private_swift_lib;
 				SDKROOT = macosx;
@@ -15625,7 +15625,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -15697,7 +15697,7 @@
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/macOSApp.30.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-29/bin/macOSApp/Source";
@@ -15767,7 +15767,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -15794,7 +15794,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -15830,7 +15830,7 @@
 				COMPILE_TARGET_NAME = MixedAnswerLib_Swift;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PRODUCT_MODULE_NAME = MixedAnswer;
 				PRODUCT_NAME = MixedAnswerLib_Swift;
 				SDKROOT = iphoneos;
@@ -15876,7 +15876,7 @@
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.tvOS.96.link.params";
 				"LINK_PARAMS_FILE[sdk=appletvos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.tvOS.154.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PREVIEWS_SWIFT_INCLUDE_PATH__ = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__NO = "";
 				PREVIEWS_SWIFT_INCLUDE_PATH__YES = "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9/bin/UI";
@@ -15915,7 +15915,7 @@
 				COMPILE_TARGET_NAME = private_swift_lib;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				OTHER_SWIFT_FLAGS = "-Xcc -working-directory=$(PROJECT_DIR) -working-directory=$(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PRODUCT_MODULE_NAME = _SwiftLib;
 				PRODUCT_NAME = private_swift_lib;
 				SDKROOT = macosx;
@@ -15932,7 +15932,7 @@
 				ARCHS = x86_64;
 				"ARCHS[sdk=iphoneos*]" = arm64;
 				ASAN_OTHER_CPLUSPLUSFLAGS__ = "$(ASAN_OTHER_CPLUSPLUSFLAGS__NO)";
-				ASAN_OTHER_CPLUSPLUSFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/cxx.compile.params";
+				ASAN_OTHER_CPLUSPLUSFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/cxx.compile.params";
 				ASAN_OTHER_CPLUSPLUSFLAGS__YES = (
 					"$(ASAN_OTHER_CPLUSPLUSFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -15981,7 +15981,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -16009,7 +16009,7 @@
 				ARCHS = x86_64;
 				"ARCHS[sdk=iphoneos*]" = arm64;
 				ASAN_OTHER_CPLUSPLUSFLAGS__ = "$(ASAN_OTHER_CPLUSPLUSFLAGS__NO)";
-				ASAN_OTHER_CPLUSPLUSFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/cxx.compile.params";
+				ASAN_OTHER_CPLUSPLUSFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/cxx.compile.params";
 				ASAN_OTHER_CPLUSPLUSFLAGS__YES = (
 					"$(ASAN_OTHER_CPLUSPLUSFLAGS__NO)",
 					"-Wno-macro-redefined",

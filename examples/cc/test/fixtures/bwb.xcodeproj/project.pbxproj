@@ -915,7 +915,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -941,7 +941,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -985,7 +985,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -1011,7 +1011,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",
@@ -1108,7 +1108,7 @@
 			buildSettings = {
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory=$(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
 				ASAN_OTHER_CFLAGS__YES = (
 					"$(ASAN_OTHER_CFLAGS__NO)",
 					"-Wno-macro-redefined",

@@ -418,16 +418,23 @@ $(CURRENT_EXECUTION_ROOT)/\#(swiftParams.path.string)
                 if !swiftFlags.isEmpty {
                     swiftFlagsPrefix.append(contentsOf: [
                         "-Xcc",
-                        "-working-directory=$(PROJECT_DIR)",
-                        "-working-directory=$(PROJECT_DIR)",
+                        "-working-directory",
+                        "-Xcc",
+                        "$(PROJECT_DIR)",
+                        "-working-directory",
+                        "$(PROJECT_DIR)",
                     ])
                 }
             }
             if !cFlags.isEmpty {
-                cFlagsPrefix.append("-working-directory=$(PROJECT_DIR)")
+                cFlagsPrefix.append(
+                    contentsOf: ["-working-directory", "$(PROJECT_DIR)"]
+                )
             }
             if !cxxFlags.isEmpty {
-                cxxFlagsPrefix.append("-working-directory=$(PROJECT_DIR)")
+                cxxFlagsPrefix.append(
+                    contentsOf: ["-working-directory", "$(PROJECT_DIR)"]
+                )
             }
 
             switch buildMode {
