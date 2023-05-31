@@ -41,12 +41,19 @@ _SWIFTC_SKIP_OPTS = {
 
     # These are handled in `opts.bzl`
     "-emit-objc-header-path": 2,
+    "-explicit-swift-module-map-file": 2,
     "-g": 1,
     "-incremental": 1,
     "-no-whole-module-optimization": 1,
     "-swift-version": 2,
+    "-vfsoverlay": 2,
     "-whole-module-optimization": 1,
     "-wmo": 1,
+
+
+    # We filter out `-Xfrontend`, then add it back only if the current opt
+    # wasn't filtered out
+    "-Xfrontend": 1,
 
     # This is rules_swift specific, and we don't want to translate it for BwX
     "-Xwrapped-swift": 1,
@@ -64,6 +71,10 @@ _SWIFTC_SKIP_COMPOUND_OPTS = {
 
         # We don't want to translate this for BwX
         "-emit-symbol-graph": 1,
+
+        # Handled in `opts.bzl` (skip 3 because of the extra `-Xfrontend` flag)
+        "-explicit-swift-module-map-file": 3,
+        "-vfsoverlay": 3,
     },
 }
 
@@ -154,7 +165,7 @@ def _process_clang_opt(
             bwx_opt = opt
         return bwx_opt
     if is_clang_opt:
-        # -vfsoverlay doesn't apply `-working_directory=`, so we need to
+        # -ivfsoverlay doesn't apply `-working_directory=`, so we need to
         # prefix it ourselves
         if previous_clang_opt == "-ivfsoverlay":
             if opt[0] != "/":
@@ -172,15 +183,18 @@ def _inner_process_swiftcopts(
         *,
         opt: str,
         previous_opt: str,
-        previous_frontend_opt: str,
         previous_clang_opt: str,
         is_bwx: bool) -> Optional[str]:
     is_clang_opt = opt == "-Xcc" or previous_opt == "-Xcc"
 
-    if (is_bwx and not is_clang_opt and
-        (previous_opt == "-I" or opt.startswith("-I"))):
+    if not is_clang_opt and (previous_opt == "-I" or opt.startswith("-I")):
         # BwX Swift include paths are set in `xcode_targets.bzl`
-        # `_set_swift_include_paths`
+        # `_set_swift_include_paths`, and BwB include paths are set in
+        # `opts.bzl`
+        return None
+
+    if opt.startswith("-vfsoverlay"):
+        # Handled in opts.bzl
         return None
 
     clang_opt = _process_clang_opt(
@@ -200,23 +214,6 @@ def _inner_process_swiftcopts(
         # we collect C and C++ compiler options.
         return None
 
-    if opt == "-Xfrontend":
-        # We return early to prevent issues with the checks below
-        return opt
-
-    # -vfsoverlay doesn't apply `-working_directory=`, so we need to
-    # prefix it ourselves
-    previous_vfsoverlay_opt = previous_frontend_opt or previous_opt
-    if previous_vfsoverlay_opt == "-vfsoverlay":
-        if opt[0] != "/":
-            return "$(CURRENT_EXECUTION_ROOT)/" + opt
-        return opt
-    if opt.startswith("-vfsoverlay"):
-        value = opt[11:]
-        if value and value[0] != "/":
-            return "-vfsoverlay$(CURRENT_EXECUTION_ROOT)/" + value
-        return opt
-
     return opt
 
 
@@ -230,8 +227,7 @@ def process_args(
     skip_next = 1
 
     processed_opts = []
-    previous_opt = None
-    previous_frontend_opt = None
+    next_previous_opt = None
     previous_clang_opt = None
     for params_path in params_paths:
         opts_iter = parse_args(params_path)
@@ -249,6 +245,9 @@ def process_args(
                 # Remove trailing newline
                 opt = opt[:-1]
 
+            previous_opt = next_previous_opt
+            next_previous_opt = opt
+
             if skip_next:
                 skip_next -= 1
                 continue
@@ -259,11 +258,6 @@ def process_args(
                 opt = opt[1:-1]
 
             root_opt = opt.split("=")[0]
-
-            skip_next = _SWIFTC_SKIP_OPTS.get(root_opt, 0)
-            if skip_next:
-                skip_next -= 1
-                continue
 
             compound_skip_next = _SWIFTC_SKIP_COMPOUND_OPTS.get(root_opt)
             if compound_skip_next:
@@ -277,25 +271,33 @@ def process_args(
                         # first opt
                         continue
 
+            skip_next = _SWIFTC_SKIP_OPTS.get(root_opt, 0)
+            if skip_next:
+                skip_next -= 1
+                continue
+
+            is_frontend_opt = previous_opt == "-Xfrontend"
+
+            if is_frontend_opt and opt.startswith("-vfsoverlay"):
+                # Handled in opts.bzl
+                continue
+
             processed_opt = _inner_process_swiftcopts(
                 opt = opt,
                 previous_opt = previous_opt,
-                previous_frontend_opt = previous_frontend_opt,
                 previous_clang_opt = previous_clang_opt,
                 is_bwx = is_bwx,
             )
 
+            if processed_opt and is_frontend_opt:
+                # We filter out `-Xfrontend`, then add it back only if the
+                # current opt wasn't filtered out
+                processed_opts.append(previous_opt)
+
             if previous_opt == "-Xcc":
                 previous_clang_opt = opt
-                previous_frontend_opt = None
             elif opt != "-Xcc":
                 previous_clang_opt = None
-                if previous_opt == "-Xfrontend":
-                    previous_frontend_opt = opt
-                elif opt != "-Xfrontend":
-                    previous_frontend_opt = None
-
-            previous_opt = opt
 
             opt = processed_opt
             if not opt:
