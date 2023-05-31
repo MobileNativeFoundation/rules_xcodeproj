@@ -19,12 +19,11 @@
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-3/bin/tools/generators/legacy/test/tests.__internal__.__test_bundle.zip",
             "CODE_SIGN_STYLE": "Manual",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-STABLE-3/bin/tools/generators/legacy/test/rules_xcodeproj/tests.__internal__.__test_bundle/Info.plist",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/tools/generators/legacy/test",
+            "PREVIEWS_SWIFT_INCLUDE__": "",
+            "PREVIEWS_SWIFT_INCLUDE__NO": "",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/tools/generators/legacy/test",
             "PRODUCT_BUNDLE_IDENTIFIER": "com.bazelbuild.rulesapple.Tests",
-            "PRODUCT_MODULE_NAME": "tests",
-            "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_apple_swift_argument_parser bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/tools/generators/lib/GeneratorCommon bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_apple_swift_collections bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_kylef_pathkit bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_zippyjson bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_tadija_aexml bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_tuist_xcodeproj bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/tools/generators/legacy bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_pointfreeco_xctest_dynamic_overlay bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_pointfreeco_swift_custom_dump"
+            "PRODUCT_MODULE_NAME": "tests"
         },
         "c": "applebin_macos-darwin_x86_64-dbg-STABLE-3",
         "d": [
@@ -126,13 +125,12 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-opt-STABLE-4/bin/tools/generators/legacy/test/rules_xcodeproj/tests.__internal__.__test_bundle/Info.plist",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/tools/generators/legacy/test",
+            "PREVIEWS_SWIFT_INCLUDE__": "",
+            "PREVIEWS_SWIFT_INCLUDE__NO": "",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/tools/generators/legacy/test",
             "PRODUCT_BUNDLE_IDENTIFIER": "com.bazelbuild.rulesapple.Tests",
             "PRODUCT_MODULE_NAME": "tests",
-            "SWIFT_COMPILATION_MODE": "wholemodule",
-            "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_apple_swift_argument_parser bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/tools/generators/lib/GeneratorCommon bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_apple_swift_collections bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_kylef_pathkit bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_michaeleisel_zippyjson bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_tadija_aexml bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_tuist_xcodeproj bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/tools/generators/legacy"
+            "SWIFT_COMPILATION_MODE": "wholemodule"
         },
         "c": "applebin_macos-darwin_x86_64-opt-STABLE-4",
         "d": [
@@ -287,8 +285,7 @@
             "v": "macosx"
         },
         "b": {
-            "PRODUCT_MODULE_NAME": "generator",
-            "SWIFT_INCLUDE_PATHS": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_apple_swift_argument_parser bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/tools/generators/lib/GeneratorCommon bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_apple_swift_collections bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_kylef_pathkit bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_zippyjson bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_tadija_aexml bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_tuist_xcodeproj"
+            "PRODUCT_MODULE_NAME": "generator"
         },
         "c": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
         "d": [
@@ -394,8 +391,7 @@
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "PRODUCT_MODULE_NAME": "generator",
-            "SWIFT_COMPILATION_MODE": "wholemodule",
-            "SWIFT_INCLUDE_PATHS": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_apple_swift_argument_parser bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/tools/generators/lib/GeneratorCommon bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_apple_swift_collections bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_kylef_pathkit bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_michaeleisel_zippyjson bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_tadija_aexml bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_tuist_xcodeproj"
+            "SWIFT_COMPILATION_MODE": "wholemodule"
         },
         "c": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2",
         "d": [
@@ -503,8 +499,7 @@
             "v": "macosx"
         },
         "b": {
-            "PRODUCT_MODULE_NAME": "GeneratorCommon",
-            "SWIFT_INCLUDE_PATHS": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_apple_swift_argument_parser"
+            "PRODUCT_MODULE_NAME": "GeneratorCommon"
         },
         "c": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
         "d": [
@@ -544,8 +539,7 @@
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "PRODUCT_MODULE_NAME": "GeneratorCommon",
-            "SWIFT_COMPILATION_MODE": "wholemodule",
-            "SWIFT_INCLUDE_PATHS": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_apple_swift_argument_parser"
+            "SWIFT_COMPILATION_MODE": "wholemodule"
         },
         "c": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2",
         "d": [
@@ -684,8 +678,7 @@
             "v": "macosx"
         },
         "b": {
-            "PRODUCT_MODULE_NAME": "ArgumentParser",
-            "SWIFT_INCLUDE_PATHS": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_apple_swift_argument_parser"
+            "PRODUCT_MODULE_NAME": "ArgumentParser"
         },
         "c": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
         "d": [
@@ -761,8 +754,7 @@
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "PRODUCT_MODULE_NAME": "ArgumentParser",
-            "SWIFT_COMPILATION_MODE": "wholemodule",
-            "SWIFT_INCLUDE_PATHS": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_apple_swift_argument_parser"
+            "SWIFT_COMPILATION_MODE": "wholemodule"
         },
         "c": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2",
         "d": [
@@ -1348,8 +1340,7 @@
             "v": "macosx"
         },
         "b": {
-            "PRODUCT_MODULE_NAME": "CustomDump",
-            "SWIFT_INCLUDE_PATHS": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_pointfreeco_xctest_dynamic_overlay"
+            "PRODUCT_MODULE_NAME": "CustomDump"
         },
         "c": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
         "d": [
@@ -1438,8 +1429,7 @@
             "v": "macosx"
         },
         "b": {
-            "PRODUCT_MODULE_NAME": "XcodeProj",
-            "SWIFT_INCLUDE_PATHS": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_tadija_aexml bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_kylef_pathkit"
+            "PRODUCT_MODULE_NAME": "XcodeProj"
         },
         "c": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
         "d": [
@@ -1571,8 +1561,7 @@
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "PRODUCT_MODULE_NAME": "XcodeProj",
-            "SWIFT_COMPILATION_MODE": "wholemodule",
-            "SWIFT_INCLUDE_PATHS": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_tadija_aexml bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_kylef_pathkit"
+            "SWIFT_COMPILATION_MODE": "wholemodule"
         },
         "c": "macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2",
         "d": [

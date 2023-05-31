@@ -391,16 +391,6 @@ class swift_compiler_params_processor_test(unittest.TestCase):
                 "'$(PROJECT_DIR)'",
 
                 # -I
-                "-I/absolute/path",
-                "-I",
-                "/absolute/path",
-                "'-I$(PROJECT_DIR)/relative/path'",
-                "-I",
-                "'$(PROJECT_DIR)/relative/path'",
-                "'-I$(PROJECT_DIR)'",
-                "-I",
-                "'$(PROJECT_DIR)'",
-
                 "-Xcc",
                 "-I/absolute/path",
                 "-Xcc",
@@ -607,9 +597,7 @@ class swift_compiler_params_processor_test(unittest.TestCase):
                 "-import-underlying-module",
                 "-passthrough",
                 "-passthrough",
-                "-I__BAZEL_XCODE_SOMETHING_/path",
                 "-passthrough",
-                "'-I$(PROJECT_DIR)/bazel-out/...'",
                 "-passthrough",
                 "-keep-me=something.swift",
                 "-Xcc",

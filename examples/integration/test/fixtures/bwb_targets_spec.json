@@ -31,12 +31,11 @@
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "DEVELOPMENT_TEAM": "V82V4GQZXM",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_arm64-dbg-STABLE-14/bin/AppClip/rules_xcodeproj/AppClip/Info.plist",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/AppClip",
+            "PREVIEWS_SWIFT_INCLUDE__": "",
+            "PREVIEWS_SWIFT_INCLUDE__NO": "",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/AppClip",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.app-clip",
             "PRODUCT_MODULE_NAME": "AppClip",
-            "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/Lib",
             "TARGETED_DEVICE_FAMILY": "1"
         },
         "c": "applebin_ios-ios_arm64-dbg-STABLE-14",
@@ -105,13 +104,12 @@
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "DEVELOPMENT_TEAM": "V82V4GQZXM",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_arm64-opt-STABLE-16/bin/AppClip/rules_xcodeproj/AppClip/Info.plist",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/AppClip",
+            "PREVIEWS_SWIFT_INCLUDE__": "",
+            "PREVIEWS_SWIFT_INCLUDE__NO": "",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/AppClip",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.app-clip",
             "PRODUCT_MODULE_NAME": "AppClip",
             "SWIFT_COMPILATION_MODE": "wholemodule",
-            "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/Lib",
             "TARGETED_DEVICE_FAMILY": "1"
         },
         "c": "applebin_ios-ios_arm64-opt-STABLE-16",
@@ -181,12 +179,11 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/AppClip/rules_xcodeproj/AppClip/Info.plist",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/AppClip",
+            "PREVIEWS_SWIFT_INCLUDE__": "",
+            "PREVIEWS_SWIFT_INCLUDE__NO": "",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/AppClip",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.app-clip",
             "PRODUCT_MODULE_NAME": "AppClip",
-            "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/Lib",
             "TARGETED_DEVICE_FAMILY": "1"
         },
         "c": "applebin_ios-ios_x86_64-dbg-STABLE-13",
@@ -254,13 +251,12 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-opt-STABLE-15/bin/AppClip/rules_xcodeproj/AppClip/Info.plist",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/AppClip",
+            "PREVIEWS_SWIFT_INCLUDE__": "",
+            "PREVIEWS_SWIFT_INCLUDE__NO": "",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/AppClip",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.app-clip",
             "PRODUCT_MODULE_NAME": "AppClip",
             "SWIFT_COMPILATION_MODE": "wholemodule",
-            "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/Lib",
             "TARGETED_DEVICE_FAMILY": "1"
         },
         "c": "applebin_ios-ios_x86_64-opt-STABLE-15",
@@ -890,7 +886,6 @@
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "PRODUCT_MODULE_NAME": "LibSwift",
-            "SWIFT_INCLUDE_PATHS": "bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34/bin/CommandLine/CommandLineToolLib",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "private/LibSwift-Swift.h"
         },
         "c": "macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34",
@@ -933,7 +928,6 @@
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "PRODUCT_MODULE_NAME": "LibSwift",
             "SWIFT_COMPILATION_MODE": "wholemodule",
-            "SWIFT_INCLUDE_PATHS": "bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37/bin/CommandLine/CommandLineToolLib",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "private/LibSwift-Swift.h"
         },
         "c": "macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37",
@@ -978,7 +972,6 @@
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "PRODUCT_MODULE_NAME": "LibSwift",
-            "SWIFT_INCLUDE_PATHS": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35/bin/CommandLine/CommandLineToolLib",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "private/LibSwift-Swift.h"
         },
         "c": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35",
@@ -1020,7 +1013,6 @@
         "b": {
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "PRODUCT_MODULE_NAME": "LibSwift",
-            "SWIFT_INCLUDE_PATHS": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/CommandLine/CommandLineToolLib",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "private/LibSwift-Swift.h"
         },
         "c": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33",
@@ -1063,7 +1055,6 @@
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "PRODUCT_MODULE_NAME": "LibSwift",
             "SWIFT_COMPILATION_MODE": "wholemodule",
-            "SWIFT_INCLUDE_PATHS": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38/bin/CommandLine/CommandLineToolLib",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "private/LibSwift-Swift.h"
         },
         "c": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38",
@@ -1109,7 +1100,6 @@
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "PRODUCT_MODULE_NAME": "LibSwift",
             "SWIFT_COMPILATION_MODE": "wholemodule",
-            "SWIFT_INCLUDE_PATHS": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineToolLib",
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "private/LibSwift-Swift.h"
         },
         "c": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36",
@@ -1541,12 +1531,11 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-STABLE-39/bin/CommandLine/Tests/rules_xcodeproj/CommandLineToolTests.__internal__.__test_bundle/Info.plist",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/CommandLine/Tests",
+            "PREVIEWS_SWIFT_INCLUDE__": "",
+            "PREVIEWS_SWIFT_INCLUDE__NO": "",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/CommandLine/Tests",
             "PRODUCT_BUNDLE_IDENTIFIER": "com.bazelbuild.rulesapple.Tests",
-            "PRODUCT_MODULE_NAME": "LibSwiftTestsLib",
-            "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/CommandLine/CommandLineToolLib"
+            "PRODUCT_MODULE_NAME": "LibSwiftTestsLib"
         },
         "c": "applebin_macos-darwin_x86_64-dbg-STABLE-39",
         "d": [
@@ -1600,13 +1589,12 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-opt-STABLE-40/bin/CommandLine/Tests/rules_xcodeproj/CommandLineToolTests.__internal__.__test_bundle/Info.plist",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/Tests",
+            "PREVIEWS_SWIFT_INCLUDE__": "",
+            "PREVIEWS_SWIFT_INCLUDE__NO": "",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/Tests",
             "PRODUCT_BUNDLE_IDENTIFIER": "com.bazelbuild.rulesapple.Tests",
             "PRODUCT_MODULE_NAME": "LibSwiftTestsLib",
-            "SWIFT_COMPILATION_MODE": "wholemodule",
-            "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineToolLib"
+            "SWIFT_COMPILATION_MODE": "wholemodule"
         },
         "c": "applebin_macos-darwin_x86_64-opt-STABLE-40",
         "d": [
@@ -3312,16 +3300,15 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_arm64-dbg-STABLE-14/bin/UI/rules_xcodeproj/UIFramework.iOS/Info.plist",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/UI",
+            "PREVIEWS_SWIFT_INCLUDE__": "",
+            "PREVIEWS_SWIFT_INCLUDE__NO": "",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/UI",
             "PREVIEW_FRAMEWORK_PATHS": [
                 "\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework\"",
                 "\"$(BAZEL_OUT)/applebin_ios-ios_arm64-dbg-STABLE-14/bin/Lib/LibFramework.iOS.framework\""
             ],
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.UIFramework",
             "PRODUCT_MODULE_NAME": "UI",
-            "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/Lib",
             "TARGETED_DEVICE_FAMILY": "1"
         },
         "c": "applebin_ios-ios_arm64-dbg-STABLE-14",
@@ -3388,9 +3375,9 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_arm64-opt-STABLE-16/bin/UI/rules_xcodeproj/UIFramework.iOS/Info.plist",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/UI",
+            "PREVIEWS_SWIFT_INCLUDE__": "",
+            "PREVIEWS_SWIFT_INCLUDE__NO": "",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/UI",
             "PREVIEW_FRAMEWORK_PATHS": [
                 "\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework\"",
                 "\"$(BAZEL_OUT)/applebin_ios-ios_arm64-opt-STABLE-16/bin/Lib/LibFramework.iOS.framework\""
@@ -3398,7 +3385,6 @@
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.UIFramework",
             "PRODUCT_MODULE_NAME": "UI",
             "SWIFT_COMPILATION_MODE": "wholemodule",
-            "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/Lib",
             "TARGETED_DEVICE_FAMILY": "1"
         },
         "c": "applebin_ios-ios_arm64-opt-STABLE-16",
@@ -3468,16 +3454,15 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/UI/rules_xcodeproj/UIFramework.iOS/Info.plist",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/UI",
+            "PREVIEWS_SWIFT_INCLUDE__": "",
+            "PREVIEWS_SWIFT_INCLUDE__NO": "",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/UI",
             "PREVIEW_FRAMEWORK_PATHS": [
                 "\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework\"",
                 "\"$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/Lib/LibFramework.iOS.framework\""
             ],
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.UIFramework",
             "PRODUCT_MODULE_NAME": "UI",
-            "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/Lib",
             "TARGETED_DEVICE_FAMILY": "1"
         },
         "c": "applebin_ios-ios_x86_64-dbg-STABLE-13",
@@ -3544,9 +3529,9 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-opt-STABLE-15/bin/UI/rules_xcodeproj/UIFramework.iOS/Info.plist",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/UI",
+            "PREVIEWS_SWIFT_INCLUDE__": "",
+            "PREVIEWS_SWIFT_INCLUDE__NO": "",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/UI",
             "PREVIEW_FRAMEWORK_PATHS": [
                 "\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework\"",
                 "\"$(BAZEL_OUT)/applebin_ios-ios_x86_64-opt-STABLE-15/bin/Lib/LibFramework.iOS.framework\""
@@ -3554,7 +3539,6 @@
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.UIFramework",
             "PRODUCT_MODULE_NAME": "UI",
             "SWIFT_COMPILATION_MODE": "wholemodule",
-            "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/Lib",
             "TARGETED_DEVICE_FAMILY": "1"
         },
         "c": "applebin_ios-ios_x86_64-opt-STABLE-15",
@@ -3627,16 +3611,15 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_tvos-tvos_arm64-dbg-STABLE-26/bin/UI/rules_xcodeproj/UIFramework.tvOS/Info.plist",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-6/bin/UI",
+            "PREVIEWS_SWIFT_INCLUDE__": "",
+            "PREVIEWS_SWIFT_INCLUDE__NO": "",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-6/bin/UI",
             "PREVIEW_FRAMEWORK_PATHS": [
                 "\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework\"",
                 "\"$(BAZEL_OUT)/applebin_tvos-tvos_arm64-dbg-STABLE-26/bin/Lib/LibFramework.tvOS.framework\""
             ],
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.UIFramework",
-            "PRODUCT_MODULE_NAME": "UI",
-            "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-6/bin/Lib"
+            "PRODUCT_MODULE_NAME": "UI"
         },
         "c": "applebin_tvos-tvos_arm64-dbg-STABLE-26",
         "d": [
@@ -3703,17 +3686,16 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_tvos-tvos_arm64-opt-STABLE-28/bin/UI/rules_xcodeproj/UIFramework.tvOS/Info.plist",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-opt-STABLE-12/bin/UI",
+            "PREVIEWS_SWIFT_INCLUDE__": "",
+            "PREVIEWS_SWIFT_INCLUDE__NO": "",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-opt-STABLE-12/bin/UI",
             "PREVIEW_FRAMEWORK_PATHS": [
                 "\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework\"",
                 "\"$(BAZEL_OUT)/applebin_tvos-tvos_arm64-opt-STABLE-28/bin/Lib/LibFramework.tvOS.framework\""
             ],
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.UIFramework",
             "PRODUCT_MODULE_NAME": "UI",
-            "SWIFT_COMPILATION_MODE": "wholemodule",
-            "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-opt-STABLE-12/bin/Lib"
+            "SWIFT_COMPILATION_MODE": "wholemodule"
         },
         "c": "applebin_tvos-tvos_arm64-opt-STABLE-28",
         "d": [
@@ -3783,16 +3765,15 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-dbg-STABLE-25/bin/UI/rules_xcodeproj/UIFramework.tvOS/Info.plist",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/UI",
+            "PREVIEWS_SWIFT_INCLUDE__": "",
+            "PREVIEWS_SWIFT_INCLUDE__NO": "",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/UI",
             "PREVIEW_FRAMEWORK_PATHS": [
                 "\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework\"",
                 "\"$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-dbg-STABLE-25/bin/Lib/LibFramework.tvOS.framework\""
             ],
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.UIFramework",
-            "PRODUCT_MODULE_NAME": "UI",
-            "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/Lib"
+            "PRODUCT_MODULE_NAME": "UI"
         },
         "c": "applebin_tvos-tvos_x86_64-dbg-STABLE-25",
         "d": [
@@ -3859,17 +3840,16 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-opt-STABLE-27/bin/UI/rules_xcodeproj/UIFramework.tvOS/Info.plist",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9/bin/UI",
+            "PREVIEWS_SWIFT_INCLUDE__": "",
+            "PREVIEWS_SWIFT_INCLUDE__NO": "",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9/bin/UI",
             "PREVIEW_FRAMEWORK_PATHS": [
                 "\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework\"",
                 "\"$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-opt-STABLE-27/bin/Lib/LibFramework.tvOS.framework\""
             ],
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.UIFramework",
             "PRODUCT_MODULE_NAME": "UI",
-            "SWIFT_COMPILATION_MODE": "wholemodule",
-            "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9/bin/Lib"
+            "SWIFT_COMPILATION_MODE": "wholemodule"
         },
         "c": "applebin_tvos-tvos_x86_64-opt-STABLE-27",
         "d": [
@@ -3939,16 +3919,15 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_watchos-watchos_arm64_32-dbg-STABLE-18/bin/UI/rules_xcodeproj/UIFramework.watchOS/Info.plist",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-5/bin/UI",
+            "PREVIEWS_SWIFT_INCLUDE__": "",
+            "PREVIEWS_SWIFT_INCLUDE__NO": "",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-5/bin/UI",
             "PREVIEW_FRAMEWORK_PATHS": [
                 "\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework\"",
                 "\"$(BAZEL_OUT)/applebin_watchos-watchos_arm64_32-dbg-STABLE-18/bin/Lib/LibFramework.watchOS.framework\""
             ],
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.UIFramework",
-            "PRODUCT_MODULE_NAME": "UI",
-            "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-5/bin/Lib"
+            "PRODUCT_MODULE_NAME": "UI"
         },
         "c": "applebin_watchos-watchos_arm64_32-dbg-STABLE-18",
         "d": [
@@ -4015,17 +3994,16 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_watchos-watchos_arm64_32-opt-STABLE-20/bin/UI/rules_xcodeproj/UIFramework.watchOS/Info.plist",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-opt-STABLE-11/bin/UI",
+            "PREVIEWS_SWIFT_INCLUDE__": "",
+            "PREVIEWS_SWIFT_INCLUDE__NO": "",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-opt-STABLE-11/bin/UI",
             "PREVIEW_FRAMEWORK_PATHS": [
                 "\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework\"",
                 "\"$(BAZEL_OUT)/applebin_watchos-watchos_arm64_32-opt-STABLE-20/bin/Lib/LibFramework.watchOS.framework\""
             ],
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.UIFramework",
             "PRODUCT_MODULE_NAME": "UI",
-            "SWIFT_COMPILATION_MODE": "wholemodule",
-            "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-opt-STABLE-11/bin/Lib"
+            "SWIFT_COMPILATION_MODE": "wholemodule"
         },
         "c": "applebin_watchos-watchos_arm64_32-opt-STABLE-20",
         "d": [
@@ -4095,16 +4073,15 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-dbg-STABLE-17/bin/UI/rules_xcodeproj/UIFramework.watchOS/Info.plist",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/UI",
+            "PREVIEWS_SWIFT_INCLUDE__": "",
+            "PREVIEWS_SWIFT_INCLUDE__NO": "",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/UI",
             "PREVIEW_FRAMEWORK_PATHS": [
                 "\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework\"",
                 "\"$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-dbg-STABLE-17/bin/Lib/LibFramework.watchOS.framework\""
             ],
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.UIFramework",
-            "PRODUCT_MODULE_NAME": "UI",
-            "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/Lib"
+            "PRODUCT_MODULE_NAME": "UI"
         },
         "c": "applebin_watchos-watchos_x86_64-dbg-STABLE-17",
         "d": [
@@ -4171,17 +4148,16 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-opt-STABLE-19/bin/UI/rules_xcodeproj/UIFramework.watchOS/Info.plist",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8/bin/UI",
+            "PREVIEWS_SWIFT_INCLUDE__": "",
+            "PREVIEWS_SWIFT_INCLUDE__NO": "",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8/bin/UI",
             "PREVIEW_FRAMEWORK_PATHS": [
                 "\"$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework\"",
                 "\"$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-opt-STABLE-19/bin/Lib/LibFramework.watchOS.framework\""
             ],
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.UIFramework",
             "PRODUCT_MODULE_NAME": "UI",
-            "SWIFT_COMPILATION_MODE": "wholemodule",
-            "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8/bin/Lib"
+            "SWIFT_COMPILATION_MODE": "wholemodule"
         },
         "c": "applebin_watchos-watchos_x86_64-opt-STABLE-19",
         "d": [
@@ -4247,12 +4223,11 @@
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "DEVELOPMENT_TEAM": "V82V4GQZXM",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_arm64-dbg-STABLE-14/bin/WidgetExtension/rules_xcodeproj/WidgetExtension/Info.plist",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/WidgetExtension",
+            "PREVIEWS_SWIFT_INCLUDE__": "",
+            "PREVIEWS_SWIFT_INCLUDE__NO": "",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/WidgetExtension",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.widget-extension",
             "PRODUCT_MODULE_NAME": "WidgetExtension",
-            "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/Lib",
             "TARGETED_DEVICE_FAMILY": "1"
         },
         "c": "applebin_ios-ios_arm64-dbg-STABLE-14",
@@ -4319,13 +4294,12 @@
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "DEVELOPMENT_TEAM": "V82V4GQZXM",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_arm64-opt-STABLE-16/bin/WidgetExtension/rules_xcodeproj/WidgetExtension/Info.plist",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/WidgetExtension",
+            "PREVIEWS_SWIFT_INCLUDE__": "",
+            "PREVIEWS_SWIFT_INCLUDE__NO": "",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/WidgetExtension",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.widget-extension",
             "PRODUCT_MODULE_NAME": "WidgetExtension",
             "SWIFT_COMPILATION_MODE": "wholemodule",
-            "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/Lib",
             "TARGETED_DEVICE_FAMILY": "1"
         },
         "c": "applebin_ios-ios_arm64-opt-STABLE-16",
@@ -4394,12 +4368,11 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/WidgetExtension/rules_xcodeproj/WidgetExtension/Info.plist",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/WidgetExtension",
+            "PREVIEWS_SWIFT_INCLUDE__": "",
+            "PREVIEWS_SWIFT_INCLUDE__NO": "",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/WidgetExtension",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.widget-extension",
             "PRODUCT_MODULE_NAME": "WidgetExtension",
-            "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/Lib",
             "TARGETED_DEVICE_FAMILY": "1"
         },
         "c": "applebin_ios-ios_x86_64-dbg-STABLE-13",
@@ -4465,13 +4438,12 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-opt-STABLE-15/bin/WidgetExtension/rules_xcodeproj/WidgetExtension/Info.plist",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/WidgetExtension",
+            "PREVIEWS_SWIFT_INCLUDE__": "",
+            "PREVIEWS_SWIFT_INCLUDE__NO": "",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/WidgetExtension",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.widget-extension",
             "PRODUCT_MODULE_NAME": "WidgetExtension",
             "SWIFT_COMPILATION_MODE": "wholemodule",
-            "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/Lib",
             "TARGETED_DEVICE_FAMILY": "1"
         },
         "c": "applebin_ios-ios_x86_64-opt-STABLE-15",
@@ -4625,12 +4597,11 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iMessageApp/rules_xcodeproj/iMessageAppExtension/Info.plist",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iMessageApp",
+            "PREVIEWS_SWIFT_INCLUDE__": "",
+            "PREVIEWS_SWIFT_INCLUDE__NO": "",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iMessageApp",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.imessage-app.extension",
             "PRODUCT_MODULE_NAME": "iMessageAppExtension",
-            "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/Lib",
             "TARGETED_DEVICE_FAMILY": "1"
         },
         "c": "applebin_ios-ios_x86_64-dbg-STABLE-13",
@@ -4696,13 +4667,12 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iMessageApp/rules_xcodeproj/iMessageAppExtension/Info.plist",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iMessageApp",
+            "PREVIEWS_SWIFT_INCLUDE__": "",
+            "PREVIEWS_SWIFT_INCLUDE__NO": "",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iMessageApp",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.imessage-app.extension",
             "PRODUCT_MODULE_NAME": "iMessageAppExtension",
             "SWIFT_COMPILATION_MODE": "wholemodule",
-            "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/Lib",
             "TARGETED_DEVICE_FAMILY": "1"
         },
         "c": "applebin_ios-ios_x86_64-opt-STABLE-15",
@@ -5368,12 +5338,11 @@
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "DEVELOPMENT_TEAM": "V82V4GQZXM",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_arm64-dbg-STABLE-14/bin/iOSApp/Source/rules_xcodeproj/iOSApp/Info.plist",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/iOSApp/Source",
+            "PREVIEWS_SWIFT_INCLUDE__": "",
+            "PREVIEWS_SWIFT_INCLUDE__NO": "",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/iOSApp/Source",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example",
             "PRODUCT_MODULE_NAME": "iOSApp",
-            "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/Lib bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/UI bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer",
             "TARGETED_DEVICE_FAMILY": "1"
         },
         "c": "applebin_ios-ios_arm64-dbg-STABLE-14",
@@ -5484,13 +5453,12 @@
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "DEVELOPMENT_TEAM": "V82V4GQZXM",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_arm64-opt-STABLE-16/bin/iOSApp/Source/rules_xcodeproj/iOSApp/Info.plist",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/iOSApp/Source",
+            "PREVIEWS_SWIFT_INCLUDE__": "",
+            "PREVIEWS_SWIFT_INCLUDE__NO": "",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/iOSApp/Source",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example",
             "PRODUCT_MODULE_NAME": "iOSApp",
             "SWIFT_COMPILATION_MODE": "wholemodule",
-            "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/Lib bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/UI bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer",
             "TARGETED_DEVICE_FAMILY": "1"
         },
         "c": "applebin_ios-ios_arm64-opt-STABLE-16",
@@ -5602,12 +5570,11 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Source/rules_xcodeproj/iOSApp/Info.plist",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source",
+            "PREVIEWS_SWIFT_INCLUDE__": "",
+            "PREVIEWS_SWIFT_INCLUDE__NO": "",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example",
             "PRODUCT_MODULE_NAME": "iOSApp",
-            "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/Lib bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/UI bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer",
             "TARGETED_DEVICE_FAMILY": "1"
         },
         "c": "applebin_ios-ios_x86_64-dbg-STABLE-13",
@@ -5717,13 +5684,12 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Source/rules_xcodeproj/iOSApp/Info.plist",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Source",
+            "PREVIEWS_SWIFT_INCLUDE__": "",
+            "PREVIEWS_SWIFT_INCLUDE__NO": "",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Source",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example",
             "PRODUCT_MODULE_NAME": "iOSApp",
             "SWIFT_COMPILATION_MODE": "wholemodule",
-            "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/Lib bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/UI bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer",
             "TARGETED_DEVICE_FAMILY": "1"
         },
         "c": "applebin_ios-ios_x86_64-opt-STABLE-15",
@@ -6178,12 +6144,11 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Test/SwiftUnitTests/rules_xcodeproj/iOSAppSwiftUnitTestSuite.__internal__.__test_bundle/Info.plist",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/SwiftUnitTests",
+            "PREVIEWS_SWIFT_INCLUDE__": "",
+            "PREVIEWS_SWIFT_INCLUDE__NO": "",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/SwiftUnitTests",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.tests",
             "PRODUCT_MODULE_NAME": "iOSAppSwiftUnitTestSuite",
-            "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/Lib bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/UI bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/TestingUtils",
             "TARGETED_DEVICE_FAMILY": "1,2"
         },
         "c": "applebin_ios-ios_x86_64-dbg-STABLE-13",
@@ -6272,13 +6237,12 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Test/SwiftUnitTests/rules_xcodeproj/iOSAppSwiftUnitTestSuite.__internal__.__test_bundle/Info.plist",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Test/SwiftUnitTests",
+            "PREVIEWS_SWIFT_INCLUDE__": "",
+            "PREVIEWS_SWIFT_INCLUDE__NO": "",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Test/SwiftUnitTests",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.tests",
             "PRODUCT_MODULE_NAME": "iOSAppSwiftUnitTestSuite",
             "SWIFT_COMPILATION_MODE": "wholemodule",
-            "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/Lib bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/UI bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Source bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Test/TestingUtils",
             "TARGETED_DEVICE_FAMILY": "1,2"
         },
         "c": "applebin_ios-ios_x86_64-opt-STABLE-15",
@@ -6370,12 +6334,11 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Test/SwiftUnitTests/rules_xcodeproj/iOSAppSwiftUnitTests.__internal__.__test_bundle/Info.plist",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/SwiftUnitTests",
+            "PREVIEWS_SWIFT_INCLUDE__": "",
+            "PREVIEWS_SWIFT_INCLUDE__NO": "",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/SwiftUnitTests",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.tests",
             "PRODUCT_MODULE_NAME": "iOSAppSwiftUnitTests",
-            "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/Lib bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/UI bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/TestingUtils",
             "TARGETED_DEVICE_FAMILY": "1,2"
         },
         "c": "applebin_ios-ios_x86_64-dbg-STABLE-13",
@@ -6464,13 +6427,12 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Test/SwiftUnitTests/rules_xcodeproj/iOSAppSwiftUnitTests.__internal__.__test_bundle/Info.plist",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Test/SwiftUnitTests",
+            "PREVIEWS_SWIFT_INCLUDE__": "",
+            "PREVIEWS_SWIFT_INCLUDE__NO": "",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Test/SwiftUnitTests",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.tests",
             "PRODUCT_MODULE_NAME": "iOSAppSwiftUnitTests",
             "SWIFT_COMPILATION_MODE": "wholemodule",
-            "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/Lib bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/UI bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Source bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Test/TestingUtils",
             "TARGETED_DEVICE_FAMILY": "1,2"
         },
         "c": "applebin_ios-ios_x86_64-opt-STABLE-15",
@@ -6960,12 +6922,11 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-STABLE-31/bin/macOSApp/Source/rules_xcodeproj/macOSApp/Info.plist",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-29/bin/macOSApp/Source",
+            "PREVIEWS_SWIFT_INCLUDE__": "",
+            "PREVIEWS_SWIFT_INCLUDE__NO": "",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-29/bin/macOSApp/Source",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.macOSApp",
-            "PRODUCT_MODULE_NAME": "macOSApp",
-            "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS))"
+            "PRODUCT_MODULE_NAME": "macOSApp"
         },
         "c": "applebin_macos-darwin_x86_64-dbg-STABLE-31",
         "i": {
@@ -7027,13 +6988,12 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-opt-STABLE-32/bin/macOSApp/Source/rules_xcodeproj/macOSApp/Info.plist",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-30/bin/macOSApp/Source",
+            "PREVIEWS_SWIFT_INCLUDE__": "",
+            "PREVIEWS_SWIFT_INCLUDE__NO": "",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-30/bin/macOSApp/Source",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.macOSApp",
             "PRODUCT_MODULE_NAME": "macOSApp",
-            "SWIFT_COMPILATION_MODE": "wholemodule",
-            "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS))"
+            "SWIFT_COMPILATION_MODE": "wholemodule"
         },
         "c": "applebin_macos-darwin_x86_64-opt-STABLE-32",
         "i": {
@@ -7223,12 +7183,11 @@
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "DEVELOPMENT_TEAM": "V82V4GQZXM",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_tvos-tvos_arm64-dbg-STABLE-26/bin/tvOSApp/Source/rules_xcodeproj/tvOSApp/Info.plist",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-6/bin/tvOSApp/Source",
+            "PREVIEWS_SWIFT_INCLUDE__": "",
+            "PREVIEWS_SWIFT_INCLUDE__NO": "",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-6/bin/tvOSApp/Source",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example",
-            "PRODUCT_MODULE_NAME": "tvOSApp",
-            "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-6/bin/Lib bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-6/bin/UI"
+            "PRODUCT_MODULE_NAME": "tvOSApp"
         },
         "c": "applebin_tvos-tvos_arm64-dbg-STABLE-26",
         "d": [
@@ -7301,13 +7260,12 @@
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "DEVELOPMENT_TEAM": "V82V4GQZXM",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_tvos-tvos_arm64-opt-STABLE-28/bin/tvOSApp/Source/rules_xcodeproj/tvOSApp/Info.plist",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-opt-STABLE-12/bin/tvOSApp/Source",
+            "PREVIEWS_SWIFT_INCLUDE__": "",
+            "PREVIEWS_SWIFT_INCLUDE__NO": "",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-opt-STABLE-12/bin/tvOSApp/Source",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example",
             "PRODUCT_MODULE_NAME": "tvOSApp",
-            "SWIFT_COMPILATION_MODE": "wholemodule",
-            "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-opt-STABLE-12/bin/Lib bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-opt-STABLE-12/bin/UI"
+            "SWIFT_COMPILATION_MODE": "wholemodule"
         },
         "c": "applebin_tvos-tvos_arm64-opt-STABLE-28",
         "d": [
@@ -7381,12 +7339,11 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-dbg-STABLE-25/bin/tvOSApp/Source/rules_xcodeproj/tvOSApp/Info.plist",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/tvOSApp/Source",
+            "PREVIEWS_SWIFT_INCLUDE__": "",
+            "PREVIEWS_SWIFT_INCLUDE__NO": "",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/tvOSApp/Source",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example",
-            "PRODUCT_MODULE_NAME": "tvOSApp",
-            "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/Lib bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/UI"
+            "PRODUCT_MODULE_NAME": "tvOSApp"
         },
         "c": "applebin_tvos-tvos_x86_64-dbg-STABLE-25",
         "d": [
@@ -7458,13 +7415,12 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-opt-STABLE-27/bin/tvOSApp/Source/rules_xcodeproj/tvOSApp/Info.plist",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9/bin/tvOSApp/Source",
+            "PREVIEWS_SWIFT_INCLUDE__": "",
+            "PREVIEWS_SWIFT_INCLUDE__NO": "",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9/bin/tvOSApp/Source",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example",
             "PRODUCT_MODULE_NAME": "tvOSApp",
-            "SWIFT_COMPILATION_MODE": "wholemodule",
-            "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9/bin/Lib bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9/bin/UI"
+            "SWIFT_COMPILATION_MODE": "wholemodule"
         },
         "c": "applebin_tvos-tvos_x86_64-opt-STABLE-27",
         "d": [
@@ -7662,12 +7618,11 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-dbg-STABLE-25/bin/tvOSApp/Test/UnitTests/rules_xcodeproj/tvOSAppUnitTests.__internal__.__test_bundle/Info.plist",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/tvOSApp/Test/UnitTests",
+            "PREVIEWS_SWIFT_INCLUDE__": "",
+            "PREVIEWS_SWIFT_INCLUDE__NO": "",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/tvOSApp/Test/UnitTests",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.tests",
-            "PRODUCT_MODULE_NAME": "tvOSAppUnitTests",
-            "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/Lib bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/UI bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/tvOSApp/Source"
+            "PRODUCT_MODULE_NAME": "tvOSAppUnitTests"
         },
         "c": "applebin_tvos-tvos_x86_64-dbg-STABLE-25",
         "d": [
@@ -7738,13 +7693,12 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-opt-STABLE-27/bin/tvOSApp/Test/UnitTests/rules_xcodeproj/tvOSAppUnitTests.__internal__.__test_bundle/Info.plist",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9/bin/tvOSApp/Test/UnitTests",
+            "PREVIEWS_SWIFT_INCLUDE__": "",
+            "PREVIEWS_SWIFT_INCLUDE__NO": "",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9/bin/tvOSApp/Test/UnitTests",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.tests",
             "PRODUCT_MODULE_NAME": "tvOSAppUnitTests",
-            "SWIFT_COMPILATION_MODE": "wholemodule",
-            "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9/bin/Lib bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9/bin/UI bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9/bin/tvOSApp/Source"
+            "SWIFT_COMPILATION_MODE": "wholemodule"
         },
         "c": "applebin_tvos-tvos_x86_64-opt-STABLE-27",
         "d": [
@@ -8120,12 +8074,11 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-dbg-STABLE-17/bin/watchOSAppExtension/Test/UnitTests/rules_xcodeproj/watchOSAppExtensionUnitTests.__internal__.__test_bundle/Info.plist",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/watchOSAppExtension/Test/UnitTests",
+            "PREVIEWS_SWIFT_INCLUDE__": "",
+            "PREVIEWS_SWIFT_INCLUDE__NO": "",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/watchOSAppExtension/Test/UnitTests",
             "PRODUCT_BUNDLE_IDENTIFIER": "com.bazelbuild.rulesapple.Tests",
-            "PRODUCT_MODULE_NAME": "watchOSAppExtensionUnitTestsLibrary",
-            "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/Lib bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/UI"
+            "PRODUCT_MODULE_NAME": "watchOSAppExtensionUnitTestsLibrary"
         },
         "c": "applebin_watchos-watchos_x86_64-dbg-STABLE-17",
         "d": [
@@ -8191,13 +8144,12 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-opt-STABLE-19/bin/watchOSAppExtension/Test/UnitTests/rules_xcodeproj/watchOSAppExtensionUnitTests.__internal__.__test_bundle/Info.plist",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8/bin/watchOSAppExtension/Test/UnitTests",
+            "PREVIEWS_SWIFT_INCLUDE__": "",
+            "PREVIEWS_SWIFT_INCLUDE__NO": "",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8/bin/watchOSAppExtension/Test/UnitTests",
             "PRODUCT_BUNDLE_IDENTIFIER": "com.bazelbuild.rulesapple.Tests",
             "PRODUCT_MODULE_NAME": "watchOSAppExtensionUnitTestsLibrary",
-            "SWIFT_COMPILATION_MODE": "wholemodule",
-            "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8/bin/Lib bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8/bin/UI"
+            "SWIFT_COMPILATION_MODE": "wholemodule"
         },
         "c": "applebin_watchos-watchos_x86_64-opt-STABLE-19",
         "d": [
@@ -8266,12 +8218,11 @@
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "DEVELOPMENT_TEAM": "V82V4GQZXM",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_watchos-watchos_arm64_32-dbg-STABLE-18/bin/watchOSAppExtension/rules_xcodeproj/watchOSAppExtension/Info.plist",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-5/bin/watchOSAppExtension",
+            "PREVIEWS_SWIFT_INCLUDE__": "",
+            "PREVIEWS_SWIFT_INCLUDE__NO": "",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-5/bin/watchOSAppExtension",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.watch.extension",
-            "PRODUCT_MODULE_NAME": "watchOSAppExtension",
-            "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-5/bin/Lib bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-5/bin/UI"
+            "PRODUCT_MODULE_NAME": "watchOSAppExtension"
         },
         "c": "applebin_watchos-watchos_arm64_32-dbg-STABLE-18",
         "d": [
@@ -8340,13 +8291,12 @@
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "DEVELOPMENT_TEAM": "V82V4GQZXM",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_watchos-watchos_arm64_32-opt-STABLE-20/bin/watchOSAppExtension/rules_xcodeproj/watchOSAppExtension/Info.plist",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-opt-STABLE-11/bin/watchOSAppExtension",
+            "PREVIEWS_SWIFT_INCLUDE__": "",
+            "PREVIEWS_SWIFT_INCLUDE__NO": "",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-opt-STABLE-11/bin/watchOSAppExtension",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.watch.extension",
             "PRODUCT_MODULE_NAME": "watchOSAppExtension",
-            "SWIFT_COMPILATION_MODE": "wholemodule",
-            "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-opt-STABLE-11/bin/Lib bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-opt-STABLE-11/bin/UI"
+            "SWIFT_COMPILATION_MODE": "wholemodule"
         },
         "c": "applebin_watchos-watchos_arm64_32-opt-STABLE-20",
         "d": [
@@ -8417,12 +8367,11 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-dbg-STABLE-17/bin/watchOSAppExtension/rules_xcodeproj/watchOSAppExtension/Info.plist",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/watchOSAppExtension",
+            "PREVIEWS_SWIFT_INCLUDE__": "",
+            "PREVIEWS_SWIFT_INCLUDE__NO": "",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/watchOSAppExtension",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.watch.extension",
-            "PRODUCT_MODULE_NAME": "watchOSAppExtension",
-            "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/Lib bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/UI"
+            "PRODUCT_MODULE_NAME": "watchOSAppExtension"
         },
         "c": "applebin_watchos-watchos_x86_64-dbg-STABLE-17",
         "d": [
@@ -8490,13 +8439,12 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-opt-STABLE-19/bin/watchOSAppExtension/rules_xcodeproj/watchOSAppExtension/Info.plist",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__NO": "",
-            "PREVIEWS_SWIFT_INCLUDE_PATH__YES": "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8/bin/watchOSAppExtension",
+            "PREVIEWS_SWIFT_INCLUDE__": "",
+            "PREVIEWS_SWIFT_INCLUDE__NO": "",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8/bin/watchOSAppExtension",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.watch.extension",
             "PRODUCT_MODULE_NAME": "watchOSAppExtension",
-            "SWIFT_COMPILATION_MODE": "wholemodule",
-            "SWIFT_INCLUDE_PATHS": "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS)) bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8/bin/Lib bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8/bin/UI"
+            "SWIFT_COMPILATION_MODE": "wholemodule"
         },
         "c": "applebin_watchos-watchos_x86_64-opt-STABLE-19",
         "d": [

@@ -513,41 +513,51 @@ _PREVIEWS_ENABLED_PRODUCT_TYPES = {
 
 def _set_swift_include_paths(
         *,
+        build_mode,
         build_settings,
         xcode_generated_paths,
         xcode_target):
     if not xcode_target.swift_params:
         return
 
-    def _handle_swiftmodule_path(file):
-        path = file.path
-        bs_path = xcode_generated_paths.get(path)
-        if bs_path:
-            include_path = paths.dirname(bs_path)
-        else:
+    if build_mode == "xcode":
+        def _handle_swiftmodule_path(file):
+            path = file.path
+            bs_path = xcode_generated_paths.get(path)
+            if bs_path:
+                include_path = paths.dirname(bs_path)
+            else:
+                include_path = file.dirname
+
+            if include_path.find(" ") != -1:
+                include_path = '"{}"'.format(include_path)
+
+            return include_path
+
+        includes = uniq([
+            _handle_swiftmodule_path(file)
+            for file in xcode_target._swiftmodules
+        ])
+    else:
+        def _handle_swiftmodule_path(file):
             include_path = file.dirname
 
-        if include_path.find(" ") != -1:
-            include_path = '"{}"'.format(include_path)
+            if include_path.find(" ") != -1:
+                include_path = '"{}"'.format(include_path)
 
-        return include_path
+            return include_path
 
-    includes = uniq([
-        _handle_swiftmodule_path(file)
-        for file in xcode_target._swiftmodules
-    ])
+        # BwB Swift include paths are set in
+        # `swift_compiler_params_processor.py`
+        includes = []
 
     swiftmodule = xcode_target.outputs.swiftmodule
     if (swiftmodule and
         xcode_target.product.type in _PREVIEWS_ENABLED_PRODUCT_TYPES):
-        build_settings["PREVIEWS_SWIFT_INCLUDE_PATH__"] = ""
-        build_settings["PREVIEWS_SWIFT_INCLUDE_PATH__NO"] = ""
-        build_settings["PREVIEWS_SWIFT_INCLUDE_PATH__YES"] = (
-            _handle_swiftmodule_path(swiftmodule)
-        )
-        includes.insert(
-            0,
-            "$(PREVIEWS_SWIFT_INCLUDE_PATH__$(ENABLE_PREVIEWS))",
+        build_settings["PREVIEWS_SWIFT_INCLUDE__"] = ""
+        build_settings["PREVIEWS_SWIFT_INCLUDE__NO"] = ""
+        build_settings["PREVIEWS_SWIFT_INCLUDE__YES"] = (
+            "-I {}".format(_handle_swiftmodule_path(swiftmodule))
         )
 
     set_if_true(build_settings, "SWIFT_INCLUDE_PATHS", " ".join(includes))
@@ -799,6 +809,7 @@ def _build_settings_to_dto(
         xcode_target = xcode_target,
     )
     _set_swift_include_paths(
+        build_mode = build_mode,
         build_settings = build_settings,
         xcode_generated_paths = xcode_generated_paths,
         xcode_target = xcode_target,

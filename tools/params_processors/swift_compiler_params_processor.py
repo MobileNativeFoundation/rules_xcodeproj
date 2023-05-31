@@ -80,13 +80,12 @@ def _is_relative_path(path: str) -> bool:
 
 def _process_clang_opt(
         opt: str,
+        is_clang_opt: bool,
         previous_opt: str,
         previous_clang_opt: str,
         is_bwx: bool) -> Optional[str]:
     if opt == "-Xcc":
         return opt
-
-    is_clang_opt = previous_opt == "-Xcc"
 
     if not (is_clang_opt or is_bwx):
         return None
@@ -176,8 +175,17 @@ def _inner_process_swiftcopts(
         previous_frontend_opt: str,
         previous_clang_opt: str,
         is_bwx: bool) -> Optional[str]:
+    is_clang_opt = opt == "-Xcc" or previous_opt == "-Xcc"
+
+    if (is_bwx and not is_clang_opt and
+        (previous_opt == "-I" or opt.startswith("-I"))):
+        # BwX Swift include paths are set in `xcode_targets.bzl`
+        # `_set_swift_include_paths`
+        return None
+
     clang_opt = _process_clang_opt(
         opt = opt,
+        is_clang_opt = is_clang_opt,
         previous_opt = previous_opt,
         previous_clang_opt = previous_clang_opt,
         is_bwx = is_bwx,
