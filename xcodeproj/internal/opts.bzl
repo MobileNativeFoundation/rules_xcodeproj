@@ -314,7 +314,7 @@ under {}""".format(opt, package_bin_dir))
             continue
 
         if not is_bwx:
-            if previous_opt == "-I":
+            if previous_opt == "-I" or previous_opt == "-F":
                 path = opt
                 if path == ".":
                     absolute_opt = "$(PROJECT_DIR)"
@@ -325,14 +325,15 @@ under {}""".format(opt, package_bin_dir))
                 project_set_opts.append(absolute_opt)
                 continue
 
-            if opt.startswith("-I"):
+            if opt.startswith("-I") or opt.startswith("-F"):
+                opt_prefix = opt[0:2]
                 path = opt[2:]
                 if not path:
                     absolute_opt = opt
                 elif path == ".":
-                    absolute_opt = "-I$(PROJECT_DIR)"
+                    absolute_opt = opt_prefix + "$(PROJECT_DIR)"
                 elif is_relative_path(path):
-                    absolute_opt = "-I$(CURRENT_EXECUTION_ROOT)/" + path
+                    absolute_opt = opt_prefix + "$(CURRENT_EXECUTION_ROOT)/" + path
                 else:
                     absolute_opt = replace_bazel_placeholders(opt)
                 project_set_opts.append(absolute_opt)
