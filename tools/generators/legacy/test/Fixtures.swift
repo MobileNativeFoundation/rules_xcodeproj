@@ -2011,7 +2011,7 @@ touch "$SCRIPT_OUTPUT_FILE_1"
                 "SDKROOT": "macosx",
                 "SUPPORTED_PLATFORMS": "macosx",
                 "SWIFT_PARAMS_FILE": #"""
-$(PROJECT_DIR)/bazel-out/A1.swift.compile.params
+$(BAZEL_OUT)/A1.swift.compile.params
 """#,
                 "TARGET_NAME": targets["A 1"]!.name,
             ]) { $1 },
