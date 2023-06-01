@@ -137,6 +137,20 @@ def _process_clang_opt(
                 bwx_opt = opt
             return bwx_opt
         return opt
+    if opt.startswith("-F"):
+        path = opt[2:]
+        if not path:
+            return opt
+        is_relative = _is_relative_path(path)
+        if is_clang_opt or is_relative:
+            if path == ".":
+                bwx_opt = "-F$(PROJECT_DIR)"
+            elif is_relative:
+                bwx_opt = "-F$(PROJECT_DIR)/" + path
+            else:
+                bwx_opt = opt
+            return bwx_opt
+        return opt
     if opt.startswith("-isystem"):
         path = opt[8:]
         if not path:

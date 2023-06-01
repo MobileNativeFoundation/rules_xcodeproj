@@ -204,8 +204,6 @@ def process_compiler_opts_test_suite(name):
             "arm64-apple-ios15.0-simulator",
             "-sdk",
             "__BAZEL_XCODE_SDKROOT__",
-            "-F__BAZEL_XCODE_DEVELOPER_DIR__/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks",
-            "-F__BAZEL_XCODE_SDKROOT__/Developer/Library/Frameworks",
             "-emit-object",
             "-output-file-map",
             "bazel-out/ios-sim_arm64-min15.0-applebin_ios-ios_sim_arm64-fastbuild-ST-4e6c2a19403f/bin/examples/ExampleUITests/ExampleUITests.library.output_file_map.json",
@@ -448,10 +446,71 @@ def process_compiler_opts_test_suite(name):
         ],
     )
 
-    # -F, -I, -explicit-swift-module-map-file, -vfsoverlay
+    # -I
 
     _add_test(
-        name = "{}_swift_vfsoverlay_bazel".format(name),
+        name = "{}_swift_I_paths_bazel".format(name),
+        build_mode = "bazel",
+        swiftcopts = [
+            # -I
+            "-I__BAZEL_XCODE_SOMETHING_/path",
+            "-I__BAZEL_XCODE_DEVELOPER_DIR__/Platforms/iPhoneSimulator.platform/Developer/usr/lib",
+            "-I",
+            "__BAZEL_XCODE_DEVELOPER_DIR__/Platforms/iPhoneSimulator.platform/Developer/usr/lib",
+            "-Irelative/path",
+            "-I/absolute/path",
+            "-I.",
+            "-I",
+            "relative/path",
+            "-I",
+            "/absolute/path",
+            "-I",
+            ".",
+        ],
+        expected_build_settings = {
+            "OTHER_SWIFT_FLAGS": """\
+-I__BAZEL_XCODE_SOMETHING_/path \
+-I$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib \
+-I \
+$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib \
+-I$(PROJECT_DIR)/relative/path \
+-I/absolute/path \
+-I$(PROJECT_DIR) \
+-I \
+$(PROJECT_DIR)/relative/path \
+-I \
+/absolute/path \
+-I \
+$(PROJECT_DIR)\
+""",
+        },
+    )
+
+    _add_test(
+        name = "{}_swift_I_paths_xcode".format(name),
+        build_mode = "xcode",
+        swiftcopts = [
+            # -I
+            "-I__BAZEL_XCODE_SOMETHING_/path",
+            "-I__BAZEL_XCODE_DEVELOPER_DIR__/Platforms/iPhoneSimulator.platform/Developer/usr/lib",
+            "-I",
+            "__BAZEL_XCODE_DEVELOPER_DIR__/Platforms/iPhoneSimulator.platform/Developer/usr/lib",
+            "-Irelative/path",
+            "-I/absolute/path",
+            "-I.",
+            "-I",
+            "relative/path",
+            "-I",
+            "/absolute/path",
+            "-I",
+            ".",
+        ],
+    )
+
+    # -F, -explicit-swift-module-map-file, and -vfsoverlay
+
+    _add_test(
+        name = "{}_swift_other_paths".format(name),
         build_mode = "bazel",
         swiftcopts = [
             # -explicit-swift-module-map-file
@@ -504,21 +563,6 @@ def process_compiler_opts_test_suite(name):
             "/absolute/path",
             "-F",
             ".",
-
-            # -I
-            "-I__BAZEL_XCODE_SOMETHING_/path",
-            "-I__BAZEL_XCODE_DEVELOPER_DIR__/Platforms/iPhoneSimulator.platform/Developer/usr/lib",
-            "-I",
-            "__BAZEL_XCODE_DEVELOPER_DIR__/Platforms/iPhoneSimulator.platform/Developer/usr/lib",
-            "-Irelative/path",
-            "-I/absolute/path",
-            "-I.",
-            "-I",
-            "relative/path",
-            "-I",
-            "/absolute/path",
-            "-I",
-            ".",
         ],
         expected_build_settings = {
             "OTHER_SWIFT_FLAGS": """\
@@ -566,19 +610,6 @@ $(PROJECT_DIR)/relative/path \
 -F \
 /absolute/path \
 -F \
-$(PROJECT_DIR) \
--I__BAZEL_XCODE_SOMETHING_/path \
--I$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib \
--I \
-$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib \
--I$(PROJECT_DIR)/relative/path \
--I/absolute/path \
--I$(PROJECT_DIR) \
--I \
-$(PROJECT_DIR)/relative/path \
--I \
-/absolute/path \
--I \
 $(PROJECT_DIR)\
 """,
         },
