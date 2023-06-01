@@ -12,6 +12,7 @@ class swift_compiler_params_processor_test(unittest.TestCase):
         self.assertEqual(
             swift_compiler_params_processor.process_args(
                 [[
+                    "swift_worker",
                     "swiftc",
 
                     # -fmodule-map-file
@@ -224,6 +225,7 @@ class swift_compiler_params_processor_test(unittest.TestCase):
         self.assertEqual(
             swift_compiler_params_processor.process_args(
                 [[
+                    "swift_worker",
                     "swiftc",
                     "-F__BAZEL_XCODE_DEVELOPER_DIR__/Hi",
                     "-I__BAZEL_XCODE_SDKROOT__/Yo",
@@ -242,6 +244,7 @@ class swift_compiler_params_processor_test(unittest.TestCase):
         self.assertEqual(
             swift_compiler_params_processor.process_args(
                 [[
+                    "swift_worker",
                     "swiftc",
                     "-output-file-map",
                     "path",
@@ -312,6 +315,7 @@ class swift_compiler_params_processor_test(unittest.TestCase):
         self.assertEqual(
             swift_compiler_params_processor.process_args(
                 [[
+                    "swift_worker",
                     "swiftc",
                     "-explicit-swift-module-map-file",
                     "/Some/Path.json",
@@ -338,6 +342,7 @@ class swift_compiler_params_processor_test(unittest.TestCase):
         self.assertEqual(
             swift_compiler_params_processor.process_args(
                 [[
+                    "swift_worker",
                     "swiftc",
                     "-vfsoverlay",
                     "/Some/Path.yaml",
@@ -372,6 +377,7 @@ class swift_compiler_params_processor_test(unittest.TestCase):
         self.assertEqual(
             swift_compiler_params_processor.process_args(
                 [[
+                    "swift_worker",
                     "swiftc",
                     "-Xcc",
                     "-I/non/quoted/path",
