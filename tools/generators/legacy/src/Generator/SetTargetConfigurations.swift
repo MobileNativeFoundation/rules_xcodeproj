@@ -380,7 +380,7 @@ $(CONFIGURATION_BUILD_DIR)
         let cFlags: [String]
         if let cParams = target.cParams {
             buildSettings.set("C_PARAMS_FILE", to: #"""
-$(CURRENT_EXECUTION_ROOT)/\#(cParams.path.string)
+$(PROJECT_DIR)/\#(cParams.path.string)
 """#)
             cFlags = ["@$(DERIVED_FILE_DIR)/c.compile.params"]
         } else {
@@ -390,7 +390,7 @@ $(CURRENT_EXECUTION_ROOT)/\#(cParams.path.string)
         let cxxFlags: [String]
         if let cxxParams = target.cxxParams {
             buildSettings.set("CXX_PARAMS_FILE", to: #"""
-$(CURRENT_EXECUTION_ROOT)/\#(cxxParams.path.string)
+$(PROJECT_DIR)/\#(cxxParams.path.string)
 """#)
             cxxFlags = ["@$(DERIVED_FILE_DIR)/cxx.compile.params"]
         } else {
@@ -400,7 +400,7 @@ $(CURRENT_EXECUTION_ROOT)/\#(cxxParams.path.string)
         let swiftFlags: [String]
         if let swiftParams = target.swiftParams {
             buildSettings.set("SWIFT_PARAMS_FILE", to: #"""
-$(CURRENT_EXECUTION_ROOT)/\#(swiftParams.path.string)
+$(PROJECT_DIR)/\#(swiftParams.path.string)
 """#)
             swiftFlags = ["@$(DERIVED_FILE_DIR)/swift.compile.params"]
         } else {

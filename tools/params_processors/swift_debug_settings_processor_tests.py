@@ -236,13 +236,13 @@ class swift_debug_settings_processor_test(unittest.TestCase):
                 "-ivfsoverlay",
                 "/Some/Path.yaml",
                 "-ivfsoverlay",
-                "$(CURRENT_EXECUTION_ROOT)/relative/Path.yaml",
+                "$(PROJECT_DIR)/relative/Path.yaml",
                 "-ivfsoverlay",
                 "/Some/Path.yaml",
                 "-ivfsoverlay",
-                "$(CURRENT_EXECUTION_ROOT)/relative/Path.yaml",
+                "$(PROJECT_DIR)/relative/Path.yaml",
                 "-ivfsoverlay/Some/Path.yaml",
-                "-ivfsoverlay$(CURRENT_EXECUTION_ROOT)/relative/Path.yaml",
+                "-ivfsoverlay$(PROJECT_DIR)/relative/Path.yaml",
             ],
         )
 

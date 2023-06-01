@@ -65,7 +65,7 @@ def _process_clang_opt(opt, previous_opt, previous_clang_opt):
         # -vfsoverlay doesn't apply `-working_directory=`, so we need to
         # prefix it ourselves
         if opt[0] != "/":
-            return "$(CURRENT_EXECUTION_ROOT)/" + opt
+            return "$(PROJECT_DIR)/" + opt
         return opt
     if opt.startswith("-ivfsoverlay"):
         # Remove `-ivfsoverlay` prefix
@@ -73,7 +73,7 @@ def _process_clang_opt(opt, previous_opt, previous_clang_opt):
         if not value:
             return opt
         if not value.startswith("/"):
-            return "-ivfsoverlay$(CURRENT_EXECUTION_ROOT)/" + value
+            return "-ivfsoverlay$(PROJECT_DIR)/" + value
         return opt
 
     return opt

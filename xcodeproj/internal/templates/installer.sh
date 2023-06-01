@@ -231,14 +231,18 @@ plutil -remove BuildSystemType "$workspace_settings" > /dev/null || true
 # Prevent Xcode from prompting the user to autocreate schemes for all targets
 plutil -replace IDEWorkspaceSharedSettings_AutocreateContextsIfNeeded -bool false "$workspace_settings"
 
+# Create Index Build execution root (`$INDEXING_PROJECT_DIR__YES`)
+readonly workspace_name="${execution_root##*/}"
+readonly output_base="${execution_root%/*/*}"
+readonly indexbuild_exec_root="$output_base/rules_xcodeproj.noindex/indexbuild_output_base/execroot/$workspace_name"
+mkdir -p "$indexbuild_exec_root"
+
 # Create folder structure in bazel-out to work around Xcode red generated files
 if [[ -f "$dest/rules_xcodeproj/generated.xcfilelist" ]]; then
   cd "$BUILD_WORKSPACE_DIRECTORY"
 
-  readonly workspace_name="${execution_root##*/}"
-  readonly output_base="${execution_root%/*/*}"
-  readonly nested_output_base="$output_base/rules_xcodeproj.noindex/build_output_base"
-  readonly bazel_out="$nested_output_base/execroot/$workspace_name/bazel-out"
+  readonly nested_build_output_base="$output_base/rules_xcodeproj.noindex/build_output_base"
+  readonly bazel_out="$nested_build_output_base/execroot/$workspace_name/bazel-out"
 
   # Create directory structure in bazel-out
   cd "$bazel_out"

@@ -2011,7 +2011,7 @@ touch "$SCRIPT_OUTPUT_FILE_1"
                 "SDKROOT": "macosx",
                 "SUPPORTED_PLATFORMS": "macosx",
                 "SWIFT_PARAMS_FILE": #"""
-$(CURRENT_EXECUTION_ROOT)/bazel-out/A1.swift.compile.params
+$(PROJECT_DIR)/bazel-out/A1.swift.compile.params
 """#,
                 "TARGET_NAME": targets["A 1"]!.name,
             ]) { $1 },
@@ -2163,7 +2163,7 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2/A.app/A_ExecutableName
                 "SDKROOT": "watchos",
                 "SUPPORTED_PLATFORMS": "watchos",
                 "SWIFT_PARAMS_FILE": #"""
-$(CURRENT_EXECUTION_ROOT)/bazel-out/E1.swift.compile.params
+$(PROJECT_DIR)/bazel-out/E1.swift.compile.params
 """#,
                 "TARGET_NAME": targets["E1"]!.name,
                 "WATCHOS_DEPLOYMENT_TARGET": "9.1",
@@ -2184,7 +2184,7 @@ $(CURRENT_EXECUTION_ROOT)/bazel-out/E1.swift.compile.params
                 "SDKROOT": "appletvos",
                 "SUPPORTED_PLATFORMS": "appletvos",
                 "SWIFT_PARAMS_FILE": #"""
-$(CURRENT_EXECUTION_ROOT)/bazel-out/E2.swift.compile.params
+$(PROJECT_DIR)/bazel-out/E2.swift.compile.params
 """#,
                 "TARGET_NAME": targets["E2"]!.name,
                 "TVOS_DEPLOYMENT_TARGET": "9.1",
@@ -2271,13 +2271,13 @@ $(MACOSX_FILES)
                 "SUPPORTED_PLATFORMS": "macosx iphonesimulator iphoneos",
                 "SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD": "YES",
                 "SWIFT_PARAMS_FILE": #"""
-$(CURRENT_EXECUTION_ROOT)/bazel-out/T 3.swift.compile.params
+$(PROJECT_DIR)/bazel-out/T 3.swift.compile.params
 """#,
                 "SWIFT_PARAMS_FILE[sdk=iphoneos*]": #"""
-$(CURRENT_EXECUTION_ROOT)/bazel-out/T 1.swift.compile.params
+$(PROJECT_DIR)/bazel-out/T 1.swift.compile.params
 """#,
                 "SWIFT_PARAMS_FILE[sdk=iphonesimulator*]": #"""
-$(CURRENT_EXECUTION_ROOT)/bazel-out/T 2.swift.compile.params
+$(PROJECT_DIR)/bazel-out/T 2.swift.compile.params
 """#,
                 "TARGET_NAME": targets["T 1"]!.name,
             ]) { $1 },
@@ -2407,7 +2407,7 @@ $(CURRENT_EXECUTION_ROOT)/bazel-out/T 2.swift.compile.params
         let schemes = xcSchemes()
         return XCSharedData(schemes: schemes)
     }
-    
+
     static func xcUserData() -> XCUserData {
         return XCUserData(
             userName: "testUser",
