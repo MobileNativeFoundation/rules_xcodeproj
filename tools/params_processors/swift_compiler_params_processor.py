@@ -187,7 +187,8 @@ def _inner_process_swiftcopts(
         is_bwx: bool) -> Optional[str]:
     is_clang_opt = opt == "-Xcc" or previous_opt == "-Xcc"
 
-    if not is_clang_opt and (previous_opt == "-I" or opt.startswith("-I")):
+    if not is_clang_opt and (previous_opt == "-I" or opt.startswith("-I") or
+        previous_opt == "-F" or opt.startswith("-F")):
         # BwX Swift include paths are set in `xcode_targets.bzl`
         # `_set_swift_include_paths`, and BwB include paths are set in
         # `opts.bzl`

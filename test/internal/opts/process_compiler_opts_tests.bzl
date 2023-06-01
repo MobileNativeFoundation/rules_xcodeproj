@@ -149,8 +149,6 @@ def process_compiler_opts_test_suite(name):
             "arm64-apple-ios15.0-simulator",
             "-sdk",
             "__BAZEL_XCODE_SDKROOT__",
-            "-F__BAZEL_XCODE_DEVELOPER_DIR__/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks",
-            "-F__BAZEL_XCODE_SDKROOT__/Developer/Library/Frameworks",
             "-emit-object",
             "-output-file-map",
             "bazel-out/ios-sim_arm64-min15.0-applebin_ios-ios_sim_arm64-fastbuild-ST-4e6c2a19403f/bin/examples/ExampleUITests/ExampleUITests.library.output_file_map.json",
@@ -450,7 +448,7 @@ def process_compiler_opts_test_suite(name):
         ],
     )
 
-    # -I, -explicit-swift-module-map-file, -vfsoverlay
+    # -F, -I, -explicit-swift-module-map-file, -vfsoverlay
 
     _add_test(
         name = "{}_swift_vfsoverlay_bazel".format(name),
@@ -491,6 +489,21 @@ def process_compiler_opts_test_suite(name):
             "-vfsoverlay=/Some/Path.yaml",
             "-Xfrontend",
             "-vfsoverlay=relative/Path.yaml",
+
+            # -F
+            "-F__BAZEL_XCODE_SOMETHING_/path",
+            "-F__BAZEL_XCODE_DEVELOPER_DIR__/Platforms/iPhoneSimulator.platform/Developer/usr/lib",
+            "-F",
+            "__BAZEL_XCODE_DEVELOPER_DIR__/Platforms/iPhoneSimulator.platform/Developer/usr/lib",
+            "-Frelative/path",
+            "-F/absolute/path",
+            "-F.",
+            "-F",
+            "relative/path",
+            "-F",
+            "/absolute/path",
+            "-F",
+            ".",
 
             # -I
             "-I__BAZEL_XCODE_SOMETHING_/path",
@@ -541,6 +554,19 @@ $(CURRENT_EXECUTION_ROOT)/relative/Path.yaml \
 -vfsoverlay=/Some/Path.yaml \
 -Xfrontend \
 -vfsoverlay$(CURRENT_EXECUTION_ROOT)/relative/Path.yaml \
+-F__BAZEL_XCODE_SOMETHING_/path \
+-F$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib \
+-F \
+$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib \
+-F$(CURRENT_EXECUTION_ROOT)/relative/path \
+-F/absolute/path \
+-F$(PROJECT_DIR) \
+-F \
+$(CURRENT_EXECUTION_ROOT)/relative/path \
+-F \
+/absolute/path \
+-F \
+$(PROJECT_DIR) \
 -I__BAZEL_XCODE_SOMETHING_/path \
 -I$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib \
 -I \
