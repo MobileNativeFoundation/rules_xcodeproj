@@ -743,7 +743,7 @@
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = iphonesimulator;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_PARAMS_FILE = "$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/AddressSanitizerApp/AddressSanitizerApp.library.rules_xcodeproj.swift.compile.params";
+				SWIFT_PARAMS_FILE = "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/AddressSanitizerApp/AddressSanitizerApp.library.rules_xcodeproj.swift.compile.params";
 				TARGETED_DEVICE_FAMILY = 1;
 				TARGET_NAME = AddressSanitizerApp;
 			};
@@ -769,7 +769,7 @@
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = UndefinedBehaviorSanitizerApp.library;
-				C_PARAMS_FILE = "$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/UndefinedBehaviorSanitizerApp/UndefinedBehaviorSanitizerApp.library.rules_xcodeproj.c.compile.params";
+				C_PARAMS_FILE = "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/UndefinedBehaviorSanitizerApp/UndefinedBehaviorSanitizerApp.library.rules_xcodeproj.c.compile.params";
 				DEPLOYMENT_LOCATION = NO;
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/UndefinedBehaviorSanitizerApp/rules_xcodeproj/UndefinedBehaviorSanitizerApp/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -871,7 +871,7 @@
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = iphonesimulator;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_PARAMS_FILE = "$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/ThreadSanitizerApp/ThreadSanitizerApp.library.rules_xcodeproj.swift.compile.params";
+				SWIFT_PARAMS_FILE = "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/ThreadSanitizerApp/ThreadSanitizerApp.library.rules_xcodeproj.swift.compile.params";
 				TARGETED_DEVICE_FAMILY = 1;
 				TARGET_NAME = ThreadSanitizerApp;
 			};
