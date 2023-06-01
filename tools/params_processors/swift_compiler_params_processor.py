@@ -169,11 +169,11 @@ def _process_clang_opt(
         # prefix it ourselves
         if previous_clang_opt == "-ivfsoverlay":
             if opt[0] != "/":
-                opt = "$(CURRENT_EXECUTION_ROOT)/" + opt
+                opt = "$(PROJECT_DIR)/" + opt
         elif opt.startswith("-ivfsoverlay"):
             value = opt[12:]
             if not value.startswith("/"):
-                opt = "-ivfsoverlay$(CURRENT_EXECUTION_ROOT)/" + value
+                opt = "-ivfsoverlay$(PROJECT_DIR)/" + value
         return opt
 
     return None

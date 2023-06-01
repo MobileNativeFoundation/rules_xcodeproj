@@ -319,7 +319,7 @@ under {}""".format(opt, package_bin_dir))
                 if path == ".":
                     absolute_opt = "$(PROJECT_DIR)"
                 elif is_relative_path(path):
-                    absolute_opt = "$(CURRENT_EXECUTION_ROOT)/" + path
+                    absolute_opt = "$(PROJECT_DIR)/" + path
                 else:
                     absolute_opt = replace_bazel_placeholders(opt)
                 project_set_opts.append(absolute_opt)
@@ -333,7 +333,7 @@ under {}""".format(opt, package_bin_dir))
                 elif path == ".":
                     absolute_opt = opt_prefix + "$(PROJECT_DIR)"
                 elif is_relative_path(path):
-                    absolute_opt = opt_prefix + "$(CURRENT_EXECUTION_ROOT)/" + path
+                    absolute_opt = opt_prefix + "$(PROJECT_DIR)/" + path
                 else:
                     absolute_opt = replace_bazel_placeholders(opt)
                 project_set_opts.append(absolute_opt)
@@ -352,7 +352,7 @@ Using explicit module maps with `build_mode = "xcode"` is unsupported.
                 else:
                     path = opt
                     if is_relative_path(path):
-                        absolute_opt = "$(CURRENT_EXECUTION_ROOT)/" + path
+                        absolute_opt = "$(PROJECT_DIR)/" + path
                     else:
                         absolute_opt = opt
                     project_set_opts.append(previous_opt)
@@ -367,7 +367,7 @@ Using VFS overlays with `build_mode = "xcode"` is unsupported.
                 else:
                     path = opt
                     if is_relative_path(path):
-                        absolute_opt = "$(CURRENT_EXECUTION_ROOT)/" + path
+                        absolute_opt = "$(PROJECT_DIR)/" + path
                     else:
                         absolute_opt = opt
                     project_set_opts.append(previous_opt)
@@ -387,7 +387,7 @@ Using VFS overlays with `build_mode = "xcode"` is unsupported.
                         absolute_opt = opt
                     elif is_relative_path(path):
                         absolute_opt = (
-                            "-vfsoverlay$(CURRENT_EXECUTION_ROOT)/" + path
+                            "-vfsoverlay$(PROJECT_DIR)/" + path
                         )
                     else:
                         absolute_opt = opt
@@ -407,7 +407,7 @@ Using explicit module maps with `build_mode = "xcode"` is unsupported.
                 else:
                     path = opt
                     if is_relative_path(path):
-                        absolute_opt = "$(CURRENT_EXECUTION_ROOT)/" + path
+                        absolute_opt = "$(PROJECT_DIR)/" + path
                     else:
                         absolute_opt = opt
                     project_set_opts.append(absolute_opt)
@@ -421,7 +421,7 @@ Using VFS overlays with `build_mode = "xcode"` is unsupported.
                 else:
                     path = opt
                     if is_relative_path(path):
-                        absolute_opt = "$(CURRENT_EXECUTION_ROOT)/" + path
+                        absolute_opt = "$(PROJECT_DIR)/" + path
                     else:
                         absolute_opt = opt
                     project_set_opts.append(absolute_opt)
@@ -440,7 +440,7 @@ Using VFS overlays with `build_mode = "xcode"` is unsupported.
                         absolute_opt = opt
                     elif is_relative_path(path):
                         absolute_opt = (
-                            "-vfsoverlay$(CURRENT_EXECUTION_ROOT)/" + path
+                            "-vfsoverlay$(PROJECT_DIR)/" + path
                         )
                     else:
                         absolute_opt = opt
@@ -455,7 +455,7 @@ Using VFS overlays with `build_mode = "xcode"` is unsupported.
     # `swift_compiler_params_processor.py` to prevent duplication.
     #
     # Since `-working-directory` is also filtered for the request, we ensure
-    # that relative paths use `$(CURRENT_EXECUTION_ROOT)`.
+    # that relative paths use `$(PROJECT_DIR)`.
     set_if_true(
         build_settings,
         "OTHER_SWIFT_FLAGS",

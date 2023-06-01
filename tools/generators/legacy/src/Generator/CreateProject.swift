@@ -89,9 +89,6 @@ $(INDEXING_BUILT_PRODUCTS_DIR__$(INDEX_ENABLE_BUILD_ARENA))
             "CLANG_MODULES_AUTOLINK": false,
             "CONFIGURATION_BUILD_DIR": "$(BUILD_DIR)/$(BAZEL_PACKAGE_BIN_DIR)",
             "COPY_PHASE_STRIP": false,
-            "CURRENT_EXECUTION_ROOT": """
-$(INDEXING_PROJECT_DIR__$(INDEX_ENABLE_BUILD_ARENA))
-""",
             "DEBUG_INFORMATION_FORMAT": "dwarf",
             "DEPLOYMENT_LOCATION": """
 $(INDEXING_DEPLOYMENT_LOCATION__$(INDEX_ENABLE_BUILD_ARENA)),
@@ -128,6 +125,9 @@ $(PROJECT_FILE_PATH)/\(directories.internalDirectoryName)
             // `link.params`
             "LD_RUNPATH_SEARCH_PATHS": [] as [String],
             "ONLY_ACTIVE_ARCH": true,
+            "PROJECT_DIR": """
+$(INDEXING_PROJECT_DIR__$(INDEX_ENABLE_BUILD_ARENA))
+""",
             "RULES_XCODEPROJ_BUILD_MODE": buildMode.rawValue,
             "SCHEME_TARGET_IDS_FILE": """
 $(OBJROOT)/scheme_target_ids

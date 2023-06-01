@@ -45,7 +45,7 @@ _CC_SKIP_OPTS = {
     "DEBUG_PREFIX_MAP_PWD": 1,
 }
 
-_NEEDS_CURRENT_EXECUTION_ROOT = {
+_NEEDS_PROJECT_DIR = {
     "-ivfsoverlay": None,
     "--config": None,
 }
@@ -58,14 +58,14 @@ def _inner_process_cc_opts(opt: str, previous_opt: Optional[str]) -> str:
 
     # -ivfsoverlay and --config doesn't apply `-working_directory=`, so we
     # need to prefix it ourselves
-    if previous_opt in _NEEDS_CURRENT_EXECUTION_ROOT:
+    if previous_opt in _NEEDS_PROJECT_DIR:
         if opt[0] != "/":
-            return "$(CURRENT_EXECUTION_ROOT)/" + opt
+            return "$(PROJECT_DIR)/" + opt
         return opt
     if opt.startswith("-ivfsoverlay"):
         value = opt[12:]
         if not value.startswith("/"):
-            return "-ivfsoverlay" + "$(CURRENT_EXECUTION_ROOT)/" + value
+            return "-ivfsoverlay" + "$(PROJECT_DIR)/" + value
         return opt
 
     return opt

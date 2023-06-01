@@ -38,9 +38,6 @@ extension Generator {
             "CONFIGURATION_BUILD_DIR": "$(BUILD_DIR)/$(BAZEL_PACKAGE_BIN_DIR)"
                 .pbxProjEscaped,
             "COPY_PHASE_STRIP": "NO",
-            "CURRENT_EXECUTION_ROOT":
-                "$(INDEXING_PROJECT_DIR__$(INDEX_ENABLE_BUILD_ARENA))"
-                .pbxProjEscaped,
             "DEBUG_INFORMATION_FORMAT": "dwarf",
             "DEPLOYMENT_LOCATION":
                 "$(INDEXING_DEPLOYMENT_LOCATION__$(INDEX_ENABLE_BUILD_ARENA))"
@@ -70,6 +67,9 @@ extension Generator {
             "LD_OBJC_ABI_VERSION": "".pbxProjEscaped,
             "LD_RUNPATH_SEARCH_PATHS": "(\n\t\t\t\t)",
             "ONLY_ACTIVE_ARCH": "YES",
+            "PROJECT_DIR":
+                "$(INDEXING_PROJECT_DIR__$(INDEX_ENABLE_BUILD_ARENA))"
+                .pbxProjEscaped,
             // TODO: Set `RESOLVED_REPOSITORIES`
             "RESOLVED_REPOSITORIES": "".pbxProjEscaped,
             "RULES_XCODEPROJ_BUILD_MODE": buildMode.rawValue,
