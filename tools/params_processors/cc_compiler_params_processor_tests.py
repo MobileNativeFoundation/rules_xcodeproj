@@ -56,6 +56,7 @@ class cc_compiler_params_processor_test(unittest.TestCase):
                     "-Inon/quoted/path",
                     "--config",
                     "relative/Path.yaml",
+                    "-DFOO=\"Bar\"",
                 ]],
                 _parse_args,
             ),
@@ -63,6 +64,7 @@ class cc_compiler_params_processor_test(unittest.TestCase):
                 "-Inon/quoted/path",
                 "--config",
                 "'$(PROJECT_DIR)/relative/Path.yaml'",
+                "'-DFOO=\"Bar\"'",
             ],
         )
 

@@ -115,8 +115,9 @@ def process_args(params_paths: List[str], parse_args) -> List[str]:
             # Use Xcode set `SDKROOT`
             opt = opt.replace("__BAZEL_XCODE_SDKROOT__", "$(SDKROOT)")
 
-            # Quote the option if it contains spaces or build setting variables
-            if " " in opt or ("$(" in opt and ")" in opt):
+            # Quote the option if it contains spaces, quotes, or build setting
+            # variables
+            if " " in opt or "\"" in opt or ("$(" in opt and ")" in opt):
                 opt = f"'{opt}'"
 
             processed_opts.append(opt)
