@@ -213,8 +213,8 @@ def _inner_process_swiftcopts(
 
 
 def process_args(params_paths: List[str], parse_args) -> List[str]:
-    # First line is "swiftc"
-    skip_next = 1
+    # First two lines are "swift_worker" and "swiftc"
+    skip_next = 2
 
     processed_opts = []
     next_previous_opt = None
