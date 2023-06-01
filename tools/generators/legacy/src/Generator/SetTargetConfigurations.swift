@@ -256,7 +256,8 @@ Target with id "\(id)" not found in `consolidatedTarget.uniqueFiles`
         var buildSettings = target.buildSettings
 
         if let linkParams = target.linkParams {
-            // Drop the `bazel-out` prefix since we use the env var for this portion of the path.
+            // Drop the `bazel-out` prefix since we use the env var for this
+            // portion of the path
             buildSettings.set("LINK_PARAMS_FILE", to: #"""
 $(BAZEL_OUT)\#(linkParams.path.string.dropFirst(9))
 """#)
@@ -379,8 +380,10 @@ $(CONFIGURATION_BUILD_DIR)
 
         let cFlags: [String]
         if let cParams = target.cParams {
+            // Drop the `bazel-out` prefix since we use the env var for this
+            // portion of the path
             buildSettings.set("C_PARAMS_FILE", to: #"""
-$(PROJECT_DIR)/\#(cParams.path.string)
+$(BAZEL_OUT)\#(cParams.path.string.dropFirst(9))
 """#)
             cFlags = ["@$(DERIVED_FILE_DIR)/c.compile.params"]
         } else {
@@ -389,8 +392,10 @@ $(PROJECT_DIR)/\#(cParams.path.string)
 
         let cxxFlags: [String]
         if let cxxParams = target.cxxParams {
+            // Drop the `bazel-out` prefix since we use the env var for this
+            // portion of the path
             buildSettings.set("CXX_PARAMS_FILE", to: #"""
-$(PROJECT_DIR)/\#(cxxParams.path.string)
+$(BAZEL_OUT)\#(cxxParams.path.string.dropFirst(9))
 """#)
             cxxFlags = ["@$(DERIVED_FILE_DIR)/cxx.compile.params"]
         } else {
@@ -399,8 +404,10 @@ $(PROJECT_DIR)/\#(cxxParams.path.string)
 
         let swiftFlags: [String]
         if let swiftParams = target.swiftParams {
+            // Drop the `bazel-out` prefix since we use the env var for this
+            // portion of the path
             buildSettings.set("SWIFT_PARAMS_FILE", to: #"""
-$(PROJECT_DIR)/\#(swiftParams.path.string)
+$(BAZEL_OUT)\#(swiftParams.path.string.dropFirst(9))
 """#)
             swiftFlags = ["@$(DERIVED_FILE_DIR)/swift.compile.params"]
         } else {

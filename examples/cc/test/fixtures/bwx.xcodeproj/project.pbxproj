@@ -902,7 +902,7 @@
 				BAZEL_TARGET_ID = "//lib2:lib_impl darwin_x86_64-dbg-STABLE-1";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = lib_impl;
-				C_PARAMS_FILE = "$(PROJECT_DIR)/bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib2/lib_impl.rules_xcodeproj.c.compile.params";
+				C_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-1/bin/lib2/lib_impl.rules_xcodeproj.c.compile.params";
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
@@ -929,7 +929,7 @@
 				BAZEL_TARGET_ID = "//lib:lib_defines darwin_x86_64-dbg-STABLE-1";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = lib_defines;
-				C_PARAMS_FILE = "$(PROJECT_DIR)/bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib/lib_defines.rules_xcodeproj.c.compile.params";
+				C_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-1/bin/lib/lib_defines.rules_xcodeproj.c.compile.params";
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
@@ -1030,7 +1030,7 @@
 				BAZEL_TARGET_ID = "//lib/impl:lib_impl darwin_x86_64-dbg-STABLE-1";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = lib_impl;
-				C_PARAMS_FILE = "$(PROJECT_DIR)/bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib/impl/lib_impl.rules_xcodeproj.c.compile.params";
+				C_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-1/bin/lib/impl/lib_impl.rules_xcodeproj.c.compile.params";
 				EXECUTABLE_EXTENSION = lo;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
@@ -1059,7 +1059,7 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
 				COMPILE_TARGET_NAME = tool;
-				C_PARAMS_FILE = "$(PROJECT_DIR)/bazel-out/darwin_x86_64-dbg-STABLE-1/bin/tool/tool.rules_xcodeproj.c.compile.params";
+				C_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-1/bin/tool/tool.rules_xcodeproj.c.compile.params";
 				DEPLOYMENT_LOCATION = NO;
 				EXECUTABLE_EXTENSION = "";
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1090,7 +1090,7 @@
 				BAZEL_TARGET_ID = "@examples_cc_external//:lib_impl darwin_x86_64-dbg-STABLE-1";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = lib_impl;
-				C_PARAMS_FILE = "$(PROJECT_DIR)/bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external/lib_impl.rules_xcodeproj.c.compile.params";
+				C_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external/lib_impl.rules_xcodeproj.c.compile.params";
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
