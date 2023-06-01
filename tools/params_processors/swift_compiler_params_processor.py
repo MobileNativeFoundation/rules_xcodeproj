@@ -93,18 +93,14 @@ def _process_clang_opt(
         opt: str,
         is_clang_opt: bool,
         previous_opt: str,
-        previous_clang_opt: str,
-        is_bwx: bool) -> Optional[str]:
+        previous_clang_opt: str) -> Optional[str]:
     if opt == "-Xcc":
         return opt
-
-    if not (is_clang_opt or is_bwx):
-        return None
 
     if opt.startswith("-fmodule-map-file="):
         path = opt[18:]
         is_relative = _is_relative_path(path)
-        if is_bwx and (is_clang_opt or is_relative):
+        if is_clang_opt or is_relative:
             if path == ".":
                 bwx_opt = "-fmodule-map-file=$(PROJECT_DIR)"
             elif is_relative:
@@ -118,7 +114,7 @@ def _process_clang_opt(
         if not path:
             return opt
         is_relative = _is_relative_path(path)
-        if is_bwx and (is_clang_opt or is_relative):
+        if is_clang_opt or is_relative:
             if path == ".":
                 bwx_opt = "-iquote$(PROJECT_DIR)"
             elif is_relative:
@@ -132,7 +128,7 @@ def _process_clang_opt(
         if not path:
             return opt
         is_relative = _is_relative_path(path)
-        if is_bwx and (is_clang_opt or is_relative):
+        if is_clang_opt or is_relative:
             if path == ".":
                 bwx_opt = "-I$(PROJECT_DIR)"
             elif is_relative:
@@ -146,7 +142,7 @@ def _process_clang_opt(
         if not path:
             return opt
         is_relative = _is_relative_path(path)
-        if is_bwx and (is_clang_opt or is_relative):
+        if is_clang_opt or is_relative:
             if path == ".":
                 bwx_opt = "-isystem$(PROJECT_DIR)"
             elif is_relative:
@@ -155,8 +151,8 @@ def _process_clang_opt(
                 bwx_opt = opt
             return bwx_opt
         return opt
-    if is_bwx and (previous_opt in _CLANG_SEARCH_PATHS or
-                   previous_clang_opt in _CLANG_SEARCH_PATHS):
+    if (previous_opt in _CLANG_SEARCH_PATHS or
+        previous_clang_opt in _CLANG_SEARCH_PATHS):
         if opt == ".":
             bwx_opt = "$(PROJECT_DIR)"
         elif _is_relative_path(opt):
@@ -183,8 +179,7 @@ def _inner_process_swiftcopts(
         *,
         opt: str,
         previous_opt: str,
-        previous_clang_opt: str,
-        is_bwx: bool) -> Optional[str]:
+        previous_clang_opt: str) -> Optional[str]:
     is_clang_opt = opt == "-Xcc" or previous_opt == "-Xcc"
 
     if not is_clang_opt and (previous_opt == "-I" or opt.startswith("-I") or
@@ -203,7 +198,6 @@ def _inner_process_swiftcopts(
         is_clang_opt = is_clang_opt,
         previous_opt = previous_opt,
         previous_clang_opt = previous_clang_opt,
-        is_bwx = is_bwx,
     )
     if clang_opt:
         return clang_opt
@@ -218,14 +212,9 @@ def _inner_process_swiftcopts(
     return opt
 
 
-def process_args(
-        params_paths: List[str],
-        parse_args,
-        build_mode: str) -> List[str]:
-    is_bwx = build_mode == "xcode"
-
-    # First line is "swiftc"
-    skip_next = 1
+def process_args(params_paths: List[str], parse_args) -> List[str]:
+    # First two lines are "swift_worker" and "swiftc"
+    skip_next = 2
 
     processed_opts = []
     next_previous_opt = None
@@ -287,7 +276,6 @@ def process_args(
                 opt = opt,
                 previous_opt = previous_opt,
                 previous_clang_opt = previous_clang_opt,
-                is_bwx = is_bwx,
             )
 
             if processed_opt and is_frontend_opt:
@@ -326,8 +314,8 @@ def _parse_args(params_path: str) -> Iterator[str]:
     return open(params_path, encoding = "utf-8")
 
 
-def _main(output_path: str, build_mode: str, params_paths: List[str]) -> None:
-    processed_opts = process_args(params_paths, _parse_args, build_mode)
+def _main(output_path: str, params_paths: List[str]) -> None:
+    processed_opts = process_args(params_paths, _parse_args)
 
     with open(output_path, encoding = "utf-8", mode = "w") as fp:
         result = "\n".join(processed_opts)
@@ -335,12 +323,12 @@ def _main(output_path: str, build_mode: str, params_paths: List[str]) -> None:
 
 
 if __name__ == "__main__":
-    if len(sys.argv) < 4:
+    if len(sys.argv) < 3:
         print(
             f"""
-Usage: {sys.argv[0]} output_path build_mode [params_file, ...]""",
+Usage: {sys.argv[0]} output_path [params_file, ...]""",
             file = sys.stderr,
         )
         exit(1)
 
-    _main(sys.argv[1], sys.argv[2], sys.argv[3:])
+    _main(sys.argv[1], sys.argv[2:])
