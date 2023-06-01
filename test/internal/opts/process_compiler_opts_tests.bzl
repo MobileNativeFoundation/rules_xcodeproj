@@ -458,10 +458,16 @@ def process_compiler_opts_test_suite(name):
             "-I",
             "__BAZEL_XCODE_DEVELOPER_DIR__/Platforms/iPhoneSimulator.platform/Developer/usr/lib",
             "-Irelative/path",
+            "-Ibazel-out/relative/path",
+            "-Iexternal/relative/path",
             "-I/absolute/path",
             "-I.",
             "-I",
             "relative/path",
+            "-I",
+            "bazel-out/relative/path",
+            "-I",
+            "external/relative/path",
             "-I",
             "/absolute/path",
             "-I",
@@ -473,11 +479,17 @@ def process_compiler_opts_test_suite(name):
 -I$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib \
 -I \
 $(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib \
--I$(PROJECT_DIR)/relative/path \
+-I$(SRCROOT)/relative/path \
+-I$(BAZEL_OUT)/relative/path \
+-I$(BAZEL_EXTERNAL)/relative/path \
 -I/absolute/path \
 -I$(PROJECT_DIR) \
 -I \
-$(PROJECT_DIR)/relative/path \
+$(SRCROOT)/relative/path \
+-I \
+$(BAZEL_OUT)/relative/path \
+-I \
+$(BAZEL_EXTERNAL)/relative/path \
 -I \
 /absolute/path \
 -I \
@@ -496,10 +508,16 @@ $(PROJECT_DIR)\
             "-I",
             "__BAZEL_XCODE_DEVELOPER_DIR__/Platforms/iPhoneSimulator.platform/Developer/usr/lib",
             "-Irelative/path",
+            "-Ibazel-out/relative/path",
+            "-Iexternal/relative/path",
             "-I/absolute/path",
             "-I.",
             "-I",
             "relative/path",
+            "-I",
+            "bazel-out/relative/path",
+            "-I",
+            "external/relative/path",
             "-I",
             "/absolute/path",
             "-I",
@@ -555,10 +573,16 @@ $(PROJECT_DIR)\
             "-F",
             "__BAZEL_XCODE_DEVELOPER_DIR__/Platforms/iPhoneSimulator.platform/Developer/usr/lib",
             "-Frelative/path",
+            "-Fbazel-out/relative/path",
+            "-Fexternal/relative/path",
             "-F/absolute/path",
             "-F.",
             "-F",
             "relative/path",
+            "-F",
+            "bazel-out/relative/path",
+            "-F",
+            "external/relative/path",
             "-F",
             "/absolute/path",
             "-F",
@@ -602,34 +626,23 @@ $(PROJECT_DIR)/relative/Path.yaml \
 -F$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib \
 -F \
 $(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib \
--F$(PROJECT_DIR)/relative/path \
+-F$(SRCROOT)/relative/path \
+-F$(BAZEL_OUT)/relative/path \
+-F$(BAZEL_EXTERNAL)/relative/path \
 -F/absolute/path \
 -F$(PROJECT_DIR) \
 -F \
-$(PROJECT_DIR)/relative/path \
+$(SRCROOT)/relative/path \
+-F \
+$(BAZEL_OUT)/relative/path \
+-F \
+$(BAZEL_EXTERNAL)/relative/path \
 -F \
 /absolute/path \
 -F \
 $(PROJECT_DIR)\
 """,
         },
-    )
-
-    _add_test(
-        name = "{}_swift_vfsoverlay_xcode".format(name),
-        build_mode = "xcode",
-        swiftcopts = [
-            "-I__BAZEL_XCODE_SOMETHING_/path",
-            "-I__BAZEL_XCODE_DEVELOPER_DIR__/Platforms/iPhoneSimulator.platform/Developer/usr/lib",
-            "-I",
-            "__BAZEL_XCODE_DEVELOPER_DIR__/Platforms/iPhoneSimulator.platform/Developer/usr/lib",
-            "-Irelative/path",
-            "-I/absolute/path",
-            "-I",
-            "relative/path",
-            "-I",
-            "/absolute/path",
-        ],
     )
 
     # -D_FORTIFY_SOURCE=1
