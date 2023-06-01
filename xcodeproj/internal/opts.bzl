@@ -314,7 +314,7 @@ under {}""".format(opt, package_bin_dir))
             continue
 
         if not is_bwx:
-            if previous_opt == "-I" or previous_opt == "-F":
+            if previous_opt == "-I":
                 path = opt
                 if path == ".":
                     absolute_opt = "$(PROJECT_DIR)"
@@ -325,19 +325,42 @@ under {}""".format(opt, package_bin_dir))
                 project_set_opts.append(absolute_opt)
                 continue
 
-            if opt.startswith("-I") or opt.startswith("-F"):
-                opt_prefix = opt[0:2]
+            if opt.startswith("-I"):
                 path = opt[2:]
                 if not path:
                     absolute_opt = opt
                 elif path == ".":
-                    absolute_opt = opt_prefix + "$(PROJECT_DIR)"
+                    absolute_opt = "-I$(PROJECT_DIR)"
                 elif is_relative_path(path):
-                    absolute_opt = opt_prefix + "$(PROJECT_DIR)/" + path
+                    absolute_opt = "-I$(PROJECT_DIR)/" + path
                 else:
                     absolute_opt = replace_bazel_placeholders(opt)
                 project_set_opts.append(absolute_opt)
                 continue
+
+        if previous_opt == "-F":
+            path = opt
+            if path == ".":
+                absolute_opt = "$(PROJECT_DIR)"
+            elif is_relative_path(path):
+                absolute_opt = "$(PROJECT_DIR)/" + path
+            else:
+                absolute_opt = replace_bazel_placeholders(opt)
+            project_set_opts.append(absolute_opt)
+            continue
+
+        if opt.startswith("-F"):
+            path = opt[2:]
+            if not path:
+                absolute_opt = opt
+            elif path == ".":
+                absolute_opt = "-F$(PROJECT_DIR)"
+            elif is_relative_path(path):
+                absolute_opt = "-F$(PROJECT_DIR)/" + path
+            else:
+                absolute_opt = replace_bazel_placeholders(opt)
+            project_set_opts.append(absolute_opt)
+            continue
 
         if previous_opt == "-Xfrontend":
             if opt == "-explicit-swift-module-map-file":
