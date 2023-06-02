@@ -109,24 +109,6 @@
             </ActionContent>
          </ExecutionAction>
       </PreActions>
-      <PostActions>
-         <ExecutionAction
-            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
-            <ActionContent
-               title = "Run After Tests"
-               scriptText = "echo &quot;Hi&quot;">
-               <EnvironmentBuildable>
-                  <BuildableReference
-                     BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "7856014E22F3CF45191565D8"
-                     BuildableName = "iOSAppSwiftUnitTestSuite.xctest"
-                     BlueprintName = "iOSAppSwiftUnitTestSuite"
-                     ReferencedContainer = "container:../../../../../test/fixtures/bwx.xcodeproj">
-                  </BuildableReference>
-               </EnvironmentBuildable>
-            </ActionContent>
-         </ExecutionAction>
-      </PostActions>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
