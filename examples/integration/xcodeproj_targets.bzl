@@ -175,4 +175,22 @@ def get_xcode_schemes():
                 ],
             ),
         ),
+        xcode_schemes.scheme(
+            name = "iOSAppTestSuite_Scheme",
+            test_action = xcode_schemes.test_action(
+                env = {
+                    "IOSAPPSWIFTUNITTESTS_CUSTOMSCHEMEVAR": "TRUE",
+                },
+                targets = [
+                    "//iOSApp/Test:iOSAppTestSuite",
+                ],
+                post_actions = [
+                    xcode_schemes.pre_post_action(
+                        name = "Run After Tests",
+                        script = "echo \"Hi\"",
+                        expand_variables_based_on = "//iOSApp/Test:iOSAppTestSuite",
+                    ),
+                ],
+            ),
+        ),
     ]
