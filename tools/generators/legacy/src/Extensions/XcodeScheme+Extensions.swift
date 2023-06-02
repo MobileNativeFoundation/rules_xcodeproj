@@ -76,9 +76,11 @@ add it or a target that depends on it to \(runnerLabel)'s `top_level_targets` at
         var topLevelPlatforms: Set<Platform> = []
 
         for targetLabel in allBazelLabels {
-            var labelsToProcess: [BazelLabel] = [targetLabel]
-            if let actualLabels = aliasLabels[targetLabel], actualLabels.count > 0 {
+            let labelsToProcess: [BazelLabel]
+            if let actualLabels = aliasLabels[targetLabel] {
                 labelsToProcess = actualLabels
+            } else {
+                labelsToProcess = [targetLabel]
             }
 
             for label in labelsToProcess {

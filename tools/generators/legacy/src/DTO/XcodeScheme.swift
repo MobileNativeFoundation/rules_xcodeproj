@@ -46,9 +46,11 @@ extension XcodeScheme {
             _ keyPath: WritableKeyPath<XcodeScheme.BuildFor, XcodeScheme.BuildFor.Value>,
             _ mode: EnableBuildForValueMode = .merge
         ) throws {
-            var labelsToProcess: [BazelLabel] = [targetLabel]
-            if let actualLabels = aliasLabels[targetLabel], actualLabels.count > 0 {
+            let labelsToProcess: [BazelLabel]
+            if let actualLabels = aliasLabels[targetLabel] {
                 labelsToProcess = actualLabels
+            } else {
+                labelsToProcess = [targetLabel]
             }
 
             for label in labelsToProcess {
