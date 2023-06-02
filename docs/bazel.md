@@ -578,8 +578,8 @@ stabilizing it.
 ## XcodeProjInfo
 
 <pre>
-XcodeProjInfo(<a href="#XcodeProjInfo-args">args</a>, <a href="#XcodeProjInfo-compilation_providers">compilation_providers</a>, <a href="#XcodeProjInfo-dependencies">dependencies</a>, <a href="#XcodeProjInfo-envs">envs</a>, <a href="#XcodeProjInfo-extension_infoplists">extension_infoplists</a>, <a href="#XcodeProjInfo-hosted_targets">hosted_targets</a>,
-              <a href="#XcodeProjInfo-inputs">inputs</a>, <a href="#XcodeProjInfo-label">label</a>, <a href="#XcodeProjInfo-labels">labels</a>, <a href="#XcodeProjInfo-lldb_context">lldb_context</a>, <a href="#XcodeProjInfo-mergable_xcode_library_targets">mergable_xcode_library_targets</a>,
+XcodeProjInfo(<a href="#XcodeProjInfo-alias_labels">alias_labels</a>, <a href="#XcodeProjInfo-args">args</a>, <a href="#XcodeProjInfo-compilation_providers">compilation_providers</a>, <a href="#XcodeProjInfo-dependencies">dependencies</a>, <a href="#XcodeProjInfo-envs">envs</a>, <a href="#XcodeProjInfo-extension_infoplists">extension_infoplists</a>,
+              <a href="#XcodeProjInfo-hosted_targets">hosted_targets</a>, <a href="#XcodeProjInfo-inputs">inputs</a>, <a href="#XcodeProjInfo-label">label</a>, <a href="#XcodeProjInfo-labels">labels</a>, <a href="#XcodeProjInfo-lldb_context">lldb_context</a>, <a href="#XcodeProjInfo-mergable_xcode_library_targets">mergable_xcode_library_targets</a>,
               <a href="#XcodeProjInfo-potential_target_merges">potential_target_merges</a>, <a href="#XcodeProjInfo-outputs">outputs</a>, <a href="#XcodeProjInfo-replacement_labels">replacement_labels</a>, <a href="#XcodeProjInfo-resource_bundle_informations">resource_bundle_informations</a>,
               <a href="#XcodeProjInfo-non_top_level_rule_kind">non_top_level_rule_kind</a>, <a href="#XcodeProjInfo-target_type">target_type</a>, <a href="#XcodeProjInfo-transitive_dependencies">transitive_dependencies</a>, <a href="#XcodeProjInfo-xcode_required_targets">xcode_required_targets</a>,
               <a href="#XcodeProjInfo-xcode_target">xcode_target</a>, <a href="#XcodeProjInfo-xcode_targets">xcode_targets</a>)
@@ -597,6 +597,7 @@ stabilizing it.
 
 | Name  | Description |
 | :------------- | :------------- |
+| <a id="XcodeProjInfo-alias_labels"></a>alias_labels |  A <code>depset</code> of <code>struct</code>s with <code>alias</code> and <code>labels</code> fields. The <code>alias</code> field is the <code>Label</code> of the target that is expanding to one or more other targets. The <code>labels</code> field is a <code>list</code> of <code>Label</code>s that the alias expands to.    |
 | <a id="XcodeProjInfo-args"></a>args |  A <code>depset</code> of <code>struct</code>s with <code>id</code> and <code>arg</code> fields. The <code>id</code> field is the target id of the target and <code>arg</code> values for the target (if applicable).    |
 | <a id="XcodeProjInfo-compilation_providers"></a>compilation_providers |  A value returned from <code>compilation_providers.collect_for_{non_,}top_level</code>.    |
 | <a id="XcodeProjInfo-dependencies"></a>dependencies |  A <code>depset</code> of target ids (see <code>xcode_target.id</code>) that this target directly depends on.    |
