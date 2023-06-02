@@ -359,7 +359,7 @@ under {}""".format(opt, package_bin_dir))
         if previous_opt_to_check in _OVERLAY_OPTS:
             if is_bwx:
                 fail('Using {} with `build_mode = "xcode"` is unsupported.'
-                        .format(previous_opt_to_check))
+                    .format(previous_opt_to_check))
             else:
                 path = opt
                 absolute_opt = build_setting_path(path)
