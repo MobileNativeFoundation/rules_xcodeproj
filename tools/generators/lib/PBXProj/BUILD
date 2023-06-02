@@ -9,6 +9,7 @@ swift_library(
     module_name = "PBXProj",
     visibility = ["//tools/generators:__subpackages__"],
     deps = [
+        "//tools/generators/lib/GeneratorCommon",
         "@com_github_apple_swift_argument_parser//:ArgumentParser",
     ],
 )
