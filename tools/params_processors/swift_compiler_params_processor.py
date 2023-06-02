@@ -78,10 +78,11 @@ _SWIFTC_SKIP_COMPOUND_OPTS = {
     },
 }
 
-_CLANG_SEARCH_PATHS = {
+_CLANG_SEARCH_PATH_OPTS = {
+    "-I": None,
+    "-F": None,
     "-iquote": None,
     "-isystem": None,
-    "-I": None,
 }
 
 
@@ -89,9 +90,35 @@ def _is_relative_path(path: str) -> bool:
     return not path.startswith("/") and not path.startswith("__BAZEL_")
 
 
+def _build_setting_path(path: str) -> str:
+    if path == ".":
+        # We need to use Bazel's execution root for ".", since includes can
+        # reference things like "external/" and "bazel-out"
+        return "$(PROJECT_DIR)"
+
+    if path == "bazel-out" or path.startswith("bazel-out/"):
+        # Removing "bazel-out" prefix
+        build_setting = "$(BAZEL_OUT){}".format(path[9:])
+    elif path == "external" or path.startswith("external/"):
+        # External
+        if path:
+            # Removing "external" prefix
+            build_setting = "$(BAZEL_EXTERNAL){}".format(path[8:])
+        else:
+            # Support directory reference
+            build_setting = "$(BAZEL_EXTERNAL)"
+    else:
+        # Project or absolute
+        if _is_relative_path(path):
+            build_setting = "$(SRCROOT)/{}".format(path)
+        else:
+            build_setting = path
+
+    return build_setting
+
+
 def _process_clang_opt(
         opt: str,
-        is_clang_opt: bool,
         previous_opt: str,
         previous_clang_opt: str) -> Optional[str]:
     if opt == "-Xcc":
@@ -99,92 +126,30 @@ def _process_clang_opt(
 
     if opt.startswith("-fmodule-map-file="):
         path = opt[18:]
-        is_relative = _is_relative_path(path)
-        if is_clang_opt or is_relative:
-            if path == ".":
-                bwx_opt = "-fmodule-map-file=$(PROJECT_DIR)"
-            elif is_relative:
-                bwx_opt = "-fmodule-map-file=$(PROJECT_DIR)/" + path
-            else:
-                bwx_opt = opt
-            return bwx_opt
-        return opt
-    if opt.startswith("-iquote"):
-        path = opt[7:]
+        return "-fmodule-map-file=" + _build_setting_path(path)
+
+    for search_opt in _CLANG_SEARCH_PATH_OPTS:
+        if opt.startswith(search_opt):
+            path = opt[len(search_opt):]
+            if not path:
+                return opt
+            return search_opt + _build_setting_path(path)
+
+    if (previous_opt in _CLANG_SEARCH_PATH_OPTS or
+        previous_clang_opt in _CLANG_SEARCH_PATH_OPTS):
+        return _build_setting_path(opt)
+
+    # -ivfsoverlay doesn't apply `-working_directory=`, so we need to
+    # prefix it ourselves
+    if previous_clang_opt == "-ivfsoverlay":
+        return _build_setting_path(opt)
+    if opt.startswith("-ivfsoverlay"):
+        path = opt[12:]
         if not path:
             return opt
-        is_relative = _is_relative_path(path)
-        if is_clang_opt or is_relative:
-            if path == ".":
-                bwx_opt = "-iquote$(PROJECT_DIR)"
-            elif is_relative:
-                bwx_opt = "-iquote$(PROJECT_DIR)/" + path
-            else:
-                bwx_opt = opt
-            return bwx_opt
-        return opt
-    if opt.startswith("-I"):
-        path = opt[2:]
-        if not path:
-            return opt
-        is_relative = _is_relative_path(path)
-        if is_clang_opt or is_relative:
-            if path == ".":
-                bwx_opt = "-I$(PROJECT_DIR)"
-            elif is_relative:
-                bwx_opt = "-I$(PROJECT_DIR)/" + path
-            else:
-                bwx_opt = opt
-            return bwx_opt
-        return opt
-    if opt.startswith("-F"):
-        path = opt[2:]
-        if not path:
-            return opt
-        is_relative = _is_relative_path(path)
-        if is_clang_opt or is_relative:
-            if path == ".":
-                bwx_opt = "-F$(PROJECT_DIR)"
-            elif is_relative:
-                bwx_opt = "-F$(PROJECT_DIR)/" + path
-            else:
-                bwx_opt = opt
-            return bwx_opt
-        return opt
-    if opt.startswith("-isystem"):
-        path = opt[8:]
-        if not path:
-            return opt
-        is_relative = _is_relative_path(path)
-        if is_clang_opt or is_relative:
-            if path == ".":
-                bwx_opt = "-isystem$(PROJECT_DIR)"
-            elif is_relative:
-                bwx_opt = "-isystem$(PROJECT_DIR)/" + path
-            else:
-                bwx_opt = opt
-            return bwx_opt
-        return opt
-    if (previous_opt in _CLANG_SEARCH_PATHS or
-        previous_clang_opt in _CLANG_SEARCH_PATHS):
-        if opt == ".":
-            bwx_opt = "$(PROJECT_DIR)"
-        elif _is_relative_path(opt):
-            bwx_opt = "$(PROJECT_DIR)/" + opt
-        else:
-            bwx_opt = opt
-        return bwx_opt
-    if is_clang_opt:
-        # -ivfsoverlay doesn't apply `-working_directory=`, so we need to
-        # prefix it ourselves
-        if previous_clang_opt == "-ivfsoverlay":
-            if opt[0] != "/":
-                opt = "$(PROJECT_DIR)/" + opt
-        elif opt.startswith("-ivfsoverlay"):
-            value = opt[12:]
-            if not value.startswith("/"):
-                opt = "-ivfsoverlay$(PROJECT_DIR)/" + value
-        return opt
+        if path.startswith("="):
+            path = path[1:]
+        return "-ivfsoverlay" + _build_setting_path(path)
 
     return None
 
@@ -209,7 +174,6 @@ def _inner_process_swiftcopts(
 
     clang_opt = _process_clang_opt(
         opt = opt,
-        is_clang_opt = is_clang_opt,
         previous_opt = previous_opt,
         previous_clang_opt = previous_clang_opt,
     )
