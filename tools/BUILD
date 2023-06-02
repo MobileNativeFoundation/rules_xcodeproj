@@ -4,11 +4,16 @@ load("//xcodeproj:defs.bzl", "xcode_schemes", "xcodeproj")
 load("//xcodeproj/internal:collections.bzl", "flatten", "uniq")
 
 _TOOLS = {
+    "files_and_groups": "//tools/generators/files_and_groups",
     "pbxproj_prefix": "//tools/generators/pbxproj_prefix",
     "swiftc_stub": "//tools/swiftc_stub:swiftc",
 }
 
 _TESTS = {
+    "files_and_groups": [
+        "//tools/generators/lib/PBXProj:PBXProjTests",
+        "//tools/generators/files_and_groups:files_and_groups_tests",
+    ],
     "pbxproj_prefix": [
         "//tools/generators/lib/PBXProj:PBXProjTests",
         "//tools/generators/pbxproj_prefix:pbxproj_prefix_tests",
@@ -22,6 +27,33 @@ _SCHEME_DIAGNOSTICS = xcode_schemes.diagnostics(
 )
 
 _SCHEMES = [
+    xcode_schemes.scheme(
+        name = "files_and_groups",
+        launch_action = xcode_schemes.launch_action(
+            _TOOLS["files_and_groups"],
+            args = [
+                # knownRegionsOutputPath
+                "/tmp/pbxproj_partials/known_regions",
+                # filesAndGroupsOutputPath
+                "/tmp/pbxproj_partials/files_and_groups",
+                # resolvedRepositoriesOutputPath
+                "/tmp/pbxproj_partials/resolved_repositories",
+                # workspace
+                "/tmp/workspace",
+                # developmentRegion
+                "en",
+                # useBaseInternationalization
+                "--use-base-internationalization",
+            ],
+            build_configuration = "Release",
+            diagnostics = _SCHEME_DIAGNOSTICS,
+            working_directory = "$(BUILD_WORKSPACE_DIRECTORY)",
+        ),
+        test_action = xcode_schemes.test_action(
+            _TESTS["files_and_groups"],
+            diagnostics = _SCHEME_DIAGNOSTICS,
+        ),
+    ),
     xcode_schemes.scheme(
         name = "pbxproj_prefix",
         launch_action = xcode_schemes.launch_action(
