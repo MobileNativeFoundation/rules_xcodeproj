@@ -313,9 +313,9 @@ def _skip_target(
                         str(info.label)
                         for attr, info in transitive_infos
                         if attr == "tests"
-                    ]
+                    ],
                 ),
-            )
+            ),
         ]
     else:
         alias_labels = None
