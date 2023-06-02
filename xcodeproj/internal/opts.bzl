@@ -2,7 +2,7 @@
 
 load("@bazel_tools//tools/cpp:toolchain_utils.bzl", "find_cpp_toolchain")
 load(":collections.bzl", "set_if_true")
-load(":files.bzl", "is_relative_path", "replace_bazel_placeholders")
+load(":files.bzl", "build_setting_path", "is_relative_path")
 load(":memory_efficiency.bzl", "EMPTY_LIST")
 
 # Maps Swift compliation mode compiler flags to the corresponding Xcode values
@@ -316,12 +316,7 @@ under {}""".format(opt, package_bin_dir))
         if not is_bwx:
             if previous_opt == "-I":
                 path = opt
-                if path == ".":
-                    absolute_opt = "$(PROJECT_DIR)"
-                elif is_relative_path(path):
-                    absolute_opt = "$(PROJECT_DIR)/" + path
-                else:
-                    absolute_opt = replace_bazel_placeholders(opt)
+                absolute_opt = build_setting_path(opt)
                 project_set_opts.append(absolute_opt)
                 continue
 
@@ -329,23 +324,14 @@ under {}""".format(opt, package_bin_dir))
                 path = opt[2:]
                 if not path:
                     absolute_opt = opt
-                elif path == ".":
-                    absolute_opt = "-I$(PROJECT_DIR)"
-                elif is_relative_path(path):
-                    absolute_opt = "-I$(PROJECT_DIR)/" + path
                 else:
-                    absolute_opt = replace_bazel_placeholders(opt)
+                    absolute_opt = "-I" + build_setting_path(path)
                 project_set_opts.append(absolute_opt)
                 continue
 
         if previous_opt == "-F":
             path = opt
-            if path == ".":
-                absolute_opt = "$(PROJECT_DIR)"
-            elif is_relative_path(path):
-                absolute_opt = "$(PROJECT_DIR)/" + path
-            else:
-                absolute_opt = replace_bazel_placeholders(opt)
+            absolute_opt = build_setting_path(opt)
             project_set_opts.append(absolute_opt)
             continue
 
@@ -353,12 +339,8 @@ under {}""".format(opt, package_bin_dir))
             path = opt[2:]
             if not path:
                 absolute_opt = opt
-            elif path == ".":
-                absolute_opt = "-F$(PROJECT_DIR)"
-            elif is_relative_path(path):
-                absolute_opt = "-F$(PROJECT_DIR)/" + path
             else:
-                absolute_opt = replace_bazel_placeholders(opt)
+                absolute_opt = "-F" + build_setting_path(path)
             project_set_opts.append(absolute_opt)
             continue
 

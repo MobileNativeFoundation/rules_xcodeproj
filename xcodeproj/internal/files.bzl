@@ -3,15 +3,15 @@
 load("@bazel_skylib//lib:paths.bzl", "paths")
 
 def build_setting_path(
+        path = None,
         *,
         file = None,
-        path = None,
         use_build_dir = False):
     """Converts a `File` into a `string` to be used in an Xcode build setting.
 
     Args:
-        file: A `File`. One of `file` or `path` must be specified.
         path: A path `string. One of `file` or `path` must be specified.
+        file: A `File`. One of `file` or `path` must be specified.
         use_build_dir: Whether to use `$(BUILD_DIR)` instead of `$(BAZEL_OUT)`
             for generated files.
 
@@ -57,7 +57,7 @@ def build_setting_path(
         if is_relative_path(path):
             build_setting = "$(SRCROOT)/{}".format(path)
         else:
-            build_setting = path
+            build_setting = replace_bazel_placeholders(path)
 
     return build_setting
 
