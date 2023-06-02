@@ -307,10 +307,10 @@ def _skip_target(
     if ctx.rule.kind == "test_suite" and not getattr(ctx.rule.attr, "generator_name"):
         alias_labels = [
             struct(
-                alias = "%s" % target.label,
+                alias = str(target.label),
                 labels = depset(
                     [
-                        "%s" % info.label
+                        str(info.label)
                         for attr, info in transitive_infos
                         if attr == "tests"
                     ]
