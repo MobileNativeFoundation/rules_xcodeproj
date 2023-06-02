@@ -536,6 +536,10 @@ $(PROJECT_DIR)\
             "/Some/Path.json",
             "-explicit-swift-module-map-file",
             "relative/Path.json",
+            "-explicit-swift-module-map-file",
+            "bazel-out/relative/Path.json",
+            "-explicit-swift-module-map-file",
+            "external/relative/Path.json",
             "-Xfrontend",
             "-explicit-swift-module-map-file",
             "-Xfrontend",
@@ -544,12 +548,24 @@ $(PROJECT_DIR)\
             "-explicit-swift-module-map-file",
             "-Xfrontend",
             "relative/Path.json",
+            "-Xfrontend",
+            "-explicit-swift-module-map-file",
+            "-Xfrontend",
+            "bazel-out/relative/Path.json",
+            "-Xfrontend",
+            "-explicit-swift-module-map-file",
+            "-Xfrontend",
+            "external/relative/Path.json",
 
             # -vfsoverlay
             "-vfsoverlay",
             "/Some/Path.yaml",
             "-vfsoverlay",
             "relative/Path.yaml",
+            "-vfsoverlay",
+            "bazel-out/relative/Path.yaml",
+            "-vfsoverlay",
+            "external/relative/Path.yaml",
             "-Xfrontend",
             "-vfsoverlay",
             "-Xfrontend",
@@ -559,13 +575,29 @@ $(PROJECT_DIR)\
             "-Xfrontend",
             "relative/Path.yaml",
             "-Xfrontend",
+            "-vfsoverlay",
+            "-Xfrontend",
+            "bazel-out/relative/Path.yaml",
+            "-Xfrontend",
+            "-vfsoverlay",
+            "-Xfrontend",
+            "external/relative/Path.yaml",
+            "-Xfrontend",
             "-vfsoverlay/Some/Path.yaml",
             "-Xfrontend",
             "-vfsoverlayrelative/Path.yaml",
             "-Xfrontend",
+            "-vfsoverlaybazel-out/relative/Path.yaml",
+            "-Xfrontend",
+            "-vfsoverlayexternal/relative/Path.yaml",
+            "-Xfrontend",
             "-vfsoverlay=/Some/Path.yaml",
             "-Xfrontend",
             "-vfsoverlay=relative/Path.yaml",
+            "-Xfrontend",
+            "-vfsoverlay=bazel-out/relative/Path.yaml",
+            "-Xfrontend",
+            "-vfsoverlay=external/relative/Path.yaml",
 
             # -F
             "-F__BAZEL_XCODE_SOMETHING_/path",
@@ -593,7 +625,11 @@ $(PROJECT_DIR)\
 -explicit-swift-module-map-file \
 /Some/Path.json \
 -explicit-swift-module-map-file \
-$(PROJECT_DIR)/relative/Path.json \
+$(SRCROOT)/relative/Path.json \
+-explicit-swift-module-map-file \
+$(BAZEL_OUT)/relative/Path.json \
+-explicit-swift-module-map-file \
+$(BAZEL_EXTERNAL)/relative/Path.json \
 -Xfrontend \
 -explicit-swift-module-map-file \
 -Xfrontend \
@@ -601,11 +637,23 @@ $(PROJECT_DIR)/relative/Path.json \
 -Xfrontend \
 -explicit-swift-module-map-file \
 -Xfrontend \
-$(PROJECT_DIR)/relative/Path.json \
+$(SRCROOT)/relative/Path.json \
+-Xfrontend \
+-explicit-swift-module-map-file \
+-Xfrontend \
+$(BAZEL_OUT)/relative/Path.json \
+-Xfrontend \
+-explicit-swift-module-map-file \
+-Xfrontend \
+$(BAZEL_EXTERNAL)/relative/Path.json \
 -vfsoverlay \
 /Some/Path.yaml \
 -vfsoverlay \
-$(PROJECT_DIR)/relative/Path.yaml \
+$(SRCROOT)/relative/Path.yaml \
+-vfsoverlay \
+$(BAZEL_OUT)/relative/Path.yaml \
+-vfsoverlay \
+$(BAZEL_EXTERNAL)/relative/Path.yaml \
 -Xfrontend \
 -vfsoverlay \
 -Xfrontend \
@@ -613,15 +661,31 @@ $(PROJECT_DIR)/relative/Path.yaml \
 -Xfrontend \
 -vfsoverlay \
 -Xfrontend \
-$(PROJECT_DIR)/relative/Path.yaml \
+$(SRCROOT)/relative/Path.yaml \
+-Xfrontend \
+-vfsoverlay \
+-Xfrontend \
+$(BAZEL_OUT)/relative/Path.yaml \
+-Xfrontend \
+-vfsoverlay \
+-Xfrontend \
+$(BAZEL_EXTERNAL)/relative/Path.yaml \
 -Xfrontend \
 -vfsoverlay/Some/Path.yaml \
 -Xfrontend \
--vfsoverlay$(PROJECT_DIR)/relative/Path.yaml \
+-vfsoverlay$(SRCROOT)/relative/Path.yaml \
 -Xfrontend \
--vfsoverlay=/Some/Path.yaml \
+-vfsoverlay$(BAZEL_OUT)/relative/Path.yaml \
 -Xfrontend \
--vfsoverlay$(PROJECT_DIR)/relative/Path.yaml \
+-vfsoverlay$(BAZEL_EXTERNAL)/relative/Path.yaml \
+-Xfrontend \
+-vfsoverlay/Some/Path.yaml \
+-Xfrontend \
+-vfsoverlay$(SRCROOT)/relative/Path.yaml \
+-Xfrontend \
+-vfsoverlay$(BAZEL_OUT)/relative/Path.yaml \
+-Xfrontend \
+-vfsoverlay$(BAZEL_EXTERNAL)/relative/Path.yaml \
 -F__BAZEL_XCODE_SOMETHING_/path \
 -F$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib \
 -F \
