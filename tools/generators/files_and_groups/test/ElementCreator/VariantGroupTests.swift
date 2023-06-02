@@ -15,16 +15,19 @@ final class VariantGroupTests: XCTestCase {
         let bazelPathStr = "a/bazel/path/Localizable.strings"
 
         let stubbedIdentifier = "1234abcd"
-        var createIdentifierPath: String?
-        var createIdentifierType: Identifiers.FilesAndGroups.ElementType?
-        let createIdentifier: ElementCreator.Environment.CreateIdentifier
-            = { path, type in
-                createIdentifierPath = path
-                createIdentifierType = type
-                return stubbedIdentifier
-            }
+        let (
+            createIdentifier,
+            createIdentifierTracker
+        ) = ElementCreator.CreateIdentifier.mock(identifier: stubbedIdentifier)
 
-        let expectedElementIdentifierPath = "a/bazel/path/Localizable.strings"
+        let expectedCreateIdentifierCalled: [
+            ElementCreator.CreateIdentifier.MockTracker.Called
+        ] = [
+            .init(
+                path: "a/bazel/path/Localizable.strings",
+                type: .localized
+            )
+        ]
 
         // Act
 
@@ -38,8 +41,10 @@ final class VariantGroupTests: XCTestCase {
 
         // Assert
 
-        XCTAssertEqual(createIdentifierPath, expectedElementIdentifierPath)
-        XCTAssertEqual(createIdentifierType, .localized)
+        XCTAssertNoDifference(
+            createIdentifierTracker.called,
+            expectedCreateIdentifierCalled
+        )
         XCTAssertEqual(element.identifier, stubbedIdentifier)
     }
 
@@ -58,7 +63,7 @@ final class VariantGroupTests: XCTestCase {
             bazelPathStr: bazelPathStr,
             sourceTree: .group,
             childIdentifiers: ["a /* a */"],
-            createIdentifier: ElementCreator.Stubs.identifier
+            createIdentifier: ElementCreator.Stubs.createIdentifier
         )
 
         // Assert
@@ -100,7 +105,7 @@ final class VariantGroupTests: XCTestCase {
             bazelPathStr: bazelPathStr,
             sourceTree: sourceTree,
             childIdentifiers: childIdentifiers,
-            createIdentifier: ElementCreator.Stubs.identifier
+            createIdentifier: ElementCreator.Stubs.createIdentifier
         )
 
         // Assert
@@ -134,7 +139,7 @@ final class VariantGroupTests: XCTestCase {
             bazelPathStr: bazelPathStr,
             sourceTree: .group,
             childIdentifiers: ["a /* a */"],
-            createIdentifier: ElementCreator.Stubs.identifier
+            createIdentifier: ElementCreator.Stubs.createIdentifier
         )
 
         // Assert
@@ -169,7 +174,7 @@ final class VariantGroupTests: XCTestCase {
             bazelPathStr: bazelPathStr,
             sourceTree: sourceTree,
             childIdentifiers: ["a /* a */"],
-            createIdentifier: ElementCreator.Stubs.identifier
+            createIdentifier: ElementCreator.Stubs.createIdentifier
         )
 
         // Assert

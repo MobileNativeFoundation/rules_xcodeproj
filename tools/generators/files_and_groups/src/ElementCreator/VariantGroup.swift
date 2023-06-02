@@ -7,7 +7,7 @@ extension ElementCreator {
         bazelPathStr: String,
         sourceTree: SourceTree,
         childIdentifiers: [String],
-        createIdentifier: Environment.CreateIdentifier
+        createIdentifier: CreateIdentifier
     ) -> Element {
         // The tabs for indenting are intentional
         let content = #"""
@@ -23,8 +23,8 @@ extension ElementCreator {
 
         return Element(
             identifier: createIdentifier(
-                bazelPathStr,
-                /*type:*/ .localized
+                path: bazelPathStr,
+                type: .localized
             ),
             content: content,
             sortOrder: .fileLike

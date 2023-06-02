@@ -5,11 +5,11 @@ extension ElementCreator {
         node: PathTreeNode,
         parentBazelPath: BazelPath,
         specialRootGroupType: SpecialRootGroupType?,
-        createFile: Environment.CreateFile,
-        createGroup: Environment.CreateGroup,
+        createFile: CreateFile,
+        createGroup:CreateGroup,
         createVariantGroup: Environment.CreateVariantGroup,
         createVersionGroup: Environment.CreateVersionGroup,
-        collectBazelPaths: Environment.CollectBazelPaths
+        collectBazelPaths: CollectBazelPaths
     ) -> (
         element: Element,
         transitiveElements: [Element],
@@ -26,17 +26,17 @@ extension ElementCreator {
         if node.children.isEmpty {
             // File
             let result = createFile(
-                /*node:*/ node,
-                /*parentBazelPath:*/ parentBazelPath,
-                /*specialRootGroupType:*/ specialRootGroupType
+                node: node,
+                parentBazelPath: parentBazelPath,
+                specialRootGroupType: specialRootGroupType
             )
             element = result.element
             transitiveElements = [element]
             resolvedRepositories = result.resolvedRepository.map { [$0] } ?? []
 
             let bazelPaths = collectBazelPaths(
-                /*node:*/ node,
-                /*bazelPath:*/ result.bazelPath
+                node: node,
+                bazelPath: result.bazelPath
             )
             bazelPathAndIdentifiers = bazelPaths
                 .map { ($0, element.identifier) }
@@ -65,10 +65,10 @@ extension ElementCreator {
                 let childIdentifiers: [String] = []
 
                 let c = createGroup(
-                    /*node:*/ node,
-                    /*parentBazelPath:*/ parentBazelPath,
-                    /*specialRootGroupType:*/ specialRootGroupType,
-                    /*childIdentifiers:*/ childIdentifiers
+                    node: node,
+                    parentBazelPath: parentBazelPath,
+                    specialRootGroupType: specialRootGroupType,
+                    childIdentifiers: childIdentifiers
                 )
             }
         }

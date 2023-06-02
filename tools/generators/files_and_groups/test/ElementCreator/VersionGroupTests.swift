@@ -17,16 +17,19 @@ final class VersionGroupTests: XCTestCase {
         let parentBazelPath = BazelPath("a/bazel/path")
 
         let stubbedIdentifier = "1234abcd"
-        var createIdentifierPath: String?
-        var createIdentifierType: Identifiers.FilesAndGroups.ElementType?
-        let createIdentifier: ElementCreator.Environment.CreateIdentifier
-            = { path, type in
-                createIdentifierPath = path
-                createIdentifierType = type
-                return stubbedIdentifier
-            }
+        let (
+            createIdentifier,
+            createIdentifierTracker
+        ) = ElementCreator.CreateIdentifier.mock(identifier: stubbedIdentifier)
 
-        let expectedElementIdentifierPath = "a/bazel/path/node_name"
+        let expectedCreateIdentifierCalled: [
+            ElementCreator.CreateIdentifier.MockTracker.Called
+        ] = [
+            .init(
+                path: "a/bazel/path/node_name",
+                type: .coreData
+            )
+        ]
 
         // Act
 
@@ -36,14 +39,16 @@ final class VersionGroupTests: XCTestCase {
             specialRootGroupType: nil,
             childIdentifiers: ["a /* a */"],
             selectedChildIdentifier: "a /* a */",
-            createAttributes: ElementCreator.Stubs.attributes,
+            createAttributes: ElementCreator.Stubs.createAttributes,
             createIdentifier: createIdentifier
         )
 
         // Assert
 
-        XCTAssertEqual(createIdentifierPath, expectedElementIdentifierPath)
-        XCTAssertEqual(createIdentifierType, .coreData)
+        XCTAssertNoDifference(
+            createIdentifierTracker.called,
+            expectedCreateIdentifierCalled
+        )
         XCTAssertEqual(result.element.identifier, stubbedIdentifier)
     }
 
@@ -63,8 +68,8 @@ final class VersionGroupTests: XCTestCase {
             specialRootGroupType: nil,
             childIdentifiers: ["a /* a */"],
             selectedChildIdentifier: "a /* a */",
-            createAttributes: ElementCreator.Stubs.attributes,
-            createIdentifier: ElementCreator.Stubs.identifier
+            createAttributes: ElementCreator.Stubs.createAttributes,
+            createIdentifier: ElementCreator.Stubs.createIdentifier
         )
 
         // Assert
@@ -86,16 +91,12 @@ final class VersionGroupTests: XCTestCase {
             "1 /* one */",
         ]
         let selectedChildIdentifier = "1 /* one */"
-
-        let createAttributes: ElementCreator.Environment.CreateAttributes
-            = { name, bazelPath, isGroup, specialRootGroupType in
-                return (
-                    ElementAttributes(
-                        sourceTree: .absolute, name: nil, path: "a_path"
-                    ),
-                    nil
-                )
-            }
+        let createAttributes = ElementCreator.CreateAttributes.stub(
+            elementAttributes: ElementAttributes(
+                sourceTree: .absolute, name: nil, path: "a_path"
+            ),
+            resolvedRepository: nil
+        )
 
         let expectedContent = #"""
 {
@@ -120,7 +121,7 @@ final class VersionGroupTests: XCTestCase {
             childIdentifiers: childIdentifiers,
             selectedChildIdentifier: selectedChildIdentifier,
             createAttributes: createAttributes,
-            createIdentifier: ElementCreator.Stubs.identifier
+            createIdentifier: ElementCreator.Stubs.createIdentifier
         )
 
         // Assert
@@ -135,16 +136,12 @@ final class VersionGroupTests: XCTestCase {
 
         let node = PathTreeNode(name: "node_name")
         let parentBazelPath = BazelPath("a/bazel/path")
-
-        let createAttributes: ElementCreator.Environment.CreateAttributes
-            = { name, bazelPath, isGroup, specialRootGroupType in
-                return (
-                    ElementAttributes(
-                        sourceTree: .sourceRoot, name: nil, path: "a path"
-                    ),
-                    nil
-                )
-            }
+        let createAttributes = ElementCreator.CreateAttributes.stub(
+            elementAttributes: ElementAttributes(
+                sourceTree: .sourceRoot, name: nil, path: "a path"
+            ),
+            resolvedRepository: nil
+        )
 
         let expectedContent = #"""
 {
@@ -168,7 +165,7 @@ final class VersionGroupTests: XCTestCase {
             childIdentifiers: ["a /* a */"],
             selectedChildIdentifier: "a /* a */",
             createAttributes: createAttributes,
-            createIdentifier: ElementCreator.Stubs.identifier
+            createIdentifier: ElementCreator.Stubs.createIdentifier
         )
 
         // Assert
@@ -183,16 +180,12 @@ final class VersionGroupTests: XCTestCase {
 
         let node = PathTreeNode(name: "node_name")
         let parentBazelPath = BazelPath("a/bazel/path")
-
-        let createAttributes: ElementCreator.Environment.CreateAttributes
-            = { name, bazelPath, isGroup, specialRootGroupType in
-                return (
-                    ElementAttributes(
-                        sourceTree: .group, name: "a name", path: "a_path"
-                    ),
-                    nil
-                )
-            }
+        let createAttributes = ElementCreator.CreateAttributes.stub(
+            elementAttributes: ElementAttributes(
+                sourceTree: .group, name: "a name", path: "a_path"
+            ),
+            resolvedRepository: nil
+        )
 
         let expectedContent = #"""
 {
@@ -217,7 +210,7 @@ final class VersionGroupTests: XCTestCase {
             childIdentifiers: ["a /* a */"],
             selectedChildIdentifier: "a /* a */",
             createAttributes: createAttributes,
-            createIdentifier: ElementCreator.Stubs.identifier
+            createIdentifier: ElementCreator.Stubs.createIdentifier
         )
 
         // Assert
@@ -234,30 +227,29 @@ final class VersionGroupTests: XCTestCase {
         let parentBazelPath = BazelPath("a/bazel/path")
         let specialRootGroupType = SpecialRootGroupType.bazelGenerated
 
-        let stubbedElementAttributes = ElementAttributes(
-            sourceTree: .absolute, name: "a_name", path: "a_path"
-        )
         let stubbedResolvedRepository = ResolvedRepository(
             sourcePath: "a/source/path", mappedPath: "/a/mapped/path"
         )
-        var elementAttributesName: String?
-        var elementAttributesBazelPath: BazelPath?
-        var elementAttributesIsGroup: Bool?
-        var elementAttributesSpecialRootGroupType: SpecialRootGroupType??
-        let createAttributes: ElementCreator.Environment.CreateAttributes
-            = { name, bazelPath, isGroup, specialRootGroupType in
-                elementAttributesName = name
-                elementAttributesBazelPath = bazelPath
-                elementAttributesIsGroup = isGroup
-                elementAttributesSpecialRootGroupType =
-                    .some(specialRootGroupType)
-                return (stubbedElementAttributes, stubbedResolvedRepository)
-            }
-
-        let expectedElementAttributesBazelPath = BazelPath(
-            "a/bazel/path/node_name",
-            isFolder: false
+        let (
+            createAttributes,
+            createAttributesTracker
+        ) = ElementCreator.CreateAttributes.mock(
+            elementAttributes: .init(
+                sourceTree: .absolute, name: "a_name", path: "a_path"
+            ),
+            resolvedRepository: stubbedResolvedRepository
         )
+
+        let expectedCreateAttributesCalled: [
+            ElementCreator.CreateAttributes.MockTracker.Called
+        ] = [
+            .init(
+                name: node.name,
+                bazelPath: BazelPath("a/bazel/path/node_name", isFolder: false),
+                isGroup: true,
+                specialRootGroupType: specialRootGroupType
+            )
+        ]
 
         // Act
 
@@ -268,20 +260,14 @@ final class VersionGroupTests: XCTestCase {
             childIdentifiers: ["a /* a */"],
             selectedChildIdentifier: "a /* a */",
             createAttributes: createAttributes,
-            createIdentifier: ElementCreator.Stubs.identifier
+            createIdentifier: ElementCreator.Stubs.createIdentifier
         )
 
         // Assert
 
-        XCTAssertEqual(elementAttributesName, node.name)
-        XCTAssertEqual(
-            elementAttributesBazelPath,
-            expectedElementAttributesBazelPath
-        )
-        XCTAssertEqual(elementAttributesIsGroup, true)
-        XCTAssertEqual(
-            elementAttributesSpecialRootGroupType,
-            specialRootGroupType
+        XCTAssertNoDifference(
+            createAttributesTracker.called,
+            expectedCreateAttributesCalled
         )
         XCTAssertEqual(result.resolvedRepository, stubbedResolvedRepository)
     }

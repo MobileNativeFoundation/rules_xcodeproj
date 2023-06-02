@@ -4,7 +4,7 @@ import XCTest
 
 @testable import files_and_groups
 
-final class FileTests: XCTestCase {
+final class CreateFileTests: XCTestCase {
 
     // MARK: - element
 
@@ -17,31 +17,36 @@ final class FileTests: XCTestCase {
         let parentBazelPath = BazelPath("a/bazel/path")
 
         let stubbedIdentifier = "1234abcd"
-        var createIdentifierPath: String?
-        var createIdentifierType: Identifiers.FilesAndGroups.ElementType?
-        let createIdentifier: ElementCreator.Environment.CreateIdentifier
-            = { path, type in
-                createIdentifierPath = path
-                createIdentifierType = type
-                return stubbedIdentifier
-            }
+        let (
+            createIdentifier,
+            createIdentifierTracker
+        ) = ElementCreator.CreateIdentifier.mock(identifier: stubbedIdentifier)
 
-        let expectedElementIdentifierPath = "a/bazel/path/node_name"
+        let expectedCreateIdentifierCalled: [
+            ElementCreator.CreateIdentifier.MockTracker.Called
+        ] = [
+            .init(
+                path: "a/bazel/path/node_name",
+                type: .fileReference
+            )
+        ]
 
         // Act
 
-        let result = ElementCreator.file(
+        let result = ElementCreator.CreateFile.defaultCallable(
             node: node,
             parentBazelPath: parentBazelPath,
             specialRootGroupType: nil,
-            createAttributes: ElementCreator.Stubs.attributes,
+            createAttributes: ElementCreator.Stubs.createAttributes,
             createIdentifier: createIdentifier
         )
 
         // Assert
 
-        XCTAssertEqual(createIdentifierPath, expectedElementIdentifierPath)
-        XCTAssertEqual(createIdentifierType, .fileReference)
+        XCTAssertNoDifference(
+            createIdentifierTracker.called,
+            expectedCreateIdentifierCalled
+        )
         XCTAssertEqual(result.element.identifier, stubbedIdentifier)
     }
 
@@ -55,12 +60,12 @@ final class FileTests: XCTestCase {
 
         // Act
 
-        let result = ElementCreator.file(
+        let result = ElementCreator.CreateFile.defaultCallable(
             node: node,
             parentBazelPath: parentBazelPath,
             specialRootGroupType: nil,
-            createAttributes: ElementCreator.Stubs.attributes,
-            createIdentifier: ElementCreator.Stubs.identifier
+            createAttributes: ElementCreator.Stubs.createAttributes,
+            createIdentifier: ElementCreator.Stubs.createIdentifier
         )
 
         // Assert
@@ -76,12 +81,12 @@ final class FileTests: XCTestCase {
 
         // Act
 
-        let result = ElementCreator.file(
+        let result = ElementCreator.CreateFile.defaultCallable(
             node: node,
             parentBazelPath: parentBazelPath,
             specialRootGroupType: nil,
-            createAttributes: ElementCreator.Stubs.attributes,
-            createIdentifier: ElementCreator.Stubs.identifier
+            createAttributes: ElementCreator.Stubs.createAttributes,
+            createIdentifier: ElementCreator.Stubs.createIdentifier
         )
 
         // Assert
@@ -97,12 +102,12 @@ final class FileTests: XCTestCase {
 
         // Act
 
-        let result = ElementCreator.file(
+        let result = ElementCreator.CreateFile.defaultCallable(
             node: node,
             parentBazelPath: parentBazelPath,
             specialRootGroupType: nil,
-            createAttributes: ElementCreator.Stubs.attributes,
-            createIdentifier: ElementCreator.Stubs.identifier
+            createAttributes: ElementCreator.Stubs.createAttributes,
+            createIdentifier: ElementCreator.Stubs.createIdentifier
         )
 
         // Assert
@@ -119,16 +124,12 @@ final class FileTests: XCTestCase {
 
         let node = PathTreeNode(name: "node_name")
         let parentBazelPath = BazelPath("a/bazel/path")
-
-        let createAttributes: ElementCreator.Environment.CreateAttributes =
-            { name, bazelPath, isGroup, specialRootGroupType in
-                return (
-                    ElementAttributes(
-                        sourceTree: .sourceRoot, name: nil, path: "a path"
-                    ),
-                    nil
-                )
-            }
+        let createAttributes = ElementCreator.CreateAttributes.stub(
+            elementAttributes: ElementAttributes(
+                sourceTree: .sourceRoot, name: nil, path: "a path"
+            ),
+            resolvedRepository: nil
+        )
 
         let expectedContent = #"""
 {isa = PBXFileReference; path = "a path"; sourceTree = SOURCE_ROOT; }
@@ -136,12 +137,12 @@ final class FileTests: XCTestCase {
 
         // Act
 
-        let result = ElementCreator.file(
+        let result = ElementCreator.CreateFile.defaultCallable(
             node: node,
             parentBazelPath: parentBazelPath,
             specialRootGroupType: nil,
             createAttributes: createAttributes,
-            createIdentifier: ElementCreator.Stubs.identifier
+            createIdentifier: ElementCreator.Stubs.createIdentifier
         )
 
         // Assert
@@ -156,16 +157,12 @@ final class FileTests: XCTestCase {
 
         let node = PathTreeNode(name: "node_name.bazel")
         let parentBazelPath = BazelPath("a/bazel/path")
-
-        let createAttributes: ElementCreator.Environment.CreateAttributes =
-            { name, bazelPath, isGroup, specialRootGroupType in
-                return (
-                    ElementAttributes(
-                        sourceTree: .group, name: nil, path: "a_path"
-                    ),
-                    nil
-                )
-            }
+        let createAttributes = ElementCreator.CreateAttributes.stub(
+            elementAttributes: ElementAttributes(
+                sourceTree: .group, name: nil, path: "a_path"
+            ),
+            resolvedRepository: nil
+        )
 
         let expectedContent = #"""
 {isa = PBXFileReference; lastKnownFileType = text.script.python; path = a_path; sourceTree = "<group>"; }
@@ -173,12 +170,12 @@ final class FileTests: XCTestCase {
 
         // Act
 
-        let result = ElementCreator.file(
+        let result = ElementCreator.CreateFile.defaultCallable(
             node: node,
             parentBazelPath: parentBazelPath,
             specialRootGroupType: nil,
             createAttributes: createAttributes,
-            createIdentifier: ElementCreator.Stubs.identifier
+            createIdentifier: ElementCreator.Stubs.createIdentifier
         )
 
         // Assert
@@ -191,16 +188,12 @@ final class FileTests: XCTestCase {
 
         let node = PathTreeNode(name: "node_name", isFolder: true)
         let parentBazelPath = BazelPath("a/bazel/path", isFolder: false)
-
-        let createAttributes: ElementCreator.Environment.CreateAttributes =
-            { name, bazelPath, isGroup, specialRootGroupType in
-                return (
-                    ElementAttributes(
-                        sourceTree: .absolute, name: nil, path: "a_path"
-                    ),
-                    nil
-                )
-            }
+        let createAttributes = ElementCreator.CreateAttributes.stub(
+            elementAttributes: ElementAttributes(
+                sourceTree: .absolute, name: nil, path: "a_path"
+            ),
+            resolvedRepository: nil
+        )
 
         let expectedContent = #"""
 {isa = PBXFileReference; lastKnownFileType = folder; path = a_path; sourceTree = "<absolute>"; }
@@ -208,12 +201,12 @@ final class FileTests: XCTestCase {
 
         // Act
 
-        let result = ElementCreator.file(
+        let result = ElementCreator.CreateFile.defaultCallable(
             node: node,
             parentBazelPath: parentBazelPath,
             specialRootGroupType: nil,
             createAttributes: createAttributes,
-            createIdentifier: ElementCreator.Stubs.identifier
+            createIdentifier: ElementCreator.Stubs.createIdentifier
         )
 
         // Assert
@@ -226,16 +219,12 @@ final class FileTests: XCTestCase {
 
         let node = PathTreeNode(name: "node_name.bundle", isFolder: true)
         let parentBazelPath = BazelPath("a/bazel/path", isFolder: false)
-
-        let createAttributes: ElementCreator.Environment.CreateAttributes =
-            { name, bazelPath, isGroup, specialRootGroupType in
-                return (
-                    ElementAttributes(
-                        sourceTree: .group, name: nil, path: "a_path"
-                    ),
-                    nil
-                )
-            }
+        let createAttributes = ElementCreator.CreateAttributes.stub(
+            elementAttributes: ElementAttributes(
+                sourceTree: .group, name: nil, path: "a_path"
+            ),
+            resolvedRepository: nil
+        )
 
         let expectedContent = #"""
 {isa = PBXFileReference; lastKnownFileType = wrapper.cfbundle; path = a_path; sourceTree = "<group>"; }
@@ -243,12 +232,12 @@ final class FileTests: XCTestCase {
 
         // Act
 
-        let result = ElementCreator.file(
+        let result = ElementCreator.CreateFile.defaultCallable(
             node: node,
             parentBazelPath: parentBazelPath,
             specialRootGroupType: nil,
             createAttributes: createAttributes,
-            createIdentifier: ElementCreator.Stubs.identifier
+            createIdentifier: ElementCreator.Stubs.createIdentifier
         )
 
         // Assert
@@ -263,16 +252,12 @@ final class FileTests: XCTestCase {
 
         let node = PathTreeNode(name: "BUILD")
         let parentBazelPath = BazelPath("a/bazel/path")
-
-        let createAttributes: ElementCreator.Environment.CreateAttributes =
-            { name, bazelPath, isGroup, specialRootGroupType in
-                return (
-                    ElementAttributes(
-                        sourceTree: .group, name: nil, path: "a_path"
-                    ),
-                    nil
-                )
-            }
+        let createAttributes = ElementCreator.CreateAttributes.stub(
+            elementAttributes: ElementAttributes(
+                sourceTree: .group, name: nil, path: "a_path"
+            ),
+            resolvedRepository: nil
+        )
 
         let expectedContent = #"""
 {isa = PBXFileReference; explicitFileType = text.script.python; path = a_path; sourceTree = "<group>"; }
@@ -280,12 +265,12 @@ final class FileTests: XCTestCase {
 
         // Act
 
-        let result = ElementCreator.file(
+        let result = ElementCreator.CreateFile.defaultCallable(
             node: node,
             parentBazelPath: parentBazelPath,
             specialRootGroupType: nil,
             createAttributes: createAttributes,
-            createIdentifier: ElementCreator.Stubs.identifier
+            createIdentifier: ElementCreator.Stubs.createIdentifier
         )
 
         // Assert
@@ -298,16 +283,12 @@ final class FileTests: XCTestCase {
 
         let node = PathTreeNode(name: "Podfile")
         let parentBazelPath = BazelPath("a/bazel/path")
-
-        let createAttributes: ElementCreator.Environment.CreateAttributes =
-            { name, bazelPath, isGroup, specialRootGroupType in
-                return (
-                    ElementAttributes(
-                        sourceTree: .group, name: nil, path: "a_path"
-                    ),
-                    nil
-                )
-            }
+        let createAttributes = ElementCreator.CreateAttributes.stub(
+            elementAttributes: ElementAttributes(
+                sourceTree: .group, name: nil, path: "a_path"
+            ),
+            resolvedRepository: nil
+        )
 
         let expectedContent = #"""
 {isa = PBXFileReference; explicitFileType = text.script.ruby; path = a_path; sourceTree = "<group>"; }
@@ -315,12 +296,12 @@ final class FileTests: XCTestCase {
 
         // Act
 
-        let result = ElementCreator.file(
+        let result = ElementCreator.CreateFile.defaultCallable(
             node: node,
             parentBazelPath: parentBazelPath,
             specialRootGroupType: nil,
             createAttributes: createAttributes,
-            createIdentifier: ElementCreator.Stubs.identifier
+            createIdentifier: ElementCreator.Stubs.createIdentifier
         )
 
         // Assert
@@ -335,16 +316,12 @@ final class FileTests: XCTestCase {
 
         let node = PathTreeNode(name: "node_name")
         let parentBazelPath = BazelPath("a/bazel/path")
-
-        let createAttributes: ElementCreator.Environment.CreateAttributes
-            = { name, bazelPath, isGroup, specialRootGroupType in
-                return (
-                    ElementAttributes(
-                        sourceTree: .group, name: "a name", path: "a_path"
-                    ),
-                    nil
-                )
-            }
+        let createAttributes = ElementCreator.CreateAttributes.stub(
+            elementAttributes: ElementAttributes(
+                sourceTree: .group, name: "a name", path: "a_path"
+            ),
+            resolvedRepository: nil
+        )
 
         let expectedContent = #"""
 {isa = PBXFileReference; name = "a name"; path = a_path; sourceTree = "<group>"; }
@@ -352,12 +329,12 @@ final class FileTests: XCTestCase {
 
         // Act
 
-        let result = ElementCreator.file(
+        let result = ElementCreator.CreateFile.defaultCallable(
             node: node,
             parentBazelPath: parentBazelPath,
             specialRootGroupType: nil,
             createAttributes: createAttributes,
-            createIdentifier: ElementCreator.Stubs.identifier
+            createIdentifier: ElementCreator.Stubs.createIdentifier
         )
 
         // Assert
@@ -380,12 +357,12 @@ final class FileTests: XCTestCase {
 
         // Act
 
-        let result = ElementCreator.file(
+        let result = ElementCreator.CreateFile.defaultCallable(
             node: node,
             parentBazelPath: parentBazelPath,
             specialRootGroupType: nil,
-            createAttributes: ElementCreator.Stubs.attributes,
-            createIdentifier: ElementCreator.Stubs.identifier
+            createAttributes: ElementCreator.Stubs.createAttributes,
+            createIdentifier: ElementCreator.Stubs.createIdentifier
         )
 
         // Assert
@@ -402,52 +379,45 @@ final class FileTests: XCTestCase {
         let parentBazelPath = BazelPath("a/bazel/path")
         let specialRootGroupType = SpecialRootGroupType.bazelGenerated
 
-        let stubbedElementAttributes = ElementAttributes(
-            sourceTree: .absolute, name: "a_name", path: "a_path"
-        )
         let stubbedResolvedRepository = ResolvedRepository(
             sourcePath: "a/source/path", mappedPath: "/a/mapped/path"
         )
-        var elementAttributesName: String?
-        var elementAttributesBazelPath: BazelPath?
-        var elementAttributesIsGroup: Bool?
-        var elementAttributesSpecialRootGroupType: SpecialRootGroupType??
-        let createAttributes: ElementCreator.Environment.CreateAttributes =
-            { name, bazelPath, isGroup, specialRootGroupType in
-                elementAttributesName = name
-                elementAttributesBazelPath = bazelPath
-                elementAttributesIsGroup = isGroup
-                elementAttributesSpecialRootGroupType =
-                    .some(specialRootGroupType)
-                return (stubbedElementAttributes, stubbedResolvedRepository)
-            }
-
-        let expectedElementAttributesBazelPath = BazelPath(
-            "a/bazel/path/node_name",
-            isFolder: false
+        let (
+            createAttributes,
+            createAttributesTracker
+        ) = ElementCreator.CreateAttributes.mock(
+            elementAttributes: .init(
+                sourceTree: .absolute, name: "a_name", path: "a_path"
+            ),
+            resolvedRepository: stubbedResolvedRepository
         )
+
+        let expectedCreateAttributesCalled: [
+            ElementCreator.CreateAttributes.MockTracker.Called
+        ] = [
+            .init(
+                name: node.name,
+                bazelPath: BazelPath("a/bazel/path/node_name", isFolder: false),
+                isGroup: false,
+                specialRootGroupType: specialRootGroupType
+            )
+        ]
 
         // Act
 
-        let result = ElementCreator.file(
+        let result = ElementCreator.CreateFile.defaultCallable(
             node: node,
             parentBazelPath: parentBazelPath,
             specialRootGroupType: specialRootGroupType,
             createAttributes: createAttributes,
-            createIdentifier: ElementCreator.Stubs.identifier
+            createIdentifier: ElementCreator.Stubs.createIdentifier
         )
 
         // Assert
 
-        XCTAssertEqual(elementAttributesName, node.name)
-        XCTAssertEqual(
-            elementAttributesBazelPath,
-            expectedElementAttributesBazelPath
-        )
-        XCTAssertEqual(elementAttributesIsGroup, false)
-        XCTAssertEqual(
-            elementAttributesSpecialRootGroupType,
-            specialRootGroupType
+        XCTAssertNoDifference(
+            createAttributesTracker.called,
+            expectedCreateAttributesCalled
         )
         XCTAssertEqual(result.resolvedRepository, stubbedResolvedRepository)
     }

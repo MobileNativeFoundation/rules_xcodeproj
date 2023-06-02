@@ -7,24 +7,15 @@ extension ElementCreator {
     /// The main purpose of `Environment` is to enable dependency injection,
     /// allowing for different implementations to be used in tests.
     struct Environment {
-        let attributes: (
-            _ name: String,
-            _ bazelPath: BazelPath,
-            _ isGroup: Bool,
-            _ specialRootGroupType: SpecialRootGroupType?,
-            _ executionRoot: String,
-            _ externalDir: String,
-            _ workspace: String,
-            _ resolveSymlink: (_ path: String) -> String?
-        ) -> (
-            elementAttributes: ElementAttributes,
-            resolvedRepository: ResolvedRepository?
-        )
+        /// Passed to the `callable` parameter of `CreateAttributes.init()`.
+        let createAttributesCallable: CreateAttributes.Callable
 
-        typealias CollectBazelPaths = (
-            _ node: PathTreeNode,
-            _ bazelPath: BazelPath
-        ) -> [BazelPath]
+        /// Passed to the `callable` parameter of `CreateFile.init()`.
+        let createFileCallable: CreateFile.Callable
+
+        /// Passed to the `callable` parameter of `CreateGroup.init()`.
+        let createGroupCallable: CreateGroup.Callable
+
         let collectBazelPaths: CollectBazelPaths
 
         let element: (
@@ -44,31 +35,7 @@ extension ElementCreator {
             resolvedRepositories: [ResolvedRepository]
         )
 
-        let externalDir: (_ executionRoot: String) throws -> String
-
-        let file: (
-            _ node: PathTreeNode,
-            _ parentBazelPath: BazelPath,
-            _ specialRootGroupType: SpecialRootGroupType?,
-            _ elementAttributes: CreateAttributes,
-            _ createIdentifier: CreateIdentifier
-        ) -> (
-            element: Element,
-            bazelPath: BazelPath,
-            resolvedRepository: ResolvedRepository?
-        )
-
-        let group: (
-            _ node: PathTreeNode,
-            _ parentBazelPath: BazelPath,
-            _ specialRootGroupType: SpecialRootGroupType?,
-            _ childIdentifiers: [String],
-            _ elementAttributes: CreateAttributes,
-            _ createIdentifier: CreateIdentifier
-        ) -> (
-            element: Element,
-            resolvedRepository: ResolvedRepository?
-        )
+        let externalDir: CalculateExternalDir
 
         typealias MainCreateGroup = (
             _ rootElements: [Element],
@@ -76,20 +43,17 @@ extension ElementCreator {
         ) -> String
         let mainGroup: MainCreateGroup
 
-        let partial: (
-            _ elements: [Element],
-            _ mainGroup: String,
-            _ workspace: String
-        ) -> String
+        let partial: CalculatePartial
 
         let readExecutionRootFile: (_ url: URL) throws -> String
 
-        let resolveSymlink: (_ path: String) -> String?
+        let resolveSymlink: ResolveSymlink
 
         let rootElements: (
             _ pathTree: PathTreeNode,
             _ workspace: String,
-            _ elementAttributes: CreateAttributes
+            _ createElementAttributes: CreateAttributes,
+            _ createSpecialRootGroup: CreateSpecialRootGroup
         ) -> (
             rootElements: [Element],
             allElements: [Element],
@@ -98,11 +62,11 @@ extension ElementCreator {
             resolvedRepositories: [ResolvedRepository]
         )
 
-        typealias SpecialRootCreateGroup = (
+        typealias CreateSpecialRootGroup = (
             _ specialRootGroupType: SpecialRootGroupType,
             _ childIdentifiers: [String]
         ) -> Element
-        let specialRootGroup: SpecialRootCreateGroup
+        let specialRootGroup: CreateSpecialRootGroup
 
         let variantGroup: (
             _ name: String,
@@ -129,139 +93,22 @@ extension ElementCreator {
 
 extension ElementCreator.Environment {
     static let `default` = Self(
-        attributes: ElementCreator.attributes,
-        collectBazelPaths: ElementCreator.collectBazelPaths,
+        createAttributesCallable:
+            ElementCreator.CreateAttributes.defaultCallable,
+        createFileCallable: ElementCreator.CreateFile.defaultCallable,
+        createGroupCallable: ElementCreator.CreateGroup.defaultCallable,
+        collectBazelPaths: ElementCreator.CollectBazelPaths(),
         element: ElementCreator.element,
-        externalDir: ElementCreator.externalDir,
-        file: ElementCreator.file,
-        group: ElementCreator.group,
+        externalDir: ElementCreator.CalculateExternalDir(),
         mainGroup: ElementCreator.mainGroup,
-        partial: ElementCreator.partial,
+        partial: ElementCreator.CalculatePartial(),
         readExecutionRootFile: ElementCreator.readExecutionRootFile,
-        resolveSymlink: ElementCreator.resolveSymlink,
+        resolveSymlink: ElementCreator.ResolveSymlink(),
         rootElements: ElementCreator.rootElements,
         specialRootGroup: ElementCreator.specialRootGroup,
         variantGroup: ElementCreator.variantGroup,
         versionGroup: ElementCreator.versionGroup
     )
-}
-
-// MARK: - Environment.CreateAttributes
-
-extension ElementCreator.Environment {
-    /// A version of `attributes` that has access to its dependencies
-    /// (via closure capture).
-    typealias CreateAttributes = (
-        _ name: String,
-        _ bazelPath: BazelPath,
-        _ isGroup: Bool,
-        _ specialRootGroupType: SpecialRootGroupType?
-    ) -> (
-        elementAttributes: ElementAttributes,
-        resolvedRepository: ResolvedRepository?
-    )
-
-    func attributesWithDependencies(
-        executionRoot: String,
-        externalDir: String,
-        workspace: String,
-        resolveSymlink: @escaping (_ path: String) -> String?
-    ) -> CreateAttributes {
-        return { name, bazelPath, isGroup, specialRootGroupType in
-            return attributes(
-                /*name:*/ name,
-                /*bazelPath:*/ bazelPath,
-                /*isGroup:*/ isGroup,
-                /*specialRootGroupType:*/ specialRootGroupType,
-                /*executionRoot:*/ executionRoot,
-                /*externalDir:*/ externalDir,
-                /*workspace:*/ workspace,
-                /*resolveSymlink:*/ resolveSymlink
-            )
-        }
-    }
-}
-
-// MARK: - Environment.CreateFile
-
-extension ElementCreator.Environment {
-    typealias CreateFile = (
-        _ node: PathTreeNode,
-        _ parentBazelPath: BazelPath,
-        _ specialRootGroupType: SpecialRootGroupType?
-    ) -> (
-        element: Element,
-        bazelPath: BazelPath,
-        resolvedRepository: ResolvedRepository?
-    )
-
-    func fileWithDependencies(
-        node: PathTreeNode,
-        parentBazelPath: BazelPath,
-        specialRootGroupType: SpecialRootGroupType?,
-        elementAttributes: @escaping CreateAttributes,
-        createIdentifier: @escaping CreateIdentifier
-    ) -> CreateFile {
-        return { node, parentBazelPath, specialRootGroupType in
-            return file(
-                /*node:*/ node,
-                /*parentBazelPath:*/ parentBazelPath,
-                /*specialRootGroupType:*/ specialRootGroupType,
-                /*elementAttributes:*/ elementAttributes,
-                /*createIdentifier:*/ createIdentifier
-            )
-        }
-    }
-}
-
-// MARK: - Environment.CreateGroup
-
-extension ElementCreator.Environment {
-    typealias CreateGroup = (
-        _ node: PathTreeNode,
-        _ parentBazelPath: BazelPath,
-        _ specialRootGroupType: SpecialRootGroupType?,
-        _ childIdentifiers: [String]
-    ) -> (
-        element: Element,
-        resolvedRepository: ResolvedRepository?
-    )
-
-    func groupWithDependencies(
-        elementAttributes: @escaping CreateAttributes,
-        createIdentifier: @escaping CreateIdentifier
-    ) -> CreateGroup {
-        return { node, parentBazelPath, specialRootGroupType, childIdentifiers in
-            return group(
-                /*node:*/ node,
-                /*parentBazelPath:*/ parentBazelPath,
-                /*specialRootGroupType:*/ specialRootGroupType,
-                /*childIdentifiers:*/ childIdentifiers,
-                /*elementAttributes:*/ elementAttributes,
-                /*createIdentifier:*/ createIdentifier
-            )
-        }
-    }
-}
-
-// MARK: - Environment.CreateIdentifier
-
-extension ElementCreator.Environment {
-    typealias CreateIdentifier = (
-        _ path: String,
-        _ type: Identifiers.FilesAndGroups.ElementType
-    ) -> String
-
-    func identifierWithDependencies() -> CreateIdentifier {
-        return { path, type in
-            var hashCache: Set<String> = []
-            return Identifiers.FilesAndGroups.element(
-                path,
-                type: type,
-                hashCache: &hashCache
-            )
-        }
-    }
 }
 
 // MARK: - Environment.CreateVariantGroup
@@ -275,7 +122,7 @@ extension ElementCreator.Environment {
     ) -> Element
 
     func variantGroupWithDependencies(
-        _ createIdentifier: @escaping CreateIdentifier
+        _ createIdentifier: ElementCreator.CreateIdentifier
     ) -> CreateVariantGroup {
         return { name, bazelPathStr, sourceTree, childIdentifiers in
             return variantGroup(
@@ -304,8 +151,8 @@ extension ElementCreator.Environment {
     )
 
     func versionGroupWithDependencies(
-        _ elementAttributes: @escaping CreateAttributes,
-        _ createIdentifier: @escaping CreateIdentifier
+        _ createAttributes: ElementCreator.CreateAttributes,
+        _ createIdentifier: ElementCreator.CreateIdentifier
     ) -> CreateVersionGroup {
         return { node, parentBazelPath, specialRootGroupType, childIdentifiers, selectedChildIdentifier in
             return versionGroup(
@@ -314,7 +161,7 @@ extension ElementCreator.Environment {
                 /*specialRootGroupType:*/ specialRootGroupType,
                 /*childIdentifiers:*/ childIdentifiers,
                 /*selectedChildIdentifier:*/ selectedChildIdentifier,
-                /*elementAttributes:*/ elementAttributes,
+                /*createAttributes:*/ createAttributes,
                 /*createIdentifier:*/ createIdentifier
             )
         }

@@ -4,7 +4,8 @@ extension ElementCreator {
     static func rootElements(
         pathTree: PathTreeNode,
         workspace: String,
-        createAttributes: Environment.CreateAttributes
+        createAttributes: CreateAttributes,
+        createSpecialRootGroup: Environment.CreateSpecialRootGroup
     ) -> (
         rootElements: [Element],
         allElements: [Element],
@@ -15,25 +16,33 @@ extension ElementCreator {
         let resolvedRepositories: [ResolvedRepository] = [
             .init(sourcePath: ".", mappedPath: workspace),
         ]
-
-        // FIXME: Implement
+        
+        // FIXME: collect child elements
 
         var rootElements: [Element] = []
         for node in pathTree.children {
             switch node.name {
             case "external":
                 rootElements.append(
-                    ElementCreator.specialRootGroup(
-                        specialRootGroupType: .legacyBazelExternal,
-                        childIdentifiers: []
+                    createSpecialRootGroup(
+                        /*specialRootGroupType:*/ .legacyBazelExternal,
+                        /*childIdentifiers:*/ []
+                    )
+                )
+
+            case "..":
+                rootElements.append(
+                    createSpecialRootGroup(
+                        /*specialRootGroupType:*/ .siblingBazelExternal,
+                        /*childIdentifiers:*/ []
                     )
                 )
 
             case "bazel-out":
                 rootElements.append(
-                    ElementCreator.specialRootGroup(
-                        specialRootGroupType: .bazelGenerated,
-                        childIdentifiers: []
+                    createSpecialRootGroup(
+                        /*specialRootGroupType:*/ .bazelGenerated,
+                        /*childIdentifiers:*/ []
                     )
                 )
 
@@ -42,7 +51,6 @@ extension ElementCreator {
             }
         }
 
-        // FIXME: collect child elements
         let allElements = rootElements
 
         // Elements are in the correct order, except for `.sortOrder`, so we

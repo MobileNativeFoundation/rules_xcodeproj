@@ -4,7 +4,7 @@ import XCTest
 
 @testable import files_and_groups
 
-final class AttributesTests: XCTestCase {
+final class CreateAttributesTests: XCTestCase {
 
     // MARK: - resolvedRepository
 
@@ -15,7 +15,9 @@ final class AttributesTests: XCTestCase {
         let bazelPath: BazelPath = "external/a"
         let isGroup = true
         let specialRootGroupType: SpecialRootGroupType = .legacyBazelExternal
-        let resolveSymlink = { (_: String) -> String? in "/tmp/a" }
+        let resolveSymlink = ElementCreator.ResolveSymlink.stub(
+            symlinkDest: "/tmp/a"
+        )
 
         let expectedResolvedRepository = ResolvedRepository(
             sourcePath: "./external/a",
@@ -24,7 +26,7 @@ final class AttributesTests: XCTestCase {
 
         // Act
 
-        let result = ElementCreator.attributes(
+        let result = ElementCreator.CreateAttributes.defaultCallable(
             name: name,
             bazelPath: bazelPath,
             isGroup: isGroup,
@@ -50,7 +52,9 @@ final class AttributesTests: XCTestCase {
         let bazelPath: BazelPath = "../b"
         let isGroup = true
         let specialRootGroupType: SpecialRootGroupType = .siblingBazelExternal
-        let resolveSymlink = { (_: String) -> String? in "/tmp/b" }
+        let resolveSymlink = ElementCreator.ResolveSymlink.stub(
+            symlinkDest: "/tmp/b"
+        )
 
         let expectedResolvedRepository = ResolvedRepository(
             sourcePath: "../b",
@@ -59,7 +63,7 @@ final class AttributesTests: XCTestCase {
 
         // Act
 
-        let result = ElementCreator.attributes(
+        let result = ElementCreator.CreateAttributes.defaultCallable(
             name: name,
             bazelPath: bazelPath,
             isGroup: isGroup,
@@ -85,11 +89,13 @@ final class AttributesTests: XCTestCase {
         let bazelPath: BazelPath = "external/c"
         let isGroup = false
         let specialRootGroupType: SpecialRootGroupType = .legacyBazelExternal
-        let resolveSymlink = { (_: String) -> String? in "/tmp/c" }
+        let resolveSymlink = ElementCreator.ResolveSymlink.stub(
+            symlinkDest: "/tmp/c"
+        )
 
         // Act
 
-        let result = ElementCreator.attributes(
+        let result = ElementCreator.CreateAttributes.defaultCallable(
             name: name,
             bazelPath: bazelPath,
             isGroup: isGroup,
@@ -112,11 +118,13 @@ final class AttributesTests: XCTestCase {
         let bazelPath: BazelPath = "bazel-out/d"
         let isGroup = true
         let specialRootGroupType: SpecialRootGroupType = .bazelGenerated
-        let resolveSymlink = { (_: String) -> String? in "/tmp/d" }
+        let resolveSymlink = ElementCreator.ResolveSymlink.stub(
+            symlinkDest: "/tmp/d"
+        )
 
         // Act
 
-        let result = ElementCreator.attributes(
+        let result = ElementCreator.CreateAttributes.defaultCallable(
             name: name,
             bazelPath: bazelPath,
             isGroup: isGroup,
@@ -139,11 +147,13 @@ final class AttributesTests: XCTestCase {
         let bazelPath: BazelPath = "external/e"
         let isGroup = true
         let specialRootGroupType: SpecialRootGroupType = .legacyBazelExternal
-        let resolveSymlink = { (_: String) -> String? in nil }
+        let resolveSymlink = ElementCreator.ResolveSymlink.stub(
+            symlinkDest: nil
+        )
 
         // Act
 
-        let result = ElementCreator.attributes(
+        let result = ElementCreator.CreateAttributes.defaultCallable(
             name: name,
             bazelPath: bazelPath,
             isGroup: isGroup,

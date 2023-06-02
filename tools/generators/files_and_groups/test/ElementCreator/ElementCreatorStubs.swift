@@ -4,30 +4,28 @@ import PBXProj
 
 extension ElementCreator {
     enum Stubs {
-        static func attributes(
-            name: String,
-            bazelPath: BazelPath,
-            isGroup: Bool,
-            specialRootGroupType: SpecialRootGroupType?
-        ) -> (
-            elementAttributes: ElementAttributes,
-            resolvedRepository: ResolvedRepository?
-        ) {
-            return (
-                elementAttributes: ElementAttributes(
-                    sourceTree: .group,
-                    name: nil,
-                    path: name
-                ),
-                resolvedRepository: nil
-            )
-        }
+        static let createAttributes = CreateAttributes.stub(
+            elementAttributes: ElementAttributes(
+                sourceTree: .group,
+                name: nil,
+                path: "a/path"
+            ),
+            resolvedRepository: nil
+        )
 
-        static func identifier(
-            path: String,
-            type: Identifiers.FilesAndGroups.ElementType
-        ) -> String {
-            return "\(path) \(type)"
+        static let createIdentifier = CreateIdentifier.stub(
+            identifier: "Identifier"
+        )
+
+        static func specialRootGroup(
+            specialRootGroupType: SpecialRootGroupType,
+            childIdentifiers: [String]
+        ) -> Element {
+            return Element(
+                identifier: "\(specialRootGroupType) Identifier",
+                content: "\(specialRootGroupType) Content",
+                sortOrder: .groupLike
+            )
         }
     }
 }

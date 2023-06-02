@@ -23,7 +23,8 @@ final class RootElementsTests: XCTestCase {
         let result = ElementCreator.rootElements(
             pathTree: pathTree,
             workspace: workspace,
-            createAttributes: ElementCreator.Stubs.attributes
+            createAttributes: ElementCreator.Stubs.createAttributes,
+            createSpecialRootGroup: ElementCreator.Stubs.specialRootGroup
         )
 
         // Assert
@@ -55,7 +56,8 @@ final class RootElementsTests: XCTestCase {
         let result = ElementCreator.rootElements(
             pathTree: pathTree,
             workspace: workspace,
-            createAttributes: ElementCreator.Stubs.attributes
+            createAttributes: ElementCreator.Stubs.createAttributes,
+            createSpecialRootGroup: ElementCreator.Stubs.specialRootGroup
         )
 
         // Assert
@@ -78,7 +80,8 @@ final class RootElementsTests: XCTestCase {
         let result = ElementCreator.rootElements(
             pathTree: pathTree,
             workspace: workspace,
-            createAttributes: ElementCreator.Stubs.attributes
+            createAttributes: ElementCreator.Stubs.createAttributes,
+            createSpecialRootGroup: ElementCreator.Stubs.specialRootGroup
         )
 
         // Assert
@@ -104,7 +107,8 @@ final class RootElementsTests: XCTestCase {
         let result = ElementCreator.rootElements(
             pathTree: pathTree,
             workspace: workspace,
-            createAttributes: ElementCreator.Stubs.attributes
+            createAttributes: ElementCreator.Stubs.createAttributes,
+            createSpecialRootGroup: ElementCreator.Stubs.specialRootGroup
         )
 
         // Assert
@@ -129,7 +133,8 @@ final class RootElementsTests: XCTestCase {
         let result = ElementCreator.rootElements(
             pathTree: pathTree,
             workspace: workspace,
-            createAttributes: ElementCreator.Stubs.attributes
+            createAttributes: ElementCreator.Stubs.createAttributes,
+            createSpecialRootGroup: ElementCreator.Stubs.specialRootGroup
         )
 
         // Assert

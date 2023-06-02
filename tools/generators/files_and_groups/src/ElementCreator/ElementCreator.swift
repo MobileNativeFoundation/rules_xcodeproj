@@ -19,13 +19,14 @@ struct ElementCreator {
             arguments.executionRootFile
         )
 
-        let elementAttributes = environment.attributesWithDependencies(
+        let createAttributes = CreateAttributes(
             executionRoot: executionRoot,
             externalDir: try environment.externalDir(
-                /*executionRoot:*/ executionRoot
+                executionRoot: executionRoot
             ),
             workspace: arguments.workspace,
-            resolveSymlink: environment.resolveSymlink
+            resolveSymlink: environment.resolveSymlink,
+            callable: environment.createAttributesCallable
         )
 
         let (
@@ -37,7 +38,8 @@ struct ElementCreator {
         ) = environment.rootElements(
             /*pathTree:*/ pathTree,
             /*workspace:*/ arguments.workspace,
-            /*elementAttributes:*/ elementAttributes
+            /*createAttributes:*/ createAttributes,
+            /*createSpecialRootGroup:*/ environment.specialRootGroup
         )
 
         let mainGroup = environment.mainGroup(
@@ -46,9 +48,9 @@ struct ElementCreator {
         )
 
         let partial = environment.partial(
-            /*elements:*/ allElements,
-            /*mainGroup:*/ mainGroup,
-            /*workspace:*/ arguments.workspace
+            elements: allElements,
+            mainGroup: mainGroup,
+            workspace: arguments.workspace
         )
 
         return (

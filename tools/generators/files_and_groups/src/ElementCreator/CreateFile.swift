@@ -1,6 +1,50 @@
 import PBXProj
 
 extension ElementCreator {
+    struct CreateFile {
+        private let createAttributes: CreateAttributes
+        private let createIdentifier: CreateIdentifier
+
+        private let callable: Callable
+
+        /// - Parameters:
+        ///   - callable: The function that will be called in
+        ///     `callAsFunction()`.
+        init(
+            createAttributes: CreateAttributes,
+            createIdentifier: CreateIdentifier,
+            callable: @escaping Callable
+        ) {
+            self.createAttributes = createAttributes
+            self.createIdentifier = createIdentifier
+
+            self.callable = callable
+        }
+
+        /// Creates a `PBXFileReference` element.
+        func callAsFunction(
+            node: PathTreeNode,
+            parentBazelPath: BazelPath,
+            specialRootGroupType: SpecialRootGroupType?
+        ) -> (
+            element: Element,
+            bazelPath: BazelPath,
+            resolvedRepository: ResolvedRepository?
+        ) {
+            return callable(
+                /*node:*/ node,
+                /*parentBazelPath:*/ parentBazelPath,
+                /*specialRootGroupType:*/ specialRootGroupType,
+                /*createAttributes:*/ createAttributes,
+                /*createIdentifier:*/ createIdentifier
+            )
+        }
+    }
+}
+
+// MARK: - CreateFile.Callable
+
+extension ElementCreator.CreateFile {
     private static let folderTypeFileExtensions: Set<String?> = [
        "bundle",
        "docc",
@@ -10,13 +54,24 @@ extension ElementCreator {
        "xcdatamodel",
     ]
 
-    /// Creates a `PBXFileReference` element.
-    static func file(
+    typealias Callable = (
+        _ node: PathTreeNode,
+        _ parentBazelPath: BazelPath,
+        _ specialRootGroupType: SpecialRootGroupType?,
+        _ createAttributes: ElementCreator.CreateAttributes,
+        _ createIdentifier: ElementCreator.CreateIdentifier
+    ) -> (
+        element: Element,
+        bazelPath: BazelPath,
+        resolvedRepository: ResolvedRepository?
+    )
+
+    static func defaultCallable(
         node: PathTreeNode,
         parentBazelPath: BazelPath,
         specialRootGroupType: SpecialRootGroupType?,
-        createAttributes: Environment.CreateAttributes,
-        createIdentifier: Environment.CreateIdentifier
+        createAttributes: ElementCreator.CreateAttributes,
+        createIdentifier: ElementCreator.CreateIdentifier
     ) -> (
         element: Element,
         bazelPath: BazelPath,
@@ -60,10 +115,10 @@ extension ElementCreator {
         }
 
         let attributes = createAttributes(
-            /*name:*/ node.name,
-            /*bazelPath:*/ bazelPath,
-            /*isGroup:*/ false,
-            /*specialRootGroupType:*/ specialRootGroupType
+            name: node.name,
+            bazelPath: bazelPath,
+            isGroup: false,
+            specialRootGroupType: specialRootGroupType
         )
         if let name = attributes.elementAttributes.name {
             contentComponents.append("name = \(name.pbxProjEscaped);")
@@ -78,8 +133,8 @@ extension ElementCreator {
         return (
             element: .init(
                 identifier: createIdentifier(
-                    bazelPath.path,
-                    /*type:*/ .fileReference
+                    path: bazelPath.path,
+                    type: .fileReference
                 ),
                 content: contentComponents.joined(separator: " "),
                 sortOrder: sortOrder

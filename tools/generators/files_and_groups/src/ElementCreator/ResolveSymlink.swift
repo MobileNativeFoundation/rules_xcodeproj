@@ -1,9 +1,32 @@
 import Foundation
 
 extension ElementCreator {
+    struct ResolveSymlink {
+        private let callable: Callable
+
+        /// - Parameters:
+        ///   - callable: The function that will be called in
+        ///     `callAsFunction()`.
+        init(callable: @escaping Callable = Self.defaultCallable) {
+            self.callable = callable
+        }
+
+        /// If `path` is for a symlink, it's recursively resolved to an absolute
+        /// path and returned. Otherwise returns `nil`.
+        func callAsFunction(_ path: String) -> String? {
+            return callable(/*path:*/ path)
+        }
+    }
+}
+
+// MARK: - ResolveSymlink.Callable
+
+extension ElementCreator.ResolveSymlink {
+    typealias Callable = (_ path: String) -> String?
+
     /// If `path` is for a symlink, it's recursively resolved to an absolute
     /// path and returned. Otherwise returns `nil`.
-    static func resolveSymlink(_ path: String) -> String? {
+    static func defaultCallable(path: String) -> String? {
         let fileManager = FileManager.default
 
         var resolvedASymlink = false

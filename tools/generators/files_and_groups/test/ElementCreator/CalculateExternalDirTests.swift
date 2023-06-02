@@ -2,7 +2,7 @@ import XCTest
 
 @testable import files_and_groups
 
-final class ExternalDirTests: XCTestCase {
+final class CalculateExternalDirTests: XCTestCase {
     func test() throws {
         // Arrange
 
@@ -12,9 +12,8 @@ final class ExternalDirTests: XCTestCase {
 
         // Act
 
-        let externalDir = try ElementCreator.externalDir(
-            executionRoot: executionRoot
-        )
+        let externalDir = try ElementCreator.CalculateExternalDir
+            .defaultCallable(executionRoot: executionRoot)
 
         // Assert
 

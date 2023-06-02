@@ -8,8 +8,8 @@ extension ElementCreator {
         specialRootGroupType: SpecialRootGroupType?,
         childIdentifiers: [String],
         selectedChildIdentifier: String,
-        createAttributes: Environment.CreateAttributes,
-        createIdentifier: Environment.CreateIdentifier
+        createAttributes: CreateAttributes,
+        createIdentifier: CreateIdentifier
     ) -> (
         element: Element,
         resolvedRepository: ResolvedRepository?
@@ -17,10 +17,10 @@ extension ElementCreator {
         let bazelPath = parentBazelPath + node
 
         let attributes = createAttributes(
-            /*name:*/ node.name,
-            /*bazelPath:*/ bazelPath,
-            /*isGroup:*/ true,
-            /*specialRootGroupType:*/ specialRootGroupType
+            name: node.name,
+            bazelPath: bazelPath,
+            isGroup: true,
+            specialRootGroupType: specialRootGroupType
         )
 
         let nameAttribute: String
@@ -51,8 +51,8 @@ extension ElementCreator {
         return (
             element: .init(
                 identifier: createIdentifier(
-                    bazelPath.path,
-                    /*type:*/ .coreData
+                    path: bazelPath.path,
+                    type: .coreData
                 ),
                 content: content,
                 sortOrder: .fileLike

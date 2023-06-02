@@ -36,7 +36,7 @@ final class CollectBazelPathsTests: XCTestCase {
 
         // Act
 
-        let bazelPaths = ElementCreator.collectBazelPaths(
+        let bazelPaths = ElementCreator.CollectBazelPaths.defaultCallable(
             node: node,
             bazelPath: bazelPath
         )

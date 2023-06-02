@@ -5,7 +5,7 @@ import XCTest
 
 @testable import files_and_groups
 
-class ElementsPartialTests: XCTestCase {
+class ElementsCreatorCalculatePartialTests: XCTestCase {
     func test_basic() {
         // Arrange
 
@@ -21,7 +21,7 @@ class ElementsPartialTests: XCTestCase {
 
         // Act
 
-        let elementsPartial = ElementCreator.partial(
+        let elementsPartial = ElementCreator.CalculatePartial.defaultCallable(
             elements: elements,
             mainGroup: mainGroup,
             workspace: workspace
@@ -89,7 +89,7 @@ class ElementsPartialTests: XCTestCase {
 
         // Act
 
-        let elementsPartial = ElementCreator.partial(
+        let elementsPartial = ElementCreator.CalculatePartial.defaultCallable(
             elements: elements,
             mainGroup: mainGroup,
             workspace: workspace
