@@ -1,0 +1,79 @@
+load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
+load("@rules_xcodeproj//xcodeproj:defs.bzl", "top_level_targets", "xcodeproj")
+load("@build_bazel_rules_apple//apple:ios.bzl", "ios_unit_test")
+
+swift_library(
+  name = "SwiftLibA",
+  tags = ["manual"],
+  testonly = False,
+  data = [],
+  deps = [],
+  srcs = ["Sources/A.swift"],
+  copts = ["-warnings-as-errors", "-strict-concurrency=targeted", "-Xcc", "-I."],
+  module_name = "SwiftLibA",
+  swiftc_inputs = [],
+  generated_header_name = "SwiftLibA-Swift.h",
+  generates_header = True,
+  private_deps = [],
+  visibility = [
+        "//visibility:public"
+  ],
+)
+
+swift_library(
+  name = "SwiftLibB",
+  tags = ["manual"],
+  testonly = False,
+  data = [],
+  deps = [":SwiftLibA"],
+  srcs = ["Sources/B.swift"],
+  copts = ["-warnings-as-errors", "-strict-concurrency=targeted", "-Xcc", "-I."],
+  module_name = "SwiftLibB",
+  swiftc_inputs = [],
+  generated_header_name = "SwiftLibB-Swift.h",
+  generates_header = True,
+  private_deps = [],
+  visibility = [
+        "//visibility:public"
+  ],
+)
+
+swift_library(
+    name = "SwiftUnitTests.library",
+    testonly = True,
+    srcs = glob(["Tests/*.swift"]),
+    module_name = "SwiftUnitTestsLibrary",
+    tags = ["manual"],
+    deps = [
+        ":SwiftLibA",
+        ":SwiftLibB",
+    ],
+)
+
+ios_unit_test(
+    name = "SwiftUnitTests",
+    bundle_id = "rules-xcodeproj.example.tests",
+    env = {
+    },
+    minimum_os_version = "15.0",
+    resources = [],
+    tags = ["manual"],
+    # test_host = "//iOSApp",
+    visibility = [
+        "//visibility:public"
+    ],
+    deps = [":SwiftUnitTests.library"],
+)
+
+xcodeproj(
+	name = "SwiftTest.xcodeproj",
+	bazel_path = "./bazelw",
+	build_mode = "bazel",
+	project_name = "SwiftTest",
+	tags = ["manual"],
+	bazel_env = {"PATH": "/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"},
+	install_directory = "build",
+	top_level_targets = [
+		top_level_targets(labels = [":SwiftUnitTests"], target_environments = ['simulator']), 
+	],
+)
