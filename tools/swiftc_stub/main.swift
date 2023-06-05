@@ -103,7 +103,7 @@ func handleSwiftUIPreviewThunk(_ args: [String]) throws {
     else {
         print("warning: No such argument '-sdk'")
         try exit(runSubProcess(
-            executable: "swiftc",
+            executable: "/usr/bin/swiftc",
             args: Array(args.dropFirst())
         ))
     }
@@ -119,7 +119,7 @@ func handleSwiftUIPreviewThunk(_ args: [String]) throws {
     else {
         print("warning: Failed to parse DEVELOPER_DIR from '-sdk'")
         try exit(runSubProcess(
-            executable: "swiftc",
+            executable: "/usr/bin/swiftc",
             args: Array(args.dropFirst())
         ))
     }
@@ -139,7 +139,7 @@ let args = CommandLine.arguments
 let argsSet = Set(args)
 
 if args.count == 2, args.last == "-v" {
-    try exit(runSubProcess(executable: "swiftc", args: ["-v"]))
+    try exit(runSubProcess(executable: "/usr/bin/swiftc", args: ["-v"]))
 }
 
 for arg in args {
