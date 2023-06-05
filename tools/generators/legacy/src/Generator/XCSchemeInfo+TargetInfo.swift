@@ -12,6 +12,7 @@ extension XCSchemeInfo {
     }
 
     struct TargetInfo: Equatable, Hashable {
+        let label: BazelLabel
         let pbxTarget: PBXNativeTarget
         // The platforms property is a sorted list of unique platforms.
         let platforms: [Platform]
@@ -24,6 +25,7 @@ extension XCSchemeInfo {
         let additionalBuildableReferences: [XCScheme.BuildableReference]
 
         private init<HIs: Sequence, EPIs: Sequence, Platforms: Sequence>(
+            label: BazelLabel,
             pbxTarget: PBXNativeTarget,
             platforms: Platforms,
             buildableReference: XCScheme.BuildableReference,
@@ -35,6 +37,7 @@ extension XCSchemeInfo {
             EPIs.Element == ExtensionPointIdentifier,
             Platforms.Element == Platform
         {
+            self.label = label
             self.pbxTarget = pbxTarget
             self.platforms = Set(platforms).sorted()
             self.buildableReference = buildableReference
@@ -49,6 +52,7 @@ extension XCSchemeInfo {
 
 extension XCSchemeInfo.TargetInfo {
     init<HIs: Sequence, EPIs: Sequence, Platforms: Sequence>(
+        label: BazelLabel,
         pbxTarget: PBXNativeTarget,
         platforms: Platforms,
         referencedContainer: String,
@@ -60,6 +64,7 @@ extension XCSchemeInfo.TargetInfo {
         Platforms.Element == Platform
     {
         self.init(
+            label: label,
             pbxTarget: pbxTarget,
             platforms: platforms,
             buildableReference: .init(
@@ -80,6 +85,7 @@ extension XCSchemeInfo.TargetInfo {
         additionalBuildableReferences: [XCScheme.BuildableReference] = []
     ) where HIs.Element == XCSchemeInfo.HostInfo {
         self.init(
+            label: pbxTargetInfo.label,
             pbxTarget: pbxTargetInfo.pbxTarget,
             platforms: pbxTargetInfo.platforms,
             buildableReference: pbxTargetInfo.buildableReference,
@@ -97,6 +103,7 @@ extension XCSchemeInfo.TargetInfo {
         topLevelTargetInfos: TargetInfos
     ) where TargetInfos.Element == XCSchemeInfo.TargetInfo {
         self.init(
+            label: original.label,
             pbxTarget: original.pbxTarget,
             platforms: original.platforms,
             buildableReference: original.buildableReference,

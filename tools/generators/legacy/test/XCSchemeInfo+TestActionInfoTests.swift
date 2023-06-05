@@ -107,6 +107,7 @@ extension XCSchemeInfoTestActionInfoTests {
         let actual = try XCSchemeInfo.TestActionInfo(
             testAction: xcodeScheme.testAction,
             defaultBuildConfigurationName: unitTestPBXTarget
+                .pbxTarget
                 .defaultBuildConfigurationName,
             targetResolver: targetResolver,
             targetIDsByLabelAndConfiguration: xcodeScheme.resolveTargetIDs(
@@ -183,7 +184,8 @@ class XCSchemeInfoTestActionInfoTests: XCTestCase {
     lazy var unitTestPBXTarget = pbxTargetsDict["B 2"]!
 
     lazy var libraryTargetInfo = XCSchemeInfo.TargetInfo(
-        pbxTarget: libraryPBXTarget,
+        label: libraryPBXTarget.label,
+        pbxTarget: libraryPBXTarget.pbxTarget,
         platforms: [libraryPlatform],
         referencedContainer: directories.containerReference,
         hostInfos: [],
@@ -191,7 +193,8 @@ class XCSchemeInfoTestActionInfoTests: XCTestCase {
     )
 
     lazy var unitTestTargetInfo = XCSchemeInfo.TargetInfo(
-        pbxTarget: unitTestPBXTarget,
+        label: unitTestPBXTarget.label,
+        pbxTarget: unitTestPBXTarget.pbxTarget,
         platforms: [unitTestPlatform],
         referencedContainer: directories.containerReference,
         hostInfos: [],

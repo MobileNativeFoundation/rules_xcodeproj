@@ -20,7 +20,7 @@ final class XCSchemeInfoPrePostActionInfoTests: XCTestCase {
     )
 
     lazy var buildConfigurationName = targetResolver.targets["A 2"]!
-            .xcodeConfigurations.first!
+        .xcodeConfigurations.first!
 
     let directories = Directories(
         workspace: "/Users/TimApple/app",
@@ -44,7 +44,8 @@ final class XCSchemeInfoPrePostActionInfoTests: XCTestCase {
     lazy var libraryPBXTarget = pbxTargetsDict["A 2"]!
 
     lazy var unresolvedLibraryTargetInfo = XCSchemeInfo.TargetInfo(
-        pbxTarget: libraryPBXTarget,
+        label: libraryPBXTarget.label,
+        pbxTarget: libraryPBXTarget.pbxTarget,
         platforms: [libraryPlatform],
         referencedContainer: directories.containerReference,
         hostInfos: [],
@@ -66,7 +67,7 @@ final class XCSchemeInfoPrePostActionInfoTests: XCTestCase {
     lazy var anotherAppPlatform = Fixtures.targets["I"]!.platform
 
     lazy var appHostInfo = XCSchemeInfo.HostInfo(
-        pbxTarget: anotherAppPBXTarget,
+        pbxTarget: anotherAppPBXTarget.pbxTarget,
         platforms: [anotherAppPlatform],
         referencedContainer: directories.containerReference,
         index: 0
@@ -132,7 +133,7 @@ extension XCSchemeInfoPrePostActionInfoTests {
         // when
         let prePostActionInfo = try XCSchemeInfo.PrePostActionInfo(
             prePostAction: prePostAction,
-            buildConfigurationName: buildConfigurationName,
+            preferredConfigurations: [buildConfigurationName],
             targetResolver: targetResolver,
             targetIDsByLabelAndConfiguration: [:],
             context: "Building PrePostAction Info"
@@ -159,7 +160,7 @@ extension XCSchemeInfoPrePostActionInfoTests {
         // when
         let prePostActionInfo = try XCSchemeInfo.PrePostActionInfo(
             prePostAction: prePostAction,
-            buildConfigurationName: buildConfigurationName,
+            preferredConfigurations: [buildConfigurationName],
             targetResolver: targetResolver,
             targetIDsByLabelAndConfiguration: xcodeScheme.resolveTargetIDs(
                 targetResolver: targetResolver,
@@ -193,7 +194,7 @@ extension XCSchemeInfoPrePostActionInfoTests {
         let prePostActionInfo = {
             try XCSchemeInfo.PrePostActionInfo(
                 prePostAction: prePostAction,
-                buildConfigurationName: self.buildConfigurationName,
+                preferredConfigurations: [self.buildConfigurationName],
                 targetResolver: self.targetResolver,
                 targetIDsByLabelAndConfiguration: self.xcodeScheme.resolveTargetIDs(
                     targetResolver: self.targetResolver,
@@ -222,7 +223,7 @@ extension XCSchemeInfoPrePostActionInfoTests {
         )
         let prePostActionInfo = try XCSchemeInfo.PrePostActionInfo(
             prePostAction: prePostAction,
-            buildConfigurationName: buildConfigurationName,
+            preferredConfigurations: [buildConfigurationName],
             targetResolver: targetResolver,
             targetIDsByLabelAndConfiguration: xcodeScheme.resolveTargetIDs(
                 targetResolver: targetResolver,
@@ -251,7 +252,7 @@ extension XCSchemeInfoPrePostActionInfoTests {
         )
         let prePostActionInfo = try XCSchemeInfo.PrePostActionInfo(
             prePostAction: prePostAction,
-            buildConfigurationName: buildConfigurationName,
+            preferredConfigurations: [buildConfigurationName],
             targetResolver: targetResolver,
             targetIDsByLabelAndConfiguration: xcodeScheme.resolveTargetIDs(
                 targetResolver: targetResolver,
@@ -263,7 +264,8 @@ extension XCSchemeInfoPrePostActionInfoTests {
         )
         let topLevelTargetInfos: [XCSchemeInfo.TargetInfo] = [
             .init(
-                pbxTarget: anotherAppPBXTarget,
+                label: anotherAppPBXTarget.label,
+                pbxTarget: anotherAppPBXTarget.pbxTarget,
                 platforms: [anotherAppPlatform],
                 referencedContainer: directories.containerReference,
                 hostInfos: [appHostInfo],
@@ -278,7 +280,8 @@ extension XCSchemeInfoPrePostActionInfoTests {
 
         // then
         let expectedTargetInfo = XCSchemeInfo.TargetInfo(
-            pbxTarget: pbxTargetsDict["W"]!,
+            label: pbxTargetsDict["W"]!.label,
+            pbxTarget: pbxTargetsDict["W"]!.pbxTarget,
             platforms: [Fixtures.targets["W"]!.platform],
             referencedContainer: directories.containerReference,
             hostInfos: [appHostInfo],
@@ -306,7 +309,7 @@ extension XCSchemeInfoPrePostActionInfoTests {
         )
         let prePostActionInfo = try XCSchemeInfo.PrePostActionInfo(
             prePostAction: prePostAction,
-            buildConfigurationName: buildConfigurationName,
+            preferredConfigurations: [buildConfigurationName],
             targetResolver: targetResolver,
             targetIDsByLabelAndConfiguration: xcodeScheme.resolveTargetIDs(
                 targetResolver: targetResolver,

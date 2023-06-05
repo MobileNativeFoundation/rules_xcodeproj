@@ -1,3 +1,4 @@
+import OrderedCollections
 import XcodeProj
 
 extension XCSchemeInfo {
@@ -84,19 +85,22 @@ extension XCSchemeInfo.ProfileActionInfo {
           return nil
         }
 
-        let buildConfigurationName = profileAction.buildConfigurationName ??
-            defaultBuildConfigurationName
+        var preferredConfigurations: OrderedSet<String> = []
+        if let profileConfiguration = profileAction.buildConfigurationName {
+            preferredConfigurations.append(profileConfiguration)
+        }
+        preferredConfigurations.append(defaultBuildConfigurationName)
 
         let targetID = try targetIDsByLabelAndConfiguration.targetID(
             for: profileAction.target,
-            preferredConfiguration: buildConfigurationName
+            preferredConfigurations: preferredConfigurations
         ).orThrow("""
 Failed to find a `TargetID` for "\(profileAction.target)" while creating a \
 `ProfileActionInfo`
 """)
 
         try self.init(
-            buildConfigurationName: buildConfigurationName,
+            buildConfigurationName: preferredConfigurations.first!,
             targetInfo: targetResolver.targetInfo(targetID: targetID),
             args: profileAction.args,
             env: profileAction.env,

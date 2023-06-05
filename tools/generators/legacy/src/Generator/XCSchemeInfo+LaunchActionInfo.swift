@@ -1,4 +1,5 @@
 import GeneratorCommon
+import OrderedCollections
 import XcodeProj
 
 extension XCSchemeInfo {
@@ -145,19 +146,22 @@ extension XCSchemeInfo.LaunchActionInfo {
           return nil
         }
 
-        let buildConfigurationName = launchAction.buildConfigurationName ??
-            defaultBuildConfigurationName
+        var preferredConfigurations: OrderedSet<String> = []
+        if let launchConfiguration = launchAction.buildConfigurationName {
+            preferredConfigurations.append(launchConfiguration)
+        }
+        preferredConfigurations.append(defaultBuildConfigurationName)
 
         let targetID = try targetIDsByLabelAndConfiguration.targetID(
             for: launchAction.target,
-            preferredConfiguration: buildConfigurationName
+            preferredConfigurations: preferredConfigurations
         ).orThrow("""
 Failed to find a `TargetID` for "\(launchAction.target)" while creating a \
 `LaunchActionInfo`
 """)
 
         try self.init(
-            buildConfigurationName: buildConfigurationName,
+            buildConfigurationName: preferredConfigurations.first!,
             targetInfo: targetResolver.targetInfo(targetID: targetID),
             args: launchAction.args,
             diagnostics: XCSchemeInfo.DiagnosticsInfo(

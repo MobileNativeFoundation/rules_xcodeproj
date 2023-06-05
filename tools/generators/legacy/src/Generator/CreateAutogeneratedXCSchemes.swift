@@ -69,17 +69,17 @@ extension Generator {
                     buildActionInfo: .init(targets: [
                         .init(targetInfo: targetInfo, buildFor: .allEnabled),
                     ]),
+                    launchActionInfo: shouldCreateLaunchAction ?
+                        .init(
+                            buildConfigurationName: buildConfigurationName,
+                            targetInfo: targetInfo
+                        ) : nil,
                     testActionInfo: shouldCreateTestAction ?
                         .init(
                             buildConfigurationName: buildConfigurationName,
                             targetInfos: [targetInfo],
                             args: targetArgs,
                             env: env
-                        ) : nil,
-                    launchActionInfo: shouldCreateLaunchAction ?
-                        .init(
-                            buildConfigurationName: buildConfigurationName,
-                            targetInfo: targetInfo
                         ) : nil,
                     profileActionInfo: shouldCreateLaunchAction ?
                         .init(

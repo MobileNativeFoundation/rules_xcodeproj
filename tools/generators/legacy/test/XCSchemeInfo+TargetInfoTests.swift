@@ -7,9 +7,9 @@ import XCTest
 
 extension XCSchemeInfoTargetInfoTests {
     func test_init() throws {
-        XCTAssertEqual(libraryTargetInfo.pbxTarget, libraryPBXTarget)
+        XCTAssertEqual(libraryTargetInfo.pbxTarget, libraryPBXTarget.pbxTarget)
         XCTAssertEqual(libraryTargetInfo.buildableReference, .init(
-            pbxTarget: libraryPBXTarget,
+            pbxTarget: libraryPBXTarget.pbxTarget,
             referencedContainer: directories.containerReference
         ))
         XCTAssertEqual(
@@ -25,7 +25,8 @@ extension XCSchemeInfoTargetInfoTests {
 extension XCSchemeInfoTargetInfoTests {
     func test_init_hostResolution_noHosts_withoutTopLevelTargets() throws {
         let targetInfo = XCSchemeInfo.TargetInfo(
-            pbxTarget: libraryPBXTarget,
+            label: libraryPBXTarget.label,
+            pbxTarget: libraryPBXTarget.pbxTarget,
             platforms: [libraryPlatform],
             referencedContainer: directories.containerReference,
             hostInfos: [],
@@ -42,7 +43,8 @@ extension XCSchemeInfoTargetInfoTests {
 
     func test_init_hostResolution_withHosts_withoutTopLevelTargets() throws {
         let targetInfo = XCSchemeInfo.TargetInfo(
-            pbxTarget: libraryPBXTarget,
+            label: libraryPBXTarget.label,
+            pbxTarget: libraryPBXTarget.pbxTarget,
             platforms: [libraryPlatform],
             referencedContainer: directories.containerReference,
             hostInfos: [appHostInfo, anotherAppHostInfo],
@@ -64,7 +66,8 @@ extension XCSchemeInfoTargetInfoTests {
     func test_init_hostResolution_withHosts_withTopLevelTargets() throws {
         let topLevelTargetInfos: [XCSchemeInfo.TargetInfo] = [
             .init(
-                pbxTarget: anotherAppPBXTarget,
+                label: anotherAppPBXTarget.label,
+                pbxTarget: anotherAppPBXTarget.pbxTarget,
                 platforms: [anotherAppPlatform],
                 referencedContainer: directories.containerReference,
                 hostInfos: [],
@@ -72,7 +75,8 @@ extension XCSchemeInfoTargetInfoTests {
             ),
         ]
         let targetInfo = XCSchemeInfo.TargetInfo(
-            pbxTarget: libraryPBXTarget,
+            label: libraryPBXTarget.label,
+            pbxTarget: libraryPBXTarget.pbxTarget,
             platforms: [libraryPlatform],
             referencedContainer: directories.containerReference,
             hostInfos: [appHostInfo, anotherAppHostInfo],
@@ -226,7 +230,7 @@ class XCSchemeInfoTargetInfoTests: XCTestCase {
         workspaceOutput: "examples/foo/Foo.xcodeproj"
     )
 
-    lazy var pbxTargetsDict: [ConsolidatedTarget.Key: PBXNativeTarget] =
+    lazy var pbxTargetsDict: [ConsolidatedTarget.Key: LabeledPBXNativeTarget] =
         Fixtures.pbxTargets(
             in: Fixtures.pbxProj(),
             directories: directories,
@@ -249,13 +253,13 @@ class XCSchemeInfoTargetInfoTests: XCTestCase {
     lazy var watchAppPBXTarget = pbxTargetsDict["W"]!
 
     lazy var appHostInfo = XCSchemeInfo.HostInfo(
-        pbxTarget: appPBXTarget,
+        pbxTarget: appPBXTarget.pbxTarget,
         platforms: [appPlatform],
         referencedContainer: directories.containerReference,
         index: 0
     )
     lazy var anotherAppHostInfo = XCSchemeInfo.HostInfo(
-        pbxTarget: anotherAppPBXTarget,
+        pbxTarget: anotherAppPBXTarget.pbxTarget,
         platforms: [anotherAppPlatform],
         referencedContainer: directories.containerReference,
         index: 1
@@ -263,7 +267,8 @@ class XCSchemeInfoTargetInfoTests: XCTestCase {
 
     lazy var appTargetInfo = XCSchemeInfo.TargetInfo(
         resolveHostFor: .init(
-            pbxTarget: appPBXTarget,
+            label: appPBXTarget.label,
+            pbxTarget: appPBXTarget.pbxTarget,
             platforms: [appPlatform],
             referencedContainer: directories.containerReference,
             hostInfos: [],
@@ -272,21 +277,24 @@ class XCSchemeInfoTargetInfoTests: XCTestCase {
         topLevelTargetInfos: []
     )
     lazy var widgetKitExtTargetInfo = XCSchemeInfo.TargetInfo(
-        pbxTarget: widgetKitExtPBXTarget,
+        label: widgetKitExtPBXTarget.label,
+        pbxTarget: widgetKitExtPBXTarget.pbxTarget,
         platforms: [widgetKitExtPlatform],
         referencedContainer: directories.containerReference,
         hostInfos: [],
         extensionPointIdentifiers: [Fixtures.extensionPointIdentifiers["WDKE"]!]
     )
     lazy var unresolvedLibraryTargetInfo = XCSchemeInfo.TargetInfo(
-        pbxTarget: libraryPBXTarget,
+        label: libraryPBXTarget.label,
+        pbxTarget: libraryPBXTarget.pbxTarget,
         platforms: [libraryPlatform],
         referencedContainer: directories.containerReference,
         hostInfos: [],
         extensionPointIdentifiers: []
     )
     lazy var unresolvedLibraryTargetInfoWithHosts = XCSchemeInfo.TargetInfo(
-        pbxTarget: libraryPBXTarget,
+        label: libraryPBXTarget.label,
+        pbxTarget: libraryPBXTarget.pbxTarget,
         platforms: [libraryPlatform],
         referencedContainer: directories.containerReference,
         // Puprposefully specified appHostInfo twice
@@ -303,7 +311,8 @@ class XCSchemeInfoTargetInfoTests: XCTestCase {
     )
     lazy var unitTestTargetInfo = XCSchemeInfo.TargetInfo(
         resolveHostFor: .init(
-            pbxTarget: unitTestPBXTarget,
+            label: unitTestPBXTarget.label,
+            pbxTarget: unitTestPBXTarget.pbxTarget,
             platforms: [unitTestPlatform],
             referencedContainer: directories.containerReference,
             hostInfos: [appHostInfo],
@@ -313,7 +322,8 @@ class XCSchemeInfoTargetInfoTests: XCTestCase {
     )
     lazy var unitTestNoHostTargetInfo = XCSchemeInfo.TargetInfo(
         resolveHostFor: .init(
-            pbxTarget: unitTestPBXTarget,
+            label: unitTestPBXTarget.label,
+            pbxTarget: unitTestPBXTarget.pbxTarget,
             platforms: [unitTestPlatform],
             referencedContainer: directories.containerReference,
             hostInfos: [],
@@ -323,7 +333,8 @@ class XCSchemeInfoTargetInfoTests: XCTestCase {
     )
     lazy var watchAppTargetInfo = XCSchemeInfo.TargetInfo(
         resolveHostFor: .init(
-            pbxTarget: watchAppPBXTarget,
+            label: watchAppPBXTarget.label,
+            pbxTarget: watchAppPBXTarget.pbxTarget,
             platforms: [watchAppPlatform],
             referencedContainer: directories.containerReference,
             hostInfos: [appHostInfo],

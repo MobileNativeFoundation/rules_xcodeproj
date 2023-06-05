@@ -228,6 +228,7 @@ extension XCSchemeInfoLaunchActionInfoTests {
         let actual = try XCSchemeInfo.LaunchActionInfo(
             launchAction: xcodeScheme.launchAction,
             defaultBuildConfigurationName: appPBXTarget
+                .pbxTarget
                 .defaultBuildConfigurationName,
             targetResolver: targetResolver,
             targetIDsByLabelAndConfiguration: xcodeScheme.resolveTargetIDs(
@@ -288,28 +289,32 @@ class XCSchemeInfoLaunchActionInfoTests: XCTestCase {
     lazy var widgetKitExtPBXTarget = pbxTargetsDict["WDKE"]!
 
     lazy var libraryTargetInfo = XCSchemeInfo.TargetInfo(
-        pbxTarget: libraryPBXTarget,
+        label: libraryPBXTarget.label,
+        pbxTarget: libraryPBXTarget.pbxTarget,
         platforms: [libraryPlatform],
         referencedContainer: directories.containerReference,
         hostInfos: [],
         extensionPointIdentifiers: []
     )
     lazy var appTargetInfo = XCSchemeInfo.TargetInfo(
-        pbxTarget: appPBXTarget,
+        label: appPBXTarget.label,
+        pbxTarget: appPBXTarget.pbxTarget,
         platforms: [appPlatform],
         referencedContainer: directories.containerReference,
         hostInfos: [],
         extensionPointIdentifiers: []
     )
     lazy var widgetKitExtTargetInfo = XCSchemeInfo.TargetInfo(
-        pbxTarget: widgetKitExtPBXTarget,
+        label: widgetKitExtPBXTarget.label,
+        pbxTarget: widgetKitExtPBXTarget.pbxTarget,
         platforms: [widgetKitExtPlatform],
         referencedContainer: directories.containerReference,
         hostInfos: [],
         extensionPointIdentifiers: [Fixtures.extensionPointIdentifiers["WDKE"]!]
     )
     lazy var unitTestTargetInfo = XCSchemeInfo.TargetInfo(
-        pbxTarget: unitTestPBXTarget,
+        label: unitTestPBXTarget.label,
+        pbxTarget: unitTestPBXTarget.pbxTarget,
         platforms: [unitTestPlatform],
         referencedContainer: directories.containerReference,
         hostInfos: [appHostInfo],
@@ -317,7 +322,7 @@ class XCSchemeInfoLaunchActionInfoTests: XCTestCase {
     )
 
     lazy var appHostInfo = XCSchemeInfo.HostInfo(
-        pbxTarget: appPBXTarget,
+        pbxTarget: appPBXTarget.pbxTarget,
         platforms: [appPlatform],
         referencedContainer: directories.containerReference,
         index: 0

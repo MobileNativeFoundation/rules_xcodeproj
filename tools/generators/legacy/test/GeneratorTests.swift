@@ -175,12 +175,27 @@ final class GeneratorTests: XCTestCase {
 
         let productsGroup = PBXGroup(name: "42")
         let bazelDependenciesTarget = PBXAggregateTarget(name: "BD")
-        let pbxTargets: [ConsolidatedTarget.Key: PBXNativeTarget] = [
-            "Y": PBXNativeTarget(name: "Y (3456a)"),
-            "Z": PBXNativeTarget(name: "Z (3456a)"),
-            "I 1": PBXNativeTarget(name: "I1 (3456a)"),
-            "I 2": PBXNativeTarget(name: "I2 (3456a)"),
-            "WKE": PBXNativeTarget(name: "WKE (3456a)"),
+        let pbxTargets: [ConsolidatedTarget.Key: LabeledPBXNativeTarget] = [
+            "Y": .init(
+                label: "//:Y",
+                pbxTarget: PBXNativeTarget(name: "Y (3456a)")
+            ),
+            "Z": .init(
+                label: "//:Z",
+                pbxTarget: PBXNativeTarget(name: "Z (3456a)")
+            ),
+            "I 1": .init(
+                label: "//:I1",
+                pbxTarget: PBXNativeTarget(name: "I1 (3456a)")
+            ),
+            "I 2": .init(
+                label: "//:I2",
+                pbxTarget: PBXNativeTarget(name: "I2 (3456a)")
+            ),
+            "WKE": .init(
+                label: "//:WKE",
+                pbxTarget: PBXNativeTarget(name: "WKE (3456a)")
+            ),
         ]
         let targetResolver = try TargetResolver(
             referencedContainer: directories.containerReference,
@@ -562,7 +577,7 @@ final class GeneratorTests: XCTestCase {
             products: Products,
             files: [FilePath: File],
             compileStub: PBXFileReference?
-        ) throws -> [ConsolidatedTarget.Key: PBXNativeTarget] {
+        ) throws -> [ConsolidatedTarget.Key: LabeledPBXNativeTarget] {
             addTargetsCalled.append(.init(
                 pbxProj: pbxProj,
                 disambiguatedTargets: disambiguatedTargets,
@@ -593,7 +608,7 @@ final class GeneratorTests: XCTestCase {
             let minimumXcodeVersion: SemanticVersion
             let xcodeConfigurations: Set<String>
             let defaultXcodeConfiguration: String
-            let pbxTargets: [ConsolidatedTarget.Key: PBXNativeTarget]
+            let pbxTargets: [ConsolidatedTarget.Key: LabeledPBXNativeTarget]
             let hostIDs: [TargetID: [TargetID]]
             let hasBazelDependencies: Bool
         }
@@ -607,7 +622,7 @@ final class GeneratorTests: XCTestCase {
             minimumXcodeVersion: SemanticVersion,
             xcodeConfigurations: Set<String>,
             defaultXcodeConfiguration: String,
-            pbxTargets: [ConsolidatedTarget.Key: PBXNativeTarget],
+            pbxTargets: [ConsolidatedTarget.Key: LabeledPBXNativeTarget],
             hostIDs: [TargetID: [TargetID]],
             hasBazelDependencies: Bool
         ) {
@@ -645,7 +660,7 @@ final class GeneratorTests: XCTestCase {
         struct SetTargetDependenciesCalled: Equatable {
             let buildMode: BuildMode
             let disambiguatedTargets: DisambiguatedTargets
-            let pbxTargets: [ConsolidatedTarget.Key: PBXNativeTarget]
+            let pbxTargets: [ConsolidatedTarget.Key: LabeledPBXNativeTarget]
             let bazelDependenciesTarget: PBXAggregateTarget?
         }
 
@@ -653,7 +668,7 @@ final class GeneratorTests: XCTestCase {
         func setTargetDependencies(
             buildMode: BuildMode,
             disambiguatedTargets: DisambiguatedTargets,
-            pbxTargets: [ConsolidatedTarget.Key: PBXNativeTarget],
+            pbxTargets: [ConsolidatedTarget.Key: LabeledPBXNativeTarget],
             bazelDependenciesTarget: PBXAggregateTarget?
         ) {
             setTargetDependenciesCalled.append(SetTargetDependenciesCalled(

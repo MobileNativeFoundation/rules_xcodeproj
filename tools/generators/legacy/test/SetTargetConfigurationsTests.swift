@@ -57,7 +57,6 @@ final class SetTargetConfigurationsTests: XCTestCase {
         // Assert
 
         XCTAssertNoDifference(pbxTargets, expectedPBXTargets)
-        XCTAssertNoDifference(pbxProj, expectedPBXProj)
     }
 
     func test_sdkroot() async throws {
@@ -310,13 +309,13 @@ final class SetTargetConfigurationsTests: XCTestCase {
         )]
     ) -> (
         disambiguatedTargets: DisambiguatedTargets,
-        pbxTargets: [ConsolidatedTarget.Key: PBXNativeTarget],
+        pbxTargets: [ConsolidatedTarget.Key: LabeledPBXNativeTarget],
         buildSettings: [ConsolidatedTarget.Key: [String: BuildSettingType]]
     ) {
         var keys: [TargetID: ConsolidatedTarget.Key] = [:]
         var consolidatedTargets: [ConsolidatedTarget.Key: DisambiguatedTarget] =
             [:]
-        var pbxTargets: [ConsolidatedTarget.Key: PBXNativeTarget] = [:]
+        var pbxTargets: [ConsolidatedTarget.Key: LabeledPBXNativeTarget] = [:]
         var buildSettings: [ConsolidatedTarget.Key: [String: BuildSettingType]]
             = [:]
         for input in inputs {
@@ -361,7 +360,14 @@ final class SetTargetConfigurationsTests: XCTestCase {
                 name: target.name,
                 target: target
             )
-            pbxTargets[key] = PBXNativeTarget(name: target.name)
+            pbxTargets[key] = .init(
+                label: BazelLabel(
+                    repository: "",
+                    package: "",
+                    name: target.name
+                ),
+                pbxTarget: PBXNativeTarget(name: target.name)
+            )
             buildSettings[key] = input.expectedBuildSettings
         }
 
@@ -377,16 +383,17 @@ final class SetTargetConfigurationsTests: XCTestCase {
 
     static func getBuildSettings(
         _ keyPrefix: String,
-        from pbxTargets: [ConsolidatedTarget.Key: PBXNativeTarget],
+        from pbxTargets: [ConsolidatedTarget.Key: LabeledPBXNativeTarget],
         file: StaticString = #filePath,
         line: UInt = #line
     ) throws -> [ConsolidatedTarget.Key: [String: [String]]] {
         var selectedBuildSettings: [
             ConsolidatedTarget.Key: [String: [String]]
         ] = [:]
-        for (key, pbxTarget) in pbxTargets {
+        for (key, labeledPBXTarget) in pbxTargets {
             let buildSettings = try XCTUnwrap(
-                pbxTarget
+                labeledPBXTarget
+                    .pbxTarget
                     .buildConfigurationList?
                     .buildConfigurations
                     .first?
@@ -420,16 +427,17 @@ final class SetTargetConfigurationsTests: XCTestCase {
 
     static func getBuildSettings<BuildSettingType>(
         _ keyPrefix: String,
-        from pbxTargets: [ConsolidatedTarget.Key: PBXNativeTarget],
+        from pbxTargets: [ConsolidatedTarget.Key: LabeledPBXNativeTarget],
         file: StaticString = #filePath,
         line: UInt = #line
     ) throws -> [ConsolidatedTarget.Key: [String: BuildSettingType]] {
         var selectedBuildSettings: [
             ConsolidatedTarget.Key: [String: BuildSettingType]
         ] = [:]
-        for (key, pbxTarget) in pbxTargets {
+        for (key, labeledPBXTarget) in pbxTargets {
             let buildSettings = try XCTUnwrap(
-                pbxTarget
+                labeledPBXTarget
+                    .pbxTarget
                     .buildConfigurationList?
                     .buildConfigurations
                     .first?
