@@ -23,6 +23,7 @@ _SIMULATOR_PLATFORMS = {
     "macosx": None,
 }
 
+
 def _wait_for_value(calculate_value, value_name):
     wait_counter = 0
     while True:
@@ -54,6 +55,7 @@ note: ({now}) {value_name} updated after {wait_counter} seconds.""",
                 file = sys.stderr,
         )
     return value
+
 
 def _calculate_build_request_file(
         xcode_version,
@@ -94,6 +96,7 @@ def _calculate_build_request_file(
         _wait_for_value(wait_for_xcbuilddata, "newest '.xcbuilddata' folder")
     )
     return f"{xcbuilddata}/build-request.json"
+
 
 def _calculate_label_and_target_ids(
         build_request_file,
@@ -160,7 +163,19 @@ https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bu
         )
         return scheme_labels_and_target_ids
 
+    if not labels_and_target_ids:
+        print(
+            f"""\
+error: Failed to determine labels and targets. Note, currently `.xcworkspace`s \
+aren't supported. Please make sure you are opening the generated \
+`.xcodeproj` file bundle directly. If you are, and you still get this error, \
+then please file a bug report here: \
+https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bug.md""",
+            file = sys.stderr,
+        )
+
     return labels_and_target_ids
+
 
 def _calculate_guid_labels_and_target_ids(base_objroot):
     pif_cache = f"{base_objroot}/XCBuildData/PIFCache"
@@ -279,15 +294,18 @@ https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bu
 
     return guid_labels, guid_target_ids
 
+
 def _platform_from_build_key(key):
     if key.startswith("BAZEL_TARGET_ID[sdk="):
         return key[20:-2]
     return ""
 
+
 def _platform_from_compile_key(key):
     if key.startswith("BAZEL_COMPILE_TARGET_IDS[sdk="):
         return key[29:-2]
     return ""
+
 
 def _select_target_ids(target_ids, platform):
     key = target_ids["key"]
@@ -308,22 +326,24 @@ def _select_target_ids(target_ids, platform):
             return platform_target_ids
     return target_ids[""]
 
+
 def _similar_platforms(platform):
     if platform == "macosx" or "simulator" in platform:
         return _SIMULATOR_PLATFORMS
     return _DEVICE_PLATFORMS
+
 
 def _main(
         action,
         xcode_version,
         objroot,
         base_objroot,
-        scheme_target_id_file,
+        scheme_target_ids_file,
         prefixes_str):
-    if not os.path.exists(scheme_target_id_file):
+    if not os.path.exists(scheme_target_ids_file):
         return
 
-    build_request_min_ctime = os.path.getctime(scheme_target_id_file)
+    build_request_min_ctime = os.path.getctime(scheme_target_ids_file)
 
     try:
         xcode_version = int(xcode_version)
@@ -337,7 +357,7 @@ https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bu
         )
         xcode_version = 9999
 
-    with open(scheme_target_id_file, encoding = "utf-8") as f:
+    with open(scheme_target_ids_file, encoding = "utf-8") as f:
         scheme_label_and_target_ids = []
         for label_and_target_id in set(f.read().splitlines()):
             components = label_and_target_id.split(",")
