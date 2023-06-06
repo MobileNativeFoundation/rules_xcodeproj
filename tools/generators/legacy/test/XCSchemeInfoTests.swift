@@ -54,13 +54,13 @@ An `XCSchemeInfo` should have at least one of the following: `name` or `nameClos
             buildActionInfo: .init(
                 targets: [libraryTargetInfo].map { .init(targetInfo: $0, buildFor: .allEnabled) }
             ),
-            testActionInfo: .init(
-                buildConfigurationName: buildConfigurationName,
-                targetInfos: [unitTestTargetInfo]
-            ),
             launchActionInfo: .init(
                 buildConfigurationName: buildConfigurationName,
                 targetInfo: appTargetInfo
+            ),
+            testActionInfo: .init(
+                buildConfigurationName: buildConfigurationName,
+                targetInfos: [unitTestTargetInfo]
             ),
             profileActionInfo: .init(
                 buildConfigurationName: buildConfigurationName,
@@ -105,13 +105,13 @@ extension XCSchemeInfoTests {
             buildActionInfo: .init(
                 targets: [libraryTargetInfo].map { .init(targetInfo: $0, buildFor: .allEnabled) }
             ),
-            testActionInfo: .init(
-                buildConfigurationName: buildConfigurationName,
-                targetInfos: [unitTestTargetInfo]
-            ),
             launchActionInfo: .init(
                 buildConfigurationName: buildConfigurationName,
                 targetInfo: appTargetInfo
+            ),
+            testActionInfo: .init(
+                buildConfigurationName: buildConfigurationName,
+                targetInfos: [unitTestTargetInfo]
             ),
             profileActionInfo: .init(
                 buildConfigurationName: buildConfigurationName,
@@ -125,12 +125,15 @@ extension XCSchemeInfoTests {
             )
         )
         let pbxTargets = schemeInfo.allPBXTargets
-        XCTAssertNoDifference(pbxTargets, .init([
-            libraryTargetInfo.pbxTarget,
-            unitTestTargetInfo.pbxTarget,
-            appTargetInfo.pbxTarget,
-            widgetKitExtTargetInfo.pbxTarget,
-        ]))
+        XCTAssertNoDifference(
+            pbxTargets,
+            .init([
+                libraryTargetInfo.pbxTarget,
+                unitTestTargetInfo.pbxTarget,
+                appTargetInfo.pbxTarget,
+                widgetKitExtTargetInfo.pbxTarget,
+            ])
+        )
     }
 }
 
@@ -207,16 +210,16 @@ extension XCSchemeInfoTests {
                     ),
                 ]
             ),
+            launchActionInfo: .init(
+                buildConfigurationName: expectedLaunchTargetInfo.pbxTarget
+                    .defaultBuildConfigurationName,
+                targetInfo: expectedLaunchTargetInfo
+            ),
             testActionInfo: .init(
                 buildConfigurationName: expectedTestTargetInfo.pbxTarget
                     .defaultBuildConfigurationName,
                 targetInfos: [expectedTestTargetInfo],
                 expandVariablesBasedOn: targetResolver.targetInfo(targetID: "B 2")
-            ),
-            launchActionInfo: .init(
-                buildConfigurationName: expectedLaunchTargetInfo.pbxTarget
-                    .defaultBuildConfigurationName,
-                targetInfo: expectedLaunchTargetInfo
             ),
             profileActionInfo: .init(
                 buildConfigurationName: expectedProfileTargetInfo.pbxTarget
@@ -267,35 +270,39 @@ class XCSchemeInfoTests: XCTestCase {
     lazy var widgetKitExtPBXTarget = pbxTargetsDict["WDKE"]!
 
     lazy var appHostInfo = XCSchemeInfo.HostInfo(
-        pbxTarget: appPBXTarget,
+        pbxTarget: appPBXTarget.pbxTarget,
         platforms: [appPlatform],
         referencedContainer: directories.containerReference,
         index: 0
     )
 
     lazy var libraryTargetInfo = XCSchemeInfo.TargetInfo(
-        pbxTarget: libraryPBXTarget,
+        label: libraryPBXTarget.label,
+        pbxTarget: libraryPBXTarget.pbxTarget,
         platforms: [libraryPlatform],
         referencedContainer: directories.containerReference,
         hostInfos: [],
         extensionPointIdentifiers: []
     )
     lazy var appTargetInfo = XCSchemeInfo.TargetInfo(
-        pbxTarget: appPBXTarget,
+        label: appPBXTarget.label,
+        pbxTarget: appPBXTarget.pbxTarget,
         platforms: [appPlatform],
         referencedContainer: directories.containerReference,
         hostInfos: [],
         extensionPointIdentifiers: []
     )
     lazy var unitTestTargetInfo = XCSchemeInfo.TargetInfo(
-        pbxTarget: unitTestPBXTarget,
+        label: unitTestPBXTarget.label,
+        pbxTarget: unitTestPBXTarget.pbxTarget,
         platforms: [unitTestPlatform],
         referencedContainer: directories.containerReference,
         hostInfos: [appHostInfo],
         extensionPointIdentifiers: []
     )
     lazy var widgetKitExtTargetInfo = XCSchemeInfo.TargetInfo(
-        pbxTarget: widgetKitExtPBXTarget,
+        label: widgetKitExtPBXTarget.label,
+        pbxTarget: widgetKitExtPBXTarget.pbxTarget,
         platforms: [widgetKitExtPlatform],
         referencedContainer: directories.containerReference,
         hostInfos: [],

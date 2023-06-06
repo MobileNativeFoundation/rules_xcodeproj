@@ -1,4 +1,5 @@
 import GeneratorCommon
+import OrderedCollections
 import XcodeProj
 
 extension XCSchemeInfo {
@@ -109,15 +110,18 @@ extension XCSchemeInfo.TestActionInfo {
 Expected at least one target in `TestAction.targets`
 """)
 
-        let buildConfigurationName = testAction.buildConfigurationName ??
-            defaultBuildConfigurationName
+        var preferredConfigurations: OrderedSet<String> = []
+        if let testConfiguration = testAction.buildConfigurationName {
+            preferredConfigurations.append(testConfiguration)
+        }
+        preferredConfigurations.append(defaultBuildConfigurationName)
 
         var env: [String: String] = testAction.env ?? [:]
         let testActionTargetIdsLabels: [(TargetID, BazelLabel)] =
             testAction.targets.compactMap { label in
                 guard let targetId = targetIDsByLabelAndConfiguration.targetID(
                     for: label,
-                    preferredConfiguration: buildConfigurationName
+                    preferredConfigurations: preferredConfigurations
                 ) else {
                     return nil
                 }
@@ -147,7 +151,7 @@ the same scheme.
             return try targetResolver.targetInfo(
                 targetID: targetIDsByLabelAndConfiguration.targetID(
                     for: label,
-                    preferredConfiguration: buildConfigurationName
+                    preferredConfigurations: preferredConfigurations
                 ).orThrow("""
 Failed to find a `TargetID` for "\(label)" while creating a `TestActionInfo`
 """)
@@ -155,7 +159,7 @@ Failed to find a `TargetID` for "\(label)" while creating a `TestActionInfo`
         }
 
         try self.init(
-            buildConfigurationName: buildConfigurationName,
+            buildConfigurationName: preferredConfigurations.first!,
             targetInfos: targetInfos,
             args: testAction.args?.extractCommandLineArguments(),
             diagnostics: XCSchemeInfo.DiagnosticsInfo(
@@ -165,21 +169,21 @@ Failed to find a `TargetID` for "\(label)" while creating a `TestActionInfo`
             expandVariablesBasedOn: targetResolver.targetInfo(
                 targetID: targetIDsByLabelAndConfiguration.targetID(
                     for: expandVariablesBasedOn,
-                    preferredConfiguration: buildConfigurationName
+                    preferredConfigurations: preferredConfigurations
                 ).orThrow("""
 Failed to find a `TargetID` for "\(expandVariablesBasedOn)" while creating a \
 `VariableExpansionContextInfo`
 """)
             ),
             preActions: testAction.preActions.prePostActionInfos(
-                buildConfigurationName: buildConfigurationName,
+                preferredConfigurations: preferredConfigurations,
                 targetResolver: targetResolver,
                 targetIDsByLabelAndConfiguration:
                     targetIDsByLabelAndConfiguration,
                 context: "creating a pre-action `PrePostActionInfo`"
             ),
             postActions: testAction.postActions.prePostActionInfos(
-                buildConfigurationName: buildConfigurationName,
+                preferredConfigurations: preferredConfigurations,
                 targetResolver: targetResolver,
                 targetIDsByLabelAndConfiguration:
                     targetIDsByLabelAndConfiguration,

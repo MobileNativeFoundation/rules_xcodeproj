@@ -10,9 +10,9 @@ extension Generator {
         products: Products,
         files: [FilePath: File],
         compileStub: PBXFileReference?
-    ) async throws -> [ConsolidatedTarget.Key: PBXNativeTarget] {
+    ) async throws -> [ConsolidatedTarget.Key: LabeledPBXNativeTarget] {
         return try await withThrowingTaskGroup(
-            of: (ConsolidatedTarget.Key, PBXNativeTarget).self
+            of: (ConsolidatedTarget.Key, LabeledPBXNativeTarget).self
         ) { group in
             let targets = disambiguatedTargets.targets
 
@@ -34,7 +34,7 @@ extension Generator {
                 }
             }
 
-            var pbxTargets = [ConsolidatedTarget.Key: PBXNativeTarget](
+            var pbxTargets = [ConsolidatedTarget.Key: LabeledPBXNativeTarget](
                 minimumCapacity: targets.count
             )
             for try await (key, pbxTarget) in group {
@@ -42,7 +42,9 @@ extension Generator {
             }
 
             pbxProj.rootObject!.targets.append(
-                contentsOf: pbxTargets.values.sortedLocalizedStandard(\.name)
+                contentsOf: pbxTargets.values
+                    .map { $0.pbxTarget }
+                    .sortedLocalizedStandard(\.name)
             )
 
             return pbxTargets
@@ -58,7 +60,7 @@ extension Generator {
         products: Products,
         files: [FilePath: File],
         compileStub: PBXFileReference?
-    ) throws -> PBXNativeTarget {
+    ) throws -> LabeledPBXNativeTarget {
         let target = disambiguatedTarget.target
         let inputs = target.inputs
         let outputs = target.outputs
@@ -176,7 +178,7 @@ Product for target "\(key)" not found in `products`
         )
         pbxProj.add(object: pbxTarget)
 
-        return pbxTarget
+        return LabeledPBXNativeTarget(label: target.label, pbxTarget: pbxTarget)
     }
 
     private static func createBazelDependenciesScript(

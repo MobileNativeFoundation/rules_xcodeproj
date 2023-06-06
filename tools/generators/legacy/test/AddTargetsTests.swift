@@ -84,14 +84,16 @@ final class AddTargetsTests: XCTestCase {
         // We only need the rest of the asserts if the targets are equivalent
         guard createdTargets == expectedTargets else { return }
 
-        for (key, target) in expectedTargets {
-            guard let createdTarget = createdTargets[key] else { continue }
+        for (key, expectedLabeledTarget) in expectedTargets {
+            guard let createdLabeledTarget = createdTargets[key] else {
+                continue
+            }
             // The assert above won't tell us when the build phases are
             // different, and the assert below won't give us the context of
             // which target, so we assert here as well.
             XCTAssertNoDifference(
-                createdTarget.buildPhases,
-                target.buildPhases,
+                createdLabeledTarget.pbxTarget.buildPhases,
+                expectedLabeledTarget.pbxTarget.buildPhases,
                 "\(key)"
             )
         }

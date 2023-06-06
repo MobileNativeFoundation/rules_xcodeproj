@@ -47,7 +47,10 @@ extension XCSchemeInfoBuildActionInfoTests {
         // Hence, the "A 2" target from the scheme will not appear in the `BuildAction`.
         let actual = try XCSchemeInfo.BuildActionInfo(
             buildAction: xcodeScheme.buildAction,
-            buildConfigurationName: buildConfigurationName,
+            launchActionInfo: nil,
+            testActionInfo: nil,
+            profileActionInfo: nil,
+            defaultBuildConfigurationName: buildConfigurationName,
             targetResolver: targetResolver,
             targetIDsByLabelAndConfiguration: xcodeScheme.resolveTargetIDs(
                 targetResolver: targetResolver,
@@ -105,20 +108,21 @@ class XCSchemeInfoBuildActionInfoTests: XCTestCase {
     lazy var unitTestPBXTarget = pbxTargetsDict["B 2"]!
 
     lazy var appHostInfo = XCSchemeInfo.HostInfo(
-        pbxTarget: appPBXTarget,
+        pbxTarget: appPBXTarget.pbxTarget,
         platforms: [appPlatform],
         referencedContainer: directories.containerReference,
         index: 0
     )
     lazy var unitTestHostInfo = XCSchemeInfo.HostInfo(
-        pbxTarget: unitTestPBXTarget,
+        pbxTarget: unitTestPBXTarget.pbxTarget,
         platforms: [unitTestPlatform],
         referencedContainer: directories.containerReference,
         index: 1
     )
 
     lazy var unresolvedLibraryTargetInfoWithHosts = XCSchemeInfo.TargetInfo(
-        pbxTarget: libraryPBXTarget,
+        label: libraryPBXTarget.label,
+        pbxTarget: libraryPBXTarget.pbxTarget,
         platforms: [libraryPlatform],
         referencedContainer: directories.containerReference,
         hostInfos: [appHostInfo, unitTestHostInfo],
@@ -126,7 +130,8 @@ class XCSchemeInfoBuildActionInfoTests: XCTestCase {
     )
 
     lazy var applicationTargetInfo = XCSchemeInfo.TargetInfo(
-        pbxTarget: appPBXTarget,
+        label: appPBXTarget.label,
+        pbxTarget: appPBXTarget.pbxTarget,
         platforms: [appPlatform],
         referencedContainer: directories.containerReference,
         hostInfos: [],
@@ -135,7 +140,8 @@ class XCSchemeInfoBuildActionInfoTests: XCTestCase {
 
     lazy var topLevelTargetInfos: [XCSchemeInfo.TargetInfo] = [
         .init(
-            pbxTarget: unitTestPBXTarget,
+            label: unitTestPBXTarget.label,
+            pbxTarget: unitTestPBXTarget.pbxTarget,
             platforms: [unitTestPlatform],
             referencedContainer: directories.containerReference,
             hostInfos: [],

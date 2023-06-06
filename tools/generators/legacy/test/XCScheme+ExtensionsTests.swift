@@ -8,15 +8,16 @@ import XCTest
 
 extension XCSchemeExtensionsTests {
     func test_BuildableReference_init() throws {
+        let pbxTarget = libraryPBXTarget.pbxTarget
         let buildableReference = XCScheme.BuildableReference(
-            pbxTarget: libraryPBXTarget,
+            pbxTarget: pbxTarget,
             referencedContainer: directories.containerReference
         )
         let expected = XCScheme.BuildableReference(
             referencedContainer: directories.containerReference,
-            blueprint: libraryPBXTarget,
-            buildableName: libraryPBXTarget.buildableName,
-            blueprintName: libraryPBXTarget.name
+            blueprint: pbxTarget,
+            buildableName: pbxTarget.buildableName,
+            blueprintName: pbxTarget.name
         )
         XCTAssertNoDifference(buildableReference, expected)
     }
@@ -682,7 +683,7 @@ class XCSchemeExtensionsTests: XCTestCase {
         workspaceOutput: "examples/foo/Foo.xcodeproj"
     )
 
-    lazy var pbxTargetsDict: [ConsolidatedTarget.Key: PBXNativeTarget] =
+    lazy var pbxTargetsDict: [ConsolidatedTarget.Key: LabeledPBXNativeTarget] =
         Fixtures.pbxTargets(
             in: Fixtures.pbxProj(),
             directories: directories,
@@ -703,35 +704,40 @@ class XCSchemeExtensionsTests: XCTestCase {
     lazy var uiTestPBXTarget = pbxTargetsDict["B 3"]!
 
     lazy var libraryTargetInfo = XCSchemeInfo.TargetInfo(
-        pbxTarget: libraryPBXTarget,
+        label: libraryPBXTarget.label,
+        pbxTarget: libraryPBXTarget.pbxTarget,
         platforms: [libraryPlatform],
         referencedContainer: directories.containerReference,
         hostInfos: [],
         extensionPointIdentifiers: []
     )
     lazy var anotherLibraryTargetInfo = XCSchemeInfo.TargetInfo(
-        pbxTarget: anotherLibraryPBXTarget,
+        label: anotherLibraryPBXTarget.label,
+        pbxTarget: anotherLibraryPBXTarget.pbxTarget,
         platforms: [anotherLibraryPlatform],
         referencedContainer: directories.containerReference,
         hostInfos: [],
         extensionPointIdentifiers: []
     )
     lazy var appTargetInfo = XCSchemeInfo.TargetInfo(
-        pbxTarget: appPBXTarget,
+        label: appPBXTarget.label,
+        pbxTarget: appPBXTarget.pbxTarget,
         platforms: [appPlatform],
         referencedContainer: directories.containerReference,
         hostInfos: [],
         extensionPointIdentifiers: []
     )
     lazy var unitTestTargetInfo = XCSchemeInfo.TargetInfo(
-        pbxTarget: unitTestPBXTarget,
+        label: unitTestPBXTarget.label,
+        pbxTarget: unitTestPBXTarget.pbxTarget,
         platforms: [unitTestPlatform],
         referencedContainer: directories.containerReference,
         hostInfos: [],
         extensionPointIdentifiers: []
     )
     lazy var uiTestTargetInfo = XCSchemeInfo.TargetInfo(
-        pbxTarget: uiTestPBXTarget,
+        label: uiTestPBXTarget.label,
+        pbxTarget: uiTestPBXTarget.pbxTarget,
         platforms: [uiTestPlatform],
         referencedContainer: directories.containerReference,
         hostInfos: [],
