@@ -69,6 +69,7 @@ extension XCSchemeInfoProfileActionInfoTests {
         let actual = try XCSchemeInfo.ProfileActionInfo(
             profileAction: xcodeScheme.profileAction,
             defaultBuildConfigurationName: appTarget
+                .pbxTarget
                 .defaultBuildConfigurationName,
             targetResolver: targetResolver,
             targetIDsByLabelAndConfiguration: xcodeScheme.resolveTargetIDs(
@@ -120,7 +121,8 @@ class XCSchemeInfoProfileActionInfoTests: XCTestCase {
     lazy var appTarget = pbxTargetsDict["A 2"]!
 
     lazy var appTargetInfo = XCSchemeInfo.TargetInfo(
-        pbxTarget: appTarget,
+        label: appTarget.label,
+        pbxTarget: appTarget.pbxTarget,
         platforms: [appPlatform],
         referencedContainer: directories.containerReference,
         hostInfos: [],

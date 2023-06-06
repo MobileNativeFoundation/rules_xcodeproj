@@ -5,16 +5,16 @@ struct XCSchemeInfo: Equatable {
     let name: String
     let defaultBuildConfigurationName: String
     let buildActionInfo: XCSchemeInfo.BuildActionInfo?
-    let testActionInfo: XCSchemeInfo.TestActionInfo?
     let launchActionInfo: XCSchemeInfo.LaunchActionInfo?
+    let testActionInfo: XCSchemeInfo.TestActionInfo?
     let profileActionInfo: XCSchemeInfo.ProfileActionInfo?
     let analyzeActionInfo: XCSchemeInfo.AnalyzeActionInfo
     let archiveActionInfo: XCSchemeInfo.ArchiveActionInfo
 
     typealias NameClosure = (
         XCSchemeInfo.BuildActionInfo?,
-        XCSchemeInfo.TestActionInfo?,
         XCSchemeInfo.LaunchActionInfo?,
+        XCSchemeInfo.TestActionInfo?,
         XCSchemeInfo.ProfileActionInfo?
     ) throws -> String
 
@@ -22,8 +22,8 @@ struct XCSchemeInfo: Equatable {
         name: String? = nil,
         defaultBuildConfigurationName: String,
         buildActionInfo: XCSchemeInfo.BuildActionInfo? = nil,
-        testActionInfo: XCSchemeInfo.TestActionInfo? = nil,
         launchActionInfo: XCSchemeInfo.LaunchActionInfo? = nil,
+        testActionInfo: XCSchemeInfo.TestActionInfo? = nil,
         profileActionInfo: XCSchemeInfo.ProfileActionInfo? = nil,
         analyzeActionInfo: XCSchemeInfo.AnalyzeActionInfo? = nil,
         archiveActionInfo: XCSchemeInfo.ArchiveActionInfo? = nil,
@@ -74,8 +74,8 @@ An `XCSchemeInfo` (\(schemeName)) should have at least one of the following: `bu
         } else if let nameClosure = nameClosure {
             schemeName = try nameClosure(
                 self.buildActionInfo,
-                self.testActionInfo,
                 self.launchActionInfo,
+                self.testActionInfo,
                 self.profileActionInfo
             )
         } else {
@@ -96,11 +96,11 @@ extension XCSchemeInfo {
         if let buildActionInfo = buildActionInfo {
             pbxTargets.append(contentsOf: buildActionInfo.targets.map(\.targetInfo.pbxTarget))
         }
-        if let testActionInfo = testActionInfo {
-            pbxTargets.append(contentsOf: testActionInfo.targetInfos.map(\.pbxTarget))
-        }
         if let launchActionInfo = launchActionInfo {
             pbxTargets.append(launchActionInfo.targetInfo.pbxTarget)
+        }
+        if let testActionInfo = testActionInfo {
+            pbxTargets.append(contentsOf: testActionInfo.targetInfos.map(\.pbxTarget))
         }
         if let profileActionInfo = profileActionInfo {
             pbxTargets.append(profileActionInfo.targetInfo.pbxTarget)
@@ -134,40 +134,51 @@ extension XCSchemeInfo {
             xcodeConfigurations: xcodeConfigurations,
             runnerLabel: runnerLabel
         )
+
         let schemeWithDefaults = try scheme.withDefaults
+
+        let launchActionInfo = try LaunchActionInfo(
+            launchAction: schemeWithDefaults.launchAction,
+            defaultBuildConfigurationName: defaultBuildConfigurationName,
+            targetResolver: targetResolver,
+            targetIDsByLabelAndConfiguration:
+                targetIDsByLabelAndConfiguration
+        )
+        let testActionInfo = try TestActionInfo(
+            testAction: schemeWithDefaults.testAction,
+            defaultBuildConfigurationName: defaultBuildConfigurationName,
+            targetResolver: targetResolver,
+            targetIDsByLabelAndConfiguration:
+                targetIDsByLabelAndConfiguration,
+            args: args,
+            envs: envs
+        )
+        let profileActionInfo = try ProfileActionInfo(
+            profileAction: schemeWithDefaults.profileAction,
+            defaultBuildConfigurationName: defaultBuildConfigurationName,
+            targetResolver: targetResolver,
+            targetIDsByLabelAndConfiguration:
+                targetIDsByLabelAndConfiguration
+        )
+
+        let buildActionInfo = try BuildActionInfo(
+            buildAction: schemeWithDefaults.buildAction,
+            launchActionInfo: launchActionInfo,
+            testActionInfo: testActionInfo,
+            profileActionInfo: profileActionInfo,
+            defaultBuildConfigurationName: defaultBuildConfigurationName,
+            targetResolver: targetResolver,
+            targetIDsByLabelAndConfiguration:
+                targetIDsByLabelAndConfiguration
+        )
+
         try self.init(
             name: schemeWithDefaults.name,
             defaultBuildConfigurationName: defaultBuildConfigurationName,
-            buildActionInfo: .init(
-                buildAction: schemeWithDefaults.buildAction,
-                buildConfigurationName: defaultBuildConfigurationName,
-                targetResolver: targetResolver,
-                targetIDsByLabelAndConfiguration:
-                    targetIDsByLabelAndConfiguration
-            ),
-            testActionInfo: .init(
-                testAction: schemeWithDefaults.testAction,
-                defaultBuildConfigurationName: defaultBuildConfigurationName,
-                targetResolver: targetResolver,
-                targetIDsByLabelAndConfiguration:
-                    targetIDsByLabelAndConfiguration,
-                args: args,
-                envs: envs
-            ),
-            launchActionInfo: .init(
-                launchAction: schemeWithDefaults.launchAction,
-                defaultBuildConfigurationName: defaultBuildConfigurationName,
-                targetResolver: targetResolver,
-                targetIDsByLabelAndConfiguration:
-                    targetIDsByLabelAndConfiguration
-            ),
-            profileActionInfo: .init(
-                profileAction: schemeWithDefaults.profileAction,
-                defaultBuildConfigurationName: defaultBuildConfigurationName,
-                targetResolver: targetResolver,
-                targetIDsByLabelAndConfiguration:
-                    targetIDsByLabelAndConfiguration
-            ),
+            buildActionInfo: buildActionInfo,
+            launchActionInfo: launchActionInfo,
+            testActionInfo: testActionInfo,
+            profileActionInfo: profileActionInfo,
             analyzeActionInfo: .init(
                 buildConfigurationName: defaultBuildConfigurationName
             ),

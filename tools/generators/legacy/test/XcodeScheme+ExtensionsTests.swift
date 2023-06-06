@@ -499,25 +499,43 @@ class XcodeSchemeExtensionsTests: XCTestCase {
         watchOSAppwatchOSx8664TargetID: watchOSAppConsolidatedTargetKey,
     ]
 
-    lazy var pbxTargets: [ConsolidatedTarget.Key: PBXNativeTarget] = [
-        iOSAppConsolidatedTargetKey:
-            .init(name: "iOSApp", productType: .application),
-        libTestsConsolidatedTargetKey:
-            .init(name: "libTests", productType: .unitTestBundle),
-        libiOSConsolidatedTargetKey:
-            .init(name: "libiOS", productType: .staticLibrary),
-        libmacOSConsolidatedTargetKey:
-            .init(name: "libmacOS", productType: .staticLibrary),
-        libtvOSConsolidatedTargetKey:
-            .init(name: "libtvOS", productType: .staticLibrary),
-        libwatchOSConsolidatedTargetKey:
-            .init(name: "libwatchOS", productType: .staticLibrary),
-        toolmacOSConsolidatedTargetKey:
-            .init(name: "toolmacOS", productType: .commandLineTool),
-        tvOSAppConsolidatedTargetKey:
-            .init(name: "tvOSApp", productType: .application),
-        watchOSAppConsolidatedTargetKey:
-            .init(name: "watchOSApp", productType: .watch2App),
+    lazy var pbxTargets: [ConsolidatedTarget.Key: LabeledPBXNativeTarget] = [
+        iOSAppConsolidatedTargetKey: .init(
+            label: "//:iOSApp",
+            pbxTarget: .init(name: "iOSApp", productType: .application)
+        ),
+        libTestsConsolidatedTargetKey: .init(
+            label: "//:libTests",
+            pbxTarget: .init(name: "libTests", productType: .unitTestBundle)
+        ),
+        libiOSConsolidatedTargetKey: .init(
+            label: "//:libiOS",
+            pbxTarget: .init(name: "libiOS", productType: .staticLibrary)
+        ),
+        libmacOSConsolidatedTargetKey: .init(
+            label: "//:libmacOS",
+            pbxTarget: .init(name: "libmacOS", productType: .staticLibrary)
+        ),
+        libtvOSConsolidatedTargetKey: .init(
+            label: "//:libtvOS",
+            pbxTarget: .init(name: "libtvOS", productType: .staticLibrary)
+        ),
+        libwatchOSConsolidatedTargetKey: .init(
+            label: "//:libwatchOS",
+            pbxTarget: .init(name: "libwatchOS", productType: .staticLibrary)
+        ),
+        toolmacOSConsolidatedTargetKey: .init(
+            label: "//:toolmacOS",
+            pbxTarget: .init(name: "toolmacOS", productType: .commandLineTool)
+        ),
+        tvOSAppConsolidatedTargetKey: .init(
+            label: "//:tvOSApp",
+            pbxTarget: .init(name: "tvOSApp", productType: .application)
+        ),
+        watchOSAppConsolidatedTargetKey: .init(
+            label: "//:watchOSApp",
+            pbxTarget: .init(name: "watchOSApp", productType: .watch2App)
+        ),
     ]
 
     let directories = Directories(

@@ -1,3 +1,4 @@
+import OrderedCollections
 import XcodeProj
 
 extension XCSchemeInfo {
@@ -21,7 +22,7 @@ extension XCSchemeInfo.PrePostActionInfo {
 extension XCSchemeInfo.PrePostActionInfo {
     init(
         prePostAction: XcodeScheme.PrePostAction,
-        buildConfigurationName: String,
+        preferredConfigurations: OrderedSet<String>,
         targetResolver: TargetResolver,
         targetIDsByLabelAndConfiguration: [String: [BazelLabel: TargetID]],
         context: String
@@ -39,7 +40,7 @@ extension XCSchemeInfo.PrePostActionInfo {
 
         let targetID = try targetIDsByLabelAndConfiguration.targetID(
             for: originalTargetLabel,
-            preferredConfiguration: buildConfigurationName
+            preferredConfigurations: preferredConfigurations
         ).orThrow("""
 Failed to find a `TargetID` for "\(originalTargetLabel)" while \(context)
 """)

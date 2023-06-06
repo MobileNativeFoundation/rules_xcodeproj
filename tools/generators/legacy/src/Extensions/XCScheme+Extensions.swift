@@ -1,4 +1,5 @@
 import GeneratorCommon
+import OrderedCollections
 import XcodeProj
 
 enum XCSchemeConstants {
@@ -446,10 +447,12 @@ extension Dictionary where Key == String, Value == [BazelLabel: TargetID] {
     /// found.
     func targetID(
         for label: BazelLabel,
-        preferredConfiguration: String
+        preferredConfigurations: OrderedSet<String>
     ) -> TargetID? {
-        if let targetID = self[preferredConfiguration]?[label] {
-            return targetID
+        for preferredConfiguration in preferredConfigurations {
+            if let targetID = self[preferredConfiguration]?[label] {
+                return targetID
+            }
         }
 
         for (_, targetIDsByLabel) in sorted(by: { $0.key < $1.key }) {

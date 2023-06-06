@@ -1,13 +1,18 @@
 import OrderedCollections
 import XcodeProj
 
+struct LabeledPBXNativeTarget: Equatable {
+    let label: BazelLabel
+    let pbxTarget: PBXNativeTarget
+}
+
 struct TargetResolver: Equatable {
     let referencedContainer: String
     let targets: [TargetID: Target]
     let targetHosts: [TargetID: [TargetID]]
     let extensionPointIdentifiers: [TargetID: ExtensionPointIdentifier]
     let consolidatedTargetKeys: [TargetID: ConsolidatedTarget.Key]
-    let pbxTargets: [ConsolidatedTarget.Key: PBXNativeTarget]
+    let pbxTargets: [ConsolidatedTarget.Key: LabeledPBXNativeTarget]
     let pbxTargetInfos: [ConsolidatedTarget.Key: PBXTargetInfo]
     let labelTargetInfos: [BazelLabel: XcodeScheme.LabelTargetInfo]
 
@@ -17,7 +22,7 @@ struct TargetResolver: Equatable {
         targetHosts: [TargetID: [TargetID]],
         extensionPointIdentifiers: [TargetID: ExtensionPointIdentifier],
         consolidatedTargetKeys: [TargetID: ConsolidatedTarget.Key],
-        pbxTargets: [ConsolidatedTarget.Key: PBXNativeTarget]
+        pbxTargets: [ConsolidatedTarget.Key: LabeledPBXNativeTarget]
     ) throws {
         self.referencedContainer = referencedContainer
         self.targets = targets
@@ -52,7 +57,8 @@ struct TargetResolver: Equatable {
             uniquingKeysWith: { $0.union($1) }
         )
 
-        let platformsByKey = try consolidatedTargetKeys.collectPlatformsByKey(targets: targets)
+        let platformsByKey = try consolidatedTargetKeys
+            .collectPlatformsByKey(targets: targets)
         var keyedExtensionPointIdentifiers: [
             ConsolidatedTarget.Key: Set<ExtensionPointIdentifier>
         ] = [:]
@@ -65,21 +71,25 @@ struct TargetResolver: Equatable {
                 .insert(extensionPointIdentifier)
         }
 
-        let pbxTargetInfoList: [PBXTargetInfo] = try pbxTargets.map { key, pbxTarget in
-            try PBXTargetInfo(
+        let pbxTargetInfoList: [PBXTargetInfo] = try pbxTargets.map { key, labeledPBXTarget in
+            return try PBXTargetInfo(
                 key: key,
-                pbxTarget: pbxTarget,
+                label: labeledPBXTarget.label,
+                pbxTarget: labeledPBXTarget.pbxTarget,
                 platforms: platformsByKey.value(for: key),
-                extensionPointIdentifiers: keyedExtensionPointIdentifiers[key, default: []],
+                extensionPointIdentifiers:
+                    keyedExtensionPointIdentifiers[key, default: []],
                 buildableReference: .init(
-                    pbxTarget: pbxTarget,
+                    pbxTarget: labeledPBXTarget.pbxTarget,
                     referencedContainer: referencedContainer
                 ),
                 hostKeys: hostKeys[key, default: []],
                 additionalKeys: additionalKeys[key, default: []]
             )
         }
-        let pbxTargetInfos = [ConsolidatedTarget.Key: PBXTargetInfo](uniqueKeysWithValues: pbxTargetInfoList.map { ($0.key, $0) })
+        let pbxTargetInfos = [ConsolidatedTarget.Key: PBXTargetInfo](
+            uniqueKeysWithValues: pbxTargetInfoList.map { ($0.key, $0) }
+        )
         self.pbxTargetInfos = pbxTargetInfos
 
         func localPBXTargetInfo(for targetID: TargetID) throws -> PBXTargetInfo {
@@ -116,7 +126,9 @@ extension TargetResolver {
 // MARK: XCScheme.TargetInfo Helpers
 
 extension TargetResolver {
-    private func targetInfo(pbxTargetInfo: PBXTargetInfo) throws -> XCSchemeInfo.TargetInfo {
+    private func targetInfo(
+        pbxTargetInfo: PBXTargetInfo
+    ) throws -> XCSchemeInfo.TargetInfo {
         return try .init(
             pbxTargetInfo: pbxTargetInfo,
             hostInfos: pbxTargetInfo.hostKeys
@@ -132,7 +144,9 @@ extension TargetResolver {
         )
     }
 
-    func targetInfo(targetID: TargetID) throws -> XCSchemeInfo.TargetInfo {
+    func targetInfo(
+        targetID: TargetID
+    ) throws -> XCSchemeInfo.TargetInfo {
         let pbxTargetInfo = try pbxTargetInfo(for: targetID)
         return try targetInfo(pbxTargetInfo: pbxTargetInfo)
     }
@@ -151,6 +165,7 @@ extension TargetResolver {
 extension TargetResolver {
     struct PBXTargetInfo: Equatable, Hashable {
         let key: ConsolidatedTarget.Key
+        let label: BazelLabel
         let pbxTarget: PBXNativeTarget
         let platforms: Set<Platform>
         let extensionPointIdentifiers: Set<ExtensionPointIdentifier>

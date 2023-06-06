@@ -1413,7 +1413,7 @@ appletvos
         files: [FilePath: File],
         compileStub: PBXFileReference,
         products: Products
-    ) -> [ConsolidatedTarget.Key: PBXNativeTarget] {
+    ) -> [ConsolidatedTarget.Key: LabeledPBXNativeTarget] {
         // Build phases
 
         func createGeneratedHeaderShellScript() -> PBXShellScriptBuildPhase {
@@ -1771,131 +1771,182 @@ touch "$SCRIPT_OUTPUT_FILE_1"
 
         // Targets
 
-        let pbxNativeTargets: [ConsolidatedTarget.Key: PBXNativeTarget] = [
-            "A 1": PBXNativeTarget(
-                name: disambiguatedTargets.targets["A 1"]!.name,
-                buildPhases: buildPhases["A 1"] ?? [],
-                productName: "a",
-                product: nil,
-                productType: .staticLibrary
+        let pbxNativeTargets: [
+            ConsolidatedTarget.Key: LabeledPBXNativeTarget
+        ] = [
+            "A 1": .init(
+                label: disambiguatedTargets.targets["A 1"]!.target.label,
+                pbxTarget: PBXNativeTarget(
+                    name: disambiguatedTargets.targets["A 1"]!.name,
+                    buildPhases: buildPhases["A 1"] ?? [],
+                    productName: "a",
+                    product: nil,
+                    productType: .staticLibrary
+                )
             ),
-            "A 2": PBXNativeTarget(
-                name: disambiguatedTargets.targets["A 2"]!.name,
-                buildPhases: buildPhases["A 2"] ?? [],
-                productName: "A",
-                product: products.byTarget["A 2"],
-                productType: .application
+            "A 2": .init(
+                label: disambiguatedTargets.targets["A 2"]!.target.label,
+                pbxTarget: PBXNativeTarget(
+                    name: disambiguatedTargets.targets["A 2"]!.name,
+                    buildPhases: buildPhases["A 2"] ?? [],
+                    productName: "A",
+                    product: products.byTarget["A 2"],
+                    productType: .application
+                )
             ),
-            "AC": PBXNativeTarget(
-                name: disambiguatedTargets.targets["AC"]!.name,
-                buildPhases: buildPhases["AC"] ?? [],
-                productName: "AC",
-                product: products.byTarget["AC"],
-                productType: .onDemandInstallCapableApplication
+            "AC": .init(
+                label: disambiguatedTargets.targets["AC"]!.target.label,
+                pbxTarget: PBXNativeTarget(
+                    name: disambiguatedTargets.targets["AC"]!.name,
+                    buildPhases: buildPhases["AC"] ?? [],
+                    productName: "AC",
+                    product: products.byTarget["AC"],
+                    productType: .onDemandInstallCapableApplication
+                )
             ),
-            "B 1": PBXNativeTarget(
-                name: disambiguatedTargets.targets["B 1"]!.name,
-                buildPhases: buildPhases["B 1"] ?? [],
-                productName: "b",
-                product: products.byTarget["B 1"],
-                productType: .framework
+            "B 1": .init(
+                label: disambiguatedTargets.targets["B 1"]!.target.label,
+                pbxTarget: PBXNativeTarget(
+                    name: disambiguatedTargets.targets["B 1"]!.name,
+                    buildPhases: buildPhases["B 1"] ?? [],
+                    productName: "b",
+                    product: products.byTarget["B 1"],
+                    productType: .framework
+                )
             ),
-            "B 2": PBXNativeTarget(
-                name: disambiguatedTargets.targets["B 2"]!.name,
-                buildPhases: buildPhases["B 2"] ?? [],
-                productName: "B",
-                product: products.byTarget["B 2"],
-                productType: .unitTestBundle
+            "B 2": .init(
+                label: disambiguatedTargets.targets["B 2"]!.target.label,
+                pbxTarget: PBXNativeTarget(
+                    name: disambiguatedTargets.targets["B 2"]!.name,
+                    buildPhases: buildPhases["B 2"] ?? [],
+                    productName: "B",
+                    product: products.byTarget["B 2"],
+                    productType: .unitTestBundle
+                )
             ),
-            "B 3": PBXNativeTarget(
-                name: disambiguatedTargets.targets["B 3"]!.name,
-                buildPhases: buildPhases["B 3"] ?? [],
-                productName: "B3",
-                product: products.byTarget["B 3"],
-                productType: .uiTestBundle
+            "B 3": .init(
+                label: disambiguatedTargets.targets["B 3"]!.target.label,
+                pbxTarget: PBXNativeTarget(
+                    name: disambiguatedTargets.targets["B 3"]!.name,
+                    buildPhases: buildPhases["B 3"] ?? [],
+                    productName: "B3",
+                    product: products.byTarget["B 3"],
+                    productType: .uiTestBundle
+                )
             ),
-            "C 1": PBXNativeTarget(
-                name: disambiguatedTargets.targets["C 1"]!.name,
-                buildPhases: buildPhases["C 1"] ?? [],
-                productName: "c",
-                product: nil,
-                productType: .staticLibrary
+            "C 1": .init(
+                label: disambiguatedTargets.targets["C 1"]!.target.label,
+                pbxTarget: PBXNativeTarget(
+                    name: disambiguatedTargets.targets["C 1"]!.name,
+                    buildPhases: buildPhases["C 1"] ?? [],
+                    productName: "c",
+                    product: nil,
+                    productType: .staticLibrary
+                )
             ),
-            "C 2": PBXNativeTarget(
-                name: disambiguatedTargets.targets["C 2"]!.name,
-                buildPhases: buildPhases["C 2"] ?? [],
-                productName: "d",
-                product: products.byTarget["C 2"],
-                productType: .commandLineTool
+            "C 2": .init(
+                label: disambiguatedTargets.targets["C 2"]!.target.label,
+                pbxTarget: PBXNativeTarget(
+                    name: disambiguatedTargets.targets["C 2"]!.name,
+                    buildPhases: buildPhases["C 2"] ?? [],
+                    productName: "d",
+                    product: products.byTarget["C 2"],
+                    productType: .commandLineTool
+                )
             ),
-            "E1": PBXNativeTarget(
-                name: disambiguatedTargets.targets["E1"]!.name,
-                buildPhases: buildPhases["E1"] ?? [],
-                productName: "E1",
-                product: nil,
-                productType: .staticLibrary
+            "E1": .init(
+                label: disambiguatedTargets.targets["E1"]!.target.label,
+                pbxTarget: PBXNativeTarget(
+                    name: disambiguatedTargets.targets["E1"]!.name,
+                    buildPhases: buildPhases["E1"] ?? [],
+                    productName: "E1",
+                    product: nil,
+                    productType: .staticLibrary
+                )
             ),
-            "E2": PBXNativeTarget(
-                name: disambiguatedTargets.targets["E2"]!.name,
-                buildPhases: buildPhases["E2"] ?? [],
-                productName: "E2",
-                product: nil,
-                productType: .staticLibrary
+            "E2": .init(
+                label: disambiguatedTargets.targets["E2"]!.target.label,
+                pbxTarget: PBXNativeTarget(
+                    name: disambiguatedTargets.targets["E2"]!.name,
+                    buildPhases: buildPhases["E2"] ?? [],
+                    productName: "E2",
+                    product: nil,
+                    productType: .staticLibrary
+                )
             ),
-            "I": PBXNativeTarget(
-                name: disambiguatedTargets.targets["I"]!.name,
-                buildPhases: buildPhases["I"] ?? [],
-                productName: "I",
-                product: products.byTarget["I"],
-                productType: .application
+            "I": .init(
+                label: disambiguatedTargets.targets["I"]!.target.label,
+                pbxTarget: PBXNativeTarget(
+                    name: disambiguatedTargets.targets["I"]!.name,
+                    buildPhases: buildPhases["I"] ?? [],
+                    productName: "I",
+                    product: products.byTarget["I"],
+                    productType: .application
+                )
             ),
-            "R 1": PBXNativeTarget(
-                name: disambiguatedTargets.targets["R 1"]!.name,
-                buildPhases: buildPhases["R 1"] ?? [],
-                productName: "R 1",
-                product: products.byTarget["R 1"],
-                productType: .bundle
+            "R 1": .init(
+                label: disambiguatedTargets.targets["R 1"]!.target.label,
+                pbxTarget: PBXNativeTarget(
+                    name: disambiguatedTargets.targets["R 1"]!.name,
+                    buildPhases: buildPhases["R 1"] ?? [],
+                    productName: "R 1",
+                    product: products.byTarget["R 1"],
+                    productType: .bundle
+                )
             ),
-            .init(["T 1", "T 2", "T 3"]): PBXNativeTarget(
-                name: disambiguatedTargets
-                    .targets[.init(["T 1", "T 2", "T 3"])]!.name,
-                buildPhases: buildPhases[.init(["T 1", "T 2", "T 3"])] ?? [],
-                productName: "t",
-                product: nil,
-                productType: .staticLibrary
+            .init(["T 1", "T 2", "T 3"]): .init(
+                label: disambiguatedTargets
+                    .targets[.init(["T 1", "T 2", "T 3"])]!.target.label,
+                pbxTarget: PBXNativeTarget(
+                    name: disambiguatedTargets
+                        .targets[.init(["T 1", "T 2", "T 3"])]!.name,
+                    buildPhases: buildPhases[.init(["T 1", "T 2", "T 3"])] ?? [],
+                    productName: "t",
+                    product: nil,
+                    productType: .staticLibrary
+                )
             ),
-            "W": PBXNativeTarget(
-                name: disambiguatedTargets.targets["W"]!.name,
-                buildPhases: buildPhases["W"] ?? [],
-                productName: "W",
-                product: products.byTarget["W"],
-                productType: .watch2App
+            "W": .init(
+                label: disambiguatedTargets.targets["W"]!.target.label,
+                pbxTarget: PBXNativeTarget(
+                    name: disambiguatedTargets.targets["W"]!.name,
+                    buildPhases: buildPhases["W"] ?? [],
+                    productName: "W",
+                    product: products.byTarget["W"],
+                    productType: .watch2App
+                )
             ),
-            "WDKE": PBXNativeTarget(
-                name: disambiguatedTargets.targets["WDKE"]!.name,
-                buildPhases: buildPhases["WDKE"] ?? [],
-                productName: "WDKE",
-                product: products.byTarget["WDKE"],
-                productType: .appExtension
+            "WDKE": .init(
+                label: disambiguatedTargets.targets["WDKE"]!.target.label,
+                pbxTarget: PBXNativeTarget(
+                    name: disambiguatedTargets.targets["WDKE"]!.name,
+                    buildPhases: buildPhases["WDKE"] ?? [],
+                    productName: "WDKE",
+                    product: products.byTarget["WDKE"],
+                    productType: .appExtension
+                )
             ),
-            "WKE": PBXNativeTarget(
-                name: disambiguatedTargets.targets["WKE"]!.name,
-                buildPhases: buildPhases["WKE"] ?? [],
-                productName: "WKE",
-                product: products.byTarget["WKE"],
-                productType: .watch2Extension
+            "WKE": .init(
+                label: disambiguatedTargets.targets["WKE"]!.target.label,
+                pbxTarget: PBXNativeTarget(
+                    name: disambiguatedTargets.targets["WKE"]!.name,
+                    buildPhases: buildPhases["WKE"] ?? [],
+                    productName: "WKE",
+                    product: products.byTarget["WKE"],
+                    productType: .watch2Extension
+                )
             ),
         ]
 
         // The order target are added to `PBXProject`s matter for uuid fixing
-        for pbxTarget in pbxNativeTargets.values
-            .sortedLocalizedStandard(\.name)
+        for labeledPBXTarget in pbxNativeTargets.values
+            .sortedLocalizedStandard(\.pbxTarget.name)
         {
-            pbxProj.add(object: pbxTarget)
-            pbxProj.rootObject!.targets.append(pbxTarget)
+            pbxProj.add(object: labeledPBXTarget.pbxTarget)
+            pbxProj.rootObject!.targets.append(labeledPBXTarget.pbxTarget)
         }
 
-        let pbxTargets = [ConsolidatedTarget.Key: PBXNativeTarget](
+        let pbxTargets = [ConsolidatedTarget.Key: LabeledPBXNativeTarget](
             uniqueKeysWithValues: pbxNativeTargets.map { $0 }
         )
 
@@ -1908,7 +1959,7 @@ touch "$SCRIPT_OUTPUT_FILE_1"
         directories: Directories,
         consolidatedTargets: ConsolidatedTargets
     ) -> (
-        pbxTargets: [ConsolidatedTarget.Key: PBXNativeTarget],
+        pbxTargets: [ConsolidatedTarget.Key: LabeledPBXNativeTarget],
         disambiguatedTargets: DisambiguatedTargets
     ) {
         let pbxProject = pbxProj.rootObject!
@@ -1951,7 +2002,7 @@ touch "$SCRIPT_OUTPUT_FILE_1"
         buildMode: BuildMode = .xcode,
         directories: Directories,
         consolidatedTargets: ConsolidatedTargets
-    ) -> [ConsolidatedTarget.Key: PBXNativeTarget] {
+    ) -> [ConsolidatedTarget.Key: LabeledPBXNativeTarget] {
         let (pbxTargets, _) = Fixtures.pbxTargets(
             in: pbxProj,
             buildMode: buildMode,
@@ -1989,7 +2040,7 @@ touch "$SCRIPT_OUTPUT_FILE_1"
 
         let pbxProject = pbxProj.rootObject!
         for (key, targetAttributes) in attributes {
-            let pbxTarget = pbxTargets[key]!
+            let pbxTarget = pbxTargets[key]!.pbxTarget
             pbxProject.setTargetAttributes(targetAttributes, target: pbxTarget)
         }
 
@@ -2109,7 +2160,7 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2/A.app/A_ExecutableName
                 "SDKROOT": "macosx",
                 "SUPPORTED_PLATFORMS": "macosx",
                 "TARGET_NAME": targets["B 3"]!.name,
-                "TEST_TARGET_NAME": pbxTargets["A 2"]!.name,
+                "TEST_TARGET_NAME": pbxTargets["A 2"]!.pbxTarget.name,
             ]) { $1 },
             "C 1": targets["C 1"]!.buildSettings.asDictionary.merging([
                 "ARCHS": "arm64",
@@ -2348,7 +2399,8 @@ $(BAZEL_OUT)/T 2.swift.compile.params
                 defaultConfigurationName: debugConfiguration.name
             )
             pbxProj.add(object: configurationList)
-            pbxTargets[key]!.buildConfigurationList = configurationList
+            pbxTargets[key]!.pbxTarget.buildConfigurationList =
+                configurationList
         }
 
         return pbxTargets
@@ -2359,7 +2411,7 @@ $(BAZEL_OUT)/T 2.swift.compile.params
         directories: Directories,
         consolidatedTargets: ConsolidatedTargets,
         bazelDependenciesTarget: PBXAggregateTarget?
-    ) -> [ConsolidatedTarget.Key: PBXNativeTarget] {
+    ) -> [ConsolidatedTarget.Key: LabeledPBXNativeTarget] {
         let (pbxTargets, _) = Fixtures.pbxTargets(
             in: pbxProj,
             directories: directories,
@@ -2369,32 +2421,33 @@ $(BAZEL_OUT)/T 2.swift.compile.params
         if let bazelDependenciesTarget = bazelDependenciesTarget {
             for pbxTarget in pbxTargets.values {
                 _ = try! pbxTarget
+                    .pbxTarget
                     .addDependency(target: bazelDependenciesTarget)
             }
         }
 
-        _ = try! pbxTargets["A 2"]!
-            .addDependency(target: pbxTargets["A 1"]!)
-        _ = try! pbxTargets["A 2"]!
-            .addDependency(target: pbxTargets["C 1"]!)
-        _ = try! pbxTargets["A 2"]!
-            .addDependency(target: pbxTargets["R 1"]!)
-        _ = try! pbxTargets["B 1"]!
-            .addDependency(target: pbxTargets["A 1"]!)
-        _ = try! pbxTargets["B 2"]!
-            .addDependency(target: pbxTargets["A 2"]!)
-        _ = try! pbxTargets["B 2"]!
-            .addDependency(target: pbxTargets["B 1"]!)
-        _ = try! pbxTargets["B 3"]!
-            .addDependency(target: pbxTargets["A 2"]!)
-        _ = try! pbxTargets["B 3"]!
-            .addDependency(target: pbxTargets["B 1"]!)
-        _ = try! pbxTargets["C 2"]!
-            .addDependency(target: pbxTargets["C 1"]!)
-        _ = try! pbxTargets["I"]!
-            .addDependency(target: pbxTargets["AC"]!)
-        _ = try! pbxTargets["I"]!
-            .addDependency(target: pbxTargets["W"]!)
+        _ = try! pbxTargets["A 2"]!.pbxTarget
+            .addDependency(target: pbxTargets["A 1"]!.pbxTarget)
+        _ = try! pbxTargets["A 2"]!.pbxTarget
+            .addDependency(target: pbxTargets["C 1"]!.pbxTarget)
+        _ = try! pbxTargets["A 2"]!.pbxTarget
+            .addDependency(target: pbxTargets["R 1"]!.pbxTarget)
+        _ = try! pbxTargets["B 1"]!.pbxTarget
+            .addDependency(target: pbxTargets["A 1"]!.pbxTarget)
+        _ = try! pbxTargets["B 2"]!.pbxTarget
+            .addDependency(target: pbxTargets["A 2"]!.pbxTarget)
+        _ = try! pbxTargets["B 2"]!.pbxTarget
+            .addDependency(target: pbxTargets["B 1"]!.pbxTarget)
+        _ = try! pbxTargets["B 3"]!.pbxTarget
+            .addDependency(target: pbxTargets["A 2"]!.pbxTarget)
+        _ = try! pbxTargets["B 3"]!.pbxTarget
+            .addDependency(target: pbxTargets["B 1"]!.pbxTarget)
+        _ = try! pbxTargets["C 2"]!.pbxTarget
+            .addDependency(target: pbxTargets["C 1"]!.pbxTarget)
+        _ = try! pbxTargets["I"]!.pbxTarget
+            .addDependency(target: pbxTargets["AC"]!.pbxTarget)
+        _ = try! pbxTargets["I"]!.pbxTarget
+            .addDependency(target: pbxTargets["W"]!.pbxTarget)
 
         return pbxTargets
     }

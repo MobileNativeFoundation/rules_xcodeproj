@@ -1,4 +1,5 @@
 import GeneratorCommon
+import OrderedCollections
 
 struct XcodeScheme: Equatable, Decodable {
     let name: String
@@ -132,7 +133,7 @@ extension XcodeScheme {
 
 extension Sequence where Element == XcodeScheme.PrePostAction {
     func prePostActionInfos(
-        buildConfigurationName: String,
+        preferredConfigurations: OrderedSet<String>,
         targetResolver: TargetResolver,
         targetIDsByLabelAndConfiguration: [String: [BazelLabel: TargetID]],
         context: String
@@ -140,7 +141,7 @@ extension Sequence where Element == XcodeScheme.PrePostAction {
         try map {
             try XCSchemeInfo.PrePostActionInfo(
                 prePostAction: $0,
-                buildConfigurationName: buildConfigurationName,
+                preferredConfigurations: preferredConfigurations,
                 targetResolver: targetResolver,
                 targetIDsByLabelAndConfiguration:
                     targetIDsByLabelAndConfiguration,

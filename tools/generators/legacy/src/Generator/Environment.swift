@@ -85,7 +85,7 @@ struct Environment {
         _ products: Products,
         _ files: [FilePath: File],
         _ compileStub: PBXFileReference?
-    ) async throws -> [ConsolidatedTarget.Key: PBXNativeTarget]
+    ) async throws -> [ConsolidatedTarget.Key: LabeledPBXNativeTarget]
 
     let setTargetConfigurations: (
         _ pbxProj: PBXProj,
@@ -95,7 +95,7 @@ struct Environment {
         _ minimumXcodeVersion: SemanticVersion,
         _ xcodeConfigurations: Set<String>,
         _ defaultXcodeConfiguration: String,
-        _ pbxTargets: [ConsolidatedTarget.Key: PBXNativeTarget],
+        _ pbxTargets: [ConsolidatedTarget.Key: LabeledPBXNativeTarget],
         _ hostIDs: [TargetID: [TargetID]],
         _ hasBazelDependencies: Bool
     ) async throws -> Void
@@ -103,7 +103,7 @@ struct Environment {
     let setTargetDependencies: (
         _ buildMode: BuildMode,
         _ disambiguatedTargets: DisambiguatedTargets,
-        _ pbxTargets: [ConsolidatedTarget.Key: PBXNativeTarget],
+        _ pbxTargets: [ConsolidatedTarget.Key: LabeledPBXNativeTarget],
         _ bazelDependenciesTarget: PBXAggregateTarget?
     ) throws -> Void
 

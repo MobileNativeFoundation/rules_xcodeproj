@@ -18,7 +18,7 @@ extension Generator {
         minimumXcodeVersion: SemanticVersion,
         xcodeConfigurations: Set<String>,
         defaultXcodeConfiguration: String,
-        pbxTargets: [ConsolidatedTarget.Key: PBXNativeTarget],
+        pbxTargets: [ConsolidatedTarget.Key: LabeledPBXNativeTarget],
         hostIDs: [TargetID: [TargetID]],
         hasBazelDependencies: Bool
     ) async throws {
@@ -64,15 +64,16 @@ extension Generator {
         minimumXcodeVersion: SemanticVersion,
         xcodeConfigurations: Set<String>,
         defaultXcodeConfiguration: String,
-        pbxTargets: [ConsolidatedTarget.Key: PBXNativeTarget],
+        pbxTargets: [ConsolidatedTarget.Key: LabeledPBXNativeTarget],
         hostIDs: [TargetID: [TargetID]],
         hasBazelDependencies: Bool
     ) throws -> (pbxTarget: PBXNativeTarget, attributes: [String: Any]) {
-        guard let pbxTarget = pbxTargets[key] else {
+        guard let labeledPBXTarget = pbxTargets[key] else {
             throw PreconditionError(message: """
 Target "\(key)" not found in `pbxTargets`
 """)
         }
+        let pbxTarget = labeledPBXTarget.pbxTarget
 
         let target = disambiguatedTarget.target
 
@@ -565,7 +566,7 @@ $(ASAN_OTHER_CPLUSPLUSFLAGS__$(CLANG_ADDRESS_SANITIZER))
     private static func handleTestHost(
         for target: ConsolidatedTarget,
         disambiguatedTargets: DisambiguatedTargets,
-        pbxTargets: [ConsolidatedTarget.Key: PBXNativeTarget],
+        pbxTargets: [ConsolidatedTarget.Key: LabeledPBXNativeTarget],
         attributes: inout [String: Any],
         buildSettings:
             inout [String: [BuildSettingConditional: [String: BuildSetting]]]
@@ -584,11 +585,12 @@ Test host target with id "\(aTestHostID)" not found in \
 `disambiguatedTargets.keys`
 """)
         }
-        guard let pbxTestHost = pbxTargets[testHostKey] else {
+        guard let labeledPBXTestHost = pbxTargets[testHostKey] else {
             throw PreconditionError(message: """
 Test host pbxTarget with key \(testHostKey) not found in `pbxTargets`
 """)
         }
+        let pbxTestHost = labeledPBXTestHost.pbxTarget
         attributes["TestTargetID"] = pbxTestHost
 
         guard

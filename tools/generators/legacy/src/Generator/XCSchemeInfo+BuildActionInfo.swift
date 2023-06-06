@@ -1,4 +1,5 @@
 import GeneratorCommon
+import OrderedCollections
 import XcodeProj
 
 extension XCSchemeInfo {
@@ -59,7 +60,10 @@ extension XCSchemeInfo.BuildActionInfo {
 extension XCSchemeInfo.BuildActionInfo {
     init?(
         buildAction: XcodeScheme.BuildAction?,
-        buildConfigurationName: String,
+        launchActionInfo: XCSchemeInfo.LaunchActionInfo?,
+        testActionInfo: XCSchemeInfo.TestActionInfo?,
+        profileActionInfo: XCSchemeInfo.ProfileActionInfo?,
+        defaultBuildConfigurationName: String,
         targetResolver: TargetResolver,
         targetIDsByLabelAndConfiguration: [String: [BazelLabel: TargetID]]
     ) throws {
@@ -67,19 +71,49 @@ extension XCSchemeInfo.BuildActionInfo {
             return nil
         }
 
+        var otherActionTargetInfos: OrderedSet<XCSchemeInfo.TargetInfo> = []
+        var preferredConfigurations: OrderedSet<String> = []
+        if let launchActionInfo {
+            otherActionTargetInfos.append(launchActionInfo.targetInfo)
+            preferredConfigurations
+                .append(launchActionInfo.buildConfigurationName)
+        }
+        if let testActionInfo {
+            otherActionTargetInfos
+                .append(contentsOf: testActionInfo.targetInfos)
+            preferredConfigurations
+                .append(testActionInfo.buildConfigurationName)
+        }
+        preferredConfigurations.append(defaultBuildConfigurationName)
+        if let profileActionInfo {
+            otherActionTargetInfos.append(profileActionInfo.targetInfo)
+            preferredConfigurations
+                .append(profileActionInfo.buildConfigurationName)
+        }
+
         let buildTargetInfos: [XCSchemeInfo.BuildTargetInfo] = try buildAction
             .targets
             .map { buildTarget in
-                let targetID = try targetIDsByLabelAndConfiguration.targetID(
-                    for: buildTarget.label,
-                    preferredConfiguration: buildConfigurationName
-                ).orThrow("""
+                let targetInfo: XCSchemeInfo.TargetInfo
+                if let otherActionTargetInfo = otherActionTargetInfos
+                    .first(where: { $0.label == buildTarget.label })
+                {
+                    targetInfo = otherActionTargetInfo
+                } else {
+                    let targetID = try targetIDsByLabelAndConfiguration
+                        .targetID(
+                            for: buildTarget.label,
+                            preferredConfigurations: preferredConfigurations
+                        ).orThrow("""
 Failed to find a `TargetID` for "\(buildTarget.label)" while creating a \
 `BuildActionInfo`
 """)
-                return try XCSchemeInfo.BuildTargetInfo(
-                    targetInfo: targetResolver
-                        .targetInfo(targetID: targetID),
+                    targetInfo = try targetResolver.targetInfo(
+                        targetID: targetID
+                    )
+                }
+                return XCSchemeInfo.BuildTargetInfo(
+                    targetInfo: targetInfo,
                     buildFor: buildTarget.buildFor
                 )
             }
@@ -87,14 +121,14 @@ Failed to find a `TargetID` for "\(buildTarget.label)" while creating a \
         try self.init(
             targets: buildTargetInfos,
             preActions: buildAction.preActions.prePostActionInfos(
-                buildConfigurationName: buildConfigurationName,
+                preferredConfigurations: preferredConfigurations,
                 targetResolver: targetResolver,
                 targetIDsByLabelAndConfiguration:
                     targetIDsByLabelAndConfiguration,
                 context: "creating a pre-action `PrePostActionInfo`"
             ),
             postActions: buildAction.postActions.prePostActionInfos(
-                buildConfigurationName: buildConfigurationName,
+                preferredConfigurations: preferredConfigurations,
                 targetResolver: targetResolver,
                 targetIDsByLabelAndConfiguration:
                     targetIDsByLabelAndConfiguration,
