@@ -58,7 +58,7 @@ use_repo(
 )
 
 dev_non_module_deps = use_extension(
-    "//xcodeproj:extensions.bzl",
+    "//xcodeproj:dev_extensions.bzl",
     "dev_non_module_deps",
     dev_dependency = True,
 )
