@@ -102,13 +102,10 @@ func handleSwiftUIPreviewThunk(_ args: [String]) throws {
     guard let sdkPath = findPath(key: "-sdk", from: args)?.path
     else {
         fputs(
-            "warning: No such argument '-sdk'. Using /usr/bin/swiftc.",
+            "error: No such argument '-sdk'. Using /usr/bin/swiftc.",
             stderr
         )
-        try exit(runSubProcess(
-            executable: "/usr/bin/swiftc",
-            args: Array(args.dropFirst())
-        ))
+        exit(1)
     }
 
     // TODO: Make this work with custom toolchains
@@ -122,14 +119,11 @@ func handleSwiftUIPreviewThunk(_ args: [String]) throws {
     else {
         fputs(
             """
-warning: Failed to parse DEVELOPER_DIR from '-sdk'. Using /usr/bin/swiftc.
+error: Failed to parse DEVELOPER_DIR from '-sdk'. Using /usr/bin/swiftc.
 """,
             stderr
         )
-        try exit(runSubProcess(
-            executable: "/usr/bin/swiftc",
-            args: Array(args.dropFirst())
-        ))
+        exit(1)
     }
     let developerDir = sdkPath[range]
 
