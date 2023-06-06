@@ -505,9 +505,7 @@ $(BAZEL_OUT)\#(swiftParams.path.string.dropFirst(9))
             }
         }
 
-        if buildMode == .xcode &&
-           buildSettings.keys.contains("PREVIEWS_SWIFT_INCLUDE__YES")
-        {
+        if buildSettings.keys.contains("PREVIEWS_SWIFT_INCLUDE__YES") {
             swiftFlagsPrefix.append(
                 "$(PREVIEWS_SWIFT_INCLUDE__$(ENABLE_PREVIEWS))"
             )
