@@ -17,6 +17,9 @@ bazel_dep(
     repo_name = "build_bazel_rules_apple",
 )
 
+internal = use_extension("//xcodeproj:extensions.bzl", "internal")
+use_repo(internal, "rules_xcodeproj_generated")
+
 non_module_deps = use_extension("//xcodeproj:extensions.bzl", "non_module_deps")
 use_repo(
     non_module_deps,
@@ -41,9 +44,6 @@ bazel_dep(
     dev_dependency = True,
     repo_name = "io_bazel_stardoc",
 )
-
-internal = use_extension("//xcodeproj:extensions.bzl", "internal")
-use_repo(internal, "rules_xcodeproj_generated")
 
 use_repo(
     non_module_deps,
