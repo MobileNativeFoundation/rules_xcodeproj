@@ -164,6 +164,18 @@ native_binary(
         ignore_version_differences = ignore_version_differences,
     )
 
+    # Source dependencies
+    _xcodeproj_rules_source_dependencies(ignore_version_differences)
+
+# buildifier: disable=unnamed-macro
+def _xcodeproj_rules_source_dependencies(ignore_version_differences = False):
+    """Fetches repositories that are dependencies of `rules_xcodeproj` when \
+    building from source.
+
+    Args:
+        ignore_version_differences: If `True`, warnings about potentially
+            incompatible versions of dependency repositories will be silenced.
+    """
     _maybe(
         http_archive,
         name = "com_github_apple_swift_argument_parser",

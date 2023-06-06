@@ -10,11 +10,25 @@ py_library(
 
 # Release
 
+exports_files(["MODULE.bazel"])
+
+genrule(
+    name = "release_MODULE.bazel",
+    srcs = ["MODULE.bazel"],
+    outs = ["MODULE.release.bazel"],
+    cmd = """\
+set -euo pipefail
+
+perl -0777 -pe 's/\n# Non-release dependencies.*//s' $< > $@
+    """,
+    tags = ["manual"],
+)
+
 filegroup(
     name = "release_files",
     srcs = [
         "LICENSE",
-        "MODULE.bazel",
+        ":release_MODULE.bazel",
         "//tools:release_files",
         "//xcodeproj:release_files",
     ],

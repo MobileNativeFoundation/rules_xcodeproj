@@ -45,15 +45,29 @@ bzl_library(
 
 # Release
 
+genrule(
+    name = "release_repositories.bzl",
+    srcs = ["repositories.bzl"],
+    outs = ["repositories.release.bzl"],
+    cmd = """\
+set -euo pipefail
+
+perl -0777 -pe 's/\n *# Source dependencies.*//s' $< > $@
+    """,
+    tags = ["manual"],
+)
+
 filegroup(
     name = "release_files",
     srcs = glob(
         ["**"],
         exclude = [
             "**/.*",
+            "repositories.bzl",
             "testing.bzl",
         ],
     ) + [
+        ":release_repositories.bzl",
         "//" + package_name() + "/internal:release_files",
     ],
     tags = ["manual"],

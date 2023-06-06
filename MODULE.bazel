@@ -17,6 +17,14 @@ bazel_dep(
     repo_name = "build_bazel_rules_apple",
 )
 
+non_module_deps = use_extension("//xcodeproj:extensions.bzl", "non_module_deps")
+use_repo(
+    non_module_deps,
+    "rules_xcodeproj_index_import",
+)
+
+# Non-release dependencies
+
 bazel_dep(
     name = "buildifier_prebuilt",
     version = "6.1.0",
@@ -37,7 +45,6 @@ bazel_dep(
 internal = use_extension("//xcodeproj:extensions.bzl", "internal")
 use_repo(internal, "rules_xcodeproj_generated")
 
-non_module_deps = use_extension("//xcodeproj:extensions.bzl", "non_module_deps")
 use_repo(
     non_module_deps,
     "com_github_apple_swift_argument_parser",
@@ -48,7 +55,6 @@ use_repo(
     "com_github_michaeleisel_zippyjsoncfamily",
     "com_github_tadija_aexml",
     "com_github_tuist_xcodeproj",
-    "rules_xcodeproj_index_import",
 )
 
 dev_non_module_deps = use_extension(
