@@ -71,8 +71,7 @@ struct TargetResolver: Equatable {
                 .insert(extensionPointIdentifier)
         }
 
-        let pbxTargetInfoList: [PBXTargetInfo] = try pbxTargets.map { key, labelAndPBXTarget in
-            let labeledPBXTarget = labelAndPBXTarget
+        let pbxTargetInfoList: [PBXTargetInfo] = try pbxTargets.map { key, labeledPBXTarget in
             return try PBXTargetInfo(
                 key: key,
                 label: labeledPBXTarget.label,
