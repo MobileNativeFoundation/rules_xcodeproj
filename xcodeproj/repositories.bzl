@@ -127,8 +127,8 @@ def xcodeproj_rules_dependencies(
 
         is_bazel_6 = hasattr(apple_common, "link_multi_arch_static_library")
         if is_bazel_6:
-            rules_apple_sha256 = "9e26307516c4d5f2ad4aee90ac01eb8cd31f9b8d6ea93619fc64b3cbc81b0944"
-            rules_apple_version = "2.2.0"
+            rules_apple_sha256 = "a6141240657093fa7ccc7ca1ee5a62408dd9996d1bf47bc2369b8b9faefb2698"
+            rules_apple_version = "2.3.0"
         else:
             rules_apple_sha256 = "f94e6dddf74739ef5cb30f000e13a2a613f6ebfa5e63588305a71fce8a8a9911"
             rules_apple_version = "1.1.3"
