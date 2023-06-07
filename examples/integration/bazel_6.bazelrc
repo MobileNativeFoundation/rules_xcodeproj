@@ -1,3 +1,5 @@
-build --platform_mappings=platform_mappings-bzlmod
+# build --platform_mappings=platform_mappings-bzlmod
 
 build:fixtures --platform_mappings=platform_mappings
+
+build --noenable_bzlmod
