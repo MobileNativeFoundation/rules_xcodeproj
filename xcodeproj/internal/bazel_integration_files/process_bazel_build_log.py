@@ -65,17 +65,23 @@ def _main(command: List[str]) -> None:
     )
     assert process.stderr
 
-    while process.poll() is None:
-        input_line = process.stderr.readline().rstrip()
+    def _process_log_line(line: str):
+        input_line = line.rstrip()
 
         if should_strip_color:
             input_line = strip_color.sub("", input_line)
 
         if not input_line:
-            continue
+            return
 
         output_line = relative_diagnostic.sub(_replacement, input_line)
         print(output_line, flush=True)
+
+    while process.poll() is None:
+        _process_log_line(process.stderr.readline())
+
+    for line in process.stderr:
+        _process_log_line(line)
 
     sys.exit(process.returncode)
 
