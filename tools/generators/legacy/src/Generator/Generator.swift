@@ -56,7 +56,8 @@ class Generator {
             buildMode,
             forFixtures,
             project,
-            directories
+            directories,
+            project.indexImport
         )
         guard let pbxProject = pbxProj.rootObject else {
             throw PreconditionError(message: """
@@ -131,7 +132,6 @@ class Generator {
                 project.xcodeConfigurations,
                 project.defaultXcodeConfiguration,
                 project.targetIdsFile,
-                project.indexImport,
                 project.bazelConfig,
                 project.preBuildScript,
                 project.postBuildScript,

@@ -264,6 +264,7 @@ final class GeneratorTests: XCTestCase {
             let buildMode: BuildMode
             let project: Project
             let directories: Directories
+            let indexImport: String
         }
 
         var createProjectCalled: [CreateProjectCalled] = []
@@ -271,12 +272,14 @@ final class GeneratorTests: XCTestCase {
             buildMode: BuildMode,
             _forFixtures _: Bool,
             project: Project,
-            directories: Directories
+            directories: Directories,
+            indexImport: String
         ) -> PBXProj {
             createProjectCalled.append(.init(
                 buildMode: buildMode,
                 project: project,
-                directories: directories
+                directories: directories,
+                indexImport: indexImport
             ))
             return pbxProj
         }
@@ -284,7 +287,8 @@ final class GeneratorTests: XCTestCase {
         let expectedCreateProjectCalled = [CreateProjectCalled(
             buildMode: buildMode,
             project: project,
-            directories: directories
+            directories: directories,
+            indexImport: project.indexImport
         )]
 
         // MARK: calculateXcodeGeneratedFiles()
@@ -504,7 +508,6 @@ final class GeneratorTests: XCTestCase {
             let xcodeConfigurations: Set<String>
             let defaultXcodeConfiguration: String
             let targetIdsFile: String
-            let indexImport: String
             let bazelConfig: String
             let preBuildScript: String?
             let postBuildScript: String?
@@ -520,7 +523,6 @@ final class GeneratorTests: XCTestCase {
             xcodeConfigurations: Set<String>,
             defaultXcodeConfiguration: String,
             targetIdsFile: String,
-            indexImport: String,
             bazelConfig: String,
             preBuildScript: String?,
             postBuildScript: String?,
@@ -533,7 +535,6 @@ final class GeneratorTests: XCTestCase {
                 xcodeConfigurations: xcodeConfigurations,
                 defaultXcodeConfiguration: defaultXcodeConfiguration,
                 targetIdsFile: targetIdsFile,
-                indexImport: indexImport,
                 bazelConfig: bazelConfig,
                 preBuildScript: preBuildScript,
                 postBuildScript: postBuildScript,
@@ -550,7 +551,6 @@ final class GeneratorTests: XCTestCase {
                 xcodeConfigurations: project.xcodeConfigurations,
                 defaultXcodeConfiguration: project.defaultXcodeConfiguration,
                 targetIdsFile: project.targetIdsFile,
-                indexImport: project.indexImport,
                 bazelConfig: project.bazelConfig,
                 preBuildScript: project.preBuildScript,
                 postBuildScript: project.postBuildScript,
