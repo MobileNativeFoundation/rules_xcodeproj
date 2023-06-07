@@ -18,5 +18,12 @@ build:rules_xcodeproj --apple_generate_dsym
 
 build --test_env=INTEGRATION_TEST_ENV_VAR=TRUE
 
+# apple_support Xcode toolchain
+
+build --enable_platform_specific_config
+build:macos --apple_crosstool_top=@local_config_apple_cc//:toolchain
+build:macos --crosstool_top=@local_config_apple_cc//:toolchain
+build:macos --host_crosstool_top=@local_config_apple_cc//:toolchain
+
 # Use a user.bazelrc if it exists
 try-import %workspace%/user.bazelrc

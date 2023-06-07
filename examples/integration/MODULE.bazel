@@ -45,3 +45,9 @@ use_repo(
     "com_google_google_maps",
     "firebase",
 )
+
+apple_cc_configure = use_extension(
+    "@build_bazel_apple_support//crosstool:setup.bzl",
+    "apple_cc_configure_extension",
+)
+use_repo(apple_cc_configure, "local_config_apple_cc")
