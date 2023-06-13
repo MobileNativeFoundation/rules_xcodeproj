@@ -35,7 +35,7 @@ public enum Identifiers {
         /// other `Identifiers.BazelDependencies` values use the range
         /// `0000000000000000000000FA`...`0000000000000000000000FF`, and
         /// `Identifiers.Project.buildConfiguration` uses the range
-        /// `000000000000000000000007`...`00000000000000000000007E`.
+        /// `000000000000000000000008`...`000000000000000000000080`.
         ///
         /// - Precondition: `index` must be in the range `0...120`.
         public static func buildConfiguration(
@@ -71,10 +71,13 @@ public enum Identifiers {
         }
 
         public static let bazelExternalRepositoriesGroup = #"""
-000000000000000000000005 /* Bazel External Repositories */
+000000000000000000000006 /* Bazel External Repositories */
 """#
         public static let bazelGeneratedFilesGroup = #"""
-000000000000000000000006 /* Bazel Generated Files */
+000000000000000000000007 /* Bazel Generated Files */
+"""#
+        public static let frameworksGroup = #"""
+000000000000000000000005 /* Frameworks */
 """#
         public static let productsGroup = #"""
 000000000000000000000004 /* Products */
@@ -136,7 +139,7 @@ public enum Identifiers {
             return digest
                 // Xcode identifiers are 24 characters. We are using 2
                 // characters at the front for "FF". That leaves 22 characters
-                // that we can use. MD5 digests are 16 bytes (32 charcters)
+                // that we can use. MD5 digests are 16 bytes (32 characters)
                 // long. So we need to truncate it to fit within the remaining
                 // 22 characters (by dropping 5 bytes). We choose the front 22
                 // because are the most unique.
@@ -155,11 +158,11 @@ public enum Identifiers {
         /// Calculates the identifier for one of the `PBXProject`
         /// `XCBBuildConfiguration`s.
         ///
-        /// The identifiers start at `000000000000000000000007` and increase
-        /// up to a maximum of `00000000000000000000007F`. This is because the
+        /// The identifiers start at `000000000000000000000009` and increase
+        /// up to a maximum of `000000000000000000000080`. This is because the
         /// other `Identifiers.Project` and `Identifiers.FilesAndGroups` values
         /// use the range
-        /// `000000000000000000000001`...`000000000000000000000006`, and
+        /// `000000000000000000000001`...`000000000000000000000008`, and
         /// `Identifiers.BazelDependencies.buildConfiguration` uses the range
         /// `000000000000000000000081`...`0000000000000000000000F9`.
         ///
@@ -170,7 +173,7 @@ public enum Identifiers {
         ) -> String {
             precondition(index <= 120, "`index` must be in the range `0...120`")
             return #"""
-0000000000000000000000\#(String(format: "%02X", 0x07 + index)) \#
+0000000000000000000000\#(String(format: "%02X", 0x08 + index)) \#
 /* \#(name) */
 """#
         }
