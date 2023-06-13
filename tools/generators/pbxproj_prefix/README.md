@@ -173,7 +173,7 @@ Here is an example output:
 			name = BazelDependencies;
 			productName = BazelDependencies;
 		};
-		000000000000000000000007 /* Debug */ = {
+		000000000000000000000008 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -238,7 +238,7 @@ Here is an example output:
 			};
 			name = Debug;
 		};
-		000000000000000000000008 /* Release */ = {
+		000000000000000000000009 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -306,8 +306,8 @@ Here is an example output:
 		000000000000000000000002 /* Build configuration list for PBXProject */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				000000000000000000000007 /* Debug */,
-				000000000000000000000008 /* Release */,
+				000000000000000000000008 /* Debug */,
+				000000000000000000000009 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
