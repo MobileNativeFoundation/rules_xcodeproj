@@ -157,6 +157,7 @@ pre_config_flags=(
   # `USE_CLANG_CL` is only used on Windows, we set it here to cause Bazel to
   # re-evaluate the cc_toolchain for a different Xcode version
   "--repo_env=USE_CLANG_CL=%xcode_version%"
+  "--repo_env=XCODE_VERSION=%xcode_version%"
 )
 
 if [[ %is_fixture% -eq 1 ]]; then
