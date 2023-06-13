@@ -86,6 +86,7 @@ readonly base_pre_config_flags=(
   # `USE_CLANG_CL` is only used on Windows, we set it here to cause Bazel to
   # re-evaluate the cc_toolchain for a different Xcode version
   "--repo_env=USE_CLANG_CL=$XCODE_PRODUCT_BUILD_VERSION"
+  "--repo_env=XCODE_VERSION=$XCODE_PRODUCT_BUILD_VERSION"
 
   # Don't block the end of the build for BES upload (artifacts OR events)
   "--bes_upload_mode=NOWAIT_FOR_UPLOAD_COMPLETE"
