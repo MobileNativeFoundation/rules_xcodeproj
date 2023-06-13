@@ -36,6 +36,7 @@ def _main(command: List[str]) -> None:
     relative_diagnostic = re.compile(
         r"^.+?:\d+(:\d+)?: (error|warning): ."
     )
+    has_relative_diagnostic = False
 
     def _replacement(match: re.Match) -> str:
         message = match.group(0)
@@ -75,6 +76,11 @@ def _main(command: List[str]) -> None:
             return
 
         output_line = relative_diagnostic.sub(_replacement, input_line)
+        # Record if we have performed a relative diagnostic substitution.
+        if output_line != input_line:
+            nonlocal has_relative_diagnostic
+            has_relative_diagnostic = True
+
         print(output_line, flush=True)
 
     while process.poll() is None:
@@ -82,6 +88,13 @@ def _main(command: List[str]) -> None:
 
     for line in process.stderr:
         _process_log_line(line)
+
+    # If the Bazel invocation failed and there was no formatted error found, 
+    # print a nicer error message instead of a cryptic in Xcode:
+    # 'Command PhaseScriptExecution failed with a nonzero exit code'
+    if process.returncode != 0 and not has_relative_diagnostic:
+        print("error: The bazel build failed, please check the report navigator, "
+            "which may have more context about the failure.")
 
     sys.exit(process.returncode)
 
