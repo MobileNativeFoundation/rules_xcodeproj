@@ -1,3 +1,5 @@
+"""Exercise targets wrapped in macros"""
+
 load(
     "@build_bazel_rules_ios//rules:test.bzl",
     rules_ios_ios_unit_test = "ios_unit_test",
