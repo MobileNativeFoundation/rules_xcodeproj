@@ -16,6 +16,7 @@ XCODEPROJ_TARGETS = [
     ),
     "//iOSApp/Test/MixedUnitTests:iOSAppMixedUnitTests",
     "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests",
+    "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests_macro_1",
     "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests",
     "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite",
     "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTestSuite",
