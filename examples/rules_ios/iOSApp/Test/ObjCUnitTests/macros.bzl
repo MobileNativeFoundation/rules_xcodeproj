@@ -4,18 +4,18 @@ load(
 )
 
 def macro_1(name):
-  rules_ios_ios_unit_test(
-      name = "iOSAppObjCUnitTests_{}".format(name),
-      srcs = native.glob(["**/*.m"]),
-      bundle_id = "rules-xcodeproj.example.objctests",
-      bundle_name = "iOS_App_ObjC_UnitTests_{}".format(name),
-      minimum_os_version = "15.0",
-      module_name = "iOSAppObjCUnitTests_{}".format(name),
-      tags = ["manual"],
-      test_host = "//iOSApp",
-      visibility = ["@rules_xcodeproj//xcodeproj:generated"],
-      deps = [
-          "//iOSApp/Source:iOSApp.library",
-          "//iOSApp/Source/Utils",
-      ],
-  )
+    rules_ios_ios_unit_test(
+        name = "iOSAppObjCUnitTests_{}".format(name),
+        srcs = native.glob(["**/*.m"]),
+        bundle_id = "rules-xcodeproj.example.objctests",
+        bundle_name = "iOS_App_ObjC_UnitTests_{}".format(name),
+        minimum_os_version = "15.0",
+        module_name = "iOSAppObjCUnitTests_{}".format(name),
+        tags = ["manual"],
+        test_host = "//iOSApp",
+        visibility = ["@rules_xcodeproj//xcodeproj:generated"],
+        deps = [
+            "//iOSApp/Source:iOSApp.library",
+            "//iOSApp/Source/Utils",
+        ],
+    )
