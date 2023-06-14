@@ -293,8 +293,26 @@ def _skip_target(
         # `bundle_name` can be used to name the bundle instead of the
         # target name. Because of that we use `ctx.rule.attr.generator_name`
         # here to ensure this is always a real target label.
+        label_name = ctx.rule.attr.generator_name
+
+        # If `generator_function` is not `ios_unit_test` it means this target
+        # is wrapped in a macro and `generator_name` does not hold the value
+        # we want. In that case, following rules_apple's naming pattern, there
+        # are two options:
+        #
+        # 1. `ctx.rule.attr.runner` is rules_apple's default and we can use
+        # `ctx.rule.attr.name` as is
+        # 2. `ctx.rule.attr.runner` is custom and `ctx.rule.attr.name` has
+        # the pattern "{target_name}_{runner_name}"
+        #
+        # In both scenarios if we remove the "_{runner_name}" suffix we
+        # get the label_name that we need.
+        if ctx.rule.attr.generator_function != "ios_unit_test":
+            runner_label_name = ctx.rule.attr.runner.label.name
+            label_name = ctx.rule.attr.name.replace("_{}".format(runner_label_name), "")
+
         return Label(
-            "{}:{}".format(package_label_str, ctx.rule.attr.generator_name),
+            "{}:{}".format(package_label_str, label_name),
         )
 
     return _target_info_fields(
