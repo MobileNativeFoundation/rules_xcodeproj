@@ -74,6 +74,8 @@ _SWIFTC_SKIP_COMPOUND_OPTS = {
 
         # Handled in `opts.bzl` (skip 3 because of the extra `-Xfrontend` flag)
         "-explicit-swift-module-map-file": 3,
+        "-load-plugin-executable": 3,
+        "-load-plugin-library": 3,
         "-vfsoverlay": 3,
     },
 }

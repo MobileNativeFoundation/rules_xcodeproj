@@ -181,6 +181,11 @@ _get_unprocessed_cc_compiler_opts = (
     _modern_get_unprocessed_cc_compiler_opts if hasattr(apple_common, "link_multi_arch_static_library") else _legacy_get_unprocessed_cc_compiler_opts
 )
 
+_LOAD_PLUGIN_OPTS = {
+    "-load-plugin-executable": None,
+    "-load-plugin-library": None,
+}
+
 _OVERLAY_OPTS = {
     "-explicit-swift-module-map-file": None,
     "-vfsoverlay": None,
@@ -372,6 +377,20 @@ under {}""".format(opt, package_bin_dir))
             if append_previous_opt:
                 project_set_opts.append(previous_opt)
             project_set_opts.append(opt)
+            continue
+
+        if opt in _LOAD_PLUGIN_OPTS:
+            if append_previous_opt:
+                project_set_opts.append(previous_opt)
+            project_set_opts.append(opt)
+            continue
+
+        if previous_opt_to_check in _LOAD_PLUGIN_OPTS:
+            path = opt
+            absolute_opt = build_setting_path(path)
+            if append_previous_opt:
+                project_set_opts.append(previous_opt)
+            project_set_opts.append(absolute_opt)
             continue
 
         if opt.startswith("-vfsoverlay"):
