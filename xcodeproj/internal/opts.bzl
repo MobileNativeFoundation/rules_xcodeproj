@@ -387,6 +387,7 @@ under {}""".format(opt, package_bin_dir))
 
         if previous_opt_to_check in _LOAD_PLUGIN_OPTS:
             path = opt
+
             # FIXME: This breaks in BwX mode when the compiler plugin is
             # unfocused
             absolute_opt = build_setting_path(path, use_build_dir = is_bwx)
