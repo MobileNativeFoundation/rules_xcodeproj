@@ -54,6 +54,7 @@ swift_library(
     deps = [
         ":lib_impl",
         "//CommandLine/swift_c_module",
+        "//Stringify",
         "@examples_command_line_external//:ExternalFramework",
         "@examples_command_line_external//:Library",
     ],

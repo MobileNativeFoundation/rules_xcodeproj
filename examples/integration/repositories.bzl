@@ -90,4 +90,11 @@ objc_library(
         url = "https://github.com/nicklockwood/FXPageControl/archive/refs/tags/1.5.tar.gz",
     )
 
+    http_archive(
+        name = "SwiftSyntax",
+        sha256 = "527a5c6d19987acbb5019efa067b0fbd127e06187a0689c3f1098fd22c1a7d43",
+        strip_prefix = "swift-syntax-01fc3e3ed4d26121c06790abf8fe5ddaa22a4cc5",
+        url = "https://github.com/apple/swift-syntax/archive/01fc3e3ed4d26121c06790abf8fe5ddaa22a4cc5.tar.gz",
+    )
+
 non_module_deps = module_extension(implementation = lambda _: non_bzlmod_dependencies())

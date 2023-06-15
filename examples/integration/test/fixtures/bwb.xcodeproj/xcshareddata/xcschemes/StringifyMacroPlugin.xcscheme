@@ -14,9 +14,9 @@
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "5826810F86C049E80D55353A"
-                     BuildableName = "CommandLineToolTests.xctest"
-                     BlueprintName = "CommandLineToolTests"
+                     BlueprintIdentifier = "1FB2861E9C79A273B822ED92"
+                     BuildableName = "StringifyMacroPlugin"
+                     BlueprintName = "StringifyMacroPlugin"
                      ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
@@ -25,14 +25,14 @@
          <ExecutionAction
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
-               title = "Set Bazel Build Output Groups for CommandLineToolTests"
+               title = "Set Bazel Build Output Groups for StringifyMacroPlugin"
                scriptText = "echo &quot;$BAZEL_LABEL,$BAZEL_TARGET_ID&quot; &gt;&gt; &quot;$SCHEME_TARGET_IDS_FILE&quot;&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "5826810F86C049E80D55353A"
-                     BuildableName = "CommandLineToolTests.xctest"
-                     BlueprintName = "CommandLineToolTests"
+                     BlueprintIdentifier = "1FB2861E9C79A273B822ED92"
+                     BuildableName = "StringifyMacroPlugin"
+                     BlueprintName = "StringifyMacroPlugin"
                      ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
@@ -46,9 +46,9 @@
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "5826810F86C049E80D55353A"
-                     BuildableName = "CommandLineToolTests.xctest"
-                     BlueprintName = "CommandLineToolTests"
+                     BlueprintIdentifier = "1FB2861E9C79A273B822ED92"
+                     BuildableName = "StringifyMacroPlugin"
+                     BlueprintName = "StringifyMacroPlugin"
                      ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
@@ -56,20 +56,6 @@
          </ExecutionAction>
       </PreActions>
       <BuildActionEntries>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5826810F86C049E80D55353A"
-               BuildableName = "CommandLineToolTests.xctest"
-               BlueprintName = "CommandLineToolTests"
-               ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
          <BuildActionEntry
             buildForTesting = "YES"
             buildForRunning = "YES"
@@ -90,63 +76,9 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "NO">
-      <PreActions>
-         <ExecutionAction
-            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
-            <ActionContent
-               title = "Update .lldbinit"
-               scriptText = "&quot;$BAZEL_INTEGRATION_DIR/create_lldbinit.sh&quot;&#10;">
-               <EnvironmentBuildable>
-                  <BuildableReference
-                     BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "5826810F86C049E80D55353A"
-                     BuildableName = "CommandLineToolTests.xctest"
-                     BlueprintName = "CommandLineToolTests"
-                     ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
-                  </BuildableReference>
-               </EnvironmentBuildable>
-            </ActionContent>
-         </ExecutionAction>
-      </PreActions>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5826810F86C049E80D55353A"
-            BuildableName = "CommandLineToolTests.xctest"
-            BlueprintName = "CommandLineToolTests"
-            ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
+      shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5826810F86C049E80D55353A"
-               BuildableName = "CommandLineToolTests.xctest"
-               BlueprintName = "CommandLineToolTests"
-               ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
-      <EnvironmentVariables>
-         <EnvironmentVariable
-            key = "BUILD_WORKING_DIRECTORY"
-            value = "$(BUILT_PRODUCTS_DIR)"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-         <EnvironmentVariable
-            key = "BUILD_WORKSPACE_DIRECTORY"
-            value = "$(BUILD_WORKSPACE_DIRECTORY)"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-         <EnvironmentVariable
-            key = "INTEGRATION_TEST_ENV_VAR"
-            value = "TRUE"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-      </EnvironmentVariables>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -167,24 +99,25 @@
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "5826810F86C049E80D55353A"
-                     BuildableName = "CommandLineToolTests.xctest"
-                     BlueprintName = "CommandLineToolTests"
+                     BlueprintIdentifier = "1FB2861E9C79A273B822ED92"
+                     BuildableName = "StringifyMacroPlugin"
+                     BlueprintName = "StringifyMacroPlugin"
                      ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
             </ActionContent>
          </ExecutionAction>
       </PreActions>
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5826810F86C049E80D55353A"
-            BuildableName = "CommandLineToolTests.xctest"
-            BlueprintName = "CommandLineToolTests"
+            BlueprintIdentifier = "1FB2861E9C79A273B822ED92"
+            BuildableName = "StringifyMacroPlugin"
+            BlueprintName = "StringifyMacroPlugin"
             ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "BUILD_WORKING_DIRECTORY"
@@ -213,24 +146,25 @@
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "5826810F86C049E80D55353A"
-                     BuildableName = "CommandLineToolTests.xctest"
-                     BlueprintName = "CommandLineToolTests"
+                     BlueprintIdentifier = "1FB2861E9C79A273B822ED92"
+                     BuildableName = "StringifyMacroPlugin"
+                     BlueprintName = "StringifyMacroPlugin"
                      ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
             </ActionContent>
          </ExecutionAction>
       </PreActions>
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5826810F86C049E80D55353A"
-            BuildableName = "CommandLineToolTests.xctest"
-            BlueprintName = "CommandLineToolTests"
+            BlueprintIdentifier = "1FB2861E9C79A273B822ED92"
+            BuildableName = "StringifyMacroPlugin"
+            BlueprintName = "StringifyMacroPlugin"
             ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
