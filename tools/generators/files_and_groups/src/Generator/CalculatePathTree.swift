@@ -31,7 +31,7 @@ extension Generator {
                    let lhsComponent = lhs.components[i]
                    let rhsComponent = rhs.components[i]
                    guard lhsComponent == rhsComponent else {
-                       // We properly sort in `CreateGroupChildElements`, so w
+                       // We properly sort in `CreateGroupChildElements`, so we
                        // do a simple version here
                        return lhsComponent < rhsComponent
                    }

@@ -5,16 +5,22 @@ load("//xcodeproj/internal:collections.bzl", "flatten", "uniq")
 
 _TOOLS = {
     "files_and_groups": "//tools/generators/files_and_groups",
+    "GeneratorCommonMacros": "//tools/generators/lib/GeneratorCommon/Macros:GeneratorCommonMacros",
     "pbxproj_prefix": "//tools/generators/pbxproj_prefix",
     "swiftc_stub": "//tools/swiftc_stub:swiftc",
 }
 
 _TESTS = {
     "files_and_groups": [
+        "//tools/generators/lib/GeneratorCommon/Macros:GeneratorCommonMacrosTests",
         "//tools/generators/lib/PBXProj:PBXProjTests",
         "//tools/generators/files_and_groups:files_and_groups_tests",
     ],
+    "GeneratorCommonMacros": [
+        "//tools/generators/lib/GeneratorCommon/Macros:GeneratorCommonMacrosTests",
+    ],
     "pbxproj_prefix": [
+        "//tools/generators/lib/GeneratorCommon/Macros:GeneratorCommonMacrosTests",
         "//tools/generators/lib/PBXProj:PBXProjTests",
         "//tools/generators/pbxproj_prefix:pbxproj_prefix_tests",
     ],
@@ -62,6 +68,18 @@ _SCHEMES = [
         ),
         test_action = xcode_schemes.test_action(
             _TESTS["files_and_groups"],
+            diagnostics = _SCHEME_DIAGNOSTICS,
+        ),
+    ),
+    xcode_schemes.scheme(
+        name = "GeneratorCommonMacros",
+        launch_action = xcode_schemes.launch_action(
+            _TOOLS["GeneratorCommonMacros"],
+            build_configuration = "Release",
+            diagnostics = _SCHEME_DIAGNOSTICS,
+        ),
+        test_action = xcode_schemes.test_action(
+            _TESTS["GeneratorCommonMacros"],
             diagnostics = _SCHEME_DIAGNOSTICS,
         ),
     ),

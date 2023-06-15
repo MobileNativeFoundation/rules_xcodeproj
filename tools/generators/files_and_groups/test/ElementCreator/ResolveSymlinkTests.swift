@@ -82,8 +82,7 @@ final class ResolveSymlinkTests: XCTestCase {
 
         // Act
 
-        let symlinkDest =
-            ElementCreator.ResolveSymlink.defaultCallable(path: path)
+        let symlinkDest = ElementCreator.resolveSymlink(path)
 
         // Assert
 
@@ -99,8 +98,7 @@ final class ResolveSymlinkTests: XCTestCase {
 
         // Act
 
-        let symlinkDest =
-            ElementCreator.ResolveSymlink.defaultCallable(path: path)
+        let symlinkDest = ElementCreator.resolveSymlink(path)
 
         // Assert
 
@@ -116,8 +114,7 @@ final class ResolveSymlinkTests: XCTestCase {
 
         // Act
 
-        let symlinkDest =
-            ElementCreator.ResolveSymlink.defaultCallable(path: path)
+        let symlinkDest = ElementCreator.resolveSymlink(path)
 
         // Assert
 
@@ -133,8 +130,7 @@ final class ResolveSymlinkTests: XCTestCase {
 
         // Act
 
-        let symlinkDest =
-            ElementCreator.ResolveSymlink.defaultCallable(path: path)
+        let symlinkDest = ElementCreator.resolveSymlink(path)
 
         // Assert
 
@@ -150,8 +146,7 @@ final class ResolveSymlinkTests: XCTestCase {
 
         // Act
 
-        let symlinkDest =
-            ElementCreator.ResolveSymlink.defaultCallable(path: path)
+        let symlinkDest = ElementCreator.resolveSymlink(path)
 
         // Assert
 

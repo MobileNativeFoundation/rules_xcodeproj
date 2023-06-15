@@ -56,3 +56,10 @@ build:workflows --@rules_xcodeproj//xcodeproj:extra_generator_flags='--config=wo
 
 # Show detailed errors for test failures
 test --test_output=errors --test_summary=detailed
+
+
+build --macos_minimum_os=13.3
+build --host_macos_minimum_os=13.3
+
+build --config=ors_bzlmod
+build --verbose_failures

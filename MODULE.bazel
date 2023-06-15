@@ -47,6 +47,7 @@ bazel_dep(
 
 use_repo(
     non_module_deps,
+    "SwiftSyntax",
     "com_github_apple_swift_argument_parser",
     "com_github_apple_swift_collections",
     "com_github_kylef_pathkit",

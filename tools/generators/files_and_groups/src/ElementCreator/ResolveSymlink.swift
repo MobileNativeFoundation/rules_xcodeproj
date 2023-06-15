@@ -1,63 +1,44 @@
 import Foundation
+import GeneratorCommon
 
 extension ElementCreator {
-    struct ResolveSymlink {
-        private let callable: Callable
-
-        /// - Parameters:
-        ///   - callable: The function that will be called in
-        ///     `callAsFunction()`.
-        init(callable: @escaping Callable = Self.defaultCallable) {
-            self.callable = callable
-        }
-
+    #Injectable(asStatic: true) {
         /// If `path` is for a symlink, it's recursively resolved to an absolute
         /// path and returned. Otherwise returns `nil`.
-        func callAsFunction(_ path: String) -> String? {
-            return callable(/*path:*/ path)
-        }
-    }
-}
+        func resolveSymlink(_ path: String) -> String? {
+            let fileManager = FileManager.default
 
-// MARK: - ResolveSymlink.Callable
+            var resolvedASymlink = false
+            var pathToResolve = path
+            while let symlinkDest = try? fileManager
+                .destinationOfSymbolicLink(atPath: pathToResolve)
+            {
+                resolvedASymlink = true
+                if symlinkDest.starts(with: "/") {
+                    pathToResolve = symlinkDest
+                } else {
+                    let newPathToResolve = NSString(
+                        string: "\(pathToResolve)/../\(symlinkDest)"
+                    ).standardizingPath
 
-extension ElementCreator.ResolveSymlink {
-    typealias Callable = (_ path: String) -> String?
+                    guard newPathToResolve != pathToResolve else {
+                        // This can happen if a symlink points to `/tmp` as it
+                        // will resolve to `/private/tmp` and then
+                        // `.standardizingPath` will change it back to `/tmp`.
+                        // We need to return here otherwise it will loop
+                        // forever.
+                        return pathToResolve
+                    }
 
-    /// If `path` is for a symlink, it's recursively resolved to an absolute
-    /// path and returned. Otherwise returns `nil`.
-    static func defaultCallable(path: String) -> String? {
-        let fileManager = FileManager.default
-
-        var resolvedASymlink = false
-        var pathToResolve = path
-        while let symlinkDest = try? fileManager
-            .destinationOfSymbolicLink(atPath: pathToResolve)
-        {
-            resolvedASymlink = true
-            if symlinkDest.starts(with: "/") {
-                pathToResolve = symlinkDest
-            } else {
-                let newPathToResolve = NSString(
-                    string: "\(pathToResolve)/../\(symlinkDest)"
-                ).standardizingPath
-
-                guard newPathToResolve != pathToResolve else {
-                    // This can happen if a symlink points to `/tmp` as it will
-                    // resolve to `/private/tmp` and then `.standardizingPath`
-                    // will change it back to `/tmp`. We need to return here
-                    // otherwise it will loop forever.
-                    return pathToResolve
+                    pathToResolve = newPathToResolve
                 }
-
-                pathToResolve = newPathToResolve
             }
-        }
 
-        guard resolvedASymlink else {
-            return nil
-        }
+            guard resolvedASymlink else {
+                return nil
+            }
 
-        return pathToResolve
+            return pathToResolve
+        }
     }
 }
