@@ -387,7 +387,9 @@ under {}""".format(opt, package_bin_dir))
 
         if previous_opt_to_check in _LOAD_PLUGIN_OPTS:
             path = opt
-            absolute_opt = build_setting_path(path)
+            # FIXME: This breaks in BwX mode when the compiler plugin is
+            # unfocused
+            absolute_opt = build_setting_path(path, use_build_dir = is_bwx)
             if append_previous_opt:
                 project_set_opts.append(previous_opt)
             project_set_opts.append(absolute_opt)
