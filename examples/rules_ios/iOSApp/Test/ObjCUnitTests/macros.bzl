@@ -5,7 +5,7 @@ load(
     rules_ios_ios_unit_test = "ios_unit_test",
 )
 
-def macro_1(name):
+def rules_ios_unit_test_macro(name):
     rules_ios_ios_unit_test(
         name = "iOSAppObjCUnitTests_{}".format(name),
         srcs = native.glob(["**/*.m"]),

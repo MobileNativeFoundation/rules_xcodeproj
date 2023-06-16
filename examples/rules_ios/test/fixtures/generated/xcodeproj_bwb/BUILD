@@ -36,7 +36,7 @@ xcodeproj(
     schemes_json = ":custom_xcode_schemes.json",
     tags = ["manual"],
     top_level_device_targets = ["@//iOSApp:iOSApp", "@//Lib:LibDynamic"],
-    top_level_simulator_targets = ["@//iOSApp:iOSApp", "@//Lib:LibDynamic", "@//iOSApp/Test/MixedUnitTests:iOSAppMixedUnitTests", "@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests", "@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests_macro_1", "@//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests", "@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite", "@//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTestSuite", "@//iOSApp/Test/UITests:iOSAppUITestSuite"],
+    top_level_simulator_targets = ["@//iOSApp:iOSApp", "@//Lib:LibDynamic", "@//iOSApp/Test/MixedUnitTests:iOSAppMixedUnitTests", "@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests", "@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests_rules_ios_unit_test_macro", "@//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests", "@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite", "@//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTestSuite", "@//iOSApp/Test/UITests:iOSAppUITestSuite"],
     tvos_device_cpus = "arm64",
     tvos_simulator_cpus = "",
     unfocused_targets = [],

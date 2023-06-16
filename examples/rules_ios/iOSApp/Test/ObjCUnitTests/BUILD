@@ -8,7 +8,7 @@ load(
 )
 load(
     "//iOSApp/Test/ObjCUnitTests:macros.bzl",
-    "macro_1",
+    "rules_ios_unit_test_macro",
 )
 
 rules_ios_ios_unit_test(
@@ -58,6 +58,6 @@ rules_ios_ios_unit_test(
     ],
 )
 
-macro_1(
-    name = "macro_1",
+rules_ios_unit_test_macro(
+    name = "rules_ios_unit_test_macro",
 )

@@ -1278,7 +1278,7 @@
             "t": "com.apple.product-type.bundle.unit-test"
         }
     },
-    "//iOSApp/Test/ObjCUnitTests:iOS_App_ObjC_UnitTests_macro_1.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-3",
+    "//iOSApp/Test/ObjCUnitTests:iOS_App_ObjC_UnitTests_rules_ios_unit_test_macro.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-3",
     {
         "1": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Test/ObjCUnitTests",
         "2": {
@@ -1288,21 +1288,21 @@
         },
         "3": [
             {
-                "i": "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests_macro_1_objc ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
-                "n": "iOSAppObjCUnitTests_macro_1_objc"
+                "i": "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests_rules_ios_unit_test_macro_objc ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
+                "n": "iOSAppObjCUnitTests_rules_ios_unit_test_macro_objc"
             }
         ],
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTests_macro_1.18.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTests_rules_ios_unit_test_macro.18.link.params",
         "7": [
             "//WidgetExtension:WidgetExtension applebin_ios-ios_x86_64-dbg-STABLE-3",
             "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-dbg-STABLE-3"
         ],
-        "8": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests_macro_1_objc.rules_xcodeproj.c.compile.params",
+        "8": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests_rules_ios_unit_test_macro_objc.rules_xcodeproj.c.compile.params",
         "b": {
-            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Test/ObjCUnitTests/iOS_App_ObjC_UnitTests_macro_1.__internal__.__test_bundle.zip",
+            "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Test/ObjCUnitTests/iOS_App_ObjC_UnitTests_rules_ios_unit_test_macro.__internal__.__test_bundle.zip",
             "CODE_SIGN_STYLE": "Manual",
             "GCC_PREFIX_HEADER": "$(BAZEL_EXTERNAL)/build_bazel_rules_ios/rules/library/common.pch",
-            "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Test/ObjCUnitTests/rules_xcodeproj/iOS_App_ObjC_UnitTests_macro_1.__internal__.__test_bundle/Info.plist",
+            "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Test/ObjCUnitTests/rules_xcodeproj/iOS_App_ObjC_UnitTests_rules_ios_unit_test_macro.__internal__.__test_bundle/Info.plist",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.objctests",
             "TARGETED_DEVICE_FAMILY": "1,2"
         },
@@ -1319,18 +1319,18 @@
                 "iOSApp/Test/ObjCUnitTests/ObjCUnitTests.m"
             ]
         },
-        "l": "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests_macro_1",
-        "n": "iOSAppObjCUnitTests_macro_1",
+        "l": "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests_rules_ios_unit_test_macro",
+        "n": "iOSAppObjCUnitTests_rules_ios_unit_test_macro",
         "o": {
-            "p": "iOS_App_ObjC_UnitTests_macro_1.xctest"
+            "p": "iOS_App_ObjC_UnitTests_rules_ios_unit_test_macro.xctest"
         },
         "p": {
             "a": [
-                "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/ObjCUnitTests/libiOSAppObjCUnitTests_macro_1_objc.a"
+                "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/ObjCUnitTests/libiOSAppObjCUnitTests_rules_ios_unit_test_macro_objc.a"
             ],
-            "e": "iOS_App_ObjC_UnitTests_macro_1",
-            "n": "iOS_App_ObjC_UnitTests_macro_1",
-            "p": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Test/ObjCUnitTests/iOS_App_ObjC_UnitTests_macro_1.__internal__.__test_bundle_archive-root/iOS_App_ObjC_UnitTests_macro_1.xctest",
+            "e": "iOS_App_ObjC_UnitTests_rules_ios_unit_test_macro",
+            "n": "iOS_App_ObjC_UnitTests_rules_ios_unit_test_macro",
+            "p": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Test/ObjCUnitTests/iOS_App_ObjC_UnitTests_rules_ios_unit_test_macro.__internal__.__test_bundle_archive-root/iOS_App_ObjC_UnitTests_rules_ios_unit_test_macro.xctest",
             "t": "com.apple.product-type.bundle.unit-test"
         }
     },
