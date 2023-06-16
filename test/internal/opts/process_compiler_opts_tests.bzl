@@ -523,6 +523,17 @@ $(PROJECT_DIR)\
             "-I",
             ".",
         ],
+        expected_build_settings = {
+            "OTHER_SWIFT_FLAGS": """\
+-I__BAZEL_XCODE_SOMETHING_/path \
+-I$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib \
+-I \
+$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib \
+-I/absolute/path \
+-I \
+/absolute/path\
+""",
+        },
     )
 
     # -F, -explicit-swift-module-map-file, -load-plugin-executable,
