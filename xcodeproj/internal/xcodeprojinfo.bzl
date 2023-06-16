@@ -289,27 +289,37 @@ def _skip_target(
         label_str = bazel_labels.normalize_label(info.xcode_target.label)
         package_label_str = label_str.split(":")[0]
 
+        # Important notes:
+        #
+        # 1. This relies on implementation details of
+        # https://github.com/bazelbuild/rules_apple/blob/master/apple/internal/testing/apple_test_assembler.bzl#L100-L125
+        # 2. Since `target_skip_type` is `skip_type.apple_test_bundle`
+        # we can assume that `runner` is present as it's a required attribute
+        # 3. The `.replace` below is safe even if `runner` is the
+        # default runner `ios_default_runner` since it's a no-op in that case.
+        #
+        # Removes `runner` from `target.label.name` to create a replacement
+        # label that works in all scenarios. For context, this is why
+        # other approaches won't work:
+        #
+        # 1. Simply use `target.label.name`
+        #
         # As of https://github.com/bazelbuild/rules_apple/pull/1948
         # `bundle_name` can be used to name the bundle instead of the
-        # target name. Because of that we use `ctx.rule.attr.generator_name`
-        # here to ensure this is always a real target label.
-        label_name = ctx.rule.attr.generator_name
-
-        # If `generator_function` is not `ios_unit_test` it means this target
-        # is wrapped in a macro and `generator_name` does not hold the value
-        # we want. In that case, following rules_apple's naming pattern, there
-        # are two options:
+        # target name and `bundle_name` is not accesible in this context.
         #
-        # 1. `ctx.rule.attr.runner` is rules_apple's default and we can use
-        # `ctx.rule.attr.name` as is
-        # 2. `ctx.rule.attr.runner` is custom and `ctx.rule.attr.name` has
-        # the pattern "{target_name}_{runner_name}"
+        # 2. Use `ctx.rule.attr.generator_name`
         #
-        # In both scenarios if we remove the "_{runner_name}" suffix we
-        # get the label_name that we need.
-        if ctx.rule.attr.generator_function != "ios_unit_test":
-            runner_label_name = ctx.rule.attr.runner.label.name
-            label_name = ctx.rule.attr.name.replace("_{}".format(runner_label_name), "")
+        # In many scenarios `generator_name` would be enough since it holds the
+        # name of the test rule generating it but if the test
+        # targets are wrapped in macros then `generator_name` can be anything
+        #
+        # Example:
+        #
+        # `iOSAppObjCUnitTestSuite_iPhone-13-Pro__16.2` => `iOSAppObjCUnitTestSuite`
+        #
+        runner_label_name = ctx.rule.attr.runner.label.name
+        label_name = target.label.name.replace("_{}".format(runner_label_name), "")
 
         return Label(
             "{}:{}".format(package_label_str, label_name),

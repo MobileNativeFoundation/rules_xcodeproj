@@ -16,12 +16,15 @@ XCODEPROJ_TARGETS = [
     ),
     "//iOSApp/Test/MixedUnitTests:iOSAppMixedUnitTests",
     "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests",
-    "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests_rules_ios_unit_test_macro",
     "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests",
     "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite",
     "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTestSuite",
     "//iOSApp/Test/UITests:iOSAppUITestSuite",
-    "//iOSApp/Test/UITests:iOSAppUITests_rules_ios_ui_test_macro",
+    "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests_macro",
+    "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests_macro_with_bundle_name",
+    "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite_macro",
+    "//iOSApp/Test/UITests:iOSAppUITests_macro",
+    "//iOSApp/Test/UITests:iOSAppUITestSuite_macro",
 ]
 
 IOS_BUNDLE_ID = "rules-xcodeproj.example"

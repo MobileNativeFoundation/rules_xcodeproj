@@ -50,5 +50,5 @@ rules_ios_ios_ui_test(
 )
 
 rules_ios_ui_test_macro(
-    name = "rules_ios_ui_test_macro",
+    name = "macro",
 )

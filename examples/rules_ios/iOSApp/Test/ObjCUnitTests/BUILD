@@ -59,5 +59,5 @@ rules_ios_ios_unit_test(
 )
 
 rules_ios_unit_test_macro(
-    name = "rules_ios_unit_test_macro",
+    name = "macro",
 )
