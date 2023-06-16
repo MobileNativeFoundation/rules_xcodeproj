@@ -6,6 +6,10 @@ load(
     "@build_bazel_rules_apple//apple/testing/default_runner:ios_test_runner.bzl",
     "ios_test_runner",
 )
+load(
+    "//iOSApp/Test/UITests:macros.bzl",
+    "rules_ios_ui_test_macro",
+)
 
 rules_ios_ios_ui_test(
     name = "iOSAppUITests",
@@ -43,4 +47,8 @@ rules_ios_ios_ui_test(
     tags = ["manual"],
     test_host = "//iOSApp",
     visibility = ["@rules_xcodeproj//xcodeproj:generated"],
+)
+
+rules_ios_ui_test_macro(
+    name = "rules_ios_ui_test_macro",
 )
