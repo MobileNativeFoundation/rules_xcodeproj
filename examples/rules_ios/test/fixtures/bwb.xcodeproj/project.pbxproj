@@ -23,23 +23,27 @@
 
 /* Begin PBXBuildFile section */
 		04B177D31FD5BDBB2104FEEC /* _CompileStub_.m in Sources */ = {isa = PBXBuildFile; fileRef = E84DBAC32A7C151ED97289BA /* _CompileStub_.m */; };
+		04F019FA436075AE33BCD49F /* UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4881EEC5A32BE56448E19924 /* UITests.swift */; };
 		0601E279C0BF6ECEDF1F9A96 /* _CompileStub_.m in Sources */ = {isa = PBXBuildFile; fileRef = E84DBAC32A7C151ED97289BA /* _CompileStub_.m */; };
+		064F1DBA93F9FCDE1CD9FA14 /* UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3011BD0422D96A2C7321B982 /* UITestsLaunchTests.swift */; };
 		0BDF5B9AD82DB05AF5B3A0D0 /* _CompileStub_.m in Sources */ = {isa = PBXBuildFile; fileRef = E84DBAC32A7C151ED97289BA /* _CompileStub_.m */; };
 		12526811664DB5CCCB6E385D /* _CompileStub_.m in Sources */ = {isa = PBXBuildFile; fileRef = E84DBAC32A7C151ED97289BA /* _CompileStub_.m */; };
 		13A630BA73E1F9A2DDB06819 /* _CompileStub_.m in Sources */ = {isa = PBXBuildFile; fileRef = E84DBAC32A7C151ED97289BA /* _CompileStub_.m */; };
 		2A7C1646912F418A5274A1AF /* _CompileStub_.m in Sources */ = {isa = PBXBuildFile; fileRef = E84DBAC32A7C151ED97289BA /* _CompileStub_.m */; };
 		360B96836FE8A752496FEEF0 /* UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3011BD0422D96A2C7321B982 /* UITestsLaunchTests.swift */; };
 		381043979E9E346182A25067 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930A52F1C2814B98802A80A4 /* Resources.swift */; };
+		43BA2116C2DD85F8805141D2 /* ObjCUnitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EFD33DA1BC7E7196649D05D /* ObjCUnitTests.m */; };
 		49D6063C48365EDFCA2BE320 /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF5E8B112A0F9856E6CB2D4 /* iOSApp.swift */; };
 		4D9923CE9713ABD3F5C193E3 /* SwiftUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A6DC8C0E0B91CA7A026111 /* SwiftUnitTests.swift */; };
+		519B916D7089019D3A5ACF7A /* ObjCUnitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EFD33DA1BC7E7196649D05D /* ObjCUnitTests.m */; };
 		66E19A9CC3D8E2AFBC47975D /* SwiftUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5960C3F416397EFB313F138 /* SwiftUnitTests.swift */; };
 		7716621AEB8177A86422280F /* Answers.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3A8DC9BFDCE881D9614F6F90 /* Answers.mm */; };
-		812294C2C601980CE223D77A /* ObjCUnitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EFD33DA1BC7E7196649D05D /* ObjCUnitTests.m */; };
 		899593DDADC1C6E934C20F0F /* MixedAnswer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5943CDBFA4A38FDFF9113B4F /* MixedAnswer.m */; };
 		8BD39600399E346EF1480FC1 /* ObjCUnitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EFD33DA1BC7E7196649D05D /* ObjCUnitTests.m */; };
 		91C7A102BDF9B611F2C7833D /* ObjCUnitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B84C3492AA1F7731BE2634E /* ObjCUnitTests.m */; };
 		9711AD335537386189EB525C /* MixedAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3744E81974720C3D4AA9563D /* MixedAnswer.swift */; };
 		9FFB719E27A54EE3F45FDDD8 /* _CompileStub_.m in Sources */ = {isa = PBXBuildFile; fileRef = E84DBAC32A7C151ED97289BA /* _CompileStub_.m */; };
+		B0B558B3386C91C77B6A125D /* UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4881EEC5A32BE56448E19924 /* UITests.swift */; };
 		B57BEBDCCED2712EC6550D85 /* UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4881EEC5A32BE56448E19924 /* UITests.swift */; };
 		BC3EC272356403A49E2DAB11 /* Intents.Intent.output.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397F97935BDD6FC094D77A44 /* Intents.Intent.output.swift */; };
 		C8B76D1B97C60A7EFFE69E77 /* WidgetExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B40423341C5FE090E518F48 /* WidgetExtension.swift */; };
@@ -48,6 +52,8 @@
 		E66604D967169C5470384FC1 /* ObjCUnitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EFD33DA1BC7E7196649D05D /* ObjCUnitTests.m */; };
 		EDCBB6F78AD92DE1161400CD /* Foo.m in Sources */ = {isa = PBXBuildFile; fileRef = 10FD9C062371287B427F5031 /* Foo.m */; };
 		F2681457AB648610AD700FDB /* SwiftUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A6DC8C0E0B91CA7A026111 /* SwiftUnitTests.swift */; };
+		F2CF2D2DEE4261514C1939D5 /* UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3011BD0422D96A2C7321B982 /* UITestsLaunchTests.swift */; };
+		F63902022A8BD35C5EFDC14B /* ObjCUnitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EFD33DA1BC7E7196649D05D /* ObjCUnitTests.m */; };
 		FCF347F4A100972E04541288 /* _CompileStub_.m in Sources */ = {isa = PBXBuildFile; fileRef = E84DBAC32A7C151ED97289BA /* _CompileStub_.m */; };
 /* End PBXBuildFile section */
 
@@ -59,13 +65,6 @@
 			remoteGlobalIDString = 1765D91CC168F25A5BC51603;
 			remoteInfo = iOSApp;
 		};
-		0D53A6C73BA59BD2F53C3F6D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0805833D09730531AD081697 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
-			remoteInfo = BazelDependencies;
-		};
 		1822F6E69071FC6EE2534908 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0805833D09730531AD081697 /* Project object */;
@@ -73,7 +72,21 @@
 			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
 			remoteInfo = BazelDependencies;
 		};
+		1889C1239469CE4D907284B1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0805833D09730531AD081697 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
+			remoteInfo = BazelDependencies;
+		};
 		1AF0A8DBFD4E418C98D4DDD3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0805833D09730531AD081697 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
+			remoteInfo = BazelDependencies;
+		};
+		2276CB3CE6FDC24BDCA3240D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0805833D09730531AD081697 /* Project object */;
 			proxyType = 1;
@@ -94,14 +107,14 @@
 			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
 			remoteInfo = BazelDependencies;
 		};
-		383062428A4B8B67738E62F8 /* PBXContainerItemProxy */ = {
+		3F2526905F32AB84EFE7FBFE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0805833D09730531AD081697 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 1765D91CC168F25A5BC51603;
-			remoteInfo = iOSApp;
+			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
+			remoteInfo = BazelDependencies;
 		};
-		3F2526905F32AB84EFE7FBFE /* PBXContainerItemProxy */ = {
+		40C259B62EE2DAC395887C4F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0805833D09730531AD081697 /* Project object */;
 			proxyType = 1;
@@ -130,6 +143,27 @@
 			remoteInfo = BazelDependencies;
 		};
 		5B5ABBD76DB4BDD46FDF2482 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0805833D09730531AD081697 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
+			remoteInfo = BazelDependencies;
+		};
+		5FC3A7B50707BA616FC0464C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0805833D09730531AD081697 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1765D91CC168F25A5BC51603;
+			remoteInfo = iOSApp;
+		};
+		61D1C8F11E1B0C891C61FE35 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0805833D09730531AD081697 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1765D91CC168F25A5BC51603;
+			remoteInfo = iOSApp;
+		};
+		6EFE0EF42DFC7B73571471D3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0805833D09730531AD081697 /* Project object */;
 			proxyType = 1;
@@ -185,6 +219,13 @@
 			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
 			remoteInfo = BazelDependencies;
 		};
+		90300D015DF2DC7CB40D6B1A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0805833D09730531AD081697 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1765D91CC168F25A5BC51603;
+			remoteInfo = iOSApp;
+		};
 		9640C65DAC8F88CB5F8B9AB6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0805833D09730531AD081697 /* Project object */;
@@ -205,6 +246,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
 			remoteInfo = BazelDependencies;
+		};
+		E2BAAB041CDAD5688D7D0F54 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0805833D09730531AD081697 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1765D91CC168F25A5BC51603;
+			remoteInfo = iOSApp;
+		};
+		E6F5464650C0D43352D6AEC5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0805833D09730531AD081697 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1765D91CC168F25A5BC51603;
+			remoteInfo = iOSApp;
 		};
 		EA86503F87522DE0CA1AC4B2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -262,18 +317,26 @@
 			remoteGlobalIDString = 1765D91CC168F25A5BC51603;
 			remoteInfo = iOSApp;
 		};
+		F8EB2C33844DAA6A0581EFDD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0805833D09730531AD081697 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7E7D155EBCA520F35DEA3571;
+			remoteInfo = BazelDependencies;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0126BEB7B5E9B31E6E670674 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		01506E1C822A25B4F703986A /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
-		0320432B2D34C86E169D804C /* iOSAppObjCUnitTests_rules_ios_unit_test_macro_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = iOSAppObjCUnitTests_rules_ios_unit_test_macro_vfs.yaml; sourceTree = "<group>"; };
 		04DE51BC07F02A7890694D3F /* _LibDynamic.0.info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = _LibDynamic.0.info.plist; sourceTree = "<group>"; };
 		04F9B5540AEF68BC2E53155F /* MixedAnswer_swift_angle_bracket_hmap.hmap */ = {isa = PBXFileReference; path = MixedAnswer_swift_angle_bracket_hmap.hmap; sourceTree = "<group>"; };
 		0948E96616FB16DF0DC82CF9 /* UI_swift_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = UI_swift_vfs.yaml; sourceTree = "<group>"; };
 		0983FB17BD1C2AEFCAF97C7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		0B46C19AD5A145E2F87A6232 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
+		0D23278F537ED2CDBBD6EF33 /* iOSAppObjCUnitTests_macro_with_bundle_name_swift_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = iOSAppObjCUnitTests_macro_with_bundle_name_swift_vfs.yaml; sourceTree = "<group>"; };
+		0D5C0061CE509102E0446C52 /* iOSAppUITestSuite_macro_swift.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; path = iOSAppUITestSuite_macro_swift.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		0EECEF60D8A575D7E9900E34 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
+		0F20D9EE8618CF75190CCD45 /* iOSAppObjCUnitTests_macro_with_bundle_name_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = iOSAppObjCUnitTests_macro_with_bundle_name_vfs.yaml; sourceTree = "<group>"; };
 		0F4334D1E132FC96899B1600 /* Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		103BB70F322BD5C285290BDF /* iOSApp.library.extended.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = iOSApp.library.extended.modulemap; sourceTree = "<group>"; };
 		10FD9C062371287B427F5031 /* Foo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Foo.m; sourceTree = "<group>"; };
@@ -287,31 +350,37 @@
 		1B9B3BFED6CFB0577A9495B0 /* Intents.Intent.output.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intents.Intent.output.swift; sourceTree = "<group>"; };
 		1BA4A506FF3702955F308E7B /* CoreUtilsObjC_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = CoreUtilsObjC_vfs.yaml; sourceTree = "<group>"; };
 		1BE76DA278965DF3BA51D5F1 /* iOSAppSwiftUnitTests_swift_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = iOSAppSwiftUnitTests_swift_vfs.yaml; sourceTree = "<group>"; };
-		1C286C1784EEF207E6139E1E /* WidgetExtension.34.link.params */ = {isa = PBXFileReference; path = WidgetExtension.34.link.params; sourceTree = "<group>"; };
 		1D0E2E7385B4514842C1CF94 /* iOSAppMixedUnitTests_swift.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; path = iOSAppMixedUnitTests_swift.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		1D3EF6F105EA6F64D4E29085 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		1DE34317296CB73FCA409C2F /* iOSApp.library_swift.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; path = iOSApp.library_swift.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
+		1E207B4BC8C4BA98829AA31B /* iOSAppObjCUnitTestSuite.19.link.params */ = {isa = PBXFileReference; path = iOSAppObjCUnitTestSuite.19.link.params; sourceTree = "<group>"; };
 		1E6B630465740B8C9637EFBD /* MixedAnswer.extended.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = MixedAnswer.extended.modulemap; sourceTree = "<group>"; };
 		1F1A7F27703B75E96B9903B4 /* WidgetExtension.library_public_hmap.hmap */ = {isa = PBXFileReference; path = WidgetExtension.library_public_hmap.hmap; sourceTree = "<group>"; };
 		21BF5DC9904D35459A49166B /* LibDynamic_swift_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = LibDynamic_swift_vfs.yaml; sourceTree = "<group>"; };
 		2230B9F3B2D46709405C2F1F /* CoreUtilsObjC_private_hmap.hmap */ = {isa = PBXFileReference; path = CoreUtilsObjC_private_hmap.hmap; sourceTree = "<group>"; };
 		2442EFE6640A19DC8894A5D3 /* _LibDynamic.0.info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = _LibDynamic.0.info.plist; sourceTree = "<group>"; };
 		255BE61BB86D3D8CEBA54B06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		2758952B8073EA1E165156C3 /* iOSAppObjCUnitTests_macro.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSAppObjCUnitTests_macro.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2958E39A4ADD63825B7A4202 /* iOSAppUITestSuite_macro_swift_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = iOSAppUITestSuite_macro_swift_vfs.yaml; sourceTree = "<group>"; };
 		2A465192CDE37BED1EB25DFD /* MixedAnswer */ = {isa = PBXFileReference; explicitFileType = wrapper.framework.static; includeInIndex = 0; path = MixedAnswer; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B40423341C5FE090E518F48 /* WidgetExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetExtension.swift; sourceTree = "<group>"; };
 		2B84C3492AA1F7731BE2634E /* ObjCUnitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObjCUnitTests.m; sourceTree = "<group>"; };
 		2BAE84C22F5988D476E8C115 /* Utils-umbrella.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Utils-umbrella.h"; sourceTree = "<group>"; };
 		2BB22FC37DB25EE005AE5C23 /* iOSApp.library_public_hmap.hmap */ = {isa = PBXFileReference; path = iOSApp.library_public_hmap.hmap; sourceTree = "<group>"; };
+		2C9EE197E604B40888F4CD14 /* iOSAppObjCUnitTests_macro_with_bundle_name.23.link.params */ = {isa = PBXFileReference; path = iOSAppObjCUnitTests_macro_with_bundle_name.23.link.params; sourceTree = "<group>"; };
 		2E787FFF972069C91657AD09 /* iOSAppUITestSuite_swift_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = iOSAppUITestSuite_swift_vfs.yaml; sourceTree = "<group>"; };
+		2EF9005C716A7EACE679B0A5 /* iOSAppSwiftUnitTests.18.link.params */ = {isa = PBXFileReference; path = iOSAppSwiftUnitTests.18.link.params; sourceTree = "<group>"; };
+		2F43757D27C761E624B93DBC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2F6871335A2805169376FEE5 /* LibDynamic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework.static; includeInIndex = 0; path = LibDynamic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FF1AA81DC4D45EAD73996F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		3011BD0422D96A2C7321B982 /* UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestsLaunchTests.swift; sourceTree = "<group>"; };
+		3023AB6EED3D2627828EFB27 /* iOSAppUITests_macro.25.link.params */ = {isa = PBXFileReference; path = iOSAppUITests_macro.25.link.params; sourceTree = "<group>"; };
 		30DD7BE468D6C0D1FAAB87AE /* libCoreUtilsObjC_objc.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libCoreUtilsObjC_objc.a; path = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsObjC/libCoreUtilsObjC_objc.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3423B69557C97C31CE6F81A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		348EF8B152D26A6CA27AEB87 /* WidgetExtension.library_swift_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = WidgetExtension.library_swift_vfs.yaml; sourceTree = "<group>"; };
-		35509374AD4B4346E8D5164A /* iOSAppObjCUnitTests_rules_ios_unit_test_macro_objc.rules_xcodeproj.c.compile.params */ = {isa = PBXFileReference; path = iOSAppObjCUnitTests_rules_ios_unit_test_macro_objc.rules_xcodeproj.c.compile.params; sourceTree = "<group>"; };
 		355F8AE53E8C133D979F39B9 /* Utils_objc.rules_xcodeproj.c.compile.params */ = {isa = PBXFileReference; path = Utils_objc.rules_xcodeproj.c.compile.params; sourceTree = "<group>"; };
 		35E4BC681FCCDBDB1472E491 /* LibDynamic_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = LibDynamic_vfs.yaml; sourceTree = "<group>"; };
+		36E85BF5ACB8DC1B6E20D716 /* iOSAppObjCUnitTestSuite_macro_objc.rules_xcodeproj.c.compile.params */ = {isa = PBXFileReference; path = iOSAppObjCUnitTestSuite_macro_objc.rules_xcodeproj.c.compile.params; sourceTree = "<group>"; };
 		3744E81974720C3D4AA9563D /* MixedAnswer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixedAnswer.swift; sourceTree = "<group>"; };
 		37960139EC70CD0164A3E93D /* libMixedAnswer_swift.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libMixedAnswer_swift.a; path = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/libMixedAnswer_swift.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		38DF8C373C07F2CBB47A58AB /* iOSApp.library.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = iOSApp.library.modulemap; sourceTree = "<group>"; };
@@ -320,11 +389,13 @@
 		399487B73A64195D5E0CEAF8 /* ios app.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ios app.entitlements"; sourceTree = "<group>"; };
 		39C0E2F06A4B7DAD7BA79A66 /* common.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = common.pch; sourceTree = "<group>"; };
 		3A8DC9BFDCE881D9614F6F90 /* Answers.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Answers.mm; sourceTree = "<group>"; };
-		41006B3DA26E2E682B423F5A /* iOS_App_ObjC_UnitTests_rules_ios_unit_test_macro.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOS_App_ObjC_UnitTests_rules_ios_unit_test_macro.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D11C620EB6E71AEA33A56A7 /* LibDynamic.40.link.params */ = {isa = PBXFileReference; path = LibDynamic.40.link.params; sourceTree = "<group>"; };
+		3E3747E16CD6FA4F70D8C657 /* iOSApp.39.link.params */ = {isa = PBXFileReference; path = iOSApp.39.link.params; sourceTree = "<group>"; };
 		423B2859CFF335C73843176F /* LibDynamic.13.link.params */ = {isa = PBXFileReference; path = LibDynamic.13.link.params; sourceTree = "<group>"; };
 		4310AE08975BA8EBD659EC26 /* UI_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = UI_vfs.yaml; sourceTree = "<group>"; };
 		43483C0C029D669DC6D9079A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		44B8F7BAE258D3F4940E5E7D /* LibDynamic_swift_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = LibDynamic_swift_vfs.yaml; sourceTree = "<group>"; };
+		44EA20A9F7C6DF04A0E8EBEB /* iOSAppObjCUnitTestSuite_macro_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = iOSAppObjCUnitTestSuite_macro_vfs.yaml; sourceTree = "<group>"; };
 		451B2596C67183062FCA26BB /* iOSAppUITestSuite_swift.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; path = iOSAppUITestSuite_swift.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		45325284C0CC1A7F75E72858 /* iOSAppSwiftUnitTestSuite_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = iOSAppSwiftUnitTestSuite_vfs.yaml; sourceTree = "<group>"; };
 		4593E0144D3AA545153BCA33 /* MixedAnswer_swift.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; path = MixedAnswer_swift.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
@@ -342,10 +413,13 @@
 		537D892EFFE734C89A95DCF5 /* UI_swift.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; path = UI_swift.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		55A926244AA7272D1E463DDA /* UI.extended.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = UI.extended.modulemap; sourceTree = "<group>"; };
 		560C85910D519FE218473B22 /* CoreUtilsObjC_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = CoreUtilsObjC_vfs.yaml; sourceTree = "<group>"; };
+		573BFA3154CBDC49C5B3FEA2 /* iOSAppUITests_macro_swift_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = iOSAppUITests_macro_swift_vfs.yaml; sourceTree = "<group>"; };
 		57BD345CD3D1409926BA80EA /* iOSAppObjCUnitTests_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = iOSAppObjCUnitTests_vfs.yaml; sourceTree = "<group>"; };
+		58C79AF05A8842DE1B8FE04D /* iOSAppObjCUnitTestSuite_macro_swift_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = iOSAppObjCUnitTestSuite_macro_swift_vfs.yaml; sourceTree = "<group>"; };
 		5943CDBFA4A38FDFF9113B4F /* MixedAnswer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MixedAnswer.m; sourceTree = "<group>"; };
 		59C26917FC1EA73251F8750A /* UI-umbrella.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UI-umbrella.h"; sourceTree = "<group>"; };
 		5B622FFED607D60BE0B6498D /* MixedAnswer.extended.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = MixedAnswer.extended.modulemap; sourceTree = "<group>"; };
+		5BBDC49684637D5F026F51BB /* iOSAppObjCUnitTests_macro_swift_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = iOSAppObjCUnitTests_macro_swift_vfs.yaml; sourceTree = "<group>"; };
 		5DE7AF00D3B4EA3E8ED7D9C8 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		5E2D56930EF338F84A9F28A8 /* WidgetExtension.library.extended.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = WidgetExtension.library.extended.modulemap; sourceTree = "<group>"; };
 		5ECAB8CD911191567719B9CE /* MixedAnswer_swift_doublequote_hmap.hmap */ = {isa = PBXFileReference; path = MixedAnswer_swift_doublequote_hmap.hmap; sourceTree = "<group>"; };
@@ -353,12 +427,17 @@
 		5F4EDC5811EEDF785B9F1507 /* WidgetExtension.library_swift.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; path = WidgetExtension.library_swift.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		5F9633259AA68958E2D9A616 /* CoreUtilsObjC_private_hmap.hmap */ = {isa = PBXFileReference; path = CoreUtilsObjC_private_hmap.hmap; sourceTree = "<group>"; };
 		5FBAE702AC09A964F519EB60 /* iOSAppMixedUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSAppMixedUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6052230133F13DD0373223AF /* iOSAppUITestSuite.21.link.params */ = {isa = PBXFileReference; path = iOSAppUITestSuite.21.link.params; sourceTree = "<group>"; };
 		62A6DC8C0E0B91CA7A026111 /* SwiftUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUnitTests.swift; sourceTree = "<group>"; };
 		64698C88EE29853EA7742DC5 /* CoreUtilsObjC-umbrella.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CoreUtilsObjC-umbrella.h"; sourceTree = "<group>"; };
+		65AD339780D2D31F1E58A8A5 /* iOSAppUITestSuite_macro.26.link.params */ = {isa = PBXFileReference; path = iOSAppUITestSuite_macro.26.link.params; sourceTree = "<group>"; };
+		66C3F5F95636FED4174B4110 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		66DE447C5CAD1C6E0B2660E9 /* iOSAppUITestSuite_macro.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSAppUITestSuite_macro.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		67A3BDD4BEC6D532369580BD /* CoreUtilsObjC_objc.rules_xcodeproj.cxx.compile.params */ = {isa = PBXFileReference; path = CoreUtilsObjC_objc.rules_xcodeproj.cxx.compile.params; sourceTree = "<group>"; };
 		6882F5B673B370A30F254065 /* Lib_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = Lib_vfs.yaml; sourceTree = "<group>"; };
 		691483DDBF1D73C70933EDD3 /* iOSApp_swift_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = iOSApp_swift_vfs.yaml; sourceTree = "<group>"; };
 		699DCF74CA46FB6BA46819DA /* iOSApp.library_swift_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = iOSApp.library_swift_vfs.yaml; sourceTree = "<group>"; };
+		6C1F9D87B8E451D8AEF4A66F /* WidgetExtension.38.link.params */ = {isa = PBXFileReference; path = WidgetExtension.38.link.params; sourceTree = "<group>"; };
 		6D599CF08B6EE1DE8CB58AAB /* MixedAnswer_objc.rules_xcodeproj.c.compile.params */ = {isa = PBXFileReference; path = MixedAnswer_objc.rules_xcodeproj.c.compile.params; sourceTree = "<group>"; };
 		6E5B1F75BDEA113A802EDDC0 /* WidgetExtension.library-umbrella.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WidgetExtension.library-umbrella.h"; sourceTree = "<group>"; };
 		6E7755981C018738EEE3CCFC /* MixedAnswer-umbrella.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MixedAnswer-umbrella.h"; sourceTree = "<group>"; };
@@ -366,9 +445,11 @@
 		6FEF6914E14A3F2257FCCC73 /* Lib-umbrella.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Lib-umbrella.h"; sourceTree = "<group>"; };
 		7012DFA199E3E0FCA0E6EEBF /* UI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UI.h; sourceTree = "<group>"; };
 		702668B3537F346955901B21 /* iOSApp.library.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = iOSApp.library.modulemap; sourceTree = "<group>"; };
+		74361D374FFCF38F5C271464 /* iOSAppSwiftUnitTestSuite.20.link.params */ = {isa = PBXFileReference; path = iOSAppSwiftUnitTestSuite.20.link.params; sourceTree = "<group>"; };
 		74695738CB0FC0458B58402D /* UI_swift.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; path = UI_swift.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		74AAF4C968A6D99A708BAAB4 /* Lib-Swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Lib-Swift.h"; sourceTree = "<group>"; };
 		756A0E23358C541C338DAA79 /* Lib_swift_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = Lib_swift_vfs.yaml; sourceTree = "<group>"; };
+		760C580903DAA0577AE3A4F9 /* iOSAppObjCUnitTestSuite_macro.24.link.params */ = {isa = PBXFileReference; path = iOSAppObjCUnitTestSuite_macro.24.link.params; sourceTree = "<group>"; };
 		763C3BF774CF6451F5932D42 /* libUI_swift.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libUI_swift.a; path = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/UI/libUI_swift.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		766D7EE9B9216ECBEBD8BD2B /* iOSAppObjCUnitTestSuite_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = iOSAppObjCUnitTestSuite_vfs.yaml; sourceTree = "<group>"; };
 		767814C442FBBD1CDEC668C0 /* Lib.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = Lib.modulemap; sourceTree = "<group>"; };
@@ -379,21 +460,26 @@
 		7ADDC628C4D7F94123AB1C72 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		7C2BAB6AE008BC89D9062E92 /* Lib.extended.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = Lib.extended.modulemap; sourceTree = "<group>"; };
 		7CF1512B8814803D87CAEC36 /* iOSAppMixedUnitTests_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = iOSAppMixedUnitTests_vfs.yaml; sourceTree = "<group>"; };
+		7EB7D6BC94C4C2C633DD26D2 /* iOS_App_ObjC_UnitTests_macro_with_bundle_name.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOS_App_ObjC_UnitTests_macro_with_bundle_name.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EFD33DA1BC7E7196649D05D /* ObjCUnitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObjCUnitTests.m; sourceTree = "<group>"; };
 		7F7B7B93C400129C5197BB47 /* WidgetExtension.library_swift.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; path = WidgetExtension.library_swift.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		806A7DC2EF2EA77C4AB660BA /* MixedAnswer_swift_angle_bracket_hmap.hmap */ = {isa = PBXFileReference; path = MixedAnswer_swift_angle_bracket_hmap.hmap; sourceTree = "<group>"; };
 		817C3EE93221FD1ABC7E9E9A /* data.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
 		81CEB384343DA3EBC4532AA1 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
+		82EB7F75FFE3A3A7726520D4 /* iOSAppObjCUnitTestSuite_macro.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSAppObjCUnitTestSuite_macro.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		830FA6F748919E2DFE3CAD91 /* iOSAppSwiftUnitTestSuite.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSAppSwiftUnitTestSuite.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		84494AD835BA1701AD3A63FA /* iOSAppObjCUnitTests_rules_ios_unit_test_macro.18.link.params */ = {isa = PBXFileReference; path = iOSAppObjCUnitTests_rules_ios_unit_test_macro.18.link.params; sourceTree = "<group>"; };
+		84D536C15661BD27060E7E20 /* iOSAppUITests_macro.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSAppUITests_macro.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		84F744B59E92115EBD29D194 /* WidgetExtension.library.extended.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = WidgetExtension.library.extended.modulemap; sourceTree = "<group>"; };
+		852EB631CB1D89E6021D5E87 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		853443833B8165A279DBA93B /* Utils */ = {isa = PBXFileReference; explicitFileType = wrapper.framework.static; includeInIndex = 0; path = Utils; sourceTree = BUILT_PRODUCTS_DIR; };
 		857A15B93D1F8BEC74C0EF29 /* iOSAppObjCUnitTests.17.link.params */ = {isa = PBXFileReference; path = iOSAppObjCUnitTests.17.link.params; sourceTree = "<group>"; };
 		878D719886BF9C8F9FFE3D95 /* CoreUtilsObjC.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = CoreUtilsObjC.modulemap; sourceTree = "<group>"; };
+		87D990B047447B6748D7F10B /* iOSAppUITests_macro_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = iOSAppUITests_macro_vfs.yaml; sourceTree = "<group>"; };
 		88A8AAC668F120F0F227ADD8 /* MixedAnswer_objc.rules_xcodeproj.c.compile.params */ = {isa = PBXFileReference; path = MixedAnswer_objc.rules_xcodeproj.c.compile.params; sourceTree = "<group>"; };
 		8ADC37941ED880DE400B1F1F /* MixedAnswer_public_hmap.hmap */ = {isa = PBXFileReference; path = MixedAnswer_public_hmap.hmap; sourceTree = "<group>"; };
 		8C5A7E4215F28D98C224A0EB /* iOSAppMixedUnitTests_swift_angle_bracket_hmap.hmap */ = {isa = PBXFileReference; path = iOSAppMixedUnitTests_swift_angle_bracket_hmap.hmap; sourceTree = "<group>"; };
 		8C623E825C8CC89C7A4388C4 /* UI_public_hmap.hmap */ = {isa = PBXFileReference; path = UI_public_hmap.hmap; sourceTree = "<group>"; };
+		8DABC8CCE475FA24228C1A63 /* iOSAppObjCUnitTests_macro.22.link.params */ = {isa = PBXFileReference; path = iOSAppObjCUnitTests_macro.22.link.params; sourceTree = "<group>"; };
 		8DF57F994CBA8FF402454F57 /* _Lib.0.info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = _Lib.0.info.plist; sourceTree = "<group>"; };
 		8F42566EF67A0D1385FA3E95 /* CoreUtilsObjC_swift_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = CoreUtilsObjC_swift_vfs.yaml; sourceTree = "<group>"; };
 		8F67BAAB911963DFE4A7C094 /* MixedAnswer-umbrella.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MixedAnswer-umbrella.h"; sourceTree = "<group>"; };
@@ -407,6 +493,7 @@
 		956B74ED62ED013D4E424F5C /* iOSApp_swift_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = iOSApp_swift_vfs.yaml; sourceTree = "<group>"; };
 		9623EF3F21A3F083ABEDBE8D /* Lib.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = Lib.modulemap; sourceTree = "<group>"; };
 		9645FF346B5933143E833EA5 /* iOSApp.library_swift_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = iOSApp.library_swift_vfs.yaml; sourceTree = "<group>"; };
+		965073A88294D244C7EB73B4 /* iOSAppObjCUnitTests_macro_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = iOSAppObjCUnitTests_macro_vfs.yaml; sourceTree = "<group>"; };
 		96E433D903880812811BA7D0 /* iOSAppUITestSuite.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSAppUITestSuite.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		97CCA2C49BEA8F5860CDFABF /* iOSApp.library_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = iOSApp.library_vfs.yaml; sourceTree = "<group>"; };
 		97DC554A57A7E90F4D17CEBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -414,9 +501,9 @@
 		99077259B27F84AC5E9959CB /* UI-Swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UI-Swift.h"; sourceTree = "<group>"; };
 		992CEBB2A76DA408FEBB628C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		9A1D7D8AFFF65EE1D9DA3971 /* UI_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = UI_vfs.yaml; sourceTree = "<group>"; };
-		9A3DD71D25F0509FF3D751B3 /* iOSAppSwiftUnitTests.19.link.params */ = {isa = PBXFileReference; path = iOSAppSwiftUnitTests.19.link.params; sourceTree = "<group>"; };
 		9AE8081C8F1D6B75658972AB /* iOSApp.library_public_hmap.hmap */ = {isa = PBXFileReference; path = iOSApp.library_public_hmap.hmap; sourceTree = "<group>"; };
 		9B9B00577F9503C23091539C /* Foo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Foo.h; sourceTree = "<group>"; };
+		9D19977B4A2D36DF0D14E150 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		9E9A34CF7D39ABC67B25D278 /* iOSAppSwiftUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSAppSwiftUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F3EE5E2077E93323CED2227 /* iOSAppSwiftUnitTests_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = iOSAppSwiftUnitTests_vfs.yaml; sourceTree = "<group>"; };
 		9F891C08B871C650304DEDCC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -424,13 +511,12 @@
 		9FB807E65788589E5F03DF37 /* Answers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Answers.h; sourceTree = "<group>"; };
 		A07612E4C929440B93C51CC8 /* MixedAnswer_swift_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = MixedAnswer_swift_vfs.yaml; sourceTree = "<group>"; };
 		A09F62C36C2DCFCDFE36EA93 /* CoreUtilsObjC_objc.rules_xcodeproj.cxx.compile.params */ = {isa = PBXFileReference; path = CoreUtilsObjC_objc.rules_xcodeproj.cxx.compile.params; sourceTree = "<group>"; };
-		A11BD2E68377EE4BE24AFBC5 /* LibDynamic.36.link.params */ = {isa = PBXFileReference; path = LibDynamic.36.link.params; sourceTree = "<group>"; };
 		A29F4C9A1C48AF99EE251CBC /* iOSAppSwiftUnitTests_swift.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; path = iOSAppSwiftUnitTests_swift.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		A3FF0AFAFE0363C79ED80B3E /* WidgetExtension */ = {isa = PBXFileReference; explicitFileType = wrapper.framework.static; includeInIndex = 0; path = WidgetExtension; sourceTree = BUILT_PRODUCTS_DIR; };
 		A564C4DE29D21B686050AAEF /* iOSAppObjCUnitTestSuite.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSAppObjCUnitTestSuite.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A57276062A7DE6B03F46E752 /* iOSAppSwiftUnitTestSuite.21.link.params */ = {isa = PBXFileReference; path = iOSAppSwiftUnitTestSuite.21.link.params; sourceTree = "<group>"; };
 		A5A3FE9FAF53E3CC3101F11A /* WidgetExtension.library_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = WidgetExtension.library_vfs.yaml; sourceTree = "<group>"; };
 		A694A45D6FC69EA003B7E6CC /* Lib_public_hmap.hmap */ = {isa = PBXFileReference; path = Lib_public_hmap.hmap; sourceTree = "<group>"; };
+		A7DBB11D2A3A40D2B7E39227 /* iOSAppObjCUnitTests_macro_objc.rules_xcodeproj.c.compile.params */ = {isa = PBXFileReference; path = iOSAppObjCUnitTests_macro_objc.rules_xcodeproj.c.compile.params; sourceTree = "<group>"; };
 		A80C0C4E735A280FA5D5D6DA /* iOSAppSwiftUnitTestSuite_swift_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = iOSAppSwiftUnitTestSuite_swift_vfs.yaml; sourceTree = "<group>"; };
 		A8915ED45260B23EE5D60034 /* iOSApp_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = iOSApp_vfs.yaml; sourceTree = "<group>"; };
 		A8F6954916D66F96D0738631 /* Source */ = {isa = PBXFileReference; explicitFileType = wrapper.framework.static; includeInIndex = 0; path = Source; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -438,11 +524,11 @@
 		AB71F75A8DF672BBBB0A6C69 /* WidgetExtension.library-umbrella.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WidgetExtension.library-umbrella.h"; sourceTree = "<group>"; };
 		ADAF285EF13FC2A80E255E44 /* MixedAnswer-Swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MixedAnswer-Swift.h"; sourceTree = "<group>"; };
 		ADCF3AB07FEC0772D9B83B08 /* Launch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
-		ADF85E6C7002559D56F31CEF /* iOSAppObjCUnitTestSuite.20.link.params */ = {isa = PBXFileReference; path = iOSAppObjCUnitTestSuite.20.link.params; sourceTree = "<group>"; };
+		B1B33AF0D65250996BF4A1A4 /* iOSAppObjCUnitTests_macro_with_bundle_name_objc.rules_xcodeproj.c.compile.params */ = {isa = PBXFileReference; path = iOSAppObjCUnitTests_macro_with_bundle_name_objc.rules_xcodeproj.c.compile.params; sourceTree = "<group>"; };
 		B51A7DB66AFD433FB15CB8CB /* iOSAppObjCUnitTests_objc.rules_xcodeproj.c.compile.params */ = {isa = PBXFileReference; path = iOSAppObjCUnitTests_objc.rules_xcodeproj.c.compile.params; sourceTree = "<group>"; };
+		B7521533DC27FAC29EBFD09B /* iOSAppUITests_macro_swift.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; path = iOSAppUITests_macro_swift.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		B809EEC3C7BDE467DAF5DF73 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B9CA78B212C2F73741A87571 /* CoreUtilsObjC_public_hmap.hmap */ = {isa = PBXFileReference; path = CoreUtilsObjC_public_hmap.hmap; sourceTree = "<group>"; };
-		BB1EC39123B2BAAB86CC7169 /* iOSAppUITestSuite.22.link.params */ = {isa = PBXFileReference; path = iOSAppUITestSuite.22.link.params; sourceTree = "<group>"; };
 		BC0D919D9C4954991E8C1FB8 /* iOSApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC947AA33C2A04E7242D0198 /* iOSAppSwiftUnitTestSuite_swift.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; path = iOSAppSwiftUnitTestSuite_swift.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		BDBC8B453324335F71754904 /* resource_bundle.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = resource_bundle.plist; sourceTree = "<group>"; };
@@ -451,7 +537,6 @@
 		BEEA406D7D2D485AEDBB4F40 /* RealAnswer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RealAnswer.h; sourceTree = "<group>"; };
 		BF16040287F3CC04369017F9 /* MixedAnswer.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = MixedAnswer.modulemap; sourceTree = "<group>"; };
 		BF610F1C6E575027C650BD83 /* WidgetExtension.library_swift_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = WidgetExtension.library_swift_vfs.yaml; sourceTree = "<group>"; };
-		C0CF6BEFCC2C38632360B4FA /* iOSApp.35.link.params */ = {isa = PBXFileReference; path = iOSApp.35.link.params; sourceTree = "<group>"; };
 		C5960C3F416397EFB313F138 /* SwiftUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUnitTests.swift; sourceTree = "<group>"; };
 		C64A7FC308992A1020580A5B /* iOSApp_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = iOSApp_vfs.yaml; sourceTree = "<group>"; };
 		C7020354B84129381163567A /* UI.extended.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = UI.extended.modulemap; sourceTree = "<group>"; };
@@ -474,6 +559,7 @@
 		D8574D553DDB85CEABF025F1 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		D9AF623FE54A6A5AE20D26D8 /* WidgetExtension.library.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = WidgetExtension.library.modulemap; sourceTree = "<group>"; };
 		DB47FDE5678BB42270C9943F /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
+		DC9F4B1731D314319EB5D5E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		DCC947E0EAAB11C95DF30B48 /* libLib_swift.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libLib_swift.a; path = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/Lib/libLib_swift.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD8B216A97B3A489950C257D /* iOSAppMixedUnitTests_swift_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = iOSAppMixedUnitTests_swift_vfs.yaml; sourceTree = "<group>"; };
 		DED855620DE23577B4F961F0 /* iOSAppMixedUnitTests_objc.rules_xcodeproj.c.compile.params */ = {isa = PBXFileReference; path = iOSAppMixedUnitTests_objc.rules_xcodeproj.c.compile.params; sourceTree = "<group>"; };
@@ -500,12 +586,12 @@
 		F0C00752106006E5B8A41B2B /* Utils.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = Utils.modulemap; sourceTree = "<group>"; };
 		F145075E997762CB4E52842D /* LibDynamic_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = LibDynamic_vfs.yaml; sourceTree = "<group>"; };
 		F41B3A8002517C8BAB2257F6 /* iOSApp.library_swift.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; path = iOSApp.library_swift.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
-		F60790CCC66C6D1C930A6B5F /* iOSAppObjCUnitTests_rules_ios_unit_test_macro_swift_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = iOSAppObjCUnitTests_rules_ios_unit_test_macro_swift_vfs.yaml; sourceTree = "<group>"; };
 		F613A2682C35500BDA020DC4 /* Utils_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = Utils_vfs.yaml; sourceTree = "<group>"; };
 		F7924BBF83C8A2568C2A1D68 /* MixedAnswer_swift_doublequote_hmap.hmap */ = {isa = PBXFileReference; path = MixedAnswer_swift_doublequote_hmap.hmap; sourceTree = "<group>"; };
 		F83791E95A589B7A7CE1D66E /* iOS_App_ObjC_UnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOS_App_ObjC_UnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA2DECD95DB7EA8CD816F74D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		FB1BE4BEC7481255F1CECF19 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		FBB8904DD8E9330B4A882514 /* iOSAppUITestSuite_macro_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = iOSAppUITestSuite_macro_vfs.yaml; sourceTree = "<group>"; };
 		FBF5E8B112A0F9856E6CB2D4 /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
 		FD5D0D0FA26ABBB98C852928 /* Lib_swift.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; path = Lib_swift.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		FE03679497541BC505DFA818 /* iOSApp.library-umbrella.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOSApp.library-umbrella.h"; sourceTree = "<group>"; };
@@ -517,8 +603,10 @@
 		008891C15098CA4AD2A35934 /* rules_xcodeproj */ = {
 			isa = PBXGroup;
 			children = (
-				A7915D987691BBE478AAFF3C /* iOS_App_ObjC_UnitTests_rules_ios_unit_test_macro.__internal__.__test_bundle */,
+				62327CD9014DD1620DFD47B5 /* iOS_App_ObjC_UnitTests_macro_with_bundle_name.__internal__.__test_bundle */,
 				E814A4935925DD1BBC1DE2C1 /* iOS_App_ObjC_UnitTests.__internal__.__test_bundle */,
+				D8D5489D4764ED21D00662E1 /* iOSAppObjCUnitTests_macro.__internal__.__test_bundle */,
+				72B13F30150AD99765A2125C /* iOSAppObjCUnitTestSuite_macro.__internal__.__test_bundle */,
 				A802C6007D5A94FF0D76DDF2 /* iOSAppObjCUnitTestSuite.__internal__.__test_bundle */,
 			);
 			path = rules_xcodeproj;
@@ -614,6 +702,12 @@
 		192D2B81D60FE82341630009 /* UITests */ = {
 			isa = PBXGroup;
 			children = (
+				573BFA3154CBDC49C5B3FEA2 /* iOSAppUITests_macro_swift_vfs.yaml */,
+				B7521533DC27FAC29EBFD09B /* iOSAppUITests_macro_swift.rules_xcodeproj.swift.compile.params */,
+				87D990B047447B6748D7F10B /* iOSAppUITests_macro_vfs.yaml */,
+				2958E39A4ADD63825B7A4202 /* iOSAppUITestSuite_macro_swift_vfs.yaml */,
+				0D5C0061CE509102E0446C52 /* iOSAppUITestSuite_macro_swift.rules_xcodeproj.swift.compile.params */,
+				FBB8904DD8E9330B4A882514 /* iOSAppUITestSuite_macro_vfs.yaml */,
 				2E787FFF972069C91657AD09 /* iOSAppUITestSuite_swift_vfs.yaml */,
 				451B2596C67183062FCA26BB /* iOSAppUITestSuite_swift.rules_xcodeproj.swift.compile.params */,
 				152B431C61A8AD7DF7086C3B /* iOSAppUITestSuite_vfs.yaml */,
@@ -657,18 +751,22 @@
 			isa = PBXGroup;
 			children = (
 				9068C45F14F1720B6A20A847 /* iOSApp.12.link.params */,
-				C0CF6BEFCC2C38632360B4FA /* iOSApp.35.link.params */,
+				3E3747E16CD6FA4F70D8C657 /* iOSApp.39.link.params */,
 				E83EE127411F263444BE995C /* iOSAppMixedUnitTests.16.link.params */,
-				84494AD835BA1701AD3A63FA /* iOSAppObjCUnitTests_rules_ios_unit_test_macro.18.link.params */,
+				2C9EE197E604B40888F4CD14 /* iOSAppObjCUnitTests_macro_with_bundle_name.23.link.params */,
+				8DABC8CCE475FA24228C1A63 /* iOSAppObjCUnitTests_macro.22.link.params */,
 				857A15B93D1F8BEC74C0EF29 /* iOSAppObjCUnitTests.17.link.params */,
-				ADF85E6C7002559D56F31CEF /* iOSAppObjCUnitTestSuite.20.link.params */,
-				9A3DD71D25F0509FF3D751B3 /* iOSAppSwiftUnitTests.19.link.params */,
-				A57276062A7DE6B03F46E752 /* iOSAppSwiftUnitTestSuite.21.link.params */,
-				BB1EC39123B2BAAB86CC7169 /* iOSAppUITestSuite.22.link.params */,
+				760C580903DAA0577AE3A4F9 /* iOSAppObjCUnitTestSuite_macro.24.link.params */,
+				1E207B4BC8C4BA98829AA31B /* iOSAppObjCUnitTestSuite.19.link.params */,
+				2EF9005C716A7EACE679B0A5 /* iOSAppSwiftUnitTests.18.link.params */,
+				74361D374FFCF38F5C271464 /* iOSAppSwiftUnitTestSuite.20.link.params */,
+				3023AB6EED3D2627828EFB27 /* iOSAppUITests_macro.25.link.params */,
+				65AD339780D2D31F1E58A8A5 /* iOSAppUITestSuite_macro.26.link.params */,
+				6052230133F13DD0373223AF /* iOSAppUITestSuite.21.link.params */,
 				423B2859CFF335C73843176F /* LibDynamic.13.link.params */,
-				A11BD2E68377EE4BE24AFBC5 /* LibDynamic.36.link.params */,
+				3D11C620EB6E71AEA33A56A7 /* LibDynamic.40.link.params */,
 				1567E99590285B71C567DB50 /* WidgetExtension.11.link.params */,
-				1C286C1784EEF207E6139E1E /* WidgetExtension.34.link.params */,
+				6C1F9D87B8E451D8AEF4A66F /* WidgetExtension.38.link.params */,
 			);
 			path = "xcodeproj_bwb-params";
 			sourceTree = "<group>";
@@ -909,6 +1007,14 @@
 			path = WidgetExtension;
 			sourceTree = "<group>";
 		};
+		5AB2C53AB2DBB6883B1B692F /* iOSAppUITestSuite_macro.__internal__.__test_bundle */ = {
+			isa = PBXGroup;
+			children = (
+				2F43757D27C761E624B93DBC /* Info.plist */,
+			);
+			path = iOSAppUITestSuite_macro.__internal__.__test_bundle;
+			sourceTree = "<group>";
+		};
 		5B0F23B202A3C23E514C40B0 /* WidgetExtension.library-modulemap */ = {
 			isa = PBXGroup;
 			children = (
@@ -940,6 +1046,14 @@
 				AAB30A4C9B2589141E74FF35 /* Source */,
 			);
 			path = iOSApp;
+			sourceTree = "<group>";
+		};
+		62327CD9014DD1620DFD47B5 /* iOS_App_ObjC_UnitTests_macro_with_bundle_name.__internal__.__test_bundle */ = {
+			isa = PBXGroup;
+			children = (
+				9D19977B4A2D36DF0D14E150 /* Info.plist */,
+			);
+			path = iOS_App_ObjC_UnitTests_macro_with_bundle_name.__internal__.__test_bundle;
 			sourceTree = "<group>";
 		};
 		649BFB0164ACFC36247D277D /* WidgetExtension */ = {
@@ -996,6 +1110,14 @@
 				2454E755EE3BE4DB125DD927 /* xcodeproj_bwb-params */,
 			);
 			path = xcodeproj_bwb;
+			sourceTree = "<group>";
+		};
+		72B13F30150AD99765A2125C /* iOSAppObjCUnitTestSuite_macro.__internal__.__test_bundle */ = {
+			isa = PBXGroup;
+			children = (
+				DC9F4B1731D314319EB5D5E1 /* Info.plist */,
+			);
+			path = iOSAppObjCUnitTestSuite_macro.__internal__.__test_bundle;
 			sourceTree = "<group>";
 		};
 		732C73A2EBE8ADE2B342F831 /* MixedUnitTests */ = {
@@ -1097,13 +1219,17 @@
 			isa = PBXGroup;
 			children = (
 				E22923C46B20505FE341D98E /* CoreUtilsObjC */,
-				41006B3DA26E2E682B423F5A /* iOS_App_ObjC_UnitTests_rules_ios_unit_test_macro.xctest */,
+				7EB7D6BC94C4C2C633DD26D2 /* iOS_App_ObjC_UnitTests_macro_with_bundle_name.xctest */,
 				F83791E95A589B7A7CE1D66E /* iOS_App_ObjC_UnitTests.xctest */,
 				BC0D919D9C4954991E8C1FB8 /* iOSApp.app */,
 				5FBAE702AC09A964F519EB60 /* iOSAppMixedUnitTests.xctest */,
+				2758952B8073EA1E165156C3 /* iOSAppObjCUnitTests_macro.xctest */,
+				82EB7F75FFE3A3A7726520D4 /* iOSAppObjCUnitTestSuite_macro.xctest */,
 				A564C4DE29D21B686050AAEF /* iOSAppObjCUnitTestSuite.xctest */,
 				9E9A34CF7D39ABC67B25D278 /* iOSAppSwiftUnitTests.xctest */,
 				830FA6F748919E2DFE3CAD91 /* iOSAppSwiftUnitTestSuite.xctest */,
+				84D536C15661BD27060E7E20 /* iOSAppUITests_macro.xctest */,
+				66DE447C5CAD1C6E0B2660E9 /* iOSAppUITestSuite_macro.xctest */,
 				96E433D903880812811BA7D0 /* iOSAppUITestSuite.xctest */,
 				E0418187A80C9532E8EBBCB4 /* Lib */,
 				30DD7BE468D6C0D1FAAB87AE /* libCoreUtilsObjC_objc.a */,
@@ -1134,17 +1260,31 @@
 		8B20A0AEE9B86951EE458433 /* ObjCUnitTests */ = {
 			isa = PBXGroup;
 			children = (
+				A7DBB11D2A3A40D2B7E39227 /* iOSAppObjCUnitTests_macro_objc.rules_xcodeproj.c.compile.params */,
+				5BBDC49684637D5F026F51BB /* iOSAppObjCUnitTests_macro_swift_vfs.yaml */,
+				965073A88294D244C7EB73B4 /* iOSAppObjCUnitTests_macro_vfs.yaml */,
+				B1B33AF0D65250996BF4A1A4 /* iOSAppObjCUnitTests_macro_with_bundle_name_objc.rules_xcodeproj.c.compile.params */,
+				0D23278F537ED2CDBBD6EF33 /* iOSAppObjCUnitTests_macro_with_bundle_name_swift_vfs.yaml */,
+				0F20D9EE8618CF75190CCD45 /* iOSAppObjCUnitTests_macro_with_bundle_name_vfs.yaml */,
 				B51A7DB66AFD433FB15CB8CB /* iOSAppObjCUnitTests_objc.rules_xcodeproj.c.compile.params */,
-				35509374AD4B4346E8D5164A /* iOSAppObjCUnitTests_rules_ios_unit_test_macro_objc.rules_xcodeproj.c.compile.params */,
-				F60790CCC66C6D1C930A6B5F /* iOSAppObjCUnitTests_rules_ios_unit_test_macro_swift_vfs.yaml */,
-				0320432B2D34C86E169D804C /* iOSAppObjCUnitTests_rules_ios_unit_test_macro_vfs.yaml */,
 				E910F27700E5F3B686598F83 /* iOSAppObjCUnitTests_swift_vfs.yaml */,
 				57BD345CD3D1409926BA80EA /* iOSAppObjCUnitTests_vfs.yaml */,
+				36E85BF5ACB8DC1B6E20D716 /* iOSAppObjCUnitTestSuite_macro_objc.rules_xcodeproj.c.compile.params */,
+				58C79AF05A8842DE1B8FE04D /* iOSAppObjCUnitTestSuite_macro_swift_vfs.yaml */,
+				44EA20A9F7C6DF04A0E8EBEB /* iOSAppObjCUnitTestSuite_macro_vfs.yaml */,
 				115BBF7720C258728F1B71E1 /* iOSAppObjCUnitTestSuite_objc.rules_xcodeproj.c.compile.params */,
 				BDD2584A64883C9E56652BB5 /* iOSAppObjCUnitTestSuite_swift_vfs.yaml */,
 				766D7EE9B9216ECBEBD8BD2B /* iOSAppObjCUnitTestSuite_vfs.yaml */,
 			);
 			path = ObjCUnitTests;
+			sourceTree = "<group>";
+		};
+		8BD91371AC5BD190E82C529F /* iOSAppUITests_macro.__internal__.__test_bundle */ = {
+			isa = PBXGroup;
+			children = (
+				66C3F5F95636FED4174B4110 /* Info.plist */,
+			);
+			path = iOSAppUITests_macro.__internal__.__test_bundle;
 			sourceTree = "<group>";
 		};
 		8BE4351865DAF912B4181CEA /* WidgetExtension */ = {
@@ -1246,14 +1386,6 @@
 				BEEA406D7D2D485AEDBB4F40 /* RealAnswer.h */,
 			);
 			path = CoreUtils;
-			sourceTree = "<group>";
-		};
-		A7915D987691BBE478AAFF3C /* iOS_App_ObjC_UnitTests_rules_ios_unit_test_macro.__internal__.__test_bundle */ = {
-			isa = PBXGroup;
-			children = (
-				0126BEB7B5E9B31E6E670674 /* Info.plist */,
-			);
-			path = iOS_App_ObjC_UnitTests_rules_ios_unit_test_macro.__internal__.__test_bundle;
 			sourceTree = "<group>";
 		};
 		A802C6007D5A94FF0D76DDF2 /* iOSAppObjCUnitTestSuite.__internal__.__test_bundle */ = {
@@ -1375,6 +1507,8 @@
 		C505C48CEBE0111EA4B0B91A /* rules_xcodeproj */ = {
 			isa = PBXGroup;
 			children = (
+				8BD91371AC5BD190E82C529F /* iOSAppUITests_macro.__internal__.__test_bundle */,
+				5AB2C53AB2DBB6883B1B692F /* iOSAppUITestSuite_macro.__internal__.__test_bundle */,
 				F3B3182BB32780316AC616E7 /* iOSAppUITestSuite.__internal__.__test_bundle */,
 			);
 			path = rules_xcodeproj;
@@ -1464,6 +1598,14 @@
 				192D2B81D60FE82341630009 /* UITests */,
 			);
 			path = Test;
+			sourceTree = "<group>";
+		};
+		D8D5489D4764ED21D00662E1 /* iOSAppObjCUnitTests_macro.__internal__.__test_bundle */ = {
+			isa = PBXGroup;
+			children = (
+				852EB631CB1D89E6021D5E87 /* Info.plist */,
+			);
+			path = iOSAppObjCUnitTests_macro.__internal__.__test_bundle;
 			sourceTree = "<group>";
 		};
 		D95FA71108873B37E1AFF3FC /* WidgetExtension */ = {
@@ -1735,6 +1877,26 @@
 			productReference = D84B1167EC982BA8746D0BA6 /* UI */;
 			productType = "com.apple.product-type.framework";
 		};
+		148E3B44D6F6748A5EED5578 /* iOSAppObjCUnitTests_macro_with_bundle_name */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D37500F8BBE8E3B5B91A6BFE /* Build configuration list for PBXNativeTarget "iOSAppObjCUnitTests_macro_with_bundle_name" */;
+			buildPhases = (
+				132431FE6AECFDE36F8E4EB6 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
+				C2E4E49EA9E52DAADBA33141 /* Create compiling dependencies */,
+				D665C2FE01D135B28F666BCB /* Create linking dependencies */,
+				32B3DD21ABAE1513EA0BB3B7 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				18136032E47C0237A281A48A /* PBXTargetDependency */,
+				FBAFFE7F9FFE6A680CC13041 /* PBXTargetDependency */,
+			);
+			name = iOSAppObjCUnitTests_macro_with_bundle_name;
+			productName = iOS_App_ObjC_UnitTests_macro_with_bundle_name;
+			productReference = 7EB7D6BC94C4C2C633DD26D2 /* iOS_App_ObjC_UnitTests_macro_with_bundle_name.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		1765D91CC168F25A5BC51603 /* iOSApp */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E8A489D2F21C3EBA9BFFC31B /* Build configuration list for PBXNativeTarget "iOSApp" */;
@@ -1825,6 +1987,26 @@
 			productName = Utils_objc;
 			productType = "com.apple.product-type.library.static";
 		};
+		4F23F3D45461FABC8CB4A2D0 /* iOSAppUITests_macro */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9C4C413A97A3AC7EF73D2D4E /* Build configuration list for PBXNativeTarget "iOSAppUITests_macro" */;
+			buildPhases = (
+				BCD6199731BF44880EC4E037 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
+				AE5427F6BD39039328F32863 /* Create compiling dependencies */,
+				33F79B90DB8C8EB77718FB4E /* Create linking dependencies */,
+				2120A65B3714D6BF57DB2D0D /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				33309A340B59720AD151B395 /* PBXTargetDependency */,
+				5E033C300D2ED9D1D4550D2E /* PBXTargetDependency */,
+			);
+			name = iOSAppUITests_macro;
+			productName = iOSAppUITests_macro;
+			productReference = 84D536C15661BD27060E7E20 /* iOSAppUITests_macro.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		53946EBDBE4ACCD657FB2B21 /* LibDynamic */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 685C0B902C0D3B57E270AD60 /* Build configuration list for PBXNativeTarget "LibDynamic" */;
@@ -1859,6 +2041,26 @@
 			name = MixedAnswer_objc;
 			productName = MixedAnswer_objc;
 			productType = "com.apple.product-type.library.static";
+		};
+		64207215DA153DB2E4005A70 /* iOSAppObjCUnitTestSuite_macro */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0D6C17814A6FC79DB9DDF88C /* Build configuration list for PBXNativeTarget "iOSAppObjCUnitTestSuite_macro" */;
+			buildPhases = (
+				BE6E766212DEC79552B97F2C /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
+				C98AE216BE65727209865D9C /* Create compiling dependencies */,
+				09EFBD806EBC24F716B8552B /* Create linking dependencies */,
+				96F532B224A9C9F09DDDB922 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AF0FD6AB801CE5A322CA9259 /* PBXTargetDependency */,
+				27A01D48CDA0840ADF1439EF /* PBXTargetDependency */,
+			);
+			name = iOSAppObjCUnitTestSuite_macro;
+			productName = iOSAppObjCUnitTestSuite_macro;
+			productReference = 82EB7F75FFE3A3A7726520D4 /* iOSAppObjCUnitTestSuite_macro.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		64AE6000A6317B9C077F3B1E /* CoreUtilsObjC */ = {
 			isa = PBXNativeTarget;
@@ -1948,6 +2150,26 @@
 			productReference = 2A465192CDE37BED1EB25DFD /* MixedAnswer */;
 			productType = "com.apple.product-type.framework";
 		};
+		A7D98963EFC5C3CBF64B0179 /* iOSAppUITestSuite_macro */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F4744EA3269559DAF1563A10 /* Build configuration list for PBXNativeTarget "iOSAppUITestSuite_macro" */;
+			buildPhases = (
+				D28FB086A858D4FCE3B797C1 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
+				A19B93E43EDA80BC94FA6C75 /* Create compiling dependencies */,
+				ADAD1D69380444E3411C5F13 /* Create linking dependencies */,
+				F850C8F8E2039B4BFC072F4F /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				58ABD107F68264E28ED6ACBF /* PBXTargetDependency */,
+				D944B6FC9C8A6DC80A5932B2 /* PBXTargetDependency */,
+			);
+			name = iOSAppUITestSuite_macro;
+			productName = iOSAppUITestSuite_macro;
+			productReference = 66DE447C5CAD1C6E0B2660E9 /* iOSAppUITestSuite_macro.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		ACDA5ACDC1BF2DFDEAE93AFB /* iOSAppSwiftUnitTestSuite */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 54364E8F97C215D398C4DA76 /* Build configuration list for PBXNativeTarget "iOSAppSwiftUnitTestSuite" */;
@@ -1985,6 +2207,26 @@
 			productName = MixedAnswer_swift;
 			productType = "com.apple.product-type.library.static";
 		};
+		B00C5FDD50ED76D9EF9E686F /* iOSAppObjCUnitTests_macro */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6EF363DB7A318EF131FD12CE /* Build configuration list for PBXNativeTarget "iOSAppObjCUnitTests_macro" */;
+			buildPhases = (
+				936BEEC2613735D1C93F9D17 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
+				FABA9763752B53069E85D094 /* Create compiling dependencies */,
+				E03898BE4B483CE485DE52CB /* Create linking dependencies */,
+				F2202BC58FAEE9C58173FC5E /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E49746724F6099D2DE209506 /* PBXTargetDependency */,
+				67098905156FA7112710C906 /* PBXTargetDependency */,
+			);
+			name = iOSAppObjCUnitTests_macro;
+			productName = iOSAppObjCUnitTests_macro;
+			productReference = 2758952B8073EA1E165156C3 /* iOSAppObjCUnitTests_macro.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		B25A16ED5B68231D785FFFC0 /* iOSAppMixedUnitTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 805A67028AC04CCB03C9DB0F /* Build configuration list for PBXNativeTarget "iOSAppMixedUnitTests" */;
@@ -2003,26 +2245,6 @@
 			name = iOSAppMixedUnitTests;
 			productName = iOSAppMixedUnitTests;
 			productReference = 5FBAE702AC09A964F519EB60 /* iOSAppMixedUnitTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		CE230E6CF576A718AB8F0057 /* iOSAppObjCUnitTests_rules_ios_unit_test_macro */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C725A0ADD02DEFF37D7FCFF9 /* Build configuration list for PBXNativeTarget "iOSAppObjCUnitTests_rules_ios_unit_test_macro" */;
-			buildPhases = (
-				E1EFA8CB76CE497877370A55 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */,
-				DCA8CB81B81B6261D57A8D51 /* Create compiling dependencies */,
-				EEAC6D0A99F3AE8632FFADFE /* Create linking dependencies */,
-				A21F58B42E21EB122EABF090 /* Sources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				B9A724253A64C3D97CE28E2F /* PBXTargetDependency */,
-				9D88777EBA24742DE859C4C1 /* PBXTargetDependency */,
-			);
-			name = iOSAppObjCUnitTests_rules_ios_unit_test_macro;
-			productName = iOS_App_ObjC_UnitTests_rules_ios_unit_test_macro;
-			productReference = 41006B3DA26E2E682B423F5A /* iOS_App_ObjC_UnitTests_rules_ios_unit_test_macro.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		D2B147BDA8E8FC10D91B53BB /* iOSAppSwiftUnitTests */ = {
@@ -2135,6 +2357,11 @@
 						CreatedOnToolsVersion = 13.0.0;
 						LastSwiftMigration = 9999;
 					};
+					148E3B44D6F6748A5EED5578 = {
+						CreatedOnToolsVersion = 13.0.0;
+						LastSwiftMigration = 9999;
+						TestTargetID = 1765D91CC168F25A5BC51603;
+					};
 					1765D91CC168F25A5BC51603 = {
 						CreatedOnToolsVersion = 13.0.0;
 						LastSwiftMigration = 9999;
@@ -2156,6 +2383,11 @@
 						CreatedOnToolsVersion = 13.0.0;
 						LastSwiftMigration = 9999;
 					};
+					4F23F3D45461FABC8CB4A2D0 = {
+						CreatedOnToolsVersion = 13.0.0;
+						LastSwiftMigration = 9999;
+						TestTargetID = 1765D91CC168F25A5BC51603;
+					};
 					53946EBDBE4ACCD657FB2B21 = {
 						CreatedOnToolsVersion = 13.0.0;
 						LastSwiftMigration = 9999;
@@ -2163,6 +2395,11 @@
 					5475A870C308B2BFA9D62783 = {
 						CreatedOnToolsVersion = 13.0.0;
 						LastSwiftMigration = 9999;
+					};
+					64207215DA153DB2E4005A70 = {
+						CreatedOnToolsVersion = 13.0.0;
+						LastSwiftMigration = 9999;
+						TestTargetID = 1765D91CC168F25A5BC51603;
 					};
 					64AE6000A6317B9C077F3B1E = {
 						CreatedOnToolsVersion = 13.0.0;
@@ -2188,6 +2425,11 @@
 						CreatedOnToolsVersion = 13.0.0;
 						LastSwiftMigration = 9999;
 					};
+					A7D98963EFC5C3CBF64B0179 = {
+						CreatedOnToolsVersion = 13.0.0;
+						LastSwiftMigration = 9999;
+						TestTargetID = 1765D91CC168F25A5BC51603;
+					};
 					ACDA5ACDC1BF2DFDEAE93AFB = {
 						CreatedOnToolsVersion = 13.0.0;
 						LastSwiftMigration = 9999;
@@ -2197,12 +2439,12 @@
 						CreatedOnToolsVersion = 13.0.0;
 						LastSwiftMigration = 9999;
 					};
-					B25A16ED5B68231D785FFFC0 = {
+					B00C5FDD50ED76D9EF9E686F = {
 						CreatedOnToolsVersion = 13.0.0;
 						LastSwiftMigration = 9999;
 						TestTargetID = 1765D91CC168F25A5BC51603;
 					};
-					CE230E6CF576A718AB8F0057 = {
+					B25A16ED5B68231D785FFFC0 = {
 						CreatedOnToolsVersion = 13.0.0;
 						LastSwiftMigration = 9999;
 						TestTargetID = 1765D91CC168F25A5BC51603;
@@ -2252,11 +2494,15 @@
 				E5592BD7E8C542A892303B2D /* iOSApp.library */,
 				B25A16ED5B68231D785FFFC0 /* iOSAppMixedUnitTests */,
 				41EA1ABC35FAFDF6B7FE0600 /* iOSAppObjCUnitTests */,
-				CE230E6CF576A718AB8F0057 /* iOSAppObjCUnitTests_rules_ios_unit_test_macro */,
+				B00C5FDD50ED76D9EF9E686F /* iOSAppObjCUnitTests_macro */,
+				148E3B44D6F6748A5EED5578 /* iOSAppObjCUnitTests_macro_with_bundle_name */,
 				8EE630791B4B7821701DA6DE /* iOSAppObjCUnitTestSuite */,
+				64207215DA153DB2E4005A70 /* iOSAppObjCUnitTestSuite_macro */,
 				D2B147BDA8E8FC10D91B53BB /* iOSAppSwiftUnitTests */,
 				ACDA5ACDC1BF2DFDEAE93AFB /* iOSAppSwiftUnitTestSuite */,
+				4F23F3D45461FABC8CB4A2D0 /* iOSAppUITests_macro */,
 				F36F253D9F3EB5CAC3409272 /* iOSAppUITestSuite */,
+				A7D98963EFC5C3CBF64B0179 /* iOSAppUITestSuite_macro */,
 				97C0B94AB8C957F2A520B819 /* Lib */,
 				7629B38F5FD7E62052372262 /* Lib_swift */,
 				53946EBDBE4ACCD657FB2B21 /* LibDynamic */,
@@ -2274,6 +2520,23 @@
 /* End PBXProject section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		09EFBD806EBC24F716B8552B /* Create linking dependencies */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(LINK_PARAMS_FILE)",
+			);
+			name = "Create linking dependencies";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/link.params",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nif [[ \"${ENABLE_PREVIEWS:-}\" == \"YES\" ]]; then\nperl -pe 's/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\nelse\n  touch \"$SCRIPT_OUTPUT_FILE_0\"\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		0A461404069DCE64BC9683EF /* Create compiling dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2308,6 +2571,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "set -euo pipefail\n\nperl -pe '\n  s/__BAZEL_XCODE_DEVELOPER_DIR__/\\$(DEVELOPER_DIR)/g;\n  s/__BAZEL_XCODE_SDKROOT__/\\$(SDKROOT)/g;\n  s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/gx;\n' \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"";
+			showEnvVarsInLog = 0;
+		};
+		132431FE6AECFDE36F8E4EB6 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = "Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\nelse\n  \"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n    \"_BazelForcedCompile_.swift\" \\\n    \"iOS_App_ObjC_UnitTests_macro_with_bundle_name.xctest\" \\\n    \"$BAZEL_INTEGRATION_DIR/xctest.exclude.rsynclist\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		1945F51014CF026B82A8DE7B /* Create compiling dependencies */ = {
@@ -2463,6 +2743,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "set -euo pipefail\n\nif [[ \"${ENABLE_PREVIEWS:-}\" == \"YES\" ]]; then\nperl -pe 's/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\nelse\n  touch \"$SCRIPT_OUTPUT_FILE_0\"\nfi\n\ntouch \"$SCRIPT_OUTPUT_FILE_1\"\n";
+			showEnvVarsInLog = 0;
+		};
+		33F79B90DB8C8EB77718FB4E /* Create linking dependencies */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(LINK_PARAMS_FILE)",
+			);
+			name = "Create linking dependencies";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/link.params",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nif [[ \"${ENABLE_PREVIEWS:-}\" == \"YES\" ]]; then\nperl -pe 's/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\nelse\n  touch \"$SCRIPT_OUTPUT_FILE_0\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		3443BD01BA1DE330020D29F9 /* Create compiling dependencies */ = {
@@ -2700,6 +2997,23 @@
 			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\n\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		936BEEC2613735D1C93F9D17 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = "Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\nelse\n  \"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n    \"_BazelForcedCompile_.swift\" \\\n    \"iOSAppObjCUnitTests_macro.xctest\" \\\n    \"$BAZEL_INTEGRATION_DIR/xctest.exclude.rsynclist\"\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		941287568BA30E392EF8DAB4 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -2803,6 +3117,23 @@
 			shellScript = "set -euo pipefail\n\nif [[ \"${ENABLE_PREVIEWS:-}\" == \"YES\" ]]; then\nperl -pe 's/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\nelse\n  touch \"$SCRIPT_OUTPUT_FILE_0\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		A19B93E43EDA80BC94FA6C75 /* Create compiling dependencies */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SWIFT_PARAMS_FILE)",
+			);
+			name = "Create compiling dependencies";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/swift.compile.params",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nperl -pe '\n  s/__BAZEL_XCODE_DEVELOPER_DIR__/\\$(DEVELOPER_DIR)/g;\n  s/__BAZEL_XCODE_SDKROOT__/\\$(SDKROOT)/g;\n  s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/gx;\n' \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"";
+			showEnvVarsInLog = 0;
+		};
 		AB7CCD3A91622D287B90CA66 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -2821,6 +3152,40 @@
 			showEnvVarsInLog = 0;
 		};
 		AC8D0B24EA97892776C8D84E /* Create compiling dependencies */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SWIFT_PARAMS_FILE)",
+			);
+			name = "Create compiling dependencies";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/swift.compile.params",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nperl -pe '\n  s/__BAZEL_XCODE_DEVELOPER_DIR__/\\$(DEVELOPER_DIR)/g;\n  s/__BAZEL_XCODE_SDKROOT__/\\$(SDKROOT)/g;\n  s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/gx;\n' \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"";
+			showEnvVarsInLog = 0;
+		};
+		ADAD1D69380444E3411C5F13 /* Create linking dependencies */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(LINK_PARAMS_FILE)",
+			);
+			name = "Create linking dependencies";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/link.params",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nif [[ \"${ENABLE_PREVIEWS:-}\" == \"YES\" ]]; then\nperl -pe 's/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\nelse\n  touch \"$SCRIPT_OUTPUT_FILE_0\"\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		AE5427F6BD39039328F32863 /* Create compiling dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2888,6 +3253,74 @@
 			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\nelse\n  \"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n    \"_BazelForcedCompile_.swift\" \\\n    \"iOSAppSwiftUnitTestSuite.xctest\" \\\n    \"$BAZEL_INTEGRATION_DIR/xctest.exclude.rsynclist\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		BCD6199731BF44880EC4E037 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = "Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\nelse\n  \"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n    \"_BazelForcedCompile_.swift\" \\\n    \"iOSAppUITests_macro.xctest\" \\\n    \"$BAZEL_INTEGRATION_DIR/xctest.exclude.rsynclist\"\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		BE6E766212DEC79552B97F2C /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = "Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\nelse\n  \"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n    \"_BazelForcedCompile_.swift\" \\\n    \"iOSAppObjCUnitTestSuite_macro.xctest\" \\\n    \"$BAZEL_INTEGRATION_DIR/xctest.exclude.rsynclist\"\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C2E4E49EA9E52DAADBA33141 /* Create compiling dependencies */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(C_PARAMS_FILE)",
+			);
+			name = "Create compiling dependencies";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/c.compile.params",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nperl -pe '\n  s/__BAZEL_XCODE_DEVELOPER_DIR__/\\$(DEVELOPER_DIR)/g;\n  s/__BAZEL_XCODE_SDKROOT__/\\$(SDKROOT)/g;\n  s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/gx;\n' \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"";
+			showEnvVarsInLog = 0;
+		};
+		C98AE216BE65727209865D9C /* Create compiling dependencies */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(C_PARAMS_FILE)",
+			);
+			name = "Create compiling dependencies";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/c.compile.params",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nperl -pe '\n  s/__BAZEL_XCODE_DEVELOPER_DIR__/\\$(DEVELOPER_DIR)/g;\n  s/__BAZEL_XCODE_SDKROOT__/\\$(SDKROOT)/g;\n  s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/gx;\n' \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"";
+			showEnvVarsInLog = 0;
+		};
 		CA11D4B83BD182DE627B6884 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -2902,6 +3335,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\n\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D28FB086A858D4FCE3B797C1 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = "Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\nelse\n  \"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n    \"_BazelForcedCompile_.swift\" \\\n    \"iOSAppUITestSuite_macro.xctest\" \\\n    \"$BAZEL_INTEGRATION_DIR/xctest.exclude.rsynclist\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		D34E8CD766A682E06A8B3255 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
@@ -2921,6 +3371,23 @@
 			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\nelse\n  \"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n    \"_BazelForcedCompile_.swift\" \\\n    \"WidgetExtension.appex\" \\\n    \"$BAZEL_INTEGRATION_DIR/appex.exclude.rsynclist\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		D665C2FE01D135B28F666BCB /* Create linking dependencies */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(LINK_PARAMS_FILE)",
+			);
+			name = "Create linking dependencies";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/link.params",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nif [[ \"${ENABLE_PREVIEWS:-}\" == \"YES\" ]]; then\nperl -pe 's/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\nelse\n  touch \"$SCRIPT_OUTPUT_FILE_0\"\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		D781DC4D798CC8458BAF2680 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -2938,23 +3405,6 @@
 			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\nelse\n  \"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n    \"_BazelForcedCompile_.swift\" \\\n    \"Source\" \\\n    \"\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		DCA8CB81B81B6261D57A8D51 /* Create compiling dependencies */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(C_PARAMS_FILE)",
-			);
-			name = "Create compiling dependencies";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/c.compile.params",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\nperl -pe '\n  s/__BAZEL_XCODE_DEVELOPER_DIR__/\\$(DEVELOPER_DIR)/g;\n  s/__BAZEL_XCODE_SDKROOT__/\\$(SDKROOT)/g;\n  s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/gx;\n' \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"";
-			showEnvVarsInLog = 0;
-		};
 		DF76ED77F4A6D7E7837FBB34 /* Create compiling dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2970,6 +3420,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "set -euo pipefail\n\nperl -pe '\n  s/__BAZEL_XCODE_DEVELOPER_DIR__/\\$(DEVELOPER_DIR)/g;\n  s/__BAZEL_XCODE_SDKROOT__/\\$(SDKROOT)/g;\n  s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/gx;\n' \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"";
+			showEnvVarsInLog = 0;
+		};
+		E03898BE4B483CE485DE52CB /* Create linking dependencies */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(LINK_PARAMS_FILE)",
+			);
+			name = "Create linking dependencies";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/link.params",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nif [[ \"${ENABLE_PREVIEWS:-}\" == \"YES\" ]]; then\nperl -pe 's/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\nelse\n  touch \"$SCRIPT_OUTPUT_FILE_0\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		E0E1865F5038FF96A08454DE /* Create compiling dependencies */ = {
@@ -3005,40 +3472,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "set -euo pipefail\n\nif [[ \"${ENABLE_PREVIEWS:-}\" == \"YES\" ]]; then\nperl -pe 's/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\nelse\n  touch \"$SCRIPT_OUTPUT_FILE_0\"\nfi\n\ntouch \"$SCRIPT_OUTPUT_FILE_1\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E1EFA8CB76CE497877370A55 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
-			);
-			name = "Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  cd \"$SRCROOT\"\n\n  \"$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh\"\nelse\n  \"$BAZEL_INTEGRATION_DIR/copy_outputs.sh\" \\\n    \"_BazelForcedCompile_.swift\" \\\n    \"iOS_App_ObjC_UnitTests_rules_ios_unit_test_macro.xctest\" \\\n    \"$BAZEL_INTEGRATION_DIR/xctest.exclude.rsynclist\"\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		EEAC6D0A99F3AE8632FFADFE /* Create linking dependencies */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(LINK_PARAMS_FILE)",
-			);
-			name = "Create linking dependencies";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/link.params",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\nif [[ \"${ENABLE_PREVIEWS:-}\" == \"YES\" ]]; then\nperl -pe 's/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\nelse\n  touch \"$SCRIPT_OUTPUT_FILE_0\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		EED180ABC8FC41F3EBE4FF10 /* Copy Bazel Outputs / Generate Bazel Dependencies (Index Build) */ = {
@@ -3109,6 +3542,23 @@
 			shellScript = "set -euo pipefail\n\nif [[ \"${ENABLE_PREVIEWS:-}\" == \"YES\" ]]; then\nperl -pe 's/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\nelse\n  touch \"$SCRIPT_OUTPUT_FILE_0\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		FABA9763752B53069E85D094 /* Create compiling dependencies */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(C_PARAMS_FILE)",
+			);
+			name = "Create compiling dependencies";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/c.compile.params",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nperl -pe '\n  s/__BAZEL_XCODE_DEVELOPER_DIR__/\\$(DEVELOPER_DIR)/g;\n  s/__BAZEL_XCODE_SDKROOT__/\\$(SDKROOT)/g;\n  s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/gx;\n' \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"";
+			showEnvVarsInLog = 0;
+		};
 		FCA60D5A3E3E4EC1FB1E3EAE /* Create linking dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -3152,6 +3602,23 @@
 				CA046F7A9CB0032FEF482D05 /* Intents.Intent.output.swift in Sources */,
 				BC3EC272356403A49E2DAB11 /* Intents.Intent.output.swift in Sources */,
 				C8B76D1B97C60A7EFFE69E77 /* WidgetExtension.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2120A65B3714D6BF57DB2D0D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B0B558B3386C91C77B6A125D /* UITests.swift in Sources */,
+				064F1DBA93F9FCDE1CD9FA14 /* UITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		32B3DD21ABAE1513EA0BB3B7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				43BA2116C2DD85F8805141D2 /* ObjCUnitTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3237,19 +3704,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		96F532B224A9C9F09DDDB922 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				519B916D7089019D3A5ACF7A /* ObjCUnitTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9FC3BC2A09290B3A99224A35 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				9711AD335537386189EB525C /* MixedAnswer.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A21F58B42E21EB122EABF090 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				812294C2C601980CE223D77A /* ObjCUnitTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3293,11 +3760,28 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F2202BC58FAEE9C58173FC5E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F63902022A8BD35C5EFDC14B /* ObjCUnitTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F7BA5BD80536ED5B6ED4D129 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				7716621AEB8177A86422280F /* Answers.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F850C8F8E2039B4BFC072F4F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04F019FA436075AE33BCD49F /* UITests.swift in Sources */,
+				F2CF2D2DEE4261514C1939D5 /* UITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3332,6 +3816,12 @@
 			target = 1765D91CC168F25A5BC51603 /* iOSApp */;
 			targetProxy = 764A2CCDAE16ABA3F0830028 /* PBXContainerItemProxy */;
 		};
+		18136032E47C0237A281A48A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BazelDependencies;
+			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
+			targetProxy = 6EFE0EF42DFC7B73571471D3 /* PBXContainerItemProxy */;
+		};
 		2364C7A7609E3E662ABF8B96 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = BazelDependencies;
@@ -3343,6 +3833,18 @@
 			name = iOSApp;
 			target = 1765D91CC168F25A5BC51603 /* iOSApp */;
 			targetProxy = EDD4C32B165C8554E20CA68F /* PBXContainerItemProxy */;
+		};
+		27A01D48CDA0840ADF1439EF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = iOSApp;
+			target = 1765D91CC168F25A5BC51603 /* iOSApp */;
+			targetProxy = 5FC3A7B50707BA616FC0464C /* PBXContainerItemProxy */;
+		};
+		33309A340B59720AD151B395 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BazelDependencies;
+			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
+			targetProxy = 1889C1239469CE4D907284B1 /* PBXContainerItemProxy */;
 		};
 		3552C52CC6C94B98545FE645 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -3362,17 +3864,35 @@
 			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
 			targetProxy = 3F2526905F32AB84EFE7FBFE /* PBXContainerItemProxy */;
 		};
+		58ABD107F68264E28ED6ACBF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BazelDependencies;
+			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
+			targetProxy = 40C259B62EE2DAC395887C4F /* PBXContainerItemProxy */;
+		};
 		5DC34F5F249BA917602208F9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = BazelDependencies;
 			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
 			targetProxy = 9640C65DAC8F88CB5F8B9AB6 /* PBXContainerItemProxy */;
 		};
+		5E033C300D2ED9D1D4550D2E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = iOSApp;
+			target = 1765D91CC168F25A5BC51603 /* iOSApp */;
+			targetProxy = 90300D015DF2DC7CB40D6B1A /* PBXContainerItemProxy */;
+		};
 		6160161B0AEDB993335C4D34 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = BazelDependencies;
 			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
 			targetProxy = F5E9D31D539D4E97AACBE385 /* PBXContainerItemProxy */;
+		};
+		67098905156FA7112710C906 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = iOSApp;
+			target = 1765D91CC168F25A5BC51603 /* iOSApp */;
+			targetProxy = 61D1C8F11E1B0C891C61FE35 /* PBXContainerItemProxy */;
 		};
 		739B2722AFBFFD1715CFEEDF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -3428,17 +3948,17 @@
 			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
 			targetProxy = 2E5C4E73B4371AC195D6D054 /* PBXContainerItemProxy */;
 		};
-		9D88777EBA24742DE859C4C1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = iOSApp;
-			target = 1765D91CC168F25A5BC51603 /* iOSApp */;
-			targetProxy = 383062428A4B8B67738E62F8 /* PBXContainerItemProxy */;
-		};
 		A3FA33D2339398D7EF50574C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = iOSApp;
 			target = 1765D91CC168F25A5BC51603 /* iOSApp */;
 			targetProxy = F67509260F9A8DCA2F1EA061 /* PBXContainerItemProxy */;
+		};
+		AF0FD6AB801CE5A322CA9259 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BazelDependencies;
+			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
+			targetProxy = 2276CB3CE6FDC24BDCA3240D /* PBXContainerItemProxy */;
 		};
 		B43947D224CE2B8CD3F32EDC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -3458,12 +3978,6 @@
 			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
 			targetProxy = 7CAC09D3BA11390562D06807 /* PBXContainerItemProxy */;
 		};
-		B9A724253A64C3D97CE28E2F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = BazelDependencies;
-			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
-			targetProxy = 0D53A6C73BA59BD2F53C3F6D /* PBXContainerItemProxy */;
-		};
 		D0622039F0F59F64B78836EF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = BazelDependencies;
@@ -3475,6 +3989,12 @@
 			name = BazelDependencies;
 			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
 			targetProxy = 1AF0A8DBFD4E418C98D4DDD3 /* PBXContainerItemProxy */;
+		};
+		D944B6FC9C8A6DC80A5932B2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = iOSApp;
+			target = 1765D91CC168F25A5BC51603 /* iOSApp */;
+			targetProxy = E2BAAB041CDAD5688D7D0F54 /* PBXContainerItemProxy */;
 		};
 		DCD8E26E64178B2FED76D1A6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -3488,6 +4008,12 @@
 			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
 			targetProxy = 8EE4776CD1B384A0D5A690CE /* PBXContainerItemProxy */;
 		};
+		E49746724F6099D2DE209506 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BazelDependencies;
+			target = 7E7D155EBCA520F35DEA3571 /* BazelDependencies */;
+			targetProxy = F8EB2C33844DAA6A0581EFDD /* PBXContainerItemProxy */;
+		};
 		E5FE011C5AF76DB113DF642E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = BazelDependencies;
@@ -3499,6 +4025,12 @@
 			name = iOSApp;
 			target = 1765D91CC168F25A5BC51603 /* iOSApp */;
 			targetProxy = 806F31BBAE526A284E7F63A8 /* PBXContainerItemProxy */;
+		};
+		FBAFFE7F9FFE6A680CC13041 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = iOSApp;
+			target = 1765D91CC168F25A5BC51603 /* iOSApp */;
+			targetProxy = E6F5464650C0D43352D6AEC5 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -3541,7 +4073,7 @@
 				"INFOPLIST_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/applebin_ios-ios_arm64-dbg-STABLE-4/bin/iOSApp/Source/rules_xcodeproj/iOSApp/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSApp.12.link.params";
-				"LINK_PARAMS_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSApp.35.link.params";
+				"LINK_PARAMS_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSApp.39.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example";
 				PRODUCT_NAME = iOSApp;
@@ -3550,6 +4082,47 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				TARGETED_DEVICE_FAMILY = 1;
 				TARGET_NAME = iOSApp;
+			};
+			name = Debug;
+		};
+		2228445F919FFF31323DE1A6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = x86_64;
+				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
+				ASAN_OTHER_CFLAGS__YES = (
+					"$(ASAN_OTHER_CFLAGS__NO)",
+					"-Wno-macro-redefined",
+					"-D_FORTIFY_SOURCE=0",
+				);
+				BAZEL_COMPILE_TARGET_IDS = "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests_macro_with_bundle_name_objc ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1";
+				"BAZEL_COMPILE_TARGET_IDS[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
+				BAZEL_LABEL = "@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests_macro_with_bundle_name";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Test/ObjCUnitTests/iOS_App_ObjC_UnitTests_macro_with_bundle_name.__internal__.__test_bundle.zip";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Test/ObjCUnitTests";
+				BAZEL_TARGET_ID = "//iOSApp/Test/ObjCUnitTests:iOS_App_ObjC_UnitTests_macro_with_bundle_name.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-3";
+				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
+				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
+				CODE_SIGN_STYLE = Manual;
+				COMPILE_TARGET_NAME = iOSAppObjCUnitTests_macro_with_bundle_name_objc;
+				C_PARAMS_FILE = "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests_macro_with_bundle_name_objc.rules_xcodeproj.c.compile.params";
+				DEPLOYMENT_LOCATION = NO;
+				GCC_PREFIX_HEADER = "$(BAZEL_EXTERNAL)/build_bazel_rules_ios/rules/library/common.pch";
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Test/ObjCUnitTests/rules_xcodeproj/iOS_App_ObjC_UnitTests_macro_with_bundle_name.__internal__.__test_bundle/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTests_macro_with_bundle_name.23.link.params";
+				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
+				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.objctests";
+				PRODUCT_NAME = iOS_App_ObjC_UnitTests_macro_with_bundle_name;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = iphonesimulator;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGET_BUILD_DIR = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Source$(TARGET_BUILD_SUBPATH)";
+				TARGET_NAME = iOSAppObjCUnitTests_macro_with_bundle_name;
+				TEST_HOST = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Source/iOSApp.app/iOSApp_ExecutableName";
 			};
 			name = Debug;
 		};
@@ -3606,7 +4179,7 @@
 				GCC_PREFIX_HEADER = "$(BAZEL_EXTERNAL)/build_bazel_rules_ios/rules/library/common.pch";
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Test/ObjCUnitTests/rules_xcodeproj/iOSAppObjCUnitTestSuite.__internal__.__test_bundle/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTestSuite.20.link.params";
+				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTestSuite.19.link.params";
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.objctests";
@@ -3710,6 +4283,47 @@
 			};
 			name = Debug;
 		};
+		501EA02F99C3083CE7EECEB4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = x86_64;
+				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
+				ASAN_OTHER_CFLAGS__YES = (
+					"$(ASAN_OTHER_CFLAGS__NO)",
+					"-Wno-macro-redefined",
+					"-D_FORTIFY_SOURCE=0",
+				);
+				BAZEL_COMPILE_TARGET_IDS = "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite_macro_objc ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1";
+				"BAZEL_COMPILE_TARGET_IDS[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
+				BAZEL_LABEL = "@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite_macro";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTestSuite_macro.__internal__.__test_bundle.zip";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Test/ObjCUnitTests";
+				BAZEL_TARGET_ID = "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite_macro.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-3";
+				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
+				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
+				CODE_SIGN_STYLE = Manual;
+				COMPILE_TARGET_NAME = iOSAppObjCUnitTestSuite_macro_objc;
+				C_PARAMS_FILE = "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTestSuite_macro_objc.rules_xcodeproj.c.compile.params";
+				DEPLOYMENT_LOCATION = NO;
+				GCC_PREFIX_HEADER = "$(BAZEL_EXTERNAL)/build_bazel_rules_ios/rules/library/common.pch";
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Test/ObjCUnitTests/rules_xcodeproj/iOSAppObjCUnitTestSuite_macro.__internal__.__test_bundle/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTestSuite_macro.24.link.params";
+				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
+				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.objctests";
+				PRODUCT_NAME = iOSAppObjCUnitTestSuite_macro;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = iphonesimulator;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGET_BUILD_DIR = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Source$(TARGET_BUILD_SUBPATH)";
+				TARGET_NAME = iOSAppObjCUnitTestSuite_macro;
+				TEST_HOST = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Source/iOSApp.app/iOSApp_ExecutableName";
+			};
+			name = Debug;
+		};
 		5AFD85147E5F7EEA259481C2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -3745,7 +4359,7 @@
 				DEPLOYMENT_LOCATION = NO;
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Test/SwiftUnitTests/rules_xcodeproj/iOSAppSwiftUnitTests.__internal__.__test_bundle/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppSwiftUnitTests.19.link.params";
+				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppSwiftUnitTests.18.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml $(PREVIEWS_SWIFT_INCLUDE__$(ENABLE_PREVIEWS)) @$(DERIVED_FILE_DIR)/swift.compile.params -F$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F$(SDKROOT)/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib -Xfrontend -vfsoverlay$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTests_swift.vfsoverlay.yaml -I/__build_bazel_rules_swift/swiftmodules -Xfrontend -vfsoverlay$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTests_swift_vfs.yaml -F/build_bazel_rules_ios/frameworks -I/build_bazel_rules_ios/frameworks";
 				PREVIEWS_SWIFT_INCLUDE__ = "";
@@ -3854,6 +4468,47 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TARGET_BUILD_DIR = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Source$(TARGET_BUILD_SUBPATH)";
 				TARGET_NAME = iOSAppMixedUnitTests;
+				TEST_HOST = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Source/iOSApp.app/iOSApp_ExecutableName";
+			};
+			name = Debug;
+		};
+		9588CB0E35BB4E2676173DB2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = x86_64;
+				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
+				ASAN_OTHER_CFLAGS__YES = (
+					"$(ASAN_OTHER_CFLAGS__NO)",
+					"-Wno-macro-redefined",
+					"-D_FORTIFY_SOURCE=0",
+				);
+				BAZEL_COMPILE_TARGET_IDS = "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests_macro_objc ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1";
+				"BAZEL_COMPILE_TARGET_IDS[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
+				BAZEL_LABEL = "@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests_macro";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests_macro.__internal__.__test_bundle.zip";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Test/ObjCUnitTests";
+				BAZEL_TARGET_ID = "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests_macro.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-3";
+				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
+				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
+				CODE_SIGN_STYLE = Manual;
+				COMPILE_TARGET_NAME = iOSAppObjCUnitTests_macro_objc;
+				C_PARAMS_FILE = "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests_macro_objc.rules_xcodeproj.c.compile.params";
+				DEPLOYMENT_LOCATION = NO;
+				GCC_PREFIX_HEADER = "$(BAZEL_EXTERNAL)/build_bazel_rules_ios/rules/library/common.pch";
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Test/ObjCUnitTests/rules_xcodeproj/iOSAppObjCUnitTests_macro.__internal__.__test_bundle/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTests_macro.22.link.params";
+				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
+				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.objctests";
+				PRODUCT_NAME = iOSAppObjCUnitTests_macro;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = iphonesimulator;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGET_BUILD_DIR = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Source$(TARGET_BUILD_SUBPATH)";
+				TARGET_NAME = iOSAppObjCUnitTests_macro;
 				TEST_HOST = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Source/iOSApp.app/iOSApp_ExecutableName";
 			};
 			name = Debug;
@@ -3970,7 +4625,7 @@
 				"INFOPLIST_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/applebin_ios-ios_arm64-dbg-STABLE-4/bin/Lib/rules_xcodeproj/LibDynamic/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibDynamic.13.link.params";
-				"LINK_PARAMS_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibDynamic.36.link.params";
+				"LINK_PARAMS_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibDynamic.40.link.params";
 				MACH_O_TYPE = staticlib;
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.LibFramework";
@@ -3980,6 +4635,41 @@
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				TARGET_NAME = LibDynamic;
+			};
+			name = Debug;
+		};
+		A1C029A26152010575F03CEE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = x86_64;
+				BAZEL_COMPILE_TARGET_IDS = "//iOSApp/Test/UITests:iOSAppUITestSuite_macro_swift ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1";
+				"BAZEL_COMPILE_TARGET_IDS[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
+				BAZEL_LABEL = "@//iOSApp/Test/UITests:iOSAppUITestSuite_macro";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Test/UITests/iOSAppUITestSuite_macro.__internal__.__test_bundle.zip";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Test/UITests";
+				BAZEL_TARGET_ID = "//iOSApp/Test/UITests:iOSAppUITestSuite_macro.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-3";
+				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
+				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
+				CODE_SIGNING_ALLOWED = YES;
+				CODE_SIGN_STYLE = Manual;
+				COMPILE_TARGET_NAME = iOSAppUITestSuite_macro_swift;
+				DEPLOYMENT_LOCATION = NO;
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Test/UITests/rules_xcodeproj/iOSAppUITestSuite_macro.__internal__.__test_bundle/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppUITestSuite_macro.26.link.params";
+				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -F$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F$(SDKROOT)/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib -Xfrontend -vfsoverlay$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/UITests/iOSAppUITestSuite_macro_swift.vfsoverlay.yaml -I/__build_bazel_rules_swift/swiftmodules -Xfrontend -vfsoverlay$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/UITests/iOSAppUITestSuite_macro_swift_vfs.yaml -F/build_bazel_rules_ios/frameworks -I/build_bazel_rules_ios/frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.uitests";
+				PRODUCT_MODULE_NAME = iOSAppUITestSuite_macro;
+				PRODUCT_NAME = iOSAppUITestSuite_macro;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = iphonesimulator;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "iOSAppUITestSuite_macro-Swift.h";
+				SWIFT_PARAMS_FILE = "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/UITests/iOSAppUITestSuite_macro_swift.rules_xcodeproj.swift.compile.params";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGET_NAME = iOSAppUITestSuite_macro;
+				TEST_TARGET_NAME = iOSApp;
 			};
 			name = Debug;
 		};
@@ -4001,7 +4691,7 @@
 				DEPLOYMENT_LOCATION = NO;
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Test/UITests/rules_xcodeproj/iOSAppUITestSuite.__internal__.__test_bundle/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppUITestSuite.22.link.params";
+				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppUITestSuite.21.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -F$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F$(SDKROOT)/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib -Xfrontend -vfsoverlay$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/UITests/iOSAppUITestSuite_swift.vfsoverlay.yaml -I/__build_bazel_rules_swift/swiftmodules -Xfrontend -vfsoverlay$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/UITests/iOSAppUITestSuite_swift_vfs.yaml -F/build_bazel_rules_ios/frameworks -I/build_bazel_rules_ios/frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.uitests";
@@ -4154,7 +4844,7 @@
 				DEPLOYMENT_LOCATION = NO;
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Test/SwiftUnitTests/rules_xcodeproj/iOSAppSwiftUnitTestSuite.__internal__.__test_bundle/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppSwiftUnitTestSuite.21.link.params";
+				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppSwiftUnitTestSuite.20.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml $(PREVIEWS_SWIFT_INCLUDE__$(ENABLE_PREVIEWS)) @$(DERIVED_FILE_DIR)/swift.compile.params -F$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F$(SDKROOT)/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib -Xfrontend -vfsoverlay$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTestSuite_swift.vfsoverlay.yaml -I/__build_bazel_rules_swift/swiftmodules -Xfrontend -vfsoverlay$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTestSuite_swift_vfs.yaml -F/build_bazel_rules_ios/frameworks -I/build_bazel_rules_ios/frameworks";
 				PREVIEWS_SWIFT_INCLUDE__ = "";
@@ -4202,7 +4892,7 @@
 				"INFOPLIST_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/applebin_ios-ios_arm64-dbg-STABLE-4/bin/WidgetExtension/rules_xcodeproj/WidgetExtension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/WidgetExtension.11.link.params";
-				"LINK_PARAMS_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/WidgetExtension.34.link.params";
+				"LINK_PARAMS_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/WidgetExtension.38.link.params";
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.widget-extension";
 				PRODUCT_NAME = WidgetExtension;
@@ -4268,47 +4958,6 @@
 			};
 			name = Debug;
 		};
-		D21B921701466DCA7DF658CA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = x86_64;
-				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
-				ASAN_OTHER_CFLAGS__YES = (
-					"$(ASAN_OTHER_CFLAGS__NO)",
-					"-Wno-macro-redefined",
-					"-D_FORTIFY_SOURCE=0",
-				);
-				BAZEL_COMPILE_TARGET_IDS = "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests_rules_ios_unit_test_macro_objc ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1";
-				"BAZEL_COMPILE_TARGET_IDS[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
-				BAZEL_LABEL = "@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests_rules_ios_unit_test_macro";
-				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Test/ObjCUnitTests/iOS_App_ObjC_UnitTests_rules_ios_unit_test_macro.__internal__.__test_bundle.zip";
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Test/ObjCUnitTests";
-				BAZEL_TARGET_ID = "//iOSApp/Test/ObjCUnitTests:iOS_App_ObjC_UnitTests_rules_ios_unit_test_macro.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-3";
-				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
-				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
-				CODE_SIGN_STYLE = Manual;
-				COMPILE_TARGET_NAME = iOSAppObjCUnitTests_rules_ios_unit_test_macro_objc;
-				C_PARAMS_FILE = "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests_rules_ios_unit_test_macro_objc.rules_xcodeproj.c.compile.params";
-				DEPLOYMENT_LOCATION = NO;
-				GCC_PREFIX_HEADER = "$(BAZEL_EXTERNAL)/build_bazel_rules_ios/rules/library/common.pch";
-				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Test/ObjCUnitTests/rules_xcodeproj/iOS_App_ObjC_UnitTests_rules_ios_unit_test_macro.__internal__.__test_bundle/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTests_rules_ios_unit_test_macro.18.link.params";
-				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
-				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.objctests";
-				PRODUCT_NAME = iOS_App_ObjC_UnitTests_rules_ios_unit_test_macro;
-				SDKROOT = iphoneos;
-				SUPPORTED_PLATFORMS = iphonesimulator;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TARGET_BUILD_DIR = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Source$(TARGET_BUILD_SUBPATH)";
-				TARGET_NAME = iOSAppObjCUnitTests_rules_ios_unit_test_macro;
-				TEST_HOST = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Source/iOSApp.app/iOSApp_ExecutableName";
-			};
-			name = Debug;
-		};
 		D30144413DA72BA77AF63733 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -4367,6 +5016,41 @@
 			};
 			name = Debug;
 		};
+		F7C0277B9E1BC04BDB98235F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = x86_64;
+				BAZEL_COMPILE_TARGET_IDS = "//iOSApp/Test/UITests:iOSAppUITests_macro_swift ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1";
+				"BAZEL_COMPILE_TARGET_IDS[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
+				BAZEL_LABEL = "@//iOSApp/Test/UITests:iOSAppUITests_macro";
+				BAZEL_OUTPUTS_PRODUCT = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Test/UITests/iOSAppUITests_macro.__internal__.__test_bundle.zip";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Test/UITests";
+				BAZEL_TARGET_ID = "//iOSApp/Test/UITests:iOSAppUITests_macro.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-3";
+				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
+				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
+				CODE_SIGNING_ALLOWED = YES;
+				CODE_SIGN_STYLE = Manual;
+				COMPILE_TARGET_NAME = iOSAppUITests_macro_swift;
+				DEPLOYMENT_LOCATION = NO;
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Test/UITests/rules_xcodeproj/iOSAppUITests_macro.__internal__.__test_bundle/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppUITests_macro.25.link.params";
+				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -F$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F$(SDKROOT)/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib -Xfrontend -vfsoverlay$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/UITests/iOSAppUITests_macro_swift.vfsoverlay.yaml -I/__build_bazel_rules_swift/swiftmodules -Xfrontend -vfsoverlay$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/UITests/iOSAppUITests_macro_swift_vfs.yaml -F/build_bazel_rules_ios/frameworks -I/build_bazel_rules_ios/frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.uitests";
+				PRODUCT_MODULE_NAME = iOSAppUITests_macro;
+				PRODUCT_NAME = iOSAppUITests_macro;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = iphonesimulator;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "iOSAppUITests_macro-Swift.h";
+				SWIFT_PARAMS_FILE = "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/UITests/iOSAppUITests_macro_swift.rules_xcodeproj.swift.compile.params";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGET_NAME = iOSAppUITests_macro;
+				TEST_TARGET_NAME = iOSApp;
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -4374,6 +5058,14 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B02F56BEECBFE1870481B5DA /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		0D6C17814A6FC79DB9DDF88C /* Build configuration list for PBXNativeTarget "iOSAppObjCUnitTestSuite_macro" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				501EA02F99C3083CE7EECEB4 /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
@@ -4450,6 +5142,14 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
+		6EF363DB7A318EF131FD12CE /* Build configuration list for PBXNativeTarget "iOSAppObjCUnitTests_macro" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9588CB0E35BB4E2676173DB2 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
 		7D04B04B193D3B1043D94993 /* Build configuration list for PBXNativeTarget "UI_swift" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -4498,6 +5198,14 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
+		9C4C413A97A3AC7EF73D2D4E /* Build configuration list for PBXNativeTarget "iOSAppUITests_macro" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F7C0277B9E1BC04BDB98235F /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
 		A2CD6BB723C83622725C7B0C /* Build configuration list for PBXNativeTarget "Lib" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -4514,18 +5222,18 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		C725A0ADD02DEFF37D7FCFF9 /* Build configuration list for PBXNativeTarget "iOSAppObjCUnitTests_rules_ios_unit_test_macro" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D21B921701466DCA7DF658CA /* Debug */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
 		CE6C1332249A1914B9092C38 /* Build configuration list for PBXNativeTarget "Lib_swift" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				983CAF8E14BE4A1A1106D6CC /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		D37500F8BBE8E3B5B91A6BFE /* Build configuration list for PBXNativeTarget "iOSAppObjCUnitTests_macro_with_bundle_name" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2228445F919FFF31323DE1A6 /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
@@ -4558,6 +5266,14 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9951A69103A4791559961CC2 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		F4744EA3269559DAF1563A10 /* Build configuration list for PBXNativeTarget "iOSAppUITestSuite_macro" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1C029A26152010575F03CEE /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
