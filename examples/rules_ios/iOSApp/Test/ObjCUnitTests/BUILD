@@ -6,6 +6,10 @@ load(
     "@build_bazel_rules_apple//apple/testing/default_runner:ios_test_runner.bzl",
     "ios_test_runner",
 )
+load(
+    "//iOSApp/Test/ObjCUnitTests:macros.bzl",
+    "rules_ios_unit_test_macro",
+)
 
 rules_ios_ios_unit_test(
     name = "iOSAppObjCUnitTests",
@@ -52,4 +56,8 @@ rules_ios_ios_unit_test(
         "//iOSApp/Source:iOSApp.library",
         "//iOSApp/Source/Utils",
     ],
+)
+
+rules_ios_unit_test_macro(
+    name = "macro",
 )
