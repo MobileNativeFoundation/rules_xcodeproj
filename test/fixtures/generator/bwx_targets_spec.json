@@ -18,7 +18,7 @@
         "b": {
             "CODE_SIGN_STYLE": "Manual",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-STABLE-3/bin/tools/generators/legacy/test/rules_xcodeproj/tests.__internal__.__test_bundle/Info.plist",
-            "OTHER_SWIFT_FLAGS": "-F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+            "OTHER_SWIFT_FLAGS": "-F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/usr/lib",
             "PREVIEWS_SWIFT_INCLUDE__": "",
             "PREVIEWS_SWIFT_INCLUDE__NO": "",
             "PREVIEWS_SWIFT_INCLUDE__YES": "-I $(BUILD_DIR)/bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-3/bin/tools/generators/legacy/test",
@@ -122,7 +122,7 @@
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-opt-STABLE-4/bin/tools/generators/legacy/test/rules_xcodeproj/tests.__internal__.__test_bundle/Info.plist",
-            "OTHER_SWIFT_FLAGS": "-F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+            "OTHER_SWIFT_FLAGS": "-F$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/usr/lib",
             "PREVIEWS_SWIFT_INCLUDE__": "",
             "PREVIEWS_SWIFT_INCLUDE__NO": "",
             "PREVIEWS_SWIFT_INCLUDE__YES": "-I $(BUILD_DIR)/bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-4/bin/tools/generators/legacy/test",
