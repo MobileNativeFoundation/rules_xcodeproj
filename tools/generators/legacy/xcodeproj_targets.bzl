@@ -122,7 +122,7 @@ def get_xcode_schemes():
                         address = True,
                     ),
                 ),
-                working_directory = "$(BUILD_WORKSPACE_DIRECTORY)",
+                working_directory = "/tmp",
             ),
             profile_action = xcode_schemes.profile_action(
                 _APP_TARGET,
@@ -148,7 +148,7 @@ def get_xcode_schemes():
                     "/tmp/specs/xcodeproj-targets_spec.7.json",
                 ],
                 build_configuration = "Profile",
-                working_directory = "$(BUILD_WORKSPACE_DIRECTORY)",
+                working_directory = "/tmp",
             ),
             test_action = xcode_schemes.test_action(
                 [_TEST_TARGET],
