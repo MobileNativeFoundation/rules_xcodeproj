@@ -560,36 +560,36 @@ def process_compiler_opts_test_suite(name):
 -Xcc -fmodule-map-file=$(SRCROOT)/relative/path \
 -Xcc -fmodule-map-file=$(BAZEL_OUT)/relative/path \
 -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/relative/path \
--Xcc -iquote/absolute/path \
 -Xcc -iquote -Xcc /absolute/path \
 -Xcc -iquote -Xcc /absolute/path \
--Xcc -iquote$(SRCROOT)/relative/path \
+-Xcc -iquote -Xcc /absolute/path \
 -Xcc -iquote -Xcc $(SRCROOT)/relative/path \
--Xcc -iquote$(BAZEL_OUT)/relative/path \
+-Xcc -iquote -Xcc $(SRCROOT)/relative/path \
 -Xcc -iquote -Xcc $(BAZEL_OUT)/relative/path \
--Xcc -iquote$(BAZEL_EXTERNAL)/relative/path \
+-Xcc -iquote -Xcc $(BAZEL_OUT)/relative/path \
 -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/relative/path \
--Xcc -iquote$(PROJECT_DIR) \
+-Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/relative/path \
 -Xcc -iquote -Xcc $(PROJECT_DIR) \
--Xcc -I/absolute/path \
+-Xcc -iquote -Xcc $(PROJECT_DIR) \
 -Xcc -I -Xcc /absolute/path \
--Xcc -I$(SRCROOT)/relative/path \
+-Xcc -I -Xcc /absolute/path \
 -Xcc -I -Xcc $(SRCROOT)/relative/path \
--Xcc -I$(BAZEL_OUT)/relative/path \
+-Xcc -I -Xcc $(SRCROOT)/relative/path \
 -Xcc -I -Xcc $(BAZEL_OUT)/relative/path \
--Xcc -I$(BAZEL_EXTERNAL)/relative/path \
+-Xcc -I -Xcc $(BAZEL_OUT)/relative/path \
 -Xcc -I -Xcc $(BAZEL_EXTERNAL)/relative/path \
--Xcc -I$(PROJECT_DIR) \
+-Xcc -I -Xcc $(BAZEL_EXTERNAL)/relative/path \
 -Xcc -I -Xcc $(PROJECT_DIR) \
--Xcc -isystem/absolute/path \
+-Xcc -I -Xcc $(PROJECT_DIR) \
 -Xcc -isystem -Xcc /absolute/path \
--Xcc -isystem$(SRCROOT)/relative/path \
+-Xcc -isystem -Xcc /absolute/path \
 -Xcc -isystem -Xcc $(SRCROOT)/relative/path \
--Xcc -isystem$(BAZEL_OUT)/relative/path \
+-Xcc -isystem -Xcc $(SRCROOT)/relative/path \
 -Xcc -isystem -Xcc $(BAZEL_OUT)/relative/path \
--Xcc -isystem$(BAZEL_EXTERNAL)/relative/path \
+-Xcc -isystem -Xcc $(BAZEL_OUT)/relative/path \
 -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/relative/path \
--Xcc -isystem$(PROJECT_DIR) \
+-Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/relative/path \
+-Xcc -isystem -Xcc $(PROJECT_DIR) \
 -Xcc -isystem -Xcc $(PROJECT_DIR) \
 -Xcc -ivfsoverlay -Xcc /Some/Path.yaml \
 -Xcc -ivfsoverlay -Xcc $(PROJECT_DIR)/relative/Path.yaml \
