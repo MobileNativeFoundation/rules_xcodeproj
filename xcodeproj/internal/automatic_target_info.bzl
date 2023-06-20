@@ -64,6 +64,11 @@ _SRCS_ATTRS = ["srcs"]
 
 _LINK_MNEMONICS = ["ObjcLink", "CppLink"]
 
+_SWIFT_BINARY_RULES = {
+    "swift_binary": None,
+    "swift_test": None,
+}
+
 _XCODE_TARGET_TYPES_COMPILE = [target_type.compile]
 _XCODE_TARGET_TYPES_COMPILE_AND_NONE = [target_type.compile, None]
 
@@ -97,8 +102,13 @@ _OBJC_LIBRARY_XCODE_TARGETS = {
     "implementation_deps": _XCODE_TARGET_TYPES_COMPILE,
     "runtime_deps": _XCODE_TARGET_TYPES_COMPILE,
 }
+_PLUGINS_XCODE_TARGETS = {
+    "deps": _XCODE_TARGET_TYPES_COMPILE_AND_NONE,
+    "plugins": _XCODE_TARGET_TYPES_COMPILE_AND_NONE,
+}
 _SWIFT_LIBRARY_XCODE_TARGETS = {
     "deps": _XCODE_TARGET_TYPES_COMPILE_AND_NONE,
+    "plugins": _XCODE_TARGET_TYPES_COMPILE_AND_NONE,
     "private_deps": _XCODE_TARGET_TYPES_COMPILE_AND_NONE,
 }
 _TEST_BUNDLE_XCODE_TARGETS = {
@@ -205,6 +215,9 @@ def calculate_automatic_target_info(ctx, build_mode, target):
         infoplists = _INFOPLISTS_ATTRS
         launchdplists = _LAUNCHDPLISTS_ATTRS
         xcode_targets = _DEPS_XCODE_TARGETS
+    elif rule_kind in _SWIFT_BINARY_RULES:
+        srcs = _SRCS_ATTRS
+        xcode_targets = _PLUGINS_XCODE_TARGETS
     elif rule_kind == "apple_universal_binary":
         deps = _BINARY_DEPS_ATTRS
         xcode_targets = _BINARY_XCODE_TARGETS
@@ -219,8 +232,6 @@ def calculate_automatic_target_info(ctx, build_mode, target):
         collect_uncategorized_files = False
         xcode_targets = _DEPS_ONLY_XCODE_TARGETS
     else:
-        xcode_targets = _DEFAULT_XCODE_TARGETS[this_target_type]
-
         # Command-line tools
         executable = target[DefaultInfo].files_to_run.executable
         is_executable = executable and not executable.is_source
@@ -229,6 +240,8 @@ def calculate_automatic_target_info(ctx, build_mode, target):
         collect_uncategorized_files = not should_generate_target
         if is_executable and hasattr(ctx.rule.attr, "srcs"):
             srcs = _SRCS_ATTRS
+
+        xcode_targets = _DEFAULT_XCODE_TARGETS[this_target_type]
 
     # Xcode doesn't support some source types that Bazel supports
     for attr in srcs:
