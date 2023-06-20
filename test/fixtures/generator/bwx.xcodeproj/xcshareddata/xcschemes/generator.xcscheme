@@ -179,7 +179,7 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
       useCustomWorkingDirectory = "YES"
-      customWorkingDirectory = "$(BUILD_WORKSPACE_DIRECTORY)"
+      customWorkingDirectory = "/tmp"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
@@ -304,7 +304,7 @@
       shouldUseLaunchSchemeArgsEnv = "NO"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "YES"
-      customWorkingDirectory = "$(BUILD_WORKSPACE_DIRECTORY)"
+      customWorkingDirectory = "/tmp"
       debugDocumentVersioning = "YES">
       <PreActions>
          <ExecutionAction

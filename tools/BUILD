@@ -62,7 +62,6 @@ _SCHEMES = [
             ],
             build_configuration = "Release",
             diagnostics = _SCHEME_DIAGNOSTICS,
-            working_directory = "$(BUILD_WORKSPACE_DIRECTORY)",
         ),
         test_action = xcode_schemes.test_action(
             _TESTS["pbxproj_prefix"],

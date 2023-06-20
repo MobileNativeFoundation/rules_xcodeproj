@@ -62,7 +62,7 @@
                 "CUSTOM_ENV_VAR": "hello"
             },
             "target": "@//tools/generators/legacy:generator",
-            "working_directory": "$(BUILD_WORKSPACE_DIRECTORY)"
+            "working_directory": "/tmp"
         },
         "name": "generator",
         "profile_action": {
@@ -90,7 +90,7 @@
             "build_configuration": "Profile",
             "env": null,
             "target": "@//tools/generators/legacy:generator",
-            "working_directory": "$(BUILD_WORKSPACE_DIRECTORY)"
+            "working_directory": "/tmp"
         },
         "test_action": {
             "args": null,
