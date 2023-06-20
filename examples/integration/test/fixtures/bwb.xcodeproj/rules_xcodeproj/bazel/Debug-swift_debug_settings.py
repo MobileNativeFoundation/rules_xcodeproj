@@ -257,6 +257,9 @@ _SETTINGS = {
 	"x86_64-apple-ios-simulator iOSAppUITests.xctest/iOSAppUITests": {
 		"c": "-iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all"
 	},
+	"x86_64-apple-macosx BasicTests.xctest/Contents/MacOS/BasicTests": {
+		"c": "-iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/darwin_x86_64-dbg-STABLE-41/bin -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all"
+	},
 	"x86_64-apple-macosx CommandLineTool": {
 		"c": "-F$(PROJECT_DIR)/external/examples_command_line_external -I$(SDKROOT)/usr/include/uuid -iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin -iquote$(PROJECT_DIR)/external/examples_command_line_external -iquote$(PROJECT_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/examples_command_line_external -DSECRET_3=\"Hello\" -DSECRET_2=\"World!\" -fmodule-map-file=$(PROJECT_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/CommandLine/CommandLineToolLib/lib_impl.swift.modulemap -fmodule-map-file=$(PROJECT_DIR)/CommandLine/swift_c_module/c_lib.modulemap -fmodule-map-file=$(PROJECT_DIR)/external/examples_command_line_external/ExternalFramework.framework/Modules/module.modulemap -fmodule-map-file=$(PROJECT_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/examples_command_line_external/Library.swift.modulemap -fmodule-map-file=$(PROJECT_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/CommandLine/CommandLineToolLib/private_lib.swift.modulemap -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all -iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin -O0 -fstack-protector -fstack-protector-all",
 		"f": [

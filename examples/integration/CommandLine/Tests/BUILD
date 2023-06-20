@@ -1,5 +1,9 @@
 load("@build_bazel_rules_apple//apple:macos.bzl", "macos_unit_test")
-load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
+load(
+    "@build_bazel_rules_swift//swift:swift.bzl",
+    "swift_library",
+    "swift_test",
+)
 
 swift_library(
     name = "CommandLineLibSwiftTestsLib",
@@ -18,4 +22,11 @@ macos_unit_test(
     deps = [
         ":CommandLineLibSwiftTestsLib",
     ],
+)
+
+swift_test(
+    name = "BasicTests",
+    srcs = ["BasicTests.swift"],
+    tags = ["manual"],
+    visibility = ["@rules_xcodeproj//xcodeproj:generated"],
 )

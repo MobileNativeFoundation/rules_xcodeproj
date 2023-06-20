@@ -79,6 +79,10 @@ XCODEPROJ_TARGETS = [
         target_environments = ["device"],
     ),
     top_level_target(
+        label = "//CommandLine/Tests:BasicTests",
+        target_environments = ["device"],
+    ),
+    top_level_target(
         label = "//CommandLine/Tests:CommandLineToolTests",
         target_environments = ["device"],
     ),
