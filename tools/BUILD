@@ -4,11 +4,16 @@ load("//xcodeproj:defs.bzl", "xcode_schemes", "xcodeproj")
 load("//xcodeproj/internal:collections.bzl", "flatten", "uniq")
 
 _TOOLS = {
+    "files_and_groups": "//tools/generators/files_and_groups",
     "pbxproj_prefix": "//tools/generators/pbxproj_prefix",
     "swiftc_stub": "//tools/swiftc_stub:swiftc",
 }
 
 _TESTS = {
+    "files_and_groups": [
+        "//tools/generators/lib/PBXProj:PBXProjTests",
+        "//tools/generators/files_and_groups:files_and_groups_tests",
+    ],
     "pbxproj_prefix": [
         "//tools/generators/lib/PBXProj:PBXProjTests",
         "//tools/generators/pbxproj_prefix:pbxproj_prefix_tests",
@@ -22,6 +27,44 @@ _SCHEME_DIAGNOSTICS = xcode_schemes.diagnostics(
 )
 
 _SCHEMES = [
+    xcode_schemes.scheme(
+        name = "files_and_groups",
+        launch_action = xcode_schemes.launch_action(
+            _TOOLS["files_and_groups"],
+            args = [
+                # knownRegionsOutputPath
+                "/tmp/pbxproj_partials/known_regions",
+                # filesAndGroupsOutputPath
+                "/tmp/pbxproj_partials/files_and_groups",
+                # resolvedRepositoriesOutputPath
+                "/tmp/pbxproj_partials/resolved_repositories",
+                # workspace
+                "/tmp/workspace",
+                # executionRootFile
+                "bazel-output-base/rules_xcodeproj.noindex/build_output_base/execroot/_main/bazel-out/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/xcodeproj/xcodeproj_execution_root_file",
+                # selectedModelVersionsFile
+                "bazel-output-base/rules_xcodeproj.noindex/build_output_base/execroot/_main/bazel-out/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/xcodeproj/selected_model_versions_file",
+                # developmentRegion
+                "en",
+                # useBaseInternationalization
+                "--use-base-internationalization",
+                # filePaths
+                "--file-paths",
+                "a/project/file",
+                "bazel-out/generated/file",
+                "external/repository/file",
+                # folderPaths
+                "--folder-paths",
+                "a/project/structure/resource/folder",
+            ],
+            build_configuration = "Release",
+            diagnostics = _SCHEME_DIAGNOSTICS,
+        ),
+        test_action = xcode_schemes.test_action(
+            _TESTS["files_and_groups"],
+            diagnostics = _SCHEME_DIAGNOSTICS,
+        ),
+    ),
     xcode_schemes.scheme(
         name = "pbxproj_prefix",
         launch_action = xcode_schemes.launch_action(
@@ -106,6 +149,9 @@ _XCODE_CONFIGURATIONS = {
 xcodeproj(
     name = "xcodeproj",
     associated_extra_files = {
+        "//tools/generators/files_and_groups": [
+            "//tools/generators/files_and_groups:README.md",
+        ],
         "//tools/generators/pbxproj_prefix": [
             "//tools/generators/pbxproj_prefix:README.md",
         ],
