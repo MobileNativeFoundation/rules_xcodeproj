@@ -35,9 +35,6 @@ platforms:
   @@apple_support~1.4.1//platforms:tvos_arm64
     --cpu=tvos_arm64
 
-  @@apple_support~1.4.1//platforms:watchos_i386
-    --cpu=watchos_i386
-
   @@apple_support~1.4.1//platforms:watchos_x86_64
     --cpu=watchos_x86_64
 
@@ -62,10 +59,6 @@ flags:
   --cpu=darwin_arm64e
   --apple_platform_type=macos
     @@apple_support~1.4.1//platforms:macos_arm64e
-
-  --cpu=ios_i386
-  --apple_platform_type=ios
-    @@apple_support~1.4.1//platforms:ios_i386
 
   --cpu=ios_x86_64
   --apple_platform_type=ios
@@ -98,10 +91,6 @@ flags:
   --cpu=tvos_arm64
   --apple_platform_type=tvos
     @@apple_support~1.4.1//platforms:tvos_arm64
-
-  --cpu=watchos_i386
-  --apple_platform_type=watchos
-    @@apple_support~1.4.1//platforms:watchos_i386
 
   --cpu=watchos_x86_64
   --apple_platform_type=watchos
