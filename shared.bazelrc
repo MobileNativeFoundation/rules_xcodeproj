@@ -8,6 +8,9 @@ build --experimental_action_cache_store_output_metadata
 build --remote_default_exec_properties=OSFamily=darwin
 build --remote_default_exec_properties=cache_bust=macOS_12.0/4
 
+# Use x86_64 instead of i386 for watchOS
+build --watchos_cpus=x86_64
+
 # In-repo output_base makes fixtures relative
 startup --output_base=bazel-output-base
 

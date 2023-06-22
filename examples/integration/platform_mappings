@@ -35,9 +35,6 @@ platforms:
   @build_bazel_apple_support//platforms:tvos_arm64
     --cpu=tvos_arm64
 
-  @build_bazel_apple_support//platforms:watchos_i386
-    --cpu=watchos_i386
-
   @build_bazel_apple_support//platforms:watchos_x86_64
     --cpu=watchos_x86_64
 
@@ -98,10 +95,6 @@ flags:
   --cpu=tvos_arm64
   --apple_platform_type=tvos
     @build_bazel_apple_support//platforms:tvos_arm64
-
-  --cpu=watchos_i386
-  --apple_platform_type=watchos
-    @build_bazel_apple_support//platforms:watchos_i386
 
   --cpu=watchos_x86_64
   --apple_platform_type=watchos
