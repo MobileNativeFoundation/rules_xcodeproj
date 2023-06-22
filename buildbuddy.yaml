@@ -14,7 +14,7 @@ x_templates:
 
     - &bazel_5
       env:
-        USE_BAZEL_VERSION: 5.4.0
+        USE_BAZEL_VERSION: 5.4.1
 
     - &normal_resources
       resource_requests: { memory: 6GB }
