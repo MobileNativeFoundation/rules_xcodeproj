@@ -14,6 +14,10 @@ struct FilesAndGroups: ParsableCommand {
     @Flag(help: "Whether to colorize console output.")
     var colorize = false
 
+    static func main() async {
+        await parseAsRootSupportingParamsFiles()
+    }
+
     func run() throws {
         let logger = DefaultLogger(
             standardError: StderrOutputStream(),
