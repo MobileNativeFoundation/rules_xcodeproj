@@ -77,6 +77,7 @@
 		271F7207E85E375056D37AAA /* FishCompletionsGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B0AB34FA691F07DF72F0C8 /* FishCompletionsGenerator.swift */; };
 		27BF3C97D7D023DD36EC922F /* SetTargetConfigurationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C127C22D8E9C9C5BE63BD42C /* SetTargetConfigurationsTests.swift */; };
 		2860DD791135F152ADB394A2 /* Outputs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EDEEFBC6AEDDADD48CDDD19 /* Outputs.swift */; };
+		29C4AF2B1A715783C0F74426 /* ParsableCommand+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EC40D68E051789B1C1E2BB /* ParsableCommand+Extensions.swift */; };
 		2BACDEF2DB59379FE120A4AA /* XCCurrentVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3519D95EEE9FE7F257C8EC /* XCCurrentVersion.swift */; };
 		2BC8EDA5B3337B379F502F13 /* BuildMode+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B30170FC81A55A0D1BBBDE /* BuildMode+Extensions.swift */; };
 		2BEFB32D04C22C97CA3053DE /* DisambiguateTargetsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A593F0CF562B64D72F61F2 /* DisambiguateTargetsTests.swift */; };
@@ -760,6 +761,7 @@
 		570EFCB69CB56777D814C633 /* Target.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Target.swift; sourceTree = "<group>"; };
 		579880E5BB28853582F2D38B /* InputKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputKey.swift; sourceTree = "<group>"; };
 		57CC919FE8B5CB6D2E8E2836 /* GameKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameKit.swift; sourceTree = "<group>"; };
+		57EC40D68E051789B1C1E2BB /* ParsableCommand+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ParsableCommand+Extensions.swift"; sourceTree = "<group>"; };
 		58F0749478EA85023C31F7F6 /* ZippyJSON.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; path = ZippyJSON.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		59A4FCD960628C8ED8A61A22 /* Path+Extras.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Path+Extras.swift"; sourceTree = "<group>"; };
 		5AA5330EE98A6F848EEE8769 /* libArgumentParser.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libArgumentParser.a; path = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_apple_swift_argument_parser/libArgumentParser.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1556,6 +1558,7 @@
 				39BD71AFA3E21D4C484C7FA9 /* BuildMode.swift */,
 				A1C53680A482E33A46AA1CB1 /* Errors.swift */,
 				D1A3B9E481DB1E327EEDB3F1 /* Logger.swift */,
+				57EC40D68E051789B1C1E2BB /* ParsableCommand+Extensions.swift */,
 				E80763D0E1011CB0D1DF7947 /* SemanticVersion.swift */,
 				A1BBB1AC7D828C77B3842A4D /* String+Extensions.swift */,
 			);
@@ -3720,6 +3723,7 @@
 				AF0DA5827ADC4BD6D31585A2 /* BuildMode.swift in Sources */,
 				7F12F5935980E87B7ADA934A /* Errors.swift in Sources */,
 				6543A1CC5C5B68D1825FFBEC /* Logger.swift in Sources */,
+				29C4AF2B1A715783C0F74426 /* ParsableCommand+Extensions.swift in Sources */,
 				3AED5D53EB7FC30B859B01FA /* SemanticVersion.swift in Sources */,
 				BBCED9A591DE5CF3EC6117C8 /* String+Extensions.swift in Sources */,
 			);
