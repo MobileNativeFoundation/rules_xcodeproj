@@ -68,7 +68,10 @@ def _write_pbxproj_prefix_test_impl(ctx):
     expected_declared_files = {
         _OUTPUT_DECLARED_FILE: None,
     }
-    expected_inputs = [ctx.attr.execution_root_file]
+    expected_inputs = [
+        ctx.attr.execution_root_file,
+        ctx.attr.resolved_repositories_file,
+    ]
     if ctx.attr.pre_build_script:
         file = _PRE_BUILD_DECLARED_FILE
         expected_declared_files[file] = None

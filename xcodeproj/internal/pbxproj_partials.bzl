@@ -60,7 +60,7 @@ def _write_pbxproj_prefix(
     Returns:
         The `File` for the `PBXProject` prefix `PBXProj` partial.
     """
-    inputs = [execution_root_file]
+    inputs = [execution_root_file, resolved_repositories_file]
     output = actions.declare_file(
         "{}_pbxproj_partials/pbxproj_prefix".format(
             generator_name,
