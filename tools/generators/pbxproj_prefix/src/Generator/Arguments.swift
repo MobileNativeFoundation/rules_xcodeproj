@@ -30,6 +30,15 @@ Path to a file that contains the absolute path to the Bazel execution root.
         @Argument(help: "Path to the index_import executable.")
         var indexImport: String
 
+        @Argument(
+            help: """
+Path to a file that contains a string for the `RESOLVED_REPOSITORIES` build \
+setting.
+""",
+            transform: { URL(fileURLWithPath: $0, isDirectory: false) }
+        )
+        var resolvedRepositoriesFile: URL
+
         @Argument(help: "`xcodeproj.build_mode`.")
         var buildMode: BuildMode
 

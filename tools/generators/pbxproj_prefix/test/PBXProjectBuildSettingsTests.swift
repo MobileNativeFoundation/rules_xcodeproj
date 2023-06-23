@@ -10,6 +10,7 @@ class PBXProjectBuildSettingsTests: XCTestCase {
 
         let buildMode: BuildMode = .bazel
         let indexingProjectDir = "/some/indexing/project dir"
+        let resolvedRepositories = #""" "/tmp/workspace""#
         let workspace = "/Users/TimApple/Star Board"
 
         // The tabs for indenting are intentional
@@ -60,7 +61,7 @@ class PBXProjectBuildSettingsTests: XCTestCase {
 				LIBTOOL = "$(BAZEL_INTEGRATION_DIR)/libtool.sh";
 				ONLY_ACTIVE_ARCH = YES;
 				PROJECT_DIR = "$(INDEXING_PROJECT_DIR__$(INDEX_ENABLE_BUILD_ARENA))";
-				RESOLVED_REPOSITORIES = "";
+				RESOLVED_REPOSITORIES = "\"\" \"/tmp/workspace\"";
 				RULES_XCODEPROJ_BUILD_MODE = bazel;
 				SCHEME_TARGET_IDS_FILE = "$(OBJROOT)/scheme_target_ids";
 				SRCROOT = "/Users/TimApple/Star Board";
@@ -82,6 +83,7 @@ class PBXProjectBuildSettingsTests: XCTestCase {
         let buildSettings = Generator.pbxProjectBuildSettings(
             buildMode: buildMode,
             indexingProjectDir: indexingProjectDir,
+            resolvedRepositories: resolvedRepositories,
             workspace: workspace
         )
 
@@ -95,6 +97,7 @@ class PBXProjectBuildSettingsTests: XCTestCase {
 
         let buildMode: BuildMode = .xcode
         let indexingProjectDir = "/some/indexing/project_dir"
+        let resolvedRepositories = #""" "/tmp/workspace""#
         let workspace = "/Users/TimApple/StarBoard"
 
         // The tabs for indenting are intentional
@@ -139,7 +142,7 @@ class PBXProjectBuildSettingsTests: XCTestCase {
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PROJECT_DIR = "$(INDEXING_PROJECT_DIR__$(INDEX_ENABLE_BUILD_ARENA))";
-				RESOLVED_REPOSITORIES = "";
+				RESOLVED_REPOSITORIES = "\"\" \"/tmp/workspace\"";
 				RULES_XCODEPROJ_BUILD_MODE = xcode;
 				SCHEME_TARGET_IDS_FILE = "$(OBJROOT)/scheme_target_ids";
 				SRCROOT = /Users/TimApple/StarBoard;
@@ -159,6 +162,7 @@ class PBXProjectBuildSettingsTests: XCTestCase {
         let buildSettings = Generator.pbxProjectBuildSettings(
             buildMode: buildMode,
             indexingProjectDir: indexingProjectDir,
+            resolvedRepositories: resolvedRepositories,
             workspace: workspace
         )
 
