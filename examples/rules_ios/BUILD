@@ -8,12 +8,19 @@ load(
 
 exports_files(["README.md"])
 
-xcodeproj(
-    name = "xcodeproj",
-    build_mode = "bazel",
-    project_name = "rules_ios",
-    scheme_autogeneration_mode = SCHEME_AUTOGENERATION_MODE,
-    schemes = get_xcode_schemes(),
-    tags = ["manual"],
-    top_level_targets = XCODEPROJ_TARGETS,
-)
+[
+    xcodeproj(
+        name = "xcodeproj-cat" if use_experimental_incremental else "xcodeproj",
+        build_mode = "bazel",
+        project_name = "rules_ios_cat" if use_experimental_incremental else "rules_ios",
+        scheme_autogeneration_mode = SCHEME_AUTOGENERATION_MODE,
+        schemes = get_xcode_schemes(),
+        tags = ["manual"],
+        top_level_targets = XCODEPROJ_TARGETS,
+        use_experimental_incremental = use_experimental_incremental,
+    )
+    for use_experimental_incremental in [
+        True,
+        False,
+    ]
+]

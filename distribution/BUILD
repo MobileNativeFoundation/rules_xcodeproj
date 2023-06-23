@@ -36,17 +36,52 @@ pkg_tar(
     extension = "tar.gz",
     mode = "0444",
     modes = {
+        "tools/generators/files_and_groups/prebuilt_universal_files_and_groups": "0744",
         "tools/generators/legacy/prebuilt_universal_generator": "0744",
+        "tools/generators/pbxnativetargets/prebuilt_universal_pbxnativetargets": "0744",
+        "tools/generators/pbxproj_prefix/prebuilt_universal_pbxproj_prefix": "0744",
+        "tools/generators/pbxtargetdependencies/prebuilt_universal_pbxtargetdependencies": "0744",
+        "tools/generators/target_build_settings/prebuilt_universal_target_build_settings": "0744",
     },
     owner = "0.0",
     package_file_name = "release.tar.gz",
     remap_paths = {
         "MODULE.release.bazel": "MODULE.bazel",
+        "tools/generators/files_and_groups/BUILD.release.bazel": (
+            "tools/generators/files_and_groups/BUILD"
+        ),
+        "tools/generators/files_and_groups/universal_files_and_groups": (
+            "tools/generators/files_and_groups/prebuilt_universal_files_and_groups"
+        ),
         "tools/generators/legacy/BUILD.release.bazel": (
             "tools/generators/legacy/BUILD"
         ),
         "tools/generators/legacy/universal_generator": (
             "tools/generators/legacy/prebuilt_universal_generator"
+        ),
+        "tools/generators/pbxnativetargets/BUILD.release.bazel": (
+            "tools/generators/pbxnativetargets/BUILD"
+        ),
+        "tools/generators/pbxnativetargets/universal_pbxnativetargets": (
+            "tools/generators/pbxnativetargets/prebuilt_universal_pbxnativetargets"
+        ),
+        "tools/generators/pbxproj_prefix/BUILD.release.bazel": (
+            "tools/generators/pbxproj_prefix/BUILD"
+        ),
+        "tools/generators/pbxproj_prefix/universal_pbxproj_prefix": (
+            "tools/generators/pbxproj_prefix/prebuilt_universal_pbxproj_prefix"
+        ),
+        "tools/generators/pbxtargetdependencies/BUILD.release.bazel": (
+            "tools/generators/pbxtargetdependencies/BUILD"
+        ),
+        "tools/generators/pbxtargetdependencies/universal_pbxtargetdependencies": (
+            "tools/generators/pbxtargetdependencies/prebuilt_universal_pbxtargetdependencies"
+        ),
+        "tools/generators/target_build_settings/BUILD.release.bazel": (
+            "tools/generators/target_build_settings/BUILD"
+        ),
+        "tools/generators/target_build_settings/universal_target_build_settings": (
+            "tools/generators/target_build_settings/prebuilt_universal_target_build_settings"
         ),
         "tools/swiftc_stub/BUILD.release.bazel": "tools/swiftc_stub/BUILD",
         "xcodeproj/repositories.release.bzl": "xcodeproj/repositories.bzl",

@@ -30,7 +30,7 @@ enum Target {
         let arch: String
         let executableName: String?
         let conditionalFiles: Set<BazelPath>
-        let compilerBuildSettingsFile: URL?
+        let buildSettingsFile: URL?
         let linkParams: String?
         let hosts: [Host]
         let unitTestHost: UnitTestHost?

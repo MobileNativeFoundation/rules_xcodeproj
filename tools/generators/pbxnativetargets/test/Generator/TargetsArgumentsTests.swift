@@ -64,10 +64,10 @@ final class TargetsArgumentsTests: XCTestCase {
             "arm64",
             "i386",
 
-            "--compiler-build-settings-files",
+            "--build-settings-files",
             "",
             "",
-            "/tmp/pbxproj_partials/compiler_build_settings",
+            "/tmp/pbxproj_partials/target_build_settings",
 
             "--has-c-params",
             "0",
@@ -108,7 +108,7 @@ final class TargetsArgumentsTests: XCTestCase {
                 platform: .macOS,
                 osVersion: "12.0",
                 arch: "x86_64",
-                compilerBuildSettingsFile: nil,
+                buildSettingsFile: nil,
                 hasCParams: false,
                 hasCxxParams: false,
                 srcs: [],
@@ -128,7 +128,7 @@ final class TargetsArgumentsTests: XCTestCase {
                 platform: .iOSDevice,
                 osVersion: "16.0",
                 arch: "arm64",
-                compilerBuildSettingsFile: nil,
+                buildSettingsFile: nil,
                 hasCParams: false,
                 hasCxxParams: false,
                 srcs: [
@@ -151,9 +151,9 @@ final class TargetsArgumentsTests: XCTestCase {
                 platform: .tvOSSimulator,
                 osVersion: "9.1",
                 arch: "i386",
-                compilerBuildSettingsFile: URL(
+                buildSettingsFile: URL(
                     fileURLWithPath:
-                        "/tmp/pbxproj_partials/compiler_build_settings"
+                        "/tmp/pbxproj_partials/target_build_settings"
                 ),
                 hasCParams: false,
                 hasCxxParams: false,
@@ -229,9 +229,9 @@ final class TargetsArgumentsTests: XCTestCase {
             "arm64",
             "x86_64",
 
-            "--compiler-build-settings-files",
+            "--build-settings-files",
             "",
-            "/tmp/pbxproj_partials/compiler_build_settings",
+            "/tmp/pbxproj_partials/target_build_settings",
 
             "--has-c-params",
             "0",
@@ -301,7 +301,7 @@ final class TargetsArgumentsTests: XCTestCase {
                 platform: .iOSDevice,
                 osVersion: "15.0",
                 arch: "arm64",
-                compilerBuildSettingsFile: nil,
+                buildSettingsFile: nil,
                 hasCParams: false,
                 hasCxxParams: true,
                 srcs: [
@@ -338,9 +338,9 @@ final class TargetsArgumentsTests: XCTestCase {
                 platform: .tvOSSimulator,
                 osVersion: "10.2.1",
                 arch: "x86_64",
-                compilerBuildSettingsFile: URL(
+                buildSettingsFile: URL(
                     fileURLWithPath:
-                        "/tmp/pbxproj_partials/compiler_build_settings"
+                        "/tmp/pbxproj_partials/target_build_settings"
                 ),
                 hasCParams: true,
                 hasCxxParams: false,

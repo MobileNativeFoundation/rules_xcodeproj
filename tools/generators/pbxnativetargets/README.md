@@ -39,7 +39,7 @@ The generator accepts the following command-line arguments (see
 - Option `--platforms <platform> ...`
 - Option `--os-versions <os-version> ...`
 - Option `--archs <arch> ...`
-- Option `--compiler-build-settings-files <compiler-build-settings-file> ...`
+- Option `--build-settings-files <build-settings-file> ...`
 - Option `--has-c-params <has-c-params> ...`
 - Option `--has-cxx-params <has-cxx-params> ...`
 - Optional option `--srcs-counts <srcs-count> ...`
@@ -101,8 +101,8 @@ $ pbxnativetargets \
     --archs \
     x86_64 \
     x86_64 \
-    --compiler-build-settings-files \
-    /tmp/pbxproj_partials/compiler_build_settings \
+    --build-settings-files \
+    /tmp/pbxproj_partials/target_build_settings \
     "" \
     --has-c-params \
     0 \

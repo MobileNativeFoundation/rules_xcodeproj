@@ -6,6 +6,7 @@ load(":project_options.bzl", _default_project_options = "project_options")
 load(":top_level_target.bzl", "top_level_target")
 load(":xcode_schemes.bzl", "focus_schemes", "unfocus_schemes")
 load(":xcodeproj_runner.bzl", "xcodeproj_runner")
+load(":xcodeproj_scheme.bzl", "xcodeproj_scheme")
 
 def _normalize_build_setting(flag):
     if flag.startswith("//command_line_option:"):
@@ -345,6 +346,7 @@ def xcodeproj(
     """
     is_fixture = kwargs.pop("is_fixture", False)
     testonly = kwargs.pop("testonly", True)
+    use_incremental = kwargs.pop("use_experimental_incremental", False)
 
     if archived_bundles_allowed != None:
         warn("""\
@@ -444,7 +446,19 @@ alphabetically ("{default}").
     ]
 
     schemes_json = None
-    if schemes:
+    scheme_targets = []
+    if use_incremental:
+        # FIXME:
+        scheme_targets = [
+            name + ".scheme.CustomScheme",
+        ]
+        for scheme_name in scheme_targets:
+            xcodeproj_scheme(
+                name = scheme_name,
+                scheme_name = "Custom Scheme",
+                visibility = [str(Label("//xcodeproj:generated"))],
+            )
+    elif schemes:
         if unfocused_labels:
             schemes = unfocus_schemes(
                 schemes = schemes,
@@ -527,6 +541,7 @@ Please refer to https://bazel.build/extending/config#defining) on how to them.
         project_name = project_name,
         project_options = project_options,
         scheme_autogeneration_mode = scheme_autogeneration_mode,
+        scheme_targets = scheme_targets,
         schemes_json = schemes_json,
         target_name_mode = target_name_mode,
         testonly = testonly,
@@ -536,6 +551,7 @@ Please refer to https://bazel.build/extending/config#defining) on how to them.
         tvos_simulator_cpus = tvos_simulator_cpus,
         unfocused_labels = unfocused_labels,
         unowned_extra_files = unowned_extra_files,
+        use_incremental = use_incremental,
         watchos_device_cpus = watchos_device_cpus,
         watchos_simulator_cpus = watchos_simulator_cpus,
         xcode_configuration_flags = xcode_configuration_flags,

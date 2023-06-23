@@ -55,7 +55,7 @@ string_flag(
 #
 [
     xcodeproj(
-        name = "xcodeproj-{}-{}".format(build_mode, simulator_cpu),
+        name = "xcodeproj-{}-{}-cat".format(build_mode, simulator_cpu) if use_experimental_incremental else "xcodeproj-{}-{}".format(build_mode, simulator_cpu),
         associated_extra_files = ASSOCIATED_EXTRA_FILES,
         bazel_env = BAZEL_ENV,
         build_mode = build_mode,
@@ -65,7 +65,7 @@ string_flag(
         fail_for_invalid_extra_files_targets = FAIL_FOR_INVALID_EXTRA_FILES_TARGETS,
         ios_simulator_cpus = simulator_cpu,
         pre_build = PRE_BUILD,
-        project_name = "Integration",
+        project_name = "Integration_cat" if use_experimental_incremental else "Integration",
         project_options = PROJECT_OPTIONS,
         scheme_autogeneration_mode = SCHEME_AUTOGENERATION_MODE,
         schemes = get_xcode_schemes(),
@@ -73,6 +73,7 @@ string_flag(
         top_level_targets = XCODEPROJ_TARGETS,
         tvos_simulator_cpus = simulator_cpu,
         unfocused_targets = UNFOCUSED_TARGETS,
+        use_experimental_incremental = use_experimental_incremental,
         # watchOS Simulator CPU on Apple silicon doesn't have 'sim_' prefix
         watchos_simulator_cpus = simulator_cpu.removeprefix("sim_"),
         xcode_configurations = XCODE_CONFIGURATIONS,
@@ -84,5 +85,9 @@ string_flag(
     for simulator_cpu in [
         "sim_arm64",
         "x86_64",
+    ]
+    for use_experimental_incremental in [
+        True,
+        False,
     ]
 ]

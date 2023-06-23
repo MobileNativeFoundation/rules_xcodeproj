@@ -151,9 +151,9 @@ _SCHEMES = [
                 "--archs",
                 "x86_64",
                 "x86_64",
-                # compilerBuildSettingsFiles
-                "--compiler-build-settings-files",
-                "/tmp/pbxproj_partials/compiler_build_settings",
+                # buildSettingsFiles
+                "--build-settings-files",
+                "/tmp/pbxproj_partials/target_build_settings",
                 # FIXME: adjust `args` to quote spaces when sending to Xcode?
                 '""',
                 # hasCParams

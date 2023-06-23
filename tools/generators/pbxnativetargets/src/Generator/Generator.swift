@@ -120,8 +120,8 @@ correctly
                     arch: targetArguments.arch,
                     executableName: topLevelTargetAttributes?.executableName,
                     conditionalFiles: conditionalFiles,
-                    compilerBuildSettingsFile:
-                        targetArguments.compilerBuildSettingsFile,
+                    buildSettingsFile:
+                        targetArguments.buildSettingsFile,
                     linkParams: topLevelTargetAttributes?.linkParams,
                     hosts: [], //targetHosts[id] ?? [],
                     unitTestHost: topLevelTargetAttributes?.unitTestHost

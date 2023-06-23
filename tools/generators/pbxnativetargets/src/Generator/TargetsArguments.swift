@@ -122,7 +122,7 @@ exactly as paths as there are targets.
             return URL(fileURLWithPath: path, isDirectory: false)
         }
     )
-    var compilerBuildSettingsFiles: [URL?]
+    var buildSettingsFiles: [URL?]
 
     @Option(
         parsing: .upToNextOption,
@@ -336,9 +336,9 @@ elements as <targets> (\(targets.count) elements).
 """)
         }
 
-        guard compilerBuildSettingsFiles.count == targets.count else {
+        guard buildSettingsFiles.count == targets.count else {
             throw ValidationError("""
-<compiler-build-setting-files> (\(compilerBuildSettingsFiles.count) elements) \
+<compiler-build-setting-files> (\(buildSettingsFiles.count) elements) \
 must have exactly as many elements as <targets> (\(targets.count) elements).
 """)
         }
@@ -465,7 +465,7 @@ struct TargetArguments: Equatable {
     let osVersion: SemanticVersion
     let arch: String
 
-    let compilerBuildSettingsFile: URL?
+    let buildSettingsFile: URL?
     let hasCParams: Bool
     let hasCxxParams: Bool
 
@@ -535,8 +535,8 @@ extension TargetsArguments {
                         platform: platforms[targetIndex],
                         osVersion: osVersions[targetIndex],
                         arch: archs[targetIndex],
-                        compilerBuildSettingsFile:
-                            compilerBuildSettingsFiles[targetIndex],
+                        buildSettingsFile:
+                            buildSettingsFiles[targetIndex],
                         hasCParams: hasCParams[targetIndex],
                         hasCxxParams: hasCxxParams[targetIndex],
                         srcs: srcs,

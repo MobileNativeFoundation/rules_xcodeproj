@@ -74,6 +74,18 @@ xcodeproj(
     xcode_configurations = XCODE_CONFIGURATIONS,
 )
 
+xcodeproj(
+    name = "xcodeproj_cat",
+    project_name = "generator_cat",
+    scheme_autogeneration_mode = SCHEME_AUTOGENERATION_MODE,
+    schemes = get_xcode_schemes(),
+    tags = ["manual"],
+    top_level_targets = TOP_LEVEL_TARGETS,
+    unfocused_targets = UNFOCUSED_TARGETS,
+    use_experimental_incremental = True,
+    xcode_configurations = XCODE_CONFIGURATIONS,
+)
+
 # Release
 
 filegroup(

@@ -180,15 +180,15 @@ extension Generator.CalculatePlatformVariantBuildSettings {
         }
 
         // FIXME: Extract
-        if let compilerBuildSettingsFile =
-            platformVariant.compilerBuildSettingsFile
+        if let buildSettingsFile =
+            platformVariant.buildSettingsFile
         {
             // FIXME: Wrap in better precondition error that mentions url
-            for try await line in compilerBuildSettingsFile.lines {
+            for try await line in buildSettingsFile.lines {
                 let components = line.split(separator: "\t", maxSplits: 1)
                 guard components.count == 2 else {
                     throw PreconditionError(message: """
-"\(compilerBuildSettingsFile.path)": Invalid format, missing tab separator.
+"\(buildSettingsFile.path)": Invalid format, missing tab separator.
 """)
                 }
                 buildSettings.append(

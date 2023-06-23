@@ -44,7 +44,7 @@ class CalculatePlatformVariantBuildSettingsTests: XCTestCase {
 
         // Act
 
-        let buildSettings = 
+        let buildSettings =
             try await calculatePlatformVariantBuildSettingsWithDefaults(
                 platformVariant: platformVariant
             )
@@ -70,7 +70,7 @@ class CalculatePlatformVariantBuildSettingsTests: XCTestCase {
 
         // Act
 
-        let buildSettings = 
+        let buildSettings =
             try await calculatePlatformVariantBuildSettingsWithDefaults(
                 platformVariant: platformVariant
             )
@@ -96,7 +96,7 @@ class CalculatePlatformVariantBuildSettingsTests: XCTestCase {
 
         // Act
 
-        let buildSettings = 
+        let buildSettings =
             try await calculatePlatformVariantBuildSettingsWithDefaults(
                 platformVariant: platformVariant
             )
@@ -122,7 +122,7 @@ class CalculatePlatformVariantBuildSettingsTests: XCTestCase {
 
         // Act
 
-        let buildSettings = 
+        let buildSettings =
             try await calculatePlatformVariantBuildSettingsWithDefaults(
                 productType: productType,
                 productPath: productPath,
@@ -150,7 +150,7 @@ class CalculatePlatformVariantBuildSettingsTests: XCTestCase {
 
         // Act
 
-        let buildSettings = 
+        let buildSettings =
             try await calculatePlatformVariantBuildSettingsWithDefaults(
                 productType: productType,
                 productPath: productPath,
@@ -177,7 +177,7 @@ class CalculatePlatformVariantBuildSettingsTests: XCTestCase {
 
         // Act
 
-        let buildSettings = 
+        let buildSettings =
             try await calculatePlatformVariantBuildSettingsWithDefaults(
                 platformVariant: platformVariant
             )
@@ -204,7 +204,7 @@ class CalculatePlatformVariantBuildSettingsTests: XCTestCase {
 
         // Act
 
-        let buildSettings = 
+        let buildSettings =
             try await calculatePlatformVariantBuildSettingsWithDefaults(
                 platformVariant: platformVariant
             )
@@ -230,7 +230,7 @@ class CalculatePlatformVariantBuildSettingsTests: XCTestCase {
 
         // Act
 
-        let buildSettings = 
+        let buildSettings =
             try await calculatePlatformVariantBuildSettingsWithDefaults(
                 platformVariant: platformVariant
             )
@@ -259,7 +259,7 @@ class CalculatePlatformVariantBuildSettingsTests: XCTestCase {
 
         // Act
 
-        let buildSettings = 
+        let buildSettings =
             try await calculatePlatformVariantBuildSettingsWithDefaults(
                 platformVariant: platformVariant
             )
@@ -285,7 +285,7 @@ class CalculatePlatformVariantBuildSettingsTests: XCTestCase {
 
         // Act
 
-        let buildSettings = 
+        let buildSettings =
             try await calculatePlatformVariantBuildSettingsWithDefaults(
                 platformVariant: platformVariant
             )
@@ -312,7 +312,7 @@ class CalculatePlatformVariantBuildSettingsTests: XCTestCase {
 
         // Act
 
-        let buildSettings = 
+        let buildSettings =
             try await calculatePlatformVariantBuildSettingsWithDefaults(
                 platformVariant: platformVariant
             )
@@ -336,7 +336,7 @@ class CalculatePlatformVariantBuildSettingsTests: XCTestCase {
 
         // Act
 
-        let buildSettings = 
+        let buildSettings =
             try await calculatePlatformVariantBuildSettingsWithDefaults(
                 productType: productType,
                 productPath: productPath,
@@ -375,7 +375,7 @@ $(BUILD_DIR)/some/packageBin/dir/a/path/Host.app/Executable_Name
 
         // Act
 
-        let buildSettings = 
+        let buildSettings =
             try await calculatePlatformVariantBuildSettingsWithDefaults(
                 productType: productType,
                 productPath: productPath,
@@ -469,7 +469,7 @@ private extension Target.PlatformVariant {
         moduleName: String = "",
         executableName: String? = nil,
         conditionalFiles: Set<BazelPath> = [],
-        compilerBuildSettingsFile: URL? = nil,
+        buildSettingsFile: URL? = nil,
         linkParams: String? = nil,
         hosts: [Target.Host] = [],
         unitTestHost: Target.UnitTestHost? = nil,
@@ -490,7 +490,7 @@ private extension Target.PlatformVariant {
             arch: arch,
             executableName: executableName,
             conditionalFiles: conditionalFiles,
-            compilerBuildSettingsFile: compilerBuildSettingsFile,
+            buildSettingsFile: buildSettingsFile,
             linkParams: linkParams,
             hosts: hosts,
             unitTestHost: unitTestHost,
