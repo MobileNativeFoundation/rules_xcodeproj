@@ -148,6 +148,9 @@ Here is an example output:
 			path = ../../external;
 			sourceTree = SOURCE_ROOT;
 		};
+	};
+	rootObject = 000000000000000000000001 /* Project object */;
+}
 
 ```
 

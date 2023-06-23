@@ -17,6 +17,9 @@ class FilesAndGroupsPartialTests: XCTestCase {
         // The tabs for indenting are intentional
         let expectedFilesAndGroupsPartial = #"""
 		element /* path */ = {ELEMENT};
+	};
+	rootObject = 000000000000000000000001 /* Project object */;
+}
 
 """#
 

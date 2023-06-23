@@ -10,6 +10,9 @@ extension Generator {
         // correctly.
         return #"""
 \#(elementsPartial)\#
+	};
+	rootObject = \#(Identifiers.Project.id);
+}
 
 """#
     }
