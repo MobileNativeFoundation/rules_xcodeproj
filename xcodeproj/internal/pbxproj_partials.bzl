@@ -103,6 +103,7 @@ def _write_files_and_groups(
     if files != EMPTY_DEPSET or file_paths != EMPTY_DEPSET:
         args.add("--file-paths")
         args.add_all(files)
+
         # TODO: Consider moving normalization into `args.add_all.map_each`
         args.add_all(file_paths)
 
