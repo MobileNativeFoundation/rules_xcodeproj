@@ -42,8 +42,12 @@ pkg_tar(
     package_file_name = "release.tar.gz",
     remap_paths = {
         "MODULE.release.bazel": "MODULE.bazel",
-        "tools/generators/legacy/BUILD.release.bazel": "tools/generators/legacy/BUILD",
-        "tools/generators/legacy/universal_generator": "tools/generators/legacy/prebuilt_universal_generator",
+        "tools/generators/legacy/BUILD.release.bazel": (
+            "tools/generators/legacy/BUILD",
+        ),
+        "tools/generators/legacy/universal_generator": (
+            "tools/generators/legacy/prebuilt_universal_generator",
+        ),
         "tools/swiftc_stub/BUILD.release.bazel": "tools/swiftc_stub/BUILD",
         "xcodeproj/repositories.release.bzl": "xcodeproj/repositories.bzl",
     },
