@@ -188,7 +188,7 @@ Project options for use in `xcodeproj.project_options`.
 
 **RETURNS**
 
-A `struct` containing fields for the provided arguments.
+A `dict` containing fields for the provided arguments.
 
 
 # Custom Xcode schemes
