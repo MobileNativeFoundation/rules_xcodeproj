@@ -27,9 +27,9 @@ final class CreateVersionGroupTests: XCTestCase {
 
         let expectedBazelPath: BazelPath = "bazel/path/node.xcdatamodeld"
 
-        let selectedModelVersions: [BazelPath: BazelPath] = [
-            "another/a.xcdatamodeld": "b.xcdatamodel",
-            expectedBazelPath: "bazel/path/node.xcdatamodeld/b.xcdatamodel",
+        let selectedModelVersions: [BazelPath: String] = [
+            "another/a.xcdatamodeld": "other.xcdatamodel",
+            expectedBazelPath: "b.xcdatamodel",
         ]
 
         let expectedCreateIdentifierCalled: [

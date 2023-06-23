@@ -5,21 +5,21 @@ extension ElementCreator {
         private let createFile: CreateFile
         private let createIdentifier: CreateIdentifier
         private let createVersionGroupElement: CreateVersionGroupElement
-        private let selectedModelVersions: [BazelPath: BazelPath]
+        private let selectedModelVersions: [BazelPath: String]
 
         private let callable: Callable
 
         /// - Parameters:
         ///   - selectedModelVersions: A `Dictionary` that maps the `BazelPath`
         ///     for an `.xcdatamodeld` group to its selected `.xcdatamodel`
-        ///     file.
+        ///     file name.
         ///   - callable: The function that will be called in
         ///     `callAsFunction()`.
         init(
             createFile: CreateFile,
             createIdentifier: CreateIdentifier,
             createVersionGroupElement: CreateVersionGroupElement,
-            selectedModelVersions: [BazelPath: BazelPath],
+            selectedModelVersions: [BazelPath: String],
             callable: @escaping Callable
         ) {
             self.createFile = createFile
@@ -58,7 +58,7 @@ extension ElementCreator.CreateVersionGroup {
         _ createFile: ElementCreator.CreateFile,
         _ createIdentifier: ElementCreator.CreateIdentifier,
         _ createVersionGroupElement: ElementCreator.CreateVersionGroupElement,
-        _ selectedModelVersions: [BazelPath: BazelPath]
+        _ selectedModelVersions: [BazelPath: String]
     ) -> GroupChild.ElementAndChildren
 
     static func defaultCallable(
@@ -68,7 +68,7 @@ extension ElementCreator.CreateVersionGroup {
         createFile: ElementCreator.CreateFile,
         createIdentifier: ElementCreator.CreateIdentifier,
         createVersionGroupElement: ElementCreator.CreateVersionGroupElement,
-        selectedModelVersions: [BazelPath: BazelPath]
+        selectedModelVersions: [BazelPath: String]
     ) -> GroupChild.ElementAndChildren {
         let bazelPath = parentBazelPath + node
         let name = node.name
@@ -82,16 +82,15 @@ extension ElementCreator.CreateVersionGroup {
         var children: [GroupChild.ElementAndChildren] = []
         var selectedChildIdentifier: String? = nil
         for node in node.children {
-            let childBazelPath = bazelPath + node
             let result = createFile(
                 for: node,
-                bazelPath: childBazelPath,
+                bazelPath: bazelPath + node,
                 specialRootGroupType: specialRootGroupType,
                 identifierForBazelPaths: identifier
             )
             children.append(result)
 
-            if childBazelPath == selectedModelVersion {
+            if node.name == selectedModelVersion {
                 selectedChildIdentifier = result.element.identifier
             }
         }

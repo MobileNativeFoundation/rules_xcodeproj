@@ -18,8 +18,8 @@ Path to a file that contains the absolute path to the Bazel execution root.
         @Argument(
             help: """
 Path to a file that contains a JSON representation of \
-`[BazelPath: BazelPath]`, mapping `.xcdatamodeld` file paths to selected \
-`.xcdatamodel` file paths.
+`[BazelPath: String]`, mapping `.xcdatamodeld` file paths to selected \
+`.xcdatamodel` file names.
 """,
             transform: { URL(fileURLWithPath: $0, isDirectory: false) }
         )
