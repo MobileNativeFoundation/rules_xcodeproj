@@ -41,16 +41,14 @@ information.
   - The start of the `PBXProject` element
   - Contains all `PBXProject` properties except for
     `attributes.TargetAttributes`, `targets`, and `knownRegions`
-- `pbxproject_target_attributes`:
-  - The `PBXProject.attributes.TargetAttributes` property
-- `pbxproject_known_regions`:
-  - The `PBXProject.knownRegions` property
 - `pbxproject_targets`:
-  - The `PBXProject.targets` property
-  - Closes the `PBXProject` element
-- `target_dependencies`:
-  - `PBXTargetDependency`s
-  - `PBXContainerItemProxy`s
+  - Creates four+ files:
+    - A partial containing the `PBXProject.attributes.TargetAttributes` property
+    - A partial containing:
+      - The `PBXProject.targets` property
+      - Closes the `PBXProject` element
+    - A partial containing the `PBXTargetDependency` and `PBXContainerItemProxy` elements
+    - A set of files, each detailing how a set of configured targets are consolidated together
 - `pbxnativetargets`:
   - Run once on each shard of all the targets
   - All of the `PBXNativeTarget` related elements:
@@ -59,9 +57,14 @@ information.
     - and various build phases
   - Creates automatic `.xcscheme`s
 - `files_and_groups`:
-  - `PBXFileReference`s
-  - `PBXGroup`s
-  - Closes the `PBXProj` element
+  - Creates three files:
+    - A partial containing the `PBXProject.knownRegions` property
+    - A partial containing:
+      - `PBXFileReference`s
+      - `PBXGroup`s
+      - `PBXBuildFile`s
+      - Closes the `PBXProj` element
+    - A file containing a string for the `RESOLVED_REPOSITORIES` build setting
 
 ## Xcode schemes
 
