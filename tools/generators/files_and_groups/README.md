@@ -4,10 +4,10 @@ The `files_and_groups` generator creates three files:
 
 - A `PBXProj` partial containing the `PBXProject.knownRegions` property
 - A `PBXProj` partial containing:
-	- `PBXFileReference`s
-	- `PBXGroup`s
-	- `PBXBuildFile`s
-	- Closes the `PBXProj` element
+  - `PBXFileReference`s
+  - `PBXGroup`s
+  - `PBXBuildFile`s
+  - Closes the `PBXProj` element
 - A file containing a string for the `RESOLVED_REPOSITORIES` build setting
 
 ## Inputs
@@ -38,14 +38,14 @@ $ files_and_groups \
     /tmp/workspace \
     bazel-output-base/rules_xcodeproj.noindex/build_output_base/execroot/_main/bazel-out/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/generators/xcodeproj/xcodeproj_execution_root_file \
     bazel-output-base/rules_xcodeproj.noindex/build_output_base/execroot/_main/bazel-out/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/generators/xcodeproj/xcodeproj_selected_model_versions_file \
-	en \
-	--use-base-internationalization \
-	--file-paths \
-	a/project/file \
-	bazel-out/generated/file \
-	external/repository/file \
-	--folder-paths \
-	a/project/structure/resource/folder
+    en \
+    --use-base-internationalization \
+    --file-paths \
+    a/project/file \
+    bazel-out/generated/file \
+    external/repository/file \
+    --folder-paths \
+    a/project/structure/resource/folder
 ```
 
 ## Output
