@@ -61,7 +61,7 @@ extension Generator {
 
         let runScriptBuildPhase: (_ name: String, _ script: String?) -> String?
 
-        let write: (_ projectPrefix: String, _ outputPath: URL) throws -> Void
+        let write: Write
     }
 }
 
@@ -80,6 +80,6 @@ extension Generator.Environment {
         readResolvedRepositoriesFile: Generator.readResolvedRepositoriesFile,
         readPrePostBuildScript: Generator.readPrePostBuildScript,
         runScriptBuildPhase: Generator.runScriptBuildPhase,
-        write: Generator.write
+        write: Write()
     )
 }
