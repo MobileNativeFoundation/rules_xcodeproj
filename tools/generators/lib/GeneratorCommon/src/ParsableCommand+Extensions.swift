@@ -2,33 +2,35 @@ import ArgumentParser
 import Foundation
 
 extension ParsableCommand {
-    public static func parseAsRootSupportingParamsFiles() async {
+    public static func parseAsRootSupportingParamsFile() async {
         do {
-            var arguments: [String] = []
-            for argument in CommandLine.arguments.dropFirst() {
-                if argument.starts(with: "@") {
-                    try await parseParamsFile(
-                        String(argument.dropFirst()),
-                        arguments: &arguments
-                    )
-                } else {
-                    arguments.append(argument)
-                }
+            let rawArguments = CommandLine.arguments.dropFirst()
+
+            let arguments: [String]
+            if let arg = rawArguments.first, rawArguments.count == 1,
+               arg.starts(with: "@")
+            {
+                arguments = try await parseParamsFile(String(arg.dropFirst()))
+            } else {
+                arguments = Array(rawArguments)
             }
 
-          var command = try parseAsRoot(arguments)
-          try command.run()
+            var command = try parseAsRoot(arguments)
+            try command.run()
         } catch {
-          exit(withError: error)
+            exit(withError: error)
         }
     }
 
     private static func parseParamsFile(
-        _ path: String,
-        arguments: inout [String]
-    ) async throws {
-        for try await line in URL(fileURLWithPath: path).lines {
-            arguments.append(line)
-        }
+        _ path: String
+    ) async throws -> [String] {
+        return try await URL(fileURLWithPath: path).lines.collect()
+    }
+}
+
+private extension AsyncSequence {
+    func collect() async rethrows -> [Element] {
+        try await reduce(into: [Element]()) { $0.append($1) }
     }
 }
