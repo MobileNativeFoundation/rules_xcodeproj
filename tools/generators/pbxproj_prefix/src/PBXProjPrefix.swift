@@ -15,7 +15,7 @@ struct PBXProjPrefix: ParsableCommand {
     var colorize = false
 
     static func main() async {
-        await parseAsRootSupportingParamsFiles()
+        await parseAsRootSupportingParamsFile()
     }
 
     func run() throws {
