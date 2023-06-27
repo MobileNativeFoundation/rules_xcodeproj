@@ -10,6 +10,20 @@ def _apple_platform_to_platform_name(platform):
 
 # Partials
 
+# enum of flags, mainly to ensure the strings are frozen and reused
+_flags = struct(
+    colorize = "--colorize",
+    default_xcode_configuration = "--default-xcode-configuration",
+    files_paths = "--file-paths",
+    folder_paths = "--folder-paths",
+    organization_name = "--organization-name",
+    platforms = "--platforms",
+    post_build_script = "--post-build-script",
+    pre_build_script = "--pre-build-script",
+    use_base_internationalization = "--use-base-internationalization",
+    xcode_configurations = "--xcode-configurations",
+)
+
 def _write_files_and_groups(
         *,
         actions,
@@ -97,22 +111,22 @@ def _write_files_and_groups(
     args.add(project_options["development_region"])
 
     # useBaseInternationalization
-    args.add("--use-base-internationalization")
+    args.add(_flags.use_base_internationalization)
 
     # filePaths
     if files != EMPTY_DEPSET or file_paths != EMPTY_DEPSET:
-        args.add("--file-paths")
+        args.add(_flags.files_paths)
         args.add_all(files)
 
         # TODO: Consider moving normalization into `args.add_all.map_each`
         args.add_all(file_paths)
 
     # folderPaths
-    args.add_all("--folder-paths", folders)
+    args.add_all(_flags.folder_paths, folders)
 
     # colorize
     if colorize:
-        args.add("--colorize")
+        args.add(_flags.colorize)
 
     actions.run(
         arguments = [args],
@@ -227,24 +241,24 @@ def _write_pbxproj_prefix(
     # organizationName
     organization_name = project_options.get("organization_name")
     if organization_name:
-        args.add("--organization-name", organization_name)
+        args.add(_flags.organization_name, organization_name)
 
     # platforms
     args.add_all(
-        "--platforms",
+        _flags.platforms,
         platforms,
         map_each = _apple_platform_to_platform_name,
     )
 
     # xcodeConfigurations
-    args.add_all(
-        "--xcode-configurations",
-        xcode_configurations,
-    )
+    args.add_all(_flags.xcode_configurations, xcode_configurations)
 
     # defaultXcodeConfiguration
     if default_xcode_configuration:
-        args.add("--default-xcode-configuration", default_xcode_configuration)
+        args.add(
+            _flags.default_xcode_configuration,
+            default_xcode_configuration,
+        )
 
     # preBuildScript
     if pre_build_script:
@@ -258,7 +272,7 @@ def _write_pbxproj_prefix(
             pre_build_script,
         )
         inputs.append(pre_build_script_output)
-        args.add("--pre-build-script", pre_build_script_output)
+        args.add(_flags.pre_build_script, pre_build_script_output)
 
     # postBuildScript
     if post_build_script:
@@ -272,11 +286,11 @@ def _write_pbxproj_prefix(
             post_build_script,
         )
         inputs.append(post_build_script_output)
-        args.add("--post-build-script", post_build_script_output)
+        args.add(_flags.post_build_script, post_build_script_output)
 
     # colorize
     if colorize:
-        args.add("--colorize")
+        args.add(_flags.colorize)
 
     actions.run(
         arguments = [args],
