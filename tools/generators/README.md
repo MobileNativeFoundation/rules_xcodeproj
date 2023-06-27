@@ -56,7 +56,7 @@ information.
     - `XCBuildConfigurationList`
     - and various build phases
   - Creates automatic `.xcscheme`s
-- `files_and_groups`:
+- [`files_and_groups`](files_and_groups/README.md):
   - Creates three files:
     - A partial containing the `PBXProject.knownRegions` property
     - A partial containing:
