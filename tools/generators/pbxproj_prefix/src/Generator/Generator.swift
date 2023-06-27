@@ -76,7 +76,7 @@ struct Generator {
                 /*bazelDependenciesPartial:*/ bazelDependenciesPartial,
                 /*pbxProjectPrefixPartial:*/ pbxProjectPrefixPartial
             ),
-            /*to:*/ arguments.outputPath
+            to: arguments.outputPath
         )
     }
 }

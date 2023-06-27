@@ -26,7 +26,7 @@ extension Generator {
             _ resolvedRepositories: [ResolvedRepository]
         ) -> String
 
-        let write: (_ content: String, _ outputPath: URL) throws -> Void
+        let write: Write
     }
 }
 
@@ -38,6 +38,6 @@ extension Generator.Environment {
         knownRegionsPartial: Generator.knownRegionsPartial,
         resolvedRepositoriesBuildSetting:
             Generator.resolvedRepositoriesBuildSetting,
-        write: Generator.write
+        write: Write()
     )
 }

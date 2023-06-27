@@ -52,17 +52,17 @@ struct Generator {
 
         try environment.write(
             knownRegionsPartial,
-            /*to:*/ arguments.knownRegionsOutputPath
+            to: arguments.knownRegionsOutputPath
         )
 
         try environment.write(
             filesAndGroupsPartial,
-            /*to:*/ arguments.filesAndGroupsOutputPath
+            to: arguments.filesAndGroupsOutputPath
         )
 
         try environment.write(
             resolvedRepositoriesBuildSetting,
-            /*to:*/ arguments.resolvedRepositoriesOutputPath
+            to: arguments.resolvedRepositoriesOutputPath
         )
     }
 }
