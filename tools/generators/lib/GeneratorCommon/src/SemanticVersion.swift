@@ -46,12 +46,6 @@ public struct SemanticVersion: Equatable, Hashable {
     }
 }
 
-extension SemanticVersion: Comparable {
-    public static func < (lhs: SemanticVersion, rhs: SemanticVersion) -> Bool {
-        (lhs.major, lhs.minor, lhs.patch) < (rhs.major, rhs.minor, rhs.patch)
-    }
-}
-
 extension SemanticVersion {
     /// Fully qualified version string.
     public var full: String {
@@ -68,11 +62,23 @@ extension SemanticVersion {
     }
 }
 
+// MARK: - Comparable
+
+extension SemanticVersion: Comparable {
+    public static func < (lhs: SemanticVersion, rhs: SemanticVersion) -> Bool {
+        (lhs.major, lhs.minor, lhs.patch) < (rhs.major, rhs.minor, rhs.patch)
+    }
+}
+
+// MARK: - CustomStringConvertible
+
 extension SemanticVersion: CustomStringConvertible {
     public var description: String {
         return full
     }
 }
+
+// MARK: - Encodable
 
 extension SemanticVersion: Encodable {
     public func encode(to encoder: Encoder) throws {
@@ -95,8 +101,18 @@ extension SemanticVersion: Decodable {
     }
 }
 
+// MARK: - ExpressibleByArgument
+
 extension SemanticVersion: ExpressibleByArgument {
     public init?(argument: String) {
        self.init(version: argument)
+    }
+}
+
+// MARK: - ExpressibleByStringLiteral
+
+extension SemanticVersion: ExpressibleByStringLiteral {
+    public init(stringLiteral value: StringLiteralType) {
+        self.init(version: value)!
     }
 }
