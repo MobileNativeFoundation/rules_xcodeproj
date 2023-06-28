@@ -65,14 +65,14 @@ Here is an example output:
 ### `files_and_groups`
 
 ```
-		000000000000000000000003 /* /tmp/workspace */ = {
+		FF0000000000000000000003 /* /tmp/workspace */ = {
 			isa = PBXGroup;
 			children = (
 				FF8A8BB7CD343AA2AD99B7D7 /* a */,
-				000000000000000000000006 /* Bazel External Repositories */,
-				000000000000000000000007 /* Bazel Generated Files */,
-				000000000000000000000004 /* Products */,
-				000000000000000000000005 /* Frameworks */,
+				FF0000000000000000000006 /* Bazel External Repositories */,
+				FF0000000000000000000007 /* Bazel Generated Files */,
+				FF0000000000000000000004 /* Products */,
+				FF0000000000000000000005 /* Frameworks */,
 			);
 			path = /tmp/workspace;
 			sourceTree = "<absolute>";
@@ -121,7 +121,7 @@ Here is an example output:
 			path = generated;
 			sourceTree = "<group>";
 		};
-		000000000000000000000007 /* Bazel Generated Files */ = {
+		FF0000000000000000000007 /* Bazel Generated Files */ = {
 			isa = PBXGroup;
 			children = (
 				FF6D171B1F90907BD3CC8646 /* bazel-out/generated */,
@@ -139,7 +139,7 @@ Here is an example output:
 			path = repository;
 			sourceTree = "<group>";
 		};
-		000000000000000000000006 /* Bazel External Repositories */ = {
+		FF0000000000000000000006 /* Bazel External Repositories */ = {
 			isa = PBXGroup;
 			children = (
 				FF350C2347512B944024D41B /* external/repository */,
@@ -149,7 +149,7 @@ Here is an example output:
 			sourceTree = SOURCE_ROOT;
 		};
 	};
-	rootObject = 000000000000000000000001 /* Project object */;
+	rootObject = FF0000000000000000000001 /* Project object */;
 }
 
 ```
