@@ -79,7 +79,7 @@ extension ElementCreator.Environment {
     func createCreateRootElements(
         executionRoot: String,
         externalDir: String,
-        selectedModelVersions: [BazelPath: BazelPath],
+        selectedModelVersions: [BazelPath: String],
         workspace: String
     ) -> ElementCreator.CreateRootElements {
         let createAttributes = ElementCreator.CreateAttributes(
@@ -89,7 +89,7 @@ extension ElementCreator.Environment {
             resolveSymlink: resolveSymlink,
             callable: createAttributesCallable
         )
-        
+
         let createFileElement = ElementCreator.CreateFileElement(
             createAttributes: createAttributes,
             createIdentifier: createIdentifier,
