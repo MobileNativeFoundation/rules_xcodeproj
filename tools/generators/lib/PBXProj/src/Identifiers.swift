@@ -155,14 +155,14 @@ FF0000000000000000000004 /* Products */
         }
 
         private static func elementHash(
-            _ path: String,
+            _ hashable: String,
             retryCount: Int
         ) -> String {
             let content: String
             if retryCount == 0 {
-                content = path
+                content = hashable
             } else {
-                content = "\(path)\0\(retryCount)"
+                content = "\(hashable)\0\(retryCount)"
             }
 
             let digest = Insecure.MD5.hash(data: content.data(using: .utf8)!)
