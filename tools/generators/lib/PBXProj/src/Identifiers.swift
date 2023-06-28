@@ -172,7 +172,7 @@ FF0000000000000000000004 /* Products */
                 // that we can use. MD5 digests are 16 bytes (32 characters)
                 // long. So we need to truncate it to fit within the remaining
                 // 22 characters (by dropping 5 bytes). We choose the front 22
-                // because are the most unique.
+                // because they are the most unique.
                 .dropLast(5)
                 .map { String(format: "%02X", $0) }
                 .joined()
@@ -198,6 +198,160 @@ FF0000000000000000000002 /* Build configuration list for PBXProject */
 FF00000000000000000001\#(String(format: "%02X", index)) \#
 /* \#(name) */
 """#
+        }
+    }
+
+    public enum Targets {
+        public struct SubIdentifier: Equatable {
+            let shard: String
+            let hash: String
+        }
+
+        /// Calculates the sub-identifier for a target with `targetId` in the
+        /// `shard` generator shard. This sub-identifier is passed to other
+        /// `Identifier.Targets` functions to generate full identifiers.
+        ///
+        /// - Note: The order that this is called matters. If two `targetId` +
+        ///   `shard` hash to the same value, the second one will have a new
+        ///   hash generated to guarantee it is unique.
+        ///
+        /// - Precondition: `shard` must be in the range `0..<255`.
+        ///
+        /// - Parameters:
+        ///   - id: The Target ID of the target.
+        ///   - shard: The generator shard the target belongs to.
+        ///   - hashCache: A cache that will be used to guarantee that the
+        ///     sub-identifier returned is unique.
+        public static func subIdentifier(
+            _ id: TargetID,
+            shard: UInt8,
+            hashCache: inout [UInt8: Set<String>]
+        ) -> SubIdentifier {
+            precondition(shard < 0xFE)
+            return SubIdentifier(
+                shard: String(format: "%02X", shard),
+                hash: shardSubIdentifier(
+                    id,
+                    hashCache: &hashCache[shard, default: []]
+                )
+            )
+        }
+
+        public static func id(
+            subIdentifier: SubIdentifier,
+            name: String
+        ) -> String {
+            return #"""
+\#(subIdentifier.shard)00\#(subIdentifier.hash)000000000001 /* \#(name) */
+"""#
+        }
+
+        public static func buildConfigurationList(
+            subIdentifier: SubIdentifier,
+            name: String
+        ) -> String {
+            return #"""
+\#(subIdentifier.shard)00\#(subIdentifier.hash)000000000002 \#
+/* Build configuration list for PBXNativeTarget "\#(name)" */
+"""#
+        }
+
+        public static func buildPhase(
+            _ phase: BuildPhase,
+            subIdentifier: SubIdentifier
+        ) -> String {
+            return #"""
+\#(subIdentifier.shard)00\#(subIdentifier.hash)0000000000\#(phase.identifier) \#
+/* \#(phase.name) */
+"""#
+        }
+
+        /// Calculates the identifier for one of a target's
+        /// `XCBBuildConfiguration`s.
+        public static func buildConfiguration(
+            _ name: String,
+            index: UInt8,
+            subIdentifier: SubIdentifier
+        ) -> String {
+            return #"""
+\#(subIdentifier.shard)00\#(subIdentifier.hash)0000000001\#(String(format: "%02X", index)) \#
+/* \#(name) */
+"""#
+        }
+
+        public static func dependency(
+            from: SubIdentifier,
+            to: SubIdentifier
+        ) -> String {
+            return #"""
+\#(from.shard)01\#(from.hash)\#(to.shard)00\#(to.hash) /* PBXTargetDependency */
+"""#
+        }
+
+        public static func containerItemProxy(
+            from: SubIdentifier,
+            to: SubIdentifier
+        ) -> String {
+            return #"""
+\#(from.shard)02\#(from.hash)\#(to.shard)00\#(to.hash) \#
+/* PBXContainerItemProxy */
+"""#
+        }
+
+        private static func shardSubIdentifier(
+            _ id: TargetID,
+            hashCache: inout Set<String>
+        ) -> String {
+            var hash: String
+            var retryCount = 0
+            repeat {
+                hash = targetHash(id.rawValue, retryCount: retryCount)
+                retryCount += 1
+            } while hashCache.contains(hash)
+
+            hashCache.insert(hash)
+
+            return hash
+        }
+
+        private static func targetHash(
+            _ hashable: String,
+            retryCount: Int
+        ) -> String {
+            let content: String
+            if retryCount == 0 {
+                content = hashable
+            } else {
+                content = "\(hashable)\0\(retryCount)"
+            }
+
+            let digest = Insecure.MD5.hash(data: content.data(using: .utf8)!)
+            return digest
+                // We want an 8 character string. MD5 digests are 16 bytes (32
+                // characters) long. So we need to truncate it (by dropping 12
+                // bytes). We choose the front 8 because they are the most
+                // unique.
+                .dropLast(12)
+                .map { String(format: "%02X", $0) }
+                .joined()
+        }
+    }
+}
+
+extension BuildPhase {
+    var identifier: String {
+        switch self {
+        case .bazelIntegration: return "03"
+        case .createCompileDependencies: return "04"
+        case .createLinkDependencies: return "05"
+        case .headers: return "06"
+        case .sources: return "07"
+        case .copySwiftGeneratedHeader: return "08"
+        case .resources: return "09"
+        case .embedFrameworks: return "0A"
+        case .embedWatchContent: return "0B"
+        case .embedAppExtensions: return "0C"
+        case .embedAppClips: return "0D"
         }
     }
 }
