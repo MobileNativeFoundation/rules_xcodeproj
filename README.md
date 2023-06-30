@@ -55,7 +55,7 @@ on it, or [file a new issue][file-an-issue]!
 [^bwx_warning]: Build with Bazel mode is the build mode with first class
   support. We will try to make Build with Xcode mode work with every project, but
   there are limitations that can
-  [make the experience subpar](docs/faq.md#why-do-some-of-my-swift_librarys-compile-twice-in-bwx-mode),
+  [make the experience subpar](https://github.com/MobileNativeFoundation/rules_xcodeproj/blob/main/docs/faq.md#why-do-some-of-my-swift_librarys-compile-twice-in-bwx-mode),
   or not work at all. We recommend using BwB mode if possible.
 
 We’ve also documented the [high-level design goals](docs/design-goals.md) of
