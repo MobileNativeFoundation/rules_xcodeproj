@@ -10,14 +10,14 @@ public enum BuildPhase {
     case embedWatchContent
     case embedAppExtensions
     case embedAppClips
-    
+
     public var name: String {
         switch self {
         case .bazelIntegration: return """
 Copy Bazel Outputs / Generate Bazel Dependencies (Index Build)
 """
-        case .createCompileDependencies: return "Create compiling dependencies"
-        case .createLinkDependencies: return "Create linking dependencies"
+        case .createCompileDependencies: return "Create Compile Dependencies"
+        case .createLinkDependencies: return "Create Link Dependencies"
         case .headers: return "Headers"
         case .sources: return "Sources"
         case .copySwiftGeneratedHeader: return "Copy Swift Generated Header"
