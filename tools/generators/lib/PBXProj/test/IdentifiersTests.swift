@@ -1,6 +1,7 @@
 import CustomDump
-import PBXProj
 import XCTest
+
+@testable import PBXProj
 
 final class IdentifiersTests: XCTestCase {
 
@@ -205,4 +206,123 @@ FEDBE1272349F408494E9A09 /* a/path/to/an/element */
 
         XCTAssertEqual(identifier, expectedIdentifier)
     }
+
+    // MARK: - Targets.subIdentifier
+
+    // MARK: hashCache
+
+    func test_targets_subIdentifier_hashCache_noCollision() {
+        // Arrange
+
+        var hashCache: [UInt8: Set<String>] = [:]
+        let targetID: TargetID = "//a/target some-config"
+        let shard: UInt8 = 42
+
+        let expectedSubIdentifier = Identifiers.Targets.SubIdentifier(
+            shard: #"2A"#,
+            hash: #"A60E6F34"#
+        )
+        let expectedModifiedHashCache: [UInt8: Set<String>] = [
+            42: ["A60E6F34"],
+        ]
+
+        // Act
+
+        let subIdentifier = Identifiers.Targets.subIdentifier(
+            targetID,
+            shard: shard,
+            hashCache: &hashCache
+        )
+
+        // Assert
+
+        XCTAssertEqual(subIdentifier, expectedSubIdentifier)
+        XCTAssertNoDifference(hashCache, expectedModifiedHashCache)
+    }
+
+    func test_targets_subIdentifier_hashCache_collision() {
+        // Arrange
+
+        var hashCache: [UInt8: Set<String>] = [
+            1: ["A60E6F34"],
+            42: ["C8905A0B"],
+        ]
+        let targetID: TargetID = "//a/target some-config"
+        let shard: UInt8 = 1
+
+        let expectedSubIdentifier = Identifiers.Targets.SubIdentifier(
+            shard: #"01"#,
+            hash: #"C8905A0B"#
+        )
+        let expectedModifiedHashCache: [UInt8: Set<String>] = [
+            1: [
+                // Original
+                "A60E6F34",
+
+                // Added
+                "C8905A0B",
+            ],
+            42: [
+                // Original
+                "C8905A0B",
+            ],
+        ]
+
+        // Act
+
+        let subIdentifier = Identifiers.Targets.subIdentifier(
+            targetID,
+            shard: shard,
+            hashCache: &hashCache
+        )
+
+        // Assert
+
+        XCTAssertEqual(subIdentifier, expectedSubIdentifier)
+        XCTAssertNoDifference(hashCache, expectedModifiedHashCache)
+    }
+
+    func test_targets_subIdentifier_hashCache_multipleCollisions() {
+        // Arrange
+
+        var hashCache: [UInt8: Set<String>] = [
+            3: [
+                "A60E6F34",
+                "C8905A0B",
+                "725F054F",
+            ],
+        ]
+        let targetID: TargetID = "//a/target some-config"
+        let shard: UInt8 = 3
+
+        let expectedSubIdentifier = Identifiers.Targets.SubIdentifier(
+            shard: #"03"#,
+            hash: #"FB802152"#
+        )
+        let expectedModifiedHashCache: [UInt8: Set<String>] = [
+            3: [
+                // Original
+                "A60E6F34", // collision 1
+                "C8905A0B", // collision 2
+                "725F054F", // collision 3
+
+                // Added
+                "FB802152",
+            ],
+        ]
+
+        // Act
+
+        let subIdentifier = Identifiers.Targets.subIdentifier(
+            targetID,
+            shard: shard,
+            hashCache: &hashCache
+        )
+
+        // Assert
+
+        XCTAssertEqual(subIdentifier, expectedSubIdentifier)
+        XCTAssertNoDifference(hashCache, expectedModifiedHashCache)
+    }
+
 }
