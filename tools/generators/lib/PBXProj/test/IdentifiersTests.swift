@@ -16,7 +16,7 @@ final class IdentifiersTests: XCTestCase {
         let type: Identifiers.FilesAndGroups.ElementType = .fileReference
 
         let expectedIdentifier = #"""
-FF9127BCB9F1C1C990ADB87F /* a/path/to/a/file */
+FE9127BCB9F1C1C990ADB87F /* a/path/to/a/file */
 """#
         let expectedModifiedHashCache: Set<String> = [
             "9127BCB9F1C1C990ADB87F",
@@ -46,7 +46,7 @@ FF9127BCB9F1C1C990ADB87F /* a/path/to/a/file */
         let type: Identifiers.FilesAndGroups.ElementType = .fileReference
 
         let expectedIdentifier = #"""
-FFC218EE063FFEACFDC4CCBF /* a/path/to/a/file */
+FEC218EE063FFEACFDC4CCBF /* a/path/to/a/file */
 """#
         let expectedModifiedHashCache: Set<String> = [
             // Original
@@ -82,7 +82,7 @@ FFC218EE063FFEACFDC4CCBF /* a/path/to/a/file */
         let type: Identifiers.FilesAndGroups.ElementType = .fileReference
 
         let expectedIdentifier = #"""
-FFD9F54B134D73636F095974 /* a/path/to/a/file */
+FED9F54B134D73636F095974 /* a/path/to/a/file */
 """#
         let expectedModifiedHashCache: Set<String> = [
             // Original
@@ -118,7 +118,7 @@ FFD9F54B134D73636F095974 /* a/path/to/a/file */
         let type: Identifiers.FilesAndGroups.ElementType = .fileReference
 
         let expectedIdentifier = #"""
-FFF8A9154DBAF0B6DF9804E2 /* a/path/to/an/element */
+FEF8A9154DBAF0B6DF9804E2 /* a/path/to/an/element */
 """#
 
         // Act
@@ -142,7 +142,7 @@ FFF8A9154DBAF0B6DF9804E2 /* a/path/to/an/element */
         let type: Identifiers.FilesAndGroups.ElementType = .group
 
         let expectedIdentifier = #"""
-FF76BD00D1EAF8EE030DB890 /* a/path/to/an/element */
+FE76BD00D1EAF8EE030DB890 /* a/path/to/an/element */
 """#
 
         // Act
@@ -166,7 +166,7 @@ FF76BD00D1EAF8EE030DB890 /* a/path/to/an/element */
         let type: Identifiers.FilesAndGroups.ElementType = .localized
 
         let expectedIdentifier = #"""
-FF8B6DB242F1FFE0B40C2A17 /* a/path/to/an/element */
+FE8B6DB242F1FFE0B40C2A17 /* a/path/to/an/element */
 """#
 
         // Act
@@ -190,7 +190,7 @@ FF8B6DB242F1FFE0B40C2A17 /* a/path/to/an/element */
         let type: Identifiers.FilesAndGroups.ElementType = .coreData
 
         let expectedIdentifier = #"""
-FFDBE1272349F408494E9A09 /* a/path/to/an/element */
+FEDBE1272349F408494E9A09 /* a/path/to/an/element */
 """#
 
         // Act

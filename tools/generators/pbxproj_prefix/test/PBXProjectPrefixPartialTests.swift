@@ -25,39 +25,39 @@ class PBXProjectPrefixPartialTests: XCTestCase {
 
         // The tabs for indenting are intentional
         let expectedPBXProjectPrefixPartial = #"""
-		000000000000000000000008 /* Debug */ = {
+		FF0000000000000000000100 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {BUILD_SETTINGS_HERE};
 			name = Debug;
 		};
-		000000000000000000000009 /* Profile */ = {
+		FF0000000000000000000101 /* Profile */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {BUILD_SETTINGS_HERE};
 			name = Profile;
 		};
-		00000000000000000000000A /* Release */ = {
+		FF0000000000000000000102 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {BUILD_SETTINGS_HERE};
 			name = Release;
 		};
-		000000000000000000000002 /* Build configuration list for PBXProject */ = {
+		FF0000000000000000000002 /* Build configuration list for PBXProject */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				000000000000000000000008 /* Debug */,
-				000000000000000000000009 /* Profile */,
-				00000000000000000000000A /* Release */,
+				FF0000000000000000000100 /* Debug */,
+				FF0000000000000000000101 /* Profile */,
+				FF0000000000000000000102 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Profile;
 		};
-		000000000000000000000001 /* Project object */ = {
+		FF0000000000000000000001 /* Project object */ = {
 			isa = PBXProject;
-			buildConfigurationList = 000000000000000000000002 /* Build configuration list for PBXProject */;
+			buildConfigurationList = FF0000000000000000000002 /* Build configuration list for PBXProject */;
 			compatibilityVersion = "AppCode 42.7.4";
 			developmentRegion = "en-GB";
 			hasScannedForEncodings = 0;
-			mainGroup = 000000000000000000000003 /* /Users/TimApple/StarBoard */;
-			productRefGroup = 000000000000000000000004 /* Products */;
+			mainGroup = FF0000000000000000000003 /* /Users/TimApple/StarBoard */;
+			productRefGroup = FF0000000000000000000004 /* Products */;
 			projectDirPath = /some/execution_root;
 			projectRoot = "";
 			attributes = {
@@ -107,39 +107,39 @@ class PBXProjectPrefixPartialTests: XCTestCase {
 
         // The tabs for indenting are intentional
         let expectedPBXProjectPrefixPartial = #"""
-		000000000000000000000008 /* Debug */ = {
+		FF0000000000000000000100 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {BUILD_SETTINGS_HERE};
 			name = Debug;
 		};
-		000000000000000000000009 /* Profile */ = {
+		FF0000000000000000000101 /* Profile */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {BUILD_SETTINGS_HERE};
 			name = Profile;
 		};
-		00000000000000000000000A /* Release */ = {
+		FF0000000000000000000102 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {BUILD_SETTINGS_HERE};
 			name = Release;
 		};
-		000000000000000000000002 /* Build configuration list for PBXProject */ = {
+		FF0000000000000000000002 /* Build configuration list for PBXProject */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				000000000000000000000008 /* Debug */,
-				000000000000000000000009 /* Profile */,
-				00000000000000000000000A /* Release */,
+				FF0000000000000000000100 /* Debug */,
+				FF0000000000000000000101 /* Profile */,
+				FF0000000000000000000102 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		000000000000000000000001 /* Project object */ = {
+		FF0000000000000000000001 /* Project object */ = {
 			isa = PBXProject;
-			buildConfigurationList = 000000000000000000000002 /* Build configuration list for PBXProject */;
+			buildConfigurationList = FF0000000000000000000002 /* Build configuration list for PBXProject */;
 			compatibilityVersion = "AppCode 42.7.4";
 			developmentRegion = "en-GB";
 			hasScannedForEncodings = 0;
-			mainGroup = 000000000000000000000003 /* /Users/TimApple/StarBoard */;
-			productRefGroup = 000000000000000000000004 /* Products */;
+			mainGroup = FF0000000000000000000003 /* /Users/TimApple/StarBoard */;
+			productRefGroup = FF0000000000000000000004 /* Products */;
 			projectDirPath = /some/execution_root;
 			projectRoot = "";
 			attributes = {
@@ -188,39 +188,39 @@ class PBXProjectPrefixPartialTests: XCTestCase {
         ]
 
         let expectedPBXProjectPrefixPartial = #"""
-		000000000000000000000008 /* Debug */ = {
+		FF0000000000000000000100 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {BUILD_SETTINGS_HERE};
 			name = Debug;
 		};
-		000000000000000000000009 /* Profile */ = {
+		FF0000000000000000000101 /* Profile */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {BUILD_SETTINGS_HERE};
 			name = Profile;
 		};
-		00000000000000000000000A /* Release */ = {
+		FF0000000000000000000102 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {BUILD_SETTINGS_HERE};
 			name = Release;
 		};
-		000000000000000000000002 /* Build configuration list for PBXProject */ = {
+		FF0000000000000000000002 /* Build configuration list for PBXProject */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				000000000000000000000008 /* Debug */,
-				000000000000000000000009 /* Profile */,
-				00000000000000000000000A /* Release */,
+				FF0000000000000000000100 /* Debug */,
+				FF0000000000000000000101 /* Profile */,
+				FF0000000000000000000102 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		000000000000000000000001 /* Project object */ = {
+		FF0000000000000000000001 /* Project object */ = {
 			isa = PBXProject;
-			buildConfigurationList = 000000000000000000000002 /* Build configuration list for PBXProject */;
+			buildConfigurationList = FF0000000000000000000002 /* Build configuration list for PBXProject */;
 			compatibilityVersion = "AppCode 42.7.4";
 			developmentRegion = enGB;
 			hasScannedForEncodings = 0;
-			mainGroup = 000000000000000000000003 /* /Users/TimApple/StarBoard */;
-			productRefGroup = 000000000000000000000004 /* Products */;
+			mainGroup = FF0000000000000000000003 /* /Users/TimApple/StarBoard */;
+			productRefGroup = FF0000000000000000000004 /* Products */;
 			projectDirPath = /some/execution_root;
 			projectRoot = "";
 			attributes = {
@@ -270,39 +270,39 @@ class PBXProjectPrefixPartialTests: XCTestCase {
         ]
 
         let expectedPBXProjectPrefixPartial = #"""
-		000000000000000000000008 /* Debug */ = {
+		FF0000000000000000000100 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {BUILD_SETTINGS_HERE};
 			name = Debug;
 		};
-		000000000000000000000009 /* Profile */ = {
+		FF0000000000000000000101 /* Profile */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {BUILD_SETTINGS_HERE};
 			name = Profile;
 		};
-		00000000000000000000000A /* Release */ = {
+		FF0000000000000000000102 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {BUILD_SETTINGS_HERE};
 			name = Release;
 		};
-		000000000000000000000002 /* Build configuration list for PBXProject */ = {
+		FF0000000000000000000002 /* Build configuration list for PBXProject */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				000000000000000000000008 /* Debug */,
-				000000000000000000000009 /* Profile */,
-				00000000000000000000000A /* Release */,
+				FF0000000000000000000100 /* Debug */,
+				FF0000000000000000000101 /* Profile */,
+				FF0000000000000000000102 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		000000000000000000000001 /* Project object */ = {
+		FF0000000000000000000001 /* Project object */ = {
 			isa = PBXProject;
-			buildConfigurationList = 000000000000000000000002 /* Build configuration list for PBXProject */;
+			buildConfigurationList = FF0000000000000000000002 /* Build configuration list for PBXProject */;
 			compatibilityVersion = "AppCode 42.7.4";
 			developmentRegion = enGB;
 			hasScannedForEncodings = 0;
-			mainGroup = 000000000000000000000003 /* /Users/TimApple/StarBoard */;
-			productRefGroup = 000000000000000000000004 /* Products */;
+			mainGroup = FF0000000000000000000003 /* /Users/TimApple/StarBoard */;
+			productRefGroup = FF0000000000000000000004 /* Products */;
 			projectDirPath = /some/execution_root;
 			projectRoot = "";
 			attributes = {
@@ -352,39 +352,39 @@ class PBXProjectPrefixPartialTests: XCTestCase {
         ]
 
         let expectedPBXProjectPrefixPartial = #"""
-		000000000000000000000008 /* Debug */ = {
+		FF0000000000000000000100 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {BUILD_SETTINGS_HERE};
 			name = Debug;
 		};
-		000000000000000000000009 /* Profile */ = {
+		FF0000000000000000000101 /* Profile */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {BUILD_SETTINGS_HERE};
 			name = Profile;
 		};
-		00000000000000000000000A /* Release */ = {
+		FF0000000000000000000102 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {BUILD_SETTINGS_HERE};
 			name = Release;
 		};
-		000000000000000000000002 /* Build configuration list for PBXProject */ = {
+		FF0000000000000000000002 /* Build configuration list for PBXProject */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				000000000000000000000008 /* Debug */,
-				000000000000000000000009 /* Profile */,
-				00000000000000000000000A /* Release */,
+				FF0000000000000000000100 /* Debug */,
+				FF0000000000000000000101 /* Profile */,
+				FF0000000000000000000102 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		000000000000000000000001 /* Project object */ = {
+		FF0000000000000000000001 /* Project object */ = {
 			isa = PBXProject;
-			buildConfigurationList = 000000000000000000000002 /* Build configuration list for PBXProject */;
+			buildConfigurationList = FF0000000000000000000002 /* Build configuration list for PBXProject */;
 			compatibilityVersion = "AppCode 42.7.4";
 			developmentRegion = enGB;
 			hasScannedForEncodings = 0;
-			mainGroup = 000000000000000000000003 /* /Users/TimApple/StarBoard */;
-			productRefGroup = 000000000000000000000004 /* Products */;
+			mainGroup = FF0000000000000000000003 /* /Users/TimApple/StarBoard */;
+			productRefGroup = FF0000000000000000000004 /* Products */;
 			projectDirPath = /some/execution_root;
 			projectRoot = "";
 			attributes = {

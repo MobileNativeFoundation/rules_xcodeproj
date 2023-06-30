@@ -18,7 +18,7 @@ class FilesAndGroupsPartialTests: XCTestCase {
         let expectedFilesAndGroupsPartial = #"""
 		element /* path */ = {ELEMENT};
 	};
-	rootObject = 000000000000000000000001 /* Project object */;
+	rootObject = FF0000000000000000000001 /* Project object */;
 }
 
 """#

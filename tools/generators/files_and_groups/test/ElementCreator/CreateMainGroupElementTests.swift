@@ -29,8 +29,8 @@ final class CreateMainGroupElementTests: XCTestCase {
 				a2 /* file_or_folder1 */,
 				a3 /* file_or_folder2 */,
 				e /* ../../external */,
-				000000000000000000000004 /* Products */,
-				000000000000000000000005 /* Frameworks */,
+				FF0000000000000000000004 /* Products */,
+				FF0000000000000000000005 /* Frameworks */,
 			);
 			path = /tmp/workspace;
 			sourceTree = "<absolute>";
