@@ -1473,7 +1473,7 @@ perl -pe '
             }
 
             return PBXShellScriptBuildPhase(
-                name: "Create compiling dependencies",
+                name: "Create Compile Dependencies",
                 inputPaths: inputPaths,
                 outputPaths: outputPaths,
                 shellScript: shellScriptComponents.joined(separator: "\n"),
@@ -1507,7 +1507,7 @@ touch "$SCRIPT_OUTPUT_FILE_1"
             }
 
             return PBXShellScriptBuildPhase(
-                name: "Create linking dependencies",
+                name: "Create Link Dependencies",
                 inputPaths: ["$(LINK_PARAMS_FILE)"],
                 outputPaths: outputPaths,
                 shellScript: shellScript,

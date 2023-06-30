@@ -403,8 +403,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8BE00A149812934FA86F8678 /* Build configuration list for PBXNativeTarget "AddressSanitizerApp" */;
 			buildPhases = (
-				FFD8305F3D628BDC19506115 /* Create compiling dependencies */,
-				5E351775A9D4F280A4CF47A2 /* Create linking dependencies */,
+				9E79A712BDE359E9E59BC0AD /* Create Compile Dependencies */,
+				DF0AE27C7F42A1A81508F811 /* Create Link Dependencies */,
 				CA1A90C1E573DF82AAA9E452 /* Sources */,
 			);
 			buildRules = (
@@ -421,8 +421,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AE2878E2E4ABE4FF493E4CAB /* Build configuration list for PBXNativeTarget "UndefinedBehaviorSanitizerApp" */;
 			buildPhases = (
-				21A313E72B5A0C575F895D3B /* Create compiling dependencies */,
-				7168C7D4EC7D70376E5EC92C /* Create linking dependencies */,
+				4AF255978C264A5F7A5953D2 /* Create Compile Dependencies */,
+				2F0495A5DBE0A5462D14B7F5 /* Create Link Dependencies */,
 				C22B74A872F1DC7043F6918A /* Sources */,
 			);
 			buildRules = (
@@ -439,8 +439,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EFC73C679A7E0F171E6E990A /* Build configuration list for PBXNativeTarget "ThreadSanitizerApp" */;
 			buildPhases = (
-				627CF154BA83412AE030BF33 /* Create compiling dependencies */,
-				4C3EA09DBFF50C04F39F6F95 /* Create linking dependencies */,
+				A280B6C4D5FF0AD6B4D02B9F /* Create Compile Dependencies */,
+				9131CE89D5542E1271AA4F32 /* Create Link Dependencies */,
 				EC62A2AC37691AEA4041381D /* Sources */,
 			);
 			buildRules = (
@@ -502,22 +502,21 @@
 /* End PBXProject section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		21A313E72B5A0C575F895D3B /* Create compiling dependencies */ = {
+		2F0495A5DBE0A5462D14B7F5 /* Create Link Dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"$(C_PARAMS_FILE)",
+				"$(LINK_PARAMS_FILE)",
 			);
-			name = "Create compiling dependencies";
+			name = "Create Link Dependencies";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/c.compile.params",
-				"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
+				"$(DERIVED_FILE_DIR)/link.params",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\nperl -pe '\n  s/__BAZEL_XCODE_DEVELOPER_DIR__/\\$(DEVELOPER_DIR)/g;\n  s/__BAZEL_XCODE_SDKROOT__/\\$(SDKROOT)/g;\n  s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/gx;\n' \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\"$BAZEL_INTEGRATION_DIR/create_xcode_overlay.sh\"";
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  touch \"$SCRIPT_OUTPUT_FILE_0\"\nelse\nperl -pe 's/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		2FB8CA190C5FD287F83F39E3 /* Create swift_debug_settings.py */ = {
@@ -537,7 +536,25 @@
 			shellScript = "perl -pe '\n  # Replace \"__BAZEL_XCODE_DEVELOPER_DIR__\" with \"$(DEVELOPER_DIR)\"\n  s/__BAZEL_XCODE_DEVELOPER_DIR__/\\$(DEVELOPER_DIR)/g;\n\n  # Replace \"__BAZEL_XCODE_SDKROOT__\" with \"$(SDKROOT)\"\n  s/__BAZEL_XCODE_SDKROOT__/\\$(SDKROOT)/g;\n\n  # Replace build settings with their values\n  s/\n    \\$             # Match a dollar sign\n    (\\()?          # Optionally match an opening parenthesis and capture it\n    ([a-zA-Z_]\\w*) # Match a variable name and capture it\n    (?(1)\\))       # If an opening parenthesis was captured, match a closing parenthesis\n  /$ENV{$2}/gx;    # Replace the entire matched string with the value of the corresponding environment variable\n\n' \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
-		4C3EA09DBFF50C04F39F6F95 /* Create linking dependencies */ = {
+		4AF255978C264A5F7A5953D2 /* Create Compile Dependencies */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(C_PARAMS_FILE)",
+			);
+			name = "Create Compile Dependencies";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/c.compile.params",
+				"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nperl -pe '\n  s/__BAZEL_XCODE_DEVELOPER_DIR__/\\$(DEVELOPER_DIR)/g;\n  s/__BAZEL_XCODE_SDKROOT__/\\$(SDKROOT)/g;\n  s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/gx;\n' \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\"$BAZEL_INTEGRATION_DIR/create_xcode_overlay.sh\"";
+			showEnvVarsInLog = 0;
+		};
+		9131CE89D5542E1271AA4F32 /* Create Link Dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -545,7 +562,7 @@
 			inputPaths = (
 				"$(LINK_PARAMS_FILE)",
 			);
-			name = "Create linking dependencies";
+			name = "Create Link Dependencies";
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/link.params",
 			);
@@ -554,24 +571,7 @@
 			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  touch \"$SCRIPT_OUTPUT_FILE_0\"\nelse\nperl -pe 's/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		5E351775A9D4F280A4CF47A2 /* Create linking dependencies */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(LINK_PARAMS_FILE)",
-			);
-			name = "Create linking dependencies";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/link.params",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  touch \"$SCRIPT_OUTPUT_FILE_0\"\nelse\nperl -pe 's/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		627CF154BA83412AE030BF33 /* Create compiling dependencies */ = {
+		9E79A712BDE359E9E59BC0AD /* Create Compile Dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -579,7 +579,7 @@
 			inputPaths = (
 				"$(SWIFT_PARAMS_FILE)",
 			);
-			name = "Create compiling dependencies";
+			name = "Create Compile Dependencies";
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/swift.compile.params",
 			);
@@ -588,21 +588,21 @@
 			shellScript = "set -euo pipefail\n\nperl -pe '\n  s/__BAZEL_XCODE_DEVELOPER_DIR__/\\$(DEVELOPER_DIR)/g;\n  s/__BAZEL_XCODE_SDKROOT__/\\$(SDKROOT)/g;\n  s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/gx;\n' \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"";
 			showEnvVarsInLog = 0;
 		};
-		7168C7D4EC7D70376E5EC92C /* Create linking dependencies */ = {
+		A280B6C4D5FF0AD6B4D02B9F /* Create Compile Dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"$(LINK_PARAMS_FILE)",
+				"$(SWIFT_PARAMS_FILE)",
 			);
-			name = "Create linking dependencies";
+			name = "Create Compile Dependencies";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/link.params",
+				"$(DERIVED_FILE_DIR)/swift.compile.params",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  touch \"$SCRIPT_OUTPUT_FILE_0\"\nelse\nperl -pe 's/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\nfi\n";
+			shellScript = "set -euo pipefail\n\nperl -pe '\n  s/__BAZEL_XCODE_DEVELOPER_DIR__/\\$(DEVELOPER_DIR)/g;\n  s/__BAZEL_XCODE_SDKROOT__/\\$(SDKROOT)/g;\n  s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/gx;\n' \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"";
 			showEnvVarsInLog = 0;
 		};
 		C0C8DBC6F0F89C84D3BC5F69 /* Generate Bazel Dependencies */ = {
@@ -625,21 +625,21 @@
 			shellScript = "\"$BAZEL_INTEGRATION_DIR/generate_bazel_dependencies.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FFD8305F3D628BDC19506115 /* Create compiling dependencies */ = {
+		DF0AE27C7F42A1A81508F811 /* Create Link Dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"$(SWIFT_PARAMS_FILE)",
+				"$(LINK_PARAMS_FILE)",
 			);
-			name = "Create compiling dependencies";
+			name = "Create Link Dependencies";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/swift.compile.params",
+				"$(DERIVED_FILE_DIR)/link.params",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\nperl -pe '\n  s/__BAZEL_XCODE_DEVELOPER_DIR__/\\$(DEVELOPER_DIR)/g;\n  s/__BAZEL_XCODE_SDKROOT__/\\$(SDKROOT)/g;\n  s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/gx;\n' \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"";
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  touch \"$SCRIPT_OUTPUT_FILE_0\"\nelse\nperl -pe 's/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
