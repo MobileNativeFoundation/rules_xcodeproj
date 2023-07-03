@@ -35,6 +35,16 @@ extension Generator {
         return XCUserData(
             userName: userName,
             schemes: [],
+            // Create a symbolic breakpoint to bypass BUILD-4252
+            breakpoints: XCBreakpointList(
+                breakpoints: [XCBreakpointList.BreakpointProxy(
+                    breakpointExtensionID: XCBreakpointList.BreakpointProxy.BreakpointExtensionID.symbolic,
+                    breakpointContent: XCBreakpointList.BreakpointProxy.BreakpointContent(
+                        continueAfterRunningActions: true,
+                        symbol: "Bypass BUILD-4252"
+                    )
+                )]
+            ),
             schemeManagement: XCSchemeManagement(
                 schemeUserState: schemeUserStates
             )
