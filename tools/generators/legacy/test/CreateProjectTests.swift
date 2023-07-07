@@ -62,7 +62,9 @@ $(INDEXING_DEPLOYMENT_LOCATION__$(INDEX_ENABLE_BUILD_ARENA)),
             "ENABLE_DEFAULT_SEARCH_PATHS": "NO",
             "ENABLE_STRICT_OBJC_MSGSEND": true,
             "GCC_OPTIMIZATION_LEVEL": "0",
+            "INDEX_DATA_STORE_DIR": "$(INDEX_DATA_STORE_DIR)",
             "INDEX_FORCE_SCRIPT_EXECUTION": true,
+            "INDEX_IMPORT": "/tmp/index-import",
             "INDEXING_BUILT_PRODUCTS_DIR__": """
 $(INDEXING_BUILT_PRODUCTS_DIR__NO)
 """,
@@ -146,6 +148,7 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
             forFixtures: false,
             project: project,
             directories: directories,
+            indexImport: project.indexImport,
             minimumXcodeVersion: project.minimumXcodeVersion
         )
 
@@ -219,7 +222,9 @@ $(INDEXING_DEPLOYMENT_LOCATION__$(INDEX_ENABLE_BUILD_ARENA)),
             "LD": "$(BAZEL_INTEGRATION_DIR)/ld.sh",
             "LDPLUSPLUS": "$(BAZEL_INTEGRATION_DIR)/ld.sh",
             "LIBTOOL": "$(BAZEL_INTEGRATION_DIR)/libtool.sh",
+            "INDEX_DATA_STORE_DIR": "$(INDEX_DATA_STORE_DIR)",
             "INDEX_FORCE_SCRIPT_EXECUTION": true,
+            "INDEX_IMPORT": "/tmp/index-import",
             "INDEXING_BUILT_PRODUCTS_DIR__": """
 $(INDEXING_BUILT_PRODUCTS_DIR__NO)
 """,
@@ -305,6 +310,7 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
             forFixtures: false,
             project: project,
             directories: directories,
+            indexImport: project.indexImport,
             minimumXcodeVersion: project.minimumXcodeVersion
         )
 

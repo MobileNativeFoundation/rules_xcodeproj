@@ -12,6 +12,7 @@ struct Environment {
         _ forFixtures: Bool,
         _ project: Project,
         _ directories: Directories,
+        _ indexImport: String,
         _ minimumXcodeVersion: SemanticVersion
     ) -> PBXProj
 
@@ -72,7 +73,6 @@ struct Environment {
         _ xcodeConfigurations: Set<String>,
         _ defaultXcodeConfiguration: String,
         _ target_ids_file: String,
-        _ indexImport: String,
         _ bazelConfig: String,
         _ preBuildScript: String?,
         _ postBuildScript: String?,

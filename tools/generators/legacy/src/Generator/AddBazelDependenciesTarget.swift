@@ -11,7 +11,6 @@ extension Generator {
         xcodeConfigurations: Set<String>,
         defaultXcodeConfiguration: String,
         targetIdsFile: String,
-        indexImport: String,
         bazelConfig _: String,
         preBuildScript: String?,
         postBuildScript: String?,
@@ -39,8 +38,6 @@ extension Generator {
             "CALCULATE_OUTPUT_GROUPS_SCRIPT": """
 $(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py
 """,
-            "INDEX_DATA_STORE_DIR": "$(INDEX_DATA_STORE_DIR)",
-            "INDEX_IMPORT": indexImport,
             "INDEXING_SUPPORTED_PLATFORMS__": """
 $(INDEXING_SUPPORTED_PLATFORMS__NO)
 """,

@@ -26,7 +26,6 @@ struct Generator {
         let bazelDependenciesPartial = environment.bazelDependenciesPartial(
             /*buildSettings:*/ environment
                 .bazelDependenciesBuildSettings(
-                    /*indexImport:*/ arguments.indexImport,
                     /*platforms:*/ arguments.platforms,
                     /*targetIdsFile:*/ arguments.targetIdsFile
                 ),
@@ -50,6 +49,7 @@ struct Generator {
         let pbxProjectPrefixPartial = environment.pbxProjectPrefixPartial(
             /*buildSettings:*/ environment.pbxProjectBuildSettings(
                 /*buildMode:*/ arguments.buildMode,
+                /*indexImport:*/ arguments.indexImport,
                 /*indexingProjectDir:*/ environment.indexingProjectDir(
                     /*projectDir:*/ projectDir
                 ),

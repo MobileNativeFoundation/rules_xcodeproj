@@ -12841,8 +12841,6 @@
 				INDEXING_SUPPORTED_PLATFORMS__ = "$(INDEXING_SUPPORTED_PLATFORMS__NO)";
 				INDEXING_SUPPORTED_PLATFORMS__NO = "macosx iphonesimulator iphoneos appletvsimulator appletvos watchsimulator watchos";
 				INDEXING_SUPPORTED_PLATFORMS__YES = macosx;
-				INDEX_DATA_STORE_DIR = "$(INDEX_DATA_STORE_DIR)";
-				INDEX_IMPORT = "fixture-index-import-path";
 				SUPPORTED_PLATFORMS = "$(INDEXING_SUPPORTED_PLATFORMS__$(INDEX_ENABLE_BUILD_ARENA))";
 				SUPPORTS_MACCATALYST = YES;
 				TARGET_IDS_FILE = "fixture-target-ids-file";
@@ -13877,8 +13875,6 @@
 				INDEXING_SUPPORTED_PLATFORMS__ = "$(INDEXING_SUPPORTED_PLATFORMS__NO)";
 				INDEXING_SUPPORTED_PLATFORMS__NO = "macosx iphonesimulator iphoneos appletvsimulator appletvos watchsimulator watchos";
 				INDEXING_SUPPORTED_PLATFORMS__YES = macosx;
-				INDEX_DATA_STORE_DIR = "$(INDEX_DATA_STORE_DIR)";
-				INDEX_IMPORT = "fixture-index-import-path";
 				SUPPORTED_PLATFORMS = "$(INDEXING_SUPPORTED_PLATFORMS__$(INDEX_ENABLE_BUILD_ARENA))";
 				SUPPORTS_MACCATALYST = YES;
 				TARGET_IDS_FILE = "fixture-target-ids-file";
@@ -14527,7 +14523,9 @@
 				INDEXING_PROJECT_DIR__ = "$(INDEXING_PROJECT_DIR__NO)";
 				INDEXING_PROJECT_DIR__NO = "$(PROJECT_DIR)";
 				INDEXING_PROJECT_DIR__YES = "../../../../../bazel-output-base/rules_xcodeproj.noindex/indexbuild_output_base/execroot/__main__";
+				INDEX_DATA_STORE_DIR = "$(INDEX_DATA_STORE_DIR)";
 				INDEX_FORCE_SCRIPT_EXECUTION = YES;
+				INDEX_IMPORT = "fixture-index-import-path";
 				INSTALL_PATH = "$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)/bin";
 				INTERNAL_DIR = "$(PROJECT_FILE_PATH)/rules_xcodeproj";
 				LD_DYLIB_INSTALL_NAME = "";
@@ -15708,7 +15706,9 @@
 				INDEXING_PROJECT_DIR__ = "$(INDEXING_PROJECT_DIR__NO)";
 				INDEXING_PROJECT_DIR__NO = "$(PROJECT_DIR)";
 				INDEXING_PROJECT_DIR__YES = "../../../../../bazel-output-base/rules_xcodeproj.noindex/indexbuild_output_base/execroot/__main__";
+				INDEX_DATA_STORE_DIR = "$(INDEX_DATA_STORE_DIR)";
 				INDEX_FORCE_SCRIPT_EXECUTION = YES;
+				INDEX_IMPORT = "fixture-index-import-path";
 				INSTALL_PATH = "$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)/bin";
 				INTERNAL_DIR = "$(PROJECT_FILE_PATH)/rules_xcodeproj";
 				LD_DYLIB_INSTALL_NAME = "";
