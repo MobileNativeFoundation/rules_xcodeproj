@@ -56,8 +56,7 @@ class PBXProjectBuildSettingsTests: XCTestCase {
 				LDPLUSPLUS = "$(BAZEL_INTEGRATION_DIR)/ld.sh";
 				LD_DYLIB_INSTALL_NAME = "";
 				LD_OBJC_ABI_VERSION = "";
-				LD_RUNPATH_SEARCH_PATHS = (
-				);
+				LD_RUNPATH_SEARCH_PATHS = "";
 				LIBTOOL = "$(BAZEL_INTEGRATION_DIR)/libtool.sh";
 				ONLY_ACTIVE_ARCH = YES;
 				PROJECT_DIR = "$(INDEXING_PROJECT_DIR__$(INDEX_ENABLE_BUILD_ARENA))";
@@ -138,8 +137,7 @@ class PBXProjectBuildSettingsTests: XCTestCase {
 				INTERNAL_DIR = $(PROJECT_FILE_PATH)/rules_xcodeproj;
 				LD_DYLIB_INSTALL_NAME = "";
 				LD_OBJC_ABI_VERSION = "";
-				LD_RUNPATH_SEARCH_PATHS = (
-				);
+				LD_RUNPATH_SEARCH_PATHS = "";
 				ONLY_ACTIVE_ARCH = YES;
 				PROJECT_DIR = "$(INDEXING_PROJECT_DIR__$(INDEX_ENABLE_BUILD_ARENA))";
 				RESOLVED_REPOSITORIES = "\"\" \"/tmp/workspace\"";

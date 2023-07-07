@@ -126,7 +126,7 @@ $(PROJECT_FILE_PATH)/\(directories.internalDirectoryName)
             "LD_DYLIB_INSTALL_NAME": "",
             // We don't want Xcode to set any search paths, since we set them in
             // `link.params`
-            "LD_RUNPATH_SEARCH_PATHS": [] as [String],
+            "LD_RUNPATH_SEARCH_PATHS": "",
             "ONLY_ACTIVE_ARCH": true,
             "PROJECT_DIR": """
 $(INDEXING_PROJECT_DIR__$(INDEX_ENABLE_BUILD_ARENA))
