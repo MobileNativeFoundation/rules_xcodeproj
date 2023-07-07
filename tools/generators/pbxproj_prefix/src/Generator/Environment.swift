@@ -48,7 +48,8 @@ extension Generator {
 
         let pbxProjPrefixPartial: (
             _ bazelDependenciesPartial: String,
-            _ pbxProjectPrefixPartial: String
+            _ pbxProjectPrefixPartial: String,
+            _ xcodeVersion: SemanticVersion
         ) -> String
 
         let projectDir: (_ executionRoot: String) -> String

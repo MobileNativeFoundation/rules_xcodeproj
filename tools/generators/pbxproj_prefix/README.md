@@ -62,7 +62,7 @@ Here is an example output:
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 56;
 	objects = {
 		FF0100000000000000000003 /* Pre-build Run Script */ = {
 			isa = PBXShellScriptBuildPhase;

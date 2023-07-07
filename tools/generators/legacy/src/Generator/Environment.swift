@@ -11,7 +11,8 @@ struct Environment {
         _ buildMode: BuildMode,
         _ forFixtures: Bool,
         _ project: Project,
-        _ directories: Directories
+        _ directories: Directories,
+        _ minimumXcodeVersion: SemanticVersion
     ) -> PBXProj
 
     let calculateXcodeGeneratedFiles: (

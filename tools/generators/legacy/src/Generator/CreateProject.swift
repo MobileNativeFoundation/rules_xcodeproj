@@ -11,9 +11,12 @@ extension Generator {
         buildMode: BuildMode,
         forFixtures: Bool,
         project: Project,
-        directories: Directories
+        directories: Directories,
+        minimumXcodeVersion: SemanticVersion
     ) -> PBXProj {
-        let pbxProj = PBXProj()
+        let pbxProj = PBXProj(
+            objectVersion: minimumXcodeVersion.major >= 14 ? 56 : 55
+        )
 
         let nonRelativeProjectDir = directories.executionRoot
         let options = project.options

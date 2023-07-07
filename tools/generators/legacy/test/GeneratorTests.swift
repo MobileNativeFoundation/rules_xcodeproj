@@ -264,6 +264,7 @@ final class GeneratorTests: XCTestCase {
             let buildMode: BuildMode
             let project: Project
             let directories: Directories
+            let minimumXcodeVersion: SemanticVersion
         }
 
         var createProjectCalled: [CreateProjectCalled] = []
@@ -271,12 +272,14 @@ final class GeneratorTests: XCTestCase {
             buildMode: BuildMode,
             _forFixtures _: Bool,
             project: Project,
-            directories: Directories
+            directories: Directories,
+            minimumXcodeVersion: SemanticVersion
         ) -> PBXProj {
             createProjectCalled.append(.init(
                 buildMode: buildMode,
                 project: project,
-                directories: directories
+                directories: directories,
+                minimumXcodeVersion: minimumXcodeVersion
             ))
             return pbxProj
         }
@@ -284,7 +287,8 @@ final class GeneratorTests: XCTestCase {
         let expectedCreateProjectCalled = [CreateProjectCalled(
             buildMode: buildMode,
             project: project,
-            directories: directories
+            directories: directories,
+            minimumXcodeVersion: project.minimumXcodeVersion
         )]
 
         // MARK: calculateXcodeGeneratedFiles()

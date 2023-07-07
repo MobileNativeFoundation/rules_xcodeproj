@@ -20,7 +20,7 @@ final class CreateProjectTests: XCTestCase {
             workspaceOutput: "X.xcodeproj"
         )
 
-        let expectedPBXProj = PBXProj()
+        let expectedPBXProj = PBXProj(objectVersion: 56)
 
         let expectedMainGroup = PBXGroup(
             sourceTree: .absolute,
@@ -145,7 +145,8 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
             buildMode: .xcode,
             forFixtures: false,
             project: project,
-            directories: directories
+            directories: directories,
+            minimumXcodeVersion: project.minimumXcodeVersion
         )
 
         try createdPBXProj.fixReferences()
@@ -170,7 +171,7 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
             workspaceOutput: "X.xcodeproj"
         )
 
-        let expectedPBXProj = PBXProj()
+        let expectedPBXProj = PBXProj(objectVersion: 56)
 
         let expectedMainGroup = PBXGroup(
             sourceTree: .absolute,
@@ -303,7 +304,8 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
             buildMode: .bazel,
             forFixtures: false,
             project: project,
-            directories: directories
+            directories: directories,
+            minimumXcodeVersion: project.minimumXcodeVersion
         )
 
         try createdPBXProj.fixReferences()
