@@ -19,11 +19,21 @@ extension Generator {
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = \#(minimumXcodeVersion.major >= 14 ? 56 : 55);
+	objectVersion = \#(minimumXcodeVersion.pbxProjObjectVersion);
 	objects = {
 \#(bazelDependenciesPartial)\#
 \#(pbxProjectPrefixPartial)\#
 
 """#
+    }
+}
+
+private extension SemanticVersion {
+    var pbxProjObjectVersion: UInt {
+        switch major {
+            case 15...: return 60
+            case 14: return 56
+            default: return 55 // Xcode 13
+        }
     }
 }

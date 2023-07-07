@@ -64,11 +64,31 @@ class CompatibilityVersionTests: XCTestCase {
         )
     }
 
+    func test_xcode15() {
+        // Arrange
+
+        let minimumXcodeVersion: SemanticVersion = "15.0.1"
+        let expectedCompatibilityVersion = "Xcode 15.0"
+
+        // Act
+
+        let compatibilityVersion = Generator.compatibilityVersion(
+            minimumXcodeVersion: minimumXcodeVersion
+        )
+
+        // Assert
+
+        XCTAssertEqual(
+            compatibilityVersion,
+            expectedCompatibilityVersion
+        )
+    }
+
     func test_tooLargeXcode() {
         // Arrange
 
         let minimumXcodeVersion: SemanticVersion = "42.3.1"
-        let expectedCompatibilityVersion = "Xcode 14.0"
+        let expectedCompatibilityVersion = "Xcode 15.0"
 
         // Act
 
