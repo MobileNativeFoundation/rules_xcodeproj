@@ -217,7 +217,7 @@ Xcode \(min(project.minimumXcodeVersion.major, 15)).0
 private extension SemanticVersion {
     var pbxProjObjectVersion: UInt {
         switch major {
-            case 15: return 60
+            case 15...: return 60
             case 14: return 56
             default: return 55 // Xcode 13
         }
