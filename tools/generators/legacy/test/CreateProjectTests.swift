@@ -84,7 +84,7 @@ $(INDEXING_DEPLOYMENT_LOCATION__NO)
             "INTERNAL_DIR": "$(PROJECT_FILE_PATH)/r_xcp",
             "LD_OBJC_ABI_VERSION": "",
             "LD_DYLIB_INSTALL_NAME": "",
-            "LD_RUNPATH_SEARCH_PATHS": [] as [String],
+            "LD_RUNPATH_SEARCH_PATHS": "",
             "ONLY_ACTIVE_ARCH": true,
             "PROJECT_DIR": """
 $(INDEXING_PROJECT_DIR__$(INDEX_ENABLE_BUILD_ARENA))
@@ -241,7 +241,7 @@ $(INDEXING_DEPLOYMENT_LOCATION__NO)
             "INTERNAL_DIR": "$(PROJECT_FILE_PATH)/r_xcp",
             "LD_OBJC_ABI_VERSION": "",
             "LD_DYLIB_INSTALL_NAME": "",
-            "LD_RUNPATH_SEARCH_PATHS": [] as [String],
+            "LD_RUNPATH_SEARCH_PATHS": "",
             "ONLY_ACTIVE_ARCH": true,
             "PROJECT_DIR": """
 $(INDEXING_PROJECT_DIR__$(INDEX_ENABLE_BUILD_ARENA))

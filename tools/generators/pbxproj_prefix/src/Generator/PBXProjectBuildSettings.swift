@@ -68,7 +68,7 @@ extension Generator {
             "INTERNAL_DIR": "$(PROJECT_FILE_PATH)/rules_xcodeproj",
             "LD_DYLIB_INSTALL_NAME": "".pbxProjEscaped,
             "LD_OBJC_ABI_VERSION": "".pbxProjEscaped,
-            "LD_RUNPATH_SEARCH_PATHS": "(\n\t\t\t\t)",
+            "LD_RUNPATH_SEARCH_PATHS": "".pbxProjEscaped,
             "ONLY_ACTIVE_ARCH": "YES",
             "PROJECT_DIR":
                 "$(INDEXING_PROJECT_DIR__$(INDEX_ENABLE_BUILD_ARENA))"
