@@ -101,7 +101,7 @@ remaps=(
   # tools based paths as well.
   # `DEVELOPER_DIR` has an optional `./` prefix, because index-import adds `./`
   # to all relative paths.
-  -remap "(?:.*?/[^/]+/Contents/Developer|(?:./)?DEVELOPER_DIR|/PLACEHOLDER_DEVELOPER_DIR|/Library/Developer/CommandLineTools).*?/SDKs/([^\\d.]+)=$DEVELOPER_DIR/Platforms/\$1.platform/Developer/SDKs/\$1"
+  -remap "^(?:.*?/[^/]+/Contents/Developer|(?:./)?DEVELOPER_DIR|/PLACEHOLDER_DEVELOPER_DIR|/Library/Developer/CommandLineTools).*?/SDKs/([^\\d.]+)=$DEVELOPER_DIR/Platforms/\$1.platform/Developer/SDKs/\$1"
 )
 
 # Import
