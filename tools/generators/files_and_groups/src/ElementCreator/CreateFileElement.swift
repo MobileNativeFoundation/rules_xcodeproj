@@ -78,23 +78,15 @@ extension ElementCreator.CreateFileElement {
         element: Element,
         resolvedRepository: ResolvedRepository?
     ) {
-        var contentComponents = [
-            "{isa = PBXFileReference;",
-        ]
-
-        let lastKnownFileType: String?
+        let lastKnownFileType: String
         let sortOrder: Element.SortOrder
         if bazelPath.isFolder && !folderTypeFileExtensions.contains(ext) {
             lastKnownFileType = "folder"
             sortOrder = .groupLike
         } else {
-            lastKnownFileType = ext.flatMap { Xcode.filetype(extension: $0) }
+            lastKnownFileType = ext.flatMap { Xcode.filetype(extension: $0) } ??
+                "file"
             sortOrder = .fileLike
-        }
-        if let lastKnownFileType {
-            contentComponents.append(
-                "lastKnownFileType = \(lastKnownFileType.pbxProjEscaped);"
-            )
         }
 
         let explicitFileType: String?
@@ -105,9 +97,18 @@ extension ElementCreator.CreateFileElement {
         } else {
             explicitFileType = nil
         }
+
+        var contentComponents = [
+            "{isa = PBXFileReference;",
+        ]
+
         if let explicitFileType {
             contentComponents.append(
                 "explicitFileType = \(explicitFileType.pbxProjEscaped);"
+            )
+        } else {
+            contentComponents.append(
+                "lastKnownFileType = \(lastKnownFileType.pbxProjEscaped);"
             )
         }
 

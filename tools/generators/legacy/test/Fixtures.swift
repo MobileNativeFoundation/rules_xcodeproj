@@ -467,6 +467,7 @@ enum Fixtures {
 
         elements[.generated("A1.swift.compile.params")] = PBXFileReference(
             sourceTree: .group,
+            lastKnownFileType: "file",
             path: "A1.swift.compile.params"
         )
 
@@ -474,6 +475,7 @@ enum Fixtures {
 
         elements[.generated("E1.swift.compile.params")] = PBXFileReference(
             sourceTree: .group,
+            lastKnownFileType: "file",
             path: "E1.swift.compile.params"
         )
 
@@ -481,6 +483,7 @@ enum Fixtures {
 
         elements[.generated("E2.swift.compile.params")] = PBXFileReference(
             sourceTree: .group,
+            lastKnownFileType: "file",
             path: "E2.swift.compile.params"
         )
 
@@ -488,6 +491,7 @@ enum Fixtures {
 
         elements[.generated("T 1.swift.compile.params")] = PBXFileReference(
             sourceTree: .group,
+            lastKnownFileType: "file",
             path: "T 1.swift.compile.params"
         )
 
@@ -495,6 +499,7 @@ enum Fixtures {
 
         elements[.generated("T 2.swift.compile.params")] = PBXFileReference(
             sourceTree: .group,
+            lastKnownFileType: "file",
             path: "T 2.swift.compile.params"
         )
 
@@ -502,6 +507,7 @@ enum Fixtures {
 
         elements[.generated("T 3.swift.compile.params")] = PBXFileReference(
             sourceTree: .group,
+            lastKnownFileType: "file",
             path: "T 3.swift.compile.params"
         )
 
@@ -509,6 +515,7 @@ enum Fixtures {
 
         elements[.generated("B.link.params")] = PBXFileReference(
             sourceTree: .group,
+            lastKnownFileType: "file",
             path: "B.link.params"
         )
 
@@ -516,6 +523,7 @@ enum Fixtures {
 
         elements[.generated("B3.link.params")] = PBXFileReference(
             sourceTree: .group,
+            lastKnownFileType: "file",
             path: "B3.link.params"
         )
 
@@ -523,6 +531,7 @@ enum Fixtures {
 
         elements[.generated("d.link.params")] = PBXFileReference(
             sourceTree: .group,
+            lastKnownFileType: "file",
             path: "d.link.params"
         )
 
@@ -538,6 +547,7 @@ enum Fixtures {
 
         elements[.generated("z/A.link.params")] = PBXFileReference(
             sourceTree: .group,
+            lastKnownFileType: "file",
             path: "A.link.params"
         )
 

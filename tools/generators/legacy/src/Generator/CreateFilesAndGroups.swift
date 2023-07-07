@@ -235,7 +235,7 @@ extension Generator {
                 } else {
                     lastKnownFileType = ext.flatMap { ext in
                         return Xcode.filetype(extension: ext)
-                    }
+                    } ?? "file"
                 }
                 isFileLike = true
             }
@@ -253,7 +253,8 @@ extension Generator {
                 sourceTree: sourceTree,
                 name: name,
                 explicitFileType: explicitFileType,
-                lastKnownFileType: lastKnownFileType,
+                lastKnownFileType: explicitFileType == nil ?
+                    lastKnownFileType : nil,
                 path: path
             )
             pbxProj.add(object: file)
@@ -318,7 +319,7 @@ extension Generator {
                 sourceTree: .group,
                 name: language,
                 lastKnownFileType: ext
-                    .flatMap { Xcode.filetype(extension: $0) },
+                    .flatMap { Xcode.filetype(extension: $0) } ?? "file",
                 path: "\(parentPath)/\(node.name)"
             )
             pbxProj.add(object: file)
