@@ -521,11 +521,9 @@ $(BAZEL_OUT)\#(swiftParams.path.string.dropFirst(9))
         if target.cHasFortifySource {
             buildSettings["ASAN_OTHER_CFLAGS__"] = "$(ASAN_OTHER_CFLAGS__NO)"
             buildSettings.set("ASAN_OTHER_CFLAGS__NO", to: cFlagsString)
-            buildSettings["ASAN_OTHER_CFLAGS__YES"] = [
-                "$(ASAN_OTHER_CFLAGS__NO)",
-                "-Wno-macro-redefined",
-                "-D_FORTIFY_SOURCE=0",
-            ]
+            buildSettings["ASAN_OTHER_CFLAGS__YES"] = #"""
+$(ASAN_OTHER_CFLAGS__NO) -Wno-macro-redefined -D_FORTIFY_SOURCE=0
+"""#
             cFlagsString = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))"
         }
         if target.cxxHasFortifySource {
@@ -535,11 +533,9 @@ $(BAZEL_OUT)\#(swiftParams.path.string.dropFirst(9))
                 "ASAN_OTHER_CPLUSPLUSFLAGS__NO",
                 to: cxxFlagsString
             )
-            buildSettings["ASAN_OTHER_CPLUSPLUSFLAGS__YES"] = [
-                "$(ASAN_OTHER_CPLUSPLUSFLAGS__NO)",
-                "-Wno-macro-redefined",
-                "-D_FORTIFY_SOURCE=0",
-            ]
+            buildSettings["ASAN_OTHER_CPLUSPLUSFLAGS__YES"] = #"""
+$(ASAN_OTHER_CPLUSPLUSFLAGS__NO) -Wno-macro-redefined -D_FORTIFY_SOURCE=0
+"""#
             cxxFlagsString = """
 $(ASAN_OTHER_CPLUSPLUSFLAGS__$(CLANG_ADDRESS_SANITIZER))
 """
