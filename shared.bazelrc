@@ -6,7 +6,7 @@ build --experimental_convenience_symlinks=ignore
 build --experimental_action_cache_store_output_metadata
 
 build --remote_default_exec_properties=OSFamily=darwin
-build --remote_default_exec_properties=cache_bust=macOS_12.0/4
+build --remote_default_exec_properties=cache_bust=macOS_12.0/5
 
 # Use x86_64 instead of i386 for watchOS
 build --watchos_cpus=x86_64
