@@ -11,6 +11,10 @@ build --remote_default_exec_properties=cache_bust=macOS_12.0/5
 # Use x86_64 instead of i386 for watchOS
 build --watchos_cpus=x86_64
 
+# Fix issues with Xcode 15 when on earlier macOS versions
+build --macos_minimum_os=12.0
+build --host_macos_minimum_os=12.0
+
 # In-repo output_base makes fixtures relative
 startup --output_base=bazel-output-base
 
