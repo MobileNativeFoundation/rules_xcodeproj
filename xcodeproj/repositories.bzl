@@ -363,9 +363,10 @@ swift_library(
     visibility = ["//visibility:public"],
 )
 """,
-        sha256 = "d9e4c8a91c60fb9c92a04caccbb10ded42f4cb47b26a212bc6b39cc390a4b096",
-        strip_prefix = "swift-collections-1.0.4",
-        url = "https://github.com/apple/swift-collections/archive/refs/tags/1.0.4.tar.gz",
+        sha256 = "1a2ec8cc6c63c383a9dd4eb975bf83ce3bc7a2ac21a0289a50dae98a576327d6",
+        strip_prefix = "swift-collections-4cab1c1c417855b90e9cfde40349a43aff99c536",
+        # TODO: Change to 1.0.5 when it's released
+        url = "https://github.com/apple/swift-collections/archive/4cab1c1c417855b90e9cfde40349a43aff99c536.tar.gz",
         ignore_version_differences = ignore_version_differences,
     )
 
