@@ -17,9 +17,13 @@ if [[ $bazel_version -lt 6 ]]; then
 else
   flags+=("--bazelrc=$root_dir/bazel_6.bazelrc")
 
-  readonly repo_bazelrc="${tool_location%/*/*}/bazel_6.bazelrc"
-  if [[ -s "$repo_bazelrc" ]]; then
-    flags+=("--bazelrc=$repo_bazelrc")
+  workspace_dir="${tool_location%/*/*}"
+
+  if [[ "$workspace_dir" != "$root_dir" ]]; then
+    readonly workspace_bazelrc="$workspace_dir/bazel_6.bazelrc"
+    if [[ -s "$workspace_bazelrc" ]]; then
+      flags+=("--bazelrc=$workspace_bazelrc")
+    fi
   fi
 fi
 
