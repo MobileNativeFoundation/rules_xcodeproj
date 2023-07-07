@@ -74,7 +74,8 @@ struct Generator {
         try environment.write(
             environment.pbxProjPrefixPartial(
                 /*bazelDependenciesPartial:*/ bazelDependenciesPartial,
-                /*pbxProjectPrefixPartial:*/ pbxProjectPrefixPartial
+                /*pbxProjectPrefixPartial:*/ pbxProjectPrefixPartial,
+                /*minimumXcodeVersion:*/ arguments.minimumXcodeVersion
             ),
             to: arguments.outputPath
         )

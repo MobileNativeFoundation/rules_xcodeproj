@@ -56,7 +56,8 @@ class Generator {
             buildMode,
             forFixtures,
             project,
-            directories
+            directories,
+            project.minimumXcodeVersion
         )
         guard let pbxProject = pbxProj.rootObject else {
             throw PreconditionError(message: """
