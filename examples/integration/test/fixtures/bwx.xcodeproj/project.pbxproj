@@ -12647,11 +12647,7 @@
 				ARCHS = arm64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
 				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
-				ASAN_OTHER_CFLAGS__YES = (
-					"$(ASAN_OTHER_CFLAGS__NO)",
-					"-Wno-macro-redefined",
-					"-D_FORTIFY_SOURCE=0",
-				);
+				ASAN_OTHER_CFLAGS__YES = "$(ASAN_OTHER_CFLAGS__NO) -Wno-macro-redefined -D_FORTIFY_SOURCE=0";
 				BAZEL_COMPILE_TARGET_IDS = "//CommandLine/CommandLineTool:tool.library macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=macosx*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//CommandLine/CommandLineTool:UniversalCommandLineTool";
@@ -12743,11 +12739,7 @@
 				"ARCHS[sdk=iphoneos*]" = arm64;
 				ASAN_OTHER_CPLUSPLUSFLAGS__ = "$(ASAN_OTHER_CPLUSPLUSFLAGS__NO)";
 				ASAN_OTHER_CPLUSPLUSFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/cxx.compile.params";
-				ASAN_OTHER_CPLUSPLUSFLAGS__YES = (
-					"$(ASAN_OTHER_CPLUSPLUSFLAGS__NO)",
-					"-Wno-macro-redefined",
-					"-D_FORTIFY_SOURCE=0",
-				);
+				ASAN_OTHER_CPLUSPLUSFLAGS__YES = "$(ASAN_OTHER_CPLUSPLUSFLAGS__NO) -Wno-macro-redefined -D_FORTIFY_SOURCE=0";
 				BAZEL_COMPILE_TARGET_IDS = "//iOSApp/Source/CoreUtilsObjC:CoreUtilsObjC ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=iphoneos*]" = "//iOSApp/Source/CoreUtilsObjC:CoreUtilsObjC ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
@@ -12788,11 +12780,7 @@
 				"ARCHS[sdk=iphoneos*]" = arm64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
 				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
-				ASAN_OTHER_CFLAGS__YES = (
-					"$(ASAN_OTHER_CFLAGS__NO)",
-					"-Wno-macro-redefined",
-					"-D_FORTIFY_SOURCE=0",
-				);
+				ASAN_OTHER_CFLAGS__YES = "$(ASAN_OTHER_CFLAGS__NO) -Wno-macro-redefined -D_FORTIFY_SOURCE=0";
 				BAZEL_LABEL = "@//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswer";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer";
@@ -12820,11 +12808,7 @@
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
 				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
-				ASAN_OTHER_CFLAGS__YES = (
-					"$(ASAN_OTHER_CFLAGS__NO)",
-					"-Wno-macro-redefined",
-					"-D_FORTIFY_SOURCE=0",
-				);
+				ASAN_OTHER_CFLAGS__YES = "$(ASAN_OTHER_CFLAGS__NO) -Wno-macro-redefined -D_FORTIFY_SOURCE=0";
 				BAZEL_COMPILE_TARGET_IDS = "//Bundle:aplugin.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-30";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=macosx*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//Bundle:Bundle";
@@ -12872,11 +12856,7 @@
 				ARCHS = arm64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
 				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
-				ASAN_OTHER_CFLAGS__YES = (
-					"$(ASAN_OTHER_CFLAGS__NO)",
-					"-Wno-macro-redefined",
-					"-D_FORTIFY_SOURCE=0",
-				);
+				ASAN_OTHER_CFLAGS__YES = "$(ASAN_OTHER_CFLAGS__NO) -Wno-macro-redefined -D_FORTIFY_SOURCE=0";
 				BAZEL_LABEL = "@//CommandLine/swift_c_module:c_lib";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37/bin/CommandLine/swift_c_module";
 				BAZEL_TARGET_ID = "//CommandLine/swift_c_module:c_lib macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37";
@@ -13022,11 +13002,7 @@
 				ARCHS = arm64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
 				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
-				ASAN_OTHER_CFLAGS__YES = (
-					"$(ASAN_OTHER_CFLAGS__NO)",
-					"-Wno-macro-redefined",
-					"-D_FORTIFY_SOURCE=0",
-				);
+				ASAN_OTHER_CFLAGS__YES = "$(ASAN_OTHER_CFLAGS__NO) -Wno-macro-redefined -D_FORTIFY_SOURCE=0";
 				BAZEL_LABEL = "@//CommandLine/CommandLineToolLib:lib_impl";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37/bin/CommandLine/CommandLineToolLib";
 				BAZEL_TARGET_ID = "//CommandLine/CommandLineToolLib:lib_impl macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37";
@@ -13529,11 +13505,7 @@
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
 				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
-				ASAN_OTHER_CFLAGS__YES = (
-					"$(ASAN_OTHER_CFLAGS__NO)",
-					"-Wno-macro-redefined",
-					"-D_FORTIFY_SOURCE=0",
-				);
+				ASAN_OTHER_CFLAGS__YES = "$(ASAN_OTHER_CFLAGS__NO) -Wno-macro-redefined -D_FORTIFY_SOURCE=0";
 				BAZEL_LABEL = "@//CommandLine/CommandLineToolLib:lib_impl";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineToolLib";
 				BAZEL_TARGET_ID = "//CommandLine/CommandLineToolLib:lib_impl macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36";
@@ -13715,11 +13687,7 @@
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
 				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
-				ASAN_OTHER_CFLAGS__YES = (
-					"$(ASAN_OTHER_CFLAGS__NO)",
-					"-Wno-macro-redefined",
-					"-D_FORTIFY_SOURCE=0",
-				);
+				ASAN_OTHER_CFLAGS__YES = "$(ASAN_OTHER_CFLAGS__NO) -Wno-macro-redefined -D_FORTIFY_SOURCE=0";
 				BAZEL_LABEL = "@FXPageControl//:FXPageControl";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/external/FXPageControl";
 				BAZEL_TARGET_ID = "@FXPageControl//:FXPageControl ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1";
@@ -13768,11 +13736,7 @@
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
 				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
-				ASAN_OTHER_CFLAGS__YES = (
-					"$(ASAN_OTHER_CFLAGS__NO)",
-					"-Wno-macro-redefined",
-					"-D_FORTIFY_SOURCE=0",
-				);
+				ASAN_OTHER_CFLAGS__YES = "$(ASAN_OTHER_CFLAGS__NO) -Wno-macro-redefined -D_FORTIFY_SOURCE=0";
 				BAZEL_LABEL = "@FXPageControl//:FXPageControl";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/external/FXPageControl";
 				BAZEL_TARGET_ID = "@FXPageControl//:FXPageControl ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7";
@@ -14021,11 +13985,7 @@
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
 				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
-				ASAN_OTHER_CFLAGS__YES = (
-					"$(ASAN_OTHER_CFLAGS__NO)",
-					"-Wno-macro-redefined",
-					"-D_FORTIFY_SOURCE=0",
-				);
+				ASAN_OTHER_CFLAGS__YES = "$(ASAN_OTHER_CFLAGS__NO) -Wno-macro-redefined -D_FORTIFY_SOURCE=0";
 				BAZEL_LABEL = "@//CommandLine/CommandLineToolLib:lib_impl";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/CommandLine/CommandLineToolLib";
 				BAZEL_TARGET_ID = "//CommandLine/CommandLineToolLib:lib_impl macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33";
@@ -14049,11 +14009,7 @@
 				ARCHS = arm64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
 				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
-				ASAN_OTHER_CFLAGS__YES = (
-					"$(ASAN_OTHER_CFLAGS__NO)",
-					"-Wno-macro-redefined",
-					"-D_FORTIFY_SOURCE=0",
-				);
+				ASAN_OTHER_CFLAGS__YES = "$(ASAN_OTHER_CFLAGS__NO) -Wno-macro-redefined -D_FORTIFY_SOURCE=0";
 				BAZEL_LABEL = "@//CommandLine/CommandLineToolLib:private_lib";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34/bin/CommandLine/CommandLineToolLib";
 				BAZEL_TARGET_ID = "//CommandLine/CommandLineToolLib:private_lib macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34";
@@ -14149,11 +14105,7 @@
 				ARCHS = arm64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
 				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
-				ASAN_OTHER_CFLAGS__YES = (
-					"$(ASAN_OTHER_CFLAGS__NO)",
-					"-Wno-macro-redefined",
-					"-D_FORTIFY_SOURCE=0",
-				);
+				ASAN_OTHER_CFLAGS__YES = "$(ASAN_OTHER_CFLAGS__NO) -Wno-macro-redefined -D_FORTIFY_SOURCE=0";
 				BAZEL_LABEL = "@//CommandLine/CommandLineToolLib:lib_impl";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34/bin/CommandLine/CommandLineToolLib";
 				BAZEL_TARGET_ID = "//CommandLine/CommandLineToolLib:lib_impl macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34";
@@ -14347,11 +14299,7 @@
 				"ARCHS[sdk=iphoneos*]" = arm64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
 				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
-				ASAN_OTHER_CFLAGS__YES = (
-					"$(ASAN_OTHER_CFLAGS__NO)",
-					"-Wno-macro-redefined",
-					"-D_FORTIFY_SOURCE=0",
-				);
+				ASAN_OTHER_CFLAGS__YES = "$(ASAN_OTHER_CFLAGS__NO) -Wno-macro-redefined -D_FORTIFY_SOURCE=0";
 				BAZEL_LABEL = "@//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswer";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer";
 				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer";
@@ -14379,11 +14327,7 @@
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
 				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
-				ASAN_OTHER_CFLAGS__YES = (
-					"$(ASAN_OTHER_CFLAGS__NO)",
-					"-Wno-macro-redefined",
-					"-D_FORTIFY_SOURCE=0",
-				);
+				ASAN_OTHER_CFLAGS__YES = "$(ASAN_OTHER_CFLAGS__NO) -Wno-macro-redefined -D_FORTIFY_SOURCE=0";
 				BAZEL_LABEL = "@//CommandLine/swift_c_module:c_lib";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/CommandLine/swift_c_module";
 				BAZEL_TARGET_ID = "//CommandLine/swift_c_module:c_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33";
@@ -14769,11 +14713,7 @@
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
 				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
-				ASAN_OTHER_CFLAGS__YES = (
-					"$(ASAN_OTHER_CFLAGS__NO)",
-					"-Wno-macro-redefined",
-					"-D_FORTIFY_SOURCE=0",
-				);
+				ASAN_OTHER_CFLAGS__YES = "$(ASAN_OTHER_CFLAGS__NO) -Wno-macro-redefined -D_FORTIFY_SOURCE=0";
 				BAZEL_COMPILE_TARGET_IDS = "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests";
@@ -14811,11 +14751,7 @@
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
 				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
-				ASAN_OTHER_CFLAGS__YES = (
-					"$(ASAN_OTHER_CFLAGS__NO)",
-					"-Wno-macro-redefined",
-					"-D_FORTIFY_SOURCE=0",
-				);
+				ASAN_OTHER_CFLAGS__YES = "$(ASAN_OTHER_CFLAGS__NO) -Wno-macro-redefined -D_FORTIFY_SOURCE=0";
 				BAZEL_LABEL = "@//CommandLine/swift_c_module:c_lib";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/swift_c_module";
 				BAZEL_TARGET_ID = "//CommandLine/swift_c_module:c_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36";
@@ -14839,11 +14775,7 @@
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
 				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
-				ASAN_OTHER_CFLAGS__YES = (
-					"$(ASAN_OTHER_CFLAGS__NO)",
-					"-Wno-macro-redefined",
-					"-D_FORTIFY_SOURCE=0",
-				);
+				ASAN_OTHER_CFLAGS__YES = "$(ASAN_OTHER_CFLAGS__NO) -Wno-macro-redefined -D_FORTIFY_SOURCE=0";
 				BAZEL_COMPILE_TARGET_IDS = "//CommandLine/CommandLineTool:tool.library macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=macosx*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//CommandLine/CommandLineTool:UniversalCommandLineTool";
@@ -14955,11 +14887,7 @@
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
 				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
-				ASAN_OTHER_CFLAGS__YES = (
-					"$(ASAN_OTHER_CFLAGS__NO)",
-					"-Wno-macro-redefined",
-					"-D_FORTIFY_SOURCE=0",
-				);
+				ASAN_OTHER_CFLAGS__YES = "$(ASAN_OTHER_CFLAGS__NO) -Wno-macro-redefined -D_FORTIFY_SOURCE=0";
 				BAZEL_COMPILE_TARGET_IDS = "//CommandLine/CommandLineTool:tool.library macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=macosx*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//CommandLine/CommandLineTool:CommandLineTool";
@@ -15133,11 +15061,7 @@
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
 				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
-				ASAN_OTHER_CFLAGS__YES = (
-					"$(ASAN_OTHER_CFLAGS__NO)",
-					"-Wno-macro-redefined",
-					"-D_FORTIFY_SOURCE=0",
-				);
+				ASAN_OTHER_CFLAGS__YES = "$(ASAN_OTHER_CFLAGS__NO) -Wno-macro-redefined -D_FORTIFY_SOURCE=0";
 				BAZEL_LABEL = "@//CommandLine/CommandLineToolLib:private_lib";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/CommandLine/CommandLineToolLib";
 				BAZEL_TARGET_ID = "//CommandLine/CommandLineToolLib:private_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33";
@@ -15161,11 +15085,7 @@
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
 				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
-				ASAN_OTHER_CFLAGS__YES = (
-					"$(ASAN_OTHER_CFLAGS__NO)",
-					"-Wno-macro-redefined",
-					"-D_FORTIFY_SOURCE=0",
-				);
+				ASAN_OTHER_CFLAGS__YES = "$(ASAN_OTHER_CFLAGS__NO) -Wno-macro-redefined -D_FORTIFY_SOURCE=0";
 				BAZEL_LABEL = "@//CommandLine/swift_c_module:c_lib";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35/bin/CommandLine/swift_c_module";
 				BAZEL_TARGET_ID = "//CommandLine/swift_c_module:c_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35";
@@ -15215,11 +15135,7 @@
 				ARCHS = arm64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
 				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
-				ASAN_OTHER_CFLAGS__YES = (
-					"$(ASAN_OTHER_CFLAGS__NO)",
-					"-Wno-macro-redefined",
-					"-D_FORTIFY_SOURCE=0",
-				);
+				ASAN_OTHER_CFLAGS__YES = "$(ASAN_OTHER_CFLAGS__NO) -Wno-macro-redefined -D_FORTIFY_SOURCE=0";
 				BAZEL_LABEL = "@//CommandLine/swift_c_module:c_lib";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34/bin/CommandLine/swift_c_module";
 				BAZEL_TARGET_ID = "//CommandLine/swift_c_module:c_lib macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34";
@@ -15291,11 +15207,7 @@
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
 				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
-				ASAN_OTHER_CFLAGS__YES = (
-					"$(ASAN_OTHER_CFLAGS__NO)",
-					"-Wno-macro-redefined",
-					"-D_FORTIFY_SOURCE=0",
-				);
+				ASAN_OTHER_CFLAGS__YES = "$(ASAN_OTHER_CFLAGS__NO) -Wno-macro-redefined -D_FORTIFY_SOURCE=0";
 				BAZEL_LABEL = "@//CommandLine/CommandLineToolLib:private_lib";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35/bin/CommandLine/CommandLineToolLib";
 				BAZEL_TARGET_ID = "//CommandLine/CommandLineToolLib:private_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35";
@@ -15319,11 +15231,7 @@
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
 				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
-				ASAN_OTHER_CFLAGS__YES = (
-					"$(ASAN_OTHER_CFLAGS__NO)",
-					"-Wno-macro-redefined",
-					"-D_FORTIFY_SOURCE=0",
-				);
+				ASAN_OTHER_CFLAGS__YES = "$(ASAN_OTHER_CFLAGS__NO) -Wno-macro-redefined -D_FORTIFY_SOURCE=0";
 				BAZEL_COMPILE_TARGET_IDS = "//CommandLine/CommandLineTool:tool.library macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=macosx*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//CommandLine/CommandLineTool:CommandLineTool";
@@ -15356,11 +15264,7 @@
 				ARCHS = arm64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
 				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
-				ASAN_OTHER_CFLAGS__YES = (
-					"$(ASAN_OTHER_CFLAGS__NO)",
-					"-Wno-macro-redefined",
-					"-D_FORTIFY_SOURCE=0",
-				);
+				ASAN_OTHER_CFLAGS__YES = "$(ASAN_OTHER_CFLAGS__NO) -Wno-macro-redefined -D_FORTIFY_SOURCE=0";
 				BAZEL_LABEL = "@//CommandLine/CommandLineToolLib:private_lib";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37/bin/CommandLine/CommandLineToolLib";
 				BAZEL_TARGET_ID = "//CommandLine/CommandLineToolLib:private_lib macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37";
@@ -15384,11 +15288,7 @@
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
 				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
-				ASAN_OTHER_CFLAGS__YES = (
-					"$(ASAN_OTHER_CFLAGS__NO)",
-					"-Wno-macro-redefined",
-					"-D_FORTIFY_SOURCE=0",
-				);
+				ASAN_OTHER_CFLAGS__YES = "$(ASAN_OTHER_CFLAGS__NO) -Wno-macro-redefined -D_FORTIFY_SOURCE=0";
 				BAZEL_LABEL = "@//CommandLine/CommandLineToolLib:lib_impl";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38/bin/CommandLine/CommandLineToolLib";
 				BAZEL_TARGET_ID = "//CommandLine/CommandLineToolLib:lib_impl macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38";
@@ -15488,11 +15388,7 @@
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
 				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
-				ASAN_OTHER_CFLAGS__YES = (
-					"$(ASAN_OTHER_CFLAGS__NO)",
-					"-Wno-macro-redefined",
-					"-D_FORTIFY_SOURCE=0",
-				);
+				ASAN_OTHER_CFLAGS__YES = "$(ASAN_OTHER_CFLAGS__NO) -Wno-macro-redefined -D_FORTIFY_SOURCE=0";
 				BAZEL_COMPILE_TARGET_IDS = "//Bundle:aplugin.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-29";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=macosx*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//Bundle:Bundle";
@@ -15561,11 +15457,7 @@
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
 				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
-				ASAN_OTHER_CFLAGS__YES = (
-					"$(ASAN_OTHER_CFLAGS__NO)",
-					"-Wno-macro-redefined",
-					"-D_FORTIFY_SOURCE=0",
-				);
+				ASAN_OTHER_CFLAGS__YES = "$(ASAN_OTHER_CFLAGS__NO) -Wno-macro-redefined -D_FORTIFY_SOURCE=0";
 				BAZEL_COMPILE_TARGET_IDS = "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite";
@@ -15693,11 +15585,7 @@
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
 				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
-				ASAN_OTHER_CFLAGS__YES = (
-					"$(ASAN_OTHER_CFLAGS__NO)",
-					"-Wno-macro-redefined",
-					"-D_FORTIFY_SOURCE=0",
-				);
+				ASAN_OTHER_CFLAGS__YES = "$(ASAN_OTHER_CFLAGS__NO) -Wno-macro-redefined -D_FORTIFY_SOURCE=0";
 				BAZEL_COMPILE_TARGET_IDS = "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite";
@@ -15770,11 +15658,7 @@
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
 				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
-				ASAN_OTHER_CFLAGS__YES = (
-					"$(ASAN_OTHER_CFLAGS__NO)",
-					"-Wno-macro-redefined",
-					"-D_FORTIFY_SOURCE=0",
-				);
+				ASAN_OTHER_CFLAGS__YES = "$(ASAN_OTHER_CFLAGS__NO) -Wno-macro-redefined -D_FORTIFY_SOURCE=0";
 				BAZEL_LABEL = "@//CommandLine/CommandLineToolLib:private_lib";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineToolLib";
 				BAZEL_TARGET_ID = "//CommandLine/CommandLineToolLib:private_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36";
@@ -15939,11 +15823,7 @@
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
 				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
-				ASAN_OTHER_CFLAGS__YES = (
-					"$(ASAN_OTHER_CFLAGS__NO)",
-					"-Wno-macro-redefined",
-					"-D_FORTIFY_SOURCE=0",
-				);
+				ASAN_OTHER_CFLAGS__YES = "$(ASAN_OTHER_CFLAGS__NO) -Wno-macro-redefined -D_FORTIFY_SOURCE=0";
 				BAZEL_COMPILE_TARGET_IDS = "//CommandLine/CommandLineTool:tool.library macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=macosx*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//CommandLine/CommandLineTool:UniversalCommandLineTool";
@@ -16065,11 +15945,7 @@
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
 				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
-				ASAN_OTHER_CFLAGS__YES = (
-					"$(ASAN_OTHER_CFLAGS__NO)",
-					"-Wno-macro-redefined",
-					"-D_FORTIFY_SOURCE=0",
-				);
+				ASAN_OTHER_CFLAGS__YES = "$(ASAN_OTHER_CFLAGS__NO) -Wno-macro-redefined -D_FORTIFY_SOURCE=0";
 				BAZEL_COMPILE_TARGET_IDS = "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests";
@@ -16292,11 +16168,7 @@
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
 				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
-				ASAN_OTHER_CFLAGS__YES = (
-					"$(ASAN_OTHER_CFLAGS__NO)",
-					"-Wno-macro-redefined",
-					"-D_FORTIFY_SOURCE=0",
-				);
+				ASAN_OTHER_CFLAGS__YES = "$(ASAN_OTHER_CFLAGS__NO) -Wno-macro-redefined -D_FORTIFY_SOURCE=0";
 				BAZEL_LABEL = "@//iOSApp/Source/Utils:Utils";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Source/Utils";
 				BAZEL_TARGET_ID = "//iOSApp/Source/Utils:Utils ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7";
@@ -16473,11 +16345,7 @@
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
 				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
-				ASAN_OTHER_CFLAGS__YES = (
-					"$(ASAN_OTHER_CFLAGS__NO)",
-					"-Wno-macro-redefined",
-					"-D_FORTIFY_SOURCE=0",
-				);
+				ASAN_OTHER_CFLAGS__YES = "$(ASAN_OTHER_CFLAGS__NO) -Wno-macro-redefined -D_FORTIFY_SOURCE=0";
 				BAZEL_LABEL = "@//iOSApp/Source/Utils:Utils";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/Utils";
 				BAZEL_TARGET_ID = "//iOSApp/Source/Utils:Utils ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1";
@@ -16597,11 +16465,7 @@
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
 				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
-				ASAN_OTHER_CFLAGS__YES = (
-					"$(ASAN_OTHER_CFLAGS__NO)",
-					"-Wno-macro-redefined",
-					"-D_FORTIFY_SOURCE=0",
-				);
+				ASAN_OTHER_CFLAGS__YES = "$(ASAN_OTHER_CFLAGS__NO) -Wno-macro-redefined -D_FORTIFY_SOURCE=0";
 				BAZEL_LABEL = "@//CommandLine/swift_c_module:c_lib";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38/bin/CommandLine/swift_c_module";
 				BAZEL_TARGET_ID = "//CommandLine/swift_c_module:c_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38";
@@ -16713,11 +16577,7 @@
 				"ARCHS[sdk=iphoneos*]" = arm64;
 				ASAN_OTHER_CPLUSPLUSFLAGS__ = "$(ASAN_OTHER_CPLUSPLUSFLAGS__NO)";
 				ASAN_OTHER_CPLUSPLUSFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/cxx.compile.params";
-				ASAN_OTHER_CPLUSPLUSFLAGS__YES = (
-					"$(ASAN_OTHER_CPLUSPLUSFLAGS__NO)",
-					"-Wno-macro-redefined",
-					"-D_FORTIFY_SOURCE=0",
-				);
+				ASAN_OTHER_CPLUSPLUSFLAGS__YES = "$(ASAN_OTHER_CPLUSPLUSFLAGS__NO) -Wno-macro-redefined -D_FORTIFY_SOURCE=0";
 				BAZEL_COMPILE_TARGET_IDS = "//iOSApp/Source/CoreUtilsObjC:CoreUtilsObjC ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=iphoneos*]" = "//iOSApp/Source/CoreUtilsObjC:CoreUtilsObjC ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
@@ -16816,11 +16676,7 @@
 				ARCHS = arm64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
 				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
-				ASAN_OTHER_CFLAGS__YES = (
-					"$(ASAN_OTHER_CFLAGS__NO)",
-					"-Wno-macro-redefined",
-					"-D_FORTIFY_SOURCE=0",
-				);
+				ASAN_OTHER_CFLAGS__YES = "$(ASAN_OTHER_CFLAGS__NO) -Wno-macro-redefined -D_FORTIFY_SOURCE=0";
 				BAZEL_COMPILE_TARGET_IDS = "//CommandLine/CommandLineTool:tool.library macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37";
 				"BAZEL_COMPILE_TARGET_IDS[sdk=macosx*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
 				BAZEL_LABEL = "@//CommandLine/CommandLineTool:UniversalCommandLineTool";
@@ -16889,11 +16745,7 @@
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
 				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
-				ASAN_OTHER_CFLAGS__YES = (
-					"$(ASAN_OTHER_CFLAGS__NO)",
-					"-Wno-macro-redefined",
-					"-D_FORTIFY_SOURCE=0",
-				);
+				ASAN_OTHER_CFLAGS__YES = "$(ASAN_OTHER_CFLAGS__NO) -Wno-macro-redefined -D_FORTIFY_SOURCE=0";
 				BAZEL_LABEL = "@//CommandLine/CommandLineToolLib:private_lib";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38/bin/CommandLine/CommandLineToolLib";
 				BAZEL_TARGET_ID = "//CommandLine/CommandLineToolLib:private_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38";
@@ -16981,11 +16833,7 @@
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
 				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
-				ASAN_OTHER_CFLAGS__YES = (
-					"$(ASAN_OTHER_CFLAGS__NO)",
-					"-Wno-macro-redefined",
-					"-D_FORTIFY_SOURCE=0",
-				);
+				ASAN_OTHER_CFLAGS__YES = "$(ASAN_OTHER_CFLAGS__NO) -Wno-macro-redefined -D_FORTIFY_SOURCE=0";
 				BAZEL_LABEL = "@//CommandLine/CommandLineToolLib:lib_impl";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35/bin/CommandLine/CommandLineToolLib";
 				BAZEL_TARGET_ID = "//CommandLine/CommandLineToolLib:lib_impl macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35";

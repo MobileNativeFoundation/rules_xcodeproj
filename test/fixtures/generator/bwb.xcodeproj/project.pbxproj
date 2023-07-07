@@ -4189,11 +4189,7 @@
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
 				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
-				ASAN_OTHER_CFLAGS__YES = (
-					"$(ASAN_OTHER_CFLAGS__NO)",
-					"-Wno-macro-redefined",
-					"-D_FORTIFY_SOURCE=0",
-				);
+				ASAN_OTHER_CFLAGS__YES = "$(ASAN_OTHER_CFLAGS__NO) -Wno-macro-redefined -D_FORTIFY_SOURCE=0";
 				BAZEL_LABEL = "@com_github_michaeleisel_jjliso8601dateformatter//:JJLISO8601DateFormatter";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_michaeleisel_jjliso8601dateformatter";
 				BAZEL_TARGET_ID = "@com_github_michaeleisel_jjliso8601dateformatter//:JJLISO8601DateFormatter macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2";
@@ -4288,11 +4284,7 @@
 				ARCHS = x86_64;
 				ASAN_OTHER_CPLUSPLUSFLAGS__ = "$(ASAN_OTHER_CPLUSPLUSFLAGS__NO)";
 				ASAN_OTHER_CPLUSPLUSFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/cxx.compile.params";
-				ASAN_OTHER_CPLUSPLUSFLAGS__YES = (
-					"$(ASAN_OTHER_CPLUSPLUSFLAGS__NO)",
-					"-Wno-macro-redefined",
-					"-D_FORTIFY_SOURCE=0",
-				);
+				ASAN_OTHER_CPLUSPLUSFLAGS__YES = "$(ASAN_OTHER_CPLUSPLUSFLAGS__NO) -Wno-macro-redefined -D_FORTIFY_SOURCE=0";
 				BAZEL_LABEL = "@com_github_michaeleisel_zippyjsoncfamily//:ZippyJSONCFamily";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_michaeleisel_zippyjsoncfamily";
 				BAZEL_TARGET_ID = "@com_github_michaeleisel_zippyjsoncfamily//:ZippyJSONCFamily macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2";
@@ -4835,11 +4827,7 @@
 				ARCHS = x86_64;
 				ASAN_OTHER_CPLUSPLUSFLAGS__ = "$(ASAN_OTHER_CPLUSPLUSFLAGS__NO)";
 				ASAN_OTHER_CPLUSPLUSFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/cxx.compile.params";
-				ASAN_OTHER_CPLUSPLUSFLAGS__YES = (
-					"$(ASAN_OTHER_CPLUSPLUSFLAGS__NO)",
-					"-Wno-macro-redefined",
-					"-D_FORTIFY_SOURCE=0",
-				);
+				ASAN_OTHER_CPLUSPLUSFLAGS__YES = "$(ASAN_OTHER_CPLUSPLUSFLAGS__NO) -Wno-macro-redefined -D_FORTIFY_SOURCE=0";
 				BAZEL_LABEL = "@com_github_michaeleisel_zippyjsoncfamily//:ZippyJSONCFamily";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_michaeleisel_zippyjsoncfamily";
 				BAZEL_TARGET_ID = "@com_github_michaeleisel_zippyjsoncfamily//:ZippyJSONCFamily macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2";
@@ -4942,11 +4930,7 @@
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
 				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
-				ASAN_OTHER_CFLAGS__YES = (
-					"$(ASAN_OTHER_CFLAGS__NO)",
-					"-Wno-macro-redefined",
-					"-D_FORTIFY_SOURCE=0",
-				);
+				ASAN_OTHER_CFLAGS__YES = "$(ASAN_OTHER_CFLAGS__NO) -Wno-macro-redefined -D_FORTIFY_SOURCE=0";
 				BAZEL_LABEL = "@com_github_michaeleisel_jjliso8601dateformatter//:JJLISO8601DateFormatter";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_jjliso8601dateformatter";
 				BAZEL_TARGET_ID = "@com_github_michaeleisel_jjliso8601dateformatter//:JJLISO8601DateFormatter macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1";
@@ -4968,11 +4952,7 @@
 				ARCHS = x86_64;
 				ASAN_OTHER_CPLUSPLUSFLAGS__ = "$(ASAN_OTHER_CPLUSPLUSFLAGS__NO)";
 				ASAN_OTHER_CPLUSPLUSFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/cxx.compile.params";
-				ASAN_OTHER_CPLUSPLUSFLAGS__YES = (
-					"$(ASAN_OTHER_CPLUSPLUSFLAGS__NO)",
-					"-Wno-macro-redefined",
-					"-D_FORTIFY_SOURCE=0",
-				);
+				ASAN_OTHER_CPLUSPLUSFLAGS__YES = "$(ASAN_OTHER_CPLUSPLUSFLAGS__NO) -Wno-macro-redefined -D_FORTIFY_SOURCE=0";
 				BAZEL_LABEL = "@com_github_michaeleisel_zippyjsoncfamily//:ZippyJSONCFamily";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_michaeleisel_zippyjsoncfamily";
 				BAZEL_TARGET_ID = "@com_github_michaeleisel_zippyjsoncfamily//:ZippyJSONCFamily macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1";
@@ -5353,11 +5333,7 @@
 				ARCHS = x86_64;
 				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
 				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
-				ASAN_OTHER_CFLAGS__YES = (
-					"$(ASAN_OTHER_CFLAGS__NO)",
-					"-Wno-macro-redefined",
-					"-D_FORTIFY_SOURCE=0",
-				);
+				ASAN_OTHER_CFLAGS__YES = "$(ASAN_OTHER_CFLAGS__NO) -Wno-macro-redefined -D_FORTIFY_SOURCE=0";
 				BAZEL_LABEL = "@com_github_michaeleisel_jjliso8601dateformatter//:JJLISO8601DateFormatter";
 				BAZEL_PACKAGE_BIN_DIR = "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/external/com_github_michaeleisel_jjliso8601dateformatter";
 				BAZEL_TARGET_ID = "@com_github_michaeleisel_jjliso8601dateformatter//:JJLISO8601DateFormatter macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2";
