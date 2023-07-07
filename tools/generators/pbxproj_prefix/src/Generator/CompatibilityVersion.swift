@@ -9,6 +9,6 @@ extension Generator {
     static func compatibilityVersion(
         minimumXcodeVersion: SemanticVersion
     ) -> String {
-        return "Xcode \(min(minimumXcodeVersion.major, 14)).0"
+        return "Xcode \(min(minimumXcodeVersion.major, 15)).0"
     }
 }

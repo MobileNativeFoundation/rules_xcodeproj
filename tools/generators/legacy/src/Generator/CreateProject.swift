@@ -15,7 +15,7 @@ extension Generator {
         minimumXcodeVersion: SemanticVersion
     ) -> PBXProj {
         let pbxProj = PBXProj(
-            objectVersion: minimumXcodeVersion.major >= 14 ? 56 : 55
+            objectVersion: minimumXcodeVersion.pbxProjObjectVersion
         )
 
         let nonRelativeProjectDir = directories.executionRoot
@@ -200,7 +200,7 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
             name: project.name,
             buildConfigurationList: buildConfigurationList,
             compatibilityVersion: """
-Xcode \(min(project.minimumXcodeVersion.major, 14)).0
+Xcode \(min(project.minimumXcodeVersion.major, 15)).0
 """,
             mainGroup: mainGroup,
             developmentRegion: options.developmentRegion,
@@ -211,5 +211,15 @@ Xcode \(min(project.minimumXcodeVersion.major, 14)).0
         pbxProj.rootObject = pbxProject
 
         return pbxProj
+    }
+}
+
+private extension SemanticVersion {
+    var pbxProjObjectVersion: UInt {
+        switch major {
+            case 15: return 60
+            case 14: return 56
+            default: return 55 // Xcode 13
+        }
     }
 }
