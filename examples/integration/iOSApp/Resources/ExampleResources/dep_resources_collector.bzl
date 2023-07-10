@@ -39,12 +39,12 @@ def _dep_resources_collector_impl(ctx):
         command = "echo '{}' > {}".format("\n".join(all_deps), output.path),
     )
 
-    resources = [output]
+    res = [output]
     if _is_bazel_6:
-        resources = {tuple(): resources}
+        res = {tuple(): res}
 
     return resources.bucketize(
-        resources = resources,
+        resources = res,
         parent_dir_param = "bucket",
     )
 
