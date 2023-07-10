@@ -26,6 +26,8 @@ _deps_aspect = aspect(
     attr_aspects = ["*"],
 )
 
+_is_bazel_6 = hasattr(apple_common, "link_multi_arch_static_library")
+
 def _dep_resources_collector_impl(ctx):
     all_deps = depset(
         transitive = [dep[DepCollectorInfo].dep_names for dep in ctx.attr.deps],
@@ -37,8 +39,12 @@ def _dep_resources_collector_impl(ctx):
         command = "echo '{}' > {}".format("\n".join(all_deps), output.path),
     )
 
+    resources = [output]
+    if _is_bazel_6:
+        resources = {tuple(): resources}
+
     return resources.bucketize(
-        resources = {tuple(): [output]},
+        resources = resources,
         parent_dir_param = "bucket",
     )
 
