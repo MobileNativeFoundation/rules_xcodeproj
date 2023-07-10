@@ -8,6 +8,7 @@ load(
     "IOS_BUNDLE_ID",
     "TEAMID",
 )
+load("//iOSApp/Source:file_generation.bzl", "generated_file")
 
 config_setting(
     name = "release_build",
@@ -22,6 +23,8 @@ config_setting(
         "cpu": "ios_arm64",
     },
 )
+
+GENERATED_CORE_DATA_CONTENTS_FILE = "GeneratedModel.xcdatamodeld/GeneratedModel.xcdatamodel/contents"
 
 ios_application(
     name = "iOSApp",
@@ -52,13 +55,17 @@ ios_application(
         ":device_build": ":xcode_profile",
         "//conditions:default": None,
     }),
-    resources = [":ExampleResourceGroup"] + glob(
+    resources = [":ExampleResourceGroup", ":GeneratedCoreDataContents"] + glob(
         [
             "Assets.xcassets/**",
             "Model.xcdatamodeld/**",
+            "GeneratedModel.xcdatamodeld/**",
             "*.lproj/unprocessed.json",
         ],
-        exclude = ["Assets.xcassets/AppIcon.appiconset/**"],
+        exclude = [
+            "Assets.xcassets/AppIcon.appiconset/**",
+            GENERATED_CORE_DATA_CONTENTS_FILE,
+        ],
     ),
     strings = glob(["*.lproj/Localizable.strings"]),
     version = "//iOSApp:Version",
@@ -129,4 +136,9 @@ apple_resource_group(
 filegroup(
     name = "PreviewContent",
     srcs = glob(["PreviewContent/**"]),
+)
+
+generated_file(
+    name = "GeneratedCoreDataContents",
+    source_file = GENERATED_CORE_DATA_CONTENTS_FILE,
 )
