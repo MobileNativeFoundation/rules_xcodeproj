@@ -117,18 +117,28 @@ def xcodeproj_rules_dependencies(
             ignore_version_differences = ignore_version_differences,
         )
 
+        is_bazel_6 = hasattr(apple_common, "link_multi_arch_static_library")
+        if not is_bazel_6:
+            # apple_support 1.7.1+ break Bazel 5 support
+            _maybe(
+                http_archive,
+                name = "build_bazel_apple_support",
+                sha256 = "14458bd8191e08499299362e19e7e6951f25b9532a2504bd86e51bc74ddf7a21",
+                url = "https://github.com/bazelbuild/apple_support/releases/download/1.7.0/apple_support.1.7.0.tar.gz",
+                ignore_version_differences = ignore_version_differences,
+            )
+
         _maybe(
             http_archive,
             name = "build_bazel_rules_swift",
-            sha256 = "bf2861de6bf75115288468f340b0c4609cc99cc1ccc7668f0f71adfd853eedb3",
-            url = "https://github.com/bazelbuild/rules_swift/releases/download/1.7.1/rules_swift.1.7.1.tar.gz",
+            sha256 = "b3b6c5c9f2a589150f71e79dec1e1ed0eb974dbd49e9317df4e09e08ff6e83df",
+            url = "https://github.com/bazelbuild/rules_swift/releases/download/1.9.1/rules_swift.1.9.1.tar.gz",
             ignore_version_differences = ignore_version_differences,
         )
 
-        is_bazel_6 = hasattr(apple_common, "link_multi_arch_static_library")
         if is_bazel_6:
-            rules_apple_sha256 = "9e26307516c4d5f2ad4aee90ac01eb8cd31f9b8d6ea93619fc64b3cbc81b0944"
-            rules_apple_version = "2.2.0"
+            rules_apple_sha256 = "2a0a35c9f72a0b0ac9238ecb081b0da4bb3e9739e25d2a910cc6b4c4425c01be"
+            rules_apple_version = "2.4.1"
         else:
             rules_apple_sha256 = "f94e6dddf74739ef5cb30f000e13a2a613f6ebfa5e63588305a71fce8a8a9911"
             rules_apple_version = "1.1.3"
