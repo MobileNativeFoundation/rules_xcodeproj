@@ -38,7 +38,7 @@ def _dep_resources_collector_impl(ctx):
     )
 
     return resources.bucketize(
-        resources = [output],
+        resources = {tuple(): [output]},
         parent_dir_param = "bucket",
     )
 
