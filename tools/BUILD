@@ -6,6 +6,7 @@ load("//xcodeproj/internal:collections.bzl", "flatten", "uniq")
 _TOOLS = {
     "files_and_groups": "//tools/generators/files_and_groups",
     "pbxproj_prefix": "//tools/generators/pbxproj_prefix",
+    "pbxproject_targets": "//tools/generators/pbxproject_targets",
     "swiftc_stub": "//tools/swiftc_stub:swiftc",
 }
 
@@ -17,6 +18,10 @@ _TESTS = {
     "pbxproj_prefix": [
         "//tools/generators/lib/PBXProj:PBXProjTests",
         "//tools/generators/pbxproj_prefix:pbxproj_prefix_tests",
+    ],
+    "pbxproject_targets": [
+        "//tools/generators/lib/PBXProj:PBXProjTests",
+        "//tools/generators/pbxproject_targets:pbxproject_targets_tests",
     ],
 }
 
@@ -114,6 +119,100 @@ _SCHEMES = [
         ),
     ),
     xcode_schemes.scheme(
+        name = "pbxproject_targets",
+        launch_action = xcode_schemes.launch_action(
+            _TOOLS["pbxproject_targets"],
+            args = [
+                # targetsOutputPath
+                "/tmp/pbxproj_partials/pbxproject_targets",
+                # targetAttributesOutputPath
+                "/tmp/pbxproj_partials/pbxproject_target_attributes",
+                # targetDependenciesOutputPath
+                "/tmp/pbxproj_partials/pbxtargetdependencies",
+                # minimumXcodeVersion
+                "14.0",
+                # targetAndTestHosts
+                "--target-and-test-hosts",
+                "'//tools/generators/legacy/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-STABLE-3'",
+                "'//tools/generators/legacy:generator applebin_macos-darwin_x86_64-dbg-STABLE-3'",
+                # consolidationMapOutputPaths
+                "--consolidation-map-output-paths",
+                "/tmp/pbxproj_partials/consolidation_maps/0",
+                "/tmp/pbxproj_partials/consolidation_maps/1",
+                # labelCounts
+                "--label-counts",
+                "2",
+                "1",
+                # labels
+                "--labels",
+                "//tools/generators/legacy:generator",
+                "//tools/generators/legacy/test:tests.__internal__.__test_bundle",
+                "//tools/generators/legacy:generator.library",
+                # targetCounts
+                "--target-counts",
+                "1",
+                "1",
+                "1",
+                # targets
+                "--targets",
+                "'//tools/generators/legacy:generator applebin_macos-darwin_x86_64-dbg-STABLE-3'",
+                "'//tools/generators/legacy/test:tests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-STABLE-3'",
+                "'//tools/generators/legacy:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1'",
+                # xcodeConfigurationCounts
+                "--xcode-configuration-counts",
+                "2",
+                "1",
+                "1",
+                # xcodeConfigurations
+                "--xcode-configurations",
+                "Debug",
+                "Release",
+                "Release",
+                "Debug",
+                # productTypes
+                "--product-types",
+                "com.apple.product-type.tool",
+                "com.apple.product-type.bundle.unit-test",
+                "com.apple.product-type.library.static",
+                # productPaths
+                "--product-paths",
+                "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-3/bin/tools/generators/legacy/generator",
+                "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-3/bin/tools/generators/legacy/test/tests.__internal__.__test_bundle_archive-root/tests.xctest",
+                "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/tools/generators/legacy/libgenerator.library.a",
+                # platforms
+                "--platforms",
+                "macosx",
+                "macosx",
+                "macosx",
+                # osVersions
+                "--os-versions",
+                "12.0",
+                "12.0",
+                "12.0",
+                # archs
+                "--archs",
+                "x86_64",
+                "x86_64",
+                "x86_64",
+                # dependencyCounts
+                "--dependency-counts",
+                "1",
+                "1",
+                "0",
+                # dependencies
+                "--dependencies",
+                "'//tools/generators/legacy:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1'",
+                "'//tools/generators/legacy:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1'",
+            ],
+            build_configuration = "Release",
+            diagnostics = _SCHEME_DIAGNOSTICS,
+        ),
+        test_action = xcode_schemes.test_action(
+            _TESTS["pbxproject_targets"],
+            diagnostics = _SCHEME_DIAGNOSTICS,
+        ),
+    ),
+    xcode_schemes.scheme(
         name = "swiftc_stub",
         build_action = xcode_schemes.build_action(
             targets = [
@@ -156,6 +255,9 @@ xcodeproj(
         ],
         "//tools/generators/pbxproj_prefix": [
             "//tools/generators/pbxproj_prefix:README.md",
+        ],
+        "//tools/generators/pbxproject_targets": [
+            "//tools/generators/pbxproject_targets:README.md",
         ],
     },
     extra_files = [

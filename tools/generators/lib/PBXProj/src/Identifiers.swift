@@ -45,9 +45,10 @@ import CryptoKit
 ///     characters (`00000000000000000000`-`FFFFFFFFFFFFFFFFFFFF`).
 public enum Identifiers {
     public enum BazelDependencies {
-        public static let id = #"""
-FF0100000000000000000001 /* BazelDependencies */
-"""#
+        fileprivate static let name = "BazelDependencies"
+        fileprivate static let idWithoutComment = "FF0100000000000000000001"
+        public static let id = #"\#(idWithoutComment) /* \#(name) */"#
+
         public static let buildConfigurationList = #"""
 FF0100000000000000000002 /* Build configuration list for PBXAggregateTarget "BazelDependencies" */
 """#
@@ -352,6 +353,20 @@ FF00000000000000000001\#(String(format: "%02X", index)) \#
                 .joined()
         }
     }
+}
+
+extension Identifiers.Targets.SubIdentifier {
+    public static let bazelDependencies =
+        Self(shard: "FF", hash: "01000000")
+}
+
+extension Identifiers.Targets.Identifier {
+    public static let bazelDependencies = Self(
+        name: Identifiers.BazelDependencies.name,
+        subIdentifier: .bazelDependencies,
+        full: Identifiers.BazelDependencies.id,
+        withoutComment: Identifiers.BazelDependencies.idWithoutComment
+    )
 }
 
 extension BuildPhase {

@@ -41,7 +41,7 @@ information.
   - The start of the `PBXProject` element
   - Contains all `PBXProject` properties except for
     `attributes.TargetAttributes`, `targets`, and `knownRegions`
-- `pbxproject_targets`:
+- [`pbxproject_targets`](pbxproject_targets/README.md):
   - Creates four+ files:
     - A partial containing the `PBXProject.attributes.TargetAttributes` property
     - A partial containing:
