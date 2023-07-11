@@ -34,8 +34,8 @@ import CryptoKit
 ///     `000000000100`-`0000000001FF` for its configurations (e.g. "Debug",
 ///     "Release", etc.).
 ///
-///   - Target dependencies (which start with `xx01`) and container item
-///     proxies (which start with `xx02`) use the next eight characters to
+///   - Target dependencies (which start with `xx02`) and container item
+///     proxies (which start with `xx01`) use the next eight characters to
 ///     identify the dependent target with a target sub-identifier
 ///     (`00000000`-`FFFFFFFF`). Then it uses the remaining characters to
 ///     identify the dependency target with the shard and target sub-identifier
@@ -202,6 +202,13 @@ FF00000000000000000001\#(String(format: "%02X", index)) \#
     }
 
     public enum Targets {
+        public struct Identifier: Equatable {
+            public let name: String
+            public let subIdentifier: SubIdentifier
+            public let full: String
+            public let withoutComment: String
+        }
+
         public struct SubIdentifier: Equatable {
             let shard: String
             let hash: String
@@ -240,10 +247,19 @@ FF00000000000000000001\#(String(format: "%02X", index)) \#
         public static func id(
             subIdentifier: SubIdentifier,
             name: String
-        ) -> String {
-            return #"""
-\#(subIdentifier.shard)00\#(subIdentifier.hash)000000000001 /* \#(name) */
+        ) -> Identifier {
+            let withoutComment = #"""
+\#(subIdentifier.shard)00\#(subIdentifier.hash)000000000001
 """#
+            let full = #"""
+\#(withoutComment) /* \#(name) */
+"""#
+            return Identifier(
+                name: name.pbxProjEscaped,
+                subIdentifier: subIdentifier,
+                full: full,
+                withoutComment: withoutComment
+            )
         }
 
         public static func buildConfigurationList(
@@ -279,22 +295,22 @@ FF00000000000000000001\#(String(format: "%02X", index)) \#
 """#
         }
 
-        public static func dependency(
-            from: SubIdentifier,
-            to: SubIdentifier
-        ) -> String {
-            return #"""
-\#(from.shard)01\#(from.hash)\#(to.shard)00\#(to.hash) /* PBXTargetDependency */
-"""#
-        }
-
         public static func containerItemProxy(
             from: SubIdentifier,
             to: SubIdentifier
         ) -> String {
             return #"""
-\#(from.shard)02\#(from.hash)\#(to.shard)00\#(to.hash) \#
+\#(from.shard)01\#(from.hash)\#(to.shard)00\#(to.hash) \#
 /* PBXContainerItemProxy */
+"""#
+        }
+
+        public static func dependency(
+            from: SubIdentifier,
+            to: SubIdentifier
+        ) -> String {
+            return #"""
+\#(from.shard)02\#(from.hash)\#(to.shard)00\#(to.hash) /* PBXTargetDependency */
 """#
         }
 
