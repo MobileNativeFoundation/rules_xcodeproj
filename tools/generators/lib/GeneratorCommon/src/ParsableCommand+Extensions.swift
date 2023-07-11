@@ -16,7 +16,12 @@ extension ParsableCommand {
             }
 
             var command = try parseAsRoot(arguments)
-            try command.run()
+
+            if var asyncCommand = command as? AsyncParsableCommand {
+                try await asyncCommand.run()
+            } else {
+                try command.run()
+            }
         } catch {
             exit(withError: error)
         }
