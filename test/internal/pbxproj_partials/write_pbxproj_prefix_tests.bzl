@@ -264,7 +264,7 @@ def write_pbxproj_prefix_test_suite(name):
         minimum_xcode_version = "14.2.1",
         platforms = [
             "MACOS",
-            "IOS",
+            "IOS_DEVICE",
         ],
         project_options = {
             "development_region": "en",
@@ -300,7 +300,7 @@ def write_pbxproj_prefix_test_suite(name):
             # platforms
             "--platforms",
             "<function _apple_platform_to_platform_name from //xcodeproj/internal:pbxproj_partials.bzl>(MACOS)",
-            "<function _apple_platform_to_platform_name from //xcodeproj/internal:pbxproj_partials.bzl>(IOS)",
+            "<function _apple_platform_to_platform_name from //xcodeproj/internal:pbxproj_partials.bzl>(IOS_DEVICE)",
             # xcodeConfigurations
             "--xcode-configurations",
             "Release",
@@ -321,7 +321,7 @@ def write_pbxproj_prefix_test_suite(name):
         index_import = "some/path/to/index_import",
         platforms = [
             "MACOS",
-            "IOS",
+            "IOS_DEVICE",
         ],
         post_build_script = "a post_build_script",
         pre_build_script = "a pre_build_script",
@@ -364,7 +364,7 @@ def write_pbxproj_prefix_test_suite(name):
             # platforms
             "--platforms",
             "<function _apple_platform_to_platform_name from //xcodeproj/internal:pbxproj_partials.bzl>(MACOS)",
-            "<function _apple_platform_to_platform_name from //xcodeproj/internal:pbxproj_partials.bzl>(IOS)",
+            "<function _apple_platform_to_platform_name from //xcodeproj/internal:pbxproj_partials.bzl>(IOS_DEVICE)",
             # xcodeConfigurations
             "--xcode-configurations",
             "Release",
