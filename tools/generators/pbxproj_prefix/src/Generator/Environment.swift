@@ -9,7 +9,6 @@ extension Generator {
     /// allowing for different implementations to be used in tests.
     struct Environment {
         let bazelDependenciesBuildSettings: (
-            _ indexImport: String,
             _ platforms: [Platform],
             _ targetIdsFile: String
         ) -> String
@@ -27,9 +26,10 @@ extension Generator {
         ) -> String
 
         let indexingProjectDir: (_ projectDir: String) -> String
-        
+
         let pbxProjectBuildSettings: (
             _ buildMode: BuildMode,
+            _ indexImport: String,
             _ indexingProjectDir: String,
             _ resolvedRepositories: String,
             _ workspace: String

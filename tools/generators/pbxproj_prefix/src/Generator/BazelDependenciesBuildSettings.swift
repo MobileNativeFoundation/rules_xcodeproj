@@ -5,13 +5,10 @@ extension Generator {
     /// elements used by the `BazelDependencies` target.
     ///
     /// - Parameters:
-    ///   - indexImport: The Bazel execution root relative path to the
-    ///     `index_import` executable.
     ///   - platforms: The platforms that the project builds for.
     ///   - targetIdsFile: The Bazel execution root relative path to the
     ///     target IDs list file.
     static func bazelDependenciesBuildSettings(
-        indexImport: String,
         platforms: [Platform],
         targetIdsFile: String
     ) -> String {
@@ -38,13 +35,7 @@ extension Generator {
 				INDEXING_SUPPORTED_PLATFORMS__YES = \#(
                     indexingSupportedPlatform.rawValue.pbxProjEscaped
                 );
-				INDEX_DATA_STORE_DIR = "$(INDEX_DATA_STORE_DIR)";
 				INDEX_DISABLE_SCRIPT_EXECUTION = YES;
-				INDEX_IMPORT = \#(
-                    indexImport
-                        .executionRootBasedBuildSettingPath
-                        .pbxProjEscaped
-				);
 				SUPPORTED_PLATFORMS = "$(INDEXING_SUPPORTED_PLATFORMS__$(INDEX_ENABLE_BUILD_ARENA))";
 				SUPPORTS_MACCATALYST = YES;
 				TARGET_IDS_FILE = \#(

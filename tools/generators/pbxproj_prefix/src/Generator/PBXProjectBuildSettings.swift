@@ -7,6 +7,8 @@ extension Generator {
     ///
     /// - Parameters:
     ///   - buildMode: The `BuildMode`.
+    ///   - indexImport: The Bazel execution root relative path to the
+    ///     `index_import` executable.
     ///   - indexingProjectDir: The value returned from
     ///     `Generator.indexingProjectDir()`.
     ///   - resolvedRepositories: The value to be used for the
@@ -14,6 +16,7 @@ extension Generator {
     ///   - workspace: The absolute path to the Bazel workspace.
     static func pbxProjectBuildSettings(
         buildMode: BuildMode,
+        indexImport: String,
         indexingProjectDir: String,
         resolvedRepositories: String,
         workspace: String
@@ -62,7 +65,11 @@ extension Generator {
                 "$(INDEXING_PROJECT_DIR__NO)".pbxProjEscaped,
             "INDEXING_PROJECT_DIR__NO": "$(PROJECT_DIR)".pbxProjEscaped,
             "INDEXING_PROJECT_DIR__YES": indexingProjectDir.pbxProjEscaped,
+            "INDEX_DATA_STORE_DIR": "$(INDEX_DATA_STORE_DIR)".pbxProjEscaped,
             "INDEX_FORCE_SCRIPT_EXECUTION": "YES",
+            "INDEX_IMPORT": indexImport
+                .executionRootBasedBuildSettingPath
+                .pbxProjEscaped,
             "INSTALL_PATH":
                 "$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)/bin".pbxProjEscaped,
             "INTERNAL_DIR": "$(PROJECT_FILE_PATH)/rules_xcodeproj",

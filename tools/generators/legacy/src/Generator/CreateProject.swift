@@ -12,6 +12,7 @@ extension Generator {
         forFixtures: Bool,
         project: Project,
         directories: Directories,
+        indexImport: String,
         minimumXcodeVersion: SemanticVersion
     ) -> PBXProj {
         let pbxProj = PBXProj(
@@ -102,7 +103,9 @@ $(INDEXING_DEPLOYMENT_LOCATION__$(INDEX_ENABLE_BUILD_ARENA)),
             // its new project default, so we need to set it explicitly
             "ENABLE_STRICT_OBJC_MSGSEND": true,
             "GCC_OPTIMIZATION_LEVEL": "0",
+            "INDEX_DATA_STORE_DIR": "$(INDEX_DATA_STORE_DIR)",
             "INDEX_FORCE_SCRIPT_EXECUTION": true,
+            "INDEX_IMPORT": indexImport,
             "INDEXING_BUILT_PRODUCTS_DIR__": """
 $(INDEXING_BUILT_PRODUCTS_DIR__NO)
 """,

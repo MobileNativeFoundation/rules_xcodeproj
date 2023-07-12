@@ -57,6 +57,7 @@ class Generator {
             forFixtures,
             project,
             directories,
+            project.indexImport,
             project.minimumXcodeVersion
         )
         guard let pbxProject = pbxProj.rootObject else {
@@ -132,7 +133,6 @@ class Generator {
                 project.xcodeConfigurations,
                 project.defaultXcodeConfiguration,
                 project.targetIdsFile,
-                project.indexImport,
                 project.bazelConfig,
                 project.preBuildScript,
                 project.postBuildScript,

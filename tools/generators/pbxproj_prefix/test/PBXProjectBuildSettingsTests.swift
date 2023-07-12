@@ -9,6 +9,7 @@ class PBXProjectBuildSettingsTests: XCTestCase {
         // Arrange
 
         let buildMode: BuildMode = .bazel
+        let indexImport = "external/index-import"
         let indexingProjectDir = "/some/indexing/project dir"
         let resolvedRepositories = #""" "/tmp/workspace""#
         let workspace = "/Users/TimApple/Star Board"
@@ -49,7 +50,9 @@ class PBXProjectBuildSettingsTests: XCTestCase {
 				INDEXING_PROJECT_DIR__ = "$(INDEXING_PROJECT_DIR__NO)";
 				INDEXING_PROJECT_DIR__NO = "$(PROJECT_DIR)";
 				INDEXING_PROJECT_DIR__YES = "/some/indexing/project dir";
+				INDEX_DATA_STORE_DIR = "$(INDEX_DATA_STORE_DIR)";
 				INDEX_FORCE_SCRIPT_EXECUTION = YES;
+				INDEX_IMPORT = "$(BAZEL_EXTERNAL)/index-import";
 				INSTALL_PATH = "$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)/bin";
 				INTERNAL_DIR = $(PROJECT_FILE_PATH)/rules_xcodeproj;
 				LD = "$(BAZEL_INTEGRATION_DIR)/ld.sh";
@@ -81,6 +84,7 @@ class PBXProjectBuildSettingsTests: XCTestCase {
 
         let buildSettings = Generator.pbxProjectBuildSettings(
             buildMode: buildMode,
+            indexImport: indexImport,
             indexingProjectDir: indexingProjectDir,
             resolvedRepositories: resolvedRepositories,
             workspace: workspace
@@ -95,6 +99,7 @@ class PBXProjectBuildSettingsTests: XCTestCase {
         // Arrange
 
         let buildMode: BuildMode = .xcode
+        let indexImport = "external/index-import"
         let indexingProjectDir = "/some/indexing/project_dir"
         let resolvedRepositories = #""" "/tmp/workspace""#
         let workspace = "/Users/TimApple/StarBoard"
@@ -132,7 +137,9 @@ class PBXProjectBuildSettingsTests: XCTestCase {
 				INDEXING_PROJECT_DIR__ = "$(INDEXING_PROJECT_DIR__NO)";
 				INDEXING_PROJECT_DIR__NO = "$(PROJECT_DIR)";
 				INDEXING_PROJECT_DIR__YES = /some/indexing/project_dir;
+				INDEX_DATA_STORE_DIR = "$(INDEX_DATA_STORE_DIR)";
 				INDEX_FORCE_SCRIPT_EXECUTION = YES;
+				INDEX_IMPORT = "$(BAZEL_EXTERNAL)/index-import";
 				INSTALL_PATH = "$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)/bin";
 				INTERNAL_DIR = $(PROJECT_FILE_PATH)/rules_xcodeproj;
 				LD_DYLIB_INSTALL_NAME = "";
@@ -159,6 +166,7 @@ class PBXProjectBuildSettingsTests: XCTestCase {
 
         let buildSettings = Generator.pbxProjectBuildSettings(
             buildMode: buildMode,
+            indexImport: indexImport,
             indexingProjectDir: indexingProjectDir,
             resolvedRepositories: resolvedRepositories,
             workspace: workspace

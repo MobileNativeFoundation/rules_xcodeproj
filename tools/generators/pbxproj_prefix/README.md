@@ -125,9 +125,7 @@ Here is an example output:
 				INDEXING_SUPPORTED_PLATFORMS__ = "$(INDEXING_SUPPORTED_PLATFORMS__NO)";
 				INDEXING_SUPPORTED_PLATFORMS__NO = "macosx iphonesimulator";
 				INDEXING_SUPPORTED_PLATFORMS__YES = macosx;
-				INDEX_DATA_STORE_DIR = "$(INDEX_DATA_STORE_DIR)";
 				INDEX_DISABLE_SCRIPT_EXECUTION = YES;
-				INDEX_IMPORT = "$(BAZEL_OUT)/darwin_arm64-opt-exec-2B5CBBC6/bin/external/_main~non_module_deps~rules_xcodeproj_index_import/index-import";
 				SUPPORTED_PLATFORMS = "$(INDEXING_SUPPORTED_PLATFORMS__$(INDEX_ENABLE_BUILD_ARENA))";
 				SUPPORTS_MACCATALYST = YES;
 				TARGET_IDS_FILE = "$(BAZEL_OUT)/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/xcodeproj/xcodeproj_target_ids";
@@ -143,9 +141,7 @@ Here is an example output:
 				INDEXING_SUPPORTED_PLATFORMS__ = "$(INDEXING_SUPPORTED_PLATFORMS__NO)";
 				INDEXING_SUPPORTED_PLATFORMS__NO = "macosx iphonesimulator watchos";
 				INDEXING_SUPPORTED_PLATFORMS__YES = macosx;
-				INDEX_DATA_STORE_DIR = "$(INDEX_DATA_STORE_DIR)";
 				INDEX_DISABLE_SCRIPT_EXECUTION = YES;
-				INDEX_IMPORT = "$(BAZEL_OUT)/darwin_arm64-opt-exec-2B5CBBC6/bin/external/_main~non_module_deps~rules_xcodeproj_index_import/index-import";
 				SUPPORTED_PLATFORMS = "$(INDEXING_SUPPORTED_PLATFORMS__$(INDEX_ENABLE_BUILD_ARENA))";
 				SUPPORTS_MACCATALYST = YES;
 				TARGET_IDS_FILE = "$(BAZEL_OUT)/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/xcodeproj/xcodeproj_target_ids";
@@ -202,6 +198,8 @@ Here is an example output:
 				ENABLE_DEFAULT_SEARCH_PATHS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				INDEX_DATA_STORE_DIR = "$(INDEX_DATA_STORE_DIR)";
+				INDEX_IMPORT = "$(BAZEL_OUT)/darwin_arm64-opt-exec-2B5CBBC6/bin/external/_main~non_module_deps~rules_xcodeproj_index_import/index-import";
 				INDEXING_BUILT_PRODUCTS_DIR__ = "$(INDEXING_BUILT_PRODUCTS_DIR__NO)";
 				INDEXING_BUILT_PRODUCTS_DIR__NO = "$(BUILD_DIR)";
 				INDEXING_BUILT_PRODUCTS_DIR__YES = "$(CONFIGURATION_BUILD_DIR)";
@@ -266,6 +264,8 @@ Here is an example output:
 				ENABLE_DEFAULT_SEARCH_PATHS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				INDEX_DATA_STORE_DIR = "$(INDEX_DATA_STORE_DIR)";
+				INDEX_IMPORT = "$(BAZEL_OUT)/darwin_arm64-opt-exec-2B5CBBC6/bin/external/_main~non_module_deps~rules_xcodeproj_index_import/index-import";
 				INDEXING_BUILT_PRODUCTS_DIR__ = "$(INDEXING_BUILT_PRODUCTS_DIR__NO)";
 				INDEXING_BUILT_PRODUCTS_DIR__NO = "$(BUILD_DIR)";
 				INDEXING_BUILT_PRODUCTS_DIR__YES = "$(CONFIGURATION_BUILD_DIR)";
