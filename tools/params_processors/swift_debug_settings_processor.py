@@ -3,7 +3,7 @@
 import json
 import os
 import sys
-from typing import Iterator, List
+from typing import Iterator, List, Optional
 
 
 def _build_setting_path(path):
@@ -13,9 +13,33 @@ def _build_setting_path(path):
         return f'$(BAZEL_EXTERNAL)/{path[9:]}'
     return path
 
+def _is_pre_processed_relative_path(path: str) -> bool:
+    if path.startswith("/"):
+        return False
+    for prefix in _PRE_PROCESSED_REPLACEMENT_PREFIXES:
+        if path.startswith(prefix):
+            return False
+    return True
 
-def _is_relative_path(path: str) -> bool:
-    return not path.startswith("/") and not path.startswith("__BAZEL_")
+
+def _is_post_processed_relative_path(path: str) -> bool:
+    if path.startswith("/"):
+        return False
+    for prefix in _POST_PROCESSED_REPLACEMENT_PREFIXES:
+        if path.startswith(prefix):
+            return False
+    return True
+
+
+_PRE_PROCESSED_REPLACEMENT_PREFIXES = [
+    "__BAZEL_XCODE_DEVELOPER_DIR__",
+    "__BAZEL_XCODE_SDKROOT__",
+]
+
+_POST_PROCESSED_REPLACEMENT_PREFIXES = [
+    "$(DEVELOPER_DIR)",
+    "$(SDKROOT)",
+]
 
 _CLANG_PATH_PREFIXES = [
     "-F",
@@ -38,10 +62,11 @@ _ONCE_FLAGS = {
 }
 
 
-def _process_clang_opt(opt, previous_opt, previous_clang_opt):
+def _process_clang_opt(
+        *,
+        opt: str,
+        previous_clang_opt: Optional[str]) -> Optional[str]:
     if opt == "-Xcc":
-        return None
-    if previous_opt != "-Xcc":
         return None
 
     for path_prefix in _CLANG_PATH_PREFIXES:
@@ -51,14 +76,14 @@ def _process_clang_opt(opt, previous_opt, previous_clang_opt):
                 return opt
             if path == ".":
                 return f"{path_prefix}$(PROJECT_DIR)"
-            if _is_relative_path(path):
+            if _is_pre_processed_relative_path(path):
                 return f"{path_prefix}$(PROJECT_DIR)/{path}"
             return opt
 
     if previous_clang_opt in _CLANG_SEARCH_PATHS:
         if opt == ".":
             return "$(PROJECT_DIR)"
-        if _is_relative_path(opt):
+        if _is_pre_processed_relative_path(opt):
             return "$(PROJECT_DIR)/" + opt
         return opt
     if previous_clang_opt == "-ivfsoverlay":
@@ -79,9 +104,37 @@ def _process_clang_opt(opt, previous_opt, previous_clang_opt):
     return opt
 
 
+def _process_swift_opt(
+        *,
+        opt: str,
+        previous_opt: Optional[str],
+        framework_includes: List[str]) -> Optional[str]:
+    if opt.startswith("-F"):
+        path = opt[2:]
+        if not path:
+            return opt
+        if path == ".":
+            path = "$(PROJECT_DIR)"
+        elif _is_post_processed_relative_path(path):
+            path = f"$(PROJECT_DIR)/{path}"
+        framework_includes.append(path)
+        return None
+    if previous_opt == "-F":
+        path = opt
+        if path == ".":
+            path = "$(PROJECT_DIR)"
+        elif _is_post_processed_relative_path(path):
+            path = f"$(PROJECT_DIR)/{path}"
+        framework_includes.append(path)
+        return None
+
+    return None
+
+
 def process_swift_params(params_paths: List[str], parse_args):
     clang_opts = []
-    previous_opt = None
+    framework_includes = []
+    next_previous_opt = None
     previous_clang_opt = None
     for params_path in params_paths:
         for opt in parse_args(params_path):
@@ -93,34 +146,46 @@ def process_swift_params(params_paths: List[str], parse_args):
             if opt.startswith("'") and opt.endswith("'"):
                 opt = opt[1:-1]
 
-            processed_opt = _process_clang_opt(
-                opt = opt,
-                previous_opt = previous_opt,
-                previous_clang_opt = previous_clang_opt,
-            )
+            previous_opt = next_previous_opt
+            next_previous_opt = opt
+
+            is_clang_opt = opt == "-Xcc" or previous_opt == "-Xcc"
+
+            if is_clang_opt:
+                processed_opt = _process_clang_opt(
+                    opt = opt,
+                    previous_clang_opt = previous_clang_opt,
+                )
 
             if previous_opt == "-Xcc":
                 previous_clang_opt = opt
             elif opt != "-Xcc":
                 previous_clang_opt = None
-            previous_opt = opt
 
-            opt = processed_opt
-            if not opt:
-                continue
+            if is_clang_opt:
+                opt = processed_opt
 
-            # Use Xcode set `DEVELOPER_DIR`
-            opt = opt.replace(
-                "__BAZEL_XCODE_DEVELOPER_DIR__",
-                "$(DEVELOPER_DIR)",
-            )
+            if opt:
+                # Use Xcode set `DEVELOPER_DIR`
+                opt = opt.replace(
+                    "__BAZEL_XCODE_DEVELOPER_DIR__",
+                    "$(DEVELOPER_DIR)",
+                )
 
-            # Use Xcode set `SDKROOT`
-            opt = opt.replace("__BAZEL_XCODE_SDKROOT__", "$(SDKROOT)")
+                # Use Xcode set `SDKROOT`
+                opt = opt.replace("__BAZEL_XCODE_SDKROOT__", "$(SDKROOT)")
 
-            clang_opts.append(opt)
+            if is_clang_opt:
+                if opt:
+                    clang_opts.append(opt)
+            else:
+                _process_swift_opt(
+                    opt = opt,
+                    previous_opt = previous_opt,
+                    framework_includes = framework_includes,
+                )
 
-    return clang_opts
+    return framework_includes, clang_opts
 
 
 def _main(args: Iterator[str]) -> None:
@@ -146,13 +211,6 @@ def _main(args: Iterator[str]) -> None:
         if key == "":
             break
 
-        framework_paths = []
-        while True:
-            path = next(args)[:-1]
-            if path == "":
-                break
-            framework_paths.append(path)
-
         swiftmodule_paths = {}
         while True:
             path = next(args)[:-1]
@@ -162,7 +220,8 @@ def _main(args: Iterator[str]) -> None:
 
         once_flags = {}
         clang_opts = []
-        clang_opts_cache = {}
+        framework_includes = {}
+        parse_cache = {}
         while True:
             swift_sub_params_list = []
             while True:
@@ -176,14 +235,22 @@ def _main(args: Iterator[str]) -> None:
                 # processing clang opts
                 break
 
-            clang_opts_cache_key = " ".join(swift_sub_params_list)
-            raw_clang_opts = clang_opts_cache.get(clang_opts_cache_key, None)
-            if not raw_clang_opts:
-                raw_clang_opts = process_swift_params(
+            parse_cache_key = " ".join(swift_sub_params_list)
+
+            parse = parse_cache.get(parse_cache_key, None)
+            if not parse:
+                parse = process_swift_params(
                     params_paths = swift_sub_params_list,
                     parse_args = _parse_args,
                 )
-                clang_opts_cache[clang_opts_cache_key] = raw_clang_opts
+                parse_cache[parse_cache_key] = parse
+            (
+                raw_framework_includes,
+                raw_clang_opts,
+            ) = parse
+
+            for path in raw_framework_includes:
+                framework_includes[path] = None
 
             for opt in raw_clang_opts:
                 if opt in once_flags:
@@ -205,8 +272,8 @@ def _main(args: Iterator[str]) -> None:
 
         if clang_opts:
             dto["c"] = " ".join(clang_opts)
-        if framework_paths:
-            dto["f"] = framework_paths
+        if framework_includes:
+            dto["f"] = list(framework_includes.keys())
         if swiftmodule_paths:
             dto["s"] = list(swiftmodule_paths.keys())
 

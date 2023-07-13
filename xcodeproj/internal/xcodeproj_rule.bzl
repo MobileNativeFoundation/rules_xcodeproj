@@ -1110,11 +1110,6 @@ def _write_swift_debug_settings(
 
         for key, lldb_context in config_lldb_contexts.items():
             args.add(key)
-            args.add_all(
-                lldb_context._framework_search_paths,
-                map_each = _non_generated_framework_build_setting_path,
-            )
-            args.add("")
             args.add_all(lldb_context._swiftmodules)
             args.add("")
             args.add_all(

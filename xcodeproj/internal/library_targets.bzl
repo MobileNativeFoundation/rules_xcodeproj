@@ -77,7 +77,6 @@ def process_library_target(
     (
         compilation_providers,
         implementation_compilation_context,
-        framework_includes,
     ) = comp_providers.collect(
         cc_info = target[CcInfo],
         objc = objc,
@@ -173,7 +172,6 @@ def process_library_target(
     lldb_context = lldb_contexts.collect(
         id = id,
         is_swift = bool(swift_params),
-        framework_includes = framework_includes,
         swift_sub_params = swift_sub_params,
         swiftmodules = swiftmodules,
         transitive_infos = transitive_infos,
