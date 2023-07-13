@@ -2,8 +2,11 @@
 
 /bazel-*
 
+# We explicitly ignore these subdirectories to ensure they still apply when we
+# undo the `**/*.xcodeproj/*` ignore in `test/fixtures/.gitignore`
 **/*.xcodeproj/xcuserdata/*
 **/*.xcodeproj/project.xcworkspace/xcuserdata/*
+
 **/*.xcodeproj/*
 
 # Symlink to `$DEVELOPER_DIR/Toolchains/XcodeDefault.xctoolchain/usr/lib`
