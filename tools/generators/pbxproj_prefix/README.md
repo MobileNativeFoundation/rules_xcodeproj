@@ -122,12 +122,18 @@ Here is an example output:
 			buildSettings = {
 				BAZEL_PACKAGE_BIN_DIR = rules_xcodeproj;
 				CALCULATE_OUTPUT_GROUPS_SCRIPT = "$(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py";
+				CC = "";
+				CXX = "";
 				INDEXING_SUPPORTED_PLATFORMS__ = "$(INDEXING_SUPPORTED_PLATFORMS__NO)";
 				INDEXING_SUPPORTED_PLATFORMS__NO = "macosx iphonesimulator";
 				INDEXING_SUPPORTED_PLATFORMS__YES = macosx;
 				INDEX_DISABLE_SCRIPT_EXECUTION = YES;
+				LD = "";
+				LDPLUSPLUS = "";
+				LIBTOOL = "libtool";
 				SUPPORTED_PLATFORMS = "$(INDEXING_SUPPORTED_PLATFORMS__$(INDEX_ENABLE_BUILD_ARENA))";
 				SUPPORTS_MACCATALYST = YES;
+				SWIFT_EXEC = "swiftc";
 				TARGET_IDS_FILE = "$(BAZEL_OUT)/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/xcodeproj/xcodeproj_target_ids";
 				TARGET_NAME = BazelDependencies;
 			};
@@ -138,12 +144,18 @@ Here is an example output:
 			buildSettings = {
 				BAZEL_PACKAGE_BIN_DIR = rules_xcodeproj;
 				CALCULATE_OUTPUT_GROUPS_SCRIPT = "$(BAZEL_INTEGRATION_DIR)/calculate_output_groups.py";
+				CC = "";
+				CXX = "";
 				INDEXING_SUPPORTED_PLATFORMS__ = "$(INDEXING_SUPPORTED_PLATFORMS__NO)";
 				INDEXING_SUPPORTED_PLATFORMS__NO = "macosx iphonesimulator watchos";
 				INDEXING_SUPPORTED_PLATFORMS__YES = macosx;
 				INDEX_DISABLE_SCRIPT_EXECUTION = YES;
+				LD = "";
+				LDPLUSPLUS = "";
+				LIBTOOL = "libtool";
 				SUPPORTED_PLATFORMS = "$(INDEXING_SUPPORTED_PLATFORMS__$(INDEX_ENABLE_BUILD_ARENA))";
 				SUPPORTS_MACCATALYST = YES;
+				SWIFT_EXEC = "swiftc";
 				TARGET_IDS_FILE = "$(BAZEL_OUT)/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/xcodeproj/xcodeproj_target_ids";
 				TARGET_NAME = BazelDependencies;
 			};
