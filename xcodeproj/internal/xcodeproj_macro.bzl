@@ -311,8 +311,9 @@ removed in a future release.""")
     if not xcode_configurations:
         xcode_configurations = {"Debug": {}}
 
-    # Collect `BAZEL_REAL` from runner's env if it exist
+    # Collect `BAZEL_REAL` and `BAZELISK_SKIP_WRAPPER` from runner's env if it exist
     bazel_env["BAZEL_REAL"] = None
+    bazel_env["BAZELISK_SKIP_WRAPPER"] = None
 
     bazel_env = {
         # Null character is used to represent `None`, since `attr.string_dict`
