@@ -21,6 +21,7 @@ class swift_debug_settings_processor_test(unittest.TestCase):
 
         (
             framework_includes,
+            swift_includes,
             clang_opts,
         ) = swift_debug_settings_processor.process_swift_params(
             [[
@@ -78,12 +79,12 @@ class swift_debug_settings_processor_test(unittest.TestCase):
                 ".",
 
                 # -I
-                "-I/absolute/path",
+                "-I/absolute/ipath",
                 "-I",
-                "/absolute/path",
-                "-Irelative/path",
+                "/absolute/ipath2",
+                "-Irelative/ipath",
                 "-I",
-                "relative/path",
+                "relative/ipath2",
                 "-I.",
                 "-I",
                 ".",
@@ -145,6 +146,18 @@ class swift_debug_settings_processor_test(unittest.TestCase):
         )
 
         self.assertEqual(
+            swift_includes,
+            [
+                "/absolute/ipath",
+                "/absolute/ipath2",
+                "$(PROJECT_DIR)/relative/ipath",
+                "$(PROJECT_DIR)/relative/ipath2",
+                "$(PROJECT_DIR)",
+                "$(PROJECT_DIR)",
+            ],
+        )
+
+        self.assertEqual(
             clang_opts,
             [
                 # -fmodule-map-file
@@ -195,6 +208,7 @@ class swift_debug_settings_processor_test(unittest.TestCase):
 
         (
             framework_includes,
+            swift_includes,
             clang_opts,
         ) = swift_debug_settings_processor.process_swift_params(
             [[
@@ -237,6 +251,7 @@ class swift_debug_settings_processor_test(unittest.TestCase):
             return iter([f"{arg}\n" for arg in args])
 
         (
+            _,
             _,
             clang_opts,
         ) = swift_debug_settings_processor.process_swift_params(

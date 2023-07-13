@@ -130,6 +130,7 @@ rules_xcodeproj requires {} to have `{}` set.
         dependencies = dependencies,
         inputs = provider_inputs,
         lldb_context = lldb_contexts.collect(
+            build_mode = ctx.attr._build_mode,
             id = None,
             is_swift = False,
             # TODO: Should we still collect this?

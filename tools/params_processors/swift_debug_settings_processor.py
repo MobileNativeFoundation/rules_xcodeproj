@@ -108,7 +108,26 @@ def _process_swift_opt(
         *,
         opt: str,
         previous_opt: Optional[str],
-        framework_includes: List[str]) -> Optional[str]:
+        framework_includes: List[str],
+        swift_includes: List[str]) -> Optional[str]:
+    if opt.startswith("-I"):
+        path = opt[2:]
+        if not path:
+            return opt
+        if path == ".":
+            path = "$(PROJECT_DIR)"
+        elif _is_post_processed_relative_path(path):
+            path = f"$(PROJECT_DIR)/{path}"
+        swift_includes.append(path)
+        return None
+    if previous_opt == "-I":
+        path = opt
+        if path == ".":
+            path = "$(PROJECT_DIR)"
+        elif _is_post_processed_relative_path(path):
+            path = f"$(PROJECT_DIR)/{path}"
+        swift_includes.append(path)
+        return None
     if opt.startswith("-F"):
         path = opt[2:]
         if not path:
@@ -134,6 +153,7 @@ def _process_swift_opt(
 def process_swift_params(params_paths: List[str], parse_args):
     clang_opts = []
     framework_includes = []
+    swift_includes = []
     next_previous_opt = None
     previous_clang_opt = None
     for params_path in params_paths:
@@ -183,9 +203,10 @@ def process_swift_params(params_paths: List[str], parse_args):
                     opt = opt,
                     previous_opt = previous_opt,
                     framework_includes = framework_includes,
+                    swift_includes = swift_includes,
                 )
 
-    return framework_includes, clang_opts
+    return framework_includes, swift_includes, clang_opts
 
 
 def _main(args: Iterator[str]) -> None:
@@ -211,12 +232,16 @@ def _main(args: Iterator[str]) -> None:
         if key == "":
             break
 
-        swiftmodule_paths = {}
+        swiftmodule_includes = {}
         while True:
             path = next(args)[:-1]
             if path == "":
                 break
-            swiftmodule_paths[_handle_swiftmodule_path(path)] = None
+            # In BwX mode swiftmodule paths are passed since we might need to
+            # remap them. We process them first, so that remapped paths are
+            # searched first. Any missed paths, such as for testing frameworks
+            # will be added to the end by the params processing.
+            swiftmodule_includes[_handle_swiftmodule_path(path)] = None
 
         once_flags = {}
         clang_opts = []
@@ -246,11 +271,14 @@ def _main(args: Iterator[str]) -> None:
                 parse_cache[parse_cache_key] = parse
             (
                 raw_framework_includes,
+                raw_swift_includes,
                 raw_clang_opts,
             ) = parse
 
             for path in raw_framework_includes:
                 framework_includes[path] = None
+            for path in raw_swift_includes:
+                swiftmodule_includes[path] = None
 
             for opt in raw_clang_opts:
                 if opt in once_flags:
@@ -274,8 +302,8 @@ def _main(args: Iterator[str]) -> None:
             dto["c"] = " ".join(clang_opts)
         if framework_includes:
             dto["f"] = list(framework_includes.keys())
-        if swiftmodule_paths:
-            dto["s"] = list(swiftmodule_paths.keys())
+        if swiftmodule_includes:
+            dto["s"] = list(swiftmodule_includes.keys())
 
         if dto:
             contexts[key] = dto

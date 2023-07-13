@@ -23,7 +23,7 @@ _SETTINGS = {
 			"$(PROJECT_DIR)/external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7"
 		],
 		"s": [
-			"$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/Lib"
+			"$(PROJECT_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/Lib"
 		]
 	},
 	"arm64-apple-ios Lib.framework/Lib": {
@@ -38,7 +38,7 @@ _SETTINGS = {
 			"$(PROJECT_DIR)/external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7"
 		],
 		"s": [
-			"$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/Lib"
+			"$(PROJECT_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/Lib"
 		]
 	},
 	"arm64-apple-ios WidgetExtension.appex/WidgetExtension": {
@@ -47,7 +47,7 @@ _SETTINGS = {
 			"$(PROJECT_DIR)/external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7"
 		],
 		"s": [
-			"$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/Lib"
+			"$(PROJECT_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/Lib"
 		]
 	},
 	"arm64-apple-ios iOSApp.app/iOSApp_ExecutableName": {
@@ -59,9 +59,9 @@ _SETTINGS = {
 			"$(PROJECT_DIR)/external/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64"
 		],
 		"s": [
-			"$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/UI",
-			"$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer",
-			"$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/Lib"
+			"$(PROJECT_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/Lib",
+			"$(PROJECT_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/UI",
+			"$(PROJECT_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer"
 		]
 	},
 	"arm64-apple-macosx tool.binary": {
@@ -70,7 +70,7 @@ _SETTINGS = {
 			"$(PROJECT_DIR)/external/examples_command_line_external"
 		],
 		"s": [
-			"$(BAZEL_OUT)/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34/bin/CommandLine/CommandLineToolLib"
+			"$(PROJECT_DIR)/bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34/bin/CommandLine/CommandLineToolLib"
 		]
 	},
 	"arm64-apple-tvos Lib.framework/Lib": {
@@ -91,7 +91,7 @@ _SETTINGS = {
 			"$(PROJECT_DIR)/external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64"
 		],
 		"s": [
-			"$(BAZEL_OUT)/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-6/bin/Lib"
+			"$(PROJECT_DIR)/bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-6/bin/Lib"
 		]
 	},
 	"arm64-apple-tvos tvOSApp.app/tvOSApp": {
@@ -100,8 +100,8 @@ _SETTINGS = {
 			"$(PROJECT_DIR)/external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64"
 		],
 		"s": [
-			"$(BAZEL_OUT)/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-6/bin/UI",
-			"$(BAZEL_OUT)/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-6/bin/Lib"
+			"$(PROJECT_DIR)/bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-6/bin/Lib",
+			"$(PROJECT_DIR)/bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-6/bin/UI"
 		]
 	},
 	"arm64_32-apple-watchos Lib.framework/Lib": {
@@ -122,7 +122,7 @@ _SETTINGS = {
 			"$(PROJECT_DIR)/external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k"
 		],
 		"s": [
-			"$(BAZEL_OUT)/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-5/bin/Lib"
+			"$(PROJECT_DIR)/bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-5/bin/Lib"
 		]
 	},
 	"arm64_32-apple-watchos watchOSAppExtension.appex/watchOSAppExtension": {
@@ -131,8 +131,8 @@ _SETTINGS = {
 			"$(PROJECT_DIR)/external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k"
 		],
 		"s": [
-			"$(BAZEL_OUT)/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-5/bin/UI",
-			"$(BAZEL_OUT)/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-5/bin/Lib"
+			"$(PROJECT_DIR)/bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-5/bin/Lib",
+			"$(PROJECT_DIR)/bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-5/bin/UI"
 		]
 	},
 	"x86_64-apple-ios-simulator AppClip.app/AppClip": {
@@ -141,7 +141,7 @@ _SETTINGS = {
 			"$(PROJECT_DIR)/external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator"
 		],
 		"s": [
-			"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/Lib"
+			"$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/Lib"
 		]
 	},
 	"x86_64-apple-ios-simulator Lib.framework/Lib": {
@@ -156,7 +156,7 @@ _SETTINGS = {
 			"$(PROJECT_DIR)/external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator"
 		],
 		"s": [
-			"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/Lib"
+			"$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/Lib"
 		]
 	},
 	"x86_64-apple-ios-simulator WidgetExtension.appex/WidgetExtension": {
@@ -165,7 +165,7 @@ _SETTINGS = {
 			"$(PROJECT_DIR)/external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator"
 		],
 		"s": [
-			"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/Lib"
+			"$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/Lib"
 		]
 	},
 	"x86_64-apple-ios-simulator iMessageAppExtension.appex/iMessageAppExtension": {
@@ -174,7 +174,7 @@ _SETTINGS = {
 			"$(PROJECT_DIR)/external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator"
 		],
 		"s": [
-			"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/Lib"
+			"$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/Lib"
 		]
 	},
 	"x86_64-apple-ios-simulator iOSApp.app/iOSApp_ExecutableName": {
@@ -186,9 +186,9 @@ _SETTINGS = {
 			"$(PROJECT_DIR)/external/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator"
 		],
 		"s": [
-			"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/UI",
-			"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer",
-			"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/Lib"
+			"$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/Lib",
+			"$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/UI",
+			"$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer"
 		]
 	},
 	"x86_64-apple-ios-simulator iOSAppObjCUnitTestSuite.xctest/iOSAppObjCUnitTestSuite": {
@@ -202,9 +202,10 @@ _SETTINGS = {
 			"$(SDKROOT)/Developer/Library/Frameworks"
 		],
 		"s": [
-			"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/UI",
-			"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer",
-			"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/Lib"
+			"$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/Lib",
+			"$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/UI",
+			"$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer",
+			"$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib"
 		]
 	},
 	"x86_64-apple-ios-simulator iOSAppObjCUnitTests.xctest/iOSAppObjCUnitTests": {
@@ -218,9 +219,10 @@ _SETTINGS = {
 			"$(SDKROOT)/Developer/Library/Frameworks"
 		],
 		"s": [
-			"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/UI",
-			"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer",
-			"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/Lib"
+			"$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/Lib",
+			"$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/UI",
+			"$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer",
+			"$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib"
 		]
 	},
 	"x86_64-apple-ios-simulator iOSAppSwiftUnitTestSuite.xctest/iOSAppSwiftUnitTestSuite": {
@@ -234,11 +236,12 @@ _SETTINGS = {
 			"$(PROJECT_DIR)/external/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator"
 		],
 		"s": [
-			"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source",
-			"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/TestingUtils",
-			"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/UI",
-			"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer",
-			"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/Lib"
+			"$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib",
+			"$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/Lib",
+			"$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/UI",
+			"$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer",
+			"$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source",
+			"$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/TestingUtils"
 		]
 	},
 	"x86_64-apple-ios-simulator iOSAppSwiftUnitTests.xctest/iOSAppSwiftUnitTests": {
@@ -252,11 +255,12 @@ _SETTINGS = {
 			"$(PROJECT_DIR)/external/com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator"
 		],
 		"s": [
-			"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source",
-			"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/TestingUtils",
-			"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/UI",
-			"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer",
-			"$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/Lib"
+			"$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib",
+			"$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/Lib",
+			"$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/UI",
+			"$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer",
+			"$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source",
+			"$(PROJECT_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/TestingUtils"
 		]
 	},
 	"x86_64-apple-ios-simulator iOSAppUITestSuite.xctest/iOSAppUITestSuite": {
@@ -264,6 +268,9 @@ _SETTINGS = {
 		"f": [
 			"$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks",
 			"$(SDKROOT)/Developer/Library/Frameworks"
+		],
+		"s": [
+			"$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib"
 		]
 	},
 	"x86_64-apple-ios-simulator iOSAppUITests.xctest/iOSAppUITests": {
@@ -271,12 +278,18 @@ _SETTINGS = {
 		"f": [
 			"$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks",
 			"$(SDKROOT)/Developer/Library/Frameworks"
+		],
+		"s": [
+			"$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/usr/lib"
 		]
 	},
 	"x86_64-apple-macosx BasicTests.xctest/Contents/MacOS/BasicTests": {
 		"c": "-iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/darwin_x86_64-dbg-STABLE-41/bin -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all",
 		"f": [
 			"$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks"
+		],
+		"s": [
+			"$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/usr/lib"
 		]
 	},
 	"x86_64-apple-macosx CommandLineTool": {
@@ -285,7 +298,7 @@ _SETTINGS = {
 			"$(PROJECT_DIR)/external/examples_command_line_external"
 		],
 		"s": [
-			"$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/CommandLine/CommandLineToolLib"
+			"$(PROJECT_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/CommandLine/CommandLineToolLib"
 		]
 	},
 	"x86_64-apple-macosx CommandLineToolTests.xctest/Contents/MacOS/CommandLineToolTests": {
@@ -295,7 +308,8 @@ _SETTINGS = {
 			"$(PROJECT_DIR)/external/examples_command_line_external"
 		],
 		"s": [
-			"$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/CommandLine/CommandLineToolLib"
+			"$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/usr/lib",
+			"$(PROJECT_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/CommandLine/CommandLineToolLib"
 		]
 	},
 	"x86_64-apple-macosx macOSApp.app/Contents/MacOS/macOSApp": {
@@ -308,6 +322,9 @@ _SETTINGS = {
 		"c": "-iquote$(PROJECT_DIR) -iquote$(PROJECT_DIR)/bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-29/bin -O0 -DDEBUG=1 -fstack-protector -fstack-protector-all",
 		"f": [
 			"$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks"
+		],
+		"s": [
+			"$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/usr/lib"
 		]
 	},
 	"x86_64-apple-macosx tool.binary": {
@@ -316,7 +333,7 @@ _SETTINGS = {
 			"$(PROJECT_DIR)/external/examples_command_line_external"
 		],
 		"s": [
-			"$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35/bin/CommandLine/CommandLineToolLib"
+			"$(PROJECT_DIR)/bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35/bin/CommandLine/CommandLineToolLib"
 		]
 	},
 	"x86_64-apple-tvos-simulator Lib.framework/Lib": {
@@ -337,7 +354,7 @@ _SETTINGS = {
 			"$(PROJECT_DIR)/external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator"
 		],
 		"s": [
-			"$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/Lib"
+			"$(PROJECT_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/Lib"
 		]
 	},
 	"x86_64-apple-tvos-simulator tvOSApp.app/tvOSApp": {
@@ -346,8 +363,8 @@ _SETTINGS = {
 			"$(PROJECT_DIR)/external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator"
 		],
 		"s": [
-			"$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/UI",
-			"$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/Lib"
+			"$(PROJECT_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/Lib",
+			"$(PROJECT_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/UI"
 		]
 	},
 	"x86_64-apple-tvos-simulator tvOSAppUITests.xctest/tvOSAppUITests": {
@@ -355,6 +372,9 @@ _SETTINGS = {
 		"f": [
 			"$(DEVELOPER_DIR)/Platforms/AppleTVSimulator.platform/Developer/Library/Frameworks",
 			"$(SDKROOT)/Developer/Library/Frameworks"
+		],
+		"s": [
+			"$(DEVELOPER_DIR)/Platforms/AppleTVSimulator.platform/Developer/usr/lib"
 		]
 	},
 	"x86_64-apple-tvos-simulator tvOSAppUnitTests.xctest/tvOSAppUnitTests": {
@@ -365,9 +385,10 @@ _SETTINGS = {
 			"$(PROJECT_DIR)/external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator"
 		],
 		"s": [
-			"$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/tvOSApp/Source",
-			"$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/UI",
-			"$(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/Lib"
+			"$(DEVELOPER_DIR)/Platforms/AppleTVSimulator.platform/Developer/usr/lib",
+			"$(PROJECT_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/Lib",
+			"$(PROJECT_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/UI",
+			"$(PROJECT_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/tvOSApp/Source"
 		]
 	},
 	"x86_64-apple-watchos-simulator Lib.framework/Lib": {
@@ -388,7 +409,7 @@ _SETTINGS = {
 			"$(PROJECT_DIR)/external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator"
 		],
 		"s": [
-			"$(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/Lib"
+			"$(PROJECT_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/Lib"
 		]
 	},
 	"x86_64-apple-watchos-simulator watchOSAppExtension.appex/watchOSAppExtension": {
@@ -397,8 +418,8 @@ _SETTINGS = {
 			"$(PROJECT_DIR)/external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator"
 		],
 		"s": [
-			"$(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/UI",
-			"$(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/Lib"
+			"$(PROJECT_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/Lib",
+			"$(PROJECT_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/UI"
 		]
 	},
 	"x86_64-apple-watchos-simulator watchOSAppExtensionUnitTests.xctest/watchOSAppExtensionUnitTests": {
@@ -409,8 +430,9 @@ _SETTINGS = {
 			"$(PROJECT_DIR)/external/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator"
 		],
 		"s": [
-			"$(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/UI",
-			"$(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/Lib"
+			"$(DEVELOPER_DIR)/Platforms/WatchSimulator.platform/Developer/usr/lib",
+			"$(PROJECT_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/Lib",
+			"$(PROJECT_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/UI"
 		]
 	},
 	"x86_64-apple-watchos-simulator watchOSAppUITests.xctest/watchOSAppUITests": {
@@ -418,6 +440,9 @@ _SETTINGS = {
 		"f": [
 			"$(DEVELOPER_DIR)/Platforms/WatchSimulator.platform/Developer/Library/Frameworks",
 			"$(SDKROOT)/Developer/Library/Frameworks"
+		],
+		"s": [
+			"$(DEVELOPER_DIR)/Platforms/WatchSimulator.platform/Developer/usr/lib"
 		]
 	}
 }
