@@ -892,25 +892,31 @@ targets.
                 # We only check for one output group name, because the others
                 # are also set if this one is
                 if dep_bwx_compiling_output_group_name:
-                    additional_bwx_compiling_files = additional_bwx_generated.get(
-                        dep_bwx_compiling_output_group_name,
-                        [],
+                    additional_bwx_compiling_files.extend(
+                        additional_bwx_generated.get(
+                            dep_bwx_compiling_output_group_name,
+                            [],
+                        ),
                     )
                     additional_bwx_compiling_files.append(
                         dep_target.inputs.generated,
                     )
 
-                    additional_bwx_indexstores_files = additional_bwx_generated.get(
-                        dep_bwx_indexstores_output_group_name,
-                        [],
+                    additional_bwx_indexstores_files.extend(
+                        additional_bwx_generated.get(
+                            dep_bwx_indexstores_output_group_name,
+                            [],
+                        ),
                     )
                     additional_bwx_indexstores_files.append(
                         dep_target.inputs.indexstores,
                     )
 
-                    additional_bwx_linking_files = additional_bwx_generated.get(
-                        dep_bwx_linking_output_group_name,
-                        [],
+                    additional_bwx_linking_files.extend(
+                        additional_bwx_generated.get(
+                            dep_bwx_linking_output_group_name,
+                            [],
+                        ),
                     )
 
         if transitive_compile_params:
