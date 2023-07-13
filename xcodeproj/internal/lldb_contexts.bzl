@@ -40,7 +40,7 @@ def _collect_lldb_context(
                 info.lldb_context._labelled_swift_sub_params
                 for info in transitive_infos
             ],
-            order = "topological",
+            order = "postorder",
         ),
         _swift_sub_params = memory_efficient_depset(
             swift_sub_params,
@@ -48,14 +48,14 @@ def _collect_lldb_context(
                 info.lldb_context._swift_sub_params
                 for info in transitive_infos
             ],
-            order = "topological",
+            order = "postorder",
         ),
         _framework_search_paths = memory_efficient_depset(
             transitive = framework_paths + [
                 info.lldb_context._framework_search_paths
                 for info in transitive_infos
             ],
-            order = "topological",
+            order = "postorder",
         ),
         _swiftmodules = memory_efficient_depset(
             swiftmodules,
@@ -63,7 +63,7 @@ def _collect_lldb_context(
                 info.lldb_context._swiftmodules
                 for info in transitive_infos
             ],
-            order = "topological",
+            order = "postorder",
         ),
     )
 
