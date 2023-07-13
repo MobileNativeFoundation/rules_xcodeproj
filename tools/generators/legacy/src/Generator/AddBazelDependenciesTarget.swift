@@ -54,6 +54,14 @@ $(INDEXING_SUPPORTED_PLATFORMS__$(INDEX_ENABLE_BUILD_ARENA))
             "SUPPORTS_MACCATALYST": true,
             "TARGET_IDS_FILE": targetIdsFile,
             "TARGET_NAME": "BazelDependencies",
+
+            // Unset our tool overrides, so scripts can use the correct versions
+            "CC": "",
+            "CXX": "",
+            "LD": "",
+            "LDPLUSPLUS": "",
+            "LIBTOOL": "libtool",
+            "SWIFT_EXEC": "swiftc",
         ]
 
         if buildMode.usesBazelModeBuildScripts {
