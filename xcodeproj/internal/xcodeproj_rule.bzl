@@ -12,11 +12,7 @@ load(":bazel_labels.bzl", "bazel_labels")
 load(":collections.bzl", "set_if_true", "uniq")
 load(":configuration.bzl", "calculate_configuration")
 load(":execution_root.bzl", "write_execution_root_file")
-load(
-    ":files.bzl",
-    "build_setting_path",
-    "is_generated_path",
-)
+load(":files.bzl", "build_setting_path")
 load(":flattened_key_values.bzl", "flattened_key_values")
 load(":input_files.bzl", "input_files")
 load(":lldb_contexts.bzl", "lldb_contexts")
@@ -1071,11 +1067,6 @@ def _labelless_swift_sub_params(swift_sub_params_with_label):
     _, swift_sub_params = swift_sub_params_with_label
     return [file.path for file in swift_sub_params] + [""]
 
-def _non_generated_framework_build_setting_path(path):
-    if is_generated_path(path):
-        return None
-    return build_setting_path(path = path)
-
 def _write_swift_debug_settings(
         *,
         actions,
@@ -1110,11 +1101,6 @@ def _write_swift_debug_settings(
 
         for key, lldb_context in config_lldb_contexts.items():
             args.add(key)
-            args.add_all(
-                lldb_context._framework_search_paths,
-                map_each = _non_generated_framework_build_setting_path,
-            )
-            args.add("")
             args.add_all(lldb_context._swiftmodules)
             args.add("")
             args.add_all(
