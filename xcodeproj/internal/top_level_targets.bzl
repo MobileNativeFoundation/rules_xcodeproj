@@ -493,6 +493,7 @@ def process_top_level_target(
         )
     swiftmodules = process_swiftmodules(swift_info = swift_info)
     lldb_context = lldb_contexts.collect(
+        build_mode = build_mode,
         id = id,
         is_swift = bool(swift_params),
         swift_sub_params = swift_sub_params,

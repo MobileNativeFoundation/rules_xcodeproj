@@ -357,6 +357,7 @@ def _skip_target(
             transitive_infos = valid_transitive_infos,
         ),
         lldb_context = lldb_contexts.collect(
+            build_mode = ctx.attr._build_mode,
             id = None,
             is_swift = False,
             transitive_infos = valid_transitive_infos,
