@@ -98,15 +98,6 @@ product types as there are targets.
     @Option(
         parsing: .upToNextOption,
         help: """
-Paths to the product for all of the targets. There must be exactly as many \
-paths as there are targets.
-"""
-    )
-    var productPaths: [String]
-
-    @Option(
-        parsing: .upToNextOption,
-        help: """
 Names of the platform for all of the targets. There must be exactly as many \
 platform names as there are targets.
 """
@@ -207,13 +198,6 @@ elements as <targets> (\(targets.count) elements).
 """)
         }
 
-        guard productPaths.count == targets.count else {
-            throw ValidationError("""
-<product-paths> (\(productPaths.count) elements) must have exactly as many \
-elements as <targets> (\(targets.count) elements).
-""")
-        }
-
         guard platforms.count == targets.count else {
             throw ValidationError("""
 <platforms> (\(platforms.count) elements) must have exactly as many elements \
@@ -304,7 +288,6 @@ extension ConsolidationMapsArguments {
                             label: label,
                             xcodeConfigurations: xcodeConfigurations,
                             productType: productTypes[targetIndex],
-                            productPath: productPaths[targetIndex],
                             platform: platforms[targetIndex],
                             osVersion: osVersions[targetIndex],
                             arch: archs[targetIndex],

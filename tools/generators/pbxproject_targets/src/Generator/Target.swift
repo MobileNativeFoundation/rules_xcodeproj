@@ -6,7 +6,6 @@ struct Target: Equatable {
     let label: BazelLabel
     let xcodeConfigurations: [String]
     let productType: PBXProductType
-    let productPath: String
     let platform: Platform
     let osVersion: SemanticVersion
     let arch: String

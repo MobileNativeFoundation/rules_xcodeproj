@@ -28,7 +28,6 @@ The generator accepts the following command-line arguments (see
 - Option `--xcode-configuration-counts <xcode-configuration-count> ...`
 - Option `--xcode-configurations <xcode-configuration> ...`
 - Option `--product-types <product-types> ...`
-- Option `--product-paths <product-path> ...`
 - Option `--platforms <platform> ...`
 - Option `--os-versions <os-version> ...`
 - Option `--archs <arch> ...`
@@ -78,10 +77,6 @@ $ pbxproject_targets \
     com.apple.product-type.tool \
     com.apple.product-type.bundle.unit-test \
     com.apple.product-type.library.static \
-    --product-paths \
-    bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-3/bin/tools/generators/legacy/generator \
-    bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-3/bin/tools/generators/legacy/test/tests.__internal__.__test_bundle_archive-root/tests.xctest \
-    bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/tools/generators/legacy/libgenerator.library.a \
     --platforms \
     macosx \
     macosx \
