@@ -12,11 +12,7 @@ load(":bazel_labels.bzl", "bazel_labels")
 load(":collections.bzl", "set_if_true", "uniq")
 load(":configuration.bzl", "calculate_configuration")
 load(":execution_root.bzl", "write_execution_root_file")
-load(
-    ":files.bzl",
-    "build_setting_path",
-    "is_generated_path",
-)
+load(":files.bzl", "build_setting_path")
 load(":flattened_key_values.bzl", "flattened_key_values")
 load(":input_files.bzl", "input_files")
 load(":lldb_contexts.bzl", "lldb_contexts")
