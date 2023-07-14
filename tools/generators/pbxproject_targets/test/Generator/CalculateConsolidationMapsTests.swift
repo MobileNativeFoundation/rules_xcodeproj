@@ -12,8 +12,9 @@ final class CalculateConsolidationMapsTests: XCTestCase {
             .mock(
                 consolidationMapOutputPath: URL(fileURLWithPath: "/tmp/1"),
                 key: ["B"],
+                name: "b",
                 identifier: .init(
-                    pbxProjEscapedName: "b",
+                    pbxProjEscapedName: "b escaped",
                     subIdentifier: .init(shard: "42", hash: "12345678"),
                     full: "B_ID /* b */",
                     withoutComment: "B_ID"
@@ -23,8 +24,9 @@ final class CalculateConsolidationMapsTests: XCTestCase {
             .mock(
                 consolidationMapOutputPath: URL(fileURLWithPath: "/tmp/0"),
                 key: ["A"],
+                name: "AA",
                 identifier: .init(
-                    pbxProjEscapedName: "AA",
+                    pbxProjEscapedName: "AA escaped",
                     subIdentifier: .init(shard: "07", hash: "11111111"),
                     full: "A_ID /* AA */",
                     withoutComment: "A_ID"
@@ -34,8 +36,9 @@ final class CalculateConsolidationMapsTests: XCTestCase {
             .mock(
                 consolidationMapOutputPath: URL(fileURLWithPath: "/tmp/1"),
                 key: ["C"],
+                name: "C",
                 identifier: .init(
-                    pbxProjEscapedName: "C",
+                    pbxProjEscapedName: "C escaped",
                     subIdentifier: .init(shard: "10", hash: "FFFFFFFF"),
                     full: "C_ID /* C */",
                     withoutComment: "C_ID"
@@ -53,7 +56,7 @@ final class CalculateConsolidationMapsTests: XCTestCase {
             URL(fileURLWithPath: "/tmp/1"): [
                 .init(
                     key: ["B"],
-                    pbxProjEscapedName: "b",
+                    name: "b",
                     subIdentifier: .init(shard: "42", hash: "12345678"),
                     dependencySubIdentifiers: [
                         .bazelDependencies,
@@ -61,7 +64,7 @@ final class CalculateConsolidationMapsTests: XCTestCase {
                 ),
                 .init(
                     key: ["C"],
-                    pbxProjEscapedName: "C",
+                    name: "C",
                     subIdentifier: .init(shard: "10", hash: "FFFFFFFF"),
                     dependencySubIdentifiers: [
                         .bazelDependencies,
@@ -71,7 +74,7 @@ final class CalculateConsolidationMapsTests: XCTestCase {
             URL(fileURLWithPath: "/tmp/0"): [
                 .init(
                     key: ["A"],
-                    pbxProjEscapedName: "AA",
+                    name: "AA",
                     subIdentifier: .init(shard: "07", hash: "11111111"),
                     dependencySubIdentifiers: [
                         .bazelDependencies,
