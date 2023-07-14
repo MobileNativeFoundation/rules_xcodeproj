@@ -24,6 +24,7 @@ config_setting(
     },
 )
 
+GENERATED_CORE_DATA_VERSION_FILE = "GeneratedModel.xcdatamodeld/.xccurrentversion"
 GENERATED_CORE_DATA_CONTENTS_FILE = "GeneratedModel.xcdatamodeld/GeneratedModel.xcdatamodel/contents"
 
 ios_application(
@@ -58,16 +59,14 @@ ios_application(
         ":device_build": ":xcode_profile",
         "//conditions:default": None,
     }),
-    resources = [":ExampleResourceGroup", ":GeneratedCoreDataContents"] + glob(
+    resources = [":ExampleResourceGroup", ":GeneratedCoreDataContents", ":GeneratedCoreDataVersion"] + glob(
         [
             "Assets.xcassets/**",
             "Model.xcdatamodeld/**",
-            "GeneratedModel.xcdatamodeld/**",
             "*.lproj/unprocessed.json",
         ],
         exclude = [
             "Assets.xcassets/AppIcon.appiconset/**",
-            GENERATED_CORE_DATA_CONTENTS_FILE,
         ],
     ),
     strings = glob(["*.lproj/Localizable.strings"]),
@@ -142,6 +141,13 @@ filegroup(
 )
 
 generated_file(
+    name = "GeneratedCoreDataVersion",
+    source_file = GENERATED_CORE_DATA_VERSION_FILE,
+    output_name = "GeneratedModel.xcdatamodeld/.xccurrentversion",
+)
+
+generated_file(
     name = "GeneratedCoreDataContents",
     source_file = GENERATED_CORE_DATA_CONTENTS_FILE,
+    output_name = "GeneratedModel.xcdatamodeld/GeneratedModel.xcdatamodel/contents",
 )
