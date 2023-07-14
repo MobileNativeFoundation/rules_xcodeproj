@@ -608,22 +608,21 @@ def _collect_input_files(
     else:
         indexstores_depset = EMPTY_DEPSET
 
-    if modulemaps:
-        modulemaps = [f for f in modulemaps if not f.is_source]
-        modulemaps_depset = memory_efficient_depset(modulemaps)
-    else:
-        modulemaps_depset = memory_efficient_depset(
-            transitive = [
-                info.inputs._modulemaps
-                for info in transitive_infos
-            ],
-        )
+    # We need to collect transitive modulemaps, because some are private to
+    # dependent targets, but we still need them for the final output group
+    modulemaps_depset = memory_efficient_depset(
+        [f for f in modulemaps if not f.is_source] if modulemaps else None,
+        transitive = [
+            info.inputs._modulemaps
+            for info in transitive_infos
+        ],
+    )
 
-        # Purposeful flattening to work around large BEP issue.
-        # This is because we only get modulemaps already flattened. Ideally we
-        # would get a `depset` for the modulemaps, so they would be properly
-        # represented in the BEP.
-        modulemaps = modulemaps_depset.to_list()
+    # Purposeful flattening to work around large BEP issue.
+    # This is because we only get modulemaps already flattened. Ideally we
+    # would get a `depset` for the modulemaps, so they would be properly
+    # represented in the BEP.
+    modulemaps = modulemaps_depset.to_list()
 
     if id:
         compiling_files = memory_efficient_depset(
