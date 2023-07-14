@@ -2,6 +2,19 @@
 
 set -euo pipefail
 
+# Reset tool overrides, so `bazel` sees the correct version. This is needed
+# for rules_swift_package_manager to work correctly. We do this here as well as
+# in `BazelDependencies` build settings, because we need the overrides at the
+# target level, so we can't unset any target build settings, and we don't want
+# to do it only in `bazel_build.sh`, because we want pre/post-build scripts to
+# get the reset in `BazelDependencies`.
+export CC=
+export CXX=
+export LD=
+export LDPLUSPLUS=
+export LIBTOOL=libtool
+export SWIFT_EXEC=swiftc
+
 cd "$SRCROOT"
 
 readonly config="${BAZEL_CONFIG}_indexbuild"
