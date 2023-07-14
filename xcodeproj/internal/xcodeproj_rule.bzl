@@ -1071,11 +1071,6 @@ def _labelless_swift_sub_params(swift_sub_params_with_label):
     _, swift_sub_params = swift_sub_params_with_label
     return [file.path for file in swift_sub_params] + [""]
 
-def _non_generated_framework_build_setting_path(path):
-    if is_generated_path(path):
-        return None
-    return build_setting_path(path = path)
-
 def _write_swift_debug_settings(
         *,
         actions,
