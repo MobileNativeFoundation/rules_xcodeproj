@@ -55,7 +55,7 @@ extension Generator.CalculateConsolidationMaps {
                 .append(
                     ConsolidationMapEntry(
                         key: target.key,
-                        name: identifier.name,
+                        pbxProjEscapedName: identifier.pbxProjEscapedName,
                         subIdentifier: identifier.subIdentifier,
                         dependencySubIdentifiers: depSubIdentifiers
                     )

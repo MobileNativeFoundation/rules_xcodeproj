@@ -204,7 +204,7 @@ FF00000000000000000001\#(String(format: "%02X", index)) \#
 
     public enum Targets {
         public struct Identifier: Equatable {
-            public let name: String
+            public let pbxProjEscapedName: String
             public let subIdentifier: SubIdentifier
             public let full: String
             public let withoutComment: String
@@ -256,7 +256,7 @@ FF00000000000000000001\#(String(format: "%02X", index)) \#
 \#(withoutComment) /* \#(name) */
 """#
             return Identifier(
-                name: name.pbxProjEscaped,
+                pbxProjEscapedName: name.pbxProjEscaped,
                 subIdentifier: subIdentifier,
                 full: full,
                 withoutComment: withoutComment
@@ -362,7 +362,7 @@ extension Identifiers.Targets.SubIdentifier {
 
 extension Identifiers.Targets.Identifier {
     public static let bazelDependencies = Self(
-        name: Identifiers.BazelDependencies.name,
+        pbxProjEscapedName: Identifiers.BazelDependencies.name,
         subIdentifier: .bazelDependencies,
         full: Identifiers.BazelDependencies.id,
         withoutComment: Identifiers.BazelDependencies.idWithoutComment

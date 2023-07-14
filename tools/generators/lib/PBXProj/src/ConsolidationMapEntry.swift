@@ -10,18 +10,18 @@ public struct ConsolidationMapEntry: Equatable {
     }
 
     public let key: Key
-    public let name: String
+    public let pbxProjEscapedName: String
     public let subIdentifier: Identifiers.Targets.SubIdentifier
     public let dependencySubIdentifiers: [Identifiers.Targets.SubIdentifier]
 
     public init(
         key: Key,
-        name: String,
+        pbxProjEscapedName: String,
         subIdentifier: Identifiers.Targets.SubIdentifier,
         dependencySubIdentifiers: [Identifiers.Targets.SubIdentifier]
     ) {
         self.key = key
-        self.name = name
+        self.pbxProjEscapedName = pbxProjEscapedName
         self.subIdentifier = subIdentifier
         self.dependencySubIdentifiers = dependencySubIdentifiers
     }
@@ -48,7 +48,7 @@ extension ConsolidationMapEntry {
     }
 
     func encode(into data: inout Data) {
-        data.append(name.data(using: .utf8)!)
+        data.append(pbxProjEscapedName.data(using: .utf8)!)
         data.append(Self.subSeparator)
 
         key.encode(into: &data)
@@ -106,7 +106,7 @@ extension ConsolidationMapEntry {
 
         self.init(
             key: .init(from: components[1 ..< subIdentifiersIndex]),
-            name: String(components[0]),
+            pbxProjEscapedName: String(components[0]),
             subIdentifier: .init(
                 from: subIdentifiersString[subIdentifierRange]
             ),

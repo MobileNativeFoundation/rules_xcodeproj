@@ -9,7 +9,7 @@ class CalculateTargetDependencyTests: XCTestCase {
         // Arrange
 
         let identifier = Identifiers.Targets.Identifier(
-            name: "BazelDependencies",
+            pbxProjEscapedName: "BazelDependencies",
             subIdentifier: .init(shard: "01", hash: "deadbeef"),
             full: "bd /* BazelDependencies */",
             withoutComment: "bd"
@@ -46,7 +46,7 @@ class CalculateTargetDependencyTests: XCTestCase {
         // Arrange
 
         let identifier = Identifiers.Targets.Identifier(
-            name: "App (iOS)".pbxProjEscaped,
+            pbxProjEscapedName: "App (iOS)".pbxProjEscaped,
             subIdentifier: .init(shard: "07", hash: "beefdead"),
             full: "app /* App */",
             withoutComment: "app"

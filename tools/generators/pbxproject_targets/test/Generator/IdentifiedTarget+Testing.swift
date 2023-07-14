@@ -8,7 +8,7 @@ extension IdentifiedTarget {
         consolidationMapOutputPath: URL = URL(fileURLWithPath: "/tmp/out"),
         key: ConsolidatedTarget.Key,
         identifier: Identifiers.Targets.Identifier = .init(
-            name: "T",
+            pbxProjEscapedName: "T",
             subIdentifier: .init(shard: "00", hash: "00000000"),
             full: "T_ID /* T */",
             withoutComment: "T_ID"

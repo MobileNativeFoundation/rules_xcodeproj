@@ -13,7 +13,7 @@ final class CalculateConsolidationMapsTests: XCTestCase {
                 consolidationMapOutputPath: URL(fileURLWithPath: "/tmp/1"),
                 key: ["B"],
                 identifier: .init(
-                    name: "b",
+                    pbxProjEscapedName: "b",
                     subIdentifier: .init(shard: "42", hash: "12345678"),
                     full: "B_ID /* b */",
                     withoutComment: "B_ID"
@@ -24,7 +24,7 @@ final class CalculateConsolidationMapsTests: XCTestCase {
                 consolidationMapOutputPath: URL(fileURLWithPath: "/tmp/0"),
                 key: ["A"],
                 identifier: .init(
-                    name: "AA",
+                    pbxProjEscapedName: "AA",
                     subIdentifier: .init(shard: "07", hash: "11111111"),
                     full: "A_ID /* AA */",
                     withoutComment: "A_ID"
@@ -35,7 +35,7 @@ final class CalculateConsolidationMapsTests: XCTestCase {
                 consolidationMapOutputPath: URL(fileURLWithPath: "/tmp/1"),
                 key: ["C"],
                 identifier: .init(
-                    name: "C",
+                    pbxProjEscapedName: "C",
                     subIdentifier: .init(shard: "10", hash: "FFFFFFFF"),
                     full: "C_ID /* C */",
                     withoutComment: "C_ID"
@@ -53,7 +53,7 @@ final class CalculateConsolidationMapsTests: XCTestCase {
             URL(fileURLWithPath: "/tmp/1"): [
                 .init(
                     key: ["B"],
-                    name: "b",
+                    pbxProjEscapedName: "b",
                     subIdentifier: .init(shard: "42", hash: "12345678"),
                     dependencySubIdentifiers: [
                         .bazelDependencies,
@@ -61,7 +61,7 @@ final class CalculateConsolidationMapsTests: XCTestCase {
                 ),
                 .init(
                     key: ["C"],
-                    name: "C",
+                    pbxProjEscapedName: "C",
                     subIdentifier: .init(shard: "10", hash: "FFFFFFFF"),
                     dependencySubIdentifiers: [
                         .bazelDependencies,
@@ -71,7 +71,7 @@ final class CalculateConsolidationMapsTests: XCTestCase {
             URL(fileURLWithPath: "/tmp/0"): [
                 .init(
                     key: ["A"],
-                    name: "AA",
+                    pbxProjEscapedName: "AA",
                     subIdentifier: .init(shard: "07", hash: "11111111"),
                     dependencySubIdentifiers: [
                         .bazelDependencies,

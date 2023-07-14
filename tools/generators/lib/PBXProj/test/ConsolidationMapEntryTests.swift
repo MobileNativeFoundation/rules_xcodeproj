@@ -10,7 +10,7 @@ final class ConsolidationMapEntryTests: XCTestCase {
         let input: [ConsolidationMapEntry] = [
             .init(
                 key: .init(["CCCCC"]),
-                name: "Disambiguated 3 (Name)",
+                pbxProjEscapedName: "Disambiguated 3 (Name)".pbxProjEscaped,
                 subIdentifier: .init(shard: "42", hash: "18270012"),
                 dependencySubIdentifiers: [
                     .init(shard: "02", hash: "00234561"),
@@ -19,13 +19,13 @@ final class ConsolidationMapEntryTests: XCTestCase {
             ),
             .init(
                 key: .init(["@A//:a 1234", "@B//:b 4356", "DDDD"]),
-                name: "Disambiguated 2 (Name)",
+                pbxProjEscapedName: "Disambiguated 2".pbxProjEscaped,
                 subIdentifier: .init(shard: "01", hash: "12345678"),
                 dependencySubIdentifiers: []
             ),
             .init(
                 key: .init(["A", "C"]),
-                name: "Disambiguated (Name)",
+                pbxProjEscapedName: "Disambiguated",
                 subIdentifier: .init(shard: "00", hash: "00000000"),
                 dependencySubIdentifiers: [
                     .init(shard: "44", hash: "00000000"),

@@ -44,7 +44,7 @@ extension Generator.CalculateContainerItemProxy {
 			containerPortal = \#(Identifiers.Project.id);
 			proxyType = 1;
 			remoteGlobalIDString = \#(identifier.withoutComment);
-			remoteInfo = \#(identifier.name);
+			remoteInfo = \#(identifier.pbxProjEscapedName);
 		}
 """#
     }

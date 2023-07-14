@@ -47,7 +47,7 @@ extension Generator.CalculateTargetDependency {
         return #"""
 {
 			isa = PBXTargetDependency;
-			name = \#(identifier.name);
+			name = \#(identifier.pbxProjEscapedName);
 			target = \#(identifier.full);
 			targetProxy = \#(containerItemProxyIdentifier);
 		}

@@ -55,7 +55,7 @@ final class InnerIdentifyTargetsTests: XCTestCase {
                 consolidationMapOutputPath: URL(fileURLWithPath: "/tmp/A"),
                 key: ["A", "B"],
                 identifier: .init(
-                    name: "AB",
+                    pbxProjEscapedName: "AB",
                     subIdentifier: .init(shard: "AB_SHARD", hash: "AB_HASH"),
                     full: "AB_SHARD00AB_HASH000000000001 /* AB */",
                     withoutComment: "AB_SHARD00AB_HASH000000000001"
@@ -68,7 +68,7 @@ final class InnerIdentifyTargetsTests: XCTestCase {
                 consolidationMapOutputPath: URL(fileURLWithPath: "/tmp/C"),
                 key: ["C"],
                 identifier: .init(
-                    name: "c",
+                    pbxProjEscapedName: "c",
                     subIdentifier: .init(shard: "C_SHARD", hash: "C_HASH"),
                     full: "C_SHARD00C_HASH000000000001 /* c */",
                     withoutComment: "C_SHARD00C_HASH000000000001"
