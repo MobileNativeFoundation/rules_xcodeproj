@@ -57,9 +57,6 @@ def _modern_merge_cc_compilation_context(
     if not direct_compilation_context:
         return None
 
-    if not compilation_contexts:
-        return direct_compilation_context
-
     return direct_compilation_context
 
 # Bazel 6 check
