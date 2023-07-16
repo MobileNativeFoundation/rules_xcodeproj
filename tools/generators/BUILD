@@ -10,6 +10,7 @@ filegroup(
         "//" + package_name() + "/legacy:release_files",
         # TODO: Uncomment when we start using the incremental generator
         # "//" + package_name() + "/pbxproj_prefix:release_files",
+        # "//" + package_name() + "/pbxproject_targets:release_files",
         # "//" + package_name() + "/selected_model_versions:release_files",
     ],
     tags = ["manual"],
