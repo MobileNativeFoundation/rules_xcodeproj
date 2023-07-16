@@ -52,7 +52,7 @@ struct Generator {
         let writeTargetAttributesTask = Task {
             try environment.write(
                 environment.calculateTargetAttributesPartial(
-                    elements: environment.calculateTargetAttributes(
+                    elements: environment.createTargetAttributesElements(
                         identifiedTargets: identifiedTargets,
                         testHosts: arguments.testHosts,
                         identifiers: identifiers,
@@ -70,7 +70,7 @@ struct Generator {
         let writeTargetDependenciesTask = Task {
             try environment.write(
                 environment.calculateTargetDependenciesPartial(
-                    elements: environment.calculateTargetDependencies(
+                    elements: environment.createDependencyElements(
                         identifiedTargets: identifiedTargets,
                         identifiers: identifiers
                     )

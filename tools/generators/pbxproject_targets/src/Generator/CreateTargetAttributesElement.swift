@@ -1,7 +1,7 @@
 import PBXProj
 
 extension Generator {
-    struct CalculateSingleTargetAttributes {
+    struct CreateTargetAttributesElement {
         private let callable: Callable
 
         /// - Parameters:
@@ -26,7 +26,7 @@ extension Generator {
 
 // MARK: - CalculateSingleTargetAttributes.Callable
 
-extension Generator.CalculateSingleTargetAttributes {
+extension Generator.CreateTargetAttributesElement {
     typealias Callable = (
         _ createdOnToolsVersion: String,
         _ testHostIdentifier: String?

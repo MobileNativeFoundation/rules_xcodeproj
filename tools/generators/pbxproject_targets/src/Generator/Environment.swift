@@ -10,11 +10,7 @@ extension Generator {
 
         let calculateCreatedOnToolsVersion: CalculateCreatedOnToolsVersion
 
-        let calculateTargetAttributes: CalculateTargetAttributes
-
         let calculateTargetAttributesPartial: CalculateTargetAttributesPartial
-
-        let calculateTargetDependencies: CalculateTargetDependencies
 
         let calculateTargetDependenciesPartial:
             CalculateTargetDependenciesPartial
@@ -22,6 +18,10 @@ extension Generator {
         let calculateTargetIdentifierMap: CalculateTargetIdentifierMap
 
         let calculateTargetsPartial: CalculateTargetsPartial
+
+        let createDependencyElements: CreateDependencyElements
+
+        let createTargetAttributesElements: CreateTargetAttributesElements
 
         let identifyTargets: IdentifyTargets
 
@@ -36,21 +36,22 @@ extension Generator.Environment {
         calculateConsolidationMaps: Generator.CalculateConsolidationMaps(),
         calculateCreatedOnToolsVersion:
             Generator.CalculateCreatedOnToolsVersion(),
-        calculateTargetAttributes: Generator.CalculateTargetAttributes(
-            calculateSingleTargetAttributes:
-                Generator.CalculateSingleTargetAttributes()
-        ),
         calculateTargetAttributesPartial:
             Generator.CalculateTargetAttributesPartial(),
-        calculateTargetDependencies: Generator.CalculateTargetDependencies(
-            calculateContainerItemProxy:
-                Generator.CalculateContainerItemProxy(),
-            calculateTargetDependency: Generator.CalculateTargetDependency()
-        ),
         calculateTargetDependenciesPartial:
             Generator.CalculateTargetDependenciesPartial(),
         calculateTargetIdentifierMap: Generator.CalculateTargetIdentifierMap(),
         calculateTargetsPartial: Generator.CalculateTargetsPartial(),
+        createDependencyElements: Generator.CreateDependencyElements(
+            createContainerItemProxyElement:
+                Generator.CreateContainerItemProxyElement(),
+            createTargetDependencyElement:
+                Generator.CreateTargetDependencyElement()
+        ),
+        createTargetAttributesElements: Generator.CreateTargetAttributesElements(
+            calculateSingleTargetAttributes:
+                Generator.CreateTargetAttributesElement()
+        ),
         identifyTargets: Generator.IdentifyTargets(
             consolidateTargets: Generator.ConsolidateTargets(),
             disambiguateTargets: Generator.DisambiguateTargets(),

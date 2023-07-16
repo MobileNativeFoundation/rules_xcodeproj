@@ -1,9 +1,9 @@
 import PBXProj
 
 extension Generator {
-    struct CalculateTargetDependencies {
-        private let calculateContainerItemProxy: CalculateContainerItemProxy
-        private let calculateTargetDependency: CalculateTargetDependency
+    struct CreateDependencyElements {
+        private let createContainerItemProxyElement: CreateContainerItemProxyElement
+        private let createTargetDependencyElement: CreateTargetDependencyElement
 
         private let callable: Callable
 
@@ -11,12 +11,13 @@ extension Generator {
         ///   - callable: The function that will be called in
         ///     `callAsFunction()`.
         init(
-            calculateContainerItemProxy: CalculateContainerItemProxy,
-            calculateTargetDependency: CalculateTargetDependency,
+            createContainerItemProxyElement: CreateContainerItemProxyElement,
+            createTargetDependencyElement: CreateTargetDependencyElement,
             callable: @escaping Callable = Self.defaultCallable
         ) {
-            self.calculateContainerItemProxy = calculateContainerItemProxy
-            self.calculateTargetDependency = calculateTargetDependency
+            self.createContainerItemProxyElement =
+                createContainerItemProxyElement
+            self.createTargetDependencyElement = createTargetDependencyElement
 
             self.callable = callable
         }
@@ -30,8 +31,9 @@ extension Generator {
             return try callable(
                 /*identifiedTargets:*/ identifiedTargets,
                 /*identifiers:*/ identifiers,
-                /*calculateContainerItemProxy:*/ calculateContainerItemProxy,
-                /*calculateTargetDependency:*/ calculateTargetDependency
+                /*createContainerItemProxyElement:*/
+                    createContainerItemProxyElement,
+                /*createTargetDependencyElement:*/ createTargetDependencyElement
             )
         }
     }
@@ -39,48 +41,41 @@ extension Generator {
 
 // MARK: - CalculateTargetDependencies.Callable
 
-extension Generator.CalculateTargetDependencies {
+extension Generator.CreateDependencyElements {
     typealias Callable = (
         _ identifiedTargets: [IdentifiedTarget],
         _ identifiers: [TargetID: Identifiers.Targets.Identifier],
-        _ calculateContainerItemProxy: Generator.CalculateContainerItemProxy,
-        _ calculateTargetDependency: Generator.CalculateTargetDependency
+        _ createContainerItemProxyElement:
+            Generator.CreateContainerItemProxyElement,
+        _ createTargetDependencyElement: Generator.CreateTargetDependencyElement
     ) throws -> [Element]
 
     static func defaultCallable(
         identifiedTargets: [IdentifiedTarget],
         identifiers: [TargetID: Identifiers.Targets.Identifier],
-        calculateContainerItemProxy: Generator.CalculateContainerItemProxy,
-        calculateTargetDependency: Generator.CalculateTargetDependency
+        createContainerItemProxyElement:
+            Generator.CreateContainerItemProxyElement,
+        createTargetDependencyElement: Generator.CreateTargetDependencyElement
     ) throws -> [Element] {
         var targetDependencies: [Element] = []
         func addElements(
             from identifier: Identifiers.Targets.Identifier,
             to dependencyIdentifier: Identifiers.Targets.Identifier
         ) {
-            let containerItemProxy = Element(
-                identifier: Identifiers.Targets.containerItemProxy(
-                    from: identifier.subIdentifier,
-                    to: dependencyIdentifier.subIdentifier
-                ),
-                content: calculateContainerItemProxy(
-                    identifier: dependencyIdentifier
-                )
+            let containerItemProxy = createContainerItemProxyElement(
+                from: identifier.subIdentifier,
+                to: dependencyIdentifier
             )
             targetDependencies.append(containerItemProxy)
 
-            let targetDependency = Element(
-                identifier: Identifiers.Targets.dependency(
+            targetDependencies.append(
+                createTargetDependencyElement(
                     from: identifier.subIdentifier,
-                    to: dependencyIdentifier.subIdentifier
-                ),
-                content: calculateTargetDependency(
-                    identifier: dependencyIdentifier,
+                    to: dependencyIdentifier,
                     containerItemProxyIdentifier:
                         containerItemProxy.identifier
                 )
             )
-            targetDependencies.append(targetDependency)
         }
 
         for target in identifiedTargets {

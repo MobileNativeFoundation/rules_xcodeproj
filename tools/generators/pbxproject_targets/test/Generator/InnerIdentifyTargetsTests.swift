@@ -10,7 +10,7 @@ final class InnerIdentifyTargetsTests: XCTestCase {
 
         let disambiguatedTargets: [DisambiguatedTarget] = [
             .init(
-                name: "AB",
+                name: "AB (macOS)",
                 target: ConsolidatedTarget(
                     ["B", "A"],
                     allTargets: [
@@ -20,7 +20,7 @@ final class InnerIdentifyTargetsTests: XCTestCase {
                 )
             ),
             .init(
-                name: "c",
+                name: "c (iOS)",
                 target: ConsolidatedTarget(
                     ["C"],
                     allTargets: [
@@ -54,11 +54,11 @@ final class InnerIdentifyTargetsTests: XCTestCase {
             .mock(
                 consolidationMapOutputPath: URL(fileURLWithPath: "/tmp/A"),
                 key: ["A", "B"],
-                name: "AB",
+                name: "AB (macOS)",
                 identifier: .init(
-                    pbxProjEscapedName: "AB escaped",
+                    pbxProjEscapedName: "AB (macOS)".pbxProjEscaped,
                     subIdentifier: .init(shard: "AB_SHARD", hash: "AB_HASH"),
-                    full: "AB_SHARD00AB_HASH000000000001 /* AB */",
+                    full: "AB_SHARD00AB_HASH000000000001 /* AB (macOS) */",
                     withoutComment: "AB_SHARD00AB_HASH000000000001"
                 ),
                 dependencies: [
@@ -68,11 +68,11 @@ final class InnerIdentifyTargetsTests: XCTestCase {
             .mock(
                 consolidationMapOutputPath: URL(fileURLWithPath: "/tmp/C"),
                 key: ["C"],
-                name: "C",
+                name: "c (iOS)",
                 identifier: .init(
-                    pbxProjEscapedName: "c escaped",
+                    pbxProjEscapedName: "c (iOS)".pbxProjEscaped,
                     subIdentifier: .init(shard: "C_SHARD", hash: "C_HASH"),
-                    full: "C_SHARD00C_HASH000000000001 /* c */",
+                    full: "C_SHARD00C_HASH000000000001 /* c (iOS) */",
                     withoutComment: "C_SHARD00C_HASH000000000001"
                 ),
                 dependencies: []

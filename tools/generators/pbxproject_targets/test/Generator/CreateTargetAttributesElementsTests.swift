@@ -4,7 +4,7 @@ import XCTest
 @testable import pbxproject_targets
 @testable import PBXProj
 
-final class CalculateTargetAttributesTests: XCTestCase {
+final class CreateTargetAttributesElementsTests: XCTestCase {
     func test_success() throws {
         // Arrange
 
@@ -44,7 +44,7 @@ final class CalculateTargetAttributesTests: XCTestCase {
         let createdOnToolsVersion = "14.2.1"
 
         let calculateSingleTargetAttributes =
-            Generator.CalculateSingleTargetAttributes.mock(
+            Generator.CreateTargetAttributesElement.mock(
                 contents: [
                     "{TA_BazelDependnencies}",
                     "{TA_AB}",
@@ -53,7 +53,7 @@ final class CalculateTargetAttributesTests: XCTestCase {
             )
 
         let expectedCalculateSingleTargetAttributesCalled: [
-            Generator.CalculateSingleTargetAttributes.MockTracker.Called
+            Generator.CreateTargetAttributesElement.MockTracker.Called
         ] = [
             .init(
                 createdOnToolsVersion: createdOnToolsVersion,
@@ -86,14 +86,15 @@ final class CalculateTargetAttributesTests: XCTestCase {
 
         // Act
 
-        let elements = try Generator.CalculateTargetAttributes.defaultCallable(
-            identifiedTargets: identifiedTargets,
-            testHosts: testHosts,
-            identifiers: identifiers,
-            createdOnToolsVersion: createdOnToolsVersion,
-            calculateSingleTargetAttributes:
-                calculateSingleTargetAttributes.mock
-        )
+        let elements = try Generator.CreateTargetAttributesElements
+            .defaultCallable(
+                identifiedTargets: identifiedTargets,
+                testHosts: testHosts,
+                identifiers: identifiers,
+                createdOnToolsVersion: createdOnToolsVersion,
+                calculateSingleTargetAttributes:
+                    calculateSingleTargetAttributes.mock
+            )
 
         // Assert
 
@@ -132,7 +133,7 @@ final class CalculateTargetAttributesTests: XCTestCase {
         let createdOnToolsVersion = "14.2.1"
 
         let calculateSingleTargetAttributes =
-            Generator.CalculateSingleTargetAttributes.mock(
+            Generator.CreateTargetAttributesElement.mock(
                 contents: [
                     "{TA_BazelDependnencies}",
                     "{TA_AB}",
@@ -142,7 +143,7 @@ final class CalculateTargetAttributesTests: XCTestCase {
         // Act/Assert
 
         XCTAssertThrowsError(
-            try Generator.CalculateTargetAttributes.defaultCallable(
+            try Generator.CreateTargetAttributesElements.defaultCallable(
                 identifiedTargets: identifiedTargets,
                 testHosts: testHosts,
                 identifiers: identifiers,

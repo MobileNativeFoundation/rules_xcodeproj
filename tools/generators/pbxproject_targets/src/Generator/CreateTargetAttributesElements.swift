@@ -1,9 +1,9 @@
 import PBXProj
 
 extension Generator {
-    struct CalculateTargetAttributes {
+    struct CreateTargetAttributesElements {
         private let calculateSingleTargetAttributes:
-            CalculateSingleTargetAttributes
+            CreateTargetAttributesElement
 
         private let callable: Callable
 
@@ -11,7 +11,7 @@ extension Generator {
         ///   - callable: The function that will be called in
         ///     `callAsFunction()`.
         init(
-            calculateSingleTargetAttributes: CalculateSingleTargetAttributes,
+            calculateSingleTargetAttributes: CreateTargetAttributesElement,
             callable: @escaping Callable = Self.defaultCallable
         ) {
             self.calculateSingleTargetAttributes = calculateSingleTargetAttributes
@@ -40,14 +40,14 @@ extension Generator {
 
 // MARK: - CalculateTargetAttributes.Callable
 
-extension Generator.CalculateTargetAttributes {
+extension Generator.CreateTargetAttributesElements {
     typealias Callable = (
         _ identifiedTargets: [IdentifiedTarget],
         _ testHosts: [TargetID: TargetID],
         _ identifiers: [TargetID: Identifiers.Targets.Identifier],
         _ createdOnToolsVersion: String,
         _ calculateSingleTargetAttributes:
-            Generator.CalculateSingleTargetAttributes
+            Generator.CreateTargetAttributesElement
     ) throws -> [Element]
 
     static func defaultCallable(
@@ -56,7 +56,7 @@ extension Generator.CalculateTargetAttributes {
         identifiers: [TargetID: Identifiers.Targets.Identifier],
         createdOnToolsVersion: String,
         calculateSingleTargetAttributes:
-            Generator.CalculateSingleTargetAttributes
+            Generator.CreateTargetAttributesElement
     ) throws -> [Element] {
         var targetAttributes: [Element] = [
             .init(

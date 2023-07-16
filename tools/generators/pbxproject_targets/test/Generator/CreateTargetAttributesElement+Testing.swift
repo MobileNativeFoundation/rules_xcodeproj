@@ -2,13 +2,13 @@ import PBXProj
 
 @testable import pbxproject_targets
 
-// MARK: - Generator.CalculateTargetDependency.mock
+// MARK: - Generator.CalculateSingleTargetAttributes.mock
 
-extension Generator.CalculateTargetDependency {
+extension Generator.CreateTargetAttributesElement {
     final class MockTracker {
         struct Called: Equatable {
-            let identifier: Identifiers.Targets.Identifier
-            let containerItemProxyIdentifier: String
+            let createdOnToolsVersion: String
+            let testHostIdentifier: String?
         }
 
         fileprivate(set) var called: [Called] = []
@@ -31,10 +31,10 @@ extension Generator.CalculateTargetDependency {
         let mockTracker = MockTracker(results: contents)
 
         let mocked = Self(
-            callable: { identifier, containerItemProxyIdentifier in
+            callable: { createdOnToolsVersion, testHostIdentifier in
                 mockTracker.called.append(.init(
-                    identifier: identifier,
-                    containerItemProxyIdentifier: containerItemProxyIdentifier
+                    createdOnToolsVersion: createdOnToolsVersion,
+                    testHostIdentifier: testHostIdentifier
                 ))
                 return mockTracker.nextResult()
             }

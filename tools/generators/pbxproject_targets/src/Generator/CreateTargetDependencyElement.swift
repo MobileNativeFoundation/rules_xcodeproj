@@ -1,7 +1,7 @@
 import PBXProj
 
 extension Generator {
-    struct CalculateTargetDependency {
+    struct CreateTargetDependencyElement {
         private let callable: Callable
 
         /// - Parameters:
@@ -15,16 +15,19 @@ extension Generator {
         /// dependency.
         ///
         /// - Parameters:
-        ///   - identifier: The identifier for the dependency target's
+        ///   - subIdentifier: The sub-identifier for the target.
+        ///   - dependencyIdentifier: The identifier for the dependency target's
         ///     `PBXNativeTarget` element.
         ///   - containerItemProxyIdentifier: The identifier for the associated
         ///     `PBXContainerItemProxy` element.
         func callAsFunction(
-            identifier: Identifiers.Targets.Identifier,
+            from subIdentifier: Identifiers.Targets.SubIdentifier,
+            to dependencyIdentifier: Identifiers.Targets.Identifier,
             containerItemProxyIdentifier: String
-        ) -> String {
+        ) -> Element {
             return callable(
-                /*identifier:*/ identifier,
+                /*subIdentifier:*/ subIdentifier,
+                /*dependencyIdentifier:*/ dependencyIdentifier,
                 /*containerItemProxyIdentifier:*/ containerItemProxyIdentifier
             )
         }
@@ -33,24 +36,34 @@ extension Generator {
 
 // MARK: - CalculateTargetDependency.Callable
 
-extension Generator.CalculateTargetDependency {
+extension Generator.CreateTargetDependencyElement {
     typealias Callable = (
-        _ identifier: Identifiers.Targets.Identifier,
+        _ subIdentifier: Identifiers.Targets.SubIdentifier,
+        _ dependencyIdentifier: Identifiers.Targets.Identifier,
         _ containerItemProxyIdentifier: String
-    ) -> String
+    ) -> Element
 
     static func defaultCallable(
-        identifier: Identifiers.Targets.Identifier,
+        from subIdentifier: Identifiers.Targets.SubIdentifier,
+        to dependencyIdentifier: Identifiers.Targets.Identifier,
         containerItemProxyIdentifier: String
-    ) -> String {
+    ) -> Element {
         // The tabs for indenting are intentional
-        return #"""
+        let content = #"""
 {
 			isa = PBXTargetDependency;
-			name = \#(identifier.pbxProjEscapedName);
-			target = \#(identifier.full);
+			name = \#(dependencyIdentifier.pbxProjEscapedName);
+			target = \#(dependencyIdentifier.full);
 			targetProxy = \#(containerItemProxyIdentifier);
 		}
 """#
+        
+        return Element(
+            identifier: Identifiers.Targets.dependency(
+                from: subIdentifier,
+                to: dependencyIdentifier.subIdentifier
+            ),
+            content: content
+        )
     }
 }
