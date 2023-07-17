@@ -248,6 +248,7 @@ perl -pe '
   s/__BAZEL_XCODE_SDKROOT__/\$(SDKROOT)/g;
   s/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$ENV{$2}/gx;
 ' "$SCRIPT_INPUT_FILE_\#(index)" > "$SCRIPT_OUTPUT_FILE_\#(index)"
+
 """#
 }
 
@@ -291,6 +292,7 @@ perl -pe '
         if buildMode == .xcode && hasClangSearchPaths {
             shellScriptComponents.append(#"""
 "$BAZEL_INTEGRATION_DIR/create_xcode_overlay.sh"
+
 """#)
             outputPaths.append("$(DERIVED_FILE_DIR)/xcode-overlay.yaml")
         }

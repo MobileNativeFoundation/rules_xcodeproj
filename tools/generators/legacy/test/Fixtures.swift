@@ -1472,6 +1472,7 @@ perl -pe '
   s/__BAZEL_XCODE_SDKROOT__/\$(SDKROOT)/g;
   s/\$(\()?([a-zA-Z_]\w*)(?(1)\))/$ENV{$2}/gx;
 ' "$SCRIPT_INPUT_FILE_0" > "$SCRIPT_OUTPUT_FILE_0"
+
 """#)
             }
 
@@ -1479,6 +1480,7 @@ perl -pe '
                 outputPaths.append("$(DERIVED_FILE_DIR)/xcode-overlay.yaml")
                 shellScriptComponents.append(#"""
 "$BAZEL_INTEGRATION_DIR/create_xcode_overlay.sh"
+
 """#)
             }
 
