@@ -1,7 +1,7 @@
 import GeneratorCommon
 
 extension Dictionary where Key: Comparable {
-    func value(for key: Key, context: String) throws -> Value {
+    public func value(for key: Key, context: String) throws -> Value {
         guard let value = self[key] else {
             throw PreconditionError(
                 message: """
