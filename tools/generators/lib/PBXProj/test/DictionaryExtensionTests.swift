@@ -1,9 +1,8 @@
 import GeneratorCommon
+import PBXProj
 import XCTest
 
-@testable import pbxproject_targets
-
-final class DictionaryExtensionsTests: XCTestCase {
+final class DictionaryExtensionTests: XCTestCase {
     func test_valueForKeyContext_valid() throws {
         // Arrange
 
