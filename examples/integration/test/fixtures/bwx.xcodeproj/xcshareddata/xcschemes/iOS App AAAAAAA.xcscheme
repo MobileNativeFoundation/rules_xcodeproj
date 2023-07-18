@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
    LastUpgradeVersion = "9999"
-   wasCreatedForAppExtension = "YES"
    version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -15,9 +14,9 @@
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "EDF8F127D3EA3E7481E6D3D5"
-                     BuildableName = "WidgetExtension.appex"
-                     BlueprintName = "WidgetExtension"
+                     BlueprintIdentifier = "A6969986F4330BE56701A5EC"
+                     BuildableName = "iOSApp.B.app"
+                     BlueprintName = "iOSApp"
                      ReferencedContainer = "container:../../../../../test/fixtures/bwx.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
@@ -26,14 +25,14 @@
          <ExecutionAction
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
-               title = "Set Bazel Build Output Groups for WidgetExtension"
-               scriptText = "echo &quot;$BAZEL_LABEL,$BAZEL_TARGET_ID&quot; &gt;&gt; &quot;$SCHEME_TARGET_IDS_FILE&quot;&#10;echo &quot;$BAZEL_HOST_LABEL_0,$BAZEL_HOST_TARGET_ID_0&quot; &gt;&gt; &quot;$SCHEME_TARGET_IDS_FILE&quot;&#10;">
+               title = "Set Bazel Build Output Groups for iOSApp"
+               scriptText = "echo &quot;$BAZEL_LABEL,$BAZEL_TARGET_ID&quot; &gt;&gt; &quot;$SCHEME_TARGET_IDS_FILE&quot;&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "EDF8F127D3EA3E7481E6D3D5"
-                     BuildableName = "WidgetExtension.appex"
-                     BlueprintName = "WidgetExtension"
+                     BlueprintIdentifier = "A6969986F4330BE56701A5EC"
+                     BuildableName = "iOSApp.B.app"
+                     BlueprintName = "iOSApp"
                      ReferencedContainer = "container:../../../../../test/fixtures/bwx.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
@@ -42,7 +41,7 @@
       </PreActions>
       <BuildActionEntries>
          <BuildActionEntry
-            buildForTesting = "YES"
+            buildForTesting = "NO"
             buildForRunning = "YES"
             buildForProfiling = "YES"
             buildForArchiving = "YES"
@@ -52,20 +51,6 @@
                BlueprintIdentifier = "A6969986F4330BE56701A5EC"
                BuildableName = "iOSApp.B.app"
                BlueprintName = "iOSApp"
-               ReferencedContainer = "container:../../../../../test/fixtures/bwx.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EDF8F127D3EA3E7481E6D3D5"
-               BuildableName = "WidgetExtension.appex"
-               BlueprintName = "WidgetExtension"
                ReferencedContainer = "container:../../../../../test/fixtures/bwx.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -80,17 +65,15 @@
       </Testables>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Debug"
-      selectedDebuggerIdentifier = ""
-      selectedLauncherIdentifier = "Xcode.IDEFoundation.Launcher.PosixSpawn"
+      buildConfiguration = "AppStore"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
-      askForAppToLaunch = "YES"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
-      allowLocationSimulation = "YES"
-      launchAutomaticallySubstyle = "2">
+      allowLocationSimulation = "YES">
       <PreActions>
          <ExecutionAction
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
@@ -100,27 +83,17 @@
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "EDF8F127D3EA3E7481E6D3D5"
-                     BuildableName = "WidgetExtension.appex"
-                     BlueprintName = "WidgetExtension"
+                     BlueprintIdentifier = "A6969986F4330BE56701A5EC"
+                     BuildableName = "iOSApp.B.app"
+                     BlueprintName = "iOSApp"
                      ReferencedContainer = "container:../../../../../test/fixtures/bwx.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
             </ActionContent>
          </ExecutionAction>
       </PreActions>
-      <RemoteRunnable
-         runnableDebuggingMode = "2"
-         BundleIdentifier = "com.apple.springboard">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "EDF8F127D3EA3E7481E6D3D5"
-            BuildableName = "WidgetExtension.appex"
-            BlueprintName = "WidgetExtension"
-            ReferencedContainer = "container:../../../../../test/fixtures/bwx.xcodeproj">
-         </BuildableReference>
-      </RemoteRunnable>
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A6969986F4330BE56701A5EC"
@@ -128,10 +101,10 @@
             BlueprintName = "iOSApp"
             ReferencedContainer = "container:../../../../../test/fixtures/bwx.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
-      buildConfiguration = "Debug"
+      buildConfiguration = "AppStore"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
@@ -145,9 +118,9 @@
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "EDF8F127D3EA3E7481E6D3D5"
-                     BuildableName = "WidgetExtension.appex"
-                     BlueprintName = "WidgetExtension"
+                     BlueprintIdentifier = "A6969986F4330BE56701A5EC"
+                     BuildableName = "iOSApp.B.app"
+                     BlueprintName = "iOSApp"
                      ReferencedContainer = "container:../../../../../test/fixtures/bwx.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
@@ -158,21 +131,12 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "EDF8F127D3EA3E7481E6D3D5"
-            BuildableName = "WidgetExtension.appex"
-            BlueprintName = "WidgetExtension"
-            ReferencedContainer = "container:../../../../../test/fixtures/bwx.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
             BlueprintIdentifier = "A6969986F4330BE56701A5EC"
             BuildableName = "iOSApp.B.app"
             BlueprintName = "iOSApp"
             ReferencedContainer = "container:../../../../../test/fixtures/bwx.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

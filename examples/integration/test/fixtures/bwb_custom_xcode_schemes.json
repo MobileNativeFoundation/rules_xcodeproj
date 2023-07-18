@@ -1,6 +1,48 @@
 [
     {
         "build_action": null,
+        "launch_action": {
+            "args": [],
+            "build_configuration": "AppStore",
+            "diagnostics": null,
+            "env": {},
+            "target": "@//iOSApp/Source:iOSApp",
+            "working_directory": null
+        },
+        "name": "iOS App AAAAAAA",
+        "profile_action": null,
+        "test_action": null
+    },
+    {
+        "build_action": null,
+        "launch_action": {
+            "args": [],
+            "build_configuration": "Debug",
+            "diagnostics": null,
+            "env": {},
+            "target": "@//iOSApp/Source:iOSApp",
+            "working_directory": null
+        },
+        "name": "iOS App B",
+        "profile_action": null,
+        "test_action": null
+    },
+    {
+        "build_action": null,
+        "launch_action": {
+            "args": [],
+            "build_configuration": "AdHoc",
+            "diagnostics": null,
+            "env": {},
+            "target": "@//iOSApp/Source:iOSApp",
+            "working_directory": null
+        },
+        "name": "iOS App C",
+        "profile_action": null,
+        "test_action": null
+    },
+    {
+        "build_action": null,
         "launch_action": null,
         "name": "iOSAppUnitTests_Scheme",
         "profile_action": null,

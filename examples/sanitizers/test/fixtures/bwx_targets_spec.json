@@ -36,7 +36,6 @@
         "l": "//AddressSanitizerApp:AddressSanitizerApp",
         "n": "AddressSanitizerApp",
         "o": {
-            "p": "AddressSanitizerApp.app",
             "s": {
                 "m": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/AddressSanitizerApp/AddressSanitizerApp.swiftmodule"
             }
@@ -88,7 +87,6 @@
         "l": "//ThreadSanitizerApp:ThreadSanitizerApp",
         "n": "ThreadSanitizerApp",
         "o": {
-            "p": "ThreadSanitizerApp.app",
             "s": {
                 "m": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/ThreadSanitizerApp/ThreadSanitizerApp.swiftmodule"
             }
@@ -136,9 +134,6 @@
         },
         "l": "//UndefinedBehaviorSanitizerApp:UndefinedBehaviorSanitizerApp",
         "n": "UndefinedBehaviorSanitizerApp",
-        "o": {
-            "p": "UndefinedBehaviorSanitizerApp.app"
-        },
         "p": {
             "a": [
                 "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/UndefinedBehaviorSanitizerApp/libUndefinedBehaviorSanitizerApp.library.a"
