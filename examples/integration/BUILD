@@ -25,6 +25,27 @@ string_flag(
     visibility = ["//visibility:public"],
 )
 
+config_setting(
+    name = "build_aaaaaaa",
+    flag_values = {
+        ":flag_to_transition_on": "AAAAAAA",
+    },
+)
+
+config_setting(
+    name = "build_b",
+    flag_values = {
+        ":flag_to_transition_on": "B",
+    },
+)
+
+config_setting(
+    name = "build_c",
+    flag_values = {
+        ":flag_to_transition_on": "C",
+    },
+)
+
 # Example of xcodeproj cache warming
 #
 # 1. Register a single macOS execution platform in `WORKSPACE`:
@@ -77,12 +98,10 @@ string_flag(
         watchos_simulator_cpus = simulator_cpu.removeprefix("sim_"),
         xcode_configurations = XCODE_CONFIGURATIONS,
     )
-    for build_mode in [
-        "bazel",
-        "xcode",
-    ]
-    for simulator_cpu in [
-        "sim_arm64",
-        "x86_64",
+    for simulator_cpu, build_mode in [
+        ("sim_arm64", "xcode"),
+        ("sim_arm64", "bazel"),
+        ("x86_64", "xcode"),
+        ("x86_64", "bazel"),
     ]
 ]

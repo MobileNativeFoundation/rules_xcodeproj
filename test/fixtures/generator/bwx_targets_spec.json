@@ -87,7 +87,6 @@
         "m": true,
         "n": "tests",
         "o": {
-            "p": "tests.xctest",
             "s": {
                 "m": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/tools/generators/legacy/test/tests.swiftmodule"
             }
@@ -191,7 +190,6 @@
         "m": true,
         "n": "tests",
         "o": {
-            "p": "tests.xctest",
             "s": {
                 "m": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/tools/generators/legacy/test/tests.swiftmodule"
             }
@@ -225,9 +223,6 @@
         ],
         "l": "//tools/generators/legacy:generator",
         "n": "generator",
-        "o": {
-            "p": "generator_codesigned"
-        },
         "p": {
             "e": "generator",
             "n": "generator",
@@ -253,9 +248,6 @@
         ],
         "l": "//tools/generators/legacy:generator",
         "n": "generator",
-        "o": {
-            "p": "generator_codesigned"
-        },
         "p": {
             "e": "generator",
             "n": "generator",
@@ -597,7 +589,6 @@
         "l": "//tools/swiftc_stub:swiftc",
         "n": "swiftc",
         "o": {
-            "p": "swiftc_codesigned",
             "s": {
                 "m": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/tools/swiftc_stub/tools_swiftc_stub_swiftc_stub_library.swiftmodule"
             }
@@ -642,7 +633,6 @@
         "l": "//tools/swiftc_stub:swiftc",
         "n": "swiftc",
         "o": {
-            "p": "swiftc_codesigned",
             "s": {
                 "m": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/tools/swiftc_stub/tools_swiftc_stub_swiftc_stub_library.swiftmodule"
             }

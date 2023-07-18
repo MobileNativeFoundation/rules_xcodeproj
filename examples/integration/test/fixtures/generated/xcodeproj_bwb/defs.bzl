@@ -28,7 +28,7 @@ load(
 
 _INPUTS = {}
 
-_XCODE_CONFIGURATIONS = {"AppStore": {"//command_line_option:compilation_mode": "opt", "@//:flag_to_transition_on": "AAAAAAA"}, "Debug": {"//command_line_option:compilation_mode": "dbg", "@//:flag_to_transition_on": "B"}}
+_XCODE_CONFIGURATIONS = {"AppStore": {"//command_line_option:compilation_mode": "opt", "@//:flag_to_transition_on": "AAAAAAA"}, "Debug": {"//command_line_option:compilation_mode": "dbg", "@//:flag_to_transition_on": "B"}, "AdHoc": {"//command_line_option:compilation_mode": "opt", "@//:flag_to_transition_on": "C"}}
 
 def _target_transition_implementation(settings, _attr):
     outputs = {}
