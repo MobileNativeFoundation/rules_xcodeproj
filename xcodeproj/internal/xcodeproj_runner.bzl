@@ -287,11 +287,6 @@ def _write_generator_build_file(
 
     return output
 
-_IGNORE_XCODE_ENV_VALUES = [
-    "LD_LIBRARY_PATH",
-    "SDKROOT",
-]
-
 def _write_runner(
         *,
         actions,
@@ -355,15 +350,6 @@ fi
                     "'\"'\"'",
                 )),
             ))
-    for key in _IGNORE_XCODE_ENV_VALUES:
-        if key in bazel_env:
-            # If we have an explicit value, don't ignore it
-            continue
-        collect_statements.append("""\
-envs+=("{key}=")
-def_env+="  \\"{key}\\": \\"\\",
-"
-""".format(key = key))
 
     collect_bazel_env = """\
 envs=(
