@@ -8,19 +8,40 @@ load(":platforms.bzl", "PLATFORM_NAME")
 def _apple_platform_to_platform_name(platform):
     return PLATFORM_NAME[platform]
 
+def _depset_len(d):
+    return str(len(d.to_list()))
+
+def _depset_to_list(d):
+    return d.to_list()
+
+def _identity(seq):
+    return seq
+
 # Partials
 
 # enum of flags, mainly to ensure the strings are frozen and reused
 _flags = struct(
+    archs = "--archs",
     colorize = "--colorize",
+    consolidation_map_output_paths = "--consolidation-map-output-paths",
     default_xcode_configuration = "--default-xcode-configuration",
+    dependencies = "--dependencies",
+    dependency_counts = "--dependency-counts",
     files_paths = "--file-paths",
     folder_paths = "--folder-paths",
+    labels = "--labels",
+    label_counts = "--label-counts",
     organization_name = "--organization-name",
+    os_versions = "--os-versions",
     platforms = "--platforms",
     post_build_script = "--post-build-script",
     pre_build_script = "--pre-build-script",
+    product_types = "--product-types",
+    target_and_test_hosts = "--target-and-test-hosts",
+    target_counts = "--target-counts",
+    targets = "--targets",
     use_base_internationalization = "--use-base-internationalization",
+    xcode_configuration_counts = "--xcode-configuration-counts",
     xcode_configurations = "--xcode-configurations",
 )
 
@@ -152,6 +173,7 @@ def _write_files_and_groups(
 def _write_pbxproj_prefix(
         *,
         actions,
+        apple_platform_to_platform_name = _apple_platform_to_platform_name,
         build_mode,
         colorize,
         default_xcode_configuration,
@@ -173,6 +195,7 @@ def _write_pbxproj_prefix(
 
     Args:
         actions: `ctx.actions`.
+        apple_platform_to_platform_name: Exposed for testing. Don't set.
         build_mode: `xcodeproj.build_mode`.
         colorize: A `bool` indicating whether to colorize the output.
         default_xcode_configuration: Optional. The name of the the Xcode
@@ -247,7 +270,7 @@ def _write_pbxproj_prefix(
     args.add_all(
         _flags.platforms,
         platforms,
-        map_each = _apple_platform_to_platform_name,
+        map_each = apple_platform_to_platform_name,
     )
 
     # xcodeConfigurations
@@ -302,7 +325,213 @@ def _write_pbxproj_prefix(
 
     return output
 
+def _write_pbxproject_targets(
+        *,
+        actions,
+        apple_platform_to_platform_name = _apple_platform_to_platform_name,
+        colorize,
+        generator_name,
+        minimum_xcode_version,
+        tool,
+        xcode_target_configurations,
+        xcode_targets_by_label):
+    """
+    Creates `File`s representing consolidated target in a `PBXProj`.
+
+    Args:
+        actions: `ctx.actions`.
+        apple_platform_to_platform_name: Exposed for testing. Don't set.
+        colorize: A `bool` indicating whether to colorize the output.
+        generator_name: The name of the `xcodeproj` generator target.
+        minimum_xcode_version: The minimum Xcode version that the generated
+            project supports, as a `string`.
+        tool: The executable that will generate the output files.
+        xcode_target_configurations: A `dict` mapping `xcode_target.id` to a
+            `list` of Xcode configuration names that the target is present in.
+        xcode_targets_by_label:  A `dict` mapping `xcode_target.label` to a
+            `dict` mapping `xcode_target.id` to `xcode_target`s.
+
+    Returns:
+        A tuple with four elements:
+
+        *   `pbxproject_targets`: The `File` for the `PBXProject.targets`
+            `PBXProj` partial.
+        *   `pbxproject_target_attributes`: The `File` for the
+            `PBXProject.attributes.TargetAttributes` `PBXProj` partial.
+        *   `pbxtarget_dependencies`: The `File` for the
+            `PBXTargetDependency` and `PBXContainerItemProxy` `PBXProj` partial.
+        *   `consolidation_maps`: A `dict` mapping `File`s containing
+            target consolidation maps to a `list` of `Label`s of the targets
+            included in the map.
+    """
+    pbxproject_targets = actions.declare_file(
+        "{}_pbxproj_partials/pbxproject_targets".format(
+            generator_name,
+        ),
+    )
+    pbxproject_target_attributes = actions.declare_file(
+        "{}_pbxproj_partials/pbxproject_target_attributes".format(
+            generator_name,
+        ),
+    )
+    pbxtargetdependencies = actions.declare_file(
+        "{}_pbxproj_partials/pbxtargetdependencies".format(
+            generator_name,
+        ),
+    )
+
+    bucketed_labels = {}
+    for label in xcode_targets_by_label:
+        # FIXME: Fine-tune this, and make it configurable
+        bucketed_labels.setdefault(hash(label.name) % 8, []).append(label)
+
+    consolidation_maps = {}
+
+    args = actions.args()
+    args.use_param_file("@%s")
+    args.set_param_file_format("multiline")
+
+    # targetsOutputPath
+    args.add(pbxproject_targets)
+
+    # targetAttributesOutputPath
+    args.add(pbxproject_target_attributes)
+
+    # targetDependenciesOutputPath
+    args.add(pbxtargetdependencies)
+
+    # minimumXcodeVersion
+    args.add(minimum_xcode_version)
+
+    archs = []
+    dependencies = []
+    dependency_counts = []
+    label_counts = []
+    labels = []
+    os_versions = []
+    platforms = []
+    product_types = []
+    target_and_test_hosts = []
+    target_counts = []
+    target_ids = []
+    xcode_configuration_counts = []
+    xcode_configurations = []
+    for idx, bucket_labels in enumerate(bucketed_labels.values()):
+        consolidation_map = actions.declare_file(
+            "{}_pbxproj_partials/consolidation_maps/{}".format(
+                generator_name,
+                idx,
+            ),
+        )
+        consolidation_maps[consolidation_map] = bucket_labels
+
+        label_counts.append(len(bucket_labels))
+        for label in bucket_labels:
+            labels.append(label)
+
+            xcode_targets = xcode_targets_by_label[label].values()
+            target_counts.append(len(xcode_targets))
+            for xcode_target in xcode_targets:
+                target_ids.append(xcode_target.id)
+                product_types.append(xcode_target.product.type)
+                platforms.append(xcode_target.platform.platform)
+                os_versions.append(xcode_target.platform.os_version)
+                archs.append(xcode_target.platform.arch)
+                dependency_counts.append(xcode_target.dependencies)
+                dependencies.append(xcode_target.dependencies)
+
+                configurations = xcode_target_configurations[xcode_target.id]
+                xcode_configuration_counts.append(len(configurations))
+                xcode_configurations.append(configurations)
+
+                if xcode_target.test_host:
+                    target_and_test_hosts.append(xcode_target.id)
+                    target_and_test_hosts.append(xcode_target.test_host)
+
+    # targetAndTestHosts
+    args.add_all(_flags.target_and_test_hosts, target_and_test_hosts)
+
+    # consolidationMapOutputPaths
+    args.add_all(
+        _flags.consolidation_map_output_paths,
+        consolidation_maps.keys(),
+    )
+
+    # labelCounts
+    args.add_all(_flags.label_counts, label_counts)
+
+    # labels
+    args.add_all(_flags.labels, labels)
+
+    # targetCounts
+    args.add_all(_flags.target_counts, target_counts)
+
+    # targets
+    args.add_all(_flags.targets, target_ids)
+
+    # xcodeConfigurationCounts
+    args.add_all(
+        _flags.xcode_configuration_counts,
+        xcode_configuration_counts,
+    )
+
+    # xcodeConfigurations
+    args.add_all(
+        _flags.xcode_configurations,
+        xcode_configurations,
+        map_each = _identity,
+    )
+
+    # productTypes
+    args.add_all(_flags.product_types, product_types)
+
+    # platforms
+    args.add_all(
+        _flags.platforms,
+        platforms,
+        map_each = apple_platform_to_platform_name,
+    )
+
+    # osVersions
+    args.add_all(_flags.os_versions, os_versions)
+
+    # archs
+    args.add_all(_flags.archs, archs)
+
+    # dependencyCounts
+    args.add_all(
+        _flags.dependency_counts,
+        dependency_counts,
+        map_each = _depset_len,
+    )
+
+    # dependencies
+    args.add_all(_flags.dependencies, dependencies, map_each = _depset_to_list)
+
+    # colorize
+    if colorize:
+        args.add(_flags.colorize)
+
+    actions.run(
+        arguments = [args],
+        executable = tool,
+        outputs = [
+            pbxproject_targets,
+            pbxproject_target_attributes,
+            pbxtargetdependencies,
+        ] + consolidation_maps.keys(),
+        mnemonic = "WritePBXProjPBXProjectTargets",
+    )
+
+    return (
+        pbxproject_targets,
+        pbxproject_target_attributes,
+        pbxtargetdependencies,
+        consolidation_maps,
+    )
+
 pbxproj_partials = struct(
     write_files_and_groups = _write_files_and_groups,
     write_pbxproj_prefix = _write_pbxproj_prefix,
+    write_pbxproject_targets = _write_pbxproject_targets,
 )

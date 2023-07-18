@@ -1,6 +1,7 @@
 """Tests for `pbxproj_partials.write_pbxproj_prefix`."""
 
 load("@bazel_skylib//lib:unittest.bzl", "asserts", "unittest")
+load("//test:utils.bzl", "mock_apple_platform_to_platform_name")
 
 # buildifier: disable=bzl-visibility
 load("//xcodeproj/internal:pbxproj_partials.bzl", "pbxproj_partials")
@@ -18,8 +19,14 @@ def _write_pbxproj_prefix_test_impl(ctx):
 
     def _args_add_all(flag, values, *, map_each = None):
         args.append(flag)
+
         if map_each:
-            args.extend(["{}({})".format(map_each, value) for value in values])
+            for value in values:
+                mapped_value = map_each(value)
+                if type(mapped_value) == "list":
+                    args.extend([v for v in mapped_value])
+                elif mapped_value:
+                    args.append(mapped_value)
         else:
             args.extend(values)
 
@@ -85,6 +92,7 @@ def _write_pbxproj_prefix_test_impl(ctx):
 
     output = pbxproj_partials.write_pbxproj_prefix(
         actions = actions,
+        apple_platform_to_platform_name = mock_apple_platform_to_platform_name,
         build_mode = ctx.attr.build_mode,
         colorize = ctx.attr.colorize,
         default_xcode_configuration = ctx.attr.default_xcode_configuration,
@@ -264,7 +272,7 @@ def write_pbxproj_prefix_test_suite(name):
         minimum_xcode_version = "14.2.1",
         platforms = [
             "MACOS",
-            "IOS",
+            "IOS_DEVICE",
         ],
         project_options = {
             "development_region": "en",
@@ -299,8 +307,8 @@ def write_pbxproj_prefix_test_suite(name):
             "en",
             # platforms
             "--platforms",
-            "<function _apple_platform_to_platform_name from //xcodeproj/internal:pbxproj_partials.bzl>(MACOS)",
-            "<function _apple_platform_to_platform_name from //xcodeproj/internal:pbxproj_partials.bzl>(IOS)",
+            "macosx",
+            "iphoneos",
             # xcodeConfigurations
             "--xcode-configurations",
             "Release",
@@ -321,7 +329,7 @@ def write_pbxproj_prefix_test_suite(name):
         index_import = "some/path/to/index_import",
         platforms = [
             "MACOS",
-            "IOS",
+            "IOS_DEVICE",
         ],
         post_build_script = "a post_build_script",
         pre_build_script = "a pre_build_script",
@@ -363,8 +371,8 @@ def write_pbxproj_prefix_test_suite(name):
             "MobileNativeFoundation 2",
             # platforms
             "--platforms",
-            "<function _apple_platform_to_platform_name from //xcodeproj/internal:pbxproj_partials.bzl>(MACOS)",
-            "<function _apple_platform_to_platform_name from //xcodeproj/internal:pbxproj_partials.bzl>(IOS)",
+            "macosx",
+            "iphoneos",
             # xcodeConfigurations
             "--xcode-configurations",
             "Release",
