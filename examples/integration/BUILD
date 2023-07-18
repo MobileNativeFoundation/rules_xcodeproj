@@ -77,10 +77,12 @@ string_flag(
         watchos_simulator_cpus = simulator_cpu.removeprefix("sim_"),
         xcode_configurations = XCODE_CONFIGURATIONS,
     )
-    for simulator_cpu, build_mode in [
-        ("sim_arm64", "xcode"),
-        ("sim_arm64", "bazel"),
-        ("x86_64", "xcode"),
-        ("x86_64", "bazel"),
+    for build_mode in [
+        "bazel",
+        "xcode",
+    ]
+    for simulator_cpu in [
+        "sim_arm64",
+        "x86_64",
     ]
 ]
