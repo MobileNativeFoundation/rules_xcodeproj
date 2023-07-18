@@ -1,6 +1,7 @@
 """Tests for `pbxproj_partials.write_pbxproject_targets`."""
 
 load("@bazel_skylib//lib:unittest.bzl", "asserts", "unittest")
+load("//test:utils.bzl", "mock_apple_platform_to_platform_name")
 
 # buildifier: disable=bzl-visibility
 load("//xcodeproj/internal:pbxproj_partials.bzl", "pbxproj_partials")
@@ -8,19 +9,6 @@ load("//xcodeproj/internal:pbxproj_partials.bzl", "pbxproj_partials")
 _TARGETS_DECLARED_FILE = "a_generator_name_pbxproj_partials/pbxproject_targets"
 _TARGET_ATTRIBUTES_DECLARED_FILE = "a_generator_name_pbxproj_partials/pbxproject_target_attributes"
 _TARGET_DEPENDENCIES_DECLARED_FILE = "a_generator_name_pbxproj_partials/pbxtargetdependencies"
-
-_PLATFORM_NAME = {
-    "IOS_DEVICE": "iphoneos",
-    "IOS_SIMULATOR": "iphonesimulator",
-    "MACOS": "macosx",
-    "TVOS_DEVICE": "appletvos",
-    "TVOS_SIMULATOR": "appletvsimulator",
-    "WATCHOS_DEVICE": "watchos",
-    "WATCHOS_SIMULATOR": "watchsimulator",
-}
-
-def _apple_platform_to_platform_name(platform):
-    return _PLATFORM_NAME[platform]
 
 def _consolidation_map_declared_file(idx):
     return "a_generator_name_pbxproj_partials/consolidation_maps/{}".format(idx)
@@ -176,7 +164,7 @@ def _write_pbxproject_targets_test_impl(ctx):
         consolidation_maps,
     ) = pbxproj_partials.write_pbxproject_targets(
         actions = actions,
-        apple_platform_to_platform_name = _apple_platform_to_platform_name,
+        apple_platform_to_platform_name = mock_apple_platform_to_platform_name,
         colorize = ctx.attr.colorize,
         generator_name = "a_generator_name",
         minimum_xcode_version = ctx.attr.minimum_xcode_version,
