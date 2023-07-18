@@ -29,11 +29,7 @@ ios_application(
     app_clips = ["//AppClip"],
     app_icons = glob(["Assets.xcassets/AppIcon.appiconset/**"]),
     bundle_id = IOS_BUNDLE_ID,
-    bundle_name = select({
-        "@//:build_aaaaaaa": "iOSApp.AAAAAAA",
-        "@//:build_b": "iOSApp.B",
-        "@//:build_c": "iOSApp.C",
-    }),
+    bundle_name = "iOSApp",
     entitlements = "ios app.entitlements",
     executable_name = "iOSApp_ExecutableName",
     extensions = ["//WidgetExtension"],
