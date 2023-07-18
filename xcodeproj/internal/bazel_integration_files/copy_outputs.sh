@@ -3,8 +3,7 @@
 set -euo pipefail
 
 # readonly forced_swift_compile_file="$1"
-readonly product_basename="$2"
-readonly exclude_list="$3"
+readonly exclude_list="$2"
 
 # # Touching this file on an error allows indexing to work better
 # trap 'echo "private let touch = \"$(date +%s)\"" > "$DERIVED_FILE_DIR/$forced_swift_compile_file"' ERR
@@ -15,6 +14,8 @@ if [[ "$ACTION" == indexbuild ]]; then
 else
   # Copy product
   if [[ -n ${BAZEL_OUTPUTS_PRODUCT:-} ]]; then
+    readonly product_basename="$(basename $BAZEL_OUTPUTS_PRODUCT)"
+    
     if [[ "$BAZEL_OUTPUTS_PRODUCT" = *.ipa ]]; then
       suffix=/Payload
     fi

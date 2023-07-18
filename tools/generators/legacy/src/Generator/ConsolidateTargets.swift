@@ -425,10 +425,8 @@ extension ConsolidatedTarget {
 
         allDependencies = aTarget.allDependencies
         outputs = ConsolidatedTargetOutputs(
-            hasOutputs: self.targets.values.contains { $0.outputs.hasOutputs },
             hasSwiftOutputs: self.targets.values
-                .contains { $0.outputs.hasSwiftOutputs },
-            productBasename: aTarget.outputs.productBasename
+                .contains { $0.outputs.hasSwiftOutputs }
         )
     }
 
@@ -534,9 +532,7 @@ struct ConsolidatedTargetLinkerInputs: Equatable {
 }
 
 struct ConsolidatedTargetOutputs: Equatable {
-    let hasOutputs: Bool
     let hasSwiftOutputs: Bool
-    let productBasename: String?
 }
 
 // MARK: - Private extensions

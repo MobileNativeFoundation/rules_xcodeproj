@@ -192,19 +192,6 @@ Product for target "\(key)" not found in `products`
             return nil
         }
 
-        let copyOutputs: String
-        if let bazelBasename = outputs.productBasename {
-            copyOutputs = #"""
-else
-  "$BAZEL_INTEGRATION_DIR/copy_outputs.sh" \
-    "\#(Generator.bazelForcedSwiftCompilePath)" \
-    "\#(bazelBasename)" \
-    "\#(productType.rsyncExcludeFile)"
-"""#
-        } else {
-            copyOutputs = ""
-        }
-
         let shellScript = #"""
 set -euo pipefail
 
@@ -212,7 +199,10 @@ if [[ "$ACTION" == "indexbuild" ]]; then
   cd "$SRCROOT"
 
   "$BAZEL_INTEGRATION_DIR/generate_index_build_bazel_dependencies.sh"
-\#(copyOutputs)
+else
+  "$BAZEL_INTEGRATION_DIR/copy_outputs.sh" \
+    "\#(Generator.bazelForcedSwiftCompilePath)" \
+    "\#(productType.rsyncExcludeFile)"
 fi
 
 """#

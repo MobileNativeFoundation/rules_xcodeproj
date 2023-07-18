@@ -749,10 +749,7 @@ def _xcode_target_to_dto(
         set_if_true(
             dto,
             "o",
-            _outputs_to_dto(
-                outputs = xcode_target.outputs,
-                product = xcode_target.product,
-            ),
+            _outputs_to_dto(outputs = xcode_target.outputs),
         )
 
     set_if_true(
@@ -1004,11 +1001,8 @@ def _linker_inputs_to_dto(
 
     return (ret, link_params)
 
-def _outputs_to_dto(*, outputs, product):
+def _outputs_to_dto(*, outputs):
     dto = {}
-
-    if outputs.product_file and product.basename:
-        dto["p"] = product.basename
 
     if outputs.swiftmodule:
         dto["s"] = _swift_to_dto(outputs)
