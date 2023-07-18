@@ -1,6 +1,7 @@
 """Tests for `pbxproj_partials.write_pbxproj_prefix`."""
 
 load("@bazel_skylib//lib:unittest.bzl", "asserts", "unittest")
+load("//test:mock_actions.bzl", "mock_actions")
 load("//test:utils.bzl", "mock_apple_platform_to_platform_name")
 
 # buildifier: disable=bzl-visibility
@@ -15,62 +16,7 @@ def _write_pbxproj_prefix_test_impl(ctx):
 
     # Arrange
 
-    args = []
-
-    def _args_add_all(flag, values, *, map_each = None):
-        args.append(flag)
-
-        if map_each:
-            for value in values:
-                mapped_value = map_each(value)
-                if type(mapped_value) == "list":
-                    args.extend([v for v in mapped_value])
-                elif mapped_value:
-                    args.append(mapped_value)
-        else:
-            args.extend(values)
-
-    use_param_file_args = {}
-
-    def _args_use_param_file(param_file):
-        use_param_file_args["use_param_file"] = param_file
-
-    set_param_file_format_args = {}
-
-    def _args_set_param_file_format(format):
-        set_param_file_format_args["format"] = format
-
-    action_args = struct(
-        add = lambda *x: args.extend(x),
-        add_all = _args_add_all,
-        use_param_file = _args_use_param_file,
-        set_param_file_format = _args_set_param_file_format,
-    )
-
-    run_args = {}
-
-    def _action_run(*, arguments, inputs, outputs, **_kwargs):
-        run_args["arguments"] = arguments
-        run_args["inputs"] = inputs
-        run_args["outputs"] = outputs
-
-    declared_files = {}
-
-    def _actions_declare_file(path):
-        declared_files[path] = None
-        return path
-
-    writes = {}
-
-    def _actions_write(write_output, args):
-        writes[write_output] = args
-
-    actions = struct(
-        args = lambda: action_args,
-        declare_file = _actions_declare_file,
-        run = _action_run,
-        write = _actions_write,
-    )
+    actions = mock_actions.create()
 
     expected_declared_files = {
         _OUTPUT_DECLARED_FILE: None,
@@ -91,7 +37,7 @@ def _write_pbxproj_prefix_test_impl(ctx):
     # Act
 
     output = pbxproj_partials.write_pbxproj_prefix(
-        actions = actions,
+        actions = actions.mock,
         apple_platform_to_platform_name = mock_apple_platform_to_platform_name,
         build_mode = ctx.attr.build_mode,
         colorize = ctx.attr.colorize,
@@ -116,56 +62,56 @@ def _write_pbxproj_prefix_test_impl(ctx):
     asserts.equals(
         env,
         expected_declared_files,
-        declared_files,
+        actions.declared_files,
         "actions.declare_file",
     )
 
     asserts.equals(
         env,
         ctx.attr.expected_writes,
-        writes,
+        actions.writes,
         "actions.write",
     )
 
     asserts.equals(
         env,
         "@%s",
-        use_param_file_args["use_param_file"],
+        actions.use_param_file_args["use_param_file"],
         "args.use_param_file",
     )
 
     asserts.equals(
         env,
         "multiline",
-        set_param_file_format_args["format"],
+        actions.set_param_file_format_args["format"],
         "args.param_file_format",
     )
 
     asserts.equals(
         env,
-        [action_args],
-        run_args["arguments"],
+        [actions.action_args],
+        actions.run_args["arguments"],
         "actions.run.arguments",
     )
 
     asserts.equals(
         env,
         ctx.attr.expected_args,
-        args,
+        actions.args,
         "actions.run.arguments[0]",
     )
 
     asserts.equals(
         env,
         expected_inputs,
-        run_args["inputs"],
+        actions.run_args["inputs"],
         "actions.run.inputs",
     )
 
     asserts.equals(
         env,
         [_OUTPUT_DECLARED_FILE],
-        run_args["outputs"],
+        actions.run_args["outputs"],
         "actions.run.outputs",
     )
 
