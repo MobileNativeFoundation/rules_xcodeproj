@@ -459,6 +459,9 @@ def _set_bazel_outputs_product(
     product_path = xcode_target.outputs.product_path
     if product_path:
         build_settings["BAZEL_OUTPUTS_PRODUCT"] = product_path
+        build_settings["BAZEL_OUTPUTS_PRODUCT_BASENAME"] = (
+            xcode_target.product.basename
+        )
 
     dsym_files = xcode_target.outputs.dsym_files
     if dsym_files:

@@ -14,8 +14,6 @@ if [[ "$ACTION" == indexbuild ]]; then
 else
   # Copy product
   if [[ -n ${BAZEL_OUTPUTS_PRODUCT:-} ]]; then
-    readonly product_basename="$(basename $BAZEL_OUTPUTS_PRODUCT)"
-    
     if [[ "$BAZEL_OUTPUTS_PRODUCT" = *.ipa ]]; then
       suffix=/Payload
     fi
@@ -32,7 +30,7 @@ else
 
       if [[ \
         "$existing_sha" != "$sha" || \
-        ! -d "$product_parent_dir/$product_basename" \
+        ! -d "$product_parent_dir/$BAZEL_OUTPUTS_PRODUCT_BASENAME" \
       ]]; then
         mkdir -p "$expanded_dest"
         rm -rf "${expanded_dest:?}/"
@@ -47,10 +45,10 @@ else
       cd "${BAZEL_OUTPUTS_PRODUCT%/*}"
     fi
 
-    if [[ -f "$product_basename" ]]; then
+    if [[ -f "$BAZEL_OUTPUTS_PRODUCT_BASENAME" ]]; then
       # Product is a binary, so symlink instead of rsync, to allow for Bazel-set
       # rpaths to work
-      ln -sfh "$PWD/$product_basename" "$TARGET_BUILD_DIR/$PRODUCT_NAME"
+      ln -sfh "$PWD/$BAZEL_OUTPUTS_PRODUCT_BASENAME" "$TARGET_BUILD_DIR/$PRODUCT_NAME"
     else
       # Product is a bundle
       rsync \
@@ -61,7 +59,7 @@ else
         ${exclude_list:+--exclude-from="$exclude_list"} \
         --chmod=u+w \
         --out-format="%n%L" \
-        "$product_basename" \
+        "$BAZEL_OUTPUTS_PRODUCT_BASENAME" \
         "$TARGET_BUILD_DIR"
 
       # Incremental installation can fail if an embedded bundle is recompiled but
