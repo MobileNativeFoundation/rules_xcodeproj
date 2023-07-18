@@ -173,6 +173,7 @@ def _write_files_and_groups(
 def _write_pbxproj_prefix(
         *,
         actions,
+        apple_platform_to_platform_name = _apple_platform_to_platform_name,
         build_mode,
         colorize,
         default_xcode_configuration,
@@ -194,6 +195,7 @@ def _write_pbxproj_prefix(
 
     Args:
         actions: `ctx.actions`.
+        apple_platform_to_platform_name: Exposed for testing. Don't set.
         build_mode: `xcodeproj.build_mode`.
         colorize: A `bool` indicating whether to colorize the output.
         default_xcode_configuration: Optional. The name of the the Xcode
@@ -268,7 +270,7 @@ def _write_pbxproj_prefix(
     args.add_all(
         _flags.platforms,
         platforms,
-        map_each = _apple_platform_to_platform_name,
+        map_each = apple_platform_to_platform_name,
     )
 
     # xcodeConfigurations
