@@ -9,7 +9,6 @@ public struct ContentView: View {
             Image("Logo", bundle: .libResources)
             Text(greeting)
             Text(libResourcesString)
-            Text(Bundle.main.bundlePath.split(separator: "/").last ?? "")
         }
             .padding(64)
             .multilineTextAlignment(.center)

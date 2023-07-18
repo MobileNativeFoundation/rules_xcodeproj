@@ -43,10 +43,6 @@ XCODE_CONFIGURATIONS = {
         "//command_line_option:compilation_mode": "dbg",
         "@//:flag_to_transition_on": "B",
     },
-    "AdHoc": {
-        "//command_line_option:compilation_mode": "opt",
-        "@//:flag_to_transition_on": "C",
-    },
 }
 
 DEFAULT_XCODE_CONFIGURATION = "Debug"
@@ -92,7 +88,7 @@ XCODEPROJ_TARGETS = [
     ),
     top_level_targets(
         labels = [
-            "//iOSApp/Source:iOSApp",
+            "//iOSApp",
             "//Lib:ios_Lib",
             "//Lib/dist/dynamic:iOS",
             "//Lib/dist/dynamic:tvOS",
@@ -130,30 +126,6 @@ SCHEME_AUTOGENERATION_MODE = "all"
 
 def get_xcode_schemes():
     return [
-        xcode_schemes.scheme(
-            name = "iOS App AAAAAAA",
-            launch_action =
-                xcode_schemes.launch_action(
-                    build_configuration = "AppStore",
-                    target = "//iOSApp/Source:iOSApp",
-                ),
-        ),
-        xcode_schemes.scheme(
-            name = "iOS App B",
-            launch_action =
-                xcode_schemes.launch_action(
-                    build_configuration = "Debug",
-                    target = "//iOSApp/Source:iOSApp",
-                ),
-        ),
-        xcode_schemes.scheme(
-            name = "iOS App C",
-            launch_action =
-                xcode_schemes.launch_action(
-                    build_configuration = "AdHoc",
-                    target = "//iOSApp/Source:iOSApp",
-                ),
-        ),
         xcode_schemes.scheme(
             name = "iOSAppUnitTests_Scheme",
             test_action = xcode_schemes.test_action(
