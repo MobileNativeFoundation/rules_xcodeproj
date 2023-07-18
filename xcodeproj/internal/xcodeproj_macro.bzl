@@ -311,7 +311,8 @@ removed in a future release.""")
     if not xcode_configurations:
         xcode_configurations = {"Debug": {}}
 
-    # Collect `BAZEL_REAL` and `BAZELISK_SKIP_WRAPPER` from runner's env if it exist
+    # Collect `BAZEL_REAL` and `BAZELISK_SKIP_WRAPPER` from runner's env if it
+    # exists
     bazel_env["BAZEL_REAL"] = None
     bazel_env["BAZELISK_SKIP_WRAPPER"] = None
 
