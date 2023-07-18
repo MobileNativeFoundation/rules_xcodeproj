@@ -193,12 +193,12 @@ Product for target "\(key)" not found in `products`
         }
 
         let copyOutputs: String
-        if let bazelBasename = outputs.productBasename {
+        if outputs.productBasename != nil {
             copyOutputs = #"""
 else
   "$BAZEL_INTEGRATION_DIR/copy_outputs.sh" \
     "\#(Generator.bazelForcedSwiftCompilePath)" \
-    "\#(bazelBasename)" \
+    "$(basename $BAZEL_OUTPUTS_PRODUCT)" \
     "\#(productType.rsyncExcludeFile)"
 """#
         } else {
