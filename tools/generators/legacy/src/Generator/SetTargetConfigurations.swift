@@ -355,12 +355,6 @@ $(CONFIGURATION_BUILD_DIR)
             buildSettings["DEPLOYMENT_LOCATION"] = false
         }
 
-        if !buildSettings.keys.contains("INFOPLIST_FILE") &&
-            buildMode.allowsGeneratedInfoPlists
-        {
-            buildSettings["GENERATE_INFOPLIST_FILE"] = true
-        }
-
         if buildSettings.keys.contains("CODE_SIGN_ENTITLEMENTS") &&
             !buildMode.usesBazelModeBuildScripts
         {

@@ -12619,7 +12619,6 @@
 				COMPILE_TARGET_NAME = TestingUtils;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				EXCLUDED_SOURCE_FILE_NAMES = "$(IPHONESIMULATOR_FILES) $(MACOSX_FILES) bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Test/TestingUtils/TestingUtils.swift bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-30/bin/iOSApp/Test/TestingUtils/TestingUtils.swift";
-				GENERATE_INFOPLIST_FILE = YES;
 				INCLUDED_SOURCE_FILE_NAMES = "";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=iphonesimulator*]" = "$(IPHONESIMULATOR_FILES)";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=macosx*]" = "$(MACOSX_FILES)";
@@ -12661,7 +12660,6 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
 				EXECUTABLE_EXTENSION = binary;
-				GENERATE_INFOPLIST_FILE = YES;
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/UniversalCommandLineTool.63.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
@@ -12684,7 +12682,6 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = lib_swift;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(DERIVED_FILE_DIR)/xcode-overlay.yaml -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -F$(BAZEL_EXTERNAL)/examples_command_line_external";
 				PRODUCT_MODULE_NAME = LibSwift;
@@ -12791,7 +12788,6 @@
 				C_PARAMS_FILE = "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.rules_xcodeproj.c.compile.params";
 				"C_PARAMS_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.rules_xcodeproj.c.compile.params";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_NAME = MixedAnswer;
@@ -12868,7 +12864,6 @@
 				COMPILE_TARGET_NAME = c_lib;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37/bin/CommandLine/swift_c_module/c_lib.rules_xcodeproj.c.compile.params";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_NAME = c_lib;
@@ -12989,7 +12984,6 @@
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				CODE_SIGNING_ALLOWED = NO;
 				COMPILE_TARGET_NAME = ExternalResources;
-				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.resources.external;
 				PRODUCT_NAME = ExternalResources;
@@ -13014,7 +13008,6 @@
 				COMPILE_TARGET_NAME = lib_impl;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37/bin/CommandLine/CommandLineToolLib/lib_impl.rules_xcodeproj.c.compile.params";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_NAME = lib_impl;
@@ -13045,7 +13038,6 @@
 				COMPILE_TARGET_NAME = Lib;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				EXCLUDED_SOURCE_FILE_NAMES = "$(APPLETVOS_FILES) $(APPLETVSIMULATOR_FILES) $(IPHONEOS_FILES) $(IPHONESIMULATOR_FILES) bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/Lib/Lib.swift bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/Lib/Lib.swift bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-6/bin/Lib/Lib.swift bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/Lib/Lib.swift";
-				GENERATE_INFOPLIST_FILE = YES;
 				INCLUDED_SOURCE_FILE_NAMES = "";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=appletvos*]" = "$(APPLETVOS_FILES)";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=appletvsimulator*]" = "$(APPLETVSIMULATOR_FILES)";
@@ -13166,7 +13158,6 @@
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				CODE_SIGNING_ALLOWED = NO;
 				COMPILE_TARGET_NAME = OnlyStructuredResources;
-				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.only_structured_resources;
 				PRODUCT_NAME = OnlyStructuredResources;
@@ -13281,7 +13272,6 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = private_swift_lib;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PRODUCT_MODULE_NAME = _SwiftLib;
@@ -13303,7 +13293,6 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = private_swift_lib;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PRODUCT_MODULE_NAME = _SwiftLib;
@@ -13355,7 +13344,6 @@
 				CODE_SIGNING_ALLOWED = NO;
 				COMPILE_TARGET_NAME = ExampleNestedResources;
 				EXCLUDED_SOURCE_FILE_NAMES = "$(IPHONEOS_FILES) $(IPHONESIMULATOR_FILES) bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/iOSApp/Resources/ExampleNestedResources/ExampleNestedResources-intermediates/ExampleNestedResources.bundle bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Resources/ExampleNestedResources/ExampleNestedResources-intermediates/ExampleNestedResources.bundle";
-				GENERATE_INFOPLIST_FILE = YES;
 				INCLUDED_SOURCE_FILE_NAMES = "";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=iphoneos*]" = "$(IPHONEOS_FILES)";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=iphonesimulator*]" = "$(IPHONESIMULATOR_FILES)";
@@ -13454,7 +13442,6 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = lib_swift;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(DERIVED_FILE_DIR)/xcode-overlay.yaml -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -F$(BAZEL_EXTERNAL)/examples_command_line_external";
 				PRODUCT_MODULE_NAME = LibSwift;
@@ -13517,7 +13504,6 @@
 				COMPILE_TARGET_NAME = lib_impl;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineToolLib/lib_impl.rules_xcodeproj.c.compile.params";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_NAME = lib_impl;
@@ -13699,7 +13685,6 @@
 				COMPILE_TARGET_NAME = FXPageControl;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/external/FXPageControl/FXPageControl.rules_xcodeproj.c.compile.params";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_MODULE_NAME = FXPageControl;
@@ -13721,7 +13706,6 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = private_swift_lib;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PRODUCT_MODULE_NAME = _SwiftLib;
@@ -13748,7 +13732,6 @@
 				COMPILE_TARGET_NAME = FXPageControl;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/external/FXPageControl/FXPageControl.rules_xcodeproj.c.compile.params";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_MODULE_NAME = FXPageControl;
@@ -13822,7 +13805,6 @@
 				CODE_SIGNING_ALLOWED = NO;
 				COMPILE_TARGET_NAME = ExampleResources;
 				EXCLUDED_SOURCE_FILE_NAMES = "$(IPHONEOS_FILES) $(IPHONESIMULATOR_FILES) bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/iOSApp/Resources/ExampleResources/bucket bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Resources/ExampleResources/bucket";
-				GENERATE_INFOPLIST_FILE = YES;
 				INCLUDED_SOURCE_FILE_NAMES = "";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=iphoneos*]" = "$(IPHONEOS_FILES)";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=iphonesimulator*]" = "$(IPHONESIMULATOR_FILES)";
@@ -14001,7 +13983,6 @@
 				COMPILE_TARGET_NAME = lib_impl;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/CommandLine/CommandLineToolLib/lib_impl.rules_xcodeproj.c.compile.params";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_NAME = lib_impl;
@@ -14025,7 +14006,6 @@
 				COMPILE_TARGET_NAME = private_lib;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34/bin/CommandLine/CommandLineToolLib/private_lib.rules_xcodeproj.c.compile.params";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_NAME = private_lib;
@@ -14121,7 +14101,6 @@
 				COMPILE_TARGET_NAME = lib_impl;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34/bin/CommandLine/CommandLineToolLib/lib_impl.rules_xcodeproj.c.compile.params";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_NAME = lib_impl;
@@ -14172,7 +14151,6 @@
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				CODE_SIGNING_ALLOWED = NO;
 				COMPILE_TARGET_NAME = ExternalResources;
-				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.resources.external;
 				PRODUCT_NAME = ExternalResources;
@@ -14318,7 +14296,6 @@
 				C_PARAMS_FILE = "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.rules_xcodeproj.c.compile.params";
 				"C_PARAMS_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/MixedAnswer.rules_xcodeproj.c.compile.params";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_NAME = MixedAnswer;
@@ -14343,7 +14320,6 @@
 				COMPILE_TARGET_NAME = c_lib;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/CommandLine/swift_c_module/c_lib.rules_xcodeproj.c.compile.params";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_NAME = c_lib;
@@ -14367,7 +14343,6 @@
 				COMPILE_TARGET_NAME = Lib;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				EXCLUDED_SOURCE_FILE_NAMES = "$(WATCHOS_FILES) $(WATCHSIMULATOR_FILES) bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-5/bin/Lib/Lib.swift bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/Lib/Lib.swift";
-				GENERATE_INFOPLIST_FILE = YES;
 				INCLUDED_SOURCE_FILE_NAMES = "";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=watchos*]" = "$(WATCHOS_FILES)";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=watchsimulator*]" = "$(WATCHSIMULATOR_FILES)";
@@ -14487,7 +14462,6 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = lib_swift;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(DERIVED_FILE_DIR)/xcode-overlay.yaml -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -F$(BAZEL_EXTERNAL)/examples_command_line_external";
 				PRODUCT_MODULE_NAME = LibSwift;
@@ -14768,7 +14742,6 @@
 				COMPILE_TARGET_NAME = c_lib;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/swift_c_module/c_lib.rules_xcodeproj.c.compile.params";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_NAME = c_lib;
@@ -14798,7 +14771,6 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
 				EXECUTABLE_EXTENSION = binary;
-				GENERATE_INFOPLIST_FILE = YES;
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/UniversalCommandLineTool.69.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
@@ -15015,7 +14987,6 @@
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = MixedAnswerLib_Swift;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PRODUCT_MODULE_NAME = MixedAnswer;
@@ -15078,7 +15049,6 @@
 				COMPILE_TARGET_NAME = private_lib;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/CommandLine/CommandLineToolLib/private_lib.rules_xcodeproj.c.compile.params";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_NAME = private_lib;
@@ -15102,7 +15072,6 @@
 				COMPILE_TARGET_NAME = c_lib;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35/bin/CommandLine/swift_c_module/c_lib.rules_xcodeproj.c.compile.params";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_NAME = c_lib;
@@ -15152,7 +15121,6 @@
 				COMPILE_TARGET_NAME = c_lib;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34/bin/CommandLine/swift_c_module/c_lib.rules_xcodeproj.c.compile.params";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_NAME = c_lib;
@@ -15183,7 +15151,6 @@
 				COMPILE_TARGET_NAME = Lib;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				EXCLUDED_SOURCE_FILE_NAMES = "$(APPLETVOS_FILES) $(APPLETVSIMULATOR_FILES) $(IPHONEOS_FILES) $(IPHONESIMULATOR_FILES) bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/Lib/Lib.swift bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/Lib/Lib.swift bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-opt-STABLE-12/bin/Lib/Lib.swift bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9/bin/Lib/Lib.swift";
-				GENERATE_INFOPLIST_FILE = YES;
 				INCLUDED_SOURCE_FILE_NAMES = "";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=appletvos*]" = "$(APPLETVOS_FILES)";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=appletvsimulator*]" = "$(APPLETVSIMULATOR_FILES)";
@@ -15224,7 +15191,6 @@
 				COMPILE_TARGET_NAME = private_lib;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35/bin/CommandLine/CommandLineToolLib/private_lib.rules_xcodeproj.c.compile.params";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_NAME = private_lib;
@@ -15281,7 +15247,6 @@
 				COMPILE_TARGET_NAME = private_lib;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37/bin/CommandLine/CommandLineToolLib/private_lib.rules_xcodeproj.c.compile.params";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_NAME = private_lib;
@@ -15305,7 +15270,6 @@
 				COMPILE_TARGET_NAME = lib_impl;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38/bin/CommandLine/CommandLineToolLib/lib_impl.rules_xcodeproj.c.compile.params";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_NAME = lib_impl;
@@ -15377,7 +15341,6 @@
 				COMPILE_TARGET_NAME = BasicTests;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
-				GENERATE_INFOPLIST_FILE = YES;
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/BasicTests.70.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
@@ -15547,7 +15510,6 @@
 				COMPILE_TARGET_NAME = Lib;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				EXCLUDED_SOURCE_FILE_NAMES = "$(WATCHOS_FILES) $(WATCHSIMULATOR_FILES) bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-opt-STABLE-11/bin/Lib/Lib.swift bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8/bin/Lib/Lib.swift";
-				GENERATE_INFOPLIST_FILE = YES;
 				INCLUDED_SOURCE_FILE_NAMES = "";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=watchos*]" = "$(WATCHOS_FILES)";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=watchsimulator*]" = "$(WATCHSIMULATOR_FILES)";
@@ -15576,7 +15538,6 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = private_swift_lib;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PRODUCT_MODULE_NAME = _SwiftLib;
@@ -15675,7 +15636,6 @@
 				COMPILE_TARGET_NAME = private_lib;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineToolLib/private_lib.rules_xcodeproj.c.compile.params";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_NAME = private_lib;
@@ -15847,7 +15807,6 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
 				EXECUTABLE_EXTENSION = binary;
-				GENERATE_INFOPLIST_FILE = YES;
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/UniversalCommandLineTool.150.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
@@ -15905,7 +15864,6 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = lib_swift;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(DERIVED_FILE_DIR)/xcode-overlay.yaml -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -F$(BAZEL_EXTERNAL)/examples_command_line_external";
 				PRODUCT_MODULE_NAME = LibSwift;
@@ -15933,7 +15891,6 @@
 				CODE_SIGNING_ALLOWED = NO;
 				COMPILE_TARGET_NAME = ExampleNestedResources;
 				EXCLUDED_SOURCE_FILE_NAMES = "$(IPHONEOS_FILES) $(IPHONESIMULATOR_FILES) iOSApp/Resources/ExampleNestedResources/en.lproj/Localizable.strings iOSApp/Resources/ExampleNestedResources/es.lproj/Localizable.strings";
-				GENERATE_INFOPLIST_FILE = YES;
 				INCLUDED_SOURCE_FILE_NAMES = "";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=iphoneos*]" = "$(IPHONEOS_FILES)";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=iphonesimulator*]" = "$(IPHONESIMULATOR_FILES)";
@@ -15997,7 +15954,6 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = lib_swift;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(DERIVED_FILE_DIR)/xcode-overlay.yaml -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -F$(BAZEL_EXTERNAL)/examples_command_line_external";
 				PRODUCT_MODULE_NAME = LibSwift;
@@ -16156,7 +16112,6 @@
 				CODE_SIGNING_ALLOWED = NO;
 				COMPILE_TARGET_NAME = ExampleResources;
 				EXCLUDED_SOURCE_FILE_NAMES = "$(IPHONEOS_FILES) $(IPHONESIMULATOR_FILES) bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/iOSApp/Resources/ExampleResources/bucket bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Resources/ExampleResources/bucket";
-				GENERATE_INFOPLIST_FILE = YES;
 				INCLUDED_SOURCE_FILE_NAMES = "";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=iphoneos*]" = "$(IPHONEOS_FILES)";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=iphonesimulator*]" = "$(IPHONESIMULATOR_FILES)";
@@ -16186,7 +16141,6 @@
 				COMPILE_TARGET_NAME = Utils;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Source/Utils/Utils.rules_xcodeproj.c.compile.params";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_MODULE_NAME = Utils;
@@ -16363,7 +16317,6 @@
 				COMPILE_TARGET_NAME = Utils;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/Utils/Utils.rules_xcodeproj.c.compile.params";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_MODULE_NAME = Utils;
@@ -16420,7 +16373,6 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = lib_swift;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(DERIVED_FILE_DIR)/xcode-overlay.yaml -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -F$(BAZEL_EXTERNAL)/examples_command_line_external";
 				PRODUCT_MODULE_NAME = LibSwift;
@@ -16483,7 +16435,6 @@
 				COMPILE_TARGET_NAME = c_lib;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38/bin/CommandLine/swift_c_module/c_lib.rules_xcodeproj.c.compile.params";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_NAME = c_lib;
@@ -16543,7 +16494,6 @@
 				COMPILE_TARGET_NAME = BasicTests;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
-				GENERATE_INFOPLIST_FILE = YES;
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/BasicTests.151.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
@@ -16568,7 +16518,6 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = private_swift_lib;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PRODUCT_MODULE_NAME = _SwiftLib;
@@ -16630,7 +16579,6 @@
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				CODE_SIGNING_ALLOWED = NO;
 				COMPILE_TARGET_NAME = OnlyStructuredResources;
-				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.only_structured_resources;
 				PRODUCT_NAME = OnlyStructuredResources;
@@ -16700,7 +16648,6 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
 				EXECUTABLE_EXTENSION = binary;
-				GENERATE_INFOPLIST_FILE = YES;
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/UniversalCommandLineTool.144.link.params";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
@@ -16763,7 +16710,6 @@
 				COMPILE_TARGET_NAME = private_lib;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38/bin/CommandLine/CommandLineToolLib/private_lib.rules_xcodeproj.c.compile.params";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_NAME = private_lib;
@@ -16786,7 +16732,6 @@
 				COMPILE_TARGET_NAME = TestingUtils;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				EXCLUDED_SOURCE_FILE_NAMES = "$(IPHONESIMULATOR_FILES) $(MACOSX_FILES) bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/TestingUtils/TestingUtils.swift bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-29/bin/iOSApp/Test/TestingUtils/TestingUtils.swift";
-				GENERATE_INFOPLIST_FILE = YES;
 				INCLUDED_SOURCE_FILE_NAMES = "";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=iphonesimulator*]" = "$(IPHONESIMULATOR_FILES)";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=macosx*]" = "$(MACOSX_FILES)";
@@ -16822,7 +16767,6 @@
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = MixedAnswerLib_Swift;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PRODUCT_MODULE_NAME = MixedAnswer;
@@ -16851,7 +16795,6 @@
 				COMPILE_TARGET_NAME = lib_impl;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35/bin/CommandLine/CommandLineToolLib/lib_impl.rules_xcodeproj.c.compile.params";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
 				PRODUCT_NAME = lib_impl;
@@ -16922,7 +16865,6 @@
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				COMPILE_TARGET_NAME = private_swift_lib;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_SWIFT_FLAGS = "-vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params";
 				PRODUCT_MODULE_NAME = _SwiftLib;
