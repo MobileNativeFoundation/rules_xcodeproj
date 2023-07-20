@@ -769,6 +769,13 @@ private let iPhonePlatforms: Set<String> = [
     "iphonesimulator",
 ]
 
+private let nonInheritableKeys: Set<String> = [
+    "IPHONEOS_DEPLOYMENT_TARGET",
+    "MACOSX_DEPLOYMENT_TARGET",
+    "TVOS_DEPLOYMENT_TARGET",
+    "WATCHOS_DEPLOYMENT_TARGET",
+]
+
 private extension Dictionary
 where Key == BuildSettingConditional, Value == [String: BuildSetting] {
     func asBuildSettingDictionary() throws -> [String: Any] {
@@ -818,43 +825,75 @@ where Key == BuildSettingConditional, Value == [String: BuildSetting] {
         // TODO: If we ever add support for Universal targets we need to
         //   consolidate "ARCHS" to an `.any` conditional
 
+        let baseConditions = self.keys
+            .sorted()
+            .filter { $0 != .any }
+
+        let baseCondition = baseConditions.first!
+
         var buildSettings: [String: BuildSetting] = [:]
         for (key, conditionalBuildSetting) in conditionalBuildSettings {
             let sortedConditionalBuildSettings = conditionalBuildSetting
                 .sorted(by: { $0.key < $1.key })
             var remainingConditionalBuildSettings =
-                sortedConditionalBuildSettings[
-                    sortedConditionalBuildSettings.indices
-                ]
+                ArraySlice(sortedConditionalBuildSettings)
 
-            guard
-                let (firstCondition, first) = remainingConditionalBuildSettings
-                    .popFirst()
-            else {
-                continue
+            let firstCondition = sortedConditionalBuildSettings.first!.key
+
+            let isNonInheritableCondition =
+                firstCondition == .any || nonInheritableKeys.contains(key)
+
+            var remainingConditions: Set<Key>
+            if isNonInheritableCondition {
+                remainingConditions = []
+            } else {
+                remainingConditions = Set(baseConditions)
             }
 
-            // Set the base value to `.any` or the most preferable condition
-            // (i.e. Simulator or Apple Silicon)
-            buildSettings[key] = first
+            let baseValue: BuildSetting?
+            if firstCondition == baseCondition || isNonInheritableCondition {
+                let (_, firstValue) =
+                    remainingConditionalBuildSettings.popFirst()!
+                baseValue = firstValue
 
-            // Set `BAZEL_{COMPILE_,}TARGET_ID` for first condition, for
-            // buildRequest handling
-            if Set(["BAZEL_TARGET_ID", "BAZEL_COMPILE_TARGET_IDS"])
-                .contains(key)
-            {
-                buildSettings.set(
-                    firstCondition.conditionalize(key),
-                    to: "$(\(key))"
-                )
+                // Set the base value to `.any` or the most preferable condition
+                // (i.e. Simulator or Apple Silicon)
+                buildSettings[key] = firstValue
+
+                // Set `BAZEL_{COMPILE_,}TARGET_ID` for first condition, for
+                // buildRequest handling
+                if Set(["BAZEL_TARGET_ID", "BAZEL_COMPILE_TARGET_IDS"])
+                    .contains(key)
+                {
+                    buildSettings.set(
+                        firstCondition.conditionalize(key),
+                        to: "$(\(key))"
+                    )
+                }
+
+                remainingConditions.remove(firstCondition)
+            } else {
+                baseValue = nil
+
+                // If the base value isn't set, we want to inherit the project
+                // level or default value
+                buildSettings[key] = "$(inherited)"
+
+                remainingConditions.removeAll()
             }
 
             for (condition, buildSetting) in remainingConditionalBuildSettings {
-                guard buildSetting != first else {
+                remainingConditions.remove(condition)
+
+                guard buildSetting != baseValue else {
                     // Don't set redundant settings
                     continue
                 }
                 buildSettings[condition.conditionalize(key)] = buildSetting
+            }
+
+            for condition in remainingConditions {
+                buildSettings[condition.conditionalize(key)] = "$(inherited)"
             }
         }
 

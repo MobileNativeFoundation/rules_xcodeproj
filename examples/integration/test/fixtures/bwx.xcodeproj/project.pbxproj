@@ -12891,7 +12891,8 @@
 				COMPILE_TARGET_NAME = watchOSApp;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
-				DEVELOPMENT_TEAM = V82V4GQZXM;
+				DEVELOPMENT_TEAM = "$(inherited)";
+				"DEVELOPMENT_TEAM[sdk=watchos*]" = V82V4GQZXM;
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-dbg-STABLE-21/bin/watchOSApp/rules_xcodeproj/watchOSApp/Info.plist";
 				"INFOPLIST_FILE[sdk=watchos*]" = "$(BAZEL_OUT)/applebin_watchos-watchos_arm64_32-dbg-STABLE-22/bin/watchOSApp/rules_xcodeproj/watchOSApp/Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.watch";
@@ -13226,9 +13227,11 @@
 				COMPILE_TARGET_NAME = iOSApp.library;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
-				DEVELOPMENT_TEAM = V82V4GQZXM;
+				DEVELOPMENT_TEAM = "$(inherited)";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = V82V4GQZXM;
 				EXCLUDED_SOURCE_FILE_NAMES = "$(IPHONEOS_FILES) $(IPHONESIMULATOR_FILES) \"iOSApp/Source/PreviewContent/Preview Assets.xcassets\"";
 				EXECUTABLE_NAME = iOSApp_ExecutableName;
+				"EXECUTABLE_NAME[sdk=iphoneos*]" = "$(inherited)";
 				INCLUDED_SOURCE_FILE_NAMES = "";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=iphoneos*]" = "$(IPHONEOS_FILES)";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=iphonesimulator*]" = "$(IPHONESIMULATOR_FILES)";
@@ -13607,7 +13610,8 @@
 				COMPILE_TARGET_NAME = tvOSApp.library;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
-				DEVELOPMENT_TEAM = V82V4GQZXM;
+				DEVELOPMENT_TEAM = "$(inherited)";
+				"DEVELOPMENT_TEAM[sdk=appletvos*]" = V82V4GQZXM;
 				EXCLUDED_SOURCE_FILE_NAMES = "$(APPLETVOS_FILES) $(APPLETVSIMULATOR_FILES) \"tvOSApp/Resources/PreviewContent/Preview Assets.xcassets\"";
 				INCLUDED_SOURCE_FILE_NAMES = "";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=appletvos*]" = "$(APPLETVOS_FILES)";
@@ -13899,9 +13903,11 @@
 				COMPILE_TARGET_NAME = iOSApp.library;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
-				DEVELOPMENT_TEAM = V82V4GQZXM;
+				DEVELOPMENT_TEAM = "$(inherited)";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = V82V4GQZXM;
 				EXCLUDED_SOURCE_FILE_NAMES = "$(IPHONEOS_FILES) $(IPHONESIMULATOR_FILES)";
 				EXECUTABLE_NAME = iOSApp_ExecutableName;
+				"EXECUTABLE_NAME[sdk=iphoneos*]" = "$(inherited)";
 				INCLUDED_SOURCE_FILE_NAMES = "";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=iphoneos*]" = "$(IPHONEOS_FILES)";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=iphonesimulator*]" = "$(IPHONESIMULATOR_FILES)";
@@ -14185,7 +14191,8 @@
 				COMPILE_TARGET_NAME = AppClip.library;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
-				DEVELOPMENT_TEAM = V82V4GQZXM;
+				DEVELOPMENT_TEAM = "$(inherited)";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = V82V4GQZXM;
 				EXCLUDED_SOURCE_FILE_NAMES = "$(IPHONEOS_FILES) $(IPHONESIMULATOR_FILES) \"AppClip/PreviewContent/Preview Assets.xcassets\"";
 				INCLUDED_SOURCE_FILE_NAMES = "";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=iphoneos*]" = "$(IPHONEOS_FILES)";
@@ -14244,7 +14251,8 @@
 				COMPILE_TARGET_NAME = AppClip.library;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
-				DEVELOPMENT_TEAM = V82V4GQZXM;
+				DEVELOPMENT_TEAM = "$(inherited)";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = V82V4GQZXM;
 				EXCLUDED_SOURCE_FILE_NAMES = "$(IPHONEOS_FILES) $(IPHONESIMULATOR_FILES)";
 				INCLUDED_SOURCE_FILE_NAMES = "";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=iphoneos*]" = "$(IPHONEOS_FILES)";
@@ -14386,7 +14394,8 @@
 				COMPILE_TARGET_NAME = watchOSAppExtension.library;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
-				DEVELOPMENT_TEAM = V82V4GQZXM;
+				DEVELOPMENT_TEAM = "$(inherited)";
+				"DEVELOPMENT_TEAM[sdk=watchos*]" = V82V4GQZXM;
 				EXCLUDED_SOURCE_FILE_NAMES = "$(WATCHOS_FILES) $(WATCHSIMULATOR_FILES)";
 				INCLUDED_SOURCE_FILE_NAMES = "";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=watchos*]" = "$(WATCHOS_FILES)";
@@ -14556,7 +14565,8 @@
 				COMPILE_TARGET_NAME = tvOSApp.library;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
-				DEVELOPMENT_TEAM = V82V4GQZXM;
+				DEVELOPMENT_TEAM = "$(inherited)";
+				"DEVELOPMENT_TEAM[sdk=appletvos*]" = V82V4GQZXM;
 				EXCLUDED_SOURCE_FILE_NAMES = "$(APPLETVOS_FILES) $(APPLETVSIMULATOR_FILES)";
 				INCLUDED_SOURCE_FILE_NAMES = "";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=appletvos*]" = "$(APPLETVOS_FILES)";
@@ -14801,7 +14811,8 @@
 				COMPILE_TARGET_NAME = watchOSApp;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
-				DEVELOPMENT_TEAM = V82V4GQZXM;
+				DEVELOPMENT_TEAM = "$(inherited)";
+				"DEVELOPMENT_TEAM[sdk=watchos*]" = V82V4GQZXM;
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-opt-STABLE-23/bin/watchOSApp/rules_xcodeproj/watchOSApp/Info.plist";
 				"INFOPLIST_FILE[sdk=watchos*]" = "$(BAZEL_OUT)/applebin_watchos-watchos_arm64_32-opt-STABLE-24/bin/watchOSApp/rules_xcodeproj/watchOSApp/Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.watch";
@@ -15992,7 +16003,8 @@
 				COMPILE_TARGET_NAME = watchOSAppExtension.library;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
-				DEVELOPMENT_TEAM = V82V4GQZXM;
+				DEVELOPMENT_TEAM = "$(inherited)";
+				"DEVELOPMENT_TEAM[sdk=watchos*]" = V82V4GQZXM;
 				EXCLUDED_SOURCE_FILE_NAMES = "$(WATCHOS_FILES) $(WATCHSIMULATOR_FILES)";
 				INCLUDED_SOURCE_FILE_NAMES = "";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=watchos*]" = "$(WATCHOS_FILES)";
@@ -16210,7 +16222,8 @@
 				COMPILE_TARGET_NAME = WidgetExtension.library;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
-				DEVELOPMENT_TEAM = V82V4GQZXM;
+				DEVELOPMENT_TEAM = "$(inherited)";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = V82V4GQZXM;
 				EXCLUDED_SOURCE_FILE_NAMES = "$(IPHONEOS_FILES) $(IPHONESIMULATOR_FILES) bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/WidgetExtension/Intents.swift bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/WidgetExtension/Intents.swift";
 				INCLUDED_SOURCE_FILE_NAMES = "";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=iphoneos*]" = "$(IPHONEOS_FILES)";
@@ -16268,7 +16281,8 @@
 				COMPILE_TARGET_NAME = WidgetExtension.library;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
-				DEVELOPMENT_TEAM = V82V4GQZXM;
+				DEVELOPMENT_TEAM = "$(inherited)";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = V82V4GQZXM;
 				EXCLUDED_SOURCE_FILE_NAMES = "$(IPHONEOS_FILES) $(IPHONESIMULATOR_FILES) bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/WidgetExtension/Intents.swift bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/WidgetExtension/Intents.swift";
 				INCLUDED_SOURCE_FILE_NAMES = "";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=iphoneos*]" = "$(IPHONEOS_FILES)";

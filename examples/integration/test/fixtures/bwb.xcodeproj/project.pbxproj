@@ -12197,8 +12197,10 @@
 				COMPILE_TARGET_NAME = iOSApp.library;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
-				DEVELOPMENT_TEAM = V82V4GQZXM;
+				DEVELOPMENT_TEAM = "$(inherited)";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = V82V4GQZXM;
 				EXECUTABLE_NAME = iOSApp_ExecutableName;
+				"EXECUTABLE_NAME[sdk=iphoneos*]" = "$(inherited)";
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Source/rules_xcodeproj/iOSApp/Info.plist";
 				"INFOPLIST_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/applebin_ios-ios_arm64-dbg-STABLE-14/bin/iOSApp/Source/rules_xcodeproj/iOSApp/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -12396,8 +12398,10 @@
 				COMPILE_TARGET_NAME = iOSApp.library;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
-				DEVELOPMENT_TEAM = V82V4GQZXM;
+				DEVELOPMENT_TEAM = "$(inherited)";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = V82V4GQZXM;
 				EXECUTABLE_NAME = iOSApp_ExecutableName;
+				"EXECUTABLE_NAME[sdk=iphoneos*]" = "$(inherited)";
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Source/rules_xcodeproj/iOSApp/Info.plist";
 				"INFOPLIST_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/applebin_ios-ios_arm64-opt-STABLE-16/bin/iOSApp/Source/rules_xcodeproj/iOSApp/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -12717,7 +12721,8 @@
 				COMPILE_TARGET_NAME = watchOSAppExtension.library;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
-				DEVELOPMENT_TEAM = V82V4GQZXM;
+				DEVELOPMENT_TEAM = "$(inherited)";
+				"DEVELOPMENT_TEAM[sdk=watchos*]" = V82V4GQZXM;
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-dbg-STABLE-17/bin/watchOSAppExtension/rules_xcodeproj/watchOSAppExtension/Info.plist";
 				"INFOPLIST_FILE[sdk=watchos*]" = "$(BAZEL_OUT)/applebin_watchos-watchos_arm64_32-dbg-STABLE-18/bin/watchOSAppExtension/rules_xcodeproj/watchOSAppExtension/Info.plist";
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOSAppExtension.10.link.params";
@@ -12971,7 +12976,8 @@
 				COMPILE_TARGET_NAME = tvOSApp.library;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
-				DEVELOPMENT_TEAM = V82V4GQZXM;
+				DEVELOPMENT_TEAM = "$(inherited)";
+				"DEVELOPMENT_TEAM[sdk=appletvos*]" = V82V4GQZXM;
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-opt-STABLE-27/bin/tvOSApp/Source/rules_xcodeproj/tvOSApp/Info.plist";
 				"INFOPLIST_FILE[sdk=appletvos*]" = "$(BAZEL_OUT)/applebin_tvos-tvos_arm64-opt-STABLE-28/bin/tvOSApp/Source/rules_xcodeproj/tvOSApp/Info.plist";
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOSApp.98.link.params";
@@ -13539,7 +13545,8 @@
 				COMPILE_TARGET_NAME = tvOSApp.library;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
-				DEVELOPMENT_TEAM = V82V4GQZXM;
+				DEVELOPMENT_TEAM = "$(inherited)";
+				"DEVELOPMENT_TEAM[sdk=appletvos*]" = V82V4GQZXM;
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_tvos-tvos_x86_64-dbg-STABLE-25/bin/tvOSApp/Source/rules_xcodeproj/tvOSApp/Info.plist";
 				"INFOPLIST_FILE[sdk=appletvos*]" = "$(BAZEL_OUT)/applebin_tvos-tvos_arm64-dbg-STABLE-26/bin/tvOSApp/Source/rules_xcodeproj/tvOSApp/Info.plist";
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOSApp.19.link.params";
@@ -13702,7 +13709,8 @@
 				COMPILE_TARGET_NAME = WidgetExtension.library;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
-				DEVELOPMENT_TEAM = V82V4GQZXM;
+				DEVELOPMENT_TEAM = "$(inherited)";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = V82V4GQZXM;
 				EXCLUDED_SOURCE_FILE_NAMES = "$(IPHONEOS_FILES) $(IPHONESIMULATOR_FILES) bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/WidgetExtension/Intents.swift bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/WidgetExtension/Intents.swift";
 				INCLUDED_SOURCE_FILE_NAMES = "";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=iphoneos*]" = "$(IPHONEOS_FILES)";
@@ -13849,7 +13857,8 @@
 				COMPILE_TARGET_NAME = watchOSAppExtension.library;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
-				DEVELOPMENT_TEAM = V82V4GQZXM;
+				DEVELOPMENT_TEAM = "$(inherited)";
+				"DEVELOPMENT_TEAM[sdk=watchos*]" = V82V4GQZXM;
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-opt-STABLE-19/bin/watchOSAppExtension/rules_xcodeproj/watchOSAppExtension/Info.plist";
 				"INFOPLIST_FILE[sdk=watchos*]" = "$(BAZEL_OUT)/applebin_watchos-watchos_arm64_32-opt-STABLE-20/bin/watchOSAppExtension/rules_xcodeproj/watchOSAppExtension/Info.plist";
 				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOSAppExtension.89.link.params";
@@ -13946,7 +13955,8 @@
 				COMPILE_TARGET_NAME = watchOSApp;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
-				DEVELOPMENT_TEAM = V82V4GQZXM;
+				DEVELOPMENT_TEAM = "$(inherited)";
+				"DEVELOPMENT_TEAM[sdk=watchos*]" = V82V4GQZXM;
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-opt-STABLE-23/bin/watchOSApp/rules_xcodeproj/watchOSApp/Info.plist";
 				"INFOPLIST_FILE[sdk=watchos*]" = "$(BAZEL_OUT)/applebin_watchos-watchos_arm64_32-opt-STABLE-24/bin/watchOSApp/rules_xcodeproj/watchOSApp/Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.watch";
@@ -14014,7 +14024,8 @@
 				COMPILE_TARGET_NAME = AppClip.library;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
-				DEVELOPMENT_TEAM = V82V4GQZXM;
+				DEVELOPMENT_TEAM = "$(inherited)";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = V82V4GQZXM;
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-opt-STABLE-15/bin/AppClip/rules_xcodeproj/AppClip/Info.plist";
 				"INFOPLIST_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/applebin_ios-ios_arm64-opt-STABLE-16/bin/AppClip/rules_xcodeproj/AppClip/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -14240,7 +14251,8 @@
 				COMPILE_TARGET_NAME = AppClip.library;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
-				DEVELOPMENT_TEAM = V82V4GQZXM;
+				DEVELOPMENT_TEAM = "$(inherited)";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = V82V4GQZXM;
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/AppClip/rules_xcodeproj/AppClip/Info.plist";
 				"INFOPLIST_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/applebin_ios-ios_arm64-dbg-STABLE-14/bin/AppClip/rules_xcodeproj/AppClip/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -15490,7 +15502,8 @@
 				COMPILE_TARGET_NAME = WidgetExtension.library;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
-				DEVELOPMENT_TEAM = V82V4GQZXM;
+				DEVELOPMENT_TEAM = "$(inherited)";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = V82V4GQZXM;
 				EXCLUDED_SOURCE_FILE_NAMES = "$(IPHONEOS_FILES) $(IPHONESIMULATOR_FILES) bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/WidgetExtension/Intents.swift bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/WidgetExtension/Intents.swift";
 				INCLUDED_SOURCE_FILE_NAMES = "";
 				"INCLUDED_SOURCE_FILE_NAMES[sdk=iphoneos*]" = "$(IPHONEOS_FILES)";
@@ -15870,7 +15883,8 @@
 				COMPILE_TARGET_NAME = watchOSApp;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = NO;
-				DEVELOPMENT_TEAM = V82V4GQZXM;
+				DEVELOPMENT_TEAM = "$(inherited)";
+				"DEVELOPMENT_TEAM[sdk=watchos*]" = V82V4GQZXM;
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-dbg-STABLE-21/bin/watchOSApp/rules_xcodeproj/watchOSApp/Info.plist";
 				"INFOPLIST_FILE[sdk=watchos*]" = "$(BAZEL_OUT)/applebin_watchos-watchos_arm64_32-dbg-STABLE-22/bin/watchOSApp/rules_xcodeproj/watchOSApp/Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.watch";
