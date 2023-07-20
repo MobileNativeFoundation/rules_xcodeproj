@@ -421,8 +421,8 @@ swift_library(
             # Custom for our tests
             Label("//third_party/com_github_pointfreeco_swift_custom_dump:type_name.patch"),
         ],
-        sha256 = "a45e8f275794960651043623e23abb8365f0455b4ad5976bc56a4fa00c5efb31",
-        strip_prefix = "swift-custom-dump-0.5.0",
-        url = "https://github.com/pointfreeco/swift-custom-dump/archive/refs/tags/0.5.0.tar.gz",
+        sha256 = "9aec23538c2d050e3829200cd73ecb3c402d3922366ed2f6abb4f748f7582533",
+        strip_prefix = "swift-custom-dump-0.11.1",
+        url = "https://github.com/pointfreeco/swift-custom-dump/archive/refs/tags/0.11.1.tar.gz",
         ignore_version_differences = ignore_version_differences,
     )
