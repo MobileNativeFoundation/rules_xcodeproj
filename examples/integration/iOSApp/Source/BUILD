@@ -31,7 +31,10 @@ ios_application(
     bundle_id = IOS_BUNDLE_ID,
     bundle_name = "iOSApp",
     entitlements = "ios app.entitlements",
-    executable_name = "iOSApp_ExecutableName",
+    executable_name = select({
+        ":device_build": None,
+        "//conditions:default": "iOSApp_ExecutableName",
+    }),
     extensions = ["//WidgetExtension"],
     families = ["iphone"],
     frameworks = [
