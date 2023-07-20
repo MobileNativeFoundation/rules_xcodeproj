@@ -1,6 +1,6 @@
 --- Sources/CustomDump/Diff.swift
 +++ Sources/CustomDump/Diff.swift
-@@ -63,7 +63,7 @@ public func diff<T>(_ lhs: T, _ rhs: T, format: DiffFormat = .default) -> String
+@@ -71,7 +71,7 @@ public func diff<T>(_ lhs: T, _ rhs: T, format: DiffFormat = .default) -> String
        )
      }
 
@@ -9,7 +9,7 @@
      else {
        diffEverything()
        return out
-@@ -301,7 +301,7 @@ public func diff<T>(_ lhs: T, _ rhs: T, format: DiffFormat = .default) -> String
+@@ -320,7 +320,7 @@ public func diff<T>(_ lhs: T, _ rhs: T, format: DiffFormat = .default) -> String
      case let (lhs as AnyObject, .class?, rhs as AnyObject, .class?):
        let lhsItem = ObjectIdentifier(lhs)
        let rhsItem = ObjectIdentifier(rhs)
@@ -21,16 +21,21 @@
 
 --- Sources/CustomDump/Dump.swift
 +++ Sources/CustomDump/Dump.swift
-@@ -135,10 +135,10 @@ public func customDump<T, TargetStream>(
-     case let (value as AnyObject, .class?):
-       let item = ObjectIdentifier(value)
+@@ -181,7 +181,7 @@ func _customDump<T, TargetStream>(
+         return id > 1 ? "#\(id)" : ""
+       }
        if visitedItems.contains(item) {
--        out.write("\(typeName(mirror.subjectType))(↩︎)")
-+        out.write("\(typeName(type(of: value)))(↩︎)")
+-        out.write("\(typeName(mirror.subjectType))\(id)(↩︎)")
++        out.write("\(typeName(type(of: value)))\(id)(↩︎)")
        } else {
          visitedItems.insert(item)
--        dumpChildren(of: mirror, prefix: "\(typeName(mirror.subjectType))(", suffix: ")")
-+        dumpChildren(of: mirror, prefix: "\(typeName(type(of: value)))(", suffix: ")")
+         occurrence += 1
+@@ -194,7 +194,7 @@ func _customDump<T, TargetStream>(
+         }
+         dumpChildren(
+           of: Mirror(value, children: children),
+-          prefix: "\(typeName(mirror.subjectType))\(id)(",
++          prefix: "\(typeName(type(of: value)))\(id)(",
+           suffix: ")"
+         )
        }
-
-     case (_, .collection?):

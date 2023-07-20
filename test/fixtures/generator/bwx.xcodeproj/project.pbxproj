@@ -168,6 +168,7 @@
 		56877C3BB7BB9E72E37CB341 /* Bool+Extras.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA67E012D2DAB8811CFA3A9 /* Bool+Extras.swift */; };
 		580133CB2CAE6DA58B3CABBB /* CreateCustomXCSchemesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1270E75F4067D18D917CDAB /* CreateCustomXCSchemesTests.swift */; };
 		58301FD603786604AEBB8FD9 /* CreateProducts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E4614493C4164755823AB9 /* CreateProducts.swift */; };
+		5932DAF157494ACB35D13084 /* Unordered.swift in Sources */ = {isa = PBXBuildFile; fileRef = D644241B410E2FD609D14F5F /* Unordered.swift */; };
 		599B1B5BE9DF398AB0731FCA /* PBXHeadersBuildPhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2DD776754B85083A918A19 /* PBXHeadersBuildPhase.swift */; };
 		59D4EABAAD6FC7936223A153 /* ConsolidatedTargetExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48B344F5EC4EF53406E6DA4 /* ConsolidatedTargetExtensionsTests.swift */; };
 		5BD712B7E3F15231D80312AF /* OrderedSet+CustomDebugStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688FB94F9D44071B1D493D40 /* OrderedSet+CustomDebugStringConvertible.swift */; };
@@ -981,6 +982,7 @@
 		D3D5E0DB48F31A95C46CDE83 /* XCSharedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCSharedData.swift; sourceTree = "<group>"; };
 		D54B0A6A947443ACFEDE4116 /* XCScheme+PathRunnable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCScheme+PathRunnable.swift"; sourceTree = "<group>"; };
 		D6185DAF4E1E19810A6F764B /* ArgumentParser.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = ArgumentParser.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
+		D644241B410E2FD609D14F5F /* Unordered.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Unordered.swift; sourceTree = "<group>"; };
 		D694EF5F3DEFE7BD886996E5 /* XCScheme+RemoteRunnable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCScheme+RemoteRunnable.swift"; sourceTree = "<group>"; };
 		D6CA4097B24F74C81D00A992 /* Argument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Argument.swift; sourceTree = "<group>"; };
 		D7B1BF2EC96CF0D192758B5D /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
@@ -2131,6 +2133,7 @@
 				5020BF439F859A12788B6DB9 /* CollectionDifference.swift */,
 				D880311390CB0BB073B7D275 /* Mirror.swift */,
 				DD0EF2A266CE5096B29AC56D /* String.swift */,
+				D644241B410E2FD609D14F5F /* Unordered.swift */,
 			);
 			path = Internal;
 			sourceTree = "<group>";
@@ -3879,6 +3882,7 @@
 				7FBB8E860AB09E0A360D9BAD /* CollectionDifference.swift in Sources */,
 				EA84EBCEF28448DDC49E04C1 /* Mirror.swift in Sources */,
 				3446BBA4EC50A8E5F45C2A83 /* String.swift in Sources */,
+				5932DAF157494ACB35D13084 /* Unordered.swift in Sources */,
 				C7EACE9D39B455084FFC281A /* XCTAssertNoDifference.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
