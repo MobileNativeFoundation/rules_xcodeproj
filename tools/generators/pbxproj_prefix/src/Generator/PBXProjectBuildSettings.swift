@@ -19,148 +19,190 @@ extension Generator {
         indexImport: String,
         indexingProjectDir: String,
         resolvedRepositories: String,
-        workspace: String
+        workspace: String,
+        createBuildSettingsAttribute: CreateBuildSettingsAttribute
     ) -> String {
-        var settings: [(key: String, value: String)] = [
-            ("ALWAYS_SEARCH_USER_PATHS", "NO"),
-            ("BAZEL_CONFIG", "rules_xcodeproj"),
-            ("BAZEL_EXTERNAL", "$(BAZEL_OUTPUT_BASE)/external".pbxProjEscaped),
-            ("BAZEL_INTEGRATION_DIR", "$(INTERNAL_DIR)/bazel".pbxProjEscaped),
-            (
-                "BAZEL_LLDB_INIT",
-                "$(HOME)/.lldbinit-rules_xcodeproj".pbxProjEscaped
+        var buildSettings: [BuildSetting] = [
+            .init(key: "ALWAYS_SEARCH_USER_PATHS", value: "NO"),
+            .init(key: "BAZEL_CONFIG", value: "rules_xcodeproj"),
+            .init(
+                key: "BAZEL_EXTERNAL",
+                value: "$(BAZEL_OUTPUT_BASE)/external".pbxProjEscaped
             ),
-            ("BAZEL_OUT", "$(PROJECT_DIR)/bazel-out".pbxProjEscaped),
-            (
-                "BAZEL_OUTPUT_BASE",
-                "$(_BAZEL_OUTPUT_BASE:standardizepath)".pbxProjEscaped
+            .init(
+                key: "BAZEL_INTEGRATION_DIR",
+                value: "$(INTERNAL_DIR)/bazel".pbxProjEscaped
             ),
-            ("BAZEL_WORKSPACE_ROOT", "$(SRCROOT)".pbxProjEscaped),
-            (
-                "BUILD_DIR",
-                "$(SYMROOT)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)"
+            .init(
+                key: "BAZEL_LLDB_INIT",
+                value: "$(HOME)/.lldbinit-rules_xcodeproj".pbxProjEscaped
+            ),
+            .init(
+                key: "BAZEL_OUT",
+                value: "$(PROJECT_DIR)/bazel-out".pbxProjEscaped),
+            .init(
+                key: "BAZEL_OUTPUT_BASE",
+                value: "$(_BAZEL_OUTPUT_BASE:standardizepath)".pbxProjEscaped
+            ),
+            .init(
+                key: "BAZEL_WORKSPACE_ROOT",
+                value: "$(SRCROOT)".pbxProjEscaped
+            ),
+            .init(
+                key: "BUILD_DIR",
+                value: "$(SYMROOT)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)"
                     .pbxProjEscaped
             ),
-            ("BUILD_WORKSPACE_DIRECTORY", "$(SRCROOT)".pbxProjEscaped),
-            (
-                "BUILT_PRODUCTS_DIR",
-                "$(INDEXING_BUILT_PRODUCTS_DIR__$(INDEX_ENABLE_BUILD_ARENA))"
+            .init(
+                key: "BUILD_WORKSPACE_DIRECTORY",
+                value: "$(SRCROOT)".pbxProjEscaped
+            ),
+            .init(
+                key: "BUILT_PRODUCTS_DIR",
+                value: "$(INDEXING_BUILT_PRODUCTS_DIR__$(INDEX_ENABLE_BUILD_ARENA))"
                     .pbxProjEscaped
             ),
-            ("CLANG_ENABLE_OBJC_ARC", "YES"),
-            ("CLANG_MODULES_AUTOLINK", "NO"),
-            (
-                "CONFIGURATION_BUILD_DIR",
-                "$(BUILD_DIR)/$(BAZEL_PACKAGE_BIN_DIR)"
+            .init(key: "CLANG_ENABLE_OBJC_ARC", value: "YES"),
+            .init(key: "CLANG_MODULES_AUTOLINK", value: "NO"),
+            .init(
+                key: "CONFIGURATION_BUILD_DIR",
+                value: "$(BUILD_DIR)/$(BAZEL_PACKAGE_BIN_DIR)"
                     .pbxProjEscaped
             ),
-            ("COPY_PHASE_STRIP", "NO"),
-            ("DEBUG_INFORMATION_FORMAT", "dwarf"),
-            (
-                "DEPLOYMENT_LOCATION",
-                "$(INDEXING_DEPLOYMENT_LOCATION__$(INDEX_ENABLE_BUILD_ARENA))"
+            .init(key: "COPY_PHASE_STRIP", value: "NO"),
+            .init(key: "DEBUG_INFORMATION_FORMAT", value: "dwarf"),
+            .init(
+                key: "DEPLOYMENT_LOCATION",
+                value: "$(INDEXING_DEPLOYMENT_LOCATION__$(INDEX_ENABLE_BUILD_ARENA))"
                     .pbxProjEscaped
             ),
-            ("DSTROOT", "$(PROJECT_TEMP_DIR)".pbxProjEscaped),
-            ("ENABLE_DEFAULT_SEARCH_PATHS", "NO"),
-            ("ENABLE_STRICT_OBJC_MSGSEND", "YES"),
-            ("GCC_OPTIMIZATION_LEVEL", "0"),
-            (
-                "INDEXING_BUILT_PRODUCTS_DIR__",
-                "$(INDEXING_BUILT_PRODUCTS_DIR__NO)".pbxProjEscaped
+            .init(key: "DSTROOT", value: "$(PROJECT_TEMP_DIR)".pbxProjEscaped),
+            .init(key: "ENABLE_DEFAULT_SEARCH_PATHS", value: "NO"),
+            .init(key: "ENABLE_STRICT_OBJC_MSGSEND", value: "YES"),
+            .init(key: "GCC_OPTIMIZATION_LEVEL", value: "0"),
+            .init(
+                key: "INDEXING_BUILT_PRODUCTS_DIR__",
+                value: "$(INDEXING_BUILT_PRODUCTS_DIR__NO)".pbxProjEscaped
             ),
-            ("INDEXING_BUILT_PRODUCTS_DIR__NO", "$(BUILD_DIR)".pbxProjEscaped),
-            (
-                "INDEXING_BUILT_PRODUCTS_DIR__YES",
-                "$(CONFIGURATION_BUILD_DIR)".pbxProjEscaped
+            .init(
+                key: "INDEXING_BUILT_PRODUCTS_DIR__NO",
+                value: "$(BUILD_DIR)".pbxProjEscaped
             ),
-            (
-                "INDEXING_DEPLOYMENT_LOCATION__",
-                "$(INDEXING_DEPLOYMENT_LOCATION__NO)".pbxProjEscaped
+            .init(
+                key: "INDEXING_BUILT_PRODUCTS_DIR__YES",
+                value: "$(CONFIGURATION_BUILD_DIR)".pbxProjEscaped
             ),
-            ("INDEXING_DEPLOYMENT_LOCATION__NO", "YES"),
-            ("INDEXING_DEPLOYMENT_LOCATION__YES", "NO"),
-            (
-                "INDEXING_PROJECT_DIR__",
-                "$(INDEXING_PROJECT_DIR__NO)".pbxProjEscaped
+            .init(
+                key: "INDEXING_DEPLOYMENT_LOCATION__",
+                value: "$(INDEXING_DEPLOYMENT_LOCATION__NO)".pbxProjEscaped
             ),
-            ("INDEXING_PROJECT_DIR__NO", "$(PROJECT_DIR)".pbxProjEscaped),
-            ("INDEXING_PROJECT_DIR__YES", indexingProjectDir.pbxProjEscaped),
-            ("INDEX_DATA_STORE_DIR", "$(INDEX_DATA_STORE_DIR)".pbxProjEscaped),
-            ("INDEX_FORCE_SCRIPT_EXECUTION", "YES"),
-            (
-                "INDEX_IMPORT",
-                indexImport
+            .init(key: "INDEXING_DEPLOYMENT_LOCATION__NO", value: "YES"),
+            .init(key: "INDEXING_DEPLOYMENT_LOCATION__YES", value: "NO"),
+            .init(
+                key: "INDEXING_PROJECT_DIR__",
+                value: "$(INDEXING_PROJECT_DIR__NO)".pbxProjEscaped
+            ),
+            .init(
+                key: "INDEXING_PROJECT_DIR__NO",
+                value: "$(PROJECT_DIR)".pbxProjEscaped
+            ),
+            .init(
+                key: "INDEXING_PROJECT_DIR__YES",
+                value: indexingProjectDir.pbxProjEscaped
+            ),
+            .init(
+                key: "INDEX_DATA_STORE_DIR",
+                value: "$(INDEX_DATA_STORE_DIR)".pbxProjEscaped
+            ),
+            .init(key: "INDEX_FORCE_SCRIPT_EXECUTION", value: "YES"),
+            .init(
+                key: "INDEX_IMPORT",
+                value: indexImport
                     .executionRootBasedBuildSettingPath
                     .pbxProjEscaped
             ),
-            (
-                "INSTALL_PATH",
-                "$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)/bin".pbxProjEscaped
+            .init(
+                key: "INSTALL_PATH",
+                value: "$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)/bin".pbxProjEscaped
             ),
-            ("INTERNAL_DIR", "$(PROJECT_FILE_PATH)/rules_xcodeproj"),
-            ("LD_DYLIB_INSTALL_NAME", "".pbxProjEscaped),
-            ("LD_OBJC_ABI_VERSION", "".pbxProjEscaped),
-            ("LD_RUNPATH_SEARCH_PATHS", "".pbxProjEscaped),
-            ("ONLY_ACTIVE_ARCH", "YES"),
-            (
-                "PROJECT_DIR",
-                "$(INDEXING_PROJECT_DIR__$(INDEX_ENABLE_BUILD_ARENA))"
+            .init(
+                key: "INTERNAL_DIR",
+                value: "$(PROJECT_FILE_PATH)/rules_xcodeproj"
+            ),
+            .init(key: "LD_DYLIB_INSTALL_NAME", value: "".pbxProjEscaped),
+            .init(key: "LD_OBJC_ABI_VERSION", value: "".pbxProjEscaped),
+            .init(key: "LD_RUNPATH_SEARCH_PATHS", value: "".pbxProjEscaped),
+            .init(key: "ONLY_ACTIVE_ARCH", value: "YES"),
+            .init(
+                key: "PROJECT_DIR",
+                value: "$(INDEXING_PROJECT_DIR__$(INDEX_ENABLE_BUILD_ARENA))"
                     .pbxProjEscaped
             ),
-            ("RESOLVED_REPOSITORIES", resolvedRepositories.pbxProjEscaped),
-            ("RULES_XCODEPROJ_BUILD_MODE", buildMode.rawValue),
-            (
-                "SCHEME_TARGET_IDS_FILE",
-                "$(OBJROOT)/scheme_target_ids".pbxProjEscaped
+            .init(
+                key: "RESOLVED_REPOSITORIES",
+                value: resolvedRepositories.pbxProjEscaped
             ),
-            ("SRCROOT", workspace.pbxProjEscaped),
-            ("SUPPORTS_MACCATALYST", "NO"),
-            ("SWIFT_OBJC_INTERFACE_HEADER_NAME", "".pbxProjEscaped),
-            ("SWIFT_OPTIMIZATION_LEVEL", "-Onone".pbxProjEscaped),
-            ("SWIFT_VERSION", "5.0"),
-            (
-                "TARGET_TEMP_DIR",
-                #"""
+            .init(key: "RULES_XCODEPROJ_BUILD_MODE", value: buildMode.rawValue),
+            .init(
+                key: "SCHEME_TARGET_IDS_FILE",
+                value: "$(OBJROOT)/scheme_target_ids".pbxProjEscaped
+            ),
+            .init(key: "SRCROOT", value: workspace.pbxProjEscaped),
+            .init(key: "SUPPORTS_MACCATALYST", value: "NO"),
+            .init(
+                key: "SWIFT_OBJC_INTERFACE_HEADER_NAME",
+                value: "".pbxProjEscaped
+            ),
+            .init(
+                key: "SWIFT_OPTIMIZATION_LEVEL",
+                value: "-Onone".pbxProjEscaped
+            ),
+            .init(key: "SWIFT_VERSION", value: "5.0"),
+            .init(
+                key: "TARGET_TEMP_DIR",
+                value: #"""
 $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
 """#.pbxProjEscaped
             ),
-            ("USE_HEADERMAP", "NO"),
-            ("VALIDATE_WORKSPACE", "NO"),
-            ("_BAZEL_OUTPUT_BASE", "$(PROJECT_DIR)/../..".pbxProjEscaped),
+            .init(key: "USE_HEADERMAP", value: "NO"),
+            .init(key: "VALIDATE_WORKSPACE", value: "NO"),
+            .init(
+                key: "_BAZEL_OUTPUT_BASE",
+                value: "$(PROJECT_DIR)/../..".pbxProjEscaped
+            ),
         ]
-
+        
         if buildMode.usesBazelModeBuildScripts {
-            settings.append(contentsOf: [
-                ("CC", "$(BAZEL_INTEGRATION_DIR)/clang.sh".pbxProjEscaped),
-                ("CXX", "$(BAZEL_INTEGRATION_DIR)/clang.sh".pbxProjEscaped),
-                ("CODE_SIGNING_ALLOWED", "NO"),
-                ("LD", "$(BAZEL_INTEGRATION_DIR)/ld.sh".pbxProjEscaped),
-                ("LDPLUSPLUS", "$(BAZEL_INTEGRATION_DIR)/ld.sh".pbxProjEscaped),
-                (
-                    "LIBTOOL",
-                    "$(BAZEL_INTEGRATION_DIR)/libtool.sh".pbxProjEscaped
+            buildSettings.append(contentsOf: [
+                .init(
+                    key: "CC",
+                    value: "$(BAZEL_INTEGRATION_DIR)/clang.sh".pbxProjEscaped
                 ),
-                (
-                    "SWIFT_EXEC",
-                    "$(BAZEL_INTEGRATION_DIR)/swiftc".pbxProjEscaped
+                .init(
+                    key: "CXX",
+                    value: "$(BAZEL_INTEGRATION_DIR)/clang.sh".pbxProjEscaped
                 ),
-                ("SWIFT_USE_INTEGRATED_DRIVER", "NO"),
+                .init(key: "CODE_SIGNING_ALLOWED", value: "NO"),
+                .init(
+                    key: "LD",
+                    value: "$(BAZEL_INTEGRATION_DIR)/ld.sh".pbxProjEscaped
+                ),
+                .init(
+                    key: "LDPLUSPLUS",
+                    value: "$(BAZEL_INTEGRATION_DIR)/ld.sh".pbxProjEscaped
+                ),
+                .init(
+                    key: "LIBTOOL",
+                    value: "$(BAZEL_INTEGRATION_DIR)/libtool.sh".pbxProjEscaped
+                ),
+                .init(
+                    key: "SWIFT_EXEC",
+                    value: "$(BAZEL_INTEGRATION_DIR)/swiftc".pbxProjEscaped
+                ),
+                .init(key: "SWIFT_USE_INTEGRATED_DRIVER", value: "NO"),
             ])
         }
-
-        // The tabs for indenting are intentional
-        return #"""
-{
-\#(
-    settings
-        .sorted { $0.key < $1.key }
-        .map { (key, value) in
-            return "\t\t\t\t\(key) = \(value);"
-        }
-        .joined(separator: "\n")
-)
-			}
-"""#
+        
+        return createBuildSettingsAttribute(buildSettings: buildSettings)
     }
 }
