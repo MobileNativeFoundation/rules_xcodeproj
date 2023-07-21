@@ -1,6 +1,6 @@
 import GeneratorCommon
 
-extension Dictionary where Key: Comparable {
+extension Dictionary {
     public mutating func update(_ values: [Key: Value]) {
         merge(values) { _, new in new }
     }
@@ -8,7 +8,9 @@ extension Dictionary where Key: Comparable {
     public func updating(_ values: [Key: Value]) -> Self {
         merging(values) { _, new in new }
     }
+}
 
+extension Dictionary where Key: Comparable {
     public func value(for key: Key, context: String) throws -> Value {
         guard let value = self[key] else {
             throw PreconditionError(
