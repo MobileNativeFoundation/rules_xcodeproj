@@ -5,7 +5,7 @@ extension Generator {
     static func pbxProjectPrefixPartial(
         buildSettings: String,
         compatibilityVersion: String,
-        defaultXcodeConfiguration: String?,
+        defaultXcodeConfiguration: String,
         developmentRegion: String,
         organizationName: String?,
         projectDir: String,
@@ -26,11 +26,7 @@ extension Generator {
 
         // Build configurations
 
-        let sortedXcodeConfigurations = Set(xcodeConfigurations).sorted()
-        let defaultXcodeConfiguration = defaultXcodeConfiguration ??
-            sortedXcodeConfigurations.first!
-
-        let buildConfigurations =  sortedXcodeConfigurations
+        let buildConfigurations =  xcodeConfigurations
             .enumerated()
             .map { index, name in
                 let id = Identifiers.Project

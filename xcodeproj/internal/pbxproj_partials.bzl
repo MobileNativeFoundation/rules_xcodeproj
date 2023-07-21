@@ -26,7 +26,6 @@ _flags = struct(
     colorize = "--colorize",
     compile_stub_needed = "--compile-stub-needed",
     consolidation_map_output_paths = "--consolidation-map-output-paths",
-    default_xcode_configuration = "--default-xcode-configuration",
     dependencies = "--dependencies",
     dependency_counts = "--dependency-counts",
     files_paths = "--file-paths",
@@ -227,10 +226,8 @@ def _write_pbxproj_prefix(
         apple_platform_to_platform_name: Exposed for testing. Don't set.
         build_mode: `xcodeproj.build_mode`.
         colorize: A `bool` indicating whether to colorize the output.
-        default_xcode_configuration: Optional. The name of the the Xcode
-            configuration to use when building, if not overridden by custom
-            schemes. If not set, the first Xcode configuration alphabetically
-            will be used.
+        default_xcode_configuration: The name of the the Xcode configuration to
+            use when building, if not overridden by custom schemes.
         execution_root_file: A `File` containing the absolute path to the Bazel
             execution root.
         generator_name: The name of the `xcodeproj` generator target.
@@ -249,7 +246,7 @@ def _write_pbxproj_prefix(
         tool: The executable that will generate the `PBXProj` partial.
         workspace_directory: The absolute path to the Bazel workspace
             directory.
-        xcode_configurations: A sequence of Xcode configuration names.
+        xcode_configurations: A sorted sequence of Xcode configuration names.
 
     Returns:
         The `File` for the `PBXProject` prefix `PBXProj` partial.
@@ -289,6 +286,9 @@ def _write_pbxproj_prefix(
     # minimumXcodeVersion
     args.add(minimum_xcode_version)
 
+    # defaultXcodeConfiguration
+    args.add(default_xcode_configuration)
+
     # developmentRegion
     args.add(project_options["development_region"])
 
@@ -306,13 +306,6 @@ def _write_pbxproj_prefix(
 
     # xcodeConfigurations
     args.add_all(_flags.xcode_configurations, xcode_configurations)
-
-    # defaultXcodeConfiguration
-    if default_xcode_configuration:
-        args.add(
-            _flags.default_xcode_configuration,
-            default_xcode_configuration,
-        )
 
     # preBuildScript
     if pre_build_script:

@@ -15,7 +15,7 @@ extension Generator {
 
         let bazelDependenciesPartial: (
             _ buildConfigurationContent: String,
-            _ defaultXcodeConfiguration: String?,
+            _ defaultXcodeConfiguration: String,
             _ preBuildRunScript: String?,
             _ postBuildRunScript: String?,
             _ xcodeConfigurations: [String]
@@ -42,7 +42,7 @@ extension Generator {
         let pbxProjectPrefixPartial: (
             _ buildSettings: String,
             _ compatibilityVersion: String,
-            _ defaultXcodeConfiguration: String?,
+            _ defaultXcodeConfiguration: String,
             _ developmentRegion: String,
             _ organizationName: String?,
             _ projectDir: String,

@@ -18,11 +18,11 @@ The generator accepts the following command-line arguments (see
 - Positional `resolved-repositories-file`
 - Positional `build-mode`
 - Positional `minimum-xcode-version`
+- Positional `default-xcode-configuration`
 - Positional `development-region`
 - Optional option `--organization-name <organization-name>`
 - Option list `--platforms <platforms> ...`
 - Option list `--xcode-configurations <xcode-configurations> ...`
-- Optional option `--default-xcode-configuration <default-xcode-configuration>`
 - Optional option `--pre-build-script <pre-build-script>`
 - Optional option `--post-build-script <post-build-script>`
 - Flag `--colorize`
@@ -39,6 +39,7 @@ $ pbxproj_prefix \
     bazel-out/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/generators/xcodeproj/xcodeproj_pbxproj_partials/resolved_repositories \
     bazel \
     14.0 \
+    Release \
     enGB \
     --organization-name MobileNativeFoundation \
     --platforms \
@@ -48,7 +49,6 @@ $ pbxproj_prefix \
     --xcode-configurations \
     Debug \
     Release \
-    --default-xcode-configuration Release \
     --pre-build-script bazel-out/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/generators/xcodeproj/xcodeproj_pre_build_script
 ```
 
