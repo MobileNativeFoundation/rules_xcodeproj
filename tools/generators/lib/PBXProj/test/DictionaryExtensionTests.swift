@@ -1,3 +1,4 @@
+import CustomDump
 import GeneratorCommon
 import PBXProj
 import XCTest
@@ -90,22 +91,38 @@ final class DictionaryExtensionTests: XCTestCase {
             "Hello": 42,
             "World": 7,
         ]
+        let file: StaticString = "test/DictionaryExtensionTests.swift"
+        let line: UInt = 42
 
-        let expectedErrorMessage = """
+        let expectedError = PreconditionError(
+            message: """
 The string "Bazel" not found in:
 ["Hello", "World"]
-"""
+""",
+            file: file,
+            line: line
+        )
 
         do {
             // Act
 
-            _ = try dict.value(for: "Bazel", context: "The string")
+            _ = try dict.value(
+                for: "Bazel",
+                context: "The string",
+                file: file,
+                line: line
+            )
 
             XCTFail("Expected to throw")
         } catch let error as PreconditionError {
             // Assert
 
-            XCTAssertEqual(error.message, expectedErrorMessage)
+            XCTAssertEqual(error.message, expectedError.message)
+            XCTAssertEqual(
+                error.file.description,
+                expectedError.file.description
+            )
+            XCTAssertEqual(error.line, expectedError.line)
         }
     }
 }
