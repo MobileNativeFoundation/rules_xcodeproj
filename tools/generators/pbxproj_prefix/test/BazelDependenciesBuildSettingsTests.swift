@@ -29,10 +29,10 @@ class BazelDependenciesBuildSettingsTests: XCTestCase {
 				INDEX_DISABLE_SCRIPT_EXECUTION = YES;
 				LD = "";
 				LDPLUSPLUS = "";
-				LIBTOOL = "libtool";
+				LIBTOOL = libtool;
 				SUPPORTED_PLATFORMS = "$(INDEXING_SUPPORTED_PLATFORMS__$(INDEX_ENABLE_BUILD_ARENA))";
 				SUPPORTS_MACCATALYST = YES;
-				SWIFT_EXEC = "swiftc";
+				SWIFT_EXEC = swiftc;
 				TARGET_IDS_FILE = "$(BAZEL_OUT)/target_ids_file";
 				TARGET_NAME = BazelDependencies;
 			}

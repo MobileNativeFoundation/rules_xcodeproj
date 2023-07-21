@@ -55,7 +55,7 @@ class PBXProjectBuildSettingsTests: XCTestCase {
 				INDEX_FORCE_SCRIPT_EXECUTION = YES;
 				INDEX_IMPORT = "$(BAZEL_EXTERNAL)/index-import";
 				INSTALL_PATH = "$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)/bin";
-				INTERNAL_DIR = $(PROJECT_FILE_PATH)/rules_xcodeproj;
+				INTERNAL_DIR = "$(PROJECT_FILE_PATH)/rules_xcodeproj";
 				LD = "$(BAZEL_INTEGRATION_DIR)/ld.sh";
 				LDPLUSPLUS = "$(BAZEL_INTEGRATION_DIR)/ld.sh";
 				LD_DYLIB_INSTALL_NAME = "";
@@ -143,7 +143,7 @@ class PBXProjectBuildSettingsTests: XCTestCase {
 				INDEX_FORCE_SCRIPT_EXECUTION = YES;
 				INDEX_IMPORT = "$(BAZEL_EXTERNAL)/index-import";
 				INSTALL_PATH = "$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)/bin";
-				INTERNAL_DIR = $(PROJECT_FILE_PATH)/rules_xcodeproj;
+				INTERNAL_DIR = "$(PROJECT_FILE_PATH)/rules_xcodeproj";
 				LD_DYLIB_INSTALL_NAME = "";
 				LD_OBJC_ABI_VERSION = "";
 				LD_RUNPATH_SEARCH_PATHS = "";
