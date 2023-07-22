@@ -11,13 +11,20 @@ extension Dictionary {
 }
 
 extension Dictionary where Key: Comparable {
-    public func value(for key: Key, context: String) throws -> Value {
+    public func value(
+        for key: Key,
+        context: String,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) throws -> Value {
         guard let value = self[key] else {
             throw PreconditionError(
                 message: """
 \(context) "\(key)" not found in:
 \(keys.sorted())
-"""
+""",
+                file: file,
+                line: line
             )
         }
         return value
