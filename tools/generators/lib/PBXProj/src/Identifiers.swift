@@ -1,5 +1,6 @@
 import CryptoKit
 import Foundation
+import GeneratorCommon
 
 /// Helps set identifiers for `PBXProj` elements.
 ///
@@ -82,6 +83,160 @@ FF01000000000000000001\#(String(format: "%02X", index)) \#
         }
     }
 
+    public enum BuildFiles {
+        /// The logical type of the build file being identified.
+        public enum FileType: String {
+            /// A normal file referenced in a `BuildPhase.sources` build phase.
+            case source = "0"
+
+            /// A non-arc file referenced in a `BuildPhase.sources` build phase.
+            case nonArcSource = "1"
+
+            /// The compile stub referenced in a `BuildPhase.sources` build
+            /// phase.
+            case compileStub = "2"
+
+            /// A file referenced in a `BuildPhase.headers` build phase.
+            case header = "3"
+
+            /// A file referenced in a `BuildPhase.resources` build phase.
+            case resource = "4"
+
+            /// A framework referenced in a `BuildPhase.embedFrameworks` build
+            /// phase.
+            case framework = "5"
+
+            /// Watch content referenced in a `BuildPhase.embedWatchContent`
+            /// build phase.
+            case watchContent = "6"
+
+            /// An app extension referenced in a `BuildPhase.embedAppExtensions`
+            /// build phase.
+            case appExtension = "7"
+
+            /// An app clip referenced in a `BuildPhase.embedAppClips` build
+            /// phase.
+            case appClip = "8"
+        }
+
+        public struct SubIdentifier: Equatable {
+            let shard: String
+            public let type: FileType
+            public let path: BazelPath
+            let hash: String
+        }
+
+        /// Calculates the sub-identifier for a build file referencing `path`,
+        /// of type `type`, and in the `shard` generator shard. This
+        /// sub-identifier is passed to other `Identifier.BuildFiles` functions
+        /// to generate full identifiers.
+        ///
+        /// - Note: The order that this is called matters. If two `path + shard`
+        ///   hash to the same value, the second one will have a new hash
+        ///   generated to guarantee it is unique.
+        ///
+        /// - Precondition: `shard` must be in the range `0..<255`.
+        ///
+        /// - Parameters:
+        ///   - path: The file path the build file is referencing.
+        ///   - type: The type of build file being identified.
+        ///   - shard: The generator shard the target belongs to.
+        ///   - hashCache: A cache that will be used to guarantee that the
+        ///     sub-identifier returned is unique.
+        public static func subIdentifier(
+            _ path: BazelPath,
+            type: FileType,
+            shard: UInt8,
+            hashCache: inout [UInt8: Set<String>]
+        ) -> SubIdentifier {
+            precondition(shard < 0xFE)
+            return SubIdentifier(
+                shard: String(format: "%02X", shard),
+                type: type,
+                path: path,
+                hash: shardSubIdentifier(
+                    path.path + (path.isFolder ? "0" : "1"),
+                    hashCache: &hashCache[shard, default: []]
+                )
+            )
+        }
+
+        public static func compileStubSubIdentifier(
+            targetSubIdentifier: Targets.SubIdentifier
+        ) -> SubIdentifier {
+            // We purposely store less information here than in
+            // `subIdentifier()`, to reduce the amount of data written into
+            // BuildFileMaps
+            return SubIdentifier(
+                shard: targetSubIdentifier.shard,
+                type: .compileStub,
+                path: BazelPath(""),
+                hash: targetSubIdentifier.hash
+            )
+        }
+
+        public static func id(
+            subIdentifier: SubIdentifier
+        ) -> String {
+            let type = subIdentifier.type
+
+            switch type {
+            case .compileStub:
+                return #"""
+\#(subIdentifier.shard)00\#(subIdentifier.hash)0000000000FF \#
+/* _CompileStub_.m in Sources */
+"""#
+
+            default:
+                let basename = subIdentifier.path.path
+                    .split(separator: "/").last!
+                return #"""
+\#(subIdentifier.shard)FF\#(subIdentifier.hash) \#
+/* \#(basename) in \#(type.buildPhase.name) */
+"""#
+            }
+        }
+
+        private static func shardSubIdentifier(
+            _ hashable: String,
+            hashCache: inout Set<String>
+        ) -> String {
+            var hash: String
+            var retryCount = 0
+            repeat {
+                hash = buildFileHash(hashable, retryCount: retryCount)
+                retryCount += 1
+            } while hashCache.contains(hash)
+
+            hashCache.insert(hash)
+
+            return hash
+        }
+
+        private static func buildFileHash(
+            _ hashable: String,
+            retryCount: Int
+        ) -> String {
+            let content: String
+            if retryCount == 0 {
+                content = hashable
+            } else {
+                content = "\(hashable)\0\(retryCount)"
+            }
+
+            let digest = Insecure.MD5.hash(data: Data(content.utf8))
+            return digest
+                // Xcode identifiers are 24 characters. We are using 4
+                // characters at the front. That leaves 20 characters that we
+                // can use. MD5 digests are 16 bytes (32 characters)
+                // long. So we need to truncate it to fit within the remaining
+                // 20 characters (by dropping 6 bytes).
+                .dropLast(6)
+                .map { String(format: "%02X", $0) }
+                .joined()
+        }
+    }
+
     public enum FilesAndGroups {
         /// The logical type of the element being identified.
         public enum ElementType: String {
@@ -122,7 +277,7 @@ FF0000000000000000000004 /* Products */
         ///   generated to guarantee it is unique.
         ///
         /// - Parameters:
-        ///   - path: The file path for the version group.
+        ///   - path: The file path for the element.
         ///   - type: The type of path being identified.
         ///   - hashCache: A cache that will be used to guarantee that the
         ///     identifier returned is unique.
@@ -219,8 +374,8 @@ FF00000000000000000001\#(String(format: "%02X", index)) \#
         /// `shard` generator shard. This sub-identifier is passed to other
         /// `Identifier.Targets` functions to generate full identifiers.
         ///
-        /// - Note: The order that this is called matters. If two `targetId` +
-        ///   `shard` hash to the same value, the second one will have a new
+        /// - Note: The order that this is called matters. If two `targetId +
+        ///   shard` hash to the same value, the second one will have a new
         ///   hash generated to guarantee it is unique.
         ///
         /// - Precondition: `shard` must be in the range `0..<255`.
@@ -354,6 +509,22 @@ FF00000000000000000001\#(String(format: "%02X", index)) \#
     }
 }
 
+private extension Identifiers.BuildFiles.FileType {
+    var buildPhase: BuildPhase {
+        switch self {
+        case .source: return .sources
+        case .nonArcSource: return .sources
+        case .compileStub: return .sources
+        case .header: return .headers
+        case .resource: return .resources
+        case .framework: return .embedFrameworks
+        case .watchContent: return .embedWatchContent
+        case .appExtension: return .embedAppExtensions
+        case .appClip: return .embedAppClips
+        }
+    }
+}
+
 extension Identifiers.Targets.SubIdentifier {
     public static let bazelDependencies =
         Self(shard: "FF", hash: "01000000")
@@ -383,5 +554,82 @@ extension BuildPhase {
         case .embedAppExtensions: return "0C"
         case .embedAppClips: return "0D"
         }
+    }
+}
+
+// MARK: - Encode
+
+extension Identifiers.BuildFiles.SubIdentifier {
+    private static let isFolder = Data([0x31]) // "1"
+    private static let notIsFolder = Data([0x30]) // "0"
+    private static let separator = Data([0x0a]) // Newline
+
+    public static func encode(
+        _ subIdentifiers: [Identifiers.BuildFiles.SubIdentifier],
+        to url: URL
+    ) throws {
+        var data = Data()
+
+        for subIdentifier in subIdentifiers {
+            subIdentifier.encode(into: &data)
+        }
+
+        try data.write(to: url)
+    }
+
+    private func encode(into data: inout Data) {
+        data.append(Data(type.rawValue.utf8))
+        data.append(Data(shard.utf8))
+        data.append(Data(hash.utf8))
+        data.append(path.isFolder ? Self.isFolder : Self.notIsFolder)
+        data.append(Data(path.path.utf8))
+        data.append(Self.separator)
+    }
+}
+
+// MARK: - Decode
+
+extension Identifiers.BuildFiles.SubIdentifier {
+    public static func decode(
+        from url: URL
+    ) async throws -> [Identifiers.BuildFiles.SubIdentifier] {
+        var subIdentifiers: [Self] = []
+        for try await line in url.lines {
+            subIdentifiers.append(try .init(from: line, in: url))
+        }
+        return subIdentifiers
+    }
+
+    private init(from line: String, in url: URL) throws {
+        let shardStartIndex = line.index(line.startIndex, offsetBy: 1)
+        let hashStartIndex = line.index(shardStartIndex, offsetBy: 2)
+
+        guard let type = Identifiers.BuildFiles.FileType(
+            rawValue: String(line[line.startIndex ..< shardStartIndex])
+        ) else {
+            throw PreconditionError(message: #"""
+"\#(url.path)": "\#(line[line.startIndex ..< shardStartIndex])" is an unknown \#
+file type
+"""#)
+        }
+
+        let pathIsFolderStartIndex: String.Index
+        if type == .compileStub {
+            pathIsFolderStartIndex = line.index(hashStartIndex, offsetBy: 8)
+        } else {
+            pathIsFolderStartIndex = line.index(hashStartIndex, offsetBy: 20)
+        }
+
+        let pathStartIndex = line.index(pathIsFolderStartIndex, offsetBy: 1)
+
+        self.init(
+            shard: String(line[shardStartIndex ..< hashStartIndex]),
+            type: type,
+            path: BazelPath(
+                String(line[pathStartIndex ..< line.endIndex]),
+                isFolder: line[pathIsFolderStartIndex] == "1"
+            ),
+            hash: String(line[hashStartIndex ..< pathIsFolderStartIndex])
+        )
     }
 }
