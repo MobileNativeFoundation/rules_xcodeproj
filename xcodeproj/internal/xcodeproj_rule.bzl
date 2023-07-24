@@ -1662,16 +1662,19 @@ configurations: {}""".format(", ".join(xcode_configurations)))
             )
             for xcode_configuration in lldb_contexts
         ]
+        normalized_xccurrentversions = actions.declare_file(
+            "{}_normalized/xccurrentversions".format(name),
+        )
 
         unstable_files = (
             spec_files +
             swift_debug_settings +
-            [extensionpointidentifiers_file]
+            [extensionpointidentifiers_file, xccurrentversions_file]
         )
         normalized_files = (
             normalized_specs +
             normalized_swift_debug_settings +
-            [normalized_extensionpointidentifiers]
+            [normalized_extensionpointidentifiers, normalized_xccurrentversions]
         )
         actions.run_shell(
             inputs = unstable_files,
@@ -1695,6 +1698,7 @@ done
         spec_files = normalized_specs
         extensionpointidentifiers_file = normalized_extensionpointidentifiers
         swift_debug_settings = normalized_swift_debug_settings
+        xccurrentversions_file = normalized_xccurrentversions
 
     bazel_integration_files = (
         list(ctx.files._base_integration_files) +
