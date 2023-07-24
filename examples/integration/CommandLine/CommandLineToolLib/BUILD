@@ -11,8 +11,10 @@ objc_library(
 objc_library(
     name = "lib_impl",
     srcs = [
-        "lib.m",
         "private.h",
+    ],
+    non_arc_srcs = [
+        "lib.m",
     ],
     sdk_includes = ["uuid"],
     tags = ["manual"],

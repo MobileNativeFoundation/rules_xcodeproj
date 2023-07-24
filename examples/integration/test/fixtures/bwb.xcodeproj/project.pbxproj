@@ -29,7 +29,7 @@
 		0AD6C294B129C8943456C601 /* private_lib.c in Sources */ = {isa = PBXBuildFile; fileRef = FDE262D83CA79BF809694381 /* private_lib.c */; };
 		0CF2EB07A5AC19DFEC6C708E /* c_lib.c in Sources */ = {isa = PBXBuildFile; fileRef = 3AEDEEABC4913622A9147C75 /* c_lib.c */; };
 		0D38F4C869767F1A3B4648CA /* tvOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B56D9298492068E642846F0 /* tvOSApp.swift */; };
-		0D7889713AE97EEA494CD3C0 /* lib.m in Sources */ = {isa = PBXBuildFile; fileRef = C7D6E9EA886ACE2FD42D136F /* lib.m */; };
+		0D7889713AE97EEA494CD3C0 /* lib.m in Sources */ = {isa = PBXBuildFile; fileRef = C7D6E9EA886ACE2FD42D136F /* lib.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		0E08B65DFBF1BA46778B7781 /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D0C338C5048912A38F6507 /* Lib.swift */; };
 		0F10E1E66B5D243245850C73 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F430FA1AB345C9D772DC1948 /* main.m */; };
 		1DC498C43B37ECA2C807A327 /* Intents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03FAD13073EAE50DCFB8EC /* Intents.swift */; };
@@ -48,7 +48,7 @@
 		5E729B2C5DEB3DC2100ACBF8 /* TestingUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B5971D03B36435F28C3771 /* TestingUtils.swift */; };
 		5ECAEC810B3886023A0B9EE3 /* c_lib.c in Sources */ = {isa = PBXBuildFile; fileRef = 3AEDEEABC4913622A9147C75 /* c_lib.c */; };
 		5FB8DE696A4FA2F82D0A6109 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930A52F1C2814B98802A80A4 /* Resources.swift */; };
-		64E43A57A15DFF1E63E7FAB2 /* lib.m in Sources */ = {isa = PBXBuildFile; fileRef = C7D6E9EA886ACE2FD42D136F /* lib.m */; };
+		64E43A57A15DFF1E63E7FAB2 /* lib.m in Sources */ = {isa = PBXBuildFile; fileRef = C7D6E9EA886ACE2FD42D136F /* lib.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		6A7413D8D6BE154EDEB5CF58 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43483C0C029D669DC6D9079A /* ContentView.swift */; };
 		6AC8196A1EDF105D3DB2806D /* TestingUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355750C0149618879E4F6A26 /* TestingUtils.swift */; };
 		73A4643BBFD5E4FD5FA75612 /* Intents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342A0C17CAE0AC6E1DEEBF75 /* Intents.swift */; };
@@ -66,7 +66,7 @@
 		8D2B96BB8D5B7198799AD2F6 /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0690DBA417BA6D7F38E2EEA5 /* Lib.swift */; };
 		9131107086EFF938B3CED73C /* SwiftGreetingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590C1F8173F7F592F432ACF0 /* SwiftGreetingsTests.swift */; };
 		93E1E79AC0F2DB97FE7C18FA /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145EAD34E090ECF98C7ADF39 /* MessagesViewController.swift */; };
-		95590E651D57AFA08355EBA9 /* lib.m in Sources */ = {isa = PBXBuildFile; fileRef = C7D6E9EA886ACE2FD42D136F /* lib.m */; };
+		95590E651D57AFA08355EBA9 /* lib.m in Sources */ = {isa = PBXBuildFile; fileRef = C7D6E9EA886ACE2FD42D136F /* lib.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		957DCAF2A74340B0EB9489B0 /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF5E8B112A0F9856E6CB2D4 /* iOSApp.swift */; };
 		972384D709D7AEC178D78608 /* Foo.m in Sources */ = {isa = PBXBuildFile; fileRef = 10FD9C062371287B427F5031 /* Foo.m */; };
 		9F7F69679259E801761A5541 /* _CompileStub_.m in Sources */ = {isa = PBXBuildFile; fileRef = E84DBAC32A7C151ED97289BA /* _CompileStub_.m */; };

@@ -73,7 +73,7 @@
 		45A3BBF20DA02E90B721F5FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 015E6004A77E27E5BDBF92F8 /* Assets.xcassets */; };
 		4A23E48D941F964E102BC08B /* WatchOSAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0EF429C363C7A90D155EF12 /* WatchOSAppUITests.swift */; };
 		4BAA64EC25430110196B80F8 /* dir in Resources */ = {isa = PBXBuildFile; fileRef = C6ACA6BBC268EAC0509D95BE /* dir */; };
-		527F03BE92A466819AB47CBD /* lib.m in Sources */ = {isa = PBXBuildFile; fileRef = A05675A4B440A99E53CDBBA4 /* lib.m */; };
+		527F03BE92A466819AB47CBD /* lib.m in Sources */ = {isa = PBXBuildFile; fileRef = A05675A4B440A99E53CDBBA4 /* lib.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		53212E3B2F5BB5FD4ABDFCF8 /* CoreUtilsObjC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DB1707851007E63305C749E4 /* CoreUtilsObjC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5611B7D7DC675A90F3B5EC70 /* Utils.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4A76FF6AB0958AAB140741FB /* Utils.bundle */; };
 		572FAFBEE3430463CCAE4F92 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 015E6004A77E27E5BDBF92F8 /* Assets.xcassets */; };
@@ -125,7 +125,7 @@
 		868A1DC835387DF8B2925C81 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 655FBBBF8B98FCCFD4A638C4 /* GoogleMaps.bundle */; };
 		86D5122F9B021A7C910EC0F5 /* SwiftUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E2337032E558F62FD5C809 /* SwiftUnitTests.swift */; };
 		87E3E4E8C9851CE4B951252E /* ObjCUnitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 157663D9790842ADFB5AA1B5 /* ObjCUnitTests.m */; };
-		8A50B36E3DD12CF3DA507190 /* lib.m in Sources */ = {isa = PBXBuildFile; fileRef = A05675A4B440A99E53CDBBA4 /* lib.m */; };
+		8A50B36E3DD12CF3DA507190 /* lib.m in Sources */ = {isa = PBXBuildFile; fileRef = A05675A4B440A99E53CDBBA4 /* lib.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		8CAA9BD47B1C914E70346072 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 015E6004A77E27E5BDBF92F8 /* Assets.xcassets */; };
 		8CE4EDB7AE3A359A8F64B8D8 /* UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1C3274E698C0F339AC7EE1 /* UITestsLaunchTests.swift */; };
 		8F4F421F3DB0F7940C9A9F45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8F73CFFD89120501DB312CD /* Assets.xcassets */; };
@@ -133,7 +133,7 @@
 		90B2CD75E58ABE23A2B61169 /* CryptoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 31EBAA302BF21712CB52AF4A /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9190E0BA24E8CA315E23A7B1 /* UIFramework.iOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D5BBE2ECC921BED8A450ADA7 /* UIFramework.iOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		93B976C2A65BE389D190692F /* Nested in Resources */ = {isa = PBXBuildFile; fileRef = CB4A0FB26B6A160C6B667828 /* Nested */; };
-		94C8FC305B5B45AC1AB5A315 /* lib.m in Sources */ = {isa = PBXBuildFile; fileRef = A05675A4B440A99E53CDBBA4 /* lib.m */; };
+		94C8FC305B5B45AC1AB5A315 /* lib.m in Sources */ = {isa = PBXBuildFile; fileRef = A05675A4B440A99E53CDBBA4 /* lib.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		96536BFC80D7064031732BC1 /* bucket in Resources */ = {isa = PBXBuildFile; fileRef = 18DA86E29627EB74DD2B794C /* bucket */; };
 		9662270A130DFD557C8BEBA5 /* ExampleResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0F4BE0C4D3926E5116BC3EF3 /* ExampleResources.bundle */; };
 		968E45E3BD7D19EC94CDF701 /* Intents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99004F8C800E22E644A03FCA /* Intents.swift */; };
