@@ -56,6 +56,9 @@ def _process_resource(
         bundle_metadata,
         generated,
         xccurrentversions):
+    if not file.is_source:
+        generated.append(file)
+
     if (file.basename == ".xccurrentversion" and
         file.dirname.endswith(".xcdatamodeld")):
         xccurrentversions.append(file)
