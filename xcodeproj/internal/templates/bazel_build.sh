@@ -131,6 +131,20 @@ fi
 # Verify that we actually built what we requested
 
 if [[ -n "${target_ids:-}" ]]; then
+  if [[ ! -s "%target_ids_list%" ]]; then
+      echo "error: \"%target_ids_list%\" was not created. This can happen if" \
+"you apply build-affecting flags to \"rules_xcodeproj_generator\" config, or" \
+"with the \"--@rules_xcodeproj//xcodeproj:extra_generator_flags\" flag." \
+"Please ensure that all build-affecting flags are moved to the" \
+"\"rules_xcodeproj\" config or" \
+"\"--@rules_xcodeproj//xcodeproj:extra_common_flags\" flag. If you are still" \
+"getting this error after adjusting your setup and regenerating your project," \
+"please file a bug report here:" \
+"https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bug.md" \
+        >&2
+      exit 1
+  fi
+
   diff_output=$(comm -23 <(printf '%s\n' "${target_ids[@]}") "%target_ids_list%")
 
   if [ -n "$diff_output" ]; then
