@@ -130,10 +130,10 @@ Here is an example output:
 				INDEX_DISABLE_SCRIPT_EXECUTION = YES;
 				LD = "";
 				LDPLUSPLUS = "";
-				LIBTOOL = "libtool";
+				LIBTOOL = libtool;
 				SUPPORTED_PLATFORMS = "$(INDEXING_SUPPORTED_PLATFORMS__$(INDEX_ENABLE_BUILD_ARENA))";
 				SUPPORTS_MACCATALYST = YES;
-				SWIFT_EXEC = "swiftc";
+				SWIFT_EXEC = swiftc;
 				TARGET_IDS_FILE = "$(BAZEL_OUT)/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/xcodeproj/xcodeproj_target_ids";
 				TARGET_NAME = BazelDependencies;
 			};
@@ -152,10 +152,10 @@ Here is an example output:
 				INDEX_DISABLE_SCRIPT_EXECUTION = YES;
 				LD = "";
 				LDPLUSPLUS = "";
-				LIBTOOL = "libtool";
+				LIBTOOL = libtool;
 				SUPPORTED_PLATFORMS = "$(INDEXING_SUPPORTED_PLATFORMS__$(INDEX_ENABLE_BUILD_ARENA))";
 				SUPPORTS_MACCATALYST = YES;
-				SWIFT_EXEC = "swiftc";
+				SWIFT_EXEC = swiftc;
 				TARGET_IDS_FILE = "$(BAZEL_OUT)/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/xcodeproj/xcodeproj_target_ids";
 				TARGET_NAME = BazelDependencies;
 			};
@@ -223,7 +223,7 @@ Here is an example output:
 				INDEXING_PROJECT_DIR__YES = "/tmp/workspace/bazel-output-base/rules_xcodeproj.noindex/indexbuild_output_base/execroot/_main";
 				INDEX_FORCE_SCRIPT_EXECUTION = YES;
 				INSTALL_PATH = "$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)/bin";
-				INTERNAL_DIR = $(PROJECT_FILE_PATH)/rules_xcodeproj;
+				INTERNAL_DIR = "$(PROJECT_FILE_PATH)/rules_xcodeproj";
 				LD = "$(BAZEL_INTEGRATION_DIR)/ld.sh";
 				LDPLUSPLUS = "$(BAZEL_INTEGRATION_DIR)/ld.sh";
 				LD_DYLIB_INSTALL_NAME = "";
@@ -289,7 +289,7 @@ Here is an example output:
 				INDEXING_PROJECT_DIR__YES = "/tmp/workspace/bazel-output-base/rules_xcodeproj.noindex/indexbuild_output_base/execroot/_main";
 				INDEX_FORCE_SCRIPT_EXECUTION = YES;
 				INSTALL_PATH = "$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)/bin";
-				INTERNAL_DIR = $(PROJECT_FILE_PATH)/rules_xcodeproj;
+				INTERNAL_DIR = "$(PROJECT_FILE_PATH)/rules_xcodeproj";
 				LD = "$(BAZEL_INTEGRATION_DIR)/ld.sh";
 				LDPLUSPLUS = "$(BAZEL_INTEGRATION_DIR)/ld.sh";
 				LD_DYLIB_INSTALL_NAME = "";
