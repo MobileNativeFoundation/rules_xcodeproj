@@ -1,4 +1,5 @@
 import Foundation
+import GeneratorCommon
 import PBXProj
 
 extension ElementCreator {
@@ -31,7 +32,15 @@ extension ElementCreator.ReadSelectedModelVersionsFile {
     static func defaultCallable(_ url: URL) throws -> [BazelPath: String] {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
-        return try decoder
-            .decode([BazelPath: String].self, from: Data(contentsOf: url))
+
+
+        do {
+            return try decoder
+                .decode([BazelPath: String].self, from: Data(contentsOf: url))
+        } catch {
+            throw PreconditionError(message: """
+"\(url.path)": \(error.localizedDescription)
+""")
+        }
     }
 }
