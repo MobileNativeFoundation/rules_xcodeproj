@@ -1,5 +1,6 @@
 import CustomDump
 import GeneratorCommon
+import PBXProj
 import XCTest
 
 @testable import pbxproj_prefix
@@ -87,7 +88,8 @@ class PBXProjectBuildSettingsTests: XCTestCase {
             indexImport: indexImport,
             indexingProjectDir: indexingProjectDir,
             resolvedRepositories: resolvedRepositories,
-            workspace: workspace
+            workspace: workspace,
+            createBuildSettingsAttribute: CreateBuildSettingsAttribute()
         )
 
         // Assert
@@ -169,7 +171,8 @@ class PBXProjectBuildSettingsTests: XCTestCase {
             indexImport: indexImport,
             indexingProjectDir: indexingProjectDir,
             resolvedRepositories: resolvedRepositories,
-            workspace: workspace
+            workspace: workspace,
+            createBuildSettingsAttribute: CreateBuildSettingsAttribute()
         )
 
         // Assert

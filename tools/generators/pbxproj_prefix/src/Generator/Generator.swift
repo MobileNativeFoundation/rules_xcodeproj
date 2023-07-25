@@ -57,7 +57,9 @@ struct Generator {
                     try environment.readResolvedRepositoriesFile(
                         arguments.resolvedRepositoriesFile
                     ),
-                /*workspace:*/ arguments.workspace
+                    /*workspace:*/ arguments.workspace,
+                    /*createBuildSettingsAttribute:*/
+                        environment.createBuildSettingsAttribute
             ),
             /*compatibilityVersion:*/ environment.compatibilityVersion(
                 arguments.minimumXcodeVersion

@@ -21,6 +21,8 @@ extension Generator {
             _ xcodeConfigurations: [String]
         ) -> String
 
+        let createBuildSettingsAttribute: CreateBuildSettingsAttribute
+
         let compatibilityVersion: (
             _ minimumXcodeVersion: SemanticVersion
         ) -> String
@@ -32,7 +34,8 @@ extension Generator {
             _ indexImport: String,
             _ indexingProjectDir: String,
             _ resolvedRepositories: String,
-            _ workspace: String
+            _ workspace: String,
+            _ createBuildSettingsAttribute: CreateBuildSettingsAttribute
         ) -> String
 
         let pbxProjectPrefixPartial: (
@@ -71,6 +74,7 @@ extension Generator.Environment {
         bazelDependenciesBuildSettings:
             Generator.bazelDependenciesBuildSettings,
         bazelDependenciesPartial: Generator.bazelDependenciesPartial,
+        createBuildSettingsAttribute: CreateBuildSettingsAttribute(),
         compatibilityVersion: Generator.compatibilityVersion,
         indexingProjectDir: Generator.indexingProjectDir,
         pbxProjectBuildSettings: Generator.pbxProjectBuildSettings,
