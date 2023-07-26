@@ -32,7 +32,7 @@ struct ElementCreator {
         )
         let rootElements = createRootElements(for: pathTree)
 
-        let mainGroup = environment.createMainGroupElement(
+        let mainGroup = environment.createMainGroupContent(
             childIdentifiers: rootElements.elements.map(\.identifier),
             workspace: arguments.workspace
         )

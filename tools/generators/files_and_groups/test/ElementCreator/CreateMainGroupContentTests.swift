@@ -4,7 +4,7 @@ import XCTest
 
 @testable import files_and_groups
 
-final class CreateMainGroupElementTests: XCTestCase {
+final class CreateMainGroupContentTests: XCTestCase {
     func test() {
         // Arrange
 
@@ -39,7 +39,7 @@ final class CreateMainGroupElementTests: XCTestCase {
 
         // Act
 
-        let content = ElementCreator.CreateMainGroupElement.defaultCallable(
+        let content = ElementCreator.CreateMainGroupContent.defaultCallable(
             childIdentifiers: childIdentifiers,
             workspace: workspace
         )

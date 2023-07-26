@@ -38,7 +38,7 @@ extension ElementCreator {
         /// Passed to the `callable` parameter of `CreateLocalizedFiles.init()`.
         let createLocalizedFilesCallable: CreateLocalizedFiles.Callable
 
-        let createMainGroupElement: CreateMainGroupElement
+        let createMainGroupContent: CreateMainGroupContent
 
         /// Passed to the `callable` parameter of `CreateRootElements.init()`.
         let createRootElementsCallable: CreateRootElements.Callable
@@ -191,7 +191,7 @@ extension ElementCreator.Environment {
         createIdentifier: ElementCreator.CreateIdentifier(),
         createLocalizedFilesCallable:
             ElementCreator.CreateLocalizedFiles.defaultCallable,
-        createMainGroupElement: ElementCreator.CreateMainGroupElement(),
+        createMainGroupContent: ElementCreator.CreateMainGroupContent(),
         createRootElementsCallable:
             ElementCreator.CreateRootElements.defaultCallable,
         createSpecialRootGroupCallable:
