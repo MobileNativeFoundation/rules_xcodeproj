@@ -1,7 +1,7 @@
 import PBXProj
 
 extension ElementCreator {
-    struct CreateMainGroupElement {
+    struct CreateMainGroupContent {
         private let callable: Callable
 
         /// - Parameters:
@@ -24,9 +24,9 @@ extension ElementCreator {
     }
 }
 
-// MARK: - CreateMainGroupElement.Callable
+// MARK: - CreateMainGroupContent.Callable
 
-extension ElementCreator.CreateMainGroupElement {
+extension ElementCreator.CreateMainGroupContent {
     typealias Callable = (
         _ childIdentifiers: [String],
         _ workspace: String
