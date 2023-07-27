@@ -11,6 +11,22 @@ public struct BazelPath: Hashable {
     }
 }
 
+// MARK: - Comparable
+
+extension BazelPath: Comparable {
+    public static func < (lhs: BazelPath, rhs: BazelPath) -> Bool {
+        guard lhs.path == rhs.path else {
+            return lhs.path < rhs.path
+        }
+
+        guard lhs.isFolder == rhs.isFolder else {
+            return rhs.isFolder
+        }
+
+        return false
+    }
+}
+
 // MARK: - Decodable
 
 extension BazelPath: Decodable {
