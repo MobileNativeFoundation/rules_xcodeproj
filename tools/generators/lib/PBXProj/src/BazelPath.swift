@@ -26,3 +26,11 @@ extension BazelPath: ExpressibleByArgument {
         self.init(argument)
     }
 }
+
+// MARK: - ExpressibleByStringLiteral
+
+extension BazelPath: ExpressibleByStringLiteral {
+    public init(stringLiteral value: String) {
+        self.init(value)
+    }
+}

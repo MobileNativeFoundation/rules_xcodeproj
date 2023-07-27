@@ -122,12 +122,6 @@ final class CalculatePathTreeTests: XCTestCase {
     }
 }
 
-extension BazelPath: ExpressibleByStringLiteral {
-    public init(stringLiteral value: String) {
-        self.init(value)
-    }
-}
-
 extension PathTreeNode: Equatable {
     public static func == (lhs: PathTreeNode, rhs: PathTreeNode) -> Bool {
         return (lhs.name, lhs.isFolder, lhs.children) ==
