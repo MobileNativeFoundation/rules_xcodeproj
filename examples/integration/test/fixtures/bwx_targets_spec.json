@@ -64,6 +64,7 @@
                 "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/AppClip/libAppClip.library.a"
             ],
             "e": "AppClip",
+            "m": "AppClip",
             "n": "AppClip",
             "p": "bazel-out/applebin_ios-ios_arm64-dbg-STABLE-14/bin/AppClip/AppClip.app",
             "t": "com.apple.product-type.application.on-demand-install-capable"
@@ -134,6 +135,7 @@
                 "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/AppClip/libAppClip.library.a"
             ],
             "e": "AppClip",
+            "m": "AppClip",
             "n": "AppClip",
             "p": "bazel-out/applebin_ios-ios_arm64-opt-STABLE-16/bin/AppClip/AppClip.app",
             "t": "com.apple.product-type.application.on-demand-install-capable"
@@ -206,6 +208,7 @@
                 "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/AppClip/libAppClip.library.a"
             ],
             "e": "AppClip",
+            "m": "AppClip",
             "n": "AppClip",
             "p": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/AppClip/AppClip.app",
             "t": "com.apple.product-type.application.on-demand-install-capable"
@@ -275,6 +278,7 @@
                 "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/AppClip/libAppClip.library.a"
             ],
             "e": "AppClip",
+            "m": "AppClip",
             "n": "AppClip",
             "p": "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/AppClip/AppClip.app",
             "t": "com.apple.product-type.application.on-demand-install-capable"
@@ -868,6 +872,7 @@
             }
         },
         "p": {
+            "m": "LibSwift",
             "n": "lib_swift",
             "p": "bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34/bin/CommandLine/CommandLineToolLib/liblib_swift.a",
             "t": "com.apple.product-type.library.static"
@@ -912,6 +917,7 @@
             }
         },
         "p": {
+            "m": "LibSwift",
             "n": "lib_swift",
             "p": "bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37/bin/CommandLine/CommandLineToolLib/liblib_swift.a",
             "t": "com.apple.product-type.library.static"
@@ -958,6 +964,7 @@
             }
         },
         "p": {
+            "m": "LibSwift",
             "n": "lib_swift",
             "p": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35/bin/CommandLine/CommandLineToolLib/liblib_swift.a",
             "t": "com.apple.product-type.library.static"
@@ -1001,6 +1008,7 @@
             }
         },
         "p": {
+            "m": "LibSwift",
             "n": "lib_swift",
             "p": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/CommandLine/CommandLineToolLib/liblib_swift.a",
             "t": "com.apple.product-type.library.static"
@@ -1045,6 +1053,7 @@
             }
         },
         "p": {
+            "m": "LibSwift",
             "n": "lib_swift",
             "p": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38/bin/CommandLine/CommandLineToolLib/liblib_swift.a",
             "t": "com.apple.product-type.library.static"
@@ -1092,6 +1101,7 @@
             }
         },
         "p": {
+            "m": "LibSwift",
             "n": "lib_swift",
             "p": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineToolLib/liblib_swift.a",
             "t": "com.apple.product-type.library.static"
@@ -1298,6 +1308,7 @@
             }
         },
         "p": {
+            "m": "_SwiftLib",
             "n": "private_swift_lib",
             "p": "bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34/bin/CommandLine/CommandLineToolLib/libprivate_swift_lib.a",
             "t": "com.apple.product-type.library.static"
@@ -1331,6 +1342,7 @@
             }
         },
         "p": {
+            "m": "_SwiftLib",
             "n": "private_swift_lib",
             "p": "bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37/bin/CommandLine/CommandLineToolLib/libprivate_swift_lib.a",
             "t": "com.apple.product-type.library.static"
@@ -1366,6 +1378,7 @@
             }
         },
         "p": {
+            "m": "_SwiftLib",
             "n": "private_swift_lib",
             "p": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35/bin/CommandLine/CommandLineToolLib/libprivate_swift_lib.a",
             "t": "com.apple.product-type.library.static"
@@ -1398,6 +1411,7 @@
             }
         },
         "p": {
+            "m": "_SwiftLib",
             "n": "private_swift_lib",
             "p": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/CommandLine/CommandLineToolLib/libprivate_swift_lib.a",
             "t": "com.apple.product-type.library.static"
@@ -1431,6 +1445,7 @@
             }
         },
         "p": {
+            "m": "_SwiftLib",
             "n": "private_swift_lib",
             "p": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38/bin/CommandLine/CommandLineToolLib/libprivate_swift_lib.a",
             "t": "com.apple.product-type.library.static"
@@ -1467,6 +1482,7 @@
             }
         },
         "p": {
+            "m": "_SwiftLib",
             "n": "private_swift_lib",
             "p": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineToolLib/libprivate_swift_lib.a",
             "t": "com.apple.product-type.library.static"
@@ -1590,6 +1606,7 @@
                 "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/CommandLine/Tests/libCommandLineLibSwiftTestsLib.a"
             ],
             "e": "CommandLineToolTests",
+            "m": "CommandLineToolTests",
             "n": "CommandLineToolTests",
             "p": "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-39/bin/CommandLine/Tests/CommandLineToolTests.xctest",
             "t": "com.apple.product-type.bundle.unit-test"
@@ -1647,6 +1664,7 @@
                 "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/Tests/libCommandLineLibSwiftTestsLib.a"
             ],
             "e": "CommandLineToolTests",
+            "m": "CommandLineToolTests",
             "n": "CommandLineToolTests",
             "p": "bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-40/bin/CommandLine/Tests/CommandLineToolTests.xctest",
             "t": "com.apple.product-type.bundle.unit-test"
@@ -2382,6 +2400,7 @@
             }
         },
         "p": {
+            "m": "Lib",
             "n": "Lib",
             "p": "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/Lib/libLib.a",
             "t": "com.apple.product-type.library.static"
@@ -2418,6 +2437,7 @@
             }
         },
         "p": {
+            "m": "Lib",
             "n": "Lib",
             "p": "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/Lib/libLib.a",
             "t": "com.apple.product-type.library.static"
@@ -2456,6 +2476,7 @@
             }
         },
         "p": {
+            "m": "Lib",
             "n": "Lib",
             "p": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/Lib/libLib.a",
             "t": "com.apple.product-type.library.static"
@@ -2492,6 +2513,7 @@
             }
         },
         "p": {
+            "m": "Lib",
             "n": "Lib",
             "p": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/Lib/libLib.a",
             "t": "com.apple.product-type.library.static"
@@ -2530,6 +2552,7 @@
             }
         },
         "p": {
+            "m": "Lib",
             "n": "Lib",
             "p": "bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-6/bin/Lib/libLib.a",
             "t": "com.apple.product-type.library.static"
@@ -2566,6 +2589,7 @@
             }
         },
         "p": {
+            "m": "Lib",
             "n": "Lib",
             "p": "bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-opt-STABLE-12/bin/Lib/libLib.a",
             "t": "com.apple.product-type.library.static"
@@ -2604,6 +2628,7 @@
             }
         },
         "p": {
+            "m": "Lib",
             "n": "Lib",
             "p": "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/Lib/libLib.a",
             "t": "com.apple.product-type.library.static"
@@ -2640,6 +2665,7 @@
             }
         },
         "p": {
+            "m": "Lib",
             "n": "Lib",
             "p": "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9/bin/Lib/libLib.a",
             "t": "com.apple.product-type.library.static"
@@ -2678,6 +2704,7 @@
             }
         },
         "p": {
+            "m": "Lib",
             "n": "Lib",
             "p": "bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-5/bin/Lib/libLib.a",
             "t": "com.apple.product-type.library.static"
@@ -2714,6 +2741,7 @@
             }
         },
         "p": {
+            "m": "Lib",
             "n": "Lib",
             "p": "bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-opt-STABLE-11/bin/Lib/libLib.a",
             "t": "com.apple.product-type.library.static"
@@ -2752,6 +2780,7 @@
             }
         },
         "p": {
+            "m": "Lib",
             "n": "Lib",
             "p": "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/Lib/libLib.a",
             "t": "com.apple.product-type.library.static"
@@ -2788,6 +2817,7 @@
             }
         },
         "p": {
+            "m": "Lib",
             "n": "Lib",
             "p": "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8/bin/Lib/libLib.a",
             "t": "com.apple.product-type.library.static"
@@ -3385,6 +3415,7 @@
                 "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/UI/libUI.a"
             ],
             "e": "UIFramework.iOS",
+            "m": "UI",
             "n": "UIFramework.iOS",
             "p": "bazel-out/applebin_ios-ios_arm64-dbg-STABLE-14/bin/UI/UIFramework.iOS.framework",
             "t": "com.apple.product-type.framework"
@@ -3454,6 +3485,7 @@
                 "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/UI/libUI.a"
             ],
             "e": "UIFramework.iOS",
+            "m": "UI",
             "n": "UIFramework.iOS",
             "p": "bazel-out/applebin_ios-ios_arm64-opt-STABLE-16/bin/UI/UIFramework.iOS.framework",
             "t": "com.apple.product-type.framework"
@@ -3525,6 +3557,7 @@
                 "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/UI/libUI.a"
             ],
             "e": "UIFramework.iOS",
+            "m": "UI",
             "n": "UIFramework.iOS",
             "p": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/UI/UIFramework.iOS.framework",
             "t": "com.apple.product-type.framework"
@@ -3594,6 +3627,7 @@
                 "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/UI/libUI.a"
             ],
             "e": "UIFramework.iOS",
+            "m": "UI",
             "n": "UIFramework.iOS",
             "p": "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/UI/UIFramework.iOS.framework",
             "t": "com.apple.product-type.framework"
@@ -3661,6 +3695,7 @@
                 "bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-6/bin/UI/libUI.a"
             ],
             "e": "UIFramework.tvOS",
+            "m": "UI",
             "n": "UIFramework.tvOS",
             "p": "bazel-out/applebin_tvos-tvos_arm64-dbg-STABLE-26/bin/UI/UIFramework.tvOS.framework",
             "t": "com.apple.product-type.framework"
@@ -3726,6 +3761,7 @@
                 "bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-opt-STABLE-12/bin/UI/libUI.a"
             ],
             "e": "UIFramework.tvOS",
+            "m": "UI",
             "n": "UIFramework.tvOS",
             "p": "bazel-out/applebin_tvos-tvos_arm64-opt-STABLE-28/bin/UI/UIFramework.tvOS.framework",
             "t": "com.apple.product-type.framework"
@@ -3793,6 +3829,7 @@
                 "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/UI/libUI.a"
             ],
             "e": "UIFramework.tvOS",
+            "m": "UI",
             "n": "UIFramework.tvOS",
             "p": "bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-25/bin/UI/UIFramework.tvOS.framework",
             "t": "com.apple.product-type.framework"
@@ -3858,6 +3895,7 @@
                 "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9/bin/UI/libUI.a"
             ],
             "e": "UIFramework.tvOS",
+            "m": "UI",
             "n": "UIFramework.tvOS",
             "p": "bazel-out/applebin_tvos-tvos_x86_64-opt-STABLE-27/bin/UI/UIFramework.tvOS.framework",
             "t": "com.apple.product-type.framework"
@@ -3925,6 +3963,7 @@
                 "bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-5/bin/UI/libUI.a"
             ],
             "e": "UIFramework.watchOS",
+            "m": "UI",
             "n": "UIFramework.watchOS",
             "p": "bazel-out/applebin_watchos-watchos_arm64_32-dbg-STABLE-18/bin/UI/UIFramework.watchOS.framework",
             "t": "com.apple.product-type.framework"
@@ -3990,6 +4029,7 @@
                 "bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-opt-STABLE-11/bin/UI/libUI.a"
             ],
             "e": "UIFramework.watchOS",
+            "m": "UI",
             "n": "UIFramework.watchOS",
             "p": "bazel-out/applebin_watchos-watchos_arm64_32-opt-STABLE-20/bin/UI/UIFramework.watchOS.framework",
             "t": "com.apple.product-type.framework"
@@ -4057,6 +4097,7 @@
                 "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/UI/libUI.a"
             ],
             "e": "UIFramework.watchOS",
+            "m": "UI",
             "n": "UIFramework.watchOS",
             "p": "bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-17/bin/UI/UIFramework.watchOS.framework",
             "t": "com.apple.product-type.framework"
@@ -4122,6 +4163,7 @@
                 "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8/bin/UI/libUI.a"
             ],
             "e": "UIFramework.watchOS",
+            "m": "UI",
             "n": "UIFramework.watchOS",
             "p": "bazel-out/applebin_watchos-watchos_x86_64-opt-STABLE-19/bin/UI/UIFramework.watchOS.framework",
             "t": "com.apple.product-type.framework"
@@ -4193,6 +4235,7 @@
                 "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/WidgetExtension/libWidgetExtension.library.a"
             ],
             "e": "WidgetExtension",
+            "m": "WidgetExtension",
             "n": "WidgetExtension",
             "p": "bazel-out/applebin_ios-ios_arm64-dbg-STABLE-14/bin/WidgetExtension/WidgetExtension.appex",
             "t": "com.apple.product-type.app-extension"
@@ -4262,6 +4305,7 @@
                 "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/WidgetExtension/libWidgetExtension.library.a"
             ],
             "e": "WidgetExtension",
+            "m": "WidgetExtension",
             "n": "WidgetExtension",
             "p": "bazel-out/applebin_ios-ios_arm64-opt-STABLE-16/bin/WidgetExtension/WidgetExtension.appex",
             "t": "com.apple.product-type.app-extension"
@@ -4332,6 +4376,7 @@
                 "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/WidgetExtension/libWidgetExtension.library.a"
             ],
             "e": "WidgetExtension",
+            "m": "WidgetExtension",
             "n": "WidgetExtension",
             "p": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/WidgetExtension/WidgetExtension.appex",
             "t": "com.apple.product-type.app-extension"
@@ -4400,6 +4445,7 @@
                 "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/WidgetExtension/libWidgetExtension.library.a"
             ],
             "e": "WidgetExtension",
+            "m": "WidgetExtension",
             "n": "WidgetExtension",
             "p": "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/WidgetExtension/WidgetExtension.appex",
             "t": "com.apple.product-type.app-extension"
@@ -4547,6 +4593,7 @@
                 "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iMessageApp/libiMessageAppExtension.library.a"
             ],
             "e": "iMessageAppExtension",
+            "m": "iMessageAppExtension",
             "n": "iMessageAppExtension",
             "p": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iMessageApp/iMessageAppExtension.appex",
             "t": "com.apple.product-type.app-extension.messages"
@@ -4615,6 +4662,7 @@
                 "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iMessageApp/libiMessageAppExtension.library.a"
             ],
             "e": "iMessageAppExtension",
+            "m": "iMessageAppExtension",
             "n": "iMessageAppExtension",
             "p": "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iMessageApp/iMessageAppExtension.appex",
             "t": "com.apple.product-type.app-extension.messages"
@@ -5115,6 +5163,7 @@
             }
         },
         "p": {
+            "m": "MixedAnswer",
             "n": "MixedAnswerLib_Swift",
             "p": "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/libMixedAnswerLib_Swift.a",
             "t": "com.apple.product-type.library.static"
@@ -5150,6 +5199,7 @@
             }
         },
         "p": {
+            "m": "MixedAnswer",
             "n": "MixedAnswerLib_Swift",
             "p": "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/libMixedAnswerLib_Swift.a",
             "t": "com.apple.product-type.library.static"
@@ -5187,6 +5237,7 @@
             }
         },
         "p": {
+            "m": "MixedAnswer",
             "n": "MixedAnswerLib_Swift",
             "p": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/libMixedAnswerLib_Swift.a",
             "t": "com.apple.product-type.library.static"
@@ -5222,6 +5273,7 @@
             }
         },
         "p": {
+            "m": "MixedAnswer",
             "n": "MixedAnswerLib_Swift",
             "p": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/libMixedAnswerLib_Swift.a",
             "t": "com.apple.product-type.library.static"
@@ -5275,6 +5327,7 @@
                 "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/iOSApp/Source/CoreUtilsObjC/libCoreUtilsObjC.a"
             ],
             "e": "CoreUtilsObjC",
+            "m": "CoreUtils",
             "n": "CoreUtilsObjC",
             "p": "bazel-out/applebin_ios-ios_arm64-dbg-STABLE-14/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.framework",
             "t": "com.apple.product-type.framework"
@@ -5325,6 +5378,7 @@
                 "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/iOSApp/Source/CoreUtilsObjC/libCoreUtilsObjC.a"
             ],
             "e": "CoreUtilsObjC",
+            "m": "CoreUtils",
             "n": "CoreUtilsObjC",
             "p": "bazel-out/applebin_ios-ios_arm64-opt-STABLE-16/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.framework",
             "t": "com.apple.product-type.framework"
@@ -5378,6 +5432,7 @@
                 "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsObjC/libCoreUtilsObjC.a"
             ],
             "e": "CoreUtilsObjC",
+            "m": "CoreUtils",
             "n": "CoreUtilsObjC",
             "p": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.framework",
             "t": "com.apple.product-type.framework"
@@ -5428,6 +5483,7 @@
                 "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Source/CoreUtilsObjC/libCoreUtilsObjC.a"
             ],
             "e": "CoreUtilsObjC",
+            "m": "CoreUtils",
             "n": "CoreUtilsObjC",
             "p": "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.framework",
             "t": "com.apple.product-type.framework"
@@ -5463,6 +5519,7 @@
         "l": "//iOSApp/Source/Utils:Utils",
         "n": "Utils",
         "p": {
+            "m": "Utils",
             "n": "Utils",
             "p": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/Utils/libUtils.a",
             "t": "com.apple.product-type.library.static"
@@ -5495,6 +5552,7 @@
         "l": "//iOSApp/Source/Utils:Utils",
         "n": "Utils",
         "p": {
+            "m": "Utils",
             "n": "Utils",
             "p": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Source/Utils/libUtils.a",
             "t": "com.apple.product-type.library.static"
@@ -5595,6 +5653,7 @@
                 "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/iOSApp/Source/libiOSApp.library.a"
             ],
             "e": "iOSApp",
+            "m": "iOSApp",
             "n": "iOSApp",
             "p": "bazel-out/applebin_ios-ios_arm64-dbg-STABLE-14/bin/iOSApp/Source/iOSApp.app",
             "t": "com.apple.product-type.application"
@@ -5697,6 +5756,7 @@
                 "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/iOSApp/Source/libiOSApp.library.a"
             ],
             "e": "iOSApp",
+            "m": "iOSApp",
             "n": "iOSApp",
             "p": "bazel-out/applebin_ios-ios_arm64-opt-STABLE-16/bin/iOSApp/Source/iOSApp.app",
             "t": "com.apple.product-type.application"
@@ -5801,6 +5861,7 @@
                 "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/libiOSApp.library.a"
             ],
             "e": "iOSApp_ExecutableName",
+            "m": "iOSApp",
             "n": "iOSApp",
             "p": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Source/iOSApp.app",
             "t": "com.apple.product-type.application"
@@ -5902,6 +5963,7 @@
                 "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Source/libiOSApp.library.a"
             ],
             "e": "iOSApp_ExecutableName",
+            "m": "iOSApp",
             "n": "iOSApp",
             "p": "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Source/iOSApp.app",
             "t": "com.apple.product-type.application"
@@ -5972,6 +6034,7 @@
                 "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/ObjCUnitTests/libiOSAppObjCUnitTestSuite.library.a"
             ],
             "e": "iOSAppObjCUnitTestSuite",
+            "m": "iOSAppObjCUnitTestsSuite",
             "n": "iOSAppObjCUnitTestSuite",
             "p": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTestSuite.xctest",
             "t": "com.apple.product-type.bundle.unit-test"
@@ -6037,6 +6100,7 @@
                 "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Test/ObjCUnitTests/libiOSAppObjCUnitTestSuite.library.a"
             ],
             "e": "iOSAppObjCUnitTestSuite",
+            "m": "iOSAppObjCUnitTestsSuite",
             "n": "iOSAppObjCUnitTestSuite",
             "p": "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTestSuite.xctest",
             "t": "com.apple.product-type.bundle.unit-test"
@@ -6105,6 +6169,7 @@
                 "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/ObjCUnitTests/libiOSAppObjCUnitTests.library.a"
             ],
             "e": "iOSAppObjCUnitTests",
+            "m": "iOSAppObjCUnitTests",
             "n": "iOSAppObjCUnitTests",
             "p": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests.xctest",
             "t": "com.apple.product-type.bundle.unit-test"
@@ -6170,6 +6235,7 @@
                 "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Test/ObjCUnitTests/libiOSAppObjCUnitTests.library.a"
             ],
             "e": "iOSAppObjCUnitTests",
+            "m": "iOSAppObjCUnitTests",
             "n": "iOSAppObjCUnitTests",
             "p": "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests.xctest",
             "t": "com.apple.product-type.bundle.unit-test"
@@ -6250,6 +6316,7 @@
                 "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/SwiftUnitTests/libiOSAppSwiftUnitTestSuite.library.a"
             ],
             "e": "iOSAppSwiftUnitTestSuite",
+            "m": "iOSAppSwiftUnitTestSuite",
             "n": "iOSAppSwiftUnitTestSuite",
             "p": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTestSuite.xctest",
             "t": "com.apple.product-type.bundle.unit-test"
@@ -6325,6 +6392,7 @@
                 "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Test/SwiftUnitTests/libiOSAppSwiftUnitTestSuite.library.a"
             ],
             "e": "iOSAppSwiftUnitTestSuite",
+            "m": "iOSAppSwiftUnitTestSuite",
             "n": "iOSAppSwiftUnitTestSuite",
             "p": "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTestSuite.xctest",
             "t": "com.apple.product-type.bundle.unit-test"
@@ -6402,6 +6470,7 @@
                 "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/SwiftUnitTests/libiOSAppSwiftUnitTests.library.a"
             ],
             "e": "iOSAppSwiftUnitTests",
+            "m": "iOSAppSwiftUnitTests",
             "n": "iOSAppSwiftUnitTests",
             "p": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTests.xctest",
             "t": "com.apple.product-type.bundle.unit-test"
@@ -6477,6 +6546,7 @@
                 "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Test/SwiftUnitTests/libiOSAppSwiftUnitTests.library.a"
             ],
             "e": "iOSAppSwiftUnitTests",
+            "m": "iOSAppSwiftUnitTests",
             "n": "iOSAppSwiftUnitTests",
             "p": "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTests.xctest",
             "t": "com.apple.product-type.bundle.unit-test"
@@ -6515,6 +6585,7 @@
             }
         },
         "p": {
+            "m": "TestingUtils",
             "n": "TestingUtils",
             "p": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/TestingUtils/libTestingUtils.a",
             "t": "com.apple.product-type.library.static"
@@ -6551,6 +6622,7 @@
             }
         },
         "p": {
+            "m": "TestingUtils",
             "n": "TestingUtils",
             "p": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Test/TestingUtils/libTestingUtils.a",
             "t": "com.apple.product-type.library.static"
@@ -6589,6 +6661,7 @@
             }
         },
         "p": {
+            "m": "TestingUtils",
             "n": "TestingUtils",
             "p": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-29/bin/iOSApp/Test/TestingUtils/libTestingUtils.a",
             "t": "com.apple.product-type.library.static"
@@ -6625,6 +6698,7 @@
             }
         },
         "p": {
+            "m": "TestingUtils",
             "n": "TestingUtils",
             "p": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-30/bin/iOSApp/Test/TestingUtils/libTestingUtils.a",
             "t": "com.apple.product-type.library.static"
@@ -6681,6 +6755,7 @@
                 "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/UITests/libiOSAppUITestSuite.library.a"
             ],
             "e": "iOSAppUITestSuite",
+            "m": "iOSAppUITestSuite",
             "n": "iOSAppUITestSuite",
             "p": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Test/UITests/iOSAppUITestSuite.xctest",
             "t": "com.apple.product-type.bundle.ui-testing"
@@ -6738,6 +6813,7 @@
                 "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Test/UITests/libiOSAppUITestSuite.library.a"
             ],
             "e": "iOSAppUITestSuite",
+            "m": "iOSAppUITestSuite",
             "n": "iOSAppUITestSuite",
             "p": "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Test/UITests/iOSAppUITestSuite.xctest",
             "t": "com.apple.product-type.bundle.ui-testing"
@@ -6797,6 +6873,7 @@
                 "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/UITests/libiOSAppUITests.library.a"
             ],
             "e": "iOSAppUITests",
+            "m": "iOSAppUITests",
             "n": "iOSAppUITests",
             "p": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Test/UITests/iOSAppUITests.xctest",
             "t": "com.apple.product-type.bundle.ui-testing"
@@ -6854,6 +6931,7 @@
                 "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Test/UITests/libiOSAppUITests.library.a"
             ],
             "e": "iOSAppUITests",
+            "m": "iOSAppUITests",
             "n": "iOSAppUITests",
             "p": "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Test/UITests/iOSAppUITests.xctest",
             "t": "com.apple.product-type.bundle.ui-testing"
@@ -6922,6 +7000,7 @@
                 "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-29/bin/macOSApp/Source/libmacOSApp.library.a"
             ],
             "e": "macOSApp",
+            "m": "macOSApp",
             "n": "macOSApp",
             "p": "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-31/bin/macOSApp/Source/macOSApp.app",
             "t": "com.apple.product-type.application"
@@ -6984,6 +7063,7 @@
                 "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-30/bin/macOSApp/Source/libmacOSApp.library.a"
             ],
             "e": "macOSApp",
+            "m": "macOSApp",
             "n": "macOSApp",
             "p": "bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-32/bin/macOSApp/Source/macOSApp.app",
             "t": "com.apple.product-type.application"
@@ -7039,6 +7119,7 @@
                 "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-29/bin/macOSApp/Test/UITests/libmacOSAppUITests.library.a"
             ],
             "e": "macOSAppUITests",
+            "m": "macOSAppUITests",
             "n": "macOSAppUITests",
             "p": "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-31/bin/macOSApp/Test/UITests/macOSAppUITests.xctest",
             "t": "com.apple.product-type.bundle.ui-testing"
@@ -7092,6 +7173,7 @@
                 "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-30/bin/macOSApp/Test/UITests/libmacOSAppUITests.library.a"
             ],
             "e": "macOSAppUITests",
+            "m": "macOSAppUITests",
             "n": "macOSAppUITests",
             "p": "bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-32/bin/macOSApp/Test/UITests/macOSAppUITests.xctest",
             "t": "com.apple.product-type.bundle.ui-testing"
@@ -7163,6 +7245,7 @@
                 "bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-6/bin/tvOSApp/Source/libtvOSApp.library.a"
             ],
             "e": "tvOSApp",
+            "m": "tvOSApp",
             "n": "tvOSApp",
             "p": "bazel-out/applebin_tvos-tvos_arm64-dbg-STABLE-26/bin/tvOSApp/Source/tvOSApp.app",
             "t": "com.apple.product-type.application"
@@ -7231,6 +7314,7 @@
                 "bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-opt-STABLE-12/bin/tvOSApp/Source/libtvOSApp.library.a"
             ],
             "e": "tvOSApp",
+            "m": "tvOSApp",
             "n": "tvOSApp",
             "p": "bazel-out/applebin_tvos-tvos_arm64-opt-STABLE-28/bin/tvOSApp/Source/tvOSApp.app",
             "t": "com.apple.product-type.application"
@@ -7301,6 +7385,7 @@
                 "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/tvOSApp/Source/libtvOSApp.library.a"
             ],
             "e": "tvOSApp",
+            "m": "tvOSApp",
             "n": "tvOSApp",
             "p": "bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-25/bin/tvOSApp/Source/tvOSApp.app",
             "t": "com.apple.product-type.application"
@@ -7368,6 +7453,7 @@
                 "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9/bin/tvOSApp/Source/libtvOSApp.library.a"
             ],
             "e": "tvOSApp",
+            "m": "tvOSApp",
             "n": "tvOSApp",
             "p": "bazel-out/applebin_tvos-tvos_x86_64-opt-STABLE-27/bin/tvOSApp/Source/tvOSApp.app",
             "t": "com.apple.product-type.application"
@@ -7423,6 +7509,7 @@
                 "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/tvOSApp/Test/UITests/libtvOSAppUITests.library.a"
             ],
             "e": "tvOSAppUITests",
+            "m": "tvOSAppUITests",
             "n": "tvOSAppUITests",
             "p": "bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-25/bin/tvOSApp/Test/UITests/tvOSAppUITests.xctest",
             "t": "com.apple.product-type.bundle.ui-testing"
@@ -7476,6 +7563,7 @@
                 "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9/bin/tvOSApp/Test/UITests/libtvOSAppUITests.library.a"
             ],
             "e": "tvOSAppUITests",
+            "m": "tvOSAppUITests",
             "n": "tvOSAppUITests",
             "p": "bazel-out/applebin_tvos-tvos_x86_64-opt-STABLE-27/bin/tvOSApp/Test/UITests/tvOSAppUITests.xctest",
             "t": "com.apple.product-type.bundle.ui-testing"
@@ -7543,6 +7631,7 @@
                 "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3/bin/tvOSApp/Test/UnitTests/libtvOSAppUnitTests.library.a"
             ],
             "e": "tvOSAppUnitTests",
+            "m": "tvOSAppUnitTests",
             "n": "tvOSAppUnitTests",
             "p": "bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-25/bin/tvOSApp/Test/UnitTests/tvOSAppUnitTests.xctest",
             "t": "com.apple.product-type.bundle.unit-test"
@@ -7608,6 +7697,7 @@
                 "bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9/bin/tvOSApp/Test/UnitTests/libtvOSAppUnitTests.library.a"
             ],
             "e": "tvOSAppUnitTests",
+            "m": "tvOSAppUnitTests",
             "n": "tvOSAppUnitTests",
             "p": "bazel-out/applebin_tvos-tvos_x86_64-opt-STABLE-27/bin/tvOSApp/Test/UnitTests/tvOSAppUnitTests.xctest",
             "t": "com.apple.product-type.bundle.unit-test"
@@ -7663,6 +7753,7 @@
                 "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/watchOSApp/Test/UITests/libwatchOSAppUITests.library.a"
             ],
             "e": "watchOSAppUITests",
+            "m": "watchOSAppUITests",
             "n": "watchOSAppUITests",
             "p": "bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-17/bin/watchOSApp/Test/UITests/watchOSAppUITests.xctest",
             "t": "com.apple.product-type.bundle.ui-testing"
@@ -7716,6 +7807,7 @@
                 "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8/bin/watchOSApp/Test/UITests/libwatchOSAppUITests.library.a"
             ],
             "e": "watchOSAppUITests",
+            "m": "watchOSAppUITests",
             "n": "watchOSAppUITests",
             "p": "bazel-out/applebin_watchos-watchos_x86_64-opt-STABLE-19/bin/watchOSApp/Test/UITests/watchOSAppUITests.xctest",
             "t": "com.apple.product-type.bundle.ui-testing"
@@ -7934,6 +8026,7 @@
                 "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/watchOSAppExtension/Test/UnitTests/libwatchOSAppExtensionUnitTests.library.a"
             ],
             "e": "watchOSAppExtensionUnitTests",
+            "m": "watchOSAppExtensionUnitTestsLibrary",
             "n": "watchOSAppExtensionUnitTests",
             "p": "bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-17/bin/watchOSAppExtension/Test/UnitTests/watchOSAppExtensionUnitTests.xctest",
             "t": "com.apple.product-type.bundle.unit-test"
@@ -7998,6 +8091,7 @@
                 "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8/bin/watchOSAppExtension/Test/UnitTests/libwatchOSAppExtensionUnitTests.library.a"
             ],
             "e": "watchOSAppExtensionUnitTests",
+            "m": "watchOSAppExtensionUnitTestsLibrary",
             "n": "watchOSAppExtensionUnitTests",
             "p": "bazel-out/applebin_watchos-watchos_x86_64-opt-STABLE-19/bin/watchOSAppExtension/Test/UnitTests/watchOSAppExtensionUnitTests.xctest",
             "t": "com.apple.product-type.bundle.unit-test"
@@ -8069,6 +8163,7 @@
                 "bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-5/bin/watchOSAppExtension/libwatchOSAppExtension.library.a"
             ],
             "e": "watchOSAppExtension",
+            "m": "watchOSAppExtension",
             "n": "watchOSAppExtension",
             "p": "bazel-out/applebin_watchos-watchos_arm64_32-dbg-STABLE-18/bin/watchOSAppExtension/watchOSAppExtension.appex",
             "t": "com.apple.product-type.watchkit2-extension"
@@ -8138,6 +8233,7 @@
                 "bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-opt-STABLE-11/bin/watchOSAppExtension/libwatchOSAppExtension.library.a"
             ],
             "e": "watchOSAppExtension",
+            "m": "watchOSAppExtension",
             "n": "watchOSAppExtension",
             "p": "bazel-out/applebin_watchos-watchos_arm64_32-opt-STABLE-20/bin/watchOSAppExtension/watchOSAppExtension.appex",
             "t": "com.apple.product-type.watchkit2-extension"
@@ -8208,6 +8304,7 @@
                 "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/watchOSAppExtension/libwatchOSAppExtension.library.a"
             ],
             "e": "watchOSAppExtension",
+            "m": "watchOSAppExtension",
             "n": "watchOSAppExtension",
             "p": "bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-17/bin/watchOSAppExtension/watchOSAppExtension.appex",
             "t": "com.apple.product-type.watchkit2-extension"
@@ -8276,6 +8373,7 @@
                 "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8/bin/watchOSAppExtension/libwatchOSAppExtension.library.a"
             ],
             "e": "watchOSAppExtension",
+            "m": "watchOSAppExtension",
             "n": "watchOSAppExtension",
             "p": "bazel-out/applebin_watchos-watchos_x86_64-opt-STABLE-19/bin/watchOSAppExtension/watchOSAppExtension.appex",
             "t": "com.apple.product-type.watchkit2-extension"
@@ -8307,6 +8405,7 @@
         "l": "@FXPageControl//:FXPageControl",
         "n": "FXPageControl",
         "p": {
+            "m": "FXPageControl",
             "n": "FXPageControl",
             "p": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/external/FXPageControl/libFXPageControl.a",
             "t": "com.apple.product-type.library.static"
@@ -8335,6 +8434,7 @@
         "l": "@FXPageControl//:FXPageControl",
         "n": "FXPageControl",
         "p": {
+            "m": "FXPageControl",
             "n": "FXPageControl",
             "p": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/external/FXPageControl/libFXPageControl.a",
             "t": "com.apple.product-type.library.static"

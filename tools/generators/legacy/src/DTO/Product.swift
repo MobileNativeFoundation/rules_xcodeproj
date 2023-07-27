@@ -5,6 +5,7 @@ struct Product: Equatable {
     let type: PBXProductType
     let isResourceBundle: Bool
     let name: String
+    let moduleName: String?
     let path: FilePath?
     var additionalPaths: [FilePath]
     let executableName: String?
@@ -14,6 +15,7 @@ struct Product: Equatable {
         type: PBXProductType,
         isResourceBundle: Bool = false,
         name: String,
+        moduleName: String? = nil,
         path: FilePath?,
         additionalPaths: [FilePath] = [],
         executableName: String? = nil
@@ -21,6 +23,7 @@ struct Product: Equatable {
         self.type = type
         self.isResourceBundle = isResourceBundle
         self.name = name
+        self.moduleName = moduleName
         self.path = path
         self.additionalPaths = additionalPaths
         self.executableName = executableName
@@ -34,6 +37,7 @@ extension Product: Decodable {
         case type = "t"
         case isResourceBundle = "r"
         case name = "n"
+        case moduleName = "m"
         case path = "p"
         case additionalPaths = "a"
         case executableName = "e"
@@ -46,6 +50,7 @@ extension Product: Decodable {
         isResourceBundle = try container
             .decodeIfPresent(Bool.self, forKey: .isResourceBundle) ?? false
         name = try container.decode(String.self, forKey: .name)
+        moduleName = try container.decodeIfPresent(String.self, forKey: .moduleName)
         path = try container.decodeIfPresent(FilePath.self, forKey: .path)
         additionalPaths = try container
             .decodeIfPresent([FilePath].self, forKey: .additionalPaths) ?? []

@@ -97,6 +97,7 @@
                 "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/tools/generators/legacy/test/libtests.library.a"
             ],
             "e": "tests",
+            "m": "tests",
             "n": "tests",
             "p": "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-3/bin/tools/generators/legacy/test/tests.__internal__.__test_bundle_archive-root/tests.xctest",
             "t": "com.apple.product-type.bundle.unit-test"
@@ -204,6 +205,7 @@
                 "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/tools/generators/legacy/test/libtests.library.a"
             ],
             "e": "tests",
+            "m": "tests",
             "n": "tests",
             "p": "bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-4/bin/tools/generators/legacy/test/tests.__internal__.__test_bundle_archive-root/tests.xctest",
             "t": "com.apple.product-type.bundle.unit-test"
@@ -373,6 +375,7 @@
             }
         },
         "p": {
+            "m": "generator",
             "n": "generator.library",
             "p": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/tools/generators/legacy/libgenerator.library.a",
             "t": "com.apple.product-type.library.static"
@@ -480,6 +483,7 @@
             }
         },
         "p": {
+            "m": "generator",
             "n": "generator.library",
             "p": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/tools/generators/legacy/libgenerator.library.a",
             "t": "com.apple.product-type.library.static"
@@ -524,6 +528,7 @@
             }
         },
         "p": {
+            "m": "GeneratorCommon",
             "n": "GeneratorCommon",
             "p": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/tools/generators/lib/GeneratorCommon/libGeneratorCommon.a",
             "t": "com.apple.product-type.library.static"
@@ -566,6 +571,7 @@
             }
         },
         "p": {
+            "m": "GeneratorCommon",
             "n": "GeneratorCommon",
             "p": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/tools/generators/lib/GeneratorCommon/libGeneratorCommon.a",
             "t": "com.apple.product-type.library.static"
@@ -1391,6 +1397,7 @@
             }
         },
         "p": {
+            "m": "CustomDump",
             "n": "CustomDump",
             "p": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_pointfreeco_swift_custom_dump/libCustomDump.a",
             "t": "com.apple.product-type.library.static"
@@ -1422,6 +1429,7 @@
             }
         },
         "p": {
+            "m": "XCTestDynamicOverlay",
             "n": "XCTestDynamicOverlay",
             "p": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/com_github_pointfreeco_xctest_dynamic_overlay/libXCTestDynamicOverlay.a",
             "t": "com.apple.product-type.library.static"

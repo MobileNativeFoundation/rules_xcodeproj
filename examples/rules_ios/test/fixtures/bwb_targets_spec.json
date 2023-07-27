@@ -156,6 +156,7 @@
             }
         },
         "p": {
+            "m": "Lib",
             "n": "Lib_swift",
             "p": "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2/bin/Lib/libLib_swift.a",
             "t": "com.apple.product-type.library.static"
@@ -190,6 +191,7 @@
             }
         },
         "p": {
+            "m": "Lib",
             "n": "Lib_swift",
             "p": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/Lib/libLib_swift.a",
             "t": "com.apple.product-type.library.static"
@@ -291,6 +293,7 @@
             }
         },
         "p": {
+            "m": "UI",
             "n": "UI_swift",
             "p": "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2/bin/UI/libUI_swift.a",
             "t": "com.apple.product-type.library.static"
@@ -328,6 +331,7 @@
             }
         },
         "p": {
+            "m": "UI",
             "n": "UI_swift",
             "p": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/UI/libUI_swift.a",
             "t": "com.apple.product-type.library.static"
@@ -453,6 +457,7 @@
                 "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2/bin/WidgetExtension/libWidgetExtension.library_swift.a"
             ],
             "e": "WidgetExtension",
+            "m": "WidgetExtension",
             "n": "WidgetExtension",
             "p": "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2/bin/WidgetExtension",
             "t": "com.apple.product-type.framework.static"
@@ -503,6 +508,7 @@
                 "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/WidgetExtension/libWidgetExtension.library_swift.a"
             ],
             "e": "WidgetExtension",
+            "m": "WidgetExtension",
             "n": "WidgetExtension",
             "p": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/WidgetExtension",
             "t": "com.apple.product-type.framework.static"
@@ -663,6 +669,7 @@
             }
         },
         "p": {
+            "m": "MixedAnswer",
             "n": "MixedAnswer_swift",
             "p": "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/libMixedAnswer_swift.a",
             "t": "com.apple.product-type.library.static"
@@ -697,6 +704,7 @@
             }
         },
         "p": {
+            "m": "MixedAnswer",
             "n": "MixedAnswer_swift",
             "p": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer/libMixedAnswer_swift.a",
             "t": "com.apple.product-type.library.static"
@@ -1019,6 +1027,7 @@
                 "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2/bin/iOSApp/Source/libiOSApp.library_swift.a"
             ],
             "e": "iOSApp",
+            "m": "iOSApp",
             "n": "iOSApp",
             "p": "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2/bin/iOSApp/Source",
             "t": "com.apple.product-type.framework.static"
@@ -1070,6 +1079,7 @@
                 "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/libiOSApp.library_swift.a"
             ],
             "e": "iOSApp",
+            "m": "iOSApp",
             "n": "iOSApp",
             "p": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source",
             "t": "com.apple.product-type.framework.static"
@@ -1143,6 +1153,7 @@
                 "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/MixedUnitTests/libiOSAppMixedUnitTests_objc.a"
             ],
             "e": "iOSAppMixedUnitTests",
+            "m": "iOSAppMixedUnitTests",
             "n": "iOSAppMixedUnitTests",
             "p": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Test/MixedUnitTests/iOSAppMixedUnitTests.__internal__.__test_bundle_archive-root/iOSAppMixedUnitTests.xctest",
             "t": "com.apple.product-type.bundle.unit-test"
@@ -1477,6 +1488,7 @@
                 "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/SwiftUnitTests/libiOSAppSwiftUnitTestSuite_swift.a"
             ],
             "e": "iOSAppSwiftUnitTestSuite",
+            "m": "iOSAppSwiftUnitTestSuite",
             "n": "iOSAppSwiftUnitTestSuite",
             "p": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTestSuite.__internal__.__test_bundle_archive-root/iOSAppSwiftUnitTestSuite.xctest",
             "t": "com.apple.product-type.bundle.unit-test"
@@ -1541,6 +1553,7 @@
                 "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/SwiftUnitTests/libiOSAppSwiftUnitTests_swift.a"
             ],
             "e": "iOSAppSwiftUnitTests",
+            "m": "iOSAppSwiftUnitTests",
             "n": "iOSAppSwiftUnitTests",
             "p": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTests.__internal__.__test_bundle_archive-root/iOSAppSwiftUnitTests.xctest",
             "t": "com.apple.product-type.bundle.unit-test"
@@ -1597,6 +1610,7 @@
                 "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/UITests/libiOSAppUITestSuite_swift.a"
             ],
             "e": "iOSAppUITestSuite",
+            "m": "iOSAppUITestSuite",
             "n": "iOSAppUITestSuite",
             "p": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Test/UITests/iOSAppUITestSuite.__internal__.__test_bundle_archive-root/iOSAppUITestSuite.xctest",
             "t": "com.apple.product-type.bundle.ui-testing"
@@ -1653,6 +1667,7 @@
                 "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/UITests/libiOSAppUITestSuite_macro_swift.a"
             ],
             "e": "iOSAppUITestSuite_macro",
+            "m": "iOSAppUITestSuite_macro",
             "n": "iOSAppUITestSuite_macro",
             "p": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Test/UITests/iOSAppUITestSuite_macro.__internal__.__test_bundle_archive-root/iOSAppUITestSuite_macro.xctest",
             "t": "com.apple.product-type.bundle.ui-testing"
@@ -1709,6 +1724,7 @@
                 "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/UITests/libiOSAppUITests_macro_swift.a"
             ],
             "e": "iOSAppUITests_macro",
+            "m": "iOSAppUITests_macro",
             "n": "iOSAppUITests_macro",
             "p": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Test/UITests/iOSAppUITests_macro.__internal__.__test_bundle_archive-root/iOSAppUITests_macro.xctest",
             "t": "com.apple.product-type.bundle.ui-testing"

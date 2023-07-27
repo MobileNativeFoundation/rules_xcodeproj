@@ -47,54 +47,98 @@ extension Generator.DisambiguateTargets {
         _ consolidatedTargets: [ConsolidatedTarget]
     ) -> [DisambiguatedTarget] {
         // Gather all information needed to distinguish the targets
+        var labelsByModuleNameAndProductType:
+            [ModuleNameAndProductType: Set<String>] = [:]
         var labelsByNameAndProductType:
             [NameAndProductType: Set<String>] = [:]
         var names: [String: TargetComponents] = [:]
         var labels: [String: TargetComponents] = [:]
         for consolidatedTarget in consolidatedTargets {
+            let normalizedLabel = consolidatedTarget.normalizedLabel
+            labelsByModuleNameAndProductType[
+                .init(target: consolidatedTarget),
+                default: []
+            ].insert(normalizedLabel)
             labelsByNameAndProductType[
                 .init(target: consolidatedTarget),
                 default: []
-            ].insert(consolidatedTarget.normalizedLabel)
+            ].insert(normalizedLabel)
         }
         for consolidatedTarget in consolidatedTargets {
-            let nameAndProductType = NameAndProductType(
-                target: consolidatedTarget
-            )
-            if labelsByNameAndProductType[nameAndProductType]!.count == 1 {
+            let moduleNameAndProductType =
+                ModuleNameAndProductType(target: consolidatedTarget)
+            guard labelsByModuleNameAndProductType[moduleNameAndProductType]!
+                .count != 1
+            else {
+                names[
+                    moduleNameAndProductType.normalizedModuleName,
+                    default: .init()
+                ].add(target: consolidatedTarget)
+                continue
+            }
+
+            let nameAndProductType =
+                NameAndProductType(target: consolidatedTarget)
+            guard
+                labelsByNameAndProductType[nameAndProductType]!.count != 1
+            else {
                 names[nameAndProductType.normalizedName, default: .init()]
                     .add(target: consolidatedTarget)
-            } else {
-                labels[consolidatedTarget.normalizedLabel, default: .init()]
-                    .add(target: consolidatedTarget)
+                continue
             }
+
+            labels[consolidatedTarget.normalizedLabel, default: .init()]
+                .add(target: consolidatedTarget)
         }
 
         // And then distinguish them
         var disambiguatedTargets: [DisambiguatedTarget] = []
         for consolidatedTarget in consolidatedTargets {
-            let nameAndProductType = NameAndProductType(
-                target: consolidatedTarget
-            )
+            let moduleNameAndProductType =
+                ModuleNameAndProductType(target: consolidatedTarget)
+            guard labelsByModuleNameAndProductType[moduleNameAndProductType]!
+                .count != 1
+            else {
+                disambiguatedTargets.append(
+                    .init(
+                        name: names[
+                            moduleNameAndProductType.normalizedModuleName
+                        ]!.uniqueName(
+                            for: consolidatedTarget,
+                            baseName: consolidatedTarget.moduleName
+                        ),
+                        target: consolidatedTarget
+                    )
+                )
+                continue
+            }
 
-            let name: String
-            let componentKey: String
-            let components: [String: TargetComponents]
-            if labelsByNameAndProductType[nameAndProductType]!.count == 1 {
-                name = consolidatedTarget.name
-                componentKey = nameAndProductType.normalizedName
-                components = names
-            } else {
-                name = "\(consolidatedTarget.label)"
-                componentKey = consolidatedTarget.normalizedLabel
-                components = labels
+            let nameAndProductType =
+                NameAndProductType(target: consolidatedTarget)
+            guard
+                labelsByNameAndProductType[nameAndProductType]!.count != 1
+            else {
+                disambiguatedTargets.append(
+                    .init(
+                        name: names[
+                            nameAndProductType.normalizedName
+                        ]!.uniqueName(
+                            for: consolidatedTarget,
+                            baseName: consolidatedTarget.name
+                        ),
+                        target: consolidatedTarget
+                    )
+                )
+                continue
             }
 
             disambiguatedTargets.append(
                 .init(
-                    name: components[componentKey]!.uniqueName(
+                    name: labels[
+                        consolidatedTarget.normalizedLabel
+                    ]!.uniqueName(
                         for: consolidatedTarget,
-                        baseName: name
+                        baseName: consolidatedTarget.label.description
                     ),
                     target: consolidatedTarget
                 )
@@ -104,6 +148,16 @@ extension Generator.DisambiguateTargets {
         return disambiguatedTargets.sorted { lhs, rhs in
             lhs.name.localizedStandardCompare(rhs.name) == .orderedAscending
         }
+    }
+}
+
+private struct ModuleNameAndProductType: Equatable, Hashable {
+    let normalizedModuleName: String
+    let productType: PBXProductType
+
+    init(target: ConsolidatedTarget) {
+        self.normalizedModuleName = target.normalizedModuleName
+        self.productType = target.productType
     }
 }
 
@@ -585,6 +639,13 @@ extension ConsolidatedTarget {
     /// logic to differentiate targets where the names only differ by case.
     var normalizedLabel: String {
         return "\(label)".lowercased()
+    }
+
+    /// The normalized module name is used during target disambiguation. It
+    /// allows the logic to differentiate targets where the module names only
+    /// differ by case.
+    var normalizedModuleName: String {
+        return moduleName.lowercased()
     }
 
     /// The normalized name is used during target disambiguation. It allows the

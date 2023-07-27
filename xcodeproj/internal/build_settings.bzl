@@ -24,18 +24,20 @@ def get_product_module_name(*, ctx, target):
         target: The `Target` to generate a module name for.
 
     Returns:
-        The `module_name` attribute of `target` if set, otherwise it transforms
-        the target's `Label` into a valid module name (e.g. "//some/pkg:target"
-        becomes "some_pkg_target").
+        A `tuple` containing two elements:
+            * The `module_name` attribute of `target`
+            * The `module_name` attribute of `target` if set, otherwise it transforms
+            the target's `Label` into a valid module name (e.g. "//some/pkg:target"
+            becomes "some_pkg_target").
     """
     module_name = getattr(ctx.rule.attr, "module_name", None)
     if module_name:
-        return module_name
+        return (module_name, module_name)
 
     if SwiftInfo in target:
-        return swift_common.derive_module_name(target.label)
+        return (None, swift_common.derive_module_name(target.label))
 
-    return None
+    return (None, None)
 
 def get_targeted_device_family(families):
     """Generates a TARGETED_DEVICE_FAMILY based string.
