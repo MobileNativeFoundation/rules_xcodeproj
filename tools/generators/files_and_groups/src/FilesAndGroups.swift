@@ -3,7 +3,7 @@ import Foundation
 import GeneratorCommon
 
 @main
-struct FilesAndGroups: ParsableCommand {
+struct FilesAndGroups: AsyncParsableCommand {
     static var configuration = CommandConfiguration(
         commandName: "files_and_groups",
         abstract: "Generates the file and groups 'PBXProj' partials."
@@ -18,7 +18,7 @@ struct FilesAndGroups: ParsableCommand {
         await parseAsRootSupportingParamsFile()
     }
 
-    func run() throws {
+    func run() async throws {
         let logger = DefaultLogger(
             standardError: StderrOutputStream(),
             standardOutput: StdoutOutputStream(),
@@ -28,7 +28,7 @@ struct FilesAndGroups: ParsableCommand {
         let generator = Generator()
 
         do {
-            try generator.generate(arguments: arguments)
+            try await generator.generate(arguments: arguments)
         } catch {
             logger.logError(error.localizedDescription)
             Darwin.exit(1)
