@@ -7,6 +7,11 @@ extension ElementCreator {
         @Argument(help: "Absolute path to the Bazel workspace.")
         var workspace: String
 
+        @Argument(help: """
+Bazel workspace relative path to where the final `.xcodeproj` will be output.
+""")
+        var projectPath: String
+
         @Argument(
             help: """
 Path to a file that contains the absolute path to the Bazel execution root.

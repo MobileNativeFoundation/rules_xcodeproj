@@ -22,7 +22,9 @@ def _identity(seq):
 # enum of flags, mainly to ensure the strings are frozen and reused
 _flags = struct(
     archs = "--archs",
+    build_file_sub_identifiers_files = "--build-file-sub-identifiers-files",
     colorize = "--colorize",
+    compile_stub_needed = "--compile-stub-needed",
     consolidation_map_output_paths = "--consolidation-map-output-paths",
     default_xcode_configuration = "--default-xcode-configuration",
     dependencies = "--dependencies",
@@ -48,13 +50,16 @@ _flags = struct(
 def _write_files_and_groups(
         *,
         actions,
+        buildfile_subidentifiers_files,
         colorize,
+        compile_stub_needed,
         execution_root_file,
         files,
         file_paths,
         folders,
         generator_name,
         project_options,
+        project_path,
         selected_model_versions_file,
         tool,
         workspace_directory):
@@ -63,7 +68,11 @@ def _write_files_and_groups(
 
     Args:
         actions: `ctx.actions`.
+        buildfile_subidentifiers_files: A `list` of `File`s that contain
+            serialized `[Identifiers.BuildFile.SubIdentifier]`s.
         colorize: A `bool` indicating whether to colorize the output.
+        compile_stub_needed: A `bool` indicating whether a compile stub is
+            needed.
         execution_root_file: A `File` containing the absolute path to the Bazel
             execution root.
         files: A `depset` of `File`s  to include in the project.
@@ -73,6 +82,8 @@ def _write_files_and_groups(
         folders: A `depset` of paths to folders to include in the project.
         generator_name: The name of the `xcodeproj` generator target.
         project_options: A `dict` as returned by `project_options`.
+        project_path: The workspace relative path to where the final
+            `.xcodeproj` will be written.
         selected_model_versions_file: A `File` that contains a JSON
             representation of `[BazelPath: String]`, mapping `.xcdatamodeld`
             file paths to selected `.xcdatamodel` file names.
@@ -122,6 +133,9 @@ def _write_files_and_groups(
     # workspace
     args.add(workspace_directory)
 
+    # projectPath
+    args.add(project_path)
+
     # executionRootFile
     args.add(execution_root_file)
 
@@ -133,6 +147,16 @@ def _write_files_and_groups(
 
     # useBaseInternationalization
     args.add(_flags.use_base_internationalization)
+
+    if compile_stub_needed:
+        # compileStubNeeded
+        args.add(_flags.compile_stub_needed)
+
+    # buildFileSubIdentifiersFiles
+    args.add_all(
+        _flags.build_file_sub_identifiers_files,
+        buildfile_subidentifiers_files
+    )
 
     # filePaths
     if files != EMPTY_DEPSET or file_paths != EMPTY_DEPSET:

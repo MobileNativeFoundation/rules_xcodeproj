@@ -45,6 +45,8 @@ _SCHEMES = [
                 "/tmp/pbxproj_partials/resolved_repositories",
                 # workspace
                 "/tmp/workspace",
+                # projectPath
+                "some/project.xcodeproj",
                 # executionRootFile
                 "bazel-output-base/rules_xcodeproj.noindex/build_output_base/execroot/_main/bazel-out/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/xcodeproj/xcodeproj_execution_root_file",
                 # selectedModelVersionsFile
@@ -53,6 +55,10 @@ _SCHEMES = [
                 "en",
                 # useBaseInternationalization
                 "--use-base-internationalization",
+                # buildFileSubIdentifiersFiles
+                "--build-file-sub-identifiers-files",
+                "/tmp/pbxproj_partials/buildfile_subidentifiers/0",
+                "/tmp/pbxproj_partials/buildfile_subidentifiers/1",
                 # filePaths
                 "--file-paths",
                 "a/project/file",

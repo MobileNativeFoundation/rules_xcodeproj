@@ -263,11 +263,17 @@ FF0000000000000000000006 /* Bazel External Repositories */
         public static let bazelGeneratedFilesGroup = #"""
 FF0000000000000000000007 /* Bazel Generated Files */
 """#
+        public static let compileStub = #"""
+FF0000000000000000000009 /* _CompileStub_.m */
+"""#
         public static let frameworksGroup = #"""
 FF0000000000000000000005 /* Frameworks */
 """#
         public static let productsGroup = #"""
 FF0000000000000000000004 /* Products */
+"""#
+        public static let rulesXcodeprojInternalGroup = #"""
+FF0000000000000000000008 /* rules_xcodeproj */
 """#
 
         /// Calculates the identifier for a file or group element at `path`.

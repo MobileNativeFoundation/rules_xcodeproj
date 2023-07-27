@@ -24,6 +24,8 @@ The generator accepts the following command-line arguments (see
 - Positional `selected-model-versions-file`
 - Positional `development-region`
 - Flag `--use-base-internationalization`
+- Flag `--compile-stub-needed`
+- Option list `--build-file-sub-identifiers-files <build-file-sub-identifiers-file> ...`
 - Optional option list `--file-paths <file-path> ...`
 - Optional option list `--folder-paths <folder-path> ...`
 - Flag `--colorize`
@@ -36,10 +38,14 @@ $ files_and_groups \
     /tmp/pbxproj_partials/files_and_groups \
     /tmp/pbxproj_partials/resolved_repositories \
     /tmp/workspace \
+    some/project.xcodeproj \
     bazel-output-base/rules_xcodeproj.noindex/build_output_base/execroot/_main/bazel-out/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/generators/xcodeproj/xcodeproj_execution_root_file \
     bazel-output-base/rules_xcodeproj.noindex/build_output_base/execroot/_main/bazel-out/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/generators/xcodeproj/xcodeproj_selected_model_versions_file \
     en \
     --use-base-internationalization \
+    --build-file-sub-identifiers-files \
+    /tmp/pbxproj_partials/buildfile_subidentifiers/0 \
+    /tmp/pbxproj_partials/buildfile_subidentifiers/1 \
     --file-paths \
     a/project/file \
     bazel-out/generated/file \

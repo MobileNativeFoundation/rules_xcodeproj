@@ -9,7 +9,8 @@ struct ElementCreator {
 
     func create(
         pathTree: PathTreeNode,
-        arguments: Arguments
+        arguments: Arguments,
+        compileStubNeeded: Bool
     ) throws -> CreatedElements {
         let executionRoot = try environment.readExecutionRootFile(
             arguments.executionRootFile
@@ -20,6 +21,8 @@ struct ElementCreator {
             externalDir: try environment.externalDir(
                 executionRoot: executionRoot
             ),
+            includeCompileStub: compileStubNeeded,
+            projectPath: arguments.projectPath,
             selectedModelVersions:
                 try environment.readSelectedModelVersionsFile(
                     arguments.selectedModelVersionsFile
@@ -41,6 +44,7 @@ struct ElementCreator {
 
         return CreatedElements(
             partial: partial,
+            bazelPathAndIdentifiers: rootElements.bazelPathAndIdentifiers,
             knownRegions: rootElements.knownRegions,
             resolvedRepositories: rootElements.resolvedRepositories
         )
@@ -49,6 +53,7 @@ struct ElementCreator {
 
 struct CreatedElements {
     let partial: String
+    let bazelPathAndIdentifiers: [(BazelPath, String)]
     let knownRegions: Set<String>
     let resolvedRepositories: [ResolvedRepository]
 }

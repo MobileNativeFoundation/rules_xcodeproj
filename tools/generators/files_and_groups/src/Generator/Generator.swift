@@ -28,7 +28,8 @@ struct Generator {
         let createElementsTask = Task {
             return try elementsCreator.create(
                 pathTree: pathTree,
-                arguments: arguments.elementCreatorArguments
+                arguments: arguments.elementCreatorArguments,
+                compileStubNeeded: arguments.compileStubNeeded
             )
         }
 
@@ -46,8 +47,29 @@ struct Generator {
         }
 
         let writeFilesAndGroupsPartialTask = Task {
+            let buildFilesPartial = environment.calculateBuildFilesPartial(
+                objects: try await environment.createBuildFileObjects(
+                    buildFileSubIdentifierFiles:
+                        arguments.buildFileSubIdentifiersFiles,
+                    // Because we pass in a task here,
+                    // `createBuildFileObjects()` can start before
+                    // `elementsCreator.create()` has finished. This allows
+                    // `createBuildFileObjects()` to read in all of
+                    // `buildFileSubIdentifiersFiles` and then block on
+                    // `fileIdentifiers` being created.
+                    fileIdentifiersTask: Task {
+                        let createdElements = try await createElementsTask.value
+                        return Dictionary(
+                            uniqueKeysWithValues:
+                                createdElements.bazelPathAndIdentifiers
+                        )
+                    }
+                )
+            )
+
             return try environment.write(
                 environment.filesAndGroupsPartial(
+                    /*buildFilesPartial:*/ buildFilesPartial,
                     /*elementsPartial:*/
                         try await createElementsTask.value.partial
                 ),
