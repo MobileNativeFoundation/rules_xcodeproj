@@ -39,15 +39,12 @@ class CalculateTargetDependenciesPartialTests: XCTestCase {
 
         // Assert
 
-        XCTAssertNoDifference(
-            targetDependenciesPartial,
-			expectedTargetsPartial
-		)
+        XCTAssertNoDifference(targetDependenciesPartial,expectedTargetsPartial)
     }
 
     func test_empty() {
         // Arrange
-        
+
         let elements: [Element] = []
 
         let expectedTargetsPartial = ""
@@ -60,9 +57,6 @@ class CalculateTargetDependenciesPartialTests: XCTestCase {
 
         // Assert
 
-        XCTAssertNoDifference(
-			targetDependenciesPartial,
-			expectedTargetsPartial
-		)
+        XCTAssertNoDifference(targetDependenciesPartial,expectedTargetsPartial)
     }
 }
