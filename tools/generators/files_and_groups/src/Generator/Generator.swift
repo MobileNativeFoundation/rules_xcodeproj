@@ -18,7 +18,7 @@ struct Generator {
     /// Calculates the `PBXProject.knownRegions` `PBXProj` partial, files and
     /// groups `PBXProj` partial, and `RESOLVED_REPOSITORIES` build setting.
     /// Then it writes them to disk.
-    func generate(arguments: Arguments) throws {
+    func generate(arguments: Arguments) async throws {
         let pathTree = environment.calculatePathTree(
             /*paths:*/ Set(arguments.filePaths + arguments.folderPaths)
         )
@@ -34,35 +34,39 @@ struct Generator {
             arguments: arguments.elementCreatorArguments
         )
 
-        let filesAndGroupsPartial = environment.filesAndGroupsPartial(
-            /*elementsPartial:*/ elementsPartial
-        )
-
-        let knownRegionsPartial = environment.knownRegionsPartial(
-            /*knownRegions:*/ knownRegions,
-            /*developmentRegion:*/ arguments.developmentRegion,
-            /*useBaseInternationalization:*/
-                arguments.useBaseInternationalization
-        )
-
-        let resolvedRepositoriesBuildSetting = environment
-            .resolvedRepositoriesBuildSetting(
-                /*resolvedRepositories:*/ resolvedRepositories
+        let writeKnownRegionsPartialTask = Task {
+            try environment.write(
+                environment.knownRegionsPartial(
+                    /*knownRegions:*/ knownRegions,
+                    /*developmentRegion:*/ arguments.developmentRegion,
+                    /*useBaseInternationalization:*/
+                    arguments.useBaseInternationalization
+                ),
+                to: arguments.knownRegionsOutputPath
             )
+        }
 
-        try environment.write(
-            knownRegionsPartial,
-            to: arguments.knownRegionsOutputPath
-        )
+        let writeFilesAndGroupsPartialTask = Task {
+            try environment.write(
+                environment.filesAndGroupsPartial(
+                    /*elementsPartial:*/ elementsPartial
+                ),
+                to: arguments.filesAndGroupsOutputPath
+            )
+        }
 
-        try environment.write(
-            filesAndGroupsPartial,
-            to: arguments.filesAndGroupsOutputPath
-        )
+        let writeResolvedRepositoriesBuildSettingTask = Task {
+            try environment.write(
+                environment.resolvedRepositoriesBuildSetting(
+                    /*resolvedRepositories:*/ resolvedRepositories
+                ),
+                to: arguments.resolvedRepositoriesOutputPath
+            )
+        }
 
-        try environment.write(
-            resolvedRepositoriesBuildSetting,
-            to: arguments.resolvedRepositoriesOutputPath
-        )
+        // Wait for all of the writes to complete
+        try await writeFilesAndGroupsPartialTask.value
+        try await writeKnownRegionsPartialTask.value
+        try await writeResolvedRepositoriesBuildSettingTask.value
     }
 }
