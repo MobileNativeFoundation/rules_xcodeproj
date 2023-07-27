@@ -38,9 +38,9 @@ struct Generator {
             try environment.write(
                 environment.knownRegionsPartial(
                     /*knownRegions:*/ knownRegions,
-                                      /*developmentRegion:*/ arguments.developmentRegion,
-                                      /*useBaseInternationalization:*/
-                                      arguments.useBaseInternationalization
+                    /*developmentRegion:*/ arguments.developmentRegion,
+                    /*useBaseInternationalization:*/
+                    arguments.useBaseInternationalization
                 ),
                 to: arguments.knownRegionsOutputPath
             )
