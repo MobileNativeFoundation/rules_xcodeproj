@@ -552,12 +552,12 @@ struct ArchitectureComponents {
 
     /// The set of xcodeConfigurations among the targets passed to
     /// `add(target:consolidatedKey:)`.
-    private var xcodeConfigurations: Set<String> = []
+    private var xcodeConfigurations: Set<[String]> = []
 
     /// Adds another `Target` into consideration for `distinguisher()`.
     mutating func add(target: Target, consolidatedKey: ConsolidatedTarget.Key) {
         consolidatedKeys.insert(consolidatedKey)
-        xcodeConfigurations.formUnion(target.xcodeConfigurations)
+        xcodeConfigurations.insert(target.xcodeConfigurations)
     }
 
     /// Potentially generates user-facing strings that, along with a target

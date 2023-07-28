@@ -472,10 +472,55 @@ final class DisambiguateTargetsTests: XCTestCase {
                 product: .init(type: .staticLibrary, name: "A", path: "")
             ),
             "A 2": Target.mock(
+                xcodeConfigurations: ["Release"],
+                product: .init(type: .staticLibrary, name: "A", path: "")
+            ),
+            "B": Target.mock(
+                xcodeConfigurations: ["Release", "Profile"],
+                product: .init(type: .staticLibrary, name: "B", path: "")
+            ),
+        ]
+        let consolidatedTargets = ConsolidatedTargets(targets: targets)
+        let expectedTargetNames: [ConsolidatedTarget.Key: String] = [
+            "A 1": "A (Debug)",
+            "A 2": "A (Release)",
+            "B": "B",
+        ]
+
+        // Act
+
+        let disambiguatedTargets = Generator.disambiguateTargets(
+            consolidatedTargets
+        )
+
+        // Assert
+
+        XCTAssertNoDifference(
+            disambiguatedTargets.targets.mapValues(\.name)
+                .map(KeyAndValue.init).sorted(),
+            expectedTargetNames.map(KeyAndValue.init).sorted()
+        )
+        XCTAssertNoDifference(
+            disambiguatedTargets.targets.mapValues(\.target)
+                .map(KeyAndValue.init).sorted(),
+            consolidatedTargets.targets.map(KeyAndValue.init).sorted()
+        )
+    }
+
+    func test_xcodeConfiguration_multiple() throws {
+        // Arrange
+
+        let targets: [TargetID: Target] = [
+            "A 1": Target.mock(
+                xcodeConfigurations: ["Debug"],
+                product: .init(type: .staticLibrary, name: "A", path: "")
+            ),
+            "A 2": Target.mock(
                 xcodeConfigurations: ["Release", "Profile"],
                 product: .init(type: .staticLibrary, name: "A", path: "")
             ),
             "B": Target.mock(
+                xcodeConfigurations: ["Release", "Profile"],
                 product: .init(type: .staticLibrary, name: "B", path: "")
             ),
         ]
