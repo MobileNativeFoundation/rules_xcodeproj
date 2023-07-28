@@ -1,4 +1,5 @@
 import CryptoKit
+import Foundation
 
 /// Helps set identifiers for `PBXProj` elements.
 ///
@@ -166,7 +167,7 @@ FF0000000000000000000004 /* Products */
                 content = "\(hashable)\0\(retryCount)"
             }
 
-            let digest = Insecure.MD5.hash(data: content.data(using: .utf8)!)
+            let digest = Insecure.MD5.hash(data: Data(content.utf8))
             return digest
                 // Xcode identifiers are 24 characters. We are using 2
                 // characters at the front for "FE". That leaves 22 characters
@@ -341,7 +342,7 @@ FF00000000000000000001\#(String(format: "%02X", index)) \#
                 content = "\(hashable)\0\(retryCount)"
             }
 
-            let digest = Insecure.MD5.hash(data: content.data(using: .utf8)!)
+            let digest = Insecure.MD5.hash(data: Data(content.utf8))
             return digest
                 // We want an 8 character string. MD5 digests are 16 bytes (32
                 // characters) long. So we need to truncate it (by dropping 12
