@@ -1,4 +1,5 @@
 import CryptoKit
+import Foundation
 
 /// Helps set identifiers for `PBXProj` elements.
 ///
