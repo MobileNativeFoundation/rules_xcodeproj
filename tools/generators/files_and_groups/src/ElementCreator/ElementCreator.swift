@@ -10,11 +10,7 @@ struct ElementCreator {
     func create(
         pathTree: PathTreeNode,
         arguments: Arguments
-    ) throws -> (
-        partial: String,
-        knownRegions: Set<String>,
-        resolvedRepositories: [ResolvedRepository]
-    ) {
+    ) throws -> CreatedElements {
         let executionRoot = try environment.readExecutionRootFile(
             arguments.executionRootFile
         )
@@ -43,10 +39,16 @@ struct ElementCreator {
             workspace: arguments.workspace
         )
 
-        return (
+        return CreatedElements(
             partial: partial,
             knownRegions: rootElements.knownRegions,
             resolvedRepositories: rootElements.resolvedRepositories
         )
     }
+}
+
+struct CreatedElements {
+    let partial: String
+    let knownRegions: Set<String>
+    let resolvedRepositories: [ResolvedRepository]
 }

@@ -25,19 +25,18 @@ struct Generator {
 
         let elementsCreator = ElementCreator(environment: environment.elements)
 
-        let (
-            elementsPartial,
-            knownRegions,
-            resolvedRepositories
-        ) = try elementsCreator.create(
-            pathTree: pathTree,
-            arguments: arguments.elementCreatorArguments
-        )
+        let createElementsTask = Task {
+            return try elementsCreator.create(
+                pathTree: pathTree,
+                arguments: arguments.elementCreatorArguments
+            )
+        }
 
         let writeKnownRegionsPartialTask = Task {
-            try environment.write(
+            return try environment.write(
                 environment.knownRegionsPartial(
-                    /*knownRegions:*/ knownRegions,
+                    /*knownRegions:*/
+                        try await createElementsTask.value.knownRegions,
                     /*developmentRegion:*/ arguments.developmentRegion,
                     /*useBaseInternationalization:*/
                     arguments.useBaseInternationalization
@@ -47,18 +46,20 @@ struct Generator {
         }
 
         let writeFilesAndGroupsPartialTask = Task {
-            try environment.write(
+            return try environment.write(
                 environment.filesAndGroupsPartial(
-                    /*elementsPartial:*/ elementsPartial
+                    /*elementsPartial:*/
+                        try await createElementsTask.value.partial
                 ),
                 to: arguments.filesAndGroupsOutputPath
             )
         }
 
         let writeResolvedRepositoriesBuildSettingTask = Task {
-            try environment.write(
+            return try environment.write(
                 environment.resolvedRepositoriesBuildSetting(
-                    /*resolvedRepositories:*/ resolvedRepositories
+                    /*resolvedRepositories:*/
+                        try await createElementsTask.value.resolvedRepositories
                 ),
                 to: arguments.resolvedRepositoriesOutputPath
             )
