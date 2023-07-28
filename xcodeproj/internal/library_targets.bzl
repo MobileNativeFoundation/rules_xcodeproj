@@ -162,6 +162,8 @@ def process_library_target(
         swift_sub_params,
         c_has_fortify_source,
         cxx_has_fortify_source,
+        cargvs,
+        swiftargvs,
     ) = process_opts(
         ctx = ctx,
         build_mode = build_mode,
@@ -223,4 +225,6 @@ def process_library_target(
         outputs = provider_outputs,
         transitive_dependencies = transitive_dependencies,
         xcode_target = xcode_target,
+        cargvs = cargvs,
+        swiftargvs = swiftargvs,
     )

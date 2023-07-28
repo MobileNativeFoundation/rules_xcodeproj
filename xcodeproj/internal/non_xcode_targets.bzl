@@ -143,4 +143,7 @@ rules_xcodeproj requires {} to have `{}` set.
         resource_bundle_informations = resource_bundle_informations,
         transitive_dependencies = transitive_dependencies,
         xcode_target = None,
+        # FIXME: Does there need pass cargvs and swiftargvs
+        cargvs = None,
+        swiftargvs = None,
     )

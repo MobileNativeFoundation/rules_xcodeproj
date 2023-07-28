@@ -24,7 +24,14 @@ load(":providers.bzl", "XcodeProjInfo")
 load(":resource_target.bzl", "process_resource_bundles")
 load(":target_id.bzl", "write_target_ids_list")
 load(":xcode_targets.bzl", "xcode_targets")
-
+load(
+    ":xcodeproj_ccdb_aspect.bzl",
+    "create_compile_commands_json_symlink",
+    "post_process_index_compile_commands",
+    "transitive_cargvs",
+    "transitive_swiftargvs",
+    "write_compile_commands_json",
+)
 # Utility
 
 _SWIFTUI_PREVIEW_PRODUCT_TYPES = {
@@ -1774,6 +1781,26 @@ done
         )
         all_targets_files = [output_files_output_groups["all_b"]]
 
+    cargvs = transitive_cargvs(infos = infos).to_list()
+    swiftargvs = transitive_swiftargvs(infos = infos).to_list()
+
+    process_index_compile_commands = post_process_index_compile_commands(
+        cargvs = cargvs,
+        swiftargvs = swiftargvs,
+        workspace_directory = ctx.attr.workspace_directory,
+    )
+
+    index_compile_commands_json = write_compile_commands_json(
+        ctx = ctx,
+        compile_commands = process_index_compile_commands,
+        file_name = project_name + "_compile_commands.json"
+    )
+
+    compile_commands_json_symlink = create_compile_commands_json_symlink(
+        ctx = ctx,
+        compile_commands_json = index_compile_commands_json,
+    )
+
     return [
         DefaultInfo(
             executable = installer,
@@ -1790,6 +1817,7 @@ done
                 transitive = all_targets_files,
             ),
             target_ids_list = depset([target_ids_list]),
+            compile_commands = depset([index_compile_commands_json, compile_commands_json_symlink]),
             **dicts.add(
                 input_files_output_groups,
                 output_files_output_groups,

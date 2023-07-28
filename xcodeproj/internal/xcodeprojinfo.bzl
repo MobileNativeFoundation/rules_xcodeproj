@@ -134,7 +134,9 @@ def _target_info_fields(
         transitive_dependencies,
         xcode_target,
         xcode_targets,
-        xcode_required_targets):
+        xcode_required_targets,
+        cargvs,
+        swiftargvs):
     """Generates target specific fields for the `XcodeProjInfo`.
 
     This should be merged with other fields to fully create an `XcodeProjInfo`.
@@ -168,6 +170,8 @@ def _target_info_fields(
         xcode_targets: Maps to the `XcodeProjInfo.xcode_targets` field.
         xcode_required_targets: Maps to the
             `XcodeProjInfo.xcode_required_targets` field.
+        cargvs: Maps to the `XcodeProjInfo.cargvs` field.
+        swiftargvs: Maps to the `XcodeProjInfo.swiftargvs` field.
 
     Returns:
         A `dict` containing the following fields:
@@ -191,6 +195,8 @@ def _target_info_fields(
         *   `xcode_target`
         *   `xcode_targets`
         *   `xcode_required_targets`
+        *   `cargvs`
+        *   `swiftargvs`
     """
     return {
         "args": args,
@@ -212,6 +218,8 @@ def _target_info_fields(
         "xcode_target": xcode_target,
         "xcode_targets": xcode_targets,
         "xcode_required_targets": xcode_required_targets,
+        "cargvs": cargvs,
+        "swiftargvs": swiftargvs,
     }
 
 def _skip_target(
@@ -424,6 +432,9 @@ def _skip_target(
                 for info in valid_transitive_infos
             ],
         ),
+        # FIXME: Does it need process cargvs and swift argvs
+        cargvs = depset(),
+        swiftargvs = depset(),
     )
 
 def _create_args_depset(*, ctx, id, automatic_target_info):
@@ -466,6 +477,7 @@ def _create_xcodeprojinfo(
         A `dict` of fields to be merged into the `XcodeProjInfo`. See
         `_target_info_fields`.
     """
+    
     if not _should_create_provider(ctx = ctx, target = target):
         return None
 
@@ -515,7 +527,6 @@ def _create_xcodeprojinfo(
             automatic_target_info = automatic_target_info,
             transitive_infos = valid_transitive_infos,
         )
-
     return _target_info_fields(
         args = memory_efficient_depset(
             transitive = [
@@ -589,6 +600,20 @@ def _create_xcodeprojinfo(
             transitive = [
                 info.xcode_required_targets
                 for info in valid_transitive_infos
+            ],
+        ),
+        cargvs = depset(
+            processed_target.cargvs,
+            transitive = [
+                info.cargvs
+                for _, info in transitive_infos
+            ],
+        ),
+        swiftargvs = depset(
+            processed_target.swiftargvs,
+            transitive = [
+                info.swiftargvs
+                for _, info in transitive_infos
             ],
         ),
     )

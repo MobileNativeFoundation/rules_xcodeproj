@@ -18,7 +18,10 @@ def processed_target(
         potential_target_merges = None,
         resource_bundle_informations = None,
         transitive_dependencies,
-        xcode_target):
+        xcode_target,
+        cargvs,
+        swiftargvs,
+        ):
     """Generates the return value for target processing functions.
 
     Args:
@@ -50,6 +53,8 @@ def processed_target(
             dependencies of this target.
         xcode_target: An optional value returned from `xcode_targets.make` that
             will be in the `XcodeProjInfo.xcode_targets` `depset`.
+        cargvs: A `lits` of C/C++ argv.
+        swiftargvs: A `lits` of Swift argv.
 
     Returns:
         A `struct` containing fields for each argument.
@@ -72,4 +77,6 @@ def processed_target(
         transitive_dependencies = transitive_dependencies,
         xcode_target = xcode_target,
         xcode_targets = [xcode_target] if xcode_target else None,
+        cargvs = cargvs,
+        swiftargvs = swiftargvs,
     )

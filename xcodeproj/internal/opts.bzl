@@ -44,7 +44,7 @@ def _legacy_get_unprocessed_cc_compiler_opts(
     if (has_swift_opts or
         not implementation_compilation_context or
         not (c_sources or cxx_sources)):
-        return (EMPTY_LIST, EMPTY_LIST, EMPTY_LIST, EMPTY_LIST)
+        return (EMPTY_LIST, EMPTY_LIST, EMPTY_LIST, EMPTY_LIST, EMPTY_LIST)
 
     cc_toolchain = find_cpp_toolchain(ctx)
 
@@ -130,7 +130,7 @@ def _legacy_get_unprocessed_cc_compiler_opts(
         cxxopts = []
         cxx_args = []
 
-    return conlyopts, conly_args, cxxopts, cxx_args
+    return conlyopts, conly_args, cxxopts, cxx_args, EMPTY_LIST
 
 def _modern_get_unprocessed_cc_compiler_opts(
         *,
@@ -147,14 +147,15 @@ def _modern_get_unprocessed_cc_compiler_opts(
     conly_args = EMPTY_LIST
     cxxopts = EMPTY_LIST
     cxx_args = EMPTY_LIST
-
+    cargvs = []
     if not c_sources and not cxx_sources:
-        return (conlyopts, conly_args, cxxopts, cxx_args)
+        return (conlyopts, conly_args, cxxopts, cxx_args, cargvs)
 
     for action in target.actions:
         if action.mnemonic not in _CC_COMPILE_ACTIONS:
             continue
-
+        
+        cargvs.append(struct(argv=action.argv))
         previous_arg = None
         for arg in action.argv:
             if previous_arg == "-c":
@@ -174,7 +175,7 @@ def _modern_get_unprocessed_cc_compiler_opts(
             # We've found all the args we are looking for
             break
 
-    return conlyopts, conly_args, cxxopts, cxx_args
+    return conlyopts, conly_args, cxxopts, cxx_args, cargvs
 
 # Bazel 6 check
 _get_unprocessed_cc_compiler_opts = (
@@ -216,15 +217,19 @@ def _get_unprocessed_compiler_opts(
         *   A `list` of C compiler options.
         *   A `list` of C++ compiler options.
         *   A `list` of Swift compiler options.
+        *   A `list` of C/C++ argv.
+        *   A `list` of Swift argv.
     """
 
     swiftcopts = EMPTY_LIST
     swift_args = EMPTY_LIST
+    swiftargvs = []
     for action in target.actions:
         if action.mnemonic == "SwiftCompile":
             # First two arguments are "worker" and "swiftc"
             swiftcopts = action.argv[2:]
             swift_args = action.args
+            swiftargvs.append(struct(argv=action.argv))
             break
 
     (
@@ -232,6 +237,7 @@ def _get_unprocessed_compiler_opts(
         conly_args,
         cxxopts,
         cxx_args,
+        cargvs,
     ) = _get_unprocessed_cc_compiler_opts(
         ctx = ctx,
         c_sources = c_sources,
@@ -255,6 +261,8 @@ Using VFS overlays with `build_mode = "xcode"` is unsupported.
         cxx_args,
         swiftcopts,
         swift_args,
+        cargvs,
+        swiftargvs,
     )
 
 _CLANG_SEARCH_PATH_OPTS = {
@@ -587,7 +595,9 @@ def _process_compiler_opts(
         package_bin_dir,
         swift_args,
         swift_compiler_params_processor,
-        swiftcopts):
+        swiftcopts,
+        cargvs,
+        swiftargvs):
     """Processes compiler options.
 
     Args:
@@ -610,6 +620,8 @@ def _process_compiler_opts(
         swift_compiler_params_processor: The `swift_compiler_params_processor`
             executable.
         swiftcopts: A `list` of Swift compiler options.
+        cargvs: A `list` of C/C++ argv.
+        swiftargvs: A `list` of Swift argv.
 
     Returns:
         A `tuple` containing six elements:
@@ -622,6 +634,8 @@ def _process_compiler_opts(
             "-D_FORTIFY_SOURCE=1".
         *   A `bool` that is `True` if C++ compiler options contain
             "-D_FORTIFY_SOURCE=1".
+        *   A `list` of C/C++ argv.
+        *   A `list` of Swift argv.
     """
     has_swiftcopts = bool(swiftcopts)
 
@@ -676,6 +690,8 @@ def _process_compiler_opts(
         swift_sub_params,
         c_has_fortify_source,
         cxx_has_fortify_source,
+        cargvs,
+        swiftargvs,
     )
 
 def _process_target_compiler_opts(
@@ -714,6 +730,8 @@ def _process_target_compiler_opts(
         *   A `bool` that is `True` if C++ compiler options contain
             "-D_FORTIFY_SOURCE=1".
         *   A `list` of Swift PCM (clang) compiler options.
+        *   A `list` of C/C++ argv.
+        *   A `list` of Swift argv.
     """
     (
         conlyopts,
@@ -722,6 +740,8 @@ def _process_target_compiler_opts(
         cxx_args,
         swiftcopts,
         swift_args,
+        cargvs,
+        swiftargvs,
     ) = _get_unprocessed_compiler_opts(
         ctx = ctx,
         build_mode = build_mode,
@@ -749,6 +769,8 @@ def _process_target_compiler_opts(
         swift_compiler_params_processor = (
             ctx.executable._swift_compiler_params_processor
         ),
+        cargvs = cargvs,
+        swiftargvs = swiftargvs,
     )
 
 # Utility
@@ -827,6 +849,8 @@ def process_opts(
         *   A `bool` that is `True` if C++ compiler options contain
             "-D_FORTIFY_SOURCE=1".
         *   A `list` of Swift PCM (clang) compiler options.
+        *   A `list` of C/C++ argv.
+        *   A `list` of Swift argv.
     """
     return _process_target_compiler_opts(
         ctx = ctx,

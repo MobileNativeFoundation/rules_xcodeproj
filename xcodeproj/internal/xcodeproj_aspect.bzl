@@ -24,7 +24,7 @@ def _should_ignore_attr(attr):
         attr in _IGNORE_ATTR
     )
 
-def _transitive_infos(*, ctx, attrs):
+def transitive_infos(*, ctx, attrs):
     transitive_infos = []
 
     # TODO: Have `XcodeProjAutomaticTargetProcessingInfo` tell us which
@@ -63,7 +63,7 @@ def _xcodeproj_aspect_impl(target, ctx):
             build_mode = ctx.attr._build_mode,
             target = target,
             attrs = attrs,
-            transitive_infos = _transitive_infos(
+            transitive_infos = transitive_infos(
                 ctx = ctx,
                 attrs = attrs,
             ),

@@ -426,6 +426,7 @@ def process_top_level_target(
         label.workspace_root,
         label.package,
     )
+    # FIXME: Does it need process cargvs and swiftargvs?
     (
         c_params,
         cxx_params,
@@ -433,6 +434,8 @@ def process_top_level_target(
         swift_sub_params,
         c_has_fortify_source,
         cxx_has_fortify_source,
+        _,
+        _,
     ) = process_opts(
         ctx = ctx,
         build_mode = build_mode,
@@ -562,4 +565,7 @@ def process_top_level_target(
                 ],
             ),
         ),
+        # FIXME: Does there need pass cargvs and swiftargvs
+        cargvs = None,
+        swiftargvs = None,
     )

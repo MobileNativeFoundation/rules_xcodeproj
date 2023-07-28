@@ -206,6 +206,12 @@ target.
 A `depset` of values returned from `xcode_targets.make`, which potentially will
 become targets in the Xcode project.
 """,
+        "cargvs": """\
+A `list` of C/C++ argv.
+""",
+        "swiftargvs": """\
+A `list` of Swift argv.
+""",
     },
 )
 
