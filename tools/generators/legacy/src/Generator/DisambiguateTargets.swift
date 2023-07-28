@@ -265,7 +265,7 @@ struct ProductTypeComponents {
 struct OperatingSystemComponents {
     struct Distinguisher {
         let components: [String]
-        let xcodeConfigurations: Set<String>
+        let xcodeConfigurations: OrderedSet<String>
     }
 
     /// Collects which minimum versions each `ConsolidatedTarget` contains.
@@ -364,7 +364,7 @@ struct VersionedOperatingSystemComponents {
     struct Distinguisher {
         let prefix: String?
         let suffix: [String]
-        let xcodeConfigurations: Set<String>
+        let xcodeConfigurations: OrderedSet<String>
     }
 
     /// The set of `ConsolidatedTarget.Key`s among the targets passed to
@@ -453,7 +453,7 @@ struct EnvironmentSystemComponents {
     struct Distinguisher {
         let prefix: String?
         let suffix: String?
-        let xcodeConfigurations: Set<String>
+        let xcodeConfigurations: OrderedSet<String>
     }
 
     /// The set of `ConsolidatedTarget.Key`s among the targets passed to
@@ -521,7 +521,7 @@ struct EnvironmentSystemComponents {
 struct ArchitectureComponents {
     struct Distinguisher {
         let arch: String?
-        let xcodeConfigurations: Set<String>
+        let xcodeConfigurations: OrderedSet<String>
     }
 
     /// The set of `ConsolidatedTarget.Key`s among the targets passed to

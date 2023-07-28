@@ -173,8 +173,9 @@ extension XCSchemeInfoTests {
     func test_customSchemeInit() throws {
         let actual = try XCSchemeInfo(
             scheme: xcodeScheme.withDefaults,
-            xcodeConfigurations: targetResolver.targets["A 1"]!
-                .xcodeConfigurations,
+            xcodeConfigurations: Set(
+                targetResolver.targets["A 1"]!.xcodeConfigurations
+            ),
             defaultBuildConfigurationName: "Profile",
             targetResolver: targetResolver,
             runnerLabel: runnerLabel,

@@ -43,7 +43,7 @@ extension XcodeSchemeExtensionsTests {
     func test_resolveTargetIDs_withToolScheme() throws {
         let actual = try toolScheme.resolveTargetIDs(
             targetResolver: targetResolver,
-            xcodeConfigurations: libmacOSx8664Target.xcodeConfigurations,
+            xcodeConfigurations: Set(libmacOSx8664Target.xcodeConfigurations),
             runnerLabel: runnerLabel
         )
         let expected = [
@@ -63,7 +63,7 @@ extension XcodeSchemeExtensionsTests {
         // this iOS app is not selected.
         let actual = try iOSAppScheme.resolveTargetIDs(
             targetResolver: targetResolver,
-            xcodeConfigurations: libiOSx8664Target.xcodeConfigurations,
+            xcodeConfigurations: Set(libiOSx8664Target.xcodeConfigurations),
             runnerLabel: runnerLabel
         )
         let expected = [
@@ -81,7 +81,7 @@ extension XcodeSchemeExtensionsTests {
         // Prefer the TargetID values for the simulator.
         let actual = try tvOSAppScheme.resolveTargetIDs(
             targetResolver: targetResolver,
-            xcodeConfigurations: libtvOSx8664Target.xcodeConfigurations,
+            xcodeConfigurations: Set(libtvOSx8664Target.xcodeConfigurations),
             runnerLabel: runnerLabel
         )
         let expected = [
