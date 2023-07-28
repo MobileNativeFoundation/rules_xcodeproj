@@ -194,24 +194,6 @@ struct ProductTypeComponents {
 
         let includeOS = oses.count > 1
 
-        guard !needsConfigurationDistinguishing(target: target) else {
-            // The target name would be ambiguous, even with our distinguisher
-            // components. We will show a shorted configuration hash instead,
-            // which will be unique.
-            if includeOS {
-                consolidatedDistinguishers.append(
-                    contentsOf: targets.map(\.platform.os.prettyName)
-                )
-                distinguishers.append(
-                    consolidatedDistinguishers.joined(separator: ", ")
-                )
-            }
-
-            distinguishers.append(prettyConfiguration(targets: targets))
-
-            return distinguishers
-        }
-
         for target in targets {
             let osDistinguisher = oses[target.platform.os]!.distinguisher(
                 target: target,
@@ -238,6 +220,13 @@ struct ProductTypeComponents {
             distinguishers.append(
                 xcodeConfigurations.sorted().joined(separator: ", ")
             )
+        }
+
+        if needsConfigurationDistinguishing(target: target) {
+            // The target name would be ambiguous, even with our distinguisher
+            // components. We will show a shorted configuration hash as well,
+            // which will be unique.
+            distinguishers.append(prettyConfiguration(targets: targets))
         }
 
         return distinguishers
