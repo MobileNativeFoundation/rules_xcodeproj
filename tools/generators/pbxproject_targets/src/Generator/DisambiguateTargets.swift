@@ -698,7 +698,7 @@ private extension Sequence where Element == String {
         var hasher = Insecure.SHA1()
 
         for string in sorted() {
-            hasher.update(data: string.data(using: .utf8)!)
+            hasher.update(data: Data(string.utf8))
         }
 
         return hasher.finalize()

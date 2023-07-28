@@ -48,7 +48,7 @@ extension ConsolidationMapEntry {
     }
 
     func encode(into data: inout Data) {
-        data.append(name.data(using: .utf8)!)
+        data.append(Data(name.utf8))
         data.append(Self.subSeparator)
 
         key.encode(into: &data)
@@ -65,7 +65,7 @@ extension ConsolidationMapEntry {
 extension ConsolidationMapEntry.Key {
     func encode(into data: inout Data) {
         for id in self.sortedIds {
-            data.append(id.rawValue.data(using: .utf8)!)
+            data.append(Data(id.rawValue.utf8))
             data.append(ConsolidationMapEntry.subSeparator)
         }
     }
@@ -73,8 +73,8 @@ extension ConsolidationMapEntry.Key {
 
 extension Identifiers.Targets.SubIdentifier {
     func encode(into data: inout Data) {
-        data.append(shard.data(using: .utf8)!)
-        data.append(hash.data(using: .utf8)!)
+        data.append(Data(shard.utf8))
+        data.append(Data(hash.utf8))
     }
 }
 
