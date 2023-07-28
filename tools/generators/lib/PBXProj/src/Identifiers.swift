@@ -172,8 +172,7 @@ FF0000000000000000000004 /* Products */
                 // characters at the front for "FE". That leaves 22 characters
                 // that we can use. MD5 digests are 16 bytes (32 characters)
                 // long. So we need to truncate it to fit within the remaining
-                // 22 characters (by dropping 5 bytes). We choose the front 22
-                // because they are the most unique.
+                // 22 characters (by dropping 5 bytes).
                 .dropLast(5)
                 .map { String(format: "%02X", $0) }
                 .joined()
@@ -346,8 +345,7 @@ FF00000000000000000001\#(String(format: "%02X", index)) \#
             return digest
                 // We want an 8 character string. MD5 digests are 16 bytes (32
                 // characters) long. So we need to truncate it (by dropping 12
-                // bytes). We choose the front 8 because they are the most
-                // unique.
+                // bytes).
                 .dropLast(12)
                 .map { String(format: "%02X", $0) }
                 .joined()
