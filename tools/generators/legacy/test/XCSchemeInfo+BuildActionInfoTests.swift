@@ -54,8 +54,9 @@ extension XCSchemeInfoBuildActionInfoTests {
             targetResolver: targetResolver,
             targetIDsByLabelAndConfiguration: xcodeScheme.resolveTargetIDs(
                 targetResolver: targetResolver,
-                xcodeConfigurations: targetResolver.targets["A 1"]!
-                    .xcodeConfigurations,
+                xcodeConfigurations: Set(
+                    targetResolver.targets["A 1"]!.xcodeConfigurations
+                ),
                 runnerLabel: runnerLabel
             )
         )
