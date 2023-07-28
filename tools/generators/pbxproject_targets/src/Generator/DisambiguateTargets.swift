@@ -1,4 +1,5 @@
 import CryptoKit
+import Foundation
 import GeneratorCommon
 import OrderedCollections
 import PBXProj
