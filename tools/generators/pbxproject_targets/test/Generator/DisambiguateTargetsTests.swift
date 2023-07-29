@@ -597,11 +597,54 @@ final class DisambiguateTargetsTests: XCTestCase {
             .mock(
                 id: "A-Release-and-Profile",
                 label: "//:A",
+                xcodeConfigurations: ["Release"]
+            ),
+            .mock(
+                id: "B",
+                label: "//:B",
+                xcodeConfigurations: ["Release", "Profile"]
+            ),
+        ]
+        let consolidatedTargets = Array<ConsolidatedTarget>(targets: targets)
+
+        let expectedTargetNames: [ConsolidatedTarget.Key: String] = [
+            ["A-Debug"]: "A (Debug)",
+            ["A-Release-and-Profile"]: "A (Release)",
+            ["B"]: "B",
+        ]
+
+        // Act
+
+        let disambiguatedTargets =
+            Generator.DisambiguateTargets.defaultCallable(consolidatedTargets)
+
+        // Assert
+
+        XCTAssertNoDifference(
+            disambiguatedTargets,
+            names: expectedTargetNames,
+            targets: consolidatedTargets
+        )
+    }
+
+    func test_xcodeConfiguration_multiple() throws {
+        // Arrange
+
+        let targets: [Target] = [
+            .mock(
+                id: "A-Debug",
+                label: "//:A",
+                xcodeConfigurations: ["Debug"]
+            ),
+            .mock(
+                id: "A-Release-and-Profile",
+                label: "//:A",
                 xcodeConfigurations: ["Release", "Profile"]
             ),
             .mock(
                 id: "B",
-                label: "//:B"
+                label: "//:B",
+                xcodeConfigurations: ["Release", "Profile"]
             ),
         ]
         let consolidatedTargets = Array<ConsolidatedTarget>(targets: targets)

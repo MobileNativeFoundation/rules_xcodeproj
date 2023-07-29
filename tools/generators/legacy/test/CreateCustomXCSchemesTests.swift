@@ -23,8 +23,9 @@ extension CreateCustomXCSchemesTests {
         let actual = try Generator.createCustomXCSchemes(
             schemes: [schemeA, schemeB],
             buildMode: .bazel,
-            xcodeConfigurations: targetResolver.targets["B 2"]!
-                .xcodeConfigurations,
+            xcodeConfigurations: Set(
+                targetResolver.targets["B 2"]!.xcodeConfigurations
+            ),
             defaultBuildConfigurationName: targetResolver
                 .targets["B 2"]!.xcodeConfigurations.first!,
             targetResolver: targetResolver,
@@ -41,8 +42,9 @@ extension CreateCustomXCSchemesTests {
             Generator.createCustomXCSchemes(
                 schemes: [schemeC],
                 buildMode: .bazel,
-                xcodeConfigurations: targetResolver.targets["B 2"]!
-                    .xcodeConfigurations,
+                xcodeConfigurations: Set(
+                    targetResolver.targets["B 2"]!.xcodeConfigurations
+                ),
                 defaultBuildConfigurationName: targetResolver
                     .targets["B 2"]!.xcodeConfigurations.first!,
                 targetResolver: targetResolver,

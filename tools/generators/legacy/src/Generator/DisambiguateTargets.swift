@@ -277,7 +277,7 @@ struct ProductTypeComponents {
 struct OperatingSystemComponents {
     struct Distinguisher {
         let components: [String]
-        let xcodeConfigurations: Set<String>
+        let xcodeConfigurations: OrderedSet<String>
     }
 
     /// Collects which minimum versions each `ConsolidatedTarget` contains.
@@ -376,7 +376,7 @@ struct VersionedOperatingSystemComponents {
     struct Distinguisher {
         let prefix: String?
         let suffix: [String]
-        let xcodeConfigurations: Set<String>
+        let xcodeConfigurations: OrderedSet<String>
     }
 
     /// The set of `ConsolidatedTarget.Key`s among the targets passed to
@@ -465,7 +465,7 @@ struct EnvironmentSystemComponents {
     struct Distinguisher {
         let prefix: String?
         let suffix: String?
-        let xcodeConfigurations: Set<String>
+        let xcodeConfigurations: OrderedSet<String>
     }
 
     /// The set of `ConsolidatedTarget.Key`s among the targets passed to
@@ -533,7 +533,7 @@ struct EnvironmentSystemComponents {
 struct ArchitectureComponents {
     struct Distinguisher {
         let arch: String?
-        let xcodeConfigurations: Set<String>
+        let xcodeConfigurations: OrderedSet<String>
     }
 
     /// The set of `ConsolidatedTarget.Key`s among the targets passed to
@@ -542,12 +542,12 @@ struct ArchitectureComponents {
 
     /// The set of xcodeConfigurations among the targets passed to
     /// `add(target:consolidatedKey:)`.
-    private var xcodeConfigurations: Set<String> = []
+    private var xcodeConfigurations: Set<OrderedSet<String>> = []
 
     /// Adds another `Target` into consideration for `distinguisher()`.
     mutating func add(target: Target, consolidatedKey: ConsolidatedTarget.Key) {
         consolidatedKeys.insert(consolidatedKey)
-        xcodeConfigurations.formUnion(target.xcodeConfigurations)
+        xcodeConfigurations.insert(target.xcodeConfigurations)
     }
 
     /// Potentially generates user-facing strings that, along with a target
