@@ -14,7 +14,7 @@ swift_library(
     name = "watchOSAppUITests.library",
     testonly = True,
     srcs = [":Sources"],
-    module_name = "watchOSAppUITestsLibrary",
+    module_name = "watchOSAppUITests",
     tags = ["manual"],
 )
 

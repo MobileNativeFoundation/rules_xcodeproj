@@ -9,7 +9,7 @@ swift_library(
     name = "CommandLineLibSwiftTestsLib",
     testonly = True,
     srcs = glob(["*.swift"]),
-    module_name = "LibSwiftTestsLib",
+    module_name = "CommandLineToolTests",
     deps = [
         "//CommandLine/CommandLineToolLib:lib_swift",
     ],

@@ -1611,7 +1611,7 @@
             "PREVIEWS_SWIFT_INCLUDE__NO": "",
             "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/CommandLine/Tests",
             "PRODUCT_BUNDLE_IDENTIFIER": "com.bazelbuild.rulesapple.Tests",
-            "PRODUCT_MODULE_NAME": "LibSwiftTestsLib"
+            "PRODUCT_MODULE_NAME": "CommandLineToolTests"
         },
         "c": "applebin_macos-darwin_x86_64-dbg-STABLE-39",
         "d": [
@@ -1628,7 +1628,7 @@
         "n": "CommandLineToolTests",
         "o": {
             "s": {
-                "m": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/CommandLine/Tests/LibSwiftTestsLib.swiftmodule"
+                "m": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/CommandLine/Tests/CommandLineToolTests.swiftmodule"
             }
         },
         "p": {
@@ -1671,7 +1671,7 @@
             "PREVIEWS_SWIFT_INCLUDE__NO": "",
             "PREVIEWS_SWIFT_INCLUDE__YES": "-I bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/Tests",
             "PRODUCT_BUNDLE_IDENTIFIER": "com.bazelbuild.rulesapple.Tests",
-            "PRODUCT_MODULE_NAME": "LibSwiftTestsLib",
+            "PRODUCT_MODULE_NAME": "CommandLineToolTests",
             "SWIFT_COMPILATION_MODE": "wholemodule"
         },
         "c": "applebin_macos-darwin_x86_64-opt-STABLE-40",
@@ -1689,7 +1689,7 @@
         "n": "CommandLineToolTests",
         "o": {
             "s": {
-                "m": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/Tests/LibSwiftTestsLib.swiftmodule"
+                "m": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/Tests/CommandLineToolTests.swiftmodule"
             }
         },
         "p": {
@@ -7839,7 +7839,7 @@
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-dbg-STABLE-17/bin/watchOSApp/Test/UITests/rules_xcodeproj/watchOSAppUITests.__internal__.__test_bundle/Info.plist",
             "OTHER_SWIFT_FLAGS": "-F$(DEVELOPER_DIR)/Platforms/WatchSimulator.platform/Developer/Library/Frameworks -F$(SDKROOT)/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/WatchSimulator.platform/Developer/usr/lib",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.watchTests",
-            "PRODUCT_MODULE_NAME": "watchOSAppUITestsLibrary"
+            "PRODUCT_MODULE_NAME": "watchOSAppUITests"
         },
         "c": "applebin_watchos-watchos_x86_64-dbg-STABLE-17",
         "d": [
@@ -7856,7 +7856,7 @@
         "n": "watchOSAppUITests",
         "o": {
             "s": {
-                "m": "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/watchOSApp/Test/UITests/watchOSAppUITestsLibrary.swiftmodule"
+                "m": "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/watchOSApp/Test/UITests/watchOSAppUITests.swiftmodule"
             }
         },
         "p": {
@@ -7899,7 +7899,7 @@
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-opt-STABLE-19/bin/watchOSApp/Test/UITests/rules_xcodeproj/watchOSAppUITests.__internal__.__test_bundle/Info.plist",
             "OTHER_SWIFT_FLAGS": "-F$(DEVELOPER_DIR)/Platforms/WatchSimulator.platform/Developer/Library/Frameworks -F$(SDKROOT)/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/WatchSimulator.platform/Developer/usr/lib",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.watchTests",
-            "PRODUCT_MODULE_NAME": "watchOSAppUITestsLibrary",
+            "PRODUCT_MODULE_NAME": "watchOSAppUITests",
             "SWIFT_COMPILATION_MODE": "wholemodule"
         },
         "c": "applebin_watchos-watchos_x86_64-opt-STABLE-19",
@@ -7917,7 +7917,7 @@
         "n": "watchOSAppUITests",
         "o": {
             "s": {
-                "m": "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8/bin/watchOSApp/Test/UITests/watchOSAppUITestsLibrary.swiftmodule"
+                "m": "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8/bin/watchOSApp/Test/UITests/watchOSAppUITests.swiftmodule"
             }
         },
         "p": {
