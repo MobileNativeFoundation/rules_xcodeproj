@@ -883,8 +883,18 @@ A (iOS) (\(ProductTypeComponents.prettyConfigurations(["2"])))
                 xcodeConfigurations: ["Release"],
                 product: .init(type: .staticLibrary, name: "A", path: "")
             ),
-            "B": Target.mock(
+            "B 1": Target.mock(
+                configuration: "1",
+                xcodeConfigurations: ["Debug", "Release"],
                 product: .init(type: .staticLibrary, name: "B", path: "")
+            ),
+            "B 2": Target.mock(
+                configuration: "2",
+                xcodeConfigurations: ["Debug"],
+                product: .init(type: .staticLibrary, name: "B", path: "")
+            ),
+            "C": Target.mock(
+                product: .init(type: .staticLibrary, name: "C", path: "")
             ),
         ]
         let consolidatedTargets = ConsolidatedTargets(targets: targets)
@@ -896,7 +906,13 @@ A (Debug) (\(ProductTypeComponents.prettyConfigurations(["1"])))
 A (Debug) (\(ProductTypeComponents.prettyConfigurations(["2"])))
 """,
             "A 3": "A (Release)",
-            "B": "B",
+            "B 1": """
+B (Debug, Release) (\(ProductTypeComponents.prettyConfigurations(["1"])))
+""",
+            "B 2": """
+B (Debug) (\(ProductTypeComponents.prettyConfigurations(["2"])))
+""",
+            "C": "C",
         ]
 
         // Act

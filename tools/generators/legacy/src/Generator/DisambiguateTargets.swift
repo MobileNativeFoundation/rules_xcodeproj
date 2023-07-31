@@ -160,14 +160,17 @@ struct ProductTypeComponents {
     /// If the count for a `distinguisherKey` is greater than one, then targets
     /// that have that key will have their configuration returned from
     /// `distinguisher()` instead of a string containing architecture, OS, etc.
-    private var distinguisherKeys: [String: Set<ConsolidatedTarget.Key>] = [:]
+    private var distinguisherKeys:
+        [Target.DistinguisherKey: Set<ConsolidatedTarget.Key>] = [:]
 
     /// Adds another `Target` into consideration for `distinguishers()`.
     mutating func add(target: ConsolidatedTarget, key: ConsolidatedTarget.Key) {
         for target in target.targets.values {
             oses[target.platform.os, default: .init()]
                 .add(target: target, consolidatedKey: key)
-            distinguisherKeys[target.distinguisherKey, default: []].insert(key)
+            target.distinguisherKeys.forEach { distinguisherKey in
+                distinguisherKeys[distinguisherKey, default: []].insert(key)
+            }
         }
     }
 
@@ -240,8 +243,11 @@ struct ProductTypeComponents {
     private func needsConfigurationDistinguishing(
         target: ConsolidatedTarget
     ) -> Bool {
-        return target.sortedTargets
-            .contains { distinguisherKeys[$0.distinguisherKey]!.count > 1 }
+        return target.sortedTargets.contains { target in
+            return target.distinguisherKeys.contains { distinguisherKey in
+                distinguisherKeys[distinguisherKey]!.count > 1
+            }
+        }
     }
 
     /// Returns a user-facing string for the configurations of a given set of
@@ -271,7 +277,7 @@ struct ProductTypeComponents {
 struct OperatingSystemComponents {
     struct Distinguisher {
         let components: [String]
-        let xcodeConfigurations: OrderedSet<String>
+        let xcodeConfigurations: Set<String>
     }
 
     /// Collects which minimum versions each `ConsolidatedTarget` contains.
@@ -370,7 +376,7 @@ struct VersionedOperatingSystemComponents {
     struct Distinguisher {
         let prefix: String?
         let suffix: [String]
-        let xcodeConfigurations: OrderedSet<String>
+        let xcodeConfigurations: Set<String>
     }
 
     /// The set of `ConsolidatedTarget.Key`s among the targets passed to
@@ -459,7 +465,7 @@ struct EnvironmentSystemComponents {
     struct Distinguisher {
         let prefix: String?
         let suffix: String?
-        let xcodeConfigurations: OrderedSet<String>
+        let xcodeConfigurations: Set<String>
     }
 
     /// The set of `ConsolidatedTarget.Key`s among the targets passed to
@@ -527,7 +533,7 @@ struct EnvironmentSystemComponents {
 struct ArchitectureComponents {
     struct Distinguisher {
         let arch: String?
-        let xcodeConfigurations: OrderedSet<String>
+        let xcodeConfigurations: Set<String>
     }
 
     /// The set of xcodeConfigurations among the targets passed to
@@ -587,16 +593,25 @@ extension ConsolidatedTarget {
 }
 
 private extension Target {
+    struct DistinguisherKey: Equatable, Hashable {
+        let arch: String
+        let platform: Platform.Variant
+        let minimumOsVersion: SemanticVersion
+        let xcodeConfiguration: String
+    }
+
     /// A key that corresponds to the most-distinguished string that
     /// `ProductTypeComponents.distinguisher()` can return for this
     /// `Target`.
-    var distinguisherKey: String {
-        return ([
-            platform.arch,
-            "\(platform.os)",
-            platform.minimumOsVersion.pretty,
-            platform.variant.environment,
-        ] + xcodeConfigurations).joined(separator: "-")
+    var distinguisherKeys: [DistinguisherKey] {
+        return xcodeConfigurations.map { xcodeConfiguration in
+            return DistinguisherKey(
+                arch: platform.arch,
+                platform: platform.variant,
+                minimumOsVersion: platform.minimumOsVersion,
+                xcodeConfiguration: xcodeConfiguration
+            )
+        }
     }
 }
 
