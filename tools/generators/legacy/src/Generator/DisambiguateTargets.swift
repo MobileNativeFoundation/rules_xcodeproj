@@ -32,15 +32,19 @@ extension Generator {
             [NameAndProductType: Set<String>] = [:]
         var names: [String: TargetComponents] = [:]
         var labels: [String: TargetComponents] = [:]
-        for (key, target) in targets {
-            let normalizedName = target.normalizedName
-            let normalizedLabel = target.normalizedLabel
+        for target in targets.values {
             labelsByNameAndProductType[.init(target: target), default: []]
-                .insert(normalizedLabel)
-            names[normalizedName, default: .init()]
-                .add(target: target, key: key)
-            labels[normalizedLabel, default: .init()]
-                .add(target: target, key: key)
+                .insert(target.normalizedLabel)
+        }
+        for (key, target) in targets {
+            let nameAndProductType = NameAndProductType(target: target)
+            if labelsByNameAndProductType[nameAndProductType]!.count == 1 {
+                names[nameAndProductType.normalizedName, default: .init()]
+                    .add(target: target, key: key)
+            } else {
+                labels[target.normalizedLabel, default: .init()]
+                    .add(target: target, key: key)
+            }
         }
 
         // And then distinguish them
@@ -48,10 +52,11 @@ extension Generator {
             ConsolidatedTarget.Key: DisambiguatedTarget,
         ](minimumCapacity: targets.count)
         for (key, target) in targets {
+            let nameAndProductType = NameAndProductType(target: target)
+
             let name: String
             let componentKey: String
             let components: [String: TargetComponents]
-            let nameAndProductType = NameAndProductType(target: target)
             if labelsByNameAndProductType[nameAndProductType]!.count == 1 {
                 name = target.name
                 componentKey = nameAndProductType.normalizedName
