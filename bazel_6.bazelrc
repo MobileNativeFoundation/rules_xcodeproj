@@ -7,3 +7,6 @@ common:fixtures --incompatible_unambiguous_label_stringification=false
 
 # bzlmod adjust labels in a way that we can't account for yet
 common:fixtures --noenable_bzlmod
+
+# Disabled until bugs are fixed
+common --lockfile_mode=off
