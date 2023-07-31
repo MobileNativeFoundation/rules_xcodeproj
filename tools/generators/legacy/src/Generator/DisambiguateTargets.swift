@@ -525,18 +525,15 @@ struct ArchitectureComponents {
         let xcodeConfigurations: OrderedSet<String>
     }
 
-    /// The set of `ConsolidatedTarget.Key`s among the targets passed to
-    /// `add(target:consolidatedKey:)`.
-    private var consolidatedKeys: Set<ConsolidatedTarget.Key> = []
-
     /// The set of xcodeConfigurations among the targets passed to
     /// `add(target:consolidatedKey:)`.
-    private var xcodeConfigurations: Set<OrderedSet<String>> = []
+    private var xcodeConfigurations: [ConsolidatedTarget.Key: Set<String>]
+        = [:]
 
     /// Adds another `Target` into consideration for `distinguisher()`.
     mutating func add(target: Target, consolidatedKey: ConsolidatedTarget.Key) {
-        consolidatedKeys.insert(consolidatedKey)
-        xcodeConfigurations.insert(target.xcodeConfigurations)
+        xcodeConfigurations[consolidatedKey, default: []]
+            .formUnion(target.xcodeConfigurations)
     }
 
     /// Potentially generates user-facing strings that, along with a target
@@ -548,7 +545,7 @@ struct ArchitectureComponents {
     ///
     /// - Parameters:
     ///   - target: The `Target` to generate a distinguisher for.
-    ///   - includeArch: If `true`, the archiecture will be part of the
+    ///   - includeArch: If `true`, the architecture will be part of the
     ///     `Distinguisher` returned.
     func distinguisher(
         target: Target,
@@ -556,12 +553,11 @@ struct ArchitectureComponents {
     ) -> Distinguisher {
         let platform = target.platform
 
-        // We hide all but the Xcode configuration if the differences are
+        // We hide all but the architecture if the differences are
         // within a consolidated target
-        let needsSubcomponents = consolidatedKeys.count > 1
-
-        let xcodeConfigurations = needsSubcomponents &&
-            xcodeConfigurations.count > 1 ? target.xcodeConfigurations : []
+        let xcodeConfigurations = xcodeConfigurations.count > 1 &&
+            Set(xcodeConfigurations.values).count > 1 ?
+                target.xcodeConfigurations : []
         let arch = includeArch ? platform.arch : nil
 
         return Distinguisher(
