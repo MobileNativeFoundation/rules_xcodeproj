@@ -710,6 +710,114 @@ final class DisambiguateTargetsTests: XCTestCase {
         )
     }
 
+    func test_architectureAndConfiguration() throws {
+        // Arrange
+
+        let targets: [Target] = [
+            .mock(
+                id: "A-arm64 1",
+                label: "//:A",
+                xcodeConfigurations: ["Debug", "AppStore"], // No effect
+                arch: "arm64"
+            ),
+            .mock(
+                id: "A-arm64 2",
+                label: "//:A",
+                xcodeConfigurations: ["Debug", "AppStore"], // No effect
+                arch: "arm64"
+            ),
+            .mock(
+                id: "A-x86_64 2",
+                label: "//:A",
+                xcodeConfigurations: ["Debug", "AppStore"], // No effect
+                arch: "x86_64"
+            ),
+            .mock(
+                id: "B",
+                label: "//:B"
+            ),
+        ]
+        let consolidatedTargets = Array<ConsolidatedTarget>(targets: targets)
+
+        let expectedTargetNames: [ConsolidatedTarget.Key: String] = [
+            ["A-arm64 1"]: """
+A (arm64) (\(ProductTypeComponents.prettyConfigurations(["1"])))
+""",
+            ["A-arm64 2"]: """
+A (arm64) (\(ProductTypeComponents.prettyConfigurations(["2"])))
+""",
+            ["A-x86_64 2"]: "A (x86_64)",
+            ["B"]: "B",
+        ]
+
+        // Act
+
+        let disambiguatedTargets =
+            Generator.DisambiguateTargets.defaultCallable(consolidatedTargets)
+
+        // Assert
+
+        XCTAssertNoDifference(
+            disambiguatedTargets,
+            names: expectedTargetNames,
+            targets: consolidatedTargets
+        )
+    }
+
+    func test_architectureAndConfiguration_multipleXcodeConfigurations() throws {
+        // Arrange
+
+        let targets: [Target] = [
+            .mock(
+                id: "A-arm64 1",
+                label: "//:A",
+                xcodeConfigurations: ["Debug", "AppStore"], // No effect
+                arch: "arm64"
+            ),
+            .mock(
+                id: "A-arm64 2",
+                label: "//:A",
+                xcodeConfigurations: ["Debug", "AppStore"], // No effect
+                arch: "arm64"
+            ),
+            .mock(
+                id: "A-x86_64 2",
+                label: "//:A",
+                xcodeConfigurations: ["Profile"], // No effect
+                arch: "x86_64"
+            ),
+            .mock(
+                id: "B",
+                label: "//:B"
+            ),
+        ]
+        let consolidatedTargets = Array<ConsolidatedTarget>(targets: targets)
+
+        let expectedTargetNames: [ConsolidatedTarget.Key: String] = [
+            ["A-arm64 1"]: """
+A (arm64) (\(ProductTypeComponents.prettyConfigurations(["1"])))
+""",
+            ["A-arm64 2"]: """
+A (arm64) (\(ProductTypeComponents.prettyConfigurations(["2"])))
+""",
+            ["A-x86_64 2"]: "A (x86_64)",
+            ["B"]: "B",
+        ]
+
+        // Act
+
+        let disambiguatedTargets =
+            Generator.DisambiguateTargets.defaultCallable(consolidatedTargets)
+
+        // Assert
+
+        XCTAssertNoDifference(
+            disambiguatedTargets,
+            names: expectedTargetNames,
+            targets: consolidatedTargets
+        )
+    }
+
     func test_productTypeAndConfiguration() throws {
         // Arrange
 
@@ -795,6 +903,108 @@ A (iOS) (\(ProductTypeComponents.prettyConfigurations(["1"])))
 A (iOS) (\(ProductTypeComponents.prettyConfigurations(["2"])))
 """,
             ["A-macOS 2"]: "A (macOS)",
+            ["B"]: "B",
+        ]
+
+        // Act
+
+        let disambiguatedTargets =
+            Generator.DisambiguateTargets.defaultCallable(consolidatedTargets)
+
+        // Assert
+
+        XCTAssertNoDifference(
+            disambiguatedTargets,
+            names: expectedTargetNames,
+            targets: consolidatedTargets
+        )
+    }
+
+    func test_xcodeConfigurationAndConfiguration() throws {
+        // Arrange
+
+        let targets: [Target] = [
+            .mock(
+                id: "A-Debug 1",
+                label: "//:A",
+                xcodeConfigurations: ["Debug"]
+            ),
+            .mock(
+                id: "A-Debug 2",
+                label: "//:A",
+                xcodeConfigurations: ["Debug"]
+            ),
+            .mock(
+                id: "A-Release 3",
+                label: "//:A",
+                xcodeConfigurations: ["Release"]
+            ),
+            .mock(
+                id: "B",
+                label: "//:B"
+            ),
+        ]
+        let consolidatedTargets = Array<ConsolidatedTarget>(targets: targets)
+
+        let expectedTargetNames: [ConsolidatedTarget.Key: String] = [
+            ["A-Debug 1"]: """
+A (Debug) (\(ProductTypeComponents.prettyConfigurations(["1"])))
+""",
+            ["A-Debug 2"]: """
+A (Debug) (\(ProductTypeComponents.prettyConfigurations(["2"])))
+""",
+            ["A-Release 3"]: "A (Release)",
+            ["B"]: "B",
+        ]
+
+        // Act
+
+        let disambiguatedTargets =
+            Generator.DisambiguateTargets.defaultCallable(consolidatedTargets)
+
+        // Assert
+
+        XCTAssertNoDifference(
+            disambiguatedTargets,
+            names: expectedTargetNames,
+            targets: consolidatedTargets
+        )
+    }
+
+    func test_multipleXcodeConfigurationAndConfiguration() throws {
+        // Arrange
+
+        let targets: [Target] = [
+            .mock(
+                id: "A-DebugProfile 1",
+                label: "//:A",
+                xcodeConfigurations: ["Debug", "Profile"]
+            ),
+            .mock(
+                id: "A-DebugProfile 2",
+                label: "//:A",
+                xcodeConfigurations: ["Debug", "Profile"]
+            ),
+            .mock(
+                id: "A-Release 3",
+                label: "//:A",
+                xcodeConfigurations: ["Release"]
+            ),
+            .mock(
+                id: "B",
+                label: "//:B"
+            ),
+        ]
+        let consolidatedTargets = Array<ConsolidatedTarget>(targets: targets)
+
+        let expectedTargetNames: [ConsolidatedTarget.Key: String] = [
+            ["A-DebugProfile 1"]: """
+A (Debug, Profile) (\(ProductTypeComponents.prettyConfigurations(["1"])))
+""",
+            ["A-DebugProfile 2"]: """
+A (Debug, Profile) (\(ProductTypeComponents.prettyConfigurations(["2"])))
+""",
+            ["A-Release 3"]: "A (Release)",
             ["B"]: "B",
         ]
 
