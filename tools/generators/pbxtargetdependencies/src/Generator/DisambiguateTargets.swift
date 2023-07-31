@@ -181,23 +181,37 @@ struct ProductTypeComponents {
     /// called for each `ConsolidatedTarget`.
     private var oses: [Platform.OS: OperatingSystemComponents] = [:]
 
-    /// A count of `Target.distinguisherKey`s seen in `add(target:key:)`.
+    /// A count of `ConsolidatedTarget.DistinguisherKey`s seen in
+    /// `add(target:key:)`.
+    ///
+    /// If the count for a `DistinguisherKey` is greater than one, then targets
+    /// that have that key will have their configuration returned from
+    /// `distinguisher()` instead of a string containing architecture, OS, etc.
+    private var consolidatedDistinguisherKeys:
+        [ConsolidatedTarget.DistinguisherKey: Set<ConsolidatedTarget.Key>] = [:]
+
+    /// A count of `Target.DistinguisherKey`s seen in `add(target:key:)`.
     ///
     /// If the count for a `distinguisherKey` is greater than one, then targets
     /// that have that key will have their configuration returned from
     /// `distinguisher()` instead of a string containing architecture, OS, etc.
-    private var distinguisherKeys:
+    private var targetDistinguisherKeys:
         [Target.DistinguisherKey: Set<ConsolidatedTarget.Key>] = [:]
 
     /// Adds another `Target` into consideration for `distinguishers()`.
     mutating func add(target consolidatedTarget: ConsolidatedTarget) {
         let key = consolidatedTarget.key
+
+        consolidatedDistinguisherKeys[
+            consolidatedTarget.distinguisherKey, default: []
+        ].insert(key)
+        consolidatedTarget.targetDistinguisherKeys.forEach { distinguisherKey in
+            targetDistinguisherKeys[distinguisherKey, default: []].insert(key)
+        }
+
         for target in consolidatedTarget.sortedTargets {
             oses[target.platform.os, default: .init()]
                 .add(target: target, consolidatedKey: key)
-            target.distinguisherKeys.forEach { distinguisherKey in
-                distinguisherKeys[distinguisherKey, default: []].insert(key)
-            }
         }
     }
 
@@ -269,11 +283,11 @@ struct ProductTypeComponents {
     private func needsConfigurationDistinguishing(
         target consolidatedTarget: ConsolidatedTarget
     ) -> Bool {
-        return consolidatedTarget.sortedTargets.contains { target in
-            return target.distinguisherKeys.contains { distinguisherKey in
-                distinguisherKeys[distinguisherKey]!.count > 1
-            }
-        }
+        return
+            consolidatedDistinguisherKeys[consolidatedTarget.distinguisherKey]!
+                .count > 1 ||
+            consolidatedTarget.targetDistinguisherKeys
+                .contains { targetDistinguisherKeys[$0]!.count > 1 }
     }
 
     /// Returns a user-facing string for the configurations of a given set of
@@ -620,29 +634,6 @@ extension ConsolidatedTarget {
     }
 }
 
-private extension Target {
-    struct DistinguisherKey: Equatable, Hashable {
-        let arch: String
-        let platform: Platform
-        let osVersion: SemanticVersion
-        let xcodeConfiguration: String
-    }
-
-    /// A key that corresponds to the most-distinguished string that
-    /// `ProductTypeComponents.distinguisher()` can return for this
-    /// `Target`.
-    var distinguisherKeys: [DistinguisherKey] {
-        return xcodeConfigurations.map { xcodeConfiguration in
-            return DistinguisherKey(
-                arch: arch,
-                platform: platform,
-                osVersion: osVersion,
-                xcodeConfiguration: xcodeConfiguration
-            )
-        }
-    }
-}
-
 private extension PBXProductType {
     var prettyName: String {
         switch self {
@@ -682,23 +673,6 @@ private extension PBXProductType {
         case .systemExtension: return "System Extension"
         case .commandLineTool: return "Tool"
         case .xpcService: return "XPC Service"
-        }
-    }
-}
-
-private extension Platform {
-    private static let deviceEnvironment = "Device"
-    private static let simulatorEnvironment = "Simulator"
-
-    var environment: String {
-        switch self {
-        case .macOS: return Self.deviceEnvironment
-        case .iOSDevice: return Self.deviceEnvironment
-        case .iOSSimulator: return Self.simulatorEnvironment
-        case .tvOSDevice: return Self.deviceEnvironment
-        case .tvOSSimulator: return Self.simulatorEnvironment
-        case .watchOSDevice: return Self.deviceEnvironment
-        case .watchOSSimulator: return Self.simulatorEnvironment
         }
     }
 }

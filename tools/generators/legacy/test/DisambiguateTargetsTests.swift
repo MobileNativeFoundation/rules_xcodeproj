@@ -1384,6 +1384,71 @@ A (iOS) (\(ProductTypeComponents.prettyConfigurations(["2"])))
         )
     }
 
+    func test_consolidated_configuration() throws {
+        // Arrange
+
+        let targets: [TargetID: Target] = [
+            "A1": Target.mock(
+                configuration: "1",
+                xcodeConfigurations: ["Debug"],
+                platform: .device(os: .iOS, arch: "arm64"),
+                product: .init(type: .staticLibrary, name: "A", path: "")
+            ),
+            "A2": Target.mock(
+                configuration: "2",
+                xcodeConfigurations: ["Release"],
+                platform: .device(os: .iOS, arch: "x86_64"),
+                product: .init(type: .staticLibrary, name: "A", path: "")
+            ),
+            "A3": Target.mock(
+                configuration: "3",
+                xcodeConfigurations: ["Release"],
+                platform: .device(os: .iOS, arch: "arm64"),
+                product: .init(type: .staticLibrary, name: "A", path: "")
+            ),
+            "A4": Target.mock(
+                configuration: "4",
+                xcodeConfigurations: ["Debug"],
+                platform: .device(os: .iOS, arch: "x86_64"),
+                product: .init(type: .staticLibrary, name: "A", path: "")
+            ),
+        ]
+        let consolidatedTargets = ConsolidatedTargets(
+            allTargets: targets,
+            keys: [
+                ["A1", "A2"],
+                ["A3", "A4"],
+            ]
+        )
+        let expectedTargetNames: [ConsolidatedTarget.Key: String] = [
+            .init(["A1", "A2"]): """
+A (arm64, x86_64) (Debug, Release) (\(ProductTypeComponents.prettyConfigurations(["1", "2"])))
+""",
+            .init(["A3", "A4"]): """
+A (arm64, x86_64) (Debug, Release) (\(ProductTypeComponents.prettyConfigurations(["3", "4"])))
+""",
+        ]
+
+        // Act
+
+        let disambiguatedTargets = Generator.disambiguateTargets(
+            consolidatedTargets
+        )
+
+        // Assert
+
+        XCTAssertNoDifference(
+            disambiguatedTargets.targets.mapValues(\.name)
+                .map(KeyAndValue.init).sorted(),
+            expectedTargetNames.map(KeyAndValue.init).sorted()
+        )
+        XCTAssertNoDifference(
+            disambiguatedTargets.targets.mapValues(\.target)
+                .map(KeyAndValue.init).sorted(),
+            consolidatedTargets.targets.map(KeyAndValue.init).sorted()
+        )
+    }
+
     func test_consolidated_architectureAndConfiguration() throws {
         // Arrange
 

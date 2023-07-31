@@ -320,6 +320,18 @@ struct ConsolidatedTarget: Equatable {
     /// value (i.e. the one most likely to be built), so we store the sorted
     /// targets as an optimization.
     let sortedTargets: [Target]
+
+    let distinguisherKey: DistinguisherKey
+    let targetDistinguisherKeys: [Target.DistinguisherKey]
+}
+
+extension Target {
+    struct DistinguisherKey: Equatable, Hashable {
+        fileprivate let arch: String
+        fileprivate let platform: Platform.Variant
+        fileprivate let minimumOsVersion: SemanticVersion
+        fileprivate let xcodeConfiguration: String
+    }
 }
 
 extension ConsolidatedTarget.Key {
@@ -347,6 +359,16 @@ Target \(key)'s dependency on "\(targetID)" not found in `keys`
 }
 
 extension ConsolidatedTarget {
+    struct DistinguisherKey: Equatable, Hashable {
+        typealias Archs = Set<String>
+        typealias Environments = [String: Archs]
+        typealias OSes = [Platform.OS: OSVersions]
+        typealias OSVersions = [SemanticVersion: Environments]
+
+        let components: OSes
+        let xcodeConfigurations: Set<String>
+    }
+
     init(
         targets: [TargetID: Target],
         xcodeGeneratedFiles: [FilePath: FilePath]
@@ -428,6 +450,32 @@ extension ConsolidatedTarget {
             hasSwiftOutputs: self.targets.values
                 .contains { $0.outputs.hasSwiftOutputs }
         )
+
+        distinguisherKey = DistinguisherKey(
+            components: sortedTargets.reduce(into: [:]) { components, target in
+                let platform = target.platform
+                components[
+                    platform.os, default: [:]
+                ][
+                    platform.minimumOsVersion, default: [:]
+                ][
+                    platform.variant.environment, default: []
+                ]
+                    .insert(platform.arch)
+            },
+            xcodeConfigurations:
+                Set(sortedTargets.flatMap(\.xcodeConfigurations))
+        )
+        targetDistinguisherKeys = sortedTargets.flatMap { target in
+            target.xcodeConfigurations.map { xcodeConfiguration in
+                return .init(
+                    arch: target.platform.arch,
+                    platform: target.platform.variant,
+                    minimumOsVersion: target.platform.minimumOsVersion,
+                    xcodeConfiguration: xcodeConfiguration
+                )
+            }
+        }
     }
 
     private static func consolidateInputs(

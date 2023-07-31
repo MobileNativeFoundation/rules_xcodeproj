@@ -10,6 +10,9 @@ struct ConsolidatedTarget: Equatable {
 
     let label: BazelLabel
     let productType: PBXProductType
+
+    let distinguisherKey: DistinguisherKey
+    let targetDistinguisherKeys: [Target.DistinguisherKey]
 }
 
 extension Generator {
@@ -250,6 +253,16 @@ conditional dependencies (e.g. `deps`, `test_host`, `watch_application`, etc.)
 }
 
 extension ConsolidatedTarget {
+    struct DistinguisherKey: Equatable, Hashable {
+        typealias Archs = Set<String>
+        typealias Environments = [String: Archs]
+        typealias OSes = [Platform.OS: OSVersions]
+        typealias OSVersions = [SemanticVersion: Environments]
+
+        let components: OSes
+        let xcodeConfigurations: Set<String>
+    }
+
     init(key: Key, sortedTargets: [Target]) {
         self.key = key
         self.sortedTargets = sortedTargets
@@ -257,6 +270,40 @@ extension ConsolidatedTarget {
         let aTarget = sortedTargets.first!
         label = aTarget.label
         productType = aTarget.productType
+
+        distinguisherKey = DistinguisherKey(
+            components: sortedTargets.reduce(into: [:]) { components, target in
+                components[
+                    target.platform.os, default: [:]
+                ][
+                    target.osVersion, default: [:]
+                ][
+                    target.platform.environment, default: []
+                ]
+                    .insert(target.arch)
+            },
+            xcodeConfigurations:
+                Set(sortedTargets.flatMap(\.xcodeConfigurations))
+        )
+        targetDistinguisherKeys = sortedTargets.flatMap { target in
+            target.xcodeConfigurations.map { xcodeConfiguration in
+                return .init(
+                    arch: target.arch,
+                    platform: target.platform,
+                    osVersion: target.osVersion,
+                    xcodeConfiguration: xcodeConfiguration
+                )
+            }
+        }
+    }
+}
+
+extension Target {
+    struct DistinguisherKey: Equatable, Hashable {
+        fileprivate let arch: String
+        fileprivate let platform: Platform
+        fileprivate let osVersion: SemanticVersion
+        fileprivate let xcodeConfiguration: String
     }
 }
 
