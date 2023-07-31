@@ -47,13 +47,17 @@ extension Generator.DisambiguateTargets {
         _ consolidatedTargets: [ConsolidatedTarget]
     ) -> [DisambiguatedTarget] {
         // Gather all information needed to distinguish the targets
-        var labelsByName: [String: Set<String>] = [:]
+        var labelsByNameAndProductType:
+            [NameAndProductType: Set<String>] = [:]
         var names: [String: TargetComponents] = [:]
         var labels: [String: TargetComponents] = [:]
         for consolidatedTarget in consolidatedTargets {
             let normalizedName = consolidatedTarget.normalizedName
             let normalizedLabel = consolidatedTarget.normalizedLabel
-            labelsByName[normalizedName, default: []].insert(normalizedLabel)
+            labelsByNameAndProductType[
+                .init(target: consolidatedTarget),
+                default: []
+            ].insert(normalizedLabel)
             names[normalizedName, default: .init()]
                 .add(target: consolidatedTarget)
             labels[normalizedLabel, default: .init()]
@@ -66,10 +70,10 @@ extension Generator.DisambiguateTargets {
             let name: String
             let componentKey: String
             let components: [String: TargetComponents]
-            let normalizedName = consolidatedTarget.normalizedName
-            if labelsByName[normalizedName]!.count == 1 {
+            let nameAndProductType = NameAndProductType(target: consolidatedTarget)
+            if labelsByNameAndProductType[nameAndProductType]!.count == 1 {
                 name = consolidatedTarget.name
-                componentKey = normalizedName
+                componentKey = nameAndProductType.normalizedName
                 components = names
             } else {
                 name = "\(consolidatedTarget.label)"
@@ -91,6 +95,16 @@ extension Generator.DisambiguateTargets {
         return disambiguatedTargets.sorted { lhs, rhs in
             lhs.name.localizedStandardCompare(rhs.name) == .orderedAscending
         }
+    }
+}
+
+private struct NameAndProductType: Equatable, Hashable {
+    let normalizedName: String
+    let productType: PBXProductType
+
+    init(target: ConsolidatedTarget) {
+        self.normalizedName = target.normalizedName
+        self.productType = target.productType
     }
 }
 

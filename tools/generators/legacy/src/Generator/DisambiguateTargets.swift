@@ -28,13 +28,15 @@ extension Generator {
         let targets = consolidatedTargets.targets
 
         // Gather all information needed to distinguish the targets
-        var labelsByName: [String: Set<String>] = [:]
+        var labelsByNameAndProductType:
+            [NameAndProductType: Set<String>] = [:]
         var names: [String: TargetComponents] = [:]
         var labels: [String: TargetComponents] = [:]
         for (key, target) in targets {
             let normalizedName = target.normalizedName
             let normalizedLabel = target.normalizedLabel
-            labelsByName[normalizedName, default: []].insert(normalizedLabel)
+            labelsByNameAndProductType[.init(target: target), default: []]
+                .insert(normalizedLabel)
             names[normalizedName, default: .init()]
                 .add(target: target, key: key)
             labels[normalizedLabel, default: .init()]
@@ -49,10 +51,10 @@ extension Generator {
             let name: String
             let componentKey: String
             let components: [String: TargetComponents]
-            let normalizedName = target.normalizedName
-            if labelsByName[normalizedName]!.count == 1 {
+            let nameAndProductType = NameAndProductType(target: target)
+            if labelsByNameAndProductType[nameAndProductType]!.count == 1 {
                 name = target.name
-                componentKey = normalizedName
+                componentKey = nameAndProductType.normalizedName
                 components = names
             } else {
                 name = "\(target.label)"
@@ -71,6 +73,16 @@ extension Generator {
             keys: consolidatedTargets.keys,
             targets: uniqueValues
         )
+    }
+}
+
+private struct NameAndProductType: Equatable, Hashable {
+    let normalizedName: String
+    let productType: PBXProductType
+
+    init(target: ConsolidatedTarget) {
+        self.normalizedName = target.normalizedName
+        self.productType = target.product.type
     }
 }
 

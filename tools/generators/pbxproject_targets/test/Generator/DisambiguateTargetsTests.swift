@@ -187,7 +187,7 @@ final class DisambiguateTargetsTests: XCTestCase {
         )
     }
 
-    func test_productType_sameName() throws {
+    func test_productType_sameLabel() throws {
         // Arrange
 
         let targets: [Target] = [
@@ -200,6 +200,51 @@ final class DisambiguateTargetsTests: XCTestCase {
             .mock(
                 id: "A 2",
                 label: "//:A",
+                productType: .watch2App,
+                platform: .watchOSSimulator
+            ),
+            .mock(
+                id: "B",
+                label: "//:B",
+                productType: .staticLibrary,
+                platform: .macOS
+            ),
+        ]
+        let consolidatedTargets = Array<ConsolidatedTarget>(targets: targets)
+
+        let expectedTargetNames: [ConsolidatedTarget.Key: String] = [
+            ["A 1"]: "A (iOS)",
+            ["A 2"]: "A (watchOS)",
+            ["B"]: "B",
+        ]
+
+        // Act
+
+        let disambiguatedTargets =
+            Generator.DisambiguateTargets.defaultCallable(consolidatedTargets)
+
+        // Assert
+
+        XCTAssertNoDifference(
+            disambiguatedTargets,
+            names: expectedTargetNames,
+            targets: consolidatedTargets
+        )
+    }
+
+    func test_productType_differentLabel_sameName() throws {
+        // Arrange
+
+        let targets: [Target] = [
+            .mock(
+                id: "A 1",
+                label: "//some:A",
+                productType: .application,
+                platform: .iOSDevice
+            ),
+            .mock(
+                id: "A 2",
+                label: "//another:A",
                 productType: .watch2App,
                 platform: .watchOSSimulator
             ),
