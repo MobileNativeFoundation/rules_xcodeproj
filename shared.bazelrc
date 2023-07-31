@@ -24,6 +24,9 @@ build --experimental_inmemory_dotd_files
 build --remote_download_outputs=minimal
 test --remote_download_outputs=toplevel
 
+# Disabled until bugs are fixed
+common --lockfile_mode=off
+
 # Work around https://github.com/bazelbuild/bazel/issues/11920
 run --remote_download_outputs=all
 
