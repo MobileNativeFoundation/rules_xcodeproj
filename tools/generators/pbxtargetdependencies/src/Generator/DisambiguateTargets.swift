@@ -243,7 +243,7 @@ struct ProductTypeComponents {
 
         if !consolidatedDistinguishers.isEmpty {
             distinguishers.append(
-                consolidatedDistinguishers.joined(separator: ", ")
+                consolidatedDistinguishers.sorted().joined(separator: ", ")
             )
         }
 
