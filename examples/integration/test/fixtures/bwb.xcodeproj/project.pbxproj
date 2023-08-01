@@ -13169,7 +13169,7 @@
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -F$(DEVELOPER_DIR)/Platforms/WatchSimulator.platform/Developer/Library/Frameworks -F$(SDKROOT)/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/WatchSimulator.platform/Developer/usr/lib";
 				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.watchTests";
-				PRODUCT_MODULE_NAME = watchOSAppUITestsLibrary;
+				PRODUCT_MODULE_NAME = watchOSAppUITests;
 				PRODUCT_NAME = watchOSAppUITests;
 				SDKROOT = watchos;
 				SUPPORTED_PLATFORMS = watchsimulator;
@@ -15126,7 +15126,7 @@
 				PREVIEWS_SWIFT_INCLUDE__NO = "";
 				PREVIEWS_SWIFT_INCLUDE__YES = "-I bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/Tests";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bazelbuild.rulesapple.Tests;
-				PRODUCT_MODULE_NAME = LibSwiftTestsLib;
+				PRODUCT_MODULE_NAME = CommandLineToolTests;
 				PRODUCT_NAME = CommandLineToolTests;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
@@ -15330,7 +15330,7 @@
 				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
 				OTHER_SWIFT_FLAGS = "-Xcc -working-directory -Xcc $(PROJECT_DIR) -working-directory $(PROJECT_DIR) -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/swift.compile.params -F$(DEVELOPER_DIR)/Platforms/WatchSimulator.platform/Developer/Library/Frameworks -F$(SDKROOT)/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/WatchSimulator.platform/Developer/usr/lib";
 				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.watchTests";
-				PRODUCT_MODULE_NAME = watchOSAppUITestsLibrary;
+				PRODUCT_MODULE_NAME = watchOSAppUITests;
 				PRODUCT_NAME = watchOSAppUITests;
 				SDKROOT = watchos;
 				SUPPORTED_PLATFORMS = watchsimulator;
@@ -15764,7 +15764,7 @@
 				PREVIEWS_SWIFT_INCLUDE__NO = "";
 				PREVIEWS_SWIFT_INCLUDE__YES = "-I bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/CommandLine/Tests";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bazelbuild.rulesapple.Tests;
-				PRODUCT_MODULE_NAME = LibSwiftTestsLib;
+				PRODUCT_MODULE_NAME = CommandLineToolTests;
 				PRODUCT_NAME = CommandLineToolTests;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
