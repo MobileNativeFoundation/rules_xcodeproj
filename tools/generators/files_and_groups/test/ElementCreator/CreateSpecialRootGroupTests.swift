@@ -44,7 +44,7 @@ final class CreateSpecialRootGroupTests: XCTestCase {
         ]
         let stubbedGroupChildren: [GroupChild] = [
             .elementAndChildren(.init(
-                element: Element(
+                element: .init(
                     name: "a",
                     object: .init(
                         identifier: "a id",
@@ -52,14 +52,10 @@ final class CreateSpecialRootGroupTests: XCTestCase {
                     ),
                     sortOrder: .groupLike
                 ),
-                transitiveElements: [
-                    Element(
-                        name: "a",
-                        object: .init(
-                            identifier: "a id",
-                            content: "a content"
-                        ),
-                        sortOrder: .groupLike
+                transitiveObjects: [
+                    .init(
+                        identifier: "a id",
+                        content: "a content"
                     )
                 ],
                 bazelPathAndIdentifiers: [("bazel-out/a", "a id")],
@@ -70,7 +66,7 @@ final class CreateSpecialRootGroupTests: XCTestCase {
             )),
             .localizedRegion([
                 GroupChild.LocalizedFile(
-                    element: Element(
+                    element: .init(
                         name: "y",
                         object: .init(
                             identifier: "y id",
@@ -85,7 +81,7 @@ final class CreateSpecialRootGroupTests: XCTestCase {
                     bazelPaths: ["bazel-out/b.lproj/y"]
                 ),
                 GroupChild.LocalizedFile(
-                    element: Element(
+                    element: .init(
                         name: "z",
                         object: .init(
                             identifier: "z id",
@@ -118,7 +114,7 @@ final class CreateSpecialRootGroupTests: XCTestCase {
         ]
         let stubbedGroupChildElements = GroupChildElements(
             elements: [
-                Element(
+                .init(
                     name: "a",
                     object: .init(
                         identifier: "a id",
@@ -126,7 +122,7 @@ final class CreateSpecialRootGroupTests: XCTestCase {
                     ),
                     sortOrder: .groupLike
                 ),
-                Element(
+                .init(
                     name: "y",
                     object: .init(
                         identifier: "y id",
@@ -134,7 +130,7 @@ final class CreateSpecialRootGroupTests: XCTestCase {
                     ),
                     sortOrder: .fileLike
                 ),
-                Element(
+                .init(
                     name: "z",
                     object: .init(
                         identifier: "z id",
@@ -143,30 +139,18 @@ final class CreateSpecialRootGroupTests: XCTestCase {
                     sortOrder: .fileLike
                 ),
             ],
-            transitiveElements: [
-                Element(
-                    name: "a",
-                    object: .init(
-                        identifier: "a id",
-                        content: "a content"
-                    ),
-                    sortOrder: .groupLike
+            transitiveObjects: [
+                .init(
+                    identifier: "a id",
+                    content: "a content"
                 ),
-                Element(
-                    name: "y",
-                    object: .init(
-                        identifier: "y id",
-                        content: "y content"
-                    ),
-                    sortOrder: .fileLike
+                .init(
+                    identifier: "y id",
+                    content: "y content"
                 ),
-                Element(
-                    name: "z",
-                    object: .init(
-                        identifier: "z id",
-                        content: "z content"
-                    ),
-                    sortOrder: .fileLike
+                .init(
+                    identifier: "z id",
+                    content: "z content"
                 ),
             ],
             bazelPathAndIdentifiers: [

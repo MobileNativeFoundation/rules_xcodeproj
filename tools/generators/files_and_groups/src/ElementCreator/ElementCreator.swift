@@ -34,7 +34,7 @@ struct ElementCreator {
         )
 
         let partial = environment.calculatePartial(
-            elements: rootElements.transitiveElements,
+            objects: rootElements.transitiveObjects,
             mainGroup: mainGroup,
             workspace: arguments.workspace
         )

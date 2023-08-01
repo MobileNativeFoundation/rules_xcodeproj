@@ -97,14 +97,10 @@ final class CreateGroupChildElementsTest: XCTestCase {
                     ),
                     sortOrder: .fileLike
                 ),
-                transitiveElements: [
+                transitiveObjects: [
                     .init(
-                        name: "z",
-                        object: .init(
-                            identifier: "z id",
-                            content: "z content"
-                        ),
-                        sortOrder: .fileLike
+                        identifier: "z id",
+                        content: "z content"
                     ),
                 ],
                 bazelPathAndIdentifiers: [("parent/z", "z id")],
@@ -120,22 +116,14 @@ final class CreateGroupChildElementsTest: XCTestCase {
                     ),
                     sortOrder: .groupLike
                 ),
-                transitiveElements: [
+                transitiveObjects: [
                     .init(
-                        name: "inner",
-                        object: .init(
-                            identifier: "inner id",
-                            content: "inner content"
-                        ),
-                        sortOrder: .fileLike
+                        identifier: "inner id",
+                        content: "inner content"
                     ),
                     .init(
-                        name: "localized.strings",
-                        object: .init(
-                            identifier: "localized.strings folder id",
-                            content: "localized.strings folder content"
-                        ),
-                        sortOrder: .groupLike
+                        identifier: "localized.strings folder id",
+                        content: "localized.strings folder content"
                     ),
                 ],
                 bazelPathAndIdentifiers: [
@@ -155,14 +143,10 @@ final class CreateGroupChildElementsTest: XCTestCase {
                     ),
                     sortOrder: .bazelGenerated
                 ),
-                transitiveElements: [
+                transitiveObjects: [
                     .init(
-                        name: "bazel-out",
-                        object: .init(
-                            identifier: "bazel-out id",
-                            content: "bazel-out content"
-                        ),
-                        sortOrder: .bazelGenerated
+                        identifier: "bazel-out id",
+                        content: "bazel-out content"
                     ),
                 ],
                 bazelPathAndIdentifiers: [("parent/bazel-out", "bazel-out id")],
@@ -189,14 +173,10 @@ final class CreateGroupChildElementsTest: XCTestCase {
                     ),
                     sortOrder: .bazelExternalRepositories
                 ),
-                transitiveElements: [
+                transitiveObjects: [
                     .init(
-                        name: "external",
-                        object: .init(
-                            identifier: "external id",
-                            content: "external content"
-                        ),
-                        sortOrder: .bazelExternalRepositories
+                        identifier: "external id",
+                        content: "external content"
                     ),
                 ],
                 bazelPathAndIdentifiers: [("parent/external", "external id")],
@@ -250,14 +230,10 @@ final class CreateGroupChildElementsTest: XCTestCase {
                     ),
                     sortOrder: .fileLike
                 ),
-                transitiveElements: [
+                transitiveObjects: [
                     .init(
-                        name: "Main.storyboard",
-                        object: .init(
-                            identifier: "Main.storyboard id",
-                            content: "Main.storyboard content"
-                        ),
-                        sortOrder: .fileLike
+                        identifier: "Main.storyboard id",
+                        content: "Main.storyboard content"
                     )
                 ],
                 bazelPathAndIdentifiers: [
@@ -276,14 +252,10 @@ final class CreateGroupChildElementsTest: XCTestCase {
                     ),
                     sortOrder: .fileLike
                 ),
-                transitiveElements: [
+                transitiveObjects: [
                     .init(
-                        name: "Main.xib",
-                        object: .init(
-                            identifier: "Main.xib id",
-                            content: "Main.xib content"
-                        ),
-                        sortOrder: .fileLike
+                        identifier: "Main.xib id",
+                        content: "Main.xib content"
                     )
                 ],
                 bazelPathAndIdentifiers: [
@@ -301,14 +273,10 @@ final class CreateGroupChildElementsTest: XCTestCase {
                     ),
                     sortOrder: .fileLike
                 ),
-                transitiveElements: [
+                transitiveObjects: [
                     .init(
-                        name: "localized.strings",
-                        object: .init(
-                            identifier: "localized.strings id",
-                            content: "localized.strings content"
-                        ),
-                        sortOrder: .fileLike
+                        identifier: "localized.strings id",
+                        content: "localized.strings content"
                     )
                 ],
                 bazelPathAndIdentifiers: [
@@ -381,70 +349,38 @@ final class CreateGroupChildElementsTest: XCTestCase {
                     sortOrder: .bazelGenerated
                 ),
             ],
-            transitiveElements: [
+            transitiveObjects: [
                 .init(
-                    name: "z",
-                    object: .init(
-                        identifier: "z id",
-                        content: "z content"
-                    ),
-                    sortOrder: .fileLike
+                    identifier: "z id",
+                    content: "z content"
                 ),
                 .init(
-                    name: "inner",
-                    object: .init(
-                        identifier: "inner id",
-                        content: "inner content"
-                    ),
-                    sortOrder: .fileLike
+                    identifier: "inner id",
+                    content: "inner content"
                 ),
                 .init(
-                    name: "localized.strings",
-                    object: .init(
-                        identifier: "localized.strings folder id",
-                        content: "localized.strings folder content"
-                    ),
-                    sortOrder: .groupLike
+                    identifier: "localized.strings folder id",
+                    content: "localized.strings folder content"
                 ),
                 .init(
-                    name: "bazel-out",
-                    object: .init(
-                        identifier: "bazel-out id",
-                        content: "bazel-out content"
-                    ),
-                    sortOrder: .bazelGenerated
+                    identifier: "bazel-out id",
+                    content: "bazel-out content"
                 ),
                 .init(
-                    name: "external",
-                    object: .init(
-                        identifier: "external id",
-                        content: "external content"
-                    ),
-                    sortOrder: .bazelExternalRepositories
+                    identifier: "external id",
+                    content: "external content"
                 ),
                 .init(
-                    name: "Main.storyboard",
-                    object: .init(
-                        identifier: "Main.storyboard id",
-                        content: "Main.storyboard content"
-                    ),
-                    sortOrder: .fileLike
+                    identifier: "Main.storyboard id",
+                    content: "Main.storyboard content"
                 ),
                 .init(
-                    name: "Main.xib",
-                    object: .init(
-                        identifier: "Main.xib id",
-                        content: "Main.xib content"
-                    ),
-                    sortOrder: .fileLike
+                    identifier: "Main.xib id",
+                    content: "Main.xib content"
                 ),
                 .init(
-                    name: "localized.strings",
-                    object: .init(
-                        identifier: "localized.strings id",
-                        content: "localized.strings content"
-                    ),
-                    sortOrder: .fileLike
+                    identifier: "localized.strings id",
+                    content: "localized.strings content"
                 ),
             ],
             bazelPathAndIdentifiers: [

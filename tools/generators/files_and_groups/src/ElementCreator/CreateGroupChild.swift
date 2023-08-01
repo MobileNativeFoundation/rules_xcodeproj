@@ -132,7 +132,7 @@ struct Element: Equatable {
 enum GroupChild: Equatable {
     struct ElementAndChildren {
         let element: Element
-        let transitiveElements: [Element]
+        let transitiveObjects: [Object]
         let bazelPathAndIdentifiers: [(BazelPath, String)]
         let knownRegions: Set<String>
         let resolvedRepositories: [ResolvedRepository]
@@ -161,17 +161,17 @@ extension GroupChild.ElementAndChildren {
         var bazelPathAndIdentifiers: [(BazelPath, String)] = []
         var knownRegions: Set<String> = []
         var resolvedRepositories: [ResolvedRepository] = []
-        var transitiveElements: [Element] = []
+        var transitiveObjects: [Object] = []
         for child in children {
             bazelPathAndIdentifiers
                 .append(contentsOf: child.bazelPathAndIdentifiers)
             knownRegions.formUnion(child.knownRegions)
             resolvedRepositories.append(contentsOf: child.resolvedRepositories)
-            transitiveElements.append(contentsOf: child.transitiveElements)
+            transitiveObjects.append(contentsOf: child.transitiveObjects)
         }
 
         bazelPathAndIdentifiers.append((bazelPath, element.object.identifier))
-        transitiveElements.append(element)
+        transitiveObjects.append(element.object)
 
         if let resolvedRepository {
             resolvedRepositories.append(resolvedRepository)
@@ -179,7 +179,7 @@ extension GroupChild.ElementAndChildren {
 
         self.init(
             element: element,
-            transitiveElements: transitiveElements,
+            transitiveObjects: transitiveObjects,
             bazelPathAndIdentifiers: bazelPathAndIdentifiers,
             knownRegions: knownRegions,
             resolvedRepositories: resolvedRepositories
@@ -195,8 +195,8 @@ extension GroupChild.ElementAndChildren {
         var bazelPathAndIdentifiers = children.bazelPathAndIdentifiers
         bazelPathAndIdentifiers.append((bazelPath, element.object.identifier))
 
-        var transitiveElements = children.transitiveElements
-        transitiveElements.append(element)
+        var transitiveObjects = children.transitiveObjects
+        transitiveObjects.append(element.object)
 
         var resolvedRepositories = children.resolvedRepositories
         if let resolvedRepository {
@@ -205,7 +205,7 @@ extension GroupChild.ElementAndChildren {
 
         self.init(
             element: element,
-            transitiveElements: transitiveElements,
+            transitiveObjects: transitiveObjects,
             bazelPathAndIdentifiers: bazelPathAndIdentifiers,
             knownRegions: children.knownRegions,
             resolvedRepositories: resolvedRepositories
@@ -232,12 +232,12 @@ extension GroupChild.ElementAndChildren: Equatable {
 
         return (
             lhs.element,
-            lhs.transitiveElements,
+            lhs.transitiveObjects,
             lhs.knownRegions,
             lhs.resolvedRepositories
         ) == (
             rhs.element,
-            rhs.transitiveElements,
+            rhs.transitiveObjects,
             rhs.knownRegions,
             rhs.resolvedRepositories
         )

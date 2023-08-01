@@ -66,22 +66,14 @@ final class CreateRootElementsTests: XCTestCase {
                     ),
                     sortOrder: .groupLike
                 ),
-                transitiveElements: [
+                transitiveObjects: [
                     .init(
-                        name: "1",
-                        object: .init(
-                            identifier: "1 id",
-                            content: "1 content"
-                        ),
-                        sortOrder: .fileLike
+                        identifier: "1 id",
+                        content: "1 content"
                     ),
                     .init(
-                        name: "2",
-                        object: .init(
-                            identifier: "2 id",
-                            content: "2 content"
-                        ),
-                        sortOrder: .fileLike
+                        identifier: "2 id",
+                        content: "2 content"
                     ),
                 ],
                 bazelPathAndIdentifiers: [
@@ -100,14 +92,10 @@ final class CreateRootElementsTests: XCTestCase {
                     ),
                     sortOrder: .groupLike
                 ),
-                transitiveElements: [
+                transitiveObjects: [
                     .init(
-                        name: "3",
-                        object: .init(
-                            identifier: "3 id",
-                            content: "3 content"
-                        ),
-                        sortOrder: .fileLike
+                        identifier: "3 id",
+                        content: "3 content"
                     ),
                 ],
                 bazelPathAndIdentifiers: [
@@ -125,14 +113,10 @@ final class CreateRootElementsTests: XCTestCase {
                     ),
                     sortOrder: .groupLike
                 ),
-                transitiveElements: [
+                transitiveObjects: [
                     .init(
-                        name: "4",
-                        object: .init(
-                            identifier: "4 id",
-                            content: "4 content"
-                        ),
-                        sortOrder: .fileLike
+                        identifier: "4 id",
+                        content: "4 content"
                     ),
                 ],
                 bazelPathAndIdentifiers: [
@@ -170,22 +154,14 @@ final class CreateRootElementsTests: XCTestCase {
                     ),
                     sortOrder: .fileLike
                 ),
-                transitiveElements: [
+                transitiveObjects: [
                     .init(
-                        name: "inner",
-                        object: .init(
-                            identifier: "a/inner identifier",
-                            content: "a/inner content"
-                        ),
-                        sortOrder: .fileLike
+                        identifier: "a/inner identifier",
+                        content: "a/inner content"
                     ),
                     .init(
-                        name: "a",
-                        object: .init(
-                            identifier: "a identifier",
-                            content: "a content"
-                        ),
-                        sortOrder: .fileLike
+                        identifier: "a identifier",
+                        content: "a content"
                     ),
                 ],
                 bazelPathAndIdentifiers: [
@@ -204,14 +180,10 @@ final class CreateRootElementsTests: XCTestCase {
                     ),
                     sortOrder: .fileLike
                 ),
-                transitiveElements: [
+                transitiveObjects: [
                     .init(
-                        name: "b",
-                        object: .init(
-                            identifier: "b identifier",
-                            content: "b content"
-                        ),
-                        sortOrder: .fileLike
+                        identifier: "b identifier",
+                        content: "b content"
                     ),
                 ],
                 bazelPathAndIdentifiers: [
@@ -258,18 +230,18 @@ final class CreateRootElementsTests: XCTestCase {
                 stubbedGroupChildElementAndChildren[1].element,
                 stubbedSpecialRootGroupChildElementAndChildren[2].element,
             ],
-            transitiveElements: [
+            transitiveObjects: [
                 stubbedSpecialRootGroupChildElementAndChildren[0]
-                    .transitiveElements[0],
+                    .transitiveObjects[0],
                 stubbedSpecialRootGroupChildElementAndChildren[0]
-                    .transitiveElements[1],
-                stubbedGroupChildElementAndChildren[0].transitiveElements[0],
+                    .transitiveObjects[1],
+                stubbedGroupChildElementAndChildren[0].transitiveObjects[0],
                 stubbedSpecialRootGroupChildElementAndChildren[1]
-                    .transitiveElements[0],
-                stubbedGroupChildElementAndChildren[0].transitiveElements[1],
+                    .transitiveObjects[0],
+                stubbedGroupChildElementAndChildren[0].transitiveObjects[1],
                 stubbedSpecialRootGroupChildElementAndChildren[2]
-                    .transitiveElements[0],
-                stubbedGroupChildElementAndChildren[1].transitiveElements[0],
+                    .transitiveObjects[0],
+                stubbedGroupChildElementAndChildren[1].transitiveObjects[0],
             ],
             bazelPathAndIdentifiers: [
                 stubbedSpecialRootGroupChildElementAndChildren[0]

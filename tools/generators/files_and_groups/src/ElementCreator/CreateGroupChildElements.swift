@@ -147,7 +147,7 @@ extension ElementCreator.CreateGroupChildElements {
 
 struct GroupChildElements {
     let elements: [Element]
-    let transitiveElements: [Element]
+    let transitiveObjects: [Object]
     let bazelPathAndIdentifiers: [(BazelPath, String)]
     let knownRegions: Set<String>
     let resolvedRepositories: [ResolvedRepository]
@@ -162,21 +162,21 @@ extension GroupChildElements {
         var bazelPathAndIdentifiers: [(BazelPath, String)] = []
         var knownRegions: Set<String> = []
         var resolvedRepositories = resolvedRepositories
-        var transitiveElements: [Element] = []
+        var transitiveObjects: [Object] = []
         for child in children {
             elements.append(child.element)
             bazelPathAndIdentifiers
                 .append(contentsOf: child.bazelPathAndIdentifiers)
             knownRegions.formUnion(child.knownRegions)
             resolvedRepositories.append(contentsOf: child.resolvedRepositories)
-            transitiveElements.append(contentsOf: child.transitiveElements)
+            transitiveObjects.append(contentsOf: child.transitiveObjects)
         }
 
         elements.sort()
 
         self.init(
             elements: elements,
-            transitiveElements: transitiveElements,
+            transitiveObjects: transitiveObjects,
             bazelPathAndIdentifiers: bazelPathAndIdentifiers,
             knownRegions: knownRegions,
             resolvedRepositories: resolvedRepositories
@@ -203,12 +203,12 @@ extension GroupChildElements: Equatable {
 
         return (
             lhs.elements,
-            lhs.transitiveElements,
+            lhs.transitiveObjects,
             lhs.knownRegions,
             lhs.resolvedRepositories
         ) == (
             rhs.elements,
-            rhs.transitiveElements,
+            rhs.transitiveObjects,
             rhs.knownRegions,
             rhs.resolvedRepositories
         )

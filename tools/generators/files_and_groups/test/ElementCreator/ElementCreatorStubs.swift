@@ -26,7 +26,7 @@ extension ElementCreator {
                         ),
                         sortOrder: .fileLike
                     ),
-                    transitiveElements: [],
+                    transitiveObjects: [],
                     bazelPathAndIdentifiers: [],
                     knownRegions: [],
                     resolvedRepositories: []
@@ -60,7 +60,7 @@ extension ElementCreator {
                     ),
                     sortOrder: .groupLike
                 ),
-                transitiveElements: [],
+                transitiveObjects: [],
                 bazelPathAndIdentifiers: [],
                 knownRegions: [],
                 resolvedRepositories: []
@@ -78,7 +78,7 @@ extension ElementCreator {
                         ),
                         sortOrder: .fileLike
                     ),
-                    transitiveElements: [],
+                    transitiveObjects: [],
                     bazelPathAndIdentifiers: [],
                     knownRegions: [],
                     resolvedRepositories: []
@@ -98,7 +98,7 @@ extension ElementCreator {
                         sortOrder: .fileLike
                     ),
                 ],
-                transitiveElements: [],
+                transitiveObjects: [],
                 bazelPathAndIdentifiers: [],
                 knownRegions: [],
                 resolvedRepositories: []
@@ -152,7 +152,7 @@ extension ElementCreator {
                         ),
                         sortOrder: .groupLike
                     ),
-                    transitiveElements: [],
+                    transitiveObjects: [],
                     bazelPathAndIdentifiers: [],
                     knownRegions: [],
                     resolvedRepositories: []
@@ -183,7 +183,7 @@ extension ElementCreator {
                         ),
                         sortOrder: .fileLike
                     ),
-                    transitiveElements: [],
+                    transitiveObjects: [],
                     bazelPathAndIdentifiers: [],
                     knownRegions: [],
                     resolvedRepositories: []
@@ -212,7 +212,7 @@ extension ElementCreator {
                     ),
                     sortOrder: .fileLike
                 ),
-                transitiveElements: [],
+                transitiveObjects: [],
                 bazelPathAndIdentifiers: [],
                 knownRegions: [],
                 resolvedRepositories: []
