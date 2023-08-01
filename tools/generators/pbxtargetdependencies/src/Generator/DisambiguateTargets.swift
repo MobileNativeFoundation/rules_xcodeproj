@@ -52,25 +52,34 @@ extension Generator.DisambiguateTargets {
         var names: [String: TargetComponents] = [:]
         var labels: [String: TargetComponents] = [:]
         for consolidatedTarget in consolidatedTargets {
-            let normalizedName = consolidatedTarget.normalizedName
-            let normalizedLabel = consolidatedTarget.normalizedLabel
             labelsByNameAndProductType[
                 .init(target: consolidatedTarget),
                 default: []
-            ].insert(normalizedLabel)
-            names[normalizedName, default: .init()]
-                .add(target: consolidatedTarget)
-            labels[normalizedLabel, default: .init()]
-                .add(target: consolidatedTarget)
+            ].insert(consolidatedTarget.normalizedLabel)
+        }
+        for consolidatedTarget in consolidatedTargets {
+            let nameAndProductType = NameAndProductType(
+                target: consolidatedTarget
+            )
+            if labelsByNameAndProductType[nameAndProductType]!.count == 1 {
+                names[nameAndProductType.normalizedName, default: .init()]
+                    .add(target: consolidatedTarget)
+            } else {
+                labels[consolidatedTarget.normalizedLabel, default: .init()]
+                    .add(target: consolidatedTarget)
+            }
         }
 
         // And then distinguish them
         var disambiguatedTargets: [DisambiguatedTarget] = []
         for consolidatedTarget in consolidatedTargets {
+            let nameAndProductType = NameAndProductType(
+                target: consolidatedTarget
+            )
+
             let name: String
             let componentKey: String
             let components: [String: TargetComponents]
-            let nameAndProductType = NameAndProductType(target: consolidatedTarget)
             if labelsByNameAndProductType[nameAndProductType]!.count == 1 {
                 name = consolidatedTarget.name
                 componentKey = nameAndProductType.normalizedName
