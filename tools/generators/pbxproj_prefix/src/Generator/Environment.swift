@@ -33,6 +33,7 @@ extension Generator {
             _ buildMode: BuildMode,
             _ indexImport: String,
             _ indexingProjectDir: String,
+            _ projectDir: String,
             _ resolvedRepositories: String,
             _ workspace: String,
             _ createBuildSettingsAttribute: CreateBuildSettingsAttribute
