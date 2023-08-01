@@ -102,11 +102,13 @@ extension ElementCreator.CreateGroupElement {
         return (
             element: .init(
                 name: name,
-                identifier: createIdentifier(
-                    path: bazelPath.path,
-                    type: .group
+                object: .init(
+                    identifier: createIdentifier(
+                        path: bazelPath.path,
+                        type: .group
+                    ),
+                    content: content
                 ),
-                content: content,
                 sortOrder: .groupLike
             ),
             resolvedRepository: attributes.resolvedRepository

@@ -20,8 +20,10 @@ extension ElementCreator {
                 GroupChild.ElementAndChildren(
                     element: Element(
                         name: "Name",
-                        identifier: "Identifier",
-                        content: "Content",
+                        object: .init(
+                            identifier: "Identifier",
+                            content: "Content"
+                        ),
                         sortOrder: .fileLike
                     ),
                     transitiveElements: [],
@@ -37,8 +39,10 @@ extension ElementCreator {
                 (
                     element: Element(
                         name: "Name",
-                        identifier: "Identifier",
-                        content: "Content",
+                        object: .init(
+                            identifier: "Identifier",
+                            content: "Content"
+                        ),
                         sortOrder: .fileLike
                     ),
                     resolvedRepository: nil
@@ -50,8 +54,10 @@ extension ElementCreator {
             groupChildElement: GroupChild.ElementAndChildren(
                 element: Element(
                     name: "Name",
-                    identifier: "Identifier",
-                    content: "Content",
+                    object: .init(
+                        identifier: "Identifier",
+                        content: "Content"
+                    ),
                     sortOrder: .groupLike
                 ),
                 transitiveElements: [],
@@ -66,8 +72,10 @@ extension ElementCreator {
                 .elementAndChildren(.init(
                     element: Element(
                         name: "Name",
-                        identifier: "Identifier",
-                        content: "Content",
+                        object: .init(
+                            identifier: "Identifier",
+                            content: "Content"
+                        ),
                         sortOrder: .fileLike
                     ),
                     transitiveElements: [],
@@ -83,8 +91,10 @@ extension ElementCreator {
                 elements: [
                     Element(
                         name: "Name",
-                        identifier: "Identifier",
-                        content: "Content",
+                        object: .init(
+                            identifier: "Identifier",
+                            content: "Content"
+                        ),
                         sortOrder: .fileLike
                     ),
                 ],
@@ -98,8 +108,10 @@ extension ElementCreator {
         static let createGroupElement = CreateGroupElement.stub(
             element: Element(
                 name: "Name",
-                identifier: "Identifier",
-                content: "Content",
+                object: .init(
+                    identifier: "Identifier",
+                    content: "Content"
+                ),
                 sortOrder: .groupLike
             ),
             resolvedRepository: nil
@@ -114,8 +126,10 @@ extension ElementCreator {
                 GroupChild.LocalizedFile(
                     element: Element(
                         name: "Name",
-                        identifier: "Identifier",
-                        content: "Content",
+                        object: .init(
+                            identifier: "Identifier",
+                            content: "Content"
+                        ),
                         sortOrder: .fileLike
                     ),
                     region: "region",
@@ -132,8 +146,10 @@ extension ElementCreator {
                 GroupChild.ElementAndChildren(
                     element: Element(
                         name: "Name",
-                        identifier: "Identifier",
-                        content: "Content",
+                        object: .init(
+                            identifier: "Identifier",
+                            content: "Content"
+                        ),
                         sortOrder: .groupLike
                     ),
                     transitiveElements: [],
@@ -148,8 +164,10 @@ extension ElementCreator {
             .stub(
                 element: Element(
                     name: "Name",
-                    identifier: "Identifier",
-                    content: "Content",
+                    object: .init(
+                        identifier: "Identifier",
+                        content: "Content"
+                    ),
                     sortOrder: .fileLike
                 )
             )
@@ -159,8 +177,10 @@ extension ElementCreator {
                 GroupChild.ElementAndChildren(
                     element: Element(
                         name: "Name",
-                        identifier: "Identifier",
-                        content: "Content",
+                        object: .init(
+                            identifier: "Identifier",
+                            content: "Content"
+                        ),
                         sortOrder: .fileLike
                     ),
                     transitiveElements: [],
@@ -174,8 +194,10 @@ extension ElementCreator {
         static let createVariantGroupElement = CreateVariantGroupElement.stub(
             element: Element(
                 name: "Name",
-                identifier: "Identifier",
-                content: "Content",
+                object: .init(
+                    identifier: "Identifier",
+                    content: "Content"
+                ),
                 sortOrder: .fileLike
             )
         )
@@ -184,8 +206,10 @@ extension ElementCreator {
             groupChildElement: GroupChild.ElementAndChildren(
                 element: Element(
                     name: "Name",
-                    identifier: "Identifier",
-                    content: "Content",
+                    object: .init(
+                        identifier: "Identifier",
+                        content: "Content"
+                    ),
                     sortOrder: .fileLike
                 ),
                 transitiveElements: [],
@@ -198,8 +222,10 @@ extension ElementCreator {
         static let createVersionGroupElement = CreateVersionGroupElement.stub(
             element: Element(
                 name: "Name",
-                identifier: "Identifier",
-                content: "Content",
+                    object: .init(
+                    identifier: "Identifier",
+                    content: "Content"
+                ),
                 sortOrder: .fileLike
             ),
             resolvedRepository: nil

@@ -41,38 +41,50 @@ class ElementCreatorCalculatePartialTests: XCTestCase {
         let elements: [Element] = [
             .init(
                 name: "i",
-                identifier: "i /* internal */",
-                content: "{i_ELEMENT}",
+                object: .init(
+                    identifier: "i /* internal */",
+                    content: "{i_ELEMENT}"
+                ),
                 sortOrder: .rulesXcodeprojInternal
             ),
             .init(
                 name: "a1",
-                identifier: "a1 /* file_or_folder1 */",
-                content: "{a1_ELEMENT}",
+                object: .init(
+                    identifier: "a1 /* file_or_folder1 */",
+                    content: "{a1_ELEMENT}"
+                ),
                 sortOrder: .fileLike
             ),
             .init(
                 name: "b",
-                identifier: "b /* bazel-out */",
-                content: "{b_ELEMENT}",
+                object: .init(
+                    identifier: "b /* bazel-out */",
+                    content: "{b_ELEMENT}"
+                ),
                 sortOrder: .bazelGenerated
             ),
             .init(
                 name: "a2",
-                identifier: "a2 /* file_or_folder1 */",
-                content: "{a2_ELEMENT}",
+                object: .init(
+                    identifier: "a2 /* file_or_folder1 */",
+                    content: "{a2_ELEMENT}"
+                ),
                 sortOrder: .groupLike
             ),
             .init(
                 name: "a3",
-                identifier: "a3 /* file_or_folder2 */",
-                content: "{a3_ELEMENT}",
+                object: .init(
+                    identifier: "a3 /* file_or_folder2 */",
+                    content: "{a3_ELEMENT}"
+                ),
                 sortOrder: .fileLike
             ),
             .init(
                 name: "e",
-                identifier: "e /* ../../external */",
-                content: "{e_ELEMENT}",
+                object: .init(
+                    identifier: "e /* ../../external */",
+                    content: "{e_ELEMENT}"
+                ),
                 sortOrder: .bazelExternalRepositories
             ),
         ]

@@ -84,7 +84,7 @@ extension ElementCreator.CreateGroup {
             name: name,
             bazelPath: bazelPath,
             specialRootGroupType: specialRootGroupType,
-            childIdentifiers: children.elements.map(\.identifier)
+            childIdentifiers: children.elements.map(\.object.identifier)
         )
 
         return GroupChild.ElementAndChildren(

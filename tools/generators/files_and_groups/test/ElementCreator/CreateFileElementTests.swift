@@ -46,7 +46,7 @@ final class CreateFileElementTests: XCTestCase {
             createIdentifier.tracker.called,
             expectedCreateIdentifierCalled
         )
-        XCTAssertEqual(result.element.identifier, stubbedIdentifier)
+        XCTAssertEqual(result.element.object.identifier, stubbedIdentifier)
     }
 
     // MARK: element.sortOrder
@@ -160,7 +160,7 @@ final class CreateFileElementTests: XCTestCase {
 
         // Assert
 
-        XCTAssertEqual(result.element.content, expectedContent)
+        XCTAssertEqual(result.element.object.content, expectedContent)
     }
 
     // MARK: element.content - lastKnownFileType
@@ -195,7 +195,7 @@ final class CreateFileElementTests: XCTestCase {
 
         // Assert
 
-        XCTAssertEqual(result.element.content, expectedContent)
+        XCTAssertEqual(result.element.object.content, expectedContent)
     }
 
     func test_element_content_lastKnownFileType_folder() {
@@ -228,7 +228,7 @@ final class CreateFileElementTests: XCTestCase {
 
         // Assert
 
-        XCTAssertEqual(result.element.content, expectedContent)
+        XCTAssertEqual(result.element.object.content, expectedContent)
     }
 
     func test_element_content_lastKnownFileType_folderLikeType() {
@@ -261,7 +261,7 @@ final class CreateFileElementTests: XCTestCase {
 
         // Assert
 
-        XCTAssertEqual(result.element.content, expectedContent)
+        XCTAssertEqual(result.element.object.content, expectedContent)
     }
 
     // MARK: element.content - explicitFileType
@@ -296,7 +296,7 @@ final class CreateFileElementTests: XCTestCase {
 
         // Assert
 
-        XCTAssertEqual(result.element.content, expectedContent)
+        XCTAssertEqual(result.element.object.content, expectedContent)
     }
 
     func test_element_content_explicitFileType_Podfile() {
@@ -329,7 +329,7 @@ final class CreateFileElementTests: XCTestCase {
 
         // Assert
 
-        XCTAssertEqual(result.element.content, expectedContent)
+        XCTAssertEqual(result.element.object.content, expectedContent)
     }
 
     // MARK: element.content - name
@@ -364,7 +364,7 @@ final class CreateFileElementTests: XCTestCase {
 
         // Assert
 
-        XCTAssertEqual(result.element.content, expectedContent)
+        XCTAssertEqual(result.element.object.content, expectedContent)
     }
 
 

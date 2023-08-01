@@ -40,8 +40,10 @@ final class CreateFileTests: XCTestCase {
         ]
         let stubbedElement = Element(
             name: "name",
-            identifier: "identifier",
-            content: "content",
+            object: .init(
+                identifier: "identifier",
+                content: "content"
+            ),
             sortOrder: .groupLike
         )
         let stubbedResolvedRepository = ResolvedRepository(
@@ -61,9 +63,18 @@ final class CreateFileTests: XCTestCase {
             element: stubbedElement,
             transitiveElements: [stubbedElement],
             bazelPathAndIdentifiers: [
-                ("bazel/path/node_name.some_ext/a", stubbedElement.identifier),
-                ("bazel/path/node_name.some_ext/b", stubbedElement.identifier),
-                ("bazel/path/node_name.some_ext", stubbedElement.identifier),
+                (
+                    "bazel/path/node_name.some_ext/a",
+                    stubbedElement.object.identifier
+                ),
+                (
+                    "bazel/path/node_name.some_ext/b",
+                    stubbedElement.object.identifier
+                ),
+                (
+                    "bazel/path/node_name.some_ext",
+                    stubbedElement.object.identifier
+                ),
             ],
             knownRegions: [],
             resolvedRepositories: [stubbedResolvedRepository]

@@ -31,7 +31,7 @@ final class CreateVersionGroupElementTests: XCTestCase {
 
         // Assert
 
-        XCTAssertEqual(result.element.identifier, identifier)
+        XCTAssertEqual(result.element.object.identifier, identifier)
     }
 
     // MARK: element.sortOrder
@@ -106,7 +106,7 @@ final class CreateVersionGroupElementTests: XCTestCase {
 
         // Assert
 
-        XCTAssertNoDifference(result.element.content, expectedContent)
+        XCTAssertNoDifference(result.element.object.content, expectedContent)
     }
 
     // MARK: element.content - currentVersion
@@ -151,7 +151,7 @@ final class CreateVersionGroupElementTests: XCTestCase {
 
         // Assert
 
-        XCTAssertNoDifference(result.element.content, expectedContent)
+        XCTAssertNoDifference(result.element.object.content, expectedContent)
     }
 
     // MARK: element.content - elementAttributes
@@ -194,7 +194,7 @@ final class CreateVersionGroupElementTests: XCTestCase {
 
         // Assert
 
-        XCTAssertNoDifference(result.element.content, expectedContent)
+        XCTAssertNoDifference(result.element.object.content, expectedContent)
     }
 
     // MARK: element.content - name
@@ -238,7 +238,7 @@ final class CreateVersionGroupElementTests: XCTestCase {
 
         // Assert
 
-        XCTAssertNoDifference(result.element.content, expectedContent)
+        XCTAssertNoDifference(result.element.object.content, expectedContent)
     }
 
     // MARK: - resolvedRepository

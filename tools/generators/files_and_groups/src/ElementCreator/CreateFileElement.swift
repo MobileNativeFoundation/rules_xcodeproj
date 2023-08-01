@@ -133,11 +133,13 @@ sourceTree = \(attributes.elementAttributes.sourceTree.rawValue); }
         return (
             element: .init(
                 name: name,
-                identifier: createIdentifier(
-                    path: bazelPath.path,
-                    type: .fileReference
+                object: .init(
+                    identifier: createIdentifier(
+                        path: bazelPath.path,
+                        type: .fileReference
+                    ),
+                    content: contentComponents.joined(separator: " ")
                 ),
-                content: contentComponents.joined(separator: " "),
                 sortOrder: sortOrder
             ),
             resolvedRepository: attributes.resolvedRepository

@@ -115,8 +115,10 @@ extension ElementCreator.CreateVersionGroupElement {
         return (
             element: .init(
                 name: name,
-                identifier: identifier,
-                content: content,
+                object: .init(
+                    identifier: identifier,
+                    content: content
+                ),
                 sortOrder: .fileLike
             ),
             resolvedRepository: attributes.resolvedRepository

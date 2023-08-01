@@ -45,7 +45,7 @@ final class CreateGroupElementTests: XCTestCase {
             createIdentifier.tracker.called,
             expectedCreateIdentifierCalled
         )
-        XCTAssertEqual(result.element.identifier, stubbedIdentifier)
+        XCTAssertEqual(result.element.object.identifier, stubbedIdentifier)
     }
 
     // MARK: element.sortOrder
@@ -117,7 +117,7 @@ final class CreateGroupElementTests: XCTestCase {
 
         // Assert
 
-        XCTAssertNoDifference(result.element.content, expectedContent)
+        XCTAssertNoDifference(result.element.object.content, expectedContent)
     }
 
     // MARK: element.content - elementAttributes
@@ -157,7 +157,7 @@ final class CreateGroupElementTests: XCTestCase {
 
         // Assert
 
-        XCTAssertNoDifference(result.element.content, expectedContent)
+        XCTAssertNoDifference(result.element.object.content, expectedContent)
     }
 
     // MARK: element.content - name
@@ -198,7 +198,7 @@ final class CreateGroupElementTests: XCTestCase {
 
         // Assert
 
-        XCTAssertNoDifference(result.element.content, expectedContent)
+        XCTAssertNoDifference(result.element.object.content, expectedContent)
     }
 
     // MARK: - resolvedRepository

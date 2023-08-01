@@ -125,8 +125,7 @@ struct Element: Equatable {
     }
 
     let name: String
-    let identifier: String
-    let content: String
+    let object: Object
     let sortOrder: SortOrder
 }
 
@@ -171,7 +170,7 @@ extension GroupChild.ElementAndChildren {
             transitiveElements.append(contentsOf: child.transitiveElements)
         }
 
-        bazelPathAndIdentifiers.append((bazelPath, element.identifier))
+        bazelPathAndIdentifiers.append((bazelPath, element.object.identifier))
         transitiveElements.append(element)
 
         if let resolvedRepository {
@@ -194,7 +193,7 @@ extension GroupChild.ElementAndChildren {
         children: GroupChildElements
     ) {
         var bazelPathAndIdentifiers = children.bazelPathAndIdentifiers
-        bazelPathAndIdentifiers.append((bazelPath, element.identifier))
+        bazelPathAndIdentifiers.append((bazelPath, element.object.identifier))
 
         var transitiveElements = children.transitiveElements
         transitiveElements.append(element)

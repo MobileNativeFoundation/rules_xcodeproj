@@ -11,8 +11,10 @@ final class CreateGroupChildElementsTest: XCTestCase {
         let base_Main_xib = GroupChild.LocalizedFile(
             element: .init(
                 name: "Main.xib",
-                identifier: "Base.lproj/Main.xib id",
-                content: "Base.lproj/Main.xib content",
+                object: .init(
+                    identifier: "Base.lproj/Main.xib id",
+                    content: "Base.lproj/Main.xib content"
+                ),
                 sortOrder: .fileLike
             ),
             region: "Base",
@@ -24,8 +26,10 @@ final class CreateGroupChildElementsTest: XCTestCase {
         let base_Main_storyboard = GroupChild.LocalizedFile(
             element: .init(
                 name: "Main.storyboard",
-                identifier: "Base.lproj/Main.storyboard id",
-                content: "Base.lproj/Main.storyboard content",
+                object: .init(
+                    identifier: "Base.lproj/Main.storyboard id",
+                    content: "Base.lproj/Main.storyboard content"
+                ),
                 sortOrder: .fileLike
             ),
             region: "Base",
@@ -38,8 +42,10 @@ final class CreateGroupChildElementsTest: XCTestCase {
         let frCA_localized_strings = GroupChild.LocalizedFile(
             element: .init(
                 name: "localized.strings",
-                identifier: "frCA.lproj/localized.strings id",
-                content: "frCA.lproj/localized.strings content",
+                object: .init(
+                    identifier: "frCA.lproj/localized.strings id",
+                    content: "frCA.lproj/localized.strings content"
+                ),
                 sortOrder: .fileLike
             ),
             region: "frCA",
@@ -51,8 +57,10 @@ final class CreateGroupChildElementsTest: XCTestCase {
         let frCA_Main_strings = GroupChild.LocalizedFile(
             element: .init(
                 name: "Main.strings",
-                identifier: "frCA.lproj/Main.strings id",
-                content: "frCA.lproj/Main.strings content",
+                object: .init(
+                    identifier: "frCA.lproj/Main.strings id",
+                    content: "frCA.lproj/Main.strings content"
+                ),
                 sortOrder: .fileLike
             ),
             region: "frCA",
@@ -65,8 +73,10 @@ final class CreateGroupChildElementsTest: XCTestCase {
         let enGB_localized_strings = GroupChild.LocalizedFile(
             element: .init(
                 name: "localized.strings",
-                identifier: "enGB.lproj/localized.strings id",
-                content: "enGB.lproj/localized.strings content",
+                object: .init(
+                    identifier: "enGB.lproj/localized.strings id",
+                    content: "enGB.lproj/localized.strings content"
+                ),
                 sortOrder: .fileLike
             ),
             region: "enGB",
@@ -81,15 +91,19 @@ final class CreateGroupChildElementsTest: XCTestCase {
             .elementAndChildren(.init(
                 element: .init(
                     name: "z",
-                    identifier: "z id",
-                    content: "z content",
+                    object: .init(
+                        identifier: "z id",
+                        content: "z content"
+                    ),
                     sortOrder: .fileLike
                 ),
                 transitiveElements: [
                     .init(
                         name: "z",
-                        identifier: "z id",
-                        content: "z content",
+                        object: .init(
+                            identifier: "z id",
+                            content: "z content"
+                        ),
                         sortOrder: .fileLike
                     ),
                 ],
@@ -100,21 +114,27 @@ final class CreateGroupChildElementsTest: XCTestCase {
             .elementAndChildren(.init(
                 element: .init(
                     name: "localized.strings",
-                    identifier: "localized.strings folder id",
-                    content: "localized.strings folder content",
+                    object: .init(
+                        identifier: "localized.strings folder id",
+                        content: "localized.strings folder content"
+                    ),
                     sortOrder: .groupLike
                 ),
                 transitiveElements: [
                     .init(
                         name: "inner",
-                        identifier: "inner id",
-                        content: "inner content",
+                        object: .init(
+                            identifier: "inner id",
+                            content: "inner content"
+                        ),
                         sortOrder: .fileLike
                     ),
                     .init(
                         name: "localized.strings",
-                        identifier: "localized.strings folder id",
-                        content: "localized.strings folder content",
+                        object: .init(
+                            identifier: "localized.strings folder id",
+                            content: "localized.strings folder content"
+                        ),
                         sortOrder: .groupLike
                     ),
                 ],
@@ -129,15 +149,19 @@ final class CreateGroupChildElementsTest: XCTestCase {
             .elementAndChildren(.init(
                 element: .init(
                     name: "bazel-out",
-                    identifier: "bazel-out id",
-                    content: "bazel-out content",
+                    object: .init(
+                        identifier: "bazel-out id",
+                        content: "bazel-out content"
+                    ),
                     sortOrder: .bazelGenerated
                 ),
                 transitiveElements: [
                     .init(
                         name: "bazel-out",
-                        identifier: "bazel-out id",
-                        content: "bazel-out content",
+                        object: .init(
+                            identifier: "bazel-out id",
+                            content: "bazel-out content"
+                        ),
                         sortOrder: .bazelGenerated
                     ),
                 ],
@@ -159,15 +183,19 @@ final class CreateGroupChildElementsTest: XCTestCase {
             .elementAndChildren(.init(
                 element: .init(
                     name: "external",
-                    identifier: "external id",
-                    content: "external content",
+                    object: .init(
+                        identifier: "external id",
+                        content: "external content"
+                    ),
                     sortOrder: .bazelExternalRepositories
                 ),
                 transitiveElements: [
                     .init(
                         name: "external",
-                        identifier: "external id",
-                        content: "external content",
+                        object: .init(
+                            identifier: "external id",
+                            content: "external content"
+                        ),
                         sortOrder: .bazelExternalRepositories
                     ),
                 ],
@@ -216,15 +244,19 @@ final class CreateGroupChildElementsTest: XCTestCase {
             .init(
                 element: .init(
                     name: "Main.storyboard",
-                    identifier: "Main.storyboard id",
-                    content: "Main.storyboard content",
+                    object: .init(
+                        identifier: "Main.storyboard id",
+                        content: "Main.storyboard content"
+                    ),
                     sortOrder: .fileLike
                 ),
                 transitiveElements: [
                     .init(
                         name: "Main.storyboard",
-                        identifier: "Main.storyboard id",
-                        content: "Main.storyboard content",
+                        object: .init(
+                            identifier: "Main.storyboard id",
+                            content: "Main.storyboard content"
+                        ),
                         sortOrder: .fileLike
                     )
                 ],
@@ -238,15 +270,19 @@ final class CreateGroupChildElementsTest: XCTestCase {
             .init(
                 element: .init(
                     name: "Main.xib",
-                    identifier: "Main.xib id",
-                    content: "Main.xib content",
+                    object: .init(
+                        identifier: "Main.xib id",
+                        content: "Main.xib content"
+                    ),
                     sortOrder: .fileLike
                 ),
                 transitiveElements: [
                     .init(
                         name: "Main.xib",
-                        identifier: "Main.xib id",
-                        content: "Main.xib content",
+                        object: .init(
+                            identifier: "Main.xib id",
+                            content: "Main.xib content"
+                        ),
                         sortOrder: .fileLike
                     )
                 ],
@@ -259,15 +295,19 @@ final class CreateGroupChildElementsTest: XCTestCase {
             .init(
                 element: .init(
                     name: "localized.strings",
-                    identifier: "localized.strings id",
-                    content: "localized.strings content",
+                    object: .init(
+                        identifier: "localized.strings id",
+                        content: "localized.strings content"
+                    ),
                     sortOrder: .fileLike
                 ),
                 transitiveElements: [
                     .init(
                         name: "localized.strings",
-                        identifier: "localized.strings id",
-                        content: "localized.strings content",
+                        object: .init(
+                            identifier: "localized.strings id",
+                            content: "localized.strings content"
+                        ),
                         sortOrder: .fileLike
                     )
                 ],
@@ -286,94 +326,124 @@ final class CreateGroupChildElementsTest: XCTestCase {
             elements: [
                 .init(
                     name: "localized.strings",
-                    identifier: "localized.strings folder id",
-                    content: "localized.strings folder content",
+                    object: .init(
+                        identifier: "localized.strings folder id",
+                        content: "localized.strings folder content"
+                    ),
                     sortOrder: .groupLike
                 ),
                 .init(
                     name: "localized.strings",
-                    identifier: "localized.strings id",
-                    content: "localized.strings content",
+                    object: .init(
+                        identifier: "localized.strings id",
+                        content: "localized.strings content"
+                    ),
                     sortOrder: .fileLike
                 ),
                 .init(
                     name: "Main.storyboard",
-                    identifier: "Main.storyboard id",
-                    content: "Main.storyboard content",
+                    object: .init(
+                        identifier: "Main.storyboard id",
+                        content: "Main.storyboard content"
+                    ),
                     sortOrder: .fileLike
                 ),
                 .init(
                     name: "Main.xib",
-                    identifier: "Main.xib id",
-                    content: "Main.xib content",
+                    object: .init(
+                        identifier: "Main.xib id",
+                        content: "Main.xib content"
+                    ),
                     sortOrder: .fileLike
                 ),
                 .init(
                     name: "z",
-                    identifier: "z id",
-                    content: "z content",
+                    object: .init(
+                        identifier: "z id",
+                        content: "z content"
+                    ),
                     sortOrder: .fileLike
                 ),
                 .init(
                     name: "external",
-                    identifier: "external id",
-                    content: "external content",
+                    object: .init(
+                        identifier: "external id",
+                        content: "external content"
+                    ),
                     sortOrder: .bazelExternalRepositories
                 ),
                 .init(
                     name: "bazel-out",
-                    identifier: "bazel-out id",
-                    content: "bazel-out content",
+                    object: .init(
+                        identifier: "bazel-out id",
+                        content: "bazel-out content"
+                    ),
                     sortOrder: .bazelGenerated
                 ),
             ],
             transitiveElements: [
                 .init(
                     name: "z",
-                    identifier: "z id",
-                    content: "z content",
+                    object: .init(
+                        identifier: "z id",
+                        content: "z content"
+                    ),
                     sortOrder: .fileLike
                 ),
                 .init(
                     name: "inner",
-                    identifier: "inner id",
-                    content: "inner content",
+                    object: .init(
+                        identifier: "inner id",
+                        content: "inner content"
+                    ),
                     sortOrder: .fileLike
                 ),
                 .init(
                     name: "localized.strings",
-                    identifier: "localized.strings folder id",
-                    content: "localized.strings folder content",
+                    object: .init(
+                        identifier: "localized.strings folder id",
+                        content: "localized.strings folder content"
+                    ),
                     sortOrder: .groupLike
                 ),
                 .init(
                     name: "bazel-out",
-                    identifier: "bazel-out id",
-                    content: "bazel-out content",
+                    object: .init(
+                        identifier: "bazel-out id",
+                        content: "bazel-out content"
+                    ),
                     sortOrder: .bazelGenerated
                 ),
                 .init(
                     name: "external",
-                    identifier: "external id",
-                    content: "external content",
+                    object: .init(
+                        identifier: "external id",
+                        content: "external content"
+                    ),
                     sortOrder: .bazelExternalRepositories
                 ),
                 .init(
                     name: "Main.storyboard",
-                    identifier: "Main.storyboard id",
-                    content: "Main.storyboard content",
+                    object: .init(
+                        identifier: "Main.storyboard id",
+                        content: "Main.storyboard content"
+                    ),
                     sortOrder: .fileLike
                 ),
                 .init(
                     name: "Main.xib",
-                    identifier: "Main.xib id",
-                    content: "Main.xib content",
+                    object: .init(
+                        identifier: "Main.xib id",
+                        content: "Main.xib content"
+                    ),
                     sortOrder: .fileLike
                 ),
                 .init(
                     name: "localized.strings",
-                    identifier: "localized.strings id",
-                    content: "localized.strings content",
+                    object: .init(
+                        identifier: "localized.strings id",
+                        content: "localized.strings content"
+                    ),
                     sortOrder: .fileLike
                 ),
             ],
