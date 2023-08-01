@@ -325,7 +325,7 @@ def _write_pbxproj_prefix(
 
     return output
 
-def _write_pbxproject_targets(
+def _write_pbxtargetdependencies(
         *,
         actions,
         apple_platform_to_platform_name = _apple_platform_to_platform_name,
@@ -354,16 +354,21 @@ def _write_pbxproject_targets(
     Returns:
         A tuple with four elements:
 
+        *   `pbxtargetdependencies`: The `File` for the
+            `PBXTargetDependency` and `PBXContainerItemProxy` `PBXProj` partial.
         *   `pbxproject_targets`: The `File` for the `PBXProject.targets`
             `PBXProj` partial.
         *   `pbxproject_target_attributes`: The `File` for the
             `PBXProject.attributes.TargetAttributes` `PBXProj` partial.
-        *   `pbxtarget_dependencies`: The `File` for the
-            `PBXTargetDependency` and `PBXContainerItemProxy` `PBXProj` partial.
         *   `consolidation_maps`: A `dict` mapping `File`s containing
             target consolidation maps to a `list` of `Label`s of the targets
             included in the map.
     """
+    pbxtargetdependencies = actions.declare_file(
+        "{}_pbxproj_partials/pbxtargetdependencies".format(
+            generator_name,
+        ),
+    )
     pbxproject_targets = actions.declare_file(
         "{}_pbxproj_partials/pbxproject_targets".format(
             generator_name,
@@ -371,11 +376,6 @@ def _write_pbxproject_targets(
     )
     pbxproject_target_attributes = actions.declare_file(
         "{}_pbxproj_partials/pbxproject_target_attributes".format(
-            generator_name,
-        ),
-    )
-    pbxtargetdependencies = actions.declare_file(
-        "{}_pbxproj_partials/pbxtargetdependencies".format(
             generator_name,
         ),
     )
@@ -391,14 +391,14 @@ def _write_pbxproject_targets(
     args.use_param_file("@%s")
     args.set_param_file_format("multiline")
 
+    # targetDependenciesOutputPath
+    args.add(pbxtargetdependencies)
+
     # targetsOutputPath
     args.add(pbxproject_targets)
 
     # targetAttributesOutputPath
     args.add(pbxproject_target_attributes)
-
-    # targetDependenciesOutputPath
-    args.add(pbxtargetdependencies)
 
     # minimumXcodeVersion
     args.add(minimum_xcode_version)
@@ -516,22 +516,22 @@ def _write_pbxproject_targets(
         arguments = [args],
         executable = tool,
         outputs = [
+            pbxtargetdependencies,
             pbxproject_targets,
             pbxproject_target_attributes,
-            pbxtargetdependencies,
         ] + consolidation_maps.keys(),
         mnemonic = "WritePBXProjPBXProjectTargets",
     )
 
     return (
+        pbxtargetdependencies,
         pbxproject_targets,
         pbxproject_target_attributes,
-        pbxtargetdependencies,
         consolidation_maps,
     )
 
 pbxproj_partials = struct(
     write_files_and_groups = _write_files_and_groups,
     write_pbxproj_prefix = _write_pbxproj_prefix,
-    write_pbxproject_targets = _write_pbxproject_targets,
+    write_pbxtargetdependencies = _write_pbxtargetdependencies,
 )
