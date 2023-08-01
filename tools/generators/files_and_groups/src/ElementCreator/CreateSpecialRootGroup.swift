@@ -82,6 +82,7 @@ extension ElementCreator.CreateSpecialRootGroup {
         return GroupChild.ElementAndChildren(
             bazelPath: bazelPath,
             element: group,
+            includeParentInBazelPathAndIdentifiers: false,
             resolvedRepository: nil,
             children: children
         )
