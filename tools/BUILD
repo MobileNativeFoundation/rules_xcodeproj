@@ -6,7 +6,7 @@ load("//xcodeproj/internal:collections.bzl", "flatten", "uniq")
 _TOOLS = {
     "files_and_groups": "//tools/generators/files_and_groups",
     "pbxproj_prefix": "//tools/generators/pbxproj_prefix",
-    "pbxproject_targets": "//tools/generators/pbxproject_targets",
+    "pbxtargetdependencies": "//tools/generators/pbxtargetdependencies",
     "swiftc_stub": "//tools/swiftc_stub:swiftc",
 }
 
@@ -19,9 +19,9 @@ _TESTS = {
         "//tools/generators/lib/PBXProj:PBXProjTests",
         "//tools/generators/pbxproj_prefix:pbxproj_prefix_tests",
     ],
-    "pbxproject_targets": [
+    "pbxtargetdependencies": [
         "//tools/generators/lib/PBXProj:PBXProjTests",
-        "//tools/generators/pbxproject_targets:pbxproject_targets_tests",
+        "//tools/generators/pbxtargetdependencies:pbxtargetdependencies_tests",
     ],
 }
 
@@ -119,16 +119,16 @@ _SCHEMES = [
         ),
     ),
     xcode_schemes.scheme(
-        name = "pbxproject_targets",
+        name = "pbxtargetdependencies",
         launch_action = xcode_schemes.launch_action(
-            _TOOLS["pbxproject_targets"],
+            _TOOLS["pbxtargetdependencies"],
             args = [
-                # targetsOutputPath
-                "/tmp/pbxproj_partials/pbxproject_targets",
-                # targetAttributesOutputPath
-                "/tmp/pbxproj_partials/pbxproject_target_attributes",
                 # targetDependenciesOutputPath
                 "/tmp/pbxproj_partials/pbxtargetdependencies",
+                # targetsOutputPath
+                "/tmp/pbxproj_partials/pbxtargetdependencies",
+                # targetAttributesOutputPath
+                "/tmp/pbxproj_partials/pbxproject_target_attributes",
                 # minimumXcodeVersion
                 "14.0",
                 # targetAndTestHosts
@@ -203,7 +203,7 @@ _SCHEMES = [
             diagnostics = _SCHEME_DIAGNOSTICS,
         ),
         test_action = xcode_schemes.test_action(
-            _TESTS["pbxproject_targets"],
+            _TESTS["pbxtargetdependencies"],
             diagnostics = _SCHEME_DIAGNOSTICS,
         ),
     ),
@@ -251,8 +251,8 @@ xcodeproj(
         "//tools/generators/pbxproj_prefix": [
             "//tools/generators/pbxproj_prefix:README.md",
         ],
-        "//tools/generators/pbxproject_targets": [
-            "//tools/generators/pbxproject_targets:README.md",
+        "//tools/generators/pbxtargetdependencies": [
+            "//tools/generators/pbxtargetdependencies:README.md",
         ],
     },
     extra_files = [

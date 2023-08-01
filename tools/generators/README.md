@@ -41,13 +41,13 @@ information.
   - The start of the `PBXProject` element
   - Contains all `PBXProject` properties except for
     `attributes.TargetAttributes`, `targets`, and `knownRegions`
-- [`pbxproject_targets`](pbxproject_targets/README.md):
+- [`pbxtargetdependencies`](pbxtargetdependencies/README.md):
   - Creates four+ files:
+    - A partial containing the `PBXTargetDependency` and `PBXContainerItemProxy` elements
     - A partial containing the `PBXProject.attributes.TargetAttributes` property
     - A partial containing:
       - The `PBXProject.targets` property
       - Closes the `PBXProject` element
-    - A partial containing the `PBXTargetDependency` and `PBXContainerItemProxy` elements
     - A set of files, each detailing how a set of configured targets are consolidated together
 - `pbxnativetargets`:
   - Run once on each shard of all the targets
