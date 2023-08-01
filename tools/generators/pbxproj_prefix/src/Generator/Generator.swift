@@ -53,6 +53,7 @@ struct Generator {
                 /*indexingProjectDir:*/ environment.indexingProjectDir(
                     /*projectDir:*/ projectDir
                 ),
+                /*projectDir:*/ projectDir,
                 /*resolvedRepositories:*/
                     try environment.readResolvedRepositoriesFile(
                         arguments.resolvedRepositoriesFile

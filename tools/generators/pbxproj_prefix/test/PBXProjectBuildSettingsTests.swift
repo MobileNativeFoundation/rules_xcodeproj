@@ -12,6 +12,7 @@ class PBXProjectBuildSettingsTests: XCTestCase {
         let buildMode: BuildMode = .bazel
         let indexImport = "external/index-import"
         let indexingProjectDir = "/some/indexing/project dir"
+        let projectDir = "/some/project dir"
         let resolvedRepositories = #""" "/tmp/workspace""#
         let workspace = "/Users/TimApple/Star Board"
 
@@ -49,7 +50,7 @@ class PBXProjectBuildSettingsTests: XCTestCase {
 				INDEXING_DEPLOYMENT_LOCATION__NO = YES;
 				INDEXING_DEPLOYMENT_LOCATION__YES = NO;
 				INDEXING_PROJECT_DIR__ = "$(INDEXING_PROJECT_DIR__NO)";
-				INDEXING_PROJECT_DIR__NO = "$(PROJECT_DIR)";
+				INDEXING_PROJECT_DIR__NO = "/some/project dir";
 				INDEXING_PROJECT_DIR__YES = "/some/indexing/project dir";
 				INDEX_DATA_STORE_DIR = "$(INDEX_DATA_STORE_DIR)";
 				INDEX_FORCE_SCRIPT_EXECUTION = YES;
@@ -87,6 +88,7 @@ class PBXProjectBuildSettingsTests: XCTestCase {
             buildMode: buildMode,
             indexImport: indexImport,
             indexingProjectDir: indexingProjectDir,
+            projectDir: projectDir,
             resolvedRepositories: resolvedRepositories,
             workspace: workspace,
             createBuildSettingsAttribute: CreateBuildSettingsAttribute()
@@ -103,6 +105,7 @@ class PBXProjectBuildSettingsTests: XCTestCase {
         let buildMode: BuildMode = .xcode
         let indexImport = "external/index-import"
         let indexingProjectDir = "/some/indexing/project_dir"
+        let projectDir = "/some/project_dir"
         let resolvedRepositories = #""" "/tmp/workspace""#
         let workspace = "/Users/TimApple/StarBoard"
 
@@ -137,7 +140,7 @@ class PBXProjectBuildSettingsTests: XCTestCase {
 				INDEXING_DEPLOYMENT_LOCATION__NO = YES;
 				INDEXING_DEPLOYMENT_LOCATION__YES = NO;
 				INDEXING_PROJECT_DIR__ = "$(INDEXING_PROJECT_DIR__NO)";
-				INDEXING_PROJECT_DIR__NO = "$(PROJECT_DIR)";
+				INDEXING_PROJECT_DIR__NO = /some/project_dir;
 				INDEXING_PROJECT_DIR__YES = /some/indexing/project_dir;
 				INDEX_DATA_STORE_DIR = "$(INDEX_DATA_STORE_DIR)";
 				INDEX_FORCE_SCRIPT_EXECUTION = YES;
@@ -170,6 +173,7 @@ class PBXProjectBuildSettingsTests: XCTestCase {
             buildMode: buildMode,
             indexImport: indexImport,
             indexingProjectDir: indexingProjectDir,
+            projectDir: projectDir,
             resolvedRepositories: resolvedRepositories,
             workspace: workspace,
             createBuildSettingsAttribute: CreateBuildSettingsAttribute()

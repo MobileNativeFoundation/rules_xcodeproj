@@ -119,7 +119,7 @@ $(INDEXING_DEPLOYMENT_LOCATION__NO)
             "INDEXING_DEPLOYMENT_LOCATION__NO": true,
             "INDEXING_DEPLOYMENT_LOCATION__YES": false,
             "INDEXING_PROJECT_DIR__": "$(INDEXING_PROJECT_DIR__NO)",
-            "INDEXING_PROJECT_DIR__NO": "$(PROJECT_DIR)",
+            "INDEXING_PROJECT_DIR__NO": absoluteProjectDirPath,
             "INDEXING_PROJECT_DIR__YES": indexingProjectDirPath,
             "INSTALL_PATH": "$(BAZEL_PACKAGE_BIN_DIR)/$(TARGET_NAME)/bin",
             "INTERNAL_DIR": """

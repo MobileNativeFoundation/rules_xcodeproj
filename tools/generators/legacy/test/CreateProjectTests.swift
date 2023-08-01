@@ -78,7 +78,9 @@ $(INDEXING_DEPLOYMENT_LOCATION__NO)
             "INDEXING_DEPLOYMENT_LOCATION__NO": true,
             "INDEXING_DEPLOYMENT_LOCATION__YES": false,
             "INDEXING_PROJECT_DIR__": "$(INDEXING_PROJECT_DIR__NO)",
-            "INDEXING_PROJECT_DIR__NO": "$(PROJECT_DIR)",
+            "INDEXING_PROJECT_DIR__NO": """
+/tmp/bazel-output-base/rules_xcodeproj/build_output_base/execroot/rules_xcodeproj
+""",
             "INDEXING_PROJECT_DIR__YES": """
 /tmp/bazel-output-base/rules_xcodeproj/indexbuild_output_base/execroot/rules_xcodeproj
 """,
@@ -238,7 +240,9 @@ $(INDEXING_DEPLOYMENT_LOCATION__NO)
             "INDEXING_DEPLOYMENT_LOCATION__NO": true,
             "INDEXING_DEPLOYMENT_LOCATION__YES": false,
             "INDEXING_PROJECT_DIR__": "$(INDEXING_PROJECT_DIR__NO)",
-            "INDEXING_PROJECT_DIR__NO": "$(PROJECT_DIR)",
+            "INDEXING_PROJECT_DIR__NO": """
+/tmp/bazel-output-base/rules_xcodeproj/build_output_base/execroot/rules_xcodeproj
+""",
             "INDEXING_PROJECT_DIR__YES": """
 /tmp/bazel-output-base/rules_xcodeproj/indexbuild_output_base/execroot/rules_xcodeproj
 """,

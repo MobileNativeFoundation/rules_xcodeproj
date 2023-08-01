@@ -11,6 +11,7 @@ extension Generator {
     ///     `index_import` executable.
     ///   - indexingProjectDir: The value returned from
     ///     `Generator.indexingProjectDir()`.
+    ///   - projectDir: The value returned from `Generator.projectDir()`.
     ///   - resolvedRepositories: The value to be used for the
     ///     `RESOLVED_REPOSITORIES` build setting.
     ///   - workspace: The absolute path to the Bazel workspace.
@@ -18,6 +19,7 @@ extension Generator {
         buildMode: BuildMode,
         indexImport: String,
         indexingProjectDir: String,
+        projectDir: String,
         resolvedRepositories: String,
         workspace: String,
         createBuildSettingsAttribute: CreateBuildSettingsAttribute
@@ -105,7 +107,7 @@ extension Generator {
             ),
             .init(
                 key: "INDEXING_PROJECT_DIR__NO",
-                value: #""$(PROJECT_DIR)""#
+                value: projectDir.pbxProjEscaped
             ),
             .init(
                 key: "INDEXING_PROJECT_DIR__YES",
@@ -166,7 +168,7 @@ extension Generator {
                 value: #""$(PROJECT_DIR)/../..""#
             ),
         ]
-        
+
         if buildMode.usesBazelModeBuildScripts {
             buildSettings.append(contentsOf: [
                 .init(
@@ -197,7 +199,7 @@ extension Generator {
                 .init(key: "SWIFT_USE_INTEGRATED_DRIVER", value: "NO"),
             ])
         }
-        
+
         return createBuildSettingsAttribute(buildSettings: buildSettings)
     }
 }
