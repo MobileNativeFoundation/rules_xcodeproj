@@ -14,8 +14,10 @@ final class CreateVariantGroupTests: XCTestCase {
             .init(
                 element: Element(
                     name: "a",
-                    identifier: "a id",
-                    content: "a content",
+                    object: .init(
+                        identifier: "a id",
+                        content: "a content"
+                    ),
                     sortOrder: .fileLike
                 ),
                 region: "enGB",
@@ -27,8 +29,10 @@ final class CreateVariantGroupTests: XCTestCase {
             .init(
                 element: Element(
                     name: "b",
-                    identifier: "b id",
-                    content: "b content",
+                    object: .init(
+                        identifier: "b id",
+                        content: "b content"
+                    ),
                     sortOrder: .fileLike
                 ),
                 region: "frCA",
@@ -48,13 +52,15 @@ final class CreateVariantGroupTests: XCTestCase {
             .init(
                 name: "localized.strings",
                 path: "bazel-out/localized.strings",
-                childIdentifiers: localizedFiles.map(\.element.identifier)
+                childIdentifiers: localizedFiles.map(\.element.object.identifier)
             ),
         ]
         let stubbedElement = Element(
             name: "variant group",
-            identifier: "variant group id",
-            content: "variant group content",
+            object: .init(
+                identifier: "variant group id",
+                content: "variant group content"
+            ),
             sortOrder: .fileLike
         )
         let createVariantGroupElement = ElementCreator.CreateVariantGroupElement
@@ -65,9 +71,12 @@ final class CreateVariantGroupTests: XCTestCase {
             transitiveElements:
                 localizedFiles.map(\.element) + [stubbedElement],
             bazelPathAndIdentifiers: [
-                ("bazel-out/enGB/a", stubbedElement.identifier),
-                ("bazel-out/enGB/b.bundle/other", stubbedElement.identifier),
-                ("bazel-out/enGB/b.bundle", stubbedElement.identifier),
+                ("bazel-out/enGB/a", stubbedElement.object.identifier),
+                (
+                    "bazel-out/enGB/b.bundle/other",
+                    stubbedElement.object.identifier
+                ),
+                ("bazel-out/enGB/b.bundle", stubbedElement.object.identifier),
             ],
             knownRegions: ["enGB", "frCA"],
             resolvedRepositories: []

@@ -63,11 +63,13 @@ extension ElementCreator.CreateVariantGroupElement {
 
         return Element(
             name: name,
-            identifier: createIdentifier(
-                path: path,
-                type: .localized
+            object: .init(
+                identifier: createIdentifier(
+                    path: path,
+                    type: .localized
+                ),
+                content: content
             ),
-            content: content,
             sortOrder: .fileLike
         )
     }

@@ -16,8 +16,9 @@ final class CreateSpecialRootGroupElementTests: XCTestCase {
 
         let expectedElement = Element(
             name: "Bazel Generated Files",
-            identifier: Identifiers.FilesAndGroups.bazelGeneratedFilesGroup,
-            content: #"""
+            object: .init(
+                identifier: Identifiers.FilesAndGroups.bazelGeneratedFilesGroup,
+                content: #"""
 {
 			isa = PBXGroup;
 			children = (
@@ -28,7 +29,8 @@ final class CreateSpecialRootGroupElementTests: XCTestCase {
 			path = "bazel-out";
 			sourceTree = SOURCE_ROOT;
 		}
-"""#,
+"""#
+            ),
             sortOrder: .bazelGenerated
         )
 
@@ -55,9 +57,10 @@ final class CreateSpecialRootGroupElementTests: XCTestCase {
 
         let expectedElement = Element(
             name: "Bazel External Repositories",
-            identifier:
-                Identifiers.FilesAndGroups.bazelExternalRepositoriesGroup,
-            content: #"""
+            object: .init(
+                identifier:
+                    Identifiers.FilesAndGroups.bazelExternalRepositoriesGroup,
+                content: #"""
 {
 			isa = PBXGroup;
 			children = (
@@ -68,7 +71,8 @@ final class CreateSpecialRootGroupElementTests: XCTestCase {
 			path = ../../external;
 			sourceTree = SOURCE_ROOT;
 		}
-"""#,
+"""#
+            ),
             sortOrder: .bazelExternalRepositories
         )
 
@@ -95,9 +99,10 @@ final class CreateSpecialRootGroupElementTests: XCTestCase {
         
         let expectedElement = Element(
             name: "Bazel External Repositories",
-            identifier:
-                Identifiers.FilesAndGroups.bazelExternalRepositoriesGroup,
-            content: #"""
+            object: .init(
+                identifier:
+                    Identifiers.FilesAndGroups.bazelExternalRepositoriesGroup,
+                content: #"""
 {
 			isa = PBXGroup;
 			children = (
@@ -108,7 +113,8 @@ final class CreateSpecialRootGroupElementTests: XCTestCase {
 			path = ../../external;
 			sourceTree = SOURCE_ROOT;
 		}
-"""#,
+"""#
+            ),
             sortOrder: .bazelExternalRepositories
         )
 

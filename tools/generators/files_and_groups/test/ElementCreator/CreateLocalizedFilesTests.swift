@@ -59,8 +59,10 @@ final class CreateLocalizedFilesTests: XCTestCase {
             (
                 element: Element(
                     name: "z",
-                    identifier: "z id",
-                    content: "z content",
+                    object: .init(
+                        identifier: "z id",
+                        content: "z content"
+                    ),
                     sortOrder: .fileLike
                 ),
                 resolvedRepository: ResolvedRepository(
@@ -71,8 +73,10 @@ final class CreateLocalizedFilesTests: XCTestCase {
             (
                 element: Element(
                     name: "q",
-                    identifier: "q id",
-                    content: "q content",
+                    object: .init(
+                        identifier: "q id",
+                        content: "q content"
+                    ),
                     sortOrder: .groupLike
                 ),
                 resolvedRepository: ResolvedRepository(

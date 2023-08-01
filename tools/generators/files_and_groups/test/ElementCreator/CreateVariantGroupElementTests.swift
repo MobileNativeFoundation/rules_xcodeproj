@@ -41,7 +41,7 @@ final class CreateVariantGroupElementTests: XCTestCase {
             createIdentifier.tracker.called,
             expectedCreateIdentifierCalled
         )
-        XCTAssertEqual(element.identifier, stubbedIdentifier)
+        XCTAssertEqual(element.object.identifier, stubbedIdentifier)
     }
 
     // MARK: sortOrder
@@ -103,7 +103,7 @@ final class CreateVariantGroupElementTests: XCTestCase {
 
         // Assert
 
-        XCTAssertNoDifference(element.content, expectedContent)
+        XCTAssertNoDifference(element.object.content, expectedContent)
     }
 
     // MARK: content - name
@@ -136,7 +136,7 @@ final class CreateVariantGroupElementTests: XCTestCase {
 
         // Assert
 
-        XCTAssertNoDifference(element.content, expectedContent)
+        XCTAssertNoDifference(element.object.content, expectedContent)
     }
 
     // MARK: content - sourceTree
@@ -169,6 +169,6 @@ final class CreateVariantGroupElementTests: XCTestCase {
 
         // Assert
 
-        XCTAssertNoDifference(element.content, expectedContent)
+        XCTAssertNoDifference(element.object.content, expectedContent)
     }
 }

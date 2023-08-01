@@ -91,7 +91,7 @@ extension ElementCreator.CreateVersionGroup {
             children.append(result)
 
             if node.name == selectedModelVersion {
-                selectedChildIdentifier = result.element.identifier
+                selectedChildIdentifier = result.element.object.identifier
             }
         }
 
@@ -103,7 +103,7 @@ extension ElementCreator.CreateVersionGroup {
             bazelPath: bazelPath,
             specialRootGroupType: specialRootGroupType,
             identifier: identifier,
-            childIdentifiers: children.map(\.element.identifier),
+            childIdentifiers: children.map(\.element.object.identifier),
             selectedChildIdentifier: selectedChildIdentifier
         )
 

@@ -75,7 +75,7 @@ extension ElementCreator.CreateFile {
         )
 
         let identifierForBazelPaths =
-            identifierForBazelPaths ?? element.identifier
+            identifierForBazelPaths ?? element.object.identifier
 
         return GroupChild.ElementAndChildren(
             element: element,

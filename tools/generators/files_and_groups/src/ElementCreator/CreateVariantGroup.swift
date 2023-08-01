@@ -56,12 +56,12 @@ extension ElementCreator.CreateVariantGroup {
         let group = createVariantGroupElement(
             name: name,
             path: "\(parentBazelPath.path)/\(name)",
-            childIdentifiers: localizedFiles.map(\.element.identifier)
+            childIdentifiers: localizedFiles.map(\.element.object.identifier)
         )
 
         let bazelPathAndIdentifiers = localizedFiles
             .flatMap { $0.bazelPaths }
-            .map { ($0, group.identifier) }
+            .map { ($0, group.object.identifier) }
 
         var transitiveElements = localizedFiles.map(\.element)
         transitiveElements.append(group)

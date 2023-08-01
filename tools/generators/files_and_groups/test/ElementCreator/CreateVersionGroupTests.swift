@@ -73,15 +73,19 @@ final class CreateVersionGroupTests: XCTestCase {
             .init(
                 element: .init(
                     name: "weird",
-                    identifier: "weird identifier",
-                    content: "weird content",
+                    object: .init(
+                        identifier: "weird identifier",
+                        content: "weird content"
+                    ),
                     sortOrder: .fileLike
                 ),
                 transitiveElements: [
                     .init(
                         name: "weird",
-                        identifier: "weird identifier",
-                        content: "weird content",
+                        object: .init(
+                            identifier: "weird identifier",
+                            content: "weird content"
+                        ),
                         sortOrder: .fileLike
                     ),
                 ],
@@ -97,15 +101,19 @@ final class CreateVersionGroupTests: XCTestCase {
             .init(
                 element: .init(
                     name: "a",
-                    identifier: "a id",
-                    content: "a content",
+                    object: .init(
+                        identifier: "a id",
+                        content: "a content"
+                    ),
                     sortOrder: .fileLike
                 ),
                 transitiveElements: [
                     .init(
                         name: "a",
-                        identifier: "a id",
-                        content: "a content",
+                        object: .init(
+                            identifier: "a id",
+                            content: "a content"
+                        ),
                         sortOrder: .fileLike
                     ),
                 ],
@@ -121,15 +129,19 @@ final class CreateVersionGroupTests: XCTestCase {
             .init(
                 element: .init(
                     name: "b",
-                    identifier: "b id",
-                    content: "b content",
+                    object: .init(
+                        identifier: "b id",
+                        content: "b content"
+                    ),
                     sortOrder: .fileLike
                 ),
                 transitiveElements: [
                     .init(
                         name: "b",
-                        identifier: "b id",
-                        content: "b content",
+                        object: .init(
+                            identifier: "b id",
+                            content: "b content"
+                        ),
                         sortOrder: .fileLike
                     ),
                 ],
@@ -151,15 +163,19 @@ final class CreateVersionGroupTests: XCTestCase {
             .init(
                 element: .init(
                     name: "c",
-                    identifier: "c id",
-                    content: "c content",
+                    object: .init(
+                        identifier: "c id",
+                        content: "c content"
+                    ),
                     sortOrder: .fileLike
                 ),
                 transitiveElements: [
                     .init(
                         name: "c",
-                        identifier: "c id",
-                        content: "c content",
+                        object: .init(
+                            identifier: "c id",
+                            content: "c content"
+                        ),
                         sortOrder: .fileLike
                     ),
                 ],
@@ -188,18 +204,20 @@ final class CreateVersionGroupTests: XCTestCase {
                 specialRootGroupType: specialRootGroupType,
                 identifier: stubbedIdentifier,
                 childIdentifiers: [
-                    stubbedChildResults[0].element.identifier,
-                    stubbedChildResults[1].element.identifier,
-                    stubbedChildResults[2].element.identifier,
-                    stubbedChildResults[3].element.identifier,
+                    stubbedChildResults[0].element.object.identifier,
+                    stubbedChildResults[1].element.object.identifier,
+                    stubbedChildResults[2].element.object.identifier,
+                    stubbedChildResults[3].element.object.identifier,
                 ],
                 selectedChildIdentifier: expectedSelectedChildIdentifier
             )
         ]
         let stubbedElement = Element(
             name: "stubbed",
-            identifier: stubbedIdentifier,
-            content: "content",
+            object: .init(
+                identifier: stubbedIdentifier,
+                content: "content"
+            ),
             sortOrder: .groupLike
         )
         let stubbedResolvedRepository = ResolvedRepository(
@@ -227,7 +245,7 @@ final class CreateVersionGroupTests: XCTestCase {
                 stubbedChildResults[2].bazelPathAndIdentifiers[0],
                 stubbedChildResults[2].bazelPathAndIdentifiers[1],
                 stubbedChildResults[3].bazelPathAndIdentifiers[0],
-                (expectedBazelPath, stubbedElement.identifier),
+                (expectedBazelPath, stubbedElement.object.identifier),
             ],
             knownRegions: stubbedChildResults[0].knownRegions
                 .union(stubbedChildResults[1].knownRegions)

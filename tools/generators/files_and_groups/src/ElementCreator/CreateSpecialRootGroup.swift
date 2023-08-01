@@ -76,7 +76,7 @@ extension ElementCreator.CreateSpecialRootGroup {
 
         let group = createSpecialRootGroupElement(
             specialRootGroupType: specialRootGroupType,
-            childIdentifiers: children.elements.map(\.identifier)
+            childIdentifiers: children.elements.map(\.object.identifier)
         )
 
         return GroupChild.ElementAndChildren(

@@ -46,15 +46,19 @@ final class CreateSpecialRootGroupTests: XCTestCase {
             .elementAndChildren(.init(
                 element: Element(
                     name: "a",
-                    identifier: "a id",
-                    content: "a content",
+                    object: .init(
+                        identifier: "a id",
+                        content: "a content"
+                    ),
                     sortOrder: .groupLike
                 ),
                 transitiveElements: [
                     Element(
                         name: "a",
-                        identifier: "a id",
-                        content: "a content",
+                        object: .init(
+                            identifier: "a id",
+                            content: "a content"
+                        ),
                         sortOrder: .groupLike
                     )
                 ],
@@ -68,8 +72,10 @@ final class CreateSpecialRootGroupTests: XCTestCase {
                 GroupChild.LocalizedFile(
                     element: Element(
                         name: "y",
-                        identifier: "y id",
-                        content: "y content",
+                        object: .init(
+                            identifier: "y id",
+                            content: "y content"
+                        ),
                         sortOrder: .fileLike
                     ),
                     region: "b",
@@ -81,8 +87,10 @@ final class CreateSpecialRootGroupTests: XCTestCase {
                 GroupChild.LocalizedFile(
                     element: Element(
                         name: "z",
-                        identifier: "z id",
-                        content: "z content",
+                        object: .init(
+                            identifier: "z id",
+                            content: "z content"
+                        ),
                         sortOrder: .fileLike
                     ),
                     region: "b",
@@ -112,40 +120,52 @@ final class CreateSpecialRootGroupTests: XCTestCase {
             elements: [
                 Element(
                     name: "a",
-                    identifier: "a id",
-                    content: "a content",
+                    object: .init(
+                        identifier: "a id",
+                        content: "a content"
+                    ),
                     sortOrder: .groupLike
                 ),
                 Element(
                     name: "y",
-                    identifier: "y id",
-                    content: "y content",
+                    object: .init(
+                        identifier: "y id",
+                        content: "y content"
+                    ),
                     sortOrder: .fileLike
                 ),
                 Element(
                     name: "z",
-                    identifier: "z id",
-                    content: "z content",
+                    object: .init(
+                        identifier: "z id",
+                        content: "z content"
+                    ),
                     sortOrder: .fileLike
                 ),
             ],
             transitiveElements: [
                 Element(
                     name: "a",
-                    identifier: "a id",
-                    content: "a content",
+                    object: .init(
+                        identifier: "a id",
+                        content: "a content"
+                    ),
                     sortOrder: .groupLike
                 ),
                 Element(
                     name: "y",
-                    identifier: "y id",
-                    content: "y content",
+                    object: .init(
+                        identifier: "y id",
+                        content: "y content"
+                    ),
                     sortOrder: .fileLike
                 ),
                 Element(
                     name: "z",
-                    identifier: "z id",
-                    content: "z content",
+                    object: .init(
+                        identifier: "z id",
+                        content: "z content"
+                    ),
                     sortOrder: .fileLike
                 ),
             ],
@@ -167,8 +187,10 @@ final class CreateSpecialRootGroupTests: XCTestCase {
 
         let stubbedElement = Element(
             name: "Generated",
-            identifier: "Generated ID",
-            content: "Generated Content",
+            object: .init(
+                identifier: "Generated ID",
+                content: "Generated Content"
+            ),
             sortOrder: .groupLike
         )
         let expectedCreateSpecialRootGroupElementCalled: [
@@ -177,7 +199,7 @@ final class CreateSpecialRootGroupTests: XCTestCase {
             .init(
                 specialRootGroupType: specialRootGroupType,
                 childIdentifiers:
-                    stubbedGroupChildElements.elements.map(\.identifier)
+                    stubbedGroupChildElements.elements.map(\.object.identifier)
             )
         ]
         let createSpecialRootGroupElement =

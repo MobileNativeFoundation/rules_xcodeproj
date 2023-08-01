@@ -60,21 +60,27 @@ final class CreateRootElementsTests: XCTestCase {
             GroupChild.ElementAndChildren(
                 element: .init(
                     name: "bazel-out",
-                    identifier: "bazel-out id",
-                    content: "bazel-out content",
+                    object: .init(
+                        identifier: "bazel-out id",
+                        content: "bazel-out content"
+                    ),
                     sortOrder: .groupLike
                 ),
                 transitiveElements: [
                     .init(
                         name: "1",
-                        identifier: "1 id",
-                        content: "1 content",
+                        object: .init(
+                            identifier: "1 id",
+                            content: "1 content"
+                        ),
                         sortOrder: .fileLike
                     ),
                     .init(
                         name: "2",
-                        identifier: "2 id",
-                        content: "2 content",
+                        object: .init(
+                            identifier: "2 id",
+                            content: "2 content"
+                        ),
                         sortOrder: .fileLike
                     ),
                 ],
@@ -88,15 +94,19 @@ final class CreateRootElementsTests: XCTestCase {
             GroupChild.ElementAndChildren(
                 element: .init(
                     name: "sibling",
-                    identifier: "sibling id",
-                    content: "sibling content",
+                    object: .init(
+                        identifier: "sibling id",
+                        content: "sibling content"
+                    ),
                     sortOrder: .groupLike
                 ),
                 transitiveElements: [
                     .init(
                         name: "3",
-                        identifier: "3 id",
-                        content: "3 content",
+                        object: .init(
+                            identifier: "3 id",
+                            content: "3 content"
+                        ),
                         sortOrder: .fileLike
                     ),
                 ],
@@ -108,16 +118,20 @@ final class CreateRootElementsTests: XCTestCase {
             ),
             GroupChild.ElementAndChildren(
                 element: .init(
-                    name: "lrgacy",
-                    identifier: "legacy id",
-                    content: "legacy content",
+                    name: "legacy",
+                    object: .init(
+                        identifier: "legacy id",
+                        content: "legacy content"
+                    ),
                     sortOrder: .groupLike
                 ),
                 transitiveElements: [
                     .init(
                         name: "4",
-                        identifier: "4 id",
-                        content: "4 content",
+                        object: .init(
+                            identifier: "4 id",
+                            content: "4 content"
+                        ),
                         sortOrder: .fileLike
                     ),
                 ],
@@ -150,21 +164,27 @@ final class CreateRootElementsTests: XCTestCase {
             GroupChild.ElementAndChildren(
                 element: .init(
                     name: "a",
-                    identifier: "a identifier",
-                    content: "a content",
+                    object: .init(
+                        identifier: "a identifier",
+                        content: "a content"
+                    ),
                     sortOrder: .fileLike
                 ),
                 transitiveElements: [
                     .init(
                         name: "inner",
-                        identifier: "a/inner identifier",
-                        content: "a/inner content",
+                        object: .init(
+                            identifier: "a/inner identifier",
+                            content: "a/inner content"
+                        ),
                         sortOrder: .fileLike
                     ),
                     .init(
                         name: "a",
-                        identifier: "a identifier",
-                        content: "a content",
+                        object: .init(
+                            identifier: "a identifier",
+                            content: "a content"
+                        ),
                         sortOrder: .fileLike
                     ),
                 ],
@@ -178,15 +198,19 @@ final class CreateRootElementsTests: XCTestCase {
             GroupChild.ElementAndChildren(
                 element: .init(
                     name: "b",
-                    identifier: "b identifier",
-                    content: "b content",
+                    object: .init(
+                        identifier: "b identifier",
+                        content: "b content"
+                    ),
                     sortOrder: .fileLike
                 ),
                 transitiveElements: [
                     .init(
                         name: "b",
-                        identifier: "b identifier",
-                        content: "b content",
+                        object: .init(
+                            identifier: "b identifier",
+                            content: "b content"
+                        ),
                         sortOrder: .fileLike
                     ),
                 ],

@@ -71,8 +71,10 @@ extension ElementCreator.CreateSpecialRootGroupElement {
 
         return Element(
             name: name,
-            identifier: identifier,
-            content: content,
+            object: .init(
+                identifier: identifier,
+                content: content
+            ),
             sortOrder: sortOrder
         )
     }

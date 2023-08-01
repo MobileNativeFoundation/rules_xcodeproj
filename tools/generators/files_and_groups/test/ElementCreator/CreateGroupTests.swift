@@ -38,21 +38,27 @@ final class CreateGroupTests: XCTestCase {
             GroupChild.ElementAndChildren(
                 element: .init(
                     name: "a",
-                    identifier: "a identifier",
-                    content: "a content",
+                    object: .init(
+                        identifier: "a identifier",
+                        content: "a content"
+                    ),
                     sortOrder: .fileLike
                 ),
                 transitiveElements: [
                     .init(
                         name: "inner",
-                        identifier: "a/inner identifier",
-                        content: "a/inner content",
+                        object: .init(
+                            identifier: "a/inner identifier",
+                            content: "a/inner content"
+                        ),
                         sortOrder: .fileLike
                     ),
                     .init(
                         name: "a",
-                        identifier: "a identifier",
-                        content: "a content",
+                        object: .init(
+                            identifier: "a identifier",
+                            content: "a content"
+                        ),
                         sortOrder: .fileLike
                     ),
                 ],
@@ -66,15 +72,19 @@ final class CreateGroupTests: XCTestCase {
             GroupChild.ElementAndChildren(
                 element: .init(
                     name: "b",
-                    identifier: "b identifier",
-                    content: "b content",
+                    object: .init(
+                        identifier: "b identifier",
+                        content: "b content"
+                    ),
                     sortOrder: .fileLike
                 ),
                 transitiveElements: [
                     .init(
                         name: "b",
-                        identifier: "b identifier",
-                        content: "b content",
+                        object: .init(
+                            identifier: "b identifier",
+                            content: "b content"
+                        ),
                         sortOrder: .fileLike
                     ),
                 ],
@@ -137,15 +147,19 @@ final class CreateGroupTests: XCTestCase {
                 bazelPath: expectedBazelPath,
                 specialRootGroupType: specialRootGroupType,
                 childIdentifiers: [
-                    stubbedGroupChildElementAndChildren[0].element.identifier,
-                    stubbedGroupChildElementAndChildren[1].element.identifier,
+                    stubbedGroupChildElementAndChildren[0]
+                        .element.object.identifier,
+                    stubbedGroupChildElementAndChildren[1]
+                        .element.object.identifier,
                 ]
             )
         ]
         let stubbedElement = Element(
             name: "name",
-            identifier: "identifier",
-            content: "content",
+            object: .init(
+                identifier: "identifier",
+                content: "content"
+            ),
             sortOrder: .groupLike
         )
         let stubbedResolvedRepository = ResolvedRepository(
@@ -163,7 +177,7 @@ final class CreateGroupTests: XCTestCase {
                 [stubbedElement],
             bazelPathAndIdentifiers:
                 stubbedGroupChildElements.bazelPathAndIdentifiers +
-                    [(expectedBazelPath, stubbedElement.identifier)],
+                    [(expectedBazelPath, stubbedElement.object.identifier)],
             knownRegions: stubbedGroupChildElements.knownRegions,
             resolvedRepositories:
                 stubbedGroupChildElements.resolvedRepositories +
