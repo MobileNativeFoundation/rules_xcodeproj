@@ -1,4 +1,5 @@
 import CustomDump
+import PBXProj
 import XCTest
 
 @testable import pbxtargetdependencies
@@ -7,7 +8,7 @@ class CalculateTargetDependenciesPartialTests: XCTestCase {
     func test_basic() {
         // Arrange
 
-        let elements: [Element] = [
+        let objects: [Object] = [
             .init(
                 identifier: "b_id /* b */",
                 content: "{B_CONTENT}"
@@ -35,7 +36,7 @@ class CalculateTargetDependenciesPartialTests: XCTestCase {
 
         let targetDependenciesPartial = Generator
             .CalculateTargetDependenciesPartial
-            .defaultCallable(elements: elements)
+            .defaultCallable(objects: objects)
 
         // Assert
 
@@ -45,7 +46,7 @@ class CalculateTargetDependenciesPartialTests: XCTestCase {
     func test_empty() {
         // Arrange
 
-        let elements: [Element] = []
+        let objects: [Object] = []
 
         let expectedTargetsPartial = ""
 
@@ -53,7 +54,7 @@ class CalculateTargetDependenciesPartialTests: XCTestCase {
 
         let targetDependenciesPartial = Generator
             .CalculateTargetDependenciesPartial
-            .defaultCallable(elements: elements)
+            .defaultCallable(objects: objects)
 
         // Assert
 

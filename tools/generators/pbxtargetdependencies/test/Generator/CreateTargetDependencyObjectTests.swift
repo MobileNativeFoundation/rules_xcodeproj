@@ -4,7 +4,7 @@ import XCTest
 @testable import pbxtargetdependencies
 @testable import PBXProj
 
-class CreateTargetDependencyElementTests: XCTestCase {
+class CreateTargetDependencyObjectTests: XCTestCase {
     func test_notEscaped() {
         // Arrange
 
@@ -21,7 +21,7 @@ class CreateTargetDependencyElementTests: XCTestCase {
         let containerItemProxyIdentifier = "bd_cip /* CIP */"
 
         // The tabs for indenting are intentional
-        let expectedElement = Element(
+        let expectedObject = Object(
             identifier: """
 FROM_SHARD02FROM_HASHTO_SHARD00TO_HASH /* PBXTargetDependency */
 """,
@@ -37,7 +37,7 @@ FROM_SHARD02FROM_HASHTO_SHARD00TO_HASH /* PBXTargetDependency */
 
         // Act
 
-        let element = Generator.CreateTargetDependencyElement.defaultCallable(
+        let object = Generator.CreateTargetDependencyObject.defaultCallable(
             from: subIdentifier,
             to: dependencyIdentifier,
             containerItemProxyIdentifier: containerItemProxyIdentifier
@@ -45,7 +45,7 @@ FROM_SHARD02FROM_HASHTO_SHARD00TO_HASH /* PBXTargetDependency */
 
         // Assert
 
-        XCTAssertNoDifference(element, expectedElement)
+        XCTAssertNoDifference(object, expectedObject)
     }
 
     func test_escaped() {
@@ -64,7 +64,7 @@ FROM_SHARD02FROM_HASHTO_SHARD00TO_HASH /* PBXTargetDependency */
         let containerItemProxyIdentifier = "bd_cip /* CIP */"
 
         // The tabs for indenting are intentional
-        let expectedElement = Element(
+        let expectedObject = Object(
             identifier: """
 FROM_SHARD02FROM_HASHTO_SHARD00TO_HASH /* PBXTargetDependency */
 """,
@@ -80,7 +80,7 @@ FROM_SHARD02FROM_HASHTO_SHARD00TO_HASH /* PBXTargetDependency */
 
         // Act
 
-        let element = Generator.CreateTargetDependencyElement.defaultCallable(
+        let object = Generator.CreateTargetDependencyObject.defaultCallable(
             from: subIdentifier,
             to: dependencyIdentifier,
             containerItemProxyIdentifier: containerItemProxyIdentifier
@@ -88,6 +88,6 @@ FROM_SHARD02FROM_HASHTO_SHARD00TO_HASH /* PBXTargetDependency */
 
         // Assert
 
-        XCTAssertNoDifference(element, expectedElement)
+        XCTAssertNoDifference(object, expectedObject)
     }
 }

@@ -1,4 +1,5 @@
 import CustomDump
+import PBXProj
 import XCTest
 
 @testable import pbxtargetdependencies
@@ -7,7 +8,7 @@ class CalculateTargetAttributesPartialTests: XCTestCase {
     func test_basic() {
         // Arrange
 
-        let elements: [Element] = [
+        let objects: [Object] = [
             .init(identifier: "b_id /* b */", content: "{b_content}"),
             .init(identifier: "a_id /* a */", content: "{a_content}"),
             .init(identifier: "c_id /* @//z:c */", content: "{c_content}"),
@@ -28,7 +29,7 @@ class CalculateTargetAttributesPartialTests: XCTestCase {
         // Act
 
         let targetAttributesPartial = Generator.CalculateTargetAttributesPartial
-            .defaultCallable(elements: elements)
+            .defaultCallable(objects: objects)
 
         // Assert
 
@@ -41,7 +42,7 @@ class CalculateTargetAttributesPartialTests: XCTestCase {
     func test_empty() {
         // Arrange
 
-        let elements: [Element] = []
+        let objects: [Object] = []
 
         // The tabs for indenting are intentional
         let expectedTargetAttributesPartial = #"""
@@ -54,7 +55,7 @@ class CalculateTargetAttributesPartialTests: XCTestCase {
         // Act
 
         let targetAttributesPartial = Generator.CalculateTargetAttributesPartial
-            .defaultCallable(elements: elements)
+            .defaultCallable(objects: objects)
 
         // Assert
 

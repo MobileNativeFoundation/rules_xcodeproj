@@ -12,8 +12,8 @@ extension Generator {
         }
 
         /// Calculates the `PBXProject.attributes.TargetAttributes` partial.
-        func callAsFunction(elements: [Element]) -> String {
-            return callable(/*elements:*/ elements)
+        func callAsFunction(objects: [Object]) -> String {
+            return callable(/*objects:*/ objects)
         }
     }
 }
@@ -21,13 +21,13 @@ extension Generator {
 // MARK: - CalculateTargetAttributesPartial.Callable
 
 extension Generator.CalculateTargetAttributesPartial {
-    typealias Callable = (_ elements: [Element]) -> String
+    typealias Callable = (_ objects: [Object]) -> String
 
-    static func defaultCallable(elements: [Element]) -> String {
+    static func defaultCallable(objects: [Object]) -> String {
         // The tabs for indenting are intentional
         return #"""
 				TargetAttributes = {
-\#(elements.map { "\t\t\t\t\t\($0.identifier) = \($0.content);\n" }.joined())\#
+\#(objects.map { "\t\t\t\t\t\($0.identifier) = \($0.content);\n" }.joined())\#
 				};
 			};
 

@@ -4,7 +4,7 @@ import XCTest
 @testable import pbxtargetdependencies
 @testable import PBXProj
 
-final class CreateTargetAttributesElementsTests: XCTestCase {
+final class CreateTargetAttributesObjectsTests: XCTestCase {
     func test_success() throws {
         // Arrange
 
@@ -43,8 +43,8 @@ final class CreateTargetAttributesElementsTests: XCTestCase {
         ]
         let createdOnToolsVersion = "14.2.1"
 
-        let calculateSingleTargetAttributes =
-            Generator.CreateTargetAttributesElement.mock(
+        let createTargetAttributesContent =
+            Generator.CreateTargetAttributesContent.mock(
                 contents: [
                     "{TA_BazelDependnencies}",
                     "{TA_AB}",
@@ -52,8 +52,8 @@ final class CreateTargetAttributesElementsTests: XCTestCase {
                 ]
             )
 
-        let expectedCalculateSingleTargetAttributesCalled: [
-            Generator.CreateTargetAttributesElement.MockTracker.Called
+        let expectedCreateTargetAttributesContentCalled: [
+            Generator.CreateTargetAttributesContent.MockTracker.Called
         ] = [
             .init(
                 createdOnToolsVersion: createdOnToolsVersion,
@@ -69,7 +69,7 @@ final class CreateTargetAttributesElementsTests: XCTestCase {
             ),
         ]
 
-        let expectedElements: [Element] = [
+        let expectedObjects: [Object] = [
             .init(
                 identifier: Identifiers.BazelDependencies.id,
                 content: "{TA_BazelDependnencies}"
@@ -86,23 +86,23 @@ final class CreateTargetAttributesElementsTests: XCTestCase {
 
         // Act
 
-        let elements = try Generator.CreateTargetAttributesElements
+        let objects = try Generator.CreateTargetAttributesObjects
             .defaultCallable(
                 identifiedTargets: identifiedTargets,
                 testHosts: testHosts,
                 identifiers: identifiers,
                 createdOnToolsVersion: createdOnToolsVersion,
-                calculateSingleTargetAttributes:
-                    calculateSingleTargetAttributes.mock
+                createTargetAttributesContent:
+                    createTargetAttributesContent.mock
             )
 
         // Assert
 
         XCTAssertNoDifference(
-            calculateSingleTargetAttributes.tracker.called,
-            expectedCalculateSingleTargetAttributesCalled
+            createTargetAttributesContent.tracker.called,
+            expectedCreateTargetAttributesContentCalled
         )
-        XCTAssertNoDifference(elements, expectedElements)
+        XCTAssertNoDifference(objects, expectedObjects)
     }
 
     func test_missingTestHost_throws() {
@@ -132,8 +132,8 @@ final class CreateTargetAttributesElementsTests: XCTestCase {
         ]
         let createdOnToolsVersion = "14.2.1"
 
-        let calculateSingleTargetAttributes =
-            Generator.CreateTargetAttributesElement.mock(
+        let createTargetAttributesContent =
+            Generator.CreateTargetAttributesContent.mock(
                 contents: [
                     "{TA_BazelDependnencies}",
                     "{TA_AB}",
@@ -143,13 +143,13 @@ final class CreateTargetAttributesElementsTests: XCTestCase {
         // Act/Assert
 
         XCTAssertThrowsError(
-            try Generator.CreateTargetAttributesElements.defaultCallable(
+            try Generator.CreateTargetAttributesObjects.defaultCallable(
                 identifiedTargets: identifiedTargets,
                 testHosts: testHosts,
                 identifiers: identifiers,
                 createdOnToolsVersion: createdOnToolsVersion,
-                calculateSingleTargetAttributes:
-                    calculateSingleTargetAttributes.mock
+                createTargetAttributesContent:
+                    createTargetAttributesContent.mock
             )
         )
     }

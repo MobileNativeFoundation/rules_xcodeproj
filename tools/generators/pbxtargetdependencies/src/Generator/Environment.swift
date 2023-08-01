@@ -19,9 +19,9 @@ extension Generator {
 
         let calculateTargetsPartial: CalculateTargetsPartial
 
-        let createDependencyElements: CreateDependencyElements
+        let createDependencyObjects: CreateDependencyObjects
 
-        let createTargetAttributesElements: CreateTargetAttributesElements
+        let createTargetAttributesObjects: CreateTargetAttributesObjects
 
         let identifyTargets: IdentifyTargets
 
@@ -42,15 +42,15 @@ extension Generator.Environment {
             Generator.CalculateTargetDependenciesPartial(),
         calculateTargetIdentifierMap: Generator.CalculateTargetIdentifierMap(),
         calculateTargetsPartial: Generator.CalculateTargetsPartial(),
-        createDependencyElements: Generator.CreateDependencyElements(
-            createContainerItemProxyElement:
-                Generator.CreateContainerItemProxyElement(),
-            createTargetDependencyElement:
-                Generator.CreateTargetDependencyElement()
+        createDependencyObjects: Generator.CreateDependencyObjects(
+            createContainerItemProxyObject:
+                Generator.CreateContainerItemProxyObject(),
+            createTargetDependencyObject:
+                Generator.CreateTargetDependencyObject()
         ),
-        createTargetAttributesElements: Generator.CreateTargetAttributesElements(
-            calculateSingleTargetAttributes:
-                Generator.CreateTargetAttributesElement()
+        createTargetAttributesObjects: Generator.CreateTargetAttributesObjects(
+            createTargetAttributesContent:
+                Generator.CreateTargetAttributesContent()
         ),
         identifyTargets: Generator.IdentifyTargets(
             consolidateTargets: Generator.ConsolidateTargets(),

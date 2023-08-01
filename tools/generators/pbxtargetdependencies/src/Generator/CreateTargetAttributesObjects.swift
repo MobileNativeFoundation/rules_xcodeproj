@@ -1,9 +1,8 @@
 import PBXProj
 
 extension Generator {
-    struct CreateTargetAttributesElements {
-        private let calculateSingleTargetAttributes:
-            CreateTargetAttributesElement
+    struct CreateTargetAttributesObjects {
+        private let createTargetAttributesContent: CreateTargetAttributesContent
 
         private let callable: Callable
 
@@ -11,28 +10,27 @@ extension Generator {
         ///   - callable: The function that will be called in
         ///     `callAsFunction()`.
         init(
-            calculateSingleTargetAttributes: CreateTargetAttributesElement,
+            createTargetAttributesContent: CreateTargetAttributesContent,
             callable: @escaping Callable = Self.defaultCallable
         ) {
-            self.calculateSingleTargetAttributes = calculateSingleTargetAttributes
+            self.createTargetAttributesContent = createTargetAttributesContent
 
             self.callable = callable
         }
 
-        /// Calculates all the `PBXProject.targets` elements.
+        /// Calculates all the `PBXProject.targets` objects.
         func callAsFunction(
             identifiedTargets: [IdentifiedTarget],
             testHosts: [TargetID: TargetID],
             identifiers: [TargetID: Identifiers.Targets.Identifier],
             createdOnToolsVersion: String
-        ) throws -> [Element] {
+        ) throws -> [Object] {
             return try callable(
                 /*identifiedTargets:*/ identifiedTargets,
                 /*testHosts:*/ testHosts,
                 /*identifiers:*/ identifiers,
                 /*createdOnToolsVersion:*/ createdOnToolsVersion,
-                /*calculateSingleTargetAttributes:*/
-                    calculateSingleTargetAttributes
+                /*createTargetAttributesContent:*/ createTargetAttributesContent
             )
         }
     }
@@ -40,28 +38,26 @@ extension Generator {
 
 // MARK: - CalculateTargetAttributes.Callable
 
-extension Generator.CreateTargetAttributesElements {
+extension Generator.CreateTargetAttributesObjects {
     typealias Callable = (
         _ identifiedTargets: [IdentifiedTarget],
         _ testHosts: [TargetID: TargetID],
         _ identifiers: [TargetID: Identifiers.Targets.Identifier],
         _ createdOnToolsVersion: String,
-        _ calculateSingleTargetAttributes:
-            Generator.CreateTargetAttributesElement
-    ) throws -> [Element]
+        _ createTargetAttributesContent: Generator.CreateTargetAttributesContent
+    ) throws -> [Object]
 
     static func defaultCallable(
         identifiedTargets: [IdentifiedTarget],
         testHosts: [TargetID: TargetID],
         identifiers: [TargetID: Identifiers.Targets.Identifier],
         createdOnToolsVersion: String,
-        calculateSingleTargetAttributes:
-            Generator.CreateTargetAttributesElement
-    ) throws -> [Element] {
-        var targetAttributes: [Element] = [
+        createTargetAttributesContent: Generator.CreateTargetAttributesContent
+    ) throws -> [Object] {
+        var targetAttributes: [Object] = [
             .init(
                 identifier: Identifiers.BazelDependencies.id,
-                content: calculateSingleTargetAttributes(
+                content: createTargetAttributesContent(
                     createdOnToolsVersion: createdOnToolsVersion,
                     testHostIdentifier: nil
                 )
@@ -70,11 +66,11 @@ extension Generator.CreateTargetAttributesElements {
 
         for target in identifiedTargets {
             let anId = target.key.sortedIds.first!
-            
+
             targetAttributes.append(
-                Element(
+                Object(
                     identifier: target.identifier.full,
-                    content: calculateSingleTargetAttributes(
+                    content: createTargetAttributesContent(
                         createdOnToolsVersion: createdOnToolsVersion,
                         testHostIdentifier: try testHosts[anId].flatMap { id in
                             return try identifiers

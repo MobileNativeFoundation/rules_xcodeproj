@@ -2,9 +2,9 @@ import PBXProj
 
 @testable import pbxtargetdependencies
 
-// MARK: - Generator.CalculateSingleTargetAttributes.mock
+// MARK: - Generator.CreateTargetAttributesContent.mock
 
-extension Generator.CreateTargetAttributesElement {
+extension Generator.CreateTargetAttributesContent {
     final class MockTracker {
         struct Called: Equatable {
             let createdOnToolsVersion: String
