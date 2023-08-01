@@ -647,19 +647,19 @@ final class DisambiguateTargetsTests: XCTestCase {
         let targets: [TargetID: Target] = [
             "A 1": Target.mock(
                 configuration: "1",
-                xcodeConfigurations: ["Debug"],
+                xcodeConfigurations: ["Debug", "AppStore"],
                 platform: .macOS(arch: "arm64"),
                 product: .init(type: .staticLibrary, name: "A", path: "")
             ),
             "A 2": Target.mock(
                 configuration: "2",
-                xcodeConfigurations: ["Debug"],
+                xcodeConfigurations: ["Debug", "AppStore"],
                 platform: .macOS(arch: "arm64"),
                 product: .init(type: .staticLibrary, name: "A", path: "")
             ),
             "A 3": Target.mock(
                 configuration: "2",
-                xcodeConfigurations: ["Release"],
+                xcodeConfigurations: ["Debug", "AppStore"],
                 platform: .macOS(arch: "x86_64"),
                 product: .init(type: .staticLibrary, name: "A", path: "")
             ),
@@ -1346,6 +1346,136 @@ A (iOS, tvOS) (\(ProductTypeComponents.prettyConfigurations(["1", "3"])))
             "B": """
 A (iOS) (\(ProductTypeComponents.prettyConfigurations(["2"])))
 """,
+        ]
+
+        // Act
+
+        let disambiguatedTargets = Generator.disambiguateTargets(
+            consolidatedTargets
+        )
+
+        // Assert
+
+        XCTAssertNoDifference(
+            disambiguatedTargets.targets.mapValues(\.name)
+                .map(KeyAndValue.init).sorted(),
+            expectedTargetNames.map(KeyAndValue.init).sorted()
+        )
+        XCTAssertNoDifference(
+            disambiguatedTargets.targets.mapValues(\.target)
+                .map(KeyAndValue.init).sorted(),
+            consolidatedTargets.targets.map(KeyAndValue.init).sorted()
+        )
+    }
+
+    func test_consolidated_architectureAndConfiguration() throws {
+        // Arrange
+
+        let targets: [TargetID: Target] = [
+            "A1": Target.mock(
+                configuration: "1",
+                xcodeConfigurations: ["Debug"],
+                platform: .device(os: .iOS, arch: "arm64"),
+                product: .init(type: .staticLibrary, name: "A", path: "")
+            ),
+            "A2": Target.mock(
+                configuration: "2",
+                xcodeConfigurations: ["Release"],
+                platform: .device(os: .iOS, arch: "arm64"),
+                product: .init(type: .staticLibrary, name: "A", path: "")
+            ),
+            "A3": Target.mock(
+                configuration: "3",
+                xcodeConfigurations: ["Debug"],
+                platform: .device(os: .iOS, arch: "arm64"),
+                product: .init(type: .staticLibrary, name: "A", path: "")
+            ),
+            "A4": Target.mock(
+                configuration: "4",
+                xcodeConfigurations: ["Release"],
+                platform: .device(os: .iOS, arch: "arm64"),
+                product: .init(type: .staticLibrary, name: "A", path: "")
+            ),
+            "A5": Target.mock(
+                configuration: "5",
+                xcodeConfigurations: ["Debug", "Release"],
+                platform: .device(os: .iOS, arch: "x86_64"),
+                product: .init(type: .staticLibrary, name: "A", path: "")
+            ),
+        ]
+        let consolidatedTargets = ConsolidatedTargets(
+            allTargets: targets,
+            keys: [
+                ["A1", "A2"],
+                ["A3", "A4"],
+                ["A5"],
+            ]
+        )
+        let expectedTargetNames: [ConsolidatedTarget.Key: String] = [
+            .init(["A1", "A2"]): """
+A (arm64) (\(ProductTypeComponents.prettyConfigurations(["1", "2"])))
+""",
+            .init(["A3", "A4"]): """
+A (arm64) (\(ProductTypeComponents.prettyConfigurations(["3", "4"])))
+""",
+            "A5": """
+A (x86_64)
+""",
+        ]
+
+        // Act
+
+        let disambiguatedTargets = Generator.disambiguateTargets(
+            consolidatedTargets
+        )
+
+        // Assert
+
+        XCTAssertNoDifference(
+            disambiguatedTargets.targets.mapValues(\.name)
+                .map(KeyAndValue.init).sorted(),
+            expectedTargetNames.map(KeyAndValue.init).sorted()
+        )
+        XCTAssertNoDifference(
+            disambiguatedTargets.targets.mapValues(\.target)
+                .map(KeyAndValue.init).sorted(),
+            consolidatedTargets.targets.map(KeyAndValue.init).sorted()
+        )
+    }
+
+    func test_consolidated_xcodeConfigurations() throws {
+        // Arrange
+
+        let targets: [TargetID: Target] = [
+            "A1": Target.mock(
+                xcodeConfigurations: ["Debug"],
+                product: .init(type: .staticLibrary, name: "A", path: "")
+            ),
+            "A2": Target.mock(
+                xcodeConfigurations: ["Release"],
+                product: .init(type: .staticLibrary, name: "A", path: "")
+            ),
+            "A3": Target.mock(
+                xcodeConfigurations: ["Profile"],
+                product: .init(type: .staticLibrary, name: "A", path: "")
+            ),
+            "B": Target.mock(
+                xcodeConfigurations: ["Debug", "Release"],
+                product: .init(type: .staticLibrary, name: "B", path: "")
+            ),
+        ]
+        let consolidatedTargets = ConsolidatedTargets(
+            allTargets: targets,
+            keys: [
+                ["A1", "A2"],
+                ["A3"],
+                ["B"],
+            ]
+        )
+        let expectedTargetNames: [ConsolidatedTarget.Key: String] = [
+            .init(["A1", "A2"]): "A (Debug, Release)",
+            "A3": "A (Profile)",
+            "B": "B",
         ]
 
         // Act
