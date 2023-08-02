@@ -2,7 +2,7 @@
 
 The `pbxtargetdependencies` generator creates four+ files:
 
-- A `PBXProj` partial containing the `PBXTargetDependency` and `PBXContainerItemProxy` elements
+- A `PBXProj` partial containing the `PBXTargetDependency` and `PBXContainerItemProxy` objects
 - A `PBXProj` partial containing the `PBXProject.attributes.TargetAttributes` property
 - A `PBXProj` partial containing:
   - The `PBXProject.targets` property

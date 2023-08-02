@@ -49,7 +49,7 @@ extension Generator {
 
         // Final form
 
-        // This is a `PBXProj` partial for `PBXProject` related elements and
+        // This is a `PBXProj` partial for `PBXProject` related objects and
         // _part of_ the `PBXProject` element. Different generators will
         // generate the remaining parts of the `PBXProject` element. Because of
         // this, it's intentional that the element isn't terminated, and
