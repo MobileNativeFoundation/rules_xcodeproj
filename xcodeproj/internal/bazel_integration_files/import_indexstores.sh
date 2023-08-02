@@ -3,7 +3,7 @@
 set -euo pipefail
 
 readonly pidfile="$OBJROOT/import_indexstores.pid"
-readonly execution_root="$1"
+readonly build_execution_root="$1"
 shift
 
 # Kill previously running import
@@ -26,7 +26,7 @@ trap 'rm "$pidfile" 2>/dev/null || true' EXIT
 
 # Merge all filelists into a single file
 filelist="$(mktemp)"
-sort -u "$@" | sed "s|^|$execution_root/|" > "$filelist"
+sort -u "$@" | sed "s|^|$PROJECT_DIR/|" > "$filelist"
 
 # Exit early if no indexstores were provided
 if [ ! -s "$filelist" ]; then
@@ -41,7 +41,7 @@ readonly execution_root_regex='.*/[^/]+/(?:_)?rules_xcodeproj(?:\.noindex)?/[^/]
 
 # We remove any `/private` prefix from the current execution_root, since it's
 # removed in the Project navigator.
-readonly xcode_execution_root="${execution_root#/private}"
+readonly xcode_execution_root="${build_execution_root#/private}"
 
 if [[ "$RULES_XCODEPROJ_BUILD_MODE" == "xcode" && \
       "$XCODE_VERSION_ACTUAL" -gt "1330" ]]
