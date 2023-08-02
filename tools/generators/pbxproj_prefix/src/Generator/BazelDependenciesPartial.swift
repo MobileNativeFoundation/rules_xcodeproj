@@ -49,29 +49,6 @@ extension Generator {
 """#
         ))
 
-        buildPhases.append((
-            id: Identifiers.BazelDependencies.createSwiftDebugSettings,
-            element: #"""
-		\#(Identifiers.BazelDependencies.createSwiftDebugSettings) = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(BAZEL_INTEGRATION_DIR)/$(CONFIGURATION)-swift_debug_settings.py",
-			);
-			name = "Create swift_debug_settings.py";
-			outputPaths = (
-				"$(OBJROOT)/$(CONFIGURATION)/swift_debug_settings.py",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = \#(swiftDebugSettingScript.pbxProjEscaped);
-			showEnvVarsInLog = 0;
-		};
-"""#
-        ))
-
         if let postBuildRunScript = postBuildRunScript {
             let id = Identifiers.BazelDependencies.postBuildScript
             buildPhases.append((

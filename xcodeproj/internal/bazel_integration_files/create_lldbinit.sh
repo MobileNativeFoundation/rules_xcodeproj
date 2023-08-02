@@ -61,12 +61,7 @@ if [[ -n "${RESOLVED_REPOSITORIES:-}" ]]; then
   done
 fi
 
-# Import swift_debug_settings.py
-#
-# This Python module sets a stop hook, that when hit, sets the Swift debug
-# settings (i.e. `target.swift-*``) for the module of the current frame. This
-# fixes debugging when using `-serialize-debugging-options`.
-echo "command script import \"$OBJROOT/$CONFIGURATION/swift_debug_settings.py\""
+echo "settings append target.source-map /PLACEHOLDER_DEVELOPER_DIR/ \"$DEVELOPER_DIR\""
 
 } > "$BAZEL_LLDB_INIT"
 

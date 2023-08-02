@@ -1070,67 +1070,6 @@ def should_include_outputs(build_mode):
 
 # Actions
 
-def _labelless_swift_sub_params(swift_sub_params_with_label):
-    _, swift_sub_params = swift_sub_params_with_label
-    return [file.path for file in swift_sub_params] + [""]
-
-def _write_swift_debug_settings(
-        *,
-        actions,
-        lldb_contexts,
-        name,
-        swift_debug_settings_processor,
-        xcode_generated_paths_file):
-    inputs = depset(
-        [xcode_generated_paths_file],
-        transitive = [
-            lldb_context._swift_sub_params
-            for config_lldb_contexts in lldb_contexts.values()
-            for lldb_context in config_lldb_contexts.values()
-        ],
-    )
-
-    outputs = []
-    for (xcode_configuration, config_lldb_contexts) in lldb_contexts.items():
-        output = actions.declare_file(
-            "{}_bazel_integration_files/{}-swift_debug_settings.py".format(
-                name,
-                xcode_configuration,
-            ),
-        )
-        outputs.append(output)
-
-        args = actions.args()
-        args.use_param_file("@%s", use_always = True)
-        args.set_param_file_format(format = "multiline")
-        args.add(output)
-        args.add(xcode_generated_paths_file)
-
-        for key, lldb_context in config_lldb_contexts.items():
-            args.add(key)
-            args.add_all(lldb_context._swiftmodules)
-            args.add("")
-            args.add_all(
-                lldb_context._labelled_swift_sub_params,
-                map_each = _labelless_swift_sub_params,
-            )
-            args.add("")
-
-        actions.run(
-            executable = swift_debug_settings_processor,
-            arguments = [args],
-            mnemonic = "SwiftDebugSettings",
-            progress_message = "Generating %{output}",
-            inputs = inputs,
-            outputs = [output],
-            execution_requirements = {
-                # Lots (lots...) of input files, so avoid sandbox for speed
-                "no-sandbox": "1",
-            },
-        )
-
-    return outputs
-
 def _write_spec(
         *,
         actions,
@@ -1640,15 +1579,6 @@ configurations: {}""".format(", ".join(xcode_configurations)))
         ),
         name = name,
     )
-    swift_debug_settings = _write_swift_debug_settings(
-        actions = actions,
-        lldb_contexts = lldb_contexts,
-        name = name,
-        swift_debug_settings_processor = (
-            ctx.executable._swift_debug_settings_processor
-        ),
-        xcode_generated_paths_file = xcode_generated_paths_file,
-    )
 
     if configurations_map:
         flags = " ".join([
@@ -1665,27 +1595,16 @@ configurations: {}""".format(", ".join(xcode_configurations)))
         normalized_extensionpointidentifiers = actions.declare_file(
             "{}_normalized/extensionpointidentifiers_targetids".format(name),
         )
-        normalized_swift_debug_settings = [
-            actions.declare_file(
-                "{}_normalized/{}-swift_debug_settings.py".format(
-                    name,
-                    xcode_configuration,
-                ),
-            )
-            for xcode_configuration in lldb_contexts
-        ]
         normalized_xccurrentversions = actions.declare_file(
             "{}_normalized/xccurrentversions".format(name),
         )
 
         unstable_files = (
             spec_files +
-            swift_debug_settings +
             [extensionpointidentifiers_file, xccurrentversions_file]
         )
         normalized_files = (
             normalized_specs +
-            normalized_swift_debug_settings +
             [normalized_extensionpointidentifiers, normalized_xccurrentversions]
         )
         actions.run_shell(
@@ -1709,13 +1628,9 @@ done
 
         spec_files = normalized_specs
         extensionpointidentifiers_file = normalized_extensionpointidentifiers
-        swift_debug_settings = normalized_swift_debug_settings
         xccurrentversions_file = normalized_xccurrentversions
 
-    bazel_integration_files = (
-        list(ctx.files._base_integration_files) +
-        swift_debug_settings
-    ) + [
+    bazel_integration_files = list(ctx.files._base_integration_files) + [
         write_bazel_build_script(
             actions = actions,
             bazel_env = ctx.attr.bazel_env,
@@ -1970,13 +1885,6 @@ def make_xcodeproj_rule(
         "_link_params_processor": attr.label(
             cfg = "exec",
             default = Label("//tools/params_processors:link_params_processor"),
-            executable = True,
-        ),
-        "_swift_debug_settings_processor": attr.label(
-            cfg = "exec",
-            default = Label(
-                "//tools/params_processors:swift_debug_settings_processor",
-            ),
             executable = True,
         ),
         "_xccurrentversions_parser": attr.label(

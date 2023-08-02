@@ -31,7 +31,6 @@ information.
   - The start of the `PBXProj` element
   - All of the `BazelDependencies` related objects:
     - `Generate Bazel Dependencies` script build phase
-    - `Create swift_debug_settings.py` script build phase
     - `XCBuildConfiguration`
     - `XCBuildConfigurationList`
   - `BazelDependencies` `PBXAggregateTarget`

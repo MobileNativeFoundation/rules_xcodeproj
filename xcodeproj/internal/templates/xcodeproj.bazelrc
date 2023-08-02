@@ -38,9 +38,13 @@ build:rules_xcodeproj --features=oso_prefix_is_pwd
 build:rules_xcodeproj --features=relative_ast_path
 
 # `swift.cacheable_swiftmodules` passes `-no-serialize-debugging-options` to
-# `swiftc`, which fixes lldb crashes and increases cache hit rates. We "undo"
-# this in `swift_debug_settings.py`, so debugging still works.
-build:rules_xcodeproj --features=swift.cacheable_swiftmodules
+# `swiftc`, which fixes lldb crashes and increases cache hit rates. But then we
+# would have to "undo" this by manually building up and setting debug settings
+# in lldb. Instead, we disable the feature and set
+# `-prefix-serialized-debugging-options`, which applies remapping to the debug
+# info.
+build:rules_xcodeproj --features=-swift.cacheable_swiftmodules
+build:rules_xcodeproj --swiftcopt=-Xfrontend --swiftcopt=-prefix-serialized-debugging-options
 
 # `swift.index-while-building` passes `-index-store-path` to `swiftc`, which
 # generates index store data. We enable this globally, and don't disable it in

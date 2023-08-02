@@ -60,11 +60,8 @@ FF0100000000000000000003 /* Pre-build Run Script */
         public static let bazelBuild = #"""
 FF0100000000000000000004 /* Bazel Build */
 """#
-        public static let createSwiftDebugSettings = #"""
-FF0100000000000000000005 /* Create swift_debug_settings.py */
-"""#
         public static let postBuildScript = #"""
-FF0100000000000000000006 /* Post-build Run Script */
+FF0100000000000000000005 /* Post-build Run Script */
 """#
 
         /// Calculates the identifier for one of `BazelDependencies`'s

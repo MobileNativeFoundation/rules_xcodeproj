@@ -85,12 +85,9 @@ $(INDEXING_SUPPORTED_PLATFORMS__$(INDEX_ENABLE_BUILD_ARENA))
         pbxProj.add(object: configurationList)
 
         let bazelBuildScript = createBazelBuildScript(in: pbxProj)
-        let createLLDBSettingsModuleScript =
-            createCreateLLDBSettingsModuleScript(in: pbxProj)
 
         var buildPhases = [
             bazelBuildScript,
-            createLLDBSettingsModuleScript,
         ]
 
         if let preBuildScript = preBuildScript {
@@ -145,39 +142,6 @@ $(INDEXING_SUPPORTED_PLATFORMS__$(INDEX_ENABLE_BUILD_ARENA))
 """,
             showEnvVarsInLog: false,
             alwaysOutOfDate: true
-        )
-        pbxProj.add(object: script)
-
-        return script
-    }
-
-    private static func createCreateLLDBSettingsModuleScript(
-        in pbxProj: PBXProj
-    ) -> PBXShellScriptBuildPhase {
-        let script = PBXShellScriptBuildPhase(
-            name: "Create swift_debug_settings.py",
-            inputPaths: ["$(BAZEL_INTEGRATION_DIR)/$(CONFIGURATION)-swift_debug_settings.py"],
-            outputPaths: ["$(OBJROOT)/$(CONFIGURATION)/swift_debug_settings.py"],
-            shellScript: #"""
-perl -pe '
-  # Replace "__BAZEL_XCODE_DEVELOPER_DIR__" with "$(DEVELOPER_DIR)"
-  s/__BAZEL_XCODE_DEVELOPER_DIR__/\$(DEVELOPER_DIR)/g;
-
-  # Replace "__BAZEL_XCODE_SDKROOT__" with "$(SDKROOT)"
-  s/__BAZEL_XCODE_SDKROOT__/\$(SDKROOT)/g;
-
-  # Replace build settings with their values
-  s/
-    \$             # Match a dollar sign
-    (\()?          # Optionally match an opening parenthesis and capture it
-    ([a-zA-Z_]\w*) # Match a variable name and capture it
-    (?(1)\))       # If an opening parenthesis was captured, match a closing parenthesis
-  /$ENV{$2}/gx;    # Replace the entire matched string with the value of the corresponding environment variable
-
-' "$SCRIPT_INPUT_FILE_0" > "$SCRIPT_OUTPUT_FILE_0"
-
-"""#,
-            showEnvVarsInLog: false
         )
         pbxProj.add(object: script)
 
