@@ -44,22 +44,14 @@ final class CreateGroupTests: XCTestCase {
                     ),
                     sortOrder: .fileLike
                 ),
-                transitiveElements: [
+                transitiveObjects: [
                     .init(
-                        name: "inner",
-                        object: .init(
-                            identifier: "a/inner identifier",
-                            content: "a/inner content"
-                        ),
-                        sortOrder: .fileLike
+                        identifier: "a/inner identifier",
+                        content: "a/inner content"
                     ),
                     .init(
-                        name: "a",
-                        object: .init(
-                            identifier: "a identifier",
-                            content: "a content"
-                        ),
-                        sortOrder: .fileLike
+                        identifier: "a identifier",
+                        content: "a content"
                     ),
                 ],
                 bazelPathAndIdentifiers: [
@@ -78,14 +70,10 @@ final class CreateGroupTests: XCTestCase {
                     ),
                     sortOrder: .fileLike
                 ),
-                transitiveElements: [
+                transitiveObjects: [
                     .init(
-                        name: "b",
-                        object: .init(
-                            identifier: "b identifier",
-                            content: "b content"
-                        ),
-                        sortOrder: .fileLike
+                        identifier: "b identifier",
+                        content: "b content"
                     ),
                 ],
                 bazelPathAndIdentifiers: [
@@ -116,10 +104,10 @@ final class CreateGroupTests: XCTestCase {
                 stubbedGroupChildElementAndChildren[0].element,
                 stubbedGroupChildElementAndChildren[1].element,
             ],
-            transitiveElements: [
-                stubbedGroupChildElementAndChildren[0].transitiveElements[0],
-                stubbedGroupChildElementAndChildren[0].transitiveElements[1],
-                stubbedGroupChildElementAndChildren[1].transitiveElements[0],
+            transitiveObjects: [
+                stubbedGroupChildElementAndChildren[0].transitiveObjects[0],
+                stubbedGroupChildElementAndChildren[0].transitiveObjects[1],
+                stubbedGroupChildElementAndChildren[1].transitiveObjects[0],
             ],
             bazelPathAndIdentifiers: [
                 stubbedGroupChildElementAndChildren[0]
@@ -173,8 +161,8 @@ final class CreateGroupTests: XCTestCase {
 
         let expectedResult = GroupChild.ElementAndChildren(
             element: stubbedElement,
-            transitiveElements: stubbedGroupChildElements.transitiveElements +
-                [stubbedElement],
+            transitiveObjects: stubbedGroupChildElements.transitiveObjects +
+                [stubbedElement.object],
             bazelPathAndIdentifiers:
                 stubbedGroupChildElements.bazelPathAndIdentifiers +
                     [(expectedBazelPath, stubbedElement.object.identifier)],

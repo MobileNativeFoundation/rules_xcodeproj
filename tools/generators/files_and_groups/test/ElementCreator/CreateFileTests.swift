@@ -61,7 +61,7 @@ final class CreateFileTests: XCTestCase {
 
         let expectedResult = GroupChild.ElementAndChildren(
             element: stubbedElement,
-            transitiveElements: [stubbedElement],
+            transitiveObjects: [stubbedElement.object],
             bazelPathAndIdentifiers: [
                 (
                     "bazel/path/node_name.some_ext/a",

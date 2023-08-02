@@ -9,7 +9,7 @@ class ElementCreatorCalculatePartialTests: XCTestCase {
     func test_basic() {
         // Arrange
 
-        let elements: [Element] = []
+        let objects: [Object] = []
         let mainGroup = "{MAIN_GROUP_ELEMENT}"
         let workspace = "/Users/TimApple/Star Board"
 
@@ -22,7 +22,7 @@ class ElementCreatorCalculatePartialTests: XCTestCase {
         // Act
 
         let elementsPartial = ElementCreator.CalculatePartial.defaultCallable(
-            elements: elements,
+            objects: objects,
             mainGroup: mainGroup,
             workspace: workspace
         )
@@ -35,57 +35,33 @@ class ElementCreatorCalculatePartialTests: XCTestCase {
 		)
     }
 
-    func test_elements() {
+    func test_objects() {
         // Arrange
 
-        let elements: [Element] = [
+        let objects: [Object] = [
             .init(
-                name: "i",
-                object: .init(
-                    identifier: "i /* internal */",
-                    content: "{i_ELEMENT}"
-                ),
-                sortOrder: .rulesXcodeprojInternal
+                identifier: "i /* internal */",
+                content: "{i_ELEMENT}"
             ),
             .init(
-                name: "a1",
-                object: .init(
-                    identifier: "a1 /* file_or_folder1 */",
-                    content: "{a1_ELEMENT}"
-                ),
-                sortOrder: .fileLike
+                identifier: "a1 /* file_or_folder1 */",
+                content: "{a1_ELEMENT}"
             ),
             .init(
-                name: "b",
-                object: .init(
-                    identifier: "b /* bazel-out */",
-                    content: "{b_ELEMENT}"
-                ),
-                sortOrder: .bazelGenerated
+                identifier: "b /* bazel-out */",
+                content: "{b_ELEMENT}"
             ),
             .init(
-                name: "a2",
-                object: .init(
-                    identifier: "a2 /* file_or_folder1 */",
-                    content: "{a2_ELEMENT}"
-                ),
-                sortOrder: .groupLike
+                identifier: "a2 /* file_or_folder1 */",
+                content: "{a2_ELEMENT}"
             ),
             .init(
-                name: "a3",
-                object: .init(
-                    identifier: "a3 /* file_or_folder2 */",
-                    content: "{a3_ELEMENT}"
-                ),
-                sortOrder: .fileLike
+                identifier: "a3 /* file_or_folder2 */",
+                content: "{a3_ELEMENT}"
             ),
             .init(
-                name: "e",
-                object: .init(
-                    identifier: "e /* ../../external */",
-                    content: "{e_ELEMENT}"
-                ),
-                sortOrder: .bazelExternalRepositories
+                identifier: "e /* ../../external */",
+                content: "{e_ELEMENT}"
             ),
         ]
         let mainGroup = "{MAIN_GROUP_ELEMENT}"
@@ -108,7 +84,7 @@ class ElementCreatorCalculatePartialTests: XCTestCase {
         // Act
 
         let elementsPartial = ElementCreator.CalculatePartial.defaultCallable(
-            elements: elements,
+            objects: objects,
             mainGroup: mainGroup,
             workspace: workspace
         )

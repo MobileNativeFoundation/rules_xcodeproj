@@ -13,12 +13,12 @@ extension ElementCreator {
 
         /// Calculates the elements partial.
         func callAsFunction(
-            elements: [Element],
+            objects: [Object],
             mainGroup: String,
             workspace: String
         ) -> String {
             return callable(
-                /*elements:*/ elements,
+                /*objects:*/ objects,
                 /*mainGroup:*/ mainGroup,
                 /*workspace:*/ workspace
             )
@@ -30,24 +30,20 @@ extension ElementCreator {
 
 extension ElementCreator.CalculatePartial {
     typealias Callable = (
-        _ elements: [Element],
+        _ objects: [Object],
         _ mainGroup: String,
         _ workspace: String
     ) -> String
 
     static func defaultCallable(
-        elements: [Element],
+        objects: [Object],
         mainGroup: String,
         workspace: String
     ) -> String {
         // The tabs for indenting are intentional
         return #"""
 		\#(Identifiers.FilesAndGroups.mainGroup(workspace)) = \#(mainGroup);\#
-\#(
-    elements
-        .map { "\n\t\t\($0.object.identifier) = \($0.object.content);" }
-        .joined()
-)
+\#(objects.map { "\n\t\t\($0.identifier) = \($0.content);" }.joined())
 
 """#
     }

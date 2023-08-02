@@ -79,14 +79,10 @@ final class CreateVersionGroupTests: XCTestCase {
                     ),
                     sortOrder: .fileLike
                 ),
-                transitiveElements: [
+                transitiveObjects: [
                     .init(
-                        name: "weird",
-                        object: .init(
-                            identifier: "weird identifier",
-                            content: "weird content"
-                        ),
-                        sortOrder: .fileLike
+                        identifier: "weird identifier",
+                        content: "weird content"
                     ),
                 ],
                 bazelPathAndIdentifiers: [
@@ -107,14 +103,10 @@ final class CreateVersionGroupTests: XCTestCase {
                     ),
                     sortOrder: .fileLike
                 ),
-                transitiveElements: [
+                transitiveObjects: [
                     .init(
-                        name: "a",
-                        object: .init(
-                            identifier: "a id",
-                            content: "a content"
-                        ),
-                        sortOrder: .fileLike
+                        identifier: "a id",
+                        content: "a content"
                     ),
                 ],
                 bazelPathAndIdentifiers: [
@@ -135,14 +127,10 @@ final class CreateVersionGroupTests: XCTestCase {
                     ),
                     sortOrder: .fileLike
                 ),
-                transitiveElements: [
+                transitiveObjects: [
                     .init(
-                        name: "b",
-                        object: .init(
-                            identifier: "b id",
-                            content: "b content"
-                        ),
-                        sortOrder: .fileLike
+                        identifier: "b id",
+                        content: "b content"
                     ),
                 ],
                 bazelPathAndIdentifiers: [
@@ -169,14 +157,10 @@ final class CreateVersionGroupTests: XCTestCase {
                     ),
                     sortOrder: .fileLike
                 ),
-                transitiveElements: [
+                transitiveObjects: [
                     .init(
-                        name: "c",
-                        object: .init(
-                            identifier: "c id",
-                            content: "c content"
-                        ),
-                        sortOrder: .fileLike
+                        identifier: "c id",
+                        content: "c content"
                     ),
                 ],
                 bazelPathAndIdentifiers: [
@@ -232,12 +216,12 @@ final class CreateVersionGroupTests: XCTestCase {
 
         let expectedResult = GroupChild.ElementAndChildren(
             element: stubbedElement,
-            transitiveElements: [
-                stubbedChildResults[0].transitiveElements[0],
-                stubbedChildResults[1].transitiveElements[0],
-                stubbedChildResults[2].transitiveElements[0],
-                stubbedChildResults[3].transitiveElements[0],
-                stubbedElement,
+            transitiveObjects: [
+                stubbedChildResults[0].transitiveObjects[0],
+                stubbedChildResults[1].transitiveObjects[0],
+                stubbedChildResults[2].transitiveObjects[0],
+                stubbedChildResults[3].transitiveObjects[0],
+                stubbedElement.object,
             ],
             bazelPathAndIdentifiers: [
                 stubbedChildResults[0].bazelPathAndIdentifiers[0],

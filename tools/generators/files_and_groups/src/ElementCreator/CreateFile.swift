@@ -79,7 +79,7 @@ extension ElementCreator.CreateFile {
 
         return GroupChild.ElementAndChildren(
             element: element,
-            transitiveElements: [element],
+            transitiveObjects: [element.object],
             bazelPathAndIdentifiers:
                 bazelPaths.map { ($0, identifierForBazelPaths) },
             knownRegions: [],

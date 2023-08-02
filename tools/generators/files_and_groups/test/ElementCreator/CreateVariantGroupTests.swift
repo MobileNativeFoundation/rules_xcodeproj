@@ -68,8 +68,8 @@ final class CreateVariantGroupTests: XCTestCase {
 
         let expectedResult = GroupChild.ElementAndChildren(
             element: stubbedElement,
-            transitiveElements:
-                localizedFiles.map(\.element) + [stubbedElement],
+            transitiveObjects:
+                localizedFiles.map(\.element.object) + [stubbedElement.object],
             bazelPathAndIdentifiers: [
                 ("bazel-out/enGB/a", stubbedElement.object.identifier),
                 (
