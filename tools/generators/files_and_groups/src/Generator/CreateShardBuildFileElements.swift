@@ -70,7 +70,7 @@ extension Generator.CreateShardBuildFileObjects {
                 subIdentifier: subIdentifier,
                 fileIdentifier: try fileIdentifiers.value(
                     for: subIdentifier.path,
-                    context: "Path"
+                    context: "Build file referenced path"
                 )
             )
         }
