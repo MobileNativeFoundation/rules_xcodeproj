@@ -155,22 +155,33 @@ struct ProductTypeComponents {
     /// called for each `ConsolidatedTarget`.
     private var oses: [Platform.OS: OperatingSystemComponents] = [:]
 
-    /// A count of `Target.distinguisherKey`s seen in `add(target:key:)`.
+    /// A count of `ConsolidatedTarget.DistinguisherKey`s seen in
+    /// `add(target:key:)`.
     ///
-    /// If the count for a `distinguisherKey` is greater than one, then targets
+    /// If the count for a `DistinguisherKey` is greater than one, then targets
     /// that have that key will have their configuration returned from
     /// `distinguisher()` instead of a string containing architecture, OS, etc.
-    private var distinguisherKeys:
+    private var consolidatedDistinguisherKeys:
+        [ConsolidatedTarget.DistinguisherKey: Set<ConsolidatedTarget.Key>] = [:]
+
+    /// A count of `Target.DistinguisherKey`s seen in `add(target:key:)`.
+    ///
+    /// If the count for a `DistinguisherKey` is greater than one, then targets
+    /// that have that key will have their configuration returned from
+    /// `distinguisher()` instead of a string containing architecture, OS, etc.
+    private var targetDistinguisherKeys:
         [Target.DistinguisherKey: Set<ConsolidatedTarget.Key>] = [:]
 
     /// Adds another `Target` into consideration for `distinguishers()`.
     mutating func add(target: ConsolidatedTarget, key: ConsolidatedTarget.Key) {
+        consolidatedDistinguisherKeys[target.distinguisherKey, default: []]
+            .insert(key)
+        target.targetDistinguisherKeys.forEach { distinguisherKey in
+            targetDistinguisherKeys[distinguisherKey, default: []].insert(key)
+        }
         for target in target.targets.values {
             oses[target.platform.os, default: .init()]
                 .add(target: target, consolidatedKey: key)
-            target.distinguisherKeys.forEach { distinguisherKey in
-                distinguisherKeys[distinguisherKey, default: []].insert(key)
-            }
         }
     }
 
@@ -243,11 +254,11 @@ struct ProductTypeComponents {
     private func needsConfigurationDistinguishing(
         target: ConsolidatedTarget
     ) -> Bool {
-        return target.sortedTargets.contains { target in
-            return target.distinguisherKeys.contains { distinguisherKey in
-                distinguisherKeys[distinguisherKey]!.count > 1
+        return
+            consolidatedDistinguisherKeys[target.distinguisherKey]!.count > 1 ||
+            target.targetDistinguisherKeys.contains { distinguisherKey in
+                targetDistinguisherKeys[distinguisherKey]!.count > 1
             }
-        }
     }
 
     /// Returns a user-facing string for the configurations of a given set of
@@ -589,29 +600,6 @@ extension ConsolidatedTarget {
     /// logic to differentiate targets where the names only differ by case.
     var normalizedLabel: String {
         return "\(label)".lowercased()
-    }
-}
-
-private extension Target {
-    struct DistinguisherKey: Equatable, Hashable {
-        let arch: String
-        let platform: Platform.Variant
-        let minimumOsVersion: SemanticVersion
-        let xcodeConfiguration: String
-    }
-
-    /// A key that corresponds to the most-distinguished string that
-    /// `ProductTypeComponents.distinguisher()` can return for this
-    /// `Target`.
-    var distinguisherKeys: [DistinguisherKey] {
-        return xcodeConfigurations.map { xcodeConfiguration in
-            return DistinguisherKey(
-                arch: platform.arch,
-                platform: platform.variant,
-                minimumOsVersion: platform.minimumOsVersion,
-                xcodeConfiguration: xcodeConfiguration
-            )
-        }
     }
 }
 

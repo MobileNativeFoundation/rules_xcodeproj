@@ -1488,6 +1488,66 @@ A (iOS) (\(ProductTypeComponents.prettyConfigurations(["2"])))
         )
     }
 
+    func test_consolidated_configuration() throws {
+        // Arrange
+
+        let targets: [Target] = [
+            .mock(
+                id: "arm64-Debug 1",
+                label: "//:A",
+                xcodeConfigurations: ["Debug"],
+                arch: "arm64"
+            ),
+            .mock(
+                id: "x86_64-Release 2",
+                label: "//:A",
+                xcodeConfigurations: ["Release"],
+                arch: "x86_64"
+            ),
+            .mock(
+                id: "x86_64-Debug 3",
+                label: "//:A",
+                xcodeConfigurations: ["Debug"],
+                arch: "x86_64"
+            ),
+            .mock(
+                id: "arm64-Release 4",
+                label: "//:A",
+                xcodeConfigurations: ["Release"],
+                arch: "arm64"
+            ),
+        ]
+        let consolidatedTargets = Array<ConsolidatedTarget>(
+            keys: [
+                ["arm64-Debug 1", "x86_64-Release 2"],
+                ["x86_64-Debug 3", "arm64-Release 4"],
+            ],
+            allTargets: targets
+        )
+
+        let expectedTargetNames: [ConsolidatedTarget.Key: String] = [
+            ["arm64-Debug 1", "x86_64-Release 2"]: """
+A (arm64, x86_64) (Debug, Release) (\(ProductTypeComponents.prettyConfigurations(["1", "2"])))
+""",
+            ["x86_64-Debug 3", "arm64-Release 4"]: """
+A (arm64, x86_64) (Debug, Release) (\(ProductTypeComponents.prettyConfigurations(["3", "4"])))
+""",
+        ]
+
+        // Act
+
+        let disambiguatedTargets =
+            Generator.DisambiguateTargets.defaultCallable(consolidatedTargets)
+
+        // Assert
+
+        XCTAssertNoDifference(
+            disambiguatedTargets,
+            names: expectedTargetNames,
+            targets: consolidatedTargets
+        )
+    }
+
     func test_consolidated_architectureAndConfiguration() throws {
         // Arrange
 

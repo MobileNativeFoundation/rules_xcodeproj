@@ -18,6 +18,21 @@ public enum Platform: String, ExpressibleByArgument {
 }
 
 extension Platform {
+    private static let deviceEnvironment = "Device"
+    private static let simulatorEnvironment = "Simulator"
+
+    public var environment: String {
+        switch self {
+        case .macOS: return Self.deviceEnvironment
+        case .iOSDevice: return Self.deviceEnvironment
+        case .iOSSimulator: return Self.simulatorEnvironment
+        case .tvOSDevice: return Self.deviceEnvironment
+        case .tvOSSimulator: return Self.simulatorEnvironment
+        case .watchOSDevice: return Self.deviceEnvironment
+        case .watchOSSimulator: return Self.simulatorEnvironment
+        }
+    }
+
     public var os: OS {
         switch self {
         case .macOS: return .macOS
