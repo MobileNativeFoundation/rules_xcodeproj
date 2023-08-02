@@ -2,7 +2,7 @@ import CryptoKit
 import Foundation
 import GeneratorCommon
 
-/// Helps set identifiers for `PBXProj` elements.
+/// Helps set identifiers for `PBXProj` objects.
 ///
 /// Identifiers are unique 12 byte numbers encoded as 24 character hex strings.
 /// Since the various `PBXProj` partial generators need to work independently
@@ -13,9 +13,9 @@ import GeneratorCommon
 /// them. The first two characters indicate that it's a global element (`FF`), a
 /// file or group element (`FE`), or a generator shard (`00`-`FD`).
 ///
-/// - Global elements (which start with `FF`) are then classified as belonging
+/// - Global objects (which start with `FF`) are then classified as belonging
 ///   to the project as a whole (`00`) or the `BazelDependencies` target
-///   (`01`). For both of them, their associated elements (e.g. configuration
+///   (`01`). For both of them, their associated objects (e.g. configuration
 ///   list, build phases, etc.) use
 ///   `00000000000000000000`-`000000000000000000FF`, and their configurations
 ///   (e.g. "Debug", "Release", etc.) use
@@ -25,14 +25,14 @@ import GeneratorCommon
 ///   (`0000000000000000000000`-`FFFFFFFFFFFFFFFFFFFFFF`).
 ///
 /// - Generator shards (which start with `00`-`FD`) use the next two
-///   characters to indicate a target and its associated elements (`00`), a
+///   characters to indicate a target and its associated objects (`00`), a
 ///   target dependency (`01`), a container item proxy (`02`), or a build file
 ///   (`FF`).
 ///
 ///   - Targets (which start with `xx00`) use the next eight characters to
 ///     identify a target (`00000000`-`FFFFFFFF`, called a target
 ///     sub-identifier). Then it uses `000000000000`-`0000000000FF` for its
-///     associated elements (e.g. configuration list, build phases, etc.), and
+///     associated objects (e.g. configuration list, build phases, etc.), and
 ///     `000000000100`-`0000000001FF` for its configurations (e.g. "Debug",
 ///     "Release", etc.).
 ///

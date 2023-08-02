@@ -1,7 +1,7 @@
 # `PBXProj` prefix partial generator
 
 The `pbxproj_prefix` generator creates a `PBXProj` partial containing the
-start of the `PBXProj` element, `PBXProject` related elements, and _part of_ the
+start of the `PBXProj` element, `PBXProject` related objects, and _part of_ the
 start of the `PBXProject` element.
 
 ## Inputs

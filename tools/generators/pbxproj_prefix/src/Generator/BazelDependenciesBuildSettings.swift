@@ -2,7 +2,7 @@ import PBXProj
 
 extension Generator {
     /// Calculates the `buildSettings` attribute of the `XCBuildConfiguration`
-    /// elements used by the `BazelDependencies` target.
+    /// objects used by the `BazelDependencies` target.
     ///
     /// - Parameters:
     ///   - platforms: The platforms that the project builds for.

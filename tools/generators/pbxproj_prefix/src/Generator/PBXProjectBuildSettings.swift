@@ -3,7 +3,7 @@ import PBXProj
 
 extension Generator {
     /// Calculates the `buildSettings` attribute of the `XCBuildConfiguration`
-    /// elements used by the `PBXProject` element.
+    /// objects used by the `PBXProject` element.
     ///
     /// - Parameters:
     ///   - buildMode: The `BuildMode`.

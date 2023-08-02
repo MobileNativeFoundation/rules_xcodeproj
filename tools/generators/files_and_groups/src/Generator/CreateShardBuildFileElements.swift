@@ -24,7 +24,7 @@ extension Generator {
             self.callable = callable
         }
 
-        /// Creates `PBXBuildFile` elements by reading the
+        /// Creates `PBXBuildFile` objects by reading the
         /// `Identifiers.BuildFile.SubIdentifier`s from a file and matching them
         /// with file identifiers.
         func callAsFunction(

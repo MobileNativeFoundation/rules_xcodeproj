@@ -29,13 +29,13 @@ information.
 
 - [`pbxproj_prefix`](pbxproj_prefix/README.md):
   - The start of the `PBXProj` element
-  - All of the `BazelDependencies` related elements:
+  - All of the `BazelDependencies` related objects:
     - `Generate Bazel Dependencies` script build phase
     - `Create swift_debug_settings.py` script build phase
     - `XCBuildConfiguration`
     - `XCBuildConfigurationList`
   - `BazelDependencies` `PBXAggregateTarget`
-  - All of the `PBXProject` related elements:
+  - All of the `PBXProject` related objects:
     - `XCBuildConfiguration`
     - `XCBuildConfigurationList`
   - The start of the `PBXProject` element
@@ -43,7 +43,7 @@ information.
     `attributes.TargetAttributes`, `targets`, and `knownRegions`
 - [`pbxtargetdependencies`](pbxtargetdependencies/README.md):
   - Creates four+ files:
-    - A partial containing the `PBXTargetDependency` and `PBXContainerItemProxy` elements
+    - A partial containing the `PBXTargetDependency` and `PBXContainerItemProxy` objects
     - A partial containing the `PBXProject.attributes.TargetAttributes` property
     - A partial containing:
       - The `PBXProject.targets` property
@@ -51,7 +51,7 @@ information.
     - A set of files, each detailing how a set of configured targets are consolidated together
 - `pbxnativetargets`:
   - Run once on each shard of all the targets
-  - All of the `PBXNativeTarget` related elements:
+  - All of the `PBXNativeTarget` related objects:
     - `XCBuildConfiguration`
     - `XCBuildConfigurationList`
     - and various build phases
