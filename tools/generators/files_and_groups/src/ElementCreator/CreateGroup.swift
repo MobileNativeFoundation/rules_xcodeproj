@@ -90,6 +90,7 @@ extension ElementCreator.CreateGroup {
         return GroupChild.ElementAndChildren(
             bazelPath: bazelPath,
             element: group,
+            includeParentInBazelPathAndIdentifiers: false,
             resolvedRepository: resolvedRepository,
             children: children
         )

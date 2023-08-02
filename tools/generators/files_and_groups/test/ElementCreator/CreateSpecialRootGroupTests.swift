@@ -193,6 +193,7 @@ final class CreateSpecialRootGroupTests: XCTestCase {
         let expectedResult = GroupChild.ElementAndChildren(
             bazelPath: expectedBazelPath,
             element: stubbedElement,
+            includeParentInBazelPathAndIdentifiers: false,
             resolvedRepository: nil,
             children: stubbedGroupChildElements
         )

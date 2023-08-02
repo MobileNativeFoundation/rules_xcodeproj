@@ -164,8 +164,7 @@ final class CreateGroupTests: XCTestCase {
             transitiveObjects: stubbedGroupChildElements.transitiveObjects +
                 [stubbedElement.object],
             bazelPathAndIdentifiers:
-                stubbedGroupChildElements.bazelPathAndIdentifiers +
-                    [(expectedBazelPath, stubbedElement.object.identifier)],
+                stubbedGroupChildElements.bazelPathAndIdentifiers,
             knownRegions: stubbedGroupChildElements.knownRegions,
             resolvedRepositories:
                 stubbedGroupChildElements.resolvedRepositories +

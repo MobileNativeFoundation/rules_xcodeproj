@@ -189,11 +189,14 @@ extension GroupChild.ElementAndChildren {
     init(
         bazelPath: BazelPath,
         element: Element,
+        includeParentInBazelPathAndIdentifiers: Bool = true,
         resolvedRepository: ResolvedRepository?,
         children: GroupChildElements
     ) {
         var bazelPathAndIdentifiers = children.bazelPathAndIdentifiers
-        bazelPathAndIdentifiers.append((bazelPath, element.object.identifier))
+        if includeParentInBazelPathAndIdentifiers {
+            bazelPathAndIdentifiers.append((bazelPath, element.object.identifier))
+        }
 
         var transitiveObjects = children.transitiveObjects
         transitiveObjects.append(element.object)
