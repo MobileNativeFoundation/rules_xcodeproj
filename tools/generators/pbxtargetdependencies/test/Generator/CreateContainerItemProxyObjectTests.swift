@@ -4,7 +4,7 @@ import XCTest
 @testable import pbxtargetdependencies
 @testable import PBXProj
 
-class CreateContainerItemProxyElementTests: XCTestCase {
+class CreateContainerItemProxyObjectTests: XCTestCase {
     func test_notEscaped() {
         // Arrange
 
@@ -20,7 +20,7 @@ class CreateContainerItemProxyElementTests: XCTestCase {
         )
 
         // The tabs for indenting are intentional
-        let expectedElement = Element(
+        let expectedObject = Object(
             identifier: """
 FROM_SHARD01FROM_HASHTO_SHARD00TO_HASH /* PBXContainerItemProxy */
 """,
@@ -38,14 +38,14 @@ FROM_SHARD01FROM_HASHTO_SHARD00TO_HASH /* PBXContainerItemProxy */
 
         // Act
 
-        let element = Generator.CreateContainerItemProxyElement.defaultCallable(
+        let object = Generator.CreateContainerItemProxyObject.defaultCallable(
             from: subIdentifier,
             to: dependencyIdentifier
         )
 
         // Assert
 
-        XCTAssertNoDifference(element, expectedElement)
+        XCTAssertNoDifference(object, expectedObject)
     }
 
     func test_escaped() {
@@ -63,7 +63,7 @@ FROM_SHARD01FROM_HASHTO_SHARD00TO_HASH /* PBXContainerItemProxy */
         )
 
         // The tabs for indenting are intentional
-        let expectedElement = Element(
+        let expectedObject = Object(
             identifier: """
 FROM_SHARD01FROM_HASHTO_SHARD00TO_HASH /* PBXContainerItemProxy */
 """,
@@ -80,13 +80,13 @@ FROM_SHARD01FROM_HASHTO_SHARD00TO_HASH /* PBXContainerItemProxy */
 
         // Act
 
-        let element = Generator.CreateContainerItemProxyElement.defaultCallable(
+        let object = Generator.CreateContainerItemProxyObject.defaultCallable(
             from: subIdentifier,
             to: dependencyIdentifier
         )
 
         // Assert
 
-        XCTAssertNoDifference(element, expectedElement)
+        XCTAssertNoDifference(object, expectedObject)
     }
 }

@@ -4,7 +4,7 @@ import XCTest
 @testable import pbxtargetdependencies
 @testable import PBXProj
 
-final class CreateDependencyElementsTests: XCTestCase {
+final class CreateDependencyObjectsTests: XCTestCase {
     func test_dependencies() throws {
         // Arrange
 
@@ -38,25 +38,25 @@ final class CreateDependencyElementsTests: XCTestCase {
             "C": identifiedTargets[1].identifier,
         ]
 
-        let createContainerItemProxyElement =
-            Generator.CreateContainerItemProxyElement.mock(
-                elements: [
-                    Element(identifier: "CIP_AB1_ID", content: "{CIP_AB1}"),
-                    Element(identifier: "CIP_AB2_ID", content: "{CIP_AB2}"),
-                    Element(identifier: "CIP_C_ID", content: "{CIP_C}"),
+        let createContainerItemProxyObject =
+            Generator.CreateContainerItemProxyObject.mock(
+                objects: [
+                    .init(identifier: "CIP_AB1_ID", content: "{CIP_AB1}"),
+                    .init(identifier: "CIP_AB2_ID", content: "{CIP_AB2}"),
+                    .init(identifier: "CIP_C_ID", content: "{CIP_C}"),
                 ]
             )
-        let createTargetDependencyElement =
-            Generator.CreateTargetDependencyElement.mock(
-                elements: [
-                    Element(identifier: "TD_AB1_ID", content: "{TD_AB1}"),
-                    Element(identifier: "TD_AB2_ID", content: "{TD_AB2}"),
-                    Element(identifier: "TD_C_ID", content: "{TD_C}"),
+        let createTargetDependencyObject =
+            Generator.CreateTargetDependencyObject.mock(
+                objects: [
+                    .init(identifier: "TD_AB1_ID", content: "{TD_AB1}"),
+                    .init(identifier: "TD_AB2_ID", content: "{TD_AB2}"),
+                    .init(identifier: "TD_C_ID", content: "{TD_C}"),
                 ]
             )
 
-        let expectedCreateContainerItemProxyElementCalled: [
-            Generator.CreateContainerItemProxyElement.MockTracker.Called
+        let expectedCreateContainerItemProxyObjectCalled: [
+            Generator.CreateContainerItemProxyObject.MockTracker.Called
         ] = [
             .init(
                 subIdentifier: identifiers["A"]!.subIdentifier,
@@ -71,8 +71,8 @@ final class CreateDependencyElementsTests: XCTestCase {
                 dependencyIdentifier: .bazelDependencies
             ),
         ]
-        let expectedCreateTargetDependencyElementCalled: [
-            Generator.CreateTargetDependencyElement.MockTracker.Called
+        let expectedCreateTargetDependencyObjectCalled: [
+            Generator.CreateTargetDependencyObject.MockTracker.Called
         ] = [
             .init(
                 subIdentifier: identifiers["A"]!.subIdentifier,
@@ -91,7 +91,7 @@ final class CreateDependencyElementsTests: XCTestCase {
             ),
         ]
 
-        let expectedElements: [Element] = [
+        let expectedObjects: [Object] = [
             .init(identifier: "CIP_AB1_ID", content: "{CIP_AB1}"),
             .init(identifier: "TD_AB1_ID", content: "{TD_AB1}"),
             .init(identifier: "CIP_AB2_ID", content: "{CIP_AB2}"),
@@ -102,27 +102,27 @@ final class CreateDependencyElementsTests: XCTestCase {
 
         // Act
 
-        let elements = try Generator.CreateDependencyElements
+        let objects = try Generator.CreateDependencyObjects
             .defaultCallable(
                 identifiedTargets: identifiedTargets,
                 identifiers: identifiers,
-                createContainerItemProxyElement:
-                    createContainerItemProxyElement.mock,
-                createTargetDependencyElement:
-                    createTargetDependencyElement.mock
+                createContainerItemProxyObject:
+                    createContainerItemProxyObject.mock,
+                createTargetDependencyObject:
+                    createTargetDependencyObject.mock
             )
 
         // Assert
 
         XCTAssertNoDifference(
-            createContainerItemProxyElement.tracker.called,
-            expectedCreateContainerItemProxyElementCalled
+            createContainerItemProxyObject.tracker.called,
+            expectedCreateContainerItemProxyObjectCalled
         )
         XCTAssertNoDifference(
-            createTargetDependencyElement.tracker.called,
-            expectedCreateTargetDependencyElementCalled
+            createTargetDependencyObject.tracker.called,
+            expectedCreateTargetDependencyObjectCalled
         )
-        XCTAssertNoDifference(elements, expectedElements)
+        XCTAssertNoDifference(objects, expectedObjects)
     }
 
     func test_noDependencies() throws {
@@ -156,23 +156,23 @@ final class CreateDependencyElementsTests: XCTestCase {
             "C": identifiedTargets[1].identifier,
         ]
 
-        let createContainerItemProxyElement =
-            Generator.CreateContainerItemProxyElement.mock(
-                elements: [
-                    Element(identifier: "CIP_AB_ID", content: "{CIP_AB}"),
-                    Element(identifier: "CIP_C_ID", content: "{CIP_C}"),
+        let createContainerItemProxyObject =
+            Generator.CreateContainerItemProxyObject.mock(
+                objects: [
+                    .init(identifier: "CIP_AB_ID", content: "{CIP_AB}"),
+                    .init(identifier: "CIP_C_ID", content: "{CIP_C}"),
                 ]
             )
-        let createTargetDependencyElement =
-            Generator.CreateTargetDependencyElement.mock(
-                elements: [
-                    Element(identifier: "TD_AB_ID", content: "{TD_AB}"),
-                    Element(identifier: "TD_C_ID", content: "{TD_C}"),
+        let createTargetDependencyObject =
+            Generator.CreateTargetDependencyObject.mock(
+                objects: [
+                    .init(identifier: "TD_AB_ID", content: "{TD_AB}"),
+                    .init(identifier: "TD_C_ID", content: "{TD_C}"),
                 ]
             )
 
-        let expectedCreateContainerItemProxyElementCalled: [
-            Generator.CreateContainerItemProxyElement.MockTracker.Called
+        let expectedCreateContainerItemProxyObjectCalled: [
+            Generator.CreateContainerItemProxyObject.MockTracker.Called
         ] = [
             .init(
                 subIdentifier: identifiers["A"]!.subIdentifier,
@@ -183,8 +183,8 @@ final class CreateDependencyElementsTests: XCTestCase {
                 dependencyIdentifier: .bazelDependencies
             ),
         ]
-        let expectedCreateTargetDependencyElementCalled: [
-            Generator.CreateTargetDependencyElement.MockTracker.Called
+        let expectedCreateTargetDependencyObjectCalled: [
+            Generator.CreateTargetDependencyObject.MockTracker.Called
         ] = [
             .init(
                 subIdentifier: identifiers["A"]!.subIdentifier,
@@ -198,7 +198,7 @@ final class CreateDependencyElementsTests: XCTestCase {
             ),
         ]
 
-        let expectedElements: [Element] = [
+        let expectedObjects: [Object] = [
             .init(identifier: "CIP_AB_ID", content: "{CIP_AB}"),
             .init(identifier: "TD_AB_ID", content: "{TD_AB}"),
             .init(identifier: "CIP_C_ID", content: "{CIP_C}"),
@@ -207,26 +207,26 @@ final class CreateDependencyElementsTests: XCTestCase {
 
         // Act
 
-        let elements = try Generator.CreateDependencyElements
+        let objects = try Generator.CreateDependencyObjects
             .defaultCallable(
                 identifiedTargets: identifiedTargets,
                 identifiers: identifiers,
-                createContainerItemProxyElement:
-                    createContainerItemProxyElement.mock,
-                createTargetDependencyElement:
-                    createTargetDependencyElement.mock
+                createContainerItemProxyObject:
+                    createContainerItemProxyObject.mock,
+                createTargetDependencyObject:
+                    createTargetDependencyObject.mock
             )
 
         // Assert
 
         XCTAssertNoDifference(
-            createContainerItemProxyElement.tracker.called,
-            expectedCreateContainerItemProxyElementCalled
+            createContainerItemProxyObject.tracker.called,
+            expectedCreateContainerItemProxyObjectCalled
         )
         XCTAssertNoDifference(
-            createTargetDependencyElement.tracker.called,
-            expectedCreateTargetDependencyElementCalled
+            createTargetDependencyObject.tracker.called,
+            expectedCreateTargetDependencyObjectCalled
         )
-        XCTAssertNoDifference(elements, expectedElements)
+        XCTAssertNoDifference(objects, expectedObjects)
     }
 }

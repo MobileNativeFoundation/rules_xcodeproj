@@ -13,8 +13,8 @@ extension Generator {
 
         /// Calculates the `PBXTargetDependencies` and `PBXContainerItemProxy`
         /// partial.
-        func callAsFunction(elements: [Element]) -> String {
-            return callable(/*elements:*/ elements)
+        func callAsFunction(objects: [Object]) -> String {
+            return callable(/*objects:*/ objects)
         }
     }
 }
@@ -22,11 +22,10 @@ extension Generator {
 // MARK: - CalculateTargetDependenciesPartial.Callable
 
 extension Generator.CalculateTargetDependenciesPartial {
-    typealias Callable = (_ elements: [Element]) -> String
+    typealias Callable = (_ objects: [Object]) -> String
 
-    static func defaultCallable(elements: [Element]) -> String {
-        return elements
-            .map { "\t\t\($0.identifier) = \($0.content);\n" }
-            .joined()
+    static func defaultCallable(objects: [Object]) -> String {
+        return
+            objects.map { "\t\t\($0.identifier) = \($0.content);\n" }.joined()
     }
 }

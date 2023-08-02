@@ -1,7 +1,7 @@
 import PBXProj
 
 extension Generator {
-    struct CreateTargetAttributesElement {
+    struct CreateTargetAttributesContent {
         private let callable: Callable
 
         /// - Parameters:
@@ -11,7 +11,7 @@ extension Generator {
             self.callable = callable
         }
 
-        /// Calculates a `PBXProject.targets` element.
+        /// Calculates a `PBXProject.targets` object content.
         func callAsFunction(
             createdOnToolsVersion: String,
             testHostIdentifier: String?
@@ -24,9 +24,9 @@ extension Generator {
     }
 }
 
-// MARK: - CalculateSingleTargetAttributes.Callable
+// MARK: - CreateTargetAttributesContent.Callable
 
-extension Generator.CreateTargetAttributesElement {
+extension Generator.CreateTargetAttributesContent {
     typealias Callable = (
         _ createdOnToolsVersion: String,
         _ testHostIdentifier: String?

@@ -1,7 +1,7 @@
 import PBXProj
 
 extension Generator {
-    struct CreateTargetDependencyElement {
+    struct CreateTargetDependencyObject {
         private let callable: Callable
 
         /// - Parameters:
@@ -11,20 +11,20 @@ extension Generator {
             self.callable = callable
         }
 
-        /// Calculates the `PBXTargetDependency` element for a target
+        /// Calculates the `PBXTargetDependency` object for a target
         /// dependency.
         ///
         /// - Parameters:
         ///   - subIdentifier: The sub-identifier for the target.
         ///   - dependencyIdentifier: The identifier for the dependency target's
-        ///     `PBXNativeTarget` element.
+        ///     `PBXNativeTarget` object.
         ///   - containerItemProxyIdentifier: The identifier for the associated
-        ///     `PBXContainerItemProxy` element.
+        ///     `PBXContainerItemProxy` object.
         func callAsFunction(
             from subIdentifier: Identifiers.Targets.SubIdentifier,
             to dependencyIdentifier: Identifiers.Targets.Identifier,
             containerItemProxyIdentifier: String
-        ) -> Element {
+        ) -> Object {
             return callable(
                 /*subIdentifier:*/ subIdentifier,
                 /*dependencyIdentifier:*/ dependencyIdentifier,
@@ -36,18 +36,18 @@ extension Generator {
 
 // MARK: - CalculateTargetDependency.Callable
 
-extension Generator.CreateTargetDependencyElement {
+extension Generator.CreateTargetDependencyObject {
     typealias Callable = (
         _ subIdentifier: Identifiers.Targets.SubIdentifier,
         _ dependencyIdentifier: Identifiers.Targets.Identifier,
         _ containerItemProxyIdentifier: String
-    ) -> Element
+    ) -> Object
 
     static func defaultCallable(
         from subIdentifier: Identifiers.Targets.SubIdentifier,
         to dependencyIdentifier: Identifiers.Targets.Identifier,
         containerItemProxyIdentifier: String
-    ) -> Element {
+    ) -> Object {
         // The tabs for indenting are intentional
         let content = #"""
 {
@@ -57,8 +57,8 @@ extension Generator.CreateTargetDependencyElement {
 			targetProxy = \#(containerItemProxyIdentifier);
 		}
 """#
-        
-        return Element(
+
+        return Object(
             identifier: Identifiers.Targets.dependency(
                 from: subIdentifier,
                 to: dependencyIdentifier.subIdentifier

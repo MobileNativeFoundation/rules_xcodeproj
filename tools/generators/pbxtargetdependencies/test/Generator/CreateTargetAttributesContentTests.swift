@@ -3,7 +3,7 @@ import XCTest
 
 @testable import pbxtargetdependencies
 
-class CreateTargetAttributesElementTests: XCTestCase {
+class CreateTargetAttributesContentTests: XCTestCase {
     func test_basic() {
         // Arrange
 
@@ -21,7 +21,7 @@ class CreateTargetAttributesElementTests: XCTestCase {
 
         // Act
 
-        let targetAttributes = Generator.CreateTargetAttributesElement
+        let targetAttributes = Generator.CreateTargetAttributesContent
             .defaultCallable(
                 createdOnToolsVersion: createdOnToolsVersion,
                 testHostIdentifier: testHostIdentifier
@@ -52,7 +52,7 @@ class CreateTargetAttributesElementTests: XCTestCase {
 
         // Act
 
-        let targetAttributes = Generator.CreateTargetAttributesElement
+        let targetAttributes = Generator.CreateTargetAttributesContent
             .defaultCallable(
                 createdOnToolsVersion: createdOnToolsVersion,
                 testHostIdentifier: testHostIdentifier

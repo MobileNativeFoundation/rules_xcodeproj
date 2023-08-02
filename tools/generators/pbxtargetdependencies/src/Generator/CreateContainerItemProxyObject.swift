@@ -1,7 +1,7 @@
 import PBXProj
 
 extension Generator {
-    struct CreateContainerItemProxyElement {
+    struct CreateContainerItemProxyObject {
         private let callable: Callable
 
         /// - Parameters:
@@ -11,17 +11,17 @@ extension Generator {
             self.callable = callable
         }
 
-        /// Calculates the `PBXContainerItemProxy` element for a target
+        /// Calculates the `PBXContainerItemProxy` object for a target
         /// dependency.
         ///
         /// - Parameters:
         ///   - subIdentifier: The sub-identifier for the target.
         ///   - dependencyIdentifier: The identifier for the dependency target's
-        ///     `PBXNativeTarget` element.
+        ///     `PBXNativeTarget` object.
         func callAsFunction(
             from subIdentifier: Identifiers.Targets.SubIdentifier,
             to dependencyIdentifier: Identifiers.Targets.Identifier
-        ) -> Element {
+        ) -> Object {
             return callable(
                 /*subIdentifier:*/ subIdentifier,
                 /*dependencyIdentifier:*/ dependencyIdentifier
@@ -32,16 +32,16 @@ extension Generator {
 
 // MARK: - CalculateContainerItemProxy.Callable
 
-extension Generator.CreateContainerItemProxyElement {
+extension Generator.CreateContainerItemProxyObject {
     typealias Callable = (
         _ subIdentifier: Identifiers.Targets.SubIdentifier,
         _ dependencyIdentifier: Identifiers.Targets.Identifier
-    ) -> Element
+    ) -> Object
 
     static func defaultCallable(
         from subIdentifier: Identifiers.Targets.SubIdentifier,
         to dependencyIdentifier: Identifiers.Targets.Identifier
-    ) -> Element {
+    ) -> Object {
         // The tabs for indenting are intentional
         let content = #"""
 {
@@ -53,7 +53,7 @@ extension Generator.CreateContainerItemProxyElement {
 		}
 """#
 
-        return Element(
+        return Object(
             identifier: Identifiers.Targets.containerItemProxy(
                 from: subIdentifier,
                 to: dependencyIdentifier.subIdentifier
