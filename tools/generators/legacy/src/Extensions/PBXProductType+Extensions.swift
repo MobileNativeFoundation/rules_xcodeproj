@@ -219,7 +219,7 @@ extension PBXProductType {
         case .uiTestBundle: return "UI Tests"
         case .appExtension: return "App Extension"
         case .extensionKitExtension: return "ExtensionKit Extension"
-        case .commandLineTool: return "Command Line Tool"
+        case .commandLineTool: return "Tool"
         case .watchApp: return "watchOS 1.0 App"
         case .watch2App: return "App"
         case .watch2AppContainer: return "App Container"
@@ -281,7 +281,7 @@ extension PBXProductType {
     var isTopLevel: Bool {
         return isLaunchable || isTestBundle
     }
-    
+
     var sortOrder: Int {
         switch self {
         // Applications

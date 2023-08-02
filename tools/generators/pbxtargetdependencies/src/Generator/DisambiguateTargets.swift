@@ -680,7 +680,7 @@ private extension PBXProductType {
         case .instrumentsPackage: return "Instruments Package"
         case .metalLibrary: return "Metal Library"
         case .systemExtension: return "System Extension"
-        case .commandLineTool: return "Command Line Tool"
+        case .commandLineTool: return "Tool"
         case .xpcService: return "XPC Service"
         }
     }
