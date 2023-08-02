@@ -155,7 +155,7 @@ def _write_files_and_groups(
     # buildFileSubIdentifiersFiles
     args.add_all(
         _flags.build_file_sub_identifiers_files,
-        buildfile_subidentifiers_files
+        buildfile_subidentifiers_files,
     )
 
     # filePaths
