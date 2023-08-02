@@ -1,11 +1,10 @@
-import OrderedCollections
 import PathKit
 
 struct Target: Equatable {
     var name: String
     var label: BazelLabel
     let configuration: String
-    let xcodeConfigurations: OrderedSet<String>
+    let xcodeConfigurations: Set<String>
     var compileTargets: [CompileTarget]
     let packageBinDir: Path
     var platform: Platform
@@ -82,7 +81,7 @@ extension Target: Decodable {
         label = try container.decode(BazelLabel.self, forKey: .label)
         configuration = try container.decode(String.self, forKey: .configuration)
         xcodeConfigurations = try container.decodeIfPresent(
-            OrderedSet<String>.self,
+            Set<String>.self,
             forKey: .xcodeConfigurations
         ) ?? ["Debug"]
         compileTargets = try container

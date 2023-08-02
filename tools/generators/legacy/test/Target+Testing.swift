@@ -1,5 +1,4 @@
 import GeneratorCommon
-import OrderedCollections
 import PathKit
 import XcodeProj
 import XCTest
@@ -10,7 +9,7 @@ extension Target {
     static func mock(
         label: BazelLabel? = nil,
         configuration: String = "a1b2c",
-        xcodeConfigurations: OrderedSet<String> = ["Profile"],
+        xcodeConfigurations: Set<String> = ["Profile"],
         compileTargets: [CompileTarget] = [],
         packageBinDir: Path = "bazel-out/a1b2c/some/package",
         platform: Platform? = nil,

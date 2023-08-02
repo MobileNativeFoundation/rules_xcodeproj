@@ -186,7 +186,8 @@ struct ProductTypeComponents {
     /// If the count for a `distinguisherKey` is greater than one, then targets
     /// that have that key will have their configuration returned from
     /// `distinguisher()` instead of a string containing architecture, OS, etc.
-    private var distinguisherKeys: [String: Set<ConsolidatedTarget.Key>] = [:]
+    private var distinguisherKeys:
+        [Target.DistinguisherKey: Set<ConsolidatedTarget.Key>] = [:]
 
     /// Adds another `Target` into consideration for `distinguishers()`.
     mutating func add(target consolidatedTarget: ConsolidatedTarget) {
@@ -194,7 +195,9 @@ struct ProductTypeComponents {
         for target in consolidatedTarget.sortedTargets {
             oses[target.platform.os, default: .init()]
                 .add(target: target, consolidatedKey: key)
-            distinguisherKeys[target.distinguisherKey, default: []].insert(key)
+            target.distinguisherKeys.forEach { distinguisherKey in
+                distinguisherKeys[distinguisherKey, default: []].insert(key)
+            }
         }
     }
 
@@ -266,8 +269,11 @@ struct ProductTypeComponents {
     private func needsConfigurationDistinguishing(
         target consolidatedTarget: ConsolidatedTarget
     ) -> Bool {
-        return consolidatedTarget.sortedTargets
-            .contains { distinguisherKeys[$0.distinguisherKey]!.count > 1 }
+        return consolidatedTarget.sortedTargets.contains { target in
+            return target.distinguisherKeys.contains { distinguisherKey in
+                distinguisherKeys[distinguisherKey]!.count > 1
+            }
+        }
     }
 
     /// Returns a user-facing string for the configurations of a given set of
@@ -615,16 +621,25 @@ extension ConsolidatedTarget {
 }
 
 private extension Target {
+    struct DistinguisherKey: Equatable, Hashable {
+        let arch: String
+        let platform: Platform
+        let osVersion: SemanticVersion
+        let xcodeConfiguration: String
+    }
+
     /// A key that corresponds to the most-distinguished string that
     /// `ProductTypeComponents.distinguisher()` can return for this
     /// `Target`.
-    var distinguisherKey: String {
-        return ([
-            arch,
-            "\(platform.os)",
-            osVersion.pretty,
-            platform.environment,
-        ] + xcodeConfigurations).joined(separator: "-")
+    var distinguisherKeys: [DistinguisherKey] {
+        return xcodeConfigurations.map { xcodeConfiguration in
+            return DistinguisherKey(
+                arch: arch,
+                platform: platform,
+                osVersion: osVersion,
+                xcodeConfiguration: xcodeConfiguration
+            )
+        }
     }
 }
 

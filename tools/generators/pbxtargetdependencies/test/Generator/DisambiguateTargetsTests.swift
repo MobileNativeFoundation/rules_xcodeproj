@@ -940,8 +940,18 @@ A (iOS) (\(ProductTypeComponents.prettyConfigurations(["2"])))
                 xcodeConfigurations: ["Release"]
             ),
             .mock(
-                id: "B",
-                label: "//:B"
+                id: "B-DebugRelease 1",
+                label: "//:B",
+                xcodeConfigurations: ["Debug", "Release"]
+            ),
+            .mock(
+                id: "B-Debug 2",
+                label: "//:B",
+                xcodeConfigurations: ["Debug"]
+            ),
+            .mock(
+                id: "C",
+                label: "//:C"
             ),
         ]
         let consolidatedTargets = Array<ConsolidatedTarget>(targets: targets)
@@ -954,7 +964,13 @@ A (Debug) (\(ProductTypeComponents.prettyConfigurations(["1"])))
 A (Debug) (\(ProductTypeComponents.prettyConfigurations(["2"])))
 """,
             ["A-Release 3"]: "A (Release)",
-            ["B"]: "B",
+            ["B-DebugRelease 1"]: """
+B (Debug, Release) (\(ProductTypeComponents.prettyConfigurations(["1"])))
+""",
+            ["B-Debug 2"]: """
+B (Debug) (\(ProductTypeComponents.prettyConfigurations(["2"])))
+""",
+            ["C"]: "C",
         ]
 
         // Act
