@@ -2,9 +2,12 @@ import PBXProj
 
 extension ElementCreator {
     struct CreateRootElements {
+        private let includeCompileStub: Bool
+        private let projectPath: String
         private let workspace: String
         private let createGroupChild: CreateGroupChild
         private let createGroupChildElements: CreateGroupChildElements
+        private let createInternalGroup: CreateInternalGroup
         private let createSpecialRootGroup: CreateSpecialRootGroup
 
         private let callable: Callable
@@ -13,15 +16,21 @@ extension ElementCreator {
         ///   - callable: The function that will be called in
         ///     `callAsFunction()`.
         init(
+            includeCompileStub: Bool,
+            projectPath: String,
             workspace: String,
             createGroupChild: CreateGroupChild,
             createGroupChildElements: CreateGroupChildElements,
+            createInternalGroup: CreateInternalGroup,
             createSpecialRootGroup: CreateSpecialRootGroup,
             callable: @escaping Callable
         ) {
+            self.includeCompileStub = includeCompileStub
+            self.projectPath = projectPath
             self.workspace = workspace
             self.createGroupChild = createGroupChild
             self.createGroupChildElements = createGroupChildElements
+            self.createInternalGroup = createInternalGroup
             self.createSpecialRootGroup = createSpecialRootGroup
 
             self.callable = callable
@@ -32,9 +41,12 @@ extension ElementCreator {
         ) -> GroupChildElements {
             return callable(
                 /*pathTree:*/ pathTree,
+                /*includeCompileStub:*/ includeCompileStub,
+                /*projectPath:*/ projectPath,
                 /*workspace:*/ workspace,
                 /*createGroupChild:*/ createGroupChild,
                 /*createGroupChildElements:*/ createGroupChildElements,
+                /*createInternalGroup:*/ createInternalGroup,
                 /*createSpecialRootGroup:*/ createSpecialRootGroup
             )
         }
@@ -46,17 +58,23 @@ extension ElementCreator {
 extension ElementCreator.CreateRootElements {
     typealias Callable = (
         _ pathTree: PathTreeNode,
+        _ includeCompileStub: Bool,
+        _ projectPath: String,
         _ workspace: String,
         _ createGroupChild: ElementCreator.CreateGroupChild,
         _ createGroupChildElements: ElementCreator.CreateGroupChildElements,
+        _ createInternalGroup: ElementCreator.CreateInternalGroup,
         _ createSpecialRootGroup: ElementCreator.CreateSpecialRootGroup
     ) -> GroupChildElements
 
     static func defaultCallable(
         for pathTree: PathTreeNode,
+        includeCompileStub: Bool,
+        projectPath: String,
         workspace: String,
         createGroupChild: ElementCreator.CreateGroupChild,
         createGroupChildElements: ElementCreator.CreateGroupChildElements,
+        createInternalGroup: ElementCreator.CreateInternalGroup,
         createSpecialRootGroup: ElementCreator.CreateSpecialRootGroup
     ) -> GroupChildElements {
         let bazelPath = BazelPath("")
@@ -103,6 +121,12 @@ extension ElementCreator.CreateRootElements {
                     )
                 )
             }
+        }
+
+        if includeCompileStub {
+            groupChildren.append(
+                createInternalGroup(projectPath: projectPath)
+            )
         }
 
         return createGroupChildElements(

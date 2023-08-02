@@ -39,6 +39,19 @@ Path to where the 'resolved_repositories' file should be written.
         )
         var useBaseInternationalization = false
 
+        @Flag(help: "Whether the compile stub is needed.")
+        var compileStubNeeded = false
+
+        @Option(
+            parsing: .upToNextOption,
+            help: """
+Paths to where serialized '[Identifiers.BuildFile.SubIdentifiers]' should be \
+read from.
+""",
+            transform: { URL(fileURLWithPath: $0, isDirectory: false) }
+        )
+        var buildFileSubIdentifiersFiles: [URL]
+
         @Option(
             parsing: .upToNextOption,
             help: """

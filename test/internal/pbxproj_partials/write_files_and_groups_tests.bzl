@@ -35,13 +35,18 @@ def _write_files_and_groups_test_impl(ctx):
         resolved_repositories_file,
     ) = pbxproj_partials.write_files_and_groups(
         actions = actions.mock,
+        buildfile_subidentifiers_files = (
+            ctx.attr.buildfile_subidentifiers_files
+        ),
         colorize = ctx.attr.colorize,
+        compile_stub_needed = ctx.attr.compile_stub_needed,
         execution_root_file = ctx.attr.execution_root_file,
         generator_name = "a_generator_name",
         files = depset(ctx.attr.files),
         file_paths = depset(ctx.attr.file_paths),
         folders = depset(ctx.attr.folders),
         project_options = ctx.attr.project_options,
+        project_path = ctx.attr.project_path,
         selected_model_versions_file = ctx.attr.selected_model_versions_file,
         tool = None,
         workspace_directory = ctx.attr.workspace_directory,
@@ -123,12 +128,15 @@ write_files_and_groups_test = unittest.make(
     impl = _write_files_and_groups_test_impl,
     attrs = {
         # Inputs
+        "buildfile_subidentifiers_files": attr.string_list(mandatory = True),
         "colorize": attr.bool(mandatory = True),
+        "compile_stub_needed": attr.bool(mandatory = True),
         "execution_root_file": attr.string(mandatory = True),
         "files": attr.string_list(mandatory = True),
         "file_paths": attr.string_list(mandatory = True),
         "folders": attr.string_list(mandatory = True),
         "project_options": attr.string_dict(mandatory = True),
+        "project_path": attr.string(mandatory = True),
         "selected_model_versions_file": attr.string(mandatory = True),
         "workspace_directory": attr.string(mandatory = True),
 
@@ -151,12 +159,15 @@ def write_files_and_groups_test_suite(name):
             name,
 
             # Inputs
+            buildfile_subidentifiers_files,
             colorize = False,
+            compile_stub_needed = False,
             execution_root_file,
             files = [],
             file_paths = [],
             folders = [],
             project_options,
+            project_path,
             selected_model_versions_file,
             workspace_directory,
 
@@ -167,12 +178,15 @@ def write_files_and_groups_test_suite(name):
             name = name,
 
             # Inputs
+            buildfile_subidentifiers_files = buildfile_subidentifiers_files,
             colorize = colorize,
+            compile_stub_needed = compile_stub_needed,
             execution_root_file = execution_root_file,
             files = files,
             file_paths = file_paths,
             folders = folders,
             project_options = project_options,
+            project_path = project_path,
             selected_model_versions_file = selected_model_versions_file,
             workspace_directory = workspace_directory,
 
@@ -186,10 +200,15 @@ def write_files_and_groups_test_suite(name):
         name = "{}_basic".format(name),
 
         # Inputs
+        buildfile_subidentifiers_files = [
+            "some/buildfile_subidentifiers/0",
+            "some/buildfile_subidentifiers/1",
+        ],
         execution_root_file = "an/execution/root/file",
         project_options = {
             "development_region": "en",
         },
+        project_path = "best/vision.xcodeproj",
         selected_model_versions_file = "some/selected_model_versions_file",
         workspace_directory = "/Users/TimApple/StarBoard",
 
@@ -203,6 +222,8 @@ def write_files_and_groups_test_suite(name):
             _RESOLVED_REPOSITORIES_FILE_DECLARED_FILE,
             # workspace
             "/Users/TimApple/StarBoard",
+            # projectPath
+            "best/vision.xcodeproj",
             # executionRootFile
             "an/execution/root/file",
             # selectedModelVersionsFile
@@ -211,6 +232,10 @@ def write_files_and_groups_test_suite(name):
             "en",
             # useBaseInternationalization
             "--use-base-internationalization",
+            # buildFileSubIdentifiersFiles
+            "--build-file-sub-identifiers-files",
+            "some/buildfile_subidentifiers/0",
+            "some/buildfile_subidentifiers/1",
         ],
     )
 
@@ -220,6 +245,10 @@ def write_files_and_groups_test_suite(name):
         name = "{}_files".format(name),
 
         # Inputs
+        buildfile_subidentifiers_files = [
+            "some/buildfile_subidentifiers/0",
+            "some/buildfile_subidentifiers/1",
+        ],
         execution_root_file = "an/execution/root/file",
         files = [
             "a/path/to/a/file",
@@ -228,6 +257,7 @@ def write_files_and_groups_test_suite(name):
         project_options = {
             "development_region": "enGB",
         },
+        project_path = "best/vision.xcodeproj",
         selected_model_versions_file = "some/selected_model_versions_file",
         workspace_directory = "/Users/TimApple/StarBoard",
 
@@ -241,6 +271,8 @@ def write_files_and_groups_test_suite(name):
             _RESOLVED_REPOSITORIES_FILE_DECLARED_FILE,
             # workspace
             "/Users/TimApple/StarBoard",
+            # projectPath
+            "best/vision.xcodeproj",
             # executionRootFile
             "an/execution/root/file",
             # selectedModelVersionsFile
@@ -249,6 +281,10 @@ def write_files_and_groups_test_suite(name):
             "enGB",
             # useBaseInternationalization
             "--use-base-internationalization",
+            # buildFileSubIdentifiersFiles
+            "--build-file-sub-identifiers-files",
+            "some/buildfile_subidentifiers/0",
+            "some/buildfile_subidentifiers/1",
             # filePaths
             "--file-paths",
             "a/path/to/a/file",
@@ -262,6 +298,10 @@ def write_files_and_groups_test_suite(name):
         name = "{}_files_paths".format(name),
 
         # Inputs
+        buildfile_subidentifiers_files = [
+            "some/buildfile_subidentifiers/0",
+            "some/buildfile_subidentifiers/1",
+        ],
         execution_root_file = "an/execution/root/file",
         file_paths = [
             "a/path/to/a/file_path.bundle",
@@ -270,6 +310,7 @@ def write_files_and_groups_test_suite(name):
         project_options = {
             "development_region": "enGB",
         },
+        project_path = "best/vision.xcodeproj",
         selected_model_versions_file = "some/selected_model_versions_file",
         workspace_directory = "/Users/TimApple/StarBoard",
 
@@ -283,6 +324,8 @@ def write_files_and_groups_test_suite(name):
             _RESOLVED_REPOSITORIES_FILE_DECLARED_FILE,
             # workspace
             "/Users/TimApple/StarBoard",
+            # projectPath
+            "best/vision.xcodeproj",
             # executionRootFile
             "an/execution/root/file",
             # selectedModelVersionsFile
@@ -291,6 +334,10 @@ def write_files_and_groups_test_suite(name):
             "enGB",
             # useBaseInternationalization
             "--use-base-internationalization",
+            # buildFileSubIdentifiersFiles
+            "--build-file-sub-identifiers-files",
+            "some/buildfile_subidentifiers/0",
+            "some/buildfile_subidentifiers/1",
             # filePaths
             "--file-paths",
             "a/path/to/a/file_path.bundle",
@@ -304,6 +351,10 @@ def write_files_and_groups_test_suite(name):
         name = "{}_folders".format(name),
 
         # Inputs
+        buildfile_subidentifiers_files = [
+            "some/buildfile_subidentifiers/0",
+            "some/buildfile_subidentifiers/1",
+        ],
         execution_root_file = "an/execution/root/file",
         folders = [
             "a/path/to/a/folder",
@@ -312,6 +363,7 @@ def write_files_and_groups_test_suite(name):
         project_options = {
             "development_region": "enGB",
         },
+        project_path = "best/vision.xcodeproj",
         selected_model_versions_file = "some/selected_model_versions_file",
         workspace_directory = "/Users/TimApple/StarBoard",
 
@@ -325,6 +377,8 @@ def write_files_and_groups_test_suite(name):
             _RESOLVED_REPOSITORIES_FILE_DECLARED_FILE,
             # workspace
             "/Users/TimApple/StarBoard",
+            # projectPath
+            "best/vision.xcodeproj",
             # executionRootFile
             "an/execution/root/file",
             # selectedModelVersionsFile
@@ -333,6 +387,10 @@ def write_files_and_groups_test_suite(name):
             "enGB",
             # useBaseInternationalization
             "--use-base-internationalization",
+            # buildFileSubIdentifiersFiles
+            "--build-file-sub-identifiers-files",
+            "some/buildfile_subidentifiers/0",
+            "some/buildfile_subidentifiers/1",
             # folderPaths
             "--folder-paths",
             "a/path/to/a/folder",
@@ -346,7 +404,12 @@ def write_files_and_groups_test_suite(name):
         name = "{}_full".format(name),
 
         # Inputs
+        buildfile_subidentifiers_files = [
+            "some/buildfile_subidentifiers/0",
+            "some/buildfile_subidentifiers/1",
+        ],
         colorize = True,
+        compile_stub_needed = True,
         execution_root_file = "an/execution/root/file",
         files = [
             "a/path/to/a/file",
@@ -363,6 +426,7 @@ def write_files_and_groups_test_suite(name):
         project_options = {
             "development_region": "enGB",
         },
+        project_path = "best/vision.xcodeproj",
         selected_model_versions_file = "some/selected_model_versions_file",
         workspace_directory = "/Users/TimApple/StarBoard",
 
@@ -376,6 +440,8 @@ def write_files_and_groups_test_suite(name):
             _RESOLVED_REPOSITORIES_FILE_DECLARED_FILE,
             # workspace
             "/Users/TimApple/StarBoard",
+            # projectPath
+            "best/vision.xcodeproj",
             # executionRootFile
             "an/execution/root/file",
             # selectedModelVersionsFile
@@ -384,6 +450,12 @@ def write_files_and_groups_test_suite(name):
             "enGB",
             # useBaseInternationalization
             "--use-base-internationalization",
+            # compileStubNeeded
+            "--compile-stub-needed",
+            # buildFileSubIdentifiersFiles
+            "--build-file-sub-identifiers-files",
+            "some/buildfile_subidentifiers/0",
+            "some/buildfile_subidentifiers/1",
             # filePaths
             "--file-paths",
             "a/path/to/a/file",

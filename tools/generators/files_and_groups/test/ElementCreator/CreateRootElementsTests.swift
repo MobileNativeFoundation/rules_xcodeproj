@@ -34,7 +34,9 @@ final class CreateRootElementsTests: XCTestCase {
                 ),
             ]
         )
+        let projectPath = "a/visonary.xcodeproj"
         let workspace = "/Users/TimApple/Star Board"
+        let includeCompileStub = true
 
         let expectedResolvedRepositories: [ResolvedRepository] = [
             .init(sourcePath: ".", mappedPath: workspace)
@@ -201,6 +203,28 @@ final class CreateRootElementsTests: XCTestCase {
             children: stubbedCreateGroupChildResults
         )
 
+        let expectedCreateInternalGroupCalled: [
+            ElementCreator.CreateInternalGroup.MockTracker.Called
+        ] = [
+            .init(projectPath: projectPath),
+        ]
+        let stubbedInternalGroup = GroupChild.elementAndChildren(.init(
+            element: .init(
+                name: "rules_xcodeproj",
+                object: .init(
+                    identifier: "r_xcp_id",
+                    content: "{INTERNAL}"
+                ),
+                sortOrder: .rulesXcodeprojInternal
+            ),
+            transitiveObjects: [],
+            bazelPathAndIdentifiers:[],
+            knownRegions: [],
+            resolvedRepositories: []
+        ))
+        let createInternalGroup = ElementCreator.CreateInternalGroup
+            .mock(groupChildren: [stubbedInternalGroup])
+
         let expectedCreateGroupChildElementsCalled: [
             ElementCreator.CreateGroupChildElements.MockTracker.Called
         ] = [
@@ -218,6 +242,7 @@ final class CreateRootElementsTests: XCTestCase {
                     .elementAndChildren(
                         stubbedSpecialRootGroupChildElementAndChildren[2]
                     ),
+                    stubbedInternalGroup,
                 ],
                 resolvedRepositories: expectedResolvedRepositories
             )
@@ -283,9 +308,12 @@ final class CreateRootElementsTests: XCTestCase {
 
         let rootElements = ElementCreator.CreateRootElements.defaultCallable(
             for: pathTree,
+            includeCompileStub: includeCompileStub,
+            projectPath: projectPath,
             workspace: workspace,
             createGroupChild: createGroupChild.mock,
             createGroupChildElements: createGroupChildElements.mock,
+            createInternalGroup: createInternalGroup.mock,
             createSpecialRootGroup: createSpecialRootGroup.mock
         )
 
@@ -298,6 +326,10 @@ final class CreateRootElementsTests: XCTestCase {
         XCTAssertNoDifference(
             createGroupChildElements.tracker.called,
             expectedCreateGroupChildElementsCalled
+        )
+        XCTAssertNoDifference(
+            createInternalGroup.tracker.called,
+            expectedCreateInternalGroupCalled
         )
         XCTAssertNoDifference(
             createSpecialRootGroup.tracker.called,

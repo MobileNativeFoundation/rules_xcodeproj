@@ -35,6 +35,8 @@ extension ElementCreator {
 
         let createIdentifier: CreateIdentifier
 
+        let createInternalGroupCallable: CreateInternalGroup.Callable
+
         /// Passed to the `callable` parameter of `CreateLocalizedFiles.init()`.
         let createLocalizedFilesCallable: CreateLocalizedFiles.Callable
 
@@ -79,6 +81,8 @@ extension ElementCreator.Environment {
     func createCreateRootElements(
         executionRoot: String,
         externalDir: String,
+        includeCompileStub: Bool,
+        projectPath: String,
         selectedModelVersions: [BazelPath: String],
         workspace: String
     ) -> ElementCreator.CreateRootElements {
@@ -155,6 +159,10 @@ extension ElementCreator.Environment {
             callable: createGroupChildCallable
         )
 
+        let createInternalGroup = ElementCreator.CreateInternalGroup(
+            callable: createInternalGroupCallable
+        )
+
         let createSpecialRootGroup = ElementCreator.CreateSpecialRootGroup(
             createGroupChild: createGroupChild,
             createGroupChildElements: createGroupChildElements,
@@ -163,9 +171,12 @@ extension ElementCreator.Environment {
         )
 
         return ElementCreator.CreateRootElements(
+            includeCompileStub: includeCompileStub,
+            projectPath: projectPath,
             workspace: workspace,
             createGroupChild: createGroupChild,
             createGroupChildElements: createGroupChildElements,
+            createInternalGroup: createInternalGroup,
             createSpecialRootGroup: createSpecialRootGroup,
             callable: createRootElementsCallable
         )
@@ -189,6 +200,8 @@ extension ElementCreator.Environment {
         createGroupChildElementsCallable:
             ElementCreator.CreateGroupChildElements.defaultCallable,
         createIdentifier: ElementCreator.CreateIdentifier(),
+        createInternalGroupCallable:
+            ElementCreator.CreateInternalGroup.defaultCallable,
         createLocalizedFilesCallable:
             ElementCreator.CreateLocalizedFiles.defaultCallable,
         createMainGroupContent: ElementCreator.CreateMainGroupContent(),
