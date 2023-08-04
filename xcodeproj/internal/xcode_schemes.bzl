@@ -311,7 +311,8 @@ def make_xcode_schemes(bazel_labels):
             address = False,
             thread = False,
             undefined_behavior = False):
-        """Constructs the scheme's sanitizers' default state. The state can also be modified in Xcode.
+        """Constructs the scheme's sanitizers' default state. The state can \
+also be modified in Xcode.
 
         Args:
             address: Optional. A boolean value representing
@@ -319,7 +320,8 @@ def make_xcode_schemes(bazel_labels):
             thread: Optional. A boolean value representing
                 whether the thread sanitizer should be enabled or not.
             undefined_behavior: Optional. A boolean value representing
-                whether the undefined behavior sanitizer should be enabled or not.
+                whether the undefined behavior sanitizer should be enabled or
+                not.
         """
         if address and thread:
             fail("Address Sanitizer cannot be used together with Thread Sanitizer.")
@@ -357,9 +359,10 @@ def make_xcode_schemes(bazel_labels):
             args: Optional. A `list` of `string` arguments that should be passed
                 to the target when executed.
             build_configuration: Optional. The name of the Xcode configuration
-                to use for this action. If not set, then the configuration
-                determined by `xcodeproj.default_xcode_configuration` will be
-                used.
+                to use for this action.
+
+                If not set, then the configuration determined by
+                `xcodeproj.default_xcode_configuration` will be used.
             diagnostics: Optional. A value returned by
                 `xcode_schemes.diagnostics`.
             env: Optional. A `dict` of `string` values that will be set as
@@ -392,19 +395,23 @@ def make_xcode_schemes(bazel_labels):
         Args:
             target: A target label as a `string` value.
             args: Optional. A `list` of `string` arguments that should be passed
-                to the target when executed. If both this and `env` are `None`
-                (not just empty), then the launch action's arguments will be
-                inherited.
+                to the target when executed.
+
+                If both this and `env` are `None` (not just empty), then the
+                launch action's arguments will be inherited.
             build_configuration: Optional. The name of the Xcode configuration
-                to use for this action. If not set, then the configuration
-                determined by `xcodeproj.default_xcode_configuration` will be
-                used.
+                to use for this action.
+
+                If not set, then the configuration determined by
+                `xcodeproj.default_xcode_configuration` will be used.
             env: Optional. A `dict` of `string` values that will be set as
-                environment variables when the target is executed. If both this
-                and `args` are `None` (not just empty), then the launch action's
-                environment variables will be inherited.
+                environment variables when the target is executed.
+
+                If both this and `args` are `None` (not just empty), then the
+                launch action's environment variables will be inherited.
             working_directory: Optional. A `string` that will be set as the
                 custom working directory in the Xcode scheme's launch action.
+
                 Relative paths will be relative to the value of `target`'s
                 `BUILT_PRODUCTS_DIR`, which is unique to it.
 
@@ -433,27 +440,32 @@ def make_xcode_schemes(bazel_labels):
         Args:
             targets: A `sequence` of target labels as `string` values.
             args: Optional. A `list` of `string` arguments that should be passed
-                to the target when executed. If both this and `env` are `None`
-                (not just empty), then the launch action's arguments will be
-                inherited.
+                to the target when executed.
+
+                If both this and `env` are `None` (not just empty), then the
+                launch action's arguments will be inherited.
             build_configuration: Optional. The name of the Xcode configuration
-                to use for this action. If not set, then the configuration
-                determined by `xcodeproj.default_xcode_configuration` will be
-                used.
+                to use for this action.
+
+                If not set, then the configuration determined by
+                `xcodeproj.default_xcode_configuration` will be used.
             diagnostics: Optional. A value returned by
                 `xcode_schemes.diagnostics`.
             env: Optional. A `dict` of `string` values that will be set as
-                environment variables when the target is executed. If both this
-                and `args` are `None` (not just empty), then the launch action's
-                environment variables will be inherited.
+                environment variables when the target is executed.
+
+                If both this and `args` are `None` (not just empty), then the
+                launch action's environment variables will be inherited.
             expand_variables_based_on: Optional. One of the specified test
-                target labels. If no value is provided, one of the test targets
-                will be selected. If no expansion context is desired, use the
-                `string` value `none`.
+                target labels.
+
+                If no value is provided, one of the test targets will be
+                selected. If no expansion context is desired, use the `string`
+                value `none`.
             pre_actions: Optional. A `sequence` of `struct` values as created by
                 `xcode_schemes.pre_post_action`.
-            post_actions: Optional. A `sequence` of `struct` values as created by
-                `xcode_schemes.pre_post_action`.
+            post_actions: Optional. A `sequence` of `struct` values as created
+                by `xcode_schemes.pre_post_action`.
 
         Returns:
             A `struct` representing a test action.

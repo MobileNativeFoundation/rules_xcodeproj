@@ -82,16 +82,19 @@ def xcodeproj(
             `build:rules_xcodeproj` in your `.bazelrc` or `xcodeproj.bazelrc`
             file.
         associated_extra_files: Optional. A `dict` of files to be added to the
-            project. The key is a `string` value representing the label of the
-            target the files should be associated with, and the value is a
-            `list` of `File`s. These files won't be added to the project if the
-            target is unfocused.
+            project.
+
+            The key is a `string` value representing the label of the target the
+            files should be associated with, and the value is a `list` of
+            `File`s. These files won't be added to the project if the target is
+            unfocused.
         bazel_env: Optional. A `dict` of environment variables to set when
-            invoking `bazel_path`. This is useful for setting environment
-            variables that are required for Bazel actions to run successfully,
-            such as `JAVA_HOME` or `ANDROID_HOME`. It's also useful if
-            `bazel_path` itself (if it's a wrapper) needs certain environment
-            variables.
+            invoking `bazel_path`.
+
+            This is useful for setting environment variables that are required
+            for Bazel actions to run successfully, such as `JAVA_HOME` or
+            `ANDROID_HOME`. It's also useful if `bazel_path` itself (if it's a
+            wrapper) needs certain environment variables.
 
             The keys are the names of the environment variables, and the values
             are the values of the environment variables. If a value
