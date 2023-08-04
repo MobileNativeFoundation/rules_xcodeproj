@@ -11,7 +11,6 @@ def project_options(
 
     Args:
         development_region: Optional. The development region for the project.
-            Defaults to `"en"`.
         indent_width: Optional. The number of spaces to use for indentation.
         organization_name: Optional. Populates the `ORGANIZATIONNAME` attribute
             for the project.

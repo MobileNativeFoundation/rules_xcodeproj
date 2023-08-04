@@ -68,6 +68,12 @@ final class ConsolidationMapsArgumentsTests: XCTestCase {
             "arm64",
             "i386",
 
+            "--module-names",
+            "",
+            "tests",
+            "tests",
+            "generator",
+
             "--dependency-counts",
             "1",
             "3",
@@ -104,6 +110,7 @@ final class ConsolidationMapsArgumentsTests: XCTestCase {
                         platform: .iOSDevice,
                         osVersion: "12.0",
                         arch: "x86_64",
+                        moduleName: "",
                         dependencies: [
                             "//tools/generators/legacy:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
                         ]
@@ -116,6 +123,7 @@ final class ConsolidationMapsArgumentsTests: XCTestCase {
                         platform: .macOS,
                         osVersion: "16.0",
                         arch: "arm64",
+                        moduleName: "tests",
                         dependencies: [
                             "//tools/generators/legacy:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
                             "//tools/generators/lib/GeneratorCommon:GeneratorCommon macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
@@ -130,6 +138,7 @@ final class ConsolidationMapsArgumentsTests: XCTestCase {
                         platform: .watchOSDevice,
                         osVersion: "16.2.1",
                         arch: "arm64",
+                        moduleName: "tests",
                         dependencies: [
                             "//tools/generators/legacy:generator.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-2",
                             "//tools/generators/lib/GeneratorCommon:GeneratorCommon macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-2",
@@ -152,6 +161,7 @@ final class ConsolidationMapsArgumentsTests: XCTestCase {
                         platform: .tvOSSimulator,
                         osVersion: "9.1",
                         arch: "i386",
+                        moduleName: "generator",
                         dependencies: [
                             "//tools/generators/lib/GeneratorCommon:GeneratorCommon macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
                             "@com_github_apple_swift_collections//:OrderedCollections macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",

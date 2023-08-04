@@ -364,10 +364,16 @@ def process_top_level_target(
         avoid_compilation_providers = avoid_compilation_providers,
     )
 
+    module_name_attribute, product_module_name = get_product_module_name(
+        ctx = ctx,
+        target = target,
+    )
+
     product = process_product(
         ctx = ctx,
         target = target,
         product_name = props.product_name,
+        product_module_name = module_name_attribute,
         product_type = props.product_type,
         bundle_file = props.bundle_file,
         bundle_path = props.bundle_path,
@@ -477,7 +483,7 @@ def process_top_level_target(
     set_if_true(
         build_settings,
         "PRODUCT_MODULE_NAME",
-        get_product_module_name(ctx = ctx, target = target),
+        product_module_name,
     )
 
     codesignopts_attr_name = automatic_target_info.codesignopts

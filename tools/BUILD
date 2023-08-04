@@ -195,6 +195,11 @@ _SCHEMES = [
                 "x86_64",
                 "x86_64",
                 "x86_64",
+                # moduleNames
+                "--module-names",
+                "''",
+                "tests",
+                "generator",
                 # dependencyCounts
                 "--dependency-counts",
                 "1",

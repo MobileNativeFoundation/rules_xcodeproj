@@ -712,6 +712,7 @@ extension Target {
         platform: Platform = .iOSSimulator,
         osVersion: SemanticVersion = "12.0",
         arch: String = "arm64",
+        moduleName: String = "",
         dependencies: [TargetID] = []
     ) -> Self {
         return Self(
@@ -722,6 +723,7 @@ extension Target {
             platform: platform,
             osVersion: osVersion,
             arch: arch,
+            moduleName: moduleName,
             dependencies: dependencies
         )
     }

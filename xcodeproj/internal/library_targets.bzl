@@ -54,10 +54,14 @@ def process_library_target(
     build_settings = {}
 
     product_name = ctx.rule.attr.name
+    module_name_attribute, product_module_name = get_product_module_name(
+        ctx = ctx,
+        target = target,
+    )
     set_if_true(
         build_settings,
         "PRODUCT_MODULE_NAME",
-        get_product_module_name(ctx = ctx, target = target),
+        product_module_name,
     )
 
     dependencies, transitive_dependencies = process_dependencies(
@@ -110,6 +114,7 @@ def process_library_target(
         ctx = ctx,
         target = target,
         product_name = product_name,
+        product_module_name = module_name_attribute,
         product_type = "com.apple.product-type.library.static",
         linker_inputs = linker_inputs,
     )

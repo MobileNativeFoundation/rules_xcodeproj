@@ -71,35 +71,46 @@ def xcodeproj(
         name: A unique name for this target.
         adjust_schemes_for_swiftui_previews: Optional. Whether to adjust schemes
             in BwB mode to explicitly include transitive dependencies that are
-            able to run SwiftUI Previews. For example, this changes a scheme
-            for an single application target to also include any app clip, app
-            extension, framework, or watchOS app dependencies. Defaults to
-            `True`.
+            able to run SwiftUI Previews.
+
+            For example, this changes a scheme for an single application target
+            to also include any app clip, app extension, framework, or watchOS
+            app dependencies.
         archived_bundles_allowed: This argument is deprecated and is now a
             no-op. It will be removed in a future release. Adjust the setting of
             `--define=apple.experimental.tree_artifact_outputs` on
             `build:rules_xcodeproj` in your `.bazelrc` or `xcodeproj.bazelrc`
             file.
         associated_extra_files: Optional. A `dict` of files to be added to the
-            project. The key is a `string` value representing the label of the
-            target the files should be associated with, and the value is a
-            `list` of `File`s. These files won't be added to the project if the
-            target is unfocused.
+            project.
+
+            The key is a `string` value representing the label of the target the
+            files should be associated with, and the value is a `list` of
+            `File`s. These files won't be added to the project if the target is
+            unfocused.
         bazel_env: Optional. A `dict` of environment variables to set when
-            invoking `bazel_path`. This is useful for setting environment
-            variables that are required for Bazel actions to run successfully,
-            such as `JAVA_HOME` or `ANDROID_HOME`. It's also useful if
-            `bazel_path` itself (if it's a wrapper) needs certain environment
-            variables. The keys are the names of the environment variables, and
-            the values are the values of the environment variables. If a value
+            invoking `bazel_path`.
+
+            This is useful for setting environment variables that are required
+            for Bazel actions to run successfully, such as `JAVA_HOME` or
+            `ANDROID_HOME`. It's also useful if `bazel_path` itself (if it's a
+            wrapper) needs certain environment variables.
+
+            The keys are the names of the environment variables, and the values
+            are the values of the environment variables. If a value
             is `None`, the environment variable will be picked up from the
-            current environment. If project generation succeeds, but building
-            inside of Xcode fails because of missing environment variables, you
-            probably have to set them here. If `PATH` is not specified, it will
-            default to `/bin:/usr/bin`, so you don't have to specify it unless
-            you want to user a different value
-        bazel_path: Optional. The path the `bazel` binary or wrapper script. If
-            the path is relative it will be resolved using the `PATH`
+            current environment.
+
+            If project generation succeeds, but building inside of Xcode fails
+            because of missing environment variables, you probably have to set
+            them here.
+
+            If `PATH` is not specified, it will default to `/bin:/usr/bin`, so
+            you don't have to specify it unless you want to user a different
+            value.
+        bazel_path: Optional. The path the `bazel` binary or wrapper script.
+
+            If the path is relative it will be resolved using the `PATH`
             environment variable that is set when generating the project. If you
             want to specify a path to a workspace-relative binary, you must
             prepend the path with `./` (e.g. `"./bazelw"`).
@@ -114,34 +125,45 @@ def xcodeproj(
             targets, inside of Xcode. The Xcode build system still unavoidably
             orchestrates some things at a high level.
         config: Optional. The Bazel config to use when generating the project or
-            invoking `bazel` inside of Xcode. This is the basename of multiple
-            configs. For example, if this is set to `"projectx_xcodeproj"`, then
-            the following configs will be available for you to adjust in your
-            `.bazelrc` file: `projectx_xcodeproj`,
-            `projectx_xcodeproj_generator`, `projectx_xcodeproj_indexbuild`, and
-            `projectx_xcodeproj_swiftuipreviews`.
+            invoking `bazel` inside of Xcode.
+
+            This is the basename of multiple configs. For example, if this is
+            set to `"projectx_xcodeproj"`, then the following configs will be
+            available for you to adjust in your `.bazelrc` file:
+
+            <ul>
+            <li>`projectx_xcodeproj`</li>
+            <li>`projectx_xcodeproj_generator`</li>
+            <li>`projectx_xcodeproj_indexbuild`</li>
+            <li>`projectx_xcodeproj_swiftuipreviews`</li>
+            </ul>
 
             See the [usage guide](usage.md#bazel-configs) for more information
             on adjusting Bazel configs.
         default_xcode_configuration: Optional. The name of the the Xcode
             configuration to use when building, if not overridden by custom
-            schemes. If not set, the first Xcode configuration alphabetically
-            will be used. Use
-            [`xcode_configurations`](#xcodeproj-xcode_configurations)
+            schemes.
+
+            If not set, the first Xcode configuration alphabetically will be
+            used. Use [`xcode_configurations`](#xcodeproj-xcode_configurations)
             to adjust Xcode configurations.
         extra_files: Optional. A `list` of extra `File`s to be added to the
             project.
         fail_for_invalid_extra_files_targets: Optional. Determines wether, when
             processing targets, invalid extra files without labels will fail or
-            just emit a warning. Defaults to `True`.
+            just emit a warning.
         focused_targets: Optional. A `list` of target labels as `string` values.
+
             If specified, only these targets will be included in the generated
             project; all other targets will be excluded, as if they were
             listed explicitly in the `unfocused_targets` argument. The labels
             must match transitive dependencies of the targets specified in the
             `top_level_targets` argument.
         install_directory: Optional. The directory where the generated project
-            will be written to. The path is relative to the workspace root.
+            will be written to.
+
+            The path is relative to the workspace root.
+
             Defaults to the directory that the `xcodeproj` target is declared
             in (e.g. if the `xcodeproj` target is declared in `//foo/bar:BUILD`
             then the default value is `"foo/bar"`). Use `""` to have the project
@@ -169,13 +191,18 @@ def xcodeproj(
             `top_level_targets` argument with the `"simulator"`
             `target_environment`, even if they aren't iOS targets.
         minimum_xcode_version: Optional. The minimum Xcode version that the
-            generated project supports. Newer Xcode versions can support newer
-            features, so setting this to the highest value you can will enable
-            the most features. The value is the dot separated version number
-            (e.g. "13.4.1", "14", "14.1"). Defaults to whichever version of
-            Xcode that Bazel uses during project generation.
-        post_build: The text of a script that will be run after the build. For
-            example: `./post-build.sh`, `"$SRCROOT/post-build.sh"`.
+            generated project supports.
+
+            Newer Xcode versions can support newer features, so setting this to
+            the highest value you can will enable the most features. The value
+            is the dot separated version number
+            (e.g. "13.4.1", "14", "14.1").
+
+            Defaults to whichever version of Xcode that Bazel uses during
+            project generation.
+        post_build: The text of a script that will be run after the build.
+
+            For example: `./post-build.sh`, `"$SRCROOT/post-build.sh"`.
 
             The script will be run in Bazel's execution root, so you probably
             want to change to the `$SRCROOT` directory in the script.
@@ -183,8 +210,9 @@ def xcodeproj(
             Currently this script will be run as part of Index Build. If you
             don't want that (which is probably the case), you should add a check
             to ensure `$ACTION == build`.
-        pre_build: The text of a script that will be run before the build. For
-            example: `./pre-build.sh`, `"$SRCROOT/pre-build.sh"`.
+        pre_build: The text of a script that will be run before the build.
+
+            For example: `./pre-build.sh`, `"$SRCROOT/pre-build.sh"`.
 
             The script will be run in Bazel's execution root, so you probably
             want to change to the `$SRCROOT` directory in the script.
@@ -192,32 +220,41 @@ def xcodeproj(
             Currently this script will be run as part of Index Build. If you
             don't want that (which is probably the case), you should add a check
             to ensure `$ACTION == build`.
-        project_name: Optional. The name to use for the `.xcodeproj` file. If
-            not specified, the value of the `name` argument is used.
+        project_name: Optional. The name to use for the `.xcodeproj` file.
+
+            If not specified, the value of the `name` argument is used.
         project_options: Optional. A value returned by `project_options`.
         scheme_autogeneration_mode: Optional. Specifies how Xcode schemes are
-            automatically generated.
+            automatically generated:
 
-            - `auto`: If no custom schemes are specified, via `schemes`, an
+            <ul>
+            <li>
+              `auto`: If no custom schemes are specified, via `schemes`, an
               Xcode scheme will be created for every buildable target. If custom
               schemes are provided, no autogenerated schemes will be created.
-
-            - `none`: No schemes are automatically generated.
-
-            - `all`: A scheme is generated for every buildable target even if
+            </li>
+            <li>
+              `none`: No schemes are automatically generated.
+            </li>
+            <li>
+              `all`: A scheme is generated for every buildable target even if
               custom schemes are provided.
+            </li>
+            </ul>
         schemes: Optional. A `list` of values returned by
-            `xcode_schemes.scheme`. Target labels listed in the schemes need to
-            be from the transitive dependencies of the targets specified in the
-            `top_level_targets` argument. This and the
-            `scheme_autogeneration_mode` argument together customize how
-            schemes for those targets are generated.
+            `xcode_schemes.scheme`.
+
+            Target labels listed in the schemes need to be from the transitive
+            dependencies of the targets specified in the `top_level_targets`
+            argument. This and the `scheme_autogeneration_mode` argument
+            together customize how schemes for those targets are generated.
         temporary_directory: This argument is deprecated and is now a no-op. It
             will be removed in a future release.
-        top_level_targets: A `list` of a list of top-level targets. Each target
-            can be specified as either a `Label` (or label-like `string`), a
-            value returned by `top_level_target`, or a value returned by
-            `top_level_targets`.
+        top_level_targets: A `list` of a list of top-level targets.
+
+            Each target can be specified as either a `Label` (or label-like
+            `string`), a value returned by `top_level_target`, or a value
+            returned by `top_level_targets`.
         tvos_device_cpus: Optional. The value to use for `--tvos_cpus` when
             building the transitive dependencies of the targets specified in the
             `top_level_targets` argument with the `"device"`
@@ -241,10 +278,12 @@ def xcodeproj(
             `top_level_targets` argument with the `"simulator"`
             `target_environment`, even if they aren't tvOS targets.
         unfocused_targets: Optional. A `list` of target labels as `string`
-            values. Any targets in the transitive dependencies of the targets
-            specified in the `top_level_targets` argument with a matching
-            label will be excluded from the generated project. This overrides
-            any targets specified in the `focused_targets` argument.
+            values.
+
+            Any targets in the transitive dependencies of the targets specified
+            in the `top_level_targets` argument with a matching label will be
+            excluded from the generated project. This overrides any targets
+            specified in the `focused_targets` argument.
         watchos_device_cpus: Optional. The value to use for `--watchos_cpus`
             when building the transitive dependencies of the targets specified
             in the `top_level_targets` argument with the `"device"`
@@ -268,8 +307,19 @@ def xcodeproj(
             `top_level_targets` argument with the `"simulator"`
             `target_environment`, even if they aren't watchOS targets.
         xcode_configurations: Optional. A `dict` mapping Xcode configuration
-            names to transition settings dictionaries. For example,
-            `{"Dev": {"//command_line_option:compilation_mode": "dbg"}, "AppStore": {"//command_line_option:compilation_mode": "opt"}}`,
+            names to transition settings dictionaries. For example:
+
+            ```starlark
+            {
+                "Dev": {
+                    "//command_line_option:compilation_mode": "dbg",
+                },
+                "AppStore": {
+                    "//command_line_option:compilation_mode": "opt",
+                },
+            }
+            ```
+
             would create the "Dev" and "AppStore" configurations, setting
             `--compilation_mode` to `dbg` and `opt` respectively.
 

@@ -257,6 +257,13 @@ Using VFS overlays with `build_mode = "xcode"` is unsupported.
         swift_args,
     )
 
+_CLANG_SEARCH_PATH_OPTS = {
+    "-F": None,
+    "-I": None,
+    "-iquote": None,
+    "-isystem": None,
+}
+
 def _process_swiftcopts(
         opts,
         *,
@@ -280,6 +287,7 @@ def _process_swiftcopts(
 
     has_debug_info = False
     next_previous_opt = None
+    next_previous_clang_opt = None
     next_previous_frontend_opt = None
     project_set_opts = []
     for opt in opts:
@@ -296,11 +304,23 @@ def _process_swiftcopts(
         else:
             next_previous_frontend_opt = None
 
-        if opt == "-Xcc" or previous_opt == "-Xcc":
+        if opt == "-Xcc":
+            project_set_opts.append(opt)
             continue
 
+        is_clang_opt = previous_opt == "-Xcc"
+
+        previous_clang_opt = next_previous_clang_opt
+        if is_clang_opt:
+            next_previous_clang_opt = opt
+        else:
+            next_previous_clang_opt = None
+
         if opt == "-g":
-            has_debug_info = True
+            if is_clang_opt:
+                project_set_opts.pop()
+            else:
+                has_debug_info = True
             continue
 
         compilation_mode = _SWIFT_COMPILATION_MODE_OPTS.get(opt, "")
@@ -323,42 +343,109 @@ under {}""".format(opt, package_bin_dir))
             build_settings["SWIFT_OBJC_INTERFACE_HEADER_NAME"] = header_name
             continue
 
-        if previous_opt == "-I":
-            path = opt
-            if not is_bwx or not is_relative_path(path):
-                # We include non-relative paths in BwX mode to account for
-                # `/Applications/Xcode.app/Contents/Developer/Platforms/PLATFORM/Developer/usr/lib`
+        if is_clang_opt:
+            if opt.startswith("-fmodule-map-file="):
+                path = opt[18:]
+                absolute_opt = "-fmodule-map-file=" + build_setting_path(path)
+                project_set_opts.append(absolute_opt)
+                continue
+
+            if (previous_clang_opt in _CLANG_SEARCH_PATH_OPTS):
                 absolute_opt = build_setting_path(opt)
-                project_set_opts.append(previous_opt)
                 project_set_opts.append(absolute_opt)
                 continue
 
-        if opt.startswith("-I"):
-            path = opt[2:]
-            if not is_bwx or not is_relative_path(path):
-                # We include non-relative paths in BwX mode to account for
-                # `/Applications/Xcode.app/Contents/Developer/Platforms/PLATFORM/Developer/usr/lib`
-                if not path:
-                    # We will add the opt back above
+            handled_seach_opt = False
+            for search_opt in _CLANG_SEARCH_PATH_OPTS:
+                if opt.startswith(search_opt):
+                    path = opt[len(search_opt):]
+                    if not path:
+                        absolute_opt = opt
+                    else:
+                        project_set_opts.append(search_opt)
+                        project_set_opts.append("-Xcc")
+                        absolute_opt = build_setting_path(path)
+                    project_set_opts.append(absolute_opt)
+                    handled_seach_opt = True
+                    break
+            if handled_seach_opt:
+                continue
+
+            # -ivfsoverlay doesn't apply `-working_directory=`, so we need to
+            # prefix it ourselves
+            if previous_clang_opt == "-ivfsoverlay":
+                if is_bwx:
+                    fail("""\
+Using VFS overlays with `build_mode = "xcode"` is unsupported.
+""")
+                else:
+                    path = opt
+                    if is_relative_path(path):
+                        absolute_opt = "$(PROJECT_DIR)/" + path
+                    else:
+                        absolute_opt = opt
+                    project_set_opts.append(absolute_opt)
+                continue
+
+            if opt.startswith("-ivfsoverlay"):
+                if is_bwx:
+                    fail("""\
+Using VFS overlays with `build_mode = "xcode"` is unsupported.
+""")
+                else:
+                    path = opt[12:]
+                    if path.startswith("="):
+                        path = path[1:]
+                    if not path:
+                        absolute_opt = opt
+                    elif is_relative_path(path):
+                        absolute_opt = (
+                            "-ivfsoverlay$(PROJECT_DIR)/" + path
+                        )
+                    else:
+                        absolute_opt = opt
+                    project_set_opts.append(absolute_opt)
+                continue
+
+            project_set_opts.append(opt)
+            continue
+        else:
+            if previous_opt == "-I":
+                path = opt
+                if not is_bwx or not is_relative_path(path):
+                    # We include non-relative paths in BwX mode to account for
+                    # `/Applications/Xcode.app/Contents/Developer/Platforms/PLATFORM/Developer/usr/lib`
+                    absolute_opt = build_setting_path(opt)
+                    project_set_opts.append(previous_opt)
+                    project_set_opts.append(absolute_opt)
                     continue
-                absolute_opt = "-I" + build_setting_path(path)
+
+            if opt.startswith("-I"):
+                path = opt[2:]
+                if not is_bwx or not is_relative_path(path):
+                    # We include non-relative paths in BwX mode to account for
+                    # `/Applications/Xcode.app/Contents/Developer/Platforms/PLATFORM/Developer/usr/lib`
+                    if not path:
+                        # We will add the opt back above
+                        continue
+                    absolute_opt = "-I" + build_setting_path(path)
+                    project_set_opts.append(absolute_opt)
+                    continue
+
+            if previous_opt == "-F":
+                path = opt
+                absolute_opt = build_setting_path(opt)
                 project_set_opts.append(absolute_opt)
                 continue
 
-        if previous_opt == "-F":
-            path = opt
-            absolute_opt = build_setting_path(opt)
-            project_set_opts.append(absolute_opt)
-            continue
-
-        if opt.startswith("-F"):
-            path = opt[2:]
-            if not path:
-                absolute_opt = opt
-            else:
-                absolute_opt = "-F" + build_setting_path(path)
-            project_set_opts.append(absolute_opt)
-            continue
+            if opt.startswith("-F"):
+                path = opt[2:]
+                if not path:
+                    absolute_opt = opt
+                else:
+                    absolute_opt = "-F" + build_setting_path(path)
+                project_set_opts.append(absolute_opt)
+                continue
 
         if previous_opt == "-Xfrontend":
             previous_opt_to_check = previous_frontend_opt
