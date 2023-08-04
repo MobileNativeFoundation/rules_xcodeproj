@@ -166,10 +166,6 @@ def process_compiler_opts_test_suite(name):
             "-gline-tables-only",
             "-Xwrapped-swift=-debug-prefix-pwd-is-dot",
             "-Xwrapped-swift=-ephemeral-module-cache",
-            "-Xcc",
-            "-iquote.",
-            "-Xcc",
-            "-iquotebazel-out/ios-sim_arm64-min15.0-applebin_ios-ios_sim_arm64-fastbuild-ST-4e6c2a19403f/bin",
             "-Xfrontend",
             "-color-diagnostics",
             "-enable-batch-mode",
@@ -177,20 +173,6 @@ def process_compiler_opts_test_suite(name):
             "-module-name",
             "ExampleUITests",
             "-parse-as-library",
-            "-Xcc",
-            "-fmodule-map-file=/abs/path",
-            "-Xcc",
-            "-I/abs/path",
-            "-Xcc",
-            "-iquote/abs/path",
-            "-Xcc",
-            "-isystem/abs/path",
-            "-Xcc",
-            "-O0",
-            "-Xcc",
-            "-DDEBUG=1",
-            "-Xcc",
-            "-Fsomewhere",
             "examples/xcode_like/ExampleUITests/ExampleUITests.swift",
             "examples/xcode_like/ExampleUITests/ExampleUITestsLaunchTests.swift",
         ],
@@ -221,10 +203,6 @@ def process_compiler_opts_test_suite(name):
             "-gline-tables-only",
             "-Xwrapped-swift=-debug-prefix-pwd-is-dot",
             "-Xwrapped-swift=-ephemeral-module-cache",
-            "-Xcc",
-            "-iquote.",
-            "-Xcc",
-            "-iquotebazel-out/ios-sim_arm64-min15.0-applebin_ios-ios_sim_arm64-fastbuild-ST-4e6c2a19403f/bin",
             "-Xfrontend",
             "-color-diagnostics",
             "-enable-batch-mode",
@@ -232,20 +210,6 @@ def process_compiler_opts_test_suite(name):
             "-module-name",
             "ExampleUITests",
             "-parse-as-library",
-            "-Xcc",
-            "-fmodule-map-file=/abs/path",
-            "-Xcc",
-            "-I/abs/path",
-            "-Xcc",
-            "-iquote/abs/path",
-            "-Xcc",
-            "-isystem/abs/path",
-            "-Xcc",
-            "-O0",
-            "-Xcc",
-            "-DDEBUG=1",
-            "-Xcc",
-            "-Fsomewhere",
             "examples/xcode_like/ExampleUITests/ExampleUITests.swift",
             "examples/xcode_like/ExampleUITests/ExampleUITestsLaunchTests.swift",
         ],
@@ -342,10 +306,6 @@ def process_compiler_opts_test_suite(name):
             "reject-me.swift",
             "-target",
             "ios",
-            "-Xcc",
-            "-weird",
-            "-Xcc",
-            "-a=bazel-out/hi",
             "-Xwrapped-swift",
             "-passthrough",
         ],
@@ -433,17 +393,220 @@ def process_compiler_opts_test_suite(name):
             "reject-me.swift",
             "-target",
             "ios",
+            "-Xwrapped-swift",
+            "-passthrough",
+        ],
+    )
+
+    # -Xcc
+
+    _add_test(
+        name = "{}_swift_xcc".format(name),
+        build_mode = "bazel",
+        swiftcopts = [
+            # -fmodule-map-file
             "-Xcc",
-            "-weird",
+            "-fmodule-map-file=/absolute/path",
             "-Xcc",
-            "-a=bazel-out/hi",
+            "-fmodule-map-file=relative/path",
+            "-Xcc",
+            "-fmodule-map-file=bazel-out/relative/path",
+            "-Xcc",
+            "-fmodule-map-file=external/relative/path",
+
+            # -iquote
+            "-Xcc",
+            "-iquote/absolute/path",
+            "-Xcc",
+            "-iquote",
+            "-Xcc",
+            "/absolute/path",
+            "-Xcc",
+            "-iquote",
+            "-Xcc",
+            "/absolute/path",
+            "-Xcc",
+            "-iquoterelative/path",
             "-Xcc",
             "-iquote",
             "-Xcc",
             "relative/path",
-            "-Xwrapped-swift",
-            "-passthrough",
+            "-Xcc",
+            "-iquotebazel-out/relative/path",
+            "-Xcc",
+            "-iquote",
+            "-Xcc",
+            "bazel-out/relative/path",
+            "-Xcc",
+            "-iquoteexternal/relative/path",
+            "-Xcc",
+            "-iquote",
+            "-Xcc",
+            "external/relative/path",
+            "-Xcc",
+            "-iquote.",
+            "-Xcc",
+            "-iquote",
+            "-Xcc",
+            ".",
+
+            # -I
+            "-Xcc",
+            "-I/absolute/path",
+            "-Xcc",
+            "-I",
+            "-Xcc",
+            "/absolute/path",
+            "-Xcc",
+            "-Irelative/path",
+            "-Xcc",
+            "-I",
+            "-Xcc",
+            "relative/path",
+            "-Xcc",
+            "-Ibazel-out/relative/path",
+            "-Xcc",
+            "-I",
+            "-Xcc",
+            "bazel-out/relative/path",
+            "-Xcc",
+            "-Iexternal/relative/path",
+            "-Xcc",
+            "-I",
+            "-Xcc",
+            "external/relative/path",
+            "-Xcc",
+            "-I.",
+            "-Xcc",
+            "-I",
+            "-Xcc",
+            ".",
+
+            # -isystem
+            "-Xcc",
+            "-isystem/absolute/path",
+            "-Xcc",
+            "-isystem",
+            "-Xcc",
+            "/absolute/path",
+            "-Xcc",
+            "-isystemrelative/path",
+            "-Xcc",
+            "-isystem",
+            "-Xcc",
+            "relative/path",
+            "-Xcc",
+            "-isystembazel-out/relative/path",
+            "-Xcc",
+            "-isystem",
+            "-Xcc",
+            "bazel-out/relative/path",
+            "-Xcc",
+            "-isystemexternal/relative/path",
+            "-Xcc",
+            "-isystem",
+            "-Xcc",
+            "external/relative/path",
+            "-Xcc",
+            "-isystem.",
+            "-Xcc",
+            "-isystem",
+            "-Xcc",
+            ".",
+
+            # -ivfsoverlay
+            "-Xcc",
+            "-ivfsoverlay",
+            "-Xcc",
+            "/Some/Path.yaml",
+            "-Xcc",
+            "-ivfsoverlay",
+            "-Xcc",
+            "relative/Path.yaml",
+            "-Xcc",
+            "-ivfsoverlay",
+            "-Xcc",
+            "bazel-out/relative/Path.yaml",
+            "-Xcc",
+            "-ivfsoverlay",
+            "-Xcc",
+            "external/relative/Path.yaml",
+            "-Xcc",
+            "-ivfsoverlay/Some/Path.yaml",
+            "-Xcc",
+            "-ivfsoverlayrelative/Path.yaml",
+            "-Xcc",
+            "-ivfsoverlaybazel-out/relative/Path.yaml",
+            "-Xcc",
+            "-ivfsoverlayexternal/relative/Path.yaml",
+            "-Xcc",
+            "-ivfsoverlay=/Some/Path.yaml",
+            "-Xcc",
+            "-ivfsoverlay=relative/Path.yaml",
+            "-Xcc",
+            "-ivfsoverlay=bazel-out/relative/Path.yaml",
+            "-Xcc",
+            "-ivfsoverlay=external/relative/Path.yaml",
+
+            # Other
+            "-Xcc",
+            "-O0",
+            "-Xcc",
+            "-DDEBUG=1",
         ],
+        expected_build_settings = {
+            "OTHER_SWIFT_FLAGS": """\
+-Xcc -fmodule-map-file=/absolute/path \
+-Xcc -fmodule-map-file=$(SRCROOT)/relative/path \
+-Xcc -fmodule-map-file=$(BAZEL_OUT)/relative/path \
+-Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/relative/path \
+-Xcc -iquote/absolute/path \
+-Xcc -iquote -Xcc /absolute/path \
+-Xcc -iquote -Xcc /absolute/path \
+-Xcc -iquote$(SRCROOT)/relative/path \
+-Xcc -iquote -Xcc $(SRCROOT)/relative/path \
+-Xcc -iquote$(BAZEL_OUT)/relative/path \
+-Xcc -iquote -Xcc $(BAZEL_OUT)/relative/path \
+-Xcc -iquote$(BAZEL_EXTERNAL)/relative/path \
+-Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/relative/path \
+-Xcc -iquote$(PROJECT_DIR) \
+-Xcc -iquote -Xcc $(PROJECT_DIR) \
+-Xcc -I/absolute/path \
+-Xcc -I -Xcc /absolute/path \
+-Xcc -I$(SRCROOT)/relative/path \
+-Xcc -I -Xcc $(SRCROOT)/relative/path \
+-Xcc -I$(BAZEL_OUT)/relative/path \
+-Xcc -I -Xcc $(BAZEL_OUT)/relative/path \
+-Xcc -I$(BAZEL_EXTERNAL)/relative/path \
+-Xcc -I -Xcc $(BAZEL_EXTERNAL)/relative/path \
+-Xcc -I$(PROJECT_DIR) \
+-Xcc -I -Xcc $(PROJECT_DIR) \
+-Xcc -isystem/absolute/path \
+-Xcc -isystem -Xcc /absolute/path \
+-Xcc -isystem$(SRCROOT)/relative/path \
+-Xcc -isystem -Xcc $(SRCROOT)/relative/path \
+-Xcc -isystem$(BAZEL_OUT)/relative/path \
+-Xcc -isystem -Xcc $(BAZEL_OUT)/relative/path \
+-Xcc -isystem$(BAZEL_EXTERNAL)/relative/path \
+-Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/relative/path \
+-Xcc -isystem$(PROJECT_DIR) \
+-Xcc -isystem -Xcc $(PROJECT_DIR) \
+-Xcc -ivfsoverlay -Xcc /Some/Path.yaml \
+-Xcc -ivfsoverlay -Xcc $(PROJECT_DIR)/relative/Path.yaml \
+-Xcc -ivfsoverlay -Xcc $(PROJECT_DIR)/bazel-out/relative/Path.yaml \
+-Xcc -ivfsoverlay -Xcc $(PROJECT_DIR)/external/relative/Path.yaml \
+-Xcc -ivfsoverlay/Some/Path.yaml \
+-Xcc -ivfsoverlay$(PROJECT_DIR)/relative/Path.yaml \
+-Xcc -ivfsoverlay$(PROJECT_DIR)/bazel-out/relative/Path.yaml \
+-Xcc -ivfsoverlay$(PROJECT_DIR)/external/relative/Path.yaml \
+-Xcc -ivfsoverlay=/Some/Path.yaml \
+-Xcc -ivfsoverlay$(PROJECT_DIR)/relative/Path.yaml \
+-Xcc -ivfsoverlay$(PROJECT_DIR)/bazel-out/relative/Path.yaml \
+-Xcc -ivfsoverlay$(PROJECT_DIR)/external/relative/Path.yaml \
+-Xcc -O0 \
+-Xcc -DDEBUG=1\
+""",
+        },
     )
 
     # -I
@@ -1045,14 +1208,6 @@ $(PROJECT_DIR)\
             "-isystem",
             "s3/s4",
             "-isystems3/s4/s5",
-        ],
-        swiftcopts = [
-            "-Xcc",
-            "-Ic/d/e",
-            "-Xcc",
-            "-iquote4/5",
-            "-Xcc",
-            "-isystems5/s6",
         ],
     )
 
