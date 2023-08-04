@@ -177,7 +177,7 @@ struct ProductTypeComponents {
     /// `ConsolidatedTarget`s passed to `add(target:consolidatedKey:)`.
     private var consolidatedOSes: Set<Set<Platform.OS>> = []
 
-    /// Collects the unique set of Xconde configuration names among
+    /// Collects the unique set of Xcode configuration names among
     /// `ConsolidatedTarget`s passed to `add(target:consolidatedKey:)`.
     private var consolidatedXcodeConfigurations: Set<Set<String>> = []
 
