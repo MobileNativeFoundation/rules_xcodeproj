@@ -137,13 +137,11 @@ final class DisambiguateTargetsTests: XCTestCase {
             .mock(
                 id: "A 1",
                 label: "//:A",
-                xcodeConfigurations: ["Debug"], // No effect
                 productType: .staticLibrary
             ),
             .mock(
                 id: "A 2",
                 label: "//:A",
-                xcodeConfigurations: ["Release"], // No effect,
                 productType: .application
             ),
             .mock(
@@ -286,13 +284,11 @@ final class DisambiguateTargetsTests: XCTestCase {
             .mock(
                 id: "A-AppleSilicon",
                 label: "//:A",
-                xcodeConfigurations: ["Debug"], // No effect
                 arch: "arm64"
             ),
             .mock(
                 id: "A-Intel",
                 label: "//:A",
-                xcodeConfigurations: ["Release"], // No effect
                 arch: "x86_64"
             ),
             .mock(
@@ -331,14 +327,12 @@ final class DisambiguateTargetsTests: XCTestCase {
             .mock(
                 id: "A-15.1",
                 label: "//:A",
-                xcodeConfigurations: ["Debug"], // No effect
                 osVersion: "15.1",
                 arch: "arm64" // No effect
             ),
             .mock(
                 id: "A-13.2",
                 label: "//:A",
-                xcodeConfigurations: ["Release"], // No effect
                 osVersion: "13.2",
                 arch: "x86_64" // No effect
             ),
@@ -378,14 +372,12 @@ final class DisambiguateTargetsTests: XCTestCase {
             .mock(
                 id: "A-Device",
                 label: "//:A",
-                xcodeConfigurations: ["Debug"], // No effect
                 platform: .iOSDevice,
                 arch: "arm64" // No effect
             ),
             .mock(
                 id: "A-Simulator",
                 label: "//:A",
-                xcodeConfigurations: ["Release"], // No effect
                 platform: .iOSSimulator,
                 arch: "x86_64" // No effect
             ),
@@ -491,7 +483,6 @@ final class DisambiguateTargetsTests: XCTestCase {
             .mock(
                 id: "A-iOS",
                 label: "//:A",
-                xcodeConfigurations: ["Debug"], // No effect
                 platform: .iOSDevice,
                 osVersion: "15.1", // No effect
                 arch: "arm64" // No effect
@@ -499,7 +490,6 @@ final class DisambiguateTargetsTests: XCTestCase {
             .mock(
                 id: "A-macOS",
                 label: "//:A",
-                xcodeConfigurations: ["Release"], // No effect
                 platform: .macOS,
                 osVersion: "12.0", // No effect
                 arch: "x86_64" // No effect
@@ -717,19 +707,16 @@ final class DisambiguateTargetsTests: XCTestCase {
             .mock(
                 id: "A-arm64 1",
                 label: "//:A",
-                xcodeConfigurations: ["Debug", "AppStore"], // No effect
                 arch: "arm64"
             ),
             .mock(
                 id: "A-arm64 2",
                 label: "//:A",
-                xcodeConfigurations: ["Debug", "AppStore"], // No effect
                 arch: "arm64"
             ),
             .mock(
                 id: "A-x86_64 2",
                 label: "//:A",
-                xcodeConfigurations: ["Debug", "AppStore"], // No effect
                 arch: "x86_64"
             ),
             .mock(
@@ -771,19 +758,19 @@ A (arm64) (\(ProductTypeComponents.prettyConfigurations(["2"])))
             .mock(
                 id: "A-arm64 1",
                 label: "//:A",
-                xcodeConfigurations: ["Debug", "AppStore"], // No effect
+                xcodeConfigurations: ["Debug", "AppStore"],
                 arch: "arm64"
             ),
             .mock(
                 id: "A-arm64 2",
                 label: "//:A",
-                xcodeConfigurations: ["Debug", "AppStore"], // No effect
+                xcodeConfigurations: ["Debug", "AppStore"],
                 arch: "arm64"
             ),
             .mock(
                 id: "A-x86_64 2",
                 label: "//:A",
-                xcodeConfigurations: ["Profile"], // No effect
+                xcodeConfigurations: ["Profile"],
                 arch: "x86_64"
             ),
             .mock(
@@ -795,12 +782,12 @@ A (arm64) (\(ProductTypeComponents.prettyConfigurations(["2"])))
 
         let expectedTargetNames: [ConsolidatedTarget.Key: String] = [
             ["A-arm64 1"]: """
-A (arm64) (\(ProductTypeComponents.prettyConfigurations(["1"])))
+A (arm64) (AppStore, Debug) (\(ProductTypeComponents.prettyConfigurations(["1"])))
 """,
             ["A-arm64 2"]: """
-A (arm64) (\(ProductTypeComponents.prettyConfigurations(["2"])))
+A (arm64) (AppStore, Debug) (\(ProductTypeComponents.prettyConfigurations(["2"])))
 """,
-            ["A-x86_64 2"]: "A (x86_64)",
+            ["A-x86_64 2"]: "A (x86_64) (Profile)",
             ["B"]: "B",
         ]
 
@@ -1527,10 +1514,10 @@ A (iOS) (\(ProductTypeComponents.prettyConfigurations(["2"])))
 
         let expectedTargetNames: [ConsolidatedTarget.Key: String] = [
             ["arm64-Debug 1", "x86_64-Release 2"]: """
-A (arm64, x86_64) (Debug, Release) (\(ProductTypeComponents.prettyConfigurations(["1", "2"])))
+A (\(ProductTypeComponents.prettyConfigurations(["1", "2"])))
 """,
             ["x86_64-Debug 3", "arm64-Release 4"]: """
-A (arm64, x86_64) (Debug, Release) (\(ProductTypeComponents.prettyConfigurations(["3", "4"])))
+A (\(ProductTypeComponents.prettyConfigurations(["3", "4"])))
 """,
         ]
 
