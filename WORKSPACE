@@ -66,16 +66,35 @@ buildifier_prebuilt_register_toolchains()
 
 http_archive(
     name = "io_bazel_stardoc",
-    sha256 = "ec57139e466faae563f2fc39609da4948a479bb51b6d67aedd7d9b1b8059c433",
+    sha256 = "4441a965c97f8364c8eb901f951ca9a15c6e2c29ee0f10b56bf8b563463752ea",
     urls = [
-        "https://mirror.bazel.build/github.com/bazelbuild/stardoc/releases/download/0.5.4/stardoc-0.5.4.tar.gz",
-        "https://github.com/bazelbuild/stardoc/releases/download/0.5.4/stardoc-0.5.4.tar.gz",
+        "https://mirror.bazel.build/github.com/bazelbuild/stardoc/releases/download/0.6.0/stardoc-0.6.0.tar.gz",
+        "https://github.com/bazelbuild/stardoc/releases/download/0.6.0/stardoc-0.6.0.tar.gz",
     ],
 )
 
 load("@io_bazel_stardoc//:setup.bzl", "stardoc_repositories")
 
 stardoc_repositories()
+
+load("@rules_jvm_external//:repositories.bzl", "rules_jvm_external_deps")
+
+rules_jvm_external_deps()
+
+load("@rules_jvm_external//:setup.bzl", "rules_jvm_external_setup")
+
+rules_jvm_external_setup()
+
+load("@io_bazel_stardoc//:deps.bzl", "stardoc_external_deps")
+
+stardoc_external_deps()
+
+load(
+    "@stardoc_maven//:defs.bzl",
+    stardoc_pinned_maven_install = "pinned_maven_install",
+)
+
+stardoc_pinned_maven_install()
 
 # rules_pkg
 
