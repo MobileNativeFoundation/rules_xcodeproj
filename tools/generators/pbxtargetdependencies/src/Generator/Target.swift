@@ -9,5 +9,6 @@ struct Target: Equatable {
     let platform: Platform
     let osVersion: SemanticVersion
     let arch: String
+    let moduleName: String
     let dependencies: [TargetID]
 }

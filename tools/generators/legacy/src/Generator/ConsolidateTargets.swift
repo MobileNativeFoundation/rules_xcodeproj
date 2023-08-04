@@ -289,6 +289,7 @@ struct ConsolidatedTarget: Equatable {
 
     let name: String
     let label: BazelLabel
+    let moduleName: String
     let product: ConsolidatedTargetProduct
     let isSwift: Bool
     let inputs: ConsolidatedTargetInputs
@@ -414,6 +415,15 @@ extension ConsolidatedTarget {
                     rhsTarget.buildSettingConditional
             }
             .map { $1 }
+
+        if let moduleName = aTarget.product.moduleName, sortedTargets
+            .first(where: { $0.product.moduleName != moduleName }) == nil
+        {
+            self.moduleName = moduleName
+        } else {
+            self.moduleName = name
+        }
+
         inputs = Self.consolidateInputs(targets: sortedTargets)
         linkerInputs = Self.consolidateLinkerInputs(targets: sortedTargets)
         hasLinkParams = aTarget.linkParams != nil

@@ -70,6 +70,7 @@ def process_product(
         ctx,
         target,
         product_name,
+        product_module_name,
         product_type,
         is_resource_bundle = False,
         bundle_file = None,
@@ -84,6 +85,8 @@ def process_product(
         ctx: The aspect context.
         target: The `Target` the product information is gathered from.
         product_name: The name of the product (i.e. the "PRODUCT_NAME" build
+            setting).
+        product_module_name: The module name of the product (i.e. the "PRODUCT_MODULE_NAME" build
             setting).
         product_type: A PBXProductType string. See
             https://github.com/tuist/XcodeProj/blob/main/Sources/XcodeProj/Objects/Targets/PBXProductType.swift
@@ -159,6 +162,7 @@ def process_product(
         executable = executable,
         executable_name = executable_name,
         name = product_name,
+        module_name = product_module_name,
         framework_files = framework_files,
         file = file,
         path = path,

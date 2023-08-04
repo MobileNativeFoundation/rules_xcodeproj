@@ -32,6 +32,7 @@ details):
 - Option `--platforms <platform> ...`
 - Option `--os-versions <os-version> ...`
 - Option `--archs <arch> ...`
+- Option `--module-names <module-name> ...`
 - Option `--dependency-counts <dependency-count> ...`
 - Option `--dependencies <dependency> ...`
 - Flag `--colorize`
@@ -90,6 +91,10 @@ $ pbxtargetdependencies \
     x86_64 \
     x86_64 \
     x86_64 \
+    --module-names \
+    '' \
+    'tests' \
+    'generator' \
     --dependency-counts \
     1 \
     1 \

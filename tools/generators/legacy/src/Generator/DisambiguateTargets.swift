@@ -28,23 +28,42 @@ extension Generator {
         let targets = consolidatedTargets.targets
 
         // Gather all information needed to distinguish the targets
+        var labelsByModuleNameAndProductType:
+            [ModuleNameAndProductType: Set<String>] = [:]
         var labelsByNameAndProductType:
             [NameAndProductType: Set<String>] = [:]
         var names: [String: TargetComponents] = [:]
         var labels: [String: TargetComponents] = [:]
         for target in targets.values {
+            let normalizedLabel = target.normalizedLabel
+            labelsByModuleNameAndProductType[.init(target: target), default: []]
+                .insert(normalizedLabel)
             labelsByNameAndProductType[.init(target: target), default: []]
-                .insert(target.normalizedLabel)
+                .insert(normalizedLabel)
         }
         for (key, target) in targets {
+            let moduleNameAndProductType =
+                ModuleNameAndProductType(target: target)
+            guard labelsByModuleNameAndProductType[moduleNameAndProductType]!
+                .count != 1
+            else {
+                names[
+                    moduleNameAndProductType.normalizedModuleName,
+                    default: .init()
+                ].add(target: target, key: key)
+                continue
+            }
+
             let nameAndProductType = NameAndProductType(target: target)
-            if labelsByNameAndProductType[nameAndProductType]!.count == 1 {
+            guard labelsByNameAndProductType[nameAndProductType]!.count != 1
+            else {
                 names[nameAndProductType.normalizedName, default: .init()]
                     .add(target: target, key: key)
-            } else {
-                labels[target.normalizedLabel, default: .init()]
-                    .add(target: target, key: key)
+                continue
             }
+
+            labels[target.normalizedLabel, default: .init()]
+                .add(target: target, key: key)
         }
 
         // And then distinguish them
@@ -52,24 +71,44 @@ extension Generator {
             ConsolidatedTarget.Key: DisambiguatedTarget,
         ](minimumCapacity: targets.count)
         for (key, target) in targets {
-            let nameAndProductType = NameAndProductType(target: target)
+            let moduleNameAndProductType =
+                ModuleNameAndProductType(target: target)
+            guard labelsByModuleNameAndProductType[moduleNameAndProductType]!
+                .count != 1
+            else {
+                uniqueValues[key] = DisambiguatedTarget(
+                    name: names[moduleNameAndProductType.normalizedModuleName]!
+                        .uniqueName(
+                            for: target,
+                            key: key,
+                            baseName: target.moduleName
+                        ),
+                    target: target
+                )
+                continue
+            }
 
-            let name: String
-            let componentKey: String
-            let components: [String: TargetComponents]
-            if labelsByNameAndProductType[nameAndProductType]!.count == 1 {
-                name = target.name
-                componentKey = nameAndProductType.normalizedName
-                components = names
-            } else {
-                name = "\(target.label)"
-                componentKey = target.normalizedLabel
-                components = labels
+            let nameAndProductType = NameAndProductType(target: target)
+            guard
+                labelsByNameAndProductType[nameAndProductType]!.count != 1
+            else {
+                uniqueValues[key] = DisambiguatedTarget(
+                    name: names[nameAndProductType.normalizedName]!.uniqueName(
+                        for: target,
+                        key: key,
+                        baseName: target.name
+                    ),
+                    target: target
+                )
+                continue
             }
 
             uniqueValues[key] = DisambiguatedTarget(
-                name: components[componentKey]!
-                    .uniqueName(for: target, key: key, baseName: name),
+                name: labels[target.normalizedLabel]!.uniqueName(
+                    for: target,
+                    key: key,
+                    baseName: target.label.description
+                ),
                 target: target
             )
         }
@@ -78,6 +117,16 @@ extension Generator {
             keys: consolidatedTargets.keys,
             targets: uniqueValues
         )
+    }
+}
+
+private struct ModuleNameAndProductType: Equatable, Hashable {
+    let normalizedModuleName: String
+    let productType: PBXProductType
+
+    init(target: ConsolidatedTarget) {
+        self.normalizedModuleName = target.normalizedModuleName
+        self.productType = target.product.type
     }
 }
 
@@ -555,6 +604,13 @@ struct EnvironmentSystemComponents {
 }
 
 extension ConsolidatedTarget {
+    /// The normalized module name is used during target disambiguation. It
+    /// allows the logic to differentiate targets where the module names only
+    /// differ by case.
+    var normalizedModuleName: String {
+        return moduleName.lowercased()
+    }
+
     /// The normalized name is used during target disambiguation. It allows the
     /// logic to differentiate targets where the names only differ by case.
     var normalizedName: String {

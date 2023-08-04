@@ -125,6 +125,16 @@ architectures as there are targets.
     @Option(
         parsing: .upToNextOption,
         help: """
+Module names for all of the targets. There must be exactly as many module \
+names as there are targets. If a target doesn't have an explicit module name, \
+use an empty string.
+"""
+    )
+    var moduleNames: [String]
+
+    @Option(
+        parsing: .upToNextOption,
+        help: """
 Number of dependencies per target. For example, '--dependency-counts 2 3' \
 means the first target (as specified by <targets>) should include the first \
 two dependencies from <dependencies>, and the second target should include the \
@@ -219,6 +229,13 @@ elements as <targets> (\(targets.count) elements).
 """)
         }
 
+        guard moduleNames.count == targets.count else {
+            throw ValidationError("""
+<module-names> (\(moduleNames.count) elements) must have exactly as many \
+elements as <targets> (\(targets.count) elements).
+""")
+        }
+
         guard dependencyCounts.count == targets.count else {
             throw ValidationError("""
 <dependency-counts> (\(dependencyCounts.count) elements) must have exactly as \
@@ -291,6 +308,7 @@ extension ConsolidationMapsArguments {
                             platform: platforms[targetIndex],
                             osVersion: osVersions[targetIndex],
                             arch: archs[targetIndex],
+                            moduleName: moduleNames[targetIndex],
                             dependencies: dependencies
                         )
                     )

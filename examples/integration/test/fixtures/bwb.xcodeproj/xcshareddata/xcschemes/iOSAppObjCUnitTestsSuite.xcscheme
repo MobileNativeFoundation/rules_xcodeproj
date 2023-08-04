@@ -14,9 +14,9 @@
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "D2B147BDA8E8FC10D91B53BB"
-                     BuildableName = "iOSAppSwiftUnitTests.xctest"
-                     BlueprintName = "iOSAppSwiftUnitTests"
+                     BlueprintIdentifier = "288B82F8F3A8CB437DAEF64E"
+                     BuildableName = "iOSAppObjCUnitTestSuite.xctest"
+                     BlueprintName = "iOSAppObjCUnitTestsSuite"
                      ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
@@ -25,14 +25,14 @@
          <ExecutionAction
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
-               title = "Set Bazel Build Output Groups for iOSAppSwiftUnitTests"
+               title = "Set Bazel Build Output Groups for iOSAppObjCUnitTestsSuite"
                scriptText = "echo &quot;$BAZEL_LABEL,$BAZEL_TARGET_ID&quot; &gt;&gt; &quot;$SCHEME_TARGET_IDS_FILE&quot;&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "D2B147BDA8E8FC10D91B53BB"
-                     BuildableName = "iOSAppSwiftUnitTests.xctest"
-                     BlueprintName = "iOSAppSwiftUnitTests"
+                     BlueprintIdentifier = "288B82F8F3A8CB437DAEF64E"
+                     BuildableName = "iOSAppObjCUnitTestSuite.xctest"
+                     BlueprintName = "iOSAppObjCUnitTestsSuite"
                      ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
@@ -46,9 +46,9 @@
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "D2B147BDA8E8FC10D91B53BB"
-                     BuildableName = "iOSAppSwiftUnitTests.xctest"
-                     BlueprintName = "iOSAppSwiftUnitTests"
+                     BlueprintIdentifier = "288B82F8F3A8CB437DAEF64E"
+                     BuildableName = "iOSAppObjCUnitTestSuite.xctest"
+                     BlueprintName = "iOSAppObjCUnitTestsSuite"
                      ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
@@ -59,7 +59,7 @@
          <BuildActionEntry
             buildForTesting = "YES"
             buildForRunning = "YES"
-            buildForProfiling = "NO"
+            buildForProfiling = "YES"
             buildForArchiving = "YES"
             buildForAnalyzing = "YES">
             <BuildableReference
@@ -73,7 +73,7 @@
          <BuildActionEntry
             buildForTesting = "YES"
             buildForRunning = "YES"
-            buildForProfiling = "NO"
+            buildForProfiling = "YES"
             buildForArchiving = "YES"
             buildForAnalyzing = "YES">
             <BuildableReference
@@ -87,7 +87,7 @@
          <BuildActionEntry
             buildForTesting = "YES"
             buildForRunning = "YES"
-            buildForProfiling = "NO"
+            buildForProfiling = "YES"
             buildForArchiving = "YES"
             buildForAnalyzing = "YES">
             <BuildableReference
@@ -101,21 +101,21 @@
          <BuildActionEntry
             buildForTesting = "YES"
             buildForRunning = "YES"
-            buildForProfiling = "NO"
+            buildForProfiling = "YES"
             buildForArchiving = "YES"
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D2B147BDA8E8FC10D91B53BB"
-               BuildableName = "iOSAppSwiftUnitTests.xctest"
-               BlueprintName = "iOSAppSwiftUnitTests"
+               BlueprintIdentifier = "288B82F8F3A8CB437DAEF64E"
+               BuildableName = "iOSAppObjCUnitTestSuite.xctest"
+               BlueprintName = "iOSAppObjCUnitTestsSuite"
                ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
             buildForTesting = "YES"
             buildForRunning = "YES"
-            buildForProfiling = "NO"
+            buildForProfiling = "YES"
             buildForArchiving = "YES"
             buildForAnalyzing = "YES">
             <BuildableReference
@@ -129,7 +129,7 @@
          <BuildActionEntry
             buildForTesting = "YES"
             buildForRunning = "YES"
-            buildForProfiling = "NO"
+            buildForProfiling = "YES"
             buildForArchiving = "YES"
             buildForAnalyzing = "YES">
             <BuildableReference
@@ -143,7 +143,7 @@
       </BuildActionEntries>
    </BuildAction>
    <TestAction
-      buildConfiguration = "AppStore"
+      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "NO">
@@ -156,9 +156,9 @@
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "D2B147BDA8E8FC10D91B53BB"
-                     BuildableName = "iOSAppSwiftUnitTests.xctest"
-                     BlueprintName = "iOSAppSwiftUnitTests"
+                     BlueprintIdentifier = "288B82F8F3A8CB437DAEF64E"
+                     BuildableName = "iOSAppObjCUnitTestSuite.xctest"
+                     BlueprintName = "iOSAppObjCUnitTestsSuite"
                      ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
@@ -168,9 +168,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D2B147BDA8E8FC10D91B53BB"
-            BuildableName = "iOSAppSwiftUnitTests.xctest"
-            BlueprintName = "iOSAppSwiftUnitTests"
+            BlueprintIdentifier = "288B82F8F3A8CB437DAEF64E"
+            BuildableName = "iOSAppObjCUnitTestSuite.xctest"
+            BlueprintName = "iOSAppObjCUnitTestsSuite"
             ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -179,23 +179,13 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D2B147BDA8E8FC10D91B53BB"
-               BuildableName = "iOSAppSwiftUnitTests.xctest"
-               BlueprintName = "iOSAppSwiftUnitTests"
+               BlueprintIdentifier = "288B82F8F3A8CB437DAEF64E"
+               BuildableName = "iOSAppObjCUnitTestSuite.xctest"
+               BlueprintName = "iOSAppObjCUnitTestsSuite"
                ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
-      <CommandLineArguments>
-         <CommandLineArgument
-            argument = "-AppleLanguages"
-            isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "(en)"
-            isEnabled = "YES">
-         </CommandLineArgument>
-      </CommandLineArguments>
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "BUILD_WORKING_DIRECTORY"
@@ -217,11 +207,6 @@
             value = "CUSTOM_ENV_VALUE"
             isEnabled = "YES">
          </EnvironmentVariable>
-         <EnvironmentVariable
-            key = "IOSAPPSWIFTUNITTESTS_CUSTOMSCHEMEVAR"
-            value = "TRUE"
-            isEnabled = "YES">
-         </EnvironmentVariable>
       </EnvironmentVariables>
    </TestAction>
    <LaunchAction
@@ -234,6 +219,45 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
+      <PreActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Update .lldbinit and copy dSYMs"
+               scriptText = "&quot;$BAZEL_INTEGRATION_DIR/create_lldbinit.sh&quot;&#10;&quot;$BAZEL_INTEGRATION_DIR/copy_dsyms.sh&quot;&#10;">
+               <EnvironmentBuildable>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "288B82F8F3A8CB437DAEF64E"
+                     BuildableName = "iOSAppObjCUnitTestSuite.xctest"
+                     BlueprintName = "iOSAppObjCUnitTestsSuite"
+                     ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
+                  </BuildableReference>
+               </EnvironmentBuildable>
+            </ActionContent>
+         </ExecutionAction>
+      </PreActions>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "288B82F8F3A8CB437DAEF64E"
+            BuildableName = "iOSAppObjCUnitTestSuite.xctest"
+            BlueprintName = "iOSAppObjCUnitTestsSuite"
+            ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
+      <EnvironmentVariables>
+         <EnvironmentVariable
+            key = "BUILD_WORKING_DIRECTORY"
+            value = "$(BUILT_PRODUCTS_DIR)"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "BUILD_WORKSPACE_DIRECTORY"
+            value = "$(BUILD_WORKSPACE_DIRECTORY)"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+      </EnvironmentVariables>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Debug"
@@ -241,6 +265,33 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <PreActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Update .lldbinit and copy dSYMs"
+               scriptText = "&quot;$BAZEL_INTEGRATION_DIR/create_lldbinit.sh&quot;&#10;&quot;$BAZEL_INTEGRATION_DIR/copy_dsyms.sh&quot;&#10;">
+               <EnvironmentBuildable>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "288B82F8F3A8CB437DAEF64E"
+                     BuildableName = "iOSAppObjCUnitTestSuite.xctest"
+                     BlueprintName = "iOSAppObjCUnitTestsSuite"
+                     ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
+                  </BuildableReference>
+               </EnvironmentBuildable>
+            </ActionContent>
+         </ExecutionAction>
+      </PreActions>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "288B82F8F3A8CB437DAEF64E"
+            BuildableName = "iOSAppObjCUnitTestSuite.xctest"
+            BlueprintName = "iOSAppObjCUnitTestsSuite"
+            ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

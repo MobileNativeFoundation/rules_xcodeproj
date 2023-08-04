@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
    LastUpgradeVersion = "9999"
-   wasCreatedForAppExtension = "YES"
    version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -15,9 +14,9 @@
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "06E3C912B8DE52D274641347"
-                     BuildableName = "WidgetExtension.appex"
-                     BlueprintName = "WidgetExtension"
+                     BlueprintIdentifier = "E11D2CDF67F6CD736847EAF3"
+                     BuildableName = "watchOSAppExtensionUnitTests.xctest"
+                     BlueprintName = "watchOSAppExtensionUnitTestsLibrary"
                      ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
@@ -26,14 +25,14 @@
          <ExecutionAction
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
-               title = "Set Bazel Build Output Groups for WidgetExtension"
-               scriptText = "echo &quot;$BAZEL_LABEL,$BAZEL_TARGET_ID&quot; &gt;&gt; &quot;$SCHEME_TARGET_IDS_FILE&quot;&#10;echo &quot;$BAZEL_HOST_LABEL_0,$BAZEL_HOST_TARGET_ID_0&quot; &gt;&gt; &quot;$SCHEME_TARGET_IDS_FILE&quot;&#10;">
+               title = "Set Bazel Build Output Groups for watchOSAppExtensionUnitTestsLibrary"
+               scriptText = "echo &quot;$BAZEL_LABEL,$BAZEL_TARGET_ID&quot; &gt;&gt; &quot;$SCHEME_TARGET_IDS_FILE&quot;&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "06E3C912B8DE52D274641347"
-                     BuildableName = "WidgetExtension.appex"
-                     BlueprintName = "WidgetExtension"
+                     BlueprintIdentifier = "E11D2CDF67F6CD736847EAF3"
+                     BuildableName = "watchOSAppExtensionUnitTests.xctest"
+                     BlueprintName = "watchOSAppExtensionUnitTestsLibrary"
                      ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
@@ -47,9 +46,9 @@
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "06E3C912B8DE52D274641347"
-                     BuildableName = "WidgetExtension.appex"
-                     BlueprintName = "WidgetExtension"
+                     BlueprintIdentifier = "E11D2CDF67F6CD736847EAF3"
+                     BuildableName = "watchOSAppExtensionUnitTests.xctest"
+                     BlueprintName = "watchOSAppExtensionUnitTestsLibrary"
                      ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
@@ -65,9 +64,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1765D91CC168F25A5BC51603"
-               BuildableName = "iOSApp.app"
-               BlueprintName = "iOSApp"
+               BlueprintIdentifier = "1EF2B99D58C7884FED2A0769"
+               BuildableName = "LibFramework.watchOS.framework"
+               BlueprintName = "LibFramework.watchOS"
                ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -79,9 +78,23 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "06E3C912B8DE52D274641347"
-               BuildableName = "WidgetExtension.appex"
-               BlueprintName = "WidgetExtension"
+               BlueprintIdentifier = "F619A1189B9E946F6BE02A2F"
+               BuildableName = "UIFramework.watchOS.framework"
+               BlueprintName = "UIFramework.watchOS"
+               ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "E11D2CDF67F6CD736847EAF3"
+               BuildableName = "watchOSAppExtensionUnitTests.xctest"
+               BlueprintName = "watchOSAppExtensionUnitTestsLibrary"
                ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -91,22 +104,74 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES">
+      shouldUseLaunchSchemeArgsEnv = "NO">
+      <PreActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Update .lldbinit"
+               scriptText = "&quot;$BAZEL_INTEGRATION_DIR/create_lldbinit.sh&quot;&#10;">
+               <EnvironmentBuildable>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "E11D2CDF67F6CD736847EAF3"
+                     BuildableName = "watchOSAppExtensionUnitTests.xctest"
+                     BlueprintName = "watchOSAppExtensionUnitTestsLibrary"
+                     ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
+                  </BuildableReference>
+               </EnvironmentBuildable>
+            </ActionContent>
+         </ExecutionAction>
+      </PreActions>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "E11D2CDF67F6CD736847EAF3"
+            BuildableName = "watchOSAppExtensionUnitTests.xctest"
+            BlueprintName = "watchOSAppExtensionUnitTestsLibrary"
+            ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "E11D2CDF67F6CD736847EAF3"
+               BuildableName = "watchOSAppExtensionUnitTests.xctest"
+               BlueprintName = "watchOSAppExtensionUnitTestsLibrary"
+               ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <EnvironmentVariables>
+         <EnvironmentVariable
+            key = "BUILD_WORKING_DIRECTORY"
+            value = "$(BUILT_PRODUCTS_DIR)"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "BUILD_WORKSPACE_DIRECTORY"
+            value = "$(BUILD_WORKSPACE_DIRECTORY)"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "INTEGRATION_TEST_ENV_VAR"
+            value = "TRUE"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+      </EnvironmentVariables>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
-      selectedDebuggerIdentifier = ""
-      selectedLauncherIdentifier = "Xcode.IDEFoundation.Launcher.PosixSpawn"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
-      askForAppToLaunch = "YES"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
-      allowLocationSimulation = "YES"
-      launchAutomaticallySubstyle = "2">
+      allowLocationSimulation = "YES">
       <PreActions>
          <ExecutionAction
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
@@ -116,32 +181,21 @@
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "06E3C912B8DE52D274641347"
-                     BuildableName = "WidgetExtension.appex"
-                     BlueprintName = "WidgetExtension"
+                     BlueprintIdentifier = "E11D2CDF67F6CD736847EAF3"
+                     BuildableName = "watchOSAppExtensionUnitTests.xctest"
+                     BlueprintName = "watchOSAppExtensionUnitTestsLibrary"
                      ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
             </ActionContent>
          </ExecutionAction>
       </PreActions>
-      <RemoteRunnable
-         runnableDebuggingMode = "2"
-         BundleIdentifier = "com.apple.springboard">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "06E3C912B8DE52D274641347"
-            BuildableName = "WidgetExtension.appex"
-            BlueprintName = "WidgetExtension"
-            ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
-         </BuildableReference>
-      </RemoteRunnable>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1765D91CC168F25A5BC51603"
-            BuildableName = "iOSApp.app"
-            BlueprintName = "iOSApp"
+            BlueprintIdentifier = "E11D2CDF67F6CD736847EAF3"
+            BuildableName = "watchOSAppExtensionUnitTests.xctest"
+            BlueprintName = "watchOSAppExtensionUnitTestsLibrary"
             ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -173,31 +227,21 @@
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "06E3C912B8DE52D274641347"
-                     BuildableName = "WidgetExtension.appex"
-                     BlueprintName = "WidgetExtension"
+                     BlueprintIdentifier = "E11D2CDF67F6CD736847EAF3"
+                     BuildableName = "watchOSAppExtensionUnitTests.xctest"
+                     BlueprintName = "watchOSAppExtensionUnitTestsLibrary"
                      ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
             </ActionContent>
          </ExecutionAction>
       </PreActions>
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "06E3C912B8DE52D274641347"
-            BuildableName = "WidgetExtension.appex"
-            BlueprintName = "WidgetExtension"
-            ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1765D91CC168F25A5BC51603"
-            BuildableName = "iOSApp.app"
-            BlueprintName = "iOSApp"
+            BlueprintIdentifier = "E11D2CDF67F6CD736847EAF3"
+            BuildableName = "watchOSAppExtensionUnitTests.xctest"
+            BlueprintName = "watchOSAppExtensionUnitTestsLibrary"
             ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

@@ -33,6 +33,7 @@ _flags = struct(
     folder_paths = "--folder-paths",
     labels = "--labels",
     label_counts = "--label-counts",
+    module_names = "--module-names",
     organization_name = "--organization-name",
     os_versions = "--os-versions",
     platforms = "--platforms",
@@ -432,6 +433,7 @@ def _write_pbxtargetdependencies(
     dependency_counts = []
     label_counts = []
     labels = []
+    module_names = []
     os_versions = []
     platforms = []
     product_types = []
@@ -461,6 +463,7 @@ def _write_pbxtargetdependencies(
                 platforms.append(xcode_target.platform.platform)
                 os_versions.append(xcode_target.platform.os_version)
                 archs.append(xcode_target.platform.arch)
+                module_names.append(xcode_target.product.module_name or "")
                 dependency_counts.append(xcode_target.dependencies)
                 dependencies.append(xcode_target.dependencies)
 
@@ -521,6 +524,9 @@ def _write_pbxtargetdependencies(
 
     # archs
     args.add_all(_flags.archs, archs)
+
+    # moduleNames
+    args.add_all(_flags.module_names, module_names)
 
     # dependencyCounts
     args.add_all(

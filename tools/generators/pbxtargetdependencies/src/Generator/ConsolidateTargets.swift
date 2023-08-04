@@ -10,6 +10,7 @@ struct ConsolidatedTarget: Equatable {
 
     let label: BazelLabel
     let productType: PBXProductType
+    let moduleName: String
 
     let distinguisherKey: DistinguisherKey
     let targetDistinguisherKeys: [Target.DistinguisherKey]
@@ -270,6 +271,16 @@ extension ConsolidatedTarget {
         let aTarget = sortedTargets.first!
         label = aTarget.label
         productType = aTarget.productType
+
+        if
+            !aTarget.moduleName.isEmpty, sortedTargets.first(
+                where: { $0.moduleName != aTarget.moduleName }
+            ) == nil
+        {
+            self.moduleName = aTarget.moduleName
+        } else {
+            self.moduleName = label.name
+        }
 
         distinguisherKey = DistinguisherKey(
             components: sortedTargets.reduce(into: [:]) { components, target in

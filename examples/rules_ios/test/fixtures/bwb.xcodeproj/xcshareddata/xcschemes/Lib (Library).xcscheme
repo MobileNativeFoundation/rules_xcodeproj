@@ -14,9 +14,9 @@
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "FA984D215315633CCB7A6267"
-                     BuildableName = "private_swift_lib (arm64)"
-                     BlueprintName = "private_swift_lib (arm64)"
+                     BlueprintIdentifier = "380EF0E89C315C57EDE210F2"
+                     BuildableName = "Lib (Library)"
+                     BlueprintName = "Lib (Library)"
                      ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
@@ -25,14 +25,14 @@
          <ExecutionAction
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
-               title = "Set Bazel Build Output Groups for private_swift_lib (arm64)"
+               title = "Set Bazel Build Output Groups for Lib (Library)"
                scriptText = "echo &quot;$BAZEL_LABEL,$BAZEL_TARGET_ID&quot; &gt;&gt; &quot;$SCHEME_TARGET_IDS_FILE&quot;&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "FA984D215315633CCB7A6267"
-                     BuildableName = "private_swift_lib (arm64)"
-                     BlueprintName = "private_swift_lib (arm64)"
+                     BlueprintIdentifier = "380EF0E89C315C57EDE210F2"
+                     BuildableName = "Lib (Library)"
+                     BlueprintName = "Lib (Library)"
                      ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
@@ -48,9 +48,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "FA984D215315633CCB7A6267"
-               BuildableName = "private_swift_lib (arm64)"
-               BlueprintName = "private_swift_lib (arm64)"
+               BlueprintIdentifier = "380EF0E89C315C57EDE210F2"
+               BuildableName = "Lib (Library)"
+               BlueprintName = "Lib (Library)"
                ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
