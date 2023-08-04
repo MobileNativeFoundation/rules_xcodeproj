@@ -615,6 +615,7 @@
 		01C0E082C4D7EF0C6DBA4B0D /* watchOSAppExtension.library.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = watchOSAppExtension.library.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		01C8147CD352BF472EFA9644 /* Lib.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = Lib.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		02884FB681F132DC789348B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		028A035429A878B58951267A /* LibSwift-Swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LibSwift-Swift.h"; sourceTree = "<group>"; };
 		031BB79166FE29966C18F2A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		035446D62C95FEF103CA8F57 /* Info.withbundleid.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.withbundleid.plist; sourceTree = "<group>"; };
 		03B4C377FD06236C53F65600 /* LibFramework.watchOS.8.link.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = LibFramework.watchOS.8.link.params; sourceTree = "<group>"; };
@@ -687,6 +688,7 @@
 		1C1380D3FF31CDA1658E3CE4 /* watchOSAppUITests.34.link.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = watchOSAppUITests.34.link.params; sourceTree = "<group>"; };
 		1C140B1DC6DEDCD2B04BAB27 /* UIFramework.watchOS.9.link.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = UIFramework.watchOS.9.link.params; sourceTree = "<group>"; };
 		1C185B8AB07D4422FA56D6A5 /* liblib_swift.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_swift.a; path = "bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37/bin/CommandLine/CommandLineToolLib/liblib_swift.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1C35FB86BA563F1939B5A880 /* TestingUtils-Swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TestingUtils-Swift.h"; sourceTree = "<group>"; };
 		1C3C169732AE661ACA8693A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		1C3E50FA80A83B6F134DFD38 /* WidgetExtension.library.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = WidgetExtension.library.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		1C70D767FA7B810DEB80D0FF /* BasicTests.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = BasicTests.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
@@ -823,6 +825,7 @@
 		590C1F8173F7F592F432ACF0 /* SwiftGreetingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftGreetingsTests.swift; sourceTree = "<group>"; };
 		590D4162F3CE076B9E604EB5 /* Lib.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = Lib.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		5943CDBFA4A38FDFF9113B4F /* MixedAnswer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MixedAnswer.m; sourceTree = "<group>"; };
+		59C6CA1952BDE3493EC4D668 /* LibSwift-Swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LibSwift-Swift.h"; sourceTree = "<group>"; };
 		5AD1576A6AD3437513F682AA /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		5ADF05B76B8FACD340374AFF /* MixedAnswer_swift_modulemap-module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = "MixedAnswer_swift_modulemap-module.modulemap"; sourceTree = "<group>"; };
 		5B037FE0100534DE8130AF42 /* lib_swift.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = lib_swift.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
@@ -876,8 +879,10 @@
 		73917B7C7306B4D7388ED79C /* BasicTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BasicTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		74E1286090BCB8C112DAA46F /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = "<group>"; };
 		7556366BFB853F3376242D73 /* iOSAppUITestSuite.library.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = iOSAppUITestSuite.library.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
+		758B11A68E9BC00FCFF6AAC9 /* LibSwift-Swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LibSwift-Swift.h"; sourceTree = "<group>"; };
 		75A6DCD2937B2894702C64FD /* Lib.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = Lib.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		75C98F1C914E8866232A9AB1 /* UI.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = UI.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
+		764E3AD1BAC660FB99ACFF65 /* TestingUtils-Swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TestingUtils-Swift.h"; sourceTree = "<group>"; };
 		76A6058986733DDA4336DEE1 /* libUtils.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libUtils.a; path = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Source/Utils/libUtils.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		76B3BF51BBA576A117A3415A /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = "<group>"; };
 		788FC887077E2ECEA09C1D7F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -902,6 +907,7 @@
 		81ADEB4D40193C79091D1519 /* CommandLineTool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CommandLineTool; sourceTree = BUILT_PRODUCTS_DIR; };
 		81CEB384343DA3EBC4532AA1 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		81CF8EA00CD8AFE0B8C3CE5F /* AppClip.library.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = AppClip.library.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
+		81E364C98F43F55F33FCCD94 /* LibSwift-Swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LibSwift-Swift.h"; sourceTree = "<group>"; };
 		82081A6BD08E21EB1E306B59 /* watchOSAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = watchOSAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		820F0E7BE6D1A1C7C2B9576A /* libImportableLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libImportableLibrary.a; sourceTree = "<group>"; };
 		82A2980C2D5CC09907E8C397 /* MixedAnswerLib_Swift.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = MixedAnswerLib_Swift.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
@@ -930,6 +936,7 @@
 		894A6BEA8EE49491EC205941 /* tvOSApp.library.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = tvOSApp.library.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		89D9BD6F15F7E1172B72A160 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8AB1368E644467C1E8924378 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = wrapper.cfbundle; path = GoogleMaps.bundle; sourceTree = "<group>"; };
+		8AF239F14011CC3E8EC90A79 /* LibSwift-Swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LibSwift-Swift.h"; sourceTree = "<group>"; };
 		8B035738C344E2740B2020F8 /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = "<group>"; };
 		8B3E8ADFDCA2B70A6AE73107 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8C79A816C831354461BE752F /* liblib_impl.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = liblib_impl.a; path = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38/bin/CommandLine/CommandLineToolLib/liblib_impl.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -939,6 +946,7 @@
 		8E8D60B5A8859B971D65C94A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8EB06FE8C45C39DF8FD1BA89 /* Model2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model2.xcdatamodel; sourceTree = "<group>"; };
 		8EFD55D318705C2A47862033 /* Lib.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = Lib.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
+		8FDDED000A0070367D472921 /* LibSwift-Swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LibSwift-Swift.h"; sourceTree = "<group>"; };
 		90081A8A1EAF7A703FEE3D90 /* CoreUtils.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreUtils.pch; sourceTree = "<group>"; };
 		9043A03973E88A6C0E57E3BE /* c_lib.rules_xcodeproj.c.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = c_lib.rules_xcodeproj.c.compile.params; sourceTree = "<group>"; };
 		9068C45F14F1720B6A20A847 /* iOSApp.12.link.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = iOSApp.12.link.params; sourceTree = "<group>"; };
@@ -1065,6 +1073,7 @@
 		C2B2DE96EAD2CCE2B80B9B69 /* libprivate_lib.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libprivate_lib.a; path = "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36/bin/CommandLine/CommandLineToolLib/libprivate_lib.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2E7E9094891D76B63C6C677 /* iOS.92.link.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = iOS.92.link.params; sourceTree = "<group>"; };
 		C2F73D982951B4EC6C4A0F34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		C2FEB876F8A86257AD6FBF0E /* TestingUtils-Swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TestingUtils-Swift.h"; sourceTree = "<group>"; };
 		C449BB76848B34225161E142 /* iOSAppUITestSuite.115.link.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = iOSAppUITestSuite.115.link.params; sourceTree = "<group>"; };
 		C454C50B0428F3DA857A8F1E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C4873B553F170E4056FAAB20 /* lib_swift.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = lib_swift.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
@@ -1118,6 +1127,7 @@
 		DB47FDE5678BB42270C9943F /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		DCDEBD7F498744CF9A66B436 /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = "<group>"; };
 		DD2F1B00AE62DD0E1EFC221E /* c_lib.rules_xcodeproj.c.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = c_lib.rules_xcodeproj.c.compile.params; sourceTree = "<group>"; };
+		DD70A8F7B8D70B7783ABCF83 /* TestingUtils-Swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TestingUtils-Swift.h"; sourceTree = "<group>"; };
 		DDC6FADA8D522B130B4334CA /* UI.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = UI.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		DE7A85C8CB6B02FF81C3EE90 /* bucket */ = {isa = PBXFileReference; lastKnownFileType = folder; path = bucket; sourceTree = "<group>"; };
 		DEB4E4650BF1C65018C114F9 /* FXPageControl.rules_xcodeproj.c.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = FXPageControl.rules_xcodeproj.c.compile.params; sourceTree = "<group>"; };
@@ -1259,6 +1269,14 @@
 			path = Test;
 			sourceTree = "<group>";
 		};
+		02E9A959C9F526214D4C51AD /* private */ = {
+			isa = PBXGroup;
+			children = (
+				81E364C98F43F55F33FCCD94 /* LibSwift-Swift.h */,
+			);
+			path = private;
+			sourceTree = "<group>";
+		};
 		033192ACC4C2815412021048 /* rules_xcodeproj */ = {
 			isa = PBXGroup;
 			children = (
@@ -1364,6 +1382,14 @@
 			path = UIFramework.iOS;
 			sourceTree = "<group>";
 		};
+		06C6755C6D457164547AA142 /* private */ = {
+			isa = PBXGroup;
+			children = (
+				8FDDED000A0070367D472921 /* LibSwift-Swift.h */,
+			);
+			path = private;
+			sourceTree = "<group>";
+		};
 		074B1D97FA79528677A07A07 /* rules_xcodeproj */ = {
 			isa = PBXGroup;
 			children = (
@@ -1465,6 +1491,7 @@
 		09C2147B4D47741F7D396F69 /* CommandLineToolLib */ = {
 			isa = PBXGroup;
 			children = (
+				77A23FC9E299C3833E6EF9CC /* private */,
 				51FCE7023C8D783D16819C5C /* lib_impl.rules_xcodeproj.c.compile.params */,
 				C4873B553F170E4056FAAB20 /* lib_swift.rules_xcodeproj.swift.compile.params */,
 				947AD565C6A4BCB9EED19F79 /* private_lib.rules_xcodeproj.c.compile.params */,
@@ -1905,6 +1932,14 @@
 				529D3FE47DE8C65DE99088AE /* tvOS */,
 			);
 			path = rules_xcodeproj;
+			sourceTree = "<group>";
+		};
+		1F2D5A7796C0567AF7FB84F0 /* SwiftAPI */ = {
+			isa = PBXGroup;
+			children = (
+				C2FEB876F8A86257AD6FBF0E /* TestingUtils-Swift.h */,
+			);
+			path = SwiftAPI;
 			sourceTree = "<group>";
 		};
 		1FDA1A15BDF7E756C783164E /* UnitTests */ = {
@@ -2837,6 +2872,7 @@
 		3EF271B53734CF675EFCA2A9 /* CommandLineToolLib */ = {
 			isa = PBXGroup;
 			children = (
+				50F0FB49FDFE0D7D3E4C8E5A /* private */,
 				667BEC6192335BEB314522C3 /* lib_impl.rules_xcodeproj.c.compile.params */,
 				3AF7692790FD4CD1B34BE3BE /* lib_swift.rules_xcodeproj.swift.compile.params */,
 				10114940A6BC988FB3D21374 /* private_lib.rules_xcodeproj.c.compile.params */,
@@ -3066,6 +3102,7 @@
 		491594FF49066B70661669BA /* CommandLineToolLib */ = {
 			isa = PBXGroup;
 			children = (
+				51E0402316662522A74B872C /* private */,
 				88C0EB7BDEC23EBE0EB28A4B /* lib_impl.rules_xcodeproj.c.compile.params */,
 				E64F25AEA6EEF63259CE54F6 /* lib_swift.rules_xcodeproj.swift.compile.params */,
 				9438D9779292DE527884A9C6 /* private_lib.rules_xcodeproj.c.compile.params */,
@@ -3173,6 +3210,14 @@
 			path = Source;
 			sourceTree = "<group>";
 		};
+		50F0FB49FDFE0D7D3E4C8E5A /* private */ = {
+			isa = PBXGroup;
+			children = (
+				8AF239F14011CC3E8EC90A79 /* LibSwift-Swift.h */,
+			);
+			path = private;
+			sourceTree = "<group>";
+		};
 		511FD1DE1DF40A10C7C4B4E8 /* tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9 */ = {
 			isa = PBXGroup;
 			children = (
@@ -3203,6 +3248,14 @@
 				16467AC9345BA4C6CF400A0F /* Info.plist */,
 			);
 			path = tvOSAppUnitTests.__internal__.__test_bundle;
+			sourceTree = "<group>";
+		};
+		51E0402316662522A74B872C /* private */ = {
+			isa = PBXGroup;
+			children = (
+				028A035429A878B58951267A /* LibSwift-Swift.h */,
+			);
+			path = private;
 			sourceTree = "<group>";
 		};
 		5247ABEEAD0721743C1A93F3 /* Lib */ = {
@@ -3656,6 +3709,14 @@
 			path = rules_xcodeproj;
 			sourceTree = "<group>";
 		};
+		68AFD4924BCBDDE2184E5BB3 /* private */ = {
+			isa = PBXGroup;
+			children = (
+				758B11A68E9BC00FCFF6AAC9 /* LibSwift-Swift.h */,
+			);
+			path = private;
+			sourceTree = "<group>";
+		};
 		6939B11EA411D7616EDFD3C8 /* UIFramework.tvOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -3929,6 +3990,7 @@
 		7683F8253A7888913F942ABC /* TestingUtils */ = {
 			isa = PBXGroup;
 			children = (
+				E331D5DE045F9A4076A5941E /* SwiftAPI */,
 				B4BA570F6A1A55D992DD4A21 /* TestingUtils.rules_xcodeproj.swift.compile.params */,
 				B3F3C4F4AC7B78A566595E43 /* TestingUtils.swift */,
 			);
@@ -3941,6 +4003,14 @@
 				074B1D97FA79528677A07A07 /* rules_xcodeproj */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		77A23FC9E299C3833E6EF9CC /* private */ = {
+			isa = PBXGroup;
+			children = (
+				59C6CA1952BDE3493EC4D668 /* LibSwift-Swift.h */,
+			);
+			path = private;
 			sourceTree = "<group>";
 		};
 		77C1F0085481074A2D2946C2 /* Lib */ = {
@@ -5427,6 +5497,7 @@
 		BF2665EC15CA719A19FB1816 /* TestingUtils */ = {
 			isa = PBXGroup;
 			children = (
+				D191F16CC6648EF515B380E7 /* SwiftAPI */,
 				062A503BA2896D5DD6397284 /* TestingUtils.rules_xcodeproj.swift.compile.params */,
 				64B5971D03B36435F28C3771 /* TestingUtils.swift */,
 			);
@@ -5563,6 +5634,7 @@
 		C3C7FC1C852CB07BE1E34375 /* TestingUtils */ = {
 			isa = PBXGroup;
 			children = (
+				C76F2790E08A20108DD84EBC /* SwiftAPI */,
 				E9E8E54879F0EA86AD303BD2 /* TestingUtils.rules_xcodeproj.swift.compile.params */,
 				355750C0149618879E4F6A26 /* TestingUtils.swift */,
 			);
@@ -5649,6 +5721,14 @@
 				BFF55946EF702AD82F33A477 /* watchOSAppExtensionUnitTests.__internal__.__test_bundle */,
 			);
 			path = rules_xcodeproj;
+			sourceTree = "<group>";
+		};
+		C76F2790E08A20108DD84EBC /* SwiftAPI */ = {
+			isa = PBXGroup;
+			children = (
+				1C35FB86BA563F1939B5A880 /* TestingUtils-Swift.h */,
+			);
+			path = SwiftAPI;
 			sourceTree = "<group>";
 		};
 		C83773C7551C2F531136DB88 /* Tests */ = {
@@ -5774,6 +5854,7 @@
 		CE1BF88E2CE8F4EB83F5AF2E /* CommandLineToolLib */ = {
 			isa = PBXGroup;
 			children = (
+				68AFD4924BCBDDE2184E5BB3 /* private */,
 				5B156A88051BA339B11EABD7 /* lib_impl.rules_xcodeproj.c.compile.params */,
 				94FD4C3393FBF2745986679C /* lib_swift.rules_xcodeproj.swift.compile.params */,
 				951AAC45924B26E9C77DC7A2 /* private_lib.rules_xcodeproj.c.compile.params */,
@@ -5864,6 +5945,14 @@
 			path = tvOSApp;
 			sourceTree = "<group>";
 		};
+		D191F16CC6648EF515B380E7 /* SwiftAPI */ = {
+			isa = PBXGroup;
+			children = (
+				764E3AD1BAC660FB99ACFF65 /* TestingUtils-Swift.h */,
+			);
+			path = SwiftAPI;
+			sourceTree = "<group>";
+		};
 		D1A6B72E4C98DC7C08FB1ADC /* CommandLineTool */ = {
 			isa = PBXGroup;
 			children = (
@@ -5888,6 +5977,7 @@
 		D1C1BEDA46ACCF8A49AB0FED /* CommandLineToolLib */ = {
 			isa = PBXGroup;
 			children = (
+				02E9A959C9F526214D4C51AD /* private */,
 				EB2401843F71C391AFC0A8B0 /* lib_impl.rules_xcodeproj.c.compile.params */,
 				E19AC0C33EB33D40D597D4CC /* lib_swift.rules_xcodeproj.swift.compile.params */,
 				6B39192E766D75959E70F299 /* private_lib.rules_xcodeproj.c.compile.params */,
@@ -6099,6 +6189,7 @@
 		DBD1E316E6B105F4AEFAF8D5 /* TestingUtils */ = {
 			isa = PBXGroup;
 			children = (
+				1F2D5A7796C0567AF7FB84F0 /* SwiftAPI */,
 				C77579D75CE4B9072AAB7AF4 /* TestingUtils.rules_xcodeproj.swift.compile.params */,
 				50AE41EFE8E84D5CEFDC6A4B /* TestingUtils.swift */,
 			);
@@ -6346,6 +6437,14 @@
 				21B79BC94F850420A36C0D28 /* MixedAnswerLib_Swift.rules_xcodeproj.swift.compile.params */,
 			);
 			path = MixedAnswer;
+			sourceTree = "<group>";
+		};
+		E331D5DE045F9A4076A5941E /* SwiftAPI */ = {
+			isa = PBXGroup;
+			children = (
+				DD70A8F7B8D70B7783ABCF83 /* TestingUtils-Swift.h */,
+			);
+			path = SwiftAPI;
 			sourceTree = "<group>";
 		};
 		E332D4AB75A0E1AD97A18DAF /* Resources */ = {
@@ -7036,6 +7135,7 @@
 		FFD854A48DEF15DFF6277D9D /* CommandLineToolLib */ = {
 			isa = PBXGroup;
 			children = (
+				06C6755C6D457164547AA142 /* private */,
 				E41E9F8B0030CB3F2B19C06E /* lib_impl.rules_xcodeproj.c.compile.params */,
 				5B037FE0100534DE8130AF42 /* lib_swift.rules_xcodeproj.swift.compile.params */,
 				B5F61BB3281BB75E7DCCE292 /* private_lib.rules_xcodeproj.c.compile.params */,
