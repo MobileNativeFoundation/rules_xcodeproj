@@ -173,10 +173,12 @@ def xcodeproj(
             `top_level_targets` argument with the `"device"`
             `target_environment`.
 
-            **Warning:** Changing this value will affect the Starlark transition
-            hash of all transitive dependencies of the targets specified in the
-            `top_level_targets` argument with the `"device"`
-            `target_environment`, even if they aren't iOS targets.
+            > **Warning**
+            >
+            > Changing this value will affect the Starlark transition hash of
+            > all transitive dependencies of the targets specified in the
+            > `top_level_targets` argument with the `"device"`
+            > `target_environment`, even if they aren't iOS targets.
         ios_simulator_cpus: Optional. The value to use for `--ios_multi_cpus`
             when building the transitive dependencies of the targets specified
             in the `top_level_targets` argument with the `"simulator"`
@@ -186,10 +188,12 @@ def xcodeproj(
             with `--host_cpu` (i.e. `sim_arm64` on Apple Silicon and `x86_64` on
             Intel).
 
-            **Warning:** Changing this value will affect the Starlark transition
-            hash of all transitive dependencies of the targets specified in the
-            `top_level_targets` argument with the `"simulator"`
-            `target_environment`, even if they aren't iOS targets.
+            > **Warning**
+            >
+            > Changing this value will affect the Starlark transition hash of
+            > all transitive dependencies of the targets specified in the
+            > `top_level_targets` argument with the `"simulator"`
+            > `target_environment`, even if they aren't iOS targets.
         minimum_xcode_version: Optional. The minimum Xcode version that the
             generated project supports.
 
@@ -260,10 +264,12 @@ def xcodeproj(
             `top_level_targets` argument with the `"device"`
             `target_environment`.
 
-            **Warning:** Changing this value will affect the Starlark transition
-            hash of all transitive dependencies of the targets specified in the
-            `top_level_targets` argument with the `"device"`
-            `target_environment`, even if they aren't tvOS targets.
+            > **Warning**
+            >
+            > Changing this value will affect the Starlark transition hash of
+            > all transitive dependencies of the targets specified in the
+            > `top_level_targets` argument with the `"device"`
+            > `target_environment`, even if they aren't tvOS targets.
         tvos_simulator_cpus: Optional. The value to use for `--tvos_cpus` when
             building the transitive dependencies of the targets specified in the
             `top_level_targets` argument with the `"simulator"`
@@ -273,10 +279,12 @@ def xcodeproj(
             with `--host_cpu` (i.e. `sim_arm64` on Apple Silicon and `x86_64` on
             Intel).
 
-            **Warning:** Changing this value will affect the Starlark transition
-            hash of all transitive dependencies of the targets specified in the
-            `top_level_targets` argument with the `"simulator"`
-            `target_environment`, even if they aren't tvOS targets.
+            > **Warning**
+            >
+            > Changing this value will affect the Starlark transition hash of
+            > all transitive dependencies of the targets specified in the
+            > `top_level_targets` argument with the `"simulator"`
+            > `target_environment`, even if they aren't tvOS targets.
         unfocused_targets: Optional. A `list` of target labels as `string`
             values.
 
@@ -289,10 +297,12 @@ def xcodeproj(
             in the `top_level_targets` argument with the `"device"`
             `target_environment`.
 
-            **Warning:** Changing this value will affect the Starlark transition
-            hash of all transitive dependencies of the targets specified in the
-            `top_level_targets` argument with the `"device"`
-            `target_environment`, even if they aren't watchOS targets.
+            > **Warning**
+            >
+            > Changing this value will affect the Starlark transition hash of
+            > all transitive dependencies of the targets specified in the
+            > `top_level_targets` argument with the `"device"`
+            > `target_environment`, even if they aren't watchOS targets.
         watchos_simulator_cpus: Optional. The value to use for `--watchos_cpus`
             when building the transitive dependencies of the targets specified
             in the `top_level_targets` argument with the `"simulator"`
@@ -302,10 +312,12 @@ def xcodeproj(
             with `--host_cpu` (i.e. `arm64` on Apple Silicon and `x86_64` on
             Intel).
 
-            **Warning:** Changing this value will affect the Starlark transition
-            hash of all transitive dependencies of the targets specified in the
-            `top_level_targets` argument with the `"simulator"`
-            `target_environment`, even if they aren't watchOS targets.
+            > **Warning**
+            >
+            > Changing this value will affect the Starlark transition
+            > hash of all transitive dependencies of the targets specified in
+            > the `top_level_targets` argument with the `"simulator"`
+            > `target_environment`, even if they aren't watchOS targets.
         xcode_configurations: Optional. A `dict` mapping Xcode configuration
             names to transition settings dictionaries. For example:
 
