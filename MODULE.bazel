@@ -45,6 +45,12 @@ bazel_dep(
     repo_name = "io_bazel_stardoc",
 )
 
+# For Stardoc
+single_version_override(
+    module_name = "skylib",
+    version = "1.4.2",
+)
+
 use_repo(
     non_module_deps,
     "com_github_apple_swift_argument_parser",
