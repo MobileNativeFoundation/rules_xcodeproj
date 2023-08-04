@@ -21,6 +21,14 @@ rules_ios_apple_framework(
     platforms = {
         "ios": "15.0",
     },
+    resource_bundles = {
+        "CoreUtilsObjCResources": glob(
+            [
+                "Model.xcdatamodeld/**",
+            ],
+            exclude_directories = 0
+        )
+    },
     public_headers = ["CoreUtils/Answers.h"],
     sdk_dylibs = ["c++"],
     tags = ["manual"],
