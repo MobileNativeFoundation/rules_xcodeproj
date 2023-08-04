@@ -425,6 +425,7 @@
 		5ECAB8CD911191567719B9CE /* MixedAnswer_swift_doublequote_hmap.hmap */ = {isa = PBXFileReference; lastKnownFileType = file; path = MixedAnswer_swift_doublequote_hmap.hmap; sourceTree = "<group>"; };
 		5EF38DFD14EC008C491B8EAF /* iOSApp.library_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = iOSApp.library_vfs.yaml; sourceTree = "<group>"; };
 		5F4EDC5811EEDF785B9F1507 /* WidgetExtension.library_swift.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = WidgetExtension.library_swift.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
+		5F8BF876715DDF4EA2181C02 /* iOSAppSwiftUnitTestSuite-Swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOSAppSwiftUnitTestSuite-Swift.h"; sourceTree = "<group>"; };
 		5F9633259AA68958E2D9A616 /* CoreUtilsObjC_private_hmap.hmap */ = {isa = PBXFileReference; lastKnownFileType = file; path = CoreUtilsObjC_private_hmap.hmap; sourceTree = "<group>"; };
 		5FBAE702AC09A964F519EB60 /* iOSAppMixedUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSAppMixedUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6052230133F13DD0373223AF /* iOSAppUITestSuite.21.link.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = iOSAppUITestSuite.21.link.params; sourceTree = "<group>"; };
@@ -503,8 +504,10 @@
 		9A1D7D8AFFF65EE1D9DA3971 /* UI_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = UI_vfs.yaml; sourceTree = "<group>"; };
 		9AE8081C8F1D6B75658972AB /* iOSApp.library_public_hmap.hmap */ = {isa = PBXFileReference; lastKnownFileType = file; path = iOSApp.library_public_hmap.hmap; sourceTree = "<group>"; };
 		9B9B00577F9503C23091539C /* Foo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Foo.h; sourceTree = "<group>"; };
+		9C253F064A9B9AF9F7E4C051 /* iOSAppUITestSuite_macro-Swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOSAppUITestSuite_macro-Swift.h"; sourceTree = "<group>"; };
 		9D19977B4A2D36DF0D14E150 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		9E9A34CF7D39ABC67B25D278 /* iOSAppSwiftUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSAppSwiftUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9EE1C99137E77701E53B8465 /* iOSAppSwiftUnitTests-Swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOSAppSwiftUnitTests-Swift.h"; sourceTree = "<group>"; };
 		9F3EE5E2077E93323CED2227 /* iOSAppSwiftUnitTests_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = iOSAppSwiftUnitTests_vfs.yaml; sourceTree = "<group>"; };
 		9F891C08B871C650304DEDCC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		9FADC50F83228A0BC2F03239 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -540,6 +543,8 @@
 		C5960C3F416397EFB313F138 /* SwiftUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUnitTests.swift; sourceTree = "<group>"; };
 		C64A7FC308992A1020580A5B /* iOSApp_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = iOSApp_vfs.yaml; sourceTree = "<group>"; };
 		C7020354B84129381163567A /* UI.extended.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = UI.extended.modulemap; sourceTree = "<group>"; };
+		C7F5227542E1B6AF0814BEEE /* iOSAppMixedUnitTests-Swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOSAppMixedUnitTests-Swift.h"; sourceTree = "<group>"; };
+		C80F9D7E64C78CF87AAD330E /* iOSAppUITests_macro-Swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOSAppUITests_macro-Swift.h"; sourceTree = "<group>"; };
 		C93E57486D29BAF19C51A9B9 /* WidgetExtension-Swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WidgetExtension-Swift.h"; sourceTree = "<group>"; };
 		CA0FA7E1E16CCBCAC217F4F3 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		CAC4EE112BD0C2B0F34E8D58 /* Lib_swift.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = Lib_swift.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
@@ -552,6 +557,7 @@
 		D24DAFE98F46110A157C49C0 /* MixedAnswer_swift.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = MixedAnswer_swift.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		D30421E2CAA6B36769E79EFB /* iOSAppMixedUnitTests_swift_doublequote_hmap.hmap */ = {isa = PBXFileReference; lastKnownFileType = file; path = iOSAppMixedUnitTests_swift_doublequote_hmap.hmap; sourceTree = "<group>"; };
 		D3274B704701B02CA08B3315 /* MixedAnswer_swift_vfs.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = MixedAnswer_swift_vfs.yaml; sourceTree = "<group>"; };
+		D36AD14A1E93A5581BF97214 /* iOSAppUITestSuite-Swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOSAppUITestSuite-Swift.h"; sourceTree = "<group>"; };
 		D44894E90A710B489CCB3DB2 /* WidgetExtension.library.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = WidgetExtension.library.modulemap; sourceTree = "<group>"; };
 		D57326ECD169C0334D30213B /* WidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		D664960A0917336EFBA95E6B /* libUtils_objc.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libUtils_objc.a; path = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/Utils/libUtils_objc.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -705,12 +711,15 @@
 				573BFA3154CBDC49C5B3FEA2 /* iOSAppUITests_macro_swift_vfs.yaml */,
 				B7521533DC27FAC29EBFD09B /* iOSAppUITests_macro_swift.rules_xcodeproj.swift.compile.params */,
 				87D990B047447B6748D7F10B /* iOSAppUITests_macro_vfs.yaml */,
+				C80F9D7E64C78CF87AAD330E /* iOSAppUITests_macro-Swift.h */,
 				2958E39A4ADD63825B7A4202 /* iOSAppUITestSuite_macro_swift_vfs.yaml */,
 				0D5C0061CE509102E0446C52 /* iOSAppUITestSuite_macro_swift.rules_xcodeproj.swift.compile.params */,
 				FBB8904DD8E9330B4A882514 /* iOSAppUITestSuite_macro_vfs.yaml */,
+				9C253F064A9B9AF9F7E4C051 /* iOSAppUITestSuite_macro-Swift.h */,
 				2E787FFF972069C91657AD09 /* iOSAppUITestSuite_swift_vfs.yaml */,
 				451B2596C67183062FCA26BB /* iOSAppUITestSuite_swift.rules_xcodeproj.swift.compile.params */,
 				152B431C61A8AD7DF7086C3B /* iOSAppUITestSuite_vfs.yaml */,
+				D36AD14A1E93A5581BF97214 /* iOSAppUITestSuite-Swift.h */,
 			);
 			path = UITests;
 			sourceTree = "<group>";
@@ -1129,6 +1138,7 @@
 				DD8B216A97B3A489950C257D /* iOSAppMixedUnitTests_swift_vfs.yaml */,
 				1D0E2E7385B4514842C1CF94 /* iOSAppMixedUnitTests_swift.rules_xcodeproj.swift.compile.params */,
 				7CF1512B8814803D87CAEC36 /* iOSAppMixedUnitTests_vfs.yaml */,
+				C7F5227542E1B6AF0814BEEE /* iOSAppMixedUnitTests-Swift.h */,
 			);
 			path = MixedUnitTests;
 			sourceTree = "<group>";
@@ -1520,9 +1530,11 @@
 				1BE76DA278965DF3BA51D5F1 /* iOSAppSwiftUnitTests_swift_vfs.yaml */,
 				A29F4C9A1C48AF99EE251CBC /* iOSAppSwiftUnitTests_swift.rules_xcodeproj.swift.compile.params */,
 				9F3EE5E2077E93323CED2227 /* iOSAppSwiftUnitTests_vfs.yaml */,
+				9EE1C99137E77701E53B8465 /* iOSAppSwiftUnitTests-Swift.h */,
 				A80C0C4E735A280FA5D5D6DA /* iOSAppSwiftUnitTestSuite_swift_vfs.yaml */,
 				BC947AA33C2A04E7242D0198 /* iOSAppSwiftUnitTestSuite_swift.rules_xcodeproj.swift.compile.params */,
 				45325284C0CC1A7F75E72858 /* iOSAppSwiftUnitTestSuite_vfs.yaml */,
+				5F8BF876715DDF4EA2181C02 /* iOSAppSwiftUnitTestSuite-Swift.h */,
 			);
 			path = SwiftUnitTests;
 			sourceTree = "<group>";

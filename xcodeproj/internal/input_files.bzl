@@ -456,9 +456,11 @@ def _collect_input_files(
             ],
         )
 
+    is_bwx = ctx.attr._build_mode == "xcode"
+
     # Generically handle CcInfo providing rules. This allows us to pick up
     # headers from `objc_import` and the like.
-    if SwiftInfo in target:
+    if is_bwx and SwiftInfo in target:
         swift_info = target[SwiftInfo]
         for module in swift_info.direct_modules:
             clang = module.clang
@@ -478,7 +480,7 @@ def _collect_input_files(
             generated = generated,
         ))
 
-    should_produce_output_groups = ctx.attr._build_mode == "xcode"
+    should_produce_output_groups = is_bwx
 
     # Collect unfocused target info
     indexstores = []
