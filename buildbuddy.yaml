@@ -57,7 +57,7 @@ x_templates:
     - &validate_integration "--output_base=bazel-output-base run --config=workflows --config=fixtures //test/fixtures:validate"
     - &build_all "--output_base=bazel-output-base build --config=workflows --config=fixtures --noexperimental_enable_bzlmod //..."
     - &test_all "--output_base=bazel-output-base test --config=workflows --noexperimental_enable_bzlmod //..."
-    - &bazel_5_test_all "--output_base=bazel-output-base test --config=workflows --noexperimental_enable_bzlmod //..."
+    - &bazel_5_test_all "--output_base=bazel-output-base test --config=workflows --noexperimental_enable_bzlmod --deleted_packages=//docs //..."
     - &bzlmod_generate_integration "--output_base=bazel-output-base run --config=workflows --config=fixtures //test/fixtures:update"
     - &bzlmod_build_all "--output_base=bazel-output-base build --config=workflows //..."
     - &bzlmod_test_all "--output_base=bazel-output-base test --config=workflows //test/..."

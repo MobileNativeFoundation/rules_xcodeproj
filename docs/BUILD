@@ -18,7 +18,10 @@ _DOC_COMPONENTS = [
         name = component,
         out = "{}.md".format(component),
         input = "//xcodeproj/internal/docs:{}.bzl".format(component),
-        tags = ["no-sandbox"],  # https://github.com/bazelbuild/stardoc/issues/112
+        tags = [
+            "manual",
+            "no-sandbox",  # https://github.com/bazelbuild/stardoc/issues/112
+        ],
         deps = ["//xcodeproj/internal:xcodeproj_internal"],
     )
     for component in _DOC_COMPONENTS
@@ -75,10 +78,12 @@ write_file(
         )
         for doc in _DOCS
     ],
+    tags = ["manual"],
 )
 
 sh_binary(
     name = "update",
     srcs = ["update.sh"],
     data = ["{}.generated.md".format(doc) for doc in _DOCS],
+    tags = ["manual"],
 )
