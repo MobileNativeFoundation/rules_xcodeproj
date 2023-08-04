@@ -18,6 +18,7 @@
         "b": {
             "CODE_SIGN_STYLE": "Manual",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/AddressSanitizerApp/rules_xcodeproj/AddressSanitizerApp/Info.plist",
+            "OTHER_SWIFT_FLAGS": "-Xcc -iquote$(PROJECT_DIR) -Xcc -iquote$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PREVIEWS_SWIFT_INCLUDE__": "",
             "PREVIEWS_SWIFT_INCLUDE__NO": "",
             "PREVIEWS_SWIFT_INCLUDE__YES": "-I $(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/AddressSanitizerApp",
@@ -70,6 +71,7 @@
         "b": {
             "CODE_SIGN_STYLE": "Manual",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/ThreadSanitizerApp/rules_xcodeproj/ThreadSanitizerApp/Info.plist",
+            "OTHER_SWIFT_FLAGS": "-Xcc -iquote$(PROJECT_DIR) -Xcc -iquote$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PREVIEWS_SWIFT_INCLUDE__": "",
             "PREVIEWS_SWIFT_INCLUDE__NO": "",
             "PREVIEWS_SWIFT_INCLUDE__YES": "-I $(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-2/bin/ThreadSanitizerApp",
