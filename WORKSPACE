@@ -66,10 +66,10 @@ buildifier_prebuilt_register_toolchains()
 
 http_archive(
     name = "io_bazel_stardoc",
-    sha256 = "4441a965c97f8364c8eb901f951ca9a15c6e2c29ee0f10b56bf8b563463752ea",
+    sha256 = "3082a199f39e1fd9ed608421516fdbe9e9af8eb34f52e46e9a8c4798c8e6bfad",
     urls = [
-        "https://mirror.bazel.build/github.com/bazelbuild/stardoc/releases/download/0.6.0/stardoc-0.6.0.tar.gz",
-        "https://github.com/bazelbuild/stardoc/releases/download/0.6.0/stardoc-0.6.0.tar.gz",
+        "https://mirror.bazel.build/github.com/bazelbuild/stardoc/releases/download/0.6.1/stardoc-0.6.1.tar.gz",
+        "https://github.com/bazelbuild/stardoc/releases/download/0.6.1/stardoc-0.6.1.tar.gz",
     ],
 )
 
