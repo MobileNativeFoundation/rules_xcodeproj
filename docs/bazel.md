@@ -535,9 +535,11 @@ automatically process it.
 If you need more control over how a target or its dependencies are processed,
 return an `XcodeProjInfo` provider instance instead.
 
-**Warning:** This provider currently has an unstable API and may change in the
-future. If you are using this provider, please let us know so we can prioritize
-stabilizing it.
+> **Warning**
+>
+> This provider currently has an unstable API and may change in the future. If
+> you are using this provider, please let us know so we can prioritize
+> stabilizing it.
 
 **FIELDS**
 
@@ -582,9 +584,11 @@ XcodeProjInfo(<a href="#XcodeProjInfo-args">args</a>, <a href="#XcodeProjInfo-co
 
 Provides information needed to generate an Xcode project.
 
-**Warning:** This provider currently has an unstable API and may change in the
-future. If you are using this provider, please let us know so we can prioritize
-stabilizing it.
+> **Warning**
+>
+> This provider currently has an unstable API and may change in the future. If
+> you are using this provider, please let us know so we can prioritize
+> stabilizing it.
 
 **FIELDS**
 
