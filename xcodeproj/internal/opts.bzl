@@ -362,7 +362,9 @@ under {}""".format(opt, package_bin_dir))
                     if not path:
                         absolute_opt = opt
                     else:
-                        absolute_opt = search_opt + build_setting_path(path)
+                        project_set_opts.append(search_opt)
+                        project_set_opts.append("-Xcc")
+                        absolute_opt = build_setting_path(path)
                     project_set_opts.append(absolute_opt)
                     handled_seach_opt = True
                     break
