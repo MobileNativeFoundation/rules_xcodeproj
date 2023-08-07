@@ -463,7 +463,9 @@ def _write_pbxtargetdependencies(
                 platforms.append(xcode_target.platform.platform)
                 os_versions.append(xcode_target.platform.os_version)
                 archs.append(xcode_target.platform.arch)
-                module_names.append(xcode_target.product.module_name or "")
+                module_names.append(
+                    xcode_target.product.module_name_attribute or "",
+                )
                 dependency_counts.append(xcode_target.dependencies)
                 dependencies.append(xcode_target.dependencies)
 
