@@ -25,7 +25,7 @@ def _write_files_and_groups_test_impl(ctx):
     expected_inputs = [
         ctx.attr.execution_root_file,
         ctx.attr.selected_model_versions_file,
-    ]
+    ] + ctx.attr.buildfile_subidentifiers_files
 
     # Act
 

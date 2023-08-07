@@ -180,7 +180,7 @@ def _write_files_and_groups(
         inputs = [
             execution_root_file,
             selected_model_versions_file,
-        ],
+        ] + buildfile_subidentifiers_files,
         outputs = [
             files_and_groups,
             pbxproject_known_regions,
