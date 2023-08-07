@@ -182,8 +182,8 @@ def _write_files_and_groups(
             selected_model_versions_file,
         ],
         outputs = [
-            pbxproject_known_regions,
             files_and_groups,
+            pbxproject_known_regions,
             resolved_repositories_file,
         ],
         mnemonic = "WritePBXProjFileAndGroups",

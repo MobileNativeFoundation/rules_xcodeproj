@@ -18,8 +18,8 @@ def _write_files_and_groups_test_impl(ctx):
     actions = mock_actions.create()
 
     expected_declared_files = {
-        _KNOWN_REGIONS_DECLARED_FILE: None,
         _FILES_AND_GROUPS_DECLARED_FILE: None,
+        _KNOWN_REGIONS_DECLARED_FILE: None,
         _RESOLVED_REPOSITORIES_FILE_DECLARED_FILE: None,
     }
     expected_inputs = [
