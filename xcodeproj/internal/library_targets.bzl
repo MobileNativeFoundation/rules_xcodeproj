@@ -114,8 +114,8 @@ def process_library_target(
         ctx = ctx,
         target = target,
         product_name = product_name,
-        product_module_name = module_name_attribute,
         product_type = "com.apple.product-type.library.static",
+        module_name_attribute = module_name_attribute,
         linker_inputs = linker_inputs,
     )
 

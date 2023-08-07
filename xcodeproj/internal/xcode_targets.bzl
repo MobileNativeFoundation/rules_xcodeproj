@@ -269,7 +269,7 @@ def _to_xcode_target_outputs(outputs):
 def _to_xcode_target_product(product):
     return struct(
         name = product.name,
-        module_name = product.module_name,
+        module_name_attribute = product.module_name_attribute,
         type = product.type,
         file = product.file,
         basename = product.basename,
@@ -426,11 +426,11 @@ def _merge_xcode_target_outputs(*, src_swift, dest):
     )
 
 def _merge_xcode_target_product(*, srcs, dest):
-    module_name = None if any([
-        src.module_name
+    module_name_attribute = None if any([
+        src.module_name_attribute
         for src in srcs
-        if src.module_name != srcs[0].module_name
-    ]) else srcs[0].module_name
+        if src.module_name_attribute != srcs[0].module_name_attribute
+    ]) else srcs[0].module_name_attribute
 
     src_files = [src.file for src in srcs if src.file]
     src_framework_files = [src.framework_files for src in srcs]
@@ -438,7 +438,7 @@ def _merge_xcode_target_product(*, srcs, dest):
 
     return struct(
         name = dest.name,
-        module_name = module_name,
+        module_name_attribute = module_name_attribute,
         type = dest.type,
         file = dest.file,
         basename = dest.basename,
@@ -1040,7 +1040,7 @@ def _product_to_dto(product):
         ],
     )
     set_if_true(dto, "r", product.is_resource_bundle)
-    set_if_true(dto, "m", product.module_name)
+    set_if_true(dto, "m", product.module_name_attribute)
     set_if_true(dto, "e", product.executable_name)
 
     return dto
