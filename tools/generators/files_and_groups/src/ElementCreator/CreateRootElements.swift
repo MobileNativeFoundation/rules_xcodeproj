@@ -3,7 +3,7 @@ import PBXProj
 extension ElementCreator {
     struct CreateRootElements {
         private let includeCompileStub: Bool
-        private let projectPath: String
+        private let installPath: String
         private let workspace: String
         private let createGroupChild: CreateGroupChild
         private let createGroupChildElements: CreateGroupChildElements
@@ -17,7 +17,7 @@ extension ElementCreator {
         ///     `callAsFunction()`.
         init(
             includeCompileStub: Bool,
-            projectPath: String,
+            installPath: String,
             workspace: String,
             createGroupChild: CreateGroupChild,
             createGroupChildElements: CreateGroupChildElements,
@@ -26,7 +26,7 @@ extension ElementCreator {
             callable: @escaping Callable
         ) {
             self.includeCompileStub = includeCompileStub
-            self.projectPath = projectPath
+            self.installPath = installPath
             self.workspace = workspace
             self.createGroupChild = createGroupChild
             self.createGroupChildElements = createGroupChildElements
@@ -42,7 +42,7 @@ extension ElementCreator {
             return callable(
                 /*pathTree:*/ pathTree,
                 /*includeCompileStub:*/ includeCompileStub,
-                /*projectPath:*/ projectPath,
+                /*installPath:*/ installPath,
                 /*workspace:*/ workspace,
                 /*createGroupChild:*/ createGroupChild,
                 /*createGroupChildElements:*/ createGroupChildElements,
@@ -59,7 +59,7 @@ extension ElementCreator.CreateRootElements {
     typealias Callable = (
         _ pathTree: PathTreeNode,
         _ includeCompileStub: Bool,
-        _ projectPath: String,
+        _ installPath: String,
         _ workspace: String,
         _ createGroupChild: ElementCreator.CreateGroupChild,
         _ createGroupChildElements: ElementCreator.CreateGroupChildElements,
@@ -70,7 +70,7 @@ extension ElementCreator.CreateRootElements {
     static func defaultCallable(
         for pathTree: PathTreeNode,
         includeCompileStub: Bool,
-        projectPath: String,
+        installPath: String,
         workspace: String,
         createGroupChild: ElementCreator.CreateGroupChild,
         createGroupChildElements: ElementCreator.CreateGroupChildElements,
@@ -125,7 +125,7 @@ extension ElementCreator.CreateRootElements {
 
         if includeCompileStub {
             groupChildren.append(
-                createInternalGroup(projectPath: projectPath)
+                createInternalGroup(installPath: installPath)
             )
         }
 

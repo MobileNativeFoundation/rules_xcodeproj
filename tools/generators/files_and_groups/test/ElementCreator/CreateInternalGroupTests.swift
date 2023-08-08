@@ -8,7 +8,7 @@ final class CreateInternalGroupTests: XCTestCase {
     func test() {
         // Arrange
 
-        let projectPath = "some/project.xcodeproj"
+        let installPath = "some/project.xcodeproj"
 
         let expectedCompileStubObject = Object(
             identifier: Identifiers.FilesAndGroups.compileStub,
@@ -56,7 +56,7 @@ final class CreateInternalGroupTests: XCTestCase {
         // Act
 
         let result = ElementCreator.CreateInternalGroup.defaultCallable(
-            projectPath: projectPath
+            installPath: installPath
         )
 
         // Assert

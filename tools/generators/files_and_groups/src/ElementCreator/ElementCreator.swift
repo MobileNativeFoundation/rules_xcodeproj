@@ -22,7 +22,7 @@ struct ElementCreator {
                 executionRoot: executionRoot
             ),
             includeCompileStub: compileStubNeeded,
-            projectPath: arguments.projectPath,
+            installPath: arguments.installPath,
             selectedModelVersions:
                 try environment.readSelectedModelVersionsFile(
                     arguments.selectedModelVersionsFile

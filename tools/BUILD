@@ -45,7 +45,7 @@ _SCHEMES = [
                 "/tmp/pbxproj_partials/resolved_repositories",
                 # workspace
                 "/tmp/workspace",
-                # projectPath
+                # installPath
                 "some/project.xcodeproj",
                 # executionRootFile
                 "bazel-output-base/rules_xcodeproj.noindex/build_output_base/execroot/_main/bazel-out/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/xcodeproj/xcodeproj_execution_root_file",

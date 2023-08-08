@@ -59,8 +59,8 @@ def _write_files_and_groups(
         file_paths,
         folders,
         generator_name,
+        install_path,
         project_options,
-        project_path,
         selected_model_versions_file,
         tool,
         workspace_directory):
@@ -82,9 +82,9 @@ def _write_files_and_groups(
             file paths.
         folders: A `depset` of paths to folders to include in the project.
         generator_name: The name of the `xcodeproj` generator target.
-        project_options: A `dict` as returned by `project_options`.
-        project_path: The workspace relative path to where the final
+        install_path: The workspace relative path to where the final
             `.xcodeproj` will be written.
+        project_options: A `dict` as returned by `project_options`.
         selected_model_versions_file: A `File` that contains a JSON
             representation of `[BazelPath: String]`, mapping `.xcdatamodeld`
             file paths to selected `.xcdatamodel` file names.
@@ -134,8 +134,8 @@ def _write_files_and_groups(
     # workspace
     args.add(workspace_directory)
 
-    # projectPath
-    args.add(project_path)
+    # installPath
+    args.add(install_path)
 
     # executionRootFile
     args.add(execution_root_file)

@@ -13,8 +13,8 @@ extension ElementCreator {
 
         /// Creates the `PBXGroup` element for the internal group (i.e.
         /// `rules_xcodeproj`).
-        func callAsFunction(projectPath: String) -> GroupChild {
-            return callable(/*projectPath:*/ projectPath)
+        func callAsFunction(installPath: String) -> GroupChild {
+            return callable(/*installPath:*/ installPath)
         }
     }
 }
@@ -22,7 +22,7 @@ extension ElementCreator {
 // MARK: - CreateInternalGroup.Callable
 
 extension ElementCreator.CreateInternalGroup {
-    typealias Callable = (_ projectPath: String) -> GroupChild
+    typealias Callable = (_ installPath: String) -> GroupChild
 
     private static let compileStubObject = Object(
         identifier: Identifiers.FilesAndGroups.compileStub,
@@ -31,7 +31,7 @@ extension ElementCreator.CreateInternalGroup {
 """#
     )
 
-    static func defaultCallable(projectPath: String) -> GroupChild {
+    static func defaultCallable(installPath: String) -> GroupChild {
         let group = Element(
             name: "rules_xcodeproj",
             object: .init(
@@ -43,7 +43,7 @@ extension ElementCreator.CreateInternalGroup {
 				\#(compileStubObject.identifier),
 			);
 			name = rules_xcodeproj;
-			path = \#("\(projectPath)/rules_xcodeproj".pbxProjEscaped);
+			path = \#("\(installPath)/rules_xcodeproj".pbxProjEscaped);
 			sourceTree = "<group>";
 		}
 """#

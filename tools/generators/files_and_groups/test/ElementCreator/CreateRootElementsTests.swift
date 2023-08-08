@@ -34,7 +34,7 @@ final class CreateRootElementsTests: XCTestCase {
                 ),
             ]
         )
-        let projectPath = "a/visonary.xcodeproj"
+        let installPath = "a/visonary.xcodeproj"
         let workspace = "/Users/TimApple/Star Board"
         let includeCompileStub = true
 
@@ -206,7 +206,7 @@ final class CreateRootElementsTests: XCTestCase {
         let expectedCreateInternalGroupCalled: [
             ElementCreator.CreateInternalGroup.MockTracker.Called
         ] = [
-            .init(projectPath: projectPath),
+            .init(installPath: installPath),
         ]
         let stubbedInternalGroup = GroupChild.elementAndChildren(.init(
             element: .init(
@@ -309,7 +309,7 @@ final class CreateRootElementsTests: XCTestCase {
         let rootElements = ElementCreator.CreateRootElements.defaultCallable(
             for: pathTree,
             includeCompileStub: includeCompileStub,
-            projectPath: projectPath,
+            installPath: installPath,
             workspace: workspace,
             createGroupChild: createGroupChild.mock,
             createGroupChildElements: createGroupChildElements.mock,
