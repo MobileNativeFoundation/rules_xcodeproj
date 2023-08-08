@@ -80,7 +80,7 @@ SHARDAFFHASHA /* app_extension.appex in Embed App Extensions */
 
         let expectedElement = Object(
             identifier: #"""
-SHARDA00HASHA0000000000FF /* _CompileStub_.m in Sources */
+SHARDA00HASHA0000000000FE /* _CompileStub_.m in Sources */
 """#,
             content: #"""
 {isa = PBXBuildFile; fileRef = FILE_ID; }

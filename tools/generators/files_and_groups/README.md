@@ -154,6 +154,15 @@ Here is an example output:
 			path = ../../external;
 			sourceTree = SOURCE_ROOT;
 		};
+		FF0000000000000000000004 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				06005D29A3B70000000000FF /* App.app */,
+				06002428EDCA0000000000FF /* tests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 	};
 	rootObject = FF0000000000000000000001 /* Project object */;
 }
