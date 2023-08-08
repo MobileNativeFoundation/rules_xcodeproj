@@ -45,8 +45,8 @@ def _write_files_and_groups_test_impl(ctx):
         files = depset(ctx.attr.files),
         file_paths = depset(ctx.attr.file_paths),
         folders = depset(ctx.attr.folders),
+        install_path = ctx.attr.install_path,
         project_options = ctx.attr.project_options,
-        project_path = ctx.attr.project_path,
         selected_model_versions_file = ctx.attr.selected_model_versions_file,
         tool = None,
         workspace_directory = ctx.attr.workspace_directory,
@@ -135,8 +135,8 @@ write_files_and_groups_test = unittest.make(
         "files": attr.string_list(mandatory = True),
         "file_paths": attr.string_list(mandatory = True),
         "folders": attr.string_list(mandatory = True),
+        "install_path": attr.string(mandatory = True),
         "project_options": attr.string_dict(mandatory = True),
-        "project_path": attr.string(mandatory = True),
         "selected_model_versions_file": attr.string(mandatory = True),
         "workspace_directory": attr.string(mandatory = True),
 
@@ -166,8 +166,8 @@ def write_files_and_groups_test_suite(name):
             files = [],
             file_paths = [],
             folders = [],
+            install_path,
             project_options,
-            project_path,
             selected_model_versions_file,
             workspace_directory,
 
@@ -185,8 +185,8 @@ def write_files_and_groups_test_suite(name):
             files = files,
             file_paths = file_paths,
             folders = folders,
+            install_path = install_path,
             project_options = project_options,
-            project_path = project_path,
             selected_model_versions_file = selected_model_versions_file,
             workspace_directory = workspace_directory,
 
@@ -205,10 +205,10 @@ def write_files_and_groups_test_suite(name):
             "some/buildfile_subidentifiers/1",
         ],
         execution_root_file = "an/execution/root/file",
+        install_path = "best/vision.xcodeproj",
         project_options = {
             "development_region": "en",
         },
-        project_path = "best/vision.xcodeproj",
         selected_model_versions_file = "some/selected_model_versions_file",
         workspace_directory = "/Users/TimApple/StarBoard",
 
@@ -222,7 +222,7 @@ def write_files_and_groups_test_suite(name):
             _RESOLVED_REPOSITORIES_FILE_DECLARED_FILE,
             # workspace
             "/Users/TimApple/StarBoard",
-            # projectPath
+            # installPath
             "best/vision.xcodeproj",
             # executionRootFile
             "an/execution/root/file",
@@ -254,10 +254,10 @@ def write_files_and_groups_test_suite(name):
             "a/path/to/a/file",
             "another/path/to/another/file",
         ],
+        install_path = "best/vision.xcodeproj",
         project_options = {
             "development_region": "enGB",
         },
-        project_path = "best/vision.xcodeproj",
         selected_model_versions_file = "some/selected_model_versions_file",
         workspace_directory = "/Users/TimApple/StarBoard",
 
@@ -271,7 +271,7 @@ def write_files_and_groups_test_suite(name):
             _RESOLVED_REPOSITORIES_FILE_DECLARED_FILE,
             # workspace
             "/Users/TimApple/StarBoard",
-            # projectPath
+            # installPath
             "best/vision.xcodeproj",
             # executionRootFile
             "an/execution/root/file",
@@ -307,10 +307,10 @@ def write_files_and_groups_test_suite(name):
             "a/path/to/a/file_path.bundle",
             "another/path/to/another/file_path.framework",
         ],
+        install_path = "best/vision.xcodeproj",
         project_options = {
             "development_region": "enGB",
         },
-        project_path = "best/vision.xcodeproj",
         selected_model_versions_file = "some/selected_model_versions_file",
         workspace_directory = "/Users/TimApple/StarBoard",
 
@@ -324,7 +324,7 @@ def write_files_and_groups_test_suite(name):
             _RESOLVED_REPOSITORIES_FILE_DECLARED_FILE,
             # workspace
             "/Users/TimApple/StarBoard",
-            # projectPath
+            # installPath
             "best/vision.xcodeproj",
             # executionRootFile
             "an/execution/root/file",
@@ -360,10 +360,10 @@ def write_files_and_groups_test_suite(name):
             "a/path/to/a/folder",
             "another/path/to/another/folder",
         ],
+        install_path = "best/vision.xcodeproj",
         project_options = {
             "development_region": "enGB",
         },
-        project_path = "best/vision.xcodeproj",
         selected_model_versions_file = "some/selected_model_versions_file",
         workspace_directory = "/Users/TimApple/StarBoard",
 
@@ -377,7 +377,7 @@ def write_files_and_groups_test_suite(name):
             _RESOLVED_REPOSITORIES_FILE_DECLARED_FILE,
             # workspace
             "/Users/TimApple/StarBoard",
-            # projectPath
+            # installPath
             "best/vision.xcodeproj",
             # executionRootFile
             "an/execution/root/file",
@@ -423,10 +423,10 @@ def write_files_and_groups_test_suite(name):
             "a/path/to/a/folder",
             "another/path/to/another/folder",
         ],
+        install_path = "best/vision.xcodeproj",
         project_options = {
             "development_region": "enGB",
         },
-        project_path = "best/vision.xcodeproj",
         selected_model_versions_file = "some/selected_model_versions_file",
         workspace_directory = "/Users/TimApple/StarBoard",
 
@@ -440,7 +440,7 @@ def write_files_and_groups_test_suite(name):
             _RESOLVED_REPOSITORIES_FILE_DECLARED_FILE,
             # workspace
             "/Users/TimApple/StarBoard",
-            # projectPath
+            # installPath
             "best/vision.xcodeproj",
             # executionRootFile
             "an/execution/root/file",

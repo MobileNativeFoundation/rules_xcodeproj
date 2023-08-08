@@ -10,7 +10,7 @@ extension ElementCreator {
         @Argument(help: """
 Bazel workspace relative path to where the final `.xcodeproj` will be output.
 """)
-        var projectPath: String
+        var installPath: String
 
         @Argument(
             help: """

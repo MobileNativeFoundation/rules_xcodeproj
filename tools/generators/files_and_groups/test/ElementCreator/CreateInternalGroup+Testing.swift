@@ -7,7 +7,7 @@ import PBXProj
 extension ElementCreator.CreateInternalGroup {
     final class MockTracker {
         struct Called: Equatable {
-            let projectPath: String
+            let installPath: String
         }
 
         fileprivate(set) var called: [Called] = []
@@ -32,9 +32,9 @@ extension ElementCreator.CreateInternalGroup {
         let mockTracker = MockTracker(results: groupChildren)
 
         let mocked = Self(
-            callable: { projectPath in
+            callable: { installPath in
                 mockTracker.called.append(.init(
-                    projectPath: projectPath
+                    installPath: installPath
                 ))
                 return mockTracker.nextResult()
             }

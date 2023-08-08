@@ -82,7 +82,7 @@ extension ElementCreator.Environment {
         executionRoot: String,
         externalDir: String,
         includeCompileStub: Bool,
-        projectPath: String,
+        installPath: String,
         selectedModelVersions: [BazelPath: String],
         workspace: String
     ) -> ElementCreator.CreateRootElements {
@@ -172,7 +172,7 @@ extension ElementCreator.Environment {
 
         return ElementCreator.CreateRootElements(
             includeCompileStub: includeCompileStub,
-            projectPath: projectPath,
+            installPath: installPath,
             workspace: workspace,
             createGroupChild: createGroupChild,
             createGroupChildElements: createGroupChildElements,
