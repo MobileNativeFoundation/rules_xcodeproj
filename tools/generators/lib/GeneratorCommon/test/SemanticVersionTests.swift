@@ -94,20 +94,3 @@ class SemanticVersionTests: XCTestCase {
         XCTAssertEqual(sver, result)
     }
 }
-
-extension SemanticVersion: ExpressibleByStringLiteral {
-    public typealias ExtendedGraphemeClusterLiteralType = StringLiteralType
-    public typealias UnicodeScalarLiteralType = StringLiteralType
-
-    public init(extendedGraphemeClusterLiteral id: StringLiteralType) {
-        self.init(stringLiteral: id)
-    }
-
-    public init(unicodeScalarLiteral id: StringLiteralType) {
-        self.init(stringLiteral: id)
-    }
-
-    public init(stringLiteral value: StringLiteralType) {
-        self.init(version: value)!
-    }
-}
