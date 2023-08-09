@@ -346,7 +346,7 @@ def _write_pbxproj_prefix(
     if colorize:
         args.add(_flags.colorize)
 
-    message = "Generating {} BXProj prefix partial".format(install_path)
+    message = "Generating {} PBXProj prefix partial".format(install_path)
 
     actions.run(
         arguments = [args],
@@ -557,7 +557,7 @@ def _write_pbxtargetdependencies(
         args.add(_flags.colorize)
 
     message = "Generating {} PBXTargetDependencies partials".format(
-        install_path
+        install_path,
     )
 
     actions.run(
