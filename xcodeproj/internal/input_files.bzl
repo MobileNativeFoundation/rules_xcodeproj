@@ -273,6 +273,7 @@ def _collect_input_files(
         file_handlers[attr] = _handle_extrafiles_file
 
     categorized_files = {}
+    xccurrentversions = []
 
     # buildifier: disable=uninitialized
     def _handle_file(file, *, handler):
@@ -288,14 +289,22 @@ def _collect_input_files(
 
         if file.is_source:
             if not categorized:
-                uncategorized.append(
-                    normalized_file_path(
-                        file,
-                        folder_type_extensions = (
-                            RESOURCES_FOLDER_TYPE_EXTENSIONS
+                if (file.basename == ".xccurrentversion" and
+                    file.dirname.endswith(".xcdatamodeld")):
+                    # rules_ios's `precompiled_apple_resource_bundle` rule
+                    # exposes its resources as inputs, so we have to have the
+                    # same check here for the `.xccurrentversion` file as we
+                    # do in `resources.bzl`
+                    xccurrentversions.append(file)
+                else:
+                    uncategorized.append(
+                        normalized_file_path(
+                            file,
+                            folder_type_extensions = (
+                                RESOURCES_FOLDER_TYPE_EXTENSIONS
+                            ),
                         ),
-                    ),
-                )
+                    )
         elif categorized:
             generated.append(file)
 
@@ -392,7 +401,6 @@ def _collect_input_files(
     folder_resources = None
     resource_bundles = None
     resource_bundle_dependencies = None
-    xccurrentversions = None
     if is_resource_bundle_consuming:
         resources_result = collect_resources(
             platform = platform,
@@ -405,7 +413,7 @@ def _collect_input_files(
         )
 
         generated.extend(resources_result.generated)
-        xccurrentversions = resources_result.xccurrentversions
+        xccurrentversions.extend(resources_result.xccurrentversions)
 
         bundle_labels_list = [
             bundle.label
