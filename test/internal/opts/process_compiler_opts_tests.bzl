@@ -553,6 +553,8 @@ def process_compiler_opts_test_suite(name):
             "-O0",
             "-Xcc",
             "-DDEBUG=1",
+            "-Xcc",
+            "-DNEEDS_QUOTES=Two words",
         ],
         expected_build_settings = {
             "OTHER_SWIFT_FLAGS": """\
@@ -604,7 +606,8 @@ def process_compiler_opts_test_suite(name):
 -Xcc -ivfsoverlay$(PROJECT_DIR)/bazel-out/relative/Path.yaml \
 -Xcc -ivfsoverlay$(PROJECT_DIR)/external/relative/Path.yaml \
 -Xcc -O0 \
--Xcc -DDEBUG=1\
+-Xcc -DDEBUG=1 \
+-Xcc "-DNEEDS_QUOTES=Two words"\
 """,
         },
     )
