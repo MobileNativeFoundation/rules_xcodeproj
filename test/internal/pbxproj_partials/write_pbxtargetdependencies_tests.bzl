@@ -103,6 +103,7 @@ def _write_pbxtargetdependencies_test_impl(ctx):
         apple_platform_to_platform_name = mock_apple_platform_to_platform_name,
         colorize = ctx.attr.colorize,
         generator_name = "a_generator_name",
+        install_path = "a/project.xcodeproj",
         minimum_xcode_version = ctx.attr.minimum_xcode_version,
         tool = None,
         xcode_target_configurations = ctx.attr.xcode_target_configurations,

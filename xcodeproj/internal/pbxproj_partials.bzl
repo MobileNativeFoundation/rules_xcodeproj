@@ -174,6 +174,8 @@ def _write_files_and_groups(
     if colorize:
         args.add(_flags.colorize)
 
+    message = "Generating {} files and groups partials".format(install_path)
+
     actions.run(
         arguments = [args],
         executable = tool,
@@ -187,6 +189,7 @@ def _write_files_and_groups(
             resolved_repositories_file,
         ],
         mnemonic = "WritePBXProjFileAndGroups",
+        progress_message = message,
     )
 
     return (
@@ -205,6 +208,7 @@ def _write_pbxproj_prefix(
         execution_root_file,
         generator_name,
         index_import,
+        install_path,
         minimum_xcode_version,
         platforms,
         post_build_script,
@@ -231,6 +235,8 @@ def _write_pbxproj_prefix(
             execution root.
         generator_name: The name of the `xcodeproj` generator target.
         index_import: The executable `File` for the `index_import` tool.
+        install_path: The workspace relative path to where the final
+            `.xcodeproj` will be written.
         minimum_xcode_version: The minimum Xcode version that the generated
             project supports, as a `string`.
         platforms: A `depset` of `apple_platform`s.
@@ -340,12 +346,15 @@ def _write_pbxproj_prefix(
     if colorize:
         args.add(_flags.colorize)
 
+    message = "Generating {} BXProj prefix partial".format(install_path)
+
     actions.run(
         arguments = [args],
         executable = tool,
         inputs = inputs,
         outputs = [output],
         mnemonic = "WritePBXProjPrefix",
+        progress_message = message,
     )
 
     return output
@@ -356,6 +365,7 @@ def _write_pbxtargetdependencies(
         apple_platform_to_platform_name = _apple_platform_to_platform_name,
         colorize,
         generator_name,
+        install_path,
         minimum_xcode_version,
         tool,
         xcode_target_configurations,
@@ -368,6 +378,8 @@ def _write_pbxtargetdependencies(
         apple_platform_to_platform_name: Exposed for testing. Don't set.
         colorize: A `bool` indicating whether to colorize the output.
         generator_name: The name of the `xcodeproj` generator target.
+        install_path: The workspace relative path to where the final
+            `.xcodeproj` will be written.
         minimum_xcode_version: The minimum Xcode version that the generated
             project supports, as a `string`.
         tool: The executable that will generate the output files.
@@ -544,6 +556,10 @@ def _write_pbxtargetdependencies(
     if colorize:
         args.add(_flags.colorize)
 
+    message = "Generating {} PBXTargetDependencies partials".format(
+        install_path
+    )
+
     actions.run(
         arguments = [args],
         executable = tool,
@@ -552,7 +568,8 @@ def _write_pbxtargetdependencies(
             pbxproject_targets,
             pbxproject_target_attributes,
         ] + consolidation_maps.keys(),
-        mnemonic = "WritePBXProjPBXProjectTargets",
+        mnemonic = "WritePBXProjPBXTargetDependencies",
+        progress_message = message,
     )
 
     return (
