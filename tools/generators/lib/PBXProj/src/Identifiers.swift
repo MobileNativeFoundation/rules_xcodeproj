@@ -86,6 +86,9 @@ FF01000000000000000001\#(String(format: "%02X", index)) \#
     public enum BuildFiles {
         /// The logical type of the build file being identified.
         public enum FileType: String {
+            /// The product reference for a target.
+            case product = "P"
+
             /// A normal file referenced in a `BuildPhase.sources` build phase.
             case source = "0"
 
@@ -161,6 +164,21 @@ FF01000000000000000001\#(String(format: "%02X", index)) \#
             )
         }
 
+        public static func productIdentifier(
+            targetSubIdentifier: Targets.SubIdentifier,
+            productBasename: String
+        ) -> SubIdentifier {
+            // We purposely store less information here than in
+            // `subIdentifier()`, to reduce the amount of data written into
+            // BuildFileMaps
+            return SubIdentifier(
+                shard: targetSubIdentifier.shard,
+                type: .product,
+                path: BazelPath(productBasename),
+                hash: targetSubIdentifier.hash
+            )
+        }
+
         public static func compileStubSubIdentifier(
             targetSubIdentifier: Targets.SubIdentifier
         ) -> SubIdentifier {
@@ -181,9 +199,16 @@ FF01000000000000000001\#(String(format: "%02X", index)) \#
             let type = subIdentifier.type
 
             switch type {
-            case .compileStub:
+            case .product:
+                // `subIdentifier.path` actually holds just the basename
                 return #"""
 \#(subIdentifier.shard)00\#(subIdentifier.hash)0000000000FF \#
+/* \#(subIdentifier.path.path) */
+"""#
+
+            case .compileStub:
+                return #"""
+\#(subIdentifier.shard)00\#(subIdentifier.hash)0000000000FE \#
 /* _CompileStub_.m in Sources */
 """#
 
@@ -518,6 +543,7 @@ FF00000000000000000001\#(String(format: "%02X", index)) \#
 private extension Identifiers.BuildFiles.FileType {
     var buildPhase: BuildPhase {
         switch self {
+        case .product: preconditionFailure() // product reference used as build file
         case .source: return .sources
         case .nonArcSource: return .sources
         case .compileStub: return .sources
@@ -620,9 +646,10 @@ file type
         }
 
         let pathIsFolderStartIndex: String.Index
-        if type == .compileStub {
+        switch type {
+        case .compileStub, .product:
             pathIsFolderStartIndex = line.index(hashStartIndex, offsetBy: 8)
-        } else {
+        default:
             pathIsFolderStartIndex = line.index(hashStartIndex, offsetBy: 20)
         }
 

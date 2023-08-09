@@ -2,8 +2,8 @@ import Foundation
 import PBXProj
 
 extension Generator {
-    struct CreateBuildFileObjects {
-        private let createShardBuildFileObjects: CreateShardBuildFileObjects
+    struct CreateTargetFileObjects {
+        private let createShardTargetFileObjects: CreateShardTargetFileObjects
 
         private let callable: Callable
 
@@ -11,10 +11,10 @@ extension Generator {
         ///   - callable: The function that will be called in
         ///     `callAsFunction()`.
         init(
-            createShardBuildFileObjects: CreateShardBuildFileObjects,
+            createShardTargetFileObjects: CreateShardTargetFileObjects,
             callable: @escaping Callable = Self.defaultCallable
         ) {
-            self.createShardBuildFileObjects = createShardBuildFileObjects
+            self.createShardTargetFileObjects = createShardTargetFileObjects
 
             self.callable = callable
         }
@@ -23,48 +23,48 @@ extension Generator {
         func callAsFunction(
             buildFileSubIdentifierFiles: [URL],
             fileIdentifiersTask: Task<[BazelPath: String], Error>
-        ) async throws -> [Object] {
+        ) async throws -> [TargetFileObject] {
             try await callable(
                 /*buildFileSubIdentifierFiles:*/ buildFileSubIdentifierFiles,
                 /*fileIdentifiersTask:*/ fileIdentifiersTask,
-                /*createShardBuildFileObjects:*/ createShardBuildFileObjects
+                /*createShardTargetFileObjects:*/ createShardTargetFileObjects
             )
         }
     }
 }
 
-// MARK: - CreateBuildFileObjects.Callable
+// MARK: - CreateTargetFileObjects.Callable
 
-extension Generator.CreateBuildFileObjects {
+extension Generator.CreateTargetFileObjects {
     typealias Callable = (
         _ buildFileSubIdentifierFiles: [URL],
         _ fileIdentifiersTask: Task<[BazelPath: String], Error>,
-        _ createShardBuildFileObjects: Generator.CreateShardBuildFileObjects
-    ) async throws -> [Object]
+        _ createShardTargetFileObjects: Generator.CreateShardTargetFileObjects
+    ) async throws -> [TargetFileObject]
 
     static func defaultCallable(
         buildFileSubIdentifierFiles: [URL],
         fileIdentifiersTask: Task<[BazelPath: String], Error>,
-        createShardBuildFileObjects: Generator.CreateShardBuildFileObjects
-    ) async throws -> [Object] {
+        createShardTargetFileObjects: Generator.CreateShardTargetFileObjects
+    ) async throws -> [TargetFileObject] {
         return try await withThrowingTaskGroup(
-            of: [Object].self
+            of: [TargetFileObject].self
         ) { group in
             for buildFileSubIdentifierFile in buildFileSubIdentifierFiles {
                 group.addTask {
-                    return try await createShardBuildFileObjects(
+                    return try await createShardTargetFileObjects(
                         buildFileSubIdentifierFile: buildFileSubIdentifierFile,
                         fileIdentifiersTask: fileIdentifiersTask
                     )
                 }
             }
 
-            var buildFileElements: [Object] = []
+            var objects: [TargetFileObject] = []
             for try await shardObjects in group {
-                buildFileElements.append(contentsOf: shardObjects)
+                objects.append(contentsOf: shardObjects)
             }
 
-            return buildFileElements
+            return objects
         }
     }
 }

@@ -8,11 +8,11 @@ extension Generator {
     /// The main purpose of `Environment` is to enable dependency injection,
     /// allowing for different implementations to be used in tests.
     struct Environment {
-        let calculateBuildFilesPartial: CalculateBuildFilesPartial
+        let calculateTargetFilesPartial: CalculateTargetFilesPartial
 
         let calculatePathTree: (_ paths: Set<BazelPath>) -> PathTreeNode
 
-        let createBuildFileObjects: CreateBuildFileObjects
+        let createTargetFileObjects: CreateTargetFileObjects
 
         let elements: ElementCreator.Environment
 
@@ -37,11 +37,11 @@ extension Generator {
 
 extension Generator.Environment {
     static let `default` = Self(
-        calculateBuildFilesPartial: Generator.CalculateBuildFilesPartial(),
+        calculateTargetFilesPartial: Generator.CalculateTargetFilesPartial(),
         calculatePathTree: Generator.calculatePathTree,
-        createBuildFileObjects: Generator.CreateBuildFileObjects(
-            createShardBuildFileObjects:
-                Generator.CreateShardBuildFileObjects(
+        createTargetFileObjects: Generator.CreateTargetFileObjects(
+            createShardTargetFileObjects:
+                Generator.CreateShardTargetFileObjects(
                     createBuildFileObject: Generator.CreateBuildFileObject(),
                     readBuildFileSubIdentifiersFile:
                         Generator.ReadBuildFileSubIdentifiersFile()
