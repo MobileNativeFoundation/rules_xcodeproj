@@ -1,6 +1,6 @@
 """Actions for creating `PBXProj` partials."""
 
-load(":memory_efficiency.bzl", "EMPTY_DEPSET")
+load(":memory_efficiency.bzl", "EMPTY_DEPSET", "EMPTY_STRING")
 load(":platforms.bzl", "PLATFORM_NAME")
 
 # Utility
@@ -464,7 +464,7 @@ def _write_pbxtargetdependencies(
                 os_versions.append(xcode_target.platform.os_version)
                 archs.append(xcode_target.platform.arch)
                 module_names.append(
-                    xcode_target.product.module_name_attribute or "",
+                    xcode_target.product.module_name_attribute or EMPTY_STRING,
                 )
                 dependency_counts.append(xcode_target.dependencies)
                 dependencies.append(xcode_target.dependencies)
