@@ -3,6 +3,7 @@
 EMPTY_DICT = {}
 EMPTY_DEPSET = depset()
 EMPTY_LIST = []
+EMPTY_STRING = ""
 EMPTY_TUPLE = tuple()
 NONE_LIST = [None]
 
