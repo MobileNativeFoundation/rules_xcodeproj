@@ -1,6 +1,6 @@
 """Actions for creating `PBXProj` partials."""
 
-load(":memory_efficiency.bzl", "EMPTY_DEPSET")
+load(":memory_efficiency.bzl", "EMPTY_DEPSET", "EMPTY_STRING")
 load(":platforms.bzl", "PLATFORM_NAME")
 
 # Utility
