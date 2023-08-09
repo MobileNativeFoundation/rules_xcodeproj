@@ -43,8 +43,6 @@ extension Generator.CalculateTargetFilesPartial {
             }
         }
 
-        // FIXME: Sort `productIdentifiers`, right? May need more info (like SubIdentifiers here)
-
         return #"""
 \#(buildFiles.map { "\t\t\($0.identifier) = \($0.content);\n" }.joined())\#
 		\#(Identifiers.FilesAndGroups.productsGroup) = {
