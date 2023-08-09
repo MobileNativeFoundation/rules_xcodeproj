@@ -2,8 +2,8 @@ import Foundation
 import PBXProj
 
 extension Generator {
-    struct CreateShardBuildFileObjects {
-        private let createBuildFileObject: Generator.CreateBuildFileObject
+    struct CreateShardTargetFileObjects {
+        private let createBuildFileObject: CreateBuildFileObject
         private let readBuildFileSubIdentifiersFile:
             ReadBuildFileSubIdentifiersFile
 
@@ -13,7 +13,7 @@ extension Generator {
         ///   - callable: The function that will be called in
         ///     `callAsFunction()`.
         init(
-            createBuildFileObject: Generator.CreateBuildFileObject,
+            createBuildFileObject: CreateBuildFileObject,
             readBuildFileSubIdentifiersFile: ReadBuildFileSubIdentifiersFile,
             callable: @escaping Callable = Self.defaultCallable
         ) {
@@ -30,7 +30,7 @@ extension Generator {
         func callAsFunction(
             buildFileSubIdentifierFile: URL,
             fileIdentifiersTask: Task<[BazelPath: String], Error>
-        ) async throws -> [Object] {
+        ) async throws -> [TargetFileObject] {
             return try await callable(
                 /*buildFileSubIdentifierFile:*/ buildFileSubIdentifierFile,
                 /*fileIdentifiersTask:*/ fileIdentifiersTask,
@@ -42,16 +42,16 @@ extension Generator {
     }
 }
 
-// MARK: - CreateShardBuildFileObjects.Callable
+// MARK: - CreateShardTargetFileObjects.Callable
 
-extension Generator.CreateShardBuildFileObjects {
+extension Generator.CreateShardTargetFileObjects {
     typealias Callable = (
         _ buildFileSubIdentifierFile: URL,
         _ fileIdentifiersTask: Task<[BazelPath: String], Error>,
         _ createBuildFileObject: Generator.CreateBuildFileObject,
         _ readBuildFileSubIdentifiersFile:
             Generator.ReadBuildFileSubIdentifiersFile
-    ) async throws -> [Object]
+    ) async throws -> [TargetFileObject]
 
     static func defaultCallable(
         buildFileSubIdentifierFile: URL,
@@ -59,20 +59,38 @@ extension Generator.CreateShardBuildFileObjects {
         createBuildFileObject: Generator.CreateBuildFileObject,
         readBuildFileSubIdentifiersFile:
             Generator.ReadBuildFileSubIdentifiersFile
-    ) async throws -> [Object] {
+    ) async throws -> [TargetFileObject] {
         let subIdentifiers = try await
             readBuildFileSubIdentifiersFile(buildFileSubIdentifierFile)
 
         let fileIdentifiers = try await fileIdentifiersTask.value
 
         return try subIdentifiers.map { subIdentifier in
-            return createBuildFileObject(
-                subIdentifier: subIdentifier,
-                fileIdentifier: try fileIdentifiers.value(
-                    for: subIdentifier.path,
-                    context: "Build file referenced path"
+            if subIdentifier.type == .product {
+                return .product(
+                    subIdentifier: subIdentifier,
+                    identifier:
+                        Identifiers.BuildFiles.id(subIdentifier: subIdentifier)
                 )
-            )
+            } else {
+                return .buildFile(
+                    createBuildFileObject(
+                        subIdentifier: subIdentifier,
+                        fileIdentifier: try fileIdentifiers.value(
+                            for: subIdentifier.path,
+                            context: "Build file referenced path"
+                        )
+                    )
+                )
+            }
         }
     }
+}
+
+enum TargetFileObject {
+    case product(
+        subIdentifier: Identifiers.BuildFiles.SubIdentifier,
+        identifier: String
+    )
+    case buildFile(Object)
 }

@@ -45,6 +45,7 @@ def _write_pbxproj_prefix_test_impl(ctx):
         execution_root_file = ctx.attr.execution_root_file,
         generator_name = "a_generator_name",
         index_import = ctx.attr.index_import,
+        install_path = "a/project.xcodeproj",
         minimum_xcode_version = ctx.attr.minimum_xcode_version,
         platforms = ctx.attr.platforms,
         post_build_script = ctx.attr.post_build_script,

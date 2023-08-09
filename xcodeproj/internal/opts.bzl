@@ -2,7 +2,7 @@
 
 load("@bazel_tools//tools/cpp:toolchain_utils.bzl", "find_cpp_toolchain")
 load(":collections.bzl", "set_if_true")
-load(":files.bzl", "build_setting_path", "is_relative_path")
+load(":files.bzl", "build_setting_path", "is_relative_path", "quote_if_needed")
 load(":memory_efficiency.bzl", "EMPTY_LIST")
 
 # Maps Swift compliation mode compiler flags to the corresponding Xcode values
@@ -519,7 +519,7 @@ Using -vfsoverlay with `build_mode = "xcode"` is unsupported.
     set_if_true(
         build_settings,
         "OTHER_SWIFT_FLAGS",
-        " ".join(project_set_opts),
+        " ".join([quote_if_needed(opt) for opt in project_set_opts]),
     )
 
     return has_debug_info
