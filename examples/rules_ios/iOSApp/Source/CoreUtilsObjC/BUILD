@@ -22,6 +22,14 @@ rules_ios_apple_framework(
         "ios": "15.0",
     },
     public_headers = ["CoreUtils/Answers.h"],
+    resource_bundles = {
+        "CoreUtilsObjCResources": glob(
+            [
+                "Model.xcdatamodeld/**",
+            ],
+            exclude_directories = 0,
+        ),
+    },
     sdk_dylibs = ["c++"],
     tags = ["manual"],
     visibility = ["//iOSApp:__subpackages__"],
