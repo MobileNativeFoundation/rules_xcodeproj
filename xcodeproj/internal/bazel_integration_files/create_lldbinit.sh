@@ -44,6 +44,14 @@ echo "settings append target.source-map ./external/ \"$index_external\""
 # `external` when set from swiftsourcefile
 echo "settings append target.source-map ./external/ \"$build_external\""
 
+# Build execution root
+#
+# We need to set this before the `$SRCROOT` based one in
+# `$RESOLVED_REPOSITORIES`, because lldb will use the first left-side prefix
+# match for Swift debug srttings remapping. This ensures that all build flags
+# use the execution root, instead of some of them using the workspace root.
+echo "settings append target.source-map ./ \"$PROJECT_DIR\""
+
 # Project files and locally resolved external repositories
 #
 # lldb seems to match breakpoints based on the second argument, using a simple
