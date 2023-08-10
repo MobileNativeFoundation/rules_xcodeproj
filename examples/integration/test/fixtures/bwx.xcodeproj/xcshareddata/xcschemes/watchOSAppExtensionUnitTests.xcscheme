@@ -14,9 +14,9 @@
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "E3DA586F29B6398065447E0B"
-                     BuildableName = "iOSAppObjCUnitTestSuite.xctest"
-                     BlueprintName = "iOSAppObjCUnitTestSuite"
+                     BlueprintIdentifier = "5DC9876B9482A426EE1004BA"
+                     BuildableName = "watchOSAppExtensionUnitTests.xctest"
+                     BlueprintName = "watchOSAppExtensionUnitTests"
                      ReferencedContainer = "container:../../../../../test/fixtures/bwx.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
@@ -25,30 +25,14 @@
          <ExecutionAction
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
-               title = "Set Bazel Build Output Groups for iOSAppObjCUnitTestSuite"
+               title = "Set Bazel Build Output Groups for watchOSAppExtensionUnitTests"
                scriptText = "echo &quot;$BAZEL_LABEL,$BAZEL_TARGET_ID&quot; &gt;&gt; &quot;$SCHEME_TARGET_IDS_FILE&quot;&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "E3DA586F29B6398065447E0B"
-                     BuildableName = "iOSAppObjCUnitTestSuite.xctest"
-                     BlueprintName = "iOSAppObjCUnitTestSuite"
-                     ReferencedContainer = "container:../../../../../test/fixtures/bwx.xcodeproj">
-                  </BuildableReference>
-               </EnvironmentBuildable>
-            </ActionContent>
-         </ExecutionAction>
-         <ExecutionAction
-            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
-            <ActionContent
-               title = "Set Bazel Build Output Groups for iOSAppSwiftUnitTestSuite"
-               scriptText = "echo &quot;$BAZEL_LABEL,$BAZEL_TARGET_ID&quot; &gt;&gt; &quot;$SCHEME_TARGET_IDS_FILE&quot;&#10;">
-               <EnvironmentBuildable>
-                  <BuildableReference
-                     BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "7856014E22F3CF45191565D8"
-                     BuildableName = "iOSAppSwiftUnitTestSuite.xctest"
-                     BlueprintName = "iOSAppSwiftUnitTestSuite"
+                     BlueprintIdentifier = "5DC9876B9482A426EE1004BA"
+                     BuildableName = "watchOSAppExtensionUnitTests.xctest"
+                     BlueprintName = "watchOSAppExtensionUnitTests"
                      ReferencedContainer = "container:../../../../../test/fixtures/bwx.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
@@ -59,28 +43,14 @@
          <BuildActionEntry
             buildForTesting = "YES"
             buildForRunning = "YES"
-            buildForProfiling = "NO"
+            buildForProfiling = "YES"
             buildForArchiving = "YES"
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E3DA586F29B6398065447E0B"
-               BuildableName = "iOSAppObjCUnitTestSuite.xctest"
-               BlueprintName = "iOSAppObjCUnitTestSuite"
-               ReferencedContainer = "container:../../../../../test/fixtures/bwx.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7856014E22F3CF45191565D8"
-               BuildableName = "iOSAppSwiftUnitTestSuite.xctest"
-               BlueprintName = "iOSAppSwiftUnitTestSuite"
+               BlueprintIdentifier = "5DC9876B9482A426EE1004BA"
+               BuildableName = "watchOSAppExtensionUnitTests.xctest"
+               BlueprintName = "watchOSAppExtensionUnitTests"
                ReferencedContainer = "container:../../../../../test/fixtures/bwx.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -100,39 +70,21 @@
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "E3DA586F29B6398065447E0B"
-                     BuildableName = "iOSAppObjCUnitTestSuite.xctest"
-                     BlueprintName = "iOSAppObjCUnitTestSuite"
+                     BlueprintIdentifier = "5DC9876B9482A426EE1004BA"
+                     BuildableName = "watchOSAppExtensionUnitTests.xctest"
+                     BlueprintName = "watchOSAppExtensionUnitTests"
                      ReferencedContainer = "container:../../../../../test/fixtures/bwx.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
             </ActionContent>
          </ExecutionAction>
       </PreActions>
-      <PostActions>
-         <ExecutionAction
-            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
-            <ActionContent
-               title = "Run After Tests"
-               scriptText = "echo &quot;Hi&quot;">
-               <EnvironmentBuildable>
-                  <BuildableReference
-                     BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "7856014E22F3CF45191565D8"
-                     BuildableName = "iOSAppSwiftUnitTestSuite.xctest"
-                     BlueprintName = "iOSAppSwiftUnitTestSuite"
-                     ReferencedContainer = "container:../../../../../test/fixtures/bwx.xcodeproj">
-                  </BuildableReference>
-               </EnvironmentBuildable>
-            </ActionContent>
-         </ExecutionAction>
-      </PostActions>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E3DA586F29B6398065447E0B"
-            BuildableName = "iOSAppObjCUnitTestSuite.xctest"
-            BlueprintName = "iOSAppObjCUnitTestSuite"
+            BlueprintIdentifier = "5DC9876B9482A426EE1004BA"
+            BuildableName = "watchOSAppExtensionUnitTests.xctest"
+            BlueprintName = "watchOSAppExtensionUnitTests"
             ReferencedContainer = "container:../../../../../test/fixtures/bwx.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -141,19 +93,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E3DA586F29B6398065447E0B"
-               BuildableName = "iOSAppObjCUnitTestSuite.xctest"
-               BlueprintName = "iOSAppObjCUnitTestSuite"
-               ReferencedContainer = "container:../../../../../test/fixtures/bwx.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7856014E22F3CF45191565D8"
-               BuildableName = "iOSAppSwiftUnitTestSuite.xctest"
-               BlueprintName = "iOSAppSwiftUnitTestSuite"
+               BlueprintIdentifier = "5DC9876B9482A426EE1004BA"
+               BuildableName = "watchOSAppExtensionUnitTests.xctest"
+               BlueprintName = "watchOSAppExtensionUnitTests"
                ReferencedContainer = "container:../../../../../test/fixtures/bwx.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -161,16 +103,6 @@
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "INTEGRATION_TEST_ENV_VAR"
-            value = "TRUE"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-         <EnvironmentVariable
-            key = "IOS_APP_UNIT_TESTS"
-            value = "CUSTOM_ENV_VALUE"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-         <EnvironmentVariable
-            key = "IOSAPPSWIFTUNITTESTS_CUSTOMSCHEMEVAR"
             value = "TRUE"
             isEnabled = "YES">
          </EnvironmentVariable>
@@ -186,6 +118,33 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
+      <PreActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Update .lldbinit"
+               scriptText = "&quot;$BAZEL_INTEGRATION_DIR/create_lldbinit.sh&quot;&#10;">
+               <EnvironmentBuildable>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "5DC9876B9482A426EE1004BA"
+                     BuildableName = "watchOSAppExtensionUnitTests.xctest"
+                     BlueprintName = "watchOSAppExtensionUnitTests"
+                     ReferencedContainer = "container:../../../../../test/fixtures/bwx.xcodeproj">
+                  </BuildableReference>
+               </EnvironmentBuildable>
+            </ActionContent>
+         </ExecutionAction>
+      </PreActions>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "5DC9876B9482A426EE1004BA"
+            BuildableName = "watchOSAppExtensionUnitTests.xctest"
+            BlueprintName = "watchOSAppExtensionUnitTests"
+            ReferencedContainer = "container:../../../../../test/fixtures/bwx.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Debug"
@@ -193,6 +152,33 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <PreActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Update .lldbinit"
+               scriptText = "&quot;$BAZEL_INTEGRATION_DIR/create_lldbinit.sh&quot;&#10;">
+               <EnvironmentBuildable>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "5DC9876B9482A426EE1004BA"
+                     BuildableName = "watchOSAppExtensionUnitTests.xctest"
+                     BlueprintName = "watchOSAppExtensionUnitTests"
+                     ReferencedContainer = "container:../../../../../test/fixtures/bwx.xcodeproj">
+                  </BuildableReference>
+               </EnvironmentBuildable>
+            </ActionContent>
+         </ExecutionAction>
+      </PreActions>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "5DC9876B9482A426EE1004BA"
+            BuildableName = "watchOSAppExtensionUnitTests.xctest"
+            BlueprintName = "watchOSAppExtensionUnitTests"
+            ReferencedContainer = "container:../../../../../test/fixtures/bwx.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

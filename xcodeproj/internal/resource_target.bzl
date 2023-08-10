@@ -32,7 +32,9 @@ def _process_resource_bundle(bundle, *, information):
         target = None,
         product_name = name,
         product_type = "com.apple.product-type.bundle",
-        module_name_attribute = None,
+        # For resource bundles, we want to use the bundle name instead of
+        # `module_name`
+        module_name_attribute = name,
         is_resource_bundle = True,
         bundle_file = None,
         bundle_path = bundle_path,
