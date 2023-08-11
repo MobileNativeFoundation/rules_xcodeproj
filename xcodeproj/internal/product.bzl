@@ -21,8 +21,8 @@ PRODUCT_TYPE_ENCODED = {
     "com.apple.product-type.watchkit-extension": "1",
     "com.apple.product-type.watchkit2-extension": "W",
     "com.apple.product-type.xcode-extension": "2",
+    # Resource bundles, which are also "com.apple.product-type.bundle" are "b"
     "com.apple.product-type.bundle": "B",
-    # Resource bundles are "b"
     "com.apple.product-type.bundle.ocunit-test": "o",
     "com.apple.product-type.bundle.unit-test": "u",
     "com.apple.product-type.bundle.ui-testing": "U",
