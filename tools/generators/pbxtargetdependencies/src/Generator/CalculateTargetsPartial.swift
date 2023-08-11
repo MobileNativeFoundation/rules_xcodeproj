@@ -27,6 +27,7 @@ extension Generator.CalculateTargetsPartial {
         // The tabs for indenting are intentional
         return #"""
 			targets = (
+				\#(Identifiers.BazelDependencies.id),
 \#(identifiers.map { "\t\t\t\t\($0),\n" }.joined())\#
 			);
 		};

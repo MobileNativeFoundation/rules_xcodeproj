@@ -112,6 +112,7 @@ Here is an example output:
 
 ```
 			targets = (
+				FF0100000000000000000001 /* BazelDependencies */,
 				0000564AEDC8000000000001 /* generator */,
 				010071A3113B000000000001 /* generator.library */,
 				00005110672D000000000001 /* tests.__internal__.__test_bundle */,
