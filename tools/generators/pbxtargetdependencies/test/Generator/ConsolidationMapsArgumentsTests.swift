@@ -45,10 +45,10 @@ final class ConsolidationMapsArgumentsTests: XCTestCase {
             "Debug",
 
             "--product-types",
-            "com.apple.product-type.tool",
-            "com.apple.product-type.bundle.unit-test",
-            "com.apple.product-type.bundle.unit-test",
-            "com.apple.product-type.library.static",
+            "T",
+            "u",
+            "u",
+            "L",
 
             "--platforms",
             "iphoneos",
