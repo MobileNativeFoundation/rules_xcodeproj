@@ -163,23 +163,30 @@ extension XCSchemeInfoTargetInfoTests {
 
 extension XCSchemeInfoTargetInfoTests {
     func test_bazelBuildPreAction_nativeTarget_noHost() throws {
-        let preAction = try libraryTargetInfo.buildPreAction()
-        XCTAssertEqual(preAction, .init(
-            buildFor: libraryTargetInfo.buildableReference,
-            name: libraryTargetInfo.pbxTarget.name,
-            hostIndex: nil
-        ))
+        let preAction = libraryTargetInfo.buildableReference.buildPreAction()
+        XCTAssertEqual(
+            preAction,
+            .init(
+                buildFor: libraryTargetInfo.buildableReference,
+                name: libraryTargetInfo.buildableReference.blueprintName
+            )
+        )
     }
 
     func test_bazelBuildPreAction_nativeTarget_withHost() throws {
-        let preAction = try libraryTargetInfoWithHosts.buildPreAction()
-        let expectedHostIndex = try libraryTargetInfoWithHosts.selectedHostInfo?.index
+        let preAction =
+            libraryTargetInfoWithHosts.buildableReference.buildPreAction()
+        let expectedHostIndex =
+            try libraryTargetInfoWithHosts.selectedHostInfo?.index
         XCTAssertNotNil(expectedHostIndex)
-        XCTAssertEqual(preAction, .init(
-            buildFor: libraryTargetInfoWithHosts.buildableReference,
-            name: libraryTargetInfoWithHosts.pbxTarget.name,
-            hostIndex: expectedHostIndex
-        ))
+        XCTAssertEqual(
+            preAction,
+            .init(
+                buildFor: libraryTargetInfoWithHosts.buildableReference,
+                name:
+                    libraryTargetInfoWithHosts.buildableReference.blueprintName
+            )
+        )
     }
 }
 
@@ -212,8 +219,8 @@ extension XCSchemeInfoTargetInfoTests {
             .initBazelBuildOutputGroupsFile(
                 buildableReference: libraryTargetInfo.buildableReference
             ),
-            try libraryTargetInfo.buildPreAction(),
-            try appTargetInfo.buildPreAction(),
+            libraryTargetInfo.buildableReference.buildPreAction(),
+            appTargetInfo.buildableReference.buildPreAction(),
         ]
         XCTAssertEqual(try targetInfos.buildPreActions(), expected)
     }

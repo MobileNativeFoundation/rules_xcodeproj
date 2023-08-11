@@ -336,18 +336,6 @@ $(BAZEL_OUT)\#(linkParams.path.string.dropFirst(9))
             buildSettings.set("EXECUTABLE_NAME", to: executableName)
         }
 
-        for (index, id) in hostIDs.enumerated() {
-            let hostTarget = try targets.value(
-                for: id,
-                context: "looking up host target"
-            )
-            buildSettings.set(
-                "BAZEL_HOST_LABEL_\(index)",
-                to: hostTarget.label.description
-            )
-            buildSettings.set("BAZEL_HOST_TARGET_ID_\(index)", to: id.rawValue)
-        }
-
         if target.product.type.isLaunchable {
             // We need `BUILT_PRODUCTS_DIR` to point to where the
             // binary/bundle is actually at, for running from scheme to work

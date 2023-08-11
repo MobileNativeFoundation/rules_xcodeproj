@@ -206,26 +206,11 @@ fi
     /// Create an `ExecutionAction` that builds with Bazel.
     convenience init(
         buildFor buildableReference: XCScheme.BuildableReference,
-        name: String,
-        hostIndex: Int?
+        name: String
     ) {
-        let hostTargetOutputGroup: String
-        if let hostIndex = hostIndex {
-            // The extra blank line at the end of this string literal is purposeful. It ensures that
-            // a newline is added to the resulting string, if the host information is added to the
-            // script.
-            hostTargetOutputGroup = #"""
-echo "$BAZEL_HOST_LABEL_\#(hostIndex),$BAZEL_HOST_TARGET_ID_\#(hostIndex)" \#
->> "$SCHEME_TARGET_IDS_FILE"
-
-"""#
-        } else {
-            hostTargetOutputGroup = ""
-        }
-
         let scriptText = #"""
 echo "$BAZEL_LABEL,$BAZEL_TARGET_ID" >> "$SCHEME_TARGET_IDS_FILE"
-\#(hostTargetOutputGroup)
+
 """#
         self.init(
             scriptText: scriptText,
