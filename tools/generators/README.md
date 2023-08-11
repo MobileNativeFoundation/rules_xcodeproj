@@ -57,12 +57,15 @@ information.
     - `OTHER_SWIFT_FLAGS`
     - `SWIFT_COMPILATION_MODE`
     - etc.
-- `pbxnativetargets`:
+- [`pbxnativetargets`](pbxnativetargets/README.md):
   - Run once on each shard of all the targets
-  - All of the `PBXNativeTarget` related objects:
-    - `XCBuildConfiguration`
-    - `XCBuildConfigurationList`
-    - and various build phases
+  - Each shared creates two or more files:
+    - A partial containing all of the `PBXNativeTarget` related objects:
+      - `PBXNativeTarget`
+      - `XCBuildConfiguration`
+      - `XCBuildConfigurationList`
+      - and various build phases
+    - A file that maps `PBXBuildFile` identifiers to file paths
 - [`files_and_groups`](files_and_groups/README.md):
   - Creates three files:
     - A partial containing the `PBXProject.knownRegions` property
