@@ -4,7 +4,7 @@ extension Generator {
     /// Calculates the BazelDependencies `PBXProj` partial.
     static func bazelDependenciesPartial(
         buildSettings: String,
-        defaultXcodeConfiguration: String?,
+        defaultXcodeConfiguration: String,
         postBuildRunScript: String?,
         preBuildRunScript: String?,
         xcodeConfigurations: [String]
@@ -84,11 +84,7 @@ extension Generator {
 
         // Build configurations
 
-        let sortedXcodeConfigurations = Set(xcodeConfigurations).sorted()
-        let defaultXcodeConfiguration = defaultXcodeConfiguration ??
-            sortedXcodeConfigurations.first!
-
-        let buildConfigurations =  sortedXcodeConfigurations
+        let buildConfigurations =  xcodeConfigurations
             .enumerated()
             .map { index, name in
                 let id = Identifiers.BazelDependencies

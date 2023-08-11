@@ -10,17 +10,18 @@ class BazelDependenciesPartialTests: XCTestCase {
         // Arrange
 
         let buildSettings = "{BUILD_SETTINGS_HERE}"
-        let defaultXcodeConfiguration: String? = nil
+        let defaultXcodeConfiguration = "Debug"
         let postBuildRunScript: String? = nil
         let preBuildRunScript: String? = nil
         let xcodeConfigurations = [
             "Release",
             "Profile",
-            "Release",
             "Debug",
         ]
 
-        // The tabs for indenting are intentional
+        // The tabs for indenting are intentional.
+        // Order of configurations is wrong, but shows that it doesn't do
+        // sorting (since they should be sorted coming in).
         let expectedBazelDependencies = #"""
 		FF0100000000000000000004 /* Bazel Build */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -59,27 +60,27 @@ class BazelDependenciesPartialTests: XCTestCase {
 			shellScript = "perl -pe '\n  # Replace \"__BAZEL_XCODE_DEVELOPER_DIR__\" with \"$(DEVELOPER_DIR)\"\n  s/__BAZEL_XCODE_DEVELOPER_DIR__/\\$(DEVELOPER_DIR)/g;\n\n  # Replace \"__BAZEL_XCODE_SDKROOT__\" with \"$(SDKROOT)\"\n  s/__BAZEL_XCODE_SDKROOT__/\\$(SDKROOT)/g;\n\n  # Replace build settings with their values\n  s/\n    \\$             # Match a dollar sign\n    (\\()?          # Optionally match an opening parenthesis and capture it\n    ([a-zA-Z_]\\w*) # Match a variable name and capture it\n    (?(1)\\))       # If an opening parenthesis was captured, match a closing parenthesis\n  /$ENV{$2}/gx;    # Replace the entire matched string with the value of the corresponding environment variable\n\n' \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FF0100000000000000000100 /* Debug */ = {
+		FF0100000000000000000100 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {BUILD_SETTINGS_HERE};
-			name = Debug;
+			name = Release;
 		};
 		FF0100000000000000000101 /* Profile */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {BUILD_SETTINGS_HERE};
 			name = Profile;
 		};
-		FF0100000000000000000102 /* Release */ = {
+		FF0100000000000000000102 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {BUILD_SETTINGS_HERE};
-			name = Release;
+			name = Debug;
 		};
 		FF0100000000000000000002 /* Build configuration list for PBXAggregateTarget "BazelDependencies" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				FF0100000000000000000100 /* Debug */,
+				FF0100000000000000000100 /* Release */,
 				FF0100000000000000000101 /* Profile */,
-				FF0100000000000000000102 /* Release */,
+				FF0100000000000000000102 /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
@@ -124,11 +125,12 @@ class BazelDependenciesPartialTests: XCTestCase {
         let xcodeConfigurations = [
             "Release",
             "Profile",
-            "Release",
             "Debug",
         ]
 
-        // The tabs for indenting are intentional
+        // The tabs for indenting are intentional.
+        // Order of configurations is wrong, but shows that it doesn't do
+        // sorting (since they should be sorted coming in).
         let expectedBazelDependencies = #"""
 		FF0100000000000000000004 /* Bazel Build */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -167,27 +169,27 @@ class BazelDependenciesPartialTests: XCTestCase {
 			shellScript = "perl -pe '\n  # Replace \"__BAZEL_XCODE_DEVELOPER_DIR__\" with \"$(DEVELOPER_DIR)\"\n  s/__BAZEL_XCODE_DEVELOPER_DIR__/\\$(DEVELOPER_DIR)/g;\n\n  # Replace \"__BAZEL_XCODE_SDKROOT__\" with \"$(SDKROOT)\"\n  s/__BAZEL_XCODE_SDKROOT__/\\$(SDKROOT)/g;\n\n  # Replace build settings with their values\n  s/\n    \\$             # Match a dollar sign\n    (\\()?          # Optionally match an opening parenthesis and capture it\n    ([a-zA-Z_]\\w*) # Match a variable name and capture it\n    (?(1)\\))       # If an opening parenthesis was captured, match a closing parenthesis\n  /$ENV{$2}/gx;    # Replace the entire matched string with the value of the corresponding environment variable\n\n' \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FF0100000000000000000100 /* Debug */ = {
+		FF0100000000000000000100 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {BUILD_SETTINGS_HERE};
-			name = Debug;
+			name = Release;
 		};
 		FF0100000000000000000101 /* Profile */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {BUILD_SETTINGS_HERE};
 			name = Profile;
 		};
-		FF0100000000000000000102 /* Release */ = {
+		FF0100000000000000000102 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {BUILD_SETTINGS_HERE};
-			name = Release;
+			name = Debug;
 		};
 		FF0100000000000000000002 /* Build configuration list for PBXAggregateTarget "BazelDependencies" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				FF0100000000000000000100 /* Debug */,
+				FF0100000000000000000100 /* Release */,
 				FF0100000000000000000101 /* Profile */,
-				FF0100000000000000000102 /* Release */,
+				FF0100000000000000000102 /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Profile;
@@ -226,17 +228,18 @@ class BazelDependenciesPartialTests: XCTestCase {
         // Arrange
 
         let buildSettings = "{BUILD_SETTINGS_HERE}"
-        let defaultXcodeConfiguration: String? = nil
+        let defaultXcodeConfiguration = "Debug"
         let postBuildRunScript = "{POST_BUILD_HERE}"
         let preBuildRunScript: String? = nil
         let xcodeConfigurations = [
             "Release",
             "Profile",
-            "Release",
             "Debug",
         ]
 
-        // The tabs for indenting are intentional
+        // The tabs for indenting are intentional.
+        // Order of configurations is wrong, but shows that it doesn't do
+        // sorting (since they should be sorted coming in).
         let expectedBazelDependencies = #"""
 		FF0100000000000000000004 /* Bazel Build */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -276,27 +279,27 @@ class BazelDependenciesPartialTests: XCTestCase {
 			showEnvVarsInLog = 0;
 		};
 		FF0100000000000000000006 /* Post-build Run Script */ = {POST_BUILD_HERE};
-		FF0100000000000000000100 /* Debug */ = {
+		FF0100000000000000000100 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {BUILD_SETTINGS_HERE};
-			name = Debug;
+			name = Release;
 		};
 		FF0100000000000000000101 /* Profile */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {BUILD_SETTINGS_HERE};
 			name = Profile;
 		};
-		FF0100000000000000000102 /* Release */ = {
+		FF0100000000000000000102 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {BUILD_SETTINGS_HERE};
-			name = Release;
+			name = Debug;
 		};
 		FF0100000000000000000002 /* Build configuration list for PBXAggregateTarget "BazelDependencies" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				FF0100000000000000000100 /* Debug */,
+				FF0100000000000000000100 /* Release */,
 				FF0100000000000000000101 /* Profile */,
-				FF0100000000000000000102 /* Release */,
+				FF0100000000000000000102 /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
@@ -336,17 +339,18 @@ class BazelDependenciesPartialTests: XCTestCase {
         // Arrange
 
         let buildSettings = "{BUILD_SETTINGS_HERE}"
-        let defaultXcodeConfiguration: String? = nil
+        let defaultXcodeConfiguration = "Debug"
         let postBuildRunScript: String? = nil
         let preBuildRunScript = "{PRE_BUILD_HERE}"
         let xcodeConfigurations = [
             "Release",
             "Profile",
-            "Release",
             "Debug",
         ]
 
-        // The tabs for indenting are intentional
+        // The tabs for indenting are intentional.
+        // Order of configurations is wrong, but shows that it doesn't do
+        // sorting (since they should be sorted coming in).
         let expectedBazelDependencies = #"""
 		FF0100000000000000000003 /* Pre-build Run Script */ = {PRE_BUILD_HERE};
 		FF0100000000000000000004 /* Bazel Build */ = {
@@ -386,27 +390,27 @@ class BazelDependenciesPartialTests: XCTestCase {
 			shellScript = "perl -pe '\n  # Replace \"__BAZEL_XCODE_DEVELOPER_DIR__\" with \"$(DEVELOPER_DIR)\"\n  s/__BAZEL_XCODE_DEVELOPER_DIR__/\\$(DEVELOPER_DIR)/g;\n\n  # Replace \"__BAZEL_XCODE_SDKROOT__\" with \"$(SDKROOT)\"\n  s/__BAZEL_XCODE_SDKROOT__/\\$(SDKROOT)/g;\n\n  # Replace build settings with their values\n  s/\n    \\$             # Match a dollar sign\n    (\\()?          # Optionally match an opening parenthesis and capture it\n    ([a-zA-Z_]\\w*) # Match a variable name and capture it\n    (?(1)\\))       # If an opening parenthesis was captured, match a closing parenthesis\n  /$ENV{$2}/gx;    # Replace the entire matched string with the value of the corresponding environment variable\n\n' \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FF0100000000000000000100 /* Debug */ = {
+		FF0100000000000000000100 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {BUILD_SETTINGS_HERE};
-			name = Debug;
+			name = Release;
 		};
 		FF0100000000000000000101 /* Profile */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {BUILD_SETTINGS_HERE};
 			name = Profile;
 		};
-		FF0100000000000000000102 /* Release */ = {
+		FF0100000000000000000102 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {BUILD_SETTINGS_HERE};
-			name = Release;
+			name = Debug;
 		};
 		FF0100000000000000000002 /* Build configuration list for PBXAggregateTarget "BazelDependencies" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				FF0100000000000000000100 /* Debug */,
+				FF0100000000000000000100 /* Release */,
 				FF0100000000000000000101 /* Profile */,
-				FF0100000000000000000102 /* Release */,
+				FF0100000000000000000102 /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

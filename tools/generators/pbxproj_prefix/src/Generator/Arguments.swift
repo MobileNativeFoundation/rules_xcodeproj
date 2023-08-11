@@ -47,6 +47,9 @@ Minimum Xcode version that the generated project supports.
 """)
         var minimumXcodeVersion: SemanticVersion
 
+        @Argument(help: "Name of the default Xcode configuration.")
+        var defaultXcodeConfiguration: String
+
         @Argument(help: "Development region for the project.")
         var developmentRegion: String
 
@@ -66,9 +69,6 @@ Populates the `ORGANIZATIONNAME` attribute for the project.
             help: "Names of the Xcode configurations the project is using."
         )
         var xcodeConfigurations: [String]
-
-        @Option(help: "Name of the default Xcode configuration.")
-        var defaultXcodeConfiguration: String?
 
         @Option(
             help: "Path to a file containing a pre-build script.",

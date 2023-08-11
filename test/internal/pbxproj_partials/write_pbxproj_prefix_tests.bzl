@@ -131,7 +131,7 @@ write_pbxproj_prefix_test = unittest.make(
         # Inputs
         "colorize": attr.bool(mandatory = True),
         "build_mode": attr.string(mandatory = True),
-        "default_xcode_configuration": attr.string(),
+        "default_xcode_configuration": attr.string(mandatory = True),
         "execution_root_file": attr.string(mandatory = True),
         "index_import": attr.string(mandatory = True),
         "minimum_xcode_version": attr.string(mandatory = True),
@@ -166,7 +166,7 @@ def write_pbxproj_prefix_test_suite(name):
             # Inputs
             build_mode,
             colorize = False,
-            default_xcode_configuration = None,
+            default_xcode_configuration,
             execution_root_file,
             index_import,
             minimum_xcode_version,
@@ -214,6 +214,7 @@ def write_pbxproj_prefix_test_suite(name):
 
         # Inputs
         build_mode = "xcode",
+        default_xcode_configuration = "Debug",
         execution_root_file = "an/execution/root/file",
         index_import = "some/path/to/index_import",
         minimum_xcode_version = "14.2.1",
@@ -250,6 +251,8 @@ def write_pbxproj_prefix_test_suite(name):
             "xcode",
             # minimumXcodeVersion
             "14.2.1",
+            # defaultXcodeConfiguration
+            "Debug",
             # developmentRegion
             "en",
             # platforms
@@ -271,7 +274,7 @@ def write_pbxproj_prefix_test_suite(name):
         # Inputs
         build_mode = "bazel",
         colorize = True,
-        default_xcode_configuration = "Debug",
+        default_xcode_configuration = "Release",
         execution_root_file = "an/execution/root/file",
         index_import = "some/path/to/index_import",
         platforms = [
@@ -311,6 +314,8 @@ def write_pbxproj_prefix_test_suite(name):
             "bazel",
             # minimumXcodeVersion
             "14.2.1",
+            # defaultXcodeConfiguration
+            "Release",
             # developmentRegion
             "enGB",
             # organizationName
@@ -323,9 +328,6 @@ def write_pbxproj_prefix_test_suite(name):
             # xcodeConfigurations
             "--xcode-configurations",
             "Release",
-            "Debug",
-            # defaultXcodeConfiguration
-            "--default-xcode-configuration",
             "Debug",
             # preBuildScript
             "--pre-build-script",

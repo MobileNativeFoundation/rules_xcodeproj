@@ -97,6 +97,8 @@ _SCHEMES = [
                 "bazel",
                 # minimumXcodeVersion
                 "14.0",
+                # defaultXcodeConfiguration
+                "Release",
                 # developmentRegion
                 "enGB",
                 # organizationName
@@ -109,9 +111,6 @@ _SCHEMES = [
                 # xcodeConfigurations
                 "--xcode-configurations",
                 "Debug",
-                "Release",
-                # defaultXcodeConfiguration
-                "--default-xcode-configuration",
                 "Release",
                 # preBuildScript
                 # postBuildScript
