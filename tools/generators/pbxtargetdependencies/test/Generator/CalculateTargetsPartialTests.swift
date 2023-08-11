@@ -17,6 +17,7 @@ class CalculateTargetsPartialTests: XCTestCase {
         // The tabs for indenting are intentional
         let expectedTargetsPartial = #"""
 			targets = (
+				FF0100000000000000000001 /* BazelDependencies */,
 				b_id /* b */,
 				a_id /* a */,
 				c_id /* @//z:c */,
@@ -47,6 +48,7 @@ class CalculateTargetsPartialTests: XCTestCase {
         // The tabs for indenting are intentional
         let expectedTargetsPartial = #"""
 			targets = (
+				FF0100000000000000000001 /* BazelDependencies */,
 			);
 		};
 
