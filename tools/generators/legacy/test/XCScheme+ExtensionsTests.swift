@@ -578,7 +578,7 @@ extension XCSchemeExtensionsTests {
 // MARK: - XCScheme.ExecutionAction Initializer Tests
 
 extension XCSchemeExtensionsTests {
-    func test_ExecutionAction_withNativeTarget_noHostIndex_bazelBuildMode() throws {
+    func test_ExecutionAction_withNativeTarget_bazelBuildMode() throws {
         let action = XCScheme.ExecutionAction(
             buildFor: libraryTargetInfo.buildableReference,
             name: libraryTargetInfo.buildableReference.blueprintName
@@ -594,24 +594,7 @@ extension XCSchemeExtensionsTests {
         XCTAssertTrue(action.scriptText.contains("$BAZEL_TARGET_ID"))
     }
 
-    func test_ExecutionAction_withNativeTarget_withHostIndex_bazelBuildMode() throws {
-        let hostIndex = 7
-        let action = XCScheme.ExecutionAction(
-            buildFor: libraryTargetInfo.buildableReference,
-            name: libraryTargetInfo.buildableReference.blueprintName
-        )
-        XCTAssertEqual(
-            action.title,
-            "Set Bazel Build Output Groups for \(libraryTargetInfo.buildableReference.blueprintName)"
-        )
-        XCTAssertNoDifference(
-            action.environmentBuildable,
-            libraryTargetInfo.buildableReference
-        )
-        XCTAssertTrue(action.scriptText.contains("$BAZEL_TARGET_ID"))
-    }
-
-    func test_ExecutionAction_withNativeTarget_noHostIndex_xcodeBuildMode() throws {
+    func test_ExecutionAction_withNativeTarget_xcodeBuildMode() throws {
         let action = XCScheme.ExecutionAction(
             buildFor: libraryTargetInfo.buildableReference,
             name: libraryTargetInfo.buildableReference.blueprintName
@@ -621,23 +604,6 @@ extension XCSchemeExtensionsTests {
             "Set Bazel Build Output Groups for \(libraryTargetInfo.buildableReference.blueprintName)"
         )
         XCTAssertEqual(action.environmentBuildable, libraryTargetInfo.buildableReference)
-        XCTAssertTrue(action.scriptText.contains("$BAZEL_TARGET_ID"))
-    }
-
-    func test_ExecutionAction_withNativeTarget_withHostIndex_xcodeBuildMode() throws {
-        let hostIndex = 7
-        let action = XCScheme.ExecutionAction(
-            buildFor: libraryTargetInfo.buildableReference,
-            name: libraryTargetInfo.buildableReference.blueprintName
-        )
-        XCTAssertEqual(
-            action.title,
-            "Set Bazel Build Output Groups for \(libraryTargetInfo.buildableReference.blueprintName)"
-        )
-        XCTAssertNoDifference(
-            action.environmentBuildable,
-            libraryTargetInfo.buildableReference
-        )
         XCTAssertTrue(action.scriptText.contains("$BAZEL_TARGET_ID"))
     }
 }
