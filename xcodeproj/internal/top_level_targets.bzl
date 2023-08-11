@@ -374,7 +374,11 @@ def process_top_level_target(
         target = target,
         product_name = props.product_name,
         product_type = props.product_type,
-        module_name_attribute = module_name_attribute,
+        # For bundle targets, we want to use the product name instead of
+        # `module_name`
+        module_name_attribute = (
+            props.product_name if is_bundle else module_name_attribute
+        ),
         bundle_file = props.bundle_file,
         bundle_path = props.bundle_path,
         bundle_file_path = props.bundle_file_path,

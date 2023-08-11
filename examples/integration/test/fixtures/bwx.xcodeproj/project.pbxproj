@@ -44,7 +44,6 @@
 		23624A528204335D2F28FDD7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AEC214E4750445CF57C1429A /* Assets.xcassets */; };
 		25058FCF4895E7CD79C0D790 /* CryptoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 31EBAA302BF21712CB52AF4A /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		25FAFAE501C89D9738B457C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 015E6004A77E27E5BDBF92F8 /* Assets.xcassets */; };
-		27672701FA16BE9A321596EB /* LibFramework.watchOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 90FC1B8C28EBA9669CB888E0 /* LibFramework.watchOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		27889020C443EFA79EDD9792 /* LibFramework.iOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1EBCB856193A610747419205 /* LibFramework.iOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		27D76B83D500EEA4B01EBCA1 /* UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C92817094989724C49C8102 /* UITests.swift */; };
 		292CCE43F55F607AA4DFA35A /* ExtensionAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D43DF405F8552589305B5B5 /* ExtensionAssets.xcassets */; };
@@ -67,12 +66,12 @@
 		3DB5B62545E1286F7EE7FF88 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9BB6C73E3E87E48E1F2BA124 /* Localizable.strings */; };
 		3F0108611F28A7BD5B70D639 /* TestingUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B21FB8BB51DDF37805084A /* TestingUtils.swift */; };
 		41DB78A7E34FA8CD9C820AB1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 015E6004A77E27E5BDBF92F8 /* Assets.xcassets */; };
-		42840AAF65B7D2A496F74F1C /* OnlyStructuredResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DF443AB455A2BDD3CD13671D /* OnlyStructuredResources.bundle */; };
 		42BCBAD32806EF1C0A79C722 /* OnlyStructuredResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DF443AB455A2BDD3CD13671D /* OnlyStructuredResources.bundle */; };
 		4597D3582625CC25CD63D7E4 /* CryptoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7B83FA3D9C641551A4E408D2 /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		45A3BBF20DA02E90B721F5FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 015E6004A77E27E5BDBF92F8 /* Assets.xcassets */; };
 		4A23E48D941F964E102BC08B /* WatchOSAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0EF429C363C7A90D155EF12 /* WatchOSAppUITests.swift */; };
 		4BAA64EC25430110196B80F8 /* dir in Resources */ = {isa = PBXBuildFile; fileRef = C6ACA6BBC268EAC0509D95BE /* dir */; };
+		4CC179CAEA860C7A7881AB33 /* Answers.mm in Sources */ = {isa = PBXBuildFile; fileRef = B9DB47B3BF933EF7CB4377E1 /* Answers.mm */; };
 		4CFD48CD705450A223ADA275 /* c_lib.c in Sources */ = {isa = PBXBuildFile; fileRef = 4F21B55C0FF592EB8A6B490E /* c_lib.c */; };
 		527F03BE92A466819AB47CBD /* lib.m in Sources */ = {isa = PBXBuildFile; fileRef = A05675A4B440A99E53CDBBA4 /* lib.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		53212E3B2F5BB5FD4ABDFCF8 /* CoreUtilsObjC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DB1707851007E63305C749E4 /* CoreUtilsObjC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -83,7 +82,8 @@
 		57EED96B528606A8CFEB0E68 /* _CompileStub_.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD403D59FD279723BD9B059 /* _CompileStub_.m */; };
 		5842FE679CC4B14887D01058 /* LibFramework.tvOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F7B18D45E415DC9708319FCC /* LibFramework.tvOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		589A21714510243C1E9C6C42 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 65689CDD728D49E33DAAAFCB /* main.m */; };
-		5F9C432BF31EB080E62C4526 /* RealAnswer.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A479212312D9E970C284663 /* RealAnswer.h */; };
+		5CF9C172EC1643B89FBA323A /* LibFramework.iOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1EBCB856193A610747419205 /* LibFramework.iOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5FD6470DB8CC16471082F3B8 /* LibFramework.watchOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 90FC1B8C28EBA9669CB888E0 /* LibFramework.watchOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6001B6EC0F795355FD2D4F19 /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BFA40ADE9EA85AE0DC7264 /* Lib.swift */; };
 		601DB89F17A2C44AE12A9568 /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287845DB347C55799A465CCB /* iOSApp.swift */; };
 		629D119D9C3B718A3D8EDFF3 /* unprocessed.json in Resources */ = {isa = PBXBuildFile; fileRef = 6BCA12DCF9A0AC70B5DCBC92 /* unprocessed.json */; };
@@ -92,7 +92,6 @@
 		63D49B7301A86103885E7CCF /* CryptoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 377BB3CE77D26BF4FC27696B /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		63EB6D30C8ACFED51DD74BD2 /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE234023678C509630A519F /* Lib.swift */; };
 		64B7F1959F949668483B260D /* UIFramework.iOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D5BBE2ECC921BED8A450ADA7 /* UIFramework.iOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		67D9282B222BA5F29F7DE0A3 /* Answers.h in Headers */ = {isa = PBXBuildFile; fileRef = 296C9CFBA4D8FD11763EE764 /* Answers.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		68DDC334D043370EF3C687CB /* nested in Resources */ = {isa = PBXBuildFile; fileRef = 54F2EEEABB35B30C136E1BFE /* nested */; };
 		6B002EC26AA40F4B4705B73F /* _CompileStub_.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD403D59FD279723BD9B059 /* _CompileStub_.m */; };
 		6D4F103FDD49B55D34204338 /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2D6765F21A095C39F95C71 /* Lib.swift */; };
@@ -110,23 +109,27 @@
 		7B95FB51C2726ADB3DE139C5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9B5C446AD8743E2EC5284C /* ContentView.swift */; };
 		7C5010C0A096F0389262CC35 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF4802D8580A4DE0B18BE23D /* Assets.xcassets */; };
 		7D4B251FF37D9767A89014AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B72CB4B5F7896B3C3EB681E3 /* Assets.xcassets */; };
-		7E12157901F8F5EDE911F1E8 /* LibFramework.iOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1EBCB856193A610747419205 /* LibFramework.iOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7E46D7B03B74741284C3EACB /* UIFramework.tvOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7E16D0C3B1A292BBEE1E86A9 /* UIFramework.tvOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7E8E039A17C3B37272030C11 /* WatchOSAppExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30752600FA7DB86C634859D3 /* WatchOSAppExtensionTests.swift */; };
+		8188448899008D69188FF9D4 /* CryptoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8E55FC029DC30135EE7BE77F /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8248BF354607F1E0CC751982 /* ExternalResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0F4D611843B0F9CDBC2DB43C /* ExternalResources.bundle */; };
 		82881842C41103C65604178B /* SwiftUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E2337032E558F62FD5C809 /* SwiftUnitTests.swift */; };
 		82DC723B8559AF3892394338 /* watchOSAppExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = F4A79CA93C28136AB52F7991 /* watchOSAppExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		833A0FE996561136AFADB387 /* UI.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAFA2A92EEBC0B9090DD9CF /* UI.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		83C10AEB3C604039F32F5A9D /* ObjCUnitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 157663D9790842ADFB5AA1B5 /* ObjCUnitTests.m */; };
+		83EA81847B83A56365847435 /* Answers.h in Headers */ = {isa = PBXBuildFile; fileRef = 296C9CFBA4D8FD11763EE764 /* Answers.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		841FD05A8F0A04BEF298D3EE /* iMessageAppExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 633C32915CDE543C2EC82940 /* iMessageAppExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		852E5FE897E5F84CCE4C9579 /* CryptoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 31EBAA302BF21712CB52AF4A /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		85CA26E4C4B3713061D9F735 /* nested in Resources */ = {isa = PBXBuildFile; fileRef = 1A0CBA5ABAB0C568409A9675 /* nested */; };
 		868A1DC835387DF8B2925C81 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 655FBBBF8B98FCCFD4A638C4 /* GoogleMaps.bundle */; };
 		86D5122F9B021A7C910EC0F5 /* SwiftUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E2337032E558F62FD5C809 /* SwiftUnitTests.swift */; };
+		87E3E4E8C9851CE4B951252E /* ObjCUnitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 157663D9790842ADFB5AA1B5 /* ObjCUnitTests.m */; };
 		8CAA9BD47B1C914E70346072 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 015E6004A77E27E5BDBF92F8 /* Assets.xcassets */; };
 		8CE4EDB7AE3A359A8F64B8D8 /* UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1C3274E698C0F339AC7EE1 /* UITestsLaunchTests.swift */; };
 		8F4F421F3DB0F7940C9A9F45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8F73CFFD89120501DB312CD /* Assets.xcassets */; };
 		8FA8E339A4D6550088042CF4 /* nested in Resources */ = {isa = PBXBuildFile; fileRef = 2D457A99D0ED81ADDF52D3FD /* nested */; };
 		90B2CD75E58ABE23A2B61169 /* CryptoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 31EBAA302BF21712CB52AF4A /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9146F92BAA3E1D63ABD0C3F2 /* lib.m in Sources */ = {isa = PBXBuildFile; fileRef = A05675A4B440A99E53CDBBA4 /* lib.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9190E0BA24E8CA315E23A7B1 /* UIFramework.iOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D5BBE2ECC921BED8A450ADA7 /* UIFramework.iOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		93B976C2A65BE389D190692F /* Nested in Resources */ = {isa = PBXBuildFile; fileRef = CB4A0FB26B6A160C6B667828 /* Nested */; };
 		96536BFC80D7064031732BC1 /* bucket in Resources */ = {isa = PBXBuildFile; fileRef = 18DA86E29627EB74DD2B794C /* bucket */; };
 		9662270A130DFD557C8BEBA5 /* ExampleResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0F4BE0C4D3926E5116BC3EF3 /* ExampleResources.bundle */; };
@@ -138,12 +141,13 @@
 		9F50BD5FA8B14B9DC0ED8B12 /* _CompileStub_.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD403D59FD279723BD9B059 /* _CompileStub_.m */; };
 		A0BFD238DEFC8E9D142BB090 /* Foo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A580E62D3570C8171C06E7C /* Foo.m */; };
 		A1F3012D7D506B862BF8AC14 /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF2A1CDB2817E5B3E5B9AC7 /* Lib.swift */; };
+		A21F72ED6A0C7649E4C25D8C /* UIFramework.watchOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B93E97B994939406F03CCD10 /* UIFramework.watchOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A26D3A049C09843E5904E615 /* AppClip.app in Embed App Clips */ = {isa = PBXBuildFile; fileRef = 86D7CCDBD0CDEAAAEDF3C86E /* AppClip.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A3C8CF0C9D0AC54B39027ECE /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E163D2859CA079F915A35718 /* MainInterface.storyboard */; };
 		A3D696B4B1EE5EA27510E85E /* ObjCUnitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 157663D9790842ADFB5AA1B5 /* ObjCUnitTests.m */; };
 		A48717BC5F009B090ECFBE3D /* ExampleNestedResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BEABA3215EF0ADFD43509CBC /* ExampleNestedResources.bundle */; };
-		A48D5491FF8953588E051FF9 /* UIFramework.iOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D5BBE2ECC921BED8A450ADA7 /* UIFramework.iOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A4FDEB49ABCE9E2A3688417B /* UIFramework.watchOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B93E97B994939406F03CCD10 /* UIFramework.watchOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A752F8B9ECB1B7AFE42A6489 /* CoreUtilsObjC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DB1707851007E63305C749E4 /* CoreUtilsObjC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A776D70C233A0B6B0E0C260D /* lib.m in Sources */ = {isa = PBXBuildFile; fileRef = A05675A4B440A99E53CDBBA4 /* lib.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A79582E312ACC87330A9BF4E /* TestingUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AA05B5F920458C9BC94008 /* TestingUtils.swift */; };
 		A7EE330C67CB794EA5DC8FCE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 760F6E68BCA2F8BFE08A3488 /* Assets.xcassets */; };
@@ -153,7 +157,6 @@
 		AB9F33EB0A4509FDD49957CD /* CryptoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7B83FA3D9C641551A4E408D2 /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		ABC2B691EBD8D4F1D7284001 /* ExternalResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0F4D611843B0F9CDBC2DB43C /* ExternalResources.bundle */; };
 		ABD9E6B69B7BB047995655C9 /* LibFramework.iOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1EBCB856193A610747419205 /* LibFramework.iOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		AD6D7B7E2702E29C517442E9 /* CryptoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8E55FC029DC30135EE7BE77F /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		ADF725E5002FDFC347088A1E /* watchOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D897B29D0000EA5C72EEA672 /* watchOSApp.swift */; };
 		B113FDC76331C2B59078B69C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7FD86A86C4F55369ABD1CD50 /* Localizable.strings */; };
 		B1676EF10B4D9DFE44F13308 /* UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C746F329964A16E18B55B4F2 /* UITestsLaunchTests.swift */; };
@@ -165,7 +168,6 @@
 		B73CBF460483486ED2CABE06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 015E6004A77E27E5BDBF92F8 /* Assets.xcassets */; };
 		B7E9EF7E594CF579430DBCB9 /* UIFramework.iOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D5BBE2ECC921BED8A450ADA7 /* UIFramework.iOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B901C52A097EE125016A28B6 /* Intents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A44B8C4E72BE05EA2D10D6 /* Intents.swift */; };
-		BD1A95C2E8B39CBB99E9D71C /* CoreUtilsObjC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DB1707851007E63305C749E4 /* CoreUtilsObjC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BE795160CDB9793507CD7B8E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A1DE8230903D34ABF2C220B /* Preview Assets.xcassets */; };
 		BEBB2CF7AE0B1C4F607D11F6 /* Model.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = EEB5F696008D91BA9F310EFD /* Model.xcdatamodeld */; };
 		BF4099D647CD5EEF95F87490 /* watchOSApp.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 875CA26FB8119C039F89E8E6 /* watchOSApp.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -176,13 +178,12 @@
 		C55FE0873A7924AC2C3EA5E4 /* UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F43CF7476674E5FCD5C5FBB /* UITests.swift */; };
 		C5806E50BE8A7D0EAAB1069F /* ExampleNestedResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E17FB1C3D3FD4EB4A085E3AA /* ExampleNestedResources.bundle */; };
 		C6C802D5DFA741FC9E6C16C9 /* private_lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5B724BDC1069B03FE231A1 /* private_lib.swift */; };
-		C6E272435D996D0C4A90216B /* Utils.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4A76FF6AB0958AAB140741FB /* Utils.bundle */; };
-		C726C844B81FFB6C333AA1B3 /* CryptoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 31EBAA302BF21712CB52AF4A /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C74D0A7695EE71D266021B9E /* AltIcon-60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 59B34C572E2BF4CAEACFAD47 /* AltIcon-60@3x.png */; };
 		C751815B466D9BBF9230CDD1 /* AltIcon-60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CC08EB503D739663D1FCF7B0 /* AltIcon-60@2x.png */; };
 		C96515E7CF5EB8DFDC4A4D33 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 001FDBFC42F9A11C5CFEEAA6 /* Assets.xcassets */; };
 		CB228941B7F5AD23A9A13FE8 /* UnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2124C0E94F14B8B0F71C8AB9 /* UnitTests.swift */; };
 		CB2B50DE11932E4ACB8FC7D3 /* c_lib.c in Sources */ = {isa = PBXBuildFile; fileRef = 4F21B55C0FF592EB8A6B490E /* c_lib.c */; };
+		CD5745F164568030B2814D06 /* Utils.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4A76FF6AB0958AAB140741FB /* Utils.bundle */; };
 		CEB635C7D207719A74A5CEB6 /* lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D06BF3F4D379602F04C828 /* lib.swift */; };
 		D05F6DDC4DFE359AD789BBF7 /* private_lib.c in Sources */ = {isa = PBXBuildFile; fileRef = 8782496D7D7A013102474DAC /* private_lib.c */; };
 		D0FDA6922FDA4876D6697366 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 65689CDD728D49E33DAAAFCB /* main.m */; };
@@ -190,8 +191,8 @@
 		D4571AB9AF2673144354092D /* Utils.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4A76FF6AB0958AAB140741FB /* Utils.bundle */; };
 		D5C55726DCC1C0B9FDDE5678 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0CAFEF0F325F4DD3305F200F /* Assets.xcassets */; };
 		D7160D7D58A59795AF9D0536 /* TestingUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5559C296108A70A80C77AB2B /* TestingUtils.swift */; };
+		DC219AFC7D1E7CE710196197 /* OnlyStructuredResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DF443AB455A2BDD3CD13671D /* OnlyStructuredResources.bundle */; };
 		DC87405ECDFCA041EC491884 /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D47C266B8BEE6C7E69B8C8 /* Lib.swift */; };
-		DD3B34ABB17D8DFA1872D349 /* WatchOSAppExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30752600FA7DB86C634859D3 /* WatchOSAppExtensionTests.swift */; };
 		DD94F461F2A67449C46E4828 /* lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D06BF3F4D379602F04C828 /* lib.swift */; };
 		DE0B554FBC1DFE58D25B34F9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 015E6004A77E27E5BDBF92F8 /* Assets.xcassets */; };
 		E0D73FF1F00791FC2DF06E7E /* CryptoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 31EBAA302BF21712CB52AF4A /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -202,12 +203,11 @@
 		E5732411B92637B888F90C7F /* MixedAnswer.m in Sources */ = {isa = PBXBuildFile; fileRef = 69EB15DA988E9A2310D50777 /* MixedAnswer.m */; };
 		E6C73C63309A7541DBE05450 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7509BF2E800A442944888BB /* Assets.xcassets */; };
 		E76295C6ECBEB1A7AF2C07AD /* FXPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 98080DA49407802219E6C28D /* FXPageControl.m */; };
-		E97CF8F1CC8E77883D55689A /* UIFramework.watchOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B93E97B994939406F03CCD10 /* UIFramework.watchOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EB509AB2045BC989DBE6563C /* bucket in Resources */ = {isa = PBXBuildFile; fileRef = 3AB65D2B68695D5FD6530D9E /* bucket */; };
 		EBE677A7199CD8BEBF966C34 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D22497C1CE43FD5893341E12 /* Assets.xcassets */; };
 		EBF7B9720C884E09BA577444 /* macOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C226D0F1BBACB5AD32CCAF07 /* macOSApp.swift */; };
 		EE8E9645EF16EA541CA65024 /* Lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF64E49FC706A112FDB046E6 /* Lib.swift */; };
-		F0B70D22EE8E243C6D8BAB8B /* Answers.mm in Sources */ = {isa = PBXBuildFile; fileRef = B9DB47B3BF933EF7CB4377E1 /* Answers.mm */; };
+		EED9431874A7B8BD3002DC52 /* RealAnswer.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A479212312D9E970C284663 /* RealAnswer.h */; };
 		F1C0ACC80A9C28433F42C953 /* private_lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5B724BDC1069B03FE231A1 /* private_lib.swift */; };
 		F2654AC7861464A75EF63853 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70B71C416F5E59817DF61E83 /* Assets.xcassets */; };
 		F536583DD30B713978A9A9EE /* UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C92817094989724C49C8102 /* UITests.swift */; };
@@ -239,6 +239,13 @@
 			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
 			remoteInfo = BazelDependencies;
 		};
+		04BB0D85DA4C46D4032E904E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
+			remoteInfo = BazelDependencies;
+		};
 		05C68ABC4F91593EA8B316F7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
@@ -253,26 +260,12 @@
 			remoteGlobalIDString = D094AA317C2527FB0FCC5015;
 			remoteInfo = "Lib (watchOS)";
 		};
-		08D3288B2023C5CCDB514214 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A55B010C52011358056D2692;
-			remoteInfo = UIFramework.watchOS;
-		};
 		09FD7E1DE5A510F639AC654A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = EDF8F127D3EA3E7481E6D3D5;
 			remoteInfo = WidgetExtension;
-		};
-		0B688E02A19FF8B37A93F423 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 882DEB49BCE0AFB2741B1DC9;
-			remoteInfo = CoreUtils;
 		};
 		0CC9114A9DE54DD04FDAF560 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -282,13 +275,6 @@
 			remoteInfo = "Lib (iOS, tvOS)";
 		};
 		166679E59B40BCDB678A1883 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
-			remoteInfo = BazelDependencies;
-		};
-		177EAA0D356B6B9903F99229 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
 			proxyType = 1;
@@ -323,12 +309,12 @@
 			remoteGlobalIDString = 801E2436A69733A307109C9A;
 			remoteInfo = "Lib (iOS, tvOS)";
 		};
-		20A47E66F65B5FE34314366D /* PBXContainerItemProxy */ = {
+		1DC62689CE1B4F80833D8C98 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = A6969986F4330BE56701A5EC;
-			remoteInfo = iOSApp;
+			remoteGlobalIDString = A0257519AD63A69C6DF51958;
+			remoteInfo = CoreUtilsObjC;
 		};
 		219C7173818C041CFDBB63C0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -364,6 +350,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 801E2436A69733A307109C9A;
 			remoteInfo = "Lib (iOS, tvOS)";
+		};
+		28A2174A78850DC82A307292 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A55B010C52011358056D2692;
+			remoteInfo = UIFramework.watchOS;
 		};
 		28B9C67EAED263621396FB38 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -512,6 +505,13 @@
 			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
 			remoteInfo = BazelDependencies;
 		};
+		4F48433DA824F09493FB5F16 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 42E984F26D5B4ECBE0F0F076;
+			remoteInfo = Utils;
+		};
 		500BB5D22EE23C81B348CAD9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
@@ -555,20 +555,6 @@
 			remoteInfo = "Lib (iOS, tvOS)";
 		};
 		5A70D69E6803A2E1EC7550DC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
-			remoteInfo = BazelDependencies;
-		};
-		5D23E6CDAA67A5630824DEF9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
-			remoteInfo = BazelDependencies;
-		};
-		60535305E19F4FB77E265FA4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
 			proxyType = 1;
@@ -715,13 +701,6 @@
 			remoteGlobalIDString = 42A7256A505DA3DFEA69C941;
 			remoteInfo = TestingUtils;
 		};
-		8D4D4A27A0502525AB7BA2F8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 882DEB49BCE0AFB2741B1DC9;
-			remoteInfo = CoreUtils;
-		};
 		8E40BC40974D91056AB024BA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
@@ -756,6 +735,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
 			remoteInfo = BazelDependencies;
+		};
+		93BD7009B9CA0DBECFEDB13C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A0257519AD63A69C6DF51958;
+			remoteInfo = CoreUtilsObjC;
 		};
 		95E7029CA73BC9A2D1956682 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -827,19 +813,19 @@
 			remoteGlobalIDString = A55B010C52011358056D2692;
 			remoteInfo = UIFramework.watchOS;
 		};
+		ABC080385D8ED40F4760669D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A6969986F4330BE56701A5EC;
+			remoteInfo = iOSApp;
+		};
 		ABE60D2081FB38DF9AB9982B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = F3451D8089613E01522F3373;
 			remoteInfo = tvOSApp;
-		};
-		ACD44BAA533C619F8340E28C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 42E984F26D5B4ECBE0F0F076;
-			remoteInfo = Utils;
 		};
 		AF7D3C9269E3B0ECEC1ADBEB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -862,6 +848,13 @@
 			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
 			remoteInfo = BazelDependencies;
 		};
+		B7BF2C5657C0BE354B8C4205 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 42A7256A505DA3DFEA69C941;
+			remoteInfo = TestingUtils;
+		};
 		B9CC8EC919C2E74B3CAB0222 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
@@ -876,14 +869,14 @@
 			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
 			remoteInfo = BazelDependencies;
 		};
-		BB907BBDF60AD5A6D562FBAC /* PBXContainerItemProxy */ = {
+		BBAB7B7C68D67F71EBE7595F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 42A7256A505DA3DFEA69C941;
-			remoteInfo = TestingUtils;
+			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
+			remoteInfo = BazelDependencies;
 		};
-		BBAB7B7C68D67F71EBE7595F /* PBXContainerItemProxy */ = {
+		BE13815FCA0403A6A9C0D9CD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
 			proxyType = 1;
@@ -960,13 +953,6 @@
 			remoteGlobalIDString = 801E2436A69733A307109C9A;
 			remoteInfo = "Lib (iOS, tvOS)";
 		};
-		D8475C29B9EB2689898106FF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
-			remoteInfo = BazelDependencies;
-		};
 		D9244C4C2A147F9935C71745 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
@@ -1037,6 +1023,13 @@
 			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
 			remoteInfo = BazelDependencies;
 		};
+		EA9ABDAD2016CF489615CC95 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
+			remoteInfo = BazelDependencies;
+		};
 		EB60F23825E9D033E8C3CEDC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
@@ -1051,6 +1044,13 @@
 			remoteGlobalIDString = A6969986F4330BE56701A5EC;
 			remoteInfo = iOSApp;
 		};
+		ED17FCD5DC8CC6FB9DD46DFB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 63A26735968A55ECFF1DB504;
+			remoteInfo = OnlyStructuredResources;
+		};
 		EE615E5552554A76E2D8D55A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
@@ -1064,6 +1064,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 42A7256A505DA3DFEA69C941;
 			remoteInfo = TestingUtils;
+		};
+		F23FCD3D3E79EF34B04AAF71 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FE59281FE487F27A37DC2EE7;
+			remoteInfo = BazelDependencies;
 		};
 		F2AC9467D10729E262799722 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1099,13 +1106,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 02711E9CE92644587DD314DD;
 			remoteInfo = UIFramework.iOS;
-		};
-		F9167210CFC66B5731C81943 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 36B5F79C7ED8B081842AF69D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 63A26735968A55ECFF1DB504;
-			remoteInfo = OnlyStructuredResources;
 		};
 		F9D160366EDA5A85FB284917 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1166,20 +1166,6 @@
 				6DA1C52EF70B0509B870CEBC /* CoreUtilsObjC.framework in Embed Frameworks */,
 				0FB9257F29B5174C12CA4769 /* UIFramework.iOS.framework in Embed Frameworks */,
 				184D98C3D76374B2F6DF2D72 /* LibFramework.iOS.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1E502B2083E7DF79B0A9DCD6 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				C726C844B81FFB6C333AA1B3 /* CryptoSwift.framework in Embed Frameworks */,
-				BD1A95C2E8B39CBB99E9D71C /* CoreUtilsObjC.framework in Embed Frameworks */,
-				A48D5491FF8953588E051FF9 /* UIFramework.iOS.framework in Embed Frameworks */,
-				7E12157901F8F5EDE911F1E8 /* LibFramework.iOS.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1302,6 +1288,33 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8E6A6E861A765F4CA305623A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				8188448899008D69188FF9D4 /* CryptoSwift.framework in Embed Frameworks */,
+				A21F72ED6A0C7649E4C25D8C /* UIFramework.watchOS.framework in Embed Frameworks */,
+				5FD6470DB8CC16471082F3B8 /* LibFramework.watchOS.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9AD02381791735BC2EA4BD8D /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				852E5FE897E5F84CCE4C9579 /* CryptoSwift.framework in Embed Frameworks */,
+				A752F8B9ECB1B7AFE42A6489 /* CoreUtilsObjC.framework in Embed Frameworks */,
+				9190E0BA24E8CA315E23A7B1 /* UIFramework.iOS.framework in Embed Frameworks */,
+				5CF9C172EC1643B89FBA323A /* LibFramework.iOS.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A7E85E68A1BBCD520ACD5088 /* Embed App Clips */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1331,19 +1344,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				0F2A01EE12EB64A0D34CE084 /* ExampleFramework.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C308E540570B93BBB2CD2E03 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				AD6D7B7E2702E29C517442E9 /* CryptoSwift.framework in Embed Frameworks */,
-				E97CF8F1CC8E77883D55689A /* UIFramework.watchOS.framework in Embed Frameworks */,
-				27672701FA16BE9A321596EB /* LibFramework.watchOS.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -7907,20 +7907,20 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		99F8A9A7F9D4B5A80CFDFE0F /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83EA81847B83A56365847435 /* Answers.h in Headers */,
+				EED9431874A7B8BD3002DC52 /* RealAnswer.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C2E885889FCDCFE606C4F0B2 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				833A0FE996561136AFADB387 /* UI.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DA3E40CD0AD6CA3F9905ACE0 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				67D9282B222BA5F29F7DE0A3 /* Answers.h in Headers */,
-				5F9C432BF31EB080E62C4526 /* RealAnswer.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8277,7 +8277,7 @@
 			);
 			dependencies = (
 				3B0633AD84662AEF21C1A5ED /* PBXTargetDependency */,
-				D9ACBE86D3B39DB561FA1036 /* PBXTargetDependency */,
+				21FDB4F141406B606E0B74C7 /* PBXTargetDependency */,
 				539C45D3668C1AB4BFC1C0A2 /* PBXTargetDependency */,
 			);
 			name = Utils;
@@ -8341,6 +8341,26 @@
 			productName = watchOSAppExtension;
 			productReference = F4A79CA93C28136AB52F7991 /* watchOSAppExtension.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
+		};
+		5DC9876B9482A426EE1004BA /* watchOSAppExtensionUnitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 11448ED2A6A7CA5148C647A8 /* Build configuration list for PBXNativeTarget "watchOSAppExtensionUnitTests" */;
+			buildPhases = (
+				ED7B1BD46AF41845B4F33DA9 /* Create Compile Dependencies */,
+				16C7F09D81A18601D56E4865 /* Create Link Dependencies */,
+				B66D4C0F56DDC2756403E243 /* Sources */,
+				8E6A6E861A765F4CA305623A /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				88AB3E0F0D7F995F35D988B2 /* PBXTargetDependency */,
+				5C26C1F6326E8AD001D1F488 /* PBXTargetDependency */,
+			);
+			name = watchOSAppExtensionUnitTests;
+			productName = watchOSAppExtensionUnitTests;
+			productReference = 09A24191388BE9D2D959A2B2 /* watchOSAppExtensionUnitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		5FA2D9F9C17E1D1EB104E453 /* MixedAnswer */ = {
 			isa = PBXNativeTarget;
@@ -8486,25 +8506,6 @@
 			productReference = 38D51FF469C531901A0E5BFF /* Lib.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		882DEB49BCE0AFB2741B1DC9 /* CoreUtils */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = AD5FCED409F671C1A990E045 /* Build configuration list for PBXNativeTarget "CoreUtils" */;
-			buildPhases = (
-				ABD614C991E2CA9BA1A16E61 /* Create Compile Dependencies */,
-				A046F8651EC3B424F6D71898 /* Create Link Dependencies */,
-				DA3E40CD0AD6CA3F9905ACE0 /* Headers */,
-				53F0A1D02920B21ACD3731C6 /* Sources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				24AF9C31DABD6840538217F1 /* PBXTargetDependency */,
-			);
-			name = CoreUtils;
-			productName = CoreUtilsObjC;
-			productReference = DB1707851007E63305C749E4 /* CoreUtilsObjC.framework */;
-			productType = "com.apple.product-type.framework";
-		};
 		8FA9DDD71D382CE2CA2EA479 /* CommandLineToolTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C2AF4B2E43CD186F81802626 /* Build configuration list for PBXNativeTarget "CommandLineToolTests" */;
@@ -8613,67 +8614,6 @@
 			productReference = A9CE0B8352BFC78ACA124C3A /* tool.binary */;
 			productType = "com.apple.product-type.tool";
 		};
-		9E1DB51FB27ADC8C6C715FC1 /* Bundle */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D64557E6B1950488855A3FCA /* Build configuration list for PBXNativeTarget "Bundle" */;
-			buildPhases = (
-				B3FE28D73CC480E8B377C5D9 /* Create Compile Dependencies */,
-				C6B1EB593C2393F18648B999 /* Create Link Dependencies */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				E8C1ADB3FDEBCAE9B95E2EE1 /* PBXTargetDependency */,
-			);
-			name = Bundle;
-			productName = ABundle;
-			productReference = F98E260E1BAA333CE0A15362 /* ABundle.aplugin */;
-			productType = "com.apple.product-type.bundle";
-		};
-		9E97B166B9D71320BB97C58C /* watchOSAppExtensionUnitTestsLibrary */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 7FDDEC2875A0791BB7423671 /* Build configuration list for PBXNativeTarget "watchOSAppExtensionUnitTestsLibrary" */;
-			buildPhases = (
-				8B7B445085C4057C9918E272 /* Create Compile Dependencies */,
-				5E5DD0828C6183317CFB3967 /* Create Link Dependencies */,
-				44A71A33105F2319C05B9B69 /* Sources */,
-				C308E540570B93BBB2CD2E03 /* Embed Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				68F079B420F7B6E143530A51 /* PBXTargetDependency */,
-				2966A179A86877F4C73B2269 /* PBXTargetDependency */,
-			);
-			name = watchOSAppExtensionUnitTestsLibrary;
-			productName = watchOSAppExtensionUnitTests;
-			productReference = 09A24191388BE9D2D959A2B2 /* watchOSAppExtensionUnitTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		9ED6C214593583FEEC50A06A /* iOSAppObjCUnitTestsSuite */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = AFE8585690782B04BD32EAD1 /* Build configuration list for PBXNativeTarget "iOSAppObjCUnitTestsSuite" */;
-			buildPhases = (
-				41A788B682FDF96B8DB18533 /* Create Compile Dependencies */,
-				B675F1E19947DFEB1BA25102 /* Create Link Dependencies */,
-				C24F054ADD7C50ACC1070A6E /* Sources */,
-				5E0B38D321E358DEFF3FF6C4 /* Resources */,
-				1E502B2083E7DF79B0A9DCD6 /* Embed Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				2FEA43D9BF5C1D8F683D7961 /* PBXTargetDependency */,
-				BE7D37EB4FA03C901D6226B5 /* PBXTargetDependency */,
-				EAB43B117665A54422D32265 /* PBXTargetDependency */,
-				621F16AD98C7A2F105F1914A /* PBXTargetDependency */,
-				B4CCB55D80769B0519A3E8A8 /* PBXTargetDependency */,
-			);
-			name = iOSAppObjCUnitTestsSuite;
-			productName = iOSAppObjCUnitTestSuite;
-			productReference = D2C505CF27393EA0D2B17FA8 /* iOSAppObjCUnitTestSuite.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		9EEE562EF383D06390A55602 /* ExternalResources */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6D0E9CFE399C31185872189D /* Build configuration list for PBXNativeTarget "ExternalResources" */;
@@ -8689,6 +8629,25 @@
 			productName = ExternalResources;
 			productReference = 0F4D611843B0F9CDBC2DB43C /* ExternalResources.bundle */;
 			productType = "com.apple.product-type.bundle";
+		};
+		A0257519AD63A69C6DF51958 /* CoreUtilsObjC */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A371FC09C8552CA9AA11EBA0 /* Build configuration list for PBXNativeTarget "CoreUtilsObjC" */;
+			buildPhases = (
+				C27FA3275A1B27D9588BEF96 /* Create Compile Dependencies */,
+				756A54CB718D6296A7289B75 /* Create Link Dependencies */,
+				99F8A9A7F9D4B5A80CFDFE0F /* Headers */,
+				515BF020C098484F84ED2DAA /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4E2958552EC93E6809BB7908 /* PBXTargetDependency */,
+			);
+			name = CoreUtilsObjC;
+			productName = CoreUtilsObjC;
+			productReference = DB1707851007E63305C749E4 /* CoreUtilsObjC.framework */;
+			productType = "com.apple.product-type.framework";
 		};
 		A55B010C52011358056D2692 /* UIFramework.watchOS */ = {
 			isa = PBXNativeTarget;
@@ -8728,7 +8687,7 @@
 			dependencies = (
 				E6DF8AB88AFBE93299AD4256 /* PBXTargetDependency */,
 				D8784C7B176B790E6096D635 /* PBXTargetDependency */,
-				EA583D55B1248D7C54E90CBF /* PBXTargetDependency */,
+				B52498F5A510BFFB39226839 /* PBXTargetDependency */,
 				A201CF74F0ACB882F47060CB /* PBXTargetDependency */,
 				6F852951E7E95E8B5C4DDCC5 /* PBXTargetDependency */,
 				0D063E73BA7588CDE07E4D89 /* PBXTargetDependency */,
@@ -8756,6 +8715,23 @@
 			name = "c_lib (x86_64) (7d2e3)";
 			productName = c_lib;
 			productType = "com.apple.product-type.library.static";
+		};
+		BBC20165A81220FC19046667 /* ABundle */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 853F8EFFB251DC532CFDBB17 /* Build configuration list for PBXNativeTarget "ABundle" */;
+			buildPhases = (
+				0E431253EA1DD2617726E706 /* Create Compile Dependencies */,
+				664280C3F92283D1BD115168 /* Create Link Dependencies */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				644BABFECD7E04C9B595686B /* PBXTargetDependency */,
+			);
+			name = ABundle;
+			productName = ABundle;
+			productReference = F98E260E1BAA333CE0A15362 /* ABundle.aplugin */;
+			productType = "com.apple.product-type.bundle";
 		};
 		C2146B07C477F3A0DBE35CF0 /* lib_impl (arm64) */ = {
 			isa = PBXNativeTarget;
@@ -8881,6 +8857,30 @@
 			name = "_SwiftLib (x86_64) (f321a)";
 			productName = private_swift_lib;
 			productType = "com.apple.product-type.library.static";
+		};
+		E3DA586F29B6398065447E0B /* iOSAppObjCUnitTestSuite */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 61EE0EAE4F4CCD1A84B3E5C5 /* Build configuration list for PBXNativeTarget "iOSAppObjCUnitTestSuite" */;
+			buildPhases = (
+				D0C23853651E07CF123C17B8 /* Create Compile Dependencies */,
+				33D595A4A6F87AB6ED28F4E4 /* Create Link Dependencies */,
+				CAA35609AE71A8289031A729 /* Sources */,
+				65CDA1C403B6212BCE3CBB8B /* Resources */,
+				9AD02381791735BC2EA4BD8D /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4EB2711887194522C964F608 /* PBXTargetDependency */,
+				6DAF18AA0D0A3EF6F77CB58A /* PBXTargetDependency */,
+				2C450C2E3992B8095103FFCB /* PBXTargetDependency */,
+				AA44097D4C8BCE6232231960 /* PBXTargetDependency */,
+				EFE8ED7613C3394597D2C933 /* PBXTargetDependency */,
+			);
+			name = iOSAppObjCUnitTestSuite;
+			productName = iOSAppObjCUnitTestSuite;
+			productReference = D2C505CF27393EA0D2B17FA8 /* iOSAppObjCUnitTestSuite.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		E569989878EC4D26C4EA6DD0 /* CommandLineTool */ = {
 			isa = PBXNativeTarget;
@@ -9197,6 +9197,10 @@
 						CreatedOnToolsVersion = 13.0.0;
 						LastSwiftMigration = 9999;
 					};
+					5DC9876B9482A426EE1004BA = {
+						CreatedOnToolsVersion = 13.0.0;
+						LastSwiftMigration = 9999;
+					};
 					5FA2D9F9C17E1D1EB104E453 = {
 						CreatedOnToolsVersion = 13.0.0;
 						LastSwiftMigration = 9999;
@@ -9230,10 +9234,6 @@
 						CreatedOnToolsVersion = 13.0.0;
 						LastSwiftMigration = 9999;
 					};
-					882DEB49BCE0AFB2741B1DC9 = {
-						CreatedOnToolsVersion = 13.0.0;
-						LastSwiftMigration = 9999;
-					};
 					8FA9DDD71D382CE2CA2EA479 = {
 						CreatedOnToolsVersion = 13.0.0;
 						LastSwiftMigration = 9999;
@@ -9258,20 +9258,11 @@
 						CreatedOnToolsVersion = 13.0.0;
 						LastSwiftMigration = 9999;
 					};
-					9E1DB51FB27ADC8C6C715FC1 = {
-						CreatedOnToolsVersion = 13.0.0;
-						LastSwiftMigration = 9999;
-					};
-					9E97B166B9D71320BB97C58C = {
-						CreatedOnToolsVersion = 13.0.0;
-						LastSwiftMigration = 9999;
-					};
-					9ED6C214593583FEEC50A06A = {
-						CreatedOnToolsVersion = 13.0.0;
-						LastSwiftMigration = 9999;
-						TestTargetID = A6969986F4330BE56701A5EC;
-					};
 					9EEE562EF383D06390A55602 = {
+						CreatedOnToolsVersion = 13.0.0;
+						LastSwiftMigration = 9999;
+					};
+					A0257519AD63A69C6DF51958 = {
 						CreatedOnToolsVersion = 13.0.0;
 						LastSwiftMigration = 9999;
 					};
@@ -9284,6 +9275,10 @@
 						LastSwiftMigration = 9999;
 					};
 					B01BABF77405741EA91E54B9 = {
+						CreatedOnToolsVersion = 13.0.0;
+						LastSwiftMigration = 9999;
+					};
+					BBC20165A81220FC19046667 = {
 						CreatedOnToolsVersion = 13.0.0;
 						LastSwiftMigration = 9999;
 					};
@@ -9316,6 +9311,11 @@
 					DB44B1216D8A82A44B18123A = {
 						CreatedOnToolsVersion = 13.0.0;
 						LastSwiftMigration = 9999;
+					};
+					E3DA586F29B6398065447E0B = {
+						CreatedOnToolsVersion = 13.0.0;
+						LastSwiftMigration = 9999;
+						TestTargetID = A6969986F4330BE56701A5EC;
 					};
 					E569989878EC4D26C4EA6DD0 = {
 						CreatedOnToolsVersion = 13.0.0;
@@ -9386,15 +9386,15 @@
 				9C44B656CD70F291F89C092D /* _SwiftLib (arm64) */,
 				0ACDBFF98853888EBCF8E1B5 /* _SwiftLib (x86_64) (7d2e3) */,
 				DB44B1216D8A82A44B18123A /* _SwiftLib (x86_64) (f321a) */,
+				BBC20165A81220FC19046667 /* ABundle */,
 				2B369B164AB3542A258E8E5F /* AppClip */,
 				3870FDB0799C63AFEE5652AF /* BasicTests */,
-				9E1DB51FB27ADC8C6C715FC1 /* Bundle */,
 				1FE2666583AC1B0FDD36DE7F /* c_lib (arm64) */,
 				B01BABF77405741EA91E54B9 /* c_lib (x86_64) (7d2e3) */,
 				3D5476D87F5100B800F99095 /* c_lib (x86_64) (f321a) */,
 				E569989878EC4D26C4EA6DD0 /* CommandLineTool */,
 				8FA9DDD71D382CE2CA2EA479 /* CommandLineToolTests */,
-				882DEB49BCE0AFB2741B1DC9 /* CoreUtils */,
+				A0257519AD63A69C6DF51958 /* CoreUtilsObjC */,
 				967BEB9EDFB3230C10A206A8 /* ExampleNestedResources */,
 				225701F2BB3EA192424F07FE /* ExampleResources */,
 				9EEE562EF383D06390A55602 /* ExternalResources */,
@@ -9404,7 +9404,7 @@
 				968ED3A3E2AF230BDF6BAAA0 /* iOS */,
 				A6969986F4330BE56701A5EC /* iOSApp */,
 				3CE6AD21A6E119583FB633F7 /* iOSAppObjCUnitTests */,
-				9ED6C214593583FEEC50A06A /* iOSAppObjCUnitTestsSuite */,
+				E3DA586F29B6398065447E0B /* iOSAppObjCUnitTestSuite */,
 				3BE6BBB59BF4F33150BA74CA /* iOSAppSwiftUnitTests */,
 				7856014E22F3CF45191565D8 /* iOSAppSwiftUnitTestSuite */,
 				2F250F44A0EA2B4EF7CE64A8 /* iOSAppUITests */,
@@ -9442,7 +9442,7 @@
 				8623E585005AABB68B7E9EA9 /* watchOS */,
 				182B42EFE70A5561F1C023E5 /* watchOSApp */,
 				5CFDBC4E4DBF6C4D68352F7F /* watchOSAppExtension */,
-				9E97B166B9D71320BB97C58C /* watchOSAppExtensionUnitTestsLibrary */,
+				5DC9876B9482A426EE1004BA /* watchOSAppExtensionUnitTests */,
 				467E28CECC74A90D0BF1F0D5 /* watchOSAppUITests */,
 				EDF8F127D3EA3E7481E6D3D5 /* WidgetExtension */,
 			);
@@ -9509,12 +9509,12 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5E0B38D321E358DEFF3FF6C4 /* Resources */ = {
+		65CDA1C403B6212BCE3CBB8B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				42840AAF65B7D2A496F74F1C /* OnlyStructuredResources.bundle in Resources */,
-				C6E272435D996D0C4A90216B /* Utils.bundle in Resources */,
+				DC219AFC7D1E7CE710196197 /* OnlyStructuredResources.bundle in Resources */,
+				CD5745F164568030B2814D06 /* Utils.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9793,6 +9793,24 @@
 			shellScript = "if [[ -z \"${SWIFT_OBJC_INTERFACE_HEADER_NAME:-}\" ]]; then\n  exit 0\nfi\n\ncp \"${SCRIPT_INPUT_FILE_0}\" \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		0E431253EA1DD2617726E706 /* Create Compile Dependencies */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(C_PARAMS_FILE)",
+			);
+			name = "Create Compile Dependencies";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/c.compile.params",
+				"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nperl -pe '\n  s/__BAZEL_XCODE_DEVELOPER_DIR__/\\$(DEVELOPER_DIR)/g;\n  s/__BAZEL_XCODE_SDKROOT__/\\$(SDKROOT)/g;\n  s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/gx;\n' \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\n\"$BAZEL_INTEGRATION_DIR/create_xcode_overlay.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		136A10A13E639A58D9B4FC74 /* Create Compile Dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -9809,6 +9827,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "set -euo pipefail\n\nperl -pe '\n  s/__BAZEL_XCODE_DEVELOPER_DIR__/\\$(DEVELOPER_DIR)/g;\n  s/__BAZEL_XCODE_SDKROOT__/\\$(SDKROOT)/g;\n  s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/gx;\n' \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\n\"$BAZEL_INTEGRATION_DIR/create_xcode_overlay.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		16C7F09D81A18601D56E4865 /* Create Link Dependencies */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(LINK_PARAMS_FILE)",
+			);
+			name = "Create Link Dependencies";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/link.params",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  touch \"$SCRIPT_OUTPUT_FILE_0\"\nelse\nperl -pe 's/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		178305EC5B0651E79DB22431 /* Copy Swift Generated Header */ = {
@@ -9915,7 +9950,7 @@
 			shellScript = "perl -pe '\n  # Replace \"__BAZEL_XCODE_DEVELOPER_DIR__\" with \"$(DEVELOPER_DIR)\"\n  s/__BAZEL_XCODE_DEVELOPER_DIR__/\\$(DEVELOPER_DIR)/g;\n\n  # Replace \"__BAZEL_XCODE_SDKROOT__\" with \"$(SDKROOT)\"\n  s/__BAZEL_XCODE_SDKROOT__/\\$(SDKROOT)/g;\n\n  # Replace build settings with their values\n  s/\n    \\$             # Match a dollar sign\n    (\\()?          # Optionally match an opening parenthesis and capture it\n    ([a-zA-Z_]\\w*) # Match a variable name and capture it\n    (?(1)\\))       # If an opening parenthesis was captured, match a closing parenthesis\n  /$ENV{$2}/gx;    # Replace the entire matched string with the value of the corresponding environment variable\n\n' \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 			showEnvVarsInLog = 0;
 		};
-		3AC7D1EEADED19DA32044056 /* Create Link Dependencies */ = {
+		33D595A4A6F87AB6ED28F4E4 /* Create Link Dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -9932,22 +9967,21 @@
 			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  touch \"$SCRIPT_OUTPUT_FILE_0\"\nelse\nperl -pe 's/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		41A788B682FDF96B8DB18533 /* Create Compile Dependencies */ = {
+		3AC7D1EEADED19DA32044056 /* Create Link Dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"$(C_PARAMS_FILE)",
+				"$(LINK_PARAMS_FILE)",
 			);
-			name = "Create Compile Dependencies";
+			name = "Create Link Dependencies";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/c.compile.params",
-				"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
+				"$(DERIVED_FILE_DIR)/link.params",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\nperl -pe '\n  s/__BAZEL_XCODE_DEVELOPER_DIR__/\\$(DEVELOPER_DIR)/g;\n  s/__BAZEL_XCODE_SDKROOT__/\\$(SDKROOT)/g;\n  s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/gx;\n' \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\n\"$BAZEL_INTEGRATION_DIR/create_xcode_overlay.sh\"\n";
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  touch \"$SCRIPT_OUTPUT_FILE_0\"\nelse\nperl -pe 's/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		43604FB377215CAE7A5FA024 /* Copy Swift Generated Header */ = {
@@ -10126,23 +10160,6 @@
 			shellScript = "set -euo pipefail\n\nperl -pe '\n  s/__BAZEL_XCODE_DEVELOPER_DIR__/\\$(DEVELOPER_DIR)/g;\n  s/__BAZEL_XCODE_SDKROOT__/\\$(SDKROOT)/g;\n  s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/gx;\n' \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\n\"$BAZEL_INTEGRATION_DIR/create_xcode_overlay.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		5E5DD0828C6183317CFB3967 /* Create Link Dependencies */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(LINK_PARAMS_FILE)",
-			);
-			name = "Create Link Dependencies";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/link.params",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  touch \"$SCRIPT_OUTPUT_FILE_0\"\nelse\nperl -pe 's/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\nfi\n";
-			showEnvVarsInLog = 0;
-		};
 		5F1606E62120A2CEE5C6A09E /* Create Compile Dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -10175,6 +10192,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"build\" ]]; then\n  cd \"$SRCROOT\"\n  echo \"Hello from pre-build!\"\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		664280C3F92283D1BD115168 /* Create Link Dependencies */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(LINK_PARAMS_FILE)",
+			);
+			name = "Create Link Dependencies";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/link.params",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  touch \"$SCRIPT_OUTPUT_FILE_0\"\nelse\nperl -pe 's/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		6832526750E73FC90B111044 /* Create Compile Dependencies */ = {
@@ -10301,6 +10335,23 @@
 			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  touch \"$SCRIPT_OUTPUT_FILE_0\"\nelse\nperl -pe 's/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		756A54CB718D6296A7289B75 /* Create Link Dependencies */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(LINK_PARAMS_FILE)",
+			);
+			name = "Create Link Dependencies";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/link.params",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  touch \"$SCRIPT_OUTPUT_FILE_0\"\nelse\nperl -pe 's/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		80781F100A8CB619E0AF2278 /* Create Link Dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -10369,24 +10420,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if [[ -z \"${SWIFT_OBJC_INTERFACE_HEADER_NAME:-}\" ]]; then\n  exit 0\nfi\n\ncp \"${SCRIPT_INPUT_FILE_0}\" \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8B7B445085C4057C9918E272 /* Create Compile Dependencies */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(SWIFT_PARAMS_FILE)",
-			);
-			name = "Create Compile Dependencies";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/swift.compile.params",
-				"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\nperl -pe '\n  s/__BAZEL_XCODE_DEVELOPER_DIR__/\\$(DEVELOPER_DIR)/g;\n  s/__BAZEL_XCODE_SDKROOT__/\\$(SDKROOT)/g;\n  s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/gx;\n' \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\n\"$BAZEL_INTEGRATION_DIR/create_xcode_overlay.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		8C5EEE2993179E5E7FD2ECCA /* Create Compile Dependencies */ = {
@@ -10669,23 +10702,6 @@
 			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  touch \"$SCRIPT_OUTPUT_FILE_0\"\nelse\nperl -pe 's/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		A046F8651EC3B424F6D71898 /* Create Link Dependencies */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(LINK_PARAMS_FILE)",
-			);
-			name = "Create Link Dependencies";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/link.params",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  touch \"$SCRIPT_OUTPUT_FILE_0\"\nelse\nperl -pe 's/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\nfi\n";
-			showEnvVarsInLog = 0;
-		};
 		A401E33EC522B51D1AC9B934 /* Create Compile Dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -10755,24 +10771,6 @@
 			shellScript = "set -euo pipefail\n\nperl -pe '\n  s/__BAZEL_XCODE_DEVELOPER_DIR__/\\$(DEVELOPER_DIR)/g;\n  s/__BAZEL_XCODE_SDKROOT__/\\$(SDKROOT)/g;\n  s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/gx;\n' \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\n\"$BAZEL_INTEGRATION_DIR/create_xcode_overlay.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		ABD614C991E2CA9BA1A16E61 /* Create Compile Dependencies */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(CXX_PARAMS_FILE)",
-			);
-			name = "Create Compile Dependencies";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/cxx.compile.params",
-				"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\nperl -pe '\n  s/__BAZEL_XCODE_DEVELOPER_DIR__/\\$(DEVELOPER_DIR)/g;\n  s/__BAZEL_XCODE_SDKROOT__/\\$(SDKROOT)/g;\n  s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/gx;\n' \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\n\"$BAZEL_INTEGRATION_DIR/create_xcode_overlay.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		B055F8A7FF3663911350D136 /* Create Compile Dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -10827,24 +10825,6 @@
 			shellScript = "set -euo pipefail\n\nperl -pe '\n  s/__BAZEL_XCODE_DEVELOPER_DIR__/\\$(DEVELOPER_DIR)/g;\n  s/__BAZEL_XCODE_SDKROOT__/\\$(SDKROOT)/g;\n  s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/gx;\n' \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\n\"$BAZEL_INTEGRATION_DIR/create_xcode_overlay.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B3FE28D73CC480E8B377C5D9 /* Create Compile Dependencies */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(C_PARAMS_FILE)",
-			);
-			name = "Create Compile Dependencies";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/c.compile.params",
-				"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\nperl -pe '\n  s/__BAZEL_XCODE_DEVELOPER_DIR__/\\$(DEVELOPER_DIR)/g;\n  s/__BAZEL_XCODE_SDKROOT__/\\$(SDKROOT)/g;\n  s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/gx;\n' \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\n\"$BAZEL_INTEGRATION_DIR/create_xcode_overlay.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		B517CC58055C2724A4D6706D /* Create Compile Dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -10860,23 +10840,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "set -euo pipefail\n\nperl -pe '\n  s/__BAZEL_XCODE_DEVELOPER_DIR__/\\$(DEVELOPER_DIR)/g;\n  s/__BAZEL_XCODE_SDKROOT__/\\$(SDKROOT)/g;\n  s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/gx;\n' \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B675F1E19947DFEB1BA25102 /* Create Link Dependencies */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(LINK_PARAMS_FILE)",
-			);
-			name = "Create Link Dependencies";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/link.params",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  touch \"$SCRIPT_OUTPUT_FILE_0\"\nelse\nperl -pe 's/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		BA70DEAD26468CFA5EA6DA7D /* Create Link Dependencies */ = {
@@ -10935,6 +10898,24 @@
 			shellScript = "\"$BAZEL_INTEGRATION_DIR/generate_bazel_dependencies.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		C27FA3275A1B27D9588BEF96 /* Create Compile Dependencies */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(CXX_PARAMS_FILE)",
+			);
+			name = "Create Compile Dependencies";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/cxx.compile.params",
+				"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nperl -pe '\n  s/__BAZEL_XCODE_DEVELOPER_DIR__/\\$(DEVELOPER_DIR)/g;\n  s/__BAZEL_XCODE_SDKROOT__/\\$(SDKROOT)/g;\n  s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/gx;\n' \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\n\"$BAZEL_INTEGRATION_DIR/create_xcode_overlay.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		C4B58CC70CB53DBB6B3E3C02 /* Create Compile Dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -10953,23 +10934,6 @@
 			shellScript = "set -euo pipefail\n\nperl -pe '\n  s/__BAZEL_XCODE_DEVELOPER_DIR__/\\$(DEVELOPER_DIR)/g;\n  s/__BAZEL_XCODE_SDKROOT__/\\$(SDKROOT)/g;\n  s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/gx;\n' \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\n\"$BAZEL_INTEGRATION_DIR/create_xcode_overlay.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C6B1EB593C2393F18648B999 /* Create Link Dependencies */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(LINK_PARAMS_FILE)",
-			);
-			name = "Create Link Dependencies";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/link.params",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -euo pipefail\n\nif [[ \"$ACTION\" == \"indexbuild\" ]]; then\n  touch \"$SCRIPT_OUTPUT_FILE_0\"\nelse\nperl -pe 's/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/g' \\\n  \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\nfi\n";
-			showEnvVarsInLog = 0;
-		};
 		CAA5E66F0096DA74CC2925BB /* Create Compile Dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -10985,6 +10949,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "set -euo pipefail\n\nperl -pe '\n  s/__BAZEL_XCODE_DEVELOPER_DIR__/\\$(DEVELOPER_DIR)/g;\n  s/__BAZEL_XCODE_SDKROOT__/\\$(SDKROOT)/g;\n  s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/gx;\n' \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D0C23853651E07CF123C17B8 /* Create Compile Dependencies */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(C_PARAMS_FILE)",
+			);
+			name = "Create Compile Dependencies";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/c.compile.params",
+				"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nperl -pe '\n  s/__BAZEL_XCODE_DEVELOPER_DIR__/\\$(DEVELOPER_DIR)/g;\n  s/__BAZEL_XCODE_SDKROOT__/\\$(SDKROOT)/g;\n  s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/gx;\n' \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\n\"$BAZEL_INTEGRATION_DIR/create_xcode_overlay.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D0C9F28B90309299BF2E4F3B /* Create Link Dependencies */ = {
@@ -11153,6 +11135,24 @@
 			name = "Create Compile Dependencies";
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/c.compile.params",
+				"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nperl -pe '\n  s/__BAZEL_XCODE_DEVELOPER_DIR__/\\$(DEVELOPER_DIR)/g;\n  s/__BAZEL_XCODE_SDKROOT__/\\$(SDKROOT)/g;\n  s/\\$(\\()?([a-zA-Z_]\\w*)(?(1)\\))/$ENV{$2}/gx;\n' \"$SCRIPT_INPUT_FILE_0\" > \"$SCRIPT_OUTPUT_FILE_0\"\n\n\"$BAZEL_INTEGRATION_DIR/create_xcode_overlay.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ED7B1BD46AF41845B4F33DA9 /* Create Compile Dependencies */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SWIFT_PARAMS_FILE)",
+			);
+			name = "Create Compile Dependencies";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/swift.compile.params",
 				"$(DERIVED_FILE_DIR)/xcode-overlay.yaml",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -11449,14 +11449,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		44A71A33105F2319C05B9B69 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				DD3B34ABB17D8DFA1872D349 /* WatchOSAppExtensionTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		47479F0A808290F4F49FA170 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -11481,19 +11473,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		515BF020C098484F84ED2DAA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4CC179CAEA860C7A7881AB33 /* Answers.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		53E250420DE653A8FC57EA7F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				86D5122F9B021A7C910EC0F5 /* SwiftUnitTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		53F0A1D02920B21ACD3731C6 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F0B70D22EE8E243C6D8BAB8B /* Answers.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -11623,6 +11615,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B66D4C0F56DDC2756403E243 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E8E039A17C3B37272030C11 /* WatchOSAppExtensionTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BA86548A4F47D1276A48B362 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -11647,14 +11647,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C24F054ADD7C50ACC1070A6E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				83C10AEB3C604039F32F5A9D /* ObjCUnitTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		C2F0B9B6C5FB6328BF737D5D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -11669,6 +11661,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				CB2B50DE11932E4ACB8FC7D3 /* c_lib.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CAA35609AE71A8289031A729 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				87E3E4E8C9851CE4B951252E /* ObjCUnitTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -11863,6 +11863,12 @@
 			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
 			targetProxy = A8252B98C6EB8140BC626B35 /* PBXContainerItemProxy */;
 		};
+		21FDB4F141406B606E0B74C7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CoreUtilsObjC;
+			target = A0257519AD63A69C6DF51958 /* CoreUtilsObjC */;
+			targetProxy = 93BD7009B9CA0DBECFEDB13C /* PBXContainerItemProxy */;
+		};
 		22901ABC3C4574374AE19BA3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "lib_impl (x86_64) (7d2e3)";
@@ -11875,17 +11881,11 @@
 			target = B01BABF77405741EA91E54B9 /* c_lib (x86_64) (7d2e3) */;
 			targetProxy = DFC6D8622399C756C50E1BF9 /* PBXContainerItemProxy */;
 		};
-		24AF9C31DABD6840538217F1 /* PBXTargetDependency */ = {
+		2C450C2E3992B8095103FFCB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = BazelDependencies;
-			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
-			targetProxy = 5D23E6CDAA67A5630824DEF9 /* PBXContainerItemProxy */;
-		};
-		2966A179A86877F4C73B2269 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = UIFramework.watchOS;
-			target = A55B010C52011358056D2692 /* UIFramework.watchOS */;
-			targetProxy = 08D3288B2023C5CCDB514214 /* PBXContainerItemProxy */;
+			name = OnlyStructuredResources;
+			target = 63A26735968A55ECFF1DB504 /* OnlyStructuredResources */;
+			targetProxy = ED17FCD5DC8CC6FB9DD46DFB /* PBXContainerItemProxy */;
 		};
 		2EC3F1ACE24A8EC9E3644D14 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -11898,12 +11898,6 @@
 			name = BazelDependencies;
 			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
 			targetProxy = 3E45301BF8C3809705C3664B /* PBXContainerItemProxy */;
-		};
-		2FEA43D9BF5C1D8F683D7961 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = BazelDependencies;
-			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
-			targetProxy = D8475C29B9EB2689898106FF /* PBXContainerItemProxy */;
 		};
 		3345CC5CCAB4B9E05DD3A548 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -11995,6 +11989,18 @@
 			target = 801E2436A69733A307109C9A /* Lib (iOS, tvOS) */;
 			targetProxy = 0CC9114A9DE54DD04FDAF560 /* PBXContainerItemProxy */;
 		};
+		4E2958552EC93E6809BB7908 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BazelDependencies;
+			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
+			targetProxy = BE13815FCA0403A6A9C0D9CD /* PBXContainerItemProxy */;
+		};
+		4EB2711887194522C964F608 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BazelDependencies;
+			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
+			targetProxy = EA9ABDAD2016CF489615CC95 /* PBXContainerItemProxy */;
+		};
 		51FBB44334A773AA348A41C1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = BazelDependencies;
@@ -12061,6 +12067,12 @@
 			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
 			targetProxy = 8D35E9630EB5441476C1BB79 /* PBXContainerItemProxy */;
 		};
+		5C26C1F6326E8AD001D1F488 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = UIFramework.watchOS;
+			target = A55B010C52011358056D2692 /* UIFramework.watchOS */;
+			targetProxy = 28A2174A78850DC82A307292 /* PBXContainerItemProxy */;
+		};
 		5F334C4FC780ECF5C4800213 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = BazelDependencies;
@@ -12073,11 +12085,11 @@
 			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
 			targetProxy = C37307928B40A32049D194CC /* PBXContainerItemProxy */;
 		};
-		621F16AD98C7A2F105F1914A /* PBXTargetDependency */ = {
+		644BABFECD7E04C9B595686B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = TestingUtils;
-			target = 42A7256A505DA3DFEA69C941 /* TestingUtils */;
-			targetProxy = BB907BBDF60AD5A6D562FBAC /* PBXContainerItemProxy */;
+			name = BazelDependencies;
+			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
+			targetProxy = F23FCD3D3E79EF34B04AAF71 /* PBXContainerItemProxy */;
 		};
 		6463F093D87089BCE027A01E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -12109,12 +12121,6 @@
 			target = D094AA317C2527FB0FCC5015 /* Lib (watchOS) */;
 			targetProxy = B17FA28108AC2FE05E5021F0 /* PBXContainerItemProxy */;
 		};
-		68F079B420F7B6E143530A51 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = BazelDependencies;
-			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
-			targetProxy = 177EAA0D356B6B9903F99229 /* PBXContainerItemProxy */;
-		};
 		6B6A7809CFFE750F71CB6452 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = BazelDependencies;
@@ -12126,6 +12132,12 @@
 			name = BazelDependencies;
 			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
 			targetProxy = A696F032F43E695A43658DEE /* PBXContainerItemProxy */;
+		};
+		6DAF18AA0D0A3EF6F77CB58A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = iOSApp;
+			target = A6969986F4330BE56701A5EC /* iOSApp */;
+			targetProxy = ABC080385D8ED40F4760669D /* PBXContainerItemProxy */;
 		};
 		6E6E74335CAF51076FD0058F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -12186,6 +12198,12 @@
 			name = BazelDependencies;
 			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
 			targetProxy = 55A9CFB12722DA4D8C8A9557 /* PBXContainerItemProxy */;
+		};
+		88AB3E0F0D7F995F35D988B2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BazelDependencies;
+			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
+			targetProxy = 04BB0D85DA4C46D4032E904E /* PBXContainerItemProxy */;
 		};
 		8963A48C60DE3DBA631BEB83 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -12289,6 +12307,12 @@
 			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
 			targetProxy = 802904D3BC7B73ACCD2F47BE /* PBXContainerItemProxy */;
 		};
+		AA44097D4C8BCE6232231960 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = TestingUtils;
+			target = 42A7256A505DA3DFEA69C941 /* TestingUtils */;
+			targetProxy = B7BF2C5657C0BE354B8C4205 /* PBXContainerItemProxy */;
+		};
 		AB50081B5638A9C76A687629 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = BazelDependencies;
@@ -12319,17 +12343,17 @@
 			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
 			targetProxy = 8EAA95AE3FDFB033E8F370AB /* PBXContainerItemProxy */;
 		};
-		B4CCB55D80769B0519A3E8A8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Utils;
-			target = 42E984F26D5B4ECBE0F0F076 /* Utils */;
-			targetProxy = ACD44BAA533C619F8340E28C /* PBXContainerItemProxy */;
-		};
 		B4E9A2DE09B1DEB79A242766 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = BazelDependencies;
 			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
 			targetProxy = 4CCF9F788AC4A1B84D4C9BB3 /* PBXContainerItemProxy */;
+		};
+		B52498F5A510BFFB39226839 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CoreUtilsObjC;
+			target = A0257519AD63A69C6DF51958 /* CoreUtilsObjC */;
+			targetProxy = 1DC62689CE1B4F80833D8C98 /* PBXContainerItemProxy */;
 		};
 		BD021B76CADF1D7DE1A2034D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -12342,12 +12366,6 @@
 			name = "_SwiftLib (x86_64) (f321a)";
 			target = DB44B1216D8A82A44B18123A /* _SwiftLib (x86_64) (f321a) */;
 			targetProxy = 63E62151D5F324A5384E0425 /* PBXContainerItemProxy */;
-		};
-		BE7D37EB4FA03C901D6226B5 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = iOSApp;
-			target = A6969986F4330BE56701A5EC /* iOSApp */;
-			targetProxy = 20A47E66F65B5FE34314366D /* PBXContainerItemProxy */;
 		};
 		BF6A541D06B20F2619BAFD66 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -12457,12 +12475,6 @@
 			target = 42A7256A505DA3DFEA69C941 /* TestingUtils */;
 			targetProxy = EE615E5552554A76E2D8D55A /* PBXContainerItemProxy */;
 		};
-		D9ACBE86D3B39DB561FA1036 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = CoreUtils;
-			target = 882DEB49BCE0AFB2741B1DC9 /* CoreUtils */;
-			targetProxy = 0B688E02A19FF8B37A93F423 /* PBXContainerItemProxy */;
-		};
 		D9ED3111BE20E93D91AED907 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = BazelDependencies;
@@ -12487,29 +12499,11 @@
 			target = 42A7256A505DA3DFEA69C941 /* TestingUtils */;
 			targetProxy = EF762BE51538A994CA6D09DF /* PBXContainerItemProxy */;
 		};
-		E8C1ADB3FDEBCAE9B95E2EE1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = BazelDependencies;
-			target = FE59281FE487F27A37DC2EE7 /* BazelDependencies */;
-			targetProxy = 60535305E19F4FB77E265FA4 /* PBXContainerItemProxy */;
-		};
 		E9AABBBC87A47ADC6CE14E9F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "lib_impl (arm64)";
 			target = C2146B07C477F3A0DBE35CF0 /* lib_impl (arm64) */;
 			targetProxy = D9244C4C2A147F9935C71745 /* PBXContainerItemProxy */;
-		};
-		EA583D55B1248D7C54E90CBF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = CoreUtils;
-			target = 882DEB49BCE0AFB2741B1DC9 /* CoreUtils */;
-			targetProxy = 8D4D4A27A0502525AB7BA2F8 /* PBXContainerItemProxy */;
-		};
-		EAB43B117665A54422D32265 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = OnlyStructuredResources;
-			target = 63A26735968A55ECFF1DB504 /* OnlyStructuredResources */;
-			targetProxy = F9167210CFC66B5731C81943 /* PBXContainerItemProxy */;
 		};
 		EAC3EAD6F68B690227ACCEF4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -12534,6 +12528,12 @@
 			name = "Lib (iOS, tvOS)";
 			target = 801E2436A69733A307109C9A /* Lib (iOS, tvOS) */;
 			targetProxy = 58828F70B0573A5CB6B2CC10 /* PBXContainerItemProxy */;
+		};
+		EFE8ED7613C3394597D2C933 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Utils;
+			target = 42E984F26D5B4ECBE0F0F076 /* Utils */;
+			targetProxy = 4F48433DA824F09493FB5F16 /* PBXContainerItemProxy */;
 		};
 		F13F157EDF45745F61D5F183 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -12672,47 +12672,6 @@
 			};
 			name = Debug;
 		};
-		0ABA2D23D3F070E2DCD5C3A7 /* AppStore */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = x86_64;
-				"ARCHS[sdk=iphoneos*]" = arm64;
-				ASAN_OTHER_CPLUSPLUSFLAGS__ = "$(ASAN_OTHER_CPLUSPLUSFLAGS__NO)";
-				ASAN_OTHER_CPLUSPLUSFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/cxx.compile.params";
-				ASAN_OTHER_CPLUSPLUSFLAGS__YES = "$(ASAN_OTHER_CPLUSPLUSFLAGS__NO) -Wno-macro-redefined -D_FORTIFY_SOURCE=0";
-				BAZEL_COMPILE_TARGET_IDS = "//iOSApp/Source/CoreUtilsObjC:CoreUtilsObjC ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7";
-				"BAZEL_COMPILE_TARGET_IDS[sdk=iphoneos*]" = "//iOSApp/Source/CoreUtilsObjC:CoreUtilsObjC ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10";
-				"BAZEL_COMPILE_TARGET_IDS[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
-				BAZEL_LABEL = "@//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC";
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Source/CoreUtilsObjC";
-				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/applebin_ios-ios_arm64-opt-STABLE-16/bin/iOSApp/Source/CoreUtilsObjC";
-				BAZEL_TARGET_ID = "//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC applebin_ios-ios_x86_64-opt-STABLE-15";
-				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC applebin_ios-ios_arm64-opt-STABLE-16";
-				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
-				CODE_SIGN_STYLE = Manual;
-				COMPILE_TARGET_NAME = CoreUtilsObjC;
-				CXX_PARAMS_FILE = "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.rules_xcodeproj.cxx.compile.params";
-				"CXX_PARAMS_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.rules_xcodeproj.cxx.compile.params";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_PREFIX_HEADER = "$(SRCROOT)/iOSApp/Source/CoreUtilsObjC/CoreUtils/CoreUtils.pch";
-				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Source/CoreUtilsObjC/rules_xcodeproj/FrameworkCoreUtilsObjC/Info.plist";
-				"INFOPLIST_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/applebin_ios-ios_arm64-opt-STABLE-16/bin/iOSApp/Source/CoreUtilsObjC/rules_xcodeproj/FrameworkCoreUtilsObjC/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/FrameworkCoreUtilsObjC.98.link.params";
-				"LINK_PARAMS_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/FrameworkCoreUtilsObjC.158.link.params";
-				OTHER_CPLUSPLUSFLAGS = "$(ASAN_OTHER_CPLUSPLUSFLAGS__$(CLANG_ADDRESS_SANITIZER))";
-				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.CoreUtilsObjC";
-				PRODUCT_MODULE_NAME = CoreUtils;
-				PRODUCT_NAME = CoreUtilsObjC;
-				SDKROOT = iphoneos;
-				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
-				TARGETED_DEVICE_FAMILY = 1;
-				TARGET_NAME = FrameworkCoreUtilsObjC;
-			};
-			name = AppStore;
-		};
 		0D5D4F8B2848F546E86F7CA2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -12795,37 +12754,6 @@
 				TARGET_NAME = MixedAnswer;
 			};
 			name = Debug;
-		};
-		17BE3EE3375ADD9EEA0186CE /* AppStore */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = x86_64;
-				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
-				ASAN_OTHER_CFLAGS__YES = "$(ASAN_OTHER_CFLAGS__NO) -Wno-macro-redefined -D_FORTIFY_SOURCE=0";
-				BAZEL_COMPILE_TARGET_IDS = "//Bundle:aplugin.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-30";
-				"BAZEL_COMPILE_TARGET_IDS[sdk=macosx*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
-				BAZEL_LABEL = "@//Bundle:Bundle";
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-32/bin/Bundle";
-				BAZEL_TARGET_ID = "//Bundle:Bundle applebin_macos-darwin_x86_64-opt-STABLE-32";
-				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
-				CODE_SIGN_STYLE = Manual;
-				COMPILE_TARGET_NAME = aplugin.library;
-				C_PARAMS_FILE = "$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-30/bin/Bundle/aplugin.library.rules_xcodeproj.c.compile.params";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-opt-STABLE-32/bin/Bundle/rules_xcodeproj/Bundle/Info.plist";
-				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/Bundle.114.link.params";
-				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
-				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.ABundle";
-				PRODUCT_NAME = ABundle;
-				SDKROOT = macosx;
-				SUPPORTED_PLATFORMS = macosx;
-				TARGET_NAME = Bundle;
-				WRAPPER_EXTENSION = aplugin;
-			};
-			name = AppStore;
 		};
 		1BF5FC2A9E47901FF1A44BF1 /* AppStore */ = {
 			isa = XCBuildConfiguration;
@@ -13363,6 +13291,40 @@
 			};
 			name = AppStore;
 		};
+		4555CE65A652CA1A1F1EF13B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = x86_64;
+				BAZEL_COMPILE_TARGET_IDS = "//watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2";
+				"BAZEL_COMPILE_TARGET_IDS[sdk=watchsimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
+				BAZEL_LABEL = "@//watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-17/bin/watchOSAppExtension/Test/UnitTests";
+				BAZEL_TARGET_ID = "//watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests.__internal__.__test_bundle applebin_watchos-watchos_x86_64-dbg-STABLE-17";
+				"BAZEL_TARGET_ID[sdk=watchsimulator*]" = "$(BAZEL_TARGET_ID)";
+				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
+				CODE_SIGN_STYLE = Manual;
+				COMPILE_TARGET_NAME = watchOSAppExtensionUnitTests.library;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEPLOYMENT_LOCATION = NO;
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-dbg-STABLE-17/bin/watchOSAppExtension/Test/UnitTests/rules_xcodeproj/watchOSAppExtensionUnitTests.__internal__.__test_bundle/Info.plist";
+				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/watchOSAppExtensionUnitTests.48.link.params";
+				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(DERIVED_FILE_DIR)/xcode-overlay.yaml -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml $(PREVIEWS_SWIFT_INCLUDE__$(ENABLE_PREVIEWS)) @$(DERIVED_FILE_DIR)/swift.compile.params -F$(DEVELOPER_DIR)/Platforms/WatchSimulator.platform/Developer/Library/Frameworks -F$(SDKROOT)/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/WatchSimulator.platform/Developer/usr/lib -F$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/external/com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all";
+				PREVIEWS_SWIFT_INCLUDE__ = "";
+				PREVIEWS_SWIFT_INCLUDE__NO = "";
+				PREVIEWS_SWIFT_INCLUDE__YES = "-I $(BUILD_DIR)/bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-17/bin/watchOSAppExtension/Test/UnitTests";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bazelbuild.rulesapple.Tests;
+				PRODUCT_MODULE_NAME = watchOSAppExtensionUnitTestsLibrary;
+				PRODUCT_NAME = watchOSAppExtensionUnitTests;
+				SDKROOT = watchos;
+				SUPPORTED_PLATFORMS = watchsimulator;
+				SWIFT_INCLUDE_PATHS = "$(BUILD_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/Lib $(BUILD_DIR)/bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-17/bin/UI/UIFramework.watchOS.framework/Modules";
+				SWIFT_PARAMS_FILE = "$(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/watchOSAppExtension/Test/UnitTests/watchOSAppExtensionUnitTests.library.rules_xcodeproj.swift.compile.params";
+				TARGET_NAME = watchOSAppExtensionUnitTests;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
+			};
+			name = Debug;
+		};
 		4754A715B1B024D5FA13A6B9 /* AppStore */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -13399,6 +13361,41 @@
 				TARGET_BUILD_DIR = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Source$(TARGET_BUILD_SUBPATH)";
 				TARGET_NAME = iOSAppSwiftUnitTests;
 				TEST_HOST = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Source/iOSApp.app/iOSApp_ExecutableName";
+			};
+			name = AppStore;
+		};
+		4A78CBF0DA167790CE98F3DC /* AppStore */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = x86_64;
+				BAZEL_COMPILE_TARGET_IDS = "//watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8";
+				"BAZEL_COMPILE_TARGET_IDS[sdk=watchsimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
+				BAZEL_LABEL = "@//watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_watchos-watchos_x86_64-opt-STABLE-19/bin/watchOSAppExtension/Test/UnitTests";
+				BAZEL_TARGET_ID = "//watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests.__internal__.__test_bundle applebin_watchos-watchos_x86_64-opt-STABLE-19";
+				"BAZEL_TARGET_ID[sdk=watchsimulator*]" = "$(BAZEL_TARGET_ID)";
+				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
+				CODE_SIGN_STYLE = Manual;
+				COMPILE_TARGET_NAME = watchOSAppExtensionUnitTests.library;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEPLOYMENT_LOCATION = NO;
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-opt-STABLE-19/bin/watchOSAppExtension/Test/UnitTests/rules_xcodeproj/watchOSAppExtensionUnitTests.__internal__.__test_bundle/Info.plist";
+				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/watchOSAppExtensionUnitTests.129.link.params";
+				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
+				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(DERIVED_FILE_DIR)/xcode-overlay.yaml -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml $(PREVIEWS_SWIFT_INCLUDE__$(ENABLE_PREVIEWS)) @$(DERIVED_FILE_DIR)/swift.compile.params -F$(DEVELOPER_DIR)/Platforms/WatchSimulator.platform/Developer/Library/Frameworks -F$(SDKROOT)/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/WatchSimulator.platform/Developer/usr/lib -F$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8/bin/external/com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8/bin -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra";
+				PREVIEWS_SWIFT_INCLUDE__ = "";
+				PREVIEWS_SWIFT_INCLUDE__NO = "";
+				PREVIEWS_SWIFT_INCLUDE__YES = "-I $(BUILD_DIR)/bazel-out/applebin_watchos-watchos_x86_64-opt-STABLE-19/bin/watchOSAppExtension/Test/UnitTests";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bazelbuild.rulesapple.Tests;
+				PRODUCT_MODULE_NAME = watchOSAppExtensionUnitTestsLibrary;
+				PRODUCT_NAME = watchOSAppExtensionUnitTests;
+				SDKROOT = watchos;
+				SUPPORTED_PLATFORMS = watchsimulator;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_INCLUDE_PATHS = "$(BUILD_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8/bin/Lib $(BUILD_DIR)/bazel-out/applebin_watchos-watchos_x86_64-opt-STABLE-19/bin/UI/UIFramework.watchOS.framework/Modules";
+				SWIFT_PARAMS_FILE = "$(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8/bin/watchOSAppExtension/Test/UnitTests/watchOSAppExtensionUnitTests.library.rules_xcodeproj.swift.compile.params";
+				TARGET_NAME = watchOSAppExtensionUnitTests;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = AppStore;
 		};
@@ -14334,6 +14331,47 @@
 			};
 			name = AppStore;
 		};
+		7A18C21BB55BC562CF5D419C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = x86_64;
+				"ARCHS[sdk=iphoneos*]" = arm64;
+				ASAN_OTHER_CPLUSPLUSFLAGS__ = "$(ASAN_OTHER_CPLUSPLUSFLAGS__NO)";
+				ASAN_OTHER_CPLUSPLUSFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/cxx.compile.params";
+				ASAN_OTHER_CPLUSPLUSFLAGS__YES = "$(ASAN_OTHER_CPLUSPLUSFLAGS__NO) -Wno-macro-redefined -D_FORTIFY_SOURCE=0";
+				BAZEL_COMPILE_TARGET_IDS = "//iOSApp/Source/CoreUtilsObjC:CoreUtilsObjC ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1";
+				"BAZEL_COMPILE_TARGET_IDS[sdk=iphoneos*]" = "//iOSApp/Source/CoreUtilsObjC:CoreUtilsObjC ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4";
+				"BAZEL_COMPILE_TARGET_IDS[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
+				BAZEL_LABEL = "@//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Source/CoreUtilsObjC";
+				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/applebin_ios-ios_arm64-dbg-STABLE-14/bin/iOSApp/Source/CoreUtilsObjC";
+				BAZEL_TARGET_ID = "//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC applebin_ios-ios_x86_64-dbg-STABLE-13";
+				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC applebin_ios-ios_arm64-dbg-STABLE-14";
+				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
+				CODE_SIGN_STYLE = Manual;
+				COMPILE_TARGET_NAME = CoreUtilsObjC;
+				CXX_PARAMS_FILE = "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.rules_xcodeproj.cxx.compile.params";
+				"CXX_PARAMS_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.rules_xcodeproj.cxx.compile.params";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_PREFIX_HEADER = "$(SRCROOT)/iOSApp/Source/CoreUtilsObjC/CoreUtils/CoreUtils.pch";
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Source/CoreUtilsObjC/rules_xcodeproj/FrameworkCoreUtilsObjC/Info.plist";
+				"INFOPLIST_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/applebin_ios-ios_arm64-dbg-STABLE-14/bin/iOSApp/Source/CoreUtilsObjC/rules_xcodeproj/FrameworkCoreUtilsObjC/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/FrameworkCoreUtilsObjC.17.link.params";
+				"LINK_PARAMS_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/FrameworkCoreUtilsObjC.77.link.params";
+				OTHER_CPLUSPLUSFLAGS = "$(ASAN_OTHER_CPLUSPLUSFLAGS__$(CLANG_ADDRESS_SANITIZER))";
+				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.CoreUtilsObjC";
+				PRODUCT_MODULE_NAME = CoreUtils;
+				PRODUCT_NAME = CoreUtilsObjC;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				TARGETED_DEVICE_FAMILY = 1;
+				TARGET_NAME = FrameworkCoreUtilsObjC;
+			};
+			name = Debug;
+		};
 		7FE3A2AB42E97700B2F00D6A /* AppStore */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -15043,6 +15081,47 @@
 			};
 			name = AppStore;
 		};
+		9F7148B7AABE051751C4F3BD /* AppStore */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = x86_64;
+				"ARCHS[sdk=iphoneos*]" = arm64;
+				ASAN_OTHER_CPLUSPLUSFLAGS__ = "$(ASAN_OTHER_CPLUSPLUSFLAGS__NO)";
+				ASAN_OTHER_CPLUSPLUSFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/cxx.compile.params";
+				ASAN_OTHER_CPLUSPLUSFLAGS__YES = "$(ASAN_OTHER_CPLUSPLUSFLAGS__NO) -Wno-macro-redefined -D_FORTIFY_SOURCE=0";
+				BAZEL_COMPILE_TARGET_IDS = "//iOSApp/Source/CoreUtilsObjC:CoreUtilsObjC ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7";
+				"BAZEL_COMPILE_TARGET_IDS[sdk=iphoneos*]" = "//iOSApp/Source/CoreUtilsObjC:CoreUtilsObjC ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10";
+				"BAZEL_COMPILE_TARGET_IDS[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
+				BAZEL_LABEL = "@//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Source/CoreUtilsObjC";
+				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/applebin_ios-ios_arm64-opt-STABLE-16/bin/iOSApp/Source/CoreUtilsObjC";
+				BAZEL_TARGET_ID = "//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC applebin_ios-ios_x86_64-opt-STABLE-15";
+				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC applebin_ios-ios_arm64-opt-STABLE-16";
+				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
+				CODE_SIGN_STYLE = Manual;
+				COMPILE_TARGET_NAME = CoreUtilsObjC;
+				CXX_PARAMS_FILE = "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.rules_xcodeproj.cxx.compile.params";
+				"CXX_PARAMS_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.rules_xcodeproj.cxx.compile.params";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_PREFIX_HEADER = "$(SRCROOT)/iOSApp/Source/CoreUtilsObjC/CoreUtils/CoreUtils.pch";
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Source/CoreUtilsObjC/rules_xcodeproj/FrameworkCoreUtilsObjC/Info.plist";
+				"INFOPLIST_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/applebin_ios-ios_arm64-opt-STABLE-16/bin/iOSApp/Source/CoreUtilsObjC/rules_xcodeproj/FrameworkCoreUtilsObjC/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/FrameworkCoreUtilsObjC.98.link.params";
+				"LINK_PARAMS_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/FrameworkCoreUtilsObjC.158.link.params";
+				OTHER_CPLUSPLUSFLAGS = "$(ASAN_OTHER_CPLUSPLUSFLAGS__$(CLANG_ADDRESS_SANITIZER))";
+				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.CoreUtilsObjC";
+				PRODUCT_MODULE_NAME = CoreUtils;
+				PRODUCT_NAME = CoreUtilsObjC;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				TARGETED_DEVICE_FAMILY = 1;
+				TARGET_NAME = FrameworkCoreUtilsObjC;
+			};
+			name = AppStore;
+		};
 		A072243CAE17521A9B4E9048 /* AppStore */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -15068,47 +15147,6 @@
 				TARGET_NAME = iMessageApp;
 			};
 			name = AppStore;
-		};
-		A19E7FFF0CC7340B955B5B1D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = x86_64;
-				"ARCHS[sdk=iphoneos*]" = arm64;
-				ASAN_OTHER_CPLUSPLUSFLAGS__ = "$(ASAN_OTHER_CPLUSPLUSFLAGS__NO)";
-				ASAN_OTHER_CPLUSPLUSFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/cxx.compile.params";
-				ASAN_OTHER_CPLUSPLUSFLAGS__YES = "$(ASAN_OTHER_CPLUSPLUSFLAGS__NO) -Wno-macro-redefined -D_FORTIFY_SOURCE=0";
-				BAZEL_COMPILE_TARGET_IDS = "//iOSApp/Source/CoreUtilsObjC:CoreUtilsObjC ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1";
-				"BAZEL_COMPILE_TARGET_IDS[sdk=iphoneos*]" = "//iOSApp/Source/CoreUtilsObjC:CoreUtilsObjC ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4";
-				"BAZEL_COMPILE_TARGET_IDS[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
-				BAZEL_LABEL = "@//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC";
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Source/CoreUtilsObjC";
-				"BAZEL_PACKAGE_BIN_DIR[sdk=iphoneos*]" = "bazel-out/applebin_ios-ios_arm64-dbg-STABLE-14/bin/iOSApp/Source/CoreUtilsObjC";
-				BAZEL_TARGET_ID = "//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC applebin_ios-ios_x86_64-dbg-STABLE-13";
-				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC applebin_ios-ios_arm64-dbg-STABLE-14";
-				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
-				CODE_SIGN_STYLE = Manual;
-				COMPILE_TARGET_NAME = CoreUtilsObjC;
-				CXX_PARAMS_FILE = "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.rules_xcodeproj.cxx.compile.params";
-				"CXX_PARAMS_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.rules_xcodeproj.cxx.compile.params";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_PREFIX_HEADER = "$(SRCROOT)/iOSApp/Source/CoreUtilsObjC/CoreUtils/CoreUtils.pch";
-				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Source/CoreUtilsObjC/rules_xcodeproj/FrameworkCoreUtilsObjC/Info.plist";
-				"INFOPLIST_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/applebin_ios-ios_arm64-dbg-STABLE-14/bin/iOSApp/Source/CoreUtilsObjC/rules_xcodeproj/FrameworkCoreUtilsObjC/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/FrameworkCoreUtilsObjC.17.link.params";
-				"LINK_PARAMS_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/FrameworkCoreUtilsObjC.77.link.params";
-				OTHER_CPLUSPLUSFLAGS = "$(ASAN_OTHER_CPLUSPLUSFLAGS__$(CLANG_ADDRESS_SANITIZER))";
-				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.CoreUtilsObjC";
-				PRODUCT_MODULE_NAME = CoreUtils;
-				PRODUCT_NAME = CoreUtilsObjC;
-				SDKROOT = iphoneos;
-				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
-				TARGETED_DEVICE_FAMILY = 1;
-				TARGET_NAME = FrameworkCoreUtilsObjC;
-			};
-			name = Debug;
 		};
 		A245709DAF86615E74046645 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -15202,75 +15240,6 @@
 				TVOS_DEPLOYMENT_TARGET = 15.0;
 			};
 			name = Debug;
-		};
-		A84A7C2C5A0C862E6724E56D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = x86_64;
-				BAZEL_COMPILE_TARGET_IDS = "//watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2";
-				"BAZEL_COMPILE_TARGET_IDS[sdk=watchsimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
-				BAZEL_LABEL = "@//watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests";
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-17/bin/watchOSAppExtension/Test/UnitTests";
-				BAZEL_TARGET_ID = "//watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests.__internal__.__test_bundle applebin_watchos-watchos_x86_64-dbg-STABLE-17";
-				"BAZEL_TARGET_ID[sdk=watchsimulator*]" = "$(BAZEL_TARGET_ID)";
-				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
-				CODE_SIGN_STYLE = Manual;
-				COMPILE_TARGET_NAME = watchOSAppExtensionUnitTests.library;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEPLOYMENT_LOCATION = NO;
-				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-dbg-STABLE-17/bin/watchOSAppExtension/Test/UnitTests/rules_xcodeproj/watchOSAppExtensionUnitTests.__internal__.__test_bundle/Info.plist";
-				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/watchOSAppExtensionUnitTests.48.link.params";
-				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(DERIVED_FILE_DIR)/xcode-overlay.yaml -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml $(PREVIEWS_SWIFT_INCLUDE__$(ENABLE_PREVIEWS)) @$(DERIVED_FILE_DIR)/swift.compile.params -F$(DEVELOPER_DIR)/Platforms/WatchSimulator.platform/Developer/Library/Frameworks -F$(SDKROOT)/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/WatchSimulator.platform/Developer/usr/lib -F$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/external/com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all";
-				PREVIEWS_SWIFT_INCLUDE__ = "";
-				PREVIEWS_SWIFT_INCLUDE__NO = "";
-				PREVIEWS_SWIFT_INCLUDE__YES = "-I $(BUILD_DIR)/bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-17/bin/watchOSAppExtension/Test/UnitTests";
-				PRODUCT_BUNDLE_IDENTIFIER = com.bazelbuild.rulesapple.Tests;
-				PRODUCT_MODULE_NAME = watchOSAppExtensionUnitTestsLibrary;
-				PRODUCT_NAME = watchOSAppExtensionUnitTests;
-				SDKROOT = watchos;
-				SUPPORTED_PLATFORMS = watchsimulator;
-				SWIFT_INCLUDE_PATHS = "$(BUILD_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/Lib $(BUILD_DIR)/bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-17/bin/UI/UIFramework.watchOS.framework/Modules";
-				SWIFT_PARAMS_FILE = "$(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/watchOSAppExtension/Test/UnitTests/watchOSAppExtensionUnitTests.library.rules_xcodeproj.swift.compile.params";
-				TARGET_NAME = watchOSAppExtensionUnitTests;
-				WATCHOS_DEPLOYMENT_TARGET = 7.0;
-			};
-			name = Debug;
-		};
-		A9C8CFA0ED4B942CA3B5578A /* AppStore */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = x86_64;
-				BAZEL_COMPILE_TARGET_IDS = "//watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests.library watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8";
-				"BAZEL_COMPILE_TARGET_IDS[sdk=watchsimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
-				BAZEL_LABEL = "@//watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests";
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_watchos-watchos_x86_64-opt-STABLE-19/bin/watchOSAppExtension/Test/UnitTests";
-				BAZEL_TARGET_ID = "//watchOSAppExtension/Test/UnitTests:watchOSAppExtensionUnitTests.__internal__.__test_bundle applebin_watchos-watchos_x86_64-opt-STABLE-19";
-				"BAZEL_TARGET_ID[sdk=watchsimulator*]" = "$(BAZEL_TARGET_ID)";
-				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
-				CODE_SIGN_STYLE = Manual;
-				COMPILE_TARGET_NAME = watchOSAppExtensionUnitTests.library;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEPLOYMENT_LOCATION = NO;
-				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_watchos-watchos_x86_64-opt-STABLE-19/bin/watchOSAppExtension/Test/UnitTests/rules_xcodeproj/watchOSAppExtensionUnitTests.__internal__.__test_bundle/Info.plist";
-				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/watchOSAppExtensionUnitTests.129.link.params";
-				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				OTHER_SWIFT_FLAGS = "-Xcc -ivfsoverlay -Xcc $(DERIVED_FILE_DIR)/xcode-overlay.yaml -Xcc -ivfsoverlay -Xcc $(OBJROOT)/bazel-out-overlay.yaml -vfsoverlay $(OBJROOT)/bazel-out-overlay.yaml $(PREVIEWS_SWIFT_INCLUDE__$(ENABLE_PREVIEWS)) @$(DERIVED_FILE_DIR)/swift.compile.params -F$(DEVELOPER_DIR)/Platforms/WatchSimulator.platform/Developer/Library/Frameworks -F$(SDKROOT)/Developer/Library/Frameworks -I$(DEVELOPER_DIR)/Platforms/WatchSimulator.platform/Developer/usr/lib -F$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8/bin/external/com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8/bin -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra";
-				PREVIEWS_SWIFT_INCLUDE__ = "";
-				PREVIEWS_SWIFT_INCLUDE__NO = "";
-				PREVIEWS_SWIFT_INCLUDE__YES = "-I $(BUILD_DIR)/bazel-out/applebin_watchos-watchos_x86_64-opt-STABLE-19/bin/watchOSAppExtension/Test/UnitTests";
-				PRODUCT_BUNDLE_IDENTIFIER = com.bazelbuild.rulesapple.Tests;
-				PRODUCT_MODULE_NAME = watchOSAppExtensionUnitTestsLibrary;
-				PRODUCT_NAME = watchOSAppExtensionUnitTests;
-				SDKROOT = watchos;
-				SUPPORTED_PLATFORMS = watchsimulator;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_INCLUDE_PATHS = "$(BUILD_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8/bin/Lib $(BUILD_DIR)/bazel-out/applebin_watchos-watchos_x86_64-opt-STABLE-19/bin/UI/UIFramework.watchOS.framework/Modules";
-				SWIFT_PARAMS_FILE = "$(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8/bin/watchOSAppExtension/Test/UnitTests/watchOSAppExtensionUnitTests.library.rules_xcodeproj.swift.compile.params";
-				TARGET_NAME = watchOSAppExtensionUnitTests;
-				WATCHOS_DEPLOYMENT_TARGET = 7.0;
-			};
-			name = AppStore;
 		};
 		A9CE89F047FA59AE0B6770D1 /* AppStore */ = {
 			isa = XCBuildConfiguration;
@@ -15425,37 +15394,6 @@
 			};
 			name = Debug;
 		};
-		B75AF13E5570C92760A74CFC /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = x86_64;
-				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
-				ASAN_OTHER_CFLAGS__YES = "$(ASAN_OTHER_CFLAGS__NO) -Wno-macro-redefined -D_FORTIFY_SOURCE=0";
-				BAZEL_COMPILE_TARGET_IDS = "//Bundle:aplugin.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-29";
-				"BAZEL_COMPILE_TARGET_IDS[sdk=macosx*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
-				BAZEL_LABEL = "@//Bundle:Bundle";
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-31/bin/Bundle";
-				BAZEL_TARGET_ID = "//Bundle:Bundle applebin_macos-darwin_x86_64-dbg-STABLE-31";
-				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
-				CODE_SIGN_STYLE = Manual;
-				COMPILE_TARGET_NAME = aplugin.library;
-				C_PARAMS_FILE = "$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-29/bin/Bundle/aplugin.library.rules_xcodeproj.c.compile.params";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-STABLE-31/bin/Bundle/rules_xcodeproj/Bundle/Info.plist";
-				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/Bundle.33.link.params";
-				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
-				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.ABundle";
-				PRODUCT_NAME = ABundle;
-				SDKROOT = macosx;
-				SUPPORTED_PLATFORMS = macosx;
-				TARGET_NAME = Bundle;
-				WRAPPER_EXTENSION = aplugin;
-			};
-			name = Debug;
-		};
 		B93C67F7627AC4EFB01F704F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -15513,6 +15451,44 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TARGET_BUILD_DIR = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Source$(TARGET_BUILD_SUBPATH)";
 				TARGET_NAME = iOSAppSwiftUnitTestSuite;
+				TEST_HOST = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Source/iOSApp.app/iOSApp_ExecutableName";
+			};
+			name = Debug;
+		};
+		BC5271D991025E4BACE15A77 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = x86_64;
+				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
+				ASAN_OTHER_CFLAGS__YES = "$(ASAN_OTHER_CFLAGS__NO) -Wno-macro-redefined -D_FORTIFY_SOURCE=0";
+				BAZEL_COMPILE_TARGET_IDS = "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1";
+				"BAZEL_COMPILE_TARGET_IDS[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
+				BAZEL_LABEL = "@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Test/ObjCUnitTests";
+				BAZEL_TARGET_ID = "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-13";
+				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
+				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Manual;
+				COMPILE_TARGET_NAME = iOSAppObjCUnitTestSuite.library;
+				C_PARAMS_FILE = "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTestSuite.library.rules_xcodeproj.c.compile.params";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEPLOYMENT_LOCATION = NO;
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Test/ObjCUnitTests/rules_xcodeproj/iOSAppObjCUnitTestSuite.__internal__.__test_bundle/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/iOSAppObjCUnitTestSuite.50.link.params";
+				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
+				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.objctests";
+				PRODUCT_MODULE_NAME = iOSAppObjCUnitTestsSuite;
+				PRODUCT_NAME = iOSAppObjCUnitTestSuite;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = iphonesimulator;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGET_BUILD_DIR = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Source$(TARGET_BUILD_SUBPATH)";
+				TARGET_NAME = iOSAppObjCUnitTestSuite;
 				TEST_HOST = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Source/iOSApp.app/iOSApp_ExecutableName";
 			};
 			name = Debug;
@@ -15583,6 +15559,44 @@
 				WATCHSIMULATOR_FILES = "bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2/bin/Lib/Lib.swift";
 			};
 			name = Debug;
+		};
+		C096313AB49E6E5EC946225E /* AppStore */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = x86_64;
+				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
+				ASAN_OTHER_CFLAGS__YES = "$(ASAN_OTHER_CFLAGS__NO) -Wno-macro-redefined -D_FORTIFY_SOURCE=0";
+				BAZEL_COMPILE_TARGET_IDS = "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7";
+				"BAZEL_COMPILE_TARGET_IDS[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
+				BAZEL_LABEL = "@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Test/ObjCUnitTests";
+				BAZEL_TARGET_ID = "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite.__internal__.__test_bundle applebin_ios-ios_x86_64-opt-STABLE-15";
+				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
+				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Manual;
+				COMPILE_TARGET_NAME = iOSAppObjCUnitTestSuite.library;
+				C_PARAMS_FILE = "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTestSuite.library.rules_xcodeproj.c.compile.params";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEPLOYMENT_LOCATION = NO;
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Test/ObjCUnitTests/rules_xcodeproj/iOSAppObjCUnitTestSuite.__internal__.__test_bundle/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/iOSAppObjCUnitTestSuite.131.link.params";
+				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
+				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.objctests";
+				PRODUCT_MODULE_NAME = iOSAppObjCUnitTestsSuite;
+				PRODUCT_NAME = iOSAppObjCUnitTestSuite;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = iphonesimulator;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGET_BUILD_DIR = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Source$(TARGET_BUILD_SUBPATH)";
+				TARGET_NAME = iOSAppObjCUnitTestSuite;
+				TEST_HOST = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Source/iOSApp.app/iOSApp_ExecutableName";
+			};
+			name = AppStore;
 		};
 		C195F43F2BBDAFB5F21BBCB4 /* AppStore */ = {
 			isa = XCBuildConfiguration;
@@ -15674,44 +15688,6 @@
 				USE_HEADERMAP = NO;
 				VALIDATE_WORKSPACE = NO;
 				_BAZEL_OUTPUT_BASE = "$(PROJECT_DIR)/../..";
-			};
-			name = Debug;
-		};
-		C4F706CD8D939F11CB84036A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = x86_64;
-				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
-				ASAN_OTHER_CFLAGS__YES = "$(ASAN_OTHER_CFLAGS__NO) -Wno-macro-redefined -D_FORTIFY_SOURCE=0";
-				BAZEL_COMPILE_TARGET_IDS = "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1";
-				"BAZEL_COMPILE_TARGET_IDS[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
-				BAZEL_LABEL = "@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite";
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Test/ObjCUnitTests";
-				BAZEL_TARGET_ID = "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-13";
-				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
-				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Manual;
-				COMPILE_TARGET_NAME = iOSAppObjCUnitTestSuite.library;
-				C_PARAMS_FILE = "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTestSuite.library.rules_xcodeproj.c.compile.params";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEPLOYMENT_LOCATION = NO;
-				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Test/ObjCUnitTests/rules_xcodeproj/iOSAppObjCUnitTestSuite.__internal__.__test_bundle/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/iOSAppObjCUnitTestSuite.50.link.params";
-				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
-				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.objctests";
-				PRODUCT_MODULE_NAME = iOSAppObjCUnitTestsSuite;
-				PRODUCT_NAME = iOSAppObjCUnitTestSuite;
-				SDKROOT = iphoneos;
-				SUPPORTED_PLATFORMS = iphonesimulator;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TARGET_BUILD_DIR = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Source$(TARGET_BUILD_SUBPATH)";
-				TARGET_NAME = iOSAppObjCUnitTestSuite;
-				TEST_HOST = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Source/iOSApp.app/iOSApp_ExecutableName";
 			};
 			name = Debug;
 		};
@@ -15975,6 +15951,37 @@
 				TARGET_BUILD_DIR = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Source$(TARGET_BUILD_SUBPATH)";
 				TARGET_NAME = iOSAppObjCUnitTests;
 				TEST_HOST = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Source/iOSApp.app/iOSApp_ExecutableName";
+			};
+			name = AppStore;
+		};
+		D8D6840615F6823347F440C8 /* AppStore */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = x86_64;
+				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
+				ASAN_OTHER_CFLAGS__YES = "$(ASAN_OTHER_CFLAGS__NO) -Wno-macro-redefined -D_FORTIFY_SOURCE=0";
+				BAZEL_COMPILE_TARGET_IDS = "//Bundle:aplugin.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-30";
+				"BAZEL_COMPILE_TARGET_IDS[sdk=macosx*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
+				BAZEL_LABEL = "@//Bundle:Bundle";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-32/bin/Bundle";
+				BAZEL_TARGET_ID = "//Bundle:Bundle applebin_macos-darwin_x86_64-opt-STABLE-32";
+				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
+				CODE_SIGN_STYLE = Manual;
+				COMPILE_TARGET_NAME = aplugin.library;
+				C_PARAMS_FILE = "$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-30/bin/Bundle/aplugin.library.rules_xcodeproj.c.compile.params";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-opt-STABLE-32/bin/Bundle/rules_xcodeproj/Bundle/Info.plist";
+				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/Bundle.114.link.params";
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
+				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.ABundle";
+				PRODUCT_NAME = ABundle;
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = macosx;
+				TARGET_NAME = Bundle;
+				WRAPPER_EXTENSION = aplugin;
 			};
 			name = AppStore;
 		};
@@ -16569,6 +16576,37 @@
 			};
 			name = AppStore;
 		};
+		F13D4F0CC428B4E2B523EAE4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = x86_64;
+				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
+				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
+				ASAN_OTHER_CFLAGS__YES = "$(ASAN_OTHER_CFLAGS__NO) -Wno-macro-redefined -D_FORTIFY_SOURCE=0";
+				BAZEL_COMPILE_TARGET_IDS = "//Bundle:aplugin.library macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-29";
+				"BAZEL_COMPILE_TARGET_IDS[sdk=macosx*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
+				BAZEL_LABEL = "@//Bundle:Bundle";
+				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-31/bin/Bundle";
+				BAZEL_TARGET_ID = "//Bundle:Bundle applebin_macos-darwin_x86_64-dbg-STABLE-31";
+				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
+				CODE_SIGN_STYLE = Manual;
+				COMPILE_TARGET_NAME = aplugin.library;
+				C_PARAMS_FILE = "$(BAZEL_OUT)/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-29/bin/Bundle/aplugin.library.rules_xcodeproj.c.compile.params";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-STABLE-31/bin/Bundle/rules_xcodeproj/Bundle/Info.plist";
+				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/Bundle.33.link.params";
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
+				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
+				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.ABundle";
+				PRODUCT_NAME = ABundle;
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = macosx;
+				TARGET_NAME = Bundle;
+				WRAPPER_EXTENSION = aplugin;
+			};
+			name = Debug;
+		};
 		F45DAA000D32B66903101578 /* AppStore */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -16804,44 +16842,6 @@
 			};
 			name = Debug;
 		};
-		FDDF8C9DE566688A331AEC40 /* AppStore */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = x86_64;
-				ASAN_OTHER_CFLAGS__ = "$(ASAN_OTHER_CFLAGS__NO)";
-				ASAN_OTHER_CFLAGS__NO = "-working-directory $(PROJECT_DIR) -ivfsoverlay $(DERIVED_FILE_DIR)/xcode-overlay.yaml -ivfsoverlay $(OBJROOT)/bazel-out-overlay.yaml @$(DERIVED_FILE_DIR)/c.compile.params";
-				ASAN_OTHER_CFLAGS__YES = "$(ASAN_OTHER_CFLAGS__NO) -Wno-macro-redefined -D_FORTIFY_SOURCE=0";
-				BAZEL_COMPILE_TARGET_IDS = "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7";
-				"BAZEL_COMPILE_TARGET_IDS[sdk=iphonesimulator*]" = "$(BAZEL_COMPILE_TARGET_IDS)";
-				BAZEL_LABEL = "@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite";
-				BAZEL_PACKAGE_BIN_DIR = "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Test/ObjCUnitTests";
-				BAZEL_TARGET_ID = "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite.__internal__.__test_bundle applebin_ios-ios_x86_64-opt-STABLE-15";
-				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
-				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Manual;
-				COMPILE_TARGET_NAME = iOSAppObjCUnitTestSuite.library;
-				C_PARAMS_FILE = "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTestSuite.library.rules_xcodeproj.c.compile.params";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEPLOYMENT_LOCATION = NO;
-				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Test/ObjCUnitTests/rules_xcodeproj/iOSAppObjCUnitTestSuite.__internal__.__test_bundle/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LINK_PARAMS_FILE = "$(BAZEL_OUT)/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwx/xcodeproj_bwx-params/iOSAppObjCUnitTestSuite.131.link.params";
-				OTHER_CFLAGS = "$(ASAN_OTHER_CFLAGS__$(CLANG_ADDRESS_SANITIZER))";
-				OTHER_LDFLAGS = "@$(DERIVED_FILE_DIR)/link.params";
-				PRODUCT_BUNDLE_IDENTIFIER = "rules-xcodeproj.example.objctests";
-				PRODUCT_MODULE_NAME = iOSAppObjCUnitTestsSuite;
-				PRODUCT_NAME = iOSAppObjCUnitTestSuite;
-				SDKROOT = iphoneos;
-				SUPPORTED_PLATFORMS = iphonesimulator;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TARGET_BUILD_DIR = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Source$(TARGET_BUILD_SUBPATH)";
-				TARGET_NAME = iOSAppObjCUnitTestSuite;
-				TEST_HOST = "$(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Source/iOSApp.app/iOSApp_ExecutableName";
-			};
-			name = AppStore;
-		};
 		FDFF8A41D5CA5F83BE0117C0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -16910,6 +16910,15 @@
 			buildConfigurations = (
 				D447B4DA21BB15935E0EC8D5 /* AppStore */,
 				3A782046020C51E0FFEEC78E /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		11448ED2A6A7CA5148C647A8 /* Build configuration list for PBXNativeTarget "watchOSAppExtensionUnitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4A78CBF0DA167790CE98F3DC /* AppStore */,
+				4555CE65A652CA1A1F1EF13B /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
@@ -17085,6 +17094,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
+		61EE0EAE4F4CCD1A84B3E5C5 /* Build configuration list for PBXNativeTarget "iOSAppObjCUnitTestSuite" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C096313AB49E6E5EC946225E /* AppStore */,
+				BC5271D991025E4BACE15A77 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
 		64F3FC7AEBFC672C9FCF4159 /* Build configuration list for PBXNativeTarget "CommandLineTool" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -17130,20 +17148,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		7FDDEC2875A0791BB7423671 /* Build configuration list for PBXNativeTarget "watchOSAppExtensionUnitTestsLibrary" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A9C8CFA0ED4B942CA3B5578A /* AppStore */,
-				A84A7C2C5A0C862E6724E56D /* Debug */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
 		84568858393A25F9D32CC947 /* Build configuration list for PBXNativeTarget "UIFramework.watchOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C54F05313FE37C1EA49F5D21 /* AppStore */,
 				9863EAFC8C8C5F4F8162CC41 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		853F8EFFB251DC532CFDBB17 /* Build configuration list for PBXNativeTarget "ABundle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D8D6840615F6823347F440C8 /* AppStore */,
+				F13D4F0CC428B4E2B523EAE4 /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
@@ -17180,6 +17198,15 @@
 			buildConfigurations = (
 				EC08261D77D30969C349A361 /* AppStore */,
 				EFDED053C8359D1929857858 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		A371FC09C8552CA9AA11EBA0 /* Build configuration list for PBXNativeTarget "CoreUtilsObjC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9F7148B7AABE051751C4F3BD /* AppStore */,
+				7A18C21BB55BC562CF5D419C /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
@@ -17229,15 +17256,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		AD5FCED409F671C1A990E045 /* Build configuration list for PBXNativeTarget "CoreUtils" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				0ABA2D23D3F070E2DCD5C3A7 /* AppStore */,
-				A19E7FFF0CC7340B955B5B1D /* Debug */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
 		AE0571773EF9410BE199D216 /* Build configuration list for PBXNativeTarget "iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -17261,15 +17279,6 @@
 			buildConfigurations = (
 				86852406BB6F62580E2C1FD3 /* AppStore */,
 				8D0B034867B3EB449DE64BD7 /* Debug */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
-		AFE8585690782B04BD32EAD1 /* Build configuration list for PBXNativeTarget "iOSAppObjCUnitTestsSuite" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				FDDF8C9DE566688A331AEC40 /* AppStore */,
-				C4F706CD8D939F11CB84036A /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
@@ -17342,15 +17351,6 @@
 			buildConfigurations = (
 				659A51EE1057E70761C7C9A3 /* AppStore */,
 				CC03F4EA86C63E05E5A7532E /* Debug */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
-		D64557E6B1950488855A3FCA /* Build configuration list for PBXNativeTarget "Bundle" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				17BE3EE3375ADD9EEA0186CE /* AppStore */,
-				B75AF13E5570C92760A74CFC /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

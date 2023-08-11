@@ -426,19 +426,13 @@ def _merge_xcode_target_outputs(*, src_swift, dest):
     )
 
 def _merge_xcode_target_product(*, srcs, dest):
-    module_name_attribute = None if any([
-        src.module_name_attribute
-        for src in srcs
-        if src.module_name_attribute != srcs[0].module_name_attribute
-    ]) else srcs[0].module_name_attribute
-
     src_files = [src.file for src in srcs if src.file]
     src_framework_files = [src.framework_files for src in srcs]
     src_additional_files = [src._additional_files for src in srcs]
 
     return struct(
         name = dest.name,
-        module_name_attribute = module_name_attribute,
+        module_name_attribute = dest.module_name_attribute,
         type = dest.type,
         file = dest.file,
         basename = dest.basename,

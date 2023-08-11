@@ -14,9 +14,9 @@
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "CC4C6C2A28BA30B1838E405C"
+                     BlueprintIdentifier = "64AE6000A6317B9C077F3B1E"
                      BuildableName = "CoreUtilsObjC.framework"
-                     BlueprintName = "CoreUtils"
+                     BlueprintName = "CoreUtilsObjC"
                      ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
@@ -25,14 +25,14 @@
          <ExecutionAction
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
-               title = "Set Bazel Build Output Groups for CoreUtils"
+               title = "Set Bazel Build Output Groups for CoreUtilsObjC"
                scriptText = "echo &quot;$BAZEL_LABEL,$BAZEL_TARGET_ID&quot; &gt;&gt; &quot;$SCHEME_TARGET_IDS_FILE&quot;&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "CC4C6C2A28BA30B1838E405C"
+                     BlueprintIdentifier = "64AE6000A6317B9C077F3B1E"
                      BuildableName = "CoreUtilsObjC.framework"
-                     BlueprintName = "CoreUtils"
+                     BlueprintName = "CoreUtilsObjC"
                      ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
@@ -48,9 +48,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CC4C6C2A28BA30B1838E405C"
+               BlueprintIdentifier = "64AE6000A6317B9C077F3B1E"
                BuildableName = "CoreUtilsObjC.framework"
-               BlueprintName = "CoreUtils"
+               BlueprintName = "CoreUtilsObjC"
                ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
