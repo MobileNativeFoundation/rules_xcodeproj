@@ -67,19 +67,18 @@ def _process_resource(
     if not file.is_source:
         generated.append(file)
         if bundle_path and file.basename == "Info.plist":
-            path_components = file.path.split("/")
+            fp = file.path
+            path_components = fp.split("/")
             label = file.owner
-            configuration = calculate_configuration(bin_dir_path = file.path)
+            configuration = calculate_configuration(bin_dir_path = fp)
             bundle_metadata[bundle_path] = struct(
                 label = label,
                 configuration = configuration,
+                infoplist = file,
                 id = get_id(label = label, configuration = configuration),
                 package_bin_dir = "/".join(path_components[:-3]),
             )
 
-            # TODO: Find a way to include and set the generated Info.plist in
-            #   the Xcode project. It's under  a ".bundle/" path, which triggers
-            #   Folder Type detection.
             return None
 
     return normalized_file_path(
@@ -406,12 +405,14 @@ def collect_resources(
         bundle = resource_bundle_targets.get(bundle_path)
         metadata = bundle_metadata.get(bundle_path)
         if bundle and metadata:
+            extra_files.append(metadata.infoplist.path)
             frozen_bundles.append(
                 struct(
                     name = bundle.name,
                     label = metadata.label,
                     configuration = metadata.configuration,
                     id = metadata.id,
+                    infoplist = metadata.infoplist,
                     package_bin_dir = metadata.package_bin_dir,
                     platform = platform,
                     resources = tuple(bundle.resources),
