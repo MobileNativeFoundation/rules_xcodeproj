@@ -2,6 +2,7 @@
 
 load("@bazel_skylib//lib:paths.bzl", "paths")
 load(":collections.bzl", "set_if_true")
+load(":files.bzl", "build_setting_path")
 load(":input_files.bzl", "input_files")
 load(":memory_efficiency.bzl", "EMPTY_LIST")
 load(":output_files.bzl", "output_files")
@@ -23,6 +24,11 @@ def _process_resource_bundle(bundle, *, information):
         "PRODUCT_BUNDLE_IDENTIFIER",
         information.bundle_id,
     )
+
+    if bundle.infoplist:
+        build_settings["INFOPLIST_FILE"] = build_setting_path(
+            file = bundle.infoplist,
+        )
 
     package_bin_dir = bundle.package_bin_dir
     bundle_path = paths.join(package_bin_dir, "{}.bundle".format(name))

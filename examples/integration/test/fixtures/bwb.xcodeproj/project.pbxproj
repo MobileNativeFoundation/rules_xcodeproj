@@ -643,6 +643,8 @@
 		0C8C8454418DDFFE862326C6 /* iMessageAppExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = iMessageAppExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CCD818E4052CAC1B4D5CBB5 /* Lib.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = Lib.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		0CD48611106618767B10E7C9 /* nested */ = {isa = PBXFileReference; lastKnownFileType = folder; path = nested; sourceTree = "<group>"; };
+		0CEEFFD98D2C0302FE165795 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		0D05AB1AF52B85F7CFCD9957 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		0D43E9F955CDD63EAA3B6A7E /* Nested */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Nested; sourceTree = "<group>"; };
 		0DE3C75C88AFEB7EE7E53939 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		0E1B34DB03119E2880F01891 /* Greeting.swift.stencil */ = {isa = PBXFileReference; lastKnownFileType = file; path = Greeting.swift.stencil; sourceTree = "<group>"; };
@@ -704,10 +706,12 @@
 		21B79BC94F850420A36C0D28 /* MixedAnswerLib_Swift.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = MixedAnswerLib_Swift.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		2214ABF62385578C03DED265 /* Lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lib.swift; sourceTree = "<group>"; };
 		222CF04F551342682A2DEA9D /* LibFramework.watchOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LibFramework.watchOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		22A68B25EE8B7A0A8FA41E98 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		23003586B279F8DA58DC7ACB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2374DF2283C6FBAF21C2BCC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2389FC2E3790FF01911CDBCC /* iOSAppObjCUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSAppObjCUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		23B7DE53E0CC9A208332E42F /* Lib.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = Lib.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
+		24566CF96B42D01CF7941839 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		246221126DAC28EE34F192FE /* c_lib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = c_lib.h; sourceTree = "<group>"; };
 		24DFA8D89A965A7C2A56DD13 /* Library.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Library.h; sourceTree = "<group>"; };
 		253F0BE46F112B8399FF76FF /* iOSAppUITests.library.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = iOSAppUITests.library.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
@@ -858,11 +862,14 @@
 		672ED1ACA73179A84D74466A /* iOSAppUITests.100.link.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = iOSAppUITests.100.link.params; sourceTree = "<group>"; };
 		67496CA997EE1999978DD2D4 /* macOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = macOSApp.swift; sourceTree = "<group>"; };
 		678738DA7AA577146713B97F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		67C89C7F16567E3D852D5A33 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		68305E92564A8717EA4EBB1E /* libprivate_swift_lib.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libprivate_swift_lib.a; path = "bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37/bin/CommandLine/CommandLineToolLib/libprivate_swift_lib.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		68589575A195F8FF1DD8A662 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		68EE566F5388EFA772CA8242 /* UIFramework.tvOS.156.link.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = UIFramework.tvOS.156.link.params; sourceTree = "<group>"; };
 		691941F8F04E2812E44C43FF /* iOSAppUITests.library.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = iOSAppUITests.library.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		6B00EC1FF87EA42B279BC75C /* MixedAnswer_objc_modulemap-module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = "MixedAnswer_objc_modulemap-module.modulemap"; sourceTree = "<group>"; };
 		6B39192E766D75959E70F299 /* private_lib.rules_xcodeproj.c.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = private_lib.rules_xcodeproj.c.compile.params; sourceTree = "<group>"; };
+		6C2D1462287BA4E6E16C8704 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		6C99929F7EA72D96514D6580 /* MixedAnswer_objc_modulemap-module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = "MixedAnswer_objc_modulemap-module.modulemap"; sourceTree = "<group>"; };
 		6CFEEE584B6117A9CB639096 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		6D27E2F45A186BDD61E55A8F /* iOSAppSwiftUnitTestSuite.library.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = iOSAppSwiftUnitTestSuite.library.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
@@ -878,6 +885,7 @@
 		72A72B9B131A614C5B83426B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		73917B7C7306B4D7388ED79C /* BasicTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BasicTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		74E1286090BCB8C112DAA46F /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = "<group>"; };
+		75145ABE98B01A210E795253 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		7556366BFB853F3376242D73 /* iOSAppUITestSuite.library.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = iOSAppUITestSuite.library.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		758B11A68E9BC00FCFF6AAC9 /* LibSwift-Swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LibSwift-Swift.h"; sourceTree = "<group>"; };
 		75A6DCD2937B2894702C64FD /* Lib.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = Lib.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
@@ -945,12 +953,14 @@
 		8DA8D643FEC854A0C5705423 /* Lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lib.swift; sourceTree = "<group>"; };
 		8E8D60B5A8859B971D65C94A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8EB06FE8C45C39DF8FD1BA89 /* Model2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model2.xcdatamodel; sourceTree = "<group>"; };
+		8EE22BA880DE4C3674775461 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8EFD55D318705C2A47862033 /* Lib.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = Lib.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		8FDDED000A0070367D472921 /* LibSwift-Swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LibSwift-Swift.h"; sourceTree = "<group>"; };
 		90081A8A1EAF7A703FEE3D90 /* CoreUtils.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreUtils.pch; sourceTree = "<group>"; };
 		9043A03973E88A6C0E57E3BE /* c_lib.rules_xcodeproj.c.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = c_lib.rules_xcodeproj.c.compile.params; sourceTree = "<group>"; };
 		9068C45F14F1720B6A20A847 /* iOSApp.12.link.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = iOSApp.12.link.params; sourceTree = "<group>"; };
 		9089BB0D5CC8008B36E4B995 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		90CEC158E04BF34577E45DE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		90F5385ED2727ADFE60FDC16 /* tvOS.94.link.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = tvOS.94.link.params; sourceTree = "<group>"; };
 		90F9EC543E5F9595B8AD5444 /* LibFramework.watchOS.87.link.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = LibFramework.watchOS.87.link.params; sourceTree = "<group>"; };
 		925464426F96653362E73948 /* Lib.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = Lib.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
@@ -969,6 +979,7 @@
 		94F19525BB3EB824B745AC94 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		94FD4C3393FBF2745986679C /* lib_swift.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = lib_swift.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		951AAC45924B26E9C77DC7A2 /* private_lib.rules_xcodeproj.c.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = private_lib.rules_xcodeproj.c.compile.params; sourceTree = "<group>"; };
+		95BF9A95604A796B16273790 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		9628D93F73851B21FC725BF9 /* CoreUtilsObjC.rules_xcodeproj.cxx.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = CoreUtilsObjC.rules_xcodeproj.cxx.compile.params; sourceTree = "<group>"; };
 		96E433D903880812811BA7D0 /* iOSAppUITestSuite.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSAppUITestSuite.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		971C9B4C8EA8A37D88CB2603 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -1046,6 +1057,7 @@
 		B3F3C4F4AC7B78A566595E43 /* TestingUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingUtils.swift; sourceTree = "<group>"; };
 		B4681615B74A3E880AE8B838 /* UI.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = UI.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		B4BA570F6A1A55D992DD4A21 /* TestingUtils.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = TestingUtils.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
+		B5A81B5C4A0F4A7AD5FCE5F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		B5F61BB3281BB75E7DCCE292 /* private_lib.rules_xcodeproj.c.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = private_lib.rules_xcodeproj.c.compile.params; sourceTree = "<group>"; };
 		B61B8B622ED81FBE90D6DF51 /* WidgetExtension.63.link.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = WidgetExtension.63.link.params; sourceTree = "<group>"; };
 		B640957655B013635CAFAE04 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -1382,6 +1394,14 @@
 			path = UIFramework.iOS;
 			sourceTree = "<group>";
 		};
+		0699F5411AC39C5B710B8747 /* examples_ios_app_external */ = {
+			isa = PBXGroup;
+			children = (
+				3DDD78526577570C849CBC82 /* ExternalResources-intermediates */,
+			);
+			path = examples_ios_app_external;
+			sourceTree = "<group>";
+		};
 		06C6755C6D457164547AA142 /* private */ = {
 			isa = PBXGroup;
 			children = (
@@ -1507,6 +1527,14 @@
 				E5FA0724A8A540E85270E748 /* ExternalFramework.framework */,
 			);
 			path = examples_command_line_external;
+			sourceTree = "<group>";
+		};
+		09CCB4F1BE570498C1952EE1 /* OnlyStructuredResources.bundle */ = {
+			isa = PBXGroup;
+			children = (
+				24566CF96B42D01CF7941839 /* Info.plist */,
+			);
+			path = OnlyStructuredResources.bundle;
 			sourceTree = "<group>";
 		};
 		0A3F4BAD820F462ACA75A7EB /* UITests */ = {
@@ -1698,6 +1726,14 @@
 			path = dynamic;
 			sourceTree = "<group>";
 		};
+		11C021CB6FD83552EA75C175 /* ExampleResources.bundle */ = {
+			isa = PBXGroup;
+			children = (
+				22A68B25EE8B7A0A8FA41E98 /* Info.plist */,
+			);
+			path = ExampleResources.bundle;
+			sourceTree = "<group>";
+		};
 		11F7064CC3C63974356E95D6 /* AltIcon-60.alticon */ = {
 			isa = PBXGroup;
 			children = (
@@ -1773,6 +1809,14 @@
 			path = rules_xcodeproj;
 			sourceTree = "<group>";
 		};
+		157B7102947F41A64AF36D44 /* OnlyStructuredResources */ = {
+			isa = PBXGroup;
+			children = (
+				53C87B0B6D48911AF36CA11F /* OnlyStructuredResources-intermediates */,
+			);
+			path = OnlyStructuredResources;
+			sourceTree = "<group>";
+		};
 		15B67607AC40062DCB31CCB6 /* bin */ = {
 			isa = PBXGroup;
 			children = (
@@ -1827,6 +1871,14 @@
 			path = CommandLine;
 			sourceTree = "<group>";
 		};
+		17B390D06BF967886A5847D0 /* ExampleNestedResources-intermediates */ = {
+			isa = PBXGroup;
+			children = (
+				B03941BE7F9AA4EE4C5D6526 /* ExampleNestedResources.bundle */,
+			);
+			path = "ExampleNestedResources-intermediates";
+			sourceTree = "<group>";
+		};
 		17C21AEEFA5DA2FCE0AC8BA8 /* PreviewContent */ = {
 			isa = PBXGroup;
 			children = (
@@ -1858,6 +1910,14 @@
 				1C0F9A4733F20B4856683820 /* iOSAppUITestSuite.library.rules_xcodeproj.swift.compile.params */,
 			);
 			path = UITests;
+			sourceTree = "<group>";
+		};
+		1A605B6E0354FFEC39327BC1 /* ExampleNestedResources */ = {
+			isa = PBXGroup;
+			children = (
+				6237D7B638979CD93553EDF7 /* ExampleNestedResources-intermediates */,
+			);
+			path = ExampleNestedResources;
 			sourceTree = "<group>";
 		};
 		1AC3817A09A198289C0B777D /* build_bazel_rules_apple */ = {
@@ -2574,6 +2634,14 @@
 			path = watchOSApp;
 			sourceTree = "<group>";
 		};
+		328FA367B3B4B38D14868C74 /* OnlyStructuredResources */ = {
+			isa = PBXGroup;
+			children = (
+				3EC025694AF78E78B73D9E44 /* OnlyStructuredResources-intermediates */,
+			);
+			path = OnlyStructuredResources;
+			sourceTree = "<group>";
+		};
 		32F7821057FF8E12086A9FFD /* rules_xcodeproj */ = {
 			isa = PBXGroup;
 			children = (
@@ -2597,6 +2665,14 @@
 				7EFD33DA1BC7E7196649D05D /* ObjCUnitTests.m */,
 			);
 			path = ObjCUnitTests;
+			sourceTree = "<group>";
+		};
+		33CB833D1096D3C87FA34BFB /* ExampleResources-intermediates */ = {
+			isa = PBXGroup;
+			children = (
+				C25F6EA33F2F0507FCA7ABD0 /* ExampleResources.bundle */,
+			);
+			path = "ExampleResources-intermediates";
 			sourceTree = "<group>";
 		};
 		340C5CB1B44B893E546D53F5 /* macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35 */ = {
@@ -2664,6 +2740,14 @@
 				32FCF4001E75765E1A6ABFD0 /* rules_xcodeproj */,
 			);
 			path = Source;
+			sourceTree = "<group>";
+		};
+		37FEDB6CAB6EFEF11E4F3489 /* ExampleNestedResources */ = {
+			isa = PBXGroup;
+			children = (
+				17B390D06BF967886A5847D0 /* ExampleNestedResources-intermediates */,
+			);
+			path = ExampleNestedResources;
 			sourceTree = "<group>";
 		};
 		38034AB48DCF5E87FFDDCA2E /* iOSAppObjCUnitTests.__internal__.__test_bundle */ = {
@@ -2824,6 +2908,14 @@
 			path = tvOSApp;
 			sourceTree = "<group>";
 		};
+		3DDD78526577570C849CBC82 /* ExternalResources-intermediates */ = {
+			isa = PBXGroup;
+			children = (
+				F0A9EA61BCE91B8714796EB7 /* ExternalResources.bundle */,
+			);
+			path = "ExternalResources-intermediates";
+			sourceTree = "<group>";
+		};
 		3DFA08B649FD55C2B6ADA16F /* tvOSApp */ = {
 			isa = PBXGroup;
 			children = (
@@ -2847,6 +2939,14 @@
 				F6DFC546777762FAF27E8F56 /* Info.plist */,
 			);
 			path = macOSAppUITests.__internal__.__test_bundle;
+			sourceTree = "<group>";
+		};
+		3EC025694AF78E78B73D9E44 /* OnlyStructuredResources-intermediates */ = {
+			isa = PBXGroup;
+			children = (
+				685E3509A327A16B186A2702 /* OnlyStructuredResources.bundle */,
+			);
+			path = "OnlyStructuredResources-intermediates";
 			sourceTree = "<group>";
 		};
 		3ED47E554AEC3E7B5F4496FA /* UnitTests */ = {
@@ -2950,6 +3050,7 @@
 		428CF2BC579DF082A648A595 /* external */ = {
 			isa = PBXGroup;
 			children = (
+				97A2E4928EAC3BB5B232C6B4 /* examples_ios_app_external */,
 				FDD194A7CF15BAC34B442B9C /* FXPageControl */,
 			);
 			path = external;
@@ -3133,6 +3234,7 @@
 			children = (
 				0DAEC00E5FF9764B8B7B02B0 /* ExampleNestedResources */,
 				60747021FA231195FF4E9804 /* ExampleResources */,
+				157B7102947F41A64AF36D44 /* OnlyStructuredResources */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -3151,6 +3253,14 @@
 				569BFCA7DB0D9662CD799E9C /* watchOSAppExtensionUnitTests.__internal__.__test_bundle */,
 			);
 			path = rules_xcodeproj;
+			sourceTree = "<group>";
+		};
+		4DAE545FC4869F5B3198A475 /* ExampleResources.bundle */ = {
+			isa = PBXGroup;
+			children = (
+				8EE22BA880DE4C3674775461 /* Info.plist */,
+			);
+			path = ExampleResources.bundle;
 			sourceTree = "<group>";
 		};
 		4DC2D36BB427E979BB4DD5BB /* UIFramework.iOS */ = {
@@ -3331,6 +3441,14 @@
 				846CDDAFD1C577C1D9BA7699 /* rules_xcodeproj */,
 			);
 			path = Source;
+			sourceTree = "<group>";
+		};
+		53C87B0B6D48911AF36CA11F /* OnlyStructuredResources-intermediates */ = {
+			isa = PBXGroup;
+			children = (
+				09CCB4F1BE570498C1952EE1 /* OnlyStructuredResources.bundle */,
+			);
+			path = "OnlyStructuredResources-intermediates";
 			sourceTree = "<group>";
 		};
 		542216E20826F6C512BE0062 /* WidgetExtension */ = {
@@ -3586,6 +3704,7 @@
 			isa = PBXGroup;
 			children = (
 				E1306761428D2892DA7761B3 /* bucket */,
+				33CB833D1096D3C87FA34BFB /* ExampleResources-intermediates */,
 			);
 			path = ExampleResources;
 			sourceTree = "<group>";
@@ -3641,6 +3760,14 @@
 				282F05D7176F5D87C5FDF568 /* UIFramework.watchOS */,
 			);
 			path = rules_xcodeproj;
+			sourceTree = "<group>";
+		};
+		6237D7B638979CD93553EDF7 /* ExampleNestedResources-intermediates */ = {
+			isa = PBXGroup;
+			children = (
+				DE41AC216F0936848FD44C15 /* ExampleNestedResources.bundle */,
+			);
+			path = "ExampleNestedResources-intermediates";
 			sourceTree = "<group>";
 		};
 		6532FDA75FDF8835A527CE27 /* bin */ = {
@@ -3707,6 +3834,14 @@
 				9699D88375E78DDD1E1D41A9 /* iOSApp */,
 			);
 			path = rules_xcodeproj;
+			sourceTree = "<group>";
+		};
+		685E3509A327A16B186A2702 /* OnlyStructuredResources.bundle */ = {
+			isa = PBXGroup;
+			children = (
+				68589575A195F8FF1DD8A662 /* Info.plist */,
+			);
+			path = OnlyStructuredResources.bundle;
 			sourceTree = "<group>";
 		};
 		68AFD4924BCBDDE2184E5BB3 /* private */ = {
@@ -4030,6 +4165,14 @@
 			path = iOSAppObjCUnitTestSuite.__internal__.__test_bundle;
 			sourceTree = "<group>";
 		};
+		77FE41210AF704D17C56F11B /* ExternalResources-intermediates */ = {
+			isa = PBXGroup;
+			children = (
+				F5C616A35C47CC7961556EDD /* ExternalResources.bundle */,
+			);
+			path = "ExternalResources-intermediates";
+			sourceTree = "<group>";
+		};
 		78B9D697263E9249CB148ED8 /* Source */ = {
 			isa = PBXGroup;
 			children = (
@@ -4075,6 +4218,7 @@
 		7A1A40FACA2C8FE44AAC94FE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				37FEDB6CAB6EFEF11E4F3489 /* ExampleNestedResources */,
 				AE6747E28F74D5670D1AC9B2 /* ExampleResources */,
 			);
 			path = Resources;
@@ -4665,6 +4809,14 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
+		97A2E4928EAC3BB5B232C6B4 /* examples_ios_app_external */ = {
+			isa = PBXGroup;
+			children = (
+				77FE41210AF704D17C56F11B /* ExternalResources-intermediates */,
+			);
+			path = examples_ios_app_external;
+			sourceTree = "<group>";
+		};
 		97A44B480BF13ECE704E40DE /* CoreUtilsObjC */ = {
 			isa = PBXGroup;
 			children = (
@@ -4685,6 +4837,7 @@
 			isa = PBXGroup;
 			children = (
 				DE7A85C8CB6B02FF81C3EE90 /* bucket */,
+				AA31E60F9685E86D8F9F6FCB /* ExampleResources-intermediates */,
 			);
 			path = ExampleResources;
 			sourceTree = "<group>";
@@ -5024,6 +5177,14 @@
 			path = iOSApp;
 			sourceTree = "<group>";
 		};
+		A7918239E5D4CC0D385EAC4A /* ExampleResources-intermediates */ = {
+			isa = PBXGroup;
+			children = (
+				4DAE545FC4869F5B3198A475 /* ExampleResources.bundle */,
+			);
+			path = "ExampleResources-intermediates";
+			sourceTree = "<group>";
+		};
 		A7CC5A8CFE39E663415F3426 /* Source */ = {
 			isa = PBXGroup;
 			children = (
@@ -5067,12 +5228,28 @@
 			path = com_github_krzyzanowskim_cryptoswift;
 			sourceTree = "<group>";
 		};
+		AA31E60F9685E86D8F9F6FCB /* ExampleResources-intermediates */ = {
+			isa = PBXGroup;
+			children = (
+				D45EB112C0035AD21774E163 /* ExampleResources.bundle */,
+			);
+			path = "ExampleResources-intermediates";
+			sourceTree = "<group>";
+		};
 		AA32489C632AE0AED3673F12 /* iMessageApp */ = {
 			isa = PBXGroup;
 			children = (
 				1DAA97CCDB4B38DD53B58C62 /* rules_xcodeproj */,
 			);
 			path = iMessageApp;
+			sourceTree = "<group>";
+		};
+		AAA38B20A20A994FD83D3A6A /* ExampleNestedResources.bundle */ = {
+			isa = PBXGroup;
+			children = (
+				B5A81B5C4A0F4A7AD5FCE5F3 /* Info.plist */,
+			);
+			path = ExampleNestedResources.bundle;
 			sourceTree = "<group>";
 		};
 		AACE1F6551EC3E190C3A917E /* CommandLine */ = {
@@ -5163,6 +5340,7 @@
 			isa = PBXGroup;
 			children = (
 				E36E043067FBDB12770F66C7 /* bucket */,
+				B5F8AC39FF75C3B6DFBF212B /* ExampleResources-intermediates */,
 			);
 			path = ExampleResources;
 			sourceTree = "<group>";
@@ -5199,6 +5377,14 @@
 				EB7A186B74E4D4E09E658A3E /* Bundle */,
 			);
 			path = rules_xcodeproj;
+			sourceTree = "<group>";
+		};
+		B03941BE7F9AA4EE4C5D6526 /* ExampleNestedResources.bundle */ = {
+			isa = PBXGroup;
+			children = (
+				0D05AB1AF52B85F7CFCD9957 /* Info.plist */,
+			);
+			path = ExampleNestedResources.bundle;
 			sourceTree = "<group>";
 		};
 		B0BF1B75CBB3C40D38980811 /* PreviewContent */ = {
@@ -5310,6 +5496,14 @@
 				0D2889029BEA3940EF6A61A5 /* rules_xcodeproj */,
 			);
 			path = CoreUtilsObjC;
+			sourceTree = "<group>";
+		};
+		B5F8AC39FF75C3B6DFBF212B /* ExampleResources-intermediates */ = {
+			isa = PBXGroup;
+			children = (
+				11C021CB6FD83552EA75C175 /* ExampleResources.bundle */,
+			);
+			path = "ExampleResources-intermediates";
 			sourceTree = "<group>";
 		};
 		B6D97353FB61C002171148AD /* Test */ = {
@@ -5494,6 +5688,14 @@
 			path = iOSApp;
 			sourceTree = "<group>";
 		};
+		BF1EF19CFCE17060C6714C71 /* ExampleNestedResources.bundle */ = {
+			isa = PBXGroup;
+			children = (
+				67C89C7F16567E3D852D5A33 /* Info.plist */,
+			);
+			path = ExampleNestedResources.bundle;
+			sourceTree = "<group>";
+		};
 		BF2665EC15CA719A19FB1816 /* TestingUtils */ = {
 			isa = PBXGroup;
 			children = (
@@ -5592,6 +5794,7 @@
 		C1CD307B89A0243E0C9B9FE6 /* external */ = {
 			isa = PBXGroup;
 			children = (
+				0699F5411AC39C5B710B8747 /* examples_ios_app_external */,
 				ECCF7F514502EBB80CB93794 /* FXPageControl */,
 			);
 			path = external;
@@ -5604,6 +5807,14 @@
 				FB93D9DF4C58AC0B536AFA06 /* Entitlements.withbundleid.plist */,
 			);
 			path = AppClip;
+			sourceTree = "<group>";
+		};
+		C25F6EA33F2F0507FCA7ABD0 /* ExampleResources.bundle */ = {
+			isa = PBXGroup;
+			children = (
+				90CEC158E04BF34577E45DE2 /* Info.plist */,
+			);
+			path = ExampleResources.bundle;
 			sourceTree = "<group>";
 		};
 		C2F71E53D9AD65729ED06785 /* watchOSAppExtension */ = {
@@ -6031,6 +6242,14 @@
 			path = rules_xcodeproj;
 			sourceTree = "<group>";
 		};
+		D45EB112C0035AD21774E163 /* ExampleResources.bundle */ = {
+			isa = PBXGroup;
+			children = (
+				75145ABE98B01A210E795253 /* Info.plist */,
+			);
+			path = ExampleResources.bundle;
+			sourceTree = "<group>";
+		};
 		D4770D7CB6000D454037AAA8 /* UITests */ = {
 			isa = PBXGroup;
 			children = (
@@ -6140,7 +6359,9 @@
 		D9E905B536C276C88E685BFF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1A605B6E0354FFEC39327BC1 /* ExampleNestedResources */,
 				98842EA95408C9DE49F656F4 /* ExampleResources */,
+				328FA367B3B4B38D14868C74 /* OnlyStructuredResources */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -6164,6 +6385,7 @@
 		DA48D2B29E68B3136B0D3BFF /* ExampleNestedResources-intermediates */ = {
 			isa = PBXGroup;
 			children = (
+				BF1EF19CFCE17060C6714C71 /* ExampleNestedResources.bundle */,
 				F1511EED1DCB445B50CC13D3 /* ExampleNestedResources.bundle */,
 			);
 			path = "ExampleNestedResources-intermediates";
@@ -6268,6 +6490,14 @@
 				F5D5DA726DBAEAAD781698BB /* aplugin.library.rules_xcodeproj.c.compile.params */,
 			);
 			path = Bundle;
+			sourceTree = "<group>";
+		};
+		DE41AC216F0936848FD44C15 /* ExampleNestedResources.bundle */ = {
+			isa = PBXGroup;
+			children = (
+				0CEEFFD98D2C0302FE165795 /* Info.plist */,
+			);
+			path = ExampleNestedResources.bundle;
 			sourceTree = "<group>";
 		};
 		DE9F28B715998FAF895DB56C /* rules_xcodeproj */ = {
@@ -6750,6 +6980,14 @@
 			path = iOSAppUITests.__internal__.__test_bundle;
 			sourceTree = "<group>";
 		};
+		F0A9EA61BCE91B8714796EB7 /* ExternalResources.bundle */ = {
+			isa = PBXGroup;
+			children = (
+				95BF9A95604A796B16273790 /* Info.plist */,
+			);
+			path = ExternalResources.bundle;
+			sourceTree = "<group>";
+		};
 		F0CB7E6FA67B24677B35CBA5 /* Source */ = {
 			isa = PBXGroup;
 			children = (
@@ -6930,6 +7168,14 @@
 			path = rules_xcodeproj;
 			sourceTree = "<group>";
 		};
+		F5C616A35C47CC7961556EDD /* ExternalResources.bundle */ = {
+			isa = PBXGroup;
+			children = (
+				6C2D1462287BA4E6E16C8704 /* Info.plist */,
+			);
+			path = ExternalResources.bundle;
+			sourceTree = "<group>";
+		};
 		F5C6E065039AEF53F1904A22 /* bin */ = {
 			isa = PBXGroup;
 			children = (
@@ -6994,6 +7240,7 @@
 		F903A4E71115B67A4B472F47 /* ExampleNestedResources-intermediates */ = {
 			isa = PBXGroup;
 			children = (
+				AAA38B20A20A994FD83D3A6A /* ExampleNestedResources.bundle */,
 				F6BD7A21E16894F82E4FB64C /* ExampleNestedResources.bundle */,
 			);
 			path = "ExampleNestedResources-intermediates";
@@ -7088,6 +7335,7 @@
 			isa = PBXGroup;
 			children = (
 				54A6109B8F2C7EF648EF0DDA /* bucket */,
+				A7918239E5D4CC0D385EAC4A /* ExampleResources-intermediates */,
 			);
 			path = ExampleResources;
 			sourceTree = "<group>";
