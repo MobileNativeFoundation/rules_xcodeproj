@@ -792,9 +792,13 @@ extension Generator {
             guard
                 let xcVerisonGroup = xcVersionGroups[xccurrentversion.container]
             else {
-                throw PreconditionError(message: """
-"\(xccurrentversion.container.path)" `XCVersionGroup` not found in `elements`
-""")
+                // We can get `.xccurrentversion` files for `.xcdatamodel`
+                // bundles that are uncategorized (e.g.
+                // `rules_ios_apple_framework.resource_bundles`). If no
+                // downstream target is focused, we will won't have an
+                // `xcVersionGroups` for this `xccurrentversion`. We can safely
+                // ignore these.
+                continue
             }
 
             guard
