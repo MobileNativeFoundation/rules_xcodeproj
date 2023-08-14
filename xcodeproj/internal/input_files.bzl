@@ -648,7 +648,7 @@ def _collect_input_files(
         linking_output_group_name = "xl {}".format(id)
 
         indexstores_filelist = filelists.write(
-            ctx = ctx,
+            actions = ctx.actions,
             rule_name = ctx.rule.attr.name,
             name = "xi",
             files = indexstores_depset,
