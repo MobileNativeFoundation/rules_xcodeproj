@@ -795,7 +795,7 @@ extension Generator {
                 // We can get `.xccurrentversion` files for `.xcdatamodel`
                 // bundles that are uncategorized (e.g.
                 // `rules_ios_apple_framework.resource_bundles`). If no
-                // downstream target is focused, we will won't have an
+                // downstream target is focused, we won't have an
                 // `xcVersionGroups` for this `xccurrentversion`. We can safely
                 // ignore these.
                 continue
