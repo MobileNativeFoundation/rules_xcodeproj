@@ -995,7 +995,6 @@ def _linker_inputs_to_dto(
             inputs = (
                 [
                     xcode_generated_paths_file,
-                    generated_product_paths_file,
                     generated_framework_search_paths_file,
                     generated_product_paths_file,
                 ] + link_sub_params + list(linker_inputs.link_args_inputs)
