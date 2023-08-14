@@ -681,8 +681,7 @@ Watch application product reference with key \(key) not found in `products`
         targetKeys: [TargetID: ConsolidatedTarget.Key]
     ) throws -> PBXCopyFilesBuildPhase? {
         guard !buildMode.usesBazelModeBuildScripts || productType == .watch2App,
-              !extensions.isEmpty,
-              productType.isBundle
+              !extensions.isEmpty
         else {
             return nil
         }
