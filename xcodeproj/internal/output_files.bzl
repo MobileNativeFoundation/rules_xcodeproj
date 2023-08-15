@@ -118,7 +118,7 @@ def _create(
         products_output_group_name = "bp {}".format(direct_outputs.id)
 
         indexstores_filelist = filelists.write(
-            ctx = ctx,
+            actions = ctx.actions,
             rule_name = ctx.rule.attr.name,
             name = "bi",
             files = transitive_indexestores,
