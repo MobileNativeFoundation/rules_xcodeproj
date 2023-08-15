@@ -41,9 +41,6 @@
             "TARGETED_DEVICE_FAMILY": "1"
         },
         "c": "applebin_ios-ios_arm64-dbg-STABLE-14",
-        "d": [
-            "//Lib:Lib ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4"
-        ],
         "i": {
             "r": [
                 "AppClip/PreviewContent/Preview Assets.xcassets",
@@ -117,9 +114,6 @@
             "TARGETED_DEVICE_FAMILY": "1"
         },
         "c": "applebin_ios-ios_arm64-opt-STABLE-16",
-        "d": [
-            "//Lib:Lib ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10"
-        ],
         "i": {
             "r": [
                 "Lib/Resources/Assets.xcassets",
@@ -193,9 +187,6 @@
             "TARGETED_DEVICE_FAMILY": "1"
         },
         "c": "applebin_ios-ios_x86_64-dbg-STABLE-13",
-        "d": [
-            "//Lib:Lib ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1"
-        ],
         "i": {
             "r": [
                 "AppClip/PreviewContent/Preview Assets.xcassets",
@@ -268,9 +259,6 @@
             "TARGETED_DEVICE_FAMILY": "1"
         },
         "c": "applebin_ios-ios_x86_64-opt-STABLE-15",
-        "d": [
-            "//Lib:Lib ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7"
-        ],
         "i": {
             "r": [
                 "Lib/Resources/Assets.xcassets",
@@ -430,9 +418,6 @@
             ]
         },
         "c": "applebin_macos-darwin_x86_64-dbg-STABLE-39",
-        "d": [
-            "//CommandLine/CommandLineToolLib:lib_swift macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33"
-        ],
         "f": true,
         "i": {
             "s": [
@@ -481,9 +466,6 @@
             ]
         },
         "c": "applebin_macos-darwin_x86_64-opt-STABLE-40",
-        "d": [
-            "//CommandLine/CommandLineToolLib:lib_swift macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36"
-        ],
         "f": true,
         "i": {
             "s": [
@@ -529,9 +511,6 @@
             "PRODUCT_MODULE_NAME": "CommandLine_CommandLineTool_tool_binary"
         },
         "c": "macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34",
-        "d": [
-            "//CommandLine/CommandLineToolLib:lib_swift macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34"
-        ],
         "f": true,
         "i": {
             "s": [
@@ -574,9 +553,6 @@
             "PRODUCT_MODULE_NAME": "CommandLine_CommandLineTool_tool_binary"
         },
         "c": "macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37",
-        "d": [
-            "//CommandLine/CommandLineToolLib:lib_swift macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37"
-        ],
         "f": true,
         "i": {
             "s": [
@@ -622,9 +598,6 @@
             "PRODUCT_MODULE_NAME": "CommandLine_CommandLineTool_tool_binary"
         },
         "c": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35",
-        "d": [
-            "//CommandLine/CommandLineToolLib:lib_swift macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35"
-        ],
         "f": true,
         "i": {
             "s": [
@@ -667,9 +640,6 @@
             "PRODUCT_MODULE_NAME": "CommandLine_CommandLineTool_tool_binary"
         },
         "c": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38",
-        "d": [
-            "//CommandLine/CommandLineToolLib:lib_swift macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38"
-        ],
         "f": true,
         "i": {
             "s": [
@@ -896,12 +866,6 @@
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "private/LibSwift-Swift.h"
         },
         "c": "macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34",
-        "d": [
-            "//CommandLine/swift_c_module:c_lib macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34",
-            "//CommandLine/CommandLineToolLib:lib_impl macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34",
-            "//CommandLine/CommandLineToolLib:private_lib macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34",
-            "//CommandLine/CommandLineToolLib:private_swift_lib macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-34"
-        ],
         "i": {
             "s": [
                 "CommandLine/CommandLineToolLib/lib.swift"
@@ -940,12 +904,6 @@
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "private/LibSwift-Swift.h"
         },
         "c": "macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37",
-        "d": [
-            "//CommandLine/swift_c_module:c_lib macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37",
-            "//CommandLine/CommandLineToolLib:lib_impl macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37",
-            "//CommandLine/CommandLineToolLib:private_lib macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37",
-            "//CommandLine/CommandLineToolLib:private_swift_lib macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-37"
-        ],
         "i": {
             "s": [
                 "CommandLine/CommandLineToolLib/lib.swift"
@@ -986,12 +944,6 @@
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "private/LibSwift-Swift.h"
         },
         "c": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35",
-        "d": [
-            "//CommandLine/swift_c_module:c_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35",
-            "//CommandLine/CommandLineToolLib:lib_impl macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35",
-            "//CommandLine/CommandLineToolLib:private_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35",
-            "//CommandLine/CommandLineToolLib:private_swift_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-35"
-        ],
         "i": {
             "s": [
                 "CommandLine/CommandLineToolLib/lib.swift"
@@ -1029,12 +981,6 @@
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "private/LibSwift-Swift.h"
         },
         "c": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33",
-        "d": [
-            "//CommandLine/swift_c_module:c_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33",
-            "//CommandLine/CommandLineToolLib:lib_impl macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33",
-            "//CommandLine/CommandLineToolLib:private_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33",
-            "//CommandLine/CommandLineToolLib:private_swift_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33"
-        ],
         "i": {
             "s": [
                 "CommandLine/CommandLineToolLib/lib.swift"
@@ -1073,12 +1019,6 @@
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "private/LibSwift-Swift.h"
         },
         "c": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38",
-        "d": [
-            "//CommandLine/swift_c_module:c_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38",
-            "//CommandLine/CommandLineToolLib:lib_impl macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38",
-            "//CommandLine/CommandLineToolLib:private_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38",
-            "//CommandLine/CommandLineToolLib:private_swift_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-38"
-        ],
         "i": {
             "s": [
                 "CommandLine/CommandLineToolLib/lib.swift"
@@ -1120,12 +1060,6 @@
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "private/LibSwift-Swift.h"
         },
         "c": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36",
-        "d": [
-            "//CommandLine/swift_c_module:c_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36",
-            "//CommandLine/CommandLineToolLib:lib_impl macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36",
-            "//CommandLine/CommandLineToolLib:private_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36",
-            "//CommandLine/CommandLineToolLib:private_swift_lib macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36"
-        ],
         "i": {
             "s": [
                 "CommandLine/CommandLineToolLib/lib.swift"
@@ -1638,9 +1572,6 @@
             "PRODUCT_MODULE_NAME": "CommandLineToolTests"
         },
         "c": "applebin_macos-darwin_x86_64-dbg-STABLE-39",
-        "d": [
-            "//CommandLine/CommandLineToolLib:lib_swift macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33"
-        ],
         "i": {
             "s": [
                 "CommandLine/Tests/BasicTests.swift",
@@ -1700,9 +1631,6 @@
             "SWIFT_COMPILATION_MODE": "wholemodule"
         },
         "c": "applebin_macos-darwin_x86_64-opt-STABLE-40",
-        "d": [
-            "//CommandLine/CommandLineToolLib:lib_swift macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-36"
-        ],
         "i": {
             "s": [
                 "CommandLine/Tests/BasicTests.swift",
@@ -1930,9 +1858,6 @@
             "TARGETED_DEVICE_FAMILY": "1"
         },
         "c": "applebin_ios-ios_arm64-dbg-STABLE-14",
-        "d": [
-            "//Lib:Lib ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4"
-        ],
         "i": {
             "r": [
                 "Lib/Resources/Assets.xcassets"
@@ -1979,9 +1904,6 @@
             "TARGETED_DEVICE_FAMILY": "1"
         },
         "c": "applebin_ios-ios_arm64-opt-STABLE-16",
-        "d": [
-            "//Lib:Lib ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10"
-        ],
         "i": {
             "r": [
                 "Lib/Resources/Assets.xcassets"
@@ -2031,9 +1953,6 @@
             "TARGETED_DEVICE_FAMILY": "1"
         },
         "c": "applebin_ios-ios_x86_64-dbg-STABLE-13",
-        "d": [
-            "//Lib:Lib ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1"
-        ],
         "i": {
             "r": [
                 "Lib/Resources/Assets.xcassets"
@@ -2080,9 +1999,6 @@
             "TARGETED_DEVICE_FAMILY": "1"
         },
         "c": "applebin_ios-ios_x86_64-opt-STABLE-15",
-        "d": [
-            "//Lib:Lib ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7"
-        ],
         "i": {
             "r": [
                 "Lib/Resources/Assets.xcassets"
@@ -2131,9 +2047,6 @@
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework"
         },
         "c": "applebin_tvos-tvos_arm64-dbg-STABLE-26",
-        "d": [
-            "//Lib:Lib tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-6"
-        ],
         "i": {
             "r": [
                 "Lib/Resources/Assets.xcassets"
@@ -2179,9 +2092,6 @@
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework"
         },
         "c": "applebin_tvos-tvos_arm64-opt-STABLE-28",
-        "d": [
-            "//Lib:Lib tvos-arm64-min15.0-applebin_tvos-tvos_arm64-opt-STABLE-12"
-        ],
         "i": {
             "r": [
                 "Lib/Resources/Assets.xcassets"
@@ -2230,9 +2140,6 @@
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework"
         },
         "c": "applebin_tvos-tvos_x86_64-dbg-STABLE-25",
-        "d": [
-            "//Lib:Lib tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3"
-        ],
         "i": {
             "r": [
                 "Lib/Resources/Assets.xcassets"
@@ -2278,9 +2185,6 @@
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework"
         },
         "c": "applebin_tvos-tvos_x86_64-opt-STABLE-27",
-        "d": [
-            "//Lib:Lib tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9"
-        ],
         "i": {
             "r": [
                 "Lib/Resources/Assets.xcassets"
@@ -2329,9 +2233,6 @@
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework"
         },
         "c": "applebin_watchos-watchos_arm64_32-dbg-STABLE-18",
-        "d": [
-            "//Lib:Lib watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-5"
-        ],
         "i": {
             "r": [
                 "Lib/Resources/Assets.xcassets"
@@ -2377,9 +2278,6 @@
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework"
         },
         "c": "applebin_watchos-watchos_arm64_32-opt-STABLE-20",
-        "d": [
-            "//Lib:Lib watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-opt-STABLE-11"
-        ],
         "i": {
             "r": [
                 "Lib/Resources/Assets.xcassets"
@@ -2428,9 +2326,6 @@
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework"
         },
         "c": "applebin_watchos-watchos_x86_64-dbg-STABLE-17",
-        "d": [
-            "//Lib:Lib watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2"
-        ],
         "i": {
             "r": [
                 "Lib/Resources/Assets.xcassets"
@@ -2476,9 +2371,6 @@
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework"
         },
         "c": "applebin_watchos-watchos_x86_64-opt-STABLE-19",
-        "d": [
-            "//Lib:Lib watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8"
-        ],
         "i": {
             "r": [
                 "Lib/Resources/Assets.xcassets"
@@ -2986,9 +2878,6 @@
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework"
         },
         "c": "applebin_tvos-tvos_arm64-dbg-STABLE-26",
-        "d": [
-            "//Lib:Lib tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-6"
-        ],
         "i": {
             "r": [
                 "Lib/Resources/Assets.xcassets"
@@ -3037,9 +2926,6 @@
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework"
         },
         "c": "applebin_tvos-tvos_arm64-opt-STABLE-28",
-        "d": [
-            "//Lib:Lib tvos-arm64-min15.0-applebin_tvos-tvos_arm64-opt-STABLE-12"
-        ],
         "i": {
             "r": [
                 "Lib/Resources/Assets.xcassets"
@@ -3091,9 +2977,6 @@
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework"
         },
         "c": "applebin_tvos-tvos_x86_64-dbg-STABLE-25",
-        "d": [
-            "//Lib:Lib tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3"
-        ],
         "i": {
             "r": [
                 "Lib/Resources/Assets.xcassets"
@@ -3142,9 +3025,6 @@
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework"
         },
         "c": "applebin_tvos-tvos_x86_64-opt-STABLE-27",
-        "d": [
-            "//Lib:Lib tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9"
-        ],
         "i": {
             "r": [
                 "Lib/Resources/Assets.xcassets"
@@ -3196,9 +3076,6 @@
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework"
         },
         "c": "applebin_watchos-watchos_arm64_32-dbg-STABLE-18",
-        "d": [
-            "//Lib:Lib watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-5"
-        ],
         "i": {
             "r": [
                 "Lib/Resources/Assets.xcassets"
@@ -3247,9 +3124,6 @@
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework"
         },
         "c": "applebin_watchos-watchos_arm64_32-opt-STABLE-20",
-        "d": [
-            "//Lib:Lib watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-opt-STABLE-11"
-        ],
         "i": {
             "r": [
                 "Lib/Resources/Assets.xcassets"
@@ -3301,9 +3175,6 @@
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework"
         },
         "c": "applebin_watchos-watchos_x86_64-dbg-STABLE-17",
-        "d": [
-            "//Lib:Lib watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2"
-        ],
         "i": {
             "r": [
                 "Lib/Resources/Assets.xcassets"
@@ -3352,9 +3223,6 @@
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.LibFramework"
         },
         "c": "applebin_watchos-watchos_x86_64-opt-STABLE-19",
-        "d": [
-            "//Lib:Lib watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8"
-        ],
         "i": {
             "r": [
                 "Lib/Resources/Assets.xcassets"
@@ -3422,9 +3290,6 @@
             "TARGETED_DEVICE_FAMILY": "1"
         },
         "c": "applebin_ios-ios_arm64-dbg-STABLE-14",
-        "d": [
-            "//Lib:Lib ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4"
-        ],
         "i": {
             "h": [
                 "UI/UI.h"
@@ -3500,9 +3365,6 @@
             "TARGETED_DEVICE_FAMILY": "1"
         },
         "c": "applebin_ios-ios_arm64-opt-STABLE-16",
-        "d": [
-            "//Lib:Lib ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10"
-        ],
         "i": {
             "h": [
                 "UI/UI.h"
@@ -3580,9 +3442,6 @@
             "TARGETED_DEVICE_FAMILY": "1"
         },
         "c": "applebin_ios-ios_x86_64-dbg-STABLE-13",
-        "d": [
-            "//Lib:Lib ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1"
-        ],
         "i": {
             "h": [
                 "UI/UI.h"
@@ -3658,9 +3517,6 @@
             "TARGETED_DEVICE_FAMILY": "1"
         },
         "c": "applebin_ios-ios_x86_64-opt-STABLE-15",
-        "d": [
-            "//Lib:Lib ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7"
-        ],
         "i": {
             "h": [
                 "UI/UI.h"
@@ -3740,10 +3596,6 @@
             "PRODUCT_MODULE_NAME": "UI"
         },
         "c": "applebin_tvos-tvos_arm64-dbg-STABLE-26",
-        "d": [
-            "//Lib:LibFramework.tvOS applebin_tvos-tvos_arm64-dbg-STABLE-26",
-            "//Lib:Lib tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-6"
-        ],
         "i": {
             "s": [
                 "UI/ContentView.swift"
@@ -3818,10 +3670,6 @@
             "SWIFT_COMPILATION_MODE": "wholemodule"
         },
         "c": "applebin_tvos-tvos_arm64-opt-STABLE-28",
-        "d": [
-            "//Lib:LibFramework.tvOS applebin_tvos-tvos_arm64-opt-STABLE-28",
-            "//Lib:Lib tvos-arm64-min15.0-applebin_tvos-tvos_arm64-opt-STABLE-12"
-        ],
         "i": {
             "s": [
                 "UI/ContentView.swift"
@@ -3898,10 +3746,6 @@
             "PRODUCT_MODULE_NAME": "UI"
         },
         "c": "applebin_tvos-tvos_x86_64-dbg-STABLE-25",
-        "d": [
-            "//Lib:LibFramework.tvOS applebin_tvos-tvos_x86_64-dbg-STABLE-25",
-            "//Lib:Lib tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-3"
-        ],
         "i": {
             "s": [
                 "UI/ContentView.swift"
@@ -3976,10 +3820,6 @@
             "SWIFT_COMPILATION_MODE": "wholemodule"
         },
         "c": "applebin_tvos-tvos_x86_64-opt-STABLE-27",
-        "d": [
-            "//Lib:LibFramework.tvOS applebin_tvos-tvos_x86_64-opt-STABLE-27",
-            "//Lib:Lib tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-9"
-        ],
         "i": {
             "s": [
                 "UI/ContentView.swift"
@@ -4056,10 +3896,6 @@
             "PRODUCT_MODULE_NAME": "UI"
         },
         "c": "applebin_watchos-watchos_arm64_32-dbg-STABLE-18",
-        "d": [
-            "//Lib:LibFramework.watchOS applebin_watchos-watchos_arm64_32-dbg-STABLE-18",
-            "//Lib:Lib watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-5"
-        ],
         "i": {
             "s": [
                 "UI/ContentView.swift"
@@ -4134,10 +3970,6 @@
             "SWIFT_COMPILATION_MODE": "wholemodule"
         },
         "c": "applebin_watchos-watchos_arm64_32-opt-STABLE-20",
-        "d": [
-            "//Lib:LibFramework.watchOS applebin_watchos-watchos_arm64_32-opt-STABLE-20",
-            "//Lib:Lib watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-opt-STABLE-11"
-        ],
         "i": {
             "s": [
                 "UI/ContentView.swift"
@@ -4214,10 +4046,6 @@
             "PRODUCT_MODULE_NAME": "UI"
         },
         "c": "applebin_watchos-watchos_x86_64-dbg-STABLE-17",
-        "d": [
-            "//Lib:LibFramework.watchOS applebin_watchos-watchos_x86_64-dbg-STABLE-17",
-            "//Lib:Lib watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-2"
-        ],
         "i": {
             "s": [
                 "UI/ContentView.swift"
@@ -4292,10 +4120,6 @@
             "SWIFT_COMPILATION_MODE": "wholemodule"
         },
         "c": "applebin_watchos-watchos_x86_64-opt-STABLE-19",
-        "d": [
-            "//Lib:LibFramework.watchOS applebin_watchos-watchos_x86_64-opt-STABLE-19",
-            "//Lib:Lib watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-8"
-        ],
         "i": {
             "s": [
                 "UI/ContentView.swift"
@@ -4365,9 +4189,6 @@
             "TARGETED_DEVICE_FAMILY": "1"
         },
         "c": "applebin_ios-ios_arm64-dbg-STABLE-14",
-        "d": [
-            "//Lib:Lib ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4"
-        ],
         "i": {
             "r": [
                 "Lib/Resources/Assets.xcassets",
@@ -4439,9 +4260,6 @@
             "TARGETED_DEVICE_FAMILY": "1"
         },
         "c": "applebin_ios-ios_arm64-opt-STABLE-16",
-        "d": [
-            "//Lib:Lib ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10"
-        ],
         "i": {
             "r": [
                 "Lib/Resources/Assets.xcassets",
@@ -4514,9 +4332,6 @@
             "TARGETED_DEVICE_FAMILY": "1"
         },
         "c": "applebin_ios-ios_x86_64-dbg-STABLE-13",
-        "d": [
-            "//Lib:Lib ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1"
-        ],
         "i": {
             "r": [
                 "Lib/Resources/Assets.xcassets",
@@ -4587,9 +4402,6 @@
             "TARGETED_DEVICE_FAMILY": "1"
         },
         "c": "applebin_ios-ios_x86_64-opt-STABLE-15",
-        "d": [
-            "//Lib:Lib ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7"
-        ],
         "i": {
             "r": [
                 "Lib/Resources/Assets.xcassets",
@@ -4641,9 +4453,6 @@
             "TARGETED_DEVICE_FAMILY": "1"
         },
         "c": "applebin_ios-ios_x86_64-dbg-STABLE-13",
-        "d": [
-            "//iMessageApp:iMessageAppExtension applebin_ios-ios_x86_64-dbg-STABLE-13"
-        ],
         "e": [
             "//iMessageApp:iMessageAppExtension applebin_ios-ios_x86_64-dbg-STABLE-13"
         ],
@@ -4681,9 +4490,6 @@
             "TARGETED_DEVICE_FAMILY": "1"
         },
         "c": "applebin_ios-ios_x86_64-opt-STABLE-15",
-        "d": [
-            "//iMessageApp:iMessageAppExtension applebin_ios-ios_x86_64-opt-STABLE-15"
-        ],
         "e": [
             "//iMessageApp:iMessageAppExtension applebin_ios-ios_x86_64-opt-STABLE-15"
         ],
@@ -4745,9 +4551,6 @@
             "TARGETED_DEVICE_FAMILY": "1"
         },
         "c": "applebin_ios-ios_x86_64-dbg-STABLE-13",
-        "d": [
-            "//Lib:Lib ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1"
-        ],
         "i": {
             "r": [
                 "iMessageApp/ExtensionAssets.xcassets",
@@ -4818,9 +4621,6 @@
             "TARGETED_DEVICE_FAMILY": "1"
         },
         "c": "applebin_ios-ios_x86_64-opt-STABLE-15",
-        "d": [
-            "//Lib:Lib ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7"
-        ],
         "i": {
             "r": [
                 "iMessageApp/ExtensionAssets.xcassets",
@@ -4866,9 +4666,6 @@
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym"
         },
         "c": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4",
-        "d": [
-            "//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswerLib_Swift ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4"
-        ],
         "f": true,
         "i": {
             "s": [
@@ -4896,9 +4693,6 @@
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym"
         },
         "c": "ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10",
-        "d": [
-            "//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswerLib_Swift ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10"
-        ],
         "f": true,
         "i": {
             "s": [
@@ -4929,9 +4723,6 @@
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym"
         },
         "c": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
-        "d": [
-            "//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswerLib_Swift ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1"
-        ],
         "f": true,
         "i": {
             "s": [
@@ -4959,9 +4750,6 @@
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym"
         },
         "c": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7",
-        "d": [
-            "//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswerLib_Swift ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7"
-        ],
         "f": true,
         "i": {
             "s": [
@@ -5379,10 +5167,6 @@
             "PRODUCT_MODULE_NAME": "Utils"
         },
         "c": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
-        "d": [
-            "//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC applebin_ios-ios_x86_64-dbg-STABLE-13",
-            "@FXPageControl//:FXPageControl ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1"
-        ],
         "f": true,
         "i": {
             "s": [
@@ -5412,10 +5196,6 @@
             "PRODUCT_MODULE_NAME": "Utils"
         },
         "c": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7",
-        "d": [
-            "//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC applebin_ios-ios_x86_64-opt-STABLE-15",
-            "@FXPageControl//:FXPageControl ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7"
-        ],
         "f": true,
         "i": {
             "s": [
@@ -5496,16 +5276,6 @@
             "TARGETED_DEVICE_FAMILY": "1"
         },
         "c": "applebin_ios-ios_arm64-dbg-STABLE-14",
-        "d": [
-            "//AppClip:AppClip applebin_ios-ios_arm64-dbg-STABLE-14",
-            "//WidgetExtension:WidgetExtension applebin_ios-ios_arm64-dbg-STABLE-14",
-            "//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC applebin_ios-ios_arm64-dbg-STABLE-14",
-            "//UI:UIFramework.iOS applebin_ios-ios_arm64-dbg-STABLE-14",
-            "//watchOSApp:watchOSApp applebin_watchos-watchos_arm64_32-dbg-STABLE-22",
-            "//UI:UIFramework.iOS applebin_ios-ios_arm64-dbg-STABLE-14",
-            "//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswer ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4",
-            "//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC applebin_ios-ios_arm64-dbg-STABLE-14"
-        ],
         "e": [
             "//WidgetExtension:WidgetExtension applebin_ios-ios_arm64-dbg-STABLE-14"
         ],
@@ -5614,16 +5384,6 @@
             "TARGETED_DEVICE_FAMILY": "1"
         },
         "c": "applebin_ios-ios_arm64-opt-STABLE-16",
-        "d": [
-            "//AppClip:AppClip applebin_ios-ios_arm64-opt-STABLE-16",
-            "//WidgetExtension:WidgetExtension applebin_ios-ios_arm64-opt-STABLE-16",
-            "//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC applebin_ios-ios_arm64-opt-STABLE-16",
-            "//UI:UIFramework.iOS applebin_ios-ios_arm64-opt-STABLE-16",
-            "//watchOSApp:watchOSApp applebin_watchos-watchos_arm64_32-opt-STABLE-24",
-            "//UI:UIFramework.iOS applebin_ios-ios_arm64-opt-STABLE-16",
-            "//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswer ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10",
-            "//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC applebin_ios-ios_arm64-opt-STABLE-16"
-        ],
         "e": [
             "//WidgetExtension:WidgetExtension applebin_ios-ios_arm64-opt-STABLE-16"
         ],
@@ -5732,16 +5492,6 @@
             "TARGETED_DEVICE_FAMILY": "1"
         },
         "c": "applebin_ios-ios_x86_64-dbg-STABLE-13",
-        "d": [
-            "//AppClip:AppClip applebin_ios-ios_x86_64-dbg-STABLE-13",
-            "//WidgetExtension:WidgetExtension applebin_ios-ios_x86_64-dbg-STABLE-13",
-            "//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC applebin_ios-ios_x86_64-dbg-STABLE-13",
-            "//UI:UIFramework.iOS applebin_ios-ios_x86_64-dbg-STABLE-13",
-            "//watchOSApp:watchOSApp applebin_watchos-watchos_x86_64-dbg-STABLE-21",
-            "//UI:UIFramework.iOS applebin_ios-ios_x86_64-dbg-STABLE-13",
-            "//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswer ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
-            "//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC applebin_ios-ios_x86_64-dbg-STABLE-13"
-        ],
         "e": [
             "//WidgetExtension:WidgetExtension applebin_ios-ios_x86_64-dbg-STABLE-13"
         ],
@@ -5849,16 +5599,6 @@
             "TARGETED_DEVICE_FAMILY": "1"
         },
         "c": "applebin_ios-ios_x86_64-opt-STABLE-15",
-        "d": [
-            "//AppClip:AppClip applebin_ios-ios_x86_64-opt-STABLE-15",
-            "//WidgetExtension:WidgetExtension applebin_ios-ios_x86_64-opt-STABLE-15",
-            "//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC applebin_ios-ios_x86_64-opt-STABLE-15",
-            "//UI:UIFramework.iOS applebin_ios-ios_x86_64-opt-STABLE-15",
-            "//watchOSApp:watchOSApp applebin_watchos-watchos_x86_64-opt-STABLE-23",
-            "//UI:UIFramework.iOS applebin_ios-ios_x86_64-opt-STABLE-15",
-            "//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswer ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7",
-            "//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC applebin_ios-ios_x86_64-opt-STABLE-15"
-        ],
         "e": [
             "//WidgetExtension:WidgetExtension applebin_ios-ios_x86_64-opt-STABLE-15"
         ],
@@ -5962,10 +5702,7 @@
         },
         "c": "applebin_ios-ios_x86_64-dbg-STABLE-13",
         "d": [
-            "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-dbg-STABLE-13",
-            "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-dbg-STABLE-13",
-            "//iOSApp/Source/Utils:Utils ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
-            "//iOSApp/Test/TestingUtils:TestingUtils ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1"
+            "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-dbg-STABLE-13"
         ],
         "f": true,
         "h": "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-dbg-STABLE-13",
@@ -6046,10 +5783,7 @@
         },
         "c": "applebin_ios-ios_x86_64-opt-STABLE-15",
         "d": [
-            "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-opt-STABLE-15",
-            "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-opt-STABLE-15",
-            "//iOSApp/Source/Utils:Utils ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7",
-            "//iOSApp/Test/TestingUtils:TestingUtils ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7"
+            "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-opt-STABLE-15"
         ],
         "f": true,
         "h": "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-opt-STABLE-15",
@@ -6133,10 +5867,7 @@
         },
         "c": "applebin_ios-ios_x86_64-dbg-STABLE-13",
         "d": [
-            "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-dbg-STABLE-13",
-            "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-dbg-STABLE-13",
-            "//iOSApp/Source/Utils:Utils ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
-            "//iOSApp/Test/TestingUtils:TestingUtils ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1"
+            "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-dbg-STABLE-13"
         ],
         "f": true,
         "h": "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-dbg-STABLE-13",
@@ -6217,10 +5948,7 @@
         },
         "c": "applebin_ios-ios_x86_64-opt-STABLE-15",
         "d": [
-            "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-opt-STABLE-15",
-            "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-opt-STABLE-15",
-            "//iOSApp/Source/Utils:Utils ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7",
-            "//iOSApp/Test/TestingUtils:TestingUtils ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7"
+            "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-opt-STABLE-15"
         ],
         "f": true,
         "h": "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-opt-STABLE-15",
@@ -6307,10 +6035,7 @@
         },
         "c": "applebin_ios-ios_x86_64-dbg-STABLE-13",
         "d": [
-            "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-dbg-STABLE-13",
-            "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-dbg-STABLE-13",
-            "//iOSApp/Source/Utils:Utils ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
-            "//iOSApp/Test/TestingUtils:TestingUtils ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1"
+            "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-dbg-STABLE-13"
         ],
         "h": "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-dbg-STABLE-13",
         "i": {
@@ -6403,10 +6128,7 @@
         },
         "c": "applebin_ios-ios_x86_64-opt-STABLE-15",
         "d": [
-            "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-opt-STABLE-15",
-            "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-opt-STABLE-15",
-            "//iOSApp/Source/Utils:Utils ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7",
-            "//iOSApp/Test/TestingUtils:TestingUtils ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7"
+            "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-opt-STABLE-15"
         ],
         "h": "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-opt-STABLE-15",
         "i": {
@@ -6501,10 +6223,7 @@
         },
         "c": "applebin_ios-ios_x86_64-dbg-STABLE-13",
         "d": [
-            "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-dbg-STABLE-13",
-            "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-dbg-STABLE-13",
-            "//iOSApp/Source/Utils:Utils ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
-            "//iOSApp/Test/TestingUtils:TestingUtils ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1"
+            "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-dbg-STABLE-13"
         ],
         "h": "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-dbg-STABLE-13",
         "i": {
@@ -6597,10 +6316,7 @@
         },
         "c": "applebin_ios-ios_x86_64-opt-STABLE-15",
         "d": [
-            "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-opt-STABLE-15",
-            "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-opt-STABLE-15",
-            "//iOSApp/Source/Utils:Utils ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7",
-            "//iOSApp/Test/TestingUtils:TestingUtils ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7"
+            "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-opt-STABLE-15"
         ],
         "h": "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-opt-STABLE-15",
         "i": {
@@ -7376,10 +7092,6 @@
             "PRODUCT_MODULE_NAME": "tvOSApp"
         },
         "c": "applebin_tvos-tvos_arm64-dbg-STABLE-26",
-        "d": [
-            "//UI:UIFramework.tvOS applebin_tvos-tvos_arm64-dbg-STABLE-26",
-            "//UI:UIFramework.tvOS applebin_tvos-tvos_arm64-dbg-STABLE-26"
-        ],
         "i": {
             "r": [
                 "tvOSApp/Resources/PreviewContent/Preview Assets.xcassets",
@@ -7456,10 +7168,6 @@
             "SWIFT_COMPILATION_MODE": "wholemodule"
         },
         "c": "applebin_tvos-tvos_arm64-opt-STABLE-28",
-        "d": [
-            "//UI:UIFramework.tvOS applebin_tvos-tvos_arm64-opt-STABLE-28",
-            "//UI:UIFramework.tvOS applebin_tvos-tvos_arm64-opt-STABLE-28"
-        ],
         "i": {
             "r": [
                 "tvOSApp/Resources/Assets.xcassets"
@@ -7536,10 +7244,6 @@
             "PRODUCT_MODULE_NAME": "tvOSApp"
         },
         "c": "applebin_tvos-tvos_x86_64-dbg-STABLE-25",
-        "d": [
-            "//UI:UIFramework.tvOS applebin_tvos-tvos_x86_64-dbg-STABLE-25",
-            "//UI:UIFramework.tvOS applebin_tvos-tvos_x86_64-dbg-STABLE-25"
-        ],
         "i": {
             "r": [
                 "tvOSApp/Resources/PreviewContent/Preview Assets.xcassets",
@@ -7615,10 +7319,6 @@
             "SWIFT_COMPILATION_MODE": "wholemodule"
         },
         "c": "applebin_tvos-tvos_x86_64-opt-STABLE-27",
-        "d": [
-            "//UI:UIFramework.tvOS applebin_tvos-tvos_x86_64-opt-STABLE-27",
-            "//UI:UIFramework.tvOS applebin_tvos-tvos_x86_64-opt-STABLE-27"
-        ],
         "i": {
             "r": [
                 "tvOSApp/Resources/Assets.xcassets"
@@ -7824,7 +7524,6 @@
         },
         "c": "applebin_tvos-tvos_x86_64-dbg-STABLE-25",
         "d": [
-            "//tvOSApp/Source:tvOSApp applebin_tvos-tvos_x86_64-dbg-STABLE-25",
             "//tvOSApp/Source:tvOSApp applebin_tvos-tvos_x86_64-dbg-STABLE-25"
         ],
         "h": "//tvOSApp/Source:tvOSApp applebin_tvos-tvos_x86_64-dbg-STABLE-25",
@@ -7902,7 +7601,6 @@
         },
         "c": "applebin_tvos-tvos_x86_64-opt-STABLE-27",
         "d": [
-            "//tvOSApp/Source:tvOSApp applebin_tvos-tvos_x86_64-opt-STABLE-27",
             "//tvOSApp/Source:tvOSApp applebin_tvos-tvos_x86_64-opt-STABLE-27"
         ],
         "h": "//tvOSApp/Source:tvOSApp applebin_tvos-tvos_x86_64-opt-STABLE-27",
@@ -8283,10 +7981,6 @@
             "PRODUCT_MODULE_NAME": "watchOSAppExtensionUnitTestsLibrary"
         },
         "c": "applebin_watchos-watchos_x86_64-dbg-STABLE-17",
-        "d": [
-            "//UI:UIFramework.watchOS applebin_watchos-watchos_x86_64-dbg-STABLE-17",
-            "//UI:UIFramework.watchOS applebin_watchos-watchos_x86_64-dbg-STABLE-17"
-        ],
         "i": {
             "s": [
                 "watchOSAppExtension/Test/UnitTests/WatchOSAppExtensionTests.swift"
@@ -8356,10 +8050,6 @@
             "SWIFT_COMPILATION_MODE": "wholemodule"
         },
         "c": "applebin_watchos-watchos_x86_64-opt-STABLE-19",
-        "d": [
-            "//UI:UIFramework.watchOS applebin_watchos-watchos_x86_64-opt-STABLE-19",
-            "//UI:UIFramework.watchOS applebin_watchos-watchos_x86_64-opt-STABLE-19"
-        ],
         "i": {
             "s": [
                 "watchOSAppExtension/Test/UnitTests/WatchOSAppExtensionTests.swift"
@@ -8431,10 +8121,6 @@
             "PRODUCT_MODULE_NAME": "watchOSAppExtension"
         },
         "c": "applebin_watchos-watchos_arm64_32-dbg-STABLE-18",
-        "d": [
-            "//UI:UIFramework.watchOS applebin_watchos-watchos_arm64_32-dbg-STABLE-18",
-            "//UI:UIFramework.watchOS applebin_watchos-watchos_arm64_32-dbg-STABLE-18"
-        ],
         "i": {
             "r": [
                 "watchOSAppExtension/Assets.xcassets"
@@ -8507,10 +8193,6 @@
             "SWIFT_COMPILATION_MODE": "wholemodule"
         },
         "c": "applebin_watchos-watchos_arm64_32-opt-STABLE-20",
-        "d": [
-            "//UI:UIFramework.watchOS applebin_watchos-watchos_arm64_32-opt-STABLE-20",
-            "//UI:UIFramework.watchOS applebin_watchos-watchos_arm64_32-opt-STABLE-20"
-        ],
         "i": {
             "r": [
                 "watchOSAppExtension/Assets.xcassets"
@@ -8584,10 +8266,6 @@
             "PRODUCT_MODULE_NAME": "watchOSAppExtension"
         },
         "c": "applebin_watchos-watchos_x86_64-dbg-STABLE-17",
-        "d": [
-            "//UI:UIFramework.watchOS applebin_watchos-watchos_x86_64-dbg-STABLE-17",
-            "//UI:UIFramework.watchOS applebin_watchos-watchos_x86_64-dbg-STABLE-17"
-        ],
         "i": {
             "r": [
                 "watchOSAppExtension/Assets.xcassets"
@@ -8659,10 +8337,6 @@
             "SWIFT_COMPILATION_MODE": "wholemodule"
         },
         "c": "applebin_watchos-watchos_x86_64-opt-STABLE-19",
-        "d": [
-            "//UI:UIFramework.watchOS applebin_watchos-watchos_x86_64-opt-STABLE-19",
-            "//UI:UIFramework.watchOS applebin_watchos-watchos_x86_64-opt-STABLE-19"
-        ],
         "i": {
             "r": [
                 "watchOSAppExtension/Assets.xcassets"

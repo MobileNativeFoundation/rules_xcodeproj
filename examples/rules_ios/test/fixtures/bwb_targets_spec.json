@@ -14,9 +14,6 @@
             "PRODUCT_MODULE_NAME": "Lib_Lib"
         },
         "c": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2",
-        "d": [
-            "//Lib:Lib_swift ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2"
-        ],
         "l": "//Lib:Lib",
         "n": "Lib",
         "o": {
@@ -47,9 +44,6 @@
             "PRODUCT_MODULE_NAME": "Lib_Lib"
         },
         "c": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
-        "d": [
-            "//Lib:Lib_swift ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1"
-        ],
         "l": "//Lib:Lib",
         "n": "Lib",
         "o": {
@@ -82,9 +76,6 @@
             "PRODUCT_MODULE_NAME": "Lib_LibDynamic"
         },
         "c": "applebin_ios-ios_arm64-dbg-STABLE-4",
-        "d": [
-            "//Lib:Lib ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2"
-        ],
         "l": "//Lib:LibDynamic",
         "n": "LibDynamic",
         "p": {
@@ -115,9 +106,6 @@
             "PRODUCT_MODULE_NAME": "Lib_LibDynamic"
         },
         "c": "applebin_ios-ios_x86_64-dbg-STABLE-3",
-        "d": [
-            "//Lib:Lib ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1"
-        ],
         "l": "//Lib:LibDynamic",
         "n": "LibDynamic",
         "p": {
@@ -215,10 +203,6 @@
             "PRODUCT_MODULE_NAME": "UI_UI"
         },
         "c": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2",
-        "d": [
-            "//Lib:Lib ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2",
-            "//UI:UI_swift ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2"
-        ],
         "l": "//UI:UI",
         "n": "UI",
         "o": {
@@ -248,10 +232,6 @@
             "PRODUCT_MODULE_NAME": "UI_UI"
         },
         "c": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
-        "d": [
-            "//Lib:Lib ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
-            "//UI:UI_swift ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1"
-        ],
         "l": "//UI:UI",
         "n": "UI",
         "o": {
@@ -282,9 +262,6 @@
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "UI-Swift.h"
         },
         "c": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2",
-        "d": [
-            "//Lib:Lib ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2"
-        ],
         "i": {
             "s": [
                 "UI/ContentView.swift"
@@ -320,9 +297,6 @@
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "UI-Swift.h"
         },
         "c": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
-        "d": [
-            "//Lib:Lib ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1"
-        ],
         "i": {
             "s": [
                 "UI/ContentView.swift"
@@ -363,9 +337,6 @@
             "TARGETED_DEVICE_FAMILY": "1"
         },
         "c": "applebin_ios-ios_arm64-dbg-STABLE-4",
-        "d": [
-            "//WidgetExtension:WidgetExtension.library ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2"
-        ],
         "i": {
             "r": [
                 "WidgetExtension/Assets.xcassets",
@@ -401,9 +372,6 @@
             "TARGETED_DEVICE_FAMILY": "1"
         },
         "c": "applebin_ios-ios_x86_64-dbg-STABLE-3",
-        "d": [
-            "//WidgetExtension:WidgetExtension.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1"
-        ],
         "i": {
             "r": [
                 "WidgetExtension/Assets.xcassets",
@@ -443,9 +411,6 @@
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "WidgetExtension-Swift.h"
         },
         "c": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2",
-        "d": [
-            "//Lib:Lib ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2"
-        ],
         "i": {
             "s": [
                 "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2/bin/WidgetExtension/Intents.Intent.output.swift",
@@ -494,9 +459,6 @@
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "WidgetExtension-Swift.h"
         },
         "c": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
-        "d": [
-            "//Lib:Lib ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1"
-        ],
         "i": {
             "s": [
                 "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/WidgetExtension/Intents.Intent.output.swift",
@@ -537,10 +499,6 @@
             "PRODUCT_MODULE_NAME": "iOSApp_Source_CoreUtilsMixed_MixedAnswer_MixedAnswer"
         },
         "c": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2",
-        "d": [
-            "//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswer_swift ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2",
-            "//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswer_objc ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2"
-        ],
         "l": "//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswer",
         "n": "MixedAnswer",
         "o": {
@@ -571,10 +529,6 @@
             "PRODUCT_MODULE_NAME": "iOSApp_Source_CoreUtilsMixed_MixedAnswer_MixedAnswer"
         },
         "c": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
-        "d": [
-            "//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswer_swift ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
-            "//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswer_objc ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1"
-        ],
         "l": "//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswer",
         "n": "MixedAnswer",
         "o": {
@@ -603,9 +557,6 @@
             "GCC_PREFIX_HEADER": "$(BAZEL_EXTERNAL)/build_bazel_rules_ios/rules/library/common.pch"
         },
         "c": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2",
-        "d": [
-            "//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswer_swift ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2"
-        ],
         "f": true,
         "i": {
             "s": [
@@ -633,9 +584,6 @@
             "GCC_PREFIX_HEADER": "$(BAZEL_EXTERNAL)/build_bazel_rules_ios/rules/library/common.pch"
         },
         "c": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
-        "d": [
-            "//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswer_swift ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1"
-        ],
         "f": true,
         "i": {
             "s": [
@@ -735,9 +683,6 @@
             "PRODUCT_MODULE_NAME": "iOSApp_Source_CoreUtilsObjC_CoreUtilsObjC"
         },
         "c": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2",
-        "d": [
-            "//iOSApp/Source/CoreUtilsObjC:CoreUtilsObjC_objc ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2"
-        ],
         "l": "//iOSApp/Source/CoreUtilsObjC:CoreUtilsObjC",
         "n": "CoreUtilsObjC",
         "p": {
@@ -763,9 +708,6 @@
             "PRODUCT_MODULE_NAME": "iOSApp_Source_CoreUtilsObjC_CoreUtilsObjC"
         },
         "c": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
-        "d": [
-            "//iOSApp/Source/CoreUtilsObjC:CoreUtilsObjC_objc ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1"
-        ],
         "l": "//iOSApp/Source/CoreUtilsObjC:CoreUtilsObjC",
         "n": "CoreUtilsObjC",
         "p": {
@@ -846,9 +788,6 @@
             "PRODUCT_MODULE_NAME": "iOSApp_Source_Utils_Utils"
         },
         "c": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
-        "d": [
-            "//iOSApp/Source/Utils:Utils_objc ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1"
-        ],
         "l": "//iOSApp/Source/Utils:Utils",
         "n": "Utils",
         "p": {
@@ -872,9 +811,6 @@
             "GCC_PREFIX_HEADER": "$(BAZEL_EXTERNAL)/build_bazel_rules_ios/rules/library/common.pch"
         },
         "c": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
-        "d": [
-            "//iOSApp/Source/CoreUtilsObjC:CoreUtilsObjC ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1"
-        ],
         "f": true,
         "i": {
             "s": [
@@ -913,12 +849,6 @@
             "TARGETED_DEVICE_FAMILY": "1"
         },
         "c": "applebin_ios-ios_arm64-dbg-STABLE-4",
-        "d": [
-            "//iOSApp/Source:iOSApp.library ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2",
-            "//UI:UI ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2",
-            "//iOSApp/Source/CoreUtilsObjC:CoreUtilsObjC ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2",
-            "//WidgetExtension:WidgetExtension applebin_ios-ios_arm64-dbg-STABLE-4"
-        ],
         "e": [
             "//WidgetExtension:WidgetExtension applebin_ios-ios_arm64-dbg-STABLE-4"
         ],
@@ -967,12 +897,6 @@
             "TARGETED_DEVICE_FAMILY": "1"
         },
         "c": "applebin_ios-ios_x86_64-dbg-STABLE-3",
-        "d": [
-            "//iOSApp/Source:iOSApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
-            "//UI:UI ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
-            "//iOSApp/Source/CoreUtilsObjC:CoreUtilsObjC ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
-            "//WidgetExtension:WidgetExtension applebin_ios-ios_x86_64-dbg-STABLE-3"
-        ],
         "e": [
             "//WidgetExtension:WidgetExtension applebin_ios-ios_x86_64-dbg-STABLE-3"
         ],
@@ -1021,11 +945,6 @@
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "iOSApp-Swift.h"
         },
         "c": "ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2",
-        "d": [
-            "//UI:UI ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2",
-            "//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswer ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2",
-            "//iOSApp/Source/CoreUtilsObjC:CoreUtilsObjC ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-2"
-        ],
         "i": {
             "s": [
                 "iOSApp/Source/iOSApp.swift"
@@ -1073,11 +992,6 @@
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "iOSApp-Swift.h"
         },
         "c": "ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
-        "d": [
-            "//UI:UI ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
-            "//iOSApp/Source/CoreUtilsMixed/MixedAnswer:MixedAnswer ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
-            "//iOSApp/Source/CoreUtilsObjC:CoreUtilsObjC ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1"
-        ],
         "i": {
             "s": [
                 "iOSApp/Source/iOSApp.swift"
@@ -1144,8 +1058,6 @@
         },
         "c": "applebin_ios-ios_x86_64-dbg-STABLE-3",
         "d": [
-            "//iOSApp/Source:iOSApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
-            "//iOSApp/Source/Utils:Utils ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
             "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-dbg-STABLE-3"
         ],
         "f": true,
@@ -1207,8 +1119,6 @@
         },
         "c": "applebin_ios-ios_x86_64-dbg-STABLE-3",
         "d": [
-            "//iOSApp/Source:iOSApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
-            "//iOSApp/Source/Utils:Utils ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
             "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-dbg-STABLE-3"
         ],
         "f": true,
@@ -1262,8 +1172,6 @@
         },
         "c": "applebin_ios-ios_x86_64-dbg-STABLE-3",
         "d": [
-            "//iOSApp/Source:iOSApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
-            "//iOSApp/Source/Utils:Utils ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
             "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-dbg-STABLE-3"
         ],
         "f": true,
@@ -1317,8 +1225,6 @@
         },
         "c": "applebin_ios-ios_x86_64-dbg-STABLE-3",
         "d": [
-            "//iOSApp/Source:iOSApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
-            "//iOSApp/Source/Utils:Utils ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
             "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-dbg-STABLE-3"
         ],
         "f": true,
@@ -1372,8 +1278,6 @@
         },
         "c": "applebin_ios-ios_x86_64-dbg-STABLE-3",
         "d": [
-            "//iOSApp/Source:iOSApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
-            "//iOSApp/Source/Utils:Utils ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
             "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-dbg-STABLE-3"
         ],
         "f": true,
@@ -1427,8 +1331,6 @@
         },
         "c": "applebin_ios-ios_x86_64-dbg-STABLE-3",
         "d": [
-            "//iOSApp/Source:iOSApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
-            "//iOSApp/Source/Utils:Utils ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
             "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-dbg-STABLE-3"
         ],
         "f": true,
@@ -1487,8 +1389,6 @@
         },
         "c": "applebin_ios-ios_x86_64-dbg-STABLE-3",
         "d": [
-            "//iOSApp/Source:iOSApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
-            "//iOSApp/Source/Utils:Utils ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
             "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-dbg-STABLE-3"
         ],
         "h": "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-dbg-STABLE-3",
@@ -1552,8 +1452,6 @@
         },
         "c": "applebin_ios-ios_x86_64-dbg-STABLE-3",
         "d": [
-            "//iOSApp/Source:iOSApp.library ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
-            "//iOSApp/Source/Utils:Utils ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1",
             "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-dbg-STABLE-3"
         ],
         "h": "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-dbg-STABLE-3",

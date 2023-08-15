@@ -41,6 +41,7 @@ def process_non_xcode_target(
     Returns:
         The value returned from `processed_target`.
     """
+    build_mode = ctx.attr._build_mode
     cc_info = target[CcInfo] if CcInfo in target else None
     objc = target[apple_common.Objc] if apple_common.Objc in target else None
     swift_info = target[SwiftInfo] if SwiftInfo in target else None
@@ -93,6 +94,7 @@ rules_xcodeproj requires {} to have `{}` set.
     swiftmodules = process_swiftmodules(swift_info = swift_info)
 
     dependencies, transitive_dependencies = process_dependencies(
+        build_mode = build_mode,
         transitive_infos = transitive_infos,
     )
 
@@ -130,7 +132,7 @@ rules_xcodeproj requires {} to have `{}` set.
         dependencies = dependencies,
         inputs = provider_inputs,
         lldb_context = lldb_contexts.collect(
-            build_mode = ctx.attr._build_mode,
+            build_mode = build_mode,
             id = None,
             is_swift = False,
             # TODO: Should we still collect this?

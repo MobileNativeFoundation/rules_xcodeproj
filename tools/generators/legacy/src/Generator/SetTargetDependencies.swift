@@ -39,13 +39,6 @@ Target \(key)'s dependency on \(dependencyKey) not found in `pbxTargets`
                     }
                     let dependency = labeledDependency.pbxTarget
 
-                    guard disambiguatedTarget.target.shouldIncludeDependency(
-                        dependency,
-                        buildMode: buildMode
-                    ) else {
-                        return nil
-                    }
-
                     return dependency
                 }
                 // Sort them by name
@@ -57,22 +50,5 @@ Target \(key)'s dependency on \(dependencyKey) not found in `pbxTargets`
                 // Add the dependencies to the `PBXNativeTarget`
                 .forEach { _ = try pbxTarget.addDependency(target: $0) }
         }
-    }
-}
-
-extension ConsolidatedTarget {
-    func shouldIncludeDependency(
-        _ dependency: PBXNativeTarget,
-        buildMode: BuildMode
-    ) -> Bool {
-        guard buildMode == .bazel else {
-            return true
-        }
-
-        // Test hosts need to be copied
-        // watchOS 2 App Extensions need to be embedded
-        return (product.type.isTestBundle && dependency.isLaunchable)
-            || (product.type == .watch2App &&
-                dependency.productType?.isAppExtension == true)
     }
 }

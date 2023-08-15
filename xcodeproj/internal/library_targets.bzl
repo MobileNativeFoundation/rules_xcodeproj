@@ -65,6 +65,7 @@ def process_library_target(
     )
 
     dependencies, transitive_dependencies = process_dependencies(
+        build_mode = build_mode,
         transitive_infos = transitive_infos,
     )
 
