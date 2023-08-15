@@ -56,12 +56,13 @@ def process_dependencies(
             # `should_generate_target` handling. The only reason we don't use
             # `should_generate_target` for header-only targets is because we
             # want to be able to unfocus their files.
-            if (include_all_deps or
+            if (
+                include_all_deps or
                 # Test hosts need to be copied
                 test_host == xcode_target.id or
                 # watchOS 2 App Extensions need to be embedded
                 (top_level_product_type == _WATCHKIT2 and
-                xcode_target.product.type == _WATCHKIT2_EXTENSION)
+                 xcode_target.product.type == _WATCHKIT2_EXTENSION)
             ):
                 direct_dependencies.append(xcode_target.id)
             transitive_direct_dependencies.append(xcode_target.id)
