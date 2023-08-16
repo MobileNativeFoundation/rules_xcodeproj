@@ -76,9 +76,9 @@ $ pbxtargetdependencies \
     Debug \
     Debug \
     --product-types \
-    com.apple.product-type.tool \
-    com.apple.product-type.bundle.unit-test \
-    com.apple.product-type.library.static \
+    T \
+    u \
+    L \
     --platforms \
     macosx \
     macosx \
