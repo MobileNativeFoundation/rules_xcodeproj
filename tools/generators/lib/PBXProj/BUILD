@@ -29,7 +29,7 @@ swift_library(
 
 macos_unit_test(
     name = "PBXProjTests",
-    minimum_os_version = "12.0",
+    minimum_os_version = "13.0",
     visibility = [
         "//test:__subpackages__",
         "@rules_xcodeproj//xcodeproj:generated",
