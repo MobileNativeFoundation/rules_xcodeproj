@@ -63,8 +63,7 @@ def _write_files_and_groups(
         selected_model_versions_file,
         tool,
         workspace_directory):
-    """
-    Creates `File`s representing files and groups in a `.pbxproj`.
+    """Creates `File`s representing files and groups in a `.pbxproj`.
 
     Args:
         actions: `ctx.actions`.
@@ -218,8 +217,7 @@ def _write_pbxproj_prefix(
         tool,
         workspace_directory,
         xcode_configurations):
-    """
-    Creates a `File` containing a `PBXProject` prefix `PBXProj` partial.
+    """Creates a `File` containing a `PBXProject` prefix `PBXProj` partial.
 
     Args:
         actions: `ctx.actions`.
@@ -363,8 +361,7 @@ def _write_pbxtargetdependencies(
         tool,
         xcode_target_configurations,
         xcode_targets_by_label):
-    """
-    Creates `File`s representing consolidated target in a `PBXProj`.
+    """Creates `File`s representing consolidated target in a `PBXProj`.
 
     Args:
         actions: `ctx.actions`.
