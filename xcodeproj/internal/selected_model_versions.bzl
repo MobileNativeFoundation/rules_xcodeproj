@@ -6,8 +6,7 @@ def write_selected_model_versions_file(
         name,
         tool,
         xccurrentversions_files):
-    """
-    Creates a `File` that contains a JSON representation of \
+    """Creates a `File` that contains a JSON representation of \
     `[BazelPath: String]`, mapping `.xcdatamodeld` file paths to selected \
     `.xcdatamodel` file names.
 

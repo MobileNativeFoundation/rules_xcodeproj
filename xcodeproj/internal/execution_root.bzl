@@ -1,8 +1,8 @@
 """Functions dealing with the Bazel execution root."""
 
 def write_execution_root_file(*, actions, bin_dir_path, name):
-    """
-    Creates a `File` containing the absolute path to the Bazel execution root.
+    """Creates a `File` containing the absolute path to the Bazel execution \
+    root.
 
     Args:
         actions: `ctx.actions`.

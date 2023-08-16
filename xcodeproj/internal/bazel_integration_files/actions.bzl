@@ -8,8 +8,7 @@ def write_bazel_build_script(
         generator_label,
         target_ids_list,
         template):
-    """
-    Writes the `bazel_build.sh` script.
+    """Writes the `bazel_build.sh` script.
 
     Args:
         actions: `ctx.actions`.
@@ -62,8 +61,7 @@ def write_create_xcode_overlay_script(
         generator_name,
         targets,
         template):
-    """
-    Writes the `create_xcode_overlay.sh` script.
+    """Writes the `create_xcode_overlay.sh` script.
 
     Args:
         actions: `ctx.actions`.
