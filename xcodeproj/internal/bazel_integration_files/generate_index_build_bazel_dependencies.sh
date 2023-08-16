@@ -41,7 +41,7 @@ if [[ "$BAZEL_TARGET_ID" =~ $targetid_regex ]]; then
 fi
 
 readonly build_pre_config_flags=(
-  "--experimental_remote_download_regex=.*\.indexstore/.*|.*\.a$|.*\.swiftdoc$|.*\.swiftmodule$|.*\.swiftsourceinfo$"
+  "--experimental_remote_download_regex=.*\.indexstore/.*|.*\.a$|.*\.swiftdoc$|.*\.swiftmodule$|.*\.swiftsourceinfo$|.*\.swift$"
 )
 
 source "$BAZEL_INTEGRATION_DIR/bazel_build.sh"
