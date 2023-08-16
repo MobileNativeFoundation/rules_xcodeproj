@@ -676,6 +676,7 @@ private extension PBXProductType {
         case .watch2Extension: return "WatchKit Extension"
         case .xcodeExtension: return "Xcode Extension"
 
+        case .resourceBundle: return "Resource Bundle"
         case .bundle: return "Bundle"
         case .ocUnitTestBundle: return "OC Unit Tests"
         case .unitTestBundle: return "Unit Tests"

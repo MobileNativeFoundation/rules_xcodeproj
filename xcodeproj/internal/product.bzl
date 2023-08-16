@@ -4,6 +4,41 @@ load("@bazel_skylib//lib:paths.bzl", "paths")
 load(":linker_input_files.bzl", "linker_input_files")
 load(":memory_efficiency.bzl", "EMPTY_DEPSET")
 
+# Values here need to match those in `PBXProductType.swift`
+PRODUCT_TYPE_ENCODED = {
+    "com.apple.product-type.application": "a",
+    "com.apple.product-type.application.messages": "M",
+    "com.apple.product-type.application.on-demand-install-capable": "A",
+    "com.apple.product-type.application.watchapp": "0",
+    "com.apple.product-type.application.watchapp2": "w",
+    "com.apple.product-type.application.watchapp2-container": "c",
+    "com.apple.product-type.app-extension": "e",
+    "com.apple.product-type.app-extension.intents-service": "i",
+    "com.apple.product-type.app-extension.messages": "m",
+    "com.apple.product-type.app-extension.messages-sticker-pack": "s",
+    "com.apple.product-type.tv-app-extension": "t",
+    "com.apple.product-type.extensionkit-extension": "E",
+    "com.apple.product-type.watchkit-extension": "1",
+    "com.apple.product-type.watchkit2-extension": "W",
+    "com.apple.product-type.xcode-extension": "2",
+    # Resource bundles, which are also "com.apple.product-type.bundle" are "b"
+    "com.apple.product-type.bundle": "B",
+    "com.apple.product-type.bundle.ocunit-test": "o",
+    "com.apple.product-type.bundle.unit-test": "u",
+    "com.apple.product-type.bundle.ui-testing": "U",
+    "com.apple.product-type.framework": "f",
+    "com.apple.product-type.framework.static": "F",
+    "com.apple.product-type.xcframework": "x",
+    "com.apple.product-type.library.dynamic": "l",
+    "com.apple.product-type.library.static": "L",
+    "com.apple.product-type.driver-extension": "d",
+    "com.apple.product-type.instruments-package": "I",
+    "com.apple.product-type.metal-library": "3",
+    "com.apple.product-type.system-extension": "S",
+    "com.apple.product-type.tool": "T",
+    "com.apple.product-type.xpc-service": "X",
+}
+
 def _codesign_executable(*, ctx, executable):
     executable_path = "{}_codesigned".format(
         executable.basename,
