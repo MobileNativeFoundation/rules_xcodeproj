@@ -152,7 +152,7 @@ Dependencies for all of the targets. See <dependency-counts> for how these \
 dependencies will be distributed between the targets.
 """
     )
-    var dependencies: [TargetID]
+    var dependencies: [TargetID] = []
 
     mutating func validate() throws {
         guard labelCounts.count == outputPaths.count else {
