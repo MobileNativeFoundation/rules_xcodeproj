@@ -43,34 +43,37 @@ extension String {
             return "$(SRCROOT)/\(self)"
         }
     }
+}
 
-    private static var invalidCharacters: CharacterSet = {
-        var invalidSet = CharacterSet(charactersIn: "_$")
-        invalidSet.insert(UnicodeScalar("/"))
-        invalidSet.insert(UnicodeScalar("."))
-        invalidSet.insert(
-            charactersIn: UnicodeScalar("0") ... UnicodeScalar("9")
-        )
-        invalidSet.insert(
-            charactersIn: UnicodeScalar("A") ... UnicodeScalar("Z")
-        )
-        invalidSet.insert(
-            charactersIn: UnicodeScalar("a") ... UnicodeScalar("z")
-        )
-        invalidSet.invert()
-        return invalidSet
-    }()
 
-    private static var specialCheckCharacters = CharacterSet(charactersIn: "_/")
+private let invalidCharacters: CharacterSet = {
+    var invalidSet = CharacterSet(charactersIn: "_$")
+    invalidSet.insert(UnicodeScalar("/"))
+    invalidSet.insert(UnicodeScalar("."))
+    invalidSet.insert(
+        charactersIn: UnicodeScalar("0") ... UnicodeScalar("9")
+    )
+    invalidSet.insert(
+        charactersIn: UnicodeScalar("A") ... UnicodeScalar("Z")
+    )
+    invalidSet.insert(
+        charactersIn: UnicodeScalar("a") ... UnicodeScalar("z")
+    )
+    invalidSet.invert()
+    return invalidSet
+}()
 
+private let specialCheckCharacters = CharacterSet(charactersIn: "_/")
+
+extension StringProtocol {
     /// Copied from https://github.com/tuist/XcodeProj/blob/f570155209af12643309ac4e758b875c63dcbf50/Sources/XcodeProj/Utils/CommentedString.swift#L21-L69
-    public var pbxProjEscaped: String {
+    public var pbxProjEscaped: Self {
         guard !isEmpty else {
             return "\"\""
         }
 
-        if rangeOfCharacter(from: Self.invalidCharacters) == nil {
-            if rangeOfCharacter(from: Self.specialCheckCharacters) == nil {
+        if rangeOfCharacter(from: invalidCharacters) == nil {
+            if rangeOfCharacter(from: specialCheckCharacters) == nil {
                 return self
             } else if !contains("//") && !contains("___") {
                 return self
@@ -99,7 +102,7 @@ extension String {
         return "\"\(escaped)\""
     }
 
-    public var quoted: String {
+    public var quoted: Self {
         return "\"\(self)\""
     }
 }
