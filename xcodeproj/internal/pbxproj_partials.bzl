@@ -455,7 +455,7 @@ def _write_pbxtargetdependencies(
 
         label_counts.append(len(bucket_labels))
         for label in bucket_labels:
-            labels.append(label)
+            labels.append(str(label))
 
             xcode_targets = xcode_targets_by_label[label].values()
             target_counts.append(len(xcode_targets))
