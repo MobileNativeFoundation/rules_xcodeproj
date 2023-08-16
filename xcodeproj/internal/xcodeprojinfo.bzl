@@ -217,6 +217,7 @@ def _target_info_fields(
 def _skip_target(
         *,
         ctx,
+        build_mode,
         target,
         target_skip_type,
         deps,
@@ -230,6 +231,7 @@ def _skip_target(
 
     Args:
         ctx: The aspect context.
+        build_mode: See `xcodeproj.build_mode`.
         target_skip_type: The `skip_type` for this `target` (see `_get_skip_type`).
         target: The `Target` to skip.
         deps: `Target`s collected from `ctx.attr.deps`.
@@ -264,6 +266,7 @@ def _skip_target(
     ]
 
     dependencies, transitive_dependencies = process_dependencies(
+        build_mode = build_mode,
         transitive_infos = valid_transitive_infos,
     )
 
@@ -357,7 +360,7 @@ def _skip_target(
             transitive_infos = valid_transitive_infos,
         ),
         lldb_context = lldb_contexts.collect(
-            build_mode = ctx.attr._build_mode,
+            build_mode = build_mode,
             id = None,
             is_swift = False,
             transitive_infos = valid_transitive_infos,
@@ -620,6 +623,7 @@ def create_xcodeprojinfo(*, ctx, build_mode, target, attrs, transitive_infos):
     if target_skip_type:
         info_fields = _skip_target(
             ctx = ctx,
+            build_mode = build_mode,
             target = target,
             target_skip_type = target_skip_type,
             deps = [

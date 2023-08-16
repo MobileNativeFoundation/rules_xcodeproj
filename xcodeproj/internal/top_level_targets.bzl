@@ -189,10 +189,6 @@ def process_top_level_target(
     label = target.label
     id = get_id(label = label, configuration = configuration)
 
-    dependencies, transitive_dependencies = process_dependencies(
-        transitive_infos = transitive_infos,
-    )
-
     frameworks = getattr(ctx.rule.attr, "frameworks", [])
     framework_infos = [
         framework[XcodeProjInfo]
@@ -310,6 +306,13 @@ def process_top_level_target(
         build_settings = build_settings,
     )
     platform = platforms.collect(ctx = ctx)
+
+    dependencies, transitive_dependencies = process_dependencies(
+        build_mode = build_mode,
+        test_host = test_host,
+        top_level_product_type = props.product_type,
+        transitive_infos = transitive_infos,
+    )
 
     avoid_compilation_providers_list = [
         (info.xcode_target, info.compilation_providers)

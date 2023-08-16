@@ -58,9 +58,6 @@
         },
         "8": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib/lib_defines.rules_xcodeproj.c.compile.params",
         "c": "darwin_x86_64-dbg-STABLE-1",
-        "d": [
-            "//lib/impl:lib_impl darwin_x86_64-dbg-STABLE-1"
-        ],
         "f": true,
         "i": {
             "s": [
@@ -90,11 +87,6 @@
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "tool_codesigned"
         },
         "c": "darwin_x86_64-dbg-STABLE-1",
-        "d": [
-            "//lib:lib_defines darwin_x86_64-dbg-STABLE-1",
-            "@examples_cc_external//:lib_impl darwin_x86_64-dbg-STABLE-1",
-            "//lib2:lib_impl darwin_x86_64-dbg-STABLE-1"
-        ],
         "f": true,
         "i": {
             "s": [

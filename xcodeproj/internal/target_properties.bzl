@@ -3,6 +3,9 @@
 load(":collections.bzl", "set_if_true", "uniq")
 load(":memory_efficiency.bzl", "memory_efficient_depset")
 
+_WATCHKIT2 = "com.apple.product-type.application.watchapp2"
+_WATCHKIT2_EXTENSION = "com.apple.product-type.watchkit2-extension"
+
 def should_include_non_xcode_outputs(ctx):
     """Determines whether outputs of non Xcode targets should be included in \
     output groups.
@@ -16,10 +19,20 @@ def should_include_non_xcode_outputs(ctx):
     """
     return ctx.attr._build_mode == "xcode"
 
-def process_dependencies(*, transitive_infos):
+def process_dependencies(
+        *,
+        build_mode,
+        top_level_product_type = None,
+        test_host = None,
+        transitive_infos):
     """Logic for processing target dependencies.
 
     Args:
+        build_mode: See `xcodeproj.build_mode`.
+        top_level_product_type: If this target is a top-level target, then the
+            product type for this target, else `None`.
+        test_host: The `xcode_target.id` of the target that is the test host for
+            this target, or `None` if this target does not have a test host.
         transitive_infos: A `list` of `XcodeProjInfo`s for the transitive
             dependencies of `target`.
 
@@ -29,17 +42,30 @@ def process_dependencies(*, transitive_infos):
         *   A `depset` of direct dependencies.
         *   A `depset` of direct and transitive dependencies.
     """
+    include_all_deps = build_mode != "bazel"
+
     direct_dependencies = []
     direct_transitive_dependencies = []
+    transitive_direct_dependencies = []
     all_transitive_dependencies = []
     for info in transitive_infos:
         all_transitive_dependencies.append(info.transitive_dependencies)
-        if info.xcode_target and info.xcode_target.should_create_xcode_target:
+        xcode_target = info.xcode_target
+        if xcode_target and xcode_target.should_create_xcode_target:
             # TODO: Refactor `should_create_xcode_target` and
             # `should_generate_target` handling. The only reason we don't use
             # `should_generate_target` for header-only targets is because we
             # want to be able to unfocus their files.
-            direct_dependencies.append(info.xcode_target.id)
+            if (
+                include_all_deps or
+                # Test hosts need to be copied
+                test_host == xcode_target.id or
+                # watchOS 2 App Extensions need to be embedded
+                (top_level_product_type == _WATCHKIT2 and
+                 xcode_target.product.type == _WATCHKIT2_EXTENSION)
+            ):
+                direct_dependencies.append(xcode_target.id)
+            transitive_direct_dependencies.append(xcode_target.id)
         else:
             # We pass on the next level of dependencies if the previous target
             # didn't create an Xcode target.
@@ -50,7 +76,7 @@ def process_dependencies(*, transitive_infos):
         transitive = direct_transitive_dependencies,
     )
     transitive = memory_efficient_depset(
-        direct_dependencies,
+        transitive_direct_dependencies,
         transitive = all_transitive_dependencies,
     )
     return (direct, transitive)

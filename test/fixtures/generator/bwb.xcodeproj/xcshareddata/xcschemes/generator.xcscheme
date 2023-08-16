@@ -57,14 +57,14 @@
          <ExecutionAction
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
-               title = "Set Bazel Build Output Groups for tests (Debug)"
+               title = "Set Bazel Build Output Groups for tests"
                scriptText = "echo &quot;$BAZEL_LABEL,$BAZEL_TARGET_ID&quot; &gt;&gt; &quot;$SCHEME_TARGET_IDS_FILE&quot;&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "1F8ACFD448DBFCE4D2BCD6CD"
+                     BlueprintIdentifier = "979D12680661F4B864602CE6"
                      BuildableName = "tests.xctest"
-                     BlueprintName = "tests (Debug)"
+                     BlueprintName = "tests"
                      ReferencedContainer = "container:../../../../../test/fixtures/generator/bwb.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
@@ -128,9 +128,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1F8ACFD448DBFCE4D2BCD6CD"
+               BlueprintIdentifier = "979D12680661F4B864602CE6"
                BuildableName = "tests.xctest"
-               BlueprintName = "tests (Debug)"
+               BlueprintName = "tests"
                ReferencedContainer = "container:../../../../../test/fixtures/generator/bwb.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -151,9 +151,9 @@
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "1F8ACFD448DBFCE4D2BCD6CD"
+                     BlueprintIdentifier = "979D12680661F4B864602CE6"
                      BuildableName = "tests.xctest"
-                     BlueprintName = "tests (Debug)"
+                     BlueprintName = "tests"
                      ReferencedContainer = "container:../../../../../test/fixtures/generator/bwb.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
@@ -163,9 +163,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1F8ACFD448DBFCE4D2BCD6CD"
+            BlueprintIdentifier = "979D12680661F4B864602CE6"
             BuildableName = "tests.xctest"
-            BlueprintName = "tests (Debug)"
+            BlueprintName = "tests"
             ReferencedContainer = "container:../../../../../test/fixtures/generator/bwb.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -174,9 +174,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1F8ACFD448DBFCE4D2BCD6CD"
+               BlueprintIdentifier = "979D12680661F4B864602CE6"
                BuildableName = "tests.xctest"
-               BlueprintName = "tests (Debug)"
+               BlueprintName = "tests"
                ReferencedContainer = "container:../../../../../test/fixtures/generator/bwb.xcodeproj">
             </BuildableReference>
          </TestableReference>
