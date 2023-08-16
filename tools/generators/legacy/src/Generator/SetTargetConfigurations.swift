@@ -474,19 +474,18 @@ $(BAZEL_OUT)\#(swiftParams.path.string.dropFirst(9))
                     "-vfsoverlay",
                     "$(OBJROOT)/bazel-out-overlay.yaml",
                 ])
-            } else {
-                if !cFlags.isEmpty {
-                    cFlagsPrefix.append(contentsOf: [
-                        "-ivfsoverlay",
-                        "$(OBJROOT)/bazel-out-overlay.yaml",
-                    ])
-                }
-                if !cxxFlags.isEmpty {
-                    cxxFlagsPrefix.append(contentsOf: [
-                        "-ivfsoverlay",
-                        "$(OBJROOT)/bazel-out-overlay.yaml",
-                    ])
-                }
+            }
+            if !cFlags.isEmpty {
+                cFlagsPrefix.append(contentsOf: [
+                    "-ivfsoverlay",
+                    "$(OBJROOT)/bazel-out-overlay.yaml",
+                ])
+            }
+            if !cxxFlags.isEmpty {
+                cxxFlagsPrefix.append(contentsOf: [
+                    "-ivfsoverlay",
+                    "$(OBJROOT)/bazel-out-overlay.yaml",
+                ])
             }
         }
 
