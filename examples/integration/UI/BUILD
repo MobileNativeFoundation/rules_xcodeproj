@@ -5,7 +5,7 @@ load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
 
 swift_library(
     name = "UI",
-    srcs = glob(["*.swift"]),
+    srcs = glob(["*.swift"]) + [":generated"],
     copts = ["-application-extension"],
     module_name = "UI",
     tags = ["manual"],
@@ -65,4 +65,10 @@ watchos_framework(
         "@rules_xcodeproj//xcodeproj:generated",
     ],
     deps = [":UI"],
+)
+
+genrule(
+    name = "generated",
+    outs = ["generated/generated.swift"],
+    cmd = "echo 'let generatedInt = 1' > $(location generated/generated.swift)",
 )
