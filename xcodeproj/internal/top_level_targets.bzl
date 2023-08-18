@@ -18,6 +18,7 @@ load(":linker_input_files.bzl", "linker_input_files")
 load(":lldb_contexts.bzl", "lldb_contexts")
 load(
     ":memory_efficiency.bzl",
+    "EMPTY_DEPSET",
     "EMPTY_LIST",
     "memory_efficient_depset",
 )
@@ -529,7 +530,7 @@ def process_top_level_target(
         is_top_level_target = not is_app_extension,
         is_xcode_required = True,
         lldb_context = lldb_context,
-        mergable_xcode_library_targets = EMPTY_LIST,
+        mergable_xcode_library_targets = EMPTY_DEPSET,
         outputs = provider_outputs,
         potential_target_merges = potential_target_merges,
         transitive_dependencies = transitive_dependencies,

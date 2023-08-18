@@ -544,8 +544,8 @@ def _create_xcodeprojinfo(
         ),
         inputs = processed_target.inputs,
         lldb_context = processed_target.lldb_context,
-        mergable_xcode_library_targets = memory_efficient_depset(
-            processed_target.mergable_xcode_library_targets,
+        mergable_xcode_library_targets = (
+            processed_target.mergable_xcode_library_targets
         ),
         non_top_level_rule_kind = (
             None if processed_target.is_top_level_target else ctx.rule.kind
