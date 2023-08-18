@@ -605,7 +605,7 @@ Provides information needed to generate an Xcode project.
 | <a id="XcodeProjInfo-label"></a>label |  The `Label` of the target.    |
 | <a id="XcodeProjInfo-labels"></a>labels |  A `depset` of `Labels` for the target and its transitive dependencies.    |
 | <a id="XcodeProjInfo-lldb_context"></a>lldb_context |  A value returned from `lldb_context.collect`.    |
-| <a id="XcodeProjInfo-mergable_xcode_library_targets"></a>mergable_xcode_library_targets |  A `depset` of `struct`s of target ids (see `xcode_target.id`). Each id represents a target that can potentially merge into a top-level target (to be decided by the top-level target).    |
+| <a id="XcodeProjInfo-mergable_xcode_library_targets"></a>mergable_xcode_library_targets |  A `depset` of target ids (see `xcode_target.id`). Each represents a target that can potentially merge into a top-level target (to be decided by the top-level target).    |
 | <a id="XcodeProjInfo-potential_target_merges"></a>potential_target_merges |  A `depset` of `struct`s with 'src' and 'dest' fields. The 'src' field is the id of the target that can be merged into the target with the id of the 'dest' field.    |
 | <a id="XcodeProjInfo-outputs"></a>outputs |  A value returned from `output_files.collect`, that contains information about the output files for this target and its transitive dependencies.    |
 | <a id="XcodeProjInfo-replacement_labels"></a>replacement_labels |  A `depset` of `struct`s with `id` and `label` fields. The `id` field is the target id of the target that have its label (and name) be replaced with the label in the `label` field.    |
