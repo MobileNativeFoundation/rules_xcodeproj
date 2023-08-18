@@ -103,7 +103,7 @@ rules_xcodeproj requires {} to have `{}` set.
         transitive = [
             info.mergable_xcode_library_targets
             for info in transitive_infos
-        ]
+        ],
     )
 
     (_, provider_inputs) = input_files.collect(
