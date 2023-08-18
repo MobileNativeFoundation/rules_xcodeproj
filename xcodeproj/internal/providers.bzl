@@ -154,9 +154,8 @@ A `depset` of `Labels` for the target and its transitive dependencies.
 """,
         "lldb_context": "A value returned from `lldb_context.collect`.",
         "mergable_xcode_library_targets": """\
-A `List` of `struct`s with 'id' and 'product_path' fields. The 'id' field
-is the id of the target. The 'product_path' is the path to the target's
-product.
+A `depset` of `struct`s with 'id' and 'product_path' fields. The 'id' field
+is the id of the target. The 'product_path' is the path to the target's product.
 """,
         "potential_target_merges": """\
 A `depset` of `struct`s with 'src' and 'dest' fields. The 'src' field is the id
