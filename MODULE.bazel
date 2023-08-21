@@ -60,6 +60,7 @@ single_version_override(
 apple_cc_configure = use_extension(
     "@build_bazel_apple_support//crosstool:setup.bzl",
     "apple_cc_configure_extension",
+    dev_dependency = True,
 )
 use_repo(apple_cc_configure, "local_config_apple_cc")
 
