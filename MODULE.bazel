@@ -31,6 +31,7 @@ use_repo(
 bazel_dep(
     name = "apple_support",
     version = "1.8.1",
+    dev_dependency = True,
     repo_name = "build_bazel_apple_support",
 )
 bazel_dep(
