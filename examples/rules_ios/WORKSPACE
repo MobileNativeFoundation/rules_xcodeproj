@@ -33,6 +33,10 @@ load(
 
 xcodeproj_rules_dependencies()
 
+load("@bazel_features//:deps.bzl", "bazel_features_deps")
+
+bazel_features_deps()
+
 load(
     "@build_bazel_rules_apple//apple:repositories.bzl",
     "apple_rules_dependencies",
