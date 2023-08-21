@@ -207,12 +207,7 @@ def process_library_target(
         should_create_xcode_target = target.files != depset(),
     )
 
-    mergable_xcode_library_targets = [
-        struct(
-            id = xcode_target.id,
-            product_path = xcode_target.product.file_path,
-        ),
-    ]
+    mergable_xcode_library_targets = depset([xcode_target.id])
 
     return processed_target(
         compilation_providers = compilation_providers,

@@ -11,6 +11,7 @@ load(":configuration.bzl", "calculate_configuration")
 load(":input_files.bzl", "input_files")
 load(":linker_input_files.bzl", "linker_input_files")
 load(":lldb_contexts.bzl", "lldb_contexts")
+load(":memory_efficiency.bzl", "memory_efficient_depset")
 load(":output_files.bzl", "output_files")
 load(":processed_target.bzl", "processed_target")
 load(":target_id.bzl", "get_id")
@@ -98,17 +99,12 @@ rules_xcodeproj requires {} to have `{}` set.
         transitive_infos = transitive_infos,
     )
 
-    mergable_xcode_library_targets = [
-        struct(
-            id = target.id,
-            product_path = target.product.file_path,
-        )
-        for target, providers in [
-            (info.xcode_target, info.compilation_providers)
+    mergable_xcode_library_targets = memory_efficient_depset(
+        transitive = [
+            info.mergable_xcode_library_targets
             for info in transitive_infos
-        ]
-        if providers._is_xcode_library_target
-    ]
+        ],
+    )
 
     (_, provider_inputs) = input_files.collect(
         ctx = ctx,

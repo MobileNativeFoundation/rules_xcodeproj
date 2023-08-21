@@ -506,7 +506,7 @@ targets.
 
     raw_target_merge_dests = {}
     for merge in potential_target_merges:
-        src_target = unprocessed_targets[merge.src.id]
+        src_target = unprocessed_targets[merge.src]
         src_label = bazel_labels.normalize_label(src_target.label)
         dest_target = unprocessed_targets[merge.dest]
         dest_label = bazel_labels.normalize_label(dest_target.label)
@@ -516,12 +516,12 @@ targets.
         # Exclude targets not in focused nor unfocused targets from
         # potential merges since they're not possible Xcode targets.
         merge_src_is_xcode_target = (
-            merge.src.id in focused_targets or
-            merge.src.id in unfocused_targets
+            merge.src in focused_targets or
+            merge.src in unfocused_targets
         )
         if not merge_src_is_xcode_target:
             continue
-        raw_target_merge_dests.setdefault(merge.dest, []).append(merge.src.id)
+        raw_target_merge_dests.setdefault(merge.dest, []).append(merge.src)
 
     target_merge_dests = {}
     for dest, src_ids in raw_target_merge_dests.items():
