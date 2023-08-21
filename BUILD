@@ -49,8 +49,6 @@ _BUILDIFIER_EXCLUDE_PATTERNS = [
 ]
 
 _BUILDIFIER_WARNINGS = [
-    "all",
-    "-native-cc",
 ]
 
 buildifier(
