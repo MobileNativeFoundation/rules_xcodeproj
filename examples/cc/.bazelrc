@@ -1,11 +1,6 @@
 # Import parent workspace settings
 import %workspace%/../../shared.bazelrc
 
-# Don't use the apple_support Xcode toolchain
-build --apple_crosstool_top=@bazel_tools//tools/cpp:toolchain
-build --crosstool_top=@bazel_tools//tools/cpp:toolchain
-build --host_crosstool_top=@bazel_tools//tools/cpp:toolchain
-
 build --macos_minimum_os=12.0
 
 build --experimental_cc_implementation_deps
