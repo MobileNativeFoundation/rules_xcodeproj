@@ -139,8 +139,8 @@ def xcodeproj_rules_dependencies(
             _maybe(
                 http_archive,
                 name = "build_bazel_apple_support",
-                sha256 = "4f8dabf7cd16c23d2a406bbf60291c7c8c2e3c617e182a82585e1d3efe36670b",
-                url = "https://github.com/bazelbuild/apple_support/releases/download/1.7.1/apple_support.1.7.1.tar.gz",
+                sha256 = "45d6bbad5316c9c300878bf7fffc4ffde13d620484c9184708c917e20b8b63ff",
+                url = "https://github.com/bazelbuild/apple_support/releases/download/1.8.1/apple_support.1.8.1.tar.gz",
                 ignore_version_differences = ignore_version_differences,
             )
 
