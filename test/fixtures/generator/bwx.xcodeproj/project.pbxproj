@@ -705,6 +705,7 @@
 		2479A60DF1FB71A18BA5D751 /* Parsed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parsed.swift; sourceTree = "<group>"; };
 		24960C7AD11271830BB4700A /* XCScheme+TestAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCScheme+TestAction.swift"; sourceTree = "<group>"; };
 		26837558C66B51EF5B64F70E /* Box.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
+		268B2292C7B0E759694F7CF1 /* DefaultTestBundle.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = DefaultTestBundle.plist; sourceTree = "<group>"; };
 		26FAE31E67E00BFAB31F523F /* PBXBatchUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PBXBatchUpdater.swift; sourceTree = "<group>"; };
 		27ECE65F79F21FFEC7209981 /* OrderedDictionary+Hashable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedDictionary+Hashable.swift"; sourceTree = "<group>"; };
 		28DF6DF446940A172625029B /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
@@ -782,7 +783,6 @@
 		580B8C2AA4303DD4274B557B /* NameSpecification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameSpecification.swift; sourceTree = "<group>"; };
 		5891246B970DCEF00A0CF06F /* Sourcery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sourcery.swift; sourceTree = "<group>"; };
 		5972B341C5AAF053D97D773A /* JJLISO8601DateFormatter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJLISO8601DateFormatter.m; sourceTree = "<group>"; };
-		599348C38EAECB554AD598FE /* DefaultTestBundle.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = DefaultTestBundle.plist; sourceTree = "<group>"; };
 		5A2BAD814B9B92646176854F /* CustomDumpRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDumpRepresentable.swift; sourceTree = "<group>"; };
 		5A720720E470F0E4451509F7 /* OrderedDictionary+Elements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderedDictionary+Elements.swift"; sourceTree = "<group>"; };
 		5AA5330EE98A6F848EEE8769 /* libArgumentParser.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libArgumentParser.a; path = "bazel-out/macos-x86_64-min13.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/external/_main~non_module_deps~com_github_apple_swift_argument_parser/libArgumentParser.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1261,7 +1261,7 @@
 				A83FD2C474E757BD74E5CA93 /* _main~non_module_deps~com_github_michaeleisel_zippyjson */,
 				F1A7D9A35425136B75574C68 /* _main~non_module_deps~com_github_michaeleisel_zippyjsoncfamily */,
 				F4A8F825C6205E30BFFDD41A /* _main~non_module_deps~com_github_tuist_xcodeproj */,
-				BA71EA9C279E10E9AAB9C1BD /* rules_apple~2.0.0 */,
+				2B03B941E95CB234F6988113 /* rules_apple~2.5.0 */,
 			);
 			name = "Bazel External Repositories";
 			path = ../../external;
@@ -1280,6 +1280,14 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2B03B941E95CB234F6988113 /* rules_apple~2.5.0 */ = {
+			isa = PBXGroup;
+			children = (
+				ED2B9E53F4338B3EC1AC0241 /* apple */,
+			);
+			path = "rules_apple~2.5.0";
 			sourceTree = "<group>";
 		};
 		2C496270014E46C5E66D249E /* GeneratorCommon */ = {
@@ -1399,12 +1407,12 @@
 			path = "_main~non_module_deps~com_github_michaeleisel_jjliso8601dateformatter";
 			sourceTree = "<group>";
 		};
-		39F26DC2EB22F5B2434E26C3 /* apple */ = {
+		3B014DB6D0644BE9C1AA9AA4 /* testing */ = {
 			isa = PBXGroup;
 			children = (
-				4BB9DEEFE965BAAB0BA8E460 /* testing */,
+				268B2292C7B0E759694F7CF1 /* DefaultTestBundle.plist */,
 			);
-			path = apple;
+			path = testing;
 			sourceTree = "<group>";
 		};
 		3D4C075B79A704BA0B06B410 /* test */ = {
@@ -1500,14 +1508,6 @@
 				5344452829F2C5A83F9F0608 /* tools */,
 			);
 			path = bin;
-			sourceTree = "<group>";
-		};
-		4BB9DEEFE965BAAB0BA8E460 /* testing */ = {
-			isa = PBXGroup;
-			children = (
-				599348C38EAECB554AD598FE /* DefaultTestBundle.plist */,
-			);
-			path = testing;
 			sourceTree = "<group>";
 		};
 		4C189665D72977238DC2910A /* _main~non_module_deps~com_github_kylef_pathkit */ = {
@@ -2191,14 +2191,6 @@
 			path = bin;
 			sourceTree = "<group>";
 		};
-		BA71EA9C279E10E9AAB9C1BD /* rules_apple~2.0.0 */ = {
-			isa = PBXGroup;
-			children = (
-				39F26DC2EB22F5B2434E26C3 /* apple */,
-			);
-			path = "rules_apple~2.0.0";
-			sourceTree = "<group>";
-		};
 		BBA68E0AD85EDCF42BC52536 /* _main~non_module_deps~com_github_michaeleisel_jjliso8601dateformatter */ = {
 			isa = PBXGroup;
 			children = (
@@ -2527,6 +2519,14 @@
 				6405E8FB8127D262EE9AD525 /* ZippyJSON */,
 			);
 			path = Sources;
+			sourceTree = "<group>";
+		};
+		ED2B9E53F4338B3EC1AC0241 /* apple */ = {
+			isa = PBXGroup;
+			children = (
+				3B014DB6D0644BE9C1AA9AA4 /* testing */,
+			);
+			path = apple;
 			sourceTree = "<group>";
 		};
 		ED30B6F425F1DEFDD7FE525A /* Errors */ = {
