@@ -1,7 +1,7 @@
 """Implementation of the `xcodeproj_runner` rule."""
 
-load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load("@bazel_skylib//lib:paths.bzl", "paths")
+load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load(":collections.bzl", "uniq")
 load(":execution_root.bzl", "write_execution_root_file")
 load(":providers.bzl", "XcodeProjRunnerOutputInfo")
