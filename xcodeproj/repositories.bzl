@@ -111,6 +111,15 @@ def xcodeproj_rules_dependencies(
     if include_bzlmod_ready_dependencies:
         _maybe(
             http_archive,
+            name = "bazel_features",
+            sha256 = "9fcb3d7cbe908772462aaa52f02b857a225910d30daa3c252f670e3af6d8036d",
+            strip_prefix = "bazel_features-1.0.0",
+            url = "https://github.com/bazel-contrib/bazel_features/releases/download/v1.0.0/bazel_features-v1.0.0.tar.gz",
+            ignore_version_differences = ignore_version_differences,
+        )
+
+        _maybe(
+            http_archive,
             name = "bazel_skylib",
             sha256 = "66ffd9315665bfaafc96b52278f57c7e2dd09f5ede279ea6d39b2be471e7e3aa",
             url = "https://github.com/bazelbuild/bazel-skylib/releases/download/1.4.2/bazel-skylib-1.4.2.tar.gz",
