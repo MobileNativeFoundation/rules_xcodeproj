@@ -30,9 +30,9 @@ def _should_find_default_icon_path(ctx):
     return ctx.attr._build_mode != "xcode"
 
 _IMAGE_EXTS = {
-    ".png": None,
-    ".jpg": None,
     ".jpeg": None,
+    ".jpg": None,
+    ".png": None,
 }
 
 def _find_default_icon_path(set_path, app_icon_files):

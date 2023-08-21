@@ -54,9 +54,9 @@ def _platform_to_dto(platform):
     apple_platform = platform._platform
 
     dto = {
-        "v": PLATFORM_NAME[apple_platform],
         "a": platform._arch,
         "m": platform._os_version,
+        "v": PLATFORM_NAME[apple_platform],
     }
 
     return dto
