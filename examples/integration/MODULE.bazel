@@ -37,6 +37,12 @@ local_path_override(
     path = "iOSApp/external",
 )
 
+apple_cc_configure = use_extension(
+    "@build_bazel_apple_support//crosstool:setup.bzl",
+    "apple_cc_configure_extension",
+)
+use_repo(apple_cc_configure, "local_config_apple_cc")
+
 non_module_deps = use_extension(":repositories.bzl", "non_module_deps")
 use_repo(
     non_module_deps,
