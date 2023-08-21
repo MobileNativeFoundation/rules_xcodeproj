@@ -15,6 +15,7 @@ load(":library_targets.bzl", "process_library_target")
 load(":lldb_contexts.bzl", "lldb_contexts")
 load(
     ":memory_efficiency.bzl",
+    "EMPTY_DEPSET",
     "NONE_LIST",
     "memory_efficient_depset",
 )
@@ -519,6 +520,20 @@ def _create_xcodeprojinfo(
             transitive_infos = valid_transitive_infos,
         )
 
+    if processed_target.is_top_level_target:
+        mergable_xcode_library_targets = EMPTY_DEPSET
+    elif processed_target.xcode_target:
+        mergable_xcode_library_targets = depset(
+            [processed_target.xcode_target.id],
+        )
+    else:
+        mergable_xcode_library_targets = memory_efficient_depset(
+            transitive = [
+                info.mergable_xcode_library_targets
+                for info in valid_transitive_infos
+            ],
+        )
+
     return _target_info_fields(
         args = memory_efficient_depset(
             transitive = [
@@ -544,9 +559,7 @@ def _create_xcodeprojinfo(
         ),
         inputs = processed_target.inputs,
         lldb_context = processed_target.lldb_context,
-        mergable_xcode_library_targets = (
-            processed_target.mergable_xcode_library_targets
-        ),
+        mergable_xcode_library_targets = mergable_xcode_library_targets,
         non_top_level_rule_kind = (
             None if processed_target.is_top_level_target else ctx.rule.kind
         ),
