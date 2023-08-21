@@ -702,7 +702,6 @@
 		17C099CF33C628F19DA3A809 /* Lib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lib.swift; sourceTree = "<group>"; };
 		18238BC01027E0A7AF869748 /* FXPageControl.rules_xcodeproj.c.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = FXPageControl.rules_xcodeproj.c.compile.params; sourceTree = "<group>"; };
 		18A9223DEE8E6DF1E4AF3597 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		19992CB24A6817C1E73F1238 /* DefaultTestBundle.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = DefaultTestBundle.plist; sourceTree = "<group>"; };
 		19C74778D7AB50E69234343E /* WidgetExtension.146.link.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = WidgetExtension.146.link.params; sourceTree = "<group>"; };
 		1AB76A19256817786E5CF207 /* UI.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = UI.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		1BDF50DB824CE7DC5B7DC69D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -1047,6 +1046,7 @@
 		A96D7309FDFA4E623551AC92 /* tvOSAppUITests.library.rules_xcodeproj.swift.compile.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = tvOSAppUITests.library.rules_xcodeproj.swift.compile.params; sourceTree = "<group>"; };
 		A9721D8883D73A3F13BF89BB /* Lib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Lib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9D9FEBC0972D69FB407711D /* WidgetExtension.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = WidgetExtension.intentdefinition; sourceTree = "<group>"; };
+		AA313C2415B7402625634AF7 /* DefaultTestBundle.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = DefaultTestBundle.plist; sourceTree = "<group>"; };
 		AAC9F5126C0750EE2B014B1D /* libLib.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libLib.a; path = "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/Lib/libLib.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AADB68387784D243F2101889 /* BUILD */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = BUILD; sourceTree = "<group>"; };
 		AB1779733F29DBF9DF09C353 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
@@ -1442,14 +1442,6 @@
 			path = UIFramework.iOS;
 			sourceTree = "<group>";
 		};
-		0732C6C8CBAA426A746A8B72 /* testing */ = {
-			isa = PBXGroup;
-			children = (
-				19992CB24A6817C1E73F1238 /* DefaultTestBundle.plist */,
-			);
-			path = testing;
-			sourceTree = "<group>";
-		};
 		074B1D97FA79528677A07A07 /* rules_xcodeproj */ = {
 			isa = PBXGroup;
 			children = (
@@ -1529,14 +1521,6 @@
 				AE80AD0EB622679291D58C39 /* Info.plist */,
 			);
 			path = iOS;
-			sourceTree = "<group>";
-		};
-		091978140E6BC11BAAE8D691 /* apple */ = {
-			isa = PBXGroup;
-			children = (
-				0732C6C8CBAA426A746A8B72 /* testing */,
-			);
-			path = apple;
 			sourceTree = "<group>";
 		};
 		09AC30C121BEFE836E6BDA0E /* watchOS */ = {
@@ -3679,6 +3663,14 @@
 			path = Lib;
 			sourceTree = "<group>";
 		};
+		610344B4697DCFDF54061D54 /* testing */ = {
+			isa = PBXGroup;
+			children = (
+				AA313C2415B7402625634AF7 /* DefaultTestBundle.plist */,
+			);
+			path = testing;
+			sourceTree = "<group>";
+		};
 		618D42C1F87A81AF4A25B9ED /* private */ = {
 			isa = PBXGroup;
 			children = (
@@ -4580,6 +4572,14 @@
 			path = tvOSApp;
 			sourceTree = "<group>";
 		};
+		876225B2B9110B4B2218FDC4 /* apple */ = {
+			isa = PBXGroup;
+			children = (
+				610344B4697DCFDF54061D54 /* testing */,
+			);
+			path = apple;
+			sourceTree = "<group>";
+		};
 		87AA0A2C55EEC7460E07EBC1 /* Proto */ = {
 			isa = PBXGroup;
 			children = (
@@ -5172,20 +5172,20 @@
 			path = rules_xcodeproj;
 			sourceTree = "<group>";
 		};
-		A0C758C9A458D2114A41E19A /* rules_apple~2.4.1 */ = {
-			isa = PBXGroup;
-			children = (
-				091978140E6BC11BAAE8D691 /* apple */,
-			);
-			path = "rules_apple~2.4.1";
-			sourceTree = "<group>";
-		};
 		A1DC708D4551D5449B0774FC /* CommandLineTool */ = {
 			isa = PBXGroup;
 			children = (
 				36712C0F61469765863B8526 /* rules_xcodeproj */,
 			);
 			path = CommandLineTool;
+			sourceTree = "<group>";
+		};
+		A288FAF9852E460C0828650E /* rules_apple~2.5.0 */ = {
+			isa = PBXGroup;
+			children = (
+				876225B2B9110B4B2218FDC4 /* apple */,
+			);
+			path = "rules_apple~2.5.0";
 			sourceTree = "<group>";
 		};
 		A28ACA6C9CDD65A7610721D9 /* UITests */ = {
@@ -6895,7 +6895,7 @@
 				8C1DFE597C8D11E021D4E638 /* _main~non_module_deps~FXPageControl */,
 				09C3A0846996C972D84DC3B2 /* examples_command_line_external */,
 				224B5AAA40FB3B18C2841DC3 /* examples_ios_app_external~override */,
-				A0C758C9A458D2114A41E19A /* rules_apple~2.4.1 */,
+				A288FAF9852E460C0828650E /* rules_apple~2.5.0 */,
 			);
 			name = "Bazel External Repositories";
 			path = ../../external;
