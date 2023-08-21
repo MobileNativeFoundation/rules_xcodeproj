@@ -79,11 +79,11 @@ process_compiler_opts_test = unittest.make(
     attrs = {
         "build_mode": attr.string(mandatory = True),
         "conlyopts": attr.string_list(mandatory = True),
+        "cpp_fragment": attr.string_dict(mandatory = False),
         "cxxopts": attr.string_list(mandatory = True),
         "expected_build_settings": attr.string_dict(mandatory = True),
         "expected_c_has_fortify_source": attr.bool(mandatory = True),
         "expected_cxx_has_fortify_source": attr.bool(mandatory = True),
-        "cpp_fragment": attr.string_dict(mandatory = False),
         "package_bin_dir": attr.string(mandatory = True),
         "swiftcopts": attr.string_list(mandatory = True),
     },

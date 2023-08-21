@@ -87,11 +87,11 @@ def _write_target_ids_list_test_impl(ctx):
 write_target_ids_list_test = unittest.make(
     impl = _write_target_ids_list_test_impl,
     attrs = {
-        # Inputs
-        "target_ids": attr.string_list(mandatory = True),
 
         # Expected
         "expected_args": attr.string_list(mandatory = True),
+        # Inputs
+        "target_ids": attr.string_list(mandatory = True),
     },
 )
 

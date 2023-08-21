@@ -387,9 +387,9 @@ def_env+='}}'""".format(
             "%execution_root_file%": execution_root_file.short_path,
             "%extra_flags_bazelrc%": extra_flags_bazelrc.short_path,
             "%extra_generator_flags%": extra_generator_flags,
-            "%generator_label%": generator_label,
             "%generator_build_file%": generator_build_file.short_path,
             "%generator_defs_bzl%": generator_defs_bzl.short_path,
+            "%generator_label%": generator_label,
             "%generator_package_name%": generator_package_name,
             "%install_path%": install_path,
             "%is_bazel_6%": "1" if is_bazel_6 else "0",
@@ -516,15 +516,15 @@ xcodeproj_runner = rule(
             default = True,
             mandatory = True,
         ),
-        "build_mode": attr.string(
+        "bazel_env": attr.string_dict(
             mandatory = True,
-            values = ["xcode", "bazel"],
         ),
         "bazel_path": attr.string(
             mandatory = True,
         ),
-        "bazel_env": attr.string_dict(
+        "build_mode": attr.string(
             mandatory = True,
+            values = ["xcode", "bazel"],
         ),
         "config": attr.string(
             mandatory = True,
@@ -539,6 +539,10 @@ xcodeproj_runner = rule(
         "install_directory": attr.string(
             mandatory = True,
         ),
+        "ios_device_cpus": attr.string(
+            mandatory = True,
+        ),
+        "ios_simulator_cpus": attr.string(),
         "is_fixture": attr.bool(
             mandatory = True,
         ),
@@ -546,10 +550,10 @@ xcodeproj_runner = rule(
         "owned_extra_files": attr.string_dict(),
         "post_build": attr.string(),
         "pre_build": attr.string(),
-        "project_options": attr.string_dict(
+        "project_name": attr.string(
             mandatory = True,
         ),
-        "project_name": attr.string(
+        "project_options": attr.string_dict(
             mandatory = True,
         ),
         "scheme_autogeneration_mode": attr.string(
@@ -559,10 +563,18 @@ xcodeproj_runner = rule(
         "schemes_json": attr.string(),
         "top_level_device_targets": attr.string_list(),
         "top_level_simulator_targets": attr.string_list(),
+        "tvos_device_cpus": attr.string(
+            mandatory = True,
+        ),
+        "tvos_simulator_cpus": attr.string(),
         "unfocused_targets": attr.string_list(
             default = [],
         ),
         "unowned_extra_files": attr.string_list(),
+        "watchos_device_cpus": attr.string(
+            mandatory = True,
+        ),
+        "watchos_simulator_cpus": attr.string(),
         "xcode_configuration_flags": attr.string_list(
             mandatory = True,
         ),
@@ -572,18 +584,6 @@ xcodeproj_runner = rule(
         "xcode_configurations": attr.string(
             mandatory = True,
         ),
-        "ios_device_cpus": attr.string(
-            mandatory = True,
-        ),
-        "ios_simulator_cpus": attr.string(),
-        "tvos_device_cpus": attr.string(
-            mandatory = True,
-        ),
-        "tvos_simulator_cpus": attr.string(),
-        "watchos_device_cpus": attr.string(
-            mandatory = True,
-        ),
-        "watchos_simulator_cpus": attr.string(),
         "_bazelrc_template": attr.label(
             allow_single_file = True,
             default = Label("//xcodeproj/internal/templates:xcodeproj.bazelrc"),

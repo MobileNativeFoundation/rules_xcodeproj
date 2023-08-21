@@ -41,18 +41,18 @@ _INTERNAL_RULE_KINDS = {
     "apple_mac_tools_toolchain": None,
     "apple_xplat_tools_toolchain": None,
     "armeabi_cc_toolchain_config": None,
-    "filegroup": None,
     "cc_toolchain": None,
     "cc_toolchain_alias": None,
     "cc_toolchain_suite": None,
+    "filegroup": None,
     "macos_test_runner": None,
     "xcode_swift_toolchain": None,
 }
 
 _TOOLS_REPOS = {
+    "bazel_tools": None,
     "build_bazel_rules_apple": None,
     "build_bazel_rules_swift": None,
-    "bazel_tools": None,
     "xctestrunner": None,
 }
 
@@ -197,22 +197,22 @@ def _target_info_fields(
         "args": args,
         "compilation_providers": compilation_providers,
         "dependencies": dependencies,
+        "envs": envs,
         "extension_infoplists": extension_infoplists,
         "hosted_targets": hosted_targets,
         "inputs": inputs,
         "lldb_context": lldb_context,
-        "outputs": outputs,
         "mergable_xcode_library_targets": mergable_xcode_library_targets,
         "non_top_level_rule_kind": non_top_level_rule_kind,
+        "outputs": outputs,
         "potential_target_merges": potential_target_merges,
         "replacement_labels": replacement_labels,
         "resource_bundle_informations": resource_bundle_informations,
         "target_type": target_type,
-        "envs": envs,
         "transitive_dependencies": transitive_dependencies,
+        "xcode_required_targets": xcode_required_targets,
         "xcode_target": xcode_target,
         "xcode_targets": xcode_targets,
-        "xcode_required_targets": xcode_required_targets,
     }
 
 def _skip_target(

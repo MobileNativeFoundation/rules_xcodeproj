@@ -50,6 +50,7 @@ _BUILDIFIER_EXCLUDE_PATTERNS = [
 
 _BUILDIFIER_WARNINGS = [
     "out-of-order-load",
+    "unsorted-dict-items",
 ]
 
 buildifier(

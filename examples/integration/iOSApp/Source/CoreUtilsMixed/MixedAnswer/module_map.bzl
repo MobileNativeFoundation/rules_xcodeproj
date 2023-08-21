@@ -134,32 +134,6 @@ def _impl(ctx):
 _module_map = rule(
     implementation = _impl,
     attrs = {
-        "module_name": attr.string(
-            mandatory = True,
-            doc = "The name of the module.",
-        ),
-        "hdrs": attr.label_list(
-            allow_files = HEADERS_FILE_TYPES,
-            doc = """\
-The list of C, C++, Objective-C, and Objective-C++ header files used to
-construct the module map.
-""",
-        ),
-        "textual_hdrs": attr.label_list(
-            allow_files = HEADERS_FILE_TYPES,
-            doc = """\
-The list of C, C++, Objective-C, and Objective-C++ header files used to
-construct the module map. Unlike hdrs, these will be declared as 'textual
-header' in the module map.
-""",
-        ),
-        "deps": attr.label_list(
-            providers = [SwiftInfo],
-            doc = """\
-The list of swift_library targets.  A `${module_name}.Swift` submodule will be
-generated if non-empty.
-""",
-        ),
         "add_to_provider": attr.bool(
             default = True,
             doc = """\
@@ -170,8 +144,34 @@ swift_library targets depending on them. Set this to `False` in that case to
 avoid duplicate modules.
 """,
         ),
+        "deps": attr.label_list(
+            providers = [SwiftInfo],
+            doc = """\
+The list of swift_library targets.  A `${module_name}.Swift` submodule will be
+generated if non-empty.
+""",
+        ),
+        "hdrs": attr.label_list(
+            allow_files = HEADERS_FILE_TYPES,
+            doc = """\
+The list of C, C++, Objective-C, and Objective-C++ header files used to
+construct the module map.
+""",
+        ),
+        "module_name": attr.string(
+            mandatory = True,
+            doc = "The name of the module.",
+        ),
         "out": attr.output(
             doc = "The name of the output module map file.",
+        ),
+        "textual_hdrs": attr.label_list(
+            allow_files = HEADERS_FILE_TYPES,
+            doc = """\
+The list of C, C++, Objective-C, and Objective-C++ header files used to
+construct the module map. Unlike hdrs, these will be declared as 'textual
+header' in the module map.
+""",
         ),
     },
     doc = "Generates a module map given a list of header files.",

@@ -132,16 +132,16 @@ write_files_and_groups_test = unittest.make(
         "colorize": attr.bool(mandatory = True),
         "compile_stub_needed": attr.bool(mandatory = True),
         "execution_root_file": attr.string(mandatory = True),
-        "files": attr.string_list(mandatory = True),
+
+        # Expected
+        "expected_args": attr.string_list(mandatory = True),
         "file_paths": attr.string_list(mandatory = True),
+        "files": attr.string_list(mandatory = True),
         "folders": attr.string_list(mandatory = True),
         "install_path": attr.string(mandatory = True),
         "project_options": attr.string_dict(mandatory = True),
         "selected_model_versions_file": attr.string(mandatory = True),
         "workspace_directory": attr.string(mandatory = True),
-
-        # Expected
-        "expected_args": attr.string_list(mandatory = True),
     },
 )
 

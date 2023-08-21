@@ -157,12 +157,12 @@ def _make_xcode_target(
     )
 
 _BUNDLE_TYPES = {
+    "com.apple.product-type.app-extension": None,
+    "com.apple.product-type.app-extension.messages": None,
     "com.apple.product-type.application": None,
     "com.apple.product-type.application.on-demand-install-capable": None,
     "com.apple.product-type.application.watchapp": None,
     "com.apple.product-type.application.watchapp2": None,
-    "com.apple.product-type.app-extension": None,
-    "com.apple.product-type.app-extension.messages": None,
     "com.apple.product-type.bundle": None,
     "com.apple.product-type.bundle.ui-testing": None,
     "com.apple.product-type.bundle.unit-test": None,
@@ -503,12 +503,12 @@ def _set_preview_framework_paths(
     ]
 
 _PREVIEWS_ENABLED_PRODUCT_TYPES = {
+    "com.apple.product-type.app-extension": None,
+    "com.apple.product-type.app-extension.messages": None,
     "com.apple.product-type.application": None,
     "com.apple.product-type.application.on-demand-install-capable": None,
     "com.apple.product-type.application.watchapp": None,
     "com.apple.product-type.application.watchapp2": None,
-    "com.apple.product-type.app-extension": None,
-    "com.apple.product-type.app-extension.messages": None,
     "com.apple.product-type.bundle.unit-test": None,
     "com.apple.product-type.extensionkit-extension": None,
     "com.apple.product-type.framework": None,
@@ -622,11 +622,11 @@ def _xcode_target_to_dto(
     is_unfocused_dependency = xcode_target.id in bwx_unfocused_dependencies
 
     dto = {
-        "n": name,
-        "l": str(label),
-        "c": xcode_target.configuration,
         "1": xcode_target._package_bin_dir,
         "2": platforms.to_dto(xcode_target.platform),
+        "c": xcode_target.configuration,
+        "l": str(label),
+        "n": name,
         "p": _product_to_dto(xcode_target.product),
     }
 

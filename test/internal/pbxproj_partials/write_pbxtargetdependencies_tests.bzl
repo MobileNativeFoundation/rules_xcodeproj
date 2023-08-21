@@ -187,12 +187,12 @@ write_pbxtargetdependencies_test = unittest.make(
     attrs = {
         # Inputs
         "colorize": attr.bool(mandatory = True),
-        "minimum_xcode_version": attr.string(mandatory = True),
-        "xcode_target_configurations": attr.string_list_dict(mandatory = True),
-        "xcode_targets_by_label": attr.string(mandatory = True),
 
         # Expected
         "expected_args": attr.string_list(mandatory = True),
+        "minimum_xcode_version": attr.string(mandatory = True),
+        "xcode_target_configurations": attr.string_list_dict(mandatory = True),
+        "xcode_targets_by_label": attr.string(mandatory = True),
     },
 )
 

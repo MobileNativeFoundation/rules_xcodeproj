@@ -89,13 +89,13 @@ C_EXTENSIONS = {
 }
 
 CXX_EXTENSIONS = {
-    "cc": None,
-    "cpp": None,
-    "cxx": None,
-    "c++": None,
     "C": None,
-    "cu": None,
+    "c++": None,
+    "cc": None,
     "cl": None,
+    "cpp": None,
+    "cu": None,
+    "cxx": None,
     "mm": None,
 }
 
