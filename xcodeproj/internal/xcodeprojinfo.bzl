@@ -524,7 +524,7 @@ def _create_xcodeprojinfo(
         mergable_xcode_library_targets = EMPTY_DEPSET
     elif processed_target.xcode_target:
         mergable_xcode_library_targets = depset(
-            [processed_target.xcode_target.id]
+            [processed_target.xcode_target.id],
         )
     else:
         mergable_xcode_library_targets = memory_efficient_depset(
