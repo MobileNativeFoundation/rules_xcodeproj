@@ -2,6 +2,11 @@ build --experimental_strict_conflict_checks
 build --incompatible_disallow_empty_glob
 build --experimental_convenience_symlinks=ignore
 
+# Use apple_support Xcode toolchain
+build --apple_crosstool_top=@local_config_apple_cc//:toolchain
+build --crosstool_top=@local_config_apple_cc//:toolchain
+build --host_crosstool_top=@local_config_apple_cc//:toolchain
+
 # Work around https://github.com/bazelbuild/bazel/issues/13912
 build --experimental_action_cache_store_output_metadata
 

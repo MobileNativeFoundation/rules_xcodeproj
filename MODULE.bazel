@@ -29,6 +29,12 @@ use_repo(
 # Non-release dependencies
 
 bazel_dep(
+    name = "apple_support",
+    version = "1.8.1",
+    dev_dependency = True,
+    repo_name = "build_bazel_apple_support",
+)
+bazel_dep(
     name = "buildifier_prebuilt",
     version = "6.1.0",
     dev_dependency = True,
@@ -50,6 +56,13 @@ single_version_override(
     module_name = "bazel_skylib",
     version = "1.4.2",
 )
+
+apple_cc_configure = use_extension(
+    "@build_bazel_apple_support//crosstool:setup.bzl",
+    "apple_cc_configure_extension",
+    dev_dependency = True,
+)
+use_repo(apple_cc_configure, "local_config_apple_cc")
 
 use_repo(
     non_module_deps,
