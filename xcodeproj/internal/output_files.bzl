@@ -5,181 +5,6 @@ load(":memory_efficiency.bzl", "EMPTY_DEPSET", "memory_efficient_depset")
 
 # Utility
 
-def _create(
-        *,
-        ctx,
-        direct_outputs = None,
-        infoplist = None,
-        inputs,
-        transitive_infos,
-        should_produce_dto,
-        should_produce_output_groups):
-    """Creates the internal data structure of the `output_files` module.
-
-    Args:
-        ctx: The aspect context.
-        direct_outputs: A value returned from `_get_outputs`, or `None` if
-            the outputs are being merged.
-        infoplist: A `File` or `None`.
-        inputs: A value returned from `input_files.collect`, or `None`.
-        transitive_infos: A `list` of `XcodeProjInfo`s for the transitive
-            dependencies of the current target.
-        should_produce_dto: If `True`, `outputs_files.to_dto` will return
-            collected values. This will only be `True` if the generator can use
-            the output files (e.g. not Build with Bazel via Proxy).
-        should_produce_output_groups: If `True`,
-            `outputs.to_output_groups_fields` will include output groups for
-            this target. This will only be `True` for modes that build primarily
-            with Bazel.
-
-    Returns:
-        A `tuple` with containing two elements:
-
-        *   A `struct`, which will only be used within the aspect, with the
-            following fields:
-
-            *   `direct_outputs`
-            *   `generated_output_group_name`
-            *   `linking_output_group_name`
-            *   `products_output_group_name`
-
-        *   An opaque `struct`, which will end up in `XcodeProjInfo.outputs`,
-            representing the internal data structure of the `output_files`
-            module.
-    """
-    compiled = None
-    direct_products = []
-    dsym_files = EMPTY_DEPSET
-    indexstore = None
-
-    if direct_outputs:
-        is_framework = direct_outputs.is_framework
-        swift = direct_outputs.swift
-        if swift:
-            compiled, indexstore = swift_to_outputs(swift)
-
-        if direct_outputs.product:
-            direct_products.append(direct_outputs.product)
-
-        if direct_outputs.dsym_files:
-            dsym_files = direct_outputs.dsym_files
-    else:
-        is_framework = False
-        swift = None
-
-    if should_produce_output_groups:
-        if compiled:
-            # We only need the single swiftmodule in order to download
-            # everything from the remote cache (because of
-            # `--experimental_remote_download_regex`). Reducing the number of
-            # items in an output group keeps the BEP small.
-            closest_compiled = memory_efficient_depset(compiled[0:1])
-        else:
-            closest_compiled = memory_efficient_depset(transitive = [
-                info.outputs._closest_compiled
-                for info in transitive_infos
-                if not info.outputs._is_framework
-            ])
-
-        transitive_indexestores = memory_efficient_depset(
-            [indexstore] if indexstore else None,
-            transitive = [
-                info.outputs._transitive_indexestores
-                for info in transitive_infos
-            ],
-        )
-
-        # TODO: Once BwB mode no longer has target dependencies, remove
-        # transitive products. Until then we need them, to allow `Copy Bazel
-        # Outputs` to be able to copy the products of transitive dependencies.
-        transitive_products = memory_efficient_depset(
-            direct_products if direct_products else None,
-            transitive = [
-                info.outputs._transitive_products
-                for info in transitive_infos
-            ] + [dsym_files],
-        )
-    else:
-        closest_compiled = EMPTY_DEPSET
-        transitive_indexestores = EMPTY_DEPSET
-        transitive_products = EMPTY_DEPSET
-
-    transitive_infoplists = memory_efficient_depset(
-        [infoplist] if infoplist else None,
-        transitive = [
-            info.outputs._transitive_infoplists
-            for info in transitive_infos
-        ],
-    )
-
-    if should_produce_output_groups and direct_outputs:
-        generated_output_group_name = "bc {}".format(direct_outputs.id)
-        linking_output_group_name = "bl {}".format(direct_outputs.id)
-        products_output_group_name = "bp {}".format(direct_outputs.id)
-
-        indexstores_filelist = filelists.write(
-            actions = ctx.actions,
-            rule_name = ctx.rule.attr.name,
-            name = "bi",
-            files = transitive_indexestores,
-        )
-
-        # We don't want to declare indexstore files as outputs, because they
-        # expand to individual files and blow up the BEP
-        indexstores_files = depset([indexstores_filelist])
-
-        compiled_and_generated_transitive = [closest_compiled]
-        if inputs:
-            compiled_and_generated_transitive.append(inputs.compiling_files)
-
-        direct_group_list = [
-            (
-                generated_output_group_name,
-                False,
-                memory_efficient_depset(
-                    transitive = compiled_and_generated_transitive,
-                ),
-            ),
-            (
-                "bi {}".format(direct_outputs.id),
-                True,
-                indexstores_files,
-            ),
-            (linking_output_group_name, False, EMPTY_DEPSET),
-            (products_output_group_name, False, transitive_products),
-        ]
-    else:
-        generated_output_group_name = None
-        linking_output_group_name = None
-        products_output_group_name = None
-        direct_group_list = None
-
-    output_group_list = memory_efficient_depset(
-        direct_group_list,
-        transitive = [
-            info.outputs._output_group_list
-            for info in transitive_infos
-        ],
-    )
-
-    return (
-        struct(
-            direct_outputs = direct_outputs if should_produce_dto else None,
-            generated_output_group_name = generated_output_group_name,
-            linking_output_group_name = linking_output_group_name,
-            products_output_group_name = products_output_group_name,
-            transitive_infoplists = transitive_infoplists,
-        ),
-        struct(
-            _closest_compiled = closest_compiled,
-            _is_framework = is_framework,
-            _output_group_list = output_group_list,
-            _transitive_indexestores = transitive_indexestores,
-            _transitive_products = transitive_products,
-            _transitive_infoplists = transitive_infoplists,
-        ),
-    )
-
 def _get_outputs(*, debug_outputs, id, product, swift_info, output_group_info):
     """Collects the output files for a given target.
 
@@ -292,7 +117,7 @@ def _collect_output_files(
     if should_produce_output_groups:
         should_produce_output_groups = ctx.attr._build_mode != "xcode"
 
-    outputs = _get_outputs(
+    direct_outputs = _get_outputs(
         debug_outputs = debug_outputs,
         id = id,
         output_group_info = output_group_info,
@@ -300,14 +125,133 @@ def _collect_output_files(
         swift_info = swift_info,
     )
 
-    return _create(
-        ctx = ctx,
-        direct_outputs = outputs,
-        infoplist = infoplist,
-        inputs = inputs,
-        should_produce_dto = should_produce_dto,
-        should_produce_output_groups = should_produce_output_groups,
-        transitive_infos = transitive_infos,
+    compiled = None
+    direct_products = []
+    dsym_files = EMPTY_DEPSET
+    indexstore = None
+
+    is_framework = direct_outputs.is_framework
+    swift = direct_outputs.swift
+    if swift:
+        compiled, indexstore = swift_to_outputs(swift)
+
+    if direct_outputs.product:
+        direct_products.append(direct_outputs.product)
+
+    if direct_outputs.dsym_files:
+        dsym_files = direct_outputs.dsym_files
+
+    if should_produce_output_groups:
+        if compiled:
+            # We only need the single swiftmodule in order to download
+            # everything from the remote cache (because of
+            # `--experimental_remote_download_regex`). Reducing the number of
+            # items in an output group keeps the BEP small.
+            closest_compiled = memory_efficient_depset(compiled[0:1])
+        else:
+            closest_compiled = memory_efficient_depset(transitive = [
+                info.outputs._closest_compiled
+                for info in transitive_infos
+                if not info.outputs._is_framework
+            ])
+
+        transitive_indexestores = memory_efficient_depset(
+            [indexstore] if indexstore else None,
+            transitive = [
+                info.outputs._transitive_indexestores
+                for info in transitive_infos
+            ],
+        )
+
+        # TODO: Once BwB mode no longer has target dependencies, remove
+        # transitive products. Until then we need them, to allow `Copy Bazel
+        # Outputs` to be able to copy the products of transitive dependencies.
+        transitive_products = memory_efficient_depset(
+            direct_products if direct_products else None,
+            transitive = [
+                info.outputs._transitive_products
+                for info in transitive_infos
+            ] + [dsym_files],
+        )
+    else:
+        closest_compiled = EMPTY_DEPSET
+        transitive_indexestores = EMPTY_DEPSET
+        transitive_products = EMPTY_DEPSET
+
+    transitive_infoplists = memory_efficient_depset(
+        [infoplist] if infoplist else None,
+        transitive = [
+            info.outputs._transitive_infoplists
+            for info in transitive_infos
+        ],
+    )
+
+    if should_produce_output_groups:
+        generated_output_group_name = "bc {}".format(direct_outputs.id)
+        linking_output_group_name = "bl {}".format(direct_outputs.id)
+        products_output_group_name = "bp {}".format(direct_outputs.id)
+
+        indexstores_filelist = filelists.write(
+            actions = ctx.actions,
+            rule_name = ctx.rule.attr.name,
+            name = "bi",
+            files = transitive_indexestores,
+        )
+
+        # We don't want to declare indexstore files as outputs, because they
+        # expand to individual files and blow up the BEP
+        indexstores_files = depset([indexstores_filelist])
+
+        compiled_and_generated_transitive = [closest_compiled]
+        if inputs:
+            compiled_and_generated_transitive.append(inputs.compiling_files)
+
+        direct_group_list = [
+            (
+                generated_output_group_name,
+                False,
+                memory_efficient_depset(
+                    transitive = compiled_and_generated_transitive,
+                ),
+            ),
+            (
+                "bi {}".format(direct_outputs.id),
+                True,
+                indexstores_files,
+            ),
+            (linking_output_group_name, False, EMPTY_DEPSET),
+            (products_output_group_name, False, transitive_products),
+        ]
+    else:
+        generated_output_group_name = None
+        linking_output_group_name = None
+        products_output_group_name = None
+        direct_group_list = None
+
+    output_group_list = memory_efficient_depset(
+        direct_group_list,
+        transitive = [
+            info.outputs._output_group_list
+            for info in transitive_infos
+        ],
+    )
+
+    return (
+        struct(
+            direct_outputs = direct_outputs if should_produce_dto else None,
+            generated_output_group_name = generated_output_group_name,
+            linking_output_group_name = linking_output_group_name,
+            products_output_group_name = products_output_group_name,
+            transitive_infoplists = transitive_infoplists,
+        ),
+        struct(
+            _closest_compiled = closest_compiled,
+            _is_framework = is_framework,
+            _output_group_list = output_group_list,
+            _transitive_indexestores = transitive_indexestores,
+            _transitive_products = transitive_products,
+            _transitive_infoplists = transitive_infoplists,
+        ),
     )
 
 def _merge_output_files(*, transitive_infos):
@@ -322,12 +266,23 @@ def _merge_output_files(*, transitive_infos):
         values include the outputs of the transitive dependencies, via
         `transitive_infos` (e.g. `generated` and `extra_files`).
     """
-    return _create(
-        ctx = None,
-        transitive_infos = transitive_infos,
-        inputs = None,
-        should_produce_dto = False,
-        should_produce_output_groups = False,
+    return struct(
+        _closest_compiled = EMPTY_DEPSET,
+        _is_framework = False,
+        _output_group_list = memory_efficient_depset(
+            transitive = [
+                info.outputs._output_group_list
+                for info in transitive_infos
+            ],
+        ),
+        _transitive_indexestores = EMPTY_DEPSET,
+        _transitive_products = EMPTY_DEPSET,
+        _transitive_infoplists = memory_efficient_depset(
+            transitive = [
+                info.outputs._transitive_infoplists
+                for info in transitive_infos
+            ],
+        ),
     )
 
 def _process_output_group_files(

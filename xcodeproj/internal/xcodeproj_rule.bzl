@@ -1483,7 +1483,7 @@ configurations: {}""".format(", ".join(xcode_configurations)))
     name = ctx.attr.name
     project_name = ctx.attr.project_name
 
-    (_, provider_outputs) = output_files.merge(
+    provider_outputs = output_files.merge(
         transitive_infos = infos,
     )
 
