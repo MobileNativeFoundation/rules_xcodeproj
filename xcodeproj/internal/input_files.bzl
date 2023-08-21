@@ -5,7 +5,7 @@ load(
     "AppleResourceBundleInfo",
     "AppleResourceInfo",
 )
-load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo")
+load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo", "SwiftProtoInfo")
 load(":compilation_providers.bzl", comp_providers = "compilation_providers")
 load(":filelists.bzl", "filelists")
 load(
@@ -271,6 +271,10 @@ def _collect_input_files(
         )
     for attr in automatic_target_info.exported_symbols_lists:
         file_handlers[attr] = _handle_extrafiles_file
+
+    # TODO: Create a target for each `proto_library` instead
+    if SwiftProtoInfo in target:
+        srcs.extend(target[SwiftProtoInfo].pbswift_files.to_list())
 
     categorized_files = {}
     xccurrentversions = []
