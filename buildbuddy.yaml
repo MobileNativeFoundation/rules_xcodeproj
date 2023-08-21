@@ -83,7 +83,7 @@ actions:
     <<: *root_workspace
     bazel_commands:
       - *test_all
-  - name: Test - No Bzlmod
+  - name: Test - WORKSPACE
     <<: *arm64
     <<: *normal_resources
     <<: *action_base
@@ -105,7 +105,7 @@ actions:
     <<: *root_workspace
     bazel_commands:
       - *validate_integration
-  - name: Integration Test - Root - No Bzlmod
+  - name: Integration Test - Root - WORKSPACE
     <<: *arm64
     <<: *action_base
     <<: *normal_resources
@@ -121,7 +121,7 @@ actions:
     bazel_commands:
       - *validate_integration
       - *build_all
-  - name: Integration Test - "examples/cc" - No Bzlmod
+  - name: Integration Test - "examples/cc" - WORKSPACE
     <<: *arm64
     <<: *action_base
     <<: *normal_resources
@@ -138,7 +138,7 @@ actions:
     bazel_commands:
       - *validate_integration
       - *build_all
-  - name: Integration Test - "examples/integration" - No Bzlmod
+  - name: Integration Test - "examples/integration" - WORKSPACE
     <<: *arm64
     <<: *action_base
     <<: *normal_resources
