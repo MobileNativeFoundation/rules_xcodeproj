@@ -3,14 +3,14 @@
         "build_action": {
             "post_actions": [
                 {
-                    "expand_variables_based_on": "@//tools/generators/legacy:generator",
+                    "expand_variables_based_on": "@@//tools/generators/legacy:generator",
                     "name": "Example: Stop build time tracking...",
                     "script": "echo 'Completed Building target: generator'"
                 }
             ],
             "pre_actions": [
                 {
-                    "expand_variables_based_on": "@//tools/generators/legacy:generator",
+                    "expand_variables_based_on": "@@//tools/generators/legacy:generator",
                     "name": "Example: Start build time tracking...",
                     "script": "echo 'Building target: generator'"
                 }
@@ -24,7 +24,7 @@
                         "running": "unspecified",
                         "testing": "unspecified"
                     },
-                    "label": "@//tools/generators/legacy:generator"
+                    "label": "@@//tools/generators/legacy:generator"
                 }
             ]
         },
@@ -61,7 +61,7 @@
             "env": {
                 "CUSTOM_ENV_VAR": "hello"
             },
-            "target": "@//tools/generators/legacy:generator",
+            "target": "@@//tools/generators/legacy:generator",
             "working_directory": "/tmp"
         },
         "name": "generator",
@@ -89,7 +89,7 @@
             ],
             "build_configuration": "Profile",
             "env": null,
-            "target": "@//tools/generators/legacy:generator",
+            "target": "@@//tools/generators/legacy:generator",
             "working_directory": "/tmp"
         },
         "test_action": {
@@ -109,7 +109,7 @@
             "post_actions": [],
             "pre_actions": [],
             "targets": [
-                "@//tools/generators/legacy/test:tests"
+                "@@//tools/generators/legacy/test:tests"
             ]
         }
     },
@@ -126,7 +126,7 @@
                         "running": "enabled",
                         "testing": "enabled"
                     },
-                    "label": "@//tools/swiftc_stub:swiftc"
+                    "label": "@@//tools/swiftc_stub:swiftc"
                 }
             ]
         },
@@ -141,7 +141,7 @@
                 }
             },
             "env": {},
-            "target": "@//tools/swiftc_stub:swiftc",
+            "target": "@@//tools/swiftc_stub:swiftc",
             "working_directory": null
         },
         "name": "swiftc",

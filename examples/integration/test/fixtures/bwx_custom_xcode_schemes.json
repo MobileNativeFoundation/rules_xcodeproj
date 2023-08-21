@@ -14,15 +14,15 @@
             "expand_variables_based_on": null,
             "post_actions": [
                 {
-                    "expand_variables_based_on": "@//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests",
+                    "expand_variables_based_on": "@@//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests",
                     "name": "Run After Tests",
                     "script": "echo \"Hi\""
                 }
             ],
             "pre_actions": [],
             "targets": [
-                "@//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests",
-                "@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests"
+                "@@//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests",
+                "@@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests"
             ]
         }
     },
@@ -44,7 +44,7 @@
             "post_actions": [],
             "pre_actions": [],
             "targets": [
-                "@//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests"
+                "@@//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests"
             ]
         }
     },
@@ -63,15 +63,15 @@
             "expand_variables_based_on": null,
             "post_actions": [
                 {
-                    "expand_variables_based_on": "@//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTestSuite",
+                    "expand_variables_based_on": "@@//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTestSuite",
                     "name": "Run After Tests",
                     "script": "echo \"Hi\""
                 }
             ],
             "pre_actions": [],
             "targets": [
-                "@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite",
-                "@//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTestSuite"
+                "@@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite",
+                "@@//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTestSuite"
             ]
         }
     }

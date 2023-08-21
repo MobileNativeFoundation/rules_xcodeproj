@@ -160,10 +160,6 @@ pre_config_flags=(
   "--repo_env=XCODE_VERSION=%xcode_version%"
 )
 
-if [[ %is_fixture% -eq 1 ]]; then
-  pre_config_flags+=("--config=fixtures")
-fi
-
 bazel_cmd=(
   env
   "${envs[@]}"
