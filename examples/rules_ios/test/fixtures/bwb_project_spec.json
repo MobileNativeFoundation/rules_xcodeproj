@@ -1,37 +1,37 @@
 {
     "B": "rules_xcodeproj",
     "E": [
-        "//iOSApp/Test/MixedUnitTests:iOSAppMixedUnitTests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-3",
+        "@//iOSApp/Test/MixedUnitTests:iOSAppMixedUnitTests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-3",
         {},
-        "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-3",
+        "@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-3",
         {},
-        "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite_macro.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-3",
+        "@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite_macro.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-3",
         {},
-        "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests_macro.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-3",
+        "@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests_macro.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-3",
         {},
-        "//iOSApp/Test/ObjCUnitTests:iOS_App_ObjC_UnitTests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-3",
+        "@//iOSApp/Test/ObjCUnitTests:iOS_App_ObjC_UnitTests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-3",
         {},
-        "//iOSApp/Test/ObjCUnitTests:iOS_App_ObjC_UnitTests_macro_with_bundle_name.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-3",
+        "@//iOSApp/Test/ObjCUnitTests:iOS_App_ObjC_UnitTests_macro_with_bundle_name.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-3",
         {},
-        "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTestSuite.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-3",
+        "@//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTestSuite.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-3",
         {},
-        "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-3",
+        "@//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-3",
         {},
-        "//iOSApp/Test/UITests:iOSAppUITestSuite.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-3",
+        "@//iOSApp/Test/UITests:iOSAppUITestSuite.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-3",
         {},
-        "//iOSApp/Test/UITests:iOSAppUITestSuite_macro.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-3",
+        "@//iOSApp/Test/UITests:iOSAppUITestSuite_macro.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-3",
         {},
-        "//iOSApp/Test/UITests:iOSAppUITests_macro.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-3",
+        "@//iOSApp/Test/UITests:iOSAppUITests_macro.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-3",
         {}
     ],
-    "R": "//test/fixtures:xcodeproj_bwb",
+    "R": "@//test/fixtures:xcodeproj_bwb",
     "T": "fixture-target-ids-file",
     "a": [
-        "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTestSuite.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-3",
+        "@//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTestSuite.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-3",
         [
             "--command_line_args=-AppleLanguages,(en-GB)"
         ],
-        "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-3",
+        "@//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-3",
         [
             "--command_line_args=-AppleLanguages,(en-GB)"
         ]
@@ -228,13 +228,13 @@
         "d": "en"
     },
     "t": [
-        "//WidgetExtension:WidgetExtension applebin_ios-ios_arm64-dbg-STABLE-4",
+        "@//WidgetExtension:WidgetExtension applebin_ios-ios_arm64-dbg-STABLE-4",
         [
-            "//iOSApp/Source:iOSApp applebin_ios-ios_arm64-dbg-STABLE-4"
+            "@//iOSApp/Source:iOSApp applebin_ios-ios_arm64-dbg-STABLE-4"
         ],
-        "//WidgetExtension:WidgetExtension applebin_ios-ios_x86_64-dbg-STABLE-3",
+        "@//WidgetExtension:WidgetExtension applebin_ios-ios_x86_64-dbg-STABLE-3",
         [
-            "//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-dbg-STABLE-3"
+            "@//iOSApp/Source:iOSApp applebin_ios-ios_x86_64-dbg-STABLE-3"
         ]
     ]
 }

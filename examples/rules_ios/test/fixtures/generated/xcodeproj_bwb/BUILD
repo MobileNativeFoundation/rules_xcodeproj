@@ -31,7 +31,7 @@ xcodeproj(
     project_name = "bwb",
     project_options = {"development_region": "en"},
     runner_build_file = "test/fixtures/BUILD",
-    runner_label = "//test/fixtures:xcodeproj_bwb",
+    runner_label = "@//test/fixtures:xcodeproj_bwb",
     scheme_autogeneration_mode = "all",
     schemes_json = ":custom_xcode_schemes.json",
     tags = ["manual"],

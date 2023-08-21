@@ -7,7 +7,7 @@ root="$PWD"
 echo "Updating root fixtures"
 echo
 
-bazel run --config=cache --config=fixtures //test/fixtures:update
+bazel run --config=cache //test/fixtures:update
 
 for dir in examples/*/ ; do
     cd "$root/$dir"
@@ -18,5 +18,5 @@ for dir in examples/*/ ; do
     echo
     echo "Updating \"${dir%/}\" fixtures"
     echo
-    bazel run --config=cache --config=fixtures //test/fixtures:update
+    bazel run --config=cache //test/fixtures:update
 done

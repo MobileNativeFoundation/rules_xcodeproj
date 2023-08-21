@@ -53,14 +53,13 @@ x_templates:
 
   commands:
     - &set_release_archive_override "--output_base=setup-bazel-output-base run --config=workflows @rules_xcodeproj//tools:set_release_archive_override"
-    - &generate_integration "--output_base=bazel-output-base run --config=workflows --config=fixtures //test/fixtures:update"
-    - &validate_integration "--output_base=bazel-output-base run --config=workflows --config=fixtures //test/fixtures:validate"
-    - &build_all "--output_base=bazel-output-base build --config=workflows --config=fixtures --noexperimental_enable_bzlmod //..."
-    - &test_all "--output_base=bazel-output-base test --config=workflows --noexperimental_enable_bzlmod //..."
-    - &bazel_5_test_all "--output_base=bazel-output-base test --config=workflows --noexperimental_enable_bzlmod //..."
-    - &bzlmod_generate_integration "--output_base=bazel-output-base run --config=workflows --config=fixtures //test/fixtures:update"
-    - &bzlmod_build_all "--output_base=bazel-output-base build --config=workflows //..."
-    - &bzlmod_test_all "--output_base=bazel-output-base test --config=workflows //test/..."
+    - &generate_integration "--output_base=bazel-output-base run --config=workflows //test/fixtures:update"
+    - &validate_integration "--output_base=bazel-output-base run --config=workflows //test/fixtures:validate"
+    - &build_all "--output_base=bazel-output-base build --config=workflows //..."
+    - &test_all "--output_base=bazel-output-base test --config=workflows //test/..."
+    - &nobzlmod_build_all "--output_base=bazel-output-base build --config=workflows --config=nobzlmod //..."
+    - &nobzlmod_test_all "--output_base=bazel-output-base test --config=workflows --config=nobzlmod //..."
+    - &nobzlmod_generate_integration "--output_base=bazel-output-base run --config=workflows --config=nobzlmod //test/fixtures:update"
 
 actions:
   - name: Buildifier Lint
@@ -84,20 +83,20 @@ actions:
     <<: *root_workspace
     bazel_commands:
       - *test_all
-  - name: Test - Bzlmod
+  - name: Test - No Bzlmod
     <<: *arm64
     <<: *normal_resources
     <<: *action_base
     <<: *root_workspace
     bazel_commands:
-      - *bzlmod_test_all
+      - *nobzlmod_test_all
   - name: Test - Bazel 5
     <<: *bazel_5
     <<: *normal_resources
     <<: *action_base
     <<: *root_workspace
     bazel_commands:
-      - *bazel_5_test_all
+      - *test_all
 
   - name: Integration Test - Root
     <<: *arm64
@@ -122,14 +121,14 @@ actions:
     bazel_commands:
       - *validate_integration
       - *build_all
-  - name: Integration Test - "examples/cc" - Bzlmod
+  - name: Integration Test - "examples/cc" - No Bzlmod
     <<: *arm64
     <<: *action_base
     <<: *normal_resources
     <<: *examples_cc_workspace
     bazel_commands:
-      - *bzlmod_generate_integration
-      - *bzlmod_build_all
+      - *nobzlmod_generate_integration
+      - *nobzlmod_build_all
 
   - name: Integration Test - "examples/integration"
     <<: *arm64
@@ -139,14 +138,14 @@ actions:
     bazel_commands:
       - *validate_integration
       - *build_all
-  - name: Integration Test - "examples/integration" - Bzlmod
+  - name: Integration Test - "examples/integration" - No Bzlmod
     <<: *arm64
     <<: *action_base
     <<: *normal_resources
     <<: *examples_integration_workspace
     bazel_commands:
-      - *bzlmod_generate_integration
-      - *bzlmod_build_all
+      - *nobzlmod_generate_integration
+      - *nobzlmod_build_all
   - name: Integration Test - "examples/integration" - Bazel 5
     <<: *bazel_5
     <<: *action_base

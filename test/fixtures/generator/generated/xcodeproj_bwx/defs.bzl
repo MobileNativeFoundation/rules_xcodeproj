@@ -2,25 +2,25 @@
 
 # buildifier: disable=bzl-visibility
 load(
-    "@//xcodeproj/internal:xcodeproj_aspect.bzl",
+    "@@//xcodeproj/internal:xcodeproj_aspect.bzl",
     "make_xcodeproj_aspect",
 )
 
 # buildifier: disable=bzl-visibility
 load(
-    "@//xcodeproj/internal:xcodeproj_rule.bzl",
+    "@@//xcodeproj/internal:xcodeproj_rule.bzl",
     "make_xcodeproj_rule",
 )
 
 # buildifier: disable=bzl-visibility
 load(
-    "@//xcodeproj/internal:xcodeproj_transitions.bzl",
+    "@@//xcodeproj/internal:xcodeproj_transitions.bzl",
     "make_xcodeproj_target_transitions",
 )
 
 # buildifier: disable=bzl-visibility
 load(
-    "@//xcodeproj/internal:fixtures.bzl",
+    "@@//xcodeproj/internal:fixtures.bzl",
     "fixtures_transition",
 )
 

@@ -35,7 +35,7 @@ run --remote_download_outputs=all
 # rules_xcodeproj needs toplevel to download needed outputs
 build:rules_xcodeproj --remote_download_outputs=toplevel
 
-common:fixtures --verbose_failures
+common:nobzlmod --noexperimental_enable_bzlmod
 
 # Build with --config=cache to use BuildBuddy Remote Cache
 build:cache --bes_backend=grpcs://remote.buildbuddy.io
