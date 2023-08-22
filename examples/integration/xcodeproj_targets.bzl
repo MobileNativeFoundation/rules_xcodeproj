@@ -114,6 +114,8 @@ XCODEPROJ_TARGETS = [
     "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite",
     "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTestSuite",
     "//Proto:proto",
+    "//GRPC:echo_client",
+    "//GRPC:echo_server",
 ]
 
 IOS_BUNDLE_ID = "rules-xcodeproj.example"
