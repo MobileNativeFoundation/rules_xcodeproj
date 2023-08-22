@@ -6,9 +6,11 @@ load(
     "XCODE_CONFIGURATIONS",
     "get_xcode_schemes",
 )
+load("//test/fixtures:fixtures.bzl", "FIXTURE_MODE_AND_SUFFIXES")
 load("//xcodeproj:testing.bzl", "xcodeproj_fixture")
 
 xcodeproj_fixture(
+    modes_and_suffixes = FIXTURE_MODE_AND_SUFFIXES,
     scheme_autogeneration_mode = SCHEME_AUTOGENERATION_MODE,
     schemes = get_xcode_schemes(),
     top_level_targets = TOP_LEVEL_TARGETS,

@@ -23,6 +23,8 @@ bazel_dep(
     version = "0.0.1",
 )
 
+bazel_dep(name = "bazel_features", version = "1.0.0", dev_dependency = True)
+
 local_path_override(
     module_name = "rules_xcodeproj",
     path = "../..",
