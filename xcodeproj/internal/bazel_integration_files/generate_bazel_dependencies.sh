@@ -87,7 +87,6 @@ else
       fi
     fi
   done
-  echo "\n\n\nindexstores_filelists $indexstores_filelists\n\n\n"
   readonly indexstores_filelists
 
   if [ "${#output_groups[@]}" -eq 1 ]; then
@@ -184,7 +183,7 @@ done
 
 # Import indexes
 if [ -n "${indexstores_filelists:-}" ]; then
-  echo "import indexstores from $PROJECT_DIR $indexstores_filelists"
+  echo "$PROJECT_DIR: import indexstores from $indexstores_filelists"
   "$BAZEL_INTEGRATION_DIR/import_indexstores.sh" \
     "$INDEXING_PROJECT_DIR__NO" \
     "${indexstores_filelists[@]/#/$output_path/}" \
