@@ -24,30 +24,6 @@
             "t": "com.apple.product-type.library.static"
         }
     },
-    "@@//lib2:lib_impl darwin_x86_64-dbg-STABLE-1",
-    {
-        "1": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib2",
-        "2": {
-            "a": "x86_64",
-            "m": "12.0",
-            "v": "macosx"
-        },
-        "8": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib2/lib_impl.rules_xcodeproj.c.compile.params",
-        "c": "darwin_x86_64-dbg-STABLE-1",
-        "f": true,
-        "i": {
-            "s": [
-                "lib2/lib.c"
-            ]
-        },
-        "l": "@@//lib2:lib_impl",
-        "n": "lib_impl",
-        "p": {
-            "n": "lib_impl",
-            "p": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib2/liblib_impl.a",
-            "t": "com.apple.product-type.library.static"
-        }
-    },
     "@@//lib:lib_defines darwin_x86_64-dbg-STABLE-1",
     {
         "1": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib",
@@ -72,6 +48,55 @@
         "p": {
             "n": "lib_defines",
             "p": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib/liblib_defines.a",
+            "t": "com.apple.product-type.library.static"
+        }
+    },
+    "@@//lib2:lib_impl darwin_x86_64-dbg-STABLE-1",
+    {
+        "1": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib2",
+        "2": {
+            "a": "x86_64",
+            "m": "12.0",
+            "v": "macosx"
+        },
+        "8": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib2/lib_impl.rules_xcodeproj.c.compile.params",
+        "c": "darwin_x86_64-dbg-STABLE-1",
+        "f": true,
+        "i": {
+            "s": [
+                "lib2/lib.c"
+            ]
+        },
+        "l": "@@//lib2:lib_impl",
+        "n": "lib_impl",
+        "p": {
+            "n": "lib_impl",
+            "p": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib2/liblib_impl.a",
+            "t": "com.apple.product-type.library.static"
+        }
+    },
+    "@@examples_cc_external~override//:lib_impl darwin_x86_64-dbg-STABLE-1",
+    {
+        "1": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external~override",
+        "2": {
+            "a": "x86_64",
+            "m": "12.0",
+            "v": "macosx"
+        },
+        "8": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external~override/lib_impl.rules_xcodeproj.c.compile.params",
+        "c": "darwin_x86_64-dbg-STABLE-1",
+        "f": true,
+        "i": {
+            "s": [
+                "external/examples_cc_external~override/lib.c",
+                "external/examples_cc_external~override/private/private.inc"
+            ]
+        },
+        "l": "@@examples_cc_external~override//:lib_impl",
+        "n": "lib_impl",
+        "p": {
+            "n": "lib_impl",
+            "p": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external~override/liblib_impl.a",
             "t": "com.apple.product-type.library.static"
         }
     },
@@ -104,31 +129,6 @@
             "n": "tool",
             "p": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/tool/tool",
             "t": "com.apple.product-type.tool"
-        }
-    },
-    "@@examples_cc_external~override//:lib_impl darwin_x86_64-dbg-STABLE-1",
-    {
-        "1": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external~override",
-        "2": {
-            "a": "x86_64",
-            "m": "12.0",
-            "v": "macosx"
-        },
-        "8": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external~override/lib_impl.rules_xcodeproj.c.compile.params",
-        "c": "darwin_x86_64-dbg-STABLE-1",
-        "f": true,
-        "i": {
-            "s": [
-                "external/examples_cc_external~override/lib.c",
-                "external/examples_cc_external~override/private/private.inc"
-            ]
-        },
-        "l": "@@examples_cc_external~override//:lib_impl",
-        "n": "lib_impl",
-        "p": {
-            "n": "lib_impl",
-            "p": "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/external/examples_cc_external~override/liblib_impl.a",
-            "t": "com.apple.product-type.library.static"
         }
     }
 ]
