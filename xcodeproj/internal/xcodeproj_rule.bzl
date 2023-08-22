@@ -1,5 +1,6 @@
 """Implementation of the `xcodeproj` rule."""
 
+load("@bazel_features//:features.bzl", "bazel_features")
 load("@bazel_skylib//lib:dicts.bzl", "dicts")
 load("@bazel_skylib//lib:paths.bzl", "paths")
 load("@bazel_skylib//lib:shell.bzl", "shell")
@@ -1488,6 +1489,11 @@ configurations: {}""".format(", ".join(xcode_configurations)))
     )
     name = ctx.attr.name
     project_name = ctx.attr.project_name
+
+    if build_mode == "xcode" and bazel_features.cc.objc_linking_info_migrated:
+        fail("""\
+`build_mode = "xcode"` is currently not supported with Bazel 7+.
+""")
 
     provider_outputs = output_files.merge(
         transitive_infos = infos,
