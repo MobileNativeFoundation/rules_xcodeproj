@@ -185,7 +185,7 @@ done
 # Import indexes
 if [ -n "${indexstores_filelists:-}" ]; then
   echo "import indexstores from $PROJECT_DIR $indexstores_filelists"
-  time "$BAZEL_INTEGRATION_DIR/import_indexstores.sh" \
+  "$BAZEL_INTEGRATION_DIR/import_indexstores.sh" \
     "$INDEXING_PROJECT_DIR__NO" \
     "${indexstores_filelists[@]/#/$output_path/}" \
     >"$log_dir/import_indexstores.async.log" 2>&1 &
