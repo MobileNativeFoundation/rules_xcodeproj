@@ -1,3 +1,4 @@
+load("//test/fixtures:fixtures.bzl", "FIXTURE_MODE_AND_SUFFIXES")
 load(
     "//tools/generators/legacy:xcodeproj_targets.bzl",
     "SCHEME_AUTOGENERATION_MODE",
@@ -6,7 +7,6 @@ load(
     "XCODE_CONFIGURATIONS",
     "get_xcode_schemes",
 )
-load("//test/fixtures:fixtures.bzl", "FIXTURE_MODE_AND_SUFFIXES")
 load("//xcodeproj:testing.bzl", "xcodeproj_fixture")
 
 xcodeproj_fixture(
