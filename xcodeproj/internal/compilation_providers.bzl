@@ -119,7 +119,6 @@ def _collect_compilation_providers(
             _framework_files = EMPTY_DEPSET,
             _is_top_level = False,
             _is_xcode_library_target = is_xcode_library_target,
-            _propagated_cc_info = cc_info,
             _propagated_framework_files = EMPTY_DEPSET,
             _propagated_objc = objc,
             cc_info = cc_info,
@@ -147,15 +146,6 @@ def _merge_compilation_providers(
         A value similar to the one returned from
         `compilation_providers.collect`.
     """
-    merged_cc_info = cc_common.merge_cc_infos(
-        direct_cc_infos = [],
-        cc_infos = [
-            providers.cc_info
-            for _, providers in transitive_compilation_providers
-            if providers.cc_info
-        ],
-    )
-
     framework_files = memory_efficient_depset(
         transitive = [
             providers._propagated_framework_files
@@ -172,8 +162,19 @@ def _merge_compilation_providers(
             ],
             order = "topological",
         )
+        # Works around an issue with `*_dynamic_framework`
+        cc_info = None
     else:
         propagated_framework_files = framework_files
+
+    merged_cc_info = cc_common.merge_cc_infos(
+        direct_cc_infos = [cc_info] if cc_info else [],
+        cc_infos = [
+            providers.cc_info
+            for _, providers in transitive_compilation_providers
+            if providers.cc_info
+        ],
+    )
 
     # We don't actually merge the compilation context here, because no top-level
     # rules have (or will need) implementation deps
