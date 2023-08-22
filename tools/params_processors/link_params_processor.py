@@ -25,6 +25,7 @@ _LD_SKIP_OPTS = {
     "-fobjc-link-runtime": 1,
 
     # This is wrapped_clang specific, and we don't want to translate it for BwX
+    "-Wl,-oso_prefix,__BAZEL_EXECUTION_ROOT__/": 1,
     "OSO_PREFIX_MAP_PWD": 1,
 }
 
