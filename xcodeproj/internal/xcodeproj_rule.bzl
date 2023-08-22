@@ -221,10 +221,16 @@ def _process_extra_files(
 
     if is_fixture:
         def _normalize_path(path):
-            configuration, _, suffix = path.partition("/")
+            # bazel-out/darwin_x86_64-dbg-ST-deadbeaf/bin -> bazel-out/darwin_x86_64-dbg-STABLE-1/bin
+            if not path.startswith("bazel-out/"):
+                return path
+
+            configuration, _, suffix = path[10:].partition("/")
             if not suffix:
                 return path
+
             return (
+                "bazel-out/" +
                 configurations_map.get(configuration, configuration) + "/" +
                 suffix
             )
