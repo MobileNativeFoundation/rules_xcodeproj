@@ -1243,7 +1243,7 @@ def _write_spec(
 
     flattened_targets = flattened_key_values.to_list(
         target_dtos,
-        sort = is_fixture,
+        sort = False,
     )
 
     target_shards = []
