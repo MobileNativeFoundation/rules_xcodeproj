@@ -1,3 +1,4 @@
+load("@bazel_features//:features.bzl", "bazel_features")
 load(
     "@rules_xcodeproj//xcodeproj:testing.bzl",
     "update_fixtures",
@@ -11,15 +12,23 @@ load(
     "get_xcode_schemes",
 )
 
+_FIXTURE_MODE_AND_SUFFIXES = (
+    [("bazel", "bwb")] if bazel_features.cc.objc_linking_info_migrated else [
+        ("xcode", "bwx"),
+        ("bazel", "bwb"),
+    ]
+)
+
 xcodeproj_fixture(
+    modes_and_suffixes = _FIXTURE_MODE_AND_SUFFIXES,
     scheme_autogeneration_mode = SCHEME_AUTOGENERATION_MODE,
     schemes = get_xcode_schemes(),
     top_level_targets = XCODEPROJ_TARGETS,
 )
 
 _FIXTURES = [
-    ":xcodeproj_bwb",
-    ":xcodeproj_bwx",
+    ":xcodeproj_{}".format(suffix)
+    for _, suffix in _FIXTURE_MODE_AND_SUFFIXES
 ]
 
 update_fixtures(

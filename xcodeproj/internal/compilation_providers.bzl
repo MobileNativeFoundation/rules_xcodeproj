@@ -1,5 +1,12 @@
 """Module for propagating compilation providers."""
 
+load("@bazel_features//:features.bzl", "bazel_features")
+load(
+    ":memory_efficiency.bzl",
+    "EMPTY_DEPSET",
+    "memory_efficient_depset",
+)
+
 def _legacy_merge_cc_compilation_context(
         *,
         direct_compilation_context,
@@ -64,6 +71,8 @@ _merge_cc_compilation_context = (
     _modern_merge_cc_compilation_context if hasattr(apple_common, "link_multi_arch_static_library") else _legacy_merge_cc_compilation_context
 )
 
+_objc_has_linking_info = not bazel_features.cc.objc_linking_info_migrated
+
 def _collect_compilation_providers(
         *,
         cc_info,
@@ -102,10 +111,15 @@ def _collect_compilation_providers(
         ],
     )
 
+    if not _objc_has_linking_info:
+        objc = None
+
     return (
         struct(
+            _framework_files = EMPTY_DEPSET,
             _is_top_level = False,
             _is_xcode_library_target = is_xcode_library_target,
+            _propagated_framework_files = EMPTY_DEPSET,
             _propagated_objc = objc,
             cc_info = cc_info,
             objc = objc,
@@ -132,6 +146,28 @@ def _merge_compilation_providers(
         A value similar to the one returned from
         `compilation_providers.collect`.
     """
+    framework_files = memory_efficient_depset(
+        transitive = [
+            providers._propagated_framework_files
+            for _, providers in transitive_compilation_providers
+        ],
+        order = "topological",
+    )
+
+    if apple_dynamic_framework_info:
+        propagated_framework_files = memory_efficient_depset(
+            transitive = [
+                apple_dynamic_framework_info.framework_files,
+                framework_files,
+            ],
+            order = "topological",
+        )
+
+        # Works around an issue with `*_dynamic_framework`
+        cc_info = None
+    else:
+        propagated_framework_files = framework_files
+
     merged_cc_info = cc_common.merge_cc_infos(
         direct_cc_infos = [cc_info] if cc_info else [],
         cc_infos = [
@@ -148,22 +184,27 @@ def _merge_compilation_providers(
     )
 
     objc = None
-    maybe_objc_providers = [
-        _to_objc(providers._propagated_objc, providers.cc_info)
-        for _, providers in transitive_compilation_providers
-    ]
-    objc_providers = [objc for objc in maybe_objc_providers if objc]
-    if objc_providers:
-        objc = apple_common.new_objc_provider(providers = objc_providers)
-    if apple_dynamic_framework_info:
-        propagated_objc = apple_dynamic_framework_info.objc
+    if _objc_has_linking_info:
+        maybe_objc_providers = [
+            _to_objc(providers._propagated_objc, providers.cc_info)
+            for _, providers in transitive_compilation_providers
+        ]
+        objc_providers = [objc for objc in maybe_objc_providers if objc]
+        if objc_providers:
+            objc = apple_common.new_objc_provider(providers = objc_providers)
+        if apple_dynamic_framework_info:
+            propagated_objc = apple_dynamic_framework_info.objc
+        else:
+            propagated_objc = objc
     else:
-        propagated_objc = objc
+        propagated_objc = None
 
     return (
         struct(
+            _framework_files = framework_files,
             _is_top_level = True,
             _is_xcode_library_target = False,
+            _propagated_framework_files = propagated_framework_files,
             _propagated_objc = propagated_objc,
             cc_info = merged_cc_info,
             objc = objc,
