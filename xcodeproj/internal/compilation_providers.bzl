@@ -162,6 +162,7 @@ def _merge_compilation_providers(
             ],
             order = "topological",
         )
+
         # Works around an issue with `*_dynamic_framework`
         cc_info = None
     else:
