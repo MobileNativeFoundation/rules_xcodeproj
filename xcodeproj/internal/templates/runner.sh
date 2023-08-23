@@ -208,7 +208,7 @@ else
 
   if [[ $cmd == "build" && -n "${generator_output_groups:-}" ]]; then
     pre_config_flags+=(
-      "--experimental_remote_download_regex=.*\.indexstore/.*|.*\.a$|.*\.swiftdoc$|.*\.swiftmodule$|.*\.swiftsourceinfo$"
+      "--experimental_remote_download_regex=.*\.indexstore/.*|.*\.a$|.*\.swiftdoc$|.*\.swiftmodule$|.*\.swiftsourceinfo$|.*\.swift$"
       "--config=$bazel_config"
     )
 
