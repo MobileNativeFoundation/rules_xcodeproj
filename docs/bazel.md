@@ -596,7 +596,7 @@ Provides information needed to generate an Xcode project.
 | Name  | Description |
 | :------------- | :------------- |
 | <a id="XcodeProjInfo-args"></a>args |  A `depset` of `struct`s with `id` and `arg` fields. The `id` field is the target id of the target and `arg` values for the target (if applicable).    |
-| <a id="XcodeProjInfo-compilation_providers"></a>compilation_providers |  A value returned from `compilation_providers.collect_for_{non_,}top_level`.    |
+| <a id="XcodeProjInfo-compilation_providers"></a>compilation_providers |  A value returned from `compilation_providers.{collect,merge}`.    |
 | <a id="XcodeProjInfo-dependencies"></a>dependencies |  A `depset` of target ids (see `xcode_target.id`) that this target directly depends on.    |
 | <a id="XcodeProjInfo-envs"></a>envs |  A `depset` of `struct`s with `id` and `env` fields. The `id` field is the target id of the target and `env` values for the target (if applicable).    |
 | <a id="XcodeProjInfo-extension_infoplists"></a>extension_infoplists |  A `depset` of `struct`s with 'id' and 'infoplist' fields. The 'id' field is the target id of the application extension target. The 'infoplist' field is a `File` for the Info.plist for the target.    |

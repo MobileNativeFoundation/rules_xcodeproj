@@ -121,7 +121,7 @@ target id of the target and `arg` values
 for the target (if applicable).
 """,
         "compilation_providers": """\
-A value returned from `compilation_providers.collect_for_{non_,}top_level`.
+A value returned from `compilation_providers.{collect,merge}`.
 """,
         "dependencies": """\
 A `depset` of target ids (see `xcode_target.id`) that this target directly
