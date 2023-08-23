@@ -59,13 +59,9 @@ def _create(
             compiled, indexstore = swift_to_outputs(swift)
             if indexstore: 
                 indexstores.append(indexstore)
-        objc = direct_outputs.objc
-        if objc: 
-            # objc case 
-            if indexstores: 
-                print("THIS SHOULD NOT HAPPEN")
-            else:
-                indexstores = objc
+        objc_indexstores = direct_outputs.objc_indexstores
+        if objc_indexstores: 
+            indexstores += objc_indexstores
 
         if direct_outputs.product:
             direct_products.append(direct_outputs.product)
@@ -140,7 +136,6 @@ def _create(
         compiled_and_generated_transitive = [closest_compiled]
         if inputs:
             compiled_and_generated_transitive.append(inputs.compiling_files)
-            
         direct_group_list = [
             (
                 generated_output_group_name,
@@ -245,7 +240,7 @@ def _get_outputs(*, debug_outputs, id, product, swift_info, output_group_info, o
         product_file_path = product.actual_file_path if product else None,
         dsym_files = dsym_files,
         swift = swift,
-        objc = objc_indexstores,
+        objc_indexstores = objc_indexstores,
     )
 
 def _has_dsym(debug_outputs):

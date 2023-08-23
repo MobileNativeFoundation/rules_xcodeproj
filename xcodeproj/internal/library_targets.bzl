@@ -24,12 +24,12 @@ load(
 )
 load(":xcode_targets.bzl", "xcode_targets")
 
-def _collect_indexstores(target):
-    objc_indexstores = []
-    for action in [a for a in target.actions if a.mnemonic == "ObjcCompile"]:
-        objc_indexstores.append(action.outputs)
-
-    objc_indexstores = [i for i in depset(transitive = objc_indexstores).to_list() if i.extension == "indexstore"]
+def _collect_objc_indexstores(target):
+    """Gathers outputs with .indexstore extension from the target's transitive ObjcCompile action outputs 
+    """
+    objc_compile_actions = [action for action in target.actions if a.mnemonic == "ObjcCompile"]
+    objc_compile_action_outputs = [action.outputs for action in objc_compile_actions]
+    objc_indexstores = [output for output in depset(transitive = objc_compile_action_outputs).to_list() if output.extension == "indexstore"]
     return objc_indexstores
 
 def process_library_target(
@@ -143,7 +143,7 @@ def process_library_target(
     )
     debug_outputs = target[apple_common.AppleDebugOutputs] if apple_common.AppleDebugOutputs in target else None
     output_group_info = target[OutputGroupInfo] if OutputGroupInfo in target else None
-    objc_indexstores = _collect_indexstores(target)
+    objc_indexstores = _collect_objc_indexstores(target)
         
     (target_outputs, provider_outputs) = output_files.collect(
         ctx = ctx,
