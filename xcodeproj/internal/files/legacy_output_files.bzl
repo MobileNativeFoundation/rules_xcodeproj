@@ -41,7 +41,7 @@ _COPYABLE_PRODUCT_TYPES = {
 
 # Utility
 
-def _get_outputs(*, debug_outputs, id, product, swift_info, output_group_info):
+def _get_outputs(*, debug_outputs, id, product, swift_info, output_group_info, c_indexstores = None):
     """Collects the output files for a given target.
 
     The outputs are bucketed into two categories: build and index. The build
@@ -58,6 +58,8 @@ def _get_outputs(*, debug_outputs, id, product, swift_info, output_group_info):
         product: A value from `process_product`, or `None` if the
             target isn't a top level target.
         swift_info: The `SwiftInfo` provider for the target, or `None`.
+        c_indexstores: A `list` of indexstores from ObjcCompile action and CppCompile 
+            action collected from `library_targets.bzl#_collect_cc_indexstores()`.
 
     Returns:
         A `struct` containing the following fields:
@@ -101,6 +103,7 @@ def _get_outputs(*, debug_outputs, id, product, swift_info, output_group_info):
         product_file_path = product.original_path if product else None,
         dsym_files = dsym_files,
         swift = swift,
+        c_indexstores = c_indexstores,
     )
 
 def _has_dsym(debug_outputs):
@@ -129,7 +132,8 @@ def _collect_legacy_output_files(
         rule_attr,
         transitive_infos,
         should_produce_dto = True,
-        should_produce_output_groups = True):
+        should_produce_output_groups = True,
+        c_indexstores = None):
     """Collects the outputs of a target.
 
     Args:
@@ -159,6 +163,8 @@ def _collect_legacy_output_files(
             `outputs.to_output_groups_fields` will include output groups for
             this target. This will only be `True` for modes that build primarily
             with Bazel.
+        c_indexstores: A `list` of indexstores from ObjcCompile action and CppCompile 
+            action collected from `library_targets.bzl#_collect_cc_indexstores()`. 
 
     Returns:
         An opaque `struct` that should be used with `output_files.to_dto` or
@@ -173,18 +179,26 @@ def _collect_legacy_output_files(
         output_group_info = output_group_info,
         product = product,
         swift_info = swift_info,
+        c_indexstores = c_indexstores,
     )
 
     direct_products = []
     dsym_files = EMPTY_DEPSET
+    indexstores = []
 
     is_framework = direct_outputs.is_framework
     swift = direct_outputs.swift
     if swift:
         swiftmodules, indexstore = swift_to_outputs(swift)
+        if indexstore: 
+            indexstores.append(indexstore)
     else:
         indexstore = None
         swiftmodules = []
+
+    c_indexstores = direct_outputs.c_indexstores
+    if c_indexstores:
+        indexstores += c_indexstores
 
     if direct_outputs.product:
         direct_products.append(direct_outputs.product)

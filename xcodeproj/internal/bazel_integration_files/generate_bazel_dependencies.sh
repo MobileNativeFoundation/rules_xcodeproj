@@ -195,6 +195,7 @@ done
 
 # Import indexes
 if [ -n "${indexstores_filelists:-}" ]; then
+  >&2 echo "$PROJECT_DIR: import indexstores from $indexstores_filelists"
   "$BAZEL_INTEGRATION_DIR/import_indexstores" \
     "$INDEXING_PROJECT_DIR__NO" \
     "${indexstores_filelists[@]/#/$output_path/}" \

@@ -36,6 +36,14 @@ load(
     processed_targets = "legacy_processed_targets",
 )
 
+def _collect_cc_indexstores(target):
+    """Gathers outputs with .indexstore extension from the target's transitive c language compile action outputs 
+    """
+    c_compile_actions = [action for action in target.actions if action.mnemonic in ("ObjcCompile", "CppCompile")]
+    c_compile_action_outputs = [action.outputs for action in c_compile_actions]
+    indexstores = [output for output in depset(transitive = c_compile_action_outputs).to_list() if output.extension == "indexstore"]
+    return indexstores
+
 def _process_legacy_library_target(
         *,
         ctx,
@@ -135,6 +143,8 @@ def _process_legacy_library_target(
     )
     debug_outputs = target[apple_common.AppleDebugOutputs] if apple_common.AppleDebugOutputs in target else None
     output_group_info = target[OutputGroupInfo] if OutputGroupInfo in target else None
+    c_indexstores = _collect_cc_indexstores(target)
+        
     (target_outputs, provider_outputs) = output_files.collect(
         ctx = ctx,
         debug_outputs = debug_outputs,
@@ -145,6 +155,7 @@ def _process_legacy_library_target(
         rule_attr = rule_attr,
         swift_info = swift_info,
         transitive_infos = transitive_infos,
+        c_indexstores = c_indexstores,
     )
 
     if target_inputs.pch:
