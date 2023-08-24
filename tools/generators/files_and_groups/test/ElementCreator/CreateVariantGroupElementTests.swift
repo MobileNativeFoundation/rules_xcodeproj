@@ -12,13 +12,14 @@ final class CreateVariantGroupElementTests: XCTestCase {
         // Arrange
 
         let name = "Localizable.strings"
-        let path = "a/bazel/path/Localizable.strings"
+        let path = "a/bazel/path/es.lproj/Localizable.strings"
 
         let expectedCreateIdentifierCalled: [
             ElementCreator.CreateIdentifier.MockTracker.Called
         ] = [
             .init(
-                path: "a/bazel/path/Localizable.strings",
+                path: path,
+                name: name,
                 type: .localized
             )
         ]
@@ -50,7 +51,7 @@ final class CreateVariantGroupElementTests: XCTestCase {
         // Arrange
 
         let name = "Localizable.strings"
-        let path = "a/bazel/path/Localizable.strings"
+        let path = "a/bazel/path/en.lproj/Localizable.strings"
 
         // Act
 
@@ -74,7 +75,7 @@ final class CreateVariantGroupElementTests: XCTestCase {
         // Arrange
 
         let name = "Localizable.strings"
-        let path = "a/bazel/path/Localizable.strings"
+        let path = "a/bazel/path/Base.lproj/Localizable.strings"
         let childIdentifiers = [
             "a /* a/path */",
             "1 /* one */",
@@ -145,7 +146,7 @@ final class CreateVariantGroupElementTests: XCTestCase {
         // Arrange
 
         let name = "Localizable.strings"
-        let path = "a/bazel/path/Localizable.strings"
+        let path = "a/bazel/path/en.lproj/Localizable.strings"
 
         let expectedContent = #"""
 {

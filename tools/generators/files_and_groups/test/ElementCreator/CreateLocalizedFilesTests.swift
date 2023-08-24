@@ -39,59 +39,48 @@ final class CreateLocalizedFilesTests: XCTestCase {
             bazelPaths: stubbedBazelPaths
         )
 
-        let expectedCreateFileElementCalled: [
-            ElementCreator.CreateFileElement.MockTracker.Called
+        let expectedCreateLocalizedFileElementCalled: [
+            ElementCreator.CreateLocalizedFileElement.MockTracker.Called
         ] = [
             .init(
                 name: region,
+                path: "en.lproj/z",
                 ext: nil,
-                bazelPath: "p/en.lproj/z",
-                specialRootGroupType: specialRootGroupType
+                bazelPath: "p/en.lproj/z"
             ),
             .init(
                 name: region,
+                path: "en.lproj/q.ext",
                 ext: "ext",
-                bazelPath: "p/en.lproj/q.ext",
-                specialRootGroupType: specialRootGroupType
+                bazelPath: "p/en.lproj/q.ext"
             ),
         ]
-        let stubbedCreateFileElementResults = [
-            (
-                element: Element(
-                    name: "z",
-                    object: .init(
-                        identifier: "z id",
-                        content: "z content"
-                    ),
-                    sortOrder: .fileLike
+        let stubbedLocalizedFileElements = [
+            Element(
+                name: "z",
+                object: .init(
+                    identifier: "z id",
+                    content: "z content"
                 ),
-                resolvedRepository: ResolvedRepository(
-                    sourcePath: "z",
-                    mappedPath: "1"
-                )
+                sortOrder: .fileLike
             ),
-            (
-                element: Element(
-                    name: "q",
-                    object: .init(
-                        identifier: "q id",
-                        content: "q content"
-                    ),
-                    sortOrder: .groupLike
+            Element(
+                name: "q",
+                object: .init(
+                    identifier: "q id",
+                    content: "q content"
                 ),
-                resolvedRepository: ResolvedRepository(
-                    sourcePath: "y",
-                    mappedPath: "2"
-                )
+                sortOrder: .groupLike
             ),
         ]
-        let createFileElement = ElementCreator.CreateFileElement.mock(
-            results: stubbedCreateFileElementResults
-        )
+        let createLocalizedFileElement =
+            ElementCreator.CreateLocalizedFileElement.mock(
+                elements: stubbedLocalizedFileElements
+            )
 
         let expectedLocalizedFiles: [GroupChild.LocalizedFile] = [
             .init(
-                element: stubbedCreateFileElementResults[0].element,
+                element: stubbedLocalizedFileElements[0],
                 region: region,
                 name: "z",
                 basenameWithoutExt: "z",
@@ -99,7 +88,7 @@ final class CreateLocalizedFilesTests: XCTestCase {
                 bazelPaths: stubbedBazelPaths[0]
             ),
             .init(
-                element: stubbedCreateFileElementResults[1].element,
+                element: stubbedLocalizedFileElements[1],
                 region: region,
                 name: "q.ext",
                 basenameWithoutExt: "q",
@@ -117,7 +106,7 @@ final class CreateLocalizedFilesTests: XCTestCase {
                 specialRootGroupType: specialRootGroupType,
                 region: region,
                 collectBazelPaths: collectBazelPaths.mock,
-                createFileElement: createFileElement.mock
+                createLocalizedFileElement: createLocalizedFileElement.mock
             )
 
         // Assert
@@ -127,8 +116,8 @@ final class CreateLocalizedFilesTests: XCTestCase {
             expectedCollectBazelPathsCalled
         )
         XCTAssertNoDifference(
-            createFileElement.tracker.called,
-            expectedCreateFileElementCalled
+            createLocalizedFileElement.tracker.called,
+            expectedCreateLocalizedFileElementCalled
         )
         XCTAssertNoDifference(
             localizedFiles,

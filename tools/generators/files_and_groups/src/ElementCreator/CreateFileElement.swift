@@ -136,6 +136,8 @@ sourceTree = \(attributes.elementAttributes.sourceTree.rawValue); }
                 object: .init(
                     identifier: createIdentifier(
                         path: bazelPath.path,
+                        name: attributes.elementAttributes.name ??
+                            attributes.elementAttributes.path,
                         type: .fileReference
                     ),
                     content: contentComponents.joined(separator: " ")

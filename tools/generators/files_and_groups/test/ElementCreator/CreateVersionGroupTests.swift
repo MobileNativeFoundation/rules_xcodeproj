@@ -35,7 +35,11 @@ final class CreateVersionGroupTests: XCTestCase {
         let expectedCreateIdentifierCalled: [
             ElementCreator.CreateIdentifier.MockTracker.Called
         ] = [
-            .init(path: expectedBazelPath.path, type: .coreData),
+            .init(
+                path: expectedBazelPath.path,
+                name: "node.xcdatamodeld",
+                type: .coreData
+            ),
         ]
         let stubbedIdentifier = "identifier"
         let createIdentifier = ElementCreator.CreateIdentifier

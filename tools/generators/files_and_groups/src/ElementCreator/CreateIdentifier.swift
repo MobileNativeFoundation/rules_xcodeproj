@@ -18,10 +18,12 @@ extension ElementCreator {
         /// See `Identifiers.FilesAndGroups.element` for details.
         func callAsFunction(
             path: String,
+            name: String,
             type: Identifiers.FilesAndGroups.ElementType
         ) -> String {
             return callable(
                 path,
+                /*name:*/ name,
                 /*type:*/ type,
                 /*hashCache:*/ &hashCache
             )
@@ -34,6 +36,7 @@ extension ElementCreator {
 extension ElementCreator.CreateIdentifier {
     typealias Callable = (
         _ path: String,
+        _ name: String,
         _ type: Identifiers.FilesAndGroups.ElementType,
         _ hashCache: inout Set<String>
     ) -> String
