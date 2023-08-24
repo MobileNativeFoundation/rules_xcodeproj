@@ -136,7 +136,7 @@ def _target_info_fields(
         outputs,
         potential_target_merges,
         replacement_labels,
-        resource_bundle_informations,
+        resource_bundle_ids,
         target_type,
         transitive_dependencies,
         xcode_target,
@@ -166,8 +166,8 @@ def _target_info_fields(
             `XcodeProjInfo.potential_target_merges` field.
         replacement_labels: Maps to the `XcodeProjInfo.replacement_labels`
             field.
-        resource_bundle_informations: Maps to the
-            `XcodeProjInfo.resource_bundle_informations` field.
+        resource_bundle_ids: Maps to the
+            `XcodeProjInfo.resource_bundle_ids` field.
         target_type: Maps to the `XcodeProjInfo.target_type` field.
         transitive_dependencies: Maps to the
             `XcodeProjInfo.transitive_dependencies` field.
@@ -183,6 +183,7 @@ def _target_info_fields(
         *   `compilation_providers`
         *   `dependencies`
         *   `extension_infoplists`
+        *   `envs`
         *   `generated_inputs`
         *   `hosted_targets`
         *   `inputs`
@@ -191,9 +192,8 @@ def _target_info_fields(
         *   `outputs`
         *   `potential_target_merges`
         *   `replacement_labels`
-        *   `resource_bundle_informations`
+        *   `resource_bundle_ids`
         *   `target_type`
-        *   `envs`
         *   `transitive_dependencies`
         *   `xcode_target`
         *   `xcode_targets`
@@ -213,7 +213,7 @@ def _target_info_fields(
         "outputs": outputs,
         "potential_target_merges": potential_target_merges,
         "replacement_labels": replacement_labels,
-        "resource_bundle_informations": resource_bundle_informations,
+        "resource_bundle_ids": resource_bundle_ids,
         "target_type": target_type,
         "transitive_dependencies": transitive_dependencies,
         "xcode_required_targets": xcode_required_targets,
@@ -399,9 +399,9 @@ def _skip_target(
                 for info in valid_transitive_infos
             ],
         ),
-        resource_bundle_informations = memory_efficient_depset(
+        resource_bundle_ids = memory_efficient_depset(
             transitive = [
-                info.resource_bundle_informations
+                info.resource_bundle_ids
                 for info in valid_transitive_infos
             ],
         ),
@@ -575,10 +575,10 @@ def _create_xcodeprojinfo(
                 for _, info in transitive_infos
             ],
         ),
-        resource_bundle_informations = memory_efficient_depset(
-            processed_target.resource_bundle_informations,
+        resource_bundle_ids = memory_efficient_depset(
+            processed_target.resource_bundle_ids,
             transitive = [
-                info.resource_bundle_informations
+                info.resource_bundle_ids
                 for info in valid_transitive_infos
             ],
         ),

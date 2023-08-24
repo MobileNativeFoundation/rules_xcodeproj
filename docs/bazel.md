@@ -579,8 +579,8 @@ return an `XcodeProjInfo` provider instance instead.
 XcodeProjInfo(<a href="#XcodeProjInfo-args">args</a>, <a href="#XcodeProjInfo-compilation_providers">compilation_providers</a>, <a href="#XcodeProjInfo-dependencies">dependencies</a>, <a href="#XcodeProjInfo-envs">envs</a>, <a href="#XcodeProjInfo-extension_infoplists">extension_infoplists</a>, <a href="#XcodeProjInfo-hosted_targets">hosted_targets</a>,
               <a href="#XcodeProjInfo-inputs">inputs</a>, <a href="#XcodeProjInfo-label">label</a>, <a href="#XcodeProjInfo-labels">labels</a>, <a href="#XcodeProjInfo-lldb_context">lldb_context</a>, <a href="#XcodeProjInfo-mergable_xcode_library_targets">mergable_xcode_library_targets</a>,
               <a href="#XcodeProjInfo-non_top_level_rule_kind">non_top_level_rule_kind</a>, <a href="#XcodeProjInfo-outputs">outputs</a>, <a href="#XcodeProjInfo-potential_target_merges">potential_target_merges</a>, <a href="#XcodeProjInfo-replacement_labels">replacement_labels</a>,
-              <a href="#XcodeProjInfo-resource_bundle_informations">resource_bundle_informations</a>, <a href="#XcodeProjInfo-target_type">target_type</a>, <a href="#XcodeProjInfo-transitive_dependencies">transitive_dependencies</a>,
-              <a href="#XcodeProjInfo-xcode_required_targets">xcode_required_targets</a>, <a href="#XcodeProjInfo-xcode_target">xcode_target</a>, <a href="#XcodeProjInfo-xcode_targets">xcode_targets</a>)
+              <a href="#XcodeProjInfo-resource_bundle_ids">resource_bundle_ids</a>, <a href="#XcodeProjInfo-target_type">target_type</a>, <a href="#XcodeProjInfo-transitive_dependencies">transitive_dependencies</a>, <a href="#XcodeProjInfo-xcode_required_targets">xcode_required_targets</a>,
+              <a href="#XcodeProjInfo-xcode_target">xcode_target</a>, <a href="#XcodeProjInfo-xcode_targets">xcode_targets</a>)
 </pre>
 
 Provides information needed to generate an Xcode project.
@@ -611,7 +611,7 @@ Provides information needed to generate an Xcode project.
 | <a id="XcodeProjInfo-outputs"></a>outputs |  A value returned from `output_files.collect`, that contains information about the output files for this target and its transitive dependencies.    |
 | <a id="XcodeProjInfo-potential_target_merges"></a>potential_target_merges |  A `depset` of `struct`s with 'src' and 'dest' fields. The 'src' field is the id of the target that can be merged into the target with the id of the 'dest' field.    |
 | <a id="XcodeProjInfo-replacement_labels"></a>replacement_labels |  A `depset` of `struct`s with `id` and `label` fields. The `id` field is the target id of the target that have its label (and name) be replaced with the label in the `label` field.    |
-| <a id="XcodeProjInfo-resource_bundle_informations"></a>resource_bundle_informations |  A `depset` of `struct`s with information used to generate resource bundles, which couldn't be collected from `AppleResourceInfo` alone.    |
+| <a id="XcodeProjInfo-resource_bundle_ids"></a>resource_bundle_ids |  A `depset` of `tuple`s mapping target id to bundle id.    |
 | <a id="XcodeProjInfo-target_type"></a>target_type |  A string that categorizes the type of the current target. This will be one of "compile", "resources", or `None`. Even if this target doesn't produce an Xcode target, it can still have a non-`None` value for this field.    |
 | <a id="XcodeProjInfo-transitive_dependencies"></a>transitive_dependencies |  A `depset` of target ids (see `xcode_target.id`) that this target transitively depends on.    |
 | <a id="XcodeProjInfo-xcode_required_targets"></a>xcode_required_targets |  A `depset` of values returned from `xcode_targets.make` for targets that need to be in projects that have `build_mode = "xcode"`. This means that they can't be unfocused in BwX mode, and if requested it will be ignored.    |

@@ -49,31 +49,22 @@ def process_unsupported_target(
     if AppleResourceBundleInfo in target and AppleResourceInfo not in target:
         # `apple_bundle_import` returns a `AppleResourceBundleInfo` and also
         # a `AppleResourceInfo`, so we use that to exclude it
-        if not getattr(
-            ctx.rule.attr,
-            automatic_target_info.infoplists[0],
-            None,
-        ):
-            fail("""\
-rules_xcodeproj requires {} to have `{}` set.
-""".format(target.label, automatic_target_info.infoplists[0]))
-
-        resource_bundle_informations = [
-            struct(
-                id = get_id(
+        resource_bundle_ids = [
+            (
+                get_id(
                     label = target.label,
                     configuration = calculate_configuration(
                         bin_dir_path = ctx.bin_dir.path,
                     ),
                 ),
-                bundle_id = getattr(
+                getattr(
                     ctx.rule.attr,
                     automatic_target_info.bundle_id,
                 ),
             ),
         ]
     else:
-        resource_bundle_informations = None
+        resource_bundle_ids = None
 
     (
         compilation_providers,
@@ -129,7 +120,7 @@ rules_xcodeproj requires {} to have `{}` set.
             transitive_infos = transitive_infos,
         ),
         outputs = provider_outputs,
-        resource_bundle_informations = resource_bundle_informations,
+        resource_bundle_ids = resource_bundle_ids,
         transitive_dependencies = transitive_dependencies,
         xcode_target = None,
     )
