@@ -66,6 +66,7 @@ extension ElementCreator.CreateVariantGroupElement {
             object: .init(
                 identifier: createIdentifier(
                     path: path,
+                    name: name,
                     type: .localized
                 ),
                 content: content

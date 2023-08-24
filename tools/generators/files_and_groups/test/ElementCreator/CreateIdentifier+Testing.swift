@@ -8,6 +8,7 @@ extension ElementCreator.CreateIdentifier {
     final class MockTracker {
         struct Called: Equatable {
             let path: String
+            let name: String
             let type: Identifiers.FilesAndGroups.ElementType
         }
 
@@ -20,9 +21,10 @@ extension ElementCreator.CreateIdentifier {
         let mockTracker = MockTracker()
 
         let mocked = ElementCreator.CreateIdentifier(
-            callable: { path, type, _ in
+            callable: { path, name, type, _ in
                 mockTracker.called.append(.init(
                     path: path,
+                    name: name,
                     type: type
                 ))
                 return identifier

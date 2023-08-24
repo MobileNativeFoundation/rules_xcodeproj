@@ -37,6 +37,11 @@ extension ElementCreator {
 
         let createInternalGroupCallable: CreateInternalGroup.Callable
 
+        /// Passed to the `callable` parameter of
+        /// `CreateLocalizedFileElement.init()`.
+        let createLocalizedFileElementCallable:
+            CreateLocalizedFileElement.Callable
+
         /// Passed to the `callable` parameter of `CreateLocalizedFiles.init()`.
         let createLocalizedFilesCallable: CreateLocalizedFiles.Callable
 
@@ -132,9 +137,15 @@ extension ElementCreator.Environment {
             callable: createGroupCallable
         )
 
+        let createLocalizedFileElement =
+            ElementCreator.CreateLocalizedFileElement(
+                createIdentifier: createIdentifier,
+                callable: createLocalizedFileElementCallable
+            )
+
         let createLocalizedFiles = ElementCreator.CreateLocalizedFiles(
             collectBazelPaths: collectBazelPaths,
-            createFileElement: createFileElement,
+            createLocalizedFileElement: createLocalizedFileElement,
             callable: createLocalizedFilesCallable
         )
 
@@ -202,6 +213,8 @@ extension ElementCreator.Environment {
         createIdentifier: ElementCreator.CreateIdentifier(),
         createInternalGroupCallable:
             ElementCreator.CreateInternalGroup.defaultCallable,
+        createLocalizedFileElementCallable:
+            ElementCreator.CreateLocalizedFileElement.defaultCallable,
         createLocalizedFilesCallable:
             ElementCreator.CreateLocalizedFiles.defaultCallable,
         createMainGroupContent: ElementCreator.CreateMainGroupContent(),
