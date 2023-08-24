@@ -110,6 +110,7 @@ def process_unsupported_target(
         compilation_providers = compilation_providers,
         dependencies = dependencies,
         inputs = provider_inputs,
+        is_top_level = automatic_target_info.is_top_level,
         lldb_context = lldb_contexts.collect(
             build_mode = build_mode,
             id = None,

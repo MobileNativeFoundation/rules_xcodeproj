@@ -49,6 +49,12 @@ def _is_test_target(target):
         return False
     return target[AppleBundleInfo].product_type in _TEST_TARGET_PRODUCT_TYPES
 
+def _is_static_framework(target):
+    """Returns whether the given target is a static framework or not."""
+    if AppleBundleInfo not in target:
+        return False
+    return target[AppleBundleInfo].product_type == "com.apple.product-type.framework.static"
+
 ## Aspects
 
 # These are declared as constants to cause starlark to reuse the same instances
@@ -211,6 +217,13 @@ def calculate_automatic_target_info(ctx, build_mode, target):
         is_top_level = True
         provisioning_profile = "provisioning_profile"
         xcode_targets = _TEST_BUNDLE_XCODE_TARGETS
+    elif _is_static_framework(target):
+        # TODO: https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/105
+        # Static frameworks are not supported yet as Xcode targets.
+        is_supported = False
+        is_top_level = True
+        collect_uncategorized_files = rule_kind != "apple_bundle_import"
+        xcode_targets = _DEFAULT_XCODE_TARGETS[this_target_type]
     elif AppleBundleInfo in target and target[AppleBundleInfo].binary:
         # Checking for `binary` being set is to work around a rules_ios issue
         alternate_icons = "alternate_icons"
