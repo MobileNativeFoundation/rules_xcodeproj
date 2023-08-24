@@ -272,9 +272,6 @@ def _collect_input_files(
     for attr in automatic_target_info.exported_symbols_lists:
         file_handlers[attr] = _handle_extrafiles_file
 
-    if SwiftProtoInfo in target:
-        srcs.extend(target[SwiftProtoInfo].pbswift_files.to_list())
-
     categorized_files = {}
     xccurrentversions = []
 
@@ -347,6 +344,10 @@ def _collect_input_files(
             continue
 
         _handle_file(getattr(ctx.rule.file, attr), handler = handler)
+
+    if SwiftProtoInfo in target:
+        for file in target[SwiftProtoInfo].pbswift_files.to_list():
+            _handle_file(file, handler = _handle_srcs_file)
 
     for attr in attrs:
         if _should_ignore_input_attr(attr):
