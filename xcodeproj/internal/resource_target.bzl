@@ -81,8 +81,7 @@ def process_resource_bundles(bundles, *, resource_bundle_ids):
     Args:
         bundles: A `list` of resource bundle `struct`s, as returned from
             `collect_resources`.
-        resource_bundle_ids: A `list of ``tuples`s mapping target id to bundle
-            id.
+        resource_bundle_ids: A list of `tuples`s mapping target id to bundle id.
 
     Returns:
         A list of `xcode_target` `struct`s.
