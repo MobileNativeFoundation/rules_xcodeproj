@@ -63,11 +63,11 @@ _TOOLS_REPOS = {
 # Just a slight optimization to not process things we know don't need to have
 # out provider.
 def _should_create_provider(*, ctx, target):
+    if ctx.rule.kind in _INTERNAL_RULE_KINDS:
+        return False
     if not target.label.workspace_name:
         return True
     if BuildSettingInfo in target:
-        return False
-    if ctx.rule.kind in _INTERNAL_RULE_KINDS:
         return False
     if target.label.workspace_name.split("~")[0] in _TOOLS_REPOS:
         return False
