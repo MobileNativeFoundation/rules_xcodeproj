@@ -526,7 +526,7 @@ def process_top_level_target(
         extension_infoplists = extension_infoplists,
         hosted_targets = hosted_targets,
         inputs = provider_inputs,
-        is_top_level_target = not is_app_extension,
+        is_top_level = not is_app_extension,
         is_xcode_required = True,
         lldb_context = lldb_context,
         outputs = provider_outputs,
