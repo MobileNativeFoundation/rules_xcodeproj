@@ -1,7 +1,7 @@
 """ Functions for collecting resource usage information."""
 
-load("@build_bazel_rules_apple//apple:resources.bzl", "resources_common")
 load("@bazel_skylib//lib:paths.bzl", "paths")
+load("@build_bazel_rules_apple//apple:resources.bzl", "resources_common")
 load(":configuration.bzl", "calculate_configuration")
 load(
     ":files.bzl",

@@ -111,6 +111,15 @@ def xcodeproj_rules_dependencies(
     if include_bzlmod_ready_dependencies:
         _maybe(
             http_archive,
+            name = "bazel_features",
+            sha256 = "9fcb3d7cbe908772462aaa52f02b857a225910d30daa3c252f670e3af6d8036d",
+            strip_prefix = "bazel_features-1.0.0",
+            url = "https://github.com/bazel-contrib/bazel_features/releases/download/v1.0.0/bazel_features-v1.0.0.tar.gz",
+            ignore_version_differences = ignore_version_differences,
+        )
+
+        _maybe(
+            http_archive,
             name = "bazel_skylib",
             sha256 = "66ffd9315665bfaafc96b52278f57c7e2dd09f5ede279ea6d39b2be471e7e3aa",
             url = "https://github.com/bazelbuild/bazel-skylib/releases/download/1.4.2/bazel-skylib-1.4.2.tar.gz",
@@ -139,8 +148,8 @@ def xcodeproj_rules_dependencies(
             _maybe(
                 http_archive,
                 name = "build_bazel_apple_support",
-                sha256 = "4f8dabf7cd16c23d2a406bbf60291c7c8c2e3c617e182a82585e1d3efe36670b",
-                url = "https://github.com/bazelbuild/apple_support/releases/download/1.7.1/apple_support.1.7.1.tar.gz",
+                sha256 = "45d6bbad5316c9c300878bf7fffc4ffde13d620484c9184708c917e20b8b63ff",
+                url = "https://github.com/bazelbuild/apple_support/releases/download/1.8.1/apple_support.1.8.1.tar.gz",
                 ignore_version_differences = ignore_version_differences,
             )
 

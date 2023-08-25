@@ -2,25 +2,25 @@
 
 # buildifier: disable=bzl-visibility
 load(
-    "@rules_xcodeproj//xcodeproj/internal:xcodeproj_aspect.bzl",
+    "@@rules_xcodeproj~override//xcodeproj/internal:xcodeproj_aspect.bzl",
     "make_xcodeproj_aspect",
 )
 
 # buildifier: disable=bzl-visibility
 load(
-    "@rules_xcodeproj//xcodeproj/internal:xcodeproj_rule.bzl",
+    "@@rules_xcodeproj~override//xcodeproj/internal:xcodeproj_rule.bzl",
     "make_xcodeproj_rule",
 )
 
 # buildifier: disable=bzl-visibility
 load(
-    "@rules_xcodeproj//xcodeproj/internal:xcodeproj_transitions.bzl",
+    "@@rules_xcodeproj~override//xcodeproj/internal:xcodeproj_transitions.bzl",
     "make_xcodeproj_target_transitions",
 )
 
 # buildifier: disable=bzl-visibility
 load(
-    "@rules_xcodeproj//xcodeproj/internal:fixtures.bzl",
+    "@@rules_xcodeproj~override//xcodeproj/internal:fixtures.bzl",
     "fixtures_transition",
 )
 
@@ -28,7 +28,7 @@ load(
 
 _INPUTS = {}
 
-_XCODE_CONFIGURATIONS = {"AppStore": {"//command_line_option:compilation_mode": "opt", "@//:flag_to_transition_on": "AAAAAAA"}, "Debug": {"//command_line_option:compilation_mode": "dbg", "@//:flag_to_transition_on": "B"}}
+_XCODE_CONFIGURATIONS = {"AppStore": {"//command_line_option:compilation_mode": "opt", "@@//:flag_to_transition_on": "AAAAAAA"}, "Debug": {"//command_line_option:compilation_mode": "dbg", "@@//:flag_to_transition_on": "B"}}
 
 def _target_transition_implementation(settings, _attr):
     outputs = {}
@@ -47,7 +47,7 @@ def _target_transition_implementation(settings, _attr):
 _target_transitions = make_xcodeproj_target_transitions(
     implementation = _target_transition_implementation,
     inputs = _INPUTS.keys(),
-    outputs = ["//command_line_option:compilation_mode", "@//:flag_to_transition_on"],
+    outputs = ["//command_line_option:compilation_mode", "@@//:flag_to_transition_on"],
 )
 
 # Aspect

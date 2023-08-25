@@ -5,7 +5,7 @@ load(
     "AppleResourceBundleInfo",
     "AppleResourceInfo",
 )
-load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo")
+load("@build_bazel_rules_swift//swift:swift.bzl", "SwiftInfo", "SwiftProtoInfo")
 load(":compilation_providers.bzl", comp_providers = "compilation_providers")
 load(":filelists.bzl", "filelists")
 load(
@@ -89,13 +89,13 @@ C_EXTENSIONS = {
 }
 
 CXX_EXTENSIONS = {
-    "cc": None,
-    "cpp": None,
-    "cxx": None,
-    "c++": None,
     "C": None,
-    "cu": None,
+    "c++": None,
+    "cc": None,
     "cl": None,
+    "cpp": None,
+    "cu": None,
+    "cxx": None,
     "mm": None,
 }
 
@@ -344,6 +344,10 @@ def _collect_input_files(
             continue
 
         _handle_file(getattr(ctx.rule.file, attr), handler = handler)
+
+    if SwiftProtoInfo in target:
+        for file in target[SwiftProtoInfo].pbswift_files.to_list():
+            _handle_file(file, handler = _handle_srcs_file)
 
     for attr in attrs:
         if _should_ignore_input_attr(attr):

@@ -104,6 +104,9 @@ if [[ $for_fixture -eq 1 ]]; then
   # per version
   pushd "$BUILD_WORKSPACE_DIRECTORY"
   bazel_version=$("$bazel_path" info release | cut -d ' ' -f 2 | cut -d '.' -f 1)
+  if [[ "$bazel_version" == "version" ]]; then
+    bazel_version=7
+  fi
   popd
   readonly bazel_version_dir="$project_dir/bazel-$bazel_version"
   mkdir -p "$bazel_version_dir"

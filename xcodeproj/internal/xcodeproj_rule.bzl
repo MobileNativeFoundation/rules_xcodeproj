@@ -1,5 +1,6 @@
 """Implementation of the `xcodeproj` rule."""
 
+load("@bazel_features//:features.bzl", "bazel_features")
 load("@bazel_skylib//lib:dicts.bzl", "dicts")
 load("@bazel_skylib//lib:paths.bzl", "paths")
 load("@bazel_skylib//lib:shell.bzl", "shell")
@@ -28,11 +29,11 @@ load(":xcode_targets.bzl", "xcode_targets")
 # Utility
 
 _SWIFTUI_PREVIEW_PRODUCT_TYPES = {
+    "com.apple.product-type.app-extension": None,
     "com.apple.product-type.application": None,
     "com.apple.product-type.application.on-demand-install-capable": None,
     "com.apple.product-type.application.watchapp": None,
     "com.apple.product-type.application.watchapp2": None,
-    "com.apple.product-type.app-extension": None,
     "com.apple.product-type.bundle": None,
     "com.apple.product-type.bundle.unit-test": None,
     "com.apple.product-type.extensionkit-extension": None,
@@ -43,8 +44,8 @@ _SWIFTUI_PREVIEW_PRODUCT_TYPES = {
 
 # TODO: Non-test_host applications should be terminal as well
 _TERMINAL_PRODUCT_TYPES = {
-    "com.apple.product-type.bundle.unit-test": None,
     "com.apple.product-type.bundle.ui-testing": None,
+    "com.apple.product-type.bundle.unit-test": None,
 }
 
 # Error Message Strings
@@ -221,10 +222,16 @@ def _process_extra_files(
 
     if is_fixture:
         def _normalize_path(path):
-            configuration, _, suffix = path.partition("/")
+            # bazel-out/darwin_x86_64-dbg-ST-deadbeaf/bin -> bazel-out/darwin_x86_64-dbg-STABLE-1/bin
+            if not path.startswith("bazel-out/"):
+                return path
+
+            configuration, _, suffix = path[10:].partition("/")
             if not suffix:
                 return path
+
             return (
+                "bazel-out/" +
                 configurations_map.get(configuration, configuration) + "/" +
                 suffix
             )
@@ -506,7 +513,7 @@ targets.
 
     raw_target_merge_dests = {}
     for merge in potential_target_merges:
-        src_target = unprocessed_targets[merge.src.id]
+        src_target = unprocessed_targets[merge.src]
         src_label = bazel_labels.normalize_label(src_target.label)
         dest_target = unprocessed_targets[merge.dest]
         dest_label = bazel_labels.normalize_label(dest_target.label)
@@ -516,12 +523,12 @@ targets.
         # Exclude targets not in focused nor unfocused targets from
         # potential merges since they're not possible Xcode targets.
         merge_src_is_xcode_target = (
-            merge.src.id in focused_targets or
-            merge.src.id in unfocused_targets
+            merge.src in focused_targets or
+            merge.src in unfocused_targets
         )
         if not merge_src_is_xcode_target:
             continue
-        raw_target_merge_dests.setdefault(merge.dest, []).append(merge.src.id)
+        raw_target_merge_dests.setdefault(merge.dest, []).append(merge.src)
 
     target_merge_dests = {}
     for dest, src_ids in raw_target_merge_dests.items():
@@ -1162,6 +1169,7 @@ def _write_spec(
 
     spec_dto = {
         "B": config,
+        "R": runner_label,
         "T": "fixture-target-ids-file" if is_fixture else build_setting_path(
             file = target_ids_list,
         ),
@@ -1170,7 +1178,6 @@ def _write_spec(
         ),
         "m": minimum_xcode_version,
         "n": project_name,
-        "R": runner_label,
     }
 
     if xcode_configurations != ["Debug"]:
@@ -1243,7 +1250,7 @@ def _write_spec(
 
     flattened_targets = flattened_key_values.to_list(
         target_dtos,
-        sort = is_fixture,
+        sort = False,
     )
 
     target_shards = []
@@ -1483,7 +1490,12 @@ configurations: {}""".format(", ".join(xcode_configurations)))
     name = ctx.attr.name
     project_name = ctx.attr.project_name
 
-    (_, provider_outputs) = output_files.merge(
+    if build_mode == "xcode" and bazel_features.cc.objc_linking_info_migrated:
+        fail("""\
+`build_mode = "xcode"` is currently not supported with Bazel 7+.
+""")
+
+    provider_outputs = output_files.merge(
         transitive_infos = infos,
     )
 
@@ -1808,10 +1820,10 @@ def make_xcodeproj_rule(
         "adjust_schemes_for_swiftui_previews": attr.bool(
             mandatory = True,
         ),
-        "bazel_path": attr.string(
+        "bazel_env": attr.string_dict(
             mandatory = True,
         ),
-        "bazel_env": attr.string_dict(
+        "bazel_path": attr.string(
             mandatory = True,
         ),
         "build_mode": attr.string(
@@ -1829,6 +1841,12 @@ def make_xcodeproj_rule(
             mandatory = True,
         ),
         "install_path": attr.string(
+            mandatory = True,
+        ),
+        "ios_device_cpus": attr.string(
+            mandatory = True,
+        ),
+        "ios_simulator_cpus": attr.string(
             mandatory = True,
         ),
         "minimum_xcode_version": attr.string(
@@ -1875,6 +1893,12 @@ def make_xcodeproj_rule(
             providers = [XcodeProjInfo],
             mandatory = True,
         ),
+        "tvos_device_cpus": attr.string(
+            mandatory = True,
+        ),
+        "tvos_simulator_cpus": attr.string(
+            mandatory = True,
+        ),
         "unfocused_targets": attr.string_list(
             mandatory = True,
         ),
@@ -1882,28 +1906,16 @@ def make_xcodeproj_rule(
             allow_files = True,
             mandatory = True,
         ),
-        "workspace_directory": attr.string(
-            mandatory = True,
-        ),
-        "xcode_configuration_map": attr.string_list_dict(
-            mandatory = True,
-        ),
-        "ios_device_cpus": attr.string(
-            mandatory = True,
-        ),
-        "ios_simulator_cpus": attr.string(
-            mandatory = True,
-        ),
-        "tvos_device_cpus": attr.string(
-            mandatory = True,
-        ),
-        "tvos_simulator_cpus": attr.string(
-            mandatory = True,
-        ),
         "watchos_device_cpus": attr.string(
             mandatory = True,
         ),
         "watchos_simulator_cpus": attr.string(
+            mandatory = True,
+        ),
+        "workspace_directory": attr.string(
+            mandatory = True,
+        ),
+        "xcode_configuration_map": attr.string_list_dict(
             mandatory = True,
         ),
         "_allowlist_function_transition": attr.label(

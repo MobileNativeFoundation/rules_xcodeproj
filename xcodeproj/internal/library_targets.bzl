@@ -184,44 +184,34 @@ def process_library_target(
         transitive_infos = transitive_infos,
     )
 
-    xcode_target = xcode_targets.make(
-        id = id,
-        label = label,
-        configuration = configuration,
-        package_bin_dir = package_bin_dir,
-        platform = platform,
-        product = product,
-        build_settings = build_settings,
-        c_params = c_params,
-        cxx_params = cxx_params,
-        swift_params = swift_params,
-        c_has_fortify_source = c_has_fortify_source,
-        cxx_has_fortify_source = cxx_has_fortify_source,
-        modulemaps = modulemaps,
-        swiftmodules = swiftmodules,
-        inputs = target_inputs,
-        linker_inputs = linker_inputs,
-        dependencies = dependencies,
-        transitive_dependencies = transitive_dependencies,
-        outputs = target_outputs,
-        should_create_xcode_target = target.files != depset(),
-    )
-
-    mergable_xcode_library_targets = [
-        struct(
-            id = xcode_target.id,
-            product_path = xcode_target.product.file_path,
-        ),
-    ]
-
     return processed_target(
         compilation_providers = compilation_providers,
         dependencies = dependencies,
         inputs = provider_inputs,
         library = product.file,
         lldb_context = lldb_context,
-        mergable_xcode_library_targets = mergable_xcode_library_targets,
         outputs = provider_outputs,
         transitive_dependencies = transitive_dependencies,
-        xcode_target = xcode_target,
+        xcode_target = xcode_targets.make(
+            id = id,
+            label = label,
+            configuration = configuration,
+            package_bin_dir = package_bin_dir,
+            platform = platform,
+            product = product,
+            build_settings = build_settings,
+            c_params = c_params,
+            cxx_params = cxx_params,
+            swift_params = swift_params,
+            c_has_fortify_source = c_has_fortify_source,
+            cxx_has_fortify_source = cxx_has_fortify_source,
+            modulemaps = modulemaps,
+            swiftmodules = swiftmodules,
+            inputs = target_inputs,
+            linker_inputs = linker_inputs,
+            dependencies = dependencies,
+            transitive_dependencies = transitive_dependencies,
+            outputs = target_outputs,
+            should_create_xcode_target = target.files != depset(),
+        ),
     )

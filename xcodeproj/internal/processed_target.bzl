@@ -9,11 +9,10 @@ def processed_target(
         extension_infoplists = None,
         hosted_targets = None,
         inputs,
-        is_top_level_target = False,
+        is_top_level = False,
         is_xcode_required = False,
         library = None,
         lldb_context,
-        mergable_xcode_library_targets = None,
         outputs,
         potential_target_merges = None,
         resource_bundle_informations = None,
@@ -32,14 +31,14 @@ def processed_target(
             `XcodeProjInfo.hosted_targets`.
         inputs: A value as returned from `input_files.collect` that will
             provide values for the `XcodeProjInfo.inputs` field.
-        is_top_level_target: If `True`, the target is a top-level target.
+        is_top_level: If `True`, the target can be listed in
+            `top_level_targets`. This is not the same as
+            `automatic_target_info.is_top_level`, which includes more targets,
+            such as application extensions.
         is_xcode_required: If `True`, the target is required in BwX mode.
         library: A `File` for the static library produced by this target, or
             `None`.
         lldb_context: A value as returned from `lldb_context.collect`.
-        mergable_xcode_library_targets: An optional `list` of `struct`s that
-            will be in the `XcodeProjInfo.mergable_xcode_library_targets`
-            `depset`.
         outputs: A value as returned from `output_files.collect` that will
             provide values for the `XcodeProjInfo.outputs` field.
         potential_target_merges: An optional `list` of `struct`s that will be in
@@ -60,11 +59,10 @@ def processed_target(
         dependencies = dependencies,
         hosted_targets = hosted_targets,
         inputs = inputs,
-        is_top_level_target = is_top_level_target,
+        is_top_level = is_top_level,
         is_xcode_required = is_xcode_required,
         library = library,
         lldb_context = lldb_context,
-        mergable_xcode_library_targets = mergable_xcode_library_targets,
         outputs = outputs,
         potential_target_merges = potential_target_merges,
         resource_bundle_informations = resource_bundle_informations,

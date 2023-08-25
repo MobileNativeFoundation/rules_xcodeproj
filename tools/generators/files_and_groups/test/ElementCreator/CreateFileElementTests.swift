@@ -17,11 +17,21 @@ final class CreateFileElementTests: XCTestCase {
         let ext: String? = nil
         let bazelPath = BazelPath("a/bazel/path/node_name")
 
+        let createAttributes = ElementCreator.CreateAttributes.mock(
+            elementAttributes: .init(
+                sourceTree: .group,
+                name: "a_name",
+                path: "a_path"
+            ),
+            resolvedRepository: nil
+        )
+
         let expectedCreateIdentifierCalled: [
             ElementCreator.CreateIdentifier.MockTracker.Called
         ] = [
             .init(
                 path: "a/bazel/path/node_name",
+                name: "a_name",
                 type: .fileReference
             )
         ]
@@ -36,7 +46,7 @@ final class CreateFileElementTests: XCTestCase {
             ext: ext,
             bazelPath: bazelPath,
             specialRootGroupType: nil,
-            createAttributes: ElementCreator.Stubs.createAttributes,
+            createAttributes: createAttributes.mock,
             createIdentifier: createIdentifier.mock
         )
 

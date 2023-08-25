@@ -2,6 +2,11 @@ build --experimental_strict_conflict_checks
 build --incompatible_disallow_empty_glob
 build --experimental_convenience_symlinks=ignore
 
+# Use apple_support Xcode toolchain
+build --apple_crosstool_top=@local_config_apple_cc//:toolchain
+build --crosstool_top=@local_config_apple_cc//:toolchain
+build --host_crosstool_top=@local_config_apple_cc//:toolchain
+
 # Work around https://github.com/bazelbuild/bazel/issues/13912
 build --experimental_action_cache_store_output_metadata
 
@@ -18,6 +23,9 @@ build --host_macos_minimum_os=13.0
 # In-repo output_base makes fixtures relative
 startup --output_base=bazel-output-base
 
+# Prevent trying to evaluate checked in generated fixtures
+build --deleted_packages=test/fixtures/generated/xcodeproj_bwx,test/fixtures/generated/xcodeproj_bwb,test/fixtures/generator/generated/xcodeproj_bwx,test/fixtures/generator/generated/xcodeproj_bwb
+
 # Ensure we work with BwtB
 build --experimental_inmemory_jdeps_files
 build --experimental_inmemory_dotd_files
@@ -30,7 +38,8 @@ run --remote_download_outputs=all
 # rules_xcodeproj needs toplevel to download needed outputs
 build:rules_xcodeproj --remote_download_outputs=toplevel
 
-common:fixtures --verbose_failures
+common:nobzlmod --noexperimental_enable_bzlmod
+common:nobzlmod --@rules_xcodeproj//xcodeproj:extra_generator_flags='--config=nobzlmod'
 
 # Build with --config=cache to use BuildBuddy Remote Cache
 build:cache --bes_backend=grpcs://remote.buildbuddy.io

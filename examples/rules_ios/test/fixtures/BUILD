@@ -11,6 +11,7 @@ load(
 )
 
 xcodeproj_fixture(
+    modes_and_suffixes = [("bazel", "bwb")],
     scheme_autogeneration_mode = SCHEME_AUTOGENERATION_MODE,
     top_level_targets = XCODEPROJ_TARGETS,
 )

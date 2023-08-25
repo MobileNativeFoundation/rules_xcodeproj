@@ -121,6 +121,19 @@ extension ElementCreator {
             identifier: "Identifier"
         )
 
+        static let createLocalizedFileElement = CreateLocalizedFileElement.stub(
+            elements: [
+                Element(
+                    name: "Name",
+                    object: .init(
+                        identifier: "Identifier",
+                        content: "Content"
+                    ),
+                    sortOrder: .fileLike
+                ),
+            ]
+        )
+
         static let createLocalizedFiles = CreateLocalizedFiles.stub(
             localizedFiles: [
                 GroupChild.LocalizedFile(

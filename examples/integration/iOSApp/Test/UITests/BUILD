@@ -4,12 +4,12 @@ load(
     "ios_ui_test_suite",
 )
 load(
-    "@build_bazel_rules_swift//swift:swift.bzl",
-    "swift_library",
-)
-load(
     "@build_bazel_rules_apple//apple/testing/default_runner:ios_test_runner.bzl",
     "ios_test_runner",
+)
+load(
+    "@build_bazel_rules_swift//swift:swift.bzl",
+    "swift_library",
 )
 
 ios_ui_test(

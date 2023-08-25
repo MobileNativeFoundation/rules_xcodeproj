@@ -16,11 +16,21 @@ final class CreateGroupElementTests: XCTestCase {
         let name = "node_name"
         let bazelPath = BazelPath("a/bazel/path/node_name")
 
+        let createAttributes = ElementCreator.CreateAttributes.mock(
+            elementAttributes: .init(
+                sourceTree: .group,
+                name: nil,
+                path: "a_path"
+            ),
+            resolvedRepository: nil
+        )
+
         let expectedCreateIdentifierCalled: [
             ElementCreator.CreateIdentifier.MockTracker.Called
         ] = [
             .init(
                 path: bazelPath.path,
+                name: "a_path",
                 type: .group
             )
         ]
@@ -35,7 +45,7 @@ final class CreateGroupElementTests: XCTestCase {
             bazelPath: bazelPath,
             specialRootGroupType: nil,
             childIdentifiers: [],
-            createAttributes: ElementCreator.Stubs.createAttributes,
+            createAttributes: createAttributes.mock,
             createIdentifier: createIdentifier.mock
         )
 

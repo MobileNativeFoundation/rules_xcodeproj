@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package rules_xcodeproj.examples.integration.grpc;
+
+service EchoService {
+  rpc Echo(EchoRequest) returns (EchoResponse);
+}
+
+message EchoRequest {
+  string contents = 1;
+}
+
+message EchoResponse {
+  string contents = 1;
+}

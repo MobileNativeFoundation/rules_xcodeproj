@@ -62,6 +62,14 @@ A sequence of attribute names to collect `Target`s from for
 A sequence of attribute names to collect `File`s from for the `infoplists`-like
 attributes.
 """,
+        "is_supported": """\
+Whether an Xcode target can be generated for this target. Even if this value is
+`False`, setting values for the other attributes can cause inputs to be
+collected and shown in the Xcode project.
+""",
+        "is_top_level": """\
+Whether this target is a "top-level" (e.g. bundled or executable) target.
+""",
         "launchdplists": """\
 A sequence of attribute names to collect `File`s from for the
 `launchdplists`-like attributes.
@@ -81,11 +89,6 @@ attribute.
         "provisioning_profile": """\
 An attribute name (or `None`) to collect `File`s from for the
 `provisioning_profile`-like attribute.
-""",
-        "should_generate_target": """\
-Whether or an Xcode target should be generated for this target. Even if this
-value is `False`, setting values for the other attributes can cause inputs to be
-collected and shown in the Xcode project.
 """,
         "srcs": """\
 A sequence of attribute names to collect `File`s from for `srcs`-like
@@ -121,7 +124,7 @@ target id of the target and `arg` values
 for the target (if applicable).
 """,
         "compilation_providers": """\
-A value returned from `compilation_providers.collect_for_{non_,}top_level`.
+A value returned from `compilation_providers.{collect,merge}`.
 """,
         "dependencies": """\
 A `depset` of target ids (see `xcode_target.id`) that this target directly
@@ -154,18 +157,26 @@ A `depset` of `Labels` for the target and its transitive dependencies.
 """,
         "lldb_context": "A value returned from `lldb_context.collect`.",
         "mergable_xcode_library_targets": """\
-A `List` of `struct`s with 'id' and 'product_path' fields. The 'id' field
-is the id of the target. The 'product_path' is the path to the target's
-product.
+A `depset` of target ids (see `xcode_target.id`). Each represents a target that
+can potentially merge into a top-level target (to be decided by the top-level
+target).
+""",
+        "non_top_level_rule_kind": """
+If this target is not a top-level target, this is the value from
+`ctx.rule.kind`, otherwise it is `None`. Top-level targets are targets that
+are valid to be listed in the `top_level_targets` attribute of `xcodeproj`.
+In particular, this means that they aren't library targets, which when
+specified in `top_level_targets` cause duplicate mis-configured targets to be
+added to the project.
+""",
+        "outputs": """\
+A value returned from `output_files.collect`, that contains information about
+the output files for this target and its transitive dependencies.
 """,
         "potential_target_merges": """\
 A `depset` of `struct`s with 'src' and 'dest' fields. The 'src' field is the id
 of the target that can be merged into the target with the id of the 'dest'
 field.
-""",
-        "outputs": """\
-A value returned from `output_files.collect`, that contains information about
-the output files for this target and its transitive dependencies.
 """,
         "replacement_labels": """\
 A `depset` of `struct`s with `id` and `label` fields. The `id` field is the
@@ -175,14 +186,6 @@ label in the `label` field.
         "resource_bundle_informations": """\
 A `depset` of `struct`s with information used to generate resource bundles,
 which couldn't be collected from `AppleResourceInfo` alone.
-""",
-        "non_top_level_rule_kind": """
-If this target is not a top-level target, this is the value from
-`ctx.rule.kind`, otherwise it is `None`. Top-level targets are targets that
-are valid to be listed in the `top_level_targets` attribute of `xcodeproj`.
-In particular, this means that they aren't library targets, which when
-specified in `top_level_targets` cause duplicate mis-configured targets to be
-added to the project.
 """,
         "target_type": """\
 A string that categorizes the type of the current target. This will be one of
@@ -228,12 +231,12 @@ XcodeProjRunnerOutputInfo = provider(
 XcodeProjProvisioningProfileInfo = provider(
     "Provides information about a provisioning profile.",
     fields = {
+        "is_xcode_managed": "Whether the profile is managed by Xcode.",
         "profile_name": """\
 The profile name (e.g. "iOS Team Provisioning Profile: com.example.app").
 """,
         "team_id": """\
 The Team ID the profile is associated with (e.g. "V82V4GQZXM").
 """,
-        "is_xcode_managed": "Whether the profile is managed by Xcode.",
     },
 )

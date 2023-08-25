@@ -128,11 +128,15 @@ def _write_pbxproj_prefix_test_impl(ctx):
 write_pbxproj_prefix_test = unittest.make(
     impl = _write_pbxproj_prefix_test_impl,
     attrs = {
+        "build_mode": attr.string(mandatory = True),
         # Inputs
         "colorize": attr.bool(mandatory = True),
-        "build_mode": attr.string(mandatory = True),
         "default_xcode_configuration": attr.string(mandatory = True),
         "execution_root_file": attr.string(mandatory = True),
+
+        # Expected
+        "expected_args": attr.string_list(mandatory = True),
+        "expected_writes": attr.string_dict(mandatory = True),
         "index_import": attr.string(mandatory = True),
         "minimum_xcode_version": attr.string(mandatory = True),
         "platforms": attr.string_list(mandatory = True),
@@ -143,10 +147,6 @@ write_pbxproj_prefix_test = unittest.make(
         "target_ids_list": attr.string(mandatory = True),
         "workspace_directory": attr.string(mandatory = True),
         "xcode_configurations": attr.string_list(mandatory = True),
-
-        # Expected
-        "expected_args": attr.string_list(mandatory = True),
-        "expected_writes": attr.string_dict(mandatory = True),
     },
 )
 

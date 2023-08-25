@@ -4,12 +4,12 @@ bazel_dep(
 )
 bazel_dep(
     name = "apple_support",
-    version = "1.7.1",
+    version = "1.8.1",
     repo_name = "build_bazel_apple_support",
 )
 bazel_dep(
     name = "rules_apple",
-    version = "2.4.1",
+    version = "2.5.0",
     repo_name = "build_bazel_rules_apple",
 )
 bazel_dep(
@@ -27,6 +27,8 @@ bazel_dep(
     version = "0.0.1",
 )
 
+bazel_dep(name = "bazel_features", version = "1.0.0", dev_dependency = True)
+
 local_path_override(
     module_name = "rules_xcodeproj",
     path = "../..",
@@ -36,6 +38,12 @@ local_path_override(
     module_name = "examples_ios_app_external",
     path = "iOSApp/external",
 )
+
+apple_cc_configure = use_extension(
+    "@build_bazel_apple_support//crosstool:setup.bzl",
+    "apple_cc_configure_extension",
+)
+use_repo(apple_cc_configure, "local_config_apple_cc")
 
 non_module_deps = use_extension(":repositories.bzl", "non_module_deps")
 use_repo(

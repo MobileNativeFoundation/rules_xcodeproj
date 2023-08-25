@@ -11,6 +11,11 @@ load(":providers.bzl", "XcodeProjAutomaticTargetProcessingInfo", "target_type")
 
 ## Utility
 
+_TEST_TARGET_PRODUCT_TYPES = {
+    "com.apple.product-type.bundle.ui-testing": None,
+    "com.apple.product-type.bundle.unit-test": None,
+}
+
 _UNSUPPORTED_SRCS_EXTENSIONS = {
     "a": True,
     "lo": True,
@@ -42,10 +47,7 @@ def _is_test_target(target):
     """Returns whether the given target is for test purposes or not."""
     if AppleBundleInfo not in target:
         return False
-    return target[AppleBundleInfo].product_type in (
-        "com.apple.product-type.bundle.ui-testing",
-        "com.apple.product-type.bundle.unit-test",
-    )
+    return target[AppleBundleInfo].product_type in _TEST_TARGET_PRODUCT_TYPES
 
 ## Aspects
 
@@ -147,6 +149,7 @@ def calculate_automatic_target_info(ctx, build_mode, target):
     app_icons = None
     args = None
     bundle_id = None
+    collect_uncategorized_files = False
     codesignopts = None
     deps = _DEPS_ATTRS
     entitlements = None
@@ -155,13 +158,13 @@ def calculate_automatic_target_info(ctx, build_mode, target):
     hdrs = EMPTY_LIST
     implementation_deps = EMPTY_LIST
     infoplists = EMPTY_LIST
+    is_supported = True
+    is_top_level = False
     launchdplists = EMPTY_LIST
     link_mnemonics = _LINK_MNEMONICS
     non_arc_srcs = EMPTY_LIST
     pch = None
     provisioning_profile = None
-    collect_uncategorized_files = False
-    should_generate_target = True
 
     rule_kind = ctx.rule.kind
 
@@ -175,15 +178,17 @@ def calculate_automatic_target_info(ctx, build_mode, target):
         xcode_targets = _OBJC_LIBRARY_XCODE_TARGETS
     elif rule_kind == "swift_library":
         xcode_targets = _SWIFT_LIBRARY_XCODE_TARGETS
+    elif rule_kind == "swift_proto_library":
+        xcode_targets = _DEPS_XCODE_TARGETS
     elif rule_kind == "apple_resource_bundle":
-        should_generate_target = False
+        is_supported = False
 
         # Ideally this would be exposed on `AppleResourceBundleInfo`
         bundle_id = "bundle_id"
         infoplists = _INFOPLISTS_ATTRS
         xcode_targets = _EMPTY_XCODE_TARGETS
     elif rule_kind == "apple_resource_group":
-        should_generate_target = False
+        is_supported = False
         xcode_targets = _EMPTY_XCODE_TARGETS
     elif _is_test_target(target):
         args = "args"
@@ -192,6 +197,7 @@ def calculate_automatic_target_info(ctx, build_mode, target):
         env = "env"
         exported_symbols_lists = _EXPORTED_SYMBOLS_LISTS_ATTRS
         infoplists = _INFOPLISTS_ATTRS
+        is_top_level = True
         provisioning_profile = "provisioning_profile"
         xcode_targets = _TEST_BUNDLE_XCODE_TARGETS
     elif AppleBundleInfo in target and target[AppleBundleInfo].binary:
@@ -203,23 +209,27 @@ def calculate_automatic_target_info(ctx, build_mode, target):
         exported_symbols_lists = _EXPORTED_SYMBOLS_LISTS_ATTRS
         hdrs = _HDRS_DEPS_ATTRS
         infoplists = _INFOPLISTS_ATTRS
+        is_top_level = True
         provisioning_profile = "provisioning_profile"
         xcode_targets = _BUNDLE_XCODE_TARGETS
     elif AppleBundleInfo in target:
-        should_generate_target = False
+        is_supported = False
         collect_uncategorized_files = rule_kind != "apple_bundle_import"
         xcode_targets = _DEFAULT_XCODE_TARGETS[this_target_type]
     elif rule_kind == "macos_command_line_application":
         codesignopts = "codesignopts"
         exported_symbols_lists = _EXPORTED_SYMBOLS_LISTS_ATTRS
         infoplists = _INFOPLISTS_ATTRS
+        is_top_level = True
         launchdplists = _LAUNCHDPLISTS_ATTRS
         xcode_targets = _DEPS_XCODE_TARGETS
     elif rule_kind in _SWIFT_BINARY_RULES:
         srcs = _SRCS_ATTRS
+        is_top_level = True
         xcode_targets = _PLUGINS_XCODE_TARGETS
     elif rule_kind == "apple_universal_binary":
         deps = _BINARY_DEPS_ATTRS
+        is_top_level = True
         xcode_targets = _BINARY_XCODE_TARGETS
     elif AppleFrameworkImportInfo in target:
         if (getattr(ctx.rule.attr, "bundle_only", False) and
@@ -228,16 +238,17 @@ def calculate_automatic_target_info(ctx, build_mode, target):
 `bundle_only` can't be `True` on {} when `build_mode = \"xcode\"`
 """.format(target.label))
 
-        should_generate_target = False
+        is_supported = False
         collect_uncategorized_files = False
         xcode_targets = _DEPS_ONLY_XCODE_TARGETS
     else:
         # Command-line tools
         executable = target[DefaultInfo].files_to_run.executable
         is_executable = executable and not executable.is_source
+        is_top_level = is_executable
 
-        should_generate_target = is_executable
-        collect_uncategorized_files = not should_generate_target
+        is_supported = is_executable
+        collect_uncategorized_files = not is_supported
         if is_executable and hasattr(ctx.rule.attr, "srcs"):
             srcs = _SRCS_ATTRS
 
@@ -247,7 +258,7 @@ def calculate_automatic_target_info(ctx, build_mode, target):
     for attr in srcs:
         for file in getattr(ctx.rule.files, attr, []):
             if _UNSUPPORTED_SRCS_EXTENSIONS.get(file.extension):
-                should_generate_target = False
+                is_supported = False
                 break
 
     return XcodeProjAutomaticTargetProcessingInfo(
@@ -263,13 +274,14 @@ def calculate_automatic_target_info(ctx, build_mode, target):
         exported_symbols_lists = exported_symbols_lists,
         hdrs = hdrs,
         infoplists = infoplists,
+        is_supported = is_supported,
+        is_top_level = is_top_level,
         implementation_deps = implementation_deps,
         launchdplists = launchdplists,
         link_mnemonics = link_mnemonics,
         non_arc_srcs = non_arc_srcs,
         pch = pch,
         provisioning_profile = provisioning_profile,
-        should_generate_target = should_generate_target,
         srcs = srcs,
         target_type = this_target_type,
         xcode_targets = xcode_targets,

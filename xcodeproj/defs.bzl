@@ -5,14 +5,14 @@ load(
     _project_options = "project_options",
 )
 load(
-    "//xcodeproj/internal:top_level_target.bzl",
-    _top_level_target = "top_level_target",
-    _top_level_targets = "top_level_targets",
-)
-load(
     "//xcodeproj/internal:providers.bzl",
     _XcodeProjAutomaticTargetProcessingInfo = "XcodeProjAutomaticTargetProcessingInfo",
     _XcodeProjInfo = "XcodeProjInfo",
+)
+load(
+    "//xcodeproj/internal:top_level_target.bzl",
+    _top_level_target = "top_level_target",
+    _top_level_targets = "top_level_targets",
 )
 load(
     "//xcodeproj/internal:xcode_provisioning_profile.bzl",

@@ -1,11 +1,11 @@
 {
     "B": "rules_xcodeproj",
-    "R": "//test/fixtures:xcodeproj_bwx",
+    "R": "@@//test/fixtures:xcodeproj_bwx",
     "T": "fixture-target-ids-file",
     "e": [
         "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib2/_virtual_includes/lib_impl/lib2_prefix/lib2.h",
         "bazel-out/darwin_x86_64-dbg-STABLE-1/bin/lib3/_virtual_includes/lib_headers/lib3/lib3.h",
-        "external/examples_cc_external/lib.h",
+        "external/examples_cc_external~override/lib.h",
         "lib/BUILD",
         "lib/impl/BUILD",
         "lib/impl/impl.h",

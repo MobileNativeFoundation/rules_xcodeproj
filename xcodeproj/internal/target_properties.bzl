@@ -53,8 +53,8 @@ def process_dependencies(
         xcode_target = info.xcode_target
         if xcode_target and xcode_target.should_create_xcode_target:
             # TODO: Refactor `should_create_xcode_target` and
-            # `should_generate_target` handling. The only reason we don't use
-            # `should_generate_target` for header-only targets is because we
+            # `is_supported` handling. The only reason we don't use
+            # `is_supported` for header-only targets is because we
             # want to be able to unfocus their files.
             if (
                 include_all_deps or

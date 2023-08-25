@@ -9,6 +9,10 @@ load(
 )
 
 BAZEL_ENV = {
+    "MULTILINE": """one line
+two line""",
+    # Inheriting any `NOT_SET`, but won't find any
+    "NOT_SET": None,
     # Overriding `PATH`
     "PATH": "/bin:/usr/bin:/sbin:/usr/sbin",
     # Testing escaping (quotes, spaces, newlines, and slashes)
@@ -16,10 +20,6 @@ BAZEL_ENV = {
     "QUOTES_VAR2": 'foo "bar"',
     "QUOTES_VAR3": "foo 'bar'",
     "SLASHES_VAR": "value/with\\slashes",
-    "MULTILINE": """one line
-two line""",
-    # Inheriting any `NOT_SET`, but won't find any
-    "NOT_SET": None,
     # Inheriting any `TERM`
     "TERM": None,
 }
@@ -61,8 +61,8 @@ EXTRA_FILES = [
 FAIL_FOR_INVALID_EXTRA_FILES_TARGETS = True
 
 ASSOCIATED_EXTRA_FILES = {
-    "//iOSApp/Source:iOSApp": ["//iOSApp:ownership.yaml"],
     "//Lib": ["//Lib:README.md"],
+    "//iOSApp/Source:iOSApp": ["//iOSApp:ownership.yaml"],
 }
 
 UNFOCUSED_TARGETS = [
@@ -113,6 +113,9 @@ XCODEPROJ_TARGETS = [
     "//iOSApp/Test/UITests:iOSAppUITestSuite",
     "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite",
     "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTestSuite",
+    "//Proto:proto",
+    "//GRPC:echo_client",
+    "//GRPC:echo_server",
 ]
 
 IOS_BUNDLE_ID = "rules-xcodeproj.example"

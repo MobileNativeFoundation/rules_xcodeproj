@@ -6,8 +6,8 @@ _SKIP_INPUT_EXTENSIONS = {
     "a": None,
     "app": None,
     "appex": None,
-    "dylib": None,
     "bundle": None,
+    "dylib": None,
     "framework": None,
     "lo": None,
     "swiftmodule": None,
@@ -53,7 +53,6 @@ def _collect_linker_inputs(
         )
     elif compilation_providers._is_xcode_library_target:
         primary_static_library = _compute_primary_static_library(
-            compilation_providers = compilation_providers,
             objc_libraries = objc_libraries,
             cc_linker_inputs = cc_linker_inputs,
         )
@@ -78,18 +77,17 @@ def _merge_linker_inputs(*, compilation_providers):
 
 def _compute_primary_static_library(
         *,
-        compilation_providers,
         objc_libraries,
         cc_linker_inputs):
     # Ideally we would only return the static library that is owned by this
     # target, but sometimes another rule creates the output and this rule
     # outputs it. So far the first library has always been the correct one.
-    if compilation_providers.objc:
+    if objc_libraries:
         for library in objc_libraries:
             if library.is_source:
                 continue
             return library
-    elif compilation_providers.cc_info:
+    elif cc_linker_inputs:
         for input in cc_linker_inputs:
             for library in input.libraries:
                 # TODO: Account for all of the different linking strategies
@@ -119,11 +117,12 @@ def _extract_libraries(compilation_providers):
         cc_linker_inputs = []
     elif compilation_providers.cc_info:
         cc_info = compilation_providers.cc_info
-        objc_libraries = []
         cc_linker_inputs = cc_info.linking_context.linker_inputs.to_list()
-    else:
         objc_libraries = []
+    else:
         cc_linker_inputs = []
+        objc_libraries = []
+
     return (objc_libraries, cc_linker_inputs)
 
 def _extract_top_level_values(
@@ -183,11 +182,12 @@ def _extract_top_level_values(
 """)
             avoid_linking_context = avoid_cc_info.linking_context
             avoid_libraries = {
-                file: None
-                for file in flatten([
+                library: None
+                for library in flatten([
                     input.libraries
                     for input in avoid_linking_context.linker_inputs.to_list()
                 ])
+                if library.static_library or library.pic_static_library
             }
         else:
             avoid_libraries = {}
@@ -205,6 +205,19 @@ def _extract_top_level_values(
                 if library in avoid_libraries:
                     continue
 
+                if library.dynamic_library:
+                    if library.dynamic_library.dirname.endswith(".framework"):
+                        dynamic_frameworks.append(
+                            library.resolved_symlink_dynamic_library or
+                            library.dynamic_library,
+                        )
+                        continue
+
+                if library.static_library:
+                    if library.static_library.dirname.endswith(".framework"):
+                        static_frameworks.append(library.static_library)
+                        continue
+
                 # TODO: Account for all of the different linking strategies
                 # here: https://github.com/bazelbuild/bazel/blob/986ef7b68d61b1573d9c2bb1200585d07ad24691/src/main/java/com/google/devtools/build/lib/rules/cpp/CcLinkingHelper.java#L951-L1009
                 static_library = (library.static_library or
@@ -212,6 +225,11 @@ def _extract_top_level_values(
                 if not static_library:
                     continue
                 static_libraries.append(static_library)
+
+        # Dynamic frameworks from `AppleDynamicFrameworkInfo`
+        dynamic_frameworks.extend(
+            compilation_providers._framework_files.to_list(),
+        )
 
         # Dedup libraries
         static_libraries = uniq(static_libraries)
@@ -251,16 +269,15 @@ def _process_additional_inputs(files):
 
 def _collect_libraries(
         *,
-        compilation_providers,
         objc_libraries,
         cc_linker_inputs):
     libraries = []
-    if compilation_providers.objc:
+    if objc_libraries:
         for library in objc_libraries:
             if library.is_source:
                 continue
             libraries.append(library)
-    elif compilation_providers.cc_info:
+    elif cc_linker_inputs:
         for input in cc_linker_inputs:
             for library in input.libraries:
                 # TODO: Account for all of the different linking strategies
@@ -276,7 +293,6 @@ def _collect_libraries(
 
 def _get_transitive_static_libraries_for_bwx(linker_inputs):
     return _collect_libraries(
-        compilation_providers = linker_inputs._compilation_providers,
         objc_libraries = linker_inputs._objc_libraries,
         cc_linker_inputs = linker_inputs._cc_linker_inputs,
     )
@@ -290,7 +306,6 @@ def _get_library_static_libraries_for_bwx(
     )
 
     transitive = _collect_libraries(
-        compilation_providers = linker_inputs._compilation_providers,
         objc_libraries = linker_inputs._objc_libraries,
         cc_linker_inputs = linker_inputs._cc_linker_inputs,
     )
@@ -298,7 +313,6 @@ def _get_library_static_libraries_for_bwx(
     non_direct_libraries = {
         file: None
         for file in _collect_libraries(
-            compilation_providers = dep_compilation_providers,
             objc_libraries = dep_objc_libraries,
             cc_linker_inputs = dep_cc_linker_inputs,
         )

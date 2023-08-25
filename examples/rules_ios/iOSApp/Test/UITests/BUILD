@@ -1,10 +1,10 @@
 load(
-    "@build_bazel_rules_ios//rules:test.bzl",
-    rules_ios_ios_ui_test = "ios_ui_test",
-)
-load(
     "@build_bazel_rules_apple//apple/testing/default_runner:ios_test_runner.bzl",
     "ios_test_runner",
+)
+load(
+    "@build_bazel_rules_ios//rules:test.bzl",
+    rules_ios_ios_ui_test = "ios_ui_test",
 )
 load(
     "//iOSApp/Test/UITests:macros.bzl",
