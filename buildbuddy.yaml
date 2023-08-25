@@ -16,6 +16,12 @@ x_templates:
       env:
         USE_BAZEL_VERSION: 5.4.1
 
+    - &bazel_7
+      env:
+        # Versions past this require a new rules_apple, but one hasn't been
+        # released yet
+        USE_BAZEL_VERSION: 7.0.0-pre.20230724.1
+
     - &normal_resources
       resource_requests: { memory: 6GB }
     - &light_resources
@@ -97,6 +103,14 @@ actions:
     <<: *root_workspace
     bazel_commands:
       - *test_all
+  - name: Test - Bazel 7
+    <<: *bazel_7
+    <<: *arm64
+    <<: *normal_resources
+    <<: *action_base
+    <<: *root_workspace
+    bazel_commands:
+      - *test_all
 
   - name: Integration Test - Root
     <<: *arm64
@@ -154,6 +168,14 @@ actions:
     bazel_commands:
       - *generate_integration
       - *build_all
+  - name: Integration Test - "examples/integration" - Bazel 7
+    <<: *bazel_7
+    <<: *action_base
+    <<: *normal_resources
+    <<: *examples_integration_workspace
+    bazel_commands:
+      - *validate_integration
+      - *build_all
 
   - name: Integration Test - "examples/sanitizers"
     <<: *arm64
@@ -172,6 +194,16 @@ actions:
     bazel_commands:
       - *validate_integration
       - *build_all
+
+  ## Uncomment when rules_ios performs ObjcProvider -> CcInfo linking migration
+  # - name: Integration Test - "examples/rules_ios" - Bazel 7
+  #   <<: *bazel_7
+  #   <<: *action_base
+  #   <<: *normal_resources
+  #   <<: *examples_rules_ios_workspace
+  #   bazel_commands:
+  #     - *validate_integration
+  #     - *build_all
 
   - name: Validate release.tar.gz
     <<: *arm64
