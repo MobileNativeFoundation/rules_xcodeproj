@@ -75,6 +75,7 @@ extension ElementCreator.CreateVersionGroup {
 
         let identifier = createIdentifier(
             path: bazelPath.path,
+            name: name,
             type: .coreData
         )
         let selectedModelVersion = selectedModelVersions[bazelPath]

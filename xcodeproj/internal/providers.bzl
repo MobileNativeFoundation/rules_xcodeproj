@@ -62,6 +62,14 @@ A sequence of attribute names to collect `Target`s from for
 A sequence of attribute names to collect `File`s from for the `infoplists`-like
 attributes.
 """,
+        "is_supported": """\
+Whether an Xcode target can be generated for this target. Even if this value is
+`False`, setting values for the other attributes can cause inputs to be
+collected and shown in the Xcode project.
+""",
+        "is_top_level": """\
+Whether this target is a "top-level" (e.g. bundled or executable) target.
+""",
         "launchdplists": """\
 A sequence of attribute names to collect `File`s from for the
 `launchdplists`-like attributes.
@@ -81,11 +89,6 @@ attribute.
         "provisioning_profile": """\
 An attribute name (or `None`) to collect `File`s from for the
 `provisioning_profile`-like attribute.
-""",
-        "should_generate_target": """\
-Whether or an Xcode target should be generated for this target. Even if this
-value is `False`, setting values for the other attributes can cause inputs to be
-collected and shown in the Xcode project.
 """,
         "srcs": """\
 A sequence of attribute names to collect `File`s from for `srcs`-like

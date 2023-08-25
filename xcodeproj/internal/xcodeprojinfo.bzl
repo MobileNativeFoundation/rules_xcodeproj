@@ -19,7 +19,6 @@ load(
     "NONE_LIST",
     "memory_efficient_depset",
 )
-load(":non_xcode_targets.bzl", "process_non_xcode_target")
 load(":output_files.bzl", "output_files")
 load(":processed_target.bzl", "processed_target")
 load(
@@ -33,6 +32,7 @@ load(
 )
 load(":targets.bzl", "targets")
 load(":top_level_targets.bzl", "process_top_level_target")
+load(":unsupported_targets.bzl", "process_unsupported_target")
 
 # Creating `XcodeProjInfo`
 
@@ -50,20 +50,26 @@ _INTERNAL_RULE_KINDS = {
 }
 
 _TOOLS_REPOS = {
+    "apple_support": None,
     "bazel_tools": None,
+    "build_bazel_apple_support": None,
     "build_bazel_rules_apple": None,
     "build_bazel_rules_swift": None,
+    "rules_apple": None,
+    "rules_swift": None,
     "xctestrunner": None,
 }
 
 # Just a slight optimization to not process things we know don't need to have
 # out provider.
 def _should_create_provider(*, ctx, target):
+    if ctx.rule.kind in _INTERNAL_RULE_KINDS:
+        return False
+    if not target.label.workspace_name:
+        return True
     if BuildSettingInfo in target:
         return False
-    if target.label.workspace_name in _TOOLS_REPOS:
-        return False
-    if ctx.rule.kind in _INTERNAL_RULE_KINDS:
+    if target.label.workspace_name.split("~")[0] in _TOOLS_REPOS:
         return False
     return True
 
@@ -482,32 +488,24 @@ def _create_xcodeprojinfo(
         ))
     ]
 
-    if not automatic_target_info.should_generate_target:
-        processed_target = process_non_xcode_target(
+    if not automatic_target_info.is_supported:
+        processed_target = process_unsupported_target(
             ctx = ctx,
             target = target,
             attrs = attrs,
             automatic_target_info = automatic_target_info,
             transitive_infos = valid_transitive_infos,
         )
-    elif AppleBundleInfo in target:
+    elif automatic_target_info.is_top_level:
         processed_target = process_top_level_target(
             ctx = ctx,
             build_mode = build_mode,
             target = target,
             attrs = attrs,
             automatic_target_info = automatic_target_info,
-            bundle_info = target[AppleBundleInfo],
-            transitive_infos = valid_transitive_infos,
-        )
-    elif target[DefaultInfo].files_to_run.executable:
-        processed_target = process_top_level_target(
-            ctx = ctx,
-            build_mode = build_mode,
-            target = target,
-            attrs = attrs,
-            automatic_target_info = automatic_target_info,
-            bundle_info = None,
+            bundle_info = (
+                target[AppleBundleInfo] if AppleBundleInfo in target else None
+            ),
             transitive_infos = valid_transitive_infos,
         )
     else:
@@ -520,7 +518,7 @@ def _create_xcodeprojinfo(
             transitive_infos = valid_transitive_infos,
         )
 
-    if processed_target.is_top_level_target:
+    if automatic_target_info.is_top_level:
         mergable_xcode_library_targets = EMPTY_DEPSET
     elif processed_target.xcode_target:
         mergable_xcode_library_targets = depset(
@@ -561,7 +559,7 @@ def _create_xcodeprojinfo(
         lldb_context = processed_target.lldb_context,
         mergable_xcode_library_targets = mergable_xcode_library_targets,
         non_top_level_rule_kind = (
-            None if processed_target.is_top_level_target else ctx.rule.kind
+            None if processed_target.is_top_level else ctx.rule.kind
         ),
         outputs = processed_target.outputs,
         potential_target_merges = memory_efficient_depset(

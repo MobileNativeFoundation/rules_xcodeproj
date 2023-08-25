@@ -459,10 +459,11 @@ final class IdentifiersTests: XCTestCase {
 
         var hashCache: Set<String> = []
         let path = "a/path/to/a/file"
+        let name = "file"
         let type: Identifiers.FilesAndGroups.ElementType = .fileReference
 
         let expectedIdentifier = #"""
-FE9127BCB9F1C1C990ADB87F /* a/path/to/a/file */
+FE9127BCB9F1C1C990ADB87F /* file */
 """#
         let expectedModifiedHashCache: Set<String> = [
             "9127BCB9F1C1C990ADB87F",
@@ -472,6 +473,7 @@ FE9127BCB9F1C1C990ADB87F /* a/path/to/a/file */
 
         let identifier = Identifiers.FilesAndGroups.element(
             path,
+            name: name,
             type: type,
             hashCache: &hashCache
         )
@@ -489,10 +491,11 @@ FE9127BCB9F1C1C990ADB87F /* a/path/to/a/file */
             "9127BCB9F1C1C990ADB87F",
         ]
         let path = "a/path/to/a/file"
+        let name = "file"
         let type: Identifiers.FilesAndGroups.ElementType = .fileReference
 
         let expectedIdentifier = #"""
-FEC218EE063FFEACFDC4CCBF /* a/path/to/a/file */
+FEC218EE063FFEACFDC4CCBF /* file */
 """#
         let expectedModifiedHashCache: Set<String> = [
             // Original
@@ -506,6 +509,7 @@ FEC218EE063FFEACFDC4CCBF /* a/path/to/a/file */
 
         let identifier = Identifiers.FilesAndGroups.element(
             path,
+            name: name,
             type: type,
             hashCache: &hashCache
         )
@@ -525,10 +529,11 @@ FEC218EE063FFEACFDC4CCBF /* a/path/to/a/file */
             "C86DD0F5DCF552BEABF334",
         ]
         let path = "a/path/to/a/file"
+        let name = "file"
         let type: Identifiers.FilesAndGroups.ElementType = .fileReference
 
         let expectedIdentifier = #"""
-FED9F54B134D73636F095974 /* a/path/to/a/file */
+FED9F54B134D73636F095974 /* file */
 """#
         let expectedModifiedHashCache: Set<String> = [
             // Original
@@ -544,6 +549,7 @@ FED9F54B134D73636F095974 /* a/path/to/a/file */
 
         let identifier = Identifiers.FilesAndGroups.element(
             path,
+            name: name,
             type: type,
             hashCache: &hashCache
         )
@@ -561,16 +567,18 @@ FED9F54B134D73636F095974 /* a/path/to/a/file */
 
         var hashCache: Set<String> = []
         let path = "a/path/to/an/element"
+        let name = "file"
         let type: Identifiers.FilesAndGroups.ElementType = .fileReference
 
         let expectedIdentifier = #"""
-FEF8A9154DBAF0B6DF9804E2 /* a/path/to/an/element */
+FEF8A9154DBAF0B6DF9804E2 /* file */
 """#
 
         // Act
 
         let identifier = Identifiers.FilesAndGroups.element(
             path,
+            name: name,
             type: type,
             hashCache: &hashCache
         )
@@ -585,16 +593,18 @@ FEF8A9154DBAF0B6DF9804E2 /* a/path/to/an/element */
 
         var hashCache: Set<String> = []
         let path = "a/path/to/an/element"
+        let name = "group"
         let type: Identifiers.FilesAndGroups.ElementType = .group
 
         let expectedIdentifier = #"""
-FE76BD00D1EAF8EE030DB890 /* a/path/to/an/element */
+FE76BD00D1EAF8EE030DB890 /* group */
 """#
 
         // Act
 
         let identifier = Identifiers.FilesAndGroups.element(
             path,
+            name: name,
             type: type,
             hashCache: &hashCache
         )
@@ -609,16 +619,18 @@ FE76BD00D1EAF8EE030DB890 /* a/path/to/an/element */
 
         var hashCache: Set<String> = []
         let path = "a/path/to/an/element"
+        let name = "en.lproj/Localized.strings"
         let type: Identifiers.FilesAndGroups.ElementType = .localized
 
         let expectedIdentifier = #"""
-FE8B6DB242F1FFE0B40C2A17 /* a/path/to/an/element */
+FE8B6DB242F1FFE0B40C2A17 /* en.lproj/Localized.strings */
 """#
 
         // Act
 
         let identifier = Identifiers.FilesAndGroups.element(
             path,
+            name: name,
             type: type,
             hashCache: &hashCache
         )
@@ -633,16 +645,18 @@ FE8B6DB242F1FFE0B40C2A17 /* a/path/to/an/element */
 
         var hashCache: Set<String> = []
         let path = "a/path/to/an/element"
+        let name = "file"
         let type: Identifiers.FilesAndGroups.ElementType = .coreData
 
         let expectedIdentifier = #"""
-FEDBE1272349F408494E9A09 /* a/path/to/an/element */
+FEDBE1272349F408494E9A09 /* file */
 """#
 
         // Act
 
         let identifier = Identifiers.FilesAndGroups.element(
             path,
+            name: name,
             type: type,
             hashCache: &hashCache
         )

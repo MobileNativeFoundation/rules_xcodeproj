@@ -23,8 +23,8 @@ extension ElementCreator.CreateLocalizedFiles {
 
         let mocked = Self(
             collectBazelPaths: ElementCreator.Stubs.collectBazelPaths,
-            createFileElement:
-                ElementCreator.Stubs.createFileElement,
+            createLocalizedFileElement:
+                ElementCreator.Stubs.createLocalizedFileElement,
             callable: {
                 node,
                 parentBazelPath,

@@ -20,7 +20,7 @@ load(
     "process_swiftmodules",
 )
 
-def process_non_xcode_target(
+def process_unsupported_target(
         *,
         ctx,
         target,

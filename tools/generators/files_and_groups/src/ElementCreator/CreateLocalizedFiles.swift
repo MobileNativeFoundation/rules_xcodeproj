@@ -3,7 +3,7 @@ import PBXProj
 extension ElementCreator {
     struct CreateLocalizedFiles {
         private let collectBazelPaths: CollectBazelPaths
-        private let createFileElement: CreateFileElement
+        private let createLocalizedFileElement: CreateLocalizedFileElement
 
         private let callable: Callable
 
@@ -12,11 +12,11 @@ extension ElementCreator {
         ///     `callAsFunction()`.
         init(
             collectBazelPaths: CollectBazelPaths,
-            createFileElement: CreateFileElement,
+            createLocalizedFileElement: CreateLocalizedFileElement,
             callable: @escaping Callable
         ) {
             self.collectBazelPaths = collectBazelPaths
-            self.createFileElement = createFileElement
+            self.createLocalizedFileElement = createLocalizedFileElement
 
             self.callable = callable
         }
@@ -33,7 +33,7 @@ extension ElementCreator {
                 /*specialRootGroupType:*/ specialRootGroupType,
                 /*region:*/ region,
                 /*collectBazelPaths:*/ collectBazelPaths,
-                /*createFileElement:*/ createFileElement
+                /*createLocalizedFileElement:*/ createLocalizedFileElement
             )
         }
     }
@@ -48,7 +48,7 @@ extension ElementCreator.CreateLocalizedFiles {
         _ specialRootGroupType: SpecialRootGroupType?,
         _ region: String,
         _ collectBazelPaths: ElementCreator.CollectBazelPaths,
-        _ createFileElement: ElementCreator.CreateFileElement
+        _ createLocalizedFileElement: ElementCreator.CreateLocalizedFileElement
     ) -> [GroupChild.LocalizedFile]
 
     static func defaultCallable(
@@ -57,9 +57,10 @@ extension ElementCreator.CreateLocalizedFiles {
         specialRootGroupType: SpecialRootGroupType?,
         region: String,
         collectBazelPaths: ElementCreator.CollectBazelPaths,
-        createFileElement: ElementCreator.CreateFileElement
+        createLocalizedFileElement: ElementCreator.CreateLocalizedFileElement
     ) -> [GroupChild.LocalizedFile] {
         let bazelPath = parentBazelPath + node
+        let lprojPrefix = node.name
 
         let files =  node.children.map { node in
             let childBazelPath = bazelPath + node
@@ -71,11 +72,11 @@ extension ElementCreator.CreateLocalizedFiles {
 
             let (basenameWithoutExt, ext) = node.splitExtension()
 
-            let (element, _) = createFileElement(
+            let element = createLocalizedFileElement(
                 name: region,
+                path: "\(lprojPrefix)/\(node.name)",
                 ext: ext,
-                bazelPath: childBazelPath,
-                specialRootGroupType: specialRootGroupType
+                bazelPath: childBazelPath
             )
 
             return GroupChild.LocalizedFile(

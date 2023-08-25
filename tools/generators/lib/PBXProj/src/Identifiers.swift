@@ -314,11 +314,12 @@ FF0000000000000000000008 /* rules_xcodeproj */
         ///     identifier returned is unique.
         public static func element(
             _ path: String,
+            name: String,
             type: ElementType,
             hashCache: inout Set<String>
         ) -> String {
             let hash = elementHash(path + type.rawValue, hashCache: &hashCache)
-            return #"FE\#(hash) /* \#(path) */"#
+            return #"FE\#(hash) /* \#(name) */"#
         }
 
         /// Calculates a unique hash for the path encoded in `hashable`. The
