@@ -43,12 +43,12 @@ string_flag(
 # 5. Run each of the following commands to produce a cache for each macOS host
 #    platform. This can be run from an Intel or Apple silicon Mac.
 #
-#      bazel run --config=cache //:xcodeproj-x86_64 \
+#      bazel run --config=cache //:xcodeproj-bazel-x86_64 \
 #        -- \
 #        --generator_output_groups=all_targets \
 #        'build --remote_download_minimal'
 #
-#      bazel run --config=cache //:xcodeproj-sim_arm64 \
+#      bazel run --config=cache //:xcodeproj-bazel-sim_arm64 \
 #        -- \
 #        --generator_output_groups=all_targets \
 #        'build --remote_download_minimal'
