@@ -113,6 +113,10 @@ _SWIFT_LIBRARY_XCODE_TARGETS = {
     "plugins": _XCODE_TARGET_TYPES_COMPILE_AND_NONE,
     "private_deps": _XCODE_TARGET_TYPES_COMPILE_AND_NONE,
 }
+_SWIFT_GRPC_LIBRARY_XCODE_TARGETS = {
+    "deps": _XCODE_TARGET_TYPES_COMPILE_AND_NONE,
+    "_proto_support": _XCODE_TARGET_TYPES_COMPILE,
+}
 _TEST_BUNDLE_XCODE_TARGETS = {
     "deps": _XCODE_TARGET_TYPES_COMPILE_AND_NONE,
     "frameworks": _XCODE_TARGET_TYPES_COMPILE,
@@ -178,6 +182,8 @@ def calculate_automatic_target_info(ctx, build_mode, target):
         xcode_targets = _OBJC_LIBRARY_XCODE_TARGETS
     elif rule_kind == "swift_library":
         xcode_targets = _SWIFT_LIBRARY_XCODE_TARGETS
+    elif rule_kind == "swift_grpc_library":
+        xcode_targets = _SWIFT_GRPC_LIBRARY_XCODE_TARGETS
     elif rule_kind == "swift_proto_library":
         xcode_targets = _DEPS_XCODE_TARGETS
     elif rule_kind == "apple_resource_bundle":

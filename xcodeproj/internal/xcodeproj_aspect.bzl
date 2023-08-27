@@ -18,8 +18,9 @@ _IGNORE_ATTR = {
 
 def _should_ignore_attr(attr):
     return (
-        # We don't want to include implicit dependencies
-        attr[0] == "_" or
+        # Exclude implicit dependencies, except the ones added by
+        # `swift_{grpc,proto}_library`.
+        (attr[0] == "_" and attr != "_proto_support") or
         # These are actually Starklark methods, so ignore them
         attr in _IGNORE_ATTR
     )
