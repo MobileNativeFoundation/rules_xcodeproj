@@ -469,8 +469,8 @@ def _collect_input_files(
     else:
         resource_bundle_labels = memory_efficient_depset(
             transitive = [
-                dep[XcodeProjInfo].inputs._resource_bundle_labels
-                for dep in avoid_deps
+                info.inputs._resource_bundle_labels
+                for info in transitive_infos
             ],
         )
 
