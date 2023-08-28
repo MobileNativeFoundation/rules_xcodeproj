@@ -558,9 +558,9 @@ Resource bundle product reference with key \(key) not found in `products`
         }
 
         let nonProductResources = try inputs.resources.map(fileElement)
-        let produceResources = try resourceBundleDependencies
+        let productResources = try resourceBundleDependencies
             .map(productReference)
-        let fileElements = Set(nonProductResources + produceResources)
+        let fileElements = Set(nonProductResources + productResources)
 
         let buildPhase = PBXResourcesBuildPhase(
             files: fileElements.map(buildFile).sortedLocalizedStandard()
