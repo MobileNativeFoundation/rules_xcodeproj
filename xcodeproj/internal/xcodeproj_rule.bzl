@@ -310,9 +310,9 @@ def _process_targets(
         )
         configuration_resource_bundle_xcode_targets = process_resource_bundles(
             bundles = configuration_inputs.resource_bundles.to_list(),
-            resource_bundle_informations = depset(
+            resource_bundle_ids = depset(
                 transitive = [
-                    info.resource_bundle_informations
+                    info.resource_bundle_ids
                     for info in i
                 ],
             ).to_list(),

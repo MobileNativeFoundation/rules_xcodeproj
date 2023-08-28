@@ -183,9 +183,8 @@ A `depset` of `struct`s with `id` and `label` fields. The `id` field is the
 target id of the target that have its label (and name) be replaced with the
 label in the `label` field.
 """,
-        "resource_bundle_informations": """\
-A `depset` of `struct`s with information used to generate resource bundles,
-which couldn't be collected from `AppleResourceInfo` alone.
+        "resource_bundle_ids": """\
+A `depset` of `tuple`s mapping target id to bundle id.
 """,
         "target_type": """\
 A string that categorizes the type of the current target. This will be one of

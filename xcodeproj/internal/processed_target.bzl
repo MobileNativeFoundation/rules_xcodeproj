@@ -15,7 +15,7 @@ def processed_target(
         lldb_context,
         outputs,
         potential_target_merges = None,
-        resource_bundle_informations = None,
+        resource_bundle_ids = None,
         transitive_dependencies,
         xcode_target):
     """Generates the return value for target processing functions.
@@ -43,8 +43,8 @@ def processed_target(
             provide values for the `XcodeProjInfo.outputs` field.
         potential_target_merges: An optional `list` of `struct`s that will be in
             the `XcodeProjInfo.potential_target_merges` `depset`.
-        resource_bundle_informations: An optional `list` of `struct`s that will
-            be in the `XcodeProjInfo.resource_bundle_informations` `depset`.
+        resource_bundle_ids: An optional `list` of `tuples`s that will be in the
+            `XcodeProjInfo.resource_bundle_ids` `depset`.
         transitive_dependencies: A `depset` of target ids of transitive
             dependencies of this target.
         xcode_target: An optional value returned from `xcode_targets.make` that
@@ -65,7 +65,7 @@ def processed_target(
         lldb_context = lldb_context,
         outputs = outputs,
         potential_target_merges = potential_target_merges,
-        resource_bundle_informations = resource_bundle_informations,
+        resource_bundle_ids = resource_bundle_ids,
         target_type = target_type,
         transitive_dependencies = transitive_dependencies,
         xcode_target = xcode_target,
