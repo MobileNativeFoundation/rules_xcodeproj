@@ -247,15 +247,6 @@ def process_top_level_target(
 
     app_icon_info = app_icons.get_info(ctx, automatic_target_info)
 
-    if automatic_target_info.alternate_icons:
-        additional_files.extend(
-            getattr(
-                ctx.rule.files,
-                automatic_target_info.alternate_icons,
-                [],
-            ),
-        )
-
     infoplist = info_plists.adjust_for_xcode(
         info_plists.get_file(target),
         app_icon_info.default_icon_path if app_icon_info else None,
