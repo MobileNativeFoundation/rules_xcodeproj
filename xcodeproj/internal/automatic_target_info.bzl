@@ -186,8 +186,10 @@ def calculate_automatic_target_info(ctx, build_mode, target):
         xcode_targets = _SWIFT_GRPC_LIBRARY_XCODE_TARGETS
     elif rule_kind == "swift_proto_library":
         xcode_targets = _DEPS_XCODE_TARGETS
-    elif rule_kind == "apple_resource_bundle":
+    elif (AppleResourceBundleInfo in target and
+          rule_kind != "apple_bundle_import"):
         is_supported = False
+        collect_uncategorized_files = True
 
         # Ideally this would be exposed on `AppleResourceBundleInfo`
         bundle_id = "bundle_id"
