@@ -625,7 +625,7 @@ def _collect_input_files(
     # We need to collect transitive modulemaps, because some are private to
     # dependent targets, but we still need them for the final output group
     modulemaps_depset = memory_efficient_depset(
-        [f for f in modulemaps if not f.is_source],
+        [f for f in modulemaps if not f.is_source] if modulemaps else None,
         transitive = [
             info.inputs._modulemaps
             for info in transitive_infos
