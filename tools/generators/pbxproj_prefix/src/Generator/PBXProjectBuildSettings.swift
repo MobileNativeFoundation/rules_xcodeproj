@@ -67,6 +67,7 @@ extension Generator {
             ),
             .init(key: "CLANG_ENABLE_OBJC_ARC", value: "YES"),
             .init(key: "CLANG_MODULES_AUTOLINK", value: "NO"),
+            .init(key: "CODE_SIGN_STYLE", value: "Manual"),
             .init(
                 key: "CONFIGURATION_BUILD_DIR",
                 value: #""$(BUILD_DIR)/$(BAZEL_PACKAGE_BIN_DIR)""#
