@@ -195,8 +195,10 @@ def _collect_input_files(
     generated = [file for file in additional_files if not file.is_source]
     extra_files = [file.path for file in additional_files]
 
+    label = target.label
+
     # Include BUILD files for the project but not for external repos
-    if not target.label.workspace_root:
+    if not label.workspace_root:
         extra_files.append(ctx.build_file_path)
 
     # buildifier: disable=uninitialized
@@ -399,7 +401,6 @@ def _collect_input_files(
             )
 
     is_resource_bundle_consuming = is_bundle and AppleResourceInfo in target
-    label = target.label
 
     resources = None
     folder_resources = None
@@ -424,7 +425,7 @@ def _collect_input_files(
             for bundle in resources_result.bundles
         ]
         resource_bundle_labels = memory_efficient_depset(
-            bundle_labels_list if bundle_labels_list else None,
+            bundle_labels_list,
             transitive = [
                 dep[XcodeProjInfo].inputs._resource_bundle_labels
                 for dep in avoid_deps
@@ -604,7 +605,7 @@ def _collect_input_files(
     ]
 
     generated_depset = memory_efficient_depset(
-        generated if generated else None,
+        generated,
         transitive = [
             info.inputs.generated
             for info in transitive_infos
@@ -613,7 +614,7 @@ def _collect_input_files(
 
     if should_produce_output_groups:
         indexstores_depset = memory_efficient_depset(
-            indexstores if indexstores else None,
+            indexstores,
             transitive = [
                 info.inputs.indexstores
                 for info in transitive_infos
@@ -696,7 +697,7 @@ def _collect_input_files(
         if resource_bundle_uncategorized:
             resource_bundle_uncategorized_direct = [
                 (
-                    target.label,
+                    label,
                     memory_efficient_depset(resource_bundle_uncategorized),
                 ),
             ]
@@ -771,7 +772,7 @@ def _collect_input_files(
             ),
             generated = generated_depset,
             important_generated = memory_efficient_depset(
-                important_generated if important_generated else None,
+                important_generated,
                 transitive = [
                     info.inputs.important_generated
                     for info in transitive_infos
@@ -892,7 +893,7 @@ def _merge_input_files(*, transitive_infos, extra_generated = None):
             ],
         ),
         generated = memory_efficient_depset(
-            extra_generated if extra_generated else None,
+            extra_generated,
             transitive = [
                 info.inputs.generated
                 for info in transitive_infos
