@@ -167,7 +167,7 @@ def _collect_output_files(
         # transitive products. Until then we need them, to allow `Copy Bazel
         # Outputs` to be able to copy the products of transitive dependencies.
         transitive_products = memory_efficient_depset(
-            direct_products if direct_products else None,
+            direct_products,
             transitive = [
                 info.outputs._transitive_products
                 for info in transitive_infos
