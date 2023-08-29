@@ -13,7 +13,7 @@ load(
 )
 load(":xcode_targets.bzl", "xcode_targets")
 
-def _process_resource_bundle(bundle, *, information):
+def _process_resource_bundle(bundle, *, bundle_id):
     name = bundle.name
     id = bundle.id
 
@@ -22,7 +22,7 @@ def _process_resource_bundle(bundle, *, information):
     set_if_true(
         build_settings,
         "PRODUCT_BUNDLE_IDENTIFIER",
-        information.bundle_id,
+        bundle_id,
     )
 
     if bundle.infoplist:
@@ -75,14 +75,13 @@ def _process_resource_bundle(bundle, *, information):
         outputs = target_outputs,
     )
 
-def process_resource_bundles(bundles, *, resource_bundle_informations):
+def process_resource_bundles(bundles, *, resource_bundle_ids):
     """Turns a `list` of resource bundles into `xcode_target` `struct`s.
 
     Args:
-        bundles: A list of resource bundle `struct`s, as returned from
+        bundles: A `list` of resource bundle `struct`s, as returned from
             `collect_resources`.
-        resource_bundle_informations: A list of `struct`s, as set in
-            `process_resource_target`.
+        resource_bundle_ids: A list of `tuples`s mapping target id to bundle id.
 
     Returns:
         A list of `xcode_target` `struct`s.
@@ -90,14 +89,14 @@ def process_resource_bundles(bundles, *, resource_bundle_informations):
     if not bundles:
         return []
 
-    informations = {}
-    for information in resource_bundle_informations:
-        informations[information.id] = information
+    ids = {}
+    for target_id, bundle_id in resource_bundle_ids:
+        ids[target_id] = bundle_id
 
     return [
         _process_resource_bundle(
             bundle = bundle,
-            information = informations[bundle.id],
+            bundle_id = ids[bundle.id],
         )
         for bundle in bundles
     ]

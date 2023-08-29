@@ -158,7 +158,7 @@ def _write_files_and_groups(
     )
 
     # filePaths
-    if files != EMPTY_DEPSET or file_paths != EMPTY_DEPSET:
+    if files or file_paths:
         args.add(_flags.files_paths)
         args.add_all(files)
 

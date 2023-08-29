@@ -253,7 +253,7 @@ def _write_generator_build_file(
             "%fail_for_invalid_extra_files_targets%": (
                 str(attr.fail_for_invalid_extra_files_targets)
             ),
-            "%focused_targets%": str(attr.focused_targets),
+            "%focused_labels%": str(attr.focused_labels),
             "%install_directory%": attr.install_directory,
             "%install_path%": install_path,
             "%ios_device_cpus%": attr.ios_device_cpus,
@@ -276,7 +276,7 @@ def _write_generator_build_file(
             ),
             "%tvos_device_cpus%": attr.tvos_device_cpus,
             "%tvos_simulator_cpus%": attr.tvos_simulator_cpus,
-            "%unfocused_targets%": str(attr.unfocused_targets),
+            "%unfocused_labels%": str(attr.unfocused_labels),
             "%unowned_extra_files%": str(attr.unowned_extra_files),
             "%visibility%": "{repo}//xcodeproj:__pkg__".format(repo = repo),
             "%watchos_device_cpus%": attr.watchos_device_cpus,
@@ -533,9 +533,7 @@ xcodeproj_runner = rule(
         "fail_for_invalid_extra_files_targets": attr.bool(
             default = True,
         ),
-        "focused_targets": attr.string_list(
-            default = [],
-        ),
+        "focused_labels": attr.string_list(default = []),
         "install_directory": attr.string(
             mandatory = True,
         ),
@@ -567,9 +565,7 @@ xcodeproj_runner = rule(
             mandatory = True,
         ),
         "tvos_simulator_cpus": attr.string(),
-        "unfocused_targets": attr.string_list(
-            default = [],
-        ),
+        "unfocused_labels": attr.string_list(default = []),
         "unowned_extra_files": attr.string_list(),
         "watchos_device_cpus": attr.string(
             mandatory = True,
