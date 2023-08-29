@@ -253,7 +253,7 @@ def _collect_input_files(
         for attr in automatic_target_info.hdrs:
             file_handlers[attr] = _handle_hdrs_file
     else:
-        # Turn source files into extra files for non-Xcode targets
+        # Turn source files into extra files for unsupported targets
         for attr in automatic_target_info.srcs:
             file_handlers[attr] = _handle_extrafiles_file
         for attr in automatic_target_info.non_arc_srcs:
@@ -267,6 +267,10 @@ def _collect_input_files(
         file_handlers[attr] = _handle_extrafiles_file
     for attr in automatic_target_info.launchdplists:
         file_handlers[attr] = _handle_extrafiles_file
+    if automatic_target_info.alternate_icons:
+        file_handlers[automatic_target_info.alternate_icons] = (
+            _handle_extrafiles_file
+        )
     if automatic_target_info.entitlements:
         file_handlers[automatic_target_info.entitlements] = (
             _handle_entitlements_file
