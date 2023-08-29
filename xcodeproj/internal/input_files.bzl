@@ -195,8 +195,10 @@ def _collect_input_files(
     generated = [file for file in additional_files if not file.is_source]
     extra_files = [file.path for file in additional_files]
 
+    label = target.label
+
     # Include BUILD files for the project but not for external repos
-    if not target.label.workspace_root:
+    if not label.workspace_root:
         extra_files.append(ctx.build_file_path)
 
     # buildifier: disable=uninitialized
@@ -399,7 +401,6 @@ def _collect_input_files(
             )
 
     is_resource_bundle_consuming = is_bundle and AppleResourceInfo in target
-    label = target.label
 
     resources = None
     folder_resources = None
@@ -696,7 +697,7 @@ def _collect_input_files(
         if resource_bundle_uncategorized:
             resource_bundle_uncategorized_direct = [
                 (
-                    target.label,
+                    label,
                     memory_efficient_depset(resource_bundle_uncategorized),
                 ),
             ]
