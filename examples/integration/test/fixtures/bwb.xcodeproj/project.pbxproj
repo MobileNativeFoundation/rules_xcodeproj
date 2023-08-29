@@ -13531,7 +13531,6 @@
 				BAZEL_TARGET_ID = "@@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests.__internal__.__test_bundle applebin_ios-ios_x86_64-opt-STABLE-15";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
-				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = iOSAppObjCUnitTests.library;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests.library.rules_xcodeproj.c.compile.params";
@@ -13726,7 +13725,6 @@
 				BAZEL_TARGET_ID = "@@//CommandLine/CommandLineTool:tool.binary macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-41";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
-				CLANG_ENABLE_MODULES = YES;
 				COMPILE_TARGET_NAME = tool.library;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-41/bin/CommandLine/CommandLineTool/tool.library.rules_xcodeproj.c.compile.params";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -13923,7 +13921,6 @@
 				BAZEL_TARGET_ID = "@@//CommandLine/CommandLineTool:CommandLineTool applebin_macos-darwin_x86_64-dbg-STABLE-43";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
-				CLANG_ENABLE_MODULES = YES;
 				COMPILE_TARGET_NAME = tool.library;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-37/bin/CommandLine/CommandLineTool/tool.library.rules_xcodeproj.c.compile.params";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -14246,7 +14243,6 @@
 				BAZEL_TARGET_ID = "@@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-13";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
-				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = iOSAppObjCUnitTestSuite.library;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTestSuite.library.rules_xcodeproj.c.compile.params";
@@ -14330,7 +14326,6 @@
 				BAZEL_TARGET_ID = "@@//CommandLine/CommandLineTool:CommandLineTool applebin_macos-darwin_x86_64-opt-STABLE-44";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
-				CLANG_ENABLE_MODULES = YES;
 				COMPILE_TARGET_NAME = tool.library;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-40/bin/CommandLine/CommandLineTool/tool.library.rules_xcodeproj.c.compile.params";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -14898,7 +14893,6 @@
 				BAZEL_TARGET_ID = "@@//CommandLine/CommandLineTool:tool.binary macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-38";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
-				CLANG_ENABLE_MODULES = YES;
 				COMPILE_TARGET_NAME = tool.library;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-38/bin/CommandLine/CommandLineTool/tool.library.rules_xcodeproj.c.compile.params";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -14953,7 +14947,6 @@
 				BAZEL_TARGET_ID = "@@//CommandLine/CommandLineTool:tool.binary macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-39";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
-				CLANG_ENABLE_MODULES = YES;
 				COMPILE_TARGET_NAME = tool.library;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-39/bin/CommandLine/CommandLineTool/tool.library.rules_xcodeproj.c.compile.params";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -15659,7 +15652,6 @@
 				BAZEL_TARGET_ID = "@@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-13";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
-				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = iOSAppObjCUnitTests.library;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests.library.rules_xcodeproj.c.compile.params";
@@ -15786,7 +15778,6 @@
 				BAZEL_TARGET_ID = "@@//CommandLine/CommandLineTool:tool.binary macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-42";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
-				CLANG_ENABLE_MODULES = YES;
 				COMPILE_TARGET_NAME = tool.library;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-42/bin/CommandLine/CommandLineTool/tool.library.rules_xcodeproj.c.compile.params";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -17582,7 +17573,6 @@
 				BAZEL_TARGET_ID = "@@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTestSuite.__internal__.__test_bundle applebin_ios-ios_x86_64-opt-STABLE-15";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
-				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = iOSAppObjCUnitTestSuite.library;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTestSuite.library.rules_xcodeproj.c.compile.params";
