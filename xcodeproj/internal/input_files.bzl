@@ -425,7 +425,7 @@ def _collect_input_files(
             for bundle in resources_result.bundles
         ]
         resource_bundle_labels = memory_efficient_depset(
-            bundle_labels_list if bundle_labels_list else None,
+            bundle_labels_list,
             transitive = [
                 dep[XcodeProjInfo].inputs._resource_bundle_labels
                 for dep in avoid_deps
@@ -605,7 +605,7 @@ def _collect_input_files(
     ]
 
     generated_depset = memory_efficient_depset(
-        generated if generated else None,
+        generated,
         transitive = [
             info.inputs.generated
             for info in transitive_infos
@@ -614,7 +614,7 @@ def _collect_input_files(
 
     if should_produce_output_groups:
         indexstores_depset = memory_efficient_depset(
-            indexstores if indexstores else None,
+            indexstores,
             transitive = [
                 info.inputs.indexstores
                 for info in transitive_infos
@@ -772,7 +772,7 @@ def _collect_input_files(
             ),
             generated = generated_depset,
             important_generated = memory_efficient_depset(
-                important_generated if important_generated else None,
+                important_generated,
                 transitive = [
                     info.inputs.important_generated
                     for info in transitive_infos
@@ -893,7 +893,7 @@ def _merge_input_files(*, transitive_infos, extra_generated = None):
             ],
         ),
         generated = memory_efficient_depset(
-            extra_generated if extra_generated else None,
+            extra_generated,
             transitive = [
                 info.inputs.generated
                 for info in transitive_infos
