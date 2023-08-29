@@ -1502,8 +1502,8 @@ configurations: {}""".format(", ".join(xcode_configurations)))
     inputs = input_files.merge(
         transitive_infos = infos,
     )
-    focused_labels = {label: None for label in ctx.attr.focused_targets}
-    unfocused_labels = {label: None for label in ctx.attr.unfocused_targets}
+    focused_labels = {label: None for label in ctx.attr.focused_labels}
+    unfocused_labels = {label: None for label in ctx.attr.unfocused_labels}
     replacement_labels = {
         r.id: r.label
         for r in depset(
@@ -1837,9 +1837,7 @@ def make_xcodeproj_rule(
         "fail_for_invalid_extra_files_targets": attr.bool(
             mandatory = True,
         ),
-        "focused_targets": attr.string_list(
-            mandatory = True,
-        ),
+        "focused_labels": attr.string_list(mandatory = True),
         "install_path": attr.string(
             mandatory = True,
         ),
@@ -1899,9 +1897,7 @@ def make_xcodeproj_rule(
         "tvos_simulator_cpus": attr.string(
             mandatory = True,
         ),
-        "unfocused_targets": attr.string_list(
-            mandatory = True,
-        ),
+        "unfocused_labels": attr.string_list(mandatory = True),
         "unowned_extra_files": attr.label_list(
             allow_files = True,
             mandatory = True,

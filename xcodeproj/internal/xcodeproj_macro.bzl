@@ -408,11 +408,11 @@ alphabetically ("{default}").
         if "simulator" in top_level_target.target_environments
     ]
 
-    focused_targets = [
+    focused_labels = [
         bazel_labels.normalize_string(t)
         for t in focused_targets
     ]
-    unfocused_targets = [
+    unfocused_labels = [
         bazel_labels.normalize_string(t)
         for t in unfocused_targets
     ]
@@ -431,15 +431,15 @@ alphabetically ("{default}").
 
     schemes_json = None
     if schemes:
-        if unfocused_targets:
+        if unfocused_labels:
             schemes = unfocus_schemes(
                 schemes = schemes,
-                unfocused_targets = unfocused_targets,
+                unfocused_labels = unfocused_labels,
             )
-        if focused_targets:
+        if focused_labels:
             schemes = focus_schemes(
                 schemes = schemes,
-                focused_targets = focused_targets,
+                focused_labels = focused_labels,
             )
         schemes_json = json.encode(schemes)
 
@@ -501,7 +501,7 @@ Please refer to https://bazel.build/extending/config#defining) on how to them.
         config = config,
         default_xcode_configuration = default_xcode_configuration,
         fail_for_invalid_extra_files_targets = fail_for_invalid_extra_files_targets,
-        focused_targets = focused_targets,
+        focused_labels = focused_labels,
         install_directory = install_directory,
         ios_device_cpus = ios_device_cpus,
         ios_simulator_cpus = ios_simulator_cpus,
@@ -520,7 +520,7 @@ Please refer to https://bazel.build/extending/config#defining) on how to them.
         top_level_simulator_targets = top_level_simulator_targets,
         tvos_device_cpus = tvos_device_cpus,
         tvos_simulator_cpus = tvos_simulator_cpus,
-        unfocused_targets = unfocused_targets,
+        unfocused_labels = unfocused_labels,
         unowned_extra_files = unowned_extra_files,
         watchos_device_cpus = watchos_device_cpus,
         watchos_simulator_cpus = watchos_simulator_cpus,
