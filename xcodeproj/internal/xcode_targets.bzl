@@ -161,7 +161,6 @@ _BUNDLE_TYPES = {
     "com.apple.product-type.app-extension.messages": None,
     "com.apple.product-type.application": None,
     "com.apple.product-type.application.on-demand-install-capable": None,
-    "com.apple.product-type.application.watchapp": None,
     "com.apple.product-type.application.watchapp2": None,
     "com.apple.product-type.bundle": None,
     "com.apple.product-type.bundle.ui-testing": None,
@@ -169,7 +168,6 @@ _BUNDLE_TYPES = {
     "com.apple.product-type.extensionkit-extension": None,
     "com.apple.product-type.framework": None,
     "com.apple.product-type.tv-app-extension": None,
-    "com.apple.product-type.watchkit-extension": None,
     "com.apple.product-type.watchkit2-extension": None,
 }
 
@@ -507,13 +505,11 @@ _PREVIEWS_ENABLED_PRODUCT_TYPES = {
     "com.apple.product-type.app-extension.messages": None,
     "com.apple.product-type.application": None,
     "com.apple.product-type.application.on-demand-install-capable": None,
-    "com.apple.product-type.application.watchapp": None,
     "com.apple.product-type.application.watchapp2": None,
     "com.apple.product-type.bundle.unit-test": None,
     "com.apple.product-type.extensionkit-extension": None,
     "com.apple.product-type.framework": None,
     "com.apple.product-type.tv-app-extension": None,
-    "com.apple.product-type.watchkit-extension": None,
     "com.apple.product-type.watchkit2-extension": None,
 }
 

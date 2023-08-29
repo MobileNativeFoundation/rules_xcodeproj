@@ -6,7 +6,6 @@ public enum PBXProductType: String, ExpressibleByArgument {
     case application = "a"
     case messagesApplication = "M"
     case onDemandInstallCapableApplication = "A"
-    case watchApp = "0"
     case watch2App = "w"
     case watch2AppContainer = "c"
 
@@ -19,7 +18,6 @@ public enum PBXProductType: String, ExpressibleByArgument {
 
     // Other extensions
     case extensionKitExtension = "E"
-    case watchExtension = "1"
     case watch2Extension = "W"
     case xcodeExtension = "2"
 
@@ -57,8 +55,6 @@ extension PBXProductType {
             return "com.apple.product-type.application.messages"
         case .onDemandInstallCapableApplication:
             return "com.apple.product-type.application.on-demand-install-capable"
-        case .watchApp:
-            return "com.apple.product-type.application.watchapp"
         case .watch2App:
             return "com.apple.product-type.application.watchapp2"
         case .watch2AppContainer:
@@ -75,8 +71,6 @@ extension PBXProductType {
             return "com.apple.product-type.tv-app-extension"
         case .extensionKitExtension:
             return "com.apple.product-type.extensionkit-extension"
-        case .watchExtension:
-            return "com.apple.product-type.watchkit-extension"
         case .watch2Extension:
             return "com.apple.product-type.watchkit2-extension"
         case .xcodeExtension:

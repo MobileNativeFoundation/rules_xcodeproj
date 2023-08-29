@@ -32,7 +32,6 @@ _SWIFTUI_PREVIEW_PRODUCT_TYPES = {
     "com.apple.product-type.app-extension": None,
     "com.apple.product-type.application": None,
     "com.apple.product-type.application.on-demand-install-capable": None,
-    "com.apple.product-type.application.watchapp": None,
     "com.apple.product-type.application.watchapp2": None,
     "com.apple.product-type.bundle": None,
     "com.apple.product-type.bundle.unit-test": None,
