@@ -163,6 +163,13 @@ Here is an example output:
 			name = Products;
 			sourceTree = "<group>";
 		};
+		FF0000000000000000000005 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 	};
 	rootObject = FF0000000000000000000001 /* Project object */;
 }
