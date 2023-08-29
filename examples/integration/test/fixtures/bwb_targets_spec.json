@@ -2380,6 +2380,41 @@
             "t": "com.apple.product-type.library.static"
         }
     },
+    "@@//GRPC:echo_client_services_swift macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33",
+    {
+        "0": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/GRPC/echo_client_services_swift.rules_xcodeproj.swift.compile.params",
+        "1": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/GRPC",
+        "2": {
+            "a": "x86_64",
+            "m": "11.0",
+            "v": "macosx"
+        },
+        "b": {
+            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
+            "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_protobuf -I$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/GRPC -I$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_log -I$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio -I$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_atomics -I$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_collections -I$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio_extras -I$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio_http2 -I$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio_ssl -I$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio_transport_services -I$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/rules_swift~1.9.1~non_module_deps~com_github_grpc_grpc_swift -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.9.1~non_module_deps~com_github_grpc_grpc_swift -Xcc -iquote -Xcc $(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/rules_swift~1.9.1~non_module_deps~com_github_grpc_grpc_swift -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio_ssl -Xcc -iquote -Xcc $(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio_ssl -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.9.1~non_module_deps~com_github_grpc_grpc_swift/Sources/CGRPCZlib/include -Xcc -isystem -Xcc $(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/rules_swift~1.9.1~non_module_deps~com_github_grpc_grpc_swift/Sources/CGRPCZlib/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLLHTTP/include -Xcc -isystem -Xcc $(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLLHTTP/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSL/include -Xcc -isystem -Xcc $(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSL/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSLShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSLShims/include -Xcc -DSWIFT_PACKAGE -Xcc -D__APPLE_USE_RFC_3542 -Xcc -DLLHTTP_STRICT_MODE -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/rules_swift~1.9.1~non_module_deps~com_github_grpc_grpc_swift/CGRPCZlib.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio/CNIOLinux.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio/CNIOWindows.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio/CNIOAtomics.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_atomics/_AtomicsShims.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio/CNIODarwin.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio/CNIOLLHTTP.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio_ssl/CNIOBoringSSL.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio_ssl/CNIOBoringSSLShims.swift.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
+            "PRODUCT_MODULE_NAME": "GRPC_echo_proto_swift"
+        },
+        "c": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33",
+        "i": {
+            "s": [
+                "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/GRPC/echo_proto-descriptor-set.proto.bin",
+                "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/GRPC/echo_proto.protoc_gen_pb_swift/GRPC/echo.pb.swift"
+            ]
+        },
+        "l": "@@//GRPC:echo_client_services_swift",
+        "m": true,
+        "n": "echo_client_services_swift",
+        "o": {
+            "s": {
+                "m": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/GRPC/GRPC_echo_client_services_swift.swiftmodule"
+            }
+        },
+        "p": {
+            "n": "echo_client_services_swift",
+            "p": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/GRPC/libecho_client_services_swift.a",
+            "t": "com.apple.product-type.library.static"
+        }
+    },
     "@@//GRPC:echo_client applebin_macos-darwin_x86_64-dbg-STABLE-35",
     {
         "0": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/GRPC/echo_client.library.rules_xcodeproj.swift.compile.params",
@@ -2395,7 +2430,7 @@
                 "n": "echo_client.library"
             }
         ],
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/echo_client.42.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/echo_client.43.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-35/bin/GRPC/echo_client.dSYM\""
@@ -2431,6 +2466,41 @@
             "t": "com.apple.product-type.tool"
         }
     },
+    "@@//GRPC:echo_server_services_swift macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33",
+    {
+        "0": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/GRPC/echo_server_services_swift.rules_xcodeproj.swift.compile.params",
+        "1": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/GRPC",
+        "2": {
+            "a": "x86_64",
+            "m": "11.0",
+            "v": "macosx"
+        },
+        "b": {
+            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
+            "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_protobuf -I$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/GRPC -I$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_log -I$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio -I$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_atomics -I$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_collections -I$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio_extras -I$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio_http2 -I$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio_ssl -I$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio_transport_services -I$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/rules_swift~1.9.1~non_module_deps~com_github_grpc_grpc_swift -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.9.1~non_module_deps~com_github_grpc_grpc_swift -Xcc -iquote -Xcc $(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/rules_swift~1.9.1~non_module_deps~com_github_grpc_grpc_swift -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio_ssl -Xcc -iquote -Xcc $(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio_ssl -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.9.1~non_module_deps~com_github_grpc_grpc_swift/Sources/CGRPCZlib/include -Xcc -isystem -Xcc $(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/rules_swift~1.9.1~non_module_deps~com_github_grpc_grpc_swift/Sources/CGRPCZlib/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLLHTTP/include -Xcc -isystem -Xcc $(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLLHTTP/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSL/include -Xcc -isystem -Xcc $(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSL/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSLShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSLShims/include -Xcc -DSWIFT_PACKAGE -Xcc -D__APPLE_USE_RFC_3542 -Xcc -DLLHTTP_STRICT_MODE -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/rules_swift~1.9.1~non_module_deps~com_github_grpc_grpc_swift/CGRPCZlib.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio/CNIOLinux.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio/CNIOWindows.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio/CNIOAtomics.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_atomics/_AtomicsShims.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio/CNIODarwin.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio/CNIOLLHTTP.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio_ssl/CNIOBoringSSL.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio_ssl/CNIOBoringSSLShims.swift.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
+            "PRODUCT_MODULE_NAME": "GRPC_echo_proto_swift"
+        },
+        "c": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33",
+        "i": {
+            "s": [
+                "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/GRPC/echo_proto-descriptor-set.proto.bin",
+                "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/GRPC/echo_proto.protoc_gen_pb_swift/GRPC/echo.pb.swift"
+            ]
+        },
+        "l": "@@//GRPC:echo_server_services_swift",
+        "m": true,
+        "n": "echo_server_services_swift",
+        "o": {
+            "s": {
+                "m": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/GRPC/GRPC_echo_server_services_swift.swiftmodule"
+            }
+        },
+        "p": {
+            "n": "echo_server_services_swift",
+            "p": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/GRPC/libecho_server_services_swift.a",
+            "t": "com.apple.product-type.library.static"
+        }
+    },
     "@@//GRPC:echo_server applebin_macos-darwin_x86_64-dbg-STABLE-35",
     {
         "0": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/GRPC/echo_server.library.rules_xcodeproj.swift.compile.params",
@@ -2446,7 +2516,7 @@
                 "n": "echo_server.library"
             }
         ],
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/echo_server.43.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/echo_server.45.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-35/bin/GRPC/echo_server.dSYM\""
@@ -2651,7 +2721,7 @@
                 "n": "tool.library"
             }
         ],
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/CommandLineTool.49.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/CommandLineTool.51.link.params",
         "8": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-37/bin/CommandLine/CommandLineTool/tool.library.rules_xcodeproj.c.compile.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
@@ -2854,7 +2924,7 @@
                 "n": "tool.library"
             }
         ],
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UniversalCommandLineTool.55.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UniversalCommandLineTool.57.link.params",
         "8": "bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-38/bin/CommandLine/CommandLineTool/tool.library.rules_xcodeproj.c.compile.params",
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-38/bin/CommandLine/CommandLineTool/tool.binary_codesigned",
@@ -3051,7 +3121,7 @@
                 "n": "tool.library"
             }
         ],
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UniversalCommandLineTool.61.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UniversalCommandLineTool.63.link.params",
         "8": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-39/bin/CommandLine/CommandLineTool/tool.library.rules_xcodeproj.c.compile.params",
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-39/bin/CommandLine/CommandLineTool/tool.binary_codesigned",
@@ -3088,7 +3158,7 @@
             "m": "12.0",
             "v": "macosx"
         },
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/BasicTests.62.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/BasicTests.64.link.params",
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/darwin_x86_64-dbg-STABLE-45/bin/CommandLine/Tests/BasicTests.xctest",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "BasicTests.xctest",
@@ -3126,7 +3196,7 @@
                 "n": "CommandLineLibSwiftTestsLib"
             }
         ],
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/CommandLineToolTests.63.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/CommandLineToolTests.65.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-43/bin/CommandLine/Tests/CommandLineToolTests.xctest.dSYM\""
@@ -3225,7 +3295,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/AppClip.65.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/AppClip.67.link.params",
         "b": {
             "ASSETCATALOG_COMPILER_APPICON_NAME": "AppIcon",
             "BAZEL_OUTPUTS_DSYM": [
@@ -3360,7 +3430,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/WidgetExtension.68.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/WidgetExtension.70.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -3424,7 +3494,7 @@
                 "n": "CoreUtilsObjC"
             }
         ],
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/FrameworkCoreUtilsObjC.69.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/FrameworkCoreUtilsObjC.71.link.params",
         "9": "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-4/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.rules_xcodeproj.cxx.compile.params",
         "F": true,
         "b": {
@@ -3488,7 +3558,7 @@
                 "bazel-out/applebin_ios-ios_arm64-dbg-STABLE-14/bin/Lib/frameworks/LibFramework.iOS.framework"
             ]
         },
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.iOS.70.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.iOS.72.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -3590,7 +3660,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibFramework.watchOS.72.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibFramework.watchOS.74.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -3646,7 +3716,7 @@
                 "bazel-out/applebin_watchos-watchos_arm64_32-dbg-STABLE-18/bin/Lib/frameworks/LibFramework.watchOS.framework"
             ]
         },
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.watchOS.73.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.watchOS.75.link.params",
         "7": [
             "@@//Lib:LibFramework.watchOS applebin_watchos-watchos_arm64_32-dbg-STABLE-18"
         ],
@@ -3720,7 +3790,7 @@
                 "bazel-out/applebin_watchos-watchos_arm64_32-dbg-STABLE-18/bin/Lib/frameworks/LibFramework.watchOS.framework"
             ]
         },
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOSAppExtension.74.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOSAppExtension.76.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -3836,7 +3906,7 @@
                 "bazel-out/applebin_ios-ios_arm64-dbg-STABLE-14/bin/Lib/frameworks/LibFramework.iOS.framework"
             ]
         },
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSApp.76.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSApp.78.link.params",
         "7": [
             "@@//AppClip:AppClip applebin_ios-ios_arm64-dbg-STABLE-14",
             "@@//WidgetExtension:WidgetExtension applebin_ios-ios_arm64-dbg-STABLE-14",
@@ -3933,7 +4003,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOS.77.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOS.79.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_ios-ios_arm64-dbg-STABLE-14/bin/Lib/dist/dynamic/Lib.framework",
@@ -4015,7 +4085,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOS.79.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOS.81.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_tvos-tvos_arm64-dbg-STABLE-26/bin/Lib/dist/dynamic/Lib.framework",
@@ -4060,7 +4130,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOS.80.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOS.82.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_watchos-watchos_arm64_32-dbg-STABLE-18/bin/Lib/dist/dynamic/Lib.framework",
@@ -4105,7 +4175,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibFramework.tvOS.81.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibFramework.tvOS.83.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -4161,7 +4231,7 @@
                 "bazel-out/applebin_tvos-tvos_arm64-dbg-STABLE-26/bin/Lib/frameworks/LibFramework.tvOS.framework"
             ]
         },
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.tvOS.82.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.tvOS.84.link.params",
         "7": [
             "@@//Lib:LibFramework.tvOS applebin_tvos-tvos_arm64-dbg-STABLE-26"
         ],
@@ -4235,7 +4305,7 @@
                 "bazel-out/applebin_tvos-tvos_arm64-dbg-STABLE-26/bin/Lib/frameworks/LibFramework.tvOS.framework"
             ]
         },
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOSApp.83.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOSApp.85.link.params",
         "7": [
             "@@//Lib:LibFramework.tvOS applebin_tvos-tvos_arm64-dbg-STABLE-26",
             "@@//UI:UIFramework.tvOS applebin_tvos-tvos_arm64-dbg-STABLE-26"
@@ -4348,7 +4418,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/AppClip.85.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/AppClip.87.link.params",
         "b": {
             "ASSETCATALOG_COMPILER_APPICON_NAME": "AppIcon",
             "BAZEL_OUTPUTS_DSYM": [
@@ -4492,7 +4562,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/WidgetExtension.88.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/WidgetExtension.90.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -4559,7 +4629,7 @@
                 "n": "CoreUtilsObjC"
             }
         ],
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/FrameworkCoreUtilsObjC.89.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/FrameworkCoreUtilsObjC.91.link.params",
         "9": "bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.rules_xcodeproj.cxx.compile.params",
         "F": true,
         "b": {
@@ -4626,7 +4696,7 @@
                 "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/Lib/frameworks/LibFramework.iOS.framework"
             ]
         },
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.iOS.90.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.iOS.92.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -4736,7 +4806,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibFramework.watchOS.92.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibFramework.watchOS.94.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -4795,7 +4865,7 @@
                 "bazel-out/applebin_watchos-watchos_x86_64-opt-STABLE-19/bin/Lib/frameworks/LibFramework.watchOS.framework"
             ]
         },
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.watchOS.93.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.watchOS.95.link.params",
         "7": [
             "@@//Lib:LibFramework.watchOS applebin_watchos-watchos_x86_64-opt-STABLE-19"
         ],
@@ -4873,7 +4943,7 @@
                 "bazel-out/applebin_watchos-watchos_x86_64-opt-STABLE-19/bin/Lib/frameworks/LibFramework.watchOS.framework"
             ]
         },
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOSAppExtension.94.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOSAppExtension.96.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -4994,7 +5064,7 @@
                 "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/Lib/frameworks/LibFramework.iOS.framework"
             ]
         },
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSApp.96.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSApp.98.link.params",
         "7": [
             "@@//AppClip:AppClip applebin_ios-ios_x86_64-opt-STABLE-15",
             "@@//WidgetExtension:WidgetExtension applebin_ios-ios_x86_64-opt-STABLE-15",
@@ -5093,7 +5163,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOS.97.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOS.99.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/Lib/dist/dynamic/Lib.framework",
@@ -5182,7 +5252,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOS.99.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOS.101.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_tvos-tvos_x86_64-opt-STABLE-27/bin/Lib/dist/dynamic/Lib.framework",
@@ -5230,7 +5300,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOS.100.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOS.102.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_watchos-watchos_x86_64-opt-STABLE-19/bin/Lib/dist/dynamic/Lib.framework",
@@ -5278,7 +5348,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibFramework.tvOS.101.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibFramework.tvOS.103.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -5337,7 +5407,7 @@
                 "bazel-out/applebin_tvos-tvos_x86_64-opt-STABLE-27/bin/Lib/frameworks/LibFramework.tvOS.framework"
             ]
         },
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.tvOS.102.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.tvOS.104.link.params",
         "7": [
             "@@//Lib:LibFramework.tvOS applebin_tvos-tvos_x86_64-opt-STABLE-27"
         ],
@@ -5415,7 +5485,7 @@
                 "bazel-out/applebin_tvos-tvos_x86_64-opt-STABLE-27/bin/Lib/frameworks/LibFramework.tvOS.framework"
             ]
         },
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOSApp.103.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOSApp.105.link.params",
         "7": [
             "@@//Lib:LibFramework.tvOS applebin_tvos-tvos_x86_64-opt-STABLE-27",
             "@@//UI:UIFramework.tvOS applebin_tvos-tvos_x86_64-opt-STABLE-27"
@@ -5484,7 +5554,7 @@
                 "n": "aplugin.library"
             }
         ],
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/Bundle.104.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/Bundle.106.link.params",
         "8": "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-30/bin/Bundle/aplugin.library.rules_xcodeproj.c.compile.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
@@ -5535,7 +5605,7 @@
                 "n": "iOSAppUITests.library"
             }
         ],
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppUITests.105.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppUITests.107.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.framework.dSYM\"",
@@ -5718,7 +5788,7 @@
                 "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/Lib/frameworks/LibFramework.iOS.framework"
             ]
         },
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTests.109.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTests.111.link.params",
         "7": [
             "@@//AppClip:AppClip applebin_ios-ios_x86_64-opt-STABLE-15",
             "@@//WidgetExtension:WidgetExtension applebin_ios-ios_x86_64-opt-STABLE-15",
@@ -5840,7 +5910,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iMessageAppExtension.111.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iMessageAppExtension.113.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -5956,7 +6026,7 @@
                 "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/Lib/frameworks/LibFramework.iOS.framework"
             ]
         },
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppSwiftUnitTests.113.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppSwiftUnitTests.115.link.params",
         "7": [
             "@@//AppClip:AppClip applebin_ios-ios_x86_64-opt-STABLE-15",
             "@@//WidgetExtension:WidgetExtension applebin_ios-ios_x86_64-opt-STABLE-15",
@@ -6049,7 +6119,7 @@
                 "macOSApp/third_party/ExampleFramework.framework"
             ]
         },
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/macOSApp.114.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/macOSApp.116.link.params",
         "b": {
             "ASSETCATALOG_COMPILER_APPICON_NAME": "AppIcon",
             "BAZEL_OUTPUTS_DSYM": [
@@ -6115,7 +6185,7 @@
                 "n": "macOSAppUITests.library"
             }
         ],
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/macOSAppUITests.115.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/macOSAppUITests.117.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-32/bin/macOSApp/Source/macOSApp.app.dSYM\"",
@@ -6178,7 +6248,7 @@
                 "n": "tvOSAppUITests.library"
             }
         ],
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOSAppUITests.116.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOSAppUITests.118.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/applebin_tvos-tvos_x86_64-opt-STABLE-27/bin/Lib/LibFramework.tvOS.framework.dSYM\"",
@@ -6250,7 +6320,7 @@
                 "bazel-out/applebin_tvos-tvos_x86_64-opt-STABLE-27/bin/Lib/frameworks/LibFramework.tvOS.framework"
             ]
         },
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOSAppUnitTests.117.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOSAppUnitTests.119.link.params",
         "7": [
             "@@//Lib:LibFramework.tvOS applebin_tvos-tvos_x86_64-opt-STABLE-27",
             "@@//UI:UIFramework.tvOS applebin_tvos-tvos_x86_64-opt-STABLE-27",
@@ -6323,7 +6393,7 @@
                 "n": "watchOSAppUITests.library"
             }
         ],
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOSAppUITests.118.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOSAppUITests.120.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/applebin_watchos-watchos_x86_64-opt-STABLE-19/bin/Lib/LibFramework.watchOS.framework.dSYM\"",
@@ -6395,7 +6465,7 @@
                 "bazel-out/applebin_watchos-watchos_x86_64-opt-STABLE-19/bin/Lib/frameworks/LibFramework.watchOS.framework"
             ]
         },
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOSAppExtensionUnitTests.119.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOSAppExtensionUnitTests.121.link.params",
         "7": [
             "@@//Lib:LibFramework.watchOS applebin_watchos-watchos_x86_64-opt-STABLE-19",
             "@@//UI:UIFramework.watchOS applebin_watchos-watchos_x86_64-opt-STABLE-19"
@@ -6460,7 +6530,7 @@
                 "n": "iOSAppUITestSuite.library"
             }
         ],
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppUITestSuite.120.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppUITestSuite.122.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.framework.dSYM\"",
@@ -6539,7 +6609,7 @@
                 "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/Lib/frameworks/LibFramework.iOS.framework"
             ]
         },
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTestSuite.121.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppObjCUnitTestSuite.123.link.params",
         "7": [
             "@@//AppClip:AppClip applebin_ios-ios_x86_64-opt-STABLE-15",
             "@@//WidgetExtension:WidgetExtension applebin_ios-ios_x86_64-opt-STABLE-15",
@@ -6624,7 +6694,7 @@
                 "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/Lib/frameworks/LibFramework.iOS.framework"
             ]
         },
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppSwiftUnitTestSuite.122.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSAppSwiftUnitTestSuite.124.link.params",
         "7": [
             "@@//AppClip:AppClip applebin_ios-ios_x86_64-opt-STABLE-15",
             "@@//WidgetExtension:WidgetExtension applebin_ios-ios_x86_64-opt-STABLE-15",
@@ -6745,7 +6815,7 @@
                 "n": "tool.library"
             }
         ],
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/proto.124.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/proto.126.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-36/bin/Proto/proto.dSYM\""
@@ -6817,6 +6887,45 @@
             "AppStore"
         ]
     },
+    "@@//GRPC:echo_client_services_swift macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34",
+    {
+        "0": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/GRPC/echo_client_services_swift.rules_xcodeproj.swift.compile.params",
+        "1": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/GRPC",
+        "2": {
+            "a": "x86_64",
+            "m": "11.0",
+            "v": "macosx"
+        },
+        "b": {
+            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
+            "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_protobuf -I$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/GRPC -I$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_log -I$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio -I$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_atomics -I$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_collections -I$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio_extras -I$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio_http2 -I$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio_ssl -I$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio_transport_services -I$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/external/rules_swift~1.9.1~non_module_deps~com_github_grpc_grpc_swift -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.9.1~non_module_deps~com_github_grpc_grpc_swift -Xcc -iquote -Xcc $(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/external/rules_swift~1.9.1~non_module_deps~com_github_grpc_grpc_swift -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio_ssl -Xcc -iquote -Xcc $(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio_ssl -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.9.1~non_module_deps~com_github_grpc_grpc_swift/Sources/CGRPCZlib/include -Xcc -isystem -Xcc $(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/external/rules_swift~1.9.1~non_module_deps~com_github_grpc_grpc_swift/Sources/CGRPCZlib/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLLHTTP/include -Xcc -isystem -Xcc $(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLLHTTP/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSL/include -Xcc -isystem -Xcc $(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSL/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSLShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSLShims/include -Xcc -DSWIFT_PACKAGE -Xcc -D__APPLE_USE_RFC_3542 -Xcc -DLLHTTP_STRICT_MODE -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/external/rules_swift~1.9.1~non_module_deps~com_github_grpc_grpc_swift/CGRPCZlib.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio/CNIOLinux.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio/CNIOWindows.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio/CNIOAtomics.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_atomics/_AtomicsShims.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio/CNIODarwin.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio/CNIOLLHTTP.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio_ssl/CNIOBoringSSL.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio_ssl/CNIOBoringSSLShims.swift.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
+            "PRODUCT_MODULE_NAME": "GRPC_echo_proto_swift",
+            "SWIFT_COMPILATION_MODE": "wholemodule"
+        },
+        "c": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34",
+        "i": {
+            "s": [
+                "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/GRPC/echo_proto-descriptor-set.proto.bin",
+                "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/GRPC/echo_proto.protoc_gen_pb_swift/GRPC/echo.pb.swift"
+            ]
+        },
+        "l": "@@//GRPC:echo_client_services_swift",
+        "m": true,
+        "n": "echo_client_services_swift",
+        "o": {
+            "s": {
+                "m": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/GRPC/GRPC_echo_client_services_swift.swiftmodule"
+            }
+        },
+        "p": {
+            "n": "echo_client_services_swift",
+            "p": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/GRPC/libecho_client_services_swift.a",
+            "t": "com.apple.product-type.library.static"
+        },
+        "x": [
+            "AppStore"
+        ]
+    },
     "@@//GRPC:echo_client applebin_macos-darwin_x86_64-opt-STABLE-36",
     {
         "0": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/GRPC/echo_client.library.rules_xcodeproj.swift.compile.params",
@@ -6832,7 +6941,7 @@
                 "n": "echo_client.library"
             }
         ],
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/echo_client.126.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/echo_client.129.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-36/bin/GRPC/echo_client.dSYM\""
@@ -6872,6 +6981,45 @@
             "AppStore"
         ]
     },
+    "@@//GRPC:echo_server_services_swift macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34",
+    {
+        "0": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/GRPC/echo_server_services_swift.rules_xcodeproj.swift.compile.params",
+        "1": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/GRPC",
+        "2": {
+            "a": "x86_64",
+            "m": "11.0",
+            "v": "macosx"
+        },
+        "b": {
+            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
+            "OTHER_SWIFT_FLAGS": "-I$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_protobuf -I$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/GRPC -I$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_log -I$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio -I$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_atomics -I$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_collections -I$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio_extras -I$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio_http2 -I$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio_ssl -I$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio_transport_services -I$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/external/rules_swift~1.9.1~non_module_deps~com_github_grpc_grpc_swift -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.9.1~non_module_deps~com_github_grpc_grpc_swift -Xcc -iquote -Xcc $(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/external/rules_swift~1.9.1~non_module_deps~com_github_grpc_grpc_swift -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_atomics -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio_ssl -Xcc -iquote -Xcc $(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio_ssl -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.9.1~non_module_deps~com_github_grpc_grpc_swift/Sources/CGRPCZlib/include -Xcc -isystem -Xcc $(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/external/rules_swift~1.9.1~non_module_deps~com_github_grpc_grpc_swift/Sources/CGRPCZlib/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLinux/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio/Sources/CNIOWindows/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio/Sources/CNIOAtomics/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_atomics/Sources/_AtomicsShims/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio/Sources/CNIODarwin/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLLHTTP/include -Xcc -isystem -Xcc $(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio/Sources/CNIOLLHTTP/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSL/include -Xcc -isystem -Xcc $(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSL/include -Xcc -isystem -Xcc $(BAZEL_EXTERNAL)/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSLShims/include -Xcc -isystem -Xcc $(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio_ssl/Sources/CNIOBoringSSLShims/include -Xcc -DSWIFT_PACKAGE -Xcc -D__APPLE_USE_RFC_3542 -Xcc -DLLHTTP_STRICT_MODE -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/external/rules_swift~1.9.1~non_module_deps~com_github_grpc_grpc_swift/CGRPCZlib.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio/CNIOLinux.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio/CNIOWindows.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio/CNIOAtomics.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_atomics/_AtomicsShims.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio/CNIODarwin.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio/CNIOLLHTTP.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio_ssl/CNIOBoringSSL.swift.modulemap -Xcc -fmodule-map-file=$(BAZEL_OUT)/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/external/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_nio_ssl/CNIOBoringSSLShims.swift.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
+            "PRODUCT_MODULE_NAME": "GRPC_echo_proto_swift",
+            "SWIFT_COMPILATION_MODE": "wholemodule"
+        },
+        "c": "macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34",
+        "i": {
+            "s": [
+                "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/GRPC/echo_proto-descriptor-set.proto.bin",
+                "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/GRPC/echo_proto.protoc_gen_pb_swift/GRPC/echo.pb.swift"
+            ]
+        },
+        "l": "@@//GRPC:echo_server_services_swift",
+        "m": true,
+        "n": "echo_server_services_swift",
+        "o": {
+            "s": {
+                "m": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/GRPC/GRPC_echo_server_services_swift.swiftmodule"
+            }
+        },
+        "p": {
+            "n": "echo_server_services_swift",
+            "p": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/GRPC/libecho_server_services_swift.a",
+            "t": "com.apple.product-type.library.static"
+        },
+        "x": [
+            "AppStore"
+        ]
+    },
     "@@//GRPC:echo_server applebin_macos-darwin_x86_64-opt-STABLE-36",
     {
         "0": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-34/bin/GRPC/echo_server.library.rules_xcodeproj.swift.compile.params",
@@ -6887,7 +7035,7 @@
                 "n": "echo_server.library"
             }
         ],
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/echo_server.127.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/echo_server.131.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-36/bin/GRPC/echo_server.dSYM\""
@@ -7113,7 +7261,7 @@
                 "n": "tool.library"
             }
         ],
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/CommandLineTool.133.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/CommandLineTool.137.link.params",
         "8": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-40/bin/CommandLine/CommandLineTool/tool.library.rules_xcodeproj.c.compile.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
@@ -7336,7 +7484,7 @@
                 "n": "tool.library"
             }
         ],
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UniversalCommandLineTool.139.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UniversalCommandLineTool.143.link.params",
         "8": "bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-41/bin/CommandLine/CommandLineTool/tool.library.rules_xcodeproj.c.compile.params",
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-41/bin/CommandLine/CommandLineTool/tool.binary_codesigned",
@@ -7553,7 +7701,7 @@
                 "n": "tool.library"
             }
         ],
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UniversalCommandLineTool.145.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UniversalCommandLineTool.149.link.params",
         "8": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-42/bin/CommandLine/CommandLineTool/tool.library.rules_xcodeproj.c.compile.params",
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-42/bin/CommandLine/CommandLineTool/tool.binary_codesigned",
@@ -7593,7 +7741,7 @@
             "m": "12.0",
             "v": "macosx"
         },
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/BasicTests.146.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/BasicTests.150.link.params",
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/darwin_x86_64-opt-STABLE-46/bin/CommandLine/Tests/BasicTests.xctest",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "BasicTests.xctest",
@@ -7635,7 +7783,7 @@
                 "n": "CommandLineLibSwiftTestsLib"
             }
         ],
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/CommandLineToolTests.147.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/CommandLineToolTests.151.link.params",
         "b": {
             "BAZEL_OUTPUTS_DSYM": [
                 "\"bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-44/bin/CommandLine/Tests/CommandLineToolTests.xctest.dSYM\""
@@ -7742,7 +7890,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/AppClip.149.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/AppClip.153.link.params",
         "b": {
             "ASSETCATALOG_COMPILER_APPICON_NAME": "AppIcon",
             "BAZEL_OUTPUTS_DSYM": [
@@ -7887,7 +8035,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/WidgetExtension.152.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/WidgetExtension.156.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -7955,7 +8103,7 @@
                 "n": "CoreUtilsObjC"
             }
         ],
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/FrameworkCoreUtilsObjC.153.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/FrameworkCoreUtilsObjC.157.link.params",
         "9": "bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-10/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.rules_xcodeproj.cxx.compile.params",
         "F": true,
         "b": {
@@ -8022,7 +8170,7 @@
                 "bazel-out/applebin_ios-ios_arm64-opt-STABLE-16/bin/Lib/frameworks/LibFramework.iOS.framework"
             ]
         },
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.iOS.154.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.iOS.158.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -8132,7 +8280,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibFramework.watchOS.156.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibFramework.watchOS.160.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -8191,7 +8339,7 @@
                 "bazel-out/applebin_watchos-watchos_arm64_32-opt-STABLE-20/bin/Lib/frameworks/LibFramework.watchOS.framework"
             ]
         },
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.watchOS.157.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.watchOS.161.link.params",
         "7": [
             "@@//Lib:LibFramework.watchOS applebin_watchos-watchos_arm64_32-opt-STABLE-20"
         ],
@@ -8269,7 +8417,7 @@
                 "bazel-out/applebin_watchos-watchos_arm64_32-opt-STABLE-20/bin/Lib/frameworks/LibFramework.watchOS.framework"
             ]
         },
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOSAppExtension.158.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOSAppExtension.162.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -8392,7 +8540,7 @@
                 "bazel-out/applebin_ios-ios_arm64-opt-STABLE-16/bin/Lib/frameworks/LibFramework.iOS.framework"
             ]
         },
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSApp.160.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOSApp.164.link.params",
         "7": [
             "@@//AppClip:AppClip applebin_ios-ios_arm64-opt-STABLE-16",
             "@@//WidgetExtension:WidgetExtension applebin_ios-ios_arm64-opt-STABLE-16",
@@ -8492,7 +8640,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOS.161.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/iOS.165.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_ios-ios_arm64-opt-STABLE-16/bin/Lib/dist/dynamic/Lib.framework",
@@ -8581,7 +8729,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOS.163.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOS.167.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_tvos-tvos_arm64-opt-STABLE-28/bin/Lib/dist/dynamic/Lib.framework",
@@ -8629,7 +8777,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOS.164.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/watchOS.168.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_watchos-watchos_arm64_32-opt-STABLE-20/bin/Lib/dist/dynamic/Lib.framework",
@@ -8677,7 +8825,7 @@
                 "external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework"
             ]
         },
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibFramework.tvOS.165.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/LibFramework.tvOS.169.link.params",
         "b": {
             "APPLICATION_EXTENSION_API_ONLY": true,
             "BAZEL_OUTPUTS_DSYM": [
@@ -8736,7 +8884,7 @@
                 "bazel-out/applebin_tvos-tvos_arm64-opt-STABLE-28/bin/Lib/frameworks/LibFramework.tvOS.framework"
             ]
         },
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.tvOS.166.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/UIFramework.tvOS.170.link.params",
         "7": [
             "@@//Lib:LibFramework.tvOS applebin_tvos-tvos_arm64-opt-STABLE-28"
         ],
@@ -8814,7 +8962,7 @@
                 "bazel-out/applebin_tvos-tvos_arm64-opt-STABLE-28/bin/Lib/frameworks/LibFramework.tvOS.framework"
             ]
         },
-        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOSApp.167.link.params",
+        "6": "bazel-out/darwin_x86_64-dbg-STABLE-0/bin/external/rules_xcodeproj~override~internal~rules_xcodeproj_generated/generator/test/fixtures/xcodeproj_bwb/xcodeproj_bwb-params/tvOSApp.171.link.params",
         "7": [
             "@@//Lib:LibFramework.tvOS applebin_tvos-tvos_arm64-opt-STABLE-28",
             "@@//UI:UIFramework.tvOS applebin_tvos-tvos_arm64-opt-STABLE-28"
