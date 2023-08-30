@@ -690,9 +690,8 @@ def _collect_input_files(
         # We've consumed them above
         resource_bundle_uncategorized = EMPTY_DEPSET
     else:
-        # TODO: Remove hard-coded "apple_bundle_import" check
         if (AppleResourceBundleInfo in target and
-            ctx.rule.kind != "apple_bundle_import"):
+            automatic_target_info.bundle_id):
             resource_bundle_uncategorized = uncategorized
             uncategorized = None
         else:

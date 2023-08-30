@@ -46,7 +46,7 @@ def process_unsupported_target(
     objc = target[apple_common.Objc] if apple_common.Objc in target else None
     swift_info = target[SwiftInfo] if SwiftInfo in target else None
 
-    if AppleResourceBundleInfo in target and AppleResourceInfo not in target:
+    if AppleResourceBundleInfo in target and automatic_target_info.bundle_id:
         # `apple_bundle_import` returns a `AppleResourceBundleInfo` and also
         # a `AppleResourceInfo`, so we use that to exclude it
         resource_bundle_ids = [
