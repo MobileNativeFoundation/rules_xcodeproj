@@ -12,6 +12,13 @@ extension Generator {
         return #"""
 \#(elementsPartial)\#
 \#(buildFilesPartial)\#
+		\#(Identifiers.FilesAndGroups.frameworksGroup) = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 	};
 	rootObject = \#(Identifiers.Project.id);
 }

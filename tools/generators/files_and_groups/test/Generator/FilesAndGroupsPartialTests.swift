@@ -22,6 +22,13 @@ class FilesAndGroupsPartialTests: XCTestCase {
         let expectedFilesAndGroupsPartial = #"""
 		element /* path */ = {ELEMENT};
 		buildFile /* path */ = {BUILDFILE};
+		FF0000000000000000000005 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 	};
 	rootObject = FF0000000000000000000001 /* Project object */;
 }
