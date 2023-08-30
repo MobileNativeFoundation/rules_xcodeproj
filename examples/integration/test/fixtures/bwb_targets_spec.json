@@ -1367,7 +1367,6 @@
             ],
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests.xctest",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "iOSAppObjCUnitTests.xctest",
-            "CLANG_ENABLE_MODULES": true,
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Test/ObjCUnitTests/rules_xcodeproj/iOSAppObjCUnitTests.__internal__.__test_bundle/Info.plist",
@@ -2143,7 +2142,6 @@
             ],
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTestSuite.xctest",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "iOSAppObjCUnitTestSuite.xctest",
-            "CLANG_ENABLE_MODULES": true,
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-13/bin/iOSApp/Test/ObjCUnitTests/rules_xcodeproj/iOSAppObjCUnitTestSuite.__internal__.__test_bundle/Info.plist",
@@ -2729,7 +2727,6 @@
             ],
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-43/bin/CommandLine/CommandLineTool/CommandLineTool_codesigned",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "CommandLineTool_codesigned",
-            "CLANG_ENABLE_MODULES": true,
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-dbg-STABLE-43/bin/CommandLine/CommandLineTool/rules_xcodeproj/CommandLineTool/Info.plist",
             "OTHER_CODE_SIGN_FLAGS": [
@@ -2929,7 +2926,6 @@
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-dbg-STABLE-38/bin/CommandLine/CommandLineTool/tool.binary_codesigned",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "tool.binary_codesigned",
-            "CLANG_ENABLE_MODULES": true,
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "PRODUCT_MODULE_NAME": "CommandLine_CommandLineTool_tool_binary"
         },
@@ -3126,7 +3122,6 @@
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-dbg-STABLE-39/bin/CommandLine/CommandLineTool/tool.binary_codesigned",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "tool.binary_codesigned",
-            "CLANG_ENABLE_MODULES": true,
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "PRODUCT_MODULE_NAME": "CommandLine_CommandLineTool_tool_binary"
         },
@@ -5812,7 +5807,6 @@
             ],
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests.xctest",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "iOSAppObjCUnitTests.xctest",
-            "CLANG_ENABLE_MODULES": true,
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Test/ObjCUnitTests/rules_xcodeproj/iOSAppObjCUnitTests.__internal__.__test_bundle/Info.plist",
@@ -6633,7 +6627,6 @@
             ],
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTestSuite.xctest",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "iOSAppObjCUnitTestSuite.xctest",
-            "CLANG_ENABLE_MODULES": true,
             "CODE_SIGN_STYLE": "Manual",
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_ios-ios_x86_64-opt-STABLE-15/bin/iOSApp/Test/ObjCUnitTests/rules_xcodeproj/iOSAppObjCUnitTestSuite.__internal__.__test_bundle/Info.plist",
@@ -7269,7 +7262,6 @@
             ],
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-44/bin/CommandLine/CommandLineTool/CommandLineTool_codesigned",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "CommandLineTool_codesigned",
-            "CLANG_ENABLE_MODULES": true,
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "INFOPLIST_FILE": "$(BAZEL_OUT)/applebin_macos-darwin_x86_64-opt-STABLE-44/bin/CommandLine/CommandLineTool/rules_xcodeproj/CommandLineTool/Info.plist",
             "OTHER_CODE_SIGN_FLAGS": [
@@ -7489,7 +7481,6 @@
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/macos-arm64-min11.0-applebin_macos-darwin_arm64-opt-STABLE-41/bin/CommandLine/CommandLineTool/tool.binary_codesigned",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "tool.binary_codesigned",
-            "CLANG_ENABLE_MODULES": true,
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "PRODUCT_MODULE_NAME": "CommandLine_CommandLineTool_tool_binary"
         },
@@ -7706,7 +7697,6 @@
         "b": {
             "BAZEL_OUTPUTS_PRODUCT": "bazel-out/macos-x86_64-min11.0-applebin_macos-darwin_x86_64-opt-STABLE-42/bin/CommandLine/CommandLineTool/tool.binary_codesigned",
             "BAZEL_OUTPUTS_PRODUCT_BASENAME": "tool.binary_codesigned",
-            "CLANG_ENABLE_MODULES": true,
             "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "PRODUCT_MODULE_NAME": "CommandLine_CommandLineTool_tool_binary"
         },
