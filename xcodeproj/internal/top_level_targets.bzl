@@ -463,12 +463,6 @@ def process_top_level_target(
     if str(cpp.apple_bitcode_mode) != "none":
         build_settings["ENABLE_BITCODE"] = True
 
-    set_if_true(
-        build_settings,
-        "CLANG_ENABLE_MODULES",
-        getattr(ctx.rule.attr, "enable_modules", False),
-    )
-
     # We don't have access to `CcInfo`/`SwiftInfo` here, so we have to make
     # a best guess at `-g` being used
     # We don't set "DEBUG_INFORMATION_FORMAT" for "dwarf", as we set that at

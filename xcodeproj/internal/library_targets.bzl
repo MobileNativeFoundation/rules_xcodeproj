@@ -104,12 +104,6 @@ def process_library_target(
     if str(cpp.apple_bitcode_mode) != "none":
         build_settings["ENABLE_BITCODE"] = True
 
-    set_if_true(
-        build_settings,
-        "CLANG_ENABLE_MODULES",
-        getattr(ctx.rule.attr, "enable_modules", False),
-    )
-
     platform = platforms.collect(ctx = ctx)
     product = process_product(
         ctx = ctx,
