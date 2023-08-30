@@ -13,7 +13,6 @@ PRODUCT_TYPE_ENCODED = {
     "com.apple.product-type.application": "a",
     "com.apple.product-type.application.messages": "M",
     "com.apple.product-type.application.on-demand-install-capable": "A",
-    "com.apple.product-type.application.watchapp": "0",
     "com.apple.product-type.application.watchapp2": "w",
     "com.apple.product-type.application.watchapp2-container": "c",
     # Resource bundles, which are also "com.apple.product-type.bundle" are "b"
@@ -32,7 +31,6 @@ PRODUCT_TYPE_ENCODED = {
     "com.apple.product-type.system-extension": "S",
     "com.apple.product-type.tool": "T",
     "com.apple.product-type.tv-app-extension": "t",
-    "com.apple.product-type.watchkit-extension": "1",
     "com.apple.product-type.watchkit2-extension": "W",
     "com.apple.product-type.xcframework": "x",
     "com.apple.product-type.xcode-extension": "2",

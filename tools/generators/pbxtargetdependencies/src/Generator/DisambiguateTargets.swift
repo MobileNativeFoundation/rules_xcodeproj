@@ -661,7 +661,6 @@ private extension PBXProductType {
         case .application: return "App"
         case .messagesApplication: return "Messages App"
         case .onDemandInstallCapableApplication: return "App Clip"
-        case .watchApp: return "watchOS 1.0 App"
         case .watch2App: return "App"
         case .watch2AppContainer: return "App Container"
 
@@ -672,7 +671,6 @@ private extension PBXProductType {
         case .tvExtension: return "App Extension"
 
         case .extensionKitExtension: return "ExtensionKit Extension"
-        case .watchExtension: return "WatchKit 1.0 Extension"
         case .watch2Extension: return "WatchKit Extension"
         case .xcodeExtension: return "Xcode Extension"
 
