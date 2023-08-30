@@ -69,7 +69,9 @@ def _should_create_provider(*, ctx, target):
         return True
     if BuildSettingInfo in target:
         return False
-    if target.label.workspace_name.split("~")[0] in _TOOLS_REPOS:
+    bzlmod_components = target.label.workspace_name.split("~")
+    if len(bzlmod_components) <= 2 and bzlmod_components[0] in _TOOLS_REPOS:
+        # Check for 2 components is to not exclude module extension dependencies
         return False
     return True
 
