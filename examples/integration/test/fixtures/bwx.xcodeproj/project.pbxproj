@@ -23017,7 +23017,7 @@
 				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "@@//iOSApp/Test/UITests:iOSAppUITests.__internal__.__test_bundle applebin_ios-ios_arm64-dbg-STABLE-14";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
-				CODE_SIGNING_ALLOWED = YES;
+				"CODE_SIGNING_ALLOWED[sdk=iphoneos*]" = NO;
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = iOSAppUITests.library;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -23258,6 +23258,7 @@
 				BAZEL_TARGET_ID = "@@//Lib:LibFramework.tvOS applebin_tvos-tvos_x86_64-opt-STABLE-27";
 				"BAZEL_TARGET_ID[sdk=appletvos*]" = "@@//Lib:LibFramework.tvOS applebin_tvos-tvos_arm64-opt-STABLE-28";
 				"BAZEL_TARGET_ID[sdk=appletvsimulator*]" = "$(BAZEL_TARGET_ID)";
+				CODE_SIGNING_ALLOWED = NO;
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = LibFramework.tvOS;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -23315,6 +23316,7 @@
 				BAZEL_TARGET_ID = "@@//Lib:LibFramework.iOS applebin_ios-ios_x86_64-dbg-STABLE-13";
 				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "@@//Lib:LibFramework.iOS applebin_ios-ios_arm64-dbg-STABLE-14";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
+				CODE_SIGNING_ALLOWED = NO;
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = LibFramework.iOS;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -23450,6 +23452,7 @@
 				BAZEL_TARGET_ID = "@@//UI:UIFramework.iOS applebin_ios-ios_x86_64-opt-STABLE-15";
 				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "@@//UI:UIFramework.iOS applebin_ios-ios_arm64-opt-STABLE-16";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
+				CODE_SIGNING_ALLOWED = NO;
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = UI;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -23521,7 +23524,6 @@
 				BAZEL_TARGET_ID = "@@//tvOSApp/Test/UITests:tvOSAppUITests.__internal__.__test_bundle applebin_tvos-tvos_x86_64-dbg-STABLE-25";
 				"BAZEL_TARGET_ID[sdk=appletvsimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
-				CODE_SIGNING_ALLOWED = YES;
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = tvOSAppUITests.library;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -23578,6 +23580,7 @@
 				BAZEL_TARGET_ID = "@@//Lib/dist/dynamic:watchOS applebin_watchos-watchos_x86_64-dbg-STABLE-17";
 				"BAZEL_TARGET_ID[sdk=watchos*]" = "@@//Lib/dist/dynamic:watchOS applebin_watchos-watchos_arm64_32-dbg-STABLE-18";
 				"BAZEL_TARGET_ID[sdk=watchsimulator*]" = "$(BAZEL_TARGET_ID)";
+				CODE_SIGNING_ALLOWED = NO;
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = watchOS;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -23925,6 +23928,7 @@
 				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "@@//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests.__internal__.__test_bundle applebin_ios-ios_arm64-opt-STABLE-16";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
+				CODE_SIGNING_ALLOWED = NO;
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = iOSAppSwiftUnitTests.library;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -24014,6 +24018,7 @@
 				BAZEL_TARGET_ID = "@@//Lib/dist/dynamic:iOS applebin_ios-ios_x86_64-opt-STABLE-15";
 				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "@@//Lib/dist/dynamic:iOS applebin_ios-ios_arm64-opt-STABLE-16";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
+				CODE_SIGNING_ALLOWED = NO;
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = iOS;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -24103,6 +24108,7 @@
 				BAZEL_TARGET_ID = "@@//Lib:LibFramework.tvOS applebin_tvos-tvos_x86_64-dbg-STABLE-25";
 				"BAZEL_TARGET_ID[sdk=appletvos*]" = "@@//Lib:LibFramework.tvOS applebin_tvos-tvos_arm64-dbg-STABLE-26";
 				"BAZEL_TARGET_ID[sdk=appletvsimulator*]" = "$(BAZEL_TARGET_ID)";
+				CODE_SIGNING_ALLOWED = NO;
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = LibFramework.tvOS;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -24141,6 +24147,7 @@
 				"BAZEL_TARGET_ID[sdk=appletvos*]" = "@@//tvOSApp/Source:tvOSApp applebin_tvos-tvos_arm64-opt-STABLE-28";
 				"BAZEL_TARGET_ID[sdk=appletvsimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
+				"CODE_SIGNING_ALLOWED[sdk=appletvsimulator*]" = NO;
 				CODE_SIGN_STYLE = Manual;
 				"CODE_SIGN_STYLE[sdk=appletvos*]" = Automatic;
 				COMPILE_TARGET_NAME = tvOSApp.library;
@@ -24304,7 +24311,6 @@
 				BAZEL_TARGET_ID = "@@//watchOSApp/Test/UITests:watchOSAppUITests.__internal__.__test_bundle applebin_watchos-watchos_x86_64-opt-STABLE-19";
 				"BAZEL_TARGET_ID[sdk=watchsimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
-				CODE_SIGNING_ALLOWED = YES;
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = watchOSAppUITests.library;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -24517,6 +24523,7 @@
 				BAZEL_TARGET_ID = "@@//UI:UIFramework.tvOS applebin_tvos-tvos_x86_64-dbg-STABLE-25";
 				"BAZEL_TARGET_ID[sdk=appletvos*]" = "@@//UI:UIFramework.tvOS applebin_tvos-tvos_arm64-dbg-STABLE-26";
 				"BAZEL_TARGET_ID[sdk=appletvsimulator*]" = "$(BAZEL_TARGET_ID)";
+				CODE_SIGNING_ALLOWED = NO;
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = UI;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -24708,6 +24715,7 @@
 				BAZEL_TARGET_ID = "@@//Lib:LibFramework.watchOS applebin_watchos-watchos_x86_64-opt-STABLE-19";
 				"BAZEL_TARGET_ID[sdk=watchos*]" = "@@//Lib:LibFramework.watchOS applebin_watchos-watchos_arm64_32-opt-STABLE-20";
 				"BAZEL_TARGET_ID[sdk=watchsimulator*]" = "$(BAZEL_TARGET_ID)";
+				CODE_SIGNING_ALLOWED = NO;
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = LibFramework.watchOS;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -24869,6 +24877,7 @@
 				BAZEL_TARGET_ID = "@@//Lib/dist/dynamic:tvOS applebin_tvos-tvos_x86_64-opt-STABLE-27";
 				"BAZEL_TARGET_ID[sdk=appletvos*]" = "@@//Lib/dist/dynamic:tvOS applebin_tvos-tvos_arm64-opt-STABLE-28";
 				"BAZEL_TARGET_ID[sdk=appletvsimulator*]" = "$(BAZEL_TARGET_ID)";
+				CODE_SIGNING_ALLOWED = NO;
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = tvOS;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -24987,6 +24996,7 @@
 				BAZEL_TARGET_ID = "@@//Lib/dist/dynamic:tvOS applebin_tvos-tvos_x86_64-dbg-STABLE-25";
 				"BAZEL_TARGET_ID[sdk=appletvos*]" = "@@//Lib/dist/dynamic:tvOS applebin_tvos-tvos_arm64-dbg-STABLE-26";
 				"BAZEL_TARGET_ID[sdk=appletvsimulator*]" = "$(BAZEL_TARGET_ID)";
+				CODE_SIGNING_ALLOWED = NO;
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = tvOS;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -25086,7 +25096,6 @@
 				BAZEL_TARGET_ID = "@@//watchOSApp/Test/UITests:watchOSAppUITests.__internal__.__test_bundle applebin_watchos-watchos_x86_64-dbg-STABLE-17";
 				"BAZEL_TARGET_ID[sdk=watchsimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
-				CODE_SIGNING_ALLOWED = YES;
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = watchOSAppUITests.library;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -25337,6 +25346,7 @@
 				BAZEL_TARGET_ID = "@@//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC applebin_ios-ios_x86_64-dbg-STABLE-13";
 				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "@@//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC applebin_ios-ios_arm64-dbg-STABLE-14";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
+				CODE_SIGNING_ALLOWED = NO;
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = CoreUtilsObjC;
 				CXX_PARAMS_FILE = "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.rules_xcodeproj.cxx.compile.params";
@@ -25640,7 +25650,6 @@
 				BAZEL_TARGET_ID = "@@//macOSApp/Test/UITests:macOSAppUITests.__internal__.__test_bundle applebin_macos-darwin_x86_64-opt-STABLE-32";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
-				CODE_SIGNING_ALLOWED = YES;
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = macOSAppUITests.library;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -25856,6 +25865,7 @@
 				"BAZEL_TARGET_ID[sdk=appletvos*]" = "@@//tvOSApp/Source:tvOSApp applebin_tvos-tvos_arm64-dbg-STABLE-26";
 				"BAZEL_TARGET_ID[sdk=appletvsimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
+				"CODE_SIGNING_ALLOWED[sdk=appletvsimulator*]" = NO;
 				CODE_SIGN_STYLE = Manual;
 				"CODE_SIGN_STYLE[sdk=appletvos*]" = Automatic;
 				COMPILE_TARGET_NAME = tvOSApp.library;
@@ -25902,7 +25912,6 @@
 				BAZEL_TARGET_ID = "@@//macOSApp/Test/UITests:macOSAppUITests.__internal__.__test_bundle applebin_macos-darwin_x86_64-dbg-STABLE-31";
 				"BAZEL_TARGET_ID[sdk=macosx*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
-				CODE_SIGNING_ALLOWED = YES;
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = macOSAppUITests.library;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -25935,6 +25944,7 @@
 				BAZEL_TARGET_ID = "@@//Lib/dist/dynamic:watchOS applebin_watchos-watchos_x86_64-opt-STABLE-19";
 				"BAZEL_TARGET_ID[sdk=watchos*]" = "@@//Lib/dist/dynamic:watchOS applebin_watchos-watchos_arm64_32-opt-STABLE-20";
 				"BAZEL_TARGET_ID[sdk=watchsimulator*]" = "$(BAZEL_TARGET_ID)";
+				CODE_SIGNING_ALLOWED = NO;
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = watchOS;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -25970,6 +25980,7 @@
 				BAZEL_TARGET_ID = "@@//Lib/dist/dynamic:iOS applebin_ios-ios_x86_64-dbg-STABLE-13";
 				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "@@//Lib/dist/dynamic:iOS applebin_ios-ios_arm64-dbg-STABLE-14";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
+				CODE_SIGNING_ALLOWED = NO;
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = iOS;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -26034,6 +26045,7 @@
 				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "@@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests.__internal__.__test_bundle applebin_ios-ios_arm64-dbg-STABLE-14";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
+				"CODE_SIGNING_ALLOWED[sdk=iphoneos*]" = NO;
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = iOSAppObjCUnitTests.library;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-1/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests.library.rules_xcodeproj.c.compile.params";
@@ -26166,6 +26178,7 @@
 				BAZEL_TARGET_ID = "@@//UI:UIFramework.watchOS applebin_watchos-watchos_x86_64-dbg-STABLE-17";
 				"BAZEL_TARGET_ID[sdk=watchos*]" = "@@//UI:UIFramework.watchOS applebin_watchos-watchos_arm64_32-dbg-STABLE-18";
 				"BAZEL_TARGET_ID[sdk=watchsimulator*]" = "$(BAZEL_TARGET_ID)";
+				CODE_SIGNING_ALLOWED = NO;
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = UI;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -26349,7 +26362,6 @@
 				BAZEL_TARGET_ID = "@@//tvOSApp/Test/UITests:tvOSAppUITests.__internal__.__test_bundle applebin_tvos-tvos_x86_64-opt-STABLE-27";
 				"BAZEL_TARGET_ID[sdk=appletvsimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
-				CODE_SIGNING_ALLOWED = YES;
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = tvOSAppUITests.library;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -26410,6 +26422,7 @@
 				BAZEL_TARGET_ID = "@@//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC applebin_ios-ios_x86_64-opt-STABLE-15";
 				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "@@//iOSApp/Source/CoreUtilsObjC:FrameworkCoreUtilsObjC applebin_ios-ios_arm64-opt-STABLE-16";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
+				CODE_SIGNING_ALLOWED = NO;
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = CoreUtilsObjC;
 				CXX_PARAMS_FILE = "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.rules_xcodeproj.cxx.compile.params";
@@ -26747,6 +26760,7 @@
 				BAZEL_TARGET_ID = "@@//UI:UIFramework.tvOS applebin_tvos-tvos_x86_64-opt-STABLE-27";
 				"BAZEL_TARGET_ID[sdk=appletvos*]" = "@@//UI:UIFramework.tvOS applebin_tvos-tvos_arm64-opt-STABLE-28";
 				"BAZEL_TARGET_ID[sdk=appletvsimulator*]" = "$(BAZEL_TARGET_ID)";
+				CODE_SIGNING_ALLOWED = NO;
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = UI;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -26961,7 +26975,7 @@
 				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "@@//iOSApp/Test/UITests:iOSAppUITests.__internal__.__test_bundle applebin_ios-ios_arm64-opt-STABLE-16";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
-				CODE_SIGNING_ALLOWED = YES;
+				"CODE_SIGNING_ALLOWED[sdk=iphoneos*]" = NO;
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = iOSAppUITests.library;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -27271,6 +27285,7 @@
 				BAZEL_TARGET_ID = "@@//UI:UIFramework.watchOS applebin_watchos-watchos_x86_64-opt-STABLE-19";
 				"BAZEL_TARGET_ID[sdk=watchos*]" = "@@//UI:UIFramework.watchOS applebin_watchos-watchos_arm64_32-opt-STABLE-20";
 				"BAZEL_TARGET_ID[sdk=watchsimulator*]" = "$(BAZEL_TARGET_ID)";
+				CODE_SIGNING_ALLOWED = NO;
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = UI;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -27473,6 +27488,7 @@
 				BAZEL_TARGET_ID = "@@//Lib:LibFramework.watchOS applebin_watchos-watchos_x86_64-dbg-STABLE-17";
 				"BAZEL_TARGET_ID[sdk=watchos*]" = "@@//Lib:LibFramework.watchOS applebin_watchos-watchos_arm64_32-dbg-STABLE-18";
 				"BAZEL_TARGET_ID[sdk=watchsimulator*]" = "$(BAZEL_TARGET_ID)";
+				CODE_SIGNING_ALLOWED = NO;
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = LibFramework.watchOS;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -27657,6 +27673,7 @@
 				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "@@//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests.__internal__.__test_bundle applebin_ios-ios_arm64-opt-STABLE-16";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
+				"CODE_SIGNING_ALLOWED[sdk=iphoneos*]" = NO;
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = iOSAppObjCUnitTests.library;
 				C_PARAMS_FILE = "$(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-7/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests.library.rules_xcodeproj.c.compile.params";
@@ -27816,6 +27833,7 @@
 				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "@@//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests.__internal__.__test_bundle applebin_ios-ios_arm64-dbg-STABLE-14";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
+				CODE_SIGNING_ALLOWED = NO;
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = iOSAppSwiftUnitTests.library;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -27869,6 +27887,7 @@
 				BAZEL_TARGET_ID = "@@//Lib:LibFramework.iOS applebin_ios-ios_x86_64-opt-STABLE-15";
 				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "@@//Lib:LibFramework.iOS applebin_ios-ios_arm64-opt-STABLE-16";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
+				CODE_SIGNING_ALLOWED = NO;
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = LibFramework.iOS;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -27964,7 +27983,6 @@
 				BAZEL_TARGET_ID = "@@//iOSApp/Test/UITests:iOSAppUITestSuite.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-13";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
-				CODE_SIGNING_ALLOWED = YES;
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = iOSAppUITestSuite.library;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -28196,7 +28214,6 @@
 				BAZEL_TARGET_ID = "@@//iOSApp/Test/UITests:iOSAppUITestSuite.__internal__.__test_bundle applebin_ios-ios_x86_64-opt-STABLE-15";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
-				CODE_SIGNING_ALLOWED = YES;
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = iOSAppUITestSuite.library;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -28650,6 +28667,7 @@
 				BAZEL_TARGET_ID = "@@//UI:UIFramework.iOS applebin_ios-ios_x86_64-dbg-STABLE-13";
 				"BAZEL_TARGET_ID[sdk=iphoneos*]" = "@@//UI:UIFramework.iOS applebin_ios-ios_arm64-dbg-STABLE-14";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
+				CODE_SIGNING_ALLOWED = NO;
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = UI;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";

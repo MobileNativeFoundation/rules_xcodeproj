@@ -38,26 +38,42 @@ load(
 )
 load(":xcode_targets.bzl", "xcode_targets")
 
+def _compute_enabled_features(*, requested_features, unsupported_features):
+    """Returns a list of features for the given build.
+
+    Args:
+        requested_features: A list of features requested. Typically from
+            `ctx.features`.
+        unsupported_features: A list of features to ignore. Typically from
+            `ctx.disabled_features`.
+
+    Returns:
+        A set (`dict` of `None`) containing the subset of features that should
+        be used.
+    """
+    unsupported_features = {f: None for f in unsupported_features}
+    enabled_features = {
+        f: None
+        for f in requested_features
+        if f not in unsupported_features
+    }
+    return enabled_features
+
 def get_tree_artifact_enabled(*, ctx, bundle_info):
     """Returns whether tree artifacts are enabled.
 
     Args:
-        ctx: The context
-        bundle_info: An instance of `BundleInfo`
-
-    Returns:
-        A boolean representing if tree artifacts are enabled
+        ctx: The aspect context.
+        bundle_info: An instance of `BundleInfo`.
     """
     if not bundle_info:
         return False
 
-    tree_artifact_enabled = (
+    return (
         ctx.var.get("apple.experimental.tree_artifact_outputs", "")
             .lower() in
         ("true", "yes", "1")
     )
-
-    return tree_artifact_enabled
 
 def process_top_level_properties(
         *,
@@ -159,6 +175,42 @@ def process_top_level_properties(
         product_name = product_name,
         product_type = product_type,
     )
+
+def should_skip_codesigning(
+        *,
+        ctx,
+        bundle_info,
+        is_missing_provisioning_profile,
+        platform):
+    """Returns whether we should skip cosigning for this target.
+
+    Args:
+        ctx: The aspect context.
+        bundle_info: An instance of `BundleInfo`.
+        is_missing_provisioning_profile: Whether a provisioning profile is
+            is able to be set on the target, and it's missing.
+        platform: A value returned from `platforms.collect`.
+
+    Returns:
+        A `bool` indicating if we should skip codesigning.
+    """
+    if not bundle_info:
+        return False
+
+    if (is_missing_provisioning_profile and
+        bundle_info.product_type == "com.apple.product-type.framework"):
+        return True
+
+    if not platforms.is_simulator(platform):
+        return (is_missing_provisioning_profile and
+                platforms.is_not_macos(platform))
+
+    enabled_features = _compute_enabled_features(
+        requested_features = ctx.features,
+        unsupported_features = ctx.disabled_features,
+    )
+
+    return "apple.skip_codesign_simulator_bundles" in enabled_features
 
 def process_top_level_target(
         *,
@@ -274,7 +326,7 @@ def process_top_level_target(
     else:
         extension_infoplists = None
 
-    provisioning_profiles.process_attr(
+    is_missing_provisioning_profile = provisioning_profiles.process_attr(
         ctx = ctx,
         automatic_target_info = automatic_target_info,
         build_settings = build_settings,
@@ -414,6 +466,14 @@ def process_top_level_target(
         build_settings["CODE_SIGN_ENTITLEMENTS"] = build_setting_path(
             file = target_inputs.entitlements,
         )
+
+    if should_skip_codesigning(
+        ctx = ctx,
+        bundle_info = bundle_info,
+        is_missing_provisioning_profile = is_missing_provisioning_profile,
+        platform = platform,
+    ):
+        build_settings["CODE_SIGNING_ALLOWED"] = False
 
     package_bin_dir = join_paths_ignoring_empty(
         ctx.bin_dir.path,

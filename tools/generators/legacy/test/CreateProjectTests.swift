@@ -208,7 +208,6 @@ $(INDEXING_BUILT_PRODUCTS_DIR__$(INDEX_ENABLE_BUILD_ARENA))
             "CXX": "$(BAZEL_INTEGRATION_DIR)/clang.sh",
             "CLANG_ENABLE_OBJC_ARC": true,
             "CLANG_MODULES_AUTOLINK": false,
-            "CODE_SIGNING_ALLOWED": false,
             "CONFIGURATION_BUILD_DIR": """
 $(BUILD_DIR)/$(BAZEL_PACKAGE_BIN_DIR)
 """,

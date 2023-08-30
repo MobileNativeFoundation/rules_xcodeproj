@@ -16,6 +16,7 @@ ios_unit_test(
     env = {
         "IOS_APP_UNIT_TESTS": "CUSTOM_ENV_VALUE",
     },
+    features = ["apple.skip_codesign_simulator_bundles"],
     minimum_os_version = "15.0",
     resources = ["//iOSApp/Resources/ExampleResources:exported_resources"],
     tags = ["manual"],

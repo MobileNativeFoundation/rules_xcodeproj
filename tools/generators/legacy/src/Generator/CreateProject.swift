@@ -163,7 +163,6 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
             buildSettings.merge([
                 "CC": "$(BAZEL_INTEGRATION_DIR)/clang.sh",
                 "CXX": "$(BAZEL_INTEGRATION_DIR)/clang.sh",
-                "CODE_SIGNING_ALLOWED": false,
                 "LD": "$(BAZEL_INTEGRATION_DIR)/ld.sh",
                 "LDPLUSPLUS": "$(BAZEL_INTEGRATION_DIR)/ld.sh",
                 "LIBTOOL": "$(BAZEL_INTEGRATION_DIR)/libtool.sh",

@@ -180,7 +180,6 @@ extension Generator {
                     key: "CXX",
                     value: #""$(BAZEL_INTEGRATION_DIR)/clang.sh""#
                 ),
-                .init(key: "CODE_SIGNING_ALLOWED", value: "NO"),
                 .init(
                     key: "LD",
                     value: #""$(BAZEL_INTEGRATION_DIR)/ld.sh""#

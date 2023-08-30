@@ -26,6 +26,7 @@ tvos_application(
     name = "tvOSApp",
     bundle_id = TVOS_BUNDLE_ID,
     bundle_name = "tvOSApp",
+    features = ["apple.skip_codesign_simulator_bundles"],
     frameworks = ["//UI:UIFramework.tvOS"],
     infoplists = [":Info.plist"],
     minimum_os_version = "15.0",

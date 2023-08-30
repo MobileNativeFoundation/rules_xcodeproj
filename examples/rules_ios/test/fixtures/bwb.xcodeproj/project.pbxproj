@@ -4565,7 +4565,6 @@
 				BAZEL_TARGET_ID = "@//iOSApp/Test/UITests:iOSAppUITestSuite_macro.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-3";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
-				CODE_SIGNING_ALLOWED = YES;
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = iOSAppUITestSuite_macro_swift;
 				DEPLOYMENT_LOCATION = NO;
@@ -4601,7 +4600,6 @@
 				BAZEL_TARGET_ID = "@//iOSApp/Test/UITests:iOSAppUITestSuite.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-3";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
-				CODE_SIGNING_ALLOWED = YES;
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = iOSAppUITestSuite_swift;
 				DEPLOYMENT_LOCATION = NO;
@@ -4692,7 +4690,6 @@
 				CC = "$(BAZEL_INTEGRATION_DIR)/clang.sh";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_MODULES_AUTOLINK = NO;
-				CODE_SIGNING_ALLOWED = NO;
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(BAZEL_PACKAGE_BIN_DIR)";
 				COPY_PHASE_STRIP = NO;
 				CXX = "$(BAZEL_INTEGRATION_DIR)/clang.sh";
@@ -5047,7 +5044,6 @@
 				BAZEL_TARGET_ID = "@//iOSApp/Test/UITests:iOSAppUITests_macro.__internal__.__test_bundle applebin_ios-ios_x86_64-dbg-STABLE-3";
 				"BAZEL_TARGET_ID[sdk=iphonesimulator*]" = "$(BAZEL_TARGET_ID)";
 				BUILT_PRODUCTS_DIR = "$(CONFIGURATION_BUILD_DIR)";
-				CODE_SIGNING_ALLOWED = YES;
 				CODE_SIGN_STYLE = Manual;
 				COMPILE_TARGET_NAME = iOSAppUITests_macro_swift;
 				DEPLOYMENT_LOCATION = NO;

@@ -356,7 +356,7 @@ $(CONFIGURATION_BUILD_DIR)
             buildSettings["CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION"] = true
         }
 
-        if buildMode == .xcode, target.product.isResourceBundle {
+        if target.product.isResourceBundle {
             // Used to work around CODE_SIGNING_ENABLED = YES in Xcode 14
             buildSettings["CODE_SIGNING_ALLOWED"] = false
         }
@@ -589,11 +589,6 @@ Test host target with key "\(testHostKey)" not found in \
                         "TEST_TARGET_NAME",
                         to: pbxTestHost.name
                     )
-
-                    // UI test bundles need to be code signed to launch
-                    buildSettings[
-                        xcodeConfiguration, default: [:]
-                    ][.any, default: [:]]["CODE_SIGNING_ALLOWED"] = true
 
                     continue
                 }

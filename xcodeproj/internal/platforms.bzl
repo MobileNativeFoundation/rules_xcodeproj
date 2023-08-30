@@ -1,5 +1,15 @@
 """Functions for processing platforms."""
 
+_IS_SIMULATOR = {
+    apple_common.platform.ios_device: False,
+    apple_common.platform.ios_simulator: True,
+    apple_common.platform.macos: False,
+    apple_common.platform.tvos_device: False,
+    apple_common.platform.tvos_simulator: True,
+    apple_common.platform.watchos_device: False,
+    apple_common.platform.watchos_simulator: True,
+}
+
 PLATFORM_NAME = {
     apple_common.platform.ios_device: "iphoneos",
     apple_common.platform.ios_simulator: "iphonesimulator",
@@ -32,6 +42,10 @@ def _collect_platform(*, ctx):
         _platform = platform,
     )
 
+def _is_not_macos(platform):
+    """Returns whether a platform is not macOS."""
+    return platform._platform != apple_common.platform.macos
+
 def _is_platform_type(platform, platform_type):
     """Returns whether a platform is of a given type.
 
@@ -45,18 +59,20 @@ def _is_same_type(lhs, rhs):
     """Returns whether two platforms are the same platform type."""
     return lhs._platform.platform_type == rhs._platform.platform_type
 
+def _is_simulator(platform):
+    """Returns whether a platform is a simulator."""
+    return _IS_SIMULATOR[platform._platform]
+
 def _platform_to_dto(platform):
     """Generates a target DTO value for a platform.
 
     Args:
         platform: A value returned from `platforms.collect`.
     """
-    apple_platform = platform._platform
-
     dto = {
         "a": platform._arch,
         "m": platform._os_version,
-        "v": PLATFORM_NAME[apple_platform],
+        "v": PLATFORM_NAME[platform._platform],
     }
 
     return dto
@@ -117,8 +133,10 @@ def _platform_to_lldb_context_triple(platform):
 
 platforms = struct(
     collect = _collect_platform,
+    is_not_macos = _is_not_macos,
     is_platform_type = _is_platform_type,
     is_same_type = _is_same_type,
+    is_simulator = _is_simulator,
     to_dto = _platform_to_dto,
     to_lldb_context_triple = _platform_to_lldb_context_triple,
     to_swift_triple = _platform_to_swift_triple,

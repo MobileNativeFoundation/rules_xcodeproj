@@ -10,7 +10,7 @@ load(":providers.bzl", "XcodeProjProvisioningProfileInfo")
 def _process_attr(*, ctx, automatic_target_info, build_settings):
     attr = automatic_target_info.provisioning_profile
     if not attr or not hasattr(ctx.rule.attr, attr):
-        return
+        return False
 
     provisioning_profile_target = getattr(ctx.rule.attr, attr)
     if (provisioning_profile_target and
@@ -44,6 +44,8 @@ def _process_attr(*, ctx, automatic_target_info, build_settings):
         "CODE_SIGN_IDENTITY",
         ctx.fragments.objc.signing_certificate_name,
     )
+
+    return not provisioning_profile_target
 
 def _create_profileinfo(
         *,

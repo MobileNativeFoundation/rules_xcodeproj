@@ -28,6 +28,10 @@ build:rules_xcodeproj --define=apple.experimental.tree_artifact_outputs=1
 # Fix Test Issue navigation
 build:rules_xcodeproj --features=apple.swizzle_absolute_xcttestsourcelocation
 
+# Let Xcode handle all code signing. We need to do this to ensure that Xcode
+# signs test hosts when running on device.
+build:rules_xcodeproj --features=disable_legacy_signing
+
 # `oso_prefix_is_pwd` removes absolute paths in debug info, which increases
 # cache hit rates. We "undo" this in `bazel.lldbinit`, so debugging still works.
 build:rules_xcodeproj --features=oso_prefix_is_pwd

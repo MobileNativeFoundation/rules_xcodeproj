@@ -2156,7 +2156,6 @@ $(BUILD_DIR)/bazel-out/a1b2c/bin/A 2/A.app/A_ExecutableName
                 "BUILT_PRODUCTS_DIR": "$(CONFIGURATION_BUILD_DIR)",
                 "BAZEL_TARGET_ID": "B 3",
                 "BAZEL_TARGET_ID[sdk=macosx*]": "$(BAZEL_TARGET_ID)",
-                "CODE_SIGNING_ALLOWED": "YES",
                 "COMPILE_TARGET_NAME": targets["B 3"]!.name,
                 "DEPLOYMENT_LOCATION": "NO",
                 "LINK_PARAMS_FILE": #"$(BAZEL_OUT)/B3.link.params"#,
