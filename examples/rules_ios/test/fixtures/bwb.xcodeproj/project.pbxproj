@@ -4175,7 +4175,6 @@
 				"CODE_SIGN_STYLE[sdk=iphoneos*]" = Automatic;
 				COMPILE_TARGET_NAME = WidgetExtension;
 				DEPLOYMENT_LOCATION = NO;
-				DEVELOPMENT_TEAM = "$(inherited)";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = V82V4GQZXM;
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/WidgetExtension/rules_xcodeproj/WidgetExtension/Info.plist";
 				"INFOPLIST_FILE[sdk=iphoneos*]" = "$(BAZEL_OUT)/applebin_ios-ios_arm64-dbg-STABLE-4/bin/WidgetExtension/rules_xcodeproj/WidgetExtension/Info.plist";
@@ -4856,7 +4855,6 @@
 				"CODE_SIGN_STYLE[sdk=iphoneos*]" = Automatic;
 				COMPILE_TARGET_NAME = iOSApp;
 				DEPLOYMENT_LOCATION = NO;
-				DEVELOPMENT_TEAM = "$(inherited)";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = V82V4GQZXM;
 				EXECUTABLE_NAME = iOSApp_ExecutableName;
 				INFOPLIST_FILE = "$(BAZEL_OUT)/applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Source/rules_xcodeproj/iOSApp/Info.plist";
