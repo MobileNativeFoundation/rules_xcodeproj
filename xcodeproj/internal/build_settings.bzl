@@ -74,6 +74,4 @@ def get_targeted_device_family(families):
         number = _DEVICE_FAMILY_VALUES[family]
         if number:
             family_ids.append(number)
-    if family_ids:
-        return ",".join(family_ids)
-    return None
+    return ",".join(family_ids)

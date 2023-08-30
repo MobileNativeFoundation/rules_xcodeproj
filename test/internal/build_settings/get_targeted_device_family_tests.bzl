@@ -14,7 +14,7 @@ def _get_targeted_device_family_test_impl(ctx):
 
     asserts.equals(
         env,
-        ctx.attr.expected_targeted_device_family or None,
+        ctx.attr.expected_targeted_device_family,
         targeted_device_family,
         "targeted_device_family",
     )
@@ -56,7 +56,7 @@ def get_targeted_device_family_test_suite(name):
     _add_test(
         name = "{}_mac".format(name),
         families = ["mac"],
-        expected_targeted_device_family = None,
+        expected_targeted_device_family = "",
     )
 
     # iOS

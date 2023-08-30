@@ -8759,8 +8759,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AD31562E1C81A14E5AE6FF64 /* Build configuration list for PBXNativeTarget "watchOSApp" */;
 			buildPhases = (
-				3F15C214513EBB6C3C513EB3 /* Resources */,
 				059251028EA368233C79DC18 /* Embed App Extensions */,
+				3F15C214513EBB6C3C513EB3 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -8865,11 +8865,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6FBC9A90DDDE3BDDA5343039 /* Build configuration list for PBXNativeTarget "AppClip" */;
 			buildPhases = (
+				DC0C1EBED424FEC993517492 /* Embed Frameworks */,
 				9B7CAAE51320882E0D5F4D1A /* Create Compile Dependencies */,
 				F25EFC5C9582C4AF26E6BA3B /* Create Link Dependencies */,
 				A03CD31EDF0896CF4D6E3A8E /* Sources */,
 				3D5C074CAFEB91C4A4BD9598 /* Resources */,
-				DC0C1EBED424FEC993517492 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -8957,11 +8957,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5FFBDFC1028F89CC08BA4BD7 /* Build configuration list for PBXNativeTarget "iOSAppSwiftUnitTests" */;
 			buildPhases = (
+				129408FC2791F0A1CC513D3E /* Embed Frameworks */,
 				0085FE91B7EB82CCB857A53D /* Create Compile Dependencies */,
 				9F896C0D825FD39F401915B3 /* Create Link Dependencies */,
 				53E250420DE653A8FC57EA7F /* Sources */,
 				E3923D3A9E836EF7B1497385 /* Resources */,
-				129408FC2791F0A1CC513D3E /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -8980,11 +8980,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E87F732D5375A2360EEECBEB /* Build configuration list for PBXNativeTarget "iOSAppObjCUnitTests" */;
 			buildPhases = (
+				24E687BF9AE6668327215F20 /* Embed Frameworks */,
 				9CAA2801265291741730A58E /* Create Compile Dependencies */,
 				D3E987FD60977DBB8A17090B /* Create Link Dependencies */,
 				BEBF9DF27FF3FDF92150ED9A /* Sources */,
 				C3EAD8AE9C22A5514A67A38C /* Resources */,
-				24E687BF9AE6668327215F20 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -9091,8 +9091,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EED69E6677FA4A1D173C9F27 /* Build configuration list for PBXNativeTarget "iMessageApp" */;
 			buildPhases = (
-				72706C4746B792B0E3EA11B9 /* Resources */,
 				294721B38B8A22C3714E22A6 /* Embed App Extensions */,
+				72706C4746B792B0E3EA11B9 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -9129,11 +9129,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 511E6B139317B8111B33511B /* Build configuration list for PBXNativeTarget "watchOSAppExtension" */;
 			buildPhases = (
+				60937F0733C881E02787D20D /* Embed Frameworks */,
 				B15DCE7FFAB6859E002D0337 /* Create Compile Dependencies */,
 				99340AA5183EB120A0827E38 /* Create Link Dependencies */,
 				0BC8AFF7DEDFCB5C3735E199 /* Sources */,
 				2B3CFF187E50D66D1247DF0A /* Resources */,
-				60937F0733C881E02787D20D /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -9150,10 +9150,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 11448ED2A6A7CA5148C647A8 /* Build configuration list for PBXNativeTarget "watchOSAppExtensionUnitTests" */;
 			buildPhases = (
+				8E6A6E861A765F4CA305623A /* Embed Frameworks */,
 				ED7B1BD46AF41845B4F33DA9 /* Create Compile Dependencies */,
 				16C7F09D81A18601D56E4865 /* Create Link Dependencies */,
 				B66D4C0F56DDC2756403E243 /* Sources */,
-				8E6A6E861A765F4CA305623A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -9254,11 +9254,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F47AC051B3BADBB47CA2904F /* Build configuration list for PBXNativeTarget "iOSAppSwiftUnitTestSuite" */;
 			buildPhases = (
+				592EDBCFEE232BA4F04DB635 /* Embed Frameworks */,
 				EEC0E71B7DB351805236BE16 /* Create Compile Dependencies */,
 				E6BDC48D6D5050529A989752 /* Create Link Dependencies */,
 				1E407EAA425C689A6F3F3C88 /* Sources */,
 				EF28A69C4FA2DBE17B8718FE /* Resources */,
-				592EDBCFEE232BA4F04DB635 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -9580,14 +9580,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D08A821A46CE5B46FCADB0B1 /* Build configuration list for PBXNativeTarget "iOSApp" */;
 			buildPhases = (
-				936A0C13D99A28E18134B3D6 /* Create Compile Dependencies */,
-				738219E901C0E9AEF31E985E /* Create Link Dependencies */,
-				C0746DB917135C251EBC92A3 /* Sources */,
-				B6738331CF80F57EDBC55412 /* Resources */,
 				54E0573228E25BA06A17C8A4 /* Embed Frameworks */,
 				B728FD36D5E24A1628E973F5 /* Embed Watch Content */,
 				D3CC297B1790BC17C947B5D4 /* Embed App Extensions */,
 				A7E85E68A1BBCD520ACD5088 /* Embed App Clips */,
+				936A0C13D99A28E18134B3D6 /* Create Compile Dependencies */,
+				738219E901C0E9AEF31E985E /* Create Link Dependencies */,
+				C0746DB917135C251EBC92A3 /* Sources */,
+				B6738331CF80F57EDBC55412 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -9681,11 +9681,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9AEA6F92C4DB724D2A2A56CB /* Build configuration list for PBXNativeTarget "macOSApp" */;
 			buildPhases = (
+				B77AD15C284F61BB7B0BC343 /* Embed Frameworks */,
 				189A55D79810BFC1D3B69A77 /* Create Compile Dependencies */,
 				D0C9F28B90309299BF2E4F3B /* Create Link Dependencies */,
 				C2F0B9B6C5FB6328BF737D5D /* Sources */,
 				C4031A0336EB5DA2A516F76A /* Resources */,
-				B77AD15C284F61BB7B0BC343 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -9790,11 +9790,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 61EE0EAE4F4CCD1A84B3E5C5 /* Build configuration list for PBXNativeTarget "iOSAppObjCUnitTestSuite" */;
 			buildPhases = (
+				9AD02381791735BC2EA4BD8D /* Embed Frameworks */,
 				D0C23853651E07CF123C17B8 /* Create Compile Dependencies */,
 				33D595A4A6F87AB6ED28F4E4 /* Create Link Dependencies */,
 				CAA35609AE71A8289031A729 /* Sources */,
 				65CDA1C403B6212BCE3CBB8B /* Resources */,
-				9AD02381791735BC2EA4BD8D /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -9852,10 +9852,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EB0546E662F84DA12E9E7F10 /* Build configuration list for PBXNativeTarget "tvOSAppUnitTests" */;
 			buildPhases = (
+				6D2E1B47A7BF182F648958B4 /* Embed Frameworks */,
 				69F3614D6F9037354F22010D /* Create Compile Dependencies */,
 				9ED00244CCDA1B98319754AD /* Create Link Dependencies */,
 				EB0951B0308737E469AF753E /* Sources */,
-				6D2E1B47A7BF182F648958B4 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -9872,11 +9872,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EEE3B8E45F9CB1F35C3213C5 /* Build configuration list for PBXNativeTarget "WidgetExtension" */;
 			buildPhases = (
+				75774963D17D570D0DAF085D /* Embed Frameworks */,
 				45323B7847A54C9A2DCEEB9E /* Create Compile Dependencies */,
 				9C9C288240140D9C1EA675E5 /* Create Link Dependencies */,
 				DEA205856817ECFD12A4F6AC /* Sources */,
 				539460B5D34204CEA560D62F /* Resources */,
-				75774963D17D570D0DAF085D /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -9933,11 +9933,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 49F15B06A7AA10C502852570 /* Build configuration list for PBXNativeTarget "tvOSApp" */;
 			buildPhases = (
+				598B58973F83D2985CC71DDE /* Embed Frameworks */,
 				6E41C96226ECE8EEF7C60A63 /* Create Compile Dependencies */,
 				828FDC22B512F9C50281BF5A /* Create Link Dependencies */,
 				5E6FE845F8960F43CFA251FF /* Sources */,
 				722134B2E05B89C3F94D49F6 /* Resources */,
-				598B58973F83D2985CC71DDE /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -9973,11 +9973,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E9BB1431F90E909E1F79F0ED /* Build configuration list for PBXNativeTarget "iMessageAppExtension" */;
 			buildPhases = (
+				80BE391EE175791A5B6B68E1 /* Embed Frameworks */,
 				FB7B6C05BF63B663970E4AA2 /* Create Compile Dependencies */,
 				4D422939B2F14D024AD77CCC /* Create Link Dependencies */,
 				BA86548A4F47D1276A48B362 /* Sources */,
 				E2E9DE92CCAE70096FFF11AC /* Resources */,
-				80BE391EE175791A5B6B68E1 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
