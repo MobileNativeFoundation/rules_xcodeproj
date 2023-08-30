@@ -1552,6 +1552,18 @@ touch "$SCRIPT_OUTPUT_FILE_1"
                 createGeneratedHeaderShellScript(),
             ],
             "A 2": [
+                PBXCopyFilesBuildPhase(
+                    dstPath: "",
+                    dstSubfolderSpec: .frameworks,
+                    name: "Embed Frameworks",
+                    files: buildFiles([PBXBuildFile(
+                        file: elements["a/Fram.framework"]!,
+                        settings: ["ATTRIBUTES": [
+                            "CodeSignOnCopy",
+                            "RemoveHeadersOnCopy",
+                        ]]
+                    )])
+                ),
                 createCreateLinkingDependenciesShellScript(
                     hasCompileStub: true
                 ),
@@ -1571,18 +1583,6 @@ touch "$SCRIPT_OUTPUT_FILE_1"
                             file: elements[.generated("v", isFolder: true)]!
                         ),
                     ])
-                ),
-                PBXCopyFilesBuildPhase(
-                    dstPath: "",
-                    dstSubfolderSpec: .frameworks,
-                    name: "Embed Frameworks",
-                    files: buildFiles([PBXBuildFile(
-                        file: elements["a/Fram.framework"]!,
-                        settings: ["ATTRIBUTES": [
-                            "CodeSignOnCopy",
-                            "RemoveHeadersOnCopy",
-                        ]]
-                    )])
                 ),
             ],
             "AC": [
@@ -1608,12 +1608,6 @@ touch "$SCRIPT_OUTPUT_FILE_1"
                 ),
             ],
             "B 2": [
-                createCreateLinkingDependenciesShellScript(
-                    hasCompileStub: true
-                ),
-                PBXSourcesBuildPhase(
-                    files: buildFiles([PBXBuildFile(file: compileStub)])
-                ),
                 PBXCopyFilesBuildPhase(
                     dstPath: "",
                     dstSubfolderSpec: .frameworks,
@@ -1625,6 +1619,12 @@ touch "$SCRIPT_OUTPUT_FILE_1"
                             "RemoveHeadersOnCopy",
                         ]]
                     )])
+                ),
+                createCreateLinkingDependenciesShellScript(
+                    hasCompileStub: true
+                ),
+                PBXSourcesBuildPhase(
+                    files: buildFiles([PBXBuildFile(file: compileStub)])
                 ),
             ],
             "B 3": [
@@ -1674,9 +1674,6 @@ touch "$SCRIPT_OUTPUT_FILE_1"
                 ),
             ],
             "I": [
-                PBXSourcesBuildPhase(
-                    files: buildFiles([PBXBuildFile(file: compileStub)])
-                ),
                 PBXCopyFilesBuildPhase(
                     dstPath: "$(CONTENTS_FOLDER_PATH)/Watch",
                     dstSubfolderSpec: .productsDirectory,
@@ -1698,6 +1695,9 @@ touch "$SCRIPT_OUTPUT_FILE_1"
                             "RemoveHeadersOnCopy",
                         ]]
                     )])
+                ),
+                PBXSourcesBuildPhase(
+                    files: buildFiles([PBXBuildFile(file: compileStub)])
                 ),
             ],
             "R 1": [
