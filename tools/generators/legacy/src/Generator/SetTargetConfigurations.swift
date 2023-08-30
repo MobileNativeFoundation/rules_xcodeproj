@@ -812,7 +812,7 @@ where Key == BuildSettingConditional, Value == [String: BuildSetting] {
         // TODO: If we ever add support for Universal targets we need to
         //   consolidate "ARCHS" to an `.any` conditional
 
-        let baseConditions = Set(keys.sorted().filter { $0 != .any })
+        let baseConditions = Set(keys.filter { $0 != .any })
 
         var buildSettings: [String: BuildSetting] = [:]
         for (key, conditionalBuildSetting) in conditionalBuildSettings {
