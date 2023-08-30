@@ -28,6 +28,9 @@ should execute or test with.
         "bundle_id": """\
 An attribute name (or `None`) to collect the bundle id string from.
 """,
+        "codesign_inputs": """\
+An attribute name (or `None`) to collect the `codesign_inputs` `list` from.
+""",
         "codesignopts": """\
 An attribute name (or `None`) to collect the `codesignopts` `list` from.
 """,

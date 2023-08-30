@@ -154,6 +154,7 @@ def calculate_automatic_target_info(ctx, build_mode, target):
     args = None
     bundle_id = None
     collect_uncategorized_files = False
+    codesign_inputs = None
     codesignopts = None
     deps = _DEPS_ATTRS
     entitlements = None
@@ -200,6 +201,7 @@ def calculate_automatic_target_info(ctx, build_mode, target):
         xcode_targets = _EMPTY_XCODE_TARGETS
     elif _is_test_target(target):
         args = "args"
+        codesign_inputs = "codesign_inputs"
         codesignopts = "codesignopts"
         entitlements = "entitlements"
         env = "env"
@@ -212,6 +214,7 @@ def calculate_automatic_target_info(ctx, build_mode, target):
         # Checking for `binary` being set is to work around a rules_ios issue
         alternate_icons = "alternate_icons"
         app_icons = "app_icons"
+        codesign_inputs = "codesign_inputs"
         codesignopts = "codesignopts"
         entitlements = "entitlements"
         exported_symbols_lists = _EXPORTED_SYMBOLS_LISTS_ATTRS
@@ -225,6 +228,7 @@ def calculate_automatic_target_info(ctx, build_mode, target):
         collect_uncategorized_files = rule_kind != "apple_bundle_import"
         xcode_targets = _DEFAULT_XCODE_TARGETS[this_target_type]
     elif rule_kind == "macos_command_line_application":
+        codesign_inputs = "codesign_inputs"
         codesignopts = "codesignopts"
         exported_symbols_lists = _EXPORTED_SYMBOLS_LISTS_ATTRS
         infoplists = _INFOPLISTS_ATTRS
@@ -274,6 +278,7 @@ def calculate_automatic_target_info(ctx, build_mode, target):
         app_icons = app_icons,
         args = args,
         bundle_id = bundle_id,
+        codesign_inputs = codesign_inputs,
         codesignopts = codesignopts,
         collect_uncategorized_files = collect_uncategorized_files,
         deps = deps,

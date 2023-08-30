@@ -30,6 +30,19 @@ ios_application(
     app_icons = glob(["Assets.xcassets/AppIcon.appiconset/**"]),
     bundle_id = IOS_BUNDLE_ID,
     bundle_name = "iOSApp",
+    codesign_inputs = select({
+        ":release_build": [],
+        "//conditions:default": [
+            "@build_bazel_rules_apple//tools/codesigningtool:disable_signing_resource_rules",
+        ],
+    }),
+    codesignopts = select({
+        ":release_build": [],
+        "//conditions:default": [
+            "--digest-algorithm=sha1",
+            "--resource-rules=$(RESOURCE_RULES)",
+        ],
+    }),
     entitlements = "ios app.entitlements",
     executable_name = select({
         ":device_build": None,
@@ -64,6 +77,12 @@ ios_application(
         exclude = ["Assets.xcassets/AppIcon.appiconset/**"],
     ),
     strings = glob(["*.lproj/Localizable.strings"]),
+    toolchains = select({
+        ":release_build": [],
+        "//conditions:default": [
+            "@build_bazel_rules_apple//tools/codesigningtool:disable_signing_resource_rules",
+        ],
+    }),
     version = "//iOSApp:Version",
     visibility = [
         "//iOSApp:__pkg__",
