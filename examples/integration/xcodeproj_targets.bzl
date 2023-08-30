@@ -98,11 +98,19 @@ XCODEPROJ_TARGETS = [
         target_environments = ["device", "simulator"],
     ),
     "//Bundle",
-    "//iOSApp/Test/UITests:iOSAppUITests",
-    "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests",
+    top_level_targets(
+        labels = [
+            "//iOSApp/Test/ObjCUnitTests:iOSAppObjCUnitTests",
+            "//iOSApp/Test/UITests:iOSAppUITests",
+        ],
+        target_environments = ["device", "simulator"],
+    ),
     "//iOSApp/Test/TestingUtils:macos_TestingUtils",
     "//iMessageApp",
-    "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests",
+    top_level_target(
+        label = "//iOSApp/Test/SwiftUnitTests:iOSAppSwiftUnitTests",
+        target_environments = ["device", "simulator"],
+    ),
     "//macOSApp/Source:macOSApp",
     "//macOSApp/Test/UITests:macOSAppUITests",
     "//tvOSApp/Test/UITests:tvOSAppUITests",
