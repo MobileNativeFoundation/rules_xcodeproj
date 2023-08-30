@@ -90,6 +90,38 @@ Product for target "\(key)" not found in `products`
         }
 
         let buildPhases = [
+            try createEmbedFrameworksPhase(
+                in: pbxProj,
+                buildMode: buildMode,
+                productType: productType,
+                frameworks: target.linkerInputs.embeddable,
+                products: products,
+                files: files
+            ),
+            try createEmbedWatchContentPhase(
+                in: pbxProj,
+                buildMode: buildMode,
+                productType: productType,
+                watchApplication: target.watchApplication,
+                products: products,
+                targetKeys: targetKeys
+            ),
+            try createEmbedAppExtensionsPhase(
+                in: pbxProj,
+                buildMode: buildMode,
+                productType: productType,
+                extensions: target.extensions,
+                products: products,
+                targetKeys: targetKeys
+            ),
+            try createEmbedAppClipsPhase(
+                in: pbxProj,
+                buildMode: buildMode,
+                productType: productType,
+                appClips: target.appClips,
+                products: products,
+                targetKeys: targetKeys
+            ),
             try createBazelDependenciesScript(
                 in: pbxProj,
                 buildMode: buildMode,
@@ -134,38 +166,6 @@ Product for target "\(key)" not found in `products`
                 files: files,
                 targetKeys: targetKeys
             ),
-            try createEmbedFrameworksPhase(
-                in: pbxProj,
-                buildMode: buildMode,
-                productType: productType,
-                frameworks: target.linkerInputs.embeddable,
-                products: products,
-                files: files
-            ),
-            try createEmbedWatchContentPhase(
-                in: pbxProj,
-                buildMode: buildMode,
-                productType: productType,
-                watchApplication: target.watchApplication,
-                products: products,
-                targetKeys: targetKeys
-            ),
-            try createEmbedAppExtensionsPhase(
-                in: pbxProj,
-                buildMode: buildMode,
-                productType: productType,
-                extensions: target.extensions,
-                products: products,
-                targetKeys: targetKeys
-            ),
-            try createEmbedAppClipsPhase(
-                in: pbxProj,
-                buildMode: buildMode,
-                productType: productType,
-                appClips: target.appClips,
-                products: products,
-                targetKeys: targetKeys
-            ),
         ]
 
         let pbxTarget = PBXNativeTarget(
@@ -181,6 +181,203 @@ Product for target "\(key)" not found in `products`
         return LabeledPBXNativeTarget(label: target.label, pbxTarget: pbxTarget)
     }
 
+    private static func createEmbedFrameworksPhase(
+        in pbxProj: PBXProj,
+        buildMode: BuildMode,
+        productType: PBXProductType,
+        frameworks: [FilePath],
+        products: Products,
+        files: [FilePath: File]
+    ) throws -> PBXCopyFilesBuildPhase? {
+        guard !buildMode.usesBazelModeBuildScripts,
+            productType.embedsFrameworks,
+            !frameworks.isEmpty
+        else {
+            return nil
+        }
+
+        func fileElement(filePath: FilePath) throws -> PBXFileElement {
+            if let fileElement = products.byFilePath[filePath] {
+                return fileElement
+            }
+            guard let framework = files[filePath] else {
+                throw PreconditionError(message: """
+Framework with file path "\(filePath)" not found in `products` or `files`
+""")
+            }
+            guard let fileElement = framework.fileElement else {
+                throw PreconditionError(message: """
+Framework with file path "\(filePath)" had nil `PBXFileElement` in `files`
+""")
+            }
+            return fileElement
+        }
+
+        func buildFile(fileElement: PBXFileElement) throws -> PBXBuildFile {
+            let pbxBuildFile = PBXBuildFile(
+                file: fileElement,
+                settings: [
+                    "ATTRIBUTES": ["CodeSignOnCopy", "RemoveHeadersOnCopy"],
+                ]
+            )
+            pbxProj.add(object: pbxBuildFile)
+            return pbxBuildFile
+        }
+
+        let buildPhase = try PBXCopyFilesBuildPhase(
+            dstPath: "",
+            dstSubfolderSpec: .frameworks,
+            name: "Embed Frameworks",
+            files: frameworks.map(fileElement).uniqued().map(buildFile)
+        )
+        pbxProj.add(object: buildPhase)
+
+        return buildPhase
+    }
+
+    private static func createEmbedWatchContentPhase(
+        in pbxProj: PBXProj,
+        buildMode: BuildMode,
+        productType: PBXProductType,
+        watchApplication: TargetID?,
+        products: Products,
+        targetKeys: [TargetID: ConsolidatedTarget.Key]
+    ) throws -> PBXCopyFilesBuildPhase? {
+        guard !buildMode.usesBazelModeBuildScripts,
+              let watchApplication = watchApplication,
+              productType.isBundle
+        else {
+            return nil
+        }
+
+        func buildFile(id: TargetID) throws -> PBXBuildFile {
+            guard let key = targetKeys[id] else {
+                throw PreconditionError(message: """
+Watch application product with id "\(id)" not found in `targetKeys`
+""")
+            }
+            guard let reference = products.byTarget[key] else {
+                throw PreconditionError(message: """
+Watch application product reference with key \(key) not found in `products`
+""")
+            }
+
+            let pbxBuildFile = PBXBuildFile(
+                file: reference,
+                settings: [
+                    "ATTRIBUTES": ["RemoveHeadersOnCopy"],
+                ]
+            )
+            pbxProj.add(object: pbxBuildFile)
+            return pbxBuildFile
+        }
+
+        let buildPhase = PBXCopyFilesBuildPhase(
+            dstPath: "$(CONTENTS_FOLDER_PATH)/Watch",
+            dstSubfolderSpec: .productsDirectory,
+            name: "Embed Watch Content",
+            files: [try buildFile(id: watchApplication)]
+        )
+        pbxProj.add(object: buildPhase)
+
+        return buildPhase
+    }
+
+    private static func createEmbedAppExtensionsPhase(
+        in pbxProj: PBXProj,
+        buildMode: BuildMode,
+        productType: PBXProductType,
+        extensions: Set<TargetID>,
+        products: Products,
+        targetKeys: [TargetID: ConsolidatedTarget.Key]
+    ) throws -> PBXCopyFilesBuildPhase? {
+        guard !buildMode.usesBazelModeBuildScripts || productType == .watch2App,
+              !extensions.isEmpty
+        else {
+            return nil
+        }
+
+        func buildFile(id: TargetID) throws -> PBXBuildFile {
+            guard let key = targetKeys[id] else {
+                throw PreconditionError(message: """
+App extension product with id "\(id)" not found in `targetKeys`
+""")
+            }
+            guard let reference = products.byTarget[key] else {
+                throw PreconditionError(message: """
+App extension product reference with key \(key) not found in `products`
+""")
+            }
+
+            let pbxBuildFile = PBXBuildFile(
+                file: reference,
+                settings: [
+                    "ATTRIBUTES": ["RemoveHeadersOnCopy"],
+                ]
+            )
+            pbxProj.add(object: pbxBuildFile)
+            return pbxBuildFile
+        }
+
+        let buildPhase = try PBXCopyFilesBuildPhase(
+            dstPath: "",
+            dstSubfolderSpec: .plugins,
+            name: "Embed App Extensions",
+            files: extensions.map(buildFile)
+        )
+        pbxProj.add(object: buildPhase)
+
+        return buildPhase
+    }
+
+    private static func createEmbedAppClipsPhase(
+        in pbxProj: PBXProj,
+        buildMode: BuildMode,
+        productType: PBXProductType,
+        appClips: Set<TargetID>,
+        products: Products,
+        targetKeys: [TargetID: ConsolidatedTarget.Key]
+    ) throws -> PBXCopyFilesBuildPhase? {
+        guard !buildMode.usesBazelModeBuildScripts,
+              !appClips.isEmpty,
+              productType.isBundle
+        else {
+            return nil
+        }
+
+        func buildFile(id: TargetID) throws -> PBXBuildFile {
+            guard let key = targetKeys[id] else {
+                throw PreconditionError(message: """
+App clip product with id "\(id)" not found in `targetKeys`
+""")
+            }
+            guard let reference = products.byTarget[key] else {
+                throw PreconditionError(message: """
+App clip product reference with key \(key) not found in `products`
+""")
+            }
+
+            let pbxBuildFile = PBXBuildFile(
+                file: reference,
+                settings: [
+                    "ATTRIBUTES": ["RemoveHeadersOnCopy"],
+                ]
+            )
+            pbxProj.add(object: pbxBuildFile)
+            return pbxBuildFile
+        }
+
+        let buildPhase = try PBXCopyFilesBuildPhase(
+            dstPath: "$(CONTENTS_FOLDER_PATH)/AppClips",
+            dstSubfolderSpec: .productsDirectory,
+            name: "Embed App Clips",
+            files: appClips.map(buildFile)
+        )
+        pbxProj.add(object: buildPhase)
+
+        return buildPhase
+    }
+    
     private static func createBazelDependenciesScript(
         in pbxProj: PBXProj,
         buildMode: BuildMode,
@@ -564,203 +761,6 @@ Resource bundle product reference with key \(key) not found in `products`
 
         let buildPhase = PBXResourcesBuildPhase(
             files: fileElements.map(buildFile).sortedLocalizedStandard()
-        )
-        pbxProj.add(object: buildPhase)
-
-        return buildPhase
-    }
-
-    private static func createEmbedFrameworksPhase(
-        in pbxProj: PBXProj,
-        buildMode: BuildMode,
-        productType: PBXProductType,
-        frameworks: [FilePath],
-        products: Products,
-        files: [FilePath: File]
-    ) throws -> PBXCopyFilesBuildPhase? {
-        guard !buildMode.usesBazelModeBuildScripts,
-            productType.embedsFrameworks,
-            !frameworks.isEmpty
-        else {
-            return nil
-        }
-
-        func fileElement(filePath: FilePath) throws -> PBXFileElement {
-            if let fileElement = products.byFilePath[filePath] {
-                return fileElement
-            }
-            guard let framework = files[filePath] else {
-                throw PreconditionError(message: """
-Framework with file path "\(filePath)" not found in `products` or `files`
-""")
-            }
-            guard let fileElement = framework.fileElement else {
-                throw PreconditionError(message: """
-Framework with file path "\(filePath)" had nil `PBXFileElement` in `files`
-""")
-            }
-            return fileElement
-        }
-
-        func buildFile(fileElement: PBXFileElement) throws -> PBXBuildFile {
-            let pbxBuildFile = PBXBuildFile(
-                file: fileElement,
-                settings: [
-                    "ATTRIBUTES": ["CodeSignOnCopy", "RemoveHeadersOnCopy"],
-                ]
-            )
-            pbxProj.add(object: pbxBuildFile)
-            return pbxBuildFile
-        }
-
-        let buildPhase = try PBXCopyFilesBuildPhase(
-            dstPath: "",
-            dstSubfolderSpec: .frameworks,
-            name: "Embed Frameworks",
-            files: frameworks.map(fileElement).uniqued().map(buildFile)
-        )
-        pbxProj.add(object: buildPhase)
-
-        return buildPhase
-    }
-
-    private static func createEmbedWatchContentPhase(
-        in pbxProj: PBXProj,
-        buildMode: BuildMode,
-        productType: PBXProductType,
-        watchApplication: TargetID?,
-        products: Products,
-        targetKeys: [TargetID: ConsolidatedTarget.Key]
-    ) throws -> PBXCopyFilesBuildPhase? {
-        guard !buildMode.usesBazelModeBuildScripts,
-              let watchApplication = watchApplication,
-              productType.isBundle
-        else {
-            return nil
-        }
-
-        func buildFile(id: TargetID) throws -> PBXBuildFile {
-            guard let key = targetKeys[id] else {
-                throw PreconditionError(message: """
-Watch application product with id "\(id)" not found in `targetKeys`
-""")
-            }
-            guard let reference = products.byTarget[key] else {
-                throw PreconditionError(message: """
-Watch application product reference with key \(key) not found in `products`
-""")
-            }
-
-            let pbxBuildFile = PBXBuildFile(
-                file: reference,
-                settings: [
-                    "ATTRIBUTES": ["RemoveHeadersOnCopy"],
-                ]
-            )
-            pbxProj.add(object: pbxBuildFile)
-            return pbxBuildFile
-        }
-
-        let buildPhase = PBXCopyFilesBuildPhase(
-            dstPath: "$(CONTENTS_FOLDER_PATH)/Watch",
-            dstSubfolderSpec: .productsDirectory,
-            name: "Embed Watch Content",
-            files: [try buildFile(id: watchApplication)]
-        )
-        pbxProj.add(object: buildPhase)
-
-        return buildPhase
-    }
-
-    private static func createEmbedAppExtensionsPhase(
-        in pbxProj: PBXProj,
-        buildMode: BuildMode,
-        productType: PBXProductType,
-        extensions: Set<TargetID>,
-        products: Products,
-        targetKeys: [TargetID: ConsolidatedTarget.Key]
-    ) throws -> PBXCopyFilesBuildPhase? {
-        guard !buildMode.usesBazelModeBuildScripts || productType == .watch2App,
-              !extensions.isEmpty
-        else {
-            return nil
-        }
-
-        func buildFile(id: TargetID) throws -> PBXBuildFile {
-            guard let key = targetKeys[id] else {
-                throw PreconditionError(message: """
-App extension product with id "\(id)" not found in `targetKeys`
-""")
-            }
-            guard let reference = products.byTarget[key] else {
-                throw PreconditionError(message: """
-App extension product reference with key \(key) not found in `products`
-""")
-            }
-
-            let pbxBuildFile = PBXBuildFile(
-                file: reference,
-                settings: [
-                    "ATTRIBUTES": ["RemoveHeadersOnCopy"],
-                ]
-            )
-            pbxProj.add(object: pbxBuildFile)
-            return pbxBuildFile
-        }
-
-        let buildPhase = try PBXCopyFilesBuildPhase(
-            dstPath: "",
-            dstSubfolderSpec: .plugins,
-            name: "Embed App Extensions",
-            files: extensions.map(buildFile)
-        )
-        pbxProj.add(object: buildPhase)
-
-        return buildPhase
-    }
-
-    private static func createEmbedAppClipsPhase(
-        in pbxProj: PBXProj,
-        buildMode: BuildMode,
-        productType: PBXProductType,
-        appClips: Set<TargetID>,
-        products: Products,
-        targetKeys: [TargetID: ConsolidatedTarget.Key]
-    ) throws -> PBXCopyFilesBuildPhase? {
-        guard !buildMode.usesBazelModeBuildScripts,
-              !appClips.isEmpty,
-              productType.isBundle
-        else {
-            return nil
-        }
-
-        func buildFile(id: TargetID) throws -> PBXBuildFile {
-            guard let key = targetKeys[id] else {
-                throw PreconditionError(message: """
-App clip product with id "\(id)" not found in `targetKeys`
-""")
-            }
-            guard let reference = products.byTarget[key] else {
-                throw PreconditionError(message: """
-App clip product reference with key \(key) not found in `products`
-""")
-            }
-
-            let pbxBuildFile = PBXBuildFile(
-                file: reference,
-                settings: [
-                    "ATTRIBUTES": ["RemoveHeadersOnCopy"],
-                ]
-            )
-            pbxProj.add(object: pbxBuildFile)
-            return pbxBuildFile
-        }
-
-        let buildPhase = try PBXCopyFilesBuildPhase(
-            dstPath: "$(CONTENTS_FOLDER_PATH)/AppClips",
-            dstSubfolderSpec: .productsDirectory,
-            name: "Embed App Clips",
-            files: appClips.map(buildFile)
         )
         pbxProj.add(object: buildPhase)
 
