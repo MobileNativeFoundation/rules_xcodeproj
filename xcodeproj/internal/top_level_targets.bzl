@@ -31,12 +31,27 @@ load(":provisioning_profiles.bzl", "provisioning_profiles")
 load(":target_id.bzl", "get_id")
 load(
     ":target_properties.bzl",
-    "process_codesignopts",
     "process_dependencies",
     "process_modulemaps",
     "process_swiftmodules",
 )
 load(":xcode_targets.bzl", "xcode_targets")
+
+def _get_codesign_opts(*, ctx, inputs_attr, opts_attr):
+    if not opts_attr:
+        return ([], [])
+
+    opts = [
+        ctx.expand_make_variables(opts_attr, opt, {})
+        for opt in getattr(ctx.rule.attr, opts_attr, [])
+    ]
+
+    if opts and inputs_attr:
+        inputs = getattr(ctx.rule.files, inputs_attr, [])
+    else:
+        inputs = []
+
+    return (opts, inputs)
 
 def get_tree_artifact_enabled(*, ctx, bundle_info):
     """Returns whether tree artifacts are enabled.
@@ -358,6 +373,18 @@ def process_top_level_target(
         avoid_compilation_providers = avoid_compilation_providers,
     )
 
+    codesign_opts, codesign_inputs = _get_codesign_opts(
+        ctx = ctx,
+        inputs_attr = automatic_target_info.codesign_inputs,
+        opts_attr = automatic_target_info.codesignopts,
+    )
+    additional_files.extend(codesign_inputs)
+    set_if_true(
+        build_settings,
+        "OTHER_CODE_SIGN_FLAGS",
+        tuple(codesign_opts),
+    )
+
     module_name_attribute, product_module_name = get_product_module_name(
         ctx = ctx,
         target = target,
@@ -478,17 +505,6 @@ def process_top_level_target(
         product_module_name,
     )
 
-    codesignopts_attr_name = automatic_target_info.codesignopts
-    if codesignopts_attr_name:
-        codesignopts = getattr(
-            ctx.rule.attr,
-            automatic_target_info.codesignopts,
-            None,
-        )
-        process_codesignopts(
-            codesignopts = codesignopts,
-            build_settings = build_settings,
-        )
     swiftmodules = process_swiftmodules(swift_info = swift_info)
     lldb_context = lldb_contexts.collect(
         build_mode = build_mode,

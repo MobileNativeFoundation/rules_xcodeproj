@@ -22,6 +22,7 @@ $(BAZEL_EXTERNAL)/examples_ios_app_external~override/Info.plist
 $(BAZEL_EXTERNAL)/examples_ios_app_external~override/bundles/Utils.bundle
 $(BAZEL_EXTERNAL)/examples_ios_app_external~override/nested
 $(BAZEL_EXTERNAL)/rules_apple~2.5.0/apple/testing/DefaultTestBundle.plist
+$(BAZEL_EXTERNAL)/rules_apple~2.5.0/tools/codesigningtool/disable_signing_resource_rules.plist
 $(BAZEL_EXTERNAL)/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_atomics/Sources/Atomics/AtomicInteger.swift
 $(BAZEL_EXTERNAL)/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_atomics/Sources/Atomics/AtomicMemoryOrderings.swift
 $(BAZEL_EXTERNAL)/rules_swift~1.9.1~non_module_deps~com_github_apple_swift_atomics/Sources/Atomics/AtomicOptional.swift
