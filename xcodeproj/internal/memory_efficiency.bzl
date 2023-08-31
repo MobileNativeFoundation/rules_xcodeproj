@@ -17,11 +17,14 @@ def memory_efficient_depset(direct = None, *, transitive = None, **kwargs):
 
     Returns:
         If both `direct` and `transitive` are empty after filtering empty
-        depsets out of `transitive`, then `EMPTY_DEPSET` is returned. Otherwise
-        a new `depset` is returned.
+        depsets out of `transitive`, then `EMPTY_DEPSET` is returned. If
+        `direct` is empty and `transitive` is a single element, then that
+        element is returned. Otherwise a new `depset` is returned.
     """
     if transitive:
         transitive = [d for d in transitive if d != EMPTY_DEPSET]
+        if not direct and len(transitive) == 1:
+            return transitive[0]
     if direct or transitive:
         return depset(direct, transitive = transitive, **kwargs)
     return EMPTY_DEPSET
