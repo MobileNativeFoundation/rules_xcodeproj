@@ -22,7 +22,7 @@ def memory_efficient_depset(direct = None, *, transitive = None, **kwargs):
         element is returned. Otherwise a new `depset` is returned.
     """
     if transitive:
-        transitive = [d for d in transitive if d != EMPTY_DEPSET]
+        transitive = [d for d in transitive if d]
         if not direct and len(transitive) == 1:
             return transitive[0]
     if direct or transitive:
