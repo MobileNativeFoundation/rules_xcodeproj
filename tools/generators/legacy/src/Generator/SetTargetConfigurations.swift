@@ -812,11 +812,7 @@ where Key == BuildSettingConditional, Value == [String: BuildSetting] {
         // TODO: If we ever add support for Universal targets we need to
         //   consolidate "ARCHS" to an `.any` conditional
 
-        let baseConditions = self.keys
-            .sorted()
-            .filter { $0 != .any }
-
-        let baseCondition = baseConditions.first!
+        let baseConditions = Set(keys.filter { $0 != .any })
 
         var buildSettings: [String: BuildSetting] = [:]
         for (key, conditionalBuildSetting) in conditionalBuildSettings {
@@ -827,18 +823,23 @@ where Key == BuildSettingConditional, Value == [String: BuildSetting] {
 
             let firstCondition = sortedConditionalBuildSettings.first!.key
 
-            let isNonInheritableCondition =
-                firstCondition == .any || nonInheritableKeys.contains(key)
-
             var remainingConditions: Set<Key>
-            if isNonInheritableCondition {
+            let setBaseValue: Bool
+            if firstCondition == .any || nonInheritableKeys.contains(key) {
                 remainingConditions = []
+                setBaseValue = true
             } else {
-                remainingConditions = Set(baseConditions)
+                remainingConditions = baseConditions
+
+                // We only set a base value if none of the conditions want to
+                // inherit defaults (since they would inherit the base value
+                // instead of the default)
+                setBaseValue = remainingConditions
+                    .subtracting(conditionalBuildSetting.keys).isEmpty
             }
 
             let baseValue: BuildSetting?
-            if firstCondition == baseCondition || isNonInheritableCondition {
+            if setBaseValue {
                 let (_, firstValue) =
                     remainingConditionalBuildSettings.popFirst()!
                 baseValue = firstValue
@@ -862,10 +863,9 @@ where Key == BuildSettingConditional, Value == [String: BuildSetting] {
             } else {
                 baseValue = nil
 
-                // If the base value isn't set, we want to inherit the project
-                // level or default value
-                buildSettings[key] = "$(inherited)"
-
+                // Not setting a base value will cause it to inherit defaults.
+                // We remove all `remainingConditions` because we don't need
+                // to explicitly set them to inherit defaults either.
                 remainingConditions.removeAll()
             }
 
