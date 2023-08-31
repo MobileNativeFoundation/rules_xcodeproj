@@ -8,6 +8,18 @@ readonly exclude_list="$2"
 # # Touching this file on an error allows indexing to work better
 # trap 'echo "private let touch = \"$(date +%s)\"" > "$DERIVED_FILE_DIR/$forced_swift_compile_file"' ERR
 
+readonly test_frameworks=(
+  "libXCTestBundleInject.dylib"
+  "libXCTestSwiftSupport.dylib"
+  "IDEBundleInjection.framework"
+  "XCTAutomationSupport.framework"
+  "XCTest.framework"
+  "XCTestCore.framework"
+  "XCTestSupport.framework"
+  "XCUIAutomation.framework"
+  "XCUnit.framework"
+)
+
 if [[ "$ACTION" == indexbuild ]]; then
   # Write to "$SCHEME_TARGET_IDS_FILE" to allow next index to catch up
   echo "$BAZEL_LABEL,$BAZEL_TARGET_ID" > "$SCHEME_TARGET_IDS_FILE"
@@ -61,6 +73,29 @@ else
         --out-format="%n%L" \
         "$BAZEL_OUTPUTS_PRODUCT_BASENAME" \
         "$TARGET_BUILD_DIR"
+
+      if [[ -n "${TEST_HOST:-}" ]]; then
+        # We need to re-sign test frameworks that Xcode placed into the test
+        # host un-signed
+        readonly test_host_app="${TEST_HOST%/*}"
+
+        # Only engage signing workflow if the test host is signed
+        if [[ -f "$test_host_app/embedded.mobileprovision" ]]; then
+          codesigning_authority=$(codesign -dvv "$TEST_HOST"  2>&1 >/dev/null | /usr/bin/sed -n  -E 's/^Authority=(.*)/\1/p'| head -n 1)
+
+          for framework in "${test_frameworks[@]}"; do
+            framework="$test_host_app/Frameworks/$framework"
+            if [[ -e "$framework" ]]; then
+              codesign -f \
+                --preserve-metadata=identifier,entitlements,flags \
+                --timestamp=none \
+                --generate-entitlement-der \
+                -s "$codesigning_authority" \
+                "$framework"
+            fi
+          done
+        fi
+      fi
 
       # Incremental installation can fail if an embedded bundle is recompiled but
       # the Info.plist is not updated. This causes the delta bundle that Xcode
