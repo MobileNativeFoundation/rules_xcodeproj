@@ -184,6 +184,7 @@ def calculate_automatic_target_info(ctx, build_mode, target):
     elif rule_kind == "swift_library":
         xcode_targets = _SWIFT_LIBRARY_XCODE_TARGETS
     elif rule_kind == "swift_grpc_library":
+        srcs = EMPTY_LIST
         xcode_targets = _SWIFT_GRPC_LIBRARY_XCODE_TARGETS
     elif rule_kind == "swift_proto_library":
         xcode_targets = _DEPS_XCODE_TARGETS
