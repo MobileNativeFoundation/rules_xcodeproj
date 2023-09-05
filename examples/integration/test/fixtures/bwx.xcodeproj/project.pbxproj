@@ -25779,6 +25779,7 @@
 				BAZEL_OUTPUT_BASE = "$(_BAZEL_OUTPUT_BASE:standardizepath)";
 				BAZEL_WORKSPACE_ROOT = "$(SRCROOT)";
 				BUILD_DIR = "$(SYMROOT)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				BUILD_MARKER_FILE = "$(OBJROOT)/build_marker";
 				BUILD_WORKSPACE_DIRECTORY = "$(SRCROOT)";
 				BUILT_PRODUCTS_DIR = "$(INDEXING_BUILT_PRODUCTS_DIR__$(INDEX_ENABLE_BUILD_ARENA))";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -25812,7 +25813,6 @@
 				PROJECT_DIR = "$(INDEXING_PROJECT_DIR__$(INDEX_ENABLE_BUILD_ARENA))";
 				RESOLVED_REPOSITORIES = "\"external/examples_command_line_external/ImportableLibrary\" \"$(SRCROOT)/CommandLine/external/ImportableLibrary\" \"external/examples_ios_app_external~override\" \"$(SRCROOT)/iOSApp/external\" \".\" \"$(SRCROOT)\"";
 				RULES_XCODEPROJ_BUILD_MODE = xcode;
-				SCHEME_TARGET_IDS_FILE = "$(OBJROOT)/scheme_target_ids";
 				SRCROOT = ../../../../..;
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
@@ -27196,6 +27196,7 @@
 				BAZEL_OUTPUT_BASE = "$(_BAZEL_OUTPUT_BASE:standardizepath)";
 				BAZEL_WORKSPACE_ROOT = "$(SRCROOT)";
 				BUILD_DIR = "$(SYMROOT)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				BUILD_MARKER_FILE = "$(OBJROOT)/build_marker";
 				BUILD_WORKSPACE_DIRECTORY = "$(SRCROOT)";
 				BUILT_PRODUCTS_DIR = "$(INDEXING_BUILT_PRODUCTS_DIR__$(INDEX_ENABLE_BUILD_ARENA))";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -27229,7 +27230,6 @@
 				PROJECT_DIR = "$(INDEXING_PROJECT_DIR__$(INDEX_ENABLE_BUILD_ARENA))";
 				RESOLVED_REPOSITORIES = "\"external/examples_command_line_external/ImportableLibrary\" \"$(SRCROOT)/CommandLine/external/ImportableLibrary\" \"external/examples_ios_app_external~override\" \"$(SRCROOT)/iOSApp/external\" \".\" \"$(SRCROOT)\"";
 				RULES_XCODEPROJ_BUILD_MODE = xcode;
-				SCHEME_TARGET_IDS_FILE = "$(OBJROOT)/scheme_target_ids";
 				SRCROOT = ../../../../..;
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";

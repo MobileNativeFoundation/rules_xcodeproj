@@ -10,23 +10,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Initialize Bazel Build Output Groups File"
-               scriptText = "mkdir -p &quot;${SCHEME_TARGET_IDS_FILE%/*}&quot;&#10;if [[ -s &quot;$SCHEME_TARGET_IDS_FILE&quot; ]]; then&#10;    rm &quot;$SCHEME_TARGET_IDS_FILE&quot;&#10;fi&#10;">
-               <EnvironmentBuildable>
-                  <BuildableReference
-                     BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "9DD2F5ACD7123609DC62FE97"
-                     BuildableName = "CNIOLinux"
-                     BlueprintName = "CNIOLinux"
-                     ReferencedContainer = "container:../../../../../test/fixtures/bwx.xcodeproj">
-                  </BuildableReference>
-               </EnvironmentBuildable>
-            </ActionContent>
-         </ExecutionAction>
-         <ExecutionAction
-            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
-            <ActionContent
-               title = "Set Bazel Build Output Groups for CNIOLinux"
-               scriptText = "echo &quot;$BAZEL_LABEL,$BAZEL_TARGET_ID&quot; &gt;&gt; &quot;$SCHEME_TARGET_IDS_FILE&quot;&#10;">
+               scriptText = "mkdir -p &quot;${BUILD_MARKER_FILE%/*}&quot;&#10;touch &quot;$BUILD_MARKER_FILE&quot;&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"

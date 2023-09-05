@@ -11,45 +11,13 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Initialize Bazel Build Output Groups File"
-               scriptText = "mkdir -p &quot;${SCHEME_TARGET_IDS_FILE%/*}&quot;&#10;if [[ -s &quot;$SCHEME_TARGET_IDS_FILE&quot; ]]; then&#10;    rm &quot;$SCHEME_TARGET_IDS_FILE&quot;&#10;fi&#10;">
+               scriptText = "mkdir -p &quot;${BUILD_MARKER_FILE%/*}&quot;&#10;touch &quot;$BUILD_MARKER_FILE&quot;&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
                      BlueprintIdentifier = "06E3C912B8DE52D274641347"
                      BuildableName = "WidgetExtension.appex"
                      BlueprintName = "WidgetExtension"
-                     ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
-                  </BuildableReference>
-               </EnvironmentBuildable>
-            </ActionContent>
-         </ExecutionAction>
-         <ExecutionAction
-            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
-            <ActionContent
-               title = "Set Bazel Build Output Groups for WidgetExtension"
-               scriptText = "echo &quot;$BAZEL_LABEL,$BAZEL_TARGET_ID&quot; &gt;&gt; &quot;$SCHEME_TARGET_IDS_FILE&quot;&#10;">
-               <EnvironmentBuildable>
-                  <BuildableReference
-                     BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "06E3C912B8DE52D274641347"
-                     BuildableName = "WidgetExtension.appex"
-                     BlueprintName = "WidgetExtension"
-                     ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
-                  </BuildableReference>
-               </EnvironmentBuildable>
-            </ActionContent>
-         </ExecutionAction>
-         <ExecutionAction
-            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
-            <ActionContent
-               title = "Set Bazel Build Output Groups for iOSApp"
-               scriptText = "echo &quot;$BAZEL_LABEL,$BAZEL_TARGET_ID&quot; &gt;&gt; &quot;$SCHEME_TARGET_IDS_FILE&quot;&#10;">
-               <EnvironmentBuildable>
-                  <BuildableReference
-                     BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "1765D91CC168F25A5BC51603"
-                     BuildableName = "iOSApp.app"
-                     BlueprintName = "iOSApp"
                      ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
