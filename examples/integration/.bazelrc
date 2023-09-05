@@ -1,6 +1,8 @@
 # Import parent workspace settings
 import %workspace%/../../shared.bazelrc
 
+build --experimental_cc_implementation_deps
+
 # Exercise the extra flags feature
 
 build:rules_xcodeproj --@rules_xcodeproj//xcodeproj:extra_common_flags='--verbose_failures'

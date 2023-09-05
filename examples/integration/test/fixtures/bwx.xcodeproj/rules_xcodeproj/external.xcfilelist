@@ -14,6 +14,9 @@ $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xc
 $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsBase.xcframework/ios-arm64_x86_64-simulator/GoogleMapsBase.framework
 $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64/GoogleMapsCore.framework
 $(BAZEL_EXTERNAL)/_main~non_module_deps~com_google_google_maps/GoogleMapsCore.xcframework/ios-arm64_x86_64-simulator/GoogleMapsCore.framework
+$(BAZEL_EXTERNAL)/examples_cc_external~override/lib.c
+$(BAZEL_EXTERNAL)/examples_cc_external~override/lib.h
+$(BAZEL_EXTERNAL)/examples_cc_external~override/private/private.inc
 $(BAZEL_EXTERNAL)/examples_command_line_external/ExternalFramework.framework
 $(BAZEL_EXTERNAL)/examples_command_line_external/ImportableLibrary/Library.h
 $(BAZEL_EXTERNAL)/examples_command_line_external/ImportableLibrary/libImportableLibrary.a

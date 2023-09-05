@@ -23,6 +23,10 @@ bazel_dep(
 )
 bazel_dep(name = "bazel_skylib", version = "1.4.2")
 bazel_dep(
+    name = "examples_cc_external",
+    version = "0.0.1",
+)
+bazel_dep(
     name = "examples_ios_app_external",
     version = "0.0.1",
 )
@@ -32,6 +36,11 @@ bazel_dep(name = "bazel_features", version = "1.0.0", dev_dependency = True)
 local_path_override(
     module_name = "rules_xcodeproj",
     path = "../..",
+)
+
+local_path_override(
+    module_name = "examples_cc_external",
+    path = "cc/external",
 )
 
 local_path_override(
