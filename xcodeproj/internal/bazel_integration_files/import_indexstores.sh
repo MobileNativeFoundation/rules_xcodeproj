@@ -26,7 +26,7 @@ trap 'rm "$pidfile" 2>/dev/null || true' EXIT
 
 # Merge all filelists into a single file
 filelist="$(mktemp)"
-sort -u "$@" | sed "s|^|$PROJECT_DIR/|" > "$filelist"
+/usr/bin/sort -u "$@" | sed "s|^|$PROJECT_DIR/|" > "$filelist"
 
 # Exit early if no indexstores were provided
 if [ ! -s "$filelist" ]; then
