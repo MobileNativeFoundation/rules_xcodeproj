@@ -100,7 +100,6 @@ def _calculate_build_request_file(
 
 def _calculate_label_and_target_ids(
         build_request_file,
-        scheme_labels_and_target_ids,
         guid_labels,
         guid_target_ids):
     try:
@@ -153,19 +152,18 @@ def _calculate_label_and_target_ids(
     except Exception as error:
         print(
             f"""\
-warning: Failed to parse '{build_request_file}':
+error: Failed to parse '{build_request_file}':
 {type(error).__name__}: {error}.
 
-warning: Using scheme labels and target ids as a fallback. Please file a bug \
-report here: \
+Please file a bug report here: \
 https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bug.md""",
             file = sys.stderr,
         )
-        return scheme_labels_and_target_ids
+        exit(1)
 
     if not labels_and_target_ids:
         print(
-            f"""\
+            """\
 error: Failed to determine labels and targets. Note, currently `.xcworkspace`s \
 aren't supported. Please make sure you are opening the generated \
 `.xcodeproj` file bundle directly. If you are, and you still get this error, \
@@ -173,6 +171,7 @@ then please file a bug report here: \
 https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bug.md""",
             file = sys.stderr,
         )
+        exit(1)
 
     return labels_and_target_ids
 
@@ -334,16 +333,15 @@ def _similar_platforms(platform):
 
 
 def _main(
-        action,
         xcode_version,
         objroot,
         base_objroot,
-        scheme_target_ids_file,
+        marker_file,
         prefixes_str):
-    if not os.path.exists(scheme_target_ids_file):
+    if not os.path.exists(marker_file):
         return
 
-    build_request_min_ctime = os.path.getctime(scheme_target_ids_file)
+    build_request_min_ctime = os.path.getctime(marker_file)
 
     try:
         xcode_version = int(xcode_version)
@@ -357,47 +355,33 @@ https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bu
         )
         xcode_version = 9999
 
-    with open(scheme_target_ids_file, encoding = "utf-8") as f:
-        scheme_label_and_target_ids = []
-        for label_and_target_id in set(f.read().splitlines()):
-            components = label_and_target_id.split(",")
-            scheme_label_and_target_ids.append((components[0], components[1]))
-
     prefixes = prefixes_str.split(",")
 
-    if action == "indexbuild":
-        # buildRequest for Index Build includes all targets, so we have to
-        # fall back to the scheme labels and target ids (which are actually set
-        # by the "Copy Bazel Outputs" script)
-        labels_and_target_ids = scheme_label_and_target_ids
-    else:
-        try:
-            build_request_file = _calculate_build_request_file(
-                xcode_version,
-                objroot,
-                build_request_min_ctime,
-            )
-            guid_labels, guid_target_ids = (
-                _calculate_guid_labels_and_target_ids(base_objroot)
-            )
-        except Exception:
-            print(
-                f"""\
-warning: Failed to calculate labels and target ids from PIFCache:
+    try:
+        build_request_file = _calculate_build_request_file(
+            xcode_version,
+            objroot,
+            build_request_min_ctime,
+        )
+        guid_labels, guid_target_ids = (
+            _calculate_guid_labels_and_target_ids(base_objroot)
+        )
+    except Exception:
+        print(
+            f"""\
+error: Failed to calculate labels and target ids from PIFCache:
 {traceback.format_exc()}
-warning: Using scheme labels and target ids as a fallback. Please file a bug \
-report here: \
+Please file a bug report here: \
 https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bug.md""",
-                file = sys.stderr,
-            )
-            labels_and_target_ids = scheme_label_and_target_ids
-        else:
-            labels_and_target_ids = _calculate_label_and_target_ids(
-                build_request_file,
-                scheme_label_and_target_ids,
-                guid_labels,
-                guid_target_ids,
-            )
+            file = sys.stderr,
+        )
+        sys.exit(1)
+
+    labels_and_target_ids = _calculate_label_and_target_ids(
+        build_request_file,
+        guid_labels,
+        guid_target_ids,
+    )
 
     print("\n".join(
         [
@@ -410,16 +394,14 @@ https://github.com/MobileNativeFoundation/rules_xcodeproj/issues/new?template=bu
 
 if __name__ == "__main__":
     _main(
-        # ACTION
-        sys.argv[1],
         # XCODE_VERSION_ACTUAL
-        sys.argv[2],
+        sys.argv[1],
         # non_preview_objroot
-        sys.argv[3],
+        sys.argv[2],
         # base_objroot
+        sys.argv[3],
+        # build_marker_file
         sys.argv[4],
-        # scheme_target_ids_file
-        sys.argv[5],
         # output_group_prefixes
-        sys.argv[6],
+        sys.argv[5],
     )

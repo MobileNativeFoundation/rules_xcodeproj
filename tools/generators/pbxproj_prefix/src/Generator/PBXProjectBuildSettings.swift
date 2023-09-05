@@ -56,6 +56,10 @@ extension Generator {
                     #""$(SYMROOT)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)""#
             ),
             .init(
+                key: "BUILD_MARKER_FILE",
+                value: #""$(OBJROOT)/build_marker""#
+            ),
+            .init(
                 key: "BUILD_WORKSPACE_DIRECTORY",
                 value: #""$(SRCROOT)""#
             ),
@@ -147,10 +151,6 @@ extension Generator {
                 value: resolvedRepositories.pbxProjEscaped
             ),
             .init(key: "RULES_XCODEPROJ_BUILD_MODE", value: buildMode.rawValue),
-            .init(
-                key: "SCHEME_TARGET_IDS_FILE",
-                value: #""$(OBJROOT)/scheme_target_ids""#
-            ),
             .init(key: "SRCROOT", value: workspace.pbxProjEscaped),
             .init(key: "SUPPORTS_MACCATALYST", value: "NO"),
             .init(key: "SWIFT_OBJC_INTERFACE_HEADER_NAME", value: #""""#),

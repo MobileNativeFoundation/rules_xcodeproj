@@ -41,18 +41,17 @@ else
   # previews. So we need to look in the non-preview build directory for this file.
   readonly non_preview_objroot="${OBJROOT/\/Intermediates.noindex\/Previews\/*//Intermediates.noindex}"
   readonly base_objroot="${non_preview_objroot/\/$index_dir_name\/Build\/Intermediates.noindex//Build/Intermediates.noindex}"
-  readonly scheme_target_ids_file="$non_preview_objroot/scheme_target_ids"
+  readonly build_marker_file="$non_preview_objroot/build_marker"
 
   # We need to read from `$output_groups_file` as soon as possible, as concurrent
   # writes to it can happen during indexing, which breaks the off-by-one-by-design
   # nature of it
   IFS=$'\n' read -r -d '' -a labels_and_output_groups < \
     <( "$CALCULATE_OUTPUT_GROUPS_SCRIPT" \
-        "$ACTION" \
         "$XCODE_VERSION_ACTUAL" \
         "$non_preview_objroot" \
         "$base_objroot" \
-        "$scheme_target_ids_file" \
+        "$build_marker_file" \
         $output_group_prefixes \
         && printf '\0' )
 

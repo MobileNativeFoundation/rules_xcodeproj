@@ -82,6 +82,7 @@ extension Generator {
             "BUILD_DIR": """
 $(SYMROOT)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
 """,
+            "BUILD_MARKER_FILE": "$(OBJROOT)/build_marker",
             "BUILD_WORKSPACE_DIRECTORY": "$(SRCROOT)",
             // `BUILT_PRODUCTS_DIR` isn't actually used by the build, since
             // `DEPLOYMENT_LOCATION` is set. It does prevent `DYLD_LIBRARY_PATH`
@@ -135,9 +136,6 @@ $(PROJECT_FILE_PATH)/\(directories.internalDirectoryName)
 $(INDEXING_PROJECT_DIR__$(INDEX_ENABLE_BUILD_ARENA))
 """,
             "RULES_XCODEPROJ_BUILD_MODE": buildMode.rawValue,
-            "SCHEME_TARGET_IDS_FILE": """
-$(OBJROOT)/scheme_target_ids
-""",
             "SRCROOT": srcRoot,
             // Bazel currently doesn't support Catalyst
             "SUPPORTS_MACCATALYST": false,

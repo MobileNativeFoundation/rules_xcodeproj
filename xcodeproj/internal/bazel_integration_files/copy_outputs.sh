@@ -20,10 +20,7 @@ readonly test_frameworks=(
   "XCUnit.framework"
 )
 
-if [[ "$ACTION" == indexbuild ]]; then
-  # Write to "$SCHEME_TARGET_IDS_FILE" to allow next index to catch up
-  echo "$BAZEL_LABEL,$BAZEL_TARGET_ID" > "$SCHEME_TARGET_IDS_FILE"
-else
+if [[ "$ACTION" != indexbuild ]]; then
   # Copy product
   if [[ -n ${BAZEL_OUTPUTS_PRODUCT:-} ]]; then
     if [[ "$BAZEL_OUTPUTS_PRODUCT" = *.ipa ]]; then
