@@ -11,7 +11,7 @@ bazel run --config=cache //test/fixtures:update
 
 for dir in examples/*/ ; do
     cd "$root/$dir"
-    if [[ ! -f "WORKSPACE" ]]; then
+    if [[ ! -f "WORKSPACE" || ! -d "test/fixtures" ]]; then
       continue
     fi
 
