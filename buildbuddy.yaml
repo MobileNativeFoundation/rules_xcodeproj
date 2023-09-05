@@ -160,14 +160,6 @@ actions:
     bazel_commands:
       - *nobzlmod_generate_integration
       - *nobzlmod_build_all
-  - name: Integration Test - "examples/integration" - Bazel 5
-    <<: *bazel_5
-    <<: *action_base
-    <<: *normal_resources
-    <<: *examples_integration_workspace
-    bazel_commands:
-      - *generate_integration
-      - *build_all
   - name: Integration Test - "examples/integration" - Bazel 7
     <<: *bazel_7
     <<: *action_base
@@ -194,7 +186,14 @@ actions:
     bazel_commands:
       - *validate_integration
       - *build_all
-
+  - name: Integration Test - "examples/rules_ios" - Bazel 5
+    <<: *bazel_5
+    <<: *action_base
+    <<: *normal_resources
+    <<: *examples_rules_ios_workspace
+    bazel_commands:
+      - *generate_integration
+      - *build_all
   ## Uncomment when rules_ios performs ObjcProvider -> CcInfo linking migration
   # - name: Integration Test - "examples/rules_ios" - Bazel 7
   #   <<: *bazel_7
