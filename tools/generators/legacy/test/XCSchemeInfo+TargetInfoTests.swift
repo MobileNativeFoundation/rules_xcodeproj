@@ -114,20 +114,29 @@ extension XCSchemeInfoTargetInfoTests {
     }
 }
 
-// MARK: - `buildableReferences` Tests
+// MARK: - `selfAndHostBuildableReferences` Tests
 
 extension XCSchemeInfoTargetInfoTests {
     func test_buildableReferences_noHost() throws {
-        let buildableReferences = libraryTargetInfo.buildableReferences
-        XCTAssertEqual(buildableReferences, [libraryTargetInfo.buildableReference])
+        let buildableReferences =
+            libraryTargetInfo.selfAndHostBuildableReferences
+        XCTAssertEqual(
+            buildableReferences,
+            [libraryTargetInfo.buildableReference]
+        )
     }
 
     func test_buildableReferences_withHost() throws {
-        let buildableReferences = libraryTargetInfoWithHosts.buildableReferences
-        XCTAssertEqual(buildableReferences, [
-            libraryTargetInfo.buildableReference,
-            try libraryTargetInfoWithHosts.selectedHostInfo!.buildableReference,
-        ])
+        let buildableReferences =
+            libraryTargetInfoWithHosts.selfAndHostBuildableReferences
+        XCTAssertEqual(
+            buildableReferences,
+            [
+                libraryTargetInfo.buildableReference,
+                try libraryTargetInfoWithHosts.selectedHostInfo!
+                    .buildableReference,
+            ]
+        )
     }
 }
 
