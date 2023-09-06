@@ -8,11 +8,14 @@ cd "$BUILD_WORKSPACE_DIRECTORY"
 echo
 echo "Changing to parent directory"
 pushd "../../" > /dev/null
+
+readonly bazel=(env PATH="$PWD/tools:$PATH" bazel)
+
 echo "Building release.tar.gz"
 echo
-bazel --output_base=setup-bazel-output-base build //distribution:release
+"${bazel[@]}" --output_base=setup-bazel-output-base build //distribution:release
 
-archive_path="$(bazel --output_base=setup-bazel-output-base info output_path)/darwin_arm64-opt/bin/distribution/release.tar.gz"
+archive_path="$("${bazel[@]}" --output_base=setup-bazel-output-base info output_path)/darwin_arm64-opt/bin/distribution/release.tar.gz"
 integrity="sha256-$(cut -d' ' -f 1 $archive_path.sha256 | xxd -r -p | openssl base64 -A)"
 
 echo
