@@ -41,6 +41,7 @@ final class CreateProjectTests: XCTestCase {
             "BAZEL_OUTPUT_BASE": "$(_BAZEL_OUTPUT_BASE:standardizepath)",
             "BAZEL_WORKSPACE_ROOT": "$(SRCROOT)",
             "BAZEL_INTEGRATION_DIR": "$(INTERNAL_DIR)/bazel",
+            "BUILD_MARKER_FILE": "$(OBJROOT)/build_marker",
             "BUILD_WORKSPACE_DIRECTORY": "$(SRCROOT)",
             "BUILD_DIR": """
 $(SYMROOT)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
@@ -94,9 +95,6 @@ $(INDEXING_DEPLOYMENT_LOCATION__NO)
 $(INDEXING_PROJECT_DIR__$(INDEX_ENABLE_BUILD_ARENA))
 """,
             "RULES_XCODEPROJ_BUILD_MODE": "xcode",
-            "SCHEME_TARGET_IDS_FILE": """
-$(OBJROOT)/scheme_target_ids
-""",
             "SRCROOT": directories.workspace.string,
             "SUPPORTS_MACCATALYST": false,
             "SWIFT_OBJC_INTERFACE_HEADER_NAME": "",
@@ -199,6 +197,7 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
             "BUILD_DIR": """
 $(SYMROOT)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
 """,
+            "BUILD_MARKER_FILE": "$(OBJROOT)/build_marker",
             "BUILD_WORKSPACE_DIRECTORY": "$(SRCROOT)",
             "BAZEL_INTEGRATION_DIR": "$(INTERNAL_DIR)/bazel",
             "BUILT_PRODUCTS_DIR": """
@@ -256,9 +255,6 @@ $(INDEXING_DEPLOYMENT_LOCATION__NO)
 $(INDEXING_PROJECT_DIR__$(INDEX_ENABLE_BUILD_ARENA))
 """,
             "RULES_XCODEPROJ_BUILD_MODE": "bazel",
-            "SCHEME_TARGET_IDS_FILE": """
-$(OBJROOT)/scheme_target_ids
-""",
             "SRCROOT": directories.workspace.string,
             "SUPPORTS_MACCATALYST": false,
             "SWIFT_EXEC": "$(BAZEL_INTEGRATION_DIR)/swiftc",

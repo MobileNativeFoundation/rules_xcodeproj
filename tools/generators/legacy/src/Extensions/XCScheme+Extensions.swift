@@ -192,29 +192,11 @@ extension XCScheme.ExecutionAction {
     ) -> XCScheme.ExecutionAction {
         return .init(
             scriptText: #"""
-mkdir -p "${SCHEME_TARGET_IDS_FILE%/*}"
-if [[ -s "$SCHEME_TARGET_IDS_FILE" ]]; then
-    rm "$SCHEME_TARGET_IDS_FILE"
-fi
+mkdir -p "${BUILD_MARKER_FILE%/*}"
+touch "$BUILD_MARKER_FILE"
 
 """#,
             title: "Initialize Bazel Build Output Groups File",
-            environmentBuildable: buildableReference
-        )
-    }
-
-    /// Create an `ExecutionAction` that builds with Bazel.
-    convenience init(
-        buildFor buildableReference: XCScheme.BuildableReference,
-        name: String
-    ) {
-        let scriptText = #"""
-echo "$BAZEL_LABEL,$BAZEL_TARGET_ID" >> "$SCHEME_TARGET_IDS_FILE"
-
-"""#
-        self.init(
-            scriptText: scriptText,
-            title: "Set Bazel Build Output Groups for \(name)",
             environmentBuildable: buildableReference
         )
     }

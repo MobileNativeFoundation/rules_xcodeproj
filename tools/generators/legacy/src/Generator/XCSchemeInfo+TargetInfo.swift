@@ -150,17 +150,6 @@ extension XCSchemeInfo.TargetInfo {
     }
 }
 
-// MARK: `bazelBuildPreActions`
-
-extension XCScheme.BuildableReference {
-    func buildPreAction() -> XCScheme.ExecutionAction {
-        return .init(
-            buildFor: self,
-            name: blueprintName
-        )
-    }
-}
-
 // MARK: `isWidgetKitExtension`
 
 extension XCSchemeInfo.TargetInfo {
@@ -216,14 +205,10 @@ extension Sequence where Element == XCSchemeInfo.TargetInfo {
             return []
         }
 
-        let preActions = targetInfos.flatMap {
-            $0.selfAndHostBuildableReferences.map { $0.buildPreAction() }
-        }
-
         return [
             .initBazelBuildOutputGroupsFile(
                 buildableReference: buildableReference
             ),
-        ] + preActions
+        ]
     }
 }

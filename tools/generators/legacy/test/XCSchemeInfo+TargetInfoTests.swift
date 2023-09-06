@@ -168,37 +168,6 @@ extension XCSchemeInfoTargetInfoTests {
     }
 }
 
-// MARK: - `bazelBuildPreAction` Tests
-
-extension XCSchemeInfoTargetInfoTests {
-    func test_bazelBuildPreAction_nativeTarget_noHost() throws {
-        let preAction = libraryTargetInfo.buildableReference.buildPreAction()
-        XCTAssertEqual(
-            preAction,
-            .init(
-                buildFor: libraryTargetInfo.buildableReference,
-                name: libraryTargetInfo.buildableReference.blueprintName
-            )
-        )
-    }
-
-    func test_bazelBuildPreAction_nativeTarget_withHost() throws {
-        let preAction =
-            libraryTargetInfoWithHosts.buildableReference.buildPreAction()
-        let expectedHostIndex =
-            try libraryTargetInfoWithHosts.selectedHostInfo?.index
-        XCTAssertNotNil(expectedHostIndex)
-        XCTAssertEqual(
-            preAction,
-            .init(
-                buildFor: libraryTargetInfoWithHosts.buildableReference,
-                name:
-                    libraryTargetInfoWithHosts.buildableReference.blueprintName
-            )
-        )
-    }
-}
-
 // MARK: - `isWidgetKitExtension` Tests
 
 extension XCSchemeInfoTargetInfoTests {
@@ -228,8 +197,6 @@ extension XCSchemeInfoTargetInfoTests {
             .initBazelBuildOutputGroupsFile(
                 buildableReference: libraryTargetInfo.buildableReference
             ),
-            libraryTargetInfo.buildableReference.buildPreAction(),
-            appTargetInfo.buildableReference.buildPreAction(),
         ]
         XCTAssertEqual(try targetInfos.buildPreActions(), expected)
     }
