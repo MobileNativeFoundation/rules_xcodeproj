@@ -153,4 +153,4 @@ actions:
     <<: *examples_integration_workspace
     bazel_commands:
       - *set_release_archive_override
-      - run --config=workflows //:xcodeproj
+      - run --config=workflows //:xcodeproj-bazel-sim_arm64
