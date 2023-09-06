@@ -12,10 +12,6 @@ x_templates:
     - &arm64
       arch: "arm64"
 
-    - &bazel_5
-      env:
-        USE_BAZEL_VERSION: 5.4.1
-
     - &bazel_7
       env:
         # Versions past this require a new rules_apple, but one hasn't been
@@ -59,7 +55,6 @@ x_templates:
 
   commands:
     - &set_release_archive_override "--output_base=setup-bazel-output-base run --config=workflows @rules_xcodeproj//tools:set_release_archive_override"
-    - &generate_integration "--output_base=bazel-output-base run --config=workflows //test/fixtures:update"
     - &validate_integration "--output_base=bazel-output-base run --config=workflows //test/fixtures:validate"
     - &build_all "--output_base=bazel-output-base build --config=workflows //..."
     - &test_all "--output_base=bazel-output-base test --config=workflows //test/..."
@@ -96,13 +91,6 @@ actions:
     <<: *root_workspace
     bazel_commands:
       - *nobzlmod_test_all
-  - name: Test - Bazel 5
-    <<: *bazel_5
-    <<: *normal_resources
-    <<: *action_base
-    <<: *root_workspace
-    bazel_commands:
-      - *test_all
   - name: Test - Bazel 7
     <<: *bazel_7
     <<: *arm64
@@ -160,14 +148,6 @@ actions:
     bazel_commands:
       - *nobzlmod_generate_integration
       - *nobzlmod_build_all
-  - name: Integration Test - "examples/integration" - Bazel 5
-    <<: *bazel_5
-    <<: *action_base
-    <<: *normal_resources
-    <<: *examples_integration_workspace
-    bazel_commands:
-      - *generate_integration
-      - *build_all
   - name: Integration Test - "examples/integration" - Bazel 7
     <<: *bazel_7
     <<: *action_base
@@ -194,7 +174,6 @@ actions:
     bazel_commands:
       - *validate_integration
       - *build_all
-
   ## Uncomment when rules_ios performs ObjcProvider -> CcInfo linking migration
   # - name: Integration Test - "examples/rules_ios" - Bazel 7
   #   <<: *bazel_7
