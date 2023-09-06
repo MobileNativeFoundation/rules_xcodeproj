@@ -64,6 +64,11 @@ register_execution_platforms("@build_bazel_apple_support//platforms:macos_x86_64
 # External repos for examples
 
 local_repository(
+    name = "examples_cc_external",
+    path = "cc/external",
+)
+
+local_repository(
     name = "examples_ios_app_external",
     path = "iOSApp/external",
 )

@@ -28,12 +28,6 @@ x_templates:
       git_clean_exclude:
         - bazel-output-base
         - setup-bazel-output-base
-    - &examples_cc_workspace
-      bazel_workspace_dir: examples/cc
-      git_clean_exclude:
-        - setup-bazel-output-base
-        - examples/cc/bazel-output-base
-        - examples/cc/setup-bazel-output-base
     - &examples_integration_workspace
       bazel_workspace_dir: examples/integration
       git_clean_exclude:
@@ -109,23 +103,6 @@ actions:
     bazel_commands:
       - *nobzlmod_generate_integration
 
-  - name: Integration Test - "examples/cc"
-    <<: *arm64
-    <<: *action_base
-    <<: *normal_resources
-    <<: *examples_cc_workspace
-    bazel_commands:
-      - *validate_integration
-      - *build_all
-  - name: Integration Test - "examples/cc" - WORKSPACE
-    <<: *arm64
-    <<: *action_base
-    <<: *normal_resources
-    <<: *examples_cc_workspace
-    bazel_commands:
-      - *nobzlmod_generate_integration
-      - *nobzlmod_build_all
-
   - name: Integration Test - "examples/integration"
     <<: *arm64
     <<: *action_base
@@ -173,7 +150,7 @@ actions:
     <<: *arm64
     <<: *normal_resources
     <<: *action_base
-    <<: *examples_cc_workspace
+    <<: *examples_integration_workspace
     bazel_commands:
       - *set_release_archive_override
-      - run --config=workflows //:xcodeproj
+      - run --config=workflows //:xcodeproj-bazel-sim_arm64

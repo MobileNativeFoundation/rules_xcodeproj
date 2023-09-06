@@ -70,6 +70,7 @@ UNFOCUSED_TARGETS = [
 ]
 
 XCODEPROJ_TARGETS = [
+    "//cc/tool",
     top_level_target(
         label = "//CommandLine/CommandLineTool",
         target_environments = ["device"],
