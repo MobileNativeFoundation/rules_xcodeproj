@@ -1,3 +1,4 @@
+import CustomDump
 import XcodeProj
 import XCTest
 
@@ -8,12 +9,22 @@ import XCTest
 extension XCSchemeInfoBuildTargetInfoTests {
     func test_Sequence_buildActionEntries() throws {
         let buildTargetInfos = [libraryTargetInfo, appTargetInfo]
-            .map { XCSchemeInfo.BuildTargetInfo(targetInfo: $0, buildFor: .allEnabled) }
+            .map { targetInfo in
+                return XCSchemeInfo.BuildTargetInfo(
+                    targetInfo: targetInfo,
+                    buildFor: .allEnabled
+                )
+            }
+
         let expected: [XCScheme.BuildAction.Entry] = [
-            libraryTargetInfo.buildableReference,
             appTargetInfo.buildableReference,
+            libraryTargetInfo.buildableReference,
         ].map { .init(buildableReference: $0, buildFor: .default) }
-        XCTAssertEqual(try buildTargetInfos.buildActionEntries, expected)
+
+        XCTAssertNoDifference(
+            try buildTargetInfos.buildActionEntries,
+            expected
+        )
     }
 }
 

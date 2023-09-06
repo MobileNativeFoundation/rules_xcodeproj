@@ -64,6 +64,20 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "76D3DE86C1DB5149A9A669ED"
+               BuildableName = "tvOSAppUnitTests.xctest"
+               BlueprintName = "tvOSAppUnitTests"
+               ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "C03F5C0CA2104493AE9E52C9"
                BuildableName = "LibFramework.tvOS.framework"
                BlueprintName = "LibFramework.tvOS"
@@ -81,20 +95,6 @@
                BlueprintIdentifier = "ACEF2F653E0F6BEA37D2C7B6"
                BuildableName = "tvOSApp.app"
                BlueprintName = "tvOSApp"
-               ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "76D3DE86C1DB5149A9A669ED"
-               BuildableName = "tvOSAppUnitTests.xctest"
-               BlueprintName = "tvOSAppUnitTests"
                ReferencedContainer = "container:../../../../../test/fixtures/bwb.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

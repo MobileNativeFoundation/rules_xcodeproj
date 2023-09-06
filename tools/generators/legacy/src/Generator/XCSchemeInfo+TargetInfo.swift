@@ -139,15 +139,6 @@ Cannot access `selectedHostInfo` until host resolution has occurred.
 // MARK: `buildableReferences`
 
 extension XCSchemeInfo.TargetInfo {
-    /// Returns the target buildable reference along with any additionally
-    /// required buildable references (e.g. the selected host, or SwiftUI
-    /// Preview dependencies).
-    var buildableReferences: [XCScheme.BuildableReference] {
-        var results = selfAndHostBuildableReferences
-        results.append(contentsOf: additionalBuildableReferences)
-        return results
-    }
-
     /// Returns the target buildable reference along with the the selected host.
     var selfAndHostBuildableReferences: [XCScheme.BuildableReference] {
         var results = [buildableReference]
