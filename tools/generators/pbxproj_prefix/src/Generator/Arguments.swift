@@ -39,9 +39,6 @@ setting.
         )
         var resolvedRepositoriesFile: URL
 
-        @Argument(help: "`xcodeproj.build_mode`.")
-        var buildMode: BuildMode
-
         @Argument(help: """
 Minimum Xcode version that the generated project supports.
 """)

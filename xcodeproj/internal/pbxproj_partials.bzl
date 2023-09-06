@@ -200,7 +200,6 @@ def _write_pbxproj_prefix(
         *,
         actions,
         apple_platform_to_platform_name = _apple_platform_to_platform_name,
-        build_mode,
         colorize,
         default_xcode_configuration,
         execution_root_file,
@@ -222,7 +221,6 @@ def _write_pbxproj_prefix(
     Args:
         actions: `ctx.actions`.
         apple_platform_to_platform_name: Exposed for testing. Don't set.
-        build_mode: `xcodeproj.build_mode`.
         colorize: A `bool` indicating whether to colorize the output.
         default_xcode_configuration: The name of the the Xcode configuration to
             use when building, if not overridden by custom schemes.
@@ -277,9 +275,6 @@ def _write_pbxproj_prefix(
 
     # resolvedRepositoriesFile
     args.add(resolved_repositories_file)
-
-    # buildMode
-    args.add(build_mode)
 
     # minimumXcodeVersion
     args.add(minimum_xcode_version)

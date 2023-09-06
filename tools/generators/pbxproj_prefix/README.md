@@ -16,7 +16,6 @@ The generator accepts the following command-line arguments (see
 - Positional `target-ids-file`
 - Positional `index-import`
 - Positional `resolved-repositories-file`
-- Positional `build-mode`
 - Positional `minimum-xcode-version`
 - Positional `default-xcode-configuration`
 - Positional `development-region`
@@ -37,7 +36,6 @@ $ pbxproj_prefix \
     bazel-out/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/generators/xcodeproj/xcodeproj_target_ids \
     bazel-out/darwin_arm64-opt-exec-2B5CBBC6/bin/external/_main~non_module_deps~rules_xcodeproj_index_import/index-import \
     bazel-out/darwin_arm64-dbg/bin/external/_main~internal~rules_xcodeproj_generated/generator/tools/generators/xcodeproj/xcodeproj_pbxproj_partials/resolved_repositories \
-    bazel \
     14.0 \
     Release \
     enGB \

@@ -39,7 +39,6 @@ def _write_pbxproj_prefix_test_impl(ctx):
     output = pbxproj_partials.write_pbxproj_prefix(
         actions = actions.mock,
         apple_platform_to_platform_name = mock_apple_platform_to_platform_name,
-        build_mode = ctx.attr.build_mode,
         colorize = ctx.attr.colorize,
         default_xcode_configuration = ctx.attr.default_xcode_configuration,
         execution_root_file = ctx.attr.execution_root_file,
@@ -128,7 +127,6 @@ def _write_pbxproj_prefix_test_impl(ctx):
 write_pbxproj_prefix_test = unittest.make(
     impl = _write_pbxproj_prefix_test_impl,
     attrs = {
-        "build_mode": attr.string(mandatory = True),
         # Inputs
         "colorize": attr.bool(mandatory = True),
         "default_xcode_configuration": attr.string(mandatory = True),
@@ -164,7 +162,6 @@ def write_pbxproj_prefix_test_suite(name):
             name,
 
             # Inputs
-            build_mode,
             colorize = False,
             default_xcode_configuration,
             execution_root_file,
@@ -187,7 +184,6 @@ def write_pbxproj_prefix_test_suite(name):
             name = name,
 
             # Inputs
-            build_mode = build_mode,
             colorize = colorize,
             default_xcode_configuration = default_xcode_configuration,
             execution_root_file = execution_root_file,
@@ -213,7 +209,6 @@ def write_pbxproj_prefix_test_suite(name):
         name = "{}_basic".format(name),
 
         # Inputs
-        build_mode = "xcode",
         default_xcode_configuration = "Debug",
         execution_root_file = "an/execution/root/file",
         index_import = "some/path/to/index_import",
@@ -247,8 +242,6 @@ def write_pbxproj_prefix_test_suite(name):
             "some/path/to/index_import",
             # resolvedRepositoriesFile
             "some/path/to/resolved_repositories_file",
-            # buildMode
-            "xcode",
             # minimumXcodeVersion
             "14.2.1",
             # defaultXcodeConfiguration
@@ -272,7 +265,6 @@ def write_pbxproj_prefix_test_suite(name):
         name = "{}_full".format(name),
 
         # Inputs
-        build_mode = "bazel",
         colorize = True,
         default_xcode_configuration = "Release",
         execution_root_file = "an/execution/root/file",
@@ -310,8 +302,6 @@ def write_pbxproj_prefix_test_suite(name):
             "some/path/to/index_import",
             # resolvedRepositoriesFile
             "some/path/to/resolved_repositories_file",
-            # buildMode
-            "bazel",
             # minimumXcodeVersion
             "14.2.1",
             # defaultXcodeConfiguration

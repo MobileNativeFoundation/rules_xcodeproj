@@ -30,7 +30,6 @@ extension Generator {
         let indexingProjectDir: (_ projectDir: String) -> String
 
         let pbxProjectBuildSettings: (
-            _ buildMode: BuildMode,
             _ indexImport: String,
             _ indexingProjectDir: String,
             _ projectDir: String,

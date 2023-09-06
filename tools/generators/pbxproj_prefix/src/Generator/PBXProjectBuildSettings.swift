@@ -6,7 +6,6 @@ extension Generator {
     /// objects used by the `PBXProject` element.
     ///
     /// - Parameters:
-    ///   - buildMode: The `BuildMode`.
     ///   - indexImport: The Bazel execution root relative path to the
     ///     `index_import` executable.
     ///   - indexingProjectDir: The value returned from
@@ -16,7 +15,6 @@ extension Generator {
     ///     `RESOLVED_REPOSITORIES` build setting.
     ///   - workspace: The absolute path to the Bazel workspace.
     static func pbxProjectBuildSettings(
-        buildMode: BuildMode,
         indexImport: String,
         indexingProjectDir: String,
         projectDir: String,
@@ -24,7 +22,7 @@ extension Generator {
         workspace: String,
         createBuildSettingsAttribute: CreateBuildSettingsAttribute
     ) -> String {
-        var buildSettings: [BuildSetting] = [
+        return createBuildSettingsAttribute(buildSettings: [
             .init(key: "ALWAYS_SEARCH_USER_PATHS", value: "NO"),
             .init(key: "BAZEL_CONFIG", value: "rules_xcodeproj"),
             .init(
@@ -69,14 +67,17 @@ extension Generator {
 "$(INDEXING_BUILT_PRODUCTS_DIR__$(INDEX_ENABLE_BUILD_ARENA))"
 """#
             ),
+            .init(key: "CC", value: #""$(BAZEL_INTEGRATION_DIR)/clang.sh""#),
             .init(key: "CLANG_ENABLE_OBJC_ARC", value: "YES"),
             .init(key: "CLANG_MODULES_AUTOLINK", value: "NO"),
+            .init(key: "CODE_SIGNING_ALLOWED", value: "NO"),
             .init(key: "CODE_SIGN_STYLE", value: "Manual"),
             .init(
                 key: "CONFIGURATION_BUILD_DIR",
                 value: #""$(BUILD_DIR)/$(BAZEL_PACKAGE_BIN_DIR)""#
             ),
             .init(key: "COPY_PHASE_STRIP", value: "NO"),
+            .init(key: "CXX", value: #""$(BAZEL_INTEGRATION_DIR)/clang.sh""#),
             .init(key: "DEBUG_INFORMATION_FORMAT", value: "dwarf"),
             .init(
                 key: "DEPLOYMENT_LOCATION",
@@ -88,6 +89,15 @@ extension Generator {
             .init(key: "ENABLE_DEFAULT_SEARCH_PATHS", value: "NO"),
             .init(key: "ENABLE_STRICT_OBJC_MSGSEND", value: "YES"),
             .init(key: "GCC_OPTIMIZATION_LEVEL", value: "0"),
+            .init(key: "LD", value: #""$(BAZEL_INTEGRATION_DIR)/ld.sh""#),
+            .init(
+                key: "LDPLUSPLUS",
+                value: #""$(BAZEL_INTEGRATION_DIR)/ld.sh""#
+            ),
+            .init(
+                key: "LIBTOOL",
+                value: #""$(BAZEL_INTEGRATION_DIR)/libtool.sh""#
+            ),
             .init(
                 key: "INDEXING_BUILT_PRODUCTS_DIR__",
                 value: #""$(INDEXING_BUILT_PRODUCTS_DIR__NO)""#
@@ -150,11 +160,16 @@ extension Generator {
                 key: "RESOLVED_REPOSITORIES",
                 value: resolvedRepositories.pbxProjEscaped
             ),
-            .init(key: "RULES_XCODEPROJ_BUILD_MODE", value: buildMode.rawValue),
+            .init(key: "RULES_XCODEPROJ_BUILD_MODE", value: "bazel"),
             .init(key: "SRCROOT", value: workspace.pbxProjEscaped),
             .init(key: "SUPPORTS_MACCATALYST", value: "NO"),
+            .init(
+                key: "SWIFT_EXEC",
+                value: #""$(BAZEL_INTEGRATION_DIR)/swiftc""#
+            ),
             .init(key: "SWIFT_OBJC_INTERFACE_HEADER_NAME", value: #""""#),
             .init(key: "SWIFT_OPTIMIZATION_LEVEL", value: #""-Onone""#),
+            .init(key: "SWIFT_USE_INTEGRATED_DRIVER", value: "NO"),
             .init(key: "SWIFT_VERSION", value: "5.0"),
             .init(
                 key: "TARGET_TEMP_DIR",
@@ -168,39 +183,6 @@ extension Generator {
                 key: "_BAZEL_OUTPUT_BASE",
                 value: #""$(PROJECT_DIR)/../..""#
             ),
-        ]
-
-        if buildMode.usesBazelModeBuildScripts {
-            buildSettings.append(contentsOf: [
-                .init(
-                    key: "CC",
-                    value: #""$(BAZEL_INTEGRATION_DIR)/clang.sh""#
-                ),
-                .init(
-                    key: "CXX",
-                    value: #""$(BAZEL_INTEGRATION_DIR)/clang.sh""#
-                ),
-                .init(key: "CODE_SIGNING_ALLOWED", value: "NO"),
-                .init(
-                    key: "LD",
-                    value: #""$(BAZEL_INTEGRATION_DIR)/ld.sh""#
-                ),
-                .init(
-                    key: "LDPLUSPLUS",
-                    value: #""$(BAZEL_INTEGRATION_DIR)/ld.sh""#
-                ),
-                .init(
-                    key: "LIBTOOL",
-                    value: #""$(BAZEL_INTEGRATION_DIR)/libtool.sh""#
-                ),
-                .init(
-                    key: "SWIFT_EXEC",
-                    value: #""$(BAZEL_INTEGRATION_DIR)/swiftc""#
-                ),
-                .init(key: "SWIFT_USE_INTEGRATED_DRIVER", value: "NO"),
-            ])
-        }
-
-        return createBuildSettingsAttribute(buildSettings: buildSettings)
+        ])
     }
 }
