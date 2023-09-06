@@ -12,7 +12,7 @@ extension ElementCreator {
             let decoder = JSONDecoder()
             decoder.keyDecodingStrategy = .convertFromSnakeCase
             return try decoder.decode(
-                [BazelPath: BazelPath].self,
+                [BazelPath: String].self,
                 from: Data(contentsOf: url)
             )
         }

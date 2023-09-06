@@ -1,4 +1,4 @@
-//import GeneratorCommonMacros
+import GeneratorCommonMacros
 import SwiftSyntax
 import SwiftSyntaxBuilder
 import SwiftSyntaxMacros

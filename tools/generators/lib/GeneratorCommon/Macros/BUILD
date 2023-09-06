@@ -1,6 +1,6 @@
 load(
     "@build_bazel_rules_swift//swift:swift.bzl",
-    "swift_macro",
+    "swift_compiler_plugin",
     "swift_test",
 )
 
@@ -11,7 +11,7 @@ alias(
     visibility = ["//tools/generators/lib/GeneratorCommon:__subpackages__"],
 )
 
-swift_macro(
+swift_compiler_plugin(
     name = "GeneratorCommonMacros",
     srcs = glob(["src/**/*.swift"]),
     module_name = "GeneratorCommonMacros",
@@ -29,9 +29,9 @@ swift_macro(
 swift_test(
     name = "GeneratorCommonMacrosTests",
     srcs = glob(["test/**/*.swift"]) + [
-        # FIXME: Remove when moving to `swift_compiler_plugin`
-        "src/InjectableMacro.swift",
-        "src/IndentRemovableSyntax.swift",
+        # # FIXME: Remove when moving to `swift_compiler_plugin`
+        # "src/InjectableMacro.swift",
+        # "src/IndentRemovableSyntax.swift",
     ],
     deps = [
         ":GeneratorCommonMacros",
