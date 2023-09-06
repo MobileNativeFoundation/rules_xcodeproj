@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 #include "lib.h"
-#include "lib/lib.h"
+#include "cc/lib/lib.h"
 #include "lib2_prefix/lib2.h"
 #include "lib3/lib3.h"
 
