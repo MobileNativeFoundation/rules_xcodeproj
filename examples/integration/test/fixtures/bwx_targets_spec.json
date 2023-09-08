@@ -794,7 +794,7 @@
             "e": "AppClip",
             "m": "AppClip",
             "n": "AppClip",
-            "p": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-15/bin/AppClip/AppClip.app",
+            "p": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-15/bin/AppClip/AppClip_archive-root/Payload/AppClip.app",
             "t": "com.apple.product-type.application.on-demand-install-capable"
         }
     },
@@ -928,7 +928,7 @@
             "e": "WidgetExtension",
             "m": "WidgetExtension",
             "n": "WidgetExtension",
-            "p": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-15/bin/WidgetExtension/WidgetExtension.appex",
+            "p": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-15/bin/WidgetExtension/WidgetExtension_archive-root/WidgetExtension.appex",
             "t": "com.apple.product-type.app-extension"
         }
     },
@@ -979,7 +979,7 @@
             "e": "CoreUtilsObjC",
             "m": "CoreUtilsObjC",
             "n": "CoreUtilsObjC",
-            "p": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-15/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.framework",
+            "p": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-15/bin/iOSApp/Source/CoreUtilsObjC/FrameworkCoreUtilsObjC_archive-root/CoreUtilsObjC.framework",
             "t": "com.apple.product-type.framework"
         }
     },
@@ -1023,7 +1023,7 @@
             "e": "LibFramework.iOS",
             "m": "LibFramework.iOS",
             "n": "LibFramework.iOS",
-            "p": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-15/bin/Lib/LibFramework.iOS.framework",
+            "p": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-15/bin/Lib/LibFramework.iOS_archive-root/LibFramework.iOS.framework",
             "t": "com.apple.product-type.framework"
         }
     },
@@ -1057,7 +1057,7 @@
             "OTHER_SWIFT_FLAGS": "-F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-3/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-3/bin -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PREVIEWS_SWIFT_INCLUDE__": "",
             "PREVIEWS_SWIFT_INCLUDE__NO": "",
-            "PREVIEWS_SWIFT_INCLUDE__YES": "-I $(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-15/bin/UI/UIFramework.iOS.framework/Modules",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I $(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-15/bin/UI/UIFramework.iOS.zip/Modules",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.UIFramework",
             "PRODUCT_MODULE_NAME": "UI",
             "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-3/bin/Lib",
@@ -1092,7 +1092,7 @@
             "e": "UIFramework.iOS",
             "m": "UIFramework.iOS",
             "n": "UIFramework.iOS",
-            "p": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-15/bin/UI/UIFramework.iOS.framework",
+            "p": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-15/bin/UI/UIFramework.iOS_archive-root/UIFramework.iOS.framework",
             "t": "com.apple.product-type.framework"
         }
     },
@@ -1171,7 +1171,7 @@
             "e": "LibFramework.watchOS",
             "m": "LibFramework.watchOS",
             "n": "LibFramework.watchOS",
-            "p": "bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-19/bin/Lib/LibFramework.watchOS.framework",
+            "p": "bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-19/bin/Lib/LibFramework.watchOS_archive-root/LibFramework.watchOS.framework",
             "t": "com.apple.product-type.framework"
         }
     },
@@ -1205,7 +1205,7 @@
             "OTHER_SWIFT_FLAGS": "-F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-4/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-4/bin -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PREVIEWS_SWIFT_INCLUDE__": "",
             "PREVIEWS_SWIFT_INCLUDE__NO": "",
-            "PREVIEWS_SWIFT_INCLUDE__YES": "-I $(BUILD_DIR)/bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-19/bin/UI/UIFramework.watchOS.framework/Modules",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I $(BUILD_DIR)/bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-19/bin/UI/UIFramework.watchOS.zip/Modules",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.UIFramework",
             "PRODUCT_MODULE_NAME": "UI",
             "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-4/bin/Lib"
@@ -1236,7 +1236,7 @@
             "e": "UIFramework.watchOS",
             "m": "UIFramework.watchOS",
             "n": "UIFramework.watchOS",
-            "p": "bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-19/bin/UI/UIFramework.watchOS.framework",
+            "p": "bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-19/bin/UI/UIFramework.watchOS_archive-root/UIFramework.watchOS.framework",
             "t": "com.apple.product-type.framework"
         }
     },
@@ -1274,7 +1274,7 @@
             "PREVIEWS_SWIFT_INCLUDE__YES": "-I $(BUILD_DIR)/bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-19/bin/watchOSAppExtension",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.watch.extension",
             "PRODUCT_MODULE_NAME": "watchOSAppExtension",
-            "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-4/bin/Lib $(BUILD_DIR)/bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-19/bin/UI/UIFramework.watchOS.framework/Modules"
+            "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-4/bin/Lib $(BUILD_DIR)/bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-19/bin/UI/UIFramework.watchOS.zip/Modules"
         },
         "c": "applebin_watchos-watchos_x86_64-dbg-STABLE-19",
         "d": [
@@ -1304,7 +1304,7 @@
             "e": "watchOSAppExtension",
             "m": "watchOSAppExtension",
             "n": "watchOSAppExtension",
-            "p": "bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-19/bin/watchOSAppExtension/watchOSAppExtension.appex",
+            "p": "bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-19/bin/watchOSAppExtension/watchOSAppExtension_archive-root/watchOSAppExtension.appex",
             "t": "com.apple.product-type.watchkit2-extension"
         }
     },
@@ -1341,7 +1341,7 @@
             "e": "watchOSApp",
             "m": "watchOSApp",
             "n": "watchOSApp",
-            "p": "bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-23/bin/watchOSApp/watchOSApp.app",
+            "p": "bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-23/bin/watchOSApp/watchOSApp_archive-root/Payload/watchOSApp.app",
             "t": "com.apple.product-type.application.watchapp2"
         }
     },
@@ -1388,7 +1388,7 @@
             "PREVIEWS_SWIFT_INCLUDE__YES": "-I $(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-15/bin/iOSApp/Source",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example",
             "PRODUCT_MODULE_NAME": "iOSApp",
-            "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-3/bin/Lib $(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-15/bin/UI/UIFramework.iOS.framework/Modules $(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer",
+            "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-3/bin/Lib $(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-15/bin/UI/UIFramework.iOS.zip/Modules $(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer",
             "TARGETED_DEVICE_FAMILY": "1"
         },
         "c": "applebin_ios-ios_x86_64-dbg-STABLE-15",
@@ -1442,7 +1442,7 @@
             "e": "iOSApp_ExecutableName",
             "m": "iOSApp",
             "n": "iOSApp",
-            "p": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-15/bin/iOSApp/Source/iOSApp.app",
+            "p": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-15/bin/iOSApp/Source/iOSApp_archive-root/Payload/iOSApp.app",
             "t": "com.apple.product-type.application"
         },
         "r": [
@@ -1491,7 +1491,7 @@
             "e": "Lib",
             "m": "Lib",
             "n": "Lib",
-            "p": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-15/bin/Lib/dist/dynamic/Lib.framework",
+            "p": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-15/bin/Lib/dist/dynamic/iOS_archive-root/Lib.framework",
             "t": "com.apple.product-type.framework"
         }
     },
@@ -1570,7 +1570,7 @@
             "e": "Lib",
             "m": "Lib",
             "n": "Lib",
-            "p": "bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-27/bin/Lib/dist/dynamic/Lib.framework",
+            "p": "bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-27/bin/Lib/dist/dynamic/tvOS_archive-root/Lib.framework",
             "t": "com.apple.product-type.framework"
         }
     },
@@ -1613,7 +1613,7 @@
             "e": "Lib",
             "m": "Lib",
             "n": "Lib",
-            "p": "bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-19/bin/Lib/dist/dynamic/Lib.framework",
+            "p": "bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-19/bin/Lib/dist/dynamic/watchOS_archive-root/Lib.framework",
             "t": "com.apple.product-type.framework"
         }
     },
@@ -1656,7 +1656,7 @@
             "e": "LibFramework.tvOS",
             "m": "LibFramework.tvOS",
             "n": "LibFramework.tvOS",
-            "p": "bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-27/bin/Lib/LibFramework.tvOS.framework",
+            "p": "bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-27/bin/Lib/LibFramework.tvOS_archive-root/LibFramework.tvOS.framework",
             "t": "com.apple.product-type.framework"
         }
     },
@@ -1690,7 +1690,7 @@
             "OTHER_SWIFT_FLAGS": "-F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-5/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-5/bin -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PREVIEWS_SWIFT_INCLUDE__": "",
             "PREVIEWS_SWIFT_INCLUDE__NO": "",
-            "PREVIEWS_SWIFT_INCLUDE__YES": "-I $(BUILD_DIR)/bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-27/bin/UI/UIFramework.tvOS.framework/Modules",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I $(BUILD_DIR)/bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-27/bin/UI/UIFramework.tvOS.zip/Modules",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.UIFramework",
             "PRODUCT_MODULE_NAME": "UI",
             "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-5/bin/Lib"
@@ -1721,7 +1721,7 @@
             "e": "UIFramework.tvOS",
             "m": "UIFramework.tvOS",
             "n": "UIFramework.tvOS",
-            "p": "bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-27/bin/UI/UIFramework.tvOS.framework",
+            "p": "bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-27/bin/UI/UIFramework.tvOS_archive-root/UIFramework.tvOS.framework",
             "t": "com.apple.product-type.framework"
         }
     },
@@ -1758,7 +1758,7 @@
             "PREVIEWS_SWIFT_INCLUDE__YES": "-I $(BUILD_DIR)/bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-27/bin/tvOSApp/Source",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example",
             "PRODUCT_MODULE_NAME": "tvOSApp",
-            "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-5/bin/Lib $(BUILD_DIR)/bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-27/bin/UI/UIFramework.tvOS.framework/Modules"
+            "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-5/bin/Lib $(BUILD_DIR)/bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-27/bin/UI/UIFramework.tvOS.zip/Modules"
         },
         "c": "applebin_tvos-tvos_x86_64-dbg-STABLE-27",
         "d": [
@@ -1789,7 +1789,7 @@
             "e": "tvOSApp",
             "m": "tvOSApp",
             "n": "tvOSApp",
-            "p": "bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-27/bin/tvOSApp/Source/tvOSApp.app",
+            "p": "bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-27/bin/tvOSApp/Source/tvOSApp_archive-root/Payload/tvOSApp.app",
             "t": "com.apple.product-type.application"
         }
     },
@@ -1831,7 +1831,7 @@
             "e": "ABundle",
             "m": "ABundle",
             "n": "ABundle",
-            "p": "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/Bundle/ABundle.aplugin",
+            "p": "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/Bundle/Bundle_archive-root/ABundle.aplugin",
             "t": "com.apple.product-type.bundle"
         }
     },
@@ -1991,7 +1991,7 @@
             "e": "iOSAppObjCUnitTests",
             "m": "iOSAppObjCUnitTests",
             "n": "iOSAppObjCUnitTests",
-            "p": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-15/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests.xctest",
+            "p": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-15/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests.__internal__.__test_bundle_archive-root/iOSAppObjCUnitTests.xctest",
             "t": "com.apple.product-type.bundle.unit-test"
         },
         "r": [
@@ -2048,7 +2048,7 @@
             "e": "iOSAppUITests",
             "m": "iOSAppUITests",
             "n": "iOSAppUITests",
-            "p": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-15/bin/iOSApp/Test/UITests/iOSAppUITests.xctest",
+            "p": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-15/bin/iOSApp/Test/UITests/iOSAppUITests.__internal__.__test_bundle_archive-root/iOSAppUITests.xctest",
             "t": "com.apple.product-type.bundle.ui-testing"
         },
         "r": [
@@ -2155,7 +2155,7 @@
             "e": "iMessageAppExtension",
             "m": "iMessageAppExtension",
             "n": "iMessageAppExtension",
-            "p": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-15/bin/iMessageApp/iMessageAppExtension.appex",
+            "p": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-15/bin/iMessageApp/iMessageAppExtension_archive-root/iMessageAppExtension.appex",
             "t": "com.apple.product-type.app-extension.messages"
         }
     },
@@ -2193,7 +2193,7 @@
             "e": "iMessageApp",
             "m": "iMessageApp",
             "n": "iMessageApp",
-            "p": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-15/bin/iMessageApp/iMessageApp.app",
+            "p": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-15/bin/iMessageApp/iMessageApp_archive-root/Payload/iMessageApp.app",
             "t": "com.apple.product-type.application.messages"
         }
     },
@@ -2231,7 +2231,7 @@
             "PREVIEWS_SWIFT_INCLUDE__YES": "-I $(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-15/bin/iOSApp/Test/SwiftUnitTests",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.tests",
             "PRODUCT_MODULE_NAME": "iOSAppSwiftUnitTests",
-            "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-3/bin/Lib $(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-15/bin/UI/UIFramework.iOS.framework/Modules $(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer $(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-15/bin/iOSApp/Source $(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Test/TestingUtils",
+            "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-3/bin/Lib $(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-15/bin/UI/UIFramework.iOS.zip/Modules $(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer $(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-15/bin/iOSApp/Source $(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Test/TestingUtils",
             "TARGETED_DEVICE_FAMILY": "1,2"
         },
         "c": "applebin_ios-ios_x86_64-dbg-STABLE-15",
@@ -2268,7 +2268,7 @@
             "e": "iOSAppSwiftUnitTests",
             "m": "iOSAppSwiftUnitTests",
             "n": "iOSAppSwiftUnitTests",
-            "p": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-15/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTests.xctest",
+            "p": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-15/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTests.__internal__.__test_bundle_archive-root/iOSAppSwiftUnitTests.xctest",
             "t": "com.apple.product-type.bundle.unit-test"
         }
     },
@@ -2331,7 +2331,7 @@
             "e": "macOSApp",
             "m": "macOSApp",
             "n": "macOSApp",
-            "p": "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/macOSApp/Source/macOSApp.app",
+            "p": "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/macOSApp/Source/macOSApp_archive-root/Payload/macOSApp.app",
             "t": "com.apple.product-type.application"
         }
     },
@@ -2384,7 +2384,7 @@
             "e": "macOSAppUITests",
             "m": "macOSAppUITests",
             "n": "macOSAppUITests",
-            "p": "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/macOSApp/Test/UITests/macOSAppUITests.xctest",
+            "p": "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-33/bin/macOSApp/Test/UITests/macOSAppUITests.__internal__.__test_bundle_archive-root/macOSAppUITests.xctest",
             "t": "com.apple.product-type.bundle.ui-testing"
         }
     },
@@ -2437,7 +2437,7 @@
             "e": "tvOSAppUITests",
             "m": "tvOSAppUITests",
             "n": "tvOSAppUITests",
-            "p": "bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-27/bin/tvOSApp/Test/UITests/tvOSAppUITests.xctest",
+            "p": "bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-27/bin/tvOSApp/Test/UITests/tvOSAppUITests.__internal__.__test_bundle_archive-root/tvOSAppUITests.xctest",
             "t": "com.apple.product-type.bundle.ui-testing"
         }
     },
@@ -2474,7 +2474,7 @@
             "PREVIEWS_SWIFT_INCLUDE__YES": "-I $(BUILD_DIR)/bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-27/bin/tvOSApp/Test/UnitTests",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.tests",
             "PRODUCT_MODULE_NAME": "tvOSAppUnitTests",
-            "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-5/bin/Lib $(BUILD_DIR)/bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-27/bin/UI/UIFramework.tvOS.framework/Modules $(BUILD_DIR)/bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-27/bin/tvOSApp/Source"
+            "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-dbg-STABLE-5/bin/Lib $(BUILD_DIR)/bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-27/bin/UI/UIFramework.tvOS.zip/Modules $(BUILD_DIR)/bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-27/bin/tvOSApp/Source"
         },
         "c": "applebin_tvos-tvos_x86_64-dbg-STABLE-27",
         "d": [
@@ -2502,7 +2502,7 @@
             "e": "tvOSAppUnitTests",
             "m": "tvOSAppUnitTests",
             "n": "tvOSAppUnitTests",
-            "p": "bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-27/bin/tvOSApp/Test/UnitTests/tvOSAppUnitTests.xctest",
+            "p": "bazel-out/applebin_tvos-tvos_x86_64-dbg-STABLE-27/bin/tvOSApp/Test/UnitTests/tvOSAppUnitTests.__internal__.__test_bundle_archive-root/tvOSAppUnitTests.xctest",
             "t": "com.apple.product-type.bundle.unit-test"
         }
     },
@@ -2555,7 +2555,7 @@
             "e": "watchOSAppUITests",
             "m": "watchOSAppUITests",
             "n": "watchOSAppUITests",
-            "p": "bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-19/bin/watchOSApp/Test/UITests/watchOSAppUITests.xctest",
+            "p": "bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-19/bin/watchOSApp/Test/UITests/watchOSAppUITests.__internal__.__test_bundle_archive-root/watchOSAppUITests.xctest",
             "t": "com.apple.product-type.bundle.ui-testing"
         }
     },
@@ -2592,7 +2592,7 @@
             "PREVIEWS_SWIFT_INCLUDE__YES": "-I $(BUILD_DIR)/bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-19/bin/watchOSAppExtension/Test/UnitTests",
             "PRODUCT_BUNDLE_IDENTIFIER": "com.bazelbuild.rulesapple.Tests",
             "PRODUCT_MODULE_NAME": "watchOSAppExtensionUnitTestsLibrary",
-            "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-4/bin/Lib $(BUILD_DIR)/bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-19/bin/UI/UIFramework.watchOS.framework/Modules"
+            "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-dbg-STABLE-4/bin/Lib $(BUILD_DIR)/bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-19/bin/UI/UIFramework.watchOS.zip/Modules"
         },
         "c": "applebin_watchos-watchos_x86_64-dbg-STABLE-19",
         "d": [
@@ -2619,7 +2619,7 @@
             "e": "watchOSAppExtensionUnitTests",
             "m": "watchOSAppExtensionUnitTests",
             "n": "watchOSAppExtensionUnitTests",
-            "p": "bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-19/bin/watchOSAppExtension/Test/UnitTests/watchOSAppExtensionUnitTests.xctest",
+            "p": "bazel-out/applebin_watchos-watchos_x86_64-dbg-STABLE-19/bin/watchOSAppExtension/Test/UnitTests/watchOSAppExtensionUnitTests.__internal__.__test_bundle_archive-root/watchOSAppExtensionUnitTests.xctest",
             "t": "com.apple.product-type.bundle.unit-test"
         }
     },
@@ -2673,7 +2673,7 @@
             "e": "iOSAppUITestSuite",
             "m": "iOSAppUITestSuite",
             "n": "iOSAppUITestSuite",
-            "p": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-15/bin/iOSApp/Test/UITests/iOSAppUITestSuite.xctest",
+            "p": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-15/bin/iOSApp/Test/UITests/iOSAppUITestSuite.__internal__.__test_bundle_archive-root/iOSAppUITestSuite.xctest",
             "t": "com.apple.product-type.bundle.ui-testing"
         },
         "r": [
@@ -2738,7 +2738,7 @@
             "e": "iOSAppObjCUnitTestSuite",
             "m": "iOSAppObjCUnitTestSuite",
             "n": "iOSAppObjCUnitTestSuite",
-            "p": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-15/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTestSuite.xctest",
+            "p": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-15/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTestSuite.__internal__.__test_bundle_archive-root/iOSAppObjCUnitTestSuite.xctest",
             "t": "com.apple.product-type.bundle.unit-test"
         },
         "r": [
@@ -2779,7 +2779,7 @@
             "PREVIEWS_SWIFT_INCLUDE__YES": "-I $(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-15/bin/iOSApp/Test/SwiftUnitTests",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.tests",
             "PRODUCT_MODULE_NAME": "iOSAppSwiftUnitTestSuite",
-            "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-3/bin/Lib $(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-15/bin/UI/UIFramework.iOS.framework/Modules $(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer $(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-15/bin/iOSApp/Source $(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Test/TestingUtils",
+            "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-3/bin/Lib $(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-15/bin/UI/UIFramework.iOS.zip/Modules $(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer $(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-15/bin/iOSApp/Source $(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-dbg-STABLE-3/bin/iOSApp/Test/TestingUtils",
             "TARGETED_DEVICE_FAMILY": "1,2"
         },
         "c": "applebin_ios-ios_x86_64-dbg-STABLE-15",
@@ -2816,7 +2816,7 @@
             "e": "iOSAppSwiftUnitTestSuite",
             "m": "iOSAppSwiftUnitTestSuite",
             "n": "iOSAppSwiftUnitTestSuite",
-            "p": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-15/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTestSuite.xctest",
+            "p": "bazel-out/applebin_ios-ios_x86_64-dbg-STABLE-15/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTestSuite.__internal__.__test_bundle_archive-root/iOSAppSwiftUnitTestSuite.xctest",
             "t": "com.apple.product-type.bundle.unit-test"
         }
     },
@@ -5907,7 +5907,7 @@
             "e": "CommandLineToolTests",
             "m": "CommandLineToolTests",
             "n": "CommandLineToolTests",
-            "p": "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-45/bin/CommandLine/Tests/CommandLineToolTests.xctest",
+            "p": "bazel-out/applebin_macos-darwin_x86_64-dbg-STABLE-45/bin/CommandLine/Tests/CommandLineToolTests.__internal__.__test_bundle_archive-root/CommandLineToolTests.xctest",
             "t": "com.apple.product-type.bundle.unit-test"
         }
     },
@@ -6014,7 +6014,7 @@
             "e": "AppClip",
             "m": "AppClip",
             "n": "AppClip",
-            "p": "bazel-out/applebin_ios-ios_arm64-dbg-STABLE-16/bin/AppClip/AppClip.app",
+            "p": "bazel-out/applebin_ios-ios_arm64-dbg-STABLE-16/bin/AppClip/AppClip_archive-root/Payload/AppClip.app",
             "t": "com.apple.product-type.application.on-demand-install-capable"
         }
     },
@@ -6149,7 +6149,7 @@
             "e": "WidgetExtension",
             "m": "WidgetExtension",
             "n": "WidgetExtension",
-            "p": "bazel-out/applebin_ios-ios_arm64-dbg-STABLE-16/bin/WidgetExtension/WidgetExtension.appex",
+            "p": "bazel-out/applebin_ios-ios_arm64-dbg-STABLE-16/bin/WidgetExtension/WidgetExtension_archive-root/WidgetExtension.appex",
             "t": "com.apple.product-type.app-extension"
         }
     },
@@ -6200,7 +6200,7 @@
             "e": "CoreUtilsObjC",
             "m": "CoreUtilsObjC",
             "n": "CoreUtilsObjC",
-            "p": "bazel-out/applebin_ios-ios_arm64-dbg-STABLE-16/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.framework",
+            "p": "bazel-out/applebin_ios-ios_arm64-dbg-STABLE-16/bin/iOSApp/Source/CoreUtilsObjC/FrameworkCoreUtilsObjC_archive-root/CoreUtilsObjC.framework",
             "t": "com.apple.product-type.framework"
         }
     },
@@ -6244,7 +6244,7 @@
             "e": "LibFramework.iOS",
             "m": "LibFramework.iOS",
             "n": "LibFramework.iOS",
-            "p": "bazel-out/applebin_ios-ios_arm64-dbg-STABLE-16/bin/Lib/LibFramework.iOS.framework",
+            "p": "bazel-out/applebin_ios-ios_arm64-dbg-STABLE-16/bin/Lib/LibFramework.iOS_archive-root/LibFramework.iOS.framework",
             "t": "com.apple.product-type.framework"
         }
     },
@@ -6278,7 +6278,7 @@
             "OTHER_SWIFT_FLAGS": "-F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-6/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-6/bin -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PREVIEWS_SWIFT_INCLUDE__": "",
             "PREVIEWS_SWIFT_INCLUDE__NO": "",
-            "PREVIEWS_SWIFT_INCLUDE__YES": "-I $(BUILD_DIR)/bazel-out/applebin_ios-ios_arm64-dbg-STABLE-16/bin/UI/UIFramework.iOS.framework/Modules",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I $(BUILD_DIR)/bazel-out/applebin_ios-ios_arm64-dbg-STABLE-16/bin/UI/UIFramework.iOS.zip/Modules",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.UIFramework",
             "PRODUCT_MODULE_NAME": "UI",
             "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-6/bin/Lib",
@@ -6313,7 +6313,7 @@
             "e": "UIFramework.iOS",
             "m": "UIFramework.iOS",
             "n": "UIFramework.iOS",
-            "p": "bazel-out/applebin_ios-ios_arm64-dbg-STABLE-16/bin/UI/UIFramework.iOS.framework",
+            "p": "bazel-out/applebin_ios-ios_arm64-dbg-STABLE-16/bin/UI/UIFramework.iOS_archive-root/UIFramework.iOS.framework",
             "t": "com.apple.product-type.framework"
         }
     },
@@ -6392,7 +6392,7 @@
             "e": "LibFramework.watchOS",
             "m": "LibFramework.watchOS",
             "n": "LibFramework.watchOS",
-            "p": "bazel-out/applebin_watchos-watchos_arm64_32-dbg-STABLE-20/bin/Lib/LibFramework.watchOS.framework",
+            "p": "bazel-out/applebin_watchos-watchos_arm64_32-dbg-STABLE-20/bin/Lib/LibFramework.watchOS_archive-root/LibFramework.watchOS.framework",
             "t": "com.apple.product-type.framework"
         }
     },
@@ -6426,7 +6426,7 @@
             "OTHER_SWIFT_FLAGS": "-F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-7/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-7/bin -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PREVIEWS_SWIFT_INCLUDE__": "",
             "PREVIEWS_SWIFT_INCLUDE__NO": "",
-            "PREVIEWS_SWIFT_INCLUDE__YES": "-I $(BUILD_DIR)/bazel-out/applebin_watchos-watchos_arm64_32-dbg-STABLE-20/bin/UI/UIFramework.watchOS.framework/Modules",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I $(BUILD_DIR)/bazel-out/applebin_watchos-watchos_arm64_32-dbg-STABLE-20/bin/UI/UIFramework.watchOS.zip/Modules",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.UIFramework",
             "PRODUCT_MODULE_NAME": "UI",
             "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-7/bin/Lib"
@@ -6457,7 +6457,7 @@
             "e": "UIFramework.watchOS",
             "m": "UIFramework.watchOS",
             "n": "UIFramework.watchOS",
-            "p": "bazel-out/applebin_watchos-watchos_arm64_32-dbg-STABLE-20/bin/UI/UIFramework.watchOS.framework",
+            "p": "bazel-out/applebin_watchos-watchos_arm64_32-dbg-STABLE-20/bin/UI/UIFramework.watchOS_archive-root/UIFramework.watchOS.framework",
             "t": "com.apple.product-type.framework"
         }
     },
@@ -6496,7 +6496,7 @@
             "PREVIEWS_SWIFT_INCLUDE__YES": "-I $(BUILD_DIR)/bazel-out/applebin_watchos-watchos_arm64_32-dbg-STABLE-20/bin/watchOSAppExtension",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.watch.extension",
             "PRODUCT_MODULE_NAME": "watchOSAppExtension",
-            "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-7/bin/Lib $(BUILD_DIR)/bazel-out/applebin_watchos-watchos_arm64_32-dbg-STABLE-20/bin/UI/UIFramework.watchOS.framework/Modules"
+            "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-dbg-STABLE-7/bin/Lib $(BUILD_DIR)/bazel-out/applebin_watchos-watchos_arm64_32-dbg-STABLE-20/bin/UI/UIFramework.watchOS.zip/Modules"
         },
         "c": "applebin_watchos-watchos_arm64_32-dbg-STABLE-20",
         "d": [
@@ -6526,7 +6526,7 @@
             "e": "watchOSAppExtension",
             "m": "watchOSAppExtension",
             "n": "watchOSAppExtension",
-            "p": "bazel-out/applebin_watchos-watchos_arm64_32-dbg-STABLE-20/bin/watchOSAppExtension/watchOSAppExtension.appex",
+            "p": "bazel-out/applebin_watchos-watchos_arm64_32-dbg-STABLE-20/bin/watchOSAppExtension/watchOSAppExtension_archive-root/watchOSAppExtension.appex",
             "t": "com.apple.product-type.watchkit2-extension"
         }
     },
@@ -6564,7 +6564,7 @@
             "e": "watchOSApp",
             "m": "watchOSApp",
             "n": "watchOSApp",
-            "p": "bazel-out/applebin_watchos-watchos_arm64_32-dbg-STABLE-24/bin/watchOSApp/watchOSApp.app",
+            "p": "bazel-out/applebin_watchos-watchos_arm64_32-dbg-STABLE-24/bin/watchOSApp/watchOSApp_archive-root/Payload/watchOSApp.app",
             "t": "com.apple.product-type.application.watchapp2"
         }
     },
@@ -6612,7 +6612,7 @@
             "PREVIEWS_SWIFT_INCLUDE__YES": "-I $(BUILD_DIR)/bazel-out/applebin_ios-ios_arm64-dbg-STABLE-16/bin/iOSApp/Source",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example",
             "PRODUCT_MODULE_NAME": "iOSApp",
-            "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-6/bin/Lib $(BUILD_DIR)/bazel-out/applebin_ios-ios_arm64-dbg-STABLE-16/bin/UI/UIFramework.iOS.framework/Modules $(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-6/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer",
+            "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-6/bin/Lib $(BUILD_DIR)/bazel-out/applebin_ios-ios_arm64-dbg-STABLE-16/bin/UI/UIFramework.iOS.zip/Modules $(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-6/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer",
             "TARGETED_DEVICE_FAMILY": "1"
         },
         "c": "applebin_ios-ios_arm64-dbg-STABLE-16",
@@ -6666,7 +6666,7 @@
             "e": "iOSApp",
             "m": "iOSApp",
             "n": "iOSApp",
-            "p": "bazel-out/applebin_ios-ios_arm64-dbg-STABLE-16/bin/iOSApp/Source/iOSApp.app",
+            "p": "bazel-out/applebin_ios-ios_arm64-dbg-STABLE-16/bin/iOSApp/Source/iOSApp_archive-root/Payload/iOSApp.app",
             "t": "com.apple.product-type.application"
         },
         "r": [
@@ -6715,7 +6715,7 @@
             "e": "Lib",
             "m": "Lib",
             "n": "Lib",
-            "p": "bazel-out/applebin_ios-ios_arm64-dbg-STABLE-16/bin/Lib/dist/dynamic/Lib.framework",
+            "p": "bazel-out/applebin_ios-ios_arm64-dbg-STABLE-16/bin/Lib/dist/dynamic/iOS_archive-root/Lib.framework",
             "t": "com.apple.product-type.framework"
         }
     },
@@ -6794,7 +6794,7 @@
             "e": "Lib",
             "m": "Lib",
             "n": "Lib",
-            "p": "bazel-out/applebin_tvos-tvos_arm64-dbg-STABLE-28/bin/Lib/dist/dynamic/Lib.framework",
+            "p": "bazel-out/applebin_tvos-tvos_arm64-dbg-STABLE-28/bin/Lib/dist/dynamic/tvOS_archive-root/Lib.framework",
             "t": "com.apple.product-type.framework"
         }
     },
@@ -6837,7 +6837,7 @@
             "e": "Lib",
             "m": "Lib",
             "n": "Lib",
-            "p": "bazel-out/applebin_watchos-watchos_arm64_32-dbg-STABLE-20/bin/Lib/dist/dynamic/Lib.framework",
+            "p": "bazel-out/applebin_watchos-watchos_arm64_32-dbg-STABLE-20/bin/Lib/dist/dynamic/watchOS_archive-root/Lib.framework",
             "t": "com.apple.product-type.framework"
         }
     },
@@ -6880,7 +6880,7 @@
             "e": "LibFramework.tvOS",
             "m": "LibFramework.tvOS",
             "n": "LibFramework.tvOS",
-            "p": "bazel-out/applebin_tvos-tvos_arm64-dbg-STABLE-28/bin/Lib/LibFramework.tvOS.framework",
+            "p": "bazel-out/applebin_tvos-tvos_arm64-dbg-STABLE-28/bin/Lib/LibFramework.tvOS_archive-root/LibFramework.tvOS.framework",
             "t": "com.apple.product-type.framework"
         }
     },
@@ -6914,7 +6914,7 @@
             "OTHER_SWIFT_FLAGS": "-F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64 -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64 -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-8/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-8/bin -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework/Modules/module.modulemap -Xcc -O0 -Xcc -DDEBUG=1 -Xcc -fstack-protector -Xcc -fstack-protector-all",
             "PREVIEWS_SWIFT_INCLUDE__": "",
             "PREVIEWS_SWIFT_INCLUDE__NO": "",
-            "PREVIEWS_SWIFT_INCLUDE__YES": "-I $(BUILD_DIR)/bazel-out/applebin_tvos-tvos_arm64-dbg-STABLE-28/bin/UI/UIFramework.tvOS.framework/Modules",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I $(BUILD_DIR)/bazel-out/applebin_tvos-tvos_arm64-dbg-STABLE-28/bin/UI/UIFramework.tvOS.zip/Modules",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.UIFramework",
             "PRODUCT_MODULE_NAME": "UI",
             "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-8/bin/Lib"
@@ -6945,7 +6945,7 @@
             "e": "UIFramework.tvOS",
             "m": "UIFramework.tvOS",
             "n": "UIFramework.tvOS",
-            "p": "bazel-out/applebin_tvos-tvos_arm64-dbg-STABLE-28/bin/UI/UIFramework.tvOS.framework",
+            "p": "bazel-out/applebin_tvos-tvos_arm64-dbg-STABLE-28/bin/UI/UIFramework.tvOS_archive-root/UIFramework.tvOS.framework",
             "t": "com.apple.product-type.framework"
         }
     },
@@ -6983,7 +6983,7 @@
             "PREVIEWS_SWIFT_INCLUDE__YES": "-I $(BUILD_DIR)/bazel-out/applebin_tvos-tvos_arm64-dbg-STABLE-28/bin/tvOSApp/Source",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example",
             "PRODUCT_MODULE_NAME": "tvOSApp",
-            "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-8/bin/Lib $(BUILD_DIR)/bazel-out/applebin_tvos-tvos_arm64-dbg-STABLE-28/bin/UI/UIFramework.tvOS.framework/Modules"
+            "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-dbg-STABLE-8/bin/Lib $(BUILD_DIR)/bazel-out/applebin_tvos-tvos_arm64-dbg-STABLE-28/bin/UI/UIFramework.tvOS.zip/Modules"
         },
         "c": "applebin_tvos-tvos_arm64-dbg-STABLE-28",
         "d": [
@@ -7014,7 +7014,7 @@
             "e": "tvOSApp",
             "m": "tvOSApp",
             "n": "tvOSApp",
-            "p": "bazel-out/applebin_tvos-tvos_arm64-dbg-STABLE-28/bin/tvOSApp/Source/tvOSApp.app",
+            "p": "bazel-out/applebin_tvos-tvos_arm64-dbg-STABLE-28/bin/tvOSApp/Source/tvOSApp_archive-root/Payload/tvOSApp.app",
             "t": "com.apple.product-type.application"
         }
     },
@@ -7174,7 +7174,7 @@
             "e": "iOSAppObjCUnitTests",
             "m": "iOSAppObjCUnitTests",
             "n": "iOSAppObjCUnitTests",
-            "p": "bazel-out/applebin_ios-ios_arm64-dbg-STABLE-16/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests.xctest",
+            "p": "bazel-out/applebin_ios-ios_arm64-dbg-STABLE-16/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests.__internal__.__test_bundle_archive-root/iOSAppObjCUnitTests.xctest",
             "t": "com.apple.product-type.bundle.unit-test"
         },
         "r": [
@@ -7231,7 +7231,7 @@
             "e": "iOSAppUITests",
             "m": "iOSAppUITests",
             "n": "iOSAppUITests",
-            "p": "bazel-out/applebin_ios-ios_arm64-dbg-STABLE-16/bin/iOSApp/Test/UITests/iOSAppUITests.xctest",
+            "p": "bazel-out/applebin_ios-ios_arm64-dbg-STABLE-16/bin/iOSApp/Test/UITests/iOSAppUITests.__internal__.__test_bundle_archive-root/iOSAppUITests.xctest",
             "t": "com.apple.product-type.bundle.ui-testing"
         },
         "r": [
@@ -7272,7 +7272,7 @@
             "PREVIEWS_SWIFT_INCLUDE__YES": "-I $(BUILD_DIR)/bazel-out/applebin_ios-ios_arm64-dbg-STABLE-16/bin/iOSApp/Test/SwiftUnitTests",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.tests",
             "PRODUCT_MODULE_NAME": "iOSAppSwiftUnitTests",
-            "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-6/bin/Lib $(BUILD_DIR)/bazel-out/applebin_ios-ios_arm64-dbg-STABLE-16/bin/UI/UIFramework.iOS.framework/Modules $(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-6/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer $(BUILD_DIR)/bazel-out/applebin_ios-ios_arm64-dbg-STABLE-16/bin/iOSApp/Source $(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-6/bin/iOSApp/Test/TestingUtils",
+            "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-6/bin/Lib $(BUILD_DIR)/bazel-out/applebin_ios-ios_arm64-dbg-STABLE-16/bin/UI/UIFramework.iOS.zip/Modules $(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-6/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer $(BUILD_DIR)/bazel-out/applebin_ios-ios_arm64-dbg-STABLE-16/bin/iOSApp/Source $(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-dbg-STABLE-6/bin/iOSApp/Test/TestingUtils",
             "TARGETED_DEVICE_FAMILY": "1,2"
         },
         "c": "applebin_ios-ios_arm64-dbg-STABLE-16",
@@ -7309,7 +7309,7 @@
             "e": "iOSAppSwiftUnitTests",
             "m": "iOSAppSwiftUnitTests",
             "n": "iOSAppSwiftUnitTests",
-            "p": "bazel-out/applebin_ios-ios_arm64-dbg-STABLE-16/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTests.xctest",
+            "p": "bazel-out/applebin_ios-ios_arm64-dbg-STABLE-16/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTests.__internal__.__test_bundle_archive-root/iOSAppSwiftUnitTests.xctest",
             "t": "com.apple.product-type.bundle.unit-test"
         }
     },
@@ -7581,7 +7581,7 @@
             "e": "AppClip",
             "m": "AppClip",
             "n": "AppClip",
-            "p": "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-17/bin/AppClip/AppClip.app",
+            "p": "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-17/bin/AppClip/AppClip_archive-root/Payload/AppClip.app",
             "t": "com.apple.product-type.application.on-demand-install-capable"
         },
         "x": [
@@ -7726,7 +7726,7 @@
             "e": "WidgetExtension",
             "m": "WidgetExtension",
             "n": "WidgetExtension",
-            "p": "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-17/bin/WidgetExtension/WidgetExtension.appex",
+            "p": "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-17/bin/WidgetExtension/WidgetExtension_archive-root/WidgetExtension.appex",
             "t": "com.apple.product-type.app-extension"
         },
         "x": [
@@ -7780,7 +7780,7 @@
             "e": "CoreUtilsObjC",
             "m": "CoreUtilsObjC",
             "n": "CoreUtilsObjC",
-            "p": "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-17/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.framework",
+            "p": "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-17/bin/iOSApp/Source/CoreUtilsObjC/FrameworkCoreUtilsObjC_archive-root/CoreUtilsObjC.framework",
             "t": "com.apple.product-type.framework"
         },
         "x": [
@@ -7827,7 +7827,7 @@
             "e": "LibFramework.iOS",
             "m": "LibFramework.iOS",
             "n": "LibFramework.iOS",
-            "p": "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-17/bin/Lib/LibFramework.iOS.framework",
+            "p": "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-17/bin/Lib/LibFramework.iOS_archive-root/LibFramework.iOS.framework",
             "t": "com.apple.product-type.framework"
         },
         "x": [
@@ -7864,7 +7864,7 @@
             "OTHER_SWIFT_FLAGS": "-F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-9/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-9/bin -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
             "PREVIEWS_SWIFT_INCLUDE__": "",
             "PREVIEWS_SWIFT_INCLUDE__NO": "",
-            "PREVIEWS_SWIFT_INCLUDE__YES": "-I $(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-opt-STABLE-17/bin/UI/UIFramework.iOS.framework/Modules",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I $(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-opt-STABLE-17/bin/UI/UIFramework.iOS.zip/Modules",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.UIFramework",
             "PRODUCT_MODULE_NAME": "UI",
             "SWIFT_COMPILATION_MODE": "wholemodule",
@@ -7900,7 +7900,7 @@
             "e": "UIFramework.iOS",
             "m": "UIFramework.iOS",
             "n": "UIFramework.iOS",
-            "p": "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-17/bin/UI/UIFramework.iOS.framework",
+            "p": "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-17/bin/UI/UIFramework.iOS_archive-root/UIFramework.iOS.framework",
             "t": "com.apple.product-type.framework"
         },
         "x": [
@@ -7986,7 +7986,7 @@
             "e": "LibFramework.watchOS",
             "m": "LibFramework.watchOS",
             "n": "LibFramework.watchOS",
-            "p": "bazel-out/applebin_watchos-watchos_x86_64-opt-STABLE-21/bin/Lib/LibFramework.watchOS.framework",
+            "p": "bazel-out/applebin_watchos-watchos_x86_64-opt-STABLE-21/bin/Lib/LibFramework.watchOS_archive-root/LibFramework.watchOS.framework",
             "t": "com.apple.product-type.framework"
         },
         "x": [
@@ -8023,7 +8023,7 @@
             "OTHER_SWIFT_FLAGS": "-F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-10/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-10/bin -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_i386_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
             "PREVIEWS_SWIFT_INCLUDE__": "",
             "PREVIEWS_SWIFT_INCLUDE__NO": "",
-            "PREVIEWS_SWIFT_INCLUDE__YES": "-I $(BUILD_DIR)/bazel-out/applebin_watchos-watchos_x86_64-opt-STABLE-21/bin/UI/UIFramework.watchOS.framework/Modules",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I $(BUILD_DIR)/bazel-out/applebin_watchos-watchos_x86_64-opt-STABLE-21/bin/UI/UIFramework.watchOS.zip/Modules",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.UIFramework",
             "PRODUCT_MODULE_NAME": "UI",
             "SWIFT_COMPILATION_MODE": "wholemodule",
@@ -8055,7 +8055,7 @@
             "e": "UIFramework.watchOS",
             "m": "UIFramework.watchOS",
             "n": "UIFramework.watchOS",
-            "p": "bazel-out/applebin_watchos-watchos_x86_64-opt-STABLE-21/bin/UI/UIFramework.watchOS.framework",
+            "p": "bazel-out/applebin_watchos-watchos_x86_64-opt-STABLE-21/bin/UI/UIFramework.watchOS_archive-root/UIFramework.watchOS.framework",
             "t": "com.apple.product-type.framework"
         },
         "x": [
@@ -8097,7 +8097,7 @@
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.watch.extension",
             "PRODUCT_MODULE_NAME": "watchOSAppExtension",
             "SWIFT_COMPILATION_MODE": "wholemodule",
-            "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-10/bin/Lib $(BUILD_DIR)/bazel-out/applebin_watchos-watchos_x86_64-opt-STABLE-21/bin/UI/UIFramework.watchOS.framework/Modules"
+            "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-10/bin/Lib $(BUILD_DIR)/bazel-out/applebin_watchos-watchos_x86_64-opt-STABLE-21/bin/UI/UIFramework.watchOS.zip/Modules"
         },
         "c": "applebin_watchos-watchos_x86_64-opt-STABLE-21",
         "d": [
@@ -8127,7 +8127,7 @@
             "e": "watchOSAppExtension",
             "m": "watchOSAppExtension",
             "n": "watchOSAppExtension",
-            "p": "bazel-out/applebin_watchos-watchos_x86_64-opt-STABLE-21/bin/watchOSAppExtension/watchOSAppExtension.appex",
+            "p": "bazel-out/applebin_watchos-watchos_x86_64-opt-STABLE-21/bin/watchOSAppExtension/watchOSAppExtension_archive-root/watchOSAppExtension.appex",
             "t": "com.apple.product-type.watchkit2-extension"
         },
         "x": [
@@ -8167,7 +8167,7 @@
             "e": "watchOSApp",
             "m": "watchOSApp",
             "n": "watchOSApp",
-            "p": "bazel-out/applebin_watchos-watchos_x86_64-opt-STABLE-25/bin/watchOSApp/watchOSApp.app",
+            "p": "bazel-out/applebin_watchos-watchos_x86_64-opt-STABLE-25/bin/watchOSApp/watchOSApp_archive-root/Payload/watchOSApp.app",
             "t": "com.apple.product-type.application.watchapp2"
         },
         "x": [
@@ -8214,7 +8214,7 @@
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example",
             "PRODUCT_MODULE_NAME": "iOSApp",
             "SWIFT_COMPILATION_MODE": "wholemodule",
-            "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-9/bin/Lib $(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-opt-STABLE-17/bin/UI/UIFramework.iOS.framework/Modules $(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-9/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer",
+            "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-9/bin/Lib $(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-opt-STABLE-17/bin/UI/UIFramework.iOS.zip/Modules $(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-9/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer",
             "TARGETED_DEVICE_FAMILY": "1"
         },
         "c": "applebin_ios-ios_x86_64-opt-STABLE-17",
@@ -8267,7 +8267,7 @@
             "e": "iOSApp_ExecutableName",
             "m": "iOSApp",
             "n": "iOSApp",
-            "p": "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-17/bin/iOSApp/Source/iOSApp.app",
+            "p": "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-17/bin/iOSApp/Source/iOSApp_archive-root/Payload/iOSApp.app",
             "t": "com.apple.product-type.application"
         },
         "r": [
@@ -8319,7 +8319,7 @@
             "e": "Lib",
             "m": "Lib",
             "n": "Lib",
-            "p": "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-17/bin/Lib/dist/dynamic/Lib.framework",
+            "p": "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-17/bin/Lib/dist/dynamic/iOS_archive-root/Lib.framework",
             "t": "com.apple.product-type.framework"
         },
         "x": [
@@ -8405,7 +8405,7 @@
             "e": "Lib",
             "m": "Lib",
             "n": "Lib",
-            "p": "bazel-out/applebin_tvos-tvos_x86_64-opt-STABLE-29/bin/Lib/dist/dynamic/Lib.framework",
+            "p": "bazel-out/applebin_tvos-tvos_x86_64-opt-STABLE-29/bin/Lib/dist/dynamic/tvOS_archive-root/Lib.framework",
             "t": "com.apple.product-type.framework"
         },
         "x": [
@@ -8451,7 +8451,7 @@
             "e": "Lib",
             "m": "Lib",
             "n": "Lib",
-            "p": "bazel-out/applebin_watchos-watchos_x86_64-opt-STABLE-21/bin/Lib/dist/dynamic/Lib.framework",
+            "p": "bazel-out/applebin_watchos-watchos_x86_64-opt-STABLE-21/bin/Lib/dist/dynamic/watchOS_archive-root/Lib.framework",
             "t": "com.apple.product-type.framework"
         },
         "x": [
@@ -8497,7 +8497,7 @@
             "e": "LibFramework.tvOS",
             "m": "LibFramework.tvOS",
             "n": "LibFramework.tvOS",
-            "p": "bazel-out/applebin_tvos-tvos_x86_64-opt-STABLE-29/bin/Lib/LibFramework.tvOS.framework",
+            "p": "bazel-out/applebin_tvos-tvos_x86_64-opt-STABLE-29/bin/Lib/LibFramework.tvOS_archive-root/LibFramework.tvOS.framework",
             "t": "com.apple.product-type.framework"
         },
         "x": [
@@ -8534,7 +8534,7 @@
             "OTHER_SWIFT_FLAGS": "-F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-11/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-11/bin -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64_x86_64-simulator/CryptoSwift.framework/Modules/module.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
             "PREVIEWS_SWIFT_INCLUDE__": "",
             "PREVIEWS_SWIFT_INCLUDE__NO": "",
-            "PREVIEWS_SWIFT_INCLUDE__YES": "-I $(BUILD_DIR)/bazel-out/applebin_tvos-tvos_x86_64-opt-STABLE-29/bin/UI/UIFramework.tvOS.framework/Modules",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I $(BUILD_DIR)/bazel-out/applebin_tvos-tvos_x86_64-opt-STABLE-29/bin/UI/UIFramework.tvOS.zip/Modules",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.UIFramework",
             "PRODUCT_MODULE_NAME": "UI",
             "SWIFT_COMPILATION_MODE": "wholemodule",
@@ -8566,7 +8566,7 @@
             "e": "UIFramework.tvOS",
             "m": "UIFramework.tvOS",
             "n": "UIFramework.tvOS",
-            "p": "bazel-out/applebin_tvos-tvos_x86_64-opt-STABLE-29/bin/UI/UIFramework.tvOS.framework",
+            "p": "bazel-out/applebin_tvos-tvos_x86_64-opt-STABLE-29/bin/UI/UIFramework.tvOS_archive-root/UIFramework.tvOS.framework",
             "t": "com.apple.product-type.framework"
         },
         "x": [
@@ -8607,7 +8607,7 @@
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example",
             "PRODUCT_MODULE_NAME": "tvOSApp",
             "SWIFT_COMPILATION_MODE": "wholemodule",
-            "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-11/bin/Lib $(BUILD_DIR)/bazel-out/applebin_tvos-tvos_x86_64-opt-STABLE-29/bin/UI/UIFramework.tvOS.framework/Modules"
+            "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-11/bin/Lib $(BUILD_DIR)/bazel-out/applebin_tvos-tvos_x86_64-opt-STABLE-29/bin/UI/UIFramework.tvOS.zip/Modules"
         },
         "c": "applebin_tvos-tvos_x86_64-opt-STABLE-29",
         "d": [
@@ -8637,7 +8637,7 @@
             "e": "tvOSApp",
             "m": "tvOSApp",
             "n": "tvOSApp",
-            "p": "bazel-out/applebin_tvos-tvos_x86_64-opt-STABLE-29/bin/tvOSApp/Source/tvOSApp.app",
+            "p": "bazel-out/applebin_tvos-tvos_x86_64-opt-STABLE-29/bin/tvOSApp/Source/tvOSApp_archive-root/Payload/tvOSApp.app",
             "t": "com.apple.product-type.application"
         },
         "x": [
@@ -8682,7 +8682,7 @@
             "e": "ABundle",
             "m": "ABundle",
             "n": "ABundle",
-            "p": "bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-34/bin/Bundle/ABundle.aplugin",
+            "p": "bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-34/bin/Bundle/Bundle_archive-root/ABundle.aplugin",
             "t": "com.apple.product-type.bundle"
         },
         "x": [
@@ -8855,7 +8855,7 @@
             "e": "iOSAppObjCUnitTests",
             "m": "iOSAppObjCUnitTests",
             "n": "iOSAppObjCUnitTests",
-            "p": "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-17/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests.xctest",
+            "p": "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-17/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests.__internal__.__test_bundle_archive-root/iOSAppObjCUnitTests.xctest",
             "t": "com.apple.product-type.bundle.unit-test"
         },
         "r": [
@@ -8916,7 +8916,7 @@
             "e": "iOSAppUITests",
             "m": "iOSAppUITests",
             "n": "iOSAppUITests",
-            "p": "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-17/bin/iOSApp/Test/UITests/iOSAppUITests.xctest",
+            "p": "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-17/bin/iOSApp/Test/UITests/iOSAppUITests.__internal__.__test_bundle_archive-root/iOSAppUITests.xctest",
             "t": "com.apple.product-type.bundle.ui-testing"
         },
         "r": [
@@ -9031,7 +9031,7 @@
             "e": "iMessageAppExtension",
             "m": "iMessageAppExtension",
             "n": "iMessageAppExtension",
-            "p": "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-17/bin/iMessageApp/iMessageAppExtension.appex",
+            "p": "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-17/bin/iMessageApp/iMessageAppExtension_archive-root/iMessageAppExtension.appex",
             "t": "com.apple.product-type.app-extension.messages"
         },
         "x": [
@@ -9072,7 +9072,7 @@
             "e": "iMessageApp",
             "m": "iMessageApp",
             "n": "iMessageApp",
-            "p": "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-17/bin/iMessageApp/iMessageApp.app",
+            "p": "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-17/bin/iMessageApp/iMessageApp_archive-root/Payload/iMessageApp.app",
             "t": "com.apple.product-type.application.messages"
         },
         "x": [
@@ -9114,7 +9114,7 @@
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.tests",
             "PRODUCT_MODULE_NAME": "iOSAppSwiftUnitTests",
             "SWIFT_COMPILATION_MODE": "wholemodule",
-            "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-9/bin/Lib $(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-opt-STABLE-17/bin/UI/UIFramework.iOS.framework/Modules $(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-9/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer $(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-opt-STABLE-17/bin/iOSApp/Source $(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-9/bin/iOSApp/Test/TestingUtils",
+            "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-9/bin/Lib $(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-opt-STABLE-17/bin/UI/UIFramework.iOS.zip/Modules $(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-9/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer $(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-opt-STABLE-17/bin/iOSApp/Source $(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-9/bin/iOSApp/Test/TestingUtils",
             "TARGETED_DEVICE_FAMILY": "1,2"
         },
         "c": "applebin_ios-ios_x86_64-opt-STABLE-17",
@@ -9151,7 +9151,7 @@
             "e": "iOSAppSwiftUnitTests",
             "m": "iOSAppSwiftUnitTests",
             "n": "iOSAppSwiftUnitTests",
-            "p": "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-17/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTests.xctest",
+            "p": "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-17/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTests.__internal__.__test_bundle_archive-root/iOSAppSwiftUnitTests.xctest",
             "t": "com.apple.product-type.bundle.unit-test"
         },
         "x": [
@@ -9217,7 +9217,7 @@
             "e": "macOSApp",
             "m": "macOSApp",
             "n": "macOSApp",
-            "p": "bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-34/bin/macOSApp/Source/macOSApp.app",
+            "p": "bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-34/bin/macOSApp/Source/macOSApp_archive-root/Payload/macOSApp.app",
             "t": "com.apple.product-type.application"
         },
         "x": [
@@ -9274,7 +9274,7 @@
             "e": "macOSAppUITests",
             "m": "macOSAppUITests",
             "n": "macOSAppUITests",
-            "p": "bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-34/bin/macOSApp/Test/UITests/macOSAppUITests.xctest",
+            "p": "bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-34/bin/macOSApp/Test/UITests/macOSAppUITests.__internal__.__test_bundle_archive-root/macOSAppUITests.xctest",
             "t": "com.apple.product-type.bundle.ui-testing"
         },
         "x": [
@@ -9331,7 +9331,7 @@
             "e": "tvOSAppUITests",
             "m": "tvOSAppUITests",
             "n": "tvOSAppUITests",
-            "p": "bazel-out/applebin_tvos-tvos_x86_64-opt-STABLE-29/bin/tvOSApp/Test/UITests/tvOSAppUITests.xctest",
+            "p": "bazel-out/applebin_tvos-tvos_x86_64-opt-STABLE-29/bin/tvOSApp/Test/UITests/tvOSAppUITests.__internal__.__test_bundle_archive-root/tvOSAppUITests.xctest",
             "t": "com.apple.product-type.bundle.ui-testing"
         },
         "x": [
@@ -9372,7 +9372,7 @@
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.tests",
             "PRODUCT_MODULE_NAME": "tvOSAppUnitTests",
             "SWIFT_COMPILATION_MODE": "wholemodule",
-            "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-11/bin/Lib $(BUILD_DIR)/bazel-out/applebin_tvos-tvos_x86_64-opt-STABLE-29/bin/UI/UIFramework.tvOS.framework/Modules $(BUILD_DIR)/bazel-out/applebin_tvos-tvos_x86_64-opt-STABLE-29/bin/tvOSApp/Source"
+            "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/tvos-x86_64-min15.0-applebin_tvos-tvos_x86_64-opt-STABLE-11/bin/Lib $(BUILD_DIR)/bazel-out/applebin_tvos-tvos_x86_64-opt-STABLE-29/bin/UI/UIFramework.tvOS.zip/Modules $(BUILD_DIR)/bazel-out/applebin_tvos-tvos_x86_64-opt-STABLE-29/bin/tvOSApp/Source"
         },
         "c": "applebin_tvos-tvos_x86_64-opt-STABLE-29",
         "d": [
@@ -9400,7 +9400,7 @@
             "e": "tvOSAppUnitTests",
             "m": "tvOSAppUnitTests",
             "n": "tvOSAppUnitTests",
-            "p": "bazel-out/applebin_tvos-tvos_x86_64-opt-STABLE-29/bin/tvOSApp/Test/UnitTests/tvOSAppUnitTests.xctest",
+            "p": "bazel-out/applebin_tvos-tvos_x86_64-opt-STABLE-29/bin/tvOSApp/Test/UnitTests/tvOSAppUnitTests.__internal__.__test_bundle_archive-root/tvOSAppUnitTests.xctest",
             "t": "com.apple.product-type.bundle.unit-test"
         },
         "x": [
@@ -9457,7 +9457,7 @@
             "e": "watchOSAppUITests",
             "m": "watchOSAppUITests",
             "n": "watchOSAppUITests",
-            "p": "bazel-out/applebin_watchos-watchos_x86_64-opt-STABLE-21/bin/watchOSApp/Test/UITests/watchOSAppUITests.xctest",
+            "p": "bazel-out/applebin_watchos-watchos_x86_64-opt-STABLE-21/bin/watchOSApp/Test/UITests/watchOSAppUITests.__internal__.__test_bundle_archive-root/watchOSAppUITests.xctest",
             "t": "com.apple.product-type.bundle.ui-testing"
         },
         "x": [
@@ -9498,7 +9498,7 @@
             "PRODUCT_BUNDLE_IDENTIFIER": "com.bazelbuild.rulesapple.Tests",
             "PRODUCT_MODULE_NAME": "watchOSAppExtensionUnitTestsLibrary",
             "SWIFT_COMPILATION_MODE": "wholemodule",
-            "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-10/bin/Lib $(BUILD_DIR)/bazel-out/applebin_watchos-watchos_x86_64-opt-STABLE-21/bin/UI/UIFramework.watchOS.framework/Modules"
+            "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/watchos-x86_64-min7.0-applebin_watchos-watchos_x86_64-opt-STABLE-10/bin/Lib $(BUILD_DIR)/bazel-out/applebin_watchos-watchos_x86_64-opt-STABLE-21/bin/UI/UIFramework.watchOS.zip/Modules"
         },
         "c": "applebin_watchos-watchos_x86_64-opt-STABLE-21",
         "d": [
@@ -9525,7 +9525,7 @@
             "e": "watchOSAppExtensionUnitTests",
             "m": "watchOSAppExtensionUnitTests",
             "n": "watchOSAppExtensionUnitTests",
-            "p": "bazel-out/applebin_watchos-watchos_x86_64-opt-STABLE-21/bin/watchOSAppExtension/Test/UnitTests/watchOSAppExtensionUnitTests.xctest",
+            "p": "bazel-out/applebin_watchos-watchos_x86_64-opt-STABLE-21/bin/watchOSAppExtension/Test/UnitTests/watchOSAppExtensionUnitTests.__internal__.__test_bundle_archive-root/watchOSAppExtensionUnitTests.xctest",
             "t": "com.apple.product-type.bundle.unit-test"
         },
         "x": [
@@ -9583,7 +9583,7 @@
             "e": "iOSAppUITestSuite",
             "m": "iOSAppUITestSuite",
             "n": "iOSAppUITestSuite",
-            "p": "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-17/bin/iOSApp/Test/UITests/iOSAppUITestSuite.xctest",
+            "p": "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-17/bin/iOSApp/Test/UITests/iOSAppUITestSuite.__internal__.__test_bundle_archive-root/iOSAppUITestSuite.xctest",
             "t": "com.apple.product-type.bundle.ui-testing"
         },
         "r": [
@@ -9651,7 +9651,7 @@
             "e": "iOSAppObjCUnitTestSuite",
             "m": "iOSAppObjCUnitTestSuite",
             "n": "iOSAppObjCUnitTestSuite",
-            "p": "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-17/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTestSuite.xctest",
+            "p": "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-17/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTestSuite.__internal__.__test_bundle_archive-root/iOSAppObjCUnitTestSuite.xctest",
             "t": "com.apple.product-type.bundle.unit-test"
         },
         "r": [
@@ -9696,7 +9696,7 @@
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.tests",
             "PRODUCT_MODULE_NAME": "iOSAppSwiftUnitTestSuite",
             "SWIFT_COMPILATION_MODE": "wholemodule",
-            "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-9/bin/Lib $(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-opt-STABLE-17/bin/UI/UIFramework.iOS.framework/Modules $(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-9/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer $(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-opt-STABLE-17/bin/iOSApp/Source $(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-9/bin/iOSApp/Test/TestingUtils",
+            "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-9/bin/Lib $(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-opt-STABLE-17/bin/UI/UIFramework.iOS.zip/Modules $(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-9/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer $(BUILD_DIR)/bazel-out/applebin_ios-ios_x86_64-opt-STABLE-17/bin/iOSApp/Source $(BUILD_DIR)/bazel-out/ios-x86_64-min15.0-applebin_ios-ios_x86_64-opt-STABLE-9/bin/iOSApp/Test/TestingUtils",
             "TARGETED_DEVICE_FAMILY": "1,2"
         },
         "c": "applebin_ios-ios_x86_64-opt-STABLE-17",
@@ -9733,7 +9733,7 @@
             "e": "iOSAppSwiftUnitTestSuite",
             "m": "iOSAppSwiftUnitTestSuite",
             "n": "iOSAppSwiftUnitTestSuite",
-            "p": "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-17/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTestSuite.xctest",
+            "p": "bazel-out/applebin_ios-ios_x86_64-opt-STABLE-17/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTestSuite.__internal__.__test_bundle_archive-root/iOSAppSwiftUnitTestSuite.xctest",
             "t": "com.apple.product-type.bundle.unit-test"
         },
         "x": [
@@ -13021,7 +13021,7 @@
             "e": "CommandLineToolTests",
             "m": "CommandLineToolTests",
             "n": "CommandLineToolTests",
-            "p": "bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-46/bin/CommandLine/Tests/CommandLineToolTests.xctest",
+            "p": "bazel-out/applebin_macos-darwin_x86_64-opt-STABLE-46/bin/CommandLine/Tests/CommandLineToolTests.__internal__.__test_bundle_archive-root/CommandLineToolTests.xctest",
             "t": "com.apple.product-type.bundle.unit-test"
         },
         "x": [
@@ -13135,7 +13135,7 @@
             "e": "AppClip",
             "m": "AppClip",
             "n": "AppClip",
-            "p": "bazel-out/applebin_ios-ios_arm64-opt-STABLE-18/bin/AppClip/AppClip.app",
+            "p": "bazel-out/applebin_ios-ios_arm64-opt-STABLE-18/bin/AppClip/AppClip_archive-root/Payload/AppClip.app",
             "t": "com.apple.product-type.application.on-demand-install-capable"
         },
         "x": [
@@ -13281,7 +13281,7 @@
             "e": "WidgetExtension",
             "m": "WidgetExtension",
             "n": "WidgetExtension",
-            "p": "bazel-out/applebin_ios-ios_arm64-opt-STABLE-18/bin/WidgetExtension/WidgetExtension.appex",
+            "p": "bazel-out/applebin_ios-ios_arm64-opt-STABLE-18/bin/WidgetExtension/WidgetExtension_archive-root/WidgetExtension.appex",
             "t": "com.apple.product-type.app-extension"
         },
         "x": [
@@ -13335,7 +13335,7 @@
             "e": "CoreUtilsObjC",
             "m": "CoreUtilsObjC",
             "n": "CoreUtilsObjC",
-            "p": "bazel-out/applebin_ios-ios_arm64-opt-STABLE-18/bin/iOSApp/Source/CoreUtilsObjC/CoreUtilsObjC.framework",
+            "p": "bazel-out/applebin_ios-ios_arm64-opt-STABLE-18/bin/iOSApp/Source/CoreUtilsObjC/FrameworkCoreUtilsObjC_archive-root/CoreUtilsObjC.framework",
             "t": "com.apple.product-type.framework"
         },
         "x": [
@@ -13382,7 +13382,7 @@
             "e": "LibFramework.iOS",
             "m": "LibFramework.iOS",
             "n": "LibFramework.iOS",
-            "p": "bazel-out/applebin_ios-ios_arm64-opt-STABLE-18/bin/Lib/LibFramework.iOS.framework",
+            "p": "bazel-out/applebin_ios-ios_arm64-opt-STABLE-18/bin/Lib/LibFramework.iOS_archive-root/LibFramework.iOS.framework",
             "t": "com.apple.product-type.framework"
         },
         "x": [
@@ -13419,7 +13419,7 @@
             "OTHER_SWIFT_FLAGS": "-F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7 -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-12/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-12/bin -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/ios-arm64_armv7/CryptoSwift.framework/Modules/module.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
             "PREVIEWS_SWIFT_INCLUDE__": "",
             "PREVIEWS_SWIFT_INCLUDE__NO": "",
-            "PREVIEWS_SWIFT_INCLUDE__YES": "-I $(BUILD_DIR)/bazel-out/applebin_ios-ios_arm64-opt-STABLE-18/bin/UI/UIFramework.iOS.framework/Modules",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I $(BUILD_DIR)/bazel-out/applebin_ios-ios_arm64-opt-STABLE-18/bin/UI/UIFramework.iOS.zip/Modules",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.UIFramework",
             "PRODUCT_MODULE_NAME": "UI",
             "SWIFT_COMPILATION_MODE": "wholemodule",
@@ -13455,7 +13455,7 @@
             "e": "UIFramework.iOS",
             "m": "UIFramework.iOS",
             "n": "UIFramework.iOS",
-            "p": "bazel-out/applebin_ios-ios_arm64-opt-STABLE-18/bin/UI/UIFramework.iOS.framework",
+            "p": "bazel-out/applebin_ios-ios_arm64-opt-STABLE-18/bin/UI/UIFramework.iOS_archive-root/UIFramework.iOS.framework",
             "t": "com.apple.product-type.framework"
         },
         "x": [
@@ -13541,7 +13541,7 @@
             "e": "LibFramework.watchOS",
             "m": "LibFramework.watchOS",
             "n": "LibFramework.watchOS",
-            "p": "bazel-out/applebin_watchos-watchos_arm64_32-opt-STABLE-22/bin/Lib/LibFramework.watchOS.framework",
+            "p": "bazel-out/applebin_watchos-watchos_arm64_32-opt-STABLE-22/bin/Lib/LibFramework.watchOS_archive-root/LibFramework.watchOS.framework",
             "t": "com.apple.product-type.framework"
         },
         "x": [
@@ -13578,7 +13578,7 @@
             "OTHER_SWIFT_FLAGS": "-F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-opt-STABLE-13/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-opt-STABLE-13/bin -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework/Modules/module.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
             "PREVIEWS_SWIFT_INCLUDE__": "",
             "PREVIEWS_SWIFT_INCLUDE__NO": "",
-            "PREVIEWS_SWIFT_INCLUDE__YES": "-I $(BUILD_DIR)/bazel-out/applebin_watchos-watchos_arm64_32-opt-STABLE-22/bin/UI/UIFramework.watchOS.framework/Modules",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I $(BUILD_DIR)/bazel-out/applebin_watchos-watchos_arm64_32-opt-STABLE-22/bin/UI/UIFramework.watchOS.zip/Modules",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.UIFramework",
             "PRODUCT_MODULE_NAME": "UI",
             "SWIFT_COMPILATION_MODE": "wholemodule",
@@ -13610,7 +13610,7 @@
             "e": "UIFramework.watchOS",
             "m": "UIFramework.watchOS",
             "n": "UIFramework.watchOS",
-            "p": "bazel-out/applebin_watchos-watchos_arm64_32-opt-STABLE-22/bin/UI/UIFramework.watchOS.framework",
+            "p": "bazel-out/applebin_watchos-watchos_arm64_32-opt-STABLE-22/bin/UI/UIFramework.watchOS_archive-root/UIFramework.watchOS.framework",
             "t": "com.apple.product-type.framework"
         },
         "x": [
@@ -13653,7 +13653,7 @@
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.watch.extension",
             "PRODUCT_MODULE_NAME": "watchOSAppExtension",
             "SWIFT_COMPILATION_MODE": "wholemodule",
-            "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-opt-STABLE-13/bin/Lib $(BUILD_DIR)/bazel-out/applebin_watchos-watchos_arm64_32-opt-STABLE-22/bin/UI/UIFramework.watchOS.framework/Modules"
+            "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-opt-STABLE-13/bin/Lib $(BUILD_DIR)/bazel-out/applebin_watchos-watchos_arm64_32-opt-STABLE-22/bin/UI/UIFramework.watchOS.zip/Modules"
         },
         "c": "applebin_watchos-watchos_arm64_32-opt-STABLE-22",
         "d": [
@@ -13683,7 +13683,7 @@
             "e": "watchOSAppExtension",
             "m": "watchOSAppExtension",
             "n": "watchOSAppExtension",
-            "p": "bazel-out/applebin_watchos-watchos_arm64_32-opt-STABLE-22/bin/watchOSAppExtension/watchOSAppExtension.appex",
+            "p": "bazel-out/applebin_watchos-watchos_arm64_32-opt-STABLE-22/bin/watchOSAppExtension/watchOSAppExtension_archive-root/watchOSAppExtension.appex",
             "t": "com.apple.product-type.watchkit2-extension"
         },
         "x": [
@@ -13724,7 +13724,7 @@
             "e": "watchOSApp",
             "m": "watchOSApp",
             "n": "watchOSApp",
-            "p": "bazel-out/applebin_watchos-watchos_arm64_32-opt-STABLE-26/bin/watchOSApp/watchOSApp.app",
+            "p": "bazel-out/applebin_watchos-watchos_arm64_32-opt-STABLE-26/bin/watchOSApp/watchOSApp_archive-root/Payload/watchOSApp.app",
             "t": "com.apple.product-type.application.watchapp2"
         },
         "x": [
@@ -13772,7 +13772,7 @@
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example",
             "PRODUCT_MODULE_NAME": "iOSApp",
             "SWIFT_COMPILATION_MODE": "wholemodule",
-            "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-12/bin/Lib $(BUILD_DIR)/bazel-out/applebin_ios-ios_arm64-opt-STABLE-18/bin/UI/UIFramework.iOS.framework/Modules $(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-12/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer",
+            "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-12/bin/Lib $(BUILD_DIR)/bazel-out/applebin_ios-ios_arm64-opt-STABLE-18/bin/UI/UIFramework.iOS.zip/Modules $(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-12/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer",
             "TARGETED_DEVICE_FAMILY": "1"
         },
         "c": "applebin_ios-ios_arm64-opt-STABLE-18",
@@ -13825,7 +13825,7 @@
             "e": "iOSApp",
             "m": "iOSApp",
             "n": "iOSApp",
-            "p": "bazel-out/applebin_ios-ios_arm64-opt-STABLE-18/bin/iOSApp/Source/iOSApp.app",
+            "p": "bazel-out/applebin_ios-ios_arm64-opt-STABLE-18/bin/iOSApp/Source/iOSApp_archive-root/Payload/iOSApp.app",
             "t": "com.apple.product-type.application"
         },
         "r": [
@@ -13877,7 +13877,7 @@
             "e": "Lib",
             "m": "Lib",
             "n": "Lib",
-            "p": "bazel-out/applebin_ios-ios_arm64-opt-STABLE-18/bin/Lib/dist/dynamic/Lib.framework",
+            "p": "bazel-out/applebin_ios-ios_arm64-opt-STABLE-18/bin/Lib/dist/dynamic/iOS_archive-root/Lib.framework",
             "t": "com.apple.product-type.framework"
         },
         "x": [
@@ -13963,7 +13963,7 @@
             "e": "Lib",
             "m": "Lib",
             "n": "Lib",
-            "p": "bazel-out/applebin_tvos-tvos_arm64-opt-STABLE-30/bin/Lib/dist/dynamic/Lib.framework",
+            "p": "bazel-out/applebin_tvos-tvos_arm64-opt-STABLE-30/bin/Lib/dist/dynamic/tvOS_archive-root/Lib.framework",
             "t": "com.apple.product-type.framework"
         },
         "x": [
@@ -14009,7 +14009,7 @@
             "e": "Lib",
             "m": "Lib",
             "n": "Lib",
-            "p": "bazel-out/applebin_watchos-watchos_arm64_32-opt-STABLE-22/bin/Lib/dist/dynamic/Lib.framework",
+            "p": "bazel-out/applebin_watchos-watchos_arm64_32-opt-STABLE-22/bin/Lib/dist/dynamic/watchOS_archive-root/Lib.framework",
             "t": "com.apple.product-type.framework"
         },
         "x": [
@@ -14055,7 +14055,7 @@
             "e": "LibFramework.tvOS",
             "m": "LibFramework.tvOS",
             "n": "LibFramework.tvOS",
-            "p": "bazel-out/applebin_tvos-tvos_arm64-opt-STABLE-30/bin/Lib/LibFramework.tvOS.framework",
+            "p": "bazel-out/applebin_tvos-tvos_arm64-opt-STABLE-30/bin/Lib/LibFramework.tvOS_archive-root/LibFramework.tvOS.framework",
             "t": "com.apple.product-type.framework"
         },
         "x": [
@@ -14092,7 +14092,7 @@
             "OTHER_SWIFT_FLAGS": "-F$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64 -Xcc -F -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64 -Xcc -iquote -Xcc $(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(BAZEL_OUT)/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-opt-STABLE-14/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift -Xcc -iquote -Xcc $(PROJECT_DIR) -Xcc -iquote -Xcc $(BAZEL_OUT)/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-opt-STABLE-14/bin -Xcc -fmodule-map-file=$(BAZEL_EXTERNAL)/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/tvos-arm64/CryptoSwift.framework/Modules/module.modulemap -Xcc -Os -Xcc -DNDEBUG=1 -Xcc -Wno-unused-variable -Xcc -Winit-self -Xcc -Wno-extra",
             "PREVIEWS_SWIFT_INCLUDE__": "",
             "PREVIEWS_SWIFT_INCLUDE__NO": "",
-            "PREVIEWS_SWIFT_INCLUDE__YES": "-I $(BUILD_DIR)/bazel-out/applebin_tvos-tvos_arm64-opt-STABLE-30/bin/UI/UIFramework.tvOS.framework/Modules",
+            "PREVIEWS_SWIFT_INCLUDE__YES": "-I $(BUILD_DIR)/bazel-out/applebin_tvos-tvos_arm64-opt-STABLE-30/bin/UI/UIFramework.tvOS.zip/Modules",
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.UIFramework",
             "PRODUCT_MODULE_NAME": "UI",
             "SWIFT_COMPILATION_MODE": "wholemodule",
@@ -14124,7 +14124,7 @@
             "e": "UIFramework.tvOS",
             "m": "UIFramework.tvOS",
             "n": "UIFramework.tvOS",
-            "p": "bazel-out/applebin_tvos-tvos_arm64-opt-STABLE-30/bin/UI/UIFramework.tvOS.framework",
+            "p": "bazel-out/applebin_tvos-tvos_arm64-opt-STABLE-30/bin/UI/UIFramework.tvOS_archive-root/UIFramework.tvOS.framework",
             "t": "com.apple.product-type.framework"
         },
         "x": [
@@ -14166,7 +14166,7 @@
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example",
             "PRODUCT_MODULE_NAME": "tvOSApp",
             "SWIFT_COMPILATION_MODE": "wholemodule",
-            "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-opt-STABLE-14/bin/Lib $(BUILD_DIR)/bazel-out/applebin_tvos-tvos_arm64-opt-STABLE-30/bin/UI/UIFramework.tvOS.framework/Modules"
+            "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/tvos-arm64-min15.0-applebin_tvos-tvos_arm64-opt-STABLE-14/bin/Lib $(BUILD_DIR)/bazel-out/applebin_tvos-tvos_arm64-opt-STABLE-30/bin/UI/UIFramework.tvOS.zip/Modules"
         },
         "c": "applebin_tvos-tvos_arm64-opt-STABLE-30",
         "d": [
@@ -14196,7 +14196,7 @@
             "e": "tvOSApp",
             "m": "tvOSApp",
             "n": "tvOSApp",
-            "p": "bazel-out/applebin_tvos-tvos_arm64-opt-STABLE-30/bin/tvOSApp/Source/tvOSApp.app",
+            "p": "bazel-out/applebin_tvos-tvos_arm64-opt-STABLE-30/bin/tvOSApp/Source/tvOSApp_archive-root/Payload/tvOSApp.app",
             "t": "com.apple.product-type.application"
         },
         "x": [
@@ -14369,7 +14369,7 @@
             "e": "iOSAppObjCUnitTests",
             "m": "iOSAppObjCUnitTests",
             "n": "iOSAppObjCUnitTests",
-            "p": "bazel-out/applebin_ios-ios_arm64-opt-STABLE-18/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests.xctest",
+            "p": "bazel-out/applebin_ios-ios_arm64-opt-STABLE-18/bin/iOSApp/Test/ObjCUnitTests/iOSAppObjCUnitTests.__internal__.__test_bundle_archive-root/iOSAppObjCUnitTests.xctest",
             "t": "com.apple.product-type.bundle.unit-test"
         },
         "r": [
@@ -14430,7 +14430,7 @@
             "e": "iOSAppUITests",
             "m": "iOSAppUITests",
             "n": "iOSAppUITests",
-            "p": "bazel-out/applebin_ios-ios_arm64-opt-STABLE-18/bin/iOSApp/Test/UITests/iOSAppUITests.xctest",
+            "p": "bazel-out/applebin_ios-ios_arm64-opt-STABLE-18/bin/iOSApp/Test/UITests/iOSAppUITests.__internal__.__test_bundle_archive-root/iOSAppUITests.xctest",
             "t": "com.apple.product-type.bundle.ui-testing"
         },
         "r": [
@@ -14475,7 +14475,7 @@
             "PRODUCT_BUNDLE_IDENTIFIER": "rules-xcodeproj.example.tests",
             "PRODUCT_MODULE_NAME": "iOSAppSwiftUnitTests",
             "SWIFT_COMPILATION_MODE": "wholemodule",
-            "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-12/bin/Lib $(BUILD_DIR)/bazel-out/applebin_ios-ios_arm64-opt-STABLE-18/bin/UI/UIFramework.iOS.framework/Modules $(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-12/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer $(BUILD_DIR)/bazel-out/applebin_ios-ios_arm64-opt-STABLE-18/bin/iOSApp/Source $(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-12/bin/iOSApp/Test/TestingUtils",
+            "SWIFT_INCLUDE_PATHS": "$(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-12/bin/Lib $(BUILD_DIR)/bazel-out/applebin_ios-ios_arm64-opt-STABLE-18/bin/UI/UIFramework.iOS.zip/Modules $(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-12/bin/iOSApp/Source/CoreUtilsMixed/MixedAnswer $(BUILD_DIR)/bazel-out/applebin_ios-ios_arm64-opt-STABLE-18/bin/iOSApp/Source $(BUILD_DIR)/bazel-out/ios-arm64-min15.0-applebin_ios-ios_arm64-opt-STABLE-12/bin/iOSApp/Test/TestingUtils",
             "TARGETED_DEVICE_FAMILY": "1,2"
         },
         "c": "applebin_ios-ios_arm64-opt-STABLE-18",
@@ -14512,7 +14512,7 @@
             "e": "iOSAppSwiftUnitTests",
             "m": "iOSAppSwiftUnitTests",
             "n": "iOSAppSwiftUnitTests",
-            "p": "bazel-out/applebin_ios-ios_arm64-opt-STABLE-18/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTests.xctest",
+            "p": "bazel-out/applebin_ios-ios_arm64-opt-STABLE-18/bin/iOSApp/Test/SwiftUnitTests/iOSAppSwiftUnitTests.__internal__.__test_bundle_archive-root/iOSAppSwiftUnitTests.xctest",
             "t": "com.apple.product-type.bundle.unit-test"
         },
         "x": [
