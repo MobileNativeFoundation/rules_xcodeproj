@@ -24,6 +24,10 @@ extension Generator {
     ) -> String {
         return createBuildSettingsAttribute(buildSettings: [
             .init(key: "ALWAYS_SEARCH_USER_PATHS", value: "NO"),
+            .init(
+                key: "ASSETCATALOG_COMPILER_GENERATE_ASSET_SYMBOLS",
+                value: "NO"
+            ),
             .init(key: "BAZEL_CONFIG", value: "rules_xcodeproj"),
             .init(
                 key: "BAZEL_EXTERNAL",

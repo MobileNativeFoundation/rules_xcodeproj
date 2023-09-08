@@ -187,6 +187,7 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
 
         let buildSettings: [String: Any] = [
             "ALWAYS_SEARCH_USER_PATHS": false,
+            "ASSETCATALOG_COMPILER_GENERATE_ASSET_SYMBOLS": false,
             "BAZEL_CONFIG": "rules_xcodeproj_fixtures",
             "BAZEL_EXTERNAL": "$(BAZEL_OUTPUT_BASE)/external",
             "BAZEL_LLDB_INIT": "$(HOME)/.lldbinit-rules_xcodeproj",

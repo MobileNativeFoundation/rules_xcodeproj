@@ -159,6 +159,7 @@ $(PROJECT_TEMP_DIR)/$(BAZEL_PACKAGE_BIN_DIR)/$(COMPILE_TARGET_NAME)
 
         if buildMode.usesBazelModeBuildScripts {
             buildSettings.merge([
+                "ASSETCATALOG_COMPILER_GENERATE_ASSET_SYMBOLS": false,
                 "CC": "$(BAZEL_INTEGRATION_DIR)/clang.sh",
                 "CXX": "$(BAZEL_INTEGRATION_DIR)/clang.sh",
                 "CODE_SIGNING_ALLOWED": false,
