@@ -19,6 +19,7 @@ class PBXProjectBuildSettingsTests: XCTestCase {
         let expectedBuildSettings = #"""
 {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_ASSET_SYMBOLS = NO;
 				BAZEL_CONFIG = rules_xcodeproj;
 				BAZEL_EXTERNAL = "$(BAZEL_OUTPUT_BASE)/external";
 				BAZEL_INTEGRATION_DIR = "$(INTERNAL_DIR)/bazel";
