@@ -8,13 +8,20 @@ load(
 )
 
 # buildifier: disable=bzl-visibility
+load(
+    "@build_bazel_rules_apple//apple/internal:providers.bzl",
+    "new_iosxctestbundleinfo",
+    "new_macosxctestbundleinfo",
+)
+
+# buildifier: disable=bzl-visibility
 load("//xcodeproj/internal:targets.bzl", "targets")
 
 def _is_test_bundle_for_ios_test_bundle_test(ctx):
     env = unittest.begin(ctx)
 
-    target = {IosXcTestBundleInfo: IosXcTestBundleInfo()}
-    dep = {IosXcTestBundleInfo: IosXcTestBundleInfo()}
+    target = {IosXcTestBundleInfo: new_iosxctestbundleinfo()}
+    dep = {IosXcTestBundleInfo: new_iosxctestbundleinfo()}
     deps = [dep]
 
     actual = targets.is_test_bundle(target, deps)
@@ -27,8 +34,8 @@ is_test_bundle_for_ios_test_bundle_test = unittest.make(_is_test_bundle_for_ios_
 def _is_test_bundle_for_macos_test_bundel_test(ctx):
     env = unittest.begin(ctx)
 
-    target = {MacosXcTestBundleInfo: MacosXcTestBundleInfo()}
-    dep = {MacosXcTestBundleInfo: MacosXcTestBundleInfo()}
+    target = {MacosXcTestBundleInfo: new_macosxctestbundleinfo()}
+    dep = {MacosXcTestBundleInfo: new_macosxctestbundleinfo()}
     deps = [dep]
 
     actual = targets.is_test_bundle(target, deps)
@@ -41,7 +48,7 @@ is_test_bundle_for_macos_test_bundel_test = unittest.make(_is_test_bundle_for_ma
 def _is_test_bundle_has_provider_but_not_dep_test(ctx):
     env = unittest.begin(ctx)
 
-    target = {MacosXcTestBundleInfo: MacosXcTestBundleInfo()}
+    target = {MacosXcTestBundleInfo: new_macosxctestbundleinfo()}
     dep = {}
     deps = [dep]
 
@@ -56,7 +63,7 @@ def _is_test_bundle_does_not_have_provider_test(ctx):
     env = unittest.begin(ctx)
 
     target = {}
-    dep = {MacosXcTestBundleInfo: MacosXcTestBundleInfo()}
+    dep = {MacosXcTestBundleInfo: new_macosxctestbundleinfo()}
     deps = [dep]
 
     actual = targets.is_test_bundle(target, deps)
@@ -69,8 +76,8 @@ is_test_bundle_does_not_have_provider_test = unittest.make(_is_test_bundle_does_
 def _is_test_bundle_more_than_one_dep_test(ctx):
     env = unittest.begin(ctx)
 
-    target = {MacosXcTestBundleInfo: MacosXcTestBundleInfo()}
-    dep = {MacosXcTestBundleInfo: MacosXcTestBundleInfo()}
+    target = {MacosXcTestBundleInfo: new_macosxctestbundleinfo()}
+    dep = {MacosXcTestBundleInfo: new_macosxctestbundleinfo()}
     deps = [dep, dep]
 
     actual = targets.is_test_bundle(target, deps)

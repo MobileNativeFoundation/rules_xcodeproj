@@ -8,6 +8,12 @@ load(
 )
 
 # buildifier: disable=bzl-visibility
+load(
+    "@build_bazel_rules_apple//apple/internal:providers.bzl",
+    "new_applebundleinfo",
+)
+
+# buildifier: disable=bzl-visibility
 load("//xcodeproj/internal:info_plists.bzl", "info_plists")
 
 # NOTE: It is not possible to create a dict with a key of apple_common.Objc.
@@ -25,7 +31,7 @@ def _get_file_from_bundle_info_test(ctx):
     info_plist_file = ctx.actions.declare_file("Info.plist")
     ctx.actions.write(info_plist_file, content = "")
 
-    bundle_info = AppleBundleInfo(infoplist = info_plist_file)
+    bundle_info = new_applebundleinfo(infoplist = info_plist_file)
     target = {AppleBundleInfo: bundle_info}
 
     actual = info_plists.get_file(target)
@@ -39,7 +45,7 @@ def _get_file_from_binary_info_test(ctx):
     info_plist_file = ctx.actions.declare_file("Info.plist")
     ctx.actions.write(info_plist_file, content = "")
 
-    infoplist_info = AppleBinaryInfo(infoplist = info_plist_file)
+    infoplist_info = new_applebundleinfo(infoplist = info_plist_file)
     target = {AppleBinaryInfo: infoplist_info}
 
     actual = info_plists.get_file(target)
