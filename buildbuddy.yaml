@@ -70,12 +70,6 @@ actions:
     <<: *root_workspace
     bazel_commands:
       - *test_all
-  - name: Test - WORKSPACE
-    <<: *normal_resources
-    <<: *action_base
-    <<: *root_workspace
-    bazel_commands:
-      - *nobzlmod_test_all
   - name: Test - Bazel 7
     <<: *bazel_7
     <<: *arm64
@@ -92,12 +86,6 @@ actions:
     <<: *root_workspace
     bazel_commands:
       - *validate_integration
-  - name: Integration Test - Root - WORKSPACE
-    <<: *action_base
-    <<: *normal_resources
-    <<: *root_workspace
-    bazel_commands:
-      - *nobzlmod_generate_integration
 
   - name: Integration Test - "examples/integration"
     <<: *arm64
