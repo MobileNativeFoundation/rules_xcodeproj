@@ -5,7 +5,6 @@ build --experimental_convenience_symlinks=ignore
 
 # Use Bzlmod
 build --enable_bzlmod
-common:nobzlmod --platform_mappings=platform_mappings-nobzlmod
 
 # Use apple_support Xcode toolchain
 build --apple_crosstool_top=@local_config_apple_cc//:toolchain
