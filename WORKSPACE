@@ -1,5 +1,14 @@
 workspace(name = "rules_xcodeproj")
 
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+# Remove override once `xcodeproj/repositories.bzl` updates to use `rules_apple` 3.0.0+
+http_archive(
+    name = "build_bazel_rules_apple",
+    sha256 = "2c6ab2f5903a4487f2cf31ec3f2f3a71244ec159dd94c3fde339ee23193df791",
+    url = "https://github.com/bazelbuild/rules_apple/releases/download/3.0.0-rc2/rules_apple.3.0.0-rc2.tar.gz",
+)
+
 load(
     "//xcodeproj:repositories.bzl",
     "xcodeproj_rules_dependencies",
@@ -46,8 +55,6 @@ load("@bazel_skylib//:workspace.bzl", "bazel_skylib_workspace")
 bazel_skylib_workspace()
 
 # Buildifier
-
-load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 http_archive(
     name = "buildifier_prebuilt",
