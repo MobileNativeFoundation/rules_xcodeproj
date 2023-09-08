@@ -1,10 +1,2 @@
-build --enable_bzlmod
-
-build --platform_mappings=platform_mappings-bzlmod
-
-common:nobzlmod --platform_mappings=platform_mappings
-
-build:cache --experimental_remote_build_event_upload=minimal
-
 # Disabled until bugs are fixed
 common --lockfile_mode=off
