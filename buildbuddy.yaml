@@ -14,9 +14,7 @@ x_templates:
 
     - &bazel_7
       env:
-        # Versions past this require a new rules_apple, but one hasn't been
-        # released yet
-        USE_BAZEL_VERSION: 7.0.0-pre.20230724.1
+        USE_BAZEL_VERSION: rolling
 
     - &normal_resources
       resource_requests: { memory: 6GB }
