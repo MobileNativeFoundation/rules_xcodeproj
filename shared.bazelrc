@@ -1,6 +1,11 @@
+# Opt into future migrations
 build --experimental_strict_conflict_checks
 build --incompatible_disallow_empty_glob
 build --experimental_convenience_symlinks=ignore
+
+# Use Bzlmod
+build --enable_bzlmod
+common:nobzlmod --platform_mappings=platform_mappings-nobzlmod
 
 # Use apple_support Xcode toolchain
 build --apple_crosstool_top=@local_config_apple_cc//:toolchain
@@ -44,6 +49,7 @@ common:nobzlmod --@rules_xcodeproj//xcodeproj:extra_generator_flags='--config=no
 # Build with --config=cache to use BuildBuddy Remote Cache
 build:cache --bes_backend=grpcs://remote.buildbuddy.io
 build:cache --bes_results_url=https://app.buildbuddy.io/invocation/
+build:cache --experimental_remote_build_event_upload=minimal
 build:cache --experimental_remote_cache_async
 build:cache --experimental_remote_cache_compression
 build:cache --jobs=100
