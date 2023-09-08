@@ -12,9 +12,15 @@ x_templates:
     - &arm64
       arch: "arm64"
 
-    - &bazel_7
+    - &bazel_in_repo_version
+      # No change, uses `.bazelversion`, just used to make it clear
+      env: {}
+    - &bazel_lts
       env:
-        USE_BAZEL_VERSION: rolling
+        USE_BAZEL_VERSION: latest
+    - &bazel_head
+      env:
+        USE_BAZEL_VERSION: last_green
 
     - &normal_resources
       resource_requests: { memory: 6GB }
@@ -50,6 +56,7 @@ x_templates:
 
 actions:
   - name: Buildifier Lint
+    <<: *bazel_in_repo_version
     <<: *action_base
     <<: *light_resources
     <<: *root_workspace
@@ -57,6 +64,7 @@ actions:
       - "run --config=workflows //:buildifier.check"
 
   - name: Docs
+    <<: *bazel_in_repo_version
     <<: *action_base
     <<: *light_resources
     <<: *root_workspace
@@ -64,14 +72,23 @@ actions:
       - "test --config=workflows //docs:diff_test"
 
   - name: Test
+    <<: *bazel_in_repo_version
     <<: *arm64
     <<: *normal_resources
     <<: *action_base
     <<: *root_workspace
     bazel_commands:
       - *test_all
-  - name: Test - Bazel 7
-    <<: *bazel_7
+  - name: Test - Bazel LTS
+    <<: *bazel_lts
+    <<: *arm64
+    <<: *normal_resources
+    <<: *action_base
+    <<: *root_workspace
+    bazel_commands:
+      - *test_all
+  - name: Test - Bazel HEAD
+    <<: *bazel_head
     <<: *arm64
     <<: *normal_resources
     <<: *action_base
@@ -79,7 +96,15 @@ actions:
     bazel_commands:
       - *test_all
 
-  - name: Integration Test - Root
+  - name: Integration Test - Root - Bazel LTS
+    <<: *bazel_lts
+    <<: *action_base
+    <<: *normal_resources
+    <<: *root_workspace
+    bazel_commands:
+      - *validate_integration
+  - name: Integration Test - Root - Bazel HEAD
+    <<: *bazel_head
     <<: *arm64
     <<: *action_base
     <<: *normal_resources
@@ -87,7 +112,8 @@ actions:
     bazel_commands:
       - *validate_integration
 
-  - name: Integration Test - "examples/integration"
+  - name: Integration Test - "examples/integration" - Bazel LTS
+    <<: *bazel_lts
     <<: *arm64
     <<: *action_base
     <<: *normal_resources
@@ -95,15 +121,16 @@ actions:
     bazel_commands:
       - *validate_integration
       - *build_all
-  - name: Integration Test - "examples/integration" - WORKSPACE
+  - name: Integration Test - "examples/integration" - Bazel LTS using WORKSPACE
+    <<: *bazel_lts
     <<: *action_base
     <<: *normal_resources
     <<: *examples_integration_workspace
     bazel_commands:
       - *nobzlmod_generate_integration
       - *nobzlmod_build_all
-  - name: Integration Test - "examples/integration" - Bazel 7
-    <<: *bazel_7
+  - name: Integration Test - "examples/integration" - Bazel HEAD
+    <<: *bazel_head
     <<: *arm64
     <<: *action_base
     <<: *normal_resources
@@ -112,7 +139,8 @@ actions:
       - *validate_integration
       - *build_all
 
-  - name: Integration Test - "examples/rules_ios"
+  - name: Integration Test - "examples/rules_ios" - Bazel LTS using WORKSPACE
+    <<: *bazel_lts
     <<: *arm64
     <<: *action_base
     <<: *normal_resources
@@ -121,8 +149,8 @@ actions:
       - *validate_integration
       - *build_all
   ## Uncomment when rules_ios performs ObjcProvider -> CcInfo linking migration
-  # - name: Integration Test - "examples/rules_ios" - Bazel 7
-  #   <<: *bazel_7
+  # - name: Integration Test - "examples/rules_ios" - Bazel HEAD
+  #   <<: *bazel_head
   #   <<: *action_base
   #   <<: *normal_resources
   #   <<: *examples_rules_ios_workspace
@@ -131,6 +159,7 @@ actions:
   #     - *build_all
 
   - name: Validate release.tar.gz
+    <<: *bazel_in_repo_version
     <<: *arm64
     <<: *normal_resources
     <<: *action_base
