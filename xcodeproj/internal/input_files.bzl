@@ -553,10 +553,10 @@ def _collect_input_files(
                 ],
             )
         for module in non_target_swift_info_modules.to_list():
-            compiled, indexstore = swift_to_outputs(
+            swiftmodules, indexstore = swift_to_outputs(
                 parse_swift_info_module(module),
             )
-            generated.extend(compiled)
+            generated.extend(swiftmodules)
             if should_produce_output_groups and indexstore:
                 indexstores.append(indexstore)
 
@@ -568,16 +568,11 @@ def _collect_input_files(
         unfocused_generated_compiling = []
         unfocused_generated_indexstores = []
         for module in unfocused_swift_info_modules.to_list():
-            compiled, indexstore = swift_to_outputs(
+            swiftmodules, indexstore = swift_to_outputs(
                 parse_swift_info_module(module),
             )
 
-            if compiled:
-                # We only need the single swiftmodule in order to download
-                # everything from the remote cache (because of
-                # `--experimental_remote_download_regex`). Reducing the number
-                # of items in an output group keeps the BEP small.
-                unfocused_generated_compiling.append(compiled[0])
+            unfocused_generated_compiling.extend(swiftmodules)
             if indexstore:
                 unfocused_generated_indexstores.append(indexstore)
 
@@ -642,6 +637,10 @@ def _collect_input_files(
     # would get a `depset` for the modulemaps, so they would be properly
     # represented in the BEP.
     modulemaps = modulemaps_depset.to_list()
+
+    a = [e for e in extra_files if "archive.objlist" in e]
+    if a:
+        print("WWWWWWWWTFFFFFFFFFFFF 1?", id, a)
 
     if id:
         compiling_files = memory_efficient_depset(
