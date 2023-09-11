@@ -10,6 +10,7 @@ _SKIP_INPUT_EXTENSIONS = {
     "dylib": None,
     "framework": None,
     "lo": None,
+    "objlist": None,
     "swiftmodule": None,
     "xctest": None,
 }
