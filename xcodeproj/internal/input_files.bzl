@@ -638,10 +638,6 @@ def _collect_input_files(
     # represented in the BEP.
     modulemaps = modulemaps_depset.to_list()
 
-    a = [e for e in extra_files if "archive.objlist" in e]
-    if a:
-        print("WWWWWWWWTFFFFFFFFFFFF 1?", id, a)
-
     if id:
         compiling_files = memory_efficient_depset(
             modulemaps,
