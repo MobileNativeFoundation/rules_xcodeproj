@@ -12,17 +12,24 @@ flags=()
 tool_location="${BASH_SOURCE[0]}"
 tool_abs_location="$(/usr/bin/perl -MCwd -e 'print Cwd::abs_path shift' "$tool_location";)"
 readonly root_dir="${tool_abs_location%/*/*}"
-if [[ $bazel_version -lt 6 ]]; then
-  flags+=("--bazelrc=$root_dir/bazel_5.bazelrc")
-else
+readonly workspace_dir="${tool_location%/*/*}"
+
+if [[ $bazel_version -eq 6 ]]; then
   flags+=("--bazelrc=$root_dir/bazel_6.bazelrc")
 
-  workspace_dir="${tool_location%/*/*}"
+  if [[ "$workspace_dir" != "$root_dir" ]]; then
+    readonly workspace_6_bazelrc="$workspace_dir/bazel_6.bazelrc"
+    if [[ -s "$workspace_6_bazelrc" ]]; then
+      flags+=("--bazelrc=$workspace_6_bazelrc")
+    fi
+  fi
+else
+  flags+=("--bazelrc=$root_dir/bazel_7.bazelrc")
 
   if [[ "$workspace_dir" != "$root_dir" ]]; then
-    readonly workspace_bazelrc="$workspace_dir/bazel_6.bazelrc"
-    if [[ -s "$workspace_bazelrc" ]]; then
-      flags+=("--bazelrc=$workspace_bazelrc")
+    readonly workspace_7_bazelrc="$workspace_dir/bazel_7.bazelrc"
+    if [[ -s "$workspace_7_bazelrc" ]]; then
+      flags+=("--bazelrc=$workspace_7_bazelrc")
     fi
   fi
 fi
