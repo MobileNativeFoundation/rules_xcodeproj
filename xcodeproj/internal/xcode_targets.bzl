@@ -241,7 +241,7 @@ def _to_xcode_target_outputs(outputs):
     swift_generated_header = None
     if direct_outputs:
         swift = direct_outputs.swift
-        if swift:
+        if swift and swift.module:
             swiftmodule = swift.module.swiftmodule
             if swift.generated_header:
                 swift_generated_header = swift.generated_header

@@ -1,6 +1,6 @@
 """Functions for processing target properties"""
 
-load(":collections.bzl", "set_if_true", "uniq")
+load(":collections.bzl", "uniq")
 load(":memory_efficiency.bzl", "memory_efficient_depset")
 
 _WATCHKIT2 = "com.apple.product-type.application.watchapp2"

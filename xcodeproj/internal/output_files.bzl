@@ -39,8 +39,7 @@ def _get_outputs(*, debug_outputs, id, product, swift_info, output_group_info):
         # TODO: Actually handle more than one module?
         for module in swift_info.direct_modules:
             swift = parse_swift_info_module(module)
-            if swift:
-                break
+            break
 
     # _has_dsym will be False if --apple_generate_dsym is not passed
     dsym_files = None
@@ -125,15 +124,16 @@ def _collect_output_files(
         swift_info = swift_info,
     )
 
-    compiled = None
     direct_products = []
     dsym_files = EMPTY_DEPSET
-    indexstore = None
 
     is_framework = direct_outputs.is_framework
     swift = direct_outputs.swift
     if swift:
-        compiled, indexstore = swift_to_outputs(swift)
+        swiftmodules, indexstore = swift_to_outputs(swift)
+    else:
+        indexstore = None
+        swiftmodules = []
 
     if direct_outputs.product:
         direct_products.append(direct_outputs.product)
@@ -142,12 +142,8 @@ def _collect_output_files(
         dsym_files = direct_outputs.dsym_files
 
     if should_produce_output_groups:
-        if compiled:
-            # We only need the single swiftmodule in order to download
-            # everything from the remote cache (because of
-            # `--experimental_remote_download_regex`). Reducing the number of
-            # items in an output group keeps the BEP small.
-            closest_compiled = memory_efficient_depset(compiled[0:1])
+        if swiftmodules:
+            closest_compiled = memory_efficient_depset(swiftmodules)
         else:
             closest_compiled = memory_efficient_depset(transitive = [
                 info.outputs._closest_compiled
@@ -354,19 +350,29 @@ def parse_swift_info_module(module):
             file, or `None`.
         *   `module`: A value returned from `swift_common.create_swift_module`.
     """
+    generated_header = None
+
+    if module.compilation_context:
+        dep_swiftmodules = module.compilation_context.swiftmodules
+    else:
+        dep_swiftmodules = []
+
     swift = module.swift
     if not swift:
-        return None
+        return struct(
+            dep_swiftmodules = dep_swiftmodules,
+            module = swift,
+            generated_header = generated_header,
+        )
 
     clang = module.clang
     if clang and clang.compilation_context.direct_public_headers:
         generated_header = (
             clang.compilation_context.direct_public_headers[0]
         )
-    else:
-        generated_header = None
 
     return struct(
+        dep_swiftmodules = dep_swiftmodules,
         module = swift,
         generated_header = generated_header,
     )
@@ -380,25 +386,25 @@ def swift_to_outputs(swift):
     Returns:
         A `tuple` containing two elements:
 
-        *   A `list` of `File`s that can be used for future compiles (e.g.
-            `.swiftmodule`, `-Swift.h`).
+        *   A `list` of `File`s for `.swiftmodules`.
         *   A `File`s that represent generated index store data, or `None`.
     """
-    if not swift:
-        return ([], None)
-
     module = swift.module
+    if not module:
+        # Use the info from the compilation context. This should only happen
+        # for top-level targets which don't expose a `SwiftInfo`. We need
+        # to use all of the swiftmodules though, since not a single one
+        # necessarily depends on all of the rest.
+        return (swift.dep_swiftmodules, None)
 
-    # `swiftmodule` is listed first, as it's used as the "source" of the others
-    compiled = [module.swiftmodule, module.swiftdoc]
-    if module.swiftsourceinfo:
-        compiled.append(module.swiftsourceinfo)
-    if module.swiftinterface:
-        compiled.append(module.swiftinterface)
-    if swift.generated_header:
-        compiled.append(swift.generated_header)
-
-    return (compiled, getattr(module, "indexstore", None))
+    return (
+        # We only need the single swiftmodule in order to download everything
+        # from the remote cache (because of
+        # `--experimental_remote_download_regex`). Reducing the number of
+        # items in an output group keeps the BEP small.
+        [module.swiftmodule],
+        getattr(module, "indexstore", None),
+    )
 
 output_files = struct(
     collect = _collect_output_files,
