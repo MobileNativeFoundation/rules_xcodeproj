@@ -34,6 +34,13 @@ extension Generator.WriteConsolidationMap {
         _ entries: [ConsolidationMapEntry],
         to url: URL
     ) throws {
+        // Create parent directory
+        try FileManager.default.createDirectory(
+            at: url.deletingLastPathComponent(),
+            withIntermediateDirectories: true
+        )
+
+        // Write
         try ConsolidationMapEntry.encode(entries, to: url)
     }
 }
