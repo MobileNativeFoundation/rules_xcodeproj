@@ -514,7 +514,6 @@ Please refer to https://bazel.build/extending/config#defining) on how to them.
         project_options = project_options,
         scheme_autogeneration_mode = scheme_autogeneration_mode,
         schemes_json = schemes_json,
-        temporary_directory = temporary_directory,
         testonly = testonly,
         top_level_device_targets = top_level_device_targets,
         top_level_simulator_targets = top_level_simulator_targets,
