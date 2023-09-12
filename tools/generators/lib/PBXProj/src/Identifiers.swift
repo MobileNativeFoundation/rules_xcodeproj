@@ -436,9 +436,8 @@ FF00000000000000000001\#(String(format: "%02X", index)) \#
             subIdentifier: SubIdentifier,
             name: String
         ) -> Identifier {
-            let withoutComment = #"""
-\#(subIdentifier.shard)00\#(subIdentifier.hash)000000000001
-"""#
+            let withoutComment =
+                idWithoutComment(subIdentifier: subIdentifier, name: name)
             let full = #"""
 \#(withoutComment) /* \#(name) */
 """#
@@ -448,6 +447,15 @@ FF00000000000000000001\#(String(format: "%02X", index)) \#
                 full: full,
                 withoutComment: withoutComment
             )
+        }
+
+        public static func idWithoutComment(
+            subIdentifier: SubIdentifier,
+            name: String
+        ) -> String {
+            return #"""
+\#(subIdentifier.shard)00\#(subIdentifier.hash)000000000001
+"""#
         }
 
         public static func buildConfigurationList(
