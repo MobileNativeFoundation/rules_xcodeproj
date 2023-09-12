@@ -47,7 +47,7 @@ extension ConsolidationMapEntry {
         try data.write(to: url)
     }
 
-    func encode(into data: inout Data) {
+    private func encode(into data: inout Data) {
         data.append(Data(name.utf8))
         data.append(Self.subSeparator)
 
@@ -62,7 +62,7 @@ extension ConsolidationMapEntry {
     }
 }
 
-extension ConsolidationMapEntry.Key {
+private extension ConsolidationMapEntry.Key {
     func encode(into data: inout Data) {
         for id in self.sortedIds {
             data.append(Data(id.rawValue.utf8))
@@ -71,7 +71,7 @@ extension ConsolidationMapEntry.Key {
     }
 }
 
-extension Identifiers.Targets.SubIdentifier {
+private extension Identifiers.Targets.SubIdentifier {
     func encode(into data: inout Data) {
         data.append(Data(shard.utf8))
         data.append(Data(hash.utf8))
@@ -91,7 +91,7 @@ extension ConsolidationMapEntry {
         return entries
     }
 
-    init(from line: String) {
+    private init(from line: String) {
         let components = line.split(separator: Self.subSeparatorCharacter)
 
         let subIdentifiersIndex = components.count - 1
@@ -116,13 +116,13 @@ extension ConsolidationMapEntry {
     }
 }
 
-extension ConsolidationMapEntry.Key {
+private extension ConsolidationMapEntry.Key {
     init(from strings: ArraySlice<String.SubSequence>) {
         self.init(strings.lazy.map { TargetID(String($0)) })
     }
 }
 
-extension Identifiers.Targets.SubIdentifier {
+private extension Identifiers.Targets.SubIdentifier {
     init(from string: String.SubSequence) {
         let hashStartIndex = string.index(string.startIndex, offsetBy: 2)
         self.init(
@@ -132,7 +132,7 @@ extension Identifiers.Targets.SubIdentifier {
     }
 }
 
-extension Array where Element == Identifiers.Targets.SubIdentifier {
+private extension Array where Element == Identifiers.Targets.SubIdentifier {
     init(from string: String.SubSequence) {
         let count = string.count / 10
         self = (0 ..< count).map { index in
