@@ -84,11 +84,17 @@ extension ConsolidationMapEntry {
     public static func decode(
         from url: URL
     ) async throws -> [ConsolidationMapEntry] {
-        var entries: [Self] = []
-        for try await line in url.lines {
-            entries.append(.init(from: line))
+        do {
+            var entries: [Self] = []
+            for try await line in url.lines {
+                entries.append(try .init(from: line, in: url))
+            }
+            return entries
+        } catch {
+            throw PreconditionError(message: """
+"\(url.path)": \(error.localizedDescription)
+""")
         }
-        return entries
     }
 
     private init(from line: String) {
