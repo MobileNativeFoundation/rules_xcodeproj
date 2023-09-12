@@ -35,7 +35,7 @@ extension ConsolidationMapEntry {
     private static let subSeparatorCharacter: Character = "\t"
 
     public static func encode(
-        entires: [ConsolidationMapEntry],
+        _ entires: [ConsolidationMapEntry],
         to url: URL
     ) throws {
         var data = Data()

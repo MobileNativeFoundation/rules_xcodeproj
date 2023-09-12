@@ -19,7 +19,7 @@ extension Generator {
             self.callable = callable
         }
 
-        /// Writes a consolidation map to disk.
+        /// Writes consolidation maps to disk.
         func callAsFunction(
             _ consolidationMaps: [URL : [ConsolidationMapEntry]]
         ) async throws {

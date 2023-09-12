@@ -34,6 +34,6 @@ extension Generator.WriteConsolidationMap {
         _ entries: [ConsolidationMapEntry],
         to url: URL
     ) throws {
-        try ConsolidationMapEntry.encode(entires: entries, to: url)
+        try ConsolidationMapEntry.encode(entries, to: url)
     }
 }

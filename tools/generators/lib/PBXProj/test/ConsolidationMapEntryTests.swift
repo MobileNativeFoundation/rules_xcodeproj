@@ -38,7 +38,7 @@ final class ConsolidationMapEntryTests: XCTestCase {
 
         // Act
 
-        try ConsolidationMapEntry.encode(entires: input, to: file)
+        try ConsolidationMapEntry.encode(input, to: file)
         let output = try await ConsolidationMapEntry.decode(from: file)
 
         // Assert
