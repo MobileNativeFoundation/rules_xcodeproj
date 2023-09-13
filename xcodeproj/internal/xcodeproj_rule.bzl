@@ -13,6 +13,10 @@ load(":bazel_labels.bzl", "bazel_labels")
 load(":collections.bzl", "set_if_true", "uniq")
 load(":configuration.bzl", "calculate_configuration")
 load(":execution_root.bzl", "write_execution_root_file")
+load(
+    ":extension_point_identifiers.bzl",
+    "write_extension_point_identifiers_file",
+)
 load(":files.bzl", "build_setting_path")
 load(":flattened_key_values.bzl", "flattened_key_values")
 load(":input_files.bzl", "input_files")
@@ -1305,48 +1309,13 @@ def _write_xccurrentversions(
 
     return output
 
-def _write_extensionpointidentifiers(
-        *,
-        actions,
-        extension_infoplists,
-        extensionpointidentifiers_parser,
-        name):
-    targetids_file = actions.declare_file(
-        "{}_extensionpointidentifiers_targetids".format(name),
-    )
-    actions.write(
-        targetids_file,
-        "".join([s.id + "\n" for s in extension_infoplists]),
-    )
-
-    infoplist_files = [s.infoplist for s in extension_infoplists]
-
-    files_list = actions.args()
-    files_list.use_param_file("%s", use_always = True)
-    files_list.set_param_file_format("multiline")
-    files_list.add_all(infoplist_files)
-
-    output = actions.declare_file(
-        "{}_extensionpointidentifiers".format(name),
-    )
-
-    actions.run(
-        arguments = [targetids_file.path, files_list, output.path],
-        executable = extensionpointidentifiers_parser,
-        inputs = [targetids_file] + infoplist_files,
-        outputs = [output],
-        mnemonic = "CalculateXcodeProjExtensionPointIdentifiers",
-    )
-
-    return output
-
 def _write_xcodeproj(
         *,
         actions,
         build_mode,
         colorize,
         execution_root_file,
-        extensionpointidentifiers_file,
+        extension_point_identifiers_file,
         generator,
         index_import,
         install_path,
@@ -1363,7 +1332,7 @@ def _write_xcodeproj(
     args.add(execution_root_file.path)
     args.add(workspace_directory)
     args.add(xccurrentversions_file.path)
-    args.add(extensionpointidentifiers_file.path)
+    args.add(extension_point_identifiers_file.path)
     args.add(xcodeproj.path)
     args.add(install_path)
     args.add(build_mode)
@@ -1379,7 +1348,7 @@ def _write_xcodeproj(
         inputs = spec_files + [
             execution_root_file,
             xccurrentversions_file,
-            extensionpointidentifiers_file,
+            extension_point_identifiers_file,
         ],
         outputs = [xcodeproj],
         tools = [index_import],
@@ -1631,11 +1600,11 @@ configurations: {}""".format(", ".join(xcode_configurations)))
             ctx.attr._xccurrentversions_parser[DefaultInfo].files_to_run
         ),
     )
-    extensionpointidentifiers_file = _write_extensionpointidentifiers(
+    extension_point_identifiers_file = write_extension_point_identifiers_file(
         actions = actions,
         extension_infoplists = extension_infoplists,
-        extensionpointidentifiers_parser = (
-            ctx.attr._extensionpointidentifiers_parser[DefaultInfo].files_to_run
+        tool = (
+            ctx.attr._extension_point_identifiers_parser[DefaultInfo].files_to_run
         ),
         name = name,
     )
@@ -1680,7 +1649,7 @@ configurations: {}""".format(", ".join(xcode_configurations)))
         unstable_files = (
             spec_files +
             swift_debug_settings +
-            [extensionpointidentifiers_file, xccurrentversions_file]
+            [extension_point_identifiers_file, xccurrentversions_file]
         )
         normalized_files = (
             normalized_specs +
@@ -1707,7 +1676,7 @@ done
         )
 
         spec_files = normalized_specs
-        extensionpointidentifiers_file = normalized_extensionpointidentifiers
+        extension_point_identifiers_file = normalized_extensionpointidentifiers
         swift_debug_settings = normalized_swift_debug_settings
         xccurrentversions_file = normalized_xccurrentversions
 
@@ -1741,7 +1710,7 @@ done
         build_mode = build_mode,
         colorize = colorize,
         execution_root_file = execution_root_file,
-        extensionpointidentifiers_file = extensionpointidentifiers_file,
+        extension_point_identifiers_file = extension_point_identifiers_file,
         generator = ctx.attr._generator[DefaultInfo].files_to_run,
         index_import = ctx.attr._index_import[DefaultInfo].files_to_run,
         install_path = install_path,
@@ -1942,9 +1911,9 @@ def make_xcodeproj_rule(
                 "//xcodeproj/internal/templates:create_xcode_overlay.sh",
             ),
         ),
-        "_extensionpointidentifiers_parser": attr.label(
+        "_extension_point_identifiers_parser": attr.label(
             cfg = "exec",
-            default = Label("//tools/extensionpointidentifiers_parser"),
+            default = Label("//tools/extension_point_identifiers_parser"),
             executable = True,
         ),
         "_generator": attr.label(

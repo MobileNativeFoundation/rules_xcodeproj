@@ -1,6 +1,6 @@
 py_binary(
-    name = "extensionpointidentifiers_parser",
-    srcs = ["extensionpointidentifiers_parser.py"],
+    name = "extension_point_identifiers_parser",
+    srcs = ["extension_point_identifiers_parser.py"],
     python_version = "PY3",
     srcs_version = "PY3",
     # TODO: Restrict visibility
