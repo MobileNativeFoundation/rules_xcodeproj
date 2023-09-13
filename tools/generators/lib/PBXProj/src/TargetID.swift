@@ -1,4 +1,5 @@
 import ArgumentParser
+import Foundation
 
 /// A type-safe identifier for a target.
 public struct TargetID: Equatable, Hashable, ExpressibleByArgument {
@@ -23,6 +24,14 @@ extension TargetID: Comparable {
 extension TargetID: CustomStringConvertible {
     public var description: String {
         return rawValue
+    }
+}
+
+// MARK: - Decodable
+
+extension TargetID: Decodable {
+    public init(from decoder: Decoder) throws {
+        self.init(try decoder.singleValueContainer().decode(String.self))
     }
 }
 
