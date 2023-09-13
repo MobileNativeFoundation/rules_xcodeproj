@@ -12,6 +12,7 @@ filegroup(
         # "//" + package_name() + "/pbxproj_prefix:release_files",
         # "//" + package_name() + "/pbxtargetdependencies:release_files",
         # "//" + package_name() + "/selected_model_versions:release_files",
+        # "//" + package_name() + "/xcschemes:release_files",
     ],
     tags = ["manual"],
     visibility = ["//:__subpackages__"],
