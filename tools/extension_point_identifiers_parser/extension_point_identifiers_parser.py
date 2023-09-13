@@ -1,13 +1,12 @@
 #!/usr/bin/python3
 
-from collections import OrderedDict
 import plistlib
 import sys
 
 def _main(
+        output_path: str,
         targetids_path: str,
-        infoplist_file_list: str,
-        output_path) -> None:
+        infoplist_file_list: str) -> None:
     with open(targetids_path, encoding = "utf-8") as fp:
         targetids = fp.read().splitlines()
     with open(infoplist_file_list, encoding = "utf-8") as fp:
@@ -16,12 +15,12 @@ def _main(
     if len(targetids) != len(paths):
         print(
             """\
-ERROR: number of target ids doesn't match the number of Info.plist files""",
+ERROR: number of target IDs doesn't match the number of Info.plist files""",
             file = sys.stderr,
         )
         sys.exit(1)
 
-    results = OrderedDict()
+    results = []
     for targetid, path in zip(targetids, paths):
         with open(path, 'rb') as fp:
             plist = plistlib.load(fp)
@@ -32,22 +31,19 @@ ERROR: number of target ids doesn't match the number of Info.plist files""",
         if not extension_point_identifier:
             continue
 
-        results[targetid] = extension_point_identifier
+        results.append(f'"{targetid}"')
+        results.append(f'"{extension_point_identifier}"')
 
     with open(output_path, encoding = "utf-8", mode = "w") as fp:
-        results_json = [
-            f'"{targetid}","{extension_point_identifier}"'
-            for targetid, extension_point_identifier in results.items()
-        ]
-        fp.write(f'[{",".join(results_json)}]\n')
+        fp.write(f'[{",".join(results)}]\n')
 
 
 if __name__ == "__main__":
     if len(sys.argv) != 4:
         print(
             f"""\
-Usage: {sys.argv[0]} <path/to/targetids> <path/to/infoplist_file_list> \
-<output_file>
+Usage: {sys.argv[0]} <output_file> <path/to/targetids> \
+<path/to/infoplist_file_list>
 """,
             file = sys.stderr,
         )

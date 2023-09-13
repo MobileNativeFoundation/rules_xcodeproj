@@ -284,7 +284,7 @@ sh_binary(
 filegroup(
     name = "release_files",
     srcs = [
-        "//" + package_name() + "/extensionpointidentifiers_parser:release_files",
+        "//" + package_name() + "/extension_point_identifiers_parser:release_files",
         "//" + package_name() + "/generators:release_files",
         "//" + package_name() + "/params_processors:release_files",
         "//" + package_name() + "/swiftc_stub:release_files",
