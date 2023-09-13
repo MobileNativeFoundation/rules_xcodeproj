@@ -135,6 +135,26 @@ use an empty string.
     @Option(
         parsing: .upToNextOption,
         help: """
+Paths to the original product for all of the targets. There must be exactly as \
+many paths as there are targets.
+"""
+    )
+    var productPaths: [String]
+
+    @Option(
+        parsing: .upToNextOption,
+        help: """
+Basename of the (potentially modified) product path for all of the targets.
+There must be exactly as basenames as there are targets. This is possibly \
+different from 'basename(productPath)', because it might reference a \
+post-processed product (e.g. "tool_codesigned" instead of "tool").
+"""
+    )
+    var productBasenames: [String]
+
+    @Option(
+        parsing: .upToNextOption,
+        help: """
 Number of dependencies per target. For example, '--dependency-counts 2 3' \
 means the first target (as specified by <targets>) should include the first \
 two dependencies from <dependencies>, and the second target should include the \
@@ -236,6 +256,20 @@ elements as <targets> (\(targets.count) elements).
 """)
         }
 
+        guard productPaths.count == targets.count else {
+            throw ValidationError("""
+<product-paths> (\(productPaths.count) elements) must have exactly as many \
+elements as <targets> (\(targets.count) elements).
+""")
+        }
+
+        guard productBasenames.count == targets.count else {
+            throw ValidationError("""
+<product-basenames> (\(productBasenames.count) elements) must have exactly as \
+many elements as <targets> (\(targets.count) elements).
+""")
+        }
+
         guard dependencyCounts.count == targets.count else {
             throw ValidationError("""
 <dependency-counts> (\(dependencyCounts.count) elements) must have exactly as \
@@ -261,7 +295,9 @@ struct ConsolidationMapArguments: Equatable {
 }
 
 extension ConsolidationMapsArguments {
-    func toConsolidationMapArguments() -> [ConsolidationMapArguments] {
+    func toConsolidationMapArguments(
+        testHosts: [TargetID: TargetID]
+    ) throws -> [ConsolidationMapArguments] {
         var dependenciesStartIndex = dependencies.startIndex
         var labelsStartIndex = labels.startIndex
         var targetsStartIndex = targets.startIndex
@@ -299,16 +335,30 @@ extension ConsolidationMapsArguments {
                         startIndex: &xcodeConfigurationsStartIndex
                     )
 
+                    let id = targets[targetIndex]
+                    let productType = productTypes[targetIndex]
+
+                    let uiTestHost: TargetID?
+                    if productType == .uiTestBundle {
+                        uiTestHost = try testHosts
+                            .value(for: id, context: "UI test")
+                    } else {
+                        uiTestHost = nil
+                    }
+
                     targetArguments.append(
                         .init(
-                            id: targets[targetIndex],
+                            id: id,
                             label: label,
                             xcodeConfigurations: xcodeConfigurations,
                             productType: productTypes[targetIndex],
                             platform: platforms[targetIndex],
                             osVersion: osVersions[targetIndex],
                             arch: archs[targetIndex],
+                            productPath: productPaths[targetIndex],
+                            productBasename: productBasenames[targetIndex],
                             moduleName: moduleNames[targetIndex],
+                            uiTestHost: uiTestHost,
                             dependencies: dependencies
                         )
                     )

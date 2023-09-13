@@ -12,6 +12,8 @@ struct ConsolidatedTarget: Equatable {
     let productType: PBXProductType
     let moduleName: String
 
+    let uiTestHost: TargetID?
+
     let distinguisherKey: DistinguisherKey
     let targetDistinguisherKeys: [Target.DistinguisherKey]
 }
@@ -271,15 +273,16 @@ extension ConsolidatedTarget {
         let aTarget = sortedTargets.first!
         label = aTarget.label
         productType = aTarget.productType
+        uiTestHost = aTarget.uiTestHost
 
         if
             !aTarget.moduleName.isEmpty, sortedTargets.first(
                 where: { $0.moduleName != aTarget.moduleName }
             ) == nil
         {
-            self.moduleName = aTarget.moduleName
+            moduleName = aTarget.moduleName
         } else {
-            self.moduleName = label.name
+            moduleName = label.name
         }
 
         distinguisherKey = DistinguisherKey(
