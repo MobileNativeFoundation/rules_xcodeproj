@@ -338,10 +338,6 @@ def _process_targets(
 
     configurations_map = {}
     if is_fixture:
-        prefix, sep, _ = configuration.partition("-ST-")
-        if sep:
-            configurations_map[configuration] = "{}-STABLE-0".format(prefix)
-
         label_configurations = {}
         for xcode_target in unprocessed_targets.values():
             # Make it stable over labels
@@ -350,18 +346,15 @@ def _process_targets(
                 {},
             )[xcode_target.configuration] = xcode_target
 
-        configurations = {}
+        configurations = {configuration: None}
         for label_configs in label_configurations.values():
             for configuration in label_configs:
                 configurations[configuration] = None
 
         for idx, configuration in enumerate(configurations):
-            prefix, sep, _ = configuration.partition("-ST-")
-            if sep:
-                configurations_map[configuration] = "{}-STABLE-{}".format(
-                    prefix,
-                    idx + 1,
-                )
+            configurations_map[configuration] = (
+                "CONFIGURATION-STABLE-{}".format(idx)
+            )
 
     replacement_labels_by_label = {
         unprocessed_targets[id].label: label
