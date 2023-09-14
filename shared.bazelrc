@@ -48,7 +48,6 @@ common:nobzlmod --@rules_xcodeproj//xcodeproj:extra_generator_flags='--config=no
 # Build with --config=cache to use BuildBuddy Remote Cache
 build:cache --bes_backend=grpcs://remote.buildbuddy.io
 build:cache --bes_results_url=https://app.buildbuddy.io/invocation/
-build:cache --experimental_remote_build_event_upload=minimal
 build:cache --experimental_remote_cache_async
 build:cache --experimental_remote_cache_compression
 build:cache --jobs=100
