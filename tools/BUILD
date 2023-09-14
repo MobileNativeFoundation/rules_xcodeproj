@@ -8,6 +8,7 @@ _TOOLS = {
     "pbxproj_prefix": "//tools/generators/pbxproj_prefix",
     "pbxtargetdependencies": "//tools/generators/pbxtargetdependencies",
     "swiftc_stub": "//tools/swiftc_stub:swiftc",
+    "target_build_settings": "//tools/generators/target_build_settings",
     "xcschemes": "//tools/generators/xcschemes",
 }
 
@@ -23,6 +24,9 @@ _TESTS = {
     "pbxtargetdependencies": [
         "//tools/generators/lib/PBXProj:PBXProjTests",
         "//tools/generators/pbxtargetdependencies:pbxtargetdependencies_tests",
+    ],
+    "target_build_settings": [
+        "//tools/generators/target_build_settings:target_build_settings_tests",
     ],
     "xcschemes": [
         "//tools/generators/lib/PBXProj:PBXProjTests",
@@ -246,6 +250,148 @@ _SCHEMES = [
         ),
     ),
     xcode_schemes.scheme(
+        name = "target_build_settings",
+        launch_action = xcode_schemes.launch_action(
+            _TOOLS["target_build_settings"],
+            args = [
+                # colorize
+                "0",
+                # outputPath
+                "/tmp/pbxproj_partials/target_build_settings",
+                # deviceFamily
+                "4",
+                # extensionSafe
+                "0",
+                # generatesDsyms
+                "1",
+                # infoPlist
+                "bazel-out/generated/Info.plist",
+                # entitlements
+                "project/level/app.entitlements",
+                # certificateName
+                '""',
+                # provisioningProfileName
+                '""',
+                # teamID
+                '""',
+                # provisioningProfileIsXcodeManaged
+                "0",
+                # packageBinDir
+                "bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-opt-ST-c58d72818890/bin/Lib",
+                # previewFrameworkPaths
+                '""',
+                # previewsIncludePath
+                '""',
+                # swiftArgs
+                "-target",
+                "arm64_32-apple-watchos7.0",
+                "-sdk",
+                "__BAZEL_XCODE_SDKROOT__",
+                "-debug-prefix-map",
+                "__BAZEL_XCODE_DEVELOPER_DIR__=DEVELOPER_DIR",
+                "-file-prefix-map",
+                "__BAZEL_XCODE_DEVELOPER_DIR__=DEVELOPER_DIR",
+                "-emit-object",
+                "-output-file-map",
+                "bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-opt-ST-c58d72818890/bin/Lib/Lib.output_file_map.json",
+                "-Xfrontend",
+                "-no-clang-module-breadcrumbs",
+                "-swift-version",
+                "4.2",
+                "-emit-module-path",
+                "bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-opt-ST-c58d72818890/bin/Lib/Lib.swiftmodule",
+                "-emit-objc-header-path",
+                "bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-opt-ST-c58d72818890/bin/Lib/generated/Lib-Swift.h",
+                "-enable-bare-slash-regex",
+                "-DNDEBUG",
+                "-O",
+                "-whole-module-optimization",
+                "-Xfrontend",
+                "-no-serialize-debugging-options",
+                "-g",
+                "-Xwrapped-swift=-debug-prefix-pwd-is-dot",
+                "-Xwrapped-swift=-file-prefix-pwd-is-dot",
+                "-module-cache-path bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-opt-ST-c58d72818890/bin/_swift_module_cache",
+                "-Fexternal/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k",
+                "-Xcc",
+                "-Fexternal/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k -Xcc",
+                "-iquoteexternal/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift",
+                "-Xcc",
+                "-iquotebazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-opt-ST-c58d72818890/bin/external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift",
+                "-Xcc",
+                "-iquote.",
+                "-Xcc",
+                "-iquotebazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-opt-ST-c58d72818890/bin",
+                "-Xcc",
+                "-fmodule-map-file=external/_main~non_module_deps~com_github_krzyzanowskim_cryptoswift/CryptoSwift.xcframework/watchos-arm64_32_armv7k/CryptoSwift.framework/Modules/module.modulemap",
+                "-Xfrontend",
+                "-color-diagnostics",
+                "-num-threads 12",
+                "-module-name",
+                "Lib",
+                "-Xwrapped-swift=-global-index-store-import-path=bazel-out/_global_index_store",
+                "-index-store-path",
+                "bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-opt-ST-c58d72818890/bin/Lib/Lib.indexstore",
+                "-Xfrontend",
+                "-disable-autolink-framework",
+                "-Xfrontend",
+                "CryptoSwift",
+                "-Xfrontend",
+                "-vfsoverlay",
+                "-Xfrontend",
+                "project/relative/overlay.yaml",
+                "-Xcc",
+                "-ivfsoverlay=external/overlay.yaml",
+                "-vfsoverlay",
+                "bazel-out/generated/overlay.yaml",
+                "-Xfrontend",
+                "-explicit-swift-module-map-file",
+                "-Xfrontend",
+                "bazel-out/generated/map.json",
+                "-Xfrontend",
+                "-load-plugin-executable",
+                "-Xfrontend",
+                "bazel-out/generated/macro",
+                "-parse-as-library",
+                "-application-extension",
+                "-static",
+                "-Xcc",
+                "-Os",
+                "-Xcc -DNDEBUG=1",
+                "-Xcc",
+                "-Wno-unused-variable",
+                "-Xcc",
+                "-Winit-self",
+                "-Xcc",
+                "-Wno-extra",
+                "Lib/Resources.swift",
+                "bazel-out/watchos-arm64_32-min7.0-applebin_watchos-watchos_arm64_32-opt-ST-c58d72818890/bin/Lib/Lib.swift",
+                # cParamsOutputPath
+                "---",
+                "/tmp/pbxproj_partials/c.compile.params",
+                # cArgs
+                "-Os",
+                "-ivfsoverlay=external/overlay.yaml",
+                "--config",
+                "some.cfg",
+                # cxxParamsOutputPath
+                "---",
+                "/tmp/pbxproj_partials/cxx.compile.params",
+                # cxxArgs
+                "-Os",
+                "-D_FORTIFY_SOURCE=2",
+                "-ivfsoverlay",
+                "bazel-out/generated/overlay.yaml",
+            ],
+            build_configuration = "Release",
+            diagnostics = _SCHEME_DIAGNOSTICS,
+        ),
+        test_action = xcode_schemes.test_action(
+            _TESTS["target_build_settings"],
+            diagnostics = _SCHEME_DIAGNOSTICS,
+        ),
+    ),
+    xcode_schemes.scheme(
         name = "xcschemes",
         launch_action = xcode_schemes.launch_action(
             _TOOLS["xcschemes"],
@@ -308,6 +454,9 @@ xcodeproj(
         ],
         "//tools/generators/pbxtargetdependencies": [
             "//tools/generators/pbxtargetdependencies:README.md",
+        ],
+        "//tools/generators/target_build_settings": [
+            "//tools/generators/target_build_settings:README.md",
         ],
         "//tools/generators/xcschemes": [
             "//tools/generators/xcschemes:README.md",
