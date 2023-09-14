@@ -1,16 +1,16 @@
 {
     "B": "rules_xcodeproj",
     "E": [
-        "@@//tools/generators/legacy/test:tests.__internal__.__test_bundle macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1",
+        "@@//tools/generators/legacy/test:tests.__internal__.__test_bundle CONFIGURATION-STABLE-1",
         {},
-        "@@//tools/generators/legacy/test:tests.__internal__.__test_bundle macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2",
+        "@@//tools/generators/legacy/test:tests.__internal__.__test_bundle CONFIGURATION-STABLE-2",
         {}
     ],
     "R": "@@//test/fixtures/generator:xcodeproj_bwb",
     "T": "fixture-target-ids-file",
     "e": [
-        "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-dbg-STABLE-1/bin/tools/generators/legacy/test/rules_xcodeproj/tests.__internal__.__test_bundle/Info.plist",
-        "bazel-out/macos-x86_64-min12.0-applebin_macos-darwin_x86_64-opt-STABLE-2/bin/tools/generators/legacy/test/rules_xcodeproj/tests.__internal__.__test_bundle/Info.plist",
+        "bazel-out/CONFIGURATION-STABLE-1/bin/tools/generators/legacy/test/rules_xcodeproj/tests.__internal__.__test_bundle/Info.plist",
+        "bazel-out/CONFIGURATION-STABLE-2/bin/tools/generators/legacy/test/rules_xcodeproj/tests.__internal__.__test_bundle/Info.plist",
         "external/rules_apple~3.0.0-rc2/apple/testing/DefaultTestBundle.plist",
         "test/fixtures/generator/BUILD",
         "tools/generators/legacy/BUILD",
